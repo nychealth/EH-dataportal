@@ -1,0 +1,2932 @@
+Pollutant,Time,Season,Tertile,Source,Value
+BC,2024,Fall,Low,Commercial Cooking,0.472
+BC,2024,Fall,Low,Industrial Areas,0.434
+BC,2024,Fall,Low,Traffic Density,0.436
+BC,2024,Fall,Medium,Commercial Cooking,0.504
+BC,2024,Fall,Medium,Industrial Areas,0.455
+BC,2024,Fall,Medium,Traffic Density,0.475
+BC,2024,Fall,High,Commercial Cooking,0.545
+BC,2024,Fall,High,Industrial Areas,0.64
+BC,2024,Fall,High,Traffic Density,0.608
+BC,2024,Summer,Low,Commercial Cooking,0.673
+BC,2024,Summer,Low,Industrial Areas,0.579
+BC,2024,Summer,Low,Traffic Density,0.551
+BC,2024,Summer,Medium,Commercial Cooking,0.63
+BC,2024,Summer,Medium,Industrial Areas,0.646
+BC,2024,Summer,Medium,Traffic Density,0.673
+BC,2024,Summer,High,Commercial Cooking,0.809
+BC,2024,Summer,High,Industrial Areas,0.902
+BC,2024,Summer,High,Traffic Density,0.89
+BC,2024,Spring,Low,Commercial Cooking,0.557
+BC,2024,Spring,Low,Industrial Areas,0.494
+BC,2024,Spring,Low,Traffic Density,0.464
+BC,2024,Spring,Medium,Commercial Cooking,0.511
+BC,2024,Spring,Medium,Industrial Areas,0.537
+BC,2024,Spring,Medium,Traffic Density,0.562
+BC,2024,Spring,High,Commercial Cooking,0.71
+BC,2024,Spring,High,Industrial Areas,0.762
+BC,2024,Spring,High,Traffic Density,0.755
+BC,2024,Winter,Low,Commercial Cooking,0.595
+BC,2024,Winter,Low,Industrial Areas,0.576
+BC,2024,Winter,Low,Traffic Density,0.537
+BC,2024,Winter,Medium,Commercial Cooking,0.525
+BC,2024,Winter,Medium,Industrial Areas,0.512
+BC,2024,Winter,Medium,Traffic Density,0.509
+BC,2024,Winter,High,Commercial Cooking,0.666
+BC,2024,Winter,High,Industrial Areas,0.711
+BC,2024,Winter,High,Traffic Density,0.744
+BC,2024,Winter,ALL,ALL,0.593
+BC,2024,Spring,ALL,ALL,0.596
+BC,2024,Summer,ALL,ALL,0.713
+BC,2024,Fall,ALL,ALL,0.523
+BC,2024,ALL,Low,Industrial Areas,0.521
+BC,2024,ALL,Medium,Industrial Areas,0.538
+BC,2024,ALL,High,Industrial Areas,0.754
+BC,2024,ALL,Low,Commercial Cooking,0.574
+BC,2024,ALL,Medium,Commercial Cooking,0.542
+BC,2024,ALL,High,Commercial Cooking,0.683
+BC,2024,ALL,Low,Traffic Density,0.497
+BC,2024,ALL,Medium,Traffic Density,0.555
+BC,2024,ALL,High,Traffic Density,0.749
+BC,2024,ALL,ALL,ALL,0.606
+NO,2024,Fall,Low,Boiler Density,11.339
+NO,2024,Fall,Low,Traffic NOx Emissions,12.143
+NO,2024,Fall,Medium,Boiler Density,14.033
+NO,2024,Fall,Medium,Traffic NOx Emissions,9.827
+NO,2024,Fall,High,Boiler Density,15.338
+NO,2024,Fall,High,Traffic NOx Emissions,18.855
+NO,2024,Summer,Low,Boiler Density,7.12
+NO,2024,Summer,Low,Traffic NOx Emissions,7.887
+NO,2024,Summer,Medium,Boiler Density,8.23
+NO,2024,Summer,Medium,Traffic NOx Emissions,6.811
+NO,2024,Summer,High,Boiler Density,11.665
+NO,2024,Summer,High,Traffic NOx Emissions,12.37
+NO,2024,Spring,Low,Boiler Density,10.353
+NO,2024,Spring,Low,Traffic NOx Emissions,11.843
+NO,2024,Spring,Medium,Boiler Density,11.246
+NO,2024,Spring,Medium,Traffic NOx Emissions,8.888
+NO,2024,Spring,High,Boiler Density,14.651
+NO,2024,Spring,High,Traffic NOx Emissions,15.667
+NO,2024,Winter,Low,Boiler Density,17.417
+NO,2024,Winter,Low,Traffic NOx Emissions,18.905
+NO,2024,Winter,Medium,Boiler Density,20.701
+NO,2024,Winter,Medium,Traffic NOx Emissions,15.797
+NO,2024,Winter,High,Boiler Density,21.409
+NO,2024,Winter,High,Traffic NOx Emissions,24.98
+NO,2024,Winter,ALL,ALL,20.355
+NO,2024,Spring,ALL,ALL,12.926
+NO,2024,Summer,ALL,ALL,9.469
+NO,2024,Fall,ALL,ALL,14.154
+NO,2024,ALL,Low,Boiler Density,11.557
+NO,2024,ALL,Medium,Boiler Density,13.552
+NO,2024,ALL,High,Boiler Density,15.766
+NO,2024,ALL,Low,Traffic NOx Emissions,12.694
+NO,2024,ALL,Medium,Traffic NOx Emissions,10.331
+NO,2024,ALL,High,Traffic NOx Emissions,17.968
+NO,2024,ALL,ALL,ALL,14.226
+NO2,2024,Fall,Low,Building Density,14.413
+NO2,2024,Fall,Low,Traffic Density,15.658
+NO2,2024,Fall,Medium,Building Density,15.625
+NO2,2024,Fall,Medium,Traffic Density,14.659
+NO2,2024,Fall,High,Building Density,18.094
+NO2,2024,Fall,High,Traffic Density,17.742
+NO2,2024,Summer,Low,Building Density,12.763
+NO2,2024,Summer,Low,Traffic Density,13.292
+NO2,2024,Summer,Medium,Building Density,14.069
+NO2,2024,Summer,Medium,Traffic Density,13.531
+NO2,2024,Summer,High,Building Density,18.873
+NO2,2024,Summer,High,Traffic Density,18.63
+NO2,2024,Spring,Low,Building Density,14.537
+NO2,2024,Spring,Low,Traffic Density,15.024
+NO2,2024,Spring,Medium,Building Density,15.256
+NO2,2024,Spring,Medium,Traffic Density,13.663
+NO2,2024,Spring,High,Building Density,18.387
+NO2,2024,Spring,High,Traffic Density,19.404
+NO2,2024,Winter,Low,Building Density,19.621
+NO2,2024,Winter,Low,Traffic Density,21.365
+NO2,2024,Winter,Medium,Building Density,21.162
+NO2,2024,Winter,Medium,Traffic Density,20.298
+NO2,2024,Winter,High,Building Density,25.235
+NO2,2024,Winter,High,Traffic Density,24.205
+NO2,2024,Winter,ALL,ALL,21.954
+NO2,2024,Spring,ALL,ALL,16.532
+NO2,2024,Summer,ALL,ALL,15.285
+NO2,2024,Fall,ALL,ALL,16.352
+NO2,2024,ALL,Low,Building Density,15.333
+NO2,2024,ALL,Medium,Building Density,16.528
+NO2,2024,ALL,High,Building Density,20.147
+NO2,2024,ALL,Low,Traffic Density,16.335
+NO2,2024,ALL,Medium,Traffic Density,15.538
+NO2,2024,ALL,High,Traffic Density,19.995
+NO2,2024,ALL,ALL,ALL,17.531
+O3,2024,Summer,Low,Traffic Density,34.134
+O3,2024,Summer,Medium,Traffic Density,33.119
+O3,2024,Summer,High,Traffic Density,30.258
+O3,2024,Summer,ALL,ALL,32.305
+O3,2024,ALL,Low,Traffic Density,34.134
+O3,2024,ALL,Medium,Traffic Density,33.119
+O3,2024,ALL,High,Traffic Density,30.258
+O3,2024,ALL,ALL,ALL,32.305
+PM2.5,2024,Fall,Low,Commercial Cooking,6.465
+PM2.5,2024,Fall,Low,Boiler PM2.5 Emissions,5.975
+PM2.5,2024,Fall,Low,Traffic Density,5.966
+PM2.5,2024,Fall,Medium,Commercial Cooking,6.039
+PM2.5,2024,Fall,Medium,Boiler PM2.5 Emissions,6.468
+PM2.5,2024,Fall,Medium,Traffic Density,6.3
+PM2.5,2024,Fall,High,Commercial Cooking,8.11
+PM2.5,2024,Fall,High,Boiler PM2.5 Emissions,8.191
+PM2.5,2024,Fall,High,Traffic Density,8.352
+PM2.5,2024,Summer,Low,Commercial Cooking,9.184
+PM2.5,2024,Summer,Low,Boiler PM2.5 Emissions,10.013
+PM2.5,2024,Summer,Low,Traffic Density,11.031
+PM2.5,2024,Summer,Medium,Commercial Cooking,9.946
+PM2.5,2024,Summer,Medium,Boiler PM2.5 Emissions,9.575
+PM2.5,2024,Summer,Medium,Traffic Density,8.402
+PM2.5,2024,Summer,High,Commercial Cooking,11.434
+PM2.5,2024,Summer,High,Boiler PM2.5 Emissions,10.938
+PM2.5,2024,Summer,High,Traffic Density,11.225
+PM2.5,2024,Spring,Low,Commercial Cooking,5.935
+PM2.5,2024,Spring,Low,Boiler PM2.5 Emissions,5.991
+PM2.5,2024,Spring,Low,Traffic Density,6.019
+PM2.5,2024,Spring,Medium,Commercial Cooking,5.969
+PM2.5,2024,Spring,Medium,Boiler PM2.5 Emissions,5.9
+PM2.5,2024,Spring,Medium,Traffic Density,5.446
+PM2.5,2024,Spring,High,Commercial Cooking,7.429
+PM2.5,2024,Spring,High,Boiler PM2.5 Emissions,7.44
+PM2.5,2024,Spring,High,Traffic Density,7.895
+PM2.5,2024,Winter,Low,Commercial Cooking,7.013
+PM2.5,2024,Winter,Low,Boiler PM2.5 Emissions,6.818
+PM2.5,2024,Winter,Low,Traffic Density,6.681
+PM2.5,2024,Winter,Medium,Commercial Cooking,6.495
+PM2.5,2024,Winter,Medium,Boiler PM2.5 Emissions,6.555
+PM2.5,2024,Winter,Medium,Traffic Density,6.031
+PM2.5,2024,Winter,High,Commercial Cooking,7.239
+PM2.5,2024,Winter,High,Boiler PM2.5 Emissions,7.4
+PM2.5,2024,Winter,High,Traffic Density,8.094
+PM2.5,2024,Winter,ALL,ALL,6.815
+PM2.5,2024,Spring,ALL,ALL,6.327
+PM2.5,2024,Summer,ALL,ALL,9.97
+PM2.5,2024,Fall,ALL,ALL,6.854
+PM2.5,2024,ALL,Low,Boiler PM2.5 Emissions,7.199
+PM2.5,2024,ALL,Medium,Boiler PM2.5 Emissions,7.125
+PM2.5,2024,ALL,High,Boiler PM2.5 Emissions,8.492
+PM2.5,2024,ALL,Low,Commercial Cooking,7.149
+PM2.5,2024,ALL,Medium,Commercial Cooking,7.112
+PM2.5,2024,ALL,High,Commercial Cooking,8.553
+PM2.5,2024,ALL,Low,Traffic Density,7.424
+PM2.5,2024,ALL,Medium,Traffic Density,6.545
+PM2.5,2024,ALL,High,Traffic Density,8.891
+PM2.5,2024,ALL,ALL,ALL,7.492
+BC,2023,ALL,Low,Industrial Areas,0.659
+BC,2023,ALL,Medium,Industrial Areas,0.631
+BC,2023,ALL,High,Industrial Areas,0.807
+BC,2023,ALL,Low,Commercial Cooking,0.686
+BC,2023,ALL,Medium,Commercial Cooking,0.634
+BC,2023,ALL,High,Commercial Cooking,0.765
+BC,2023,ALL,Low,Traffic Density,0.622
+BC,2023,ALL,Medium,Traffic Density,0.629
+BC,2023,ALL,High,Traffic Density,0.836
+BC,2023,ALL,ALL,ALL,0.701
+BC,2023,Fall,Low,Commercial Cooking,0.771
+BC,2023,Fall,Low,Industrial Areas,0.618
+BC,2023,Fall,Low,Traffic Density,0.622
+BC,2023,Fall,Medium,Commercial Cooking,0.588
+BC,2023,Fall,Medium,Industrial Areas,0.646
+BC,2023,Fall,Medium,Traffic Density,0.597
+BC,2023,Fall,High,Commercial Cooking,0.739
+BC,2023,Fall,High,Industrial Areas,0.854
+BC,2023,Fall,High,Traffic Density,0.888
+BC,2023,Fall,ALL,ALL,0.704
+BC,2023,Spring,Low,Commercial Cooking,0.682
+BC,2023,Spring,Low,Industrial Areas,0.699
+BC,2023,Spring,Low,Traffic Density,0.674
+BC,2023,Spring,Medium,Commercial Cooking,0.68
+BC,2023,Spring,Medium,Industrial Areas,0.629
+BC,2023,Spring,Medium,Traffic Density,0.654
+BC,2023,Spring,High,Commercial Cooking,0.813
+BC,2023,Spring,High,Industrial Areas,0.858
+BC,2023,Spring,High,Traffic Density,0.846
+BC,2023,Spring,ALL,ALL,0.731
+BC,2023,Summer,Low,Commercial Cooking,0.707
+BC,2023,Summer,Low,Industrial Areas,0.63
+BC,2023,Summer,Low,Traffic Density,0.622
+BC,2023,Summer,Medium,Commercial Cooking,0.586
+BC,2023,Summer,Medium,Industrial Areas,0.655
+BC,2023,Summer,Medium,Traffic Density,0.612
+BC,2023,Summer,High,Commercial Cooking,0.757
+BC,2023,Summer,High,Industrial Areas,0.78
+BC,2023,Summer,High,Traffic Density,0.824
+BC,2023,Summer,ALL,ALL,0.721
+BC,2023,Winter,Low,Commercial Cooking,0.585
+BC,2023,Winter,Low,Industrial Areas,0.605
+BC,2023,Winter,Low,Traffic Density,0.57
+BC,2023,Winter,Medium,Commercial Cooking,0.593
+BC,2023,Winter,Medium,Industrial Areas,0.593
+BC,2023,Winter,Medium,Traffic Density,0.572
+BC,2023,Winter,High,Commercial Cooking,0.749
+BC,2023,Winter,High,Industrial Areas,0.735
+BC,2023,Winter,High,Traffic Density,0.784
+BC,2023,Winter,ALL,ALL,0.648
+BC,2023,ALL,Low,Industrial Areas,0.638
+BC,2023,ALL,Medium,Commercial Cooking,0.612
+BC,2023,ALL,Medium,Traffic Density,0.609
+NO,2023,ALL,Low,Boiler Density,12.177
+NO,2023,ALL,Medium,Boiler Density,14.297
+NO,2023,ALL,High,Boiler Density,16.312
+NO,2023,ALL,Low,Traffic NOx Emissions,11.917
+NO,2023,ALL,Medium,Traffic NOx Emissions,11.527
+NO,2023,ALL,High,Traffic NOx Emissions,19.303
+NO,2023,ALL,ALL,ALL,14.492
+NO,2023,Fall,Low,Boiler Density,15.783
+NO,2023,Fall,Low,Traffic NOx Emissions,14.681
+NO,2023,Fall,Medium,Boiler Density,18.73
+NO,2023,Fall,Medium,Traffic NOx Emissions,14.735
+NO,2023,Fall,High,Boiler Density,21.669
+NO,2023,Fall,High,Traffic NOx Emissions,26.439
+NO,2023,Fall,ALL,ALL,19.423
+NO,2023,Spring,Low,Boiler Density,9.717
+NO,2023,Spring,Low,Traffic NOx Emissions,9.165
+NO,2023,Spring,Medium,Boiler Density,11.397
+NO,2023,Spring,Medium,Traffic NOx Emissions,9.149
+NO,2023,Spring,High,Boiler Density,13.438
+NO,2023,Spring,High,Traffic NOx Emissions,16.239
+NO,2023,Spring,ALL,ALL,11.61
+NO,2023,Summer,Low,Boiler Density,5.517
+NO,2023,Summer,Low,Traffic NOx Emissions,5.536
+NO,2023,Summer,Medium,Boiler Density,6.998
+NO,2023,Summer,Medium,Traffic NOx Emissions,5.612
+NO,2023,Summer,High,Boiler Density,8.445
+NO,2023,Summer,High,Traffic NOx Emissions,9.809
+NO,2023,Summer,ALL,ALL,7.154
+NO,2023,Winter,Low,Boiler Density,17.87
+NO,2023,Winter,Low,Traffic NOx Emissions,18.432
+NO,2023,Winter,Medium,Boiler Density,20.506
+NO,2023,Winter,Medium,Traffic NOx Emissions,17.07
+NO,2023,Winter,High,Boiler Density,22.499
+NO,2023,Winter,High,Traffic NOx Emissions,25.44
+NO,2023,Winter,ALL,ALL,20.136
+NO2,2023,ALL,Low,Building Density,16.658
+NO2,2023,ALL,Medium,Building Density,17.791
+NO2,2023,ALL,High,Building Density,20.878
+NO2,2023,ALL,Low,Traffic Density,17.039
+NO2,2023,ALL,Medium,Traffic Density,16.788
+NO2,2023,ALL,High,Traffic Density,21.322
+NO2,2023,ALL,ALL,ALL,18.641
+NO2,2023,Fall,Low,Building Density,18.843
+NO2,2023,Fall,Low,Traffic Density,19.226
+NO2,2023,Fall,Medium,Building Density,20.072
+NO2,2023,Fall,Medium,Traffic Density,18.362
+NO2,2023,Fall,High,Building Density,24.042
+NO2,2023,Fall,High,Traffic Density,25.011
+NO2,2023,Fall,ALL,ALL,21.224
+NO2,2023,Spring,Low,Building Density,15.292
+NO2,2023,Spring,Low,Traffic Density,15.42
+NO2,2023,Spring,Medium,Building Density,16.25
+NO2,2023,Spring,Medium,Traffic Density,15.647
+NO2,2023,Spring,High,Building Density,19.663
+NO2,2023,Spring,High,Traffic Density,19.956
+NO2,2023,Spring,ALL,ALL,17.113
+NO2,2023,Summer,Low,Building Density,12.868
+NO2,2023,Summer,Low,Traffic Density,12.755
+NO2,2023,Summer,Medium,Building Density,13.451
+NO2,2023,Summer,Medium,Traffic Density,12.73
+NO2,2023,Summer,High,Building Density,16.704
+NO2,2023,Summer,High,Traffic Density,17.376
+NO2,2023,Summer,ALL,ALL,14.594
+NO2,2023,Winter,Low,Building Density,19.631
+NO2,2023,Winter,Low,Traffic Density,20.871
+NO2,2023,Winter,Medium,Building Density,21.824
+NO2,2023,Winter,Medium,Traffic Density,20.639
+NO2,2023,Winter,High,Building Density,23.438
+NO2,2023,Winter,High,Traffic Density,23.314
+NO2,2023,Winter,ALL,ALL,21.804
+O3,2023,ALL,Low,Traffic Density,36.249
+O3,2023,ALL,Medium,Traffic Density,33.835
+O3,2023,ALL,High,Traffic Density,30.521
+O3,2023,ALL,ALL,ALL,33.697
+O3,2023,Summer,Low,Traffic Density,36.249
+O3,2023,Summer,Medium,Traffic Density,33.835
+O3,2023,Summer,High,Traffic Density,30.521
+O3,2023,Summer,ALL,ALL,33.697
+PM2.5,2023,ALL,Low,Boiler PM2.5 Emissions,7.757
+PM2.5,2023,ALL,Medium,Boiler PM2.5 Emissions,8.165
+PM2.5,2023,ALL,High,Boiler PM2.5 Emissions,9.133
+PM2.5,2023,ALL,Low,Commercial Cooking,7.942
+PM2.5,2023,ALL,Medium,Commercial Cooking,7.859
+PM2.5,2023,ALL,High,Commercial Cooking,9.25
+PM2.5,2023,ALL,Low,Traffic Density,7.747
+PM2.5,2023,ALL,Medium,Traffic Density,7.885
+PM2.5,2023,ALL,High,Traffic Density,9.417
+PM2.5,2023,ALL,ALL,ALL,8.706
+PM2.5,2023,Fall,Low,Commercial Cooking,6.358
+PM2.5,2023,Fall,Low,Boiler PM2.5 Emissions,6.323
+PM2.5,2023,Fall,Low,Traffic Density,6.088
+PM2.5,2023,Fall,Medium,Commercial Cooking,6.114
+PM2.5,2023,Fall,Medium,Boiler PM2.5 Emissions,6.255
+PM2.5,2023,Fall,Medium,Traffic Density,6.172
+PM2.5,2023,Fall,High,Commercial Cooking,7.282
+PM2.5,2023,Fall,High,Boiler PM2.5 Emissions,7.188
+PM2.5,2023,Fall,High,Traffic Density,7.502
+PM2.5,2023,Fall,ALL,ALL,6.979
+PM2.5,2023,Spring,Low,Commercial Cooking,9.196
+PM2.5,2023,Spring,Low,Boiler PM2.5 Emissions,8.891
+PM2.5,2023,Spring,Low,Traffic Density,9.011
+PM2.5,2023,Spring,Medium,Commercial Cooking,9.051
+PM2.5,2023,Spring,Medium,Boiler PM2.5 Emissions,9.617
+PM2.5,2023,Spring,Medium,Traffic Density,8.981
+PM2.5,2023,Spring,High,Commercial Cooking,11.031
+PM2.5,2023,Spring,High,Boiler PM2.5 Emissions,10.778
+PM2.5,2023,Spring,High,Traffic Density,11.294
+PM2.5,2023,Spring,ALL,ALL,9.984
+PM2.5,2023,Summer,Low,Commercial Cooking,9.919
+PM2.5,2023,Summer,Low,Boiler PM2.5 Emissions,9.813
+PM2.5,2023,Summer,Low,Traffic Density,9.728
+PM2.5,2023,Summer,Medium,Commercial Cooking,9.895
+PM2.5,2023,Summer,Medium,Boiler PM2.5 Emissions,9.93
+PM2.5,2023,Summer,Medium,Traffic Density,9.834
+PM2.5,2023,Summer,High,Commercial Cooking,10.842
+PM2.5,2023,Summer,High,Boiler PM2.5 Emissions,10.914
+PM2.5,2023,Summer,High,Traffic Density,11.089
+PM2.5,2023,Summer,ALL,ALL,11.113
+PM2.5,2023,Winter,Low,Commercial Cooking,6.297
+PM2.5,2023,Winter,Low,Boiler PM2.5 Emissions,6
+PM2.5,2023,Winter,Low,Traffic Density,6.159
+PM2.5,2023,Winter,Medium,Commercial Cooking,6.375
+PM2.5,2023,Winter,Medium,Boiler PM2.5 Emissions,6.859
+PM2.5,2023,Winter,Medium,Traffic Density,6.552
+PM2.5,2023,Winter,High,Commercial Cooking,7.846
+PM2.5,2023,Winter,High,Boiler PM2.5 Emissions,7.654
+PM2.5,2023,Winter,High,Traffic Density,7.781
+PM2.5,2023,Winter,ALL,ALL,6.799
+BC,2022,ALL,Low,Industrial Areas,0.646
+BC,2022,ALL,Medium,Industrial Areas,0.641
+BC,2022,ALL,High,Industrial Areas,0.815
+BC,2022,ALL,Low,Commercial Cooking,0.68
+BC,2022,ALL,Medium,Commercial Cooking,0.578
+BC,2022,ALL,High,Commercial Cooking,0.83
+BC,2022,ALL,Low,Traffic Density,0.597
+BC,2022,ALL,Medium,Traffic Density,0.63
+BC,2022,ALL,High,Traffic Density,0.866
+BC,2022,ALL,ALL,ALL,0.71
+BC,2022,Fall,Low,Commercial Cooking,0.695
+BC,2022,Fall,Medium,Commercial Cooking,0.616
+BC,2022,Fall,High,Commercial Cooking,0.868
+BC,2022,Fall,Low,Industrial Areas,0.693
+BC,2022,Fall,Medium,Industrial Areas,0.653
+BC,2022,Fall,High,Industrial Areas,0.828
+BC,2022,Fall,Low,Traffic Density,0.63
+BC,2022,Fall,Medium,Traffic Density,0.682
+BC,2022,Fall,High,Traffic Density,0.862
+BC,2022,Fall,ALL,ALL,0.73
+BC,2022,Spring,Low,Commercial Cooking,0.549
+BC,2022,Spring,Medium,Commercial Cooking,0.482
+BC,2022,Spring,High,Commercial Cooking,0.725
+BC,2022,Spring,Low,Industrial Areas,0.553
+BC,2022,Spring,Medium,Industrial Areas,0.519
+BC,2022,Spring,High,Industrial Areas,0.681
+BC,2022,Spring,Low,Traffic Density,0.508
+BC,2022,Spring,Medium,Traffic Density,0.487
+BC,2022,Spring,High,Traffic Density,0.759
+BC,2022,Spring,ALL,ALL,0.605
+BC,2022,Summer,Low,Commercial Cooking,0.814
+BC,2022,Summer,Medium,Commercial Cooking,0.569
+BC,2022,Summer,High,Commercial Cooking,0.966
+BC,2022,Summer,Low,Industrial Areas,0.665
+BC,2022,Summer,Medium,Industrial Areas,0.674
+BC,2022,Summer,High,Industrial Areas,0.998
+BC,2022,Summer,Low,Traffic Density,0.593
+BC,2022,Summer,Medium,Traffic Density,0.713
+BC,2022,Summer,High,Traffic Density,1.032
+BC,2022,Summer,ALL,ALL,0.785
+BC,2022,Winter,Low,Commercial Cooking,0.711
+BC,2022,Winter,Medium,Commercial Cooking,0.638
+BC,2022,Winter,High,Commercial Cooking,0.762
+BC,2022,Winter,Low,Industrial Areas,0.674
+BC,2022,Winter,Medium,Industrial Areas,0.59
+BC,2022,Winter,High,Industrial Areas,0.844
+BC,2022,Winter,Low,Traffic Density,0.656
+BC,2022,Winter,Medium,Traffic Density,0.639
+BC,2022,Winter,High,Traffic Density,0.813
+BC,2022,Winter,ALL,ALL,0.72
+NO,2022,ALL,Low,Boiler Density,13.239
+NO,2022,ALL,Medium,Boiler Density,14.347
+NO,2022,ALL,High,Boiler Density,17.656
+NO,2022,ALL,Low,Traffic NOx Emissions,12.879
+NO,2022,ALL,Medium,Traffic NOx Emissions,12.121
+NO,2022,ALL,High,Traffic NOx Emissions,20.28
+NO,2022,ALL,ALL,ALL,15.367
+NO,2022,Fall,Low,Boiler Density,17.666
+NO,2022,Fall,Medium,Boiler Density,17.541
+NO,2022,Fall,High,Boiler Density,24.903
+NO,2022,Fall,Low,Traffic NOx Emissions,18.998
+NO,2022,Fall,Medium,Traffic NOx Emissions,14.403
+NO,2022,Fall,High,Traffic NOx Emissions,26.71
+NO,2022,Fall,ALL,ALL,20.083
+NO,2022,Spring,Low,Boiler Density,10.349
+NO,2022,Spring,Medium,Boiler Density,10.711
+NO,2022,Spring,High,Boiler Density,14.139
+NO,2022,Spring,Low,Traffic NOx Emissions,9.802
+NO,2022,Spring,Medium,Traffic NOx Emissions,9.008
+NO,2022,Spring,High,Traffic NOx Emissions,16.389
+NO,2022,Spring,ALL,ALL,12.144
+NO,2022,Summer,Low,Boiler Density,6.049
+NO,2022,Summer,Medium,Boiler Density,6.84
+NO,2022,Summer,High,Boiler Density,9.03
+NO,2022,Summer,Low,Traffic NOx Emissions,6.267
+NO,2022,Summer,Medium,Traffic NOx Emissions,5.153
+NO,2022,Summer,High,Traffic NOx Emissions,10.498
+NO,2022,Summer,ALL,ALL,7.466
+NO,2022,Winter,Low,Boiler Density,18.892
+NO,2022,Winter,Medium,Boiler Density,22.295
+NO,2022,Winter,High,Boiler Density,22.553
+NO,2022,Winter,Low,Traffic NOx Emissions,19.151
+NO,2022,Winter,Medium,Traffic NOx Emissions,17.065
+NO,2022,Winter,High,Traffic NOx Emissions,27.524
+NO,2022,Winter,ALL,ALL,21.777
+NO2,2022,ALL,Low,Building Density,15.398
+NO2,2022,ALL,Medium,Building Density,17.006
+NO2,2022,ALL,High,Building Density,20.315
+NO2,2022,ALL,Low,Traffic Density,16.292
+NO2,2022,ALL,Medium,Traffic Density,16.286
+NO2,2022,ALL,High,Traffic Density,19.977
+NO2,2022,ALL,ALL,ALL,17.859
+NO2,2022,Fall,Low,Building Density,16.946
+NO2,2022,Fall,Medium,Building Density,17.6
+NO2,2022,Fall,High,Building Density,21.506
+NO2,2022,Fall,Low,Traffic Density,17.524
+NO2,2022,Fall,Medium,Traffic Density,17.305
+NO2,2022,Fall,High,Traffic Density,21.222
+NO2,2022,Fall,ALL,ALL,19.134
+NO2,2022,Spring,Low,Building Density,12.643
+NO2,2022,Spring,Medium,Building Density,14.862
+NO2,2022,Spring,High,Building Density,17.925
+NO2,2022,Spring,Low,Traffic Density,14.524
+NO2,2022,Spring,Medium,Traffic Density,13.398
+NO2,2022,Spring,High,Traffic Density,17.508
+NO2,2022,Spring,ALL,ALL,15.547
+NO2,2022,Summer,Low,Building Density,11.532
+NO2,2022,Summer,Medium,Building Density,12.702
+NO2,2022,Summer,High,Building Density,16.042
+NO2,2022,Summer,Low,Traffic Density,11.928
+NO2,2022,Summer,Medium,Traffic Density,11.74
+NO2,2022,Summer,High,Traffic Density,16.608
+NO2,2022,Summer,ALL,ALL,13.628
+NO2,2022,Winter,Low,Building Density,20.473
+NO2,2022,Winter,Medium,Building Density,22.902
+NO2,2022,Winter,High,Building Density,25.085
+NO2,2022,Winter,Low,Traffic Density,22.257
+NO2,2022,Winter,Medium,Traffic Density,21.633
+NO2,2022,Winter,High,Traffic Density,24.569
+NO2,2022,Winter,ALL,ALL,23.127
+O3,2022,ALL,Low,Traffic Density,33.435
+O3,2022,ALL,Medium,Traffic Density,32.455
+O3,2022,ALL,High,Traffic Density,30.179
+O3,2022,ALL,ALL,ALL,32.21
+O3,2022,Summer,Low,Traffic Density,33.379
+O3,2022,Summer,Medium,Traffic Density,31.831
+O3,2022,Summer,High,Traffic Density,30.859
+O3,2022,Summer,ALL,ALL,32.21
+PM2.5,2022,ALL,Low,Boiler PM2.5 Emissions,5.867
+PM2.5,2022,ALL,Medium,Boiler PM2.5 Emissions,6.089
+PM2.5,2022,ALL,High,Boiler PM2.5 Emissions,7.259
+PM2.5,2022,ALL,Low,Commercial Cooking,5.952
+PM2.5,2022,ALL,Medium,Commercial Cooking,5.941
+PM2.5,2022,ALL,High,Commercial Cooking,7.322
+PM2.5,2022,ALL,Low,Traffic Density,5.929
+PM2.5,2022,ALL,Medium,Traffic Density,5.917
+PM2.5,2022,ALL,High,Traffic Density,7.37
+PM2.5,2022,ALL,ALL,ALL,6.437
+PM2.5,2022,Fall,Low,Traffic Density,5.268
+PM2.5,2022,Fall,Medium,Traffic Density,5.472
+PM2.5,2022,Fall,High,Traffic Density,6.887
+PM2.5,2022,Fall,Low,Commercial Cooking,5.334
+PM2.5,2022,Fall,Medium,Commercial Cooking,5.456
+PM2.5,2022,Fall,High,Commercial Cooking,6.831
+PM2.5,2022,Fall,Low,Boiler PM₂.₅ Emissions,5.432
+PM2.5,2022,Fall,Medium,Boiler PM₂.₅ Emissions,5.444
+PM2.5,2022,Fall,High,Boiler PM₂.₅ Emissions,6.752
+PM2.5,2022,Fall,ALL,ALL,5.836
+PM2.5,2022,Spring,Low,Traffic Density,4.696
+PM2.5,2022,Spring,Medium,Traffic Density,4.621
+PM2.5,2022,Spring,High,Traffic Density,6.129
+PM2.5,2022,Spring,Low,Commercial Cooking,4.624
+PM2.5,2022,Spring,Medium,Commercial Cooking,4.651
+PM2.5,2022,Spring,High,Commercial Cooking,6.169
+PM2.5,2022,Spring,Low,Boiler PM₂.₅ Emissions,4.538
+PM2.5,2022,Spring,Medium,Boiler PM₂.₅ Emissions,4.819
+PM2.5,2022,Spring,High,Boiler PM₂.₅ Emissions,6.089
+PM2.5,2022,Spring,ALL,ALL,5.227
+PM2.5,2022,Summer,Low,Traffic Density,6.922
+PM2.5,2022,Summer,Medium,Traffic Density,6.679
+PM2.5,2022,Summer,High,Traffic Density,8.104
+PM2.5,2022,Summer,Low,Commercial Cooking,6.906
+PM2.5,2022,Summer,Medium,Commercial Cooking,6.702
+PM2.5,2022,Summer,High,Commercial Cooking,8.106
+PM2.5,2022,Summer,Low,Boiler PM₂.₅ Emissions,6.58
+PM2.5,2022,Summer,Medium,Boiler PM₂.₅ Emissions,7.147
+PM2.5,2022,Summer,High,Boiler PM₂.₅ Emissions,7.977
+PM2.5,2022,Summer,ALL,ALL,7.297
+PM2.5,2022,Winter,Low,Traffic Density,6.666
+PM2.5,2022,Winter,Medium,Traffic Density,7.06
+PM2.5,2022,Winter,High,Traffic Density,8.359
+PM2.5,2022,Winter,Low,Commercial Cooking,6.913
+PM2.5,2022,Winter,Medium,Commercial Cooking,6.988
+PM2.5,2022,Winter,High,Commercial Cooking,8.181
+PM2.5,2022,Winter,Low,Boiler PM₂.₅ Emissions,6.918
+PM2.5,2022,Winter,Medium,Boiler PM₂.₅ Emissions,6.948
+PM2.5,2022,Winter,High,Boiler PM₂.₅ Emissions,8.219
+PM2.5,2022,Winter,ALL,ALL,7.389
+BC,2021,ALL,Low,Industrial Areas,0.68
+BC,2021,ALL,Medium,Industrial Areas,0.683
+BC,2021,ALL,High,Industrial Areas,0.865
+BC,2021,ALL,Low,Commercial Cooking,0.742
+BC,2021,ALL,Medium,Commercial Cooking,0.658
+BC,2021,ALL,High,Commercial Cooking,0.814
+BC,2021,ALL,Low,Traffic Density,0.662
+BC,2021,ALL,Medium,Traffic Density,0.676
+BC,2021,ALL,High,Traffic Density,0.878
+BC,2021,ALL,ALL,ALL,0.745
+BC,2021,Fall,Low,Commercial Cooking,0.787
+BC,2021,Fall,Medium,Commercial Cooking,0.672
+BC,2021,Fall,High,Commercial Cooking,0.801
+BC,2021,Fall,Low,Industrial Areas,0.658
+BC,2021,Fall,Medium,Industrial Areas,0.669
+BC,2021,Fall,High,Industrial Areas,0.941
+BC,2021,Fall,Low,Traffic Density,0.665
+BC,2021,Fall,Medium,Traffic Density,0.704
+BC,2021,Fall,High,Traffic Density,0.886
+BC,2021,Fall,ALL,ALL,0.771
+BC,2021,Spring,Low,Commercial Cooking,0.692
+BC,2021,Spring,Medium,Commercial Cooking,0.575
+BC,2021,Spring,High,Commercial Cooking,0.745
+BC,2021,Spring,Low,Industrial Areas,0.588
+BC,2021,Spring,Medium,Industrial Areas,0.608
+BC,2021,Spring,High,Industrial Areas,0.804
+BC,2021,Spring,Low,Traffic Density,0.555
+BC,2021,Spring,Medium,Traffic Density,0.594
+BC,2021,Spring,High,Traffic Density,0.849
+BC,2021,Spring,ALL,ALL,0.665
+BC,2021,Summer,Low,Commercial Cooking,0.79
+BC,2021,Summer,Medium,Commercial Cooking,0.756
+BC,2021,Summer,High,Commercial Cooking,0.877
+BC,2021,Summer,Low,Industrial Areas,0.776
+BC,2021,Summer,Medium,Industrial Areas,0.672
+BC,2021,Summer,High,Industrial Areas,0.972
+BC,2021,Summer,Low,Traffic Density,0.755
+BC,2021,Summer,Medium,Traffic Density,0.727
+BC,2021,Summer,High,Traffic Density,0.937
+BC,2021,Summer,ALL,ALL,0.817
+BC,2021,Winter,Low,Commercial Cooking,0.77
+BC,2021,Winter,Medium,Commercial Cooking,0.603
+BC,2021,Winter,High,Commercial Cooking,0.829
+BC,2021,Winter,Low,Industrial Areas,0.702
+BC,2021,Winter,Medium,Industrial Areas,0.642
+BC,2021,Winter,High,Industrial Areas,0.85
+BC,2021,Winter,Low,Traffic Density,0.678
+BC,2021,Winter,Medium,Traffic Density,0.676
+BC,2021,Winter,High,Traffic Density,0.84
+BC,2021,Winter,ALL,ALL,0.729
+NO,2021,ALL,Low,Boiler Density,13.639
+NO,2021,ALL,Medium,Boiler Density,14.717
+NO,2021,ALL,High,Boiler Density,16.247
+NO,2021,ALL,Low,Traffic NOx Emissions,13.787
+NO,2021,ALL,Medium,Traffic NOx Emissions,11.209
+NO,2021,ALL,High,Traffic NOx Emissions,19.618
+NO,2021,ALL,ALL,ALL,15.348
+NO,2021,Fall,Low,Boiler Density,15.554
+NO,2021,Fall,Medium,Boiler Density,17.761
+NO,2021,Fall,High,Boiler Density,18.12
+NO,2021,Fall,Low,Traffic NOx Emissions,15.711
+NO,2021,Fall,Medium,Traffic NOx Emissions,12.021
+NO,2021,Fall,High,Traffic NOx Emissions,23.703
+NO,2021,Fall,ALL,ALL,17.922
+NO,2021,Spring,Low,Boiler Density,11.045
+NO,2021,Spring,Medium,Boiler Density,12.686
+NO,2021,Spring,High,Boiler Density,14.551
+NO,2021,Spring,Low,Traffic NOx Emissions,11.015
+NO,2021,Spring,Medium,Traffic NOx Emissions,9.302
+NO,2021,Spring,High,Traffic NOx Emissions,17.701
+NO,2021,Spring,ALL,ALL,12.967
+NO,2021,Summer,Low,Boiler Density,7.011
+NO,2021,Summer,Medium,Boiler Density,8.591
+NO,2021,Summer,High,Boiler Density,9.593
+NO,2021,Summer,Low,Traffic NOx Emissions,7.156
+NO,2021,Summer,Medium,Traffic NOx Emissions,6.08
+NO,2021,Summer,High,Traffic NOx Emissions,11.96
+NO,2021,Summer,ALL,ALL,8.898
+NO,2021,Winter,Low,Boiler Density,20.817
+NO,2021,Winter,Medium,Boiler Density,20.732
+NO,2021,Winter,High,Boiler Density,22.976
+NO,2021,Winter,Low,Traffic NOx Emissions,21.975
+NO,2021,Winter,Medium,Traffic NOx Emissions,16.962
+NO,2021,Winter,High,Traffic NOx Emissions,25.395
+NO,2021,Winter,ALL,ALL,21.841
+NO2,2021,ALL,Low,Building Density,16.164
+NO2,2021,ALL,Medium,Building Density,17.63
+NO2,2021,ALL,High,Building Density,20.919
+NO2,2021,ALL,Low,Traffic Density,16.733
+NO2,2021,ALL,Medium,Traffic Density,16.542
+NO2,2021,ALL,High,Traffic Density,21.22
+NO2,2021,ALL,ALL,ALL,18.563
+NO2,2021,Fall,Low,Building Density,17.361
+NO2,2021,Fall,Medium,Building Density,18.698
+NO2,2021,Fall,High,Building Density,20.723
+NO2,2021,Fall,Low,Traffic Density,17.951
+NO2,2021,Fall,Medium,Traffic Density,17.433
+NO2,2021,Fall,High,Traffic Density,21.398
+NO2,2021,Fall,ALL,ALL,19.37
+NO2,2021,Spring,Low,Building Density,15.268
+NO2,2021,Spring,Medium,Building Density,16.998
+NO2,2021,Spring,High,Building Density,20.805
+NO2,2021,Spring,Low,Traffic Density,16.095
+NO2,2021,Spring,Medium,Traffic Density,15.457
+NO2,2021,Spring,High,Traffic Density,21.017
+NO2,2021,Spring,ALL,ALL,17.788
+NO2,2021,Summer,Low,Building Density,11.409
+NO2,2021,Summer,Medium,Building Density,13.387
+NO2,2021,Summer,High,Building Density,16.675
+NO2,2021,Summer,Low,Traffic Density,11.982
+NO2,2021,Summer,Medium,Traffic Density,11.651
+NO2,2021,Summer,High,Traffic Density,17.839
+NO2,2021,Summer,ALL,ALL,14.232
+NO2,2021,Winter,Low,Building Density,21.114
+NO2,2021,Winter,Medium,Building Density,22.368
+NO2,2021,Winter,High,Building Density,24.345
+NO2,2021,Winter,Low,Traffic Density,21.589
+NO2,2021,Winter,Medium,Traffic Density,21.56
+NO2,2021,Winter,High,Traffic Density,24.806
+NO2,2021,Winter,ALL,ALL,23.044
+O3,2021,ALL,Low,Traffic Density,31.603
+O3,2021,ALL,Medium,Traffic Density,29.985
+O3,2021,ALL,High,Traffic Density,28.221
+O3,2021,ALL,ALL,ALL,29.989
+O3,2021,Summer,Low,Traffic Density,31.603
+O3,2021,Summer,Medium,Traffic Density,29.985
+O3,2021,Summer,High,Traffic Density,28.221
+O3,2021,Summer,ALL,ALL,29.989
+PM2.5,2021,ALL,Low,Boiler PM2.5 Emissions,6.781
+PM2.5,2021,ALL,Medium,Boiler PM2.5 Emissions,6.74
+PM2.5,2021,ALL,High,Boiler PM2.5 Emissions,7.696
+PM2.5,2021,ALL,Low,Commercial Cooking,6.938
+PM2.5,2021,ALL,Medium,Commercial Cooking,6.522
+PM2.5,2021,ALL,High,Commercial Cooking,7.735
+PM2.5,2021,ALL,Low,Traffic Density,6.768
+PM2.5,2021,ALL,Medium,Traffic Density,6.567
+PM2.5,2021,ALL,High,Traffic Density,7.891
+PM2.5,2021,ALL,ALL,ALL,7.106
+PM2.5,2021,Fall,Low,Boiler PM₂.₅ Emissions,5.989
+PM2.5,2021,Fall,Medium,Boiler PM₂.₅ Emissions,5.945
+PM2.5,2021,Fall,High,Boiler PM₂.₅ Emissions,6.42
+PM2.5,2021,Fall,Low,Commercial Cooking,6.183
+PM2.5,2021,Fall,Medium,Commercial Cooking,5.674
+PM2.5,2021,Fall,High,Commercial Cooking,6.523
+PM2.5,2021,Fall,Low,Traffic Density,5.752
+PM2.5,2021,Fall,Medium,Traffic Density,5.582
+PM2.5,2021,Fall,High,Traffic Density,7.021
+PM2.5,2021,Fall,ALL,ALL,6.189
+PM2.5,2021,Spring,Low,Boiler PM₂.₅ Emissions,5.564
+PM2.5,2021,Spring,Medium,Boiler PM₂.₅ Emissions,5.605
+PM2.5,2021,Spring,High,Boiler PM₂.₅ Emissions,6.81
+PM2.5,2021,Spring,Low,Commercial Cooking,5.806
+PM2.5,2021,Spring,Medium,Commercial Cooking,5.295
+PM2.5,2021,Spring,High,Commercial Cooking,6.902
+PM2.5,2021,Spring,Low,Traffic Density,5.517
+PM2.5,2021,Spring,Medium,Traffic Density,5.689
+PM2.5,2021,Spring,High,Traffic Density,6.772
+PM2.5,2021,Spring,ALL,ALL,6.002
+PM2.5,2021,Summer,Low,Boiler PM₂.₅ Emissions,8.677
+PM2.5,2021,Summer,Medium,Boiler PM₂.₅ Emissions,8.675
+PM2.5,2021,Summer,High,Boiler PM₂.₅ Emissions,9.524
+PM2.5,2021,Summer,Low,Commercial Cooking,8.798
+PM2.5,2021,Summer,Medium,Commercial Cooking,8.496
+PM2.5,2021,Summer,High,Commercial Cooking,9.597
+PM2.5,2021,Summer,Low,Traffic Density,8.861
+PM2.5,2021,Summer,Medium,Traffic Density,8.505
+PM2.5,2021,Summer,High,Traffic Density,9.51
+PM2.5,2021,Summer,ALL,ALL,9.033
+PM2.5,2021,Winter,Low,Boiler PM₂.₅ Emissions,6.893
+PM2.5,2021,Winter,Medium,Boiler PM₂.₅ Emissions,6.734
+PM2.5,2021,Winter,High,Boiler PM₂.₅ Emissions,8.031
+PM2.5,2021,Winter,Low,Commercial Cooking,7.135
+PM2.5,2021,Winter,Medium,Commercial Cooking,6.629
+PM2.5,2021,Winter,High,Commercial Cooking,7.918
+PM2.5,2021,Winter,Low,Traffic Density,6.767
+PM2.5,2021,Winter,Medium,Traffic Density,6.63
+PM2.5,2021,Winter,High,Traffic Density,8.26
+PM2.5,2021,Winter,ALL,ALL,7.201
+BC,2020,ALL,Low,Industrial Areas,0.647
+BC,2020,ALL,Medium,Industrial Areas,0.709
+BC,2020,ALL,High,Industrial Areas,0.869
+BC,2020,ALL,Low,Commercial Cooking,0.734
+BC,2020,ALL,Medium,Commercial Cooking,0.635
+BC,2020,ALL,High,Commercial Cooking,0.845
+BC,2020,ALL,Low,Traffic Density,0.639
+BC,2020,ALL,Medium,Traffic Density,0.649
+BC,2020,ALL,High,Traffic Density,0.928
+BC,2020,ALL,ALL,ALL,0.742
+BC,2020,Fall,Low,Commercial Cooking,0.79
+BC,2020,Fall,Medium,Commercial Cooking,0.693
+BC,2020,Fall,High,Commercial Cooking,0.878
+BC,2020,Fall,Low,Industrial Areas,0.689
+BC,2020,Fall,Medium,Industrial Areas,0.725
+BC,2020,Fall,High,Industrial Areas,0.942
+BC,2020,Fall,Low,Traffic Density,0.703
+BC,2020,Fall,Medium,Traffic Density,0.672
+BC,2020,Fall,High,Traffic Density,0.981
+BC,2020,Fall,ALL,ALL,0.796
+BC,2020,Spring,Low,Commercial Cooking,0.499
+BC,2020,Spring,Medium,Commercial Cooking,0.423
+BC,2020,Spring,High,Commercial Cooking,0.606
+BC,2020,Spring,Low,Industrial Areas,0.456
+BC,2020,Spring,Medium,Industrial Areas,0.467
+BC,2020,Spring,High,Industrial Areas,0.602
+BC,2020,Spring,Low,Traffic Density,0.439
+BC,2020,Spring,Medium,Traffic Density,0.418
+BC,2020,Spring,High,Traffic Density,0.667
+BC,2020,Spring,ALL,ALL,0.5
+BC,2020,Summer,Low,Commercial Cooking,0.845
+BC,2020,Summer,Medium,Commercial Cooking,0.659
+BC,2020,Summer,High,Commercial Cooking,0.911
+BC,2020,Summer,Low,Industrial Areas,0.671
+BC,2020,Summer,Medium,Industrial Areas,0.72
+BC,2020,Summer,High,Industrial Areas,1.013
+BC,2020,Summer,Low,Traffic Density,0.667
+BC,2020,Summer,Medium,Traffic Density,0.704
+BC,2020,Summer,High,Traffic Density,1.034
+BC,2020,Summer,ALL,ALL,0.806
+BC,2020,Winter,Low,Commercial Cooking,0.851
+BC,2020,Winter,Medium,Commercial Cooking,0.765
+BC,2020,Winter,High,Commercial Cooking,0.991
+BC,2020,Winter,Low,Industrial Areas,0.777
+BC,2020,Winter,Medium,Industrial Areas,0.816
+BC,2020,Winter,High,Industrial Areas,1.002
+BC,2020,Winter,Low,Traffic Density,0.753
+BC,2020,Winter,Medium,Traffic Density,0.811
+BC,2020,Winter,High,Traffic Density,1.03
+BC,2020,Winter,ALL,ALL,0.869
+NO,2020,ALL,Low,Boiler Density,12.701
+NO,2020,ALL,Medium,Boiler Density,15.402
+NO,2020,ALL,High,Boiler Density,19.147
+NO,2020,ALL,Low,Traffic NOx Emissions,13.643
+NO,2020,ALL,Medium,Traffic NOx Emissions,12.09
+NO,2020,ALL,High,Traffic NOx Emissions,21.731
+NO,2020,ALL,ALL,ALL,16.343
+NO,2020,Fall,Low,Boiler Density,14.506
+NO,2020,Fall,Medium,Boiler Density,16.698
+NO,2020,Fall,High,Boiler Density,18.748
+NO,2020,Fall,Low,Traffic NOx Emissions,14.334
+NO,2020,Fall,Medium,Traffic NOx Emissions,12.176
+NO,2020,Fall,High,Traffic NOx Emissions,27.845
+NO,2020,Fall,ALL,ALL,16.866
+NO,2020,Spring,Low,Boiler Density,8.057
+NO,2020,Spring,Medium,Boiler Density,9.519
+NO,2020,Spring,High,Boiler Density,12.298
+NO,2020,Spring,Low,Traffic NOx Emissions,11.51
+NO,2020,Spring,Medium,Traffic NOx Emissions,9.743
+NO,2020,Spring,High,Traffic NOx Emissions,19.677
+NO,2020,Spring,ALL,ALL,9.92
+NO,2020,Summer,Low,Boiler Density,6.932
+NO,2020,Summer,Medium,Boiler Density,7.808
+NO,2020,Summer,High,Boiler Density,8.785
+NO,2020,Summer,Low,Traffic NOx Emissions,8.108
+NO,2020,Summer,Medium,Traffic NOx Emissions,7.172
+NO,2020,Summer,High,Traffic NOx Emissions,15.452
+NO,2020,Summer,ALL,ALL,8.486
+NO,2020,Winter,Low,Boiler Density,21.614
+NO,2020,Winter,Medium,Boiler Density,27.583
+NO,2020,Winter,High,Boiler Density,36.758
+NO,2020,Winter,Low,Traffic NOx Emissions,22.499
+NO,2020,Winter,Medium,Traffic NOx Emissions,21.301
+NO,2020,Winter,High,Traffic NOx Emissions,36.335
+NO,2020,Winter,ALL,ALL,30.19
+NO2,2020,ALL,Low,Building Density,15.294
+NO2,2020,ALL,Medium,Building Density,17.526
+NO2,2020,ALL,High,Building Density,20.956
+NO2,2020,ALL,Low,Traffic Density,16.2
+NO2,2020,ALL,Medium,Traffic Density,16.073
+NO2,2020,ALL,High,Traffic Density,21.365
+NO2,2020,ALL,ALL,ALL,18.131
+NO2,2020,Fall,Low,Building Density,16.705
+NO2,2020,Fall,Medium,Building Density,18.449
+NO2,2020,Fall,High,Building Density,22.668
+NO2,2020,Fall,Low,Traffic Density,17.743
+NO2,2020,Fall,Medium,Traffic Density,17.398
+NO2,2020,Fall,High,Traffic Density,22.733
+NO2,2020,Fall,ALL,ALL,19.462
+NO2,2020,Spring,Low,Building Density,10.695
+NO2,2020,Spring,Medium,Building Density,13.099
+NO2,2020,Spring,High,Building Density,16.143
+NO2,2020,Spring,Low,Traffic Density,11.938
+NO2,2020,Spring,Medium,Traffic Density,11.478
+NO2,2020,Spring,High,Traffic Density,16.828
+NO2,2020,Spring,ALL,ALL,13.468
+NO2,2020,Summer,Low,Building Density,11.196
+NO2,2020,Summer,Medium,Building Density,12.296
+NO2,2020,Summer,High,Building Density,15.728
+NO2,2020,Summer,Low,Traffic Density,11.797
+NO2,2020,Summer,Medium,Traffic Density,11.214
+NO2,2020,Summer,High,Traffic Density,16.208
+NO2,2020,Summer,ALL,ALL,13.598
+NO2,2020,Winter,Low,Building Density,22.419
+NO2,2020,Winter,Medium,Building Density,26.322
+NO2,2020,Winter,High,Building Density,28.936
+NO2,2020,Winter,Low,Traffic Density,24.611
+NO2,2020,Winter,Medium,Traffic Density,23.386
+NO2,2020,Winter,High,Traffic Density,29.465
+NO2,2020,Winter,ALL,ALL,26.097
+O3,2020,ALL,Low,Traffic Density,31.253
+O3,2020,ALL,Medium,Traffic Density,30.854
+O3,2020,ALL,High,Traffic Density,29.161
+O3,2020,ALL,ALL,ALL,30.305
+O3,2020,Summer,Low,Traffic Density,31.253
+O3,2020,Summer,Medium,Traffic Density,30.854
+O3,2020,Summer,High,Traffic Density,29.161
+O3,2020,Summer,ALL,ALL,30.305
+PM2.5,2020,ALL,Low,Boiler PM2.5 Emissions,6.132
+PM2.5,2020,ALL,Medium,Boiler PM2.5 Emissions,6.456
+PM2.5,2020,ALL,High,Boiler PM2.5 Emissions,7.437
+PM2.5,2020,ALL,Low,Commercial Cooking,6.424
+PM2.5,2020,ALL,Medium,Commercial Cooking,6.162
+PM2.5,2020,ALL,High,Commercial Cooking,7.425
+PM2.5,2020,ALL,Low,Traffic Density,6.226
+PM2.5,2020,ALL,Medium,Traffic Density,6.211
+PM2.5,2020,ALL,High,Traffic Density,7.587
+PM2.5,2020,ALL,ALL,ALL,6.696
+PM2.5,2020,Fall,Low,Boiler PM2.5 Emissions,5.827
+PM2.5,2020,Fall,Medium,Boiler PM2.5 Emissions,5.928
+PM2.5,2020,Fall,High,Boiler PM2.5 Emissions,7.284
+PM2.5,2020,Fall,Low,Commercial Cooking,6.119
+PM2.5,2020,Fall,Medium,Commercial Cooking,5.705
+PM2.5,2020,Fall,High,Commercial Cooking,7.235
+PM2.5,2020,Fall,Low,Traffic Density,6.043
+PM2.5,2020,Fall,Medium,Traffic Density,5.614
+PM2.5,2020,Fall,High,Traffic Density,7.382
+PM2.5,2020,Fall,ALL,ALL,6.472
+PM2.5,2020,Spring,Low,Boiler PM2.5 Emissions,4.371
+PM2.5,2020,Spring,Medium,Boiler PM2.5 Emissions,4.458
+PM2.5,2020,Spring,High,Boiler PM2.5 Emissions,5.003
+PM2.5,2020,Spring,Low,Commercial Cooking,4.679
+PM2.5,2020,Spring,Medium,Commercial Cooking,4.141
+PM2.5,2020,Spring,High,Commercial Cooking,5.054
+PM2.5,2020,Spring,Low,Traffic Density,4.229
+PM2.5,2020,Spring,Medium,Traffic Density,4.441
+PM2.5,2020,Spring,High,Traffic Density,5.195
+PM2.5,2020,Spring,ALL,ALL,4.581
+PM2.5,2020,Summer,Low,Boiler PM2.5 Emissions,7.285
+PM2.5,2020,Summer,Medium,Boiler PM2.5 Emissions,7.384
+PM2.5,2020,Summer,High,Boiler PM2.5 Emissions,8.069
+PM2.5,2020,Summer,Low,Commercial Cooking,7.324
+PM2.5,2020,Summer,Medium,Commercial Cooking,7.343
+PM2.5,2020,Summer,High,Commercial Cooking,8.066
+PM2.5,2020,Summer,Low,Traffic Density,7.235
+PM2.5,2020,Summer,Medium,Traffic Density,7.201
+PM2.5,2020,Summer,High,Traffic Density,8.275
+PM2.5,2020,Summer,ALL,ALL,7.567
+PM2.5,2020,Winter,Low,Boiler PM2.5 Emissions,7.113
+PM2.5,2020,Winter,Medium,Boiler PM2.5 Emissions,7.979
+PM2.5,2020,Winter,High,Boiler PM2.5 Emissions,9.443
+PM2.5,2020,Winter,Low,Commercial Cooking,7.869
+PM2.5,2020,Winter,Medium,Commercial Cooking,7.265
+PM2.5,2020,Winter,High,Commercial Cooking,9.393
+PM2.5,2020,Winter,Low,Traffic Density,7.263
+PM2.5,2020,Winter,Medium,Traffic Density,7.592
+PM2.5,2020,Winter,High,Traffic Density,9.536
+PM2.5,2020,Winter,ALL,ALL,8.164
+BC,2019,ALL,Low,Industrial Areas,0.767
+BC,2019,ALL,Medium,Industrial Areas,0.731
+BC,2019,ALL,High,Industrial Areas,1.022
+BC,2019,ALL,Low,Commercial Cooking,0.842
+BC,2019,ALL,Medium,Commercial Cooking,0.695
+BC,2019,ALL,High,Commercial Cooking,0.962
+BC,2019,ALL,Low,Traffic Density,0.695
+BC,2019,ALL,Medium,Traffic Density,0.74
+BC,2019,ALL,High,Traffic Density,1.07
+BC,2019,ALL,ALL,ALL,0.798
+BC,2019,Fall,Low,Commercial Cooking,0.904
+BC,2019,Fall,Medium,Commercial Cooking,0.648
+BC,2019,Fall,High,Commercial Cooking,0.944
+BC,2019,Fall,Low,Industrial Areas,0.784
+BC,2019,Fall,Medium,Industrial Areas,0.681
+BC,2019,Fall,High,Industrial Areas,1.019
+BC,2019,Fall,Low,Traffic Density,0.67
+BC,2019,Fall,Medium,Traffic Density,0.728
+BC,2019,Fall,High,Traffic Density,1.085
+BC,2019,Fall,ALL,ALL,0.773
+BC,2019,Spring,Low,Commercial Cooking,0.808
+BC,2019,Spring,Medium,Commercial Cooking,0.679
+BC,2019,Spring,High,Commercial Cooking,1.008
+BC,2019,Spring,Low,Industrial Areas,0.722
+BC,2019,Spring,Medium,Industrial Areas,0.68
+BC,2019,Spring,High,Industrial Areas,1.087
+BC,2019,Spring,Low,Traffic Density,0.658
+BC,2019,Spring,Medium,Traffic Density,0.734
+BC,2019,Spring,High,Traffic Density,1.096
+BC,2019,Spring,ALL,ALL,0.684
+BC,2019,Summer,Low,Commercial Cooking,0.679
+BC,2019,Summer,Medium,Commercial Cooking,0.61
+BC,2019,Summer,High,Commercial Cooking,0.834
+BC,2019,Summer,Low,Industrial Areas,0.624
+BC,2019,Summer,Medium,Industrial Areas,0.623
+BC,2019,Summer,High,Industrial Areas,0.873
+BC,2019,Summer,Low,Traffic Density,0.601
+BC,2019,Summer,Medium,Traffic Density,0.652
+BC,2019,Summer,High,Traffic Density,0.867
+BC,2019,Summer,ALL,ALL,0.986
+BC,2019,Winter,Low,Commercial Cooking,0.739
+BC,2019,Winter,Medium,Commercial Cooking,0.698
+BC,2019,Winter,High,Commercial Cooking,0.98
+BC,2019,Winter,Low,Industrial Areas,0.73
+BC,2019,Winter,Medium,Industrial Areas,0.694
+BC,2019,Winter,High,Industrial Areas,0.991
+BC,2019,Winter,Low,Traffic Density,0.65
+BC,2019,Winter,Medium,Traffic Density,0.703
+BC,2019,Winter,High,Traffic Density,1.062
+BC,2019,Winter,ALL,ALL,0.75
+NO,2019,ALL,Low,Boiler Density,13.556
+NO,2019,ALL,Medium,Boiler Density,16.861
+NO,2019,ALL,High,Boiler Density,21.121
+NO,2019,ALL,Low,Traffic NOx Emissions,13.694
+NO,2019,ALL,Medium,Traffic NOx Emissions,13.049
+NO,2019,ALL,High,Traffic NOx Emissions,24.827
+NO,2019,ALL,ALL,ALL,16.159
+NO,2019,Fall,Low,Boiler Density,13.54
+NO,2019,Fall,Medium,Boiler Density,17.603
+NO,2019,Fall,High,Boiler Density,23.212
+NO,2019,Fall,Low,Traffic NOx Emissions,14.334
+NO,2019,Fall,Medium,Traffic NOx Emissions,12.176
+NO,2019,Fall,High,Traffic NOx Emissions,27.845
+NO,2019,Fall,ALL,ALL,16.554
+NO,2019,Spring,Low,Boiler Density,10.866
+NO,2019,Spring,Medium,Boiler Density,13.37
+NO,2019,Spring,High,Boiler Density,16.695
+NO,2019,Spring,Low,Traffic NOx Emissions,11.51
+NO,2019,Spring,Medium,Traffic NOx Emissions,9.743
+NO,2019,Spring,High,Traffic NOx Emissions,19.677
+NO,2019,Spring,ALL,ALL,12.879
+NO,2019,Summer,Low,Boiler Density,8.534
+NO,2019,Summer,Medium,Boiler Density,9.46
+NO,2019,Summer,High,Boiler Density,12.738
+NO,2019,Summer,Low,Traffic NOx Emissions,8.108
+NO,2019,Summer,Medium,Traffic NOx Emissions,7.172
+NO,2019,Summer,High,Traffic NOx Emissions,15.452
+NO,2019,Summer,ALL,ALL,9.883
+NO,2019,Winter,Low,Boiler Density,21.286
+NO,2019,Winter,Medium,Boiler Density,27.01
+NO,2019,Winter,High,Boiler Density,31.841
+NO,2019,Winter,Low,Traffic NOx Emissions,22.499
+NO,2019,Winter,Medium,Traffic NOx Emissions,21.301
+NO,2019,Winter,High,Traffic NOx Emissions,36.335
+NO,2019,Winter,ALL,ALL,25.32
+NO2,2019,ALL,Low,Building Density,16.263
+NO2,2019,ALL,Medium,Building Density,18.829
+NO2,2019,ALL,High,Building Density,24.465
+NO2,2019,ALL,Low,Traffic Density,17.171
+NO2,2019,ALL,Medium,Traffic Density,17.706
+NO2,2019,ALL,High,Traffic Density,24.371
+NO2,2019,ALL,ALL,ALL,19.248
+NO2,2019,Fall,Low,Building Density,16.552
+NO2,2019,Fall,Medium,Building Density,20.012
+NO2,2019,Fall,High,Building Density,21.583
+NO2,2019,Fall,Low,Traffic Density,18.131
+NO2,2019,Fall,Medium,Traffic Density,16.315
+NO2,2019,Fall,High,Traffic Density,23.812
+NO2,2019,Fall,ALL,ALL,18.567
+NO2,2019,Spring,Low,Building Density,15.674
+NO2,2019,Spring,Medium,Building Density,18.08
+NO2,2019,Spring,High,Building Density,20.693
+NO2,2019,Spring,Low,Traffic Density,17.707
+NO2,2019,Spring,Medium,Traffic Density,15.309
+NO2,2019,Spring,High,Traffic Density,21.47
+NO2,2019,Spring,ALL,ALL,17.658
+NO2,2019,Summer,Low,Building Density,14.888
+NO2,2019,Summer,Medium,Building Density,16.302
+NO2,2019,Summer,High,Building Density,18.681
+NO2,2019,Summer,Low,Traffic Density,15.905
+NO2,2019,Summer,Medium,Traffic Density,13.775
+NO2,2019,Summer,High,Traffic Density,20.27
+NO2,2019,Summer,ALL,ALL,16.09
+NO2,2019,Winter,Low,Building Density,22.341
+NO2,2019,Winter,Medium,Building Density,25.799
+NO2,2019,Winter,High,Building Density,27.6
+NO2,2019,Winter,Low,Traffic Density,24.769
+NO2,2019,Winter,Medium,Traffic Density,22.647
+NO2,2019,Winter,High,Traffic Density,28.361
+NO2,2019,Winter,ALL,ALL,24.679
+O3,2019,ALL,Low,Traffic Density,32.154
+O3,2019,ALL,Medium,Traffic Density,30.772
+O3,2019,ALL,High,Traffic Density,27.251
+O3,2019,ALL,ALL,ALL,30.677
+O3,2019,Summer,Low,Traffic Density,32.154
+O3,2019,Summer,Medium,Traffic Density,30.772
+O3,2019,Summer,High,Traffic Density,27.251
+O3,2019,Summer,ALL,ALL,30.677
+PM2.5,2019,ALL,Low,Boiler PM2.5 Emissions,6.593
+PM2.5,2019,ALL,Medium,Boiler PM2.5 Emissions,7.225
+PM2.5,2019,ALL,High,Boiler PM2.5 Emissions,8.444
+PM2.5,2019,ALL,Low,Commercial Cooking,7.345
+PM2.5,2019,ALL,Medium,Commercial Cooking,6.727
+PM2.5,2019,ALL,High,Commercial Cooking,8.159
+PM2.5,2019,ALL,Low,Traffic Density,6.569
+PM2.5,2019,ALL,Medium,Traffic Density,6.932
+PM2.5,2019,ALL,High,Traffic Density,8.742
+PM2.5,2019,ALL,ALL,ALL,7.435
+PM2.5,2019,Fall,Low,Boiler PM2.5 Emissions,5.527
+PM2.5,2019,Fall,Medium,Boiler PM2.5 Emissions,6.077
+PM2.5,2019,Fall,High,Boiler PM2.5 Emissions,7.31
+PM2.5,2019,Fall,Low,Commercial Cooking,6.01
+PM2.5,2019,Fall,Medium,Commercial Cooking,5.883
+PM2.5,2019,Fall,High,Commercial Cooking,7.028
+PM2.5,2019,Fall,Low,Traffic Density,5.386
+PM2.5,2019,Fall,Medium,Traffic Density,5.882
+PM2.5,2019,Fall,High,Traffic Density,7.647
+PM2.5,2019,Fall,ALL,ALL,6.218
+PM2.5,2019,Spring,Low,Boiler PM2.5 Emissions,5.75
+PM2.5,2019,Spring,Medium,Boiler PM2.5 Emissions,5.826
+PM2.5,2019,Spring,High,Boiler PM2.5 Emissions,7.521
+PM2.5,2019,Spring,Low,Commercial Cooking,6.309
+PM2.5,2019,Spring,Medium,Commercial Cooking,5.751
+PM2.5,2019,Spring,High,Commercial Cooking,7.065
+PM2.5,2019,Spring,Low,Traffic Density,5.666
+PM2.5,2019,Spring,Medium,Traffic Density,6.196
+PM2.5,2019,Spring,High,Traffic Density,7.236
+PM2.5,2019,Spring,ALL,ALL,6.48
+PM2.5,2019,Summer,Low,Boiler PM2.5 Emissions,8.048
+PM2.5,2019,Summer,Medium,Boiler PM2.5 Emissions,8.461
+PM2.5,2019,Summer,High,Boiler PM2.5 Emissions,9.731
+PM2.5,2019,Summer,Low,Commercial Cooking,8.528
+PM2.5,2019,Summer,Medium,Commercial Cooking,8.232
+PM2.5,2019,Summer,High,Commercial Cooking,9.499
+PM2.5,2019,Summer,Low,Traffic Density,8.101
+PM2.5,2019,Summer,Medium,Traffic Density,8.552
+PM2.5,2019,Summer,High,Traffic Density,9.647
+PM2.5,2019,Summer,ALL,ALL,9.285
+PM2.5,2019,Winter,Low,Boiler PM2.5 Emissions,7.046
+PM2.5,2019,Winter,Medium,Boiler PM2.5 Emissions,7.478
+PM2.5,2019,Winter,High,Boiler PM2.5 Emissions,9.213
+PM2.5,2019,Winter,Low,Commercial Cooking,7.568
+PM2.5,2019,Winter,Medium,Commercial Cooking,7.146
+PM2.5,2019,Winter,High,Commercial Cooking,9.044
+PM2.5,2019,Winter,Low,Traffic Density,7.074
+PM2.5,2019,Winter,Medium,Traffic Density,7.222
+PM2.5,2019,Winter,High,Traffic Density,9.441
+PM2.5,2019,Winter,ALL,ALL,7.757
+BC,2018,ALL,Low,Industrial Areas,0.805
+BC,2018,ALL,Medium,Industrial Areas,0.822
+BC,2018,ALL,High,Industrial Areas,1.108
+BC,2018,ALL,Low,Commercial Cooking,0.869
+BC,2018,ALL,Medium,Commercial Cooking,0.761
+BC,2018,ALL,High,Commercial Cooking,1.084
+BC,2018,ALL,Low,Traffic Density,0.746
+BC,2018,ALL,Medium,Traffic Density,0.781
+BC,2018,ALL,High,Traffic Density,1.193
+BC,2018,ALL,ALL,ALL,0.872
+BC,2018,Fall,Low,Commercial Cooking,1.093
+BC,2018,Fall,Medium,Commercial Cooking,0.84
+BC,2018,Fall,High,Commercial Cooking,1.184
+BC,2018,Fall,Low,Industrial Areas,0.943
+BC,2018,Fall,Medium,Industrial Areas,0.856
+BC,2018,Fall,High,Industrial Areas,1.305
+BC,2018,Fall,Low,Traffic Density,0.855
+BC,2018,Fall,Medium,Traffic Density,0.87
+BC,2018,Fall,High,Traffic Density,1.379
+BC,2018,Fall,ALL,ALL,0.79
+BC,2018,Spring,Low,Commercial Cooking,1.03
+BC,2018,Spring,Medium,Commercial Cooking,0.887
+BC,2018,Spring,High,Commercial Cooking,1.252
+BC,2018,Spring,Low,Industrial Areas,0.897
+BC,2018,Spring,Medium,Industrial Areas,0.902
+BC,2018,Spring,High,Industrial Areas,1.363
+BC,2018,Spring,Low,Traffic Density,0.86
+BC,2018,Spring,Medium,Traffic Density,0.918
+BC,2018,Spring,High,Traffic Density,1.383
+BC,2018,Spring,ALL,ALL,0.78
+BC,2018,Summer,Low,Commercial Cooking,0.76
+BC,2018,Summer,Medium,Commercial Cooking,0.677
+BC,2018,Summer,High,Commercial Cooking,0.884
+BC,2018,Summer,Low,Industrial Areas,0.715
+BC,2018,Summer,Medium,Industrial Areas,0.649
+BC,2018,Summer,High,Industrial Areas,0.953
+BC,2018,Summer,Low,Traffic Density,0.655
+BC,2018,Summer,Medium,Traffic Density,0.711
+BC,2018,Summer,High,Traffic Density,0.95
+BC,2018,Summer,ALL,ALL,1.004
+BC,2018,Winter,Low,Commercial Cooking,0.884
+BC,2018,Winter,Medium,Commercial Cooking,0.855
+BC,2018,Winter,High,Commercial Cooking,1.079
+BC,2018,Winter,Low,Industrial Areas,0.871
+BC,2018,Winter,Medium,Industrial Areas,0.836
+BC,2018,Winter,High,Industrial Areas,1.109
+BC,2018,Winter,Low,Traffic Density,0.818
+BC,2018,Winter,Medium,Traffic Density,0.838
+BC,2018,Winter,High,Traffic Density,1.161
+BC,2018,Winter,ALL,ALL,0.915
+NO,2018,ALL,Low,Boiler Density,14.485
+NO,2018,ALL,Medium,Boiler Density,19.104
+NO,2018,ALL,High,Boiler Density,23.445
+NO,2018,ALL,Low,Traffic NOx Emissions,14.811
+NO,2018,ALL,Medium,Traffic NOx Emissions,13.94
+NO,2018,ALL,High,Traffic NOx Emissions,28.326
+NO,2018,ALL,ALL,ALL,17.846
+NO,2018,Fall,Low,Boiler Density,16.91
+NO,2018,Fall,Medium,Boiler Density,22.534
+NO,2018,Fall,High,Boiler Density,24.67
+NO,2018,Fall,Low,Traffic NOx Emissions,17.559
+NO,2018,Fall,Medium,Traffic NOx Emissions,13.793
+NO,2018,Fall,High,Traffic NOx Emissions,32.762
+NO,2018,Fall,ALL,ALL,20.342
+NO,2018,Spring,Low,Boiler Density,11.803
+NO,2018,Spring,Medium,Boiler Density,15.543
+NO,2018,Spring,High,Boiler Density,22.007
+NO,2018,Spring,Low,Traffic NOx Emissions,14.274
+NO,2018,Spring,Medium,Traffic NOx Emissions,11.556
+NO,2018,Spring,High,Traffic NOx Emissions,23.522
+NO,2018,Spring,ALL,ALL,15.357
+NO,2018,Summer,Low,Boiler Density,7.994
+NO,2018,Summer,Medium,Boiler Density,14.111
+NO,2018,Summer,High,Boiler Density,14.877
+NO,2018,Summer,Low,Traffic NOx Emissions,8.5
+NO,2018,Summer,Medium,Traffic NOx Emissions,7.339
+NO,2018,Summer,High,Traffic NOx Emissions,21.143
+NO,2018,Summer,ALL,ALL,11.044
+NO,2018,Winter,Low,Boiler Density,21.232
+NO,2018,Winter,Medium,Boiler Density,24.228
+NO,2018,Winter,High,Boiler Density,32.227
+NO,2018,Winter,Low,Traffic NOx Emissions,22.022
+NO,2018,Winter,Medium,Traffic NOx Emissions,19.787
+NO,2018,Winter,High,Traffic NOx Emissions,35.877
+NO,2018,Winter,ALL,ALL,24.641
+NO2,2018,ALL,Low,Building Density,17.659
+NO2,2018,ALL,Medium,Building Density,20.23
+NO2,2018,ALL,High,Building Density,25.347
+NO2,2018,ALL,Low,Traffic Density,18.813
+NO2,2018,ALL,Medium,Traffic Density,18.829
+NO2,2018,ALL,High,Traffic Density,25.337
+NO2,2018,ALL,ALL,ALL,20.568
+NO2,2018,Fall,Low,Building Density,16.591
+NO2,2018,Fall,Medium,Building Density,19.224
+NO2,2018,Fall,High,Building Density,23.148
+NO2,2018,Fall,Low,Traffic Density,17.843
+NO2,2018,Fall,Medium,Traffic Density,16.637
+NO2,2018,Fall,High,Traffic Density,24.484
+NO2,2018,Fall,ALL,ALL,19.233
+NO2,2018,Spring,Low,Building Density,17.448
+NO2,2018,Spring,Medium,Building Density,21.269
+NO2,2018,Spring,High,Building Density,25.138
+NO2,2018,Spring,Low,Traffic Density,19.4
+NO2,2018,Spring,Medium,Traffic Density,19.118
+NO2,2018,Spring,High,Traffic Density,25.337
+NO2,2018,Spring,ALL,ALL,20.857
+NO2,2018,Summer,Low,Building Density,12.991
+NO2,2018,Summer,Medium,Building Density,15.325
+NO2,2018,Summer,High,Building Density,21.65
+NO2,2018,Summer,Low,Traffic Density,14.161
+NO2,2018,Summer,Medium,Traffic Density,13.877
+NO2,2018,Summer,High,Traffic Density,21.927
+NO2,2018,Summer,ALL,ALL,16.069
+NO2,2018,Winter,Low,Building Density,23.604
+NO2,2018,Winter,Medium,Building Density,25.855
+NO2,2018,Winter,High,Building Density,29.674
+NO2,2018,Winter,Low,Traffic Density,25.398
+NO2,2018,Winter,Medium,Traffic Density,24.139
+NO2,2018,Winter,High,Traffic Density,29.597
+NO2,2018,Winter,ALL,ALL,26.111
+O3,2018,ALL,Low,Traffic Density,32.125
+O3,2018,ALL,Medium,Traffic Density,29.722
+O3,2018,ALL,High,Traffic Density,26.588
+O3,2018,ALL,ALL,ALL,29.72
+O3,2018,Summer,Low,Traffic Density,32.125
+O3,2018,Summer,Medium,Traffic Density,29.722
+O3,2018,Summer,High,Traffic Density,26.588
+O3,2018,Summer,ALL,ALL,29.72
+PM2.5,2018,ALL,Low,Boiler PM2.5 Emissions,7.29
+PM2.5,2018,ALL,Medium,Boiler PM2.5 Emissions,7.553
+PM2.5,2018,ALL,High,Boiler PM2.5 Emissions,9.279
+PM2.5,2018,ALL,Low,Commercial Cooking,7.622
+PM2.5,2018,ALL,Medium,Commercial Cooking,7.281
+PM2.5,2018,ALL,High,Commercial Cooking,9.201
+PM2.5,2018,ALL,Low,Traffic Density,7.205
+PM2.5,2018,ALL,Medium,Traffic Density,7.27
+PM2.5,2018,ALL,High,Traffic Density,9.643
+PM2.5,2018,ALL,ALL,ALL,8.001
+PM2.5,2018,Fall,Low,Boiler PM2.5 Emissions,5.486
+PM2.5,2018,Fall,Medium,Boiler PM2.5 Emissions,5.861
+PM2.5,2018,Fall,High,Boiler PM2.5 Emissions,7.309
+PM2.5,2018,Fall,Low,Commercial Cooking,5.915
+PM2.5,2018,Fall,Medium,Commercial Cooking,5.437
+PM2.5,2018,Fall,High,Commercial Cooking,7.328
+PM2.5,2018,Fall,Low,Traffic Density,5.505
+PM2.5,2018,Fall,Medium,Traffic Density,5.584
+PM2.5,2018,Fall,High,Traffic Density,7.567
+PM2.5,2018,Fall,ALL,ALL,6.101
+PM2.5,2018,Spring,Low,Boiler PM2.5 Emissions,6.562
+PM2.5,2018,Spring,Medium,Boiler PM2.5 Emissions,6.567
+PM2.5,2018,Spring,High,Boiler PM2.5 Emissions,8.929
+PM2.5,2018,Spring,Low,Commercial Cooking,6.932
+PM2.5,2018,Spring,Medium,Commercial Cooking,6.421
+PM2.5,2018,Spring,High,Commercial Cooking,8.73
+PM2.5,2018,Spring,Low,Traffic Density,6.267
+PM2.5,2018,Spring,Medium,Traffic Density,6.388
+PM2.5,2018,Spring,High,Traffic Density,9.402
+PM2.5,2018,Spring,ALL,ALL,7.339
+PM2.5,2018,Summer,Low,Boiler PM2.5 Emissions,8.614
+PM2.5,2018,Summer,Medium,Boiler PM2.5 Emissions,9.195
+PM2.5,2018,Summer,High,Boiler PM2.5 Emissions,10.501
+PM2.5,2018,Summer,Low,Commercial Cooking,9.145
+PM2.5,2018,Summer,Medium,Commercial Cooking,8.718
+PM2.5,2018,Summer,High,Commercial Cooking,10.468
+PM2.5,2018,Summer,Low,Traffic Density,8.652
+PM2.5,2018,Summer,Medium,Traffic Density,8.777
+PM2.5,2018,Summer,High,Traffic Density,10.881
+PM2.5,2018,Summer,ALL,ALL,9.491
+PM2.5,2018,Winter,Low,Boiler PM2.5 Emissions,8.5
+PM2.5,2018,Winter,Medium,Boiler PM2.5 Emissions,8.587
+PM2.5,2018,Winter,High,Boiler PM2.5 Emissions,10.378
+PM2.5,2018,Winter,Low,Commercial Cooking,8.716
+PM2.5,2018,Winter,Medium,Commercial Cooking,8.481
+PM2.5,2018,Winter,High,Commercial Cooking,10.279
+PM2.5,2018,Winter,Low,Traffic Density,8.203
+PM2.5,2018,Winter,Medium,Traffic Density,8.538
+PM2.5,2018,Winter,High,Traffic Density,10.723
+PM2.5,2018,Winter,ALL,ALL,9.071
+SO2,2018,ALL,ALL,ALL,0.275
+SO2,2018,Winter,Low,Boilers Using Residual Oil,0.115
+SO2,2018,Winter,Medium,Boilers Using Residual Oil,0.1
+SO2,2018,Winter,High,Boilers Using Residual Oil,0.473
+SO2,2018,Winter,Low,Night-Time Population Density,0.11
+SO2,2018,Winter,Medium,Night-Time Population Density,0.086
+SO2,2018,Winter,High,Night-Time Population Density,0.494
+SO2,2018,Winter,ALL,ALL,0.275
+BC,2017,ALL,Low,Industrial Areas,0.84
+BC,2017,ALL,Medium,Industrial Areas,0.814
+BC,2017,ALL,High,Industrial Areas,1.173
+BC,2017,ALL,Low,Commercial Cooking,0.919
+BC,2017,ALL,Medium,Commercial Cooking,0.78
+BC,2017,ALL,High,Commercial Cooking,1.103
+BC,2017,ALL,Low,Traffic Density,0.776
+BC,2017,ALL,Medium,Traffic Density,0.825
+BC,2017,ALL,High,Traffic Density,1.209
+BC,2017,ALL,ALL,ALL,0.933
+BC,2017,Fall,Low,Commercial Cooking,0.909
+BC,2017,Fall,Medium,Commercial Cooking,0.783
+BC,2017,Fall,High,Commercial Cooking,1.281
+BC,2017,Fall,Low,Industrial Areas,0.87
+BC,2017,Fall,Medium,Industrial Areas,0.9
+BC,2017,Fall,High,Industrial Areas,1.197
+BC,2017,Fall,Low,Traffic Density,0.798
+BC,2017,Fall,Medium,Traffic Density,0.937
+BC,2017,Fall,High,Traffic Density,1.232
+BC,2017,Fall,ALL,ALL,0.93
+BC,2017,Spring,Low,Commercial Cooking,0.783
+BC,2017,Spring,Medium,Commercial Cooking,0.684
+BC,2017,Spring,High,Commercial Cooking,0.963
+BC,2017,Spring,Low,Industrial Areas,0.736
+BC,2017,Spring,Medium,Industrial Areas,0.69
+BC,2017,Spring,High,Industrial Areas,0.999
+BC,2017,Spring,Low,Traffic Density,0.657
+BC,2017,Spring,Medium,Traffic Density,0.668
+BC,2017,Spring,High,Traffic Density,1.1
+BC,2017,Spring,ALL,ALL,0.808
+BC,2017,Summer,Low,Commercial Cooking,1.154
+BC,2017,Summer,Medium,Commercial Cooking,0.85
+BC,2017,Summer,High,Commercial Cooking,1.254
+BC,2017,Summer,Low,Industrial Areas,0.945
+BC,2017,Summer,Medium,Industrial Areas,0.869
+BC,2017,Summer,High,Industrial Areas,1.428
+BC,2017,Summer,Low,Traffic Density,0.895
+BC,2017,Summer,Medium,Traffic Density,0.925
+BC,2017,Summer,High,Traffic Density,1.422
+BC,2017,Summer,ALL,ALL,1.046
+BC,2017,Winter,Low,Commercial Cooking,0.92
+BC,2017,Winter,Medium,Commercial Cooking,0.777
+BC,2017,Winter,High,Commercial Cooking,1
+BC,2017,Winter,Low,Industrial Areas,0.809
+BC,2017,Winter,Medium,Industrial Areas,0.767
+BC,2017,Winter,High,Industrial Areas,1.113
+BC,2017,Winter,Low,Traffic Density,0.754
+BC,2017,Winter,Medium,Traffic Density,0.854
+BC,2017,Winter,High,Traffic Density,1.08
+BC,2017,Winter,ALL,ALL,0.896
+NO,2017,ALL,Low,Boiler Density,15.375
+NO,2017,ALL,Medium,Boiler Density,19.862
+NO,2017,ALL,High,Boiler Density,25.016
+NO,2017,ALL,Low,Traffic NOx Emissions,16.081
+NO,2017,ALL,Medium,Traffic NOx Emissions,15.45
+NO,2017,ALL,High,Traffic NOx Emissions,28.753
+NO,2017,ALL,ALL,ALL,18.644
+NO,2017,Fall,Low,Boiler Density,16.158
+NO,2017,Fall,Medium,Boiler Density,18.994
+NO,2017,Fall,High,Boiler Density,24.146
+NO,2017,Fall,Low,Traffic NOx Emissions,18.163
+NO,2017,Fall,Medium,Traffic NOx Emissions,13.196
+NO,2017,Fall,High,Traffic NOx Emissions,27.938
+NO,2017,Fall,ALL,ALL,18.79
+NO,2017,Spring,Low,Boiler Density,14.271
+NO,2017,Spring,Medium,Boiler Density,19.239
+NO,2017,Spring,High,Boiler Density,24.594
+NO,2017,Spring,Low,Traffic NOx Emissions,15.975
+NO,2017,Spring,Medium,Traffic NOx Emissions,14.193
+NO,2017,Spring,High,Traffic NOx Emissions,27.936
+NO,2017,Spring,ALL,ALL,19.368
+NO,2017,Summer,Low,Boiler Density,8.688
+NO,2017,Summer,Medium,Boiler Density,11.363
+NO,2017,Summer,High,Boiler Density,16.903
+NO,2017,Summer,Low,Traffic NOx Emissions,9.625
+NO,2017,Summer,Medium,Traffic NOx Emissions,7.299
+NO,2017,Summer,High,Traffic NOx Emissions,20.031
+NO,2017,Summer,ALL,ALL,11.105
+NO,2017,Winter,Low,Boiler Density,22.383
+NO,2017,Winter,Medium,Boiler Density,29.85
+NO,2017,Winter,High,Boiler Density,34.423
+NO,2017,Winter,Low,Traffic NOx Emissions,24.272
+NO,2017,Winter,Medium,Traffic NOx Emissions,23.275
+NO,2017,Winter,High,Traffic NOx Emissions,39.109
+NO,2017,Winter,ALL,ALL,28.885
+NO2,2017,ALL,Low,Building Density,18.187
+NO2,2017,ALL,Medium,Building Density,21.14
+NO2,2017,ALL,High,Building Density,26.736
+NO2,2017,ALL,Low,Traffic Density,19.471
+NO2,2017,ALL,Medium,Traffic Density,20.068
+NO2,2017,ALL,High,Traffic Density,26.215
+NO2,2017,ALL,ALL,ALL,21.127
+NO2,2017,Fall,Low,Building Density,17.591
+NO2,2017,Fall,Medium,Building Density,20.647
+NO2,2017,Fall,High,Building Density,25.559
+NO2,2017,Fall,Low,Traffic Density,19.576
+NO2,2017,Fall,Medium,Traffic Density,19.031
+NO2,2017,Fall,High,Traffic Density,25.19
+NO2,2017,Fall,ALL,ALL,20.875
+NO2,2017,Spring,Low,Building Density,17.491
+NO2,2017,Spring,Medium,Building Density,20.499
+NO2,2017,Spring,High,Building Density,25.794
+NO2,2017,Spring,Low,Traffic Density,19.258
+NO2,2017,Spring,Medium,Traffic Density,18.726
+NO2,2017,Spring,High,Traffic Density,25.801
+NO2,2017,Spring,ALL,ALL,21.264
+NO2,2017,Summer,Low,Building Density,14.303
+NO2,2017,Summer,Medium,Building Density,16.41
+NO2,2017,Summer,High,Building Density,22.803
+NO2,2017,Summer,Low,Traffic Density,15.389
+NO2,2017,Summer,Medium,Traffic Density,14.932
+NO2,2017,Summer,High,Traffic Density,23.196
+NO2,2017,Summer,ALL,ALL,17.103
+NO2,2017,Winter,Low,Building Density,23.357
+NO2,2017,Winter,Medium,Building Density,27.341
+NO2,2017,Winter,High,Building Density,31.455
+NO2,2017,Winter,Low,Traffic Density,26.257
+NO2,2017,Winter,Medium,Traffic Density,25.125
+NO2,2017,Winter,High,Traffic Density,30.77
+NO2,2017,Winter,ALL,ALL,27.337
+O3,2017,ALL,Low,Traffic Density,31.1
+O3,2017,ALL,Medium,Traffic Density,29.16
+O3,2017,ALL,High,Traffic Density,25.527
+O3,2017,ALL,ALL,ALL,28.633
+O3,2017,Summer,Low,Traffic Density,31.1
+O3,2017,Summer,Medium,Traffic Density,29.16
+O3,2017,Summer,High,Traffic Density,25.527
+O3,2017,Summer,ALL,ALL,28.633
+PM2.5,2017,ALL,Low,Boiler PM2.5 Emissions,7.428
+PM2.5,2017,ALL,Medium,Boiler PM2.5 Emissions,8.101
+PM2.5,2017,ALL,High,Boiler PM2.5 Emissions,9.165
+PM2.5,2017,ALL,Low,Commercial Cooking,7.91
+PM2.5,2017,ALL,Medium,Commercial Cooking,7.609
+PM2.5,2017,ALL,High,Commercial Cooking,9.16
+PM2.5,2017,ALL,Low,Traffic Density,7.579
+PM2.5,2017,ALL,Medium,Traffic Density,7.56
+PM2.5,2017,ALL,High,Traffic Density,9.555
+PM2.5,2017,ALL,ALL,ALL,8.205
+PM2.5,2017,Fall,Low,Boiler PM2.5 Emissions,6.664
+PM2.5,2017,Fall,Medium,Boiler PM2.5 Emissions,7.068
+PM2.5,2017,Fall,High,Boiler PM2.5 Emissions,8.33
+PM2.5,2017,Fall,Low,Commercial Cooking,7.009
+PM2.5,2017,Fall,Medium,Commercial Cooking,6.718
+PM2.5,2017,Fall,High,Commercial Cooking,8.35
+PM2.5,2017,Fall,Low,Traffic Density,6.969
+PM2.5,2017,Fall,Medium,Traffic Density,6.787
+PM2.5,2017,Fall,High,Traffic Density,8.307
+PM2.5,2017,Fall,ALL,ALL,7.169
+PM2.5,2017,Spring,Low,Boiler PM2.5 Emissions,6.308
+PM2.5,2017,Spring,Medium,Boiler PM2.5 Emissions,6.981
+PM2.5,2017,Spring,High,Boiler PM2.5 Emissions,8.021
+PM2.5,2017,Spring,Low,Commercial Cooking,6.781
+PM2.5,2017,Spring,Medium,Commercial Cooking,6.555
+PM2.5,2017,Spring,High,Commercial Cooking,7.985
+PM2.5,2017,Spring,Low,Traffic Density,6.229
+PM2.5,2017,Spring,Medium,Traffic Density,6.45
+PM2.5,2017,Spring,High,Traffic Density,8.631
+PM2.5,2017,Spring,ALL,ALL,7.103
+PM2.5,2017,Summer,Low,Boiler PM2.5 Emissions,8.815
+PM2.5,2017,Summer,Medium,Boiler PM2.5 Emissions,9.513
+PM2.5,2017,Summer,High,Boiler PM2.5 Emissions,10.916
+PM2.5,2017,Summer,Low,Commercial Cooking,9.392
+PM2.5,2017,Summer,Medium,Commercial Cooking,8.952
+PM2.5,2017,Summer,High,Commercial Cooking,10.923
+PM2.5,2017,Summer,Low,Traffic Density,8.939
+PM2.5,2017,Summer,Medium,Traffic Density,9.057
+PM2.5,2017,Summer,High,Traffic Density,11.249
+PM2.5,2017,Summer,ALL,ALL,9.647
+PM2.5,2017,Winter,Low,Boiler PM2.5 Emissions,7.925
+PM2.5,2017,Winter,Medium,Boiler PM2.5 Emissions,8.84
+PM2.5,2017,Winter,High,Boiler PM2.5 Emissions,9.394
+PM2.5,2017,Winter,Low,Commercial Cooking,8.473
+PM2.5,2017,Winter,Medium,Commercial Cooking,8.313
+PM2.5,2017,Winter,High,Commercial Cooking,9.38
+PM2.5,2017,Winter,Low,Traffic Density,7.956
+PM2.5,2017,Winter,Medium,Traffic Density,8.167
+PM2.5,2017,Winter,High,Traffic Density,10.035
+PM2.5,2017,Winter,ALL,ALL,8.719
+SO2,2017,ALL,ALL,ALL,0.215
+SO2,2017,Winter,Low,Boilers Using Residual Oil,0.126
+SO2,2017,Winter,Medium,Boilers Using Residual Oil,0.191
+SO2,2017,Winter,High,Boilers Using Residual Oil,0.331
+SO2,2017,Winter,Low,Night-Time Population Density,0.156
+SO2,2017,Winter,Medium,Night-Time Population Density,0.163
+SO2,2017,Winter,High,Night-Time Population Density,0.321
+SO2,2017,Winter,ALL,ALL,0.215
+BC,2016,ALL,Low,Industrial Areas,0.951
+BC,2016,ALL,Medium,Industrial Areas,0.922
+BC,2016,ALL,High,Industrial Areas,1.243
+BC,2016,ALL,Low,Commercial Cooking,0.998
+BC,2016,ALL,Medium,Commercial Cooking,0.89
+BC,2016,ALL,High,Commercial Cooking,1.206
+BC,2016,ALL,Low,Traffic Density,0.863
+BC,2016,ALL,Medium,Traffic Density,0.939
+BC,2016,ALL,High,Traffic Density,1.298
+BC,2016,ALL,ALL,ALL,1.02
+BC,2016,Fall,Low,Commercial Cooking,1.012
+BC,2016,Fall,Medium,Commercial Cooking,0.878
+BC,2016,Fall,High,Commercial Cooking,1.24
+BC,2016,Fall,Low,Industrial Areas,0.921
+BC,2016,Fall,Medium,Industrial Areas,0.881
+BC,2016,Fall,High,Industrial Areas,1.322
+BC,2016,Fall,Low,Traffic Density,0.886
+BC,2016,Fall,Medium,Traffic Density,0.943
+BC,2016,Fall,High,Traffic Density,1.295
+BC,2016,Fall,ALL,ALL,1.041
+BC,2016,Spring,Low,Commercial Cooking,0.939
+BC,2016,Spring,Medium,Commercial Cooking,0.8
+BC,2016,Spring,High,Commercial Cooking,1.141
+BC,2016,Spring,Low,Industrial Areas,0.901
+BC,2016,Spring,Medium,Industrial Areas,0.864
+BC,2016,Spring,High,Industrial Areas,1.108
+BC,2016,Spring,Low,Traffic Density,0.779
+BC,2016,Spring,Medium,Traffic Density,0.861
+BC,2016,Spring,High,Traffic Density,1.232
+BC,2016,Spring,ALL,ALL,0.945
+BC,2016,Summer,Low,Commercial Cooking,1.07
+BC,2016,Summer,Medium,Commercial Cooking,0.951
+BC,2016,Summer,High,Commercial Cooking,1.244
+BC,2016,Summer,Low,Industrial Areas,1.024
+BC,2016,Summer,Medium,Industrial Areas,0.901
+BC,2016,Summer,High,Industrial Areas,1.335
+BC,2016,Summer,Low,Traffic Density,0.885
+BC,2016,Summer,Medium,Traffic Density,0.999
+BC,2016,Summer,High,Traffic Density,1.375
+BC,2016,Summer,ALL,ALL,1.063
+BC,2016,Winter,Low,Commercial Cooking,1.018
+BC,2016,Winter,Medium,Commercial Cooking,0.93
+BC,2016,Winter,High,Commercial Cooking,1.2
+BC,2016,Winter,Low,Industrial Areas,0.96
+BC,2016,Winter,Medium,Industrial Areas,0.934
+BC,2016,Winter,High,Industrial Areas,1.25
+BC,2016,Winter,Low,Traffic Density,0.901
+BC,2016,Winter,Medium,Traffic Density,0.952
+BC,2016,Winter,High,Traffic Density,1.291
+BC,2016,Winter,ALL,ALL,1.033
+NO,2016,ALL,Low,Boiler Density,17.633
+NO,2016,ALL,Medium,Boiler Density,22.881
+NO,2016,ALL,High,Boiler Density,28.576
+NO,2016,ALL,Low,Traffic NOx Emissions,17.815
+NO,2016,ALL,Medium,Traffic NOx Emissions,18.505
+NO,2016,ALL,High,Traffic NOx Emissions,32.735
+NO,2016,ALL,ALL,ALL,22.303
+NO,2016,Fall,Low,Boiler Density,18.983
+NO,2016,Fall,Medium,Boiler Density,23.856
+NO,2016,Fall,High,Boiler Density,30.85
+NO,2016,Fall,Low,Traffic NOx Emissions,21.475
+NO,2016,Fall,Medium,Traffic NOx Emissions,18.595
+NO,2016,Fall,High,Traffic NOx Emissions,33.62
+NO,2016,Fall,ALL,ALL,24.461
+NO,2016,Spring,Low,Boiler Density,15.816
+NO,2016,Spring,Medium,Boiler Density,22.091
+NO,2016,Spring,High,Boiler Density,26.652
+NO,2016,Spring,Low,Traffic NOx Emissions,17.707
+NO,2016,Spring,Medium,Traffic NOx Emissions,15.463
+NO,2016,Spring,High,Traffic NOx Emissions,31.388
+NO,2016,Spring,ALL,ALL,20.828
+NO,2016,Summer,Low,Boiler Density,8.839
+NO,2016,Summer,Medium,Boiler Density,12.615
+NO,2016,Summer,High,Boiler Density,16.219
+NO,2016,Summer,Low,Traffic NOx Emissions,9.926
+NO,2016,Summer,Medium,Traffic NOx Emissions,8.122
+NO,2016,Summer,High,Traffic NOx Emissions,19.627
+NO,2016,Summer,ALL,ALL,11.806
+NO,2016,Winter,Low,Boiler Density,27.171
+NO,2016,Winter,Medium,Boiler Density,33.207
+NO,2016,Winter,High,Boiler Density,40.563
+NO,2016,Winter,Low,Traffic NOx Emissions,29.201
+NO,2016,Winter,Medium,Traffic NOx Emissions,25.112
+NO,2016,Winter,High,Traffic NOx Emissions,46.628
+NO,2016,Winter,ALL,ALL,32.548
+NO2,2016,ALL,Low,Building Density,17.655
+NO2,2016,ALL,Medium,Building Density,20.513
+NO2,2016,ALL,High,Building Density,26.543
+NO2,2016,ALL,Low,Traffic Density,19.003
+NO2,2016,ALL,Medium,Traffic Density,19.21
+NO2,2016,ALL,High,Traffic Density,26.186
+NO2,2016,ALL,ALL,ALL,21.23
+NO2,2016,Fall,Low,Building Density,18.328
+NO2,2016,Fall,Medium,Building Density,20.256
+NO2,2016,Fall,High,Building Density,27.25
+NO2,2016,Fall,Low,Traffic Density,20.124
+NO2,2016,Fall,Medium,Traffic Density,19.484
+NO2,2016,Fall,High,Traffic Density,26.227
+NO2,2016,Fall,ALL,ALL,21.995
+NO2,2016,Spring,Low,Building Density,16.967
+NO2,2016,Spring,Medium,Building Density,20.826
+NO2,2016,Spring,High,Building Density,25.938
+NO2,2016,Spring,Low,Traffic Density,14.62
+NO2,2016,Spring,Medium,Traffic Density,13.854
+NO2,2016,Spring,High,Traffic Density,22.777
+NO2,2016,Spring,ALL,ALL,21.06
+NO2,2016,Summer,Low,Building Density,13.618
+NO2,2016,Summer,Medium,Building Density,15.621
+NO2,2016,Summer,High,Building Density,22.013
+NO2,2016,Summer,Low,Traffic Density,19.254
+NO2,2016,Summer,Medium,Traffic Density,18.248
+NO2,2016,Summer,High,Traffic Density,26.229
+NO2,2016,Summer,ALL,ALL,16.722
+NO2,2016,Winter,Low,Building Density,21.594
+NO2,2016,Winter,Medium,Building Density,25.754
+NO2,2016,Winter,High,Building Density,29.379
+NO2,2016,Winter,Low,Traffic Density,24.271
+NO2,2016,Winter,Medium,Traffic Density,23.061
+NO2,2016,Winter,High,Traffic Density,29.396
+NO2,2016,Winter,ALL,ALL,25.296
+O3,2016,ALL,Low,Traffic Density,33.881
+O3,2016,ALL,Medium,Traffic Density,31.672
+O3,2016,ALL,High,Traffic Density,28.572
+O3,2016,ALL,ALL,ALL,31.614
+O3,2016,Summer,Low,Traffic Density,33.881
+O3,2016,Summer,Medium,Traffic Density,31.672
+O3,2016,Summer,High,Traffic Density,28.572
+O3,2016,Summer,ALL,ALL,31.614
+PM2.5,2016,ALL,Low,Boiler PM2.5 Emissions,7.449
+PM2.5,2016,ALL,Medium,Boiler PM2.5 Emissions,8.265
+PM2.5,2016,ALL,High,Boiler PM2.5 Emissions,9.577
+PM2.5,2016,ALL,Low,Commercial Cooking,7.892
+PM2.5,2016,ALL,Medium,Commercial Cooking,7.789
+PM2.5,2016,ALL,High,Commercial Cooking,9.605
+PM2.5,2016,ALL,Low,Traffic Density,7.764
+PM2.5,2016,ALL,Medium,Traffic Density,7.673
+PM2.5,2016,ALL,High,Traffic Density,9.859
+PM2.5,2016,ALL,ALL,ALL,8.404
+PM2.5,2016,Fall,Low,Boiler PM2.5 Emissions,6.987
+PM2.5,2016,Fall,Medium,Boiler PM2.5 Emissions,6.489
+PM2.5,2016,Fall,High,Boiler PM2.5 Emissions,8.195
+PM2.5,2016,Fall,Low,Commercial Cooking,7.085
+PM2.5,2016,Fall,Medium,Commercial Cooking,6.422
+PM2.5,2016,Fall,High,Commercial Cooking,8.197
+PM2.5,2016,Fall,Low,Traffic Density,6.311
+PM2.5,2016,Fall,Medium,Traffic Density,6.364
+PM2.5,2016,Fall,High,Traffic Density,8.995
+PM2.5,2016,Fall,ALL,ALL,7.023
+PM2.5,2016,Spring,Low,Boiler PM2.5 Emissions,6.986
+PM2.5,2016,Spring,Medium,Boiler PM2.5 Emissions,8.42
+PM2.5,2016,Spring,High,Boiler PM2.5 Emissions,9.878
+PM2.5,2016,Spring,Low,Commercial Cooking,7.626
+PM2.5,2016,Spring,Medium,Commercial Cooking,7.768
+PM2.5,2016,Spring,High,Commercial Cooking,9.884
+PM2.5,2016,Spring,Low,Traffic Density,7.617
+PM2.5,2016,Spring,Medium,Traffic Density,7.901
+PM2.5,2016,Spring,High,Traffic Density,9.766
+PM2.5,2016,Spring,ALL,ALL,8.244
+PM2.5,2016,Summer,Low,Boiler PM2.5 Emissions,8.416
+PM2.5,2016,Summer,Medium,Boiler PM2.5 Emissions,9.375
+PM2.5,2016,Summer,High,Boiler PM2.5 Emissions,10.173
+PM2.5,2016,Summer,Low,Commercial Cooking,8.946
+PM2.5,2016,Summer,Medium,Commercial Cooking,8.807
+PM2.5,2016,Summer,High,Commercial Cooking,10.218
+PM2.5,2016,Summer,Low,Traffic Density,8.701
+PM2.5,2016,Summer,Medium,Traffic Density,8.549
+PM2.5,2016,Summer,High,Traffic Density,10.714
+PM2.5,2016,Summer,ALL,ALL,9.206
+PM2.5,2016,Winter,Low,Boiler PM2.5 Emissions,8.008
+PM2.5,2016,Winter,Medium,Boiler PM2.5 Emissions,8.775
+PM2.5,2016,Winter,High,Boiler PM2.5 Emissions,10.064
+PM2.5,2016,Winter,Low,Commercial Cooking,8.588
+PM2.5,2016,Winter,Medium,Commercial Cooking,8.158
+PM2.5,2016,Winter,High,Commercial Cooking,10.122
+PM2.5,2016,Winter,Low,Traffic Density,8.238
+PM2.5,2016,Winter,Medium,Traffic Density,8.048
+PM2.5,2016,Winter,High,Traffic Density,10.561
+PM2.5,2016,Winter,ALL,ALL,8.866
+SO2,2016,ALL,ALL,ALL,0.233
+SO2,2016,Winter,Low,Boilers Using Residual Oil,0.204
+SO2,2016,Winter,Medium,Boilers Using Residual Oil,0.192
+SO2,2016,Winter,High,Boilers Using Residual Oil,0.354
+SO2,2016,Winter,Low,Night-Time Population Density,0.211
+SO2,2016,Winter,Medium,Night-Time Population Density,0.202
+SO2,2016,Winter,High,Night-Time Population Density,0.33
+SO2,2016,Winter,ALL,ALL,0.233
+BC,2015,ALL,Low,Industrial Areas,0.989
+BC,2015,ALL,Medium,Industrial Areas,0.971
+BC,2015,ALL,High,Industrial Areas,1.315
+BC,2015,ALL,Low,Commercial Cooking,0.99
+BC,2015,ALL,Medium,Commercial Cooking,0.978
+BC,2015,ALL,High,Commercial Cooking,1.29
+BC,2015,ALL,Low,Traffic Density,0.873
+BC,2015,ALL,Medium,Traffic Density,1.026
+BC,2015,ALL,High,Traffic Density,1.359
+BC,2015,ALL,ALL,ALL,1.063
+BC,2015,Fall,Low,Commercial Cooking,1.067
+BC,2015,Fall,Medium,Commercial Cooking,0.964
+BC,2015,Fall,High,Commercial Cooking,1.287
+BC,2015,Fall,Low,Industrial Areas,0.973
+BC,2015,Fall,Medium,Industrial Areas,0.949
+BC,2015,Fall,High,Industrial Areas,1.391
+BC,2015,Fall,Low,Traffic Density,0.9
+BC,2015,Fall,Medium,Traffic Density,1.016
+BC,2015,Fall,High,Traffic Density,1.397
+BC,2015,Fall,ALL,ALL,1.104
+BC,2015,Spring,Low,Commercial Cooking,0.962
+BC,2015,Spring,Medium,Commercial Cooking,0.895
+BC,2015,Spring,High,Commercial Cooking,1.321
+BC,2015,Spring,Low,Industrial Areas,0.964
+BC,2015,Spring,Medium,Industrial Areas,0.911
+BC,2015,Spring,High,Industrial Areas,1.3
+BC,2015,Spring,Low,Traffic Density,0.823
+BC,2015,Spring,Medium,Traffic Density,0.996
+BC,2015,Spring,High,Traffic Density,1.356
+BC,2015,Spring,ALL,ALL,1.027
+BC,2015,Summer,Low,Commercial Cooking,1.041
+BC,2015,Summer,Medium,Commercial Cooking,1.007
+BC,2015,Summer,High,Commercial Cooking,1.328
+BC,2015,Summer,Low,Industrial Areas,1.017
+BC,2015,Summer,Medium,Industrial Areas,0.937
+BC,2015,Summer,High,Industrial Areas,1.42
+BC,2015,Summer,Low,Traffic Density,0.876
+BC,2015,Summer,Medium,Traffic Density,1.062
+BC,2015,Summer,High,Traffic Density,1.436
+BC,2015,Summer,ALL,ALL,1.095
+BC,2015,Winter,Low,Commercial Cooking,0.922
+BC,2015,Winter,Medium,Commercial Cooking,0.98
+BC,2015,Winter,High,Commercial Cooking,1.223
+BC,2015,Winter,Low,Industrial Areas,1.003
+BC,2015,Winter,Medium,Industrial Areas,1.016
+BC,2015,Winter,High,Industrial Areas,1.116
+BC,2015,Winter,Low,Traffic Density,0.894
+BC,2015,Winter,Medium,Traffic Density,0.988
+BC,2015,Winter,High,Traffic Density,1.246
+BC,2015,Winter,ALL,ALL,1.036
+NO,2015,ALL,Low,Boiler Density,18.959
+NO,2015,ALL,Medium,Boiler Density,25.564
+NO,2015,ALL,High,Boiler Density,32.804
+NO,2015,ALL,Low,Traffic NOx Emissions,19.137
+NO,2015,ALL,Medium,Traffic NOx Emissions,20.2
+NO,2015,ALL,High,Traffic NOx Emissions,37.939
+NO,2015,ALL,ALL,ALL,25.042
+NO,2015,Fall,Low,Boiler Density,19.762
+NO,2015,Fall,Medium,Boiler Density,25.23
+NO,2015,Fall,High,Boiler Density,32.24
+NO,2015,Fall,Low,Traffic NOx Emissions,20.798
+NO,2015,Fall,Medium,Traffic NOx Emissions,18.566
+NO,2015,Fall,High,Traffic NOx Emissions,37.868
+NO,2015,Fall,ALL,ALL,25.082
+NO,2015,Spring,Low,Boiler Density,19.625
+NO,2015,Spring,Medium,Boiler Density,28.74
+NO,2015,Spring,High,Boiler Density,36.89
+NO,2015,Spring,Low,Traffic NOx Emissions,23.158
+NO,2015,Spring,Medium,Traffic NOx Emissions,20.711
+NO,2015,Spring,High,Traffic NOx Emissions,41.386
+NO,2015,Spring,ALL,ALL,26.978
+NO,2015,Summer,Low,Boiler Density,10.82
+NO,2015,Summer,Medium,Boiler Density,15.1
+NO,2015,Summer,High,Boiler Density,20.861
+NO,2015,Summer,Low,Traffic NOx Emissions,12.185
+NO,2015,Summer,Medium,Traffic NOx Emissions,9.692
+NO,2015,Summer,High,Traffic NOx Emissions,24.905
+NO,2015,Summer,ALL,ALL,14.913
+NO,2015,Winter,Low,Boiler Density,25.648
+NO,2015,Winter,Medium,Boiler Density,33.565
+NO,2015,Winter,High,Boiler Density,41.027
+NO,2015,Winter,Low,Traffic NOx Emissions,27.307
+NO,2015,Winter,Medium,Traffic NOx Emissions,26.721
+NO,2015,Winter,High,Traffic NOx Emissions,46.213
+NO,2015,Winter,ALL,ALL,33.067
+NO2,2015,ALL,Low,Building Density,18.792
+NO2,2015,ALL,Medium,Building Density,21.471
+NO2,2015,ALL,High,Building Density,27.779
+NO2,2015,ALL,Low,Traffic Density,19.772
+NO2,2015,ALL,Medium,Traffic Density,20.569
+NO2,2015,ALL,High,Traffic Density,27.345
+NO2,2015,ALL,ALL,ALL,22.293
+NO2,2015,Fall,Low,Building Density,17.61
+NO2,2015,Fall,Medium,Building Density,19.605
+NO2,2015,Fall,High,Building Density,26.674
+NO2,2015,Fall,Low,Traffic Density,19.026
+NO2,2015,Fall,Medium,Traffic Density,18.743
+NO2,2015,Fall,High,Traffic Density,26.12
+NO2,2015,Fall,ALL,ALL,21.309
+NO2,2015,Spring,Low,Building Density,18.542
+NO2,2015,Spring,Medium,Building Density,22.693
+NO2,2015,Spring,High,Building Density,29.119
+NO2,2015,Spring,Low,Traffic Density,21.256
+NO2,2015,Spring,Medium,Traffic Density,20.56
+NO2,2015,Spring,High,Traffic Density,28.537
+NO2,2015,Spring,ALL,ALL,23.068
+NO2,2015,Summer,Low,Building Density,14.741
+NO2,2015,Summer,Medium,Building Density,17.497
+NO2,2015,Summer,High,Building Density,22.766
+NO2,2015,Summer,Low,Traffic Density,15.896
+NO2,2015,Summer,Medium,Traffic Density,15.117
+NO2,2015,Summer,High,Traffic Density,23.992
+NO2,2015,Summer,ALL,ALL,17.407
+NO2,2015,Winter,Low,Building Density,24.65
+NO2,2015,Winter,Medium,Building Density,27.029
+NO2,2015,Winter,High,Building Density,30.927
+NO2,2015,Winter,Low,Traffic Density,26.072
+NO2,2015,Winter,Medium,Traffic Density,25.594
+NO2,2015,Winter,High,Traffic Density,30.94
+NO2,2015,Winter,ALL,ALL,27.189
+O3,2015,ALL,Low,Traffic Density,33.162
+O3,2015,ALL,Medium,Traffic Density,30.753
+O3,2015,ALL,High,Traffic Density,26.879
+O3,2015,ALL,ALL,ALL,30.488
+O3,2015,Summer,Low,Traffic Density,33.162
+O3,2015,Summer,Medium,Traffic Density,30.753
+O3,2015,Summer,High,Traffic Density,26.879
+O3,2015,Summer,ALL,ALL,30.488
+PM2.5,2015,ALL,Low,Boiler PM2.5 Emissions,8.834
+PM2.5,2015,ALL,Medium,Boiler PM2.5 Emissions,9.304
+PM2.5,2015,ALL,High,Boiler PM2.5 Emissions,10.823
+PM2.5,2015,ALL,Low,Commercial Cooking,9.07
+PM2.5,2015,ALL,Medium,Commercial Cooking,9.141
+PM2.5,2015,ALL,High,Commercial Cooking,10.753
+PM2.5,2015,ALL,Low,Traffic Density,8.826
+PM2.5,2015,ALL,Medium,Traffic Density,8.834
+PM2.5,2015,ALL,High,Traffic Density,11.3
+PM2.5,2015,ALL,ALL,ALL,9.656
+PM2.5,2015,Fall,Low,Boiler PM2.5 Emissions,6.93
+PM2.5,2015,Fall,Medium,Boiler PM2.5 Emissions,8.123
+PM2.5,2015,Fall,High,Boiler PM2.5 Emissions,8.734
+PM2.5,2015,Fall,Low,Commercial Cooking,7.512
+PM2.5,2015,Fall,Medium,Commercial Cooking,7.492
+PM2.5,2015,Fall,High,Commercial Cooking,8.785
+PM2.5,2015,Fall,Low,Traffic Density,7.302
+PM2.5,2015,Fall,Medium,Traffic Density,7.171
+PM2.5,2015,Fall,High,Traffic Density,9.314
+PM2.5,2015,Fall,ALL,ALL,7.809
+PM2.5,2015,Spring,Low,Boiler PM2.5 Emissions,9.037
+PM2.5,2015,Spring,Medium,Boiler PM2.5 Emissions,9.432
+PM2.5,2015,Spring,High,Boiler PM2.5 Emissions,10.982
+PM2.5,2015,Spring,Low,Commercial Cooking,9.289
+PM2.5,2015,Spring,Medium,Commercial Cooking,9.186
+PM2.5,2015,Spring,High,Commercial Cooking,10.982
+PM2.5,2015,Spring,Low,Traffic Density,8.871
+PM2.5,2015,Spring,Medium,Traffic Density,9.075
+PM2.5,2015,Spring,High,Traffic Density,11.506
+PM2.5,2015,Spring,ALL,ALL,9.617
+PM2.5,2015,Summer,Low,Boiler PM2.5 Emissions,9.328
+PM2.5,2015,Summer,Medium,Boiler PM2.5 Emissions,9.908
+PM2.5,2015,Summer,High,Boiler PM2.5 Emissions,11.367
+PM2.5,2015,Summer,Low,Commercial Cooking,9.566
+PM2.5,2015,Summer,Medium,Commercial Cooking,9.731
+PM2.5,2015,Summer,High,Commercial Cooking,11.297
+PM2.5,2015,Summer,Low,Traffic Density,9.409
+PM2.5,2015,Summer,Medium,Traffic Density,9.442
+PM2.5,2015,Summer,High,Traffic Density,11.752
+PM2.5,2015,Summer,ALL,ALL,10.148
+PM2.5,2015,Winter,Low,Boiler PM2.5 Emissions,9.359
+PM2.5,2015,Winter,Medium,Boiler PM2.5 Emissions,10.113
+PM2.5,2015,Winter,High,Boiler PM2.5 Emissions,12.209
+PM2.5,2015,Winter,Low,Commercial Cooking,9.823
+PM2.5,2015,Winter,Medium,Commercial Cooking,9.934
+PM2.5,2015,Winter,High,Commercial Cooking,11.947
+PM2.5,2015,Winter,Low,Traffic Density,9.199
+PM2.5,2015,Winter,Medium,Traffic Density,9.845
+PM2.5,2015,Winter,High,Traffic Density,12.629
+PM2.5,2015,Winter,ALL,ALL,10.68
+SO2,2015,ALL,ALL,ALL,0.859
+SO2,2015,Winter,Low,Boilers Using Residual Oil,0.561
+SO2,2015,Winter,Medium,Boilers Using Residual Oil,0.753
+SO2,2015,Winter,High,Boilers Using Residual Oil,1.32
+SO2,2015,Winter,Low,Night-Time Population Density,0.665
+SO2,2015,Winter,Medium,Night-Time Population Density,0.704
+SO2,2015,Winter,High,Night-Time Population Density,1.27
+SO2,2015,Winter,ALL,ALL,0.859
+BC,2014,ALL,Low,Industrial Areas,1.031
+BC,2014,ALL,Medium,Industrial Areas,1.02
+BC,2014,ALL,High,Industrial Areas,1.357
+BC,2014,ALL,Low,Commercial Cooking,1.061
+BC,2014,ALL,Medium,Commercial Cooking,0.981
+BC,2014,ALL,High,Commercial Cooking,1.344
+BC,2014,ALL,Low,Traffic Density,0.915
+BC,2014,ALL,Medium,Traffic Density,0.983
+BC,2014,ALL,High,Traffic Density,1.5
+BC,2014,ALL,ALL,ALL,1.099
+BC,2014,Fall,Low,Commercial Cooking,1.005
+BC,2014,Fall,Medium,Commercial Cooking,0.941
+BC,2014,Fall,High,Commercial Cooking,1.263
+BC,2014,Fall,Low,Industrial Areas,0.966
+BC,2014,Fall,Medium,Industrial Areas,0.959
+BC,2014,Fall,High,Industrial Areas,1.282
+BC,2014,Fall,Low,Traffic Density,0.869
+BC,2014,Fall,Medium,Traffic Density,0.933
+BC,2014,Fall,High,Traffic Density,1.411
+BC,2014,Fall,ALL,ALL,1.032
+BC,2014,Spring,Low,Commercial Cooking,1.008
+BC,2014,Spring,Medium,Commercial Cooking,0.851
+BC,2014,Spring,High,Commercial Cooking,1.219
+BC,2014,Spring,Low,Industrial Areas,0.921
+BC,2014,Spring,Medium,Industrial Areas,0.9
+BC,2014,Spring,High,Industrial Areas,1.25
+BC,2014,Spring,Low,Traffic Density,0.79
+BC,2014,Spring,Medium,Traffic Density,0.922
+BC,2014,Spring,High,Traffic Density,1.365
+BC,2014,Spring,ALL,ALL,0.999
+BC,2014,Summer,Low,Commercial Cooking,1.121
+BC,2014,Summer,Medium,Commercial Cooking,0.948
+BC,2014,Summer,High,Commercial Cooking,1.432
+BC,2014,Summer,Low,Industrial Areas,1.035
+BC,2014,Summer,Medium,Industrial Areas,0.994
+BC,2014,Summer,High,Industrial Areas,1.465
+BC,2014,Summer,Low,Traffic Density,0.919
+BC,2014,Summer,Medium,Traffic Density,0.947
+BC,2014,Summer,High,Traffic Density,1.637
+BC,2014,Summer,ALL,ALL,1.128
+BC,2014,Winter,Low,Commercial Cooking,1.19
+BC,2014,Winter,Medium,Commercial Cooking,1.143
+BC,2014,Winter,High,Commercial Cooking,1.478
+BC,2014,Winter,Low,Industrial Areas,1.2
+BC,2014,Winter,Medium,Industrial Areas,1.142
+BC,2014,Winter,High,Industrial Areas,1.466
+BC,2014,Winter,Low,Traffic Density,1.08
+BC,2014,Winter,Medium,Traffic Density,1.131
+BC,2014,Winter,High,Traffic Density,1.598
+BC,2014,Winter,ALL,ALL,1.27
+NO,2014,ALL,Low,Boiler Density,19.662
+NO,2014,ALL,Medium,Boiler Density,27.505
+NO,2014,ALL,High,Boiler Density,34.272
+NO,2014,ALL,Low,Traffic NOx Emissions,20.591
+NO,2014,ALL,Medium,Traffic NOx Emissions,21.62
+NO,2014,ALL,High,Traffic NOx Emissions,39.436
+NO,2014,ALL,ALL,ALL,25.834
+NO,2014,Fall,Low,Boiler Density,19.865
+NO,2014,Fall,Medium,Boiler Density,26.327
+NO,2014,Fall,High,Boiler Density,32.646
+NO,2014,Fall,Low,Traffic NOx Emissions,22.331
+NO,2014,Fall,Medium,Traffic NOx Emissions,19.189
+NO,2014,Fall,High,Traffic NOx Emissions,36.803
+NO,2014,Fall,ALL,ALL,25.029
+NO,2014,Spring,Low,Boiler Density,16.39
+NO,2014,Spring,Medium,Boiler Density,26.066
+NO,2014,Spring,High,Boiler Density,33.626
+NO,2014,Spring,Low,Traffic NOx Emissions,19.057
+NO,2014,Spring,Medium,Traffic NOx Emissions,18.071
+NO,2014,Spring,High,Traffic NOx Emissions,39.235
+NO,2014,Spring,ALL,ALL,24.382
+NO,2014,Summer,Low,Boiler Density,11.395
+NO,2014,Summer,Medium,Boiler Density,17.942
+NO,2014,Summer,High,Boiler Density,24.19
+NO,2014,Summer,Low,Traffic NOx Emissions,12.443
+NO,2014,Summer,Medium,Traffic NOx Emissions,12.109
+NO,2014,Summer,High,Traffic NOx Emissions,29.227
+NO,2014,Summer,ALL,ALL,16.743
+NO,2014,Winter,Low,Boiler Density,30.998
+NO,2014,Winter,Medium,Boiler Density,39.685
+NO,2014,Winter,High,Boiler Density,48.806
+NO,2014,Winter,Low,Traffic NOx Emissions,34.509
+NO,2014,Winter,Medium,Traffic NOx Emissions,31.679
+NO,2014,Winter,High,Traffic NOx Emissions,53.3
+NO,2014,Winter,ALL,ALL,39.829
+NO2,2014,ALL,Low,Building Density,19.075
+NO2,2014,ALL,Medium,Building Density,22.244
+NO2,2014,ALL,High,Building Density,28.9
+NO2,2014,ALL,Low,Traffic Density,20.323
+NO2,2014,ALL,Medium,Traffic Density,21.18
+NO2,2014,ALL,High,Traffic Density,28.31
+NO2,2014,ALL,ALL,ALL,22.653
+NO2,2014,Fall,Low,Building Density,18.017
+NO2,2014,Fall,Medium,Building Density,20.553
+NO2,2014,Fall,High,Building Density,25.443
+NO2,2014,Fall,Low,Traffic Density,19.343
+NO2,2014,Fall,Medium,Traffic Density,18.105
+NO2,2014,Fall,High,Traffic Density,26.148
+NO2,2014,Fall,ALL,ALL,21.011
+NO2,2014,Spring,Low,Building Density,17.878
+NO2,2014,Spring,Medium,Building Density,22.382
+NO2,2014,Spring,High,Building Density,29.98
+NO2,2014,Spring,Low,Traffic Density,20.681
+NO2,2014,Spring,Medium,Traffic Density,19.979
+NO2,2014,Spring,High,Traffic Density,29.034
+NO2,2014,Spring,ALL,ALL,22.93
+NO2,2014,Summer,Low,Building Density,13.782
+NO2,2014,Summer,Medium,Building Density,17.278
+NO2,2014,Summer,High,Building Density,25.365
+NO2,2014,Summer,Low,Traffic Density,15.481
+NO2,2014,Summer,Medium,Traffic Density,15.408
+NO2,2014,Summer,High,Traffic Density,24.587
+NO2,2014,Summer,ALL,ALL,18.005
+NO2,2014,Winter,Low,Building Density,26.352
+NO2,2014,Winter,Medium,Building Density,28.874
+NO2,2014,Winter,High,Building Density,34.976
+NO2,2014,Winter,Low,Traffic Density,28.492
+NO2,2014,Winter,Medium,Traffic Density,27.387
+NO2,2014,Winter,High,Traffic Density,34.323
+NO2,2014,Winter,ALL,ALL,30.067
+O3,2014,ALL,Low,Traffic Density,32.006
+O3,2014,ALL,Medium,Traffic Density,29.873
+O3,2014,ALL,High,Traffic Density,25.996
+O3,2014,ALL,ALL,ALL,29.541
+O3,2014,Summer,Low,Traffic Density,32.006
+O3,2014,Summer,Medium,Traffic Density,29.873
+O3,2014,Summer,High,Traffic Density,25.996
+O3,2014,Summer,ALL,ALL,29.541
+PM2.5,2014,ALL,Low,Boiler PM2.5 Emissions,9.041
+PM2.5,2014,ALL,Medium,Boiler PM2.5 Emissions,9.656
+PM2.5,2014,ALL,High,Boiler PM2.5 Emissions,11.189
+PM2.5,2014,ALL,Low,Commercial Cooking,9.437
+PM2.5,2014,ALL,Medium,Commercial Cooking,9.396
+PM2.5,2014,ALL,High,Commercial Cooking,11.043
+PM2.5,2014,ALL,Low,Traffic Density,9.15
+PM2.5,2014,ALL,Medium,Traffic Density,9.269
+PM2.5,2014,ALL,High,Traffic Density,11.475
+PM2.5,2014,ALL,ALL,ALL,9.778
+PM2.5,2014,Fall,Low,Boiler PM2.5 Emissions,7.237
+PM2.5,2014,Fall,Medium,Boiler PM2.5 Emissions,8.252
+PM2.5,2014,Fall,High,Boiler PM2.5 Emissions,9.285
+PM2.5,2014,Fall,Low,Commercial Cooking,7.724
+PM2.5,2014,Fall,Medium,Commercial Cooking,8.042
+PM2.5,2014,Fall,High,Commercial Cooking,8.941
+PM2.5,2014,Fall,Low,Traffic Density,7.347
+PM2.5,2014,Fall,Medium,Traffic Density,7.996
+PM2.5,2014,Fall,High,Traffic Density,9.457
+PM2.5,2014,Fall,ALL,ALL,8.019
+PM2.5,2014,Spring,Low,Boiler PM2.5 Emissions,8.2
+PM2.5,2014,Spring,Medium,Boiler PM2.5 Emissions,9.17
+PM2.5,2014,Spring,High,Boiler PM2.5 Emissions,10.462
+PM2.5,2014,Spring,Low,Commercial Cooking,8.681
+PM2.5,2014,Spring,Medium,Commercial Cooking,8.568
+PM2.5,2014,Spring,High,Commercial Cooking,10.496
+PM2.5,2014,Spring,Low,Traffic Density,8.183
+PM2.5,2014,Spring,Medium,Traffic Density,8.968
+PM2.5,2014,Spring,High,Traffic Density,10.706
+PM2.5,2014,Spring,ALL,ALL,9.152
+PM2.5,2014,Summer,Low,Boiler PM2.5 Emissions,8.521
+PM2.5,2014,Summer,Medium,Boiler PM2.5 Emissions,9.351
+PM2.5,2014,Summer,High,Boiler PM2.5 Emissions,10.482
+PM2.5,2014,Summer,Low,Commercial Cooking,8.859
+PM2.5,2014,Summer,Medium,Commercial Cooking,9.032
+PM2.5,2014,Summer,High,Commercial Cooking,10.469
+PM2.5,2014,Summer,Low,Traffic Density,8.755
+PM2.5,2014,Summer,Medium,Traffic Density,8.763
+PM2.5,2014,Summer,High,Traffic Density,10.888
+PM2.5,2014,Summer,ALL,ALL,9.274
+PM2.5,2014,Winter,Low,Boiler PM2.5 Emissions,12.304
+PM2.5,2014,Winter,Medium,Boiler PM2.5 Emissions,12.276
+PM2.5,2014,Winter,High,Boiler PM2.5 Emissions,14.545
+PM2.5,2014,Winter,Low,Commercial Cooking,12.765
+PM2.5,2014,Winter,Medium,Commercial Cooking,12.15
+PM2.5,2014,Winter,High,Commercial Cooking,14.248
+PM2.5,2014,Winter,Low,Traffic Density,12.185
+PM2.5,2014,Winter,Medium,Traffic Density,12.015
+PM2.5,2014,Winter,High,Traffic Density,14.939
+PM2.5,2014,Winter,ALL,ALL,13.341
+SO2,2014,ALL,ALL,ALL,1.817
+SO2,2014,Winter,Low,Boilers Using Residual Oil,1.174
+SO2,2014,Winter,Medium,Boilers Using Residual Oil,1.659
+SO2,2014,Winter,High,Boilers Using Residual Oil,2.616
+SO2,2014,Winter,Low,Night-Time Population Density,1.372
+SO2,2014,Winter,Medium,Night-Time Population Density,1.458
+SO2,2014,Winter,High,Night-Time Population Density,2.62
+SO2,2014,Winter,ALL,ALL,1.817
+BC,2013,ALL,Low,Industrial Areas,1.076
+BC,2013,ALL,Medium,Industrial Areas,1.049
+BC,2013,ALL,High,Industrial Areas,1.406
+BC,2013,ALL,Low,Commercial Cooking,1.091
+BC,2013,ALL,Medium,Commercial Cooking,1.004
+BC,2013,ALL,High,Commercial Cooking,1.414
+BC,2013,ALL,Low,Traffic Density,0.937
+BC,2013,ALL,Medium,Traffic Density,1.077
+BC,2013,ALL,High,Traffic Density,1.507
+BC,2013,ALL,ALL,ALL,1.129
+BC,2013,Fall,Low,Commercial Cooking,1.125
+BC,2013,Fall,Medium,Commercial Cooking,0.964
+BC,2013,Fall,High,Commercial Cooking,1.428
+BC,2013,Fall,Low,Industrial Areas,1.013
+BC,2013,Fall,Medium,Industrial Areas,0.953
+BC,2013,Fall,High,Industrial Areas,1.488
+BC,2013,Fall,Low,Traffic Density,0.943
+BC,2013,Fall,Medium,Traffic Density,1.079
+BC,2013,Fall,High,Traffic Density,1.517
+BC,2013,Fall,ALL,ALL,1.167
+BC,2013,Spring,Low,Commercial Cooking,0.897
+BC,2013,Spring,Medium,Commercial Cooking,0.831
+BC,2013,Spring,High,Commercial Cooking,1.205
+BC,2013,Spring,Low,Industrial Areas,0.911
+BC,2013,Spring,Medium,Industrial Areas,0.838
+BC,2013,Spring,High,Industrial Areas,1.181
+BC,2013,Spring,Low,Traffic Density,0.736
+BC,2013,Spring,Medium,Traffic Density,0.87
+BC,2013,Spring,High,Traffic Density,1.324
+BC,2013,Spring,ALL,ALL,0.928
+BC,2013,Summer,Low,Commercial Cooking,1.258
+BC,2013,Summer,Medium,Commercial Cooking,1.05
+BC,2013,Summer,High,Commercial Cooking,1.505
+BC,2013,Summer,Low,Industrial Areas,1.14
+BC,2013,Summer,Medium,Industrial Areas,1.072
+BC,2013,Summer,High,Industrial Areas,1.591
+BC,2013,Summer,Low,Traffic Density,1.022
+BC,2013,Summer,Medium,Traffic Density,1.106
+BC,2013,Summer,High,Traffic Density,1.674
+BC,2013,Summer,ALL,ALL,1.204
+BC,2013,Winter,Low,Commercial Cooking,1.141
+BC,2013,Winter,Medium,Commercial Cooking,1.172
+BC,2013,Winter,High,Commercial Cooking,1.554
+BC,2013,Winter,Low,Industrial Areas,1.237
+BC,2013,Winter,Medium,Industrial Areas,1.187
+BC,2013,Winter,High,Industrial Areas,1.465
+BC,2013,Winter,Low,Traffic Density,1.06
+BC,2013,Winter,Medium,Traffic Density,1.262
+BC,2013,Winter,High,Traffic Density,1.541
+BC,2013,Winter,ALL,ALL,1.245
+NO,2013,ALL,Low,Boiler Density,17.959
+NO,2013,ALL,Medium,Boiler Density,25.243
+NO,2013,ALL,High,Boiler Density,33.238
+NO,2013,ALL,Low,Traffic NOx Emissions,18.081
+NO,2013,ALL,Medium,Traffic NOx Emissions,20.653
+NO,2013,ALL,High,Traffic NOx Emissions,37.632
+NO,2013,ALL,ALL,ALL,24.121
+NO,2013,Fall,Low,Boiler Density,20.146
+NO,2013,Fall,Medium,Boiler Density,29.017
+NO,2013,Fall,High,Boiler Density,33.425
+NO,2013,Fall,Low,Traffic NOx Emissions,21.057
+NO,2013,Fall,Medium,Traffic NOx Emissions,19.548
+NO,2013,Fall,High,Traffic NOx Emissions,41.983
+NO,2013,Fall,ALL,ALL,27.529
+NO,2013,Spring,Low,Boiler Density,15.061
+NO,2013,Spring,Medium,Boiler Density,21.955
+NO,2013,Spring,High,Boiler Density,32.595
+NO,2013,Spring,Low,Traffic NOx Emissions,20.419
+NO,2013,Spring,Medium,Traffic NOx Emissions,15.344
+NO,2013,Spring,High,Traffic NOx Emissions,33.847
+NO,2013,Spring,ALL,ALL,20.616
+NO,2013,Summer,Low,Boiler Density,10.925
+NO,2013,Summer,Medium,Boiler Density,16.556
+NO,2013,Summer,High,Boiler Density,21.907
+NO,2013,Summer,Low,Traffic NOx Emissions,10.82
+NO,2013,Summer,Medium,Traffic NOx Emissions,10.719
+NO,2013,Summer,High,Traffic NOx Emissions,27.85
+NO,2013,Summer,ALL,ALL,14.588
+NO,2013,Winter,Low,Boiler Density,25.703
+NO,2013,Winter,Medium,Boiler Density,33.443
+NO,2013,Winter,High,Boiler Density,50.007
+NO,2013,Winter,Low,Traffic NOx Emissions,29.132
+NO,2013,Winter,Medium,Traffic NOx Emissions,28.411
+NO,2013,Winter,High,Traffic NOx Emissions,51.61
+NO,2013,Winter,ALL,ALL,35.113
+NO2,2013,ALL,Low,Building Density,19.344
+NO2,2013,ALL,Medium,Building Density,22.354
+NO2,2013,ALL,High,Building Density,29.727
+NO2,2013,ALL,Low,Traffic Density,20.306
+NO2,2013,ALL,Medium,Traffic Density,21.504
+NO2,2013,ALL,High,Traffic Density,29.179
+NO2,2013,ALL,ALL,ALL,23.094
+NO2,2013,Fall,Low,Building Density,18.607
+NO2,2013,Fall,Medium,Building Density,21.867
+NO2,2013,Fall,High,Building Density,29.685
+NO2,2013,Fall,Low,Traffic Density,20.051
+NO2,2013,Fall,Medium,Traffic Density,19.682
+NO2,2013,Fall,High,Traffic Density,29.924
+NO2,2013,Fall,ALL,ALL,23.275
+NO2,2013,Spring,Low,Building Density,18.629
+NO2,2013,Spring,Medium,Building Density,22.707
+NO2,2013,Spring,High,Building Density,30.475
+NO2,2013,Spring,Low,Traffic Density,21.643
+NO2,2013,Spring,Medium,Traffic Density,20.823
+NO2,2013,Spring,High,Traffic Density,29.345
+NO2,2013,Spring,ALL,ALL,22.792
+NO2,2013,Summer,Low,Building Density,16.492
+NO2,2013,Summer,Medium,Building Density,19.054
+NO2,2013,Summer,High,Building Density,26.534
+NO2,2013,Summer,Low,Traffic Density,17.284
+NO2,2013,Summer,Medium,Traffic Density,17.326
+NO2,2013,Summer,High,Traffic Density,27.47
+NO2,2013,Summer,ALL,ALL,19.446
+NO2,2013,Winter,Low,Building Density,23.648
+NO2,2013,Winter,Medium,Building Density,26.212
+NO2,2013,Winter,High,Building Density,33.866
+NO2,2013,Winter,Low,Traffic Density,25.19
+NO2,2013,Winter,Medium,Traffic Density,25.314
+NO2,2013,Winter,High,Traffic Density,33.222
+NO2,2013,Winter,ALL,ALL,26.936
+O3,2013,ALL,Low,Traffic Density,31.922
+O3,2013,ALL,Medium,Traffic Density,29.509
+O3,2013,ALL,High,Traffic Density,25.486
+O3,2013,ALL,ALL,ALL,29.366
+O3,2013,Summer,Low,Traffic Density,31.922
+O3,2013,Summer,Medium,Traffic Density,29.509
+O3,2013,Summer,High,Traffic Density,25.52
+O3,2013,Summer,ALL,ALL,29.366
+PM2.5,2013,ALL,Low,Boiler PM2.5 Emissions,8.548
+PM2.5,2013,ALL,Medium,Boiler PM2.5 Emissions,9.304
+PM2.5,2013,ALL,High,Boiler PM2.5 Emissions,11.146
+PM2.5,2013,ALL,Low,Commercial Cooking,9.126
+PM2.5,2013,ALL,Medium,Commercial Cooking,8.757
+PM2.5,2013,ALL,High,Commercial Cooking,11.085
+PM2.5,2013,ALL,Low,Traffic Density,8.728
+PM2.5,2013,ALL,Medium,Traffic Density,8.897
+PM2.5,2013,ALL,High,Traffic Density,11.358
+PM2.5,2013,ALL,ALL,ALL,9.705
+PM2.5,2013,Fall,Low,Boiler PM2.5 Emissions,7.547
+PM2.5,2013,Fall,Medium,Boiler PM2.5 Emissions,7.894
+PM2.5,2013,Fall,High,Boiler PM2.5 Emissions,9.589
+PM2.5,2013,Fall,Low,Commercial Cooking,7.957
+PM2.5,2013,Fall,Medium,Commercial Cooking,7.487
+PM2.5,2013,Fall,High,Commercial Cooking,9.611
+PM2.5,2013,Fall,Low,Traffic Density,7.505
+PM2.5,2013,Fall,Medium,Traffic Density,7.854
+PM2.5,2013,Fall,High,Traffic Density,9.676
+PM2.5,2013,Fall,ALL,ALL,8.548
+PM2.5,2013,Spring,Low,Boiler PM2.5 Emissions,6.782
+PM2.5,2013,Spring,Medium,Boiler PM2.5 Emissions,7.746
+PM2.5,2013,Spring,High,Boiler PM2.5 Emissions,9.197
+PM2.5,2013,Spring,Low,Commercial Cooking,7.339
+PM2.5,2013,Spring,Medium,Commercial Cooking,7.256
+PM2.5,2013,Spring,High,Commercial Cooking,9.13
+PM2.5,2013,Spring,Low,Traffic Density,6.911
+PM2.5,2013,Spring,Medium,Traffic Density,7.358
+PM2.5,2013,Spring,High,Traffic Density,9.469
+PM2.5,2013,Spring,ALL,ALL,7.74
+PM2.5,2013,Summer,Low,Boiler PM2.5 Emissions,9.694
+PM2.5,2013,Summer,Medium,Boiler PM2.5 Emissions,10.95
+PM2.5,2013,Summer,High,Boiler PM2.5 Emissions,11.997
+PM2.5,2013,Summer,Low,Commercial Cooking,10.575
+PM2.5,2013,Summer,Medium,Commercial Cooking,9.994
+PM2.5,2013,Summer,High,Commercial Cooking,12.107
+PM2.5,2013,Summer,Low,Traffic Density,10.125
+PM2.5,2013,Summer,Medium,Traffic Density,9.896
+PM2.5,2013,Summer,High,Traffic Density,12.653
+PM2.5,2013,Summer,ALL,ALL,10.713
+PM2.5,2013,Winter,Low,Boiler PM2.5 Emissions,10.253
+PM2.5,2013,Winter,Medium,Boiler PM2.5 Emissions,10.774
+PM2.5,2013,Winter,High,Boiler PM2.5 Emissions,13.566
+PM2.5,2013,Winter,Low,Commercial Cooking,10.529
+PM2.5,2013,Winter,Medium,Commercial Cooking,10.819
+PM2.5,2013,Winter,High,Commercial Cooking,13.248
+PM2.5,2013,Winter,Low,Traffic Density,10.204
+PM2.5,2013,Winter,Medium,Traffic Density,10.965
+PM2.5,2013,Winter,High,Traffic Density,13.435
+PM2.5,2013,Winter,ALL,ALL,11.463
+SO2,2013,ALL,ALL,ALL,1.749
+SO2,2013,Winter,Low,Boilers Using Residual Oil,0.936
+SO2,2013,Winter,Medium,Boilers Using Residual Oil,1.504
+SO2,2013,Winter,High,Boilers Using Residual Oil,2.817
+SO2,2013,Winter,Low,Night-Time Population Density,1.192
+SO2,2013,Winter,Medium,Night-Time Population Density,1.385
+SO2,2013,Winter,High,Night-Time Population Density,2.681
+SO2,2013,Winter,ALL,ALL,1.749
+BC,2012,ALL,Low,Industrial Areas,1.114
+BC,2012,ALL,Medium,Industrial Areas,1.068
+BC,2012,ALL,High,Industrial Areas,1.462
+BC,2012,ALL,Low,Commercial Cooking,1.118
+BC,2012,ALL,Medium,Commercial Cooking,1.081
+BC,2012,ALL,High,Commercial Cooking,1.423
+BC,2012,ALL,Low,Traffic Density,1.009
+BC,2012,ALL,Medium,Traffic Density,1.077
+BC,2012,ALL,High,Traffic Density,1.542
+BC,2012,ALL,ALL,ALL,1.146
+BC,2012,Fall,Low,Commercial Cooking,1.235
+BC,2012,Fall,Medium,Commercial Cooking,1.113
+BC,2012,Fall,High,Commercial Cooking,1.409
+BC,2012,Fall,Low,Industrial Areas,1.174
+BC,2012,Fall,Medium,Industrial Areas,1.073
+BC,2012,Fall,High,Industrial Areas,1.503
+BC,2012,Fall,Low,Traffic Density,1.088
+BC,2012,Fall,Medium,Traffic Density,1.089
+BC,2012,Fall,High,Traffic Density,1.573
+BC,2012,Fall,ALL,ALL,1.179
+BC,2012,Spring,Low,Commercial Cooking,1.018
+BC,2012,Spring,Medium,Commercial Cooking,0.992
+BC,2012,Spring,High,Commercial Cooking,1.328
+BC,2012,Spring,Low,Industrial Areas,0.999
+BC,2012,Spring,Medium,Industrial Areas,0.988
+BC,2012,Spring,High,Industrial Areas,1.349
+BC,2012,Spring,Low,Traffic Density,0.898
+BC,2012,Spring,Medium,Traffic Density,1.003
+BC,2012,Spring,High,Traffic Density,1.436
+BC,2012,Spring,ALL,ALL,1.057
+BC,2012,Summer,Low,Commercial Cooking,1.123
+BC,2012,Summer,Medium,Commercial Cooking,1.168
+BC,2012,Summer,High,Commercial Cooking,1.505
+BC,2012,Summer,Low,Industrial Areas,1.221
+BC,2012,Summer,Medium,Industrial Areas,1.099
+BC,2012,Summer,High,Industrial Areas,1.478
+BC,2012,Summer,Low,Traffic Density,1.043
+BC,2012,Summer,Medium,Traffic Density,1.149
+BC,2012,Summer,High,Traffic Density,1.617
+BC,2012,Summer,ALL,ALL,1.222
+BC,2012,Winter,Low,Commercial Cooking,1.112
+BC,2012,Winter,Medium,Commercial Cooking,1.064
+BC,2012,Winter,High,Commercial Cooking,1.326
+BC,2012,Winter,Low,Industrial Areas,1.072
+BC,2012,Winter,Medium,Industrial Areas,1.059
+BC,2012,Winter,High,Industrial Areas,1.368
+BC,2012,Winter,Low,Traffic Density,1.009
+BC,2012,Winter,Medium,Traffic Density,1.07
+BC,2012,Winter,High,Traffic Density,1.419
+BC,2012,Winter,ALL,ALL,1.136
+NO,2012,ALL,Low,Boiler Density,19.258
+NO,2012,ALL,Medium,Boiler Density,26.587
+NO,2012,ALL,High,Boiler Density,36.275
+NO,2012,ALL,Low,Traffic NOx Emissions,19.787
+NO,2012,ALL,Medium,Traffic NOx Emissions,21.824
+NO,2012,ALL,High,Traffic NOx Emissions,40.407
+NO,2012,ALL,ALL,ALL,25.472
+NO,2012,Fall,Low,Boiler Density,23.133
+NO,2012,Fall,Medium,Boiler Density,31.644
+NO,2012,Fall,High,Boiler Density,43.562
+NO,2012,Fall,Low,Traffic NOx Emissions,26.125
+NO,2012,Fall,Medium,Traffic NOx Emissions,22.945
+NO,2012,Fall,High,Traffic NOx Emissions,49.269
+NO,2012,Fall,ALL,ALL,29.835
+NO,2012,Spring,Low,Boiler Density,17.146
+NO,2012,Spring,Medium,Boiler Density,23.543
+NO,2012,Spring,High,Boiler Density,33.956
+NO,2012,Spring,Low,Traffic NOx Emissions,18.853
+NO,2012,Spring,Medium,Traffic NOx Emissions,18.317
+NO,2012,Spring,High,Traffic NOx Emissions,37.474
+NO,2012,Spring,ALL,ALL,22.767
+NO,2012,Summer,Low,Boiler Density,10.57
+NO,2012,Summer,Medium,Boiler Density,15.396
+NO,2012,Summer,High,Boiler Density,22.071
+NO,2012,Summer,Low,Traffic NOx Emissions,11.123
+NO,2012,Summer,Medium,Traffic NOx Emissions,10.779
+NO,2012,Summer,High,Traffic NOx Emissions,26.135
+NO,2012,Summer,ALL,ALL,14.561
+NO,2012,Winter,Low,Boiler Density,26.181
+NO,2012,Winter,Medium,Boiler Density,35.763
+NO,2012,Winter,High,Boiler Density,46.05
+NO,2012,Winter,Low,Traffic NOx Emissions,28.222
+NO,2012,Winter,Medium,Traffic NOx Emissions,30.483
+NO,2012,Winter,High,Traffic NOx Emissions,49.289
+NO,2012,Winter,ALL,ALL,34.726
+NO2,2012,ALL,Low,Building Density,19.977
+NO2,2012,ALL,Medium,Building Density,22.916
+NO2,2012,ALL,High,Building Density,30.854
+NO2,2012,ALL,Low,Traffic Density,20.97
+NO2,2012,ALL,Medium,Traffic Density,22.007
+NO2,2012,ALL,High,Traffic Density,30.321
+NO2,2012,ALL,ALL,ALL,23.44
+NO2,2012,Fall,Low,Building Density,20.255
+NO2,2012,Fall,Medium,Building Density,23.293
+NO2,2012,Fall,High,Building Density,30.488
+NO2,2012,Fall,Low,Traffic Density,21.398
+NO2,2012,Fall,Medium,Traffic Density,21.342
+NO2,2012,Fall,High,Traffic Density,31.295
+NO2,2012,Fall,ALL,ALL,23.276
+NO2,2012,Spring,Low,Building Density,19.703
+NO2,2012,Spring,Medium,Building Density,23.961
+NO2,2012,Spring,High,Building Density,32.164
+NO2,2012,Spring,Low,Traffic Density,22.217
+NO2,2012,Spring,Medium,Traffic Density,21.783
+NO2,2012,Spring,High,Traffic Density,31.828
+NO2,2012,Spring,ALL,ALL,24.001
+NO2,2012,Summer,Low,Building Density,17.24
+NO2,2012,Summer,Medium,Building Density,19.243
+NO2,2012,Summer,High,Building Density,28.134
+NO2,2012,Summer,Low,Traffic Density,18.276
+NO2,2012,Summer,Medium,Traffic Density,17.861
+NO2,2012,Summer,High,Traffic Density,28.479
+NO2,2012,Summer,ALL,ALL,20.548
+NO2,2012,Winter,Low,Building Density,22.709
+NO2,2012,Winter,Medium,Building Density,25.729
+NO2,2012,Winter,High,Building Density,31.906
+NO2,2012,Winter,Low,Traffic Density,24.726
+NO2,2012,Winter,Medium,Traffic Density,24.512
+NO2,2012,Winter,High,Traffic Density,31.106
+NO2,2012,Winter,ALL,ALL,25.935
+O3,2012,ALL,Low,Traffic Density,34.313
+O3,2012,ALL,Medium,Traffic Density,32.132
+O3,2012,ALL,High,Traffic Density,27.712
+O3,2012,ALL,ALL,ALL,31.519
+O3,2012,Summer,Low,Traffic Density,34.313
+O3,2012,Summer,Medium,Traffic Density,32.132
+O3,2012,Summer,High,Traffic Density,27.655
+O3,2012,Summer,ALL,ALL,31.519
+PM2.5,2012,ALL,Low,Boiler PM2.5 Emissions,8.842
+PM2.5,2012,ALL,Medium,Boiler PM2.5 Emissions,9.521
+PM2.5,2012,ALL,High,Boiler PM2.5 Emissions,11.468
+PM2.5,2012,ALL,Low,Commercial Cooking,9.331
+PM2.5,2012,ALL,Medium,Commercial Cooking,9.238
+PM2.5,2012,ALL,High,Commercial Cooking,11.26
+PM2.5,2012,ALL,Low,Traffic Density,9
+PM2.5,2012,ALL,Medium,Traffic Density,9.255
+PM2.5,2012,ALL,High,Traffic Density,11.563
+PM2.5,2012,ALL,ALL,ALL,9.707
+PM2.5,2012,Fall,Low,Boiler PM2.5 Emissions,7.986
+PM2.5,2012,Fall,Medium,Boiler PM2.5 Emissions,8.444
+PM2.5,2012,Fall,High,Boiler PM2.5 Emissions,10.18
+PM2.5,2012,Fall,Low,Commercial Cooking,8.464
+PM2.5,2012,Fall,Medium,Commercial Cooking,8.096
+PM2.5,2012,Fall,High,Commercial Cooking,10.063
+PM2.5,2012,Fall,Low,Traffic Density,7.992
+PM2.5,2012,Fall,Medium,Traffic Density,8.185
+PM2.5,2012,Fall,High,Traffic Density,10.446
+PM2.5,2012,Fall,ALL,ALL,8.664
+PM2.5,2012,Spring,Low,Boiler PM2.5 Emissions,8.132
+PM2.5,2012,Spring,Medium,Boiler PM2.5 Emissions,9.126
+PM2.5,2012,Spring,High,Boiler PM2.5 Emissions,10.87
+PM2.5,2012,Spring,Low,Commercial Cooking,8.606
+PM2.5,2012,Spring,Medium,Commercial Cooking,8.896
+PM2.5,2012,Spring,High,Commercial Cooking,10.598
+PM2.5,2012,Spring,Low,Traffic Density,8.2
+PM2.5,2012,Spring,Medium,Traffic Density,8.964
+PM2.5,2012,Spring,High,Traffic Density,10.969
+PM2.5,2012,Spring,ALL,ALL,9.173
+PM2.5,2012,Summer,Low,Boiler PM2.5 Emissions,10.54
+PM2.5,2012,Summer,Medium,Boiler PM2.5 Emissions,10.779
+PM2.5,2012,Summer,High,Boiler PM2.5 Emissions,12.396
+PM2.5,2012,Summer,Low,Commercial Cooking,10.822
+PM2.5,2012,Summer,Medium,Commercial Cooking,10.72
+PM2.5,2012,Summer,High,Commercial Cooking,12.184
+PM2.5,2012,Summer,Low,Traffic Density,10.537
+PM2.5,2012,Summer,Medium,Traffic Density,10.849
+PM2.5,2012,Summer,High,Traffic Density,12.349
+PM2.5,2012,Summer,ALL,ALL,11.16
+PM2.5,2012,Winter,Low,Boiler PM2.5 Emissions,8.879
+PM2.5,2012,Winter,Medium,Boiler PM2.5 Emissions,9.859
+PM2.5,2012,Winter,High,Boiler PM2.5 Emissions,11.599
+PM2.5,2012,Winter,Low,Commercial Cooking,9.365
+PM2.5,2012,Winter,Medium,Commercial Cooking,9.619
+PM2.5,2012,Winter,High,Commercial Cooking,11.326
+PM2.5,2012,Winter,Low,Traffic Density,9.206
+PM2.5,2012,Winter,Medium,Traffic Density,9.451
+PM2.5,2012,Winter,High,Traffic Density,11.683
+PM2.5,2012,Winter,ALL,ALL,10.003
+SO2,2012,ALL,ALL,ALL,2.813
+SO2,2012,Winter,Low,Boilers Using Residual Oil,1.416
+SO2,2012,Winter,Medium,Boilers Using Residual Oil,2.48
+SO2,2012,Winter,High,Boilers Using Residual Oil,4.905
+SO2,2012,Winter,Low,Night-Time Population Density,1.632
+SO2,2012,Winter,Medium,Night-Time Population Density,2.482
+SO2,2012,Winter,High,Night-Time Population Density,4.686
+SO2,2012,Winter,ALL,ALL,2.813
+BC,2011,ALL,Low,Industrial Areas,1.24
+BC,2011,ALL,Medium,Industrial Areas,1.207
+BC,2011,ALL,High,Industrial Areas,1.562
+BC,2011,ALL,Low,Commercial Cooking,1.287
+BC,2011,ALL,Medium,Commercial Cooking,1.167
+BC,2011,ALL,High,Commercial Cooking,1.531
+BC,2011,ALL,Low,Traffic Density,1.116
+BC,2011,ALL,Medium,Traffic Density,1.208
+BC,2011,ALL,High,Traffic Density,1.668
+BC,2011,ALL,ALL,ALL,1.257
+BC,2011,Fall,Low,Commercial Cooking,1.366
+BC,2011,Fall,Medium,Commercial Cooking,1.232
+BC,2011,Fall,High,Commercial Cooking,1.583
+BC,2011,Fall,Low,Industrial Areas,1.268
+BC,2011,Fall,Medium,Industrial Areas,1.288
+BC,2011,Fall,High,Industrial Areas,1.619
+BC,2011,Fall,Low,Traffic Density,1.175
+BC,2011,Fall,Medium,Traffic Density,1.279
+BC,2011,Fall,High,Traffic Density,1.721
+BC,2011,Fall,ALL,ALL,1.302
+BC,2011,Spring,Low,Commercial Cooking,1.058
+BC,2011,Spring,Medium,Commercial Cooking,0.912
+BC,2011,Spring,High,Commercial Cooking,1.32
+BC,2011,Spring,Low,Industrial Areas,1.013
+BC,2011,Spring,Medium,Industrial Areas,0.936
+BC,2011,Spring,High,Industrial Areas,1.333
+BC,2011,Spring,Low,Traffic Density,0.846
+BC,2011,Spring,Medium,Traffic Density,1.003
+BC,2011,Spring,High,Traffic Density,1.433
+BC,2011,Spring,ALL,ALL,1.017
+BC,2011,Summer,Low,Commercial Cooking,1.355
+BC,2011,Summer,Medium,Commercial Cooking,1.243
+BC,2011,Summer,High,Commercial Cooking,1.597
+BC,2011,Summer,Low,Industrial Areas,1.3
+BC,2011,Summer,Medium,Industrial Areas,1.238
+BC,2011,Summer,High,Industrial Areas,1.651
+BC,2011,Summer,Low,Traffic Density,1.202
+BC,2011,Summer,Medium,Traffic Density,1.239
+BC,2011,Summer,High,Traffic Density,1.748
+BC,2011,Summer,ALL,ALL,1.334
+BC,2011,Winter,Low,Commercial Cooking,1.398
+BC,2011,Winter,Medium,Commercial Cooking,1.302
+BC,2011,Winter,High,Commercial Cooking,1.538
+BC,2011,Winter,Low,Industrial Areas,1.377
+BC,2011,Winter,Medium,Industrial Areas,1.243
+BC,2011,Winter,High,Industrial Areas,1.614
+BC,2011,Winter,Low,Traffic Density,1.239
+BC,2011,Winter,Medium,Traffic Density,1.309
+BC,2011,Winter,High,Traffic Density,1.685
+BC,2011,Winter,ALL,ALL,1.377
+NO,2011,ALL,Low,Boiler Density,25.185
+NO,2011,ALL,Medium,Boiler Density,34.518
+NO,2011,ALL,High,Boiler Density,44.917
+NO,2011,ALL,Low,Traffic NOx Emissions,25.066
+NO,2011,ALL,Medium,Traffic NOx Emissions,27.677
+NO,2011,ALL,High,Traffic NOx Emissions,51.746
+NO,2011,ALL,ALL,ALL,32.189
+NO,2011,Fall,Low,Boiler Density,31.479
+NO,2011,Fall,Medium,Boiler Density,42.517
+NO,2011,Fall,High,Boiler Density,53.495
+NO,2011,Fall,Low,Traffic NOx Emissions,31.484
+NO,2011,Fall,Medium,Traffic NOx Emissions,31.785
+NO,2011,Fall,High,Traffic NOx Emissions,64.222
+NO,2011,Fall,ALL,ALL,38.523
+NO,2011,Spring,Low,Boiler Density,17.368
+NO,2011,Spring,Medium,Boiler Density,27.264
+NO,2011,Spring,High,Boiler Density,36.863
+NO,2011,Spring,Low,Traffic NOx Emissions,19.114
+NO,2011,Spring,Medium,Traffic NOx Emissions,19.317
+NO,2011,Spring,High,Traffic NOx Emissions,43.065
+NO,2011,Spring,ALL,ALL,24.549
+NO,2011,Summer,Low,Boiler Density,13.066
+NO,2011,Summer,Medium,Boiler Density,17.104
+NO,2011,Summer,High,Boiler Density,26.997
+NO,2011,Summer,Low,Traffic NOx Emissions,13.496
+NO,2011,Summer,Medium,Traffic NOx Emissions,12.766
+NO,2011,Summer,High,Traffic NOx Emissions,30.904
+NO,2011,Summer,ALL,ALL,17.287
+NO,2011,Winter,Low,Boiler Density,38.828
+NO,2011,Winter,Medium,Boiler Density,51.186
+NO,2011,Winter,High,Boiler Density,60.32
+NO,2011,Winter,Low,Traffic NOx Emissions,40.534
+NO,2011,Winter,Medium,Traffic NOx Emissions,43
+NO,2011,Winter,High,Traffic NOx Emissions,66.801
+NO,2011,Winter,ALL,ALL,48.398
+NO2,2011,ALL,Low,Building Density,22.533
+NO2,2011,ALL,Medium,Building Density,25.598
+NO2,2011,ALL,High,Building Density,33.666
+NO2,2011,ALL,Low,Traffic Density,23.388
+NO2,2011,ALL,Medium,Traffic Density,24.704
+NO2,2011,ALL,High,Traffic Density,33.235
+NO2,2011,ALL,ALL,ALL,26.065
+NO2,2011,Fall,Low,Building Density,23.805
+NO2,2011,Fall,Medium,Building Density,26.221
+NO2,2011,Fall,High,Building Density,34.583
+NO2,2011,Fall,Low,Traffic Density,24.982
+NO2,2011,Fall,Medium,Traffic Density,25.512
+NO2,2011,Fall,High,Traffic Density,34.114
+NO2,2011,Fall,ALL,ALL,26.593
+NO2,2011,Spring,Low,Building Density,19.596
+NO2,2011,Spring,Medium,Building Density,23.571
+NO2,2011,Spring,High,Building Density,31.548
+NO2,2011,Spring,Low,Traffic Density,21.909
+NO2,2011,Spring,Medium,Traffic Density,21.414
+NO2,2011,Spring,High,Traffic Density,31.392
+NO2,2011,Spring,ALL,ALL,23.873
+NO2,2011,Summer,Low,Building Density,18.494
+NO2,2011,Summer,Medium,Building Density,21.032
+NO2,2011,Summer,High,Building Density,30.765
+NO2,2011,Summer,Low,Traffic Density,19.687
+NO2,2011,Summer,Medium,Traffic Density,19.687
+NO2,2011,Summer,High,Traffic Density,30.915
+NO2,2011,Summer,ALL,ALL,22.048
+NO2,2011,Winter,Low,Building Density,28.236
+NO2,2011,Winter,Medium,Building Density,31.704
+NO2,2011,Winter,High,Building Density,37.174
+NO2,2011,Winter,Low,Traffic Density,29.774
+NO2,2011,Winter,Medium,Traffic Density,29.668
+NO2,2011,Winter,High,Traffic Density,37.673
+NO2,2011,Winter,ALL,ALL,31.748
+O3,2011,ALL,Low,Traffic Density,34.367
+O3,2011,ALL,Medium,Traffic Density,32.314
+O3,2011,ALL,High,Traffic Density,27.386
+O3,2011,ALL,ALL,ALL,31.601
+O3,2011,Summer,Low,Traffic Density,34.367
+O3,2011,Summer,Medium,Traffic Density,32.314
+O3,2011,Summer,High,Traffic Density,27.219
+O3,2011,Summer,ALL,ALL,31.601
+PM2.5,2011,ALL,Low,Boiler PM2.5 Emissions,10.465
+PM2.5,2011,ALL,Medium,Boiler PM2.5 Emissions,11.198
+PM2.5,2011,ALL,High,Boiler PM2.5 Emissions,12.91
+PM2.5,2011,ALL,Low,Commercial Cooking,10.977
+PM2.5,2011,ALL,Medium,Commercial Cooking,10.946
+PM2.5,2011,ALL,High,Commercial Cooking,12.649
+PM2.5,2011,ALL,Low,Traffic Density,10.815
+PM2.5,2011,ALL,Medium,Traffic Density,10.627
+PM2.5,2011,ALL,High,Traffic Density,13.141
+PM2.5,2011,ALL,ALL,ALL,11.212
+PM2.5,2011,Fall,Low,Boiler PM2.5 Emissions,8.63
+PM2.5,2011,Fall,Medium,Boiler PM2.5 Emissions,9.419
+PM2.5,2011,Fall,High,Boiler PM2.5 Emissions,11.207
+PM2.5,2011,Fall,Low,Commercial Cooking,9.015
+PM2.5,2011,Fall,Medium,Commercial Cooking,9.198
+PM2.5,2011,Fall,High,Commercial Cooking,11.034
+PM2.5,2011,Fall,Low,Traffic Density,8.957
+PM2.5,2011,Fall,Medium,Traffic Density,9.132
+PM2.5,2011,Fall,High,Traffic Density,11.167
+PM2.5,2011,Fall,ALL,ALL,9.461
+PM2.5,2011,Spring,Low,Boiler PM2.5 Emissions,8.129
+PM2.5,2011,Spring,Medium,Boiler PM2.5 Emissions,9.042
+PM2.5,2011,Spring,High,Boiler PM2.5 Emissions,10.901
+PM2.5,2011,Spring,Low,Commercial Cooking,8.662
+PM2.5,2011,Spring,Medium,Commercial Cooking,8.942
+PM2.5,2011,Spring,High,Commercial Cooking,10.453
+PM2.5,2011,Spring,Low,Traffic Density,8.518
+PM2.5,2011,Spring,Medium,Traffic Density,8.565
+PM2.5,2011,Spring,High,Traffic Density,10.988
+PM2.5,2011,Spring,ALL,ALL,9.033
+PM2.5,2011,Summer,Low,Boiler PM2.5 Emissions,12.351
+PM2.5,2011,Summer,Medium,Boiler PM2.5 Emissions,12.637
+PM2.5,2011,Summer,High,Boiler PM2.5 Emissions,13.879
+PM2.5,2011,Summer,Low,Commercial Cooking,12.516
+PM2.5,2011,Summer,Medium,Commercial Cooking,12.463
+PM2.5,2011,Summer,High,Commercial Cooking,13.891
+PM2.5,2011,Summer,Low,Traffic Density,12.53
+PM2.5,2011,Summer,Medium,Traffic Density,12.258
+PM2.5,2011,Summer,High,Traffic Density,14.08
+PM2.5,2011,Summer,ALL,ALL,12.725
+PM2.5,2011,Winter,Low,Boiler PM2.5 Emissions,12.751
+PM2.5,2011,Winter,Medium,Boiler PM2.5 Emissions,13.693
+PM2.5,2011,Winter,High,Boiler PM2.5 Emissions,15.392
+PM2.5,2011,Winter,Low,Commercial Cooking,13.568
+PM2.5,2011,Winter,Medium,Commercial Cooking,13.326
+PM2.5,2011,Winter,High,Commercial Cooking,14.955
+PM2.5,2011,Winter,Low,Traffic Density,12.964
+PM2.5,2011,Winter,Medium,Traffic Density,12.806
+PM2.5,2011,Winter,High,Traffic Density,16.066
+PM2.5,2011,Winter,ALL,ALL,13.629
+SO2,2011,ALL,ALL,ALL,4.673
+SO2,2011,Winter,Low,Boilers Using Residual Oil,3.084
+SO2,2011,Winter,Medium,Boilers Using Residual Oil,4.232
+SO2,2011,Winter,High,Boilers Using Residual Oil,7.156
+SO2,2011,Winter,Low,Night-Time Population Density,3.225
+SO2,2011,Winter,Medium,Night-Time Population Density,4.207
+SO2,2011,Winter,High,Night-Time Population Density,7.039
+SO2,2011,Winter,ALL,ALL,4.673
+BC,2010,ALL,Low,Industrial Areas,1.185
+BC,2010,ALL,Medium,Industrial Areas,1.178
+BC,2010,ALL,High,Industrial Areas,1.527
+BC,2010,ALL,Low,Commercial Cooking,1.251
+BC,2010,ALL,Medium,Commercial Cooking,1.097
+BC,2010,ALL,High,Commercial Cooking,1.517
+BC,2010,ALL,Low,Traffic Density,1.082
+BC,2010,ALL,Medium,Traffic Density,1.14
+BC,2010,ALL,High,Traffic Density,1.65
+BC,2010,ALL,ALL,ALL,1.203
+BC,2010,Fall,Low,Commercial Cooking,1.146
+BC,2010,Fall,Medium,Commercial Cooking,0.983
+BC,2010,Fall,High,Commercial Cooking,1.387
+BC,2010,Fall,Low,Industrial Areas,1.075
+BC,2010,Fall,Medium,Industrial Areas,1.033
+BC,2010,Fall,High,Industrial Areas,1.4
+BC,2010,Fall,Low,Traffic Density,0.978
+BC,2010,Fall,Medium,Traffic Density,1.046
+BC,2010,Fall,High,Traffic Density,1.484
+BC,2010,Fall,ALL,ALL,1.083
+BC,2010,Spring,Low,Commercial Cooking,1.323
+BC,2010,Spring,Medium,Commercial Cooking,1.136
+BC,2010,Spring,High,Commercial Cooking,1.565
+BC,2010,Spring,Low,Industrial Areas,1.232
+BC,2010,Spring,Medium,Industrial Areas,1.155
+BC,2010,Spring,High,Industrial Areas,1.628
+BC,2010,Spring,Low,Traffic Density,1.125
+BC,2010,Spring,Medium,Traffic Density,1.197
+BC,2010,Spring,High,Traffic Density,1.692
+BC,2010,Spring,ALL,ALL,1.248
+BC,2010,Summer,Low,Commercial Cooking,1.426
+BC,2010,Summer,Medium,Commercial Cooking,1.187
+BC,2010,Summer,High,Commercial Cooking,1.554
+BC,2010,Summer,Low,Industrial Areas,1.233
+BC,2010,Summer,Medium,Industrial Areas,1.222
+BC,2010,Summer,High,Industrial Areas,1.7
+BC,2010,Summer,Low,Traffic Density,1.174
+BC,2010,Summer,Medium,Traffic Density,1.21
+BC,2010,Summer,High,Traffic Density,1.771
+BC,2010,Summer,ALL,ALL,1.291
+BC,2010,Winter,Low,Commercial Cooking,1.173
+BC,2010,Winter,Medium,Commercial Cooking,1.083
+BC,2010,Winter,High,Commercial Cooking,1.432
+BC,2010,Winter,Low,Industrial Areas,1.199
+BC,2010,Winter,Medium,Industrial Areas,1.167
+BC,2010,Winter,High,Industrial Areas,1.317
+BC,2010,Winter,Low,Traffic Density,1.052
+BC,2010,Winter,Medium,Traffic Density,1.107
+BC,2010,Winter,High,Traffic Density,1.524
+BC,2010,Winter,ALL,ALL,1.188
+NO,2010,ALL,Low,Boiler Density,22.41
+NO,2010,ALL,Medium,Boiler Density,30.118
+NO,2010,ALL,High,Boiler Density,40.307
+NO,2010,ALL,Low,Traffic NOx Emissions,22.558
+NO,2010,ALL,Medium,Traffic NOx Emissions,25.142
+NO,2010,ALL,High,Traffic NOx Emissions,45.005
+NO,2010,ALL,ALL,ALL,27.831
+NO,2010,Fall,Low,Boiler Density,26.069
+NO,2010,Fall,Medium,Boiler Density,34.26
+NO,2010,Fall,High,Boiler Density,48.429
+NO,2010,Fall,Low,Traffic NOx Emissions,28.609
+NO,2010,Fall,Medium,Traffic NOx Emissions,28.291
+NO,2010,Fall,High,Traffic NOx Emissions,51.859
+NO,2010,Fall,ALL,ALL,32.649
+NO,2010,Spring,Low,Boiler Density,24.294
+NO,2010,Spring,Medium,Boiler Density,32.824
+NO,2010,Spring,High,Boiler Density,42.125
+NO,2010,Spring,Low,Traffic NOx Emissions,25.739
+NO,2010,Spring,Medium,Traffic NOx Emissions,25.085
+NO,2010,Spring,High,Traffic NOx Emissions,48.419
+NO,2010,Spring,ALL,ALL,29.155
+NO,2010,Summer,Low,Boiler Density,12.071
+NO,2010,Summer,Medium,Boiler Density,17.183
+NO,2010,Summer,High,Boiler Density,22.955
+NO,2010,Summer,Low,Traffic NOx Emissions,11.247
+NO,2010,Summer,Medium,Traffic NOx Emissions,11.552
+NO,2010,Summer,High,Traffic NOx Emissions,29.411
+NO,2010,Summer,ALL,ALL,14.893
+NO,2010,Winter,Low,Boiler Density,27.205
+NO,2010,Winter,Medium,Boiler Density,36.205
+NO,2010,Winter,High,Boiler Density,49.31
+NO,2010,Winter,Low,Traffic NOx Emissions,30.147
+NO,2010,Winter,Medium,Traffic NOx Emissions,30.648
+NO,2010,Winter,High,Traffic NOx Emissions,51.925
+NO,2010,Winter,ALL,ALL,34.628
+NO2,2010,ALL,Low,Building Density,22.176
+NO2,2010,ALL,Medium,Building Density,24.973
+NO2,2010,ALL,High,Building Density,33.643
+NO2,2010,ALL,Low,Traffic Density,22.894
+NO2,2010,ALL,Medium,Traffic Density,24.518
+NO2,2010,ALL,High,Traffic Density,32.865
+NO2,2010,ALL,ALL,ALL,25.261
+NO2,2010,Fall,Low,Building Density,20.715
+NO2,2010,Fall,Medium,Building Density,23.183
+NO2,2010,Fall,High,Building Density,31.113
+NO2,2010,Fall,Low,Traffic Density,22.017
+NO2,2010,Fall,Medium,Traffic Density,22.678
+NO2,2010,Fall,High,Traffic Density,30.316
+NO2,2010,Fall,ALL,ALL,23.567
+NO2,2010,Spring,Low,Building Density,24.18
+NO2,2010,Spring,Medium,Building Density,27.462
+NO2,2010,Spring,High,Building Density,36.841
+NO2,2010,Spring,Low,Traffic Density,26.312
+NO2,2010,Spring,Medium,Traffic Density,25.629
+NO2,2010,Spring,High,Traffic Density,36.542
+NO2,2010,Spring,ALL,ALL,27.595
+NO2,2010,Summer,Low,Building Density,18.998
+NO2,2010,Summer,Medium,Building Density,22.49
+NO2,2010,Summer,High,Building Density,31.03
+NO2,2010,Summer,Low,Traffic Density,19.766
+NO2,2010,Summer,Medium,Traffic Density,20.138
+NO2,2010,Summer,High,Traffic Density,32.612
+NO2,2010,Summer,ALL,ALL,22.075
+NO2,2010,Winter,Low,Building Density,24.813
+NO2,2010,Winter,Medium,Building Density,27.467
+NO2,2010,Winter,High,Building Density,34.499
+NO2,2010,Winter,Low,Traffic Density,27.073
+NO2,2010,Winter,Medium,Traffic Density,26.361
+NO2,2010,Winter,High,Traffic Density,33.344
+NO2,2010,Winter,ALL,ALL,27.805
+O3,2010,ALL,Low,Traffic Density,34.452
+O3,2010,ALL,Medium,Traffic Density,32.531
+O3,2010,ALL,High,Traffic Density,27.129
+O3,2010,ALL,ALL,ALL,31.902
+O3,2010,Summer,Low,Traffic Density,34.452
+O3,2010,Summer,Medium,Traffic Density,32.531
+O3,2010,Summer,High,Traffic Density,27.114
+O3,2010,Summer,ALL,ALL,31.902
+PM2.5,2010,ALL,Low,Boiler PM2.5 Emissions,9.893
+PM2.5,2010,ALL,Medium,Boiler PM2.5 Emissions,10.479
+PM2.5,2010,ALL,High,Boiler PM2.5 Emissions,12.542
+PM2.5,2010,ALL,Low,Commercial Cooking,10.353
+PM2.5,2010,ALL,Medium,Commercial Cooking,10.119
+PM2.5,2010,ALL,High,Commercial Cooking,12.429
+PM2.5,2010,ALL,Low,Traffic Density,9.927
+PM2.5,2010,ALL,Medium,Traffic Density,10.203
+PM2.5,2010,ALL,High,Traffic Density,12.77
+PM2.5,2010,ALL,ALL,ALL,10.618
+PM2.5,2010,Fall,Low,Boiler PM2.5 Emissions,7.55
+PM2.5,2010,Fall,Medium,Boiler PM2.5 Emissions,7.772
+PM2.5,2010,Fall,High,Boiler PM2.5 Emissions,10.026
+PM2.5,2010,Fall,Low,Commercial Cooking,7.863
+PM2.5,2010,Fall,Medium,Commercial Cooking,7.609
+PM2.5,2010,Fall,High,Commercial Cooking,9.888
+PM2.5,2010,Fall,Low,Traffic Density,7.354
+PM2.5,2010,Fall,Medium,Traffic Density,7.859
+PM2.5,2010,Fall,High,Traffic Density,10.135
+PM2.5,2010,Fall,ALL,ALL,8.066
+PM2.5,2010,Spring,Low,Boiler PM2.5 Emissions,9.634
+PM2.5,2010,Spring,Medium,Boiler PM2.5 Emissions,10.537
+PM2.5,2010,Spring,High,Boiler PM2.5 Emissions,12.428
+PM2.5,2010,Spring,Low,Commercial Cooking,10.202
+PM2.5,2010,Spring,Medium,Commercial Cooking,9.992
+PM2.5,2010,Spring,High,Commercial Cooking,12.416
+PM2.5,2010,Spring,Low,Traffic Density,9.62
+PM2.5,2010,Spring,Medium,Traffic Density,10.337
+PM2.5,2010,Spring,High,Traffic Density,12.643
+PM2.5,2010,Spring,ALL,ALL,10.5
+PM2.5,2010,Summer,Low,Boiler PM2.5 Emissions,12.483
+PM2.5,2010,Summer,Medium,Boiler PM2.5 Emissions,12.969
+PM2.5,2010,Summer,High,Boiler PM2.5 Emissions,14.531
+PM2.5,2010,Summer,Low,Commercial Cooking,13.038
+PM2.5,2010,Summer,Medium,Commercial Cooking,12.6
+PM2.5,2010,Summer,High,Commercial Cooking,14.367
+PM2.5,2010,Summer,Low,Traffic Density,12.559
+PM2.5,2010,Summer,Medium,Traffic Density,12.451
+PM2.5,2010,Summer,High,Traffic Density,14.973
+PM2.5,2010,Summer,ALL,ALL,12.998
+PM2.5,2010,Winter,Low,Boiler PM2.5 Emissions,9.904
+PM2.5,2010,Winter,Medium,Boiler PM2.5 Emissions,10.638
+PM2.5,2010,Winter,High,Boiler PM2.5 Emissions,12.707
+PM2.5,2010,Winter,Low,Commercial Cooking,10.362
+PM2.5,2010,Winter,Medium,Commercial Cooking,10.318
+PM2.5,2010,Winter,High,Commercial Cooking,12.571
+PM2.5,2010,Winter,Low,Traffic Density,9.836
+PM2.5,2010,Winter,Medium,Traffic Density,10.559
+PM2.5,2010,Winter,High,Traffic Density,12.854
+PM2.5,2010,Winter,ALL,ALL,10.908
+SO2,2010,ALL,ALL,ALL,3.881
+SO2,2010,Winter,Low,Boilers Using Residual Oil,2.508
+SO2,2010,Winter,Medium,Boilers Using Residual Oil,3.677
+SO2,2010,Winter,High,Boilers Using Residual Oil,6.1
+SO2,2010,Winter,Low,Night-Time Population Density,2.676
+SO2,2010,Winter,Medium,Night-Time Population Density,3.314
+SO2,2010,Winter,High,Night-Time Population Density,6.295
+SO2,2010,Winter,ALL,ALL,3.881
+BC,2009,ALL,Low,Industrial Areas,1.242
+BC,2009,ALL,Medium,Industrial Areas,1.225
+BC,2009,ALL,High,Industrial Areas,1.616
+BC,2009,ALL,Low,Commercial Cooking,1.29
+BC,2009,ALL,Medium,Commercial Cooking,1.172
+BC,2009,ALL,High,Commercial Cooking,1.595
+BC,2009,ALL,Low,Traffic Density,1.152
+BC,2009,ALL,Medium,Traffic Density,1.176
+BC,2009,ALL,High,Traffic Density,1.736
+BC,2009,ALL,ALL,ALL,1.253
+BC,2009,Fall,Low,Commercial Cooking,1.323
+BC,2009,Fall,Medium,Commercial Cooking,1.152
+BC,2009,Fall,High,Commercial Cooking,1.593
+BC,2009,Fall,Low,Industrial Areas,1.278
+BC,2009,Fall,Medium,Industrial Areas,1.155
+BC,2009,Fall,High,Industrial Areas,1.627
+BC,2009,Fall,Low,Traffic Density,1.162
+BC,2009,Fall,Medium,Traffic Density,1.145
+BC,2009,Fall,High,Traffic Density,1.753
+BC,2009,Fall,ALL,ALL,1.258
+BC,2009,Spring,Low,Commercial Cooking,1.157
+BC,2009,Spring,Medium,Commercial Cooking,1.064
+BC,2009,Spring,High,Commercial Cooking,1.448
+BC,2009,Spring,Low,Industrial Areas,1.105
+BC,2009,Spring,Medium,Industrial Areas,1.07
+BC,2009,Spring,High,Industrial Areas,1.49
+BC,2009,Spring,Low,Traffic Density,1.003
+BC,2009,Spring,Medium,Traffic Density,1.113
+BC,2009,Spring,High,Traffic Density,1.549
+BC,2009,Spring,ALL,ALL,1.129
+BC,2009,Summer,Low,Commercial Cooking,1.402
+BC,2009,Summer,Medium,Commercial Cooking,1.158
+BC,2009,Summer,High,Commercial Cooking,1.639
+BC,2009,Summer,Low,Industrial Areas,1.239
+BC,2009,Summer,Medium,Industrial Areas,1.171
+BC,2009,Summer,High,Industrial Areas,1.777
+BC,2009,Summer,Low,Traffic Density,1.152
+BC,2009,Summer,Medium,Traffic Density,1.198
+BC,2009,Summer,High,Traffic Density,1.836
+BC,2009,Summer,ALL,ALL,1.293
+BC,2009,Winter,Low,Commercial Cooking,1.341
+BC,2009,Winter,Medium,Commercial Cooking,1.3
+BC,2009,Winter,High,Commercial Cooking,1.543
+BC,2009,Winter,Low,Industrial Areas,1.347
+BC,2009,Winter,Medium,Industrial Areas,1.272
+BC,2009,Winter,High,Industrial Areas,1.564
+BC,2009,Winter,Low,Traffic Density,1.291
+BC,2009,Winter,Medium,Traffic Density,1.246
+BC,2009,Winter,High,Traffic Density,1.646
+BC,2009,Winter,ALL,ALL,1.334
+NO,2009,ALL,Low,Boiler Density,25.576
+NO,2009,ALL,Medium,Boiler Density,32.682
+NO,2009,ALL,High,Boiler Density,48.714
+NO,2009,ALL,Low,Traffic NOx Emissions,26.001
+NO,2009,ALL,Medium,Traffic NOx Emissions,27.574
+NO,2009,ALL,High,Traffic NOx Emissions,53.318
+NO,2009,ALL,ALL,ALL,31.544
+NO,2009,Fall,Low,Boiler Density,28.948
+NO,2009,Fall,Medium,Boiler Density,34.497
+NO,2009,Fall,High,Boiler Density,50.544
+NO,2009,Fall,Low,Traffic NOx Emissions,30.433
+NO,2009,Fall,Medium,Traffic NOx Emissions,28.039
+NO,2009,Fall,High,Traffic NOx Emissions,55.517
+NO,2009,Fall,ALL,ALL,34.644
+NO,2009,Spring,Low,Boiler Density,22.486
+NO,2009,Spring,Medium,Boiler Density,30.345
+NO,2009,Spring,High,Boiler Density,48.045
+NO,2009,Spring,Low,Traffic NOx Emissions,24.171
+NO,2009,Spring,Medium,Traffic NOx Emissions,23.604
+NO,2009,Spring,High,Traffic NOx Emissions,53.101
+NO,2009,Spring,ALL,ALL,28.655
+NO,2009,Summer,Low,Boiler Density,15.847
+NO,2009,Summer,Medium,Boiler Density,22.05
+NO,2009,Summer,High,Boiler Density,35.677
+NO,2009,Summer,Low,Traffic NOx Emissions,16.1
+NO,2009,Summer,Medium,Traffic NOx Emissions,16.553
+NO,2009,Summer,High,Traffic NOx Emissions,40.921
+NO,2009,Summer,ALL,ALL,20.423
+NO,2009,Winter,Low,Boiler Density,35.022
+NO,2009,Winter,Medium,Boiler Density,43.834
+NO,2009,Winter,High,Boiler Density,62.707
+NO,2009,Winter,Low,Traffic NOx Emissions,39.224
+NO,2009,Winter,Medium,Traffic NOx Emissions,36.493
+NO,2009,Winter,High,Traffic NOx Emissions,65.846
+NO,2009,Winter,ALL,ALL,42.381
+NO2,2009,ALL,Low,Building Density,24.193
+NO2,2009,ALL,Medium,Building Density,27.178
+NO2,2009,ALL,High,Building Density,37.527
+NO2,2009,ALL,Low,Traffic Density,25.112
+NO2,2009,ALL,Medium,Traffic Density,26.417
+NO2,2009,ALL,High,Traffic Density,36.787
+NO2,2009,ALL,ALL,ALL,27.329
+NO2,2009,Fall,Low,Building Density,22.954
+NO2,2009,Fall,Medium,Building Density,24.772
+NO2,2009,Fall,High,Building Density,32.858
+NO2,2009,Fall,Low,Traffic Density,24.149
+NO2,2009,Fall,Medium,Traffic Density,23.471
+NO2,2009,Fall,High,Traffic Density,32.964
+NO2,2009,Fall,ALL,ALL,24.991
+NO2,2009,Spring,Low,Building Density,23.982
+NO2,2009,Spring,Medium,Building Density,28.13
+NO2,2009,Spring,High,Building Density,40.213
+NO2,2009,Spring,Low,Traffic Density,26.407
+NO2,2009,Spring,Medium,Traffic Density,26.274
+NO2,2009,Spring,High,Traffic Density,39.644
+NO2,2009,Spring,ALL,ALL,28.094
+NO2,2009,Summer,Low,Building Density,20.009
+NO2,2009,Summer,Medium,Building Density,23.823
+NO2,2009,Summer,High,Building Density,34.157
+NO2,2009,Summer,Low,Traffic Density,21.764
+NO2,2009,Summer,Medium,Traffic Density,21.993
+NO2,2009,Summer,High,Traffic Density,34.232
+NO2,2009,Summer,ALL,ALL,23.897
+NO2,2009,Winter,Low,Building Density,29.828
+NO2,2009,Winter,Medium,Building Density,32.674
+NO2,2009,Winter,High,Building Density,40.893
+NO2,2009,Winter,Low,Traffic Density,31.422
+NO2,2009,Winter,Medium,Traffic Density,30.894
+NO2,2009,Winter,High,Traffic Density,41.079
+NO2,2009,Winter,ALL,ALL,32.311
+O3,2009,ALL,Low,Traffic Density,27.081
+O3,2009,ALL,Medium,Traffic Density,24.934
+O3,2009,ALL,High,Traffic Density,20.035
+O3,2009,ALL,ALL,ALL,24.311
+O3,2009,Summer,Low,Traffic Density,27.081
+O3,2009,Summer,Medium,Traffic Density,24.934
+O3,2009,Summer,High,Traffic Density,19.939
+O3,2009,Summer,ALL,ALL,24.311
+PM2.5,2009,ALL,Low,Boiler PM2.5 Emissions,10.606
+PM2.5,2009,ALL,Medium,Boiler PM2.5 Emissions,11.335
+PM2.5,2009,ALL,High,Boiler PM2.5 Emissions,13.504
+PM2.5,2009,ALL,Low,Commercial Cooking,11.098
+PM2.5,2009,ALL,Medium,Commercial Cooking,10.969
+PM2.5,2009,ALL,High,Commercial Cooking,13.372
+PM2.5,2009,ALL,Low,Traffic Density,10.844
+PM2.5,2009,ALL,Medium,Traffic Density,10.871
+PM2.5,2009,ALL,High,Traffic Density,13.728
+PM2.5,2009,ALL,ALL,ALL,11.401
+PM2.5,2009,Fall,Low,Boiler PM2.5 Emissions,7.865
+PM2.5,2009,Fall,Medium,Boiler PM2.5 Emissions,8.549
+PM2.5,2009,Fall,High,Boiler PM2.5 Emissions,10.397
+PM2.5,2009,Fall,Low,Commercial Cooking,8.277
+PM2.5,2009,Fall,Medium,Commercial Cooking,8.177
+PM2.5,2009,Fall,High,Commercial Cooking,10.362
+PM2.5,2009,Fall,Low,Traffic Density,8.134
+PM2.5,2009,Fall,Medium,Traffic Density,8.021
+PM2.5,2009,Fall,High,Traffic Density,10.656
+PM2.5,2009,Fall,ALL,ALL,8.549
+PM2.5,2009,Spring,Low,Boiler PM2.5 Emissions,10.176
+PM2.5,2009,Spring,Medium,Boiler PM2.5 Emissions,11.376
+PM2.5,2009,Spring,High,Boiler PM2.5 Emissions,13.589
+PM2.5,2009,Spring,Low,Commercial Cooking,10.745
+PM2.5,2009,Spring,Medium,Commercial Cooking,10.865
+PM2.5,2009,Spring,High,Commercial Cooking,13.526
+PM2.5,2009,Spring,Low,Traffic Density,10.468
+PM2.5,2009,Spring,Medium,Traffic Density,10.909
+PM2.5,2009,Spring,High,Traffic Density,13.764
+PM2.5,2009,Spring,ALL,ALL,11.325
+PM2.5,2009,Summer,Low,Boiler PM2.5 Emissions,11.162
+PM2.5,2009,Summer,Medium,Boiler PM2.5 Emissions,11.657
+PM2.5,2009,Summer,High,Boiler PM2.5 Emissions,13.477
+PM2.5,2009,Summer,Low,Commercial Cooking,11.608
+PM2.5,2009,Summer,Medium,Commercial Cooking,11.299
+PM2.5,2009,Summer,High,Commercial Cooking,13.406
+PM2.5,2009,Summer,Low,Traffic Density,11.346
+PM2.5,2009,Summer,Medium,Traffic Density,11.183
+PM2.5,2009,Summer,High,Traffic Density,13.767
+PM2.5,2009,Summer,ALL,ALL,11.673
+PM2.5,2009,Winter,Low,Boiler PM2.5 Emissions,13.222
+PM2.5,2009,Winter,Medium,Boiler PM2.5 Emissions,13.756
+PM2.5,2009,Winter,High,Boiler PM2.5 Emissions,16.204
+PM2.5,2009,Winter,Low,Commercial Cooking,13.629
+PM2.5,2009,Winter,Medium,Commercial Cooking,13.704
+PM2.5,2009,Winter,High,Commercial Cooking,15.846
+PM2.5,2009,Winter,Low,Traffic Density,13.204
+PM2.5,2009,Winter,Medium,Traffic Density,13.601
+PM2.5,2009,Winter,High,Traffic Density,16.378
+PM2.5,2009,Winter,ALL,ALL,14.059
+SO2,2009,ALL,ALL,ALL,5.376
+SO2,2009,Winter,Low,Boilers Using Residual Oil,3.84
+SO2,2009,Winter,Medium,Boilers Using Residual Oil,5.246
+SO2,2009,Winter,High,Boilers Using Residual Oil,8.157
+SO2,2009,Winter,Low,Night-Time Population Density,4.224
+SO2,2009,Winter,Medium,Night-Time Population Density,5.078
+SO2,2009,Winter,High,Night-Time Population Density,7.942
+SO2,2009,Winter,ALL,ALL,5.376

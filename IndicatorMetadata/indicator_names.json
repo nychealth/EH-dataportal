@@ -1079,6 +1079,26 @@
     "description": "People reporting blindness or serious trouble seeing (even when wearing glasses). These individuals may have access needs or benefit from accommodations.",
     "name": "Vision difficulty"
   },
+  "2465": {
+    "IndicatorID": 2465,
+    "description": "Adults reporting ever having had a diagnosis of diabetes.",
+    "name": "Adults with diabetes"
+  },
+  "2466": {
+    "IndicatorID": 2466,
+    "description": "Blood sugar levels (A1C) above 9% among adults with diabetes.",
+    "name": "Adults with very high blood sugar levels  (A1C \u003e 9%)"
+  },
+  "2467": {
+    "IndicatorID": 2467,
+    "description": "Lower extremity amputations (hip, leg, complete foot, partial foot, toe and not otherwise specified amputations) among adults with diabetes.",
+    "name": "Lower extremity amputations (diabetes-related)"
+  },
+  "2468": {
+    "IndicatorID": 2468,
+    "description": "Total cases of dialysis among adults with diabetes.",
+    "name": "Dialysis patients (diabetes-related)"
+  },
   "25": {
     "IndicatorID": 25,
     "description": "Adults reporting secondhand smoke at home. Secondhand smoke, especially indoors, is bad for health - particularly for the health of children.",
