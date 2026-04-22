@@ -299,7 +299,7 @@ function runFinal() {
   console.log('We are reviewing your data')
 
   document.getElementById('finalInfo').classList.remove('hide')
-  // document.getElementById('testInfo').classList.remove('hide')
+  document.getElementById('testInfo').classList.remove('hide')
 
   var finalMessageText = document.getElementById('finalMessages')
   finalMessageText.innerHTML = ''
