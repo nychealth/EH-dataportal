@@ -13,7 +13,7 @@ Send the following review prompt **independently** to each of these four models.
 - Gemini 3.1 Pro (Preview) (copilot)
 - GPT-5.4 (copilot)
 - Claude Haiku 4.5 (copilot)
-- Claude Opus 4.6 (copilot)
+- Claude Sonnet 4.6 (copilot)
 
 If a model is unavailable, skip it and proceed with the others.
 
