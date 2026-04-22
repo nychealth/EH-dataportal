@@ -464,12 +464,13 @@ const updateMapData = (e) => {
 
     // "indicatorName" is set in loadIndicator
 
-    selectedMapAbout   = `<strong>${measure}:</strong> ${about}</p>`;
-    selectedMapSources = `${sources}`;
+    selectedMapAbout          = `<strong>${measure}:</strong> ${about}</p>`;
+    selectedMapSources        = `${sources}`;
+    selectedMapDataSourceLinks = selectedMapMetadata[0].DataSourceLink ?? null;
 
     // render measure info boxes
 
-    renderAboutSources(selectedMapAbout, selectedMapSources);
+    renderAboutSources(selectedMapAbout, selectedMapSources, selectedMapDataSourceLinks);
 
 
     // ----- create dataset --------------------------------------------------- //
@@ -546,6 +547,8 @@ const updateBoroughTrendData = (e) => {
     const about   = selectedTrendMetadata[0].how_calculated;
     const sources = selectedTrendMetadata[0].Sources;
 
+    selectedTrendDataSourceLinks = selectedTrendMetadata[0].DataSourceLink ?? null;
+
     aqSelectedTrendMetadata = aq.from(selectedTrendMetadata)
         .derive({
             IndicatorLabel: aq.escape(indicatorName),
@@ -562,7 +565,7 @@ const updateBoroughTrendData = (e) => {
 
     // render measure info boxes
 
-    renderAboutSources(selectedTrendAbout, selectedTrendSources);
+    renderAboutSources(selectedTrendAbout, selectedTrendSources, selectedTrendDataSourceLinks);
 
 
     // ----- create dataset --------------------------------------------------- //
@@ -665,11 +668,13 @@ const updateComparisonTrendData = (e) => {
 
     selectedComparisonAbout = [];
     selectedComparisonSources = [];
+    selectedComparisonDataSourceLinks = [];
 
     // reset info boxes
 
     selectedComparisonAbout = [];
     selectedComparisonSources = [];
+    selectedComparisonDataSourceLinks = [];
 
     // this iterates over all the indicators and measures in the chosen comparison
 
@@ -677,16 +682,18 @@ const updateComparisonTrendData = (e) => {
         .filter(m => m.ComparisonID == comparisonId)
         .forEach(m => {
             selectedComparisonAbout   += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-            selectedComparisonSources.push(m.Sources)
+            selectedComparisonSources.push(m.Sources);
+            selectedComparisonDataSourceLinks.push(...(m.DataSourceLink ?? []));
         })
-    
+
     // get unique sources
 
     let uniqueSelectedComparisonSources = [...new Set(selectedComparisonSources)];
+    let uniqueComparisonDataSourceLinks = [...new Map(selectedComparisonDataSourceLinks.map(l => [l.url, l])).values()];
 
     // render the measure info boxes
 
-    renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources);
+    renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources, uniqueComparisonDataSourceLinks);
 
 
     // ----- create dataset --------------------------------------------------- //
@@ -841,8 +848,13 @@ const updateLinksData = async (e) => {
     selectedLinksSources.push(primarySources.concat(" "))
     selectedLinksSources.push(secondarySources)
 
+    selectedLinksDataSourceLinks = [
+        ...(selectedPrimaryMeasureMetadata[0].DataSourceLink ?? []),
+        ...(selectedSecondaryMeasureMetadata[0].DataSourceLink ?? [])
+    ];
+
     // render the measure info boxes
-    renderAboutSources(selectedLinksAbout, selectedLinksSources);
+    renderAboutSources(selectedLinksAbout, selectedLinksSources, selectedLinksDataSourceLinks);
 
 
     // ----- render the chart --------------------------------------------------- //
@@ -1172,6 +1184,7 @@ const renderMeasures = async () => {
 
     measureAbout = "";
     measureSources = [];
+    measureDataSourceLinks = [];
 
     // clear on click event handlers from view options
 
@@ -1419,6 +1432,7 @@ const renderMeasures = async () => {
 
         measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
         measureSources.push(measure.Sources);
+        measureDataSourceLinks.push(...(measure.DataSourceLink ?? []));
         
 
     });
@@ -1559,7 +1573,7 @@ const renderMeasures = async () => {
         // ----- set measure info boxes --------------------------------------------------- //
 
         renderTitleDescription(indicatorShortName, indicatorDesc);
-        renderAboutSources(measureAbout, measureSources);
+        renderAboutSources(measureAbout, measureSources, measureDataSourceLinks);
 
 
         // ----- render the table --------------------------------------------------- //
@@ -1638,13 +1652,14 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            defaultMapAbout   = `<p><strong>${measure}:</strong> ${about}</p>`;
-            defaultMapSources = `${sources}`;
+            defaultMapAbout          = `<p><strong>${measure}:</strong> ${about}</p>`;
+            defaultMapSources        = `${sources}`;
+            defaultMapDataSourceLinks = defaultMapMetadata[0].DataSourceLink ?? null;
 
             // render measure info boxes
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(defaultMapAbout, defaultMapSources);
+            renderAboutSources(defaultMapAbout, defaultMapSources, defaultMapDataSourceLinks);
 
 
             // ----- create dataset --------------------------------------------------- //
@@ -1749,7 +1764,7 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            renderAboutSources(selectedMapAbout, selectedMapSources);
+            renderAboutSources(selectedMapAbout, selectedMapSources, selectedMapDataSourceLinks);
 
             // ----- get current dropdown values --------------------------------------------------- //
 
@@ -1868,6 +1883,7 @@ const renderMeasures = async () => {
             const about   = defaultTrendMetadata[0]?.how_calculated;
             const sources = defaultTrendMetadata[0].Sources;
             const measure = defaultTrendMetadata[0].MeasurementType;
+            const defaultTrendDataSourceLinks = defaultTrendMetadata[0].DataSourceLink ?? null;
 
             aqDefaultTrendMetadata = aq.from(defaultTrendMetadata)
                 .derive({
@@ -1886,7 +1902,7 @@ const renderMeasures = async () => {
             defaultTrendSources.push(sources)
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(defaultTrendAbout, defaultTrendSources);
+            renderAboutSources(defaultTrendAbout, defaultTrendSources, defaultTrendDataSourceLinks);
 
 
             // ----- create dataset --------------------------------------------------- //
@@ -1962,10 +1978,10 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            renderAboutSources(selectedTrendAbout, selectedTrendSources);
+            renderAboutSources(selectedTrendAbout, selectedTrendSources, selectedTrendDataSourceLinks);
 
             // ----- render the chart --------------------------------------------------- //
-            
+
             aqFilteredTrendData = aq.from(filteredTrendData);
 
             renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
@@ -2025,6 +2041,7 @@ const renderMeasures = async () => {
 
             selectedComparisonAbout = [];
             selectedComparisonSources = [];
+            selectedComparisonDataSourceLinks = [];
 
             aqComparisonIndicatorsMetadata.objects().forEach(m => {
 
@@ -2032,17 +2049,19 @@ const renderMeasures = async () => {
                     `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
 
                 selectedComparisonSources.push(m.Sources);
+                selectedComparisonDataSourceLinks.push(...(m.DataSourceLink ?? []));
 
             })
 
             // get unique sources
 
             let uniqueSelectedComparisonSources = [...new Set(selectedComparisonSources)];
+            let uniqueComparisonDataSourceLinks = [...new Map(selectedComparisonDataSourceLinks.map(l => [l.url, l])).values()];
 
             // render the measure info boxes
 
             renderTitleDescription(indicatorShortName, indicatorDesc);
-            renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources);
+            renderAboutSources(selectedComparisonAbout, uniqueSelectedComparisonSources, uniqueComparisonDataSourceLinks);
 
 
             // ----- create dataset --------------------------------------------------- //
@@ -2109,7 +2128,7 @@ const renderMeasures = async () => {
 
             // ----- set measure info boxes --------------------------------------------------- //
 
-            renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+            renderAboutSources(selectedComparisonAbout, selectedComparisonSources, selectedComparisonDataSourceLinks);
 
             // ----- render the chart --------------------------------------------------- //
 
@@ -2272,12 +2291,17 @@ const renderMeasures = async () => {
 
                 defaultLinksSources = [];
                 defaultLinksSources.push(primarySources)
-                defaultLinksSources.push(secondarySources)                
+                defaultLinksSources.push(secondarySources)
+
+                defaultLinksDataSourceLinks = [
+                    ...(defaultPrimaryLinksMeasureMetadata[0]?.DataSourceLink ?? []),
+                    ...(defaultSecondaryMeasureMetadata[0]?.DataSourceLink ?? [])
+                ];
 
                 // ----- create dataset - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
                 renderTitleDescription(indicatorShortName, indicatorDesc);
-                renderAboutSources(defaultLinksAbout, defaultLinksSources);
+                renderAboutSources(defaultLinksAbout, defaultLinksSources, defaultLinksDataSourceLinks);
 
 
                 // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -2369,7 +2393,7 @@ const renderMeasures = async () => {
 
                 // ----- set measure info boxes - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-                renderAboutSources(selectedLinksAbout, selectedLinksSources);
+                renderAboutSources(selectedLinksAbout, selectedLinksSources, selectedLinksDataSourceLinks);
 
                 // ----- render the chart - - - - - - - - - - - - - - - - - - - - - - - - - - //
 

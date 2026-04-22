@@ -12,10 +12,10 @@ let selectedTableTimes = [];
 let selectedTableGeography = [];
 let aboutMeasures;
 let dataSources;
-let dataSourceLink;
 
 let measureAbout = ``;
 let measureSources = ``;
+let measureDataSourceLinks = [];
 let geoTable;
 let timeTable;
 let unreliabilityNotes;
@@ -54,11 +54,13 @@ let defaultTrendSources = [];
 let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
+let defaultMapDataSourceLinks;
 let defaultPrimaryLinksMeasureMetadata;
 let defaultSecondaryMeasureMetadata;
 let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources = [];
+let defaultLinksDataSourceLinks = [];
 
 let selectedMapMeasure;
 let selectedMapTime;
@@ -71,18 +73,22 @@ let showingComparisonTrend;
 
 let selectedMapAbout;
 let selectedMapSources;
+let selectedMapDataSourceLinks;
 let selectedMapMetadata;
 
 let selectedTrendAbout;
 let selectedTrendSources;
+let selectedTrendDataSourceLinks;
 let aqSelectedTrendMetadata;
 
 let selectedComparisonAbout = "";
 let selectedComparisonSources = [];
+let selectedComparisonDataSourceLinks = [];
 let selectedComparisonMetadata;
 
 let selectedLinksAbout;
 let selectedLinksSources = [];
+let selectedLinksDataSourceLinks = [];
 let selectedPrimaryMeasureMetadata;
 let selectedSecondaryMeasureMetadata;
 
@@ -265,35 +271,52 @@ const renderTitleDescription = (title, desc) => {
     });    
 }
 
+// Maps known source names to their URLs for inline hyperlinking
+
+const sourcesLinkMap = {
+    'New York City Community Health Survey (CHS)': 'https://placeholder-chs',
+    'Metropolitan Transportation Authority':        'https://www.mta.info/developers',
+    'New York City Housing and Vacancy Survey (NYCHVS)': 'https://placeholder-nychvs',
+    'American Community Survey':                    'https://www.census.gov/programs-surveys/acs/data.html'
+};
+
+const linkifySource = (text, overrideMap = {}) => {
+    if (!text) return text;
+    const combined = { ...sourcesLinkMap, ...overrideMap };
+    let result = text;
+    for (const [name, url] of Object.entries(combined)) {
+        if (result.includes(name)) {
+            result = result.replace(name, `<a href="${url}" target="_blank" rel="noopener noreferrer">${name}</a>`);
+        }
+    }
+    return result;
+};
+
 // Renders copy for the About the measures and the Data sources sections
 
-const renderAboutSources = (about, sources) => {
+const renderAboutSources = (about, sources, dataSourceLinks = null) => {
 
     console.log("**** renderAboutSources");
     dataSources.innerHTML = ''
+
+    // build override map from DataSourceLink entries: label is the source text to match
+    const overrideMap = {};
+    if (Array.isArray(dataSourceLinks)) {
+        dataSourceLinks.forEach(({ label, url }) => { overrideMap[label] = url; });
+    }
 
     // de-dupe data sources
     let type = typeof sources
 
     if (type === 'object') {
         let singleSource;
-        singleSource = sources.every( (val, i, arr) => val === arr[0] )  
-        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources
+        singleSource = sources.every( (val, i, arr) => val === arr[0] )
+        singleSource === true ? dataSources.innerHTML = linkifySource(sources[0], overrideMap) : dataSources.innerHTML = sources.map(s => linkifySource(s, overrideMap)).join(',')
     } else {
-        dataSources.innerHTML = sources
+        dataSources.innerHTML = linkifySource(sources, overrideMap)
     }
 
     aboutMeasures.innerHTML = about;
-
-    const dataSourceLinks = indicator?.DataSourceLink;
-    if (Array.isArray(dataSourceLinks) && dataSourceLinks.length) {
-        dataSourceLink.innerHTML = dataSourceLinks
-            .map(({label, url}) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${label} </a>`)
-            // <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            .join(' | ');
-    } else {
-        dataSourceLink.innerHTML = '';
-    }
 
 }
 
