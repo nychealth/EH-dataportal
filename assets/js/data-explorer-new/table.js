@@ -47,6 +47,27 @@ const getSelectedTableRows = (rows) => {
 };
 
 
+// Builds the regex search values for the current table time and geography filters.
+const getTableColumnSearchValues = (rows) => {
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+
+    return {
+        timeSearch: !selectedTableTimes.length
+            ? '(?!)'
+            : selectedTableTimes.length === availableTimes.length
+                ? ''
+                : `^(${selectedTableTimes.map(escapeRegexValue).join('|')})$`,
+        geoSearch: !selectedTableGeography.length
+            ? '(?!)'
+            : selectedTableGeography.length === availableGeos.length
+                ? ''
+                : `^(${selectedTableGeography.map(escapeRegexValue).join('|')})$`
+    };
+
+};
+
+
 // Returns the table-filter values implied by the current map dropdown selections.
 const getCurrentMapTableFilters = (rows) => {
 
@@ -265,22 +286,10 @@ const applyTableFilters = (rows) => {
     }
 
     const dataTable = $('#tableID').DataTable();
-    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
     const filteredRows = getSelectedTableRows(rows);
+    const { timeSearch, geoSearch } = getTableColumnSearchValues(rows);
 
     updateTableReliabilityNotes(filteredRows);
-
-    const timeSearch = !selectedTableTimes.length
-        ? '(?!)'
-        : selectedTableTimes.length === availableTimes.length
-            ? ''
-            : `^(${selectedTableTimes.map(escapeRegexValue).join('|')})$`;
-
-    const geoSearch = !selectedTableGeography.length
-        ? '(?!)'
-        : selectedTableGeography.length === availableGeos.length
-            ? ''
-            : `^(${selectedTableGeography.map(escapeRegexValue).join('|')})$`;
 
     dataTable.column(0).search(timeSearch, true, false);
     dataTable.column(1).search(geoSearch, true, false);
@@ -516,6 +525,7 @@ const renderTable = (tableData) => {
     // ----------------------------------------------------------------------- //
 
     const dataColumnsCount = filteredTableAqData.numCols();
+    const { timeSearch, geoSearch } = getTableColumnSearchValues(tableData);
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
         .filter(x => ![0, 1, 8].includes(x));
@@ -530,6 +540,18 @@ const renderTable = (tableData) => {
         scrollX: true,
         scrollCollapse: false,
         autoWidth: false,
+        searchCols: [
+            { search: timeSearch, regex: true, smart: false },
+            { search: geoSearch, regex: true, smart: false },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
         searching: true,
         paging: false,
         select: true,
@@ -636,8 +658,6 @@ const renderTable = (tableData) => {
     lockSummaryTableScrollBodyHeight();
 
     bindAreaOnlySearch(dataTable);
-
-    applyTableFilters(tableData);
 };
 
 // Binds click handlers that expand and collapse grouped summary-table rows.

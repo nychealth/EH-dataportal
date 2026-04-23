@@ -591,12 +591,14 @@ const renderMeasures = async () => {
         console.log("* showTable");
 
         overlay = 'table';
+        let didRenderTable = false;
 
         // Render the table on first access (lazy initialization for performance).
         // The placeholder text node in the template should not block first render.
         const tableContainer = document.getElementById('summary-table');
         if (tableData && (!tableContainer.querySelector('table') || tableNeedsRender)) {
             renderTable(tableData);
+            didRenderTable = true;
         } else if (tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
             renderTableFilterControls(tableData);
             applyTableFilters(tableData);
@@ -605,7 +607,7 @@ const renderMeasures = async () => {
         // updateChartPlotSize();
 
         const dataTables = $.fn.dataTable.tables(false);
-        if (dataTables.length) {
+        if (!didRenderTable && dataTables.length) {
             $(dataTables)
                 .DataTable()
                 .columns.adjust();
