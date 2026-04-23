@@ -578,6 +578,9 @@ const renderMeasures = async () => {
         const tableContainer = document.getElementById('summary-table');
         if (tableData && (!tableContainer.querySelector('table') || tableNeedsRender)) {
             renderTable(tableData);
+        } else if (tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+            renderTableFilterControls(tableData);
+            applyTableFilters(tableData);
         }
 
         updateChartPlotSize();

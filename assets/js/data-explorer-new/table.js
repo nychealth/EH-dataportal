@@ -24,6 +24,29 @@ const getTableFilterOptions = (rows) => {
 };
 
 
+// Escapes a string so it can be used safely inside a regex search.
+const escapeRegexValue = (value) => {
+
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+};
+
+
+// Returns the raw rows that match the current table filter state.
+const getSelectedTableRows = (rows) => {
+
+    const selectedTimes = new Set(selectedTableTimes);
+    const selectedGeos = new Set(selectedTableGeography);
+
+    return rows.filter(d => {
+        const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
+        const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
+        return matchesTime && matchesGeo;
+    });
+
+};
+
+
 // Returns the table-filter values implied by the current map dropdown selections.
 const getCurrentMapTableFilters = (rows) => {
 
@@ -31,13 +54,24 @@ const getCurrentMapTableFilters = (rows) => {
     const currentTime = timeLookup[TimePeriodID]?.TimePeriod;
     const currentGeo = GeoType;
 
+    const timeSelection = currentTime && availableTimes.includes(currentTime)
+        ? [currentTime]
+        : (availableTimes[0] ? [availableTimes[0]] : []);
+
+    const rowsForSelectedTime = timeSelection.length
+        ? rows.filter(d => timeSelection.includes(d.TimePeriod))
+        : rows;
+
+    const geoValuesForSelectedTime = [...new Set(rowsForSelectedTime.map(d => prettifyGeoType(d.GeoType)))];
+    const availableGeosForSelectedTime = geoTypes.filter(geo => geoValuesForSelectedTime.includes(geo));
+
     return {
-        timeSelection: currentTime && availableTimes.includes(currentTime)
-            ? [currentTime]
-            : (availableTimes[0] ? [availableTimes[0]] : []),
-        geoSelection: currentGeo && availableGeos.includes(currentGeo)
+        timeSelection,
+        geoSelection: currentGeo && availableGeosForSelectedTime.includes(currentGeo)
             ? [currentGeo]
-            : (availableGeos[0] ? [availableGeos[0]] : [])
+            : (availableGeosForSelectedTime[0]
+                ? [availableGeosForSelectedTime[0]]
+                : (availableGeos[0] ? [availableGeos[0]] : []))
     };
 
 };
@@ -77,10 +111,6 @@ const syncTableFiltersToMapSelection = (force = false) => {
         tableGeoFilterIsManual = false;
     }
 
-    if (didChange) {
-        tableNeedsRender = true;
-    }
-
     return didChange;
 
 };
@@ -118,6 +148,74 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
 };
 
 
+// Updates the notes block to reflect only the currently filtered rows.
+const updateTableReliabilityNotes = (rows) => {
+
+    const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(d => !d == "");
+
+    document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    document.getElementById("table-unreliability").classList.add('hide');
+
+    tableUnreliability.forEach(element => {
+        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>";
+        document.getElementById('table-unreliability').classList.remove('hide');
+    });
+
+};
+
+
+// Rebinds the built-in DataTables search box so it searches only the Area column.
+const bindAreaOnlySearch = (dataTable) => {
+
+    const filterInput = $('#tableID_filter input[type="search"]');
+
+    if (!filterInput.length) {
+        return;
+    }
+
+    filterInput.off('.DT');
+
+    filterInput.on('input.DT keyup.DT search.DT', function () {
+        // Clear the global search term and scope the UI search box to Area only.
+        dataTable.search('');
+        dataTable.column(8).search(this.value).draw();
+    });
+
+};
+
+
+// Applies the current table filters through DataTables' native search API.
+const applyTableFilters = (rows) => {
+
+    if (!$.fn.DataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    const dataTable = $('#tableID').DataTable();
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+    const filteredRows = getSelectedTableRows(rows);
+
+    updateTableReliabilityNotes(filteredRows);
+
+    const timeSearch = !selectedTableTimes.length
+        ? '(?!)'
+        : selectedTableTimes.length === availableTimes.length
+            ? ''
+            : `^(${selectedTableTimes.map(escapeRegexValue).join('|')})$`;
+
+    const geoSearch = !selectedTableGeography.length
+        ? '(?!)'
+        : selectedTableGeography.length === availableGeos.length
+            ? ''
+            : `^(${selectedTableGeography.map(escapeRegexValue).join('|')})$`;
+
+    dataTable.column(0).search(timeSearch, true, false);
+    dataTable.column(1).search(geoSearch, true, false);
+    dataTable.draw();
+
+};
+
+
 // Renders table checkbox controls and wires them to re-rendering.
 const renderTableFilterControls = (rows) => {
 
@@ -145,6 +243,12 @@ const renderTableFilterControls = (rows) => {
     // for the currently selected time period(s).
     if (selectedTableTimes.length) {
         selectedTableGeography = selectedTableGeography.filter(geo => dataGeos.includes(geo));
+
+        // Keep synced table filters on a valid geography when the current map geo
+        // is unavailable for the selected table time period.
+        if (!selectedTableGeography.length && dataGeos.length && !tableGeoFilterIsManual) {
+            selectedTableGeography = [GeoType && dataGeos.includes(GeoType) ? GeoType : dataGeos[0]];
+        }
     }
 
     const renderCheckboxes = (holder, options, selectedValues, checkboxClass, name, onChange, isDisabled = () => false) => {
@@ -192,8 +296,8 @@ const renderTableFilterControls = (rows) => {
 
         selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
         tableTimeFilterIsManual = true;
-        tableNeedsRender = true;
-        renderTable(rows);
+        renderTableFilterControls(rows);
+        applyTableFilters(rows);
     });
 
     renderCheckboxes(
@@ -213,8 +317,8 @@ const renderTableFilterControls = (rows) => {
 
             selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
             tableGeoFilterIsManual = true;
-            tableNeedsRender = true;
-            renderTable(rows);
+            renderTableFilterControls(rows);
+            applyTableFilters(rows);
         },
         (option) => selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
@@ -223,7 +327,8 @@ const renderTableFilterControls = (rows) => {
     if (syncButton) {
         syncButton.onclick = () => {
             syncTableFiltersToMapSelection(true);
-            renderTable(rows);
+            renderTableFilterControls(rows);
+            applyTableFilters(rows);
         };
     }
 
@@ -248,55 +353,14 @@ const renderTable = (tableData) => {
 
     renderTableFilterControls(tableData);
 
-    const selectedTimes = new Set(selectedTableTimes);
-    const selectedGeos = new Set(selectedTableGeography);
-
-    const filteredTableData = tableData.filter(d => {
-        const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
-        const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
-        return matchesTime && matchesGeo;
-    });
-
-    if (!selectedTableTimes.length) {
-        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">Select at least one time period to render the table.</div>';
-        document.getElementById("table-unreliability").classList.add('hide');
-        return;
-    }
-
-    if (!selectedTableGeography.length) {
-        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">Select at least one geography to render the table.</div>';
-        document.getElementById("table-unreliability").classList.add('hide');
-        return;
-    }
-
-    // Clear the table shell entirely when no rows are available for the current indicator.
-    if (!filteredTableData || filteredTableData.length === 0) {
-        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">No rows match the selected time and geography filters.</div>';
-        document.getElementById("table-unreliability").classList.add('hide');
-        return;
-    }
-
-    // ----------------------------------------------------------------------- //
-    // unreliability notes (unchanged)
-    // ----------------------------------------------------------------------- //
-
-    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
-
-    document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "
-    document.getElementById("table-unreliability").classList.add('hide')
-
-    // Print each distinct unreliability note once above the table.
-    table_unreliability.forEach(element => {
-        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>";
-        document.getElementById('table-unreliability').classList.remove('hide')
-    });
+    updateTableReliabilityNotes(getSelectedTableRows(tableData));
 
     // ----------------------------------------------------------------------- //
     // table column alignment (unchanged)
     // ----------------------------------------------------------------------- //
 
     const measureAlignMap = new Map();
-    const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
+    const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
     measures.forEach(m => measureAlignMap.set(m, "r"));
     const measureAlignObj = Object.fromEntries(measureAlignMap);
 
@@ -304,8 +368,9 @@ const renderTable = (tableData) => {
     // pivot data (UNCHANGED)
     // ----------------------------------------------------------------------- //
 
-    const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
+    const filteredTableAqData = aq.from(tableData)
+        .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
+        .groupby("TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
         // Build a grouped Area label that optionally appends borough context for nested geographies.
         .derive({
@@ -319,7 +384,7 @@ const renderTable = (tableData) => {
             })
         })
         .relocate([
-            "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
+            "TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
             aq.matches(/everyday/i),
             aq.matches(/sometimes/i),
@@ -379,14 +444,15 @@ const renderTable = (tableData) => {
 
     const dataColumnsCount = filteredTableAqData.numCols();
 
-    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
+    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
+        .filter(x => ![0, 1, 8].includes(x));
 
     const sortBy = dataColumnsCount - 1;
 
     const groupColumnTime = 0;
-    const groupColumnGeo = 1;
+    const groupColumnGeo = 2;
 
-    $('#tableID').DataTable({
+    const dataTable = $('#tableID').DataTable({
         scrollY: 500,
         scrollX: true,
         scrollCollapse: true,
@@ -403,13 +469,13 @@ const renderTable = (tableData) => {
         bInfo: false,
         fixedHeader: true,
         order: [[sortBy, 'desc']],
-        orderFixed: [[0, 'desc'], [3, 'asc']],
+        orderFixed: [[0, 'desc'], [4, 'asc']],
         columnDefs: [
-            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
+            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6, 7] },
             { searchable: false, targets: [...notSearchCols] },
             { type: 'natural', targets: ['_all'] },
             {
-                targets: 8,
+                targets: 9,
                 render: function (data, type) {
                     // Strip formatting so numeric sorts use the raw number rather than display text.
                     if (type === 'sort' || type === 'type') {
@@ -421,7 +487,7 @@ const renderTable = (tableData) => {
                 }
             },
             {
-                targets: 7,
+                targets: 8,
                 render: function (data, type) {
                     // Inject line breaks only for display mode so sorting/searching sees plain text.
                     if (type === 'display') {
@@ -438,7 +504,7 @@ const renderTable = (tableData) => {
         dom: 'rt<"bottom"flp>',
         createdRow: function (row, data) {
             const time = data[0];
-            const GeoTypeDesc = data[1];
+            const GeoTypeDesc = data[2];
             // Store grouping metadata on each row so drawCallback can rebuild collapsible headers.
             if (time && GeoTypeDesc) {
                 row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`);
@@ -450,7 +516,7 @@ const renderTable = (tableData) => {
             const api = this.api();
             const data = api.rows({page:'current'}).data();
             const rows = api.rows({page:'current'}).nodes();
-            const visibleColumnsCount = dataColumnsCount - 7;
+            const visibleColumnsCount = dataColumnsCount - 8;
 
             let last = null;
             let lastTime = null;
@@ -489,6 +555,10 @@ const renderTable = (tableData) => {
             handleToggle();
         }
     });
+
+    bindAreaOnlySearch(dataTable);
+
+    applyTableFilters(tableData);
 };
 
 // Binds click handlers that expand and collapse grouped summary-table rows.
