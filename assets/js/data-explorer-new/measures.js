@@ -483,12 +483,16 @@ const renderMeasures = async () => {
     // collect unique time period labels available in the data for the table tab
     const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
 
-    // Seed the table with the most recent available time period by default.
-    tableTimes.forEach((time, index) => {
-        if (index === 0) {
-            selectedTableTimes = [time];
-        }
-    });
+    // Default the table to the currently selected time period when available.
+    const selectedTableTime = timeLookup[TimePeriodID]?.TimePeriod;
+
+    if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
+        selectedTableTimes = [selectedTableTime];
+    } else if (tableTimes.length) {
+        selectedTableTimes = [tableTimes[0]];
+    } else {
+        selectedTableTimes = [];
+    }
 
 
     // ----- geo types --------------------------------------------------- //
@@ -499,10 +503,20 @@ const renderMeasures = async () => {
     // filtering through geoTypes preserves canonical rank order instead of data insertion order
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
 
-    // Seed the table with every available prettified geography in rank order.
-    dropdownTableGeoTypes.forEach(geo => {
-        selectedTableGeography.push(geo);
-    });
+    // Default the table to the currently selected geography when available.
+    if (GeoType && dropdownTableGeoTypes.includes(GeoType)) {
+        selectedTableGeography = [GeoType];
+    } else if (dropdownTableGeoTypes.length) {
+        selectedTableGeography = [dropdownTableGeoTypes[0]];
+    } else {
+        selectedTableGeography = [];
+    }
+
+    // Force first table-tab visit to rebuild table and filter controls for this indicator.
+    const tableContainer = document.getElementById('summary-table');
+    if (tableContainer) {
+        tableContainer.innerHTML = '';
+    }
 
 
     // ===== populate per-tab measure arrays ================================================== //
@@ -555,11 +569,21 @@ const renderMeasures = async () => {
 
         overlay = 'table';
 
+        // Render the table on first access (lazy initialization for performance).
+        // The placeholder text node in the template should not block first render.
+        const tableContainer = document.getElementById('summary-table');
+        if (tableData && !tableContainer.querySelector('table')) {
+            renderTable(tableData);
+        }
+
         updateChartPlotSize();
 
-        $($.fn.dataTable.tables(false))
-            .DataTable()
-            .columns.adjust().draw();
+        const dataTables = $.fn.dataTable.tables(false);
+        if (dataTables.length) {
+            $(dataTables)
+                .DataTable()
+                .columns.adjust().draw();
+        }
 
     };
 

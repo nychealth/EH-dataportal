@@ -11,20 +11,190 @@
 // render table
 // ----------------------------------------------------------------------- //
 
+// Returns the available time period and geography filter values for the table.
+const getTableFilterOptions = (rows) => {
+
+    const availableTimes = [...new Set(rows.map(d => d.TimePeriod))];
+
+    const geoValues = [...new Set(rows.map(d => prettifyGeoType(d.GeoType)))];
+    const availableGeos = geoTypes.filter(geo => geoValues.includes(geo));
+
+    return { availableTimes, availableGeos };
+
+};
+
+
+// Summarizes the current table filter state in the collapsed toggle button.
+const updateTableFilterSummary = (availableTimes, availableGeos) => {
+
+    const summary = document.getElementById('tableFilterSummary');
+
+    if (!summary) {
+        return;
+    }
+
+    const timeSummary = !selectedTableTimes.length
+        ? 'No time periods'
+        : selectedTableTimes.length === availableTimes.length
+            ? 'All time periods'
+            : selectedTableTimes.length === 1
+                ? selectedTableTimes[0]
+                : `${selectedTableTimes.length} time periods`;
+
+    const geoSummary = !selectedTableGeography.length
+        ? 'No geographies'
+        : selectedTableGeography.length === availableGeos.length
+            ? 'All geographies'
+            : selectedTableGeography.length === 1
+                ? selectedTableGeography[0]
+                : `${selectedTableGeography.length} geographies`;
+
+    summary.textContent = `${timeSummary} | ${geoSummary}`;
+
+};
+
+
+// Renders table checkbox controls and wires them to re-rendering.
+const renderTableFilterControls = (rows) => {
+
+    const timeHolder = document.getElementById('tableTimeCheckboxes');
+    const geoHolder = document.getElementById('tableGeoCheckboxes');
+
+    if (!timeHolder || !geoHolder) {
+        return;
+    }
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+    const filteredTableTimeData = selectedTableTimes.length
+        ? rows.filter(d => selectedTableTimes.includes(d.TimePeriod))
+        : [];
+
+    const dataGeos = selectedTableTimes.length
+        ? [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))]
+        : availableGeos;
+
+    // Keep only valid selections when indicator data changes.
+    selectedTableTimes = selectedTableTimes.filter(time => availableTimes.includes(time));
+    selectedTableGeography = selectedTableGeography.filter(geo => availableGeos.includes(geo));
+
+    // Match the old explorer behavior by muting geography options that are unavailable
+    // for the currently selected time period(s).
+    if (selectedTableTimes.length) {
+        selectedTableGeography = selectedTableGeography.filter(geo => dataGeos.includes(geo));
+    }
+
+    const renderCheckboxes = (holder, options, selectedValues, checkboxClass, name, onChange, isDisabled = () => false) => {
+
+        holder.innerHTML = '';
+
+        options.forEach(option => {
+            const label = document.createElement('label');
+            const unavailable = isDisabled(option);
+
+            label.className = `btn btn-light dropdown-item text-left ${checkboxClass}`;
+            label.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
+
+            if (unavailable) {
+                label.classList.add('disabled');
+            }
+
+            const input = document.createElement('input');
+            input.className = 'largerCheckbox';
+            input.type = 'checkbox';
+            input.name = name;
+            input.value = option;
+            input.checked = selectedValues.includes(option);
+            input.disabled = unavailable;
+
+            input.addEventListener('change', (event) => {
+                onChange(event.target.value, event.target.checked);
+            });
+
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(` ${option}`));
+            holder.appendChild(label);
+        });
+
+    };
+
+    renderCheckboxes(timeHolder, availableTimes, selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
+        const nextTimes = new Set(selectedTableTimes);
+
+        if (checked) {
+            nextTimes.add(value);
+        } else {
+            nextTimes.delete(value);
+        }
+
+        selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
+        renderTable(rows);
+    });
+
+    renderCheckboxes(
+        geoHolder,
+        availableGeos,
+        selectedTableGeography,
+        'checkbox-geo',
+        'table-geo',
+        (value, checked) => {
+            if (checked) {
+                if (!selectedTableGeography.includes(value)) {
+                    selectedTableGeography.push(value);
+                }
+            } else {
+                selectedTableGeography = selectedTableGeography.filter(geo => geo !== value);
+            }
+
+            selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
+            renderTable(rows);
+        },
+        (option) => selectedTableTimes.length > 0 && !dataGeos.includes(option)
+    );
+
+    updateTableFilterSummary(availableTimes, availableGeos);
+
+};
+
 // Builds the summary table HTML and activates the DataTables wrapper around it.
 const renderTable = (tableData) => {
 
     console.log("** renderTable");
 
+    if ($.fn.DataTable.isDataTable('#tableID')) {
+        $('#tableID').DataTable().destroy();
+    }
+
     // ----------------------------------------------------------------------- //
-    // prep data (REMOVED time + geo filtering)
+    // prep data (table filters)
     // ----------------------------------------------------------------------- //
 
-    const filteredTableData = tableData;
+    renderTableFilterControls(tableData);
+
+    const selectedTimes = new Set(selectedTableTimes);
+    const selectedGeos = new Set(selectedTableGeography);
+
+    const filteredTableData = tableData.filter(d => {
+        const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
+        const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
+        return matchesTime && matchesGeo;
+    });
+
+    if (!selectedTableTimes.length) {
+        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">Select at least one time period to render the table.</div>';
+        document.getElementById("table-unreliability").classList.add('hide');
+        return;
+    }
+
+    if (!selectedTableGeography.length) {
+        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">Select at least one geography to render the table.</div>';
+        document.getElementById("table-unreliability").classList.add('hide');
+        return;
+    }
 
     // Clear the table shell entirely when no rows are available for the current indicator.
     if (!filteredTableData || filteredTableData.length === 0) {
-        document.getElementById('summary-table').innerHTML = '';
+        document.getElementById('summary-table').innerHTML = '<div class="p-2 fs-sm">No rows match the selected time and geography filters.</div>';
+        document.getElementById("table-unreliability").classList.add('hide');
         return;
     }
 

@@ -271,7 +271,18 @@ const selectIndicator = async (id) => {
         return;
     }
 
-    // SPA path — dismiss modal and reload in place
+    // Check if we're switching to a different topic (pathname changed).
+    // If so, navigate to the new topic with the indicator ID instead of SPA flow.
+    const currentPathname = new URL(window.location).pathname;
+    const destinationPathname = new URL(indicatorSelectDestination, window.location).pathname;
+
+    if (currentPathname !== destinationPathname) {
+        // Topic changed — full page navigation to the new topic
+        window.location.href = indicatorSelectDestination + '?id=' + Number(id);
+        return;
+    }
+
+    // SPA path — same topic, dismiss modal and reload in place
 
     dismissIndicatorModal();
 

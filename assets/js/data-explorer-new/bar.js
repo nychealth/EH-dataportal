@@ -18,11 +18,16 @@ const renderBar = (
     console.log("metadata [renderBar]", metadata);
     console.log("geo [renderBar]", geography);
 
+    // Accept either a raw backend geotype or the prettified UI label.
+    const barData = data.filter(item => {
+        return item.GeoType === geography || prettifyGeoType(item.GeoType) === geography;
+    });
+
     // ----------------------------------------------------------------------- //
     // get unique time in data
     // ----------------------------------------------------------------------- //
     
-    const barTimes =  [...new Set(data.map(item => item.TimePeriod))];
+    const barTimes =  [...new Set(barData.map(item => item.TimePeriod))];
 
     console.log("barTimes [bar.js]", barTimes);
 
@@ -30,7 +35,7 @@ const renderBar = (
     // set metadata
     // ----------------------------------------------------------------------- //
 
-    let barGeoType            = data[0]?.GeoType;
+    let barGeoType            = barData[0]?.GeoType;
     let barMeasurementType    = metadata[0]?.MeasurementType;
     let barTime = barTimes[0];
     let displayType;
@@ -47,7 +52,7 @@ const renderBar = (
     // Determine data parameters that inform bar style
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
+    const hasCI = barData.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
     console.log('has CI [bar.js]', hasCI)
 
     // Switch units and subtitle formatting when the measure is percentage-based.
@@ -380,7 +385,7 @@ const renderBar = (
             "subtitleFontSize": 10
         },
         "data": {
-            "values": data,
+            "values": barData,
             "format": {"parse": {"Value": "number"}}
         },
         "config": {
@@ -392,7 +397,6 @@ const renderBar = (
         },
         "autosize": {"type": "fit", "contains": "padding"},
         "transform": [
-            {"filter": `datum.GeoType === '${geography}'`},
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
             {
                 "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : datum.Value * .95", // hard set for test

@@ -1,3 +1,38 @@
+<style>
+    #tableFilterPanel .de-table-optionbox {
+        max-height: 12rem;
+        overflow-y: auto;
+        background: #f6fafb;
+    }
+
+    #tableFilterPanel .checkbox-time,
+    #tableFilterPanel .checkbox-geo {
+        display: block;
+        margin-bottom: 0;
+        color: #1f2328;
+        font-size: 0.875rem;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    #tableFilterPanel .checkbox-time.disabled,
+    #tableFilterPanel .checkbox-geo.disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+
+    #tableFilterPanel .largerCheckbox {
+        margin-right: 0.35rem;
+        vertical-align: middle;
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    #tableFilterToggle {
+        text-decoration: none;
+    }
+</style>
+
 <!-- Tab content -->
 <div class="tab-content bg-white pt-0" id="v-pills-tabContent">
 
@@ -32,6 +67,30 @@
             </button>
         </div>
         <div class="pt-md-0">
+
+            <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end">
+                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle" data-toggle="collapse" data-target="#tableFilterPanel" aria-expanded="false" aria-controls="tableFilterPanel">
+                    <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
+                    Table filters
+                    <span id="tableFilterSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
+                </button>
+            </div>
+
+            <div id="tableFilterPanel" class="collapse px-2 pb-2">
+                <div class="border rounded bg-white p-2">
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0">
+                            <p class="fs-xs mb-1">Time periods</p>
+                            <div id="tableTimeCheckboxes" class="border de-table-optionbox"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="fs-xs mb-1">Geographies</p>
+                            <div id="tableGeoCheckboxes" class="border de-table-optionbox"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div id="summary-table" style="width:100%;">
                 DE table goes here
