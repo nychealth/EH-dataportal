@@ -24,6 +24,68 @@ const getTableFilterOptions = (rows) => {
 };
 
 
+// Returns the table-filter values implied by the current map dropdown selections.
+const getCurrentMapTableFilters = (rows) => {
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+    const currentTime = timeLookup[TimePeriodID]?.TimePeriod;
+    const currentGeo = GeoType;
+
+    return {
+        timeSelection: currentTime && availableTimes.includes(currentTime)
+            ? [currentTime]
+            : (availableTimes[0] ? [availableTimes[0]] : []),
+        geoSelection: currentGeo && availableGeos.includes(currentGeo)
+            ? [currentGeo]
+            : (availableGeos[0] ? [availableGeos[0]] : [])
+    };
+
+};
+
+
+// Syncs table filters back to the current map dropdown selections.
+const syncTableFiltersToMapSelection = (force = false) => {
+
+    if (!tableData || !tableData.length) {
+        return false;
+    }
+
+    const { timeSelection, geoSelection } = getCurrentMapTableFilters(tableData);
+    let didChange = false;
+
+    if (force || !tableTimeFilterIsManual) {
+        const sameTimeSelection = selectedTableTimes.length === timeSelection.length &&
+            selectedTableTimes.every((time, index) => time === timeSelection[index]);
+
+        if (!sameTimeSelection) {
+            selectedTableTimes = timeSelection;
+            didChange = true;
+        }
+
+        tableTimeFilterIsManual = false;
+    }
+
+    if (force || !tableGeoFilterIsManual) {
+        const sameGeoSelection = selectedTableGeography.length === geoSelection.length &&
+            selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
+
+        if (!sameGeoSelection) {
+            selectedTableGeography = geoSelection;
+            didChange = true;
+        }
+
+        tableGeoFilterIsManual = false;
+    }
+
+    if (didChange) {
+        tableNeedsRender = true;
+    }
+
+    return didChange;
+
+};
+
+
 // Summarizes the current table filter state in the collapsed toggle button.
 const updateTableFilterSummary = (availableTimes, availableGeos) => {
 
@@ -49,7 +111,9 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
                 ? selectedTableGeography[0]
                 : `${selectedTableGeography.length} geographies`;
 
-    summary.textContent = `${timeSummary} | ${geoSummary}`;
+    const syncState = tableTimeFilterIsManual || tableGeoFilterIsManual ? 'Custom' : 'Synced';
+
+    summary.textContent = `${timeSummary} | ${geoSummary} | ${syncState}`;
 
 };
 
@@ -127,6 +191,8 @@ const renderTableFilterControls = (rows) => {
         }
 
         selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
+        tableTimeFilterIsManual = true;
+        tableNeedsRender = true;
         renderTable(rows);
     });
 
@@ -146,10 +212,20 @@ const renderTableFilterControls = (rows) => {
             }
 
             selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
+            tableGeoFilterIsManual = true;
+            tableNeedsRender = true;
             renderTable(rows);
         },
         (option) => selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
+
+    const syncButton = document.getElementById('tableFilterSyncButton');
+    if (syncButton) {
+        syncButton.onclick = () => {
+            syncTableFiltersToMapSelection(true);
+            renderTable(rows);
+        };
+    }
 
     updateTableFilterSummary(availableTimes, availableGeos);
 
@@ -163,6 +239,8 @@ const renderTable = (tableData) => {
     if ($.fn.DataTable.isDataTable('#tableID')) {
         $('#tableID').DataTable().destroy();
     }
+
+    tableNeedsRender = false;
 
     // ----------------------------------------------------------------------- //
     // prep data (table filters)

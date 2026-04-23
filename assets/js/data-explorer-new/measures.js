@@ -512,6 +512,10 @@ const renderMeasures = async () => {
         selectedTableGeography = [];
     }
 
+    tableTimeFilterIsManual = false;
+    tableGeoFilterIsManual = false;
+    tableNeedsRender = true;
+
     // Force first table-tab visit to rebuild table and filter controls for this indicator.
     const tableContainer = document.getElementById('summary-table');
     if (tableContainer) {
@@ -572,7 +576,7 @@ const renderMeasures = async () => {
         // Render the table on first access (lazy initialization for performance).
         // The placeholder text node in the template should not block first render.
         const tableContainer = document.getElementById('summary-table');
-        if (tableData && !tableContainer.querySelector('table')) {
+        if (tableData && (!tableContainer.querySelector('table') || tableNeedsRender)) {
             renderTable(tableData);
         }
 

@@ -12,6 +12,9 @@
 
 let selectedTableTimes = [];
 let selectedTableGeography = [];
+let tableTimeFilterIsManual = false;
+let tableGeoFilterIsManual = false;
+let tableNeedsRender = false;
 let aboutMeasures;
 let dataSources;
 

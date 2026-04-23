@@ -252,6 +252,10 @@ const handleSelection = (type, value) => {
 
     updateAllMenus(ind);
 
+    if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+        syncTableFiltersToMapSelection();
+    }
+
     // push full state to URL
 
     pushSelectionToURL();
