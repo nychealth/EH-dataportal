@@ -440,14 +440,31 @@ const clickLinksToggle = (e) => {
 // tab enable / disable helpers
 // ----------------------------------------------------------------------- //
 
+// Resolves tab button references on demand for startup paths that run before
+// app.js assigns the shared globals in its DOMContentLoaded handler.
+const resolveTabReferences = () => {
+    tabBar ??= document.querySelector('#v-pills-bar-tab');
+    tabTrends ??= document.querySelector('#v-pills-trends-tab');
+    tabCorrelate ??= document.querySelector('#v-pills-correlate-tab');
+    tabTable ??= document.querySelector('#v-pills-table-tab');
+};
+
 // Marks a Bootstrap tab as disabled when that view has no usable data.
 const disableTab = (el) => {
+    if (!el) {
+        return;
+    }
+
     el.classList.add('disabled');
     el.setAttribute('aria-disabled', true);
 };
 
 // Re-enables a Bootstrap tab when the current indicator supports that view.
 const enableTab = (el) => {
+    if (!el) {
+        return;
+    }
+
     el.classList.remove('disabled');
     el.setAttribute('aria-disabled', false);
 };
@@ -461,6 +478,8 @@ const enableTab = (el) => {
 const renderMeasures = async () => {
 
     console.log("* renderMeasures");
+
+    resolveTabReferences();
 
     selectedTableTimes = [];
     selectedTableGeography = [];
