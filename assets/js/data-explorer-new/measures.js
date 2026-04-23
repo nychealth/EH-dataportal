@@ -589,7 +589,7 @@ const renderMeasures = async () => {
         if (dataTables.length) {
             $(dataTables)
                 .DataTable()
-                .columns.adjust().draw();
+                .columns.adjust();
         }
 
     };

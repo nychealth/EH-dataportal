@@ -12,6 +12,7 @@
 
 let selectedTableTimes = [];
 let selectedTableGeography = [];
+let tableAreaSearchValue = '';
 let tableTimeFilterIsManual = false;
 let tableGeoFilterIsManual = false;
 let tableNeedsRender = false;

@@ -253,6 +253,10 @@ const handleSelection = (type, value) => {
     updateAllMenus(ind);
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+        if (typeof clearTableAreaSearch === 'function') {
+            clearTableAreaSearch();
+        }
+
         syncTableFiltersToMapSelection();
     }
 

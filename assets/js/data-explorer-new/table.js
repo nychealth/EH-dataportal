@@ -164,6 +164,71 @@ const updateTableReliabilityNotes = (rows) => {
 };
 
 
+// Keeps the visible DataTables search box aligned with the Area column-search state.
+const syncTableAreaSearchInput = () => {
+
+    const filterInput = $('#tableID_filter input[type="search"]');
+
+    if (!filterInput.length) {
+        return;
+    }
+
+    filterInput.val(tableAreaSearchValue);
+    filterInput.data('areaOnlySearchValue', tableAreaSearchValue);
+
+};
+
+
+// Applies the Area-only search term to DataTables, optionally without drawing immediately.
+const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
+
+    tableAreaSearchValue = nextValue || '';
+
+    syncTableAreaSearchInput();
+
+    dataTable.search('');
+    dataTable.column(8).search(tableAreaSearchValue);
+
+    if (shouldDraw) {
+        dataTable.draw();
+    }
+
+};
+
+
+// Clears the Area-only search so dropdown-driven redraws do not keep a stale hidden filter.
+const clearTableAreaSearch = () => {
+
+    tableAreaSearchValue = '';
+
+    if ($.fn.DataTable.isDataTable('#tableID')) {
+        const dataTable = $('#tableID').DataTable();
+        dataTable.search('');
+        dataTable.column(8).search('');
+    }
+
+    syncTableAreaSearchInput();
+
+};
+
+
+// Locks the scroll body to a consistent height so redraws do not keep widening the wrapper.
+const lockSummaryTableScrollBodyHeight = () => {
+
+    const scrollBody = document.querySelector('#tableID_wrapper .dataTables_scrollBody');
+
+    if (!scrollBody) {
+        return;
+    }
+
+    scrollBody.style.height = '500px';
+    scrollBody.style.minHeight = '500px';
+    scrollBody.style.maxHeight = '500px';
+    scrollBody.style.overflowY = 'scroll';
+
+};
+
+
 // Rebinds the built-in DataTables search box so it searches only the Area column.
 const bindAreaOnlySearch = (dataTable) => {
 
@@ -175,11 +240,19 @@ const bindAreaOnlySearch = (dataTable) => {
 
     filterInput.off('.DT');
 
-    filterInput.on('input.DT keyup.DT search.DT', function () {
-        // Clear the global search term and scope the UI search box to Area only.
-        dataTable.search('');
-        dataTable.column(8).search(this.value).draw();
+    filterInput.on('input.DT search.DT', function () {
+        const nextValue = this.value || '';
+
+        // Skip redundant redraws when the browser fires multiple search-related events.
+        if ($(this).data('areaOnlySearchValue') === nextValue) {
+            return;
+        }
+
+        // Scope the shared DataTables search box to Area only.
+        setTableAreaSearch(dataTable, nextValue);
     });
+
+    syncTableAreaSearchInput();
 
 };
 
@@ -455,7 +528,8 @@ const renderTable = (tableData) => {
     const dataTable = $('#tableID').DataTable({
         scrollY: 500,
         scrollX: true,
-        scrollCollapse: true,
+        scrollCollapse: false,
+        autoWidth: false,
         searching: true,
         paging: false,
         select: true,
@@ -514,6 +588,8 @@ const renderTable = (tableData) => {
         drawCallback: function () {
 
             const api = this.api();
+            // Remove previously injected group rows before rebuilding them for this draw.
+            $(api.table().body()).find('tr.group').remove();
             const data = api.rows({page:'current'}).data();
             const rows = api.rows({page:'current'}).nodes();
             const visibleColumnsCount = dataColumnsCount - 8;
@@ -553,8 +629,11 @@ const renderTable = (tableData) => {
 
             // ✅ THIS is what you were missing
             handleToggle();
+            syncTableAreaSearchInput();
         }
     });
+
+    lockSummaryTableScrollBodyHeight();
 
     bindAreaOnlySearch(dataTable);
 
