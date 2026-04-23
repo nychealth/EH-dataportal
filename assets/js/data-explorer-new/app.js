@@ -163,11 +163,33 @@ const normalizeLegacyOverlayURL = () => {
 // Tab clicks pass false (default) — the map doesn't need to redraw just because
 // the overlay pane switches.
 
+let pendingTableOverlayToken = 0;
+
+// Give the map one full paint before starting heavy table work.
+const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
+
+    pendingTableOverlayToken += 1;
+    const token = pendingTableOverlayToken;
+
+    Promise.resolve(afterRender)
+        .catch(() => null)
+        .then(() => {
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    if (overlay === 'table' && token === pendingTableOverlayToken) {
+                        showTable();
+                    }
+                });
+            });
+        });
+
+};
+
 const renderCurrentView = (updateMap = false) => {
 
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
-    if (updateMap) showMap();
+    const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
     // route the current overlay value to the matching show* renderer
     switch (overlay) {
@@ -191,7 +213,11 @@ const renderCurrentView = (updateMap = false) => {
             break;
 
         case 'table':
-            showTable();
+            if (updateMap) {
+                scheduleTableOverlayRender(mapRenderPromise);
+            } else {
+                showTable();
+            }
             break;
 
         case 'map':
@@ -272,6 +298,7 @@ window.addEventListener('popstate', async (event) => {
     if (ind) updateAllMenus(ind);
 
     renderCurrentView(true);
+
 });
 
 

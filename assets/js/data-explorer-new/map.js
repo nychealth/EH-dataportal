@@ -170,7 +170,7 @@ const renderMap = (
     let map = currentMap;
 
 
-    fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
+    const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
         .then(response => response.json())
         .then(topology => {
             
@@ -300,7 +300,7 @@ const renderMap = (
 
 
 
-        })
+        });
 
 
     // --- Find the min and max values in your dataset ---
@@ -458,5 +458,7 @@ const renderMap = (
     // downloadTable.print()
 
     // CSVforDownload = downloadTable.toCSV()
+
+    return mapRenderPromise;
 
 }

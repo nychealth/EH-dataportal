@@ -602,7 +602,7 @@ const renderMeasures = async () => {
             applyTableFilters(tableData);
         }
 
-        updateChartPlotSize();
+        // updateChartPlotSize();
 
         const dataTables = $.fn.dataTable.tables(false);
         if (dataTables.length) {
@@ -641,7 +641,7 @@ const renderMeasures = async () => {
 
         // --- render the Leaflet map only --- //
 
-        renderMap(filteredMapData, metadata);
+        return renderMap(filteredMapData, metadata);
 
     };
 
