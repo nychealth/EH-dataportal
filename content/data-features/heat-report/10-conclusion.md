@@ -5,29 +5,27 @@ draft: false
 
 ## Conclusion
 
-Heat contributes to the deaths of more than 500 New Yorkers, on average, each year during the warm season of May through September. In the most recent five-year period (2018-2022) there were an estimated 525 deaths annually. Inequities by race and income persist in the people and neighborhoods most impacted. Deaths across all races, however, were more common at home, underscoring the importance of access to and affordability of home cooling to prevent death.
+Heat contributes to the deaths of approximately 500 New Yorkers, on average, each year during the warm season of May through September. Inequities by race and income persist in the people and neighborhoods most impacted. Deaths across all races, however, were more common at home, underscoring the importance of access to and affordability of home cooling to prevent death.
 
 To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:
 
 - Ensure equitable access to life-saving residential cooling for all New Yorkers
-  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>.
-  - Consider mandates on property owners to provide tenants with AC without additional surcharges.
-  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s  <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
+  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 of 2026 “Cool Homes for All” passed by City Council in December 2025. Parallel efforts to address energy insecurity will also be needed.
+  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s  <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.Expand HEAP funding for cooling through City and State resources to meet the need throughout the summer months.
   - Protect the electrical grid, which can be strained during hot weather, including by discouraging excess cooling in offices and commercial establishments.
-- Work with the State and utilities to make summertime utility costs affordable for low- and middle-income New Yorkers so they can use AC to protect themselves from the heat.
-  - Make energy prices affordable for all New Yorkers through affordable energy rates for low- and middle-income customers.
+- Work with the State and utilities to <a href="https://e2h2hernandez.com/wp-content/uploads/2025/12/Powering-Up-for-Health-Policy-Solutions-for-EI-in-NYC-E2H2_Report_final.pdf">reduce energy insecurity and make utility costs affordable</a> for low- and middle-income New Yorkers so they can use AC to protect themselves from the heat.
+  - Make energy, including clean energy, affordable for low- and middle-income customers.
   - Provide subsidies to help with summer utility costs.
-  - Prohibit electricity disconnections during hot weather, even if bills are unpaid.
-  - Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid.
+  - Prohibit utility shut-offs during hot weather, even if bills are unpaid.
+  - Improve funding for and access to weatherization and energy efficient home improvements to help reduce costs and decrease pressure on the electrical grid.
 - Invest in local resiliency to make all NYC neighborhoods and residents cooler and safer.
-  - Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs. For example, expanding the city’s tree canopy coverage to 30% (2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>).
-  - Support community-based organizations (CBOs) working to reduce the health impacts of climate change.
-  - Include CBOs and residents in decision-making about investments in community infrastructure and public space.
+  - Implement green infrastructure projects, including planting trees and other greenery. The City is aiming to <a href="https://www.urbanforestplan.nyc/">expand tree canopy coverage to 30% (NYC Urban Forest Plan).</a>
+  - Support community-based organizations (CBOs) working to reduce the health impacts of climate change and include CBOs and residents in decision-making about investments in community infrastructure and public space.
   - Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.
   - Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 - Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather, such as by setting occupational heat safety standards.
 
-More data and information about heat, climate, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
+More data and information about heat, climate, energy insecurity and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
 <div id="note-on-years-of-data-included">
 <div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2023 and 2024 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available; however, 2023 heat-stress numbers are less likely to change and are included in all heat-stress tables (2014-2023). The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2022 the most recent available year of data. </div>
