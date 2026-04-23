@@ -222,7 +222,7 @@ const clearTableAreaSearch = () => {
 
     tableAreaSearchValue = '';
 
-    if ($.fn.DataTable.isDataTable('#tableID')) {
+    if ($.fn.dataTable.isDataTable('#tableID')) {
         const dataTable = $('#tableID').DataTable();
         dataTable.search('');
         dataTable.column(8).search('');
@@ -281,7 +281,7 @@ const bindAreaOnlySearch = (dataTable) => {
 // Applies the current table filters through DataTables' native search API.
 const applyTableFilters = (rows) => {
 
-    if (!$.fn.DataTable.isDataTable('#tableID')) {
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
         return;
     }
 
@@ -423,7 +423,7 @@ const renderTable = (tableData) => {
 
     console.log("** renderTable");
 
-    if ($.fn.DataTable.isDataTable('#tableID')) {
+    if ($.fn.dataTable.isDataTable('#tableID')) {
         $('#tableID').DataTable().destroy();
     }
 
