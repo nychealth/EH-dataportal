@@ -24,13 +24,6 @@ indicators:
       - 2466
       - 2467
       - 2468
-      - 2469
-      - 2470
-      - 2471
-      - 2472
-      - 2473
-      - 2474
-      - 2475
 
 related:
   - title: "Economic stability creates health"
