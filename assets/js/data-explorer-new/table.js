@@ -14,8 +14,10 @@
 // Returns the available time period and geography filter values for the table.
 const getTableFilterOptions = (rows) => {
 
+    // Time labels come straight from the joined table rows.
     const availableTimes = [...new Set(rows.map(d => d.TimePeriod))];
 
+    // Geography options are normalized to the same pretty labels used in the UI controls.
     const geoValues = [...new Set(rows.map(d => prettifyGeoType(d.GeoType)))];
     const availableGeos = geoTypes.filter(geo => geoValues.includes(geo));
 
@@ -78,10 +80,12 @@ const getCurrentMapTableFilters = (rows) => {
     const currentTime = timeLookup[TimePeriodID]?.TimePeriod;
     const currentGeo = GeoType;
 
+    // Prefer the current map time when it exists in the table; otherwise fall back to the first table time.
     const timeSelection = currentTime && availableTimes.includes(currentTime)
         ? [currentTime]
         : (availableTimes[0] ? [availableTimes[0]] : []);
 
+    // Geography fallback depends on the chosen time slice so we do not sync to a geo with zero rows.
     const rowsForSelectedTime = timeSelection.length
         ? rows.filter(d => timeSelection.includes(d.TimePeriod))
         : rows;
@@ -104,6 +108,7 @@ const getCurrentMapTableFilters = (rows) => {
 // Syncs table filters back to the current map dropdown selections.
 const syncTableFiltersToMapSelection = (force = false) => {
 
+    // Sync requests can arrive before a new indicator has finished building tableData.
     if (!tableData || !tableData.length) {
         return false;
     }
@@ -147,6 +152,7 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
 
     const summary = document.getElementById('tableFilterSummary');
 
+    // The collapsed button gets a terse summary instead of listing every checked option.
     if (!summary) {
         return;
     }
@@ -179,6 +185,7 @@ const updateTableReliabilityNotes = (rows) => {
 
     const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(d => !d == "");
 
+    // Start hidden, then reveal the notes block only when the filtered rows contribute note text.
     document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
     document.getElementById("table-unreliability").classList.add('hide');
 
@@ -195,6 +202,7 @@ const syncTableAreaSearchInput = () => {
 
     const filterInput = $('#tableID_filter input[type="search"]');
 
+    // DataTables redraws can replace the search box DOM, so always resolve it fresh.
     if (!filterInput.length) {
         return;
     }
@@ -210,11 +218,14 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
 
     tableAreaSearchValue = nextValue || '';
 
+    // Mirror the shared state back into the visible input before changing DataTables internals.
     syncTableAreaSearchInput();
 
+    // Clear DataTables' global search so only the Area column-specific search stays active.
     dataTable.search('');
     dataTable.column(8).search(tableAreaSearchValue);
 
+    // Some callers batch search updates and will trigger the draw themselves.
     if (shouldDraw) {
         dataTable.draw();
     }
@@ -244,10 +255,12 @@ const lockSummaryTableScrollBodyHeight = () => {
 
     const scrollBody = document.querySelector('#tableID_wrapper .dataTables_scrollBody');
 
+    // Bail out when DataTables has not created its wrapper yet.
     if (!scrollBody) {
         return;
     }
 
+    // A real fixed height keeps the scrollbar footprint stable across redraws and filter changes.
     scrollBody.style.height = '500px';
     scrollBody.style.minHeight = '500px';
     scrollBody.style.maxHeight = '500px';
@@ -265,6 +278,7 @@ const bindAreaOnlySearch = (dataTable) => {
         return;
     }
 
+    // Replace DataTables' default global-search handler with our Area-only behavior.
     filterInput.off('.DT');
 
     filterInput.on('input.DT search.DT', function () {
@@ -322,6 +336,7 @@ const renderTableFilterControls = (rows) => {
         ? rows.filter(d => selectedTableTimes.includes(d.TimePeriod))
         : [];
 
+    // Geography availability depends on the currently checked time periods.
     const dataGeos = selectedTableTimes.length
         ? [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))]
         : availableGeos;
@@ -344,6 +359,7 @@ const renderTableFilterControls = (rows) => {
 
     const renderCheckboxes = (holder, options, selectedValues, checkboxClass, name, onChange, isDisabled = () => false) => {
 
+        // Rebuild the whole checkbox block so checked and disabled states stay in sync.
         holder.innerHTML = '';
 
         options.forEach(option => {
@@ -387,6 +403,7 @@ const renderTableFilterControls = (rows) => {
             nextTimes.delete(value);
         }
 
+        // Preserve display order from availableTimes instead of checkbox click order.
         selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
         tableTimeFilterIsManual = true;
         renderTableFilterControls(rows);
@@ -408,6 +425,7 @@ const renderTableFilterControls = (rows) => {
                 selectedTableGeography = selectedTableGeography.filter(geo => geo !== value);
             }
 
+            // Re-sort to canonical geography order before redrawing controls and rows.
             selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
             tableGeoFilterIsManual = true;
             renderTableFilterControls(rows);
@@ -417,6 +435,7 @@ const renderTableFilterControls = (rows) => {
     );
 
     const syncButton = document.getElementById('tableFilterSyncButton');
+
     if (syncButton) {
         syncButton.onclick = () => {
             // Force both dimensions back into map-following mode in one click.
@@ -456,6 +475,8 @@ const renderTable = (tableData) => {
 
     const measureAlignMap = new Map();
     const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
+
+    // Default all value columns to right alignment after the Arquero pivot creates the final shape.
     measures.forEach(m => measureAlignMap.set(m, "r"));
     const measureAlignObj = Object.fromEntries(measureAlignMap);
 
@@ -529,6 +550,7 @@ const renderTable = (tableData) => {
             null: () => "-"
         });
 
+    // DataTables expects a concrete table element in the DOM before initialization.
     document.querySelector('#summary-table table').id = "tableID";
     document.querySelector('#summary-table table').className = "cell-border stripe";
     document.querySelector('#summary-table table').width = "100%";
@@ -543,6 +565,7 @@ const renderTable = (tableData) => {
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
         .filter(x => ![0, 1, 8].includes(x));
 
+    // Sort by the rightmost visible measure column so the leading metric drives the first impression.
     const sortBy = dataColumnsCount - 1;
 
     const groupColumnTime = 0;
@@ -577,9 +600,11 @@ const renderTable = (tableData) => {
             }
         ],
         bInfo: false,
+        // Keep time groups together, then sort rows within each group by geography rank.
         order: [[sortBy, 'desc']],
         orderFixed: [[0, 'desc'], [4, 'asc']],
         columnDefs: [
+            // Hide helper columns that power filtering, grouping, and sort order.
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6, 7] },
             { searchable: false, targets: [...notSearchCols] },
             { type: 'natural', targets: ['_all'] },
@@ -610,6 +635,7 @@ const renderTable = (tableData) => {
         language: {
             search: "Find a neighborhood:"
         },
+        // The table body and filter input are the only visible chrome we need here.
         dom: 'rt<"bottom"flp>',
         createdRow: function (row, data) {
             const time = data[0];
@@ -632,6 +658,7 @@ const renderTable = (tableData) => {
             let last = null;
             let lastTime = null;
 
+            // Build headers in two passes: first time buckets, then geography subgroup labels.
             // Inserts one synthetic group header row whenever the grouping value changes.
             const createGroupRow = (groupColumn, lvl) => {
 
@@ -670,6 +697,7 @@ const renderTable = (tableData) => {
 
     lockSummaryTableScrollBodyHeight();
 
+    // Rebind the search box after init because DataTables has now created its wrapper DOM.
     bindAreaOnlySearch(dataTable);
 };
 
@@ -710,6 +738,7 @@ const handleToggle = () => {
         // Toggles the data rows that sit under one geography subgroup header.
         const handleSubGroupToggle = () => {
 
+            // The first data row after a subgroup header carries the shared data-group marker for that block.
             const subDataGroup = tr.next('tr').data('group');
             const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
 

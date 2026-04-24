@@ -120,6 +120,7 @@ const renderMap = (
 
     // --- Create a lookup for data and attributes ---
     const dataLookup = {};
+
     // Index rows by GeoID so each feature lookup stays O(1) during attachment.
     data.forEach(item => {
         dataLookup[item.GeoID] = item;  // store the full record
@@ -163,8 +164,10 @@ const renderMap = (
 
     // Remove the previous thematic layer before drawing the next one.
     if (currentGeojsonLayer) {
+
         currentMap.removeLayer(currentGeojsonLayer);
         currentGeojsonLayer = null;
+
     }
 
     let map = currentMap;
@@ -201,8 +204,10 @@ const renderMap = (
                     };
 
                 } else {
+
                     // Missing rows stay on the map so the style function can show them as no-data areas.
                     feature.properties.dataValue = null;  // mark as missing data
+
                 }
             });
 
@@ -243,6 +248,7 @@ const renderMap = (
                     layer.bindPopup(createPopupContent(feature.properties));
                     
                     layer.on('click', (e) => {
+
                         const props = feature.properties;
 
                         console.log("** click", feature.properties);
@@ -257,6 +263,7 @@ const renderMap = (
                     let currentlyHighlighted = null
                     
                     layer.on('mouseover', (e) => {
+
                         const props = feature.properties;
 
                         // 🔥 HARD RESET: clear ALL highlights
@@ -276,6 +283,7 @@ const renderMap = (
                     });
                     
                     layer.on('mouseout', (e) => {
+
                         geojsonLayer.resetStyle(e.target);
 
                         clearHoverUI();
@@ -430,9 +438,11 @@ const renderMap = (
 
     // Converts a raw map value into a legend tick percentage.
     const calculatePercent = (x) => {
+
         const range = maxValue - minValue;
         const placement = x - minValue;
         const calculation = 100 * placement / range;
+
         return calculation;
     }
 

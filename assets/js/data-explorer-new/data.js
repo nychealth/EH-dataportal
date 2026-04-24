@@ -210,6 +210,7 @@ const loadTime = async () => {
             // Build a plain JS lookup keyed by TimePeriodID
 
             timeLookup = {};
+
             // Mirror the Arquero time table into a plain object for fast menu lookups.
             timeTable.objects().forEach(t => {
                 timeLookup[t.TimePeriodID] = t;

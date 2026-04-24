@@ -36,6 +36,7 @@ const resetSelectionForNewIndicator = (nextIndicatorID) => {
     MeasureID = null;
     GeoType = null;
     TimePeriodID = null;
+
     // overlay is intentionally preserved across indicator selection
 
     const nextURL = new URL(window.location);
@@ -57,7 +58,6 @@ const pushSelectionToURL = () => {
     const url = new URL(window.location);
 
     // Rebuild the explorer params in a stable order and drop legacy aliases.
-
     url.search = buildCanonicalSearchParams().toString();
 
     window.history.pushState(
@@ -360,6 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Expands the full metadata description after the user clicks Show more.
 function reveal() {
+
     // toggle the truncated / full description blocks
     document.getElementById('truncate').classList.toggle('hide');
     document.getElementById('full').classList.toggle('show');

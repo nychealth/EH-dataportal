@@ -57,14 +57,17 @@ const renderBar = (
 
     // Switch units and subtitle formatting when the measure is percentage-based.
     if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
+
         isPercent = true;
         displayType = '%';
         subtitle = barMeasurementType;
         
     } else {
+
         isPercent = false;
         displayType = metadata[0]?.DisplayType;
         subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
+
     }
 
     console.log('is percent? [bar.js]', isPercent)
@@ -455,11 +458,13 @@ const renderBar = (
 
         // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
         result.view.addEventListener('mouseover', (event, item) => {
+
             // Ignore Vega events that do not map to a concrete geography row.
             if (item && item.datum && item.datum.GeoID) {
-                const geoID = item.datum.GeoID;
 
+                const geoID = item.datum.GeoID;
                 const mapAPI = window.mapInterop;
+
                 if (!mapAPI) return; // map not ready yet
 
                 const layer = mapAPI.geoIDtoLayer[geoID];
@@ -483,7 +488,9 @@ const renderBar = (
 
         // Clear the linked map highlight when the cursor leaves the chart.
         result.view.addEventListener('mouseout', () => {
+
             const mapAPI = window.mapInterop;
+
             if (!mapAPI) return;
 
             if (lastHighlightedLayer) {

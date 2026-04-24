@@ -48,7 +48,9 @@ const getTimeLabel = (id) => {
 
 // Updates every cloned dropdown trigger for the given menu type.
 const setDropdownLabel = (type, value) => {
+
     let cls = type + '-name';  // measure-name, geo-name, time-name
+
     document.querySelectorAll(`.${cls}`).forEach(span => {
         span.textContent = value;
     });
@@ -294,6 +296,7 @@ const updateDropdownText = (clickedItem) => {
 
     // Each dropdown trigger stores its visible label in a nested span.
     const span = button.querySelector('span');
+
     span.textContent = clickedItem.textContent;
 
     const dropdownMenu = dropdown.querySelector('.dropdown-menu');

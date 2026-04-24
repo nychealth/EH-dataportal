@@ -74,6 +74,7 @@ function getGeoFile(mapGeoType) {
 
 // Assigns a sortable rank so geographies can be ordered from broad to fine.
 const assignGeoRank = (GeoType) => {
+
     // Normalize multiple backend variants into one numeric sort order.
     switch (GeoType) {
         case 'Citywide':
@@ -190,11 +191,3 @@ const updateChartPlotSize = () => {
     }, 200)
 
 }
-
-// Placeholder for legacy time-period label replacement behavior.
-function replaceTimePeriodID() {
-
-}
-
-// Placeholder for future logic that picks the finest available geography.
-function getFinestGeography() {}

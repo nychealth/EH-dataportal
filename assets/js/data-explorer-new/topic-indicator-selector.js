@@ -96,6 +96,7 @@ const printIndicators = async (indList, destination) => {
     
     // Destination
     const indicatorDestination = document.getElementById("indicatorDestination");
+
     // Stop early if the section template is missing the modal content target.
     if (!indicatorDestination) {
         console.error("Error: No element with id 'indicatorDestination' found.");
@@ -111,6 +112,7 @@ const printIndicators = async (indList, destination) => {
     
     // Render each indicator section block in the order defined by Hugo front matter.
     indList.forEach(section => {
+
         // Only proceed if there are indicators
         if (!section.indicators || section.indicators.length === 0) return;
         
@@ -346,6 +348,7 @@ const checkURL = async () => {
 
     if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
     if (paramsObj.GeoType || paramsObj.GeoTypeID) {
+
         // Seed the pretty geography label before menus build their available options.
         GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
     }

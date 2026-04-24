@@ -34,6 +34,7 @@ const draw311Buttons = (indicator_id) => {
 
             // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
             let dest = document.querySelectorAll('.destination311')
+
             dest.forEach(element => element.innerHTML = '')
 
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
@@ -61,6 +62,7 @@ const draw311Buttons = (indicator_id) => {
 
                 let title = filteredCrosswalk[i].topic
                 let destination = filteredCrosswalk[i].kaLink
+
                 // kanumber is the 311 knowledge article ID from the crosswalk CSV
                 let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
                 

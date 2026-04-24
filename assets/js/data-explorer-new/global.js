@@ -211,6 +211,7 @@ const copyCitation = () => {
 const renderAboutSources = (about, sources) => {
 
     console.log("**** renderAboutSources");
+
     dataSources.innerHTML = '';
 
     // de-dupe data sources
