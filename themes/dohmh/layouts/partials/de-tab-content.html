@@ -31,6 +31,16 @@
     #tableFilterToggle {
         text-decoration: none;
     }
+
+    #trendControls .de-trend-optionbox {
+        max-height: 12rem;
+        overflow-y: auto;
+        background: #f6fafb;
+    }
+
+    #trendSelectionSummary {
+        min-height: 1.25rem;
+    }
 </style>
 
 <!-- Tab content -->
@@ -132,20 +142,49 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div class="dropdown fs-sm mb-1 pt-2">
-                <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal border" type="button" id="measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="flex-grow-1">Show with</span>
-                    <i class="fas fa-chevron-down ml-auto text-primary"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-de w-100 border-none" aria-labelledby="measureOptionsDropdownButton">
-                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Estimated Annual Rate per 100,000</button>
-                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
-                    <button class="dropdown-item" type="button" onclick="updateDropdownText(this)">Another measure</button>
+            <div id="trendControls" class="pt-2">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <p class="fs-xs mb-0 text-muted">Trend selections follow the map measure until you customize them.</p>
+                    <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="trendSyncButton">Sync to map</button>
+                </div>
+
+                <p id="trendSelectionSummary" class="fs-xs text-muted mb-2">Trend selection summary</p>
+
+                <div class="row">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <div id="trendMenuHolder" class="d-none">
+                            <p class="fs-xs mb-1">
+                                <span id="tc1" class="font-weight-bold">By geography</span>
+                            </p>
+
+                            <div class="border rounded de-trend-optionbox">
+                                <div aria-labelledby="dropdownTrendSelection">
+                                    <!-- INSERT TREND MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div id="compMenu" class="hide">
+                            <p class="fs-xs mb-1">
+                                <span id="tc2" class="font-weight-bold">Show with:</span>
+                            </p>
+
+                            <div class="border rounded de-trend-optionbox">
+                                <div aria-labelledby="dropdownCompSelection">
+                                    <!-- INSERT COMPARISON MENU ITEMS HERE -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="trendHolder" class="w-100" style="height: 400px">
-                <!-- Trend chart printed here -->
+            <div id="trend" class="w-100" style="min-height: 400px"></div>
+
+            <div id="trend-unreliability" class="pt-2 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
 
             <!--

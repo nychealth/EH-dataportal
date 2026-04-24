@@ -7,6 +7,127 @@
 // console.log(">> data.js");
 
 // ----------------------------------------------------------------------- //
+// comparison metadata and data
+// ----------------------------------------------------------------------- //
+
+// Loads the comparison metadata file and expands it into the joined tables
+// used by the comparison-trend chart.
+const fetch_comparisons = async () => {
+
+    console.log("* fetch_comparisons.json");
+
+    comparisons = await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
+        .then(response => response.json())
+        .catch(error => {
+            console.log(error);
+            return [];
+        });
+
+    await createComparisonData(comparisons || []);
+
+};
+
+
+// Builds the comparison metadata tables and fetches the comparison indicator rows.
+const createComparisonData = async (comps) => {
+
+    console.log("* createComparisonData");
+
+    if (!Array.isArray(indicatorComparisonId) || indicatorComparisonId.length === 0) {
+        comparisonMetadata = [];
+        aqComparisonMetadata = undefined;
+        aqComparisonIndicatorsMetadata = undefined;
+        aqCombinedComparisonMetadata = undefined;
+        aqComparisonIndicatorData = undefined;
+        return;
+    }
+
+    comparisonMetadata = comps.filter(d => indicatorComparisonId.includes(d.ComparisonID));
+
+    if (!comparisonMetadata.length) {
+        aqComparisonMetadata = undefined;
+        aqComparisonIndicatorsMetadata = undefined;
+        aqCombinedComparisonMetadata = undefined;
+        aqComparisonIndicatorData = undefined;
+        return;
+    }
+
+    aqComparisonMetadata = aq.from(comparisonMetadata)
+        .unroll("Indicators")
+        .derive({
+            IndicatorID: d => d.Indicators.IndicatorID,
+            MeasureID: d => d.Indicators.MeasureID,
+            GeoTypeName: d => d.Indicators.GeoTypeName,
+            GeoID: d => d.Indicators.GeoID,
+            Geography: d => d.Indicators.Geography
+        })
+        .select(aq.not("Indicators"));
+
+    const aqUniqueIndicatorMeasure = aqComparisonMetadata
+        .select("IndicatorID", "MeasureID")
+        .dedupe();
+
+    const uniqueIndicatorMeasure = aqUniqueIndicatorMeasure
+        .groupby("IndicatorID")
+        .objects({ grouped: "entries" });
+
+    const comparisonIndicatorIDs = [...new Set(aqComparisonMetadata.array("IndicatorID"))];
+    const comparisonMeasureIDs = [...new Set(aqComparisonMetadata.array("MeasureID"))];
+
+    const comparisonIndicatorsMetadata = indicators.filter(ind =>
+        comparisonIndicatorIDs.includes(ind.IndicatorID)
+    );
+
+    aqComparisonIndicatorsMetadata = aq.from(comparisonIndicatorsMetadata)
+        .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
+        .unroll("Measures")
+        .derive({
+            MeasureID: d => d.Measures.MeasureID,
+            MeasureName: d => d.Measures.MeasureName,
+            MeasurementType: d => d.Measures.MeasurementType,
+            Sources: d => d.Measures.Sources,
+            how_calculated: d => d.Measures.how_calculated,
+            DisplayType: d => d.Measures.DisplayType,
+            TrendNoCompare: d => d.Measures.TrendNoCompare,
+            TrendThreshold: d => d.Measures.TrendThreshold
+        })
+        .derive({ IndicatorMeasure: d => d.IndicatorLabel + ": " + d.MeasurementType })
+        .select(aq.not("Measures"))
+        .filter(aq.escape(d => comparisonMeasureIDs.includes(d.MeasureID)));
+
+    aqCombinedComparisonMetadata = aqComparisonMetadata
+        .join(aqComparisonIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]]);
+
+    const comparisonDataTables = await Promise.all(
+        uniqueIndicatorMeasure.map(async ind => {
+
+            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+                .then(data => {
+
+                    return data
+                        .derive({ IndicatorID: aq.escape(ind[0]) })
+                        .semijoin(
+                            aqCombinedComparisonMetadata,
+                            (a, b) => (
+                                op.equal(a.MeasureID, b.MeasureID) &&
+                                op.equal(a.GeoType, b.GeoTypeName) &&
+                                op.equal(a.GeoID, b.GeoID)
+                            )
+                        )
+                        .reify();
+
+                });
+
+        })
+    );
+
+    aqComparisonIndicatorData = comparisonDataTables
+        .flatMap(d => d)
+        .reduce((a, b) => a.concat(b));
+
+};
+
+// ----------------------------------------------------------------------- //
 // function to load indicator metadata
 // ----------------------------------------------------------------------- //
 
@@ -50,7 +171,9 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
-    // indicatorComparisonId = indicator?.Comparisons;
+    indicatorComparisonId = Array.isArray(indicator?.Comparisons)
+        ? indicator.Comparisons
+        : (indicator?.Comparisons ? [indicator.Comparisons] : []);
     indicatorMeasures = indicator?.Measures;
 
     // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
@@ -70,6 +193,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedComparison = false;
     showingBoroughTrend = false;
     showingComparisonTrend = false;
+    selectedTrendMeasureId = null;
+    selectedComparisonId = null;
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -118,8 +243,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     
     // why are we waiting for this?
 
-    if (indicatorComparisonId !== null) {
-        // fetch_comparisons();
+    if (indicatorComparisonId.length > 0) {
+        await fetch_comparisons();
     }
 
     await loadData(IndicatorID);

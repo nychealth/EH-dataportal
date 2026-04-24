@@ -581,6 +581,356 @@ const renderMeasures = async () => {
     await setDefaultLinksMeasure(linksMeasures);
 
 
+    // ===== trend selection controls ============================================ //
+
+    const contentTrend = document.querySelector('#v-pills-trends');
+    const dropdownTrendSelection = contentTrend?.querySelector('div[aria-labelledby="dropdownTrendSelection"]');
+    const dropdownCompSelection = contentTrend?.querySelector('div[aria-labelledby="dropdownCompSelection"]');
+    const trendSelectionLabel = document.getElementById('tc1');
+    const compSelectionLabel = document.getElementById('tc2');
+    const trendMenuHolder = document.getElementById('trendMenuHolder');
+    const compMenu = document.getElementById('compMenu');
+    const trendSelectionSummary = document.getElementById('trendSelectionSummary');
+    const trendSyncButton = document.getElementById('trendSyncButton');
+
+    const getSyncedTrendMeasureId = () => {
+
+        const matchingMapMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(MeasureID));
+
+        if (matchingMapMeasure) {
+            return Number(matchingMapMeasure.MeasureID);
+        }
+
+        const defaultTrendMeasureId = defaultTrendMetadata?.[0]?.MeasureID;
+
+        if (defaultTrendMeasureId != null) {
+            return Number(defaultTrendMeasureId);
+        }
+
+        return trendMeasures[0] ? Number(trendMeasures[0].MeasureID) : null;
+
+    };
+
+
+    const getSyncedComparisonId = () => {
+
+        if (!comparisonMetadata?.length) {
+            return null;
+        }
+
+        const matchingMeasureComparison = comparisonMetadata.find(comp =>
+            comp.Indicators?.some(ind =>
+                Number(ind.IndicatorID) === Number(IndicatorID) &&
+                Number(ind.MeasureID) === Number(MeasureID)
+            )
+        );
+
+        if (matchingMeasureComparison) {
+            return Number(matchingMeasureComparison.ComparisonID);
+        }
+
+        const matchingIndicatorComparison = comparisonMetadata.find(comp =>
+            comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(IndicatorID))
+        );
+
+        if (matchingIndicatorComparison) {
+            return Number(matchingIndicatorComparison.ComparisonID);
+        }
+
+        return Number(comparisonMetadata[0].ComparisonID);
+
+    };
+
+
+    const getActiveTrendMeasureId = () => {
+
+        const manualMeasureId = selectedTrendMeasureId == null ? null : Number(selectedTrendMeasureId);
+        const hasManualMeasure = selectedTrendMeasure && trendMeasures.some(m => Number(m.MeasureID) === manualMeasureId);
+
+        return hasManualMeasure ? manualMeasureId : getSyncedTrendMeasureId();
+
+    };
+
+
+    const getActiveComparisonId = () => {
+
+        const manualComparisonId = selectedComparisonId == null ? null : Number(selectedComparisonId);
+        const hasManualComparison = selectedComparison && comparisonMetadata?.some(comp =>
+            Number(comp.ComparisonID) === manualComparisonId
+        );
+
+        return hasManualComparison ? manualComparisonId : getSyncedComparisonId();
+
+    };
+
+
+    const clearTrendButtonState = () => {
+
+        document.querySelectorAll('.trendbutton, .comparisonbutton').forEach(button => {
+            button.classList.remove('active');
+            button.setAttribute('aria-selected', 'false');
+        });
+
+    };
+
+
+    const setTrendButtonState = () => {
+
+        clearTrendButtonState();
+
+        const useComparisonState = (showingComparisonTrend && comparisonMetadata?.length) ||
+            (!trendMeasures.length && comparisonMetadata?.length);
+
+        if (useComparisonState) {
+
+            const comparisonId = getActiveComparisonId();
+            const comparisonButton = comparisonId == null
+                ? null
+                : document.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
+
+            if (comparisonButton) {
+                comparisonButton.classList.add('active');
+                comparisonButton.setAttribute('aria-selected', 'true');
+            }
+
+            return;
+
+        }
+
+        const trendMeasureId = getActiveTrendMeasureId();
+        const trendButton = trendMeasureId == null
+            ? null
+            : document.querySelector(`.trendbutton[data-measure-id='${trendMeasureId}']`);
+
+        if (trendButton) {
+            trendButton.classList.add('active');
+            trendButton.setAttribute('aria-selected', 'true');
+        }
+
+    };
+
+
+    const updateTrendSelectionSummary = () => {
+
+        if (!trendSelectionSummary) {
+            return;
+        }
+
+        const trendMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
+        const trendLabel = trendMeasure?.MeasurementType || 'No borough trend';
+
+        const comparisonId = getActiveComparisonId();
+        const comparisonButton = comparisonId == null
+            ? null
+            : dropdownCompSelection?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
+        const comparisonLabel = comparisonButton?.textContent.trim() || 'No comparison';
+
+        const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
+
+        trendSelectionSummary.textContent = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
+
+    };
+
+
+    syncTrendSelectionsToMapSelection = (force = false) => {
+
+        let didChange = false;
+
+        const syncedTrendMeasureId = getSyncedTrendMeasureId();
+
+        if (force || !selectedTrendMeasure) {
+            if (selectedTrendMeasureId !== syncedTrendMeasureId) {
+                selectedTrendMeasureId = syncedTrendMeasureId;
+                didChange = true;
+            }
+
+            selectedTrendMeasure = false;
+        }
+
+        const syncedComparisonId = getSyncedComparisonId();
+
+        if (force || !selectedComparison) {
+            if (selectedComparisonId !== syncedComparisonId) {
+                selectedComparisonId = syncedComparisonId;
+                didChange = true;
+            }
+
+            selectedComparison = false;
+        }
+
+        setTrendButtonState();
+        updateTrendSelectionSummary();
+
+        return didChange;
+
+    };
+
+
+    const buildTrendSelectionControls = () => {
+
+        if (trendSelectionLabel) {
+            trendSelectionLabel.textContent = 'By geography';
+        }
+
+        if (compSelectionLabel) {
+            compSelectionLabel.textContent = 'Show with:';
+        }
+
+        if (dropdownTrendSelection) {
+            dropdownTrendSelection.innerHTML = '';
+        }
+
+        if (dropdownCompSelection) {
+            dropdownCompSelection.innerHTML = '';
+        }
+
+        trendMenuHolder?.classList.add('d-none');
+        compMenu?.classList.add('hide');
+
+        if (trendMeasures.length > 0 && dropdownTrendSelection) {
+
+            trendMenuHolder?.classList.remove('d-none');
+
+            trendMeasures.forEach(measure => {
+                dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
+                    data-measure-id="${measure.MeasureID}" title="${measure.MeasurementType}">
+                    ${measure.MeasurementType}
+                </button>`);
+            });
+
+            dropdownTrendSelection.onclick = event => {
+
+                const button = event.target.closest('.trendbutton');
+
+                if (!button) {
+                    return;
+                }
+
+                selectedTrendMeasure = true;
+                selectedTrendMeasureId = parseInt(button.dataset.measureId);
+                showingComparisonTrend = false;
+                showingBoroughTrend = true;
+
+                setTrendButtonState();
+                updateTrendSelectionSummary();
+                showBoroughTrend();
+
+            };
+
+        } else if (dropdownTrendSelection) {
+
+            dropdownTrendSelection.onclick = null;
+
+        }
+
+        if (comparisonMetadata?.length && aqCombinedComparisonMetadata && dropdownCompSelection) {
+
+            const compLegendTitles = [...new Set(aqCombinedComparisonMetadata.array('LegendTitle'))];
+
+            if (compLegendTitles.length) {
+                compMenu?.classList.remove('hide');
+            }
+
+            compLegendTitles.forEach(title => {
+
+                const titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title));
+
+                dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${title}</strong></span>`);
+
+                const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
+
+                comparisonIDs.forEach(comp => {
+
+                    const compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp));
+                    const compIndicatorLabel = [...new Set(compGroup.array('IndicatorLabel'))];
+                    const compMeasurementType = [...new Set(compGroup.array('MeasurementType'))];
+                    const compY_axis_title = [...new Set(compGroup.array('Y_axis_title'))];
+                    const compGeoTypeName = [...new Set(compGroup.array('GeoTypeName'))];
+                    const compGeography = [...new Set(compGroup.array('Geography'))];
+                    const compName = [...new Set(compGroup.array('ComparisonName'))];
+
+                    let buttonTitle;
+                    let buttonLabel;
+
+                    if (compIndicatorLabel.length === 1) {
+
+                        if (compGeoTypeName[0] === 'Citywide') {
+                            buttonTitle = compY_axis_title;
+                            buttonLabel = compY_axis_title;
+                        } else {
+                            buttonTitle = compGeography[compGeography.length - 1];
+                            buttonLabel = compGeography[compGeography.length - 1];
+                        }
+
+                    } else if (compMeasurementType.length === 1) {
+
+                        buttonTitle = compMeasurementType;
+                        buttonLabel = compMeasurementType;
+
+                    } else {
+
+                        buttonTitle = compName;
+                        buttonLabel = compName;
+
+                    }
+
+                    dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        data-comparison-id="${comp}" title="${buttonTitle}">
+                        ${buttonLabel}
+                    </button>`);
+
+                });
+
+            });
+
+            dropdownCompSelection.onclick = event => {
+
+                const button = event.target.closest('.comparisonbutton');
+
+                if (!button) {
+                    return;
+                }
+
+                selectedComparison = true;
+                selectedComparisonId = parseInt(button.dataset.comparisonId);
+                showingComparisonTrend = true;
+                showingBoroughTrend = false;
+
+                setTrendButtonState();
+                updateTrendSelectionSummary();
+                showComparisonTrend();
+
+            };
+
+        } else if (dropdownCompSelection) {
+
+            dropdownCompSelection.onclick = null;
+
+        }
+
+        if (trendSyncButton) {
+            trendSyncButton.onclick = () => {
+
+                selectedTrendMeasure = false;
+                selectedComparison = false;
+
+                syncTrendSelectionsToMapSelection(true);
+
+                if (overlay === 'trend') {
+                    showTrend();
+                }
+
+            };
+        }
+
+        syncTrendSelectionsToMapSelection(true);
+
+    };
+
+
+    buildTrendSelectionControls();
+
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // functions to show to tabs
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -720,12 +1070,17 @@ const renderMeasures = async () => {
 
         overlay = 'trend';
 
+        syncTrendSelectionsToMapSelection();
+
         // Use comparison mode when no borough trend data exists or comparison mode is already active.
-        if (trendMeasures.length === 0 || showingComparisonTrend) {
+        if ((trendMeasures.length === 0 && comparisonMetadata?.length) || (showingComparisonTrend && comparisonMetadata?.length)) {
             showComparisonTrend();
-        } else {
+        } else if (trendMeasures.length > 0) {
             showBoroughTrend();
         }
+
+        setTrendButtonState();
+        updateTrendSelectionSummary();
 
     }
 
@@ -743,33 +1098,44 @@ const renderMeasures = async () => {
 
         // --- resolve measure: use global if it has trend data, else default --- //
 
-        const hasTrend = trendMeasures.find(m => m.MeasureID == MeasureID);
-        const trendMetadataArr = hasTrend ? [hasTrend] : defaultTrendMetadata;
-        const trendMeasureId = trendMetadataArr[0].MeasureID;
+        const trendMeasureId = getActiveTrendMeasureId();
+        const trendMetadataArr = trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
+        const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : defaultTrendMetadata;
+        const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
 
-        // --- build Arquero metadata table --- //
+        if (resolvedTrendMeasureId == null) {
+            return;
+        }
 
-        const aqMetadata = aq.from(trendMetadataArr)
+        selectedTrendMeasureId = Number(resolvedTrendMeasureId);
+        aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
             .derive({
                 IndicatorLabel: aq.escape(indicatorName),
                 ComparisonName: aq.escape('Boroughs')
             });
 
+        selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
+        selectedTrendSources = [resolvedTrendMetadata[0].Sources];
+
+        renderAboutSources(selectedTrendAbout, selectedTrendSources);
+
+        // --- build Arquero metadata table --- //
+
         // --- filter data by resolved measure --- //
 
         filteredTrendData = trendData
-            .filter(m => m.MeasureID === trendMeasureId);
+            .filter(m => Number(m.MeasureID) === Number(resolvedTrendMeasureId));
 
         // --- handle special time-period subsets --- //
 
         // Restrict special air-quality measures to the season or annual slices they expect.
-        if (measureIdsAnnualAvg.includes(trendMeasureId)) {
+        if (measureIdsAnnualAvg.includes(resolvedTrendMeasureId)) {
 
             aqFilteredTrendData = aq.from(
                 filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
             );
 
-        } else if (measureIdsSummer.includes(trendMeasureId)) {
+        } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
 
             aqFilteredTrendData = aq.from(
                 filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
@@ -783,10 +1149,15 @@ const renderMeasures = async () => {
 
         // --- render --- //
 
-        renderTrendChart(aqFilteredTrendData, aqMetadata);
+        renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+
+        updateChartPlotSize();
 
         showingBoroughTrend = true;
         showingComparisonTrend = false;
+
+        setTrendButtonState();
+        updateTrendSelectionSummary();
 
     };
     
@@ -798,71 +1169,67 @@ const renderMeasures = async () => {
 
         console.log("** showComparisonTrend");
 
-        // Build the comparison metadata and data only once, then reuse it on later renders.
-        if (!selectedComparison) {
+        const comparisonId = getActiveComparisonId();
 
-            const comparisonId = parseInt(comparisonMetadata[0].ComparisonID);
-
-            // build measure info
-
-            selectedComparisonAbout = [];
-            selectedComparisonSources = [];
-
-            // Combine about text and sources across every indicator in the comparison set.
-            aqComparisonIndicatorsMetadata.objects().forEach(m => {
-                selectedComparisonAbout +=
-                    `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-                selectedComparisonSources.push(m.Sources);
-            });
-
-            // metadata
-
-            aqFilteredComparisonMetadata = aqComparisonMetadata
-                .filter(aq.escape(d => d.ComparisonID == comparisonId))
-                .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
-
-            // data
-
-            aqFilteredComparisonData = aqFilteredComparisonMetadata
-                .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-                .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
-                .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
-                // put host indicator first (then measure), so it gets the black line
-                .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)), d => d.MeasureID);
-
-            // show only last 3 years of DWQ measures with quarterly data
-
-            let hasQuarters = [858, 859, 860, 861, 862, 863];
-
-            // Trim quarterly DWQ comparisons to the last three years to keep the chart readable.
-            if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
-                aqFilteredComparisonData = aqFilteredComparisonData
-                    .derive({"year": d => op.year(d.end_period)})
-                    .filter(d => d.year > op.max(d.year) - 3)
-                    .select(aq.not("TimePeriodID", "year"))
-                    .reify();
+        if (comparisonId == null || !aqComparisonMetadata || !aqComparisonIndicatorData) {
+            if (trendMeasures.length > 0) {
+                showingComparisonTrend = false;
+                showBoroughTrend();
             }
 
-            renderTrendChart(
-                aqFilteredComparisonData,
-                aqFilteredComparisonMetadata
-            );
-
-        } else {
-
-            // restore existing chart
-
-            renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
-
-            renderTrendChart(
-                aqFilteredComparisonData,
-                aqFilteredComparisonMetadata
-            );
-
+            return;
         }
+
+        selectedComparisonId = Number(comparisonId);
+
+        const selectedComparisonRows = aqCombinedComparisonMetadata
+            .objects()
+            .filter(m => Number(m.ComparisonID) === Number(comparisonId));
+
+        selectedComparisonAbout = '';
+        selectedComparisonSources = [];
+
+        selectedComparisonRows.forEach(m => {
+            selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+            selectedComparisonSources.push(m.Sources);
+        });
+
+        selectedComparisonSources = [...new Set(selectedComparisonSources)];
+
+        renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+
+        aqFilteredComparisonMetadata = aqComparisonMetadata
+            .filter(aq.escape(d => d.ComparisonID == comparisonId))
+            .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
+
+        aqFilteredComparisonData = aqFilteredComparisonMetadata
+            .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+            .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+            .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
+            .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)), d => d.MeasureID);
+
+        const hasQuarters = [858, 859, 860, 861, 862, 863];
+
+        if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+            aqFilteredComparisonData = aqFilteredComparisonData
+                .derive({ "year": d => op.year(d.end_period) })
+                .filter(d => d.year > op.max(d.year) - 3)
+                .select(aq.not("TimePeriodID", "year"))
+                .reify();
+        }
+
+        renderTrendChart(
+            aqFilteredComparisonData,
+            aqFilteredComparisonMetadata
+        );
+
+        updateChartPlotSize();
 
         showingBoroughTrend = false;
         showingComparisonTrend = true;
+
+        setTrendButtonState();
+        updateTrendSelectionSummary();
 
     }
 

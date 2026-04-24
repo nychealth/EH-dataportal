@@ -83,6 +83,8 @@ let selectedLinksMeasure;
 let selectedComparison;
 let showingBoroughTrend;
 let showingComparisonTrend;
+let selectedTrendMeasureId;
+let selectedComparisonId;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -134,6 +136,7 @@ let showTrend;
 let showBoroughTrend;
 let showComparisonTrend;
 let showLinks;
+let syncTrendSelectionsToMapSelection;
 
 let CSVforDownload; 
 let downloadedIndicator;
@@ -211,6 +214,19 @@ const copyCitation = () => {
 const renderAboutSources = (about, sources) => {
 
     console.log("**** renderAboutSources");
+
+    // Some new-explorer templates use ids instead of the legacy class hooks.
+    if (!aboutMeasures) {
+        aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
+    }
+
+    if (!dataSources) {
+        dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
+    }
+
+    if (!aboutMeasures || !dataSources) {
+        return;
+    }
 
     dataSources.innerHTML = '';
 

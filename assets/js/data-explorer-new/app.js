@@ -16,7 +16,9 @@ const buildCanonicalSearchParams = () => {
 
     const params = new URLSearchParams();
 
-    params.set('id', IndicatorID);
+    if (IndicatorID != null && !Number.isNaN(Number(IndicatorID))) {
+        params.set('id', IndicatorID);
+    }
 
     // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
     if (MeasureID)    params.set('MeasureID', MeasureID);
@@ -167,6 +169,17 @@ const normalizeLegacyOverlayURL = () => {
 
 let pendingTableOverlayToken = 0;
 
+const runOverlayRenderer = (renderer) => {
+
+    if (typeof renderer !== 'function') {
+        return false;
+    }
+
+    renderer();
+    return true;
+
+};
+
 // Give the map one full paint before starting heavy table work.
 const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
 
@@ -213,7 +226,7 @@ const renderCurrentView = (updateMap = false) => {
         }
 
         case 'bar':
-            showBar();
+            runOverlayRenderer(showBar);
             break;
 
         case 'table':
@@ -221,26 +234,26 @@ const renderCurrentView = (updateMap = false) => {
             if (updateMap) {
                 scheduleTableOverlayRender(mapRenderPromise);
             } else {
-                showTable();
+                runOverlayRenderer(showTable);
             }
             break;
 
         case 'map':
             // 'map' is treated as an alias for 'bar' (bar chart with geo context)
-            showBar();
+            runOverlayRenderer(showBar);
             break;
 
         case 'trend':
-            showTrend();
+            runOverlayRenderer(showTrend);
             break;
 
         case 'links':
-            showLinks();
+            runOverlayRenderer(showLinks);
             break;
 
         default:
             // fall back to bar chart if overlay value is unrecognized
-            showBar();
+            runOverlayRenderer(showBar);
             break;
     }
 };
@@ -321,8 +334,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tabTable     = document.querySelector('#v-pills-table-tab');
 
     // grab DOM nodes for the measure-info and source sections
-    aboutMeasures = document.querySelector('.indicator-measures');
-    dataSources = document.querySelector('.indicator-sources');
+    aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
+    dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
     btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
     // tab clicks → set overlay, push URL, render
