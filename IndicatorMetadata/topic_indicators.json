@@ -178,6 +178,15 @@
     ],
     "topic_name": "Carbon monoxide"
   },
+  "chronic-disease": {
+    "IndicatorID": [
+      2465,
+      2466,
+      2467,
+      2468
+    ],
+    "topic_name": "Chronic disease"
+  },
   "cigarette-smoke": {
     "IndicatorID": [
       2338,

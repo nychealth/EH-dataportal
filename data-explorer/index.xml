@@ -6,7 +6,7 @@
     <description>Recent content in Data Explorer on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 May 2024 18:02:58 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 May 2025 18:02:58 +0000</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Climate</title>
@@ -14,6 +14,13 @@
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/climate/</guid>
       <description>&lt;p&gt;A region&amp;rsquo;s climate is characterized by its usual weather conditions, seasons, and patterns in extreme weather events like heat waves, droughts, and hurricanes.&lt;/p&gt;&#xA;&lt;p&gt;The world’s climate is shifting, becoming warmer with more precipitation and weather extremes. Over the past century in New York City, average temperatures have increased by 0.25°F per decade, precipitation by 0.72 inches per decade, and sea levels by 1.2 inches per decade. By the 2020s, a projected 25-30 days above 90°F are expected in a typical summer, resulting in more frequent and intense heat waves. Rainfall and precipitation are expected to increase by up to 5%, together with another 10 inches of sea level rise and increased probability of coastal storms with flooding (NYC Panel on Climate Change, Climate Risk Information, 2009).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Chronic disease</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/chronic-disease/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/chronic-disease/</guid>
+      <description>&lt;p&gt;Chronic diseases such as diabetes, heart disease, hypertension, and stroke are shaped by where people live, work, and play—factors like housing quality, neighborhood safety, access to healthy food, transportation, and economic opportunity. These conditions, and their inequitable distribution, are deeply linked to the built, social, and economic environments in NYC.&lt;/p&gt;&#xA;&lt;h3&gt;Chronic disease and health&lt;/h3&gt;</description>
     </item>
     <item>
       <title>Mental health</title>

@@ -437,6 +437,20 @@
     <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/cooling-info/</loc>
     <lastmod>2025-06-01T11:51:01-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-explorer/chronic-disease/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/chronic-disease/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/diabetes/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/heart-disease/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/hypertension/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/pm2.5/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/stroke/</loc>
+    <lastmod>2025-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/extreme-weather/</loc>
     <lastmod>2025-05-28T11:51:01-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/flooding/</loc>
@@ -806,8 +820,6 @@
     <loc>/IndicatorPublic/keywords/model/</loc>
     <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/modelling/</loc>
-    <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/pm2.5/</loc>
     <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/zappa/</loc>
     <lastmod>2022-12-03T08:33:22-04:00</lastmod></url><url>
@@ -1441,8 +1453,6 @@
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/grades/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/heart-disease/</loc>
-    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/hot-weater/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/kids/</loc>
@@ -1460,8 +1470,6 @@
                 href="/IndicatorPublic/keywords/kids/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/lung-disease/</loc>
-    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/stroke/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/food/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>

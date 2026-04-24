@@ -478,6 +478,48 @@
       <description></description>
     </item>
     <item>
+      <title>Chronic Disease</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/chronic-disease/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/chronic-disease/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Diabetes</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/diabetes/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/diabetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Heart Disease</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heart-disease/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heart-disease/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hypertension</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hypertension/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hypertension/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PM2.5</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pm2.5/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pm2.5/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Stroke</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/stroke/</link>
+      <pubDate>Wed, 28 May 2025 18:02:58 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/stroke/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Extreme Weather</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/extreme-weather/</link>
       <pubDate>Wed, 28 May 2025 11:51:01 -0400</pubDate>
@@ -1084,13 +1126,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/modelling/</link>
       <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/modelling/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>PM2.5</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pm2.5/</link>
-      <pubDate>Sat, 03 Dec 2022 08:33:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/pm2.5/</guid>
       <description></description>
     </item>
     <item>
@@ -2151,13 +2186,6 @@
       <description></description>
     </item>
     <item>
-      <title>Heart Disease</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heart-disease/</link>
-      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/heart-disease/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Hot Weater</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hot-weater/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
@@ -2176,13 +2204,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/lung-disease/</link>
       <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/lung-disease/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stroke</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/stroke/</link>
-      <pubDate>Thu, 24 Oct 2019 08:18:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/stroke/</guid>
       <description></description>
     </item>
   </channel>
