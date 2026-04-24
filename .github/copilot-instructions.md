@@ -4,6 +4,7 @@ When generating or editing code in this repository:
 
 - Use 4 spaces for indentation.
 - Prefer generous vertical whitespace so logic is visually separated into small, readable blocks.
+- In `assets/js/data-explorer-new`, use `measures.js` as the spacing guide: add extra vertical whitespace inside functions, especially around guard clauses, setup sections, and major conditional branches.
 - Add frequent short clarifying comments where intent is not immediately obvious.
 - Keep comments concise and practical; favor brief intent-focused notes over long explanations.
 - Bias toward adding more comments. The developers like knowing what the code is for or how it works before they look at the actual code.
@@ -20,3 +21,4 @@ When generating or editing code in this repository:
 - Favor existing dependencies and patterns over adding new tooling.
 - Keep data explorer changes incremental. Reuse existing indicator, measure, geography, and time-period structures unless a deeper redesign is explicitly requested.
 - When a behavior is non-obvious, add a short comment explaining the intent, fallback, or constraint.
+- When adding or updating repo memory entries under `/memories/repo`, also mirror those additions in `.github/workspace-memory.md` so memory context is preserved in-repo.
