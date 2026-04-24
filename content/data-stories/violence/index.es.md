@@ -7,7 +7,7 @@ seo_description: "Uso de la salud pública para prevenir la violencia."
 categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
 image: ds-violence.jpg
-vega: true
+
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ---
 ## Uso de la salud pública para prevenir la violencia 

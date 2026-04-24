@@ -7,6 +7,7 @@ seo_description: "Explore this summer's high temps and health effects."
 categories:
   - climatehealth
   - inequality
+  - accessibility
 keywords:
   [
     "interactive",
@@ -22,7 +23,7 @@ keywords:
   ]
 layout: heatstory
 leaflet: true
-arquero: true
+
 image: heatstory.png
 related:
   - title: "NYC Heat-Related Mortality Report"

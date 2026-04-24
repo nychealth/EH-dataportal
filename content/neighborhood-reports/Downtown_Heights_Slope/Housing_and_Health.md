@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Housing and Health in Downtown - Heights - Slope"
 seo_description: "Housing and Health data profile for the Downtown - Heights - Slope neighborhood of NYC."
 seo_image: "images/nyc_health_report_housing_and_health.jpg"
-vega: true
-arquero: true
+
+
 ---

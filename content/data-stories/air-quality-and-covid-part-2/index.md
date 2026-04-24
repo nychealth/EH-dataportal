@@ -22,20 +22,6 @@ keywords:
     "breathing",
     "restaurants",
   ]
-tags:
-keywords:
-  [
-    "air quality",
-    "traffic",
-    "transportation",
-    "covid",
-    "covid-19",
-    "coronavirus",
-    "air pollution",
-    "lungs",
-    "breathing",
-    "restaurants",
-  ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
@@ -46,6 +32,10 @@ related:
   - title: "Air quality during COVID-19"
     url: "data-stories/air-quality-and-covid/"
 ---
+
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Air quality"}
+]` >}}
 
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 

@@ -37,6 +37,11 @@ related:
     url: "data-stories/hia/"
 ---
 
+{{< updateflag data=`[
+  {"src": "../../data-explorer/air-quality/?id=2028", "text": "seasonal Nitric oxide (NO)"},
+  {"src": "../../data-explorer/air-quality/?id=2023", "text": "seasonal fine particles (PM2.5)"}
+]` >}}
+
 Does the air improve in car-free zones? People often ask us this, and it's a great question. To answer, we turn to the NYC Community Air Survey, or NYCCAS. NYCCAS is our network of air quality monitors around the city.
 
 ### NYCCAS monitors air with nearly 100 sensors across the city

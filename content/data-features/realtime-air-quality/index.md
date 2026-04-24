@@ -23,8 +23,8 @@ keywords:
     "traffic",
   ]
 layout: realtime
-vega: true
-arquero: true
+
+
 leaflet: true
 image: images/realtime-screenshot.png
 related:
