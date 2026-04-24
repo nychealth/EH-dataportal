@@ -7,7 +7,7 @@ The NYC Health Department examined heat-stress deaths occurring during the warm 
 
 Among NYC residents, there were 71 heat-stress deaths from 2016-2025 (Figure 1), with an average of 7 deaths per year over the 10-year period.
 
-### 2025 Heat Wave
+#### 2025 Heat Wave
 
 During the 2025 warm season (May to September), NYC experienced a severe four-day heat wave on June 22 through June 25. Heat indices at LaGuardia Airport peaked at 103°F on June 24. Temperatures also reached 98°F at Central Park, breaking the record from June 24, 1888, for that weather station. In addition, heat was building prior to June 22, with four hot but not extreme heat days leading up to the heat wave, with temperatures at LaGuardia Airport ranging from 85-90°F.
 
