@@ -3,7 +3,7 @@ _schema: default
 draft: false
 ---
 
-The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2016-2025. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. [A more detailed description of methods and data sources can be found in the Appendix Methods and Supplemental Data](2025-Heat-Mortality-Report-Appendix.pdf).
+The NYC Health Department examined heat-stress deaths occurring during the warm season months of May through September from 2016-2025. We reviewed death certificates and medical examiner investigation reports in cases where heat was recognized as a cause of death. [A more detailed description of methods and data sources can be found in the Appendix Methods and Supplemental Data](2026-Heat-Mortality-Report-Appendix.pdf).
 
 Among NYC residents, there were 71 heat-stress deaths from 2016-2025 (Figure 1), with an average of 7 deaths per year over the 10-year period.
 
