@@ -6,6 +6,7 @@ When generating or editing code in this repository:
 - Prefer generous vertical whitespace so logic is visually separated into small, readable blocks.
 - Add frequent short clarifying comments where intent is not immediately obvious.
 - Keep comments concise and practical; favor brief intent-focused notes over long explanations.
+- Bias toward adding more comments. The developers like knowing what the code is for or how it works before they look at the actual code.
 - Preserve existing project conventions unless a requested change requires a different approach.
 - Avoid large unrelated refactors while completing focused tasks.
 
