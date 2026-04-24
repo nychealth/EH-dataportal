@@ -563,7 +563,6 @@ const renderTable = (tableData) => {
             }
         ],
         bInfo: false,
-        fixedHeader: true,
         order: [[sortBy, 'desc']],
         orderFixed: [[0, 'desc'], [4, 'asc']],
         columnDefs: [
