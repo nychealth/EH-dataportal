@@ -585,6 +585,36 @@ const renderMeasures = async () => {
 
     // ===== table ================================================== //
 
+    const adjustVisibleSummaryTable = () => {
+        const tablePane = document.querySelector('#v-pills-table');
+
+        if (!tablePane || overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
+            return;
+        }
+
+        if (!$.fn.dataTable.isDataTable('#tableID')) {
+            return;
+        }
+
+        $('#tableID').DataTable().columns.adjust();
+
+        if (typeof lockSummaryTableScrollBodyHeight === 'function') {
+            lockSummaryTableScrollBodyHeight();
+        }
+    };
+
+    const scheduleVisibleSummaryTableAdjust = () => {
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                adjustVisibleSummaryTable();
+            });
+        });
+
+        window.setTimeout(() => {
+            adjustVisibleSummaryTable();
+        }, 180);
+    };
+
     // Refreshes the summary table layout after it becomes the active overlay.
     showTable = (e) => {
 
@@ -611,6 +641,8 @@ const renderMeasures = async () => {
             $(dataTables)
                 .DataTable()
                 .columns.adjust();
+
+            scheduleVisibleSummaryTableAdjust();
         }
 
     };
