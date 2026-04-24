@@ -44,6 +44,7 @@ const ensureIndicatorsLoaded = async (topic) => {
 
     } else {
 
+        // Reuse the in-flight metadata request instead of starting a second fetch.
         // console.log("# Waiting for indicators to load for " + topic);
         
         return await indicatorsPromise; 
@@ -122,6 +123,7 @@ const printIndicators = async (indList, destination) => {
             const indicator = indicators.find(ind => ind.IndicatorID === id);
             
             if (!indicator) {
+                // Skip broken front-matter references without breaking the rest of the modal.
                 console.warn(`Indicator with ID ${id} not found.`);
                 return ''; // skip if not found
             }
@@ -324,6 +326,7 @@ const checkURL = async () => {
     console.log(paramsObj);
 
     if (paramsObj.GeoTypeID && !paramsObj.GeoType) {
+        // Normalize the URL before menus read it so every downstream branch sees one GeoType key.
         normalizeLegacyGeoTypeURL();
         paramsObj.GeoType = paramsObj.GeoTypeID;
     }
@@ -343,6 +346,7 @@ const checkURL = async () => {
 
     if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
     if (paramsObj.GeoType || paramsObj.GeoTypeID) {
+        // Seed the pretty geography label before menus build their available options.
         GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
     }
     if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);

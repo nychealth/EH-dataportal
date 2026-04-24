@@ -84,7 +84,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     const nextURL = new URL(window.location);
     nextURL.searchParams.set('id', parseFloat(IndicatorID));
 
-    // Replace the first entry or push a new one only when this load is not history-driven.
+    // Skip history writes during popstate replays so back/forward does not create duplicate entries.
     if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
 
         if (window.history.state === null || state === null) {
@@ -151,6 +151,7 @@ const loadData = async (this_IndicatorID) => {
             // call the geo file and time file loading functions
             
             // Load time and geography metadata in parallel before joining anything.
+            // Both lookup tables are required before any joins can produce renderable view data.
             await Promise.all([
                 loadTime(),
                 loadGeo()
@@ -499,7 +500,7 @@ const joinData = async () => {
 
     tableData = joinedAqData
         .join_left(aqMeasureDisplay, "MeasureID")
-        // filter to keep only times and geos we want in the table
+        // Semijoin trims the shared dataset down to only the geos and times allowed in the table tab.
         .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         // MeasurementDisplay: column header string; DisplayCI: data value joined with confidence interval for each cell
         .derive({

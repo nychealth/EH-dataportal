@@ -10,17 +10,22 @@
 // top scope variables
 // ----------------------------------------------------------------------- //
 
+// Summary-table filter state persists across redraws until a new indicator resets it.
 let selectedTableTimes = [];
 let selectedTableGeography = [];
 let tableAreaSearchValue = '';
 let tableTimeFilterIsManual = false;
 let tableGeoFilterIsManual = false;
 let tableNeedsRender = false;
+
+// Shared content holders are resolved after the page shell exists.
 let aboutMeasures;
 let dataSources;
 
 let measureAbout = ``;
 let measureSources = ``;
+
+// Lookup tables are rebuilt on each indicator load and reused by menus and renderers.
 let geoTable;
 let timeTable;
 // keyed by TimePeriodID; rebuilt on each indicator load for fast label lookup
@@ -30,6 +35,7 @@ let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
+// These plain-object arrays feed the currently active visualizations.
 let tableData;
 let mapData;
 let trendData;
@@ -38,6 +44,7 @@ let linksData;
 let joinedLinksDataObjects;
 let disparityData; // used by disparities.js
 
+// Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
 let indicatorName;
 let indicatorDesc;
@@ -54,6 +61,7 @@ let aqComparisonMetadata;
 let aqComparisonIndicatorsMetadata;
 let aqComparisonIndicatorData;
 
+// Per-view default metadata and about/source text are recomputed per indicator.
 let defaultTrendMetadata;
 let aqDefaultTrendMetadata;
 let defaultTrendAbout;
@@ -93,6 +101,7 @@ let selectedLinksSources = [];
 let selectedPrimaryMeasureMetadata;
 let selectedSecondaryMeasureMetadata;
 
+// Filtered slices let one renderer hand work to the next without refetching.
 let filteredMapData;
 let filteredTrendData;
 let aqFilteredTrendData;
@@ -100,16 +109,19 @@ let aqFilteredComparisonData;
 let aqFilteredComparisonMetadata;
 let aqCombinedComparisonMetadata;
 
+// Joined Arquero tables capture which measures, times, and geographies each view supports.
 let aqMeasureDisplay;
 let aqTableTimesGeos;
 let aqMapTimesGeos;
 let aqTrendTimesGeos;
 
+// These arrays describe which measures are valid for each overlay tab.
 let mapMeasures = [];
 let trendMeasures = [];
 let linksMeasures = [];
 let disparitiesMeasures = [];
 
+// Tab refs and render closures are assigned lazily once the current indicator is known.
 let tabBar;
 let tabTrends;
 let tabCorrelate;

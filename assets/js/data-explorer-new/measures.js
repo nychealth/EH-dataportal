@@ -481,6 +481,7 @@ const renderMeasures = async () => {
 
     resolveTabReferences();
 
+    // Throw away any sticky table selection state before deriving new defaults for this indicator.
     selectedTableTimes = [];
     selectedTableGeography = [];
 
@@ -555,6 +556,7 @@ const renderMeasures = async () => {
         // Disparities == 1 in metadata signals this measure supports the disparities chart
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1;
 
+        // Each tab only gets measures that actually have data for that view.
         if (map)         mapMeasures.push(measure);
         if (trend)       trendMeasures.push(measure);
         if (links)       linksMeasures.push(measure);
@@ -588,28 +590,33 @@ const renderMeasures = async () => {
     const adjustVisibleSummaryTable = () => {
         const tablePane = document.querySelector('#v-pills-table');
 
+        // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
         if (!tablePane || overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
             return;
         }
 
+        // On first page load the lazy table may not exist yet, so skip until it does.
         if (!$.fn.dataTable.isDataTable('#tableID')) {
             return;
         }
 
         $('#tableID').DataTable().columns.adjust();
 
+        // Reapply the fixed scroll-body height after width math changes so redraws stay stable.
         if (typeof lockSummaryTableScrollBodyHeight === 'function') {
             lockSummaryTableScrollBodyHeight();
         }
     };
 
     const scheduleVisibleSummaryTableAdjust = () => {
+        // Closing the pane hides the whole tab container, so one immediate adjust often runs too early.
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
                 adjustVisibleSummaryTable();
             });
         });
 
+        // Follow up once more after Bootstrap/layout changes settle on slower redraw paths.
         window.setTimeout(() => {
             adjustVisibleSummaryTable();
         }, 180);
@@ -630,6 +637,7 @@ const renderMeasures = async () => {
             renderTable(tableData);
             didRenderTable = true;
         } else if (tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+            // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
             renderTableFilterControls(tableData);
             applyTableFilters(tableData);
         }
@@ -642,6 +650,7 @@ const renderMeasures = async () => {
                 .DataTable()
                 .columns.adjust();
 
+            // Reopen width fixes belong only to existing tables; first render sizes itself during init.
             scheduleVisibleSummaryTableAdjust();
         }
 

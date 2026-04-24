@@ -18,6 +18,7 @@ const buildCanonicalSearchParams = () => {
 
     params.set('id', IndicatorID);
 
+    // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
     if (MeasureID)    params.set('MeasureID', MeasureID);
     if (GeoType)      params.set('GeoType', GeoType);
     if (TimePeriodID) params.set('TimePeriodID', TimePeriodID);
@@ -96,6 +97,7 @@ const normalizeLegacyGeoTypeURL = () => {
         const [key, ...rest] = part.split('=');
         const value = rest.join('=');
 
+        // Leave unrelated params untouched so future query params survive this rewrite.
         // pass non-GeoTypeID params through unchanged
         if (key !== 'GeoTypeID') {
             return [part];
@@ -171,6 +173,7 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
     pendingTableOverlayToken += 1;
     const token = pendingTableOverlayToken;
 
+    // Token-gate delayed work so stale map renders cannot reopen an old table state later.
     Promise.resolve(afterRender)
         .catch(() => null)
         .then(() => {
@@ -189,6 +192,7 @@ const renderCurrentView = (updateMap = false) => {
 
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
+    // Normalize sync and async map work into one promise so overlay timing can treat both the same.
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
     // route the current overlay value to the matching show* renderer
@@ -213,6 +217,7 @@ const renderCurrentView = (updateMap = false) => {
             break;
 
         case 'table':
+            // If the map also changed, let that redraw settle before starting heavy table work.
             if (updateMap) {
                 scheduleTableOverlayRender(mapRenderPromise);
             } else {
@@ -295,6 +300,7 @@ window.addEventListener('popstate', async (event) => {
 
     const ind = indicators?.find(d => d.IndicatorID === Number(IndicatorID));
 
+    // Rebuild dropdowns only when indicator metadata is already available in memory.
     if (ind) updateAllMenus(ind);
 
     renderCurrentView(true);
@@ -339,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             overlay = value;
             pushSelectionToURL();
+            // Tab switches reuse the current map state, so they do not request a map redraw.
             renderCurrentView();
 
             gtag('event', 'click_tab', { tab: value });

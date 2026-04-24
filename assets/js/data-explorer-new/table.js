@@ -39,6 +39,7 @@ const getSelectedTableRows = (rows) => {
     const selectedGeos = new Set(selectedTableGeography);
 
     return rows.filter(d => {
+        // Compare against prettified geotypes so checkbox labels and row filtering stay aligned.
         const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
         const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
         return matchesTime && matchesGeo;
@@ -53,8 +54,10 @@ const getTableColumnSearchValues = (rows) => {
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
 
     return {
+        // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
         timeSearch: !selectedTableTimes.length
             ? '(?!)'
+            // An empty regex means “no restriction” when every time period is selected.
             : selectedTableTimes.length === availableTimes.length
                 ? ''
                 : `^(${selectedTableTimes.map(escapeRegexValue).join('|')})$`,
@@ -108,6 +111,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
     const { timeSelection, geoSelection } = getCurrentMapTableFilters(tableData);
     let didChange = false;
 
+    // Respect manual overrides unless the caller explicitly forces a full resync.
     if (force || !tableTimeFilterIsManual) {
         const sameTimeSelection = selectedTableTimes.length === timeSelection.length &&
             selectedTableTimes.every((time, index) => time === timeSelection[index]);
@@ -120,6 +124,7 @@ const syncTableFiltersToMapSelection = (force = false) => {
         tableTimeFilterIsManual = false;
     }
 
+    // Geography sync follows the same rule so users can customize one dimension independently.
     if (force || !tableGeoFilterIsManual) {
         const sameGeoSelection = selectedTableGeography.length === geoSelection.length &&
             selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
@@ -222,6 +227,7 @@ const clearTableAreaSearch = () => {
 
     tableAreaSearchValue = '';
 
+    // Only touch DataTables internals after the lazy table has actually been created.
     if ($.fn.dataTable.isDataTable('#tableID')) {
         const dataTable = $('#tableID').DataTable();
         dataTable.search('');
@@ -281,6 +287,7 @@ const bindAreaOnlySearch = (dataTable) => {
 // Applies the current table filters through DataTables' native search API.
 const applyTableFilters = (rows) => {
 
+    // Checkbox and sync actions can fire before the table tab has been opened for the first time.
     if (!$.fn.dataTable.isDataTable('#tableID')) {
         return;
     }
@@ -291,6 +298,7 @@ const applyTableFilters = (rows) => {
 
     updateTableReliabilityNotes(filteredRows);
 
+    // Write filter regexes into the hidden time and geography columns, then let one draw refresh the table.
     dataTable.column(0).search(timeSearch, true, false);
     dataTable.column(1).search(geoSearch, true, false);
     dataTable.draw();
@@ -304,6 +312,7 @@ const renderTableFilterControls = (rows) => {
     const timeHolder = document.getElementById('tableTimeCheckboxes');
     const geoHolder = document.getElementById('tableGeoCheckboxes');
 
+    // The control panel may be absent on partial templates or before the tab markup loads.
     if (!timeHolder || !geoHolder) {
         return;
     }
@@ -341,6 +350,7 @@ const renderTableFilterControls = (rows) => {
             const label = document.createElement('label');
             const unavailable = isDisabled(option);
 
+            // Leave unavailable options visible so users can see why a geography disappeared for this time slice.
             label.className = `btn btn-light dropdown-item text-left ${checkboxClass}`;
             label.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
 
@@ -357,6 +367,7 @@ const renderTableFilterControls = (rows) => {
             input.disabled = unavailable;
 
             input.addEventListener('change', (event) => {
+                // Bubble one normalized value + checked pair back to the caller's filter logic.
                 onChange(event.target.value, event.target.checked);
             });
 
@@ -408,6 +419,7 @@ const renderTableFilterControls = (rows) => {
     const syncButton = document.getElementById('tableFilterSyncButton');
     if (syncButton) {
         syncButton.onclick = () => {
+            // Force both dimensions back into map-following mode in one click.
             syncTableFiltersToMapSelection(true);
             renderTableFilterControls(rows);
             applyTableFilters(rows);
@@ -423,6 +435,7 @@ const renderTable = (tableData) => {
 
     console.log("** renderTable");
 
+    // Rebuilding the table means throwing away the old DataTable instance and its injected wrapper DOM.
     if ($.fn.dataTable.isDataTable('#tableID')) {
         $('#tableID').DataTable().destroy();
     }
@@ -540,6 +553,7 @@ const renderTable = (tableData) => {
         scrollX: true,
         scrollCollapse: false,
         autoWidth: false,
+        // Seed the initial filters here so the first draw starts narrowed instead of drawing everything first.
         searchCols: [
             { search: timeSearch, regex: true, smart: false },
             { search: geoSearch, regex: true, smart: false },
@@ -648,7 +662,7 @@ const renderTable = (tableData) => {
             createGroupRow(groupColumnTime, 0);
             createGroupRow(groupColumnGeo, 1);
 
-            // ✅ THIS is what you were missing
+            // Group rows are rebuilt every draw, so event handlers and search-box text need to be rebound here.
             handleToggle();
             syncTableAreaSearchInput();
         }
@@ -662,6 +676,7 @@ const renderTable = (tableData) => {
 // Binds click handlers that expand and collapse grouped summary-table rows.
 const handleToggle = () => {
 
+    // Delegate from body because drawCallback recreates the synthetic group rows on every redraw.
     $('body').off('click', '#summary-table tr.group td');
 
     $('body').on('click', '#summary-table tr.group td', (e) => {

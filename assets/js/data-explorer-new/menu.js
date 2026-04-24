@@ -101,6 +101,7 @@ const updateAllMenus = (indicator) => {
     let measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
 
     if (!measure) {
+        // Recover from stale globals or URL params by snapping back to the default measure.
         measure = getDefaultMeasure(indicator);
         MeasureID = measure.MeasureID;
     }
@@ -141,6 +142,7 @@ const updateAllMenus = (indicator) => {
     // default to the finest available geography when the current one is missing or invalid
     if (!GeoType || !availableGeoValues.includes(GeoType)) {
 
+        // Favor the most detailed geography so the map opens at the richest available level.
         GeoType = availableGeoValues.reduce((best, current) => {
             return assignGeoRank(current) > assignGeoRank(best) ? current : best;
         });
@@ -171,7 +173,7 @@ const updateAllMenus = (indicator) => {
         })
         .sort((a, b) => b.endPeriod - a.endPeriod);
 
-    // default to the most recent available time period when the current one is stale
+    // default to the most recent available time period when the current one is invalid
     if (!TimePeriodID || !times.find(t => t.value === TimePeriodID)) {
         TimePeriodID = times.length ? times[0].value : null;
     }
@@ -253,6 +255,7 @@ const handleSelection = (type, value) => {
     updateAllMenus(ind);
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
+        // Geo and time changes can invalidate the current Area search, so clear and resync first.
         if (typeof clearTableAreaSearch === 'function') {
             clearTableAreaSearch();
         }
@@ -289,6 +292,7 @@ const updateDropdownText = (clickedItem) => {
     const dropdown = clickedItem.closest('.dropdown');
     const button = dropdown.querySelector('button[id$="OptionsDropdownButton"]');
 
+    // Each dropdown trigger stores its visible label in a nested span.
     const span = button.querySelector('span');
     span.textContent = clickedItem.textContent;
 

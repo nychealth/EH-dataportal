@@ -201,6 +201,7 @@ const renderMap = (
                     };
 
                 } else {
+                    // Missing rows stay on the map so the style function can show them as no-data areas.
                     feature.properties.dataValue = null;  // mark as missing data
                 }
             });
@@ -247,6 +248,7 @@ const renderMap = (
                         console.log("** click", feature.properties);
 
                         if (window.myVegaView) {
+                            // Forward map clicks into the bar chart only when the Vega view has finished loading.
                             window.myVegaView.signal("selectedGeo", props.GeoID).run();
                         }
                         

@@ -78,6 +78,7 @@ const renderBar = (
     // -----------------------------------------------------------------------  */
 
     
+        // Keep the layer recipe branchy here so each data shape gets its own readable Vega encoding.
         // Choose the visual layer recipe based on whether the measure is a mean, has CIs, or is a plain bar.
         if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
             
@@ -397,6 +398,7 @@ const renderBar = (
         },
         "autosize": {"type": "fit", "contains": "padding"},
         "transform": [
+            // Precompute display strings once so tooltips and CI marks can reuse them across layers.
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
             {
                 "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : datum.Value * .95", // hard set for test
