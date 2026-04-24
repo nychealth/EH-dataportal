@@ -32,14 +32,18 @@
         text-decoration: none;
     }
 
-    #trendControls .de-trend-optionbox {
-        max-height: 12rem;
+    #trendControlsPanel .de-trend-optionbox {
+        max-height: 9rem;
         overflow-y: auto;
         background: #f6fafb;
     }
 
-    #trendSelectionSummary {
-        min-height: 1.25rem;
+    #trendControlsToggle {
+        text-decoration: none;
+    }
+
+    #trendControlsPanel .trend-control-help {
+        color: #5c646d;
     }
 </style>
 
@@ -142,38 +146,46 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div id="trendControls" class="pt-2">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <p class="fs-xs mb-0 text-muted">Trend selections follow the map measure until you customize them.</p>
-                    <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="trendSyncButton">Sync to map</button>
-                </div>
+            <div id="trendControls" class="py-2 d-flex justify-content-end">
+                <button class="badge badge-pill badge-light border-0" type="button" id="trendControlsToggle" data-toggle="collapse" data-target="#trendControlsPanel" aria-expanded="false" aria-controls="trendControlsPanel">
+                    <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
+                    Trend options
+                    <span id="trendSelectionSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
+                </button>
+            </div>
 
-                <p id="trendSelectionSummary" class="fs-xs text-muted mb-2">Trend selection summary</p>
+            <div id="trendControlsPanel" class="collapse pb-2">
+                <div class="border rounded bg-white p-2">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="fs-xs mb-0 trend-control-help">Trend selections follow the map measure until you customize them.</p>
+                        <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="trendSyncButton">Sync to map</button>
+                    </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-2 mb-md-0">
-                        <div id="trendMenuHolder" class="d-none">
-                            <p class="fs-xs mb-1">
-                                <span id="tc1" class="font-weight-bold">By geography</span>
-                            </p>
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0">
+                            <div id="trendMenuHolder" class="d-none">
+                                <p class="fs-xs mb-1">
+                                    <span id="tc1" class="font-weight-bold">By geography</span>
+                                </p>
 
-                            <div class="border rounded de-trend-optionbox">
-                                <div aria-labelledby="dropdownTrendSelection">
-                                    <!-- INSERT TREND MENU ITEMS HERE -->
+                                <div class="border rounded de-trend-optionbox">
+                                    <div aria-labelledby="dropdownTrendSelection">
+                                        <!-- INSERT TREND MENU ITEMS HERE -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div id="compMenu" class="hide">
-                            <p class="fs-xs mb-1">
-                                <span id="tc2" class="font-weight-bold">Show with:</span>
-                            </p>
+                        <div class="col-md-6">
+                            <div id="compMenu" class="hide">
+                                <p class="fs-xs mb-1">
+                                    <span id="tc2" class="font-weight-bold">Show with:</span>
+                                </p>
 
-                            <div class="border rounded de-trend-optionbox">
-                                <div aria-labelledby="dropdownCompSelection">
-                                    <!-- INSERT COMPARISON MENU ITEMS HERE -->
+                                <div class="border rounded de-trend-optionbox">
+                                    <div aria-labelledby="dropdownCompSelection">
+                                        <!-- INSERT COMPARISON MENU ITEMS HERE -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
