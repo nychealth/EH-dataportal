@@ -21,10 +21,21 @@ const buildCanonicalSearchParams = () => {
     }
 
     // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
-    if (MeasureID)    params.set('MeasureID', MeasureID);
-    if (GeoType)      params.set('GeoType', GeoType);
-    if (TimePeriodID) params.set('TimePeriodID', TimePeriodID);
-    if (overlay)      params.set('overlay', overlay);
+    if (MeasureID) {
+        params.set('MeasureID', MeasureID);
+    }
+
+    if (GeoType) {
+        params.set('GeoType', GeoType);
+    }
+
+    if (TimePeriodID) {
+        params.set('TimePeriodID', TimePeriodID);
+    }
+
+    if (overlay) {
+        params.set('overlay', overlay);
+    }
 
     return params;
 
@@ -176,6 +187,7 @@ const runOverlayRenderer = (renderer) => {
     }
 
     renderer();
+
     return true;
 
 };

@@ -246,9 +246,17 @@ const handleSelection = (type, value) => {
     console.log(`* handleSelection — ${type}: ${value}`);
 
     // update exactly one global — updateAllMenus will cascade-reset siblings that no longer apply
-    if (type === 'measure') MeasureID = value;
-    if (type === 'geo')     GeoType   = value;
-    if (type === 'time')    TimePeriodID = value;
+    if (type === 'measure') {
+        MeasureID = value;
+    }
+
+    if (type === 'geo') {
+        GeoType = value;
+    }
+
+    if (type === 'time') {
+        TimePeriodID = value;
+    }
 
     // rebuild menus (fills in cascaded defaults for nulled-out values)
 

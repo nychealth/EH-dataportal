@@ -15,7 +15,12 @@ const renderCorrelate = (
 
     console.log("** renderCorrelate");
 
-    if (!Array.isArray(data) || !data.length || !primaryMetadata?.length || !secondaryMetadata?.length) {
+    if (
+        !Array.isArray(data)
+        || !data.length
+        || !primaryMetadata?.length
+        || !secondaryMetadata?.length
+    ) {
         return;
     }
 
@@ -62,6 +67,7 @@ const renderCorrelate = (
     linksChart.style.width = '100%';
     linksChart.style.maxWidth = '100%';
 
+    // Pull plotting values up front so axis/domain logic stays readable.
     const aqData = aq.from(data);
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');
@@ -121,7 +127,9 @@ const renderCorrelate = (
     let yValue;
 
     switch (secondaryAxis) {
+
         case 'x':
+
             xMeasure = secondaryMeasurementType;
             yMeasure = primaryMeasurementType;
             xMeasureName = secondaryMeasureName;
@@ -140,9 +148,12 @@ const renderCorrelate = (
                 `${secondaryMeasurementType}${secondaryMetadata[0].DisplayType ? `, ${secondaryMetadata[0].DisplayType}` : ''} (${secondaryTimePeriod})`
             ];
             yAxisLabel = `${primaryMeasurementDisplay} (${yTimePeriod})`;
+
             break;
+
         case 'y':
         default:
+
             xMeasure = primaryMeasurementType;
             yMeasure = secondaryMeasurementType;
             xMeasureName = primaryMeasureName;
@@ -161,7 +172,9 @@ const renderCorrelate = (
                 `${primaryMeasurementType}${primaryMetadata[0].DisplayType ? `, ${primaryMetadata[0].DisplayType}` : ''} (${primaryTimePeriod})`
             ];
             yAxisLabel = `${secondaryMeasurementDisplay} (${yTimePeriod})`;
+
             break;
+
     }
 
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;

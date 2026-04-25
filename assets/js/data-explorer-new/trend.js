@@ -13,6 +13,7 @@ const renderTrendChart = (
     const trendUnreliability = document.getElementById('trend-unreliability');
     const viewDescription = document.getElementById('viewDescription');
 
+    // Guard against incomplete inputs and show a clear fallback message.
     if (!trendContainer || !data || !metadata || data.numRows() === 0 || metadata.numRows() === 0) {
 
         if (trendContainer) {
@@ -34,6 +35,7 @@ const renderTrendChart = (
         viewDescription.innerHTML = 'Hover on lines for more information.';
     }
 
+    // Aggregate unique notes so repeated values do not duplicate in the note list.
     const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
     if (trendUnreliability) {
@@ -49,6 +51,7 @@ const renderTrendChart = (
     let columns;
     let xAxisLabelField;
 
+    // Adjust legend and x-axis labeling density for available width.
     if (window.innerWidth < 340) {
         columns = 1;
     } else if (window.innerWidth < 440) {
