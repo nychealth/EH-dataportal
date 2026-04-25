@@ -700,6 +700,28 @@ const renderMeasures = async () => {
     const compMenu = document.getElementById('compMenu');
     const trendSelectionSummary = document.getElementById('trendSelectionSummary');
     const trendSyncButton = document.getElementById('trendSyncButton');
+    const trendControlsToggle = document.getElementById('trendControlsToggle');
+
+    const constrainSummaryWidthToPanel = (summaryElement, toggleElement, reservePx = 170) => {
+
+        if (!summaryElement || !toggleElement) {
+            return;
+        }
+
+        const tabsPanel = toggleElement.closest('.de-tabs');
+        const panelWidth = tabsPanel
+            ? Math.round(tabsPanel.getBoundingClientRect().width)
+            : Math.round(toggleElement.getBoundingClientRect().width);
+
+        const summaryMaxWidth = Math.max(96, panelWidth - reservePx);
+
+        summaryElement.style.display = 'inline-block';
+        summaryElement.style.maxWidth = `${summaryMaxWidth}px`;
+        summaryElement.style.overflow = 'hidden';
+        summaryElement.style.textOverflow = 'ellipsis';
+        summaryElement.style.whiteSpace = 'nowrap';
+
+    };
 
     const getSyncedTrendMeasureId = () => {
 
@@ -836,6 +858,7 @@ const renderMeasures = async () => {
         const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
 
         trendSelectionSummary.textContent = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
+        constrainSummaryWidthToPanel(trendSelectionSummary, trendControlsToggle, 160);
 
     };
 
@@ -1048,6 +1071,7 @@ const renderMeasures = async () => {
     const linksSyncButton = document.getElementById('linksSyncButton');
     const showLinksButton = document.getElementById('show-links');
     const showDisparitiesButton = document.getElementById('show-disparities');
+    const correlateControlsToggle = document.getElementById('correlateControlsToggle');
 
     const getLinksButtonLabel = (secondaryMeasureId) => {
 
@@ -1202,12 +1226,14 @@ const renderMeasures = async () => {
 
         if (activeLinksState.view === 'disparities') {
             linksSelectionSummary.textContent = `Measure: ${primaryLabel} | Disparities | ${syncState}`;
+            constrainSummaryWidthToPanel(linksSelectionSummary, correlateControlsToggle, 180);
             return;
         }
 
         const secondaryLabel = getLinksButtonLabel(activeLinksState.secondaryMeasureId);
 
         linksSelectionSummary.textContent = `Measure: ${primaryLabel} | With: ${secondaryLabel} | ${syncState}`;
+        constrainSummaryWidthToPanel(linksSelectionSummary, correlateControlsToggle, 180);
 
     };
 
@@ -1620,8 +1646,6 @@ const renderMeasures = async () => {
 
         renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
 
-        updateChartPlotSize();
-
         showingBoroughTrend = true;
         showingComparisonTrend = false;
 
@@ -1691,8 +1715,6 @@ const renderMeasures = async () => {
             aqFilteredComparisonData,
             aqFilteredComparisonMetadata
         );
-
-        updateChartPlotSize();
 
         showingBoroughTrend = false;
         showingComparisonTrend = true;

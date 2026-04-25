@@ -41,6 +41,27 @@ const renderCorrelate = (
     correlateHolder.classList.remove('hide');
     linksMenuHolder?.classList.remove('d-none');
 
+    // Lock the chart holder to the overlay panel width so Vega can size to a
+    // stable container without expanding the overlay on each redraw.
+    const deTabsPanel = correlateHolder.closest('.de-tabs');
+    const fixedHolderWidth = Math.max(
+        280,
+        Math.round(
+            deTabsPanel
+                ? deTabsPanel.getBoundingClientRect().width - 32
+                : correlateHolder.getBoundingClientRect().width
+        )
+    );
+
+    correlateHolder.style.removeProperty('overflow');
+    correlateHolder.style.setProperty('width', `${fixedHolderWidth}px`, 'important');
+    correlateHolder.style.setProperty('min-width', `${fixedHolderWidth}px`, 'important');
+    correlateHolder.style.setProperty('max-width', `${fixedHolderWidth}px`, 'important');
+
+    linksChart.style.removeProperty('overflow');
+    linksChart.style.width = '100%';
+    linksChart.style.maxWidth = '100%';
+
     const aqData = aq.from(data);
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');

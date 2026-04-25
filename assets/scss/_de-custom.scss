@@ -491,12 +491,74 @@ $color-data-explorer: #0A408A;
     }
 
     .tab-content {
+      width: 100%;
+      max-width: 100%;
       max-height: calc(100vh - 8rem);
       overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .tab-content .tab-pane {
+      width: 100%;
+      max-width: 100%;
     }
 
     .close-tab-pane {
       position: absolute;
+    }
+  }
+
+  // Toggle pill buttons on each panel
+  #table-filter-controls,
+  #trendControls,
+  #correlateControls {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #tableFilterToggle,
+  #trendControlsToggle,
+  #correlateControlsToggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // Menu items inside panels
+  #tableFilterPanel .checkbox-time,
+  #tableFilterPanel .checkbox-geo,
+  #trendMenuHolder .dropdown-item,
+  #compMenu .dropdown-item,
+  .btn-toggle-disparities .btn,
+  #linksMenuHolder,
+  #linksMenuHolder .btn,
+  #linksMenuHolder .dropdown-item {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  // Summary spans inside toggle pill buttons — keep small and layout-stable.
+  // d-lg-inline makes them display:inline on large screens; switching to inline-block
+  // lets us cap the width so changing text doesn't resize the button or the panel.
+  #tableFilterSummary,
+  #trendSelectionSummary,
+  #linksSelectionSummary {
+    font-size: 0.75rem;
+
+    @media (min-width: 992px) {
+      display: inline-block !important;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
     }
   }
 
