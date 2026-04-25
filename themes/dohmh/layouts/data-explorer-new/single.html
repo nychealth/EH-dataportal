@@ -51,6 +51,7 @@
 {{- $bar       := resources.Get "js/data-explorer-new/bar.js" -}}
 {{- $trend     := resources.Get "js/data-explorer-new/trend.js" -}}
 {{- $correlate := resources.Get "js/data-explorer-new/correlate.js" -}}
+{{- $disparities := resources.Get "js/data-explorer-new/disparities.js" -}}
 
 
 {{- $global_secure    := $global | partial "short-fingerprint.html" -}}
@@ -66,6 +67,7 @@
 {{- $bar_secure       := $bar | partial "short-fingerprint.html" -}}
 {{- $trend_secure     := $trend | partial "short-fingerprint.html" -}}
 {{- $correlate_secure := $correlate | partial "short-fingerprint.html" -}}
+{{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
 
 
 <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
@@ -81,6 +83,7 @@
 <script type="text/javascript" src="{{ $bar_secure.RelPermalink }}" integrity="{{ $bar_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
+<script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
 
 
 <script>

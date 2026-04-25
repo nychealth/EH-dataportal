@@ -80,11 +80,15 @@ let selectedMapTime;
 let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
+let selectedDisparity;
 let selectedComparison;
 let showingBoroughTrend;
 let showingComparisonTrend;
 let selectedTrendMeasureId;
 let selectedComparisonId;
+let selectedLinksPrimaryMeasureId;
+let selectedLinksSecondaryMeasureId;
+let selectedDisparityPrimaryMeasureId;
 
 let selectedMapAbout;
 let selectedMapSources;
@@ -137,6 +141,7 @@ let showBoroughTrend;
 let showComparisonTrend;
 let showLinks;
 let syncTrendSelectionsToMapSelection;
+let syncLinksSelectionsToMapSelection;
 
 let CSVforDownload; 
 let downloadedIndicator;

@@ -366,6 +366,95 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 }
 
 
+// Returns metadata for one measure on the active indicator.
+const getMeasureMetadataById = (measureId) => {
+
+    if (!indicatorMeasures?.length || measureId == null) {
+        return [];
+    }
+
+    return indicatorMeasures.filter(measure => Number(measure.MeasureID) === Number(measureId));
+
+};
+
+
+// Whether the active indicator exposes correlate links for a measure.
+const measureSupportsLinks = (measureId) => {
+    return linksMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
+};
+
+
+// Whether the active indicator exposes disparities for a measure.
+const measureSupportsDisparities = (measureId) => {
+    return disparitiesMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
+};
+
+
+// Finds the first linked secondary measure configured for one primary measure.
+const getDefaultLinksSecondaryMeasureId = (primaryMeasureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId)[0];
+    const defaultSecondaryMeasureId = primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.[0]?.MeasureID;
+
+    return defaultSecondaryMeasureId != null ? Number(defaultSecondaryMeasureId) : null;
+
+};
+
+
+// Falls back to the active default correlate measure when map MeasureID is not link-capable.
+const getDefaultLinksPrimaryMeasureId = () => {
+
+    const defaultPrimaryMeasureId = defaultPrimaryLinksMeasureMetadata?.[0]?.MeasureID;
+
+    if (defaultPrimaryMeasureId != null) {
+        return Number(defaultPrimaryMeasureId);
+    }
+
+    return linksMeasures[0] ? Number(linksMeasures[0].MeasureID) : null;
+
+};
+
+
+// Falls back to the active default disparities measure when map MeasureID is not disparities-capable.
+const getDefaultDisparitiesPrimaryMeasureId = () => {
+
+    const defaultPrimaryMeasureId = defaultDisparitiesMetadata?.[0]?.MeasureID;
+
+    if (defaultPrimaryMeasureId != null) {
+        return Number(defaultPrimaryMeasureId);
+    }
+
+    return disparitiesMeasures[0] ? Number(disparitiesMeasures[0].MeasureID) : null;
+
+};
+
+
+// Validates that the selected primary measure can link to the selected secondary measure.
+const primaryLinksToSecondary = (primaryMeasureId, secondaryMeasureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId)[0];
+
+    return primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.some(link =>
+        Number(link.MeasureID) === Number(secondaryMeasureId)
+    ) || false;
+
+};
+
+
+// Finds the indicator record that owns one secondary linked measure.
+const getSecondaryMeasureIndicator = (secondaryMeasureId) => {
+
+    if (!indicators?.length || secondaryMeasureId == null) {
+        return [];
+    }
+
+    return indicators.filter(indicator =>
+        indicator.Measures.some(measure => Number(measure.MeasureID) === Number(secondaryMeasureId))
+    );
+
+};
+
+
 // ----------------------------------------------------------------------- //
 // NOTE: Old per-tab update functions (updateMapData, updateBoroughTrendData,
 // updateComparisonTrendData, updateLinksData) and per-tab dropdown handlers
@@ -383,56 +472,75 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 // Binds the Links versus Disparities toggle without stacking duplicate handlers.
 const clickLinksToggle = (e) => {
 
-    // turn off click listener
+    if (!btnToggleDisparities) {
+        return;
+    }
 
-    $(btnToggleDisparities).off(".toggle")
+    $(btnToggleDisparities).off('.toggle');
 
-    // set on click listener
+    $(btnToggleDisparities).on('click.toggle', event => {
 
-    $(btnToggleDisparities).on("click.toggle", (e) => {
+        const button = event.target.closest('button');
 
-        // remove active class from both options
+        if (!button || button.classList.contains('active') || button.classList.contains('disabled')) {
+            return;
+        }
 
-        $("#show-disparities").removeClass("active");
-        $("#show-links").removeClass("active");
+        if (button.matches('#show-disparities')) {
 
-        // determine which function to call
+            if (!disparitiesMeasures.length) {
+                return;
+            }
 
-        // Route the toggle click to the correct correlate or disparities renderer.
-        if (
-            e.target && 
-            !e.target.classList.contains("active") && 
-            !e.target.classList.contains("disabled") &&
-            e.target.matches("#show-disparities")
-        ) {
+            const activePrimaryMeasureId = selectedLinksPrimaryMeasureId == null
+                ? Number(MeasureID)
+                : Number(selectedLinksPrimaryMeasureId);
 
-            // MeasureID: 221 = neighborhood poverty percent
+            const nextPrimaryMeasureId = measureSupportsDisparities(activePrimaryMeasureId)
+                ? activePrimaryMeasureId
+                : getDefaultDisparitiesPrimaryMeasureId();
 
-            // console.log("renderDisparitiesChart [clickLinksToggle]");
+            if (nextPrimaryMeasureId == null) {
+                return;
+            }
 
-            renderDisparitiesChart(defaultDisparitiesMetadata, 221);
-
-            // set this option to active
-
-            $(e.target).addClass("active")
-
-        } else if (
-            e.target && 
-            !e.target.classList.contains("active") && 
-            !e.target.classList.contains("disabled") &&
-            e.target.matches("#show-links")
-        ) {
-
-            // console.log("showLinks [clickLinksToggle]");
+            selectedLinksMeasure = true;
+            selectedDisparity = true;
+            selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+            selectedLinksSecondaryMeasureId = 221;
 
             showLinks();
-
-            // set this option to active
-
-            $(e.target).addClass("active")
+            return;
 
         }
-    })
+
+        if (!button.matches('#show-links') || !linksMeasures.length) {
+            return;
+        }
+
+        const activePrimaryMeasureId = selectedLinksPrimaryMeasureId == null
+            ? Number(MeasureID)
+            : Number(selectedLinksPrimaryMeasureId);
+
+        const nextPrimaryMeasureId = measureSupportsLinks(activePrimaryMeasureId)
+            ? activePrimaryMeasureId
+            : getDefaultLinksPrimaryMeasureId();
+
+        const nextSecondaryMeasureId = getDefaultLinksSecondaryMeasureId(nextPrimaryMeasureId);
+
+        if (nextPrimaryMeasureId == null || nextSecondaryMeasureId == null) {
+            return;
+        }
+
+        selectedLinksMeasure = true;
+        selectedDisparity = false;
+        selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+        selectedLinksSecondaryMeasureId = nextSecondaryMeasureId;
+
+        showLinks();
+
+    });
+
 }
 
 
@@ -931,6 +1039,367 @@ const renderMeasures = async () => {
     buildTrendSelectionControls();
 
 
+    // ===== correlate / disparities selection controls ======================== //
+
+    const contentLinks = document.querySelector('#v-pills-correlate');
+    const dropdownLinksMeasures = contentLinks?.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
+    const linksMenuHolder = document.getElementById('linksMenuHolder');
+    const linksSelectionSummary = document.getElementById('linksSelectionSummary');
+    const linksSyncButton = document.getElementById('linksSyncButton');
+    const showLinksButton = document.getElementById('show-links');
+    const showDisparitiesButton = document.getElementById('show-disparities');
+
+    const getLinksButtonLabel = (secondaryMeasureId) => {
+
+        const secondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+        const secondaryMetadata = secondaryIndicator[0]?.Measures?.filter(measure =>
+            Number(measure.MeasureID) === Number(secondaryMeasureId)
+        );
+
+        return secondaryMetadata?.[0]?.MeasureName || secondaryIndicator[0]?.IndicatorName || 'Linked measure';
+
+    };
+
+
+    const getSyncedLinksState = () => {
+
+        if (measureSupportsLinks(MeasureID)) {
+            const syncedPrimaryMeasureId = Number(MeasureID);
+
+            return {
+                primaryMeasureId: syncedPrimaryMeasureId,
+                secondaryMeasureId: getDefaultLinksSecondaryMeasureId(syncedPrimaryMeasureId),
+                view: 'links'
+            };
+        }
+
+        if (measureSupportsDisparities(MeasureID)) {
+            return {
+                primaryMeasureId: Number(MeasureID),
+                secondaryMeasureId: 221,
+                view: 'disparities'
+            };
+        }
+
+        if (linksMeasures.length) {
+            const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
+
+            return {
+                primaryMeasureId: defaultPrimaryMeasureId,
+                secondaryMeasureId: getDefaultLinksSecondaryMeasureId(defaultPrimaryMeasureId),
+                view: 'links'
+            };
+        }
+
+        if (disparitiesMeasures.length) {
+            return {
+                primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
+                secondaryMeasureId: 221,
+                view: 'disparities'
+            };
+        }
+
+        return {
+            primaryMeasureId: null,
+            secondaryMeasureId: null,
+            view: 'links'
+        };
+
+    };
+
+
+    const getActiveLinksState = () => {
+
+        const manualPrimaryMeasureId = selectedLinksPrimaryMeasureId == null ? null : Number(selectedLinksPrimaryMeasureId);
+        const manualSecondaryMeasureId = selectedLinksSecondaryMeasureId == null ? null : Number(selectedLinksSecondaryMeasureId);
+
+        const hasManualDisparities = selectedLinksMeasure
+            && selectedDisparity
+            && manualPrimaryMeasureId != null
+            && measureSupportsDisparities(manualPrimaryMeasureId);
+
+        if (hasManualDisparities) {
+            return {
+                primaryMeasureId: manualPrimaryMeasureId,
+                secondaryMeasureId: 221,
+                view: 'disparities'
+            };
+        }
+
+        const hasManualLinks = selectedLinksMeasure
+            && !selectedDisparity
+            && manualPrimaryMeasureId != null
+            && manualSecondaryMeasureId != null
+            && measureSupportsLinks(manualPrimaryMeasureId)
+            && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
+
+        if (hasManualLinks) {
+            return {
+                primaryMeasureId: manualPrimaryMeasureId,
+                secondaryMeasureId: manualSecondaryMeasureId,
+                view: 'links'
+            };
+        }
+
+        return getSyncedLinksState();
+
+    };
+
+
+    const setLinksButtonState = () => {
+
+        const activeLinksState = getActiveLinksState();
+
+        document.querySelectorAll('.linksbutton').forEach(button => {
+            button.classList.remove('active');
+            button.setAttribute('aria-selected', 'false');
+        });
+
+        if (activeLinksState.view === 'links') {
+            const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
+
+            if (activeLinksButton) {
+                activeLinksButton.classList.add('active');
+                activeLinksButton.setAttribute('aria-selected', 'true');
+            }
+        }
+
+        if (showLinksButton) {
+            showLinksButton.classList.toggle('active', activeLinksState.view === 'links' && linksMeasures.length > 0);
+            showLinksButton.classList.toggle('disabled', linksMeasures.length === 0);
+            showLinksButton.setAttribute('aria-disabled', linksMeasures.length === 0);
+            showLinksButton.setAttribute('aria-selected', activeLinksState.view === 'links' && linksMeasures.length > 0);
+        }
+
+        if (showDisparitiesButton) {
+            showDisparitiesButton.classList.toggle('active', activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0);
+            showDisparitiesButton.classList.toggle('disabled', disparitiesMeasures.length === 0);
+            showDisparitiesButton.setAttribute('aria-disabled', disparitiesMeasures.length === 0);
+            showDisparitiesButton.setAttribute('aria-selected', activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0);
+        }
+
+        if (linksMenuHolder) {
+            if (activeLinksState.view === 'links' && linksMeasures.length > 0) {
+                linksMenuHolder.classList.remove('d-none');
+            } else {
+                linksMenuHolder.classList.add('d-none');
+            }
+        }
+
+    };
+
+
+    const updateLinksSelectionSummary = () => {
+
+        if (!linksSelectionSummary) {
+            return;
+        }
+
+        const activeLinksState = getActiveLinksState();
+        const primaryMeasure = getMeasureMetadataById(activeLinksState.primaryMeasureId)[0];
+        const primaryLabel = primaryMeasure?.MeasurementType || 'No measure';
+        const syncState = selectedLinksMeasure ? 'Custom' : 'Synced';
+
+        if (activeLinksState.view === 'disparities') {
+            linksSelectionSummary.textContent = `Measure: ${primaryLabel} | Disparities | ${syncState}`;
+            return;
+        }
+
+        const secondaryLabel = getLinksButtonLabel(activeLinksState.secondaryMeasureId);
+
+        linksSelectionSummary.textContent = `Measure: ${primaryLabel} | With: ${secondaryLabel} | ${syncState}`;
+
+    };
+
+
+    syncLinksSelectionsToMapSelection = (force = false) => {
+
+        let didChange = false;
+        const syncedLinksState = getSyncedLinksState();
+
+        if (force || !selectedLinksMeasure) {
+            if (selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
+                selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
+                didChange = true;
+            }
+
+            if (selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
+                selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
+                didChange = true;
+            }
+
+            const nextDisparityState = syncedLinksState.view === 'disparities';
+
+            if (selectedDisparity !== nextDisparityState) {
+                selectedDisparity = nextDisparityState;
+                didChange = true;
+            }
+
+            selectedLinksMeasure = false;
+        }
+
+        setLinksButtonState();
+        updateLinksSelectionSummary();
+
+        return didChange;
+
+    };
+
+
+    const buildLinksSelectionControls = () => {
+
+        if (dropdownLinksMeasures) {
+            dropdownLinksMeasures.innerHTML = '';
+        }
+
+        if (linksMeasures.length > 0 && dropdownLinksMeasures) {
+
+            linksMeasures.forEach(measure => {
+
+                dropdownLinksMeasures.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${measure.MeasurementType}</strong></span>`);
+
+                measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.forEach(link => {
+
+                    const secondaryLabel = getLinksButtonLabel(link.MeasureID);
+
+                    dropdownLinksMeasures.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item linksbutton pl-2"
+                        data-primary-measure-id="${measure.MeasureID}"
+                        data-secondary-measure-id="${link.MeasureID}"
+                        title="${secondaryLabel}">
+                        ${secondaryLabel}
+                    </button>`);
+
+                });
+
+            });
+
+            dropdownLinksMeasures.onclick = event => {
+
+                const button = event.target.closest('.linksbutton');
+
+                if (!button) {
+                    return;
+                }
+
+                selectedLinksMeasure = true;
+                selectedDisparity = false;
+                selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
+                selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
+
+                showLinks();
+
+            };
+
+        } else if (dropdownLinksMeasures) {
+
+            dropdownLinksMeasures.onclick = null;
+
+        }
+
+        if (linksSyncButton) {
+            linksSyncButton.onclick = () => {
+
+                selectedLinksMeasure = false;
+
+                syncLinksSelectionsToMapSelection(true);
+
+                if (overlay === 'links') {
+                    showLinks();
+                }
+
+            };
+        }
+
+        clickLinksToggle();
+        syncLinksSelectionsToMapSelection(true);
+
+    };
+
+
+    const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => {
+
+        if (primaryMeasureId == null || secondaryMeasureId == null) {
+            return false;
+        }
+
+        const canReuseCurrentSelection = Array.isArray(joinedLinksDataObjects)
+            && joinedLinksDataObjects.length > 0
+            && Number(selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
+            && Number(selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
+
+        if (!canReuseCurrentSelection) {
+
+            const selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId);
+
+            if (!selectedLinksDataMetadata?.data?.length) {
+                return false;
+            }
+
+            selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+            selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+            joinedLinksDataObjects = selectedLinksDataMetadata.data;
+
+        }
+
+        const linksSecondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+
+        if (!selectedPrimaryMeasureMetadata?.length || !selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
+            return false;
+        }
+
+        primaryIndicatorName = indicatorName;
+        secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
+
+        const primaryMeasurementType = selectedPrimaryMeasureMetadata[0]?.MeasurementType;
+        const secondaryMeasurementType = selectedSecondaryMeasureMetadata[0]?.MeasurementType;
+        const primaryAbout = selectedPrimaryMeasureMetadata[0]?.how_calculated;
+        const secondaryAbout = selectedSecondaryMeasureMetadata[0]?.how_calculated;
+        const primarySources = selectedPrimaryMeasureMetadata[0]?.Sources;
+        const secondarySources = selectedSecondaryMeasureMetadata[0]?.Sources;
+
+        selectedLinksAbout =
+            `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+            <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
+
+        selectedLinksSources =
+            `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+            <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
+
+        renderAboutSources(selectedLinksAbout, selectedLinksSources);
+
+        renderCorrelate(
+            joinedLinksDataObjects,
+            selectedPrimaryMeasureMetadata,
+            selectedSecondaryMeasureMetadata,
+            primaryIndicatorName,
+            secondaryIndicatorName
+        );
+
+        return true;
+
+    };
+
+
+    const renderSelectedDisparities = async (primaryMeasureId) => {
+
+        const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
+
+        if (!primaryMeasureMetadata.length) {
+            return false;
+        }
+
+        selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
+
+        await renderDisparitiesChart(primaryMeasureMetadata, 221);
+
+        return true;
+
+    };
+
+
+    buildLinksSelectionControls();
+
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // functions to show to tabs
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -1237,91 +1706,42 @@ const renderMeasures = async () => {
     // ===== links ================================================== //
 
     // Renders the links view, or falls back to disparities when links are unavailable.
-    showLinks = (e) => {
+    showLinks = async (e) => {
 
         console.log("* showLinks");
 
         overlay = 'links';
 
-        // Fall back to disparities when metadata offers no linked secondary measure.
-        if (linksMeasures.length === 0) {
+        syncLinksSelectionsToMapSelection();
 
-            // no links available
+        const activeLinksState = getActiveLinksState();
+        let didRender = false;
 
-            if (disparitiesMeasures.length > 0) {
-                renderDisparitiesChart(defaultDisparitiesMetadata, 221);
-            }
+        if (activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0) {
+            didRender = await renderSelectedDisparities(activeLinksState.primaryMeasureId);
+        }
 
-        } else {
+        if (!didRender && linksMeasures.length > 0) {
+            didRender = await renderSelectedCorrelate(activeLinksState.primaryMeasureId, activeLinksState.secondaryMeasureId);
+        }
 
-            // has links
+        if (!didRender && disparitiesMeasures.length > 0) {
 
-            // Build default linked metadata only on the first links render for this indicator.
-            if (!selectedLinksMeasure) {
+            const fallbackPrimaryMeasureId = measureSupportsDisparities(activeLinksState.primaryMeasureId)
+                ? activeLinksState.primaryMeasureId
+                : getDefaultDisparitiesPrimaryMeasureId();
 
-                // first load — compute defaults
+            if (fallbackPrimaryMeasureId != null) {
+                selectedDisparity = true;
+                selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
+                selectedLinksSecondaryMeasureId = 221;
 
-                const secondaryMeasureId = defaultPrimaryLinksMeasureMetadata[0]?.VisOptions[0].Links[0].Measures[0].MeasureID;
-
-                const linksSecondaryIndicator = indicators.filter(indicator =>
-                    indicator.Measures.some(measure =>
-                        measure.MeasureID === secondaryMeasureId
-                    )
-                );
-
-                defaultSecondaryMeasureMetadata = linksSecondaryIndicator[0]?.Measures?.filter(m =>
-                    m.MeasureID === secondaryMeasureId
-                );
-
-                primaryIndicatorName   = indicatorName;
-                secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
-
-                const primaryMeasure   = defaultPrimaryLinksMeasureMetadata[0]?.MeasurementType;
-                const primaryAbout     = defaultPrimaryLinksMeasureMetadata[0]?.how_calculated;
-                const primarySources   = defaultPrimaryLinksMeasureMetadata[0]?.Sources;
-
-                const secondaryMeasure = defaultSecondaryMeasureMetadata[0]?.MeasurementType;
-                const secondaryAbout   = defaultSecondaryMeasureMetadata[0]?.how_calculated;
-                const secondarySources = defaultSecondaryMeasureMetadata[0]?.Sources;
-
-                defaultLinksAbout =
-                    `<p><strong>${primaryIndicatorName} - ${primaryMeasure}</strong>: ${primaryAbout}</p>
-                    <p><strong>${secondaryIndicatorName} - ${secondaryMeasure}</strong>: ${secondaryAbout}</p>`;
-
-                defaultLinksSources = [];
-                defaultLinksSources.push(primarySources);
-                defaultLinksSources.push(secondarySources);
-
-                renderCorrelate(
-                    joinedLinksDataObjects,
-                    defaultPrimaryLinksMeasureMetadata,
-                    defaultSecondaryMeasureMetadata,
-                    primaryIndicatorName,
-                    secondaryIndicatorName
-                );
-
-                // set up links / disparities toggle
-
-                if (disparitiesMeasures.length > 0) {
-                    clickLinksToggle();
-                }
-
-            } else {
-
-                // restore existing chart
-
-                renderAboutSources(selectedLinksAbout, selectedLinksSources);
-
-                renderCorrelate(
-                    joinedLinksDataObjects,
-                    selectedPrimaryMeasureMetadata,
-                    selectedSecondaryMeasureMetadata,
-                    primaryIndicatorName,
-                    secondaryIndicatorName
-                );
-
+                didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
             }
         }
+
+        setLinksButtonState();
+        updateLinksSelectionSummary();
 
     };
 
