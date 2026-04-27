@@ -454,7 +454,7 @@ const renderBar = (
         
         window.myVegaView = result.view; // store the vega view globally
         
-        let lastHighlightedLayer = null;
+        let lastHighlighted = null; // can be a Leaflet layer (choropleth) or geoID (bubble)
 
         // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
         result.view.addEventListener('mouseover', (event, item) => {
@@ -467,21 +467,34 @@ const renderBar = (
 
                 if (!mapAPI) return; // map not ready yet
 
-                const layer = mapAPI.geoIDtoLayer[geoID];
-
-                // Reset the previous highlight before moving focus to the new geography.
-                if (layer && layer !== lastHighlightedLayer) {
-
-                    // Reset previous
-                    if (lastHighlightedLayer) {
-                        mapAPI.resetHighlight(lastHighlightedLayer);
+                // Check if it's a bubble map (has circleMarkers) or choropleth (has geoIDtoLayer)
+                if (mapAPI.circleMarkers) {
+                    // Bubble map
+                    const markerObj = mapAPI.circleMarkers.find(c => c.geoID === geoID);
+                    if (markerObj && markerObj !== lastHighlighted) {
+                        // Reset previous highlight
+                        if (lastHighlighted) {
+                            mapAPI.resetBubble(lastHighlighted);
+                        }
+                        // Highlight new bubble
+                        mapAPI.highlightBubble(geoID);
+                        lastHighlighted = geoID;
+                        // Update UI with bar data properties
+                        mapAPI.updateHoverUI(item.datum);
                     }
-
-                    // Highlight new
-                    mapAPI.highlightFeature({ target: layer });
-                    lastHighlightedLayer = layer;
-
-                    mapAPI.updateHoverUI(layer.feature.properties);
+                } else if (mapAPI.geoIDtoLayer) {
+                    // Choropleth map
+                    const layer = mapAPI.geoIDtoLayer[geoID];
+                    if (layer && layer !== lastHighlighted) {
+                        // Reset previous
+                        if (lastHighlighted) {
+                            mapAPI.resetHighlight(lastHighlighted);
+                        }
+                        // Highlight new
+                        mapAPI.highlightFeature({ target: layer });
+                        lastHighlighted = layer;
+                        mapAPI.updateHoverUI(layer.feature.properties);
+                    }
                 }
             }
         });
@@ -493,9 +506,15 @@ const renderBar = (
 
             if (!mapAPI) return;
 
-            if (lastHighlightedLayer) {
-                mapAPI.resetHighlight(lastHighlightedLayer);
-                lastHighlightedLayer = null;
+            if (lastHighlighted) {
+                if (typeof lastHighlighted === 'string') {
+                    // Bubble map: lastHighlighted is geoID
+                    mapAPI.resetBubble(lastHighlighted);
+                } else {
+                    // Choropleth: lastHighlighted is layer
+                    mapAPI.resetHighlight(lastHighlighted);
+                }
+                lastHighlighted = null;
             }
 
             mapAPI.clearHoverUI();
