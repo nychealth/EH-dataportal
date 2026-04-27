@@ -33,7 +33,20 @@ blurb: CP summer report
 
 <!-- note this text is not final / approved and still needs links! -->
 
-In January 2025, Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s most gridlocked areas. Congestion tolling, or congestion pricing was introduced to New York City to reduce traffic in the Congestion Relief Zone (CRZ) while raising money for public transit improvements.
+<!-- <strong>Table of Contents</strong>
+
+- <a href="#Introduction">Introduction</a>
+- <a href="#KeySites">Key sites</a>
+- <a href="#EJSites">Results from Environmental Justice sites</a>
+- <a href="#CRZPollution">Pollution inside the CRZ</a>
+- <a href="#OutPollution">Pollution outside of the CRZ and NYC</a>
+- <a href="#Conclusion">Conclusion</a>
+
+<hr class="my-1 px-6"></hr>
+
+-->
+
+<div id="Introduction">In January 2025, Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s most gridlocked areas. Congestion tolling, or congestion pricing was introduced to New York City to reduce traffic in the Congestion Relief Zone (CRZ) while raising money for public transit improvements.<br><br>
 
 ##### Monitoring for air quality changes
 
@@ -42,3 +55,5 @@ Modeling from the mandatory environmental review process did not identify air po
 ##### A complete evaluation
 
 With a full year of data since CRZ tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ tolling program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that air pollution either did not change or slightly decreased both within and outside the zone.
+
+</div>

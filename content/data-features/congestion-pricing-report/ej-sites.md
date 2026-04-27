@@ -12,7 +12,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 </div>
 
 <div class="col-6">
-<div class="col-12" align="">
+<div class="col-12" align="" px-0>
 <div class="accordion-group my-1" role="tablist" id="accordion-02">
   <div class="card border border-info">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
@@ -119,7 +119,7 @@ and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven c
 </div>
 
 <br>
-<div class="mt-1">
+<div class="col-12 mt-1">
 <strong>This report:</strong>
 
 - Provides results for each of the six EJ communities of the five common air pollutants and traffic to determine whether CRZ tolling caused traffic and pollution levels to change in those neighborhoods.
