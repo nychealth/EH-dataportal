@@ -54,7 +54,6 @@
 
 
 {{- $global_secure    := $global | partial "short-fingerprint.html" -}}
-{{- $utilities_secure := $utilities | partial "short-fingerprint.html" -}}
 {{- $app_secure       := $app | partial "short-fingerprint.html" -}}
 {{- $data_secure      := $data | partial "short-fingerprint.html" -}}
 {{- $measures_secure  := $measures | partial "short-fingerprint.html" -}}
@@ -70,7 +69,6 @@
 
 
 <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
-<script type="text/javascript" src="{{ $utilities_secure.RelPermalink }}" integrity="{{ $utilities_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $measures_secure.RelPermalink }}" integrity="{{ $measures_secure.Data.Integrity }}"></script>
