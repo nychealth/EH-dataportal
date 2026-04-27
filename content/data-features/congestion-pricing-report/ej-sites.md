@@ -12,7 +12,7 @@ Because the Van Wyck Expressway did not experience changes in traffic due to CRZ
 </div>
 
 <div class="col-6">
-<div class="col-12" align="" px-0>
+<div class="col-12 px-0" align="">
 <div class="accordion-group my-1" role="tablist" id="accordion-02">
   <div class="card border border-info">
     <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
