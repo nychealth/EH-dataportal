@@ -10,60 +10,32 @@
 // geo file
 // ----------------------------------------------------------------------- //
 
+const GEO_FILE_BY_TYPE = {
+    NTA2010: 'NTA_2010.topo.json',
+    NTA2020: 'NTA_2020.topo.json',
+    NYHarbor: 'ny_harbor.topo.json',
+    CD: 'CD.topo.json',
+    CDTA2020: 'CDTA_2020.topo.json',
+    PUMA2010: 'PUMA2010.topo.json',
+    PUMA2020: 'PUMA2020.topo.json',
+    Subboro: 'PUMA_or_Subborough.topo.json',
+    UHF42: 'UHF42.topo.json',
+    UHF34: 'UHF34.topo.json',
+    NYCKIDS2017: 'NYCKids_2017.topo.json',
+    NYCKIDS2019: 'NYCKids_2019.topo.json',
+    NYCKIDS2021: 'NYCKids_2021.topo.json',
+    NYCKIDS2023: 'NYCKids_2023.topo.json',
+    Borough: 'borough.topo.json',
+    RMZ: 'RMZ.topo.json'
+};
+
 // Maps a backend GeoType value to the corresponding TopoJSON filename.
 function getGeoFile(mapGeoType) {
 
     console.log("*** getGeoFile");
 
     // Return the matching geography file for the requested map geography.
-    if (mapGeoType === "NTA2010") {
-        return 'NTA_2010.topo.json';
-
-    } else if (mapGeoType === "NTA2020") {
-        return 'NTA_2020.topo.json';
-
-    } else if (mapGeoType === "NYHarbor") {
-        return 'ny_harbor.topo.json';
-
-    } else if (mapGeoType === "CD") {
-        return 'CD.topo.json';
-
-    } else if (mapGeoType === "CDTA2020") {
-        return 'CDTA_2020.topo.json';
-
-    } else if (mapGeoType === "PUMA2010") {
-        return 'PUMA2010.topo.json';
-
-    } else if (mapGeoType === "PUMA2020") {
-        return 'PUMA2020.topo.json';
-
-    } else if (mapGeoType === "Subboro") {
-        return 'PUMA_or_Subborough.topo.json';
-
-    } else if (mapGeoType === "UHF42") {
-        return 'UHF42.topo.json';
-
-    } else if (mapGeoType === "UHF34") {
-        return 'UHF34.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2017") {
-        return 'NYCKids_2017.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2019") {
-        return 'NYCKids_2019.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2021") {
-        return 'NYCKids_2021.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2023") {
-        return 'NYCKids_2023.topo.json';
-
-    } else if (mapGeoType === "Borough") {
-        return 'borough.topo.json';
-
-    } else if (mapGeoType === "RMZ") {
-        return 'RMZ.topo.json';   
-    }
+    return GEO_FILE_BY_TYPE[mapGeoType];
 }
 
 // ----------------------------------------------------------------------- //

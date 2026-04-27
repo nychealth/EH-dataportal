@@ -8,6 +8,71 @@
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
+// Picks one default measure using the shared priority order used by all tabs.
+const pickDefaultMeasureByPriority = (visArray) => {
+
+    const hasAgeAdjustedRate = visArray.filter(measure =>
+        measure.MeasurementType.includes('Age-adjusted rate')
+    );
+
+    const hasRate = visArray.filter(measure =>
+        measure.MeasurementType.includes('rate')
+    );
+
+    const isRate = visArray.filter(measure =>
+        measure.MeasurementType.includes('Rate')
+    );
+
+    const hasPercent = visArray.filter(measure =>
+        measure.MeasurementType.includes('Percent')
+    );
+
+    const hasPercent2 = visArray.filter(measure =>
+        measure.MeasurementType.includes('percent')
+    );
+
+    const hasDensity = visArray.filter(measure =>
+        measure.MeasurementType.includes('Density')
+    );
+
+    if (hasAgeAdjustedRate.length) {
+
+        const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
+            measure.MeasurementType.includes('Total')
+        );
+
+        if (hasAgeAdjustedRateTotal.length) {
+            return hasAgeAdjustedRateTotal[0];
+        }
+
+        return hasAgeAdjustedRate[0];
+
+    }
+
+    if (hasRate.length) {
+        return hasRate[0];
+    }
+
+    if (isRate.length) {
+        return isRate[0];
+    }
+
+    if (hasPercent.length) {
+        return hasPercent[0];
+    }
+
+    if (hasPercent2.length) {
+        return hasPercent2[0];
+    }
+
+    if (hasDensity.length) {
+        return hasDensity[0];
+    }
+
+    return visArray[0];
+
+};
+
 // ===== map ================================================== //
 
 // Chooses the default measure for map and bar rendering.
@@ -20,65 +85,7 @@ const setDefaultMapMeasure = (visArray) => {
     
     let defaultArray = [];
 
-    const hasAgeAdjustedRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('Age-adjusted rate')
-    )
-
-    const hasRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('rate')
-    )
-
-    const isRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('Rate')
-    )
-
-    const hasPercent = visArray.filter(measure =>
-        measure.MeasurementType.includes('Percent')
-    )
-
-    const hasPercent2 = visArray.filter(measure =>
-        measure.MeasurementType.includes('percent')
-    )
-
-    const hasDensity = visArray.filter(measure =>
-        measure.MeasurementType.includes('Density')
-    )
-
-    // Apply the shared preference order from age-adjusted rates down to the first available measure.
-    if (hasAgeAdjustedRate.length) {
-
-        const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
-            measure.MeasurementType.includes('Total')
-        )
-
-        // Set total as default if available
-        if (hasAgeAdjustedRateTotal.length) {
-            defaultArray.push(hasAgeAdjustedRateTotal[0]);
-
-        } else {
-            defaultArray.push(hasAgeAdjustedRate[0]);
-
-        }
-
-    } else if (hasRate.length) {
-        defaultArray.push(hasRate[0]);
-
-    } else if (isRate.length) {
-        defaultArray.push(isRate[0]);
-
-    } else if (hasPercent.length) {
-        defaultArray.push(hasPercent[0]);
-
-    } else if (hasPercent2.length) {
-        defaultArray.push(hasPercent2[0]);
-
-    } else if (hasDensity.length) {
-        defaultArray.push(hasDensity[0]);
-
-    } else {
-        defaultArray.push(visArray[0]);
-
-    }
+    defaultArray.push(pickDefaultMeasureByPriority(visArray));
 
     // assigning to global object
 
@@ -103,66 +110,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     if (visArray.length > 0) {
 
-        const hasAgeAdjustedRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Age-adjusted rate')
-        )
-
-        const hasRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('rate')
-        )
-
-        const isRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Rate')
-        )
-        
-        const hasPercent = visArray.filter(measure =>
-            measure.MeasurementType.includes('Percent')
-        )
-
-        const hasPercent2 = visArray.filter(measure =>
-            measure.MeasurementType.includes('percent')
-        )
-
-        const hasDensity = visArray.filter(measure =>
-            measure.MeasurementType.includes('Density')
-        )
-
-
-        // Apply the shared preference order from age-adjusted rates down to the first available measure.
-        if (hasAgeAdjustedRate.length) {
-
-            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
-                measure.MeasurementType.includes('Total')
-            )
-            // Set total as default if available
-            if (hasAgeAdjustedRateTotal.length) {
-                defaultArray.push(hasAgeAdjustedRateTotal[0]);
-
-            } else {
-                defaultArray.push(hasAgeAdjustedRate[0]);
-
-            }
-
-
-        } else if (hasRate.length) {
-            defaultArray.push(hasRate[0]);
-
-        } else if (isRate.length) {
-            defaultArray.push(isRate[0]);
-
-        } else if (hasPercent.length) {
-            defaultArray.push(hasPercent[0]);
-
-        } else if (hasPercent2.length) {
-            defaultArray.push(hasPercent2[0]);
-
-        } else if (hasDensity.length) {
-            defaultArray.push(hasDensity[0]);
-
-        } else {
-            defaultArray.push(visArray[0]);
-
-        }
+        defaultArray.push(pickDefaultMeasureByPriority(visArray));
     }
 
     // assigning to global object
@@ -188,65 +136,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     if (visArray.length > 0) {
 
-        const hasAgeAdjustedRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Age-adjusted rate')
-        )
-
-        const hasRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('rate')
-        )
-
-        const isRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Rate')
-        )
-
-        const hasPercent = visArray.filter(measure =>
-            measure.MeasurementType.includes('Percent')
-        )
-
-        const hasPercent2 = visArray.filter(measure =>
-            measure.MeasurementType.includes('percent')
-        )
-
-        const hasDensity = visArray.filter(measure =>
-            measure.MeasurementType.includes('Density')
-        )
-
-
-        // Apply the shared preference order from age-adjusted rates down to the first available measure.
-        if (hasAgeAdjustedRate.length) {
-
-            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
-                measure.MeasurementType.includes('Total')
-            )
-            // Set total as default if available
-            if (hasAgeAdjustedRateTotal.length) {
-                defaultArray.push(hasAgeAdjustedRateTotal[0]);
-
-            } else {
-                defaultArray.push(hasAgeAdjustedRate[0]);
-            }
-
-
-        } else if (hasRate.length) {
-            defaultArray.push(hasRate[0]);
-
-        } else if (isRate.length) {
-            defaultArray.push(isRate[0]);
-
-        } else if (hasPercent.length) {
-            defaultArray.push(hasPercent[0]);
-
-        } else if (hasPercent2.length) {
-            defaultArray.push(hasPercent2[0]);
-
-        } else if (hasDensity.length) {
-            defaultArray.push(hasDensity[0]);
-
-        } else {
-            defaultArray.push(visArray[0]);
-
-        }
+        defaultArray.push(pickDefaultMeasureByPriority(visArray));
 
 
         const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
@@ -295,66 +185,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
     if (visArray.length > 0) {
 
-        const hasAgeAdjustedRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Age-adjusted rate')
-        )
-
-        const hasRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('rate')
-        )
-
-        const isRate = visArray.filter(measure =>
-            measure.MeasurementType.includes('Rate')
-        )
-        
-        const hasPercent = visArray.filter(measure =>
-            measure.MeasurementType.includes('Percent')
-        )
-
-        const hasPercent2 = visArray.filter(measure =>
-            measure.MeasurementType.includes('percent')
-        )
-
-        const hasDensity = visArray.filter(measure =>
-            measure.MeasurementType.includes('Density')
-        )
-
-
-        // Apply the shared preference order from age-adjusted rates down to the first available measure.
-        if (hasAgeAdjustedRate.length) {
-
-            const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
-                measure.MeasurementType.includes('Total')
-            )
-            // Set total as default if available
-            if (hasAgeAdjustedRateTotal.length) {
-                defaultArray.push(hasAgeAdjustedRateTotal[0]);
-
-            } else {
-                defaultArray.push(hasAgeAdjustedRate[0]);
-
-            }
-
-
-        } else if (hasRate.length) {
-            defaultArray.push(hasRate[0]);
-
-        } else if (isRate.length) {
-            defaultArray.push(isRate[0]);
-
-        } else if (hasPercent.length) {
-            defaultArray.push(hasPercent[0]);
-
-        } else if (hasPercent2.length) {
-            defaultArray.push(hasPercent2[0]);
-
-        } else if (hasDensity.length) {
-            defaultArray.push(hasDensity[0]);
-
-        } else {
-            defaultArray.push(visArray[0]);
-
-        }
+        defaultArray.push(pickDefaultMeasureByPriority(visArray));
     }
 
     // assigning to global object

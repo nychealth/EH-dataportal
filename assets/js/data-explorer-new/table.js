@@ -185,13 +185,15 @@ const updateTableReliabilityNotes = (rows) => {
 
     const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(d => !d == "");
 
+    const tableUnreliabilityEl = document.getElementById('table-unreliability');
+
     // Start hidden, then reveal the notes block only when the filtered rows contribute note text.
-    document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
-    document.getElementById("table-unreliability").classList.add('hide');
+    tableUnreliabilityEl.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    tableUnreliabilityEl.classList.add('hide');
 
     tableUnreliability.forEach(element => {
-        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>";
-        document.getElementById('table-unreliability').classList.remove('hide');
+        tableUnreliabilityEl.innerHTML += "<div class='fs-xs'>" + element + "</div>";
+        tableUnreliabilityEl.classList.remove('hide');
     });
 
 };

@@ -233,12 +233,22 @@ const renderBar = (
                         "color": {"value": "#f1f1f1ff"},
                         "stroke": {
                             "condition": [
-                                {"param": "highlight", "empty": false, "value": "black"}
+                                {"param": "highlight", "empty": false, "value": "black"},
+                                {
+                                    "test": "datum.GeoID == selectedGeo",
+                                    "value": "black"
+                                }
                             ],
                             "value": "white"
                         },
                         "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                            "condition": [
+                                {"param": "highlight", "empty": false, "value": 2},
+                                {
+                                    "test": "datum.GeoID == selectedGeo",
+                                    "value": 2
+                                }
+                            ],
                             "value": 0
                         }
                     }
@@ -287,9 +297,21 @@ const renderBar = (
                             "legend": false
                         },
                         "stroke": {
-                            "value": "black"
+                            "condition": [
+                                {
+                                    "test": "datum.GeoID == selectedGeo",
+                                    "value": "black"
+                                }
+                            ],
+                            "value": "#161616"
                         },
                         "strokeWidth": {
+                            "condition": [
+                                {
+                                    "test": "datum.GeoID == selectedGeo",
+                                    "value": 2
+                                }
+                            ],
                             "value": 0.5
                         }
                     }
@@ -467,7 +489,11 @@ const renderBar = (
 
                 if (!mapAPI) return; // map not ready yet
 
-                const layer = mapAPI.geoIDtoLayer[geoID];
+                const layer =
+                    mapAPI.geoIDtoLayer[geoID] ||
+                    mapAPI.geoIDtoLayer[String(geoID)] ||
+                    mapAPI.geoIDtoLayer[item.datum.GEOCODE] ||
+                    mapAPI.geoIDtoLayer[String(item.datum.GEOCODE)];
 
                 // Reset the previous highlight before moving focus to the new geography.
                 if (layer && layer !== lastHighlightedLayer) {

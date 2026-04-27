@@ -2,6 +2,79 @@
 // trend.js
 // ======================================================================= //
 
+// Reuses the same note markup for unreliability notes and other trend footnotes.
+const appendTrendNote = (trendUnreliability, note) => {
+
+    if (!trendUnreliability || !note) {
+        return;
+    }
+
+    trendUnreliability.innerHTML += `<div class='fs-xs'>${note}</div>`;
+    trendUnreliability.classList.remove('hide');
+
+};
+
+
+// Keeps the viewport-based chart layout choices in one place.
+const getTrendLayoutConfig = (viewportWidth) => {
+
+    let columns;
+    let xAxisLabelField;
+
+    if (viewportWidth < 340) {
+        columns = 1;
+    } else if (viewportWidth < 440) {
+        columns = 2;
+        xAxisLabelField = 'fallbackYear';
+    } else if (viewportWidth < 1200) {
+        columns = 3;
+        xAxisLabelField = 'fallbackYear';
+    } else {
+        columns = 6;
+        xAxisLabelField = 'TimePeriodSplit';
+    }
+
+    let mobileLegend = null;
+    let endLabelFontSize = 10;
+
+    if (viewportWidth < 720) {
+        mobileLegend = {
+            "columns": 3,
+            "title": "",
+            "labelFontWeight": "bold",
+            "labelColor": {
+                "expr": "scale('color', datum.label)"
+            }
+        };
+        endLabelFontSize = 0;
+    }
+
+    return {
+        columns,
+        xAxisLabelField,
+        mobileLegend,
+        endLabelFontSize
+    };
+
+};
+
+
+// Resets the note area before populating the current trend-specific notes.
+const renderTrendNotes = (trendUnreliability, notes) => {
+
+    if (!trendUnreliability) {
+        return;
+    }
+
+    trendUnreliability.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    trendUnreliability.classList.add('hide');
+
+    notes.forEach(note => {
+        appendTrendNote(trendUnreliability, note);
+    });
+
+};
+
 const renderTrendChart = (
     data,
     metadata
@@ -38,47 +111,14 @@ const renderTrendChart = (
     // Aggregate unique notes so repeated values do not duplicate in the note list.
     const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
 
-    if (trendUnreliability) {
-        trendUnreliability.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
-        trendUnreliability.classList.add('hide');
+    renderTrendNotes(trendUnreliability, compUnreliability);
 
-        compUnreliability.forEach(element => {
-            trendUnreliability.innerHTML += "<div class='fs-xs'>" + element + "</div>";
-            trendUnreliability.classList.remove('hide');
-        });
-    }
-
-    let columns;
-    let xAxisLabelField;
-
-    // Adjust legend and x-axis labeling density for available width.
-    if (window.innerWidth < 340) {
-        columns = 1;
-    } else if (window.innerWidth < 440) {
-        columns = 2;
-        xAxisLabelField = 'fallbackYear';
-    } else if (window.innerWidth < 1200) {
-        columns = 3;
-        xAxisLabelField = 'fallbackYear';
-    } else {
-        columns = 6;
-        xAxisLabelField = 'TimePeriodSplit';
-    }
-
-    let mobileLegend = null;
-    let endLabelFontSize = 10;
-
-    if (window.innerWidth < 720) {
-        mobileLegend = {
-            "columns": 3,
-            "title": "",
-            "labelFontWeight": "bold",
-            "labelColor": {
-                "expr": "scale('color', datum.label)"
-            }
-        };
-        endLabelFontSize = 0;
-    }
+    const {
+        columns,
+        xAxisLabelField,
+        mobileLegend,
+        endLabelFontSize
+    } = getTrendLayoutConfig(window.innerWidth);
 
     const values = data.array("Value");
     const valueMax = Math.max.apply(null, values);
@@ -222,10 +262,7 @@ const renderTrendChart = (
 
         const noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`;
 
-        if (trendUnreliability) {
-            trendUnreliability.innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>";
-            trendUnreliability.classList.remove('hide');
-        }
+        appendTrendNote(trendUnreliability, noCompareFootnote);
 
         const year = new Date(`${compNoCompare}-01-01T00:00:00Z`);
         compNoCompare = year.getTime() + 15768000000;
