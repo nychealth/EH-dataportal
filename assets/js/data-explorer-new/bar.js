@@ -4,6 +4,39 @@
 
 // console.log(">> bar.js");
 
+let barResizeEventRegistered = false;
+
+const scheduleBarViewResize = () => {
+    if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
+        return;
+    }
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            window.myVegaView.resize().run();
+        });
+    });
+};
+
+const registerBarTabResizeHandler = () => {
+    if (barResizeEventRegistered) {
+        return;
+    }
+
+    const barTab = document.getElementById('v-pills-bar-tab');
+    if (!barTab) {
+        return;
+    }
+
+    barTab.addEventListener('shown.bs.tab', () => {
+        if (overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {
+            window.myVegaView.resize().run();
+        }
+    });
+
+    barResizeEventRegistered = true;
+};
+
 // Builds and renders the Vega-Lite bar chart for the active geography slice.
 const renderBar = (
     data, 
@@ -238,7 +271,10 @@ const renderBar = (
                             "value": "white"
                         },
                         "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 2}],
+                            "condition": [
+                                {"param": "highlight", "empty": false, "value": 2},
+                                {"test": "datum.GeoID == selectedGeo", "value": 2}
+                            ],
                             "value": 0
                         }
                     }
@@ -290,6 +326,10 @@ const renderBar = (
                             "value": "black"
                         },
                         "strokeWidth": {
+                            "condition": [
+                                {"param": "highlight", "empty": false, "value": 2},
+                                {"test": "datum.GeoID == selectedGeo", "value": 2}
+                            ],
                             "value": 0.5
                         }
                     }
@@ -453,7 +493,9 @@ const renderBar = (
     }).then(result => {
         
         window.myVegaView = result.view; // store the vega view globally
-        
+        registerBarTabResizeHandler();
+        scheduleBarViewResize();
+
         let lastHighlighted = null; // can be a Leaflet layer (choropleth) or geoID (bubble)
 
         // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
