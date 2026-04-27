@@ -14,6 +14,10 @@ let currentMap = null;
 let currentGeojsonLayer = null;
 let currentBubbleMarkers = [];
 
+// Display Parameters
+var isPercent;
+var displayType;
+
 // ----------------------------------------------------------------------- //
 // base map initialization (fires immediately on script load)
 // ----------------------------------------------------------------------- //
@@ -50,6 +54,134 @@ const clearBubbles = () => {
         currentMap.removeLayer(marker);
     });
     currentBubbleMarkers = [];
+};
+
+// Shared helpers for map rendering
+const createDataLookup = (data) => {
+    const dataLookup = {};
+    data.forEach(item => {
+        dataLookup[item.GeoID] = item;
+    });
+    return dataLookup;
+};
+
+const resetMapForRender = () => {
+    clearBubbles();
+    initBaseMap();
+    if (currentGeojsonLayer) {
+        currentMap.removeLayer(currentGeojsonLayer);
+        currentGeojsonLayer = null;
+    }
+    return currentMap;
+};
+
+const getMapStats = (data) => {
+    const values = data.map(d => d.Value).filter(v => v != null);
+    return {
+        values,
+        minValue: values.length ? Math.min(...values) : 0,
+        maxValue: values.length ? Math.max(...values) : 0
+    };
+};
+
+const setMapLegendValues = (minValue, maxValue, digits) => {
+    document.getElementById('minVal').innerHTML = minValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+    document.getElementById('maxVal').innerHTML = maxValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+};
+
+const createColorScale = (minValue, maxValue) => {
+    return d3.scaleSequential()
+        .domain([maxValue, minValue])
+        .interpolator(d3.interpolateViridis);
+};
+
+const formatMapValue = (value, digits) => {
+    return value != null
+        ? value.toLocaleString(undefined, {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits
+        }) + displayType
+        : '—';
+};
+
+const createMapPopupContent = (properties, metadata, options = {}) => {
+    const requireGeoRank = options.requireGeoRank ?? true;
+    const valueDigits = options.valueDigits ?? 2;
+
+    if (requireGeoRank && !properties.GeoRank) {
+        return;
+    }
+
+    if (!requireGeoRank && properties.Value == null && !properties.GeoRank) {
+        return;
+    }
+
+    const note = properties.Note && properties.Note.length > 1
+        ? `<hr><em>Note:</em> ${properties.Note}`
+        : '';
+
+    return `
+            <div class="popup-content">
+            <strong>${properties.Geography}</strong>
+            <hr class="my-1">
+            <em>${indicator.IndicatorName}</em>: <strong>${formatMapValue(properties.Value, valueDigits)}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
+            <span style="font-size:12px">${note}</span>
+            </div>
+        `;
+};
+
+const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+    const calculatePercent = (x) => {
+        const range = maxValue - minValue;
+        if (range === 0 || x == null) {
+            return 0;
+        }
+        return 100 * (x - minValue) / range;
+    };
+
+    const updateHoverUI = (props) => {
+        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
+        document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
+        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
+        document.getElementById('legend-tick').style.display = 'block';
+        document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
+    };
+
+    const clearHoverUI = () => {
+        document.getElementById('hoveredGeo').textContent = 'Hover for details';
+        document.getElementById('hoveredValue').textContent = '';
+        document.getElementById('hoveredUnits').textContent = '';
+        document.getElementById('legend-tick').style.display = 'none';
+    };
+
+    return {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    };
+};
+
+const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+    geojson.features.forEach((feature) => {
+        const geoID = feature.properties.GEOCODE;
+        const matchedData = dataLookup[geoID];
+
+        if (matchedData) {
+            feature.properties = {
+                ...feature.properties,
+                ...matchedData
+            };
+        } else {
+            feature.properties.dataValue = null;
+        }
+    });
+    return geojson;
 };
 
 // Fire immediately
@@ -120,58 +252,35 @@ const renderMap = (
 
 const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 
-    // Clear any existing bubbles from previous renders
-    clearBubbles();
+        // Switch units and subtitle formatting when the measure is percentage-based.
+    if (metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent') && !metadata[0].MeasurementType.includes('percentile')) {
 
-    // --- Create a lookup for data and attributes ---
-    const dataLookup = {};
-
-    // Index rows by GeoID so each feature lookup stays O(1) during attachment.
-    data.forEach(item => {
-        dataLookup[item.GeoID] = item;  // store the full record
-    });
-
-    // Ensure base map is ready (no-op if already initialized)
-    initBaseMap();
-
-    // Remove previous data layer if it exists
-    // Remove the previous thematic layer before drawing the next one.
-    if (currentGeojsonLayer) {
-        currentMap.removeLayer(currentGeojsonLayer);
-        currentGeojsonLayer = null;
+        isPercent = true;
+        displayType = '%';
+        
+    } else {
+        isPercent = false;
+        displayType = '';
     }
 
-    let map = currentMap;
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
 
-    // --- Find the min and max values in your dataset ---
-    const values = data.map(d => d.Value).filter(v => v != null);
-    const minValue = Math.min(...values).toFixed(2);
-    const maxValue = Math.max(...values).toFixed(2);
+    setMapLegendValues(minValue, maxValue, 2);
 
-    document.getElementById('minVal').innerHTML = minValue;
-    document.getElementById('maxVal').innerHTML = maxValue;
+    const colorScale = createColorScale(minValue, maxValue);
 
-    // --- Create the color scale ---
-    const colorScale = d3.scaleSequential()
-        // domain inverted: high values map to the dark end of viridis, low to light
-        .domain([maxValue, minValue]) 
-        .interpolator(d3.interpolateViridis);
-
-    // --- Define style functions ---
-
-    // Returns the choropleth style object for one geography feature.
     const styleFeature = (feature) => {
         const value = feature.properties.Value;
-
         return {
-            fillColor: value != null ? colorScale(value) : '#ccc',  // gray if no data
+            fillColor: value != null ? colorScale(value) : '#ccc',
             weight: 0.35,
             color: 'black',
             fillOpacity: 0.8
         };
     };
 
-    // Emphasizes the hovered geography with a thicker outline.
     const highlightFeature = (e) => {
         const layer = e.target;
         layer.setStyle({
@@ -179,67 +288,26 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
             color: '#000',
             fillOpacity: 0.9
         });
-        
+
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            // bring to front so the highlighted border renders above neighboring polygons
             layer.bringToFront();
         }
     };
 
-    // Restores a feature's default style after hover or chart interop clears it.
     const resetHighlight = (layer, e) => {
         layer.resetStyle(e.target);
     };
 
-    // --- Create popup content ---
+    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
+        requireGeoRank: true,
+        valueDigits: 2
+    });
 
-    // Builds the HTML popup shown when a geography is clicked.
-    const createPopupContent = (properties) => {
-        // Only render a popup when the feature has joined indicator metadata.
-        if (properties.GeoRank) {
-            return `
-            <div class="popup-content">
-            <strong>${properties.Geography}</strong>
-            <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value != null ? properties.Value.toFixed(2) : '—'}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
-            <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
-            </div>
-        `;
-        } else {
-            return;
-        }
-    };
-
-    // Updates the legend readout so map hover matches the active geography.
-    const updateHoverUI = (props) => {
-        // Update legend text
-        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
-        document.getElementById('hoveredValue').textContent = props.Value != null ? props.Value.toFixed(2) : '—';
-        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
-        
-        // Show legend tick
-        document.getElementById('legend-tick').style.display = 'block';
-        
-        // Move the legend tick
-        const percentage = calculatePercent(props.Value);
-        document.querySelector('.viridis-tick').style.left = percentage + '%';
-    };
-
-    // Resets the legend readout back to its idle placeholder state.
-    const clearHoverUI = () => {
-        document.getElementById('hoveredGeo').textContent = 'Hover for details';
-        document.getElementById('hoveredValue').textContent = '';
-        document.getElementById('hoveredUnits').textContent = '';
-        document.getElementById('legend-tick').style.display = 'none';
-    };
-
-    // Converts a raw map value into a legend tick percentage.
-    const calculatePercent = (x) => {
-        const range = maxValue - minValue;
-        const placement = x - minValue;
-        const calculation = 100 * placement / range;
-        return calculation;
-    };
+    const {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    } = createHoverUIHelpers(metadata, minValue, maxValue, 2);
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
         .then(response => response.json())
@@ -249,27 +317,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
             let geojson = topojson.feature(topology, topology.objects.collection);
 
             // --- Attach data to each feature ---
-            // Merge the filtered indicator row onto each matching geography feature.
-            geojson.features.forEach((feature, i) => {
-
-                if (i == 0) {
-                    // console.log("***** properties", feature.properties)
-                }
-
-                const geoID = feature.properties.GEOCODE;
-                const matchedData = dataLookup[geoID];
-
-                // Preserve original geometry props and append joined indicator attributes when found.
-                if (matchedData) {
-                    feature.properties = {
-                        ...feature.properties,  // keep original properties (like GEOCODE, GEONAME, etc)
-                        ...matchedData          // add all fields from matchedData
-                    };
-                } else {
-                    // Missing rows stay on the map so the style function can show them as no-data areas.
-                    feature.properties.dataValue = null;  // mark as missing data
-                }
-            });
+            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
 
             return geojson;
             
@@ -370,104 +418,37 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 // ----------------------------------------------------------------------- //
 
 const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
+    isPercent = false;
+    displayType = '';
 
-    // Clear any existing bubbles from previous renders
-    clearBubbles();
+    setMapLegendValues(minValue, maxValue, 0);
 
-    // --- Create a lookup for data and attributes ---
-    const dataLookup = {};
+    const colorScale = createColorScale(minValue, maxValue);
 
-    // Index rows by GeoID so each feature lookup stays O(1) during attachment.
-    data.forEach(item => {
-        dataLookup[item.GeoID] = item;  // store the full record
-    });
-
-    // Ensure base map is ready (no-op if already initialized)
-    initBaseMap();
-
-    // Remove previous data layer if it exists
-    if (currentGeojsonLayer) {
-        currentMap.removeLayer(currentGeojsonLayer);
-        currentGeojsonLayer = null;
-    }
-
-    let map = currentMap;
-
-    // --- Find the min and max values in your dataset ---
-    const values = data.map(d => d.Value).filter(v => v != null);
-    const minValue = Math.min(...values);
-    const maxValue = Math.max(...values);
-
-    document.getElementById('minVal').innerHTML = minValue.toFixed(2);
-    document.getElementById('maxVal').innerHTML = maxValue.toFixed(2);
-
-    // --- Create the inverted Viridis color scale ---
-    const colorScale = d3.scaleSequential()
-        .domain([maxValue, minValue])  // Inverted: max first, min second
-        .interpolator(d3.interpolateViridis);
-
-    // --- Create a radius scale ---
     const radiusScale = d3.scaleSqrt()
         .domain([minValue, maxValue])
-        .range([4, 20]);  // bubbles between 4px and 20px radius
+        .range([4, 20]);
 
-    // --- Define style for the polygons (light gray overlay) ---
-    const styleFeature = (feature) => {
-        return {
-            fillColor: '#eee',
-            weight: 1,
-            color: '#999',
-            fillOpacity: 0.3
-        };
-    };
+    const styleFeature = () => ({
+        fillColor: '#eee',
+        weight: 1,
+        color: '#999',
+        fillOpacity: 0.3
+    });
 
-    // --- Create popup content ---
-    const createPopupContent = (properties) => {
-        // Only render a popup when the feature has joined indicator metadata.
-        if (properties.GeoRank || properties.Value != null) {
-            return `
-            <div class="popup-content">
-            <strong>${properties.Geography}</strong>
-            <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value != null ? properties.Value.toFixed(2) : '—'}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
-            <span style="font-size:12px">${properties.Note && properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
-            </div>
-        `;
-        } else {
-            return;
-        }
-    };
+    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
+        requireGeoRank: false,
+        valueDigits: 0
+    });
 
-    // Updates the legend readout so map hover matches the active geography.
-    const updateHoverUI = (props) => {
-        // Update legend text
-        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
-        document.getElementById('hoveredValue').textContent = props.Value != null ? props.Value.toFixed(2) : '—';
-        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
-        
-        // Show legend tick
-        document.getElementById('legend-tick').style.display = 'block';
-        
-        // Move the legend tick
-        const percentage = calculatePercent(props.Value);
-        document.querySelector('.viridis-tick').style.left = percentage + '%';
-    };
-
-    // Resets the legend readout back to its idle placeholder state.
-    const clearHoverUI = () => {
-        document.getElementById('hoveredGeo').textContent = 'Hover for details';
-        document.getElementById('hoveredValue').textContent = '';
-        document.getElementById('hoveredUnits').textContent = '';
-        document.getElementById('legend-tick').style.display = 'none';
-    };
-
-    // Converts a raw map value into a legend tick percentage.
-    const calculatePercent = (x) => {
-        const range = maxValue - minValue;
-        const placement = x - minValue;
-        const calculation = 100 * placement / range;
-        return calculation;
-    };
+    const {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
         .then(response => response.json())
@@ -477,21 +458,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
             let geojson = topojson.feature(topology, topology.objects.collection);
 
             // --- Attach data to each feature ---
-            geojson.features.forEach((feature, i) => {
-                const geoID = feature.properties.GEOCODE;
-                const matchedData = dataLookup[geoID];
-
-                // Preserve original geometry props and append joined indicator attributes when found.
-                if (matchedData) {
-                    feature.properties = {
-                        ...feature.properties,  // keep original properties
-                        ...matchedData          // add all fields from matchedData
-                    };
-                } else {
-                    // Missing rows stay on the map
-                    feature.properties.dataValue = null;  // mark as missing data
-                }
-            });
+            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
 
             return geojson;
             
