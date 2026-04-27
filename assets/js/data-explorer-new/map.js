@@ -123,17 +123,29 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     }
 
     const note = properties.Note && properties.Note.length > 1
-        ? `<hr><em>Note:</em> ${properties.Note}`
+        ? `<div class="popup-note">${properties.Note}</div>`
         : '';
 
     return `
-            <div class="popup-content">
-            <strong>${properties.Geography}</strong>
-            <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${formatMapValue(properties.Value, valueDigits)}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
-            <span style="font-size:12px">${note}</span>
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>${properties.Geography}</strong>
             </div>
-        `;
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${indicator.IndicatorName}
+                        <div class="popup-period">(${properties.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${formatMapValue(properties.Value, valueDigits)}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            ${note}
+        </div>
+    `;
 };
 
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
