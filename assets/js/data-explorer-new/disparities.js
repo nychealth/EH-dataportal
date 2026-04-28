@@ -4,6 +4,12 @@
 
 // console.log(">> disparities.js");
 
+// Disparities scatterplot rendering, poverty grouping, and CSV export
+
+// ----------------------------------------------------------------------- //
+// disparities chart rendering
+// ----------------------------------------------------------------------- //
+
 // Renders the disparities scatterplot for the selected primary measure.
 const renderDisparitiesChart = async (
     primaryMetadata,
@@ -69,10 +75,12 @@ const renderDisparitiesChart = async (
 
     if (needsFreshDisparityData) {
 
+        // Seed jitter by primary measure so redraws stay visually stable for one selection.
         const seededRandom = typeof Math.seedrandom === 'function'
             ? Math.seedrandom(String(primaryMeasureId))
             : Math.random;
 
+        // Join the poverty measure once, then derive poverty buckets used by the plot.
         const aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
                 return aq.from(res.data)
@@ -95,6 +103,7 @@ const renderDisparitiesChart = async (
     const disparityUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
     if (unreliabilityHolder) {
+        // Show each note once even when both joined measures carry the same warning.
         unreliabilityHolder.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
         unreliabilityHolder.classList.add('hide');
 
@@ -117,6 +126,7 @@ const renderDisparitiesChart = async (
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
     const height = window.innerWidth < 576 ? 350 : 500;
 
+    // Build the disparities scatterplot after jitter, notes, and subtitle text are ready.
     const disparitiesSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
@@ -277,6 +287,7 @@ const renderDisparitiesChart = async (
     vizSourceSecond = disparityMetadata[0].Sources;
     chartType = 'disparities';
 
+    // Export raw joined rows without internal plotting-only helper columns.
     const dataForDownload = [...disparitiesSpec.data.values];
 
     const downloadTable = aq.from(dataForDownload)

@@ -49,12 +49,17 @@ const initBaseMap = () => {
 // Clear existing bubbles from the map
 // ----------------------------------------------------------------------- //
 
+// Removes any bubble overlays left from number-map rendering.
 const clearBubbles = () => {
     currentBubbleMarkers.forEach(marker => {
         currentMap.removeLayer(marker);
     });
     currentBubbleMarkers = [];
 };
+
+// ----------------------------------------------------------------------- //
+// shared render helpers
+// ----------------------------------------------------------------------- //
 
 // Shared helpers for map rendering
 const createDataLookup = (data) => {
@@ -65,6 +70,7 @@ const createDataLookup = (data) => {
     return dataLookup;
 };
 
+// Reuses the base map instance while clearing old geometry overlays between renders.
 const resetMapForRender = () => {
     clearBubbles();
     initBaseMap();
@@ -75,6 +81,7 @@ const resetMapForRender = () => {
     return currentMap;
 };
 
+// Calculates legend bounds from the currently filtered map rows.
 const getMapStats = (data) => {
     const values = data.map(d => d.Value).filter(v => v != null);
     return {
@@ -84,6 +91,7 @@ const getMapStats = (data) => {
     };
 };
 
+// Prints current legend endpoints using the active display units.
 const setMapLegendValues = (minValue, maxValue, digits) => {
     document.getElementById('minVal').innerHTML = minValue.toLocaleString(undefined, {
         minimumFractionDigits: digits,
@@ -95,12 +103,14 @@ const setMapLegendValues = (minValue, maxValue, digits) => {
     }) + displayType;
 };
 
+// Uses a reversed Viridis scale so larger values remain visually darker.
 const createColorScale = (minValue, maxValue) => {
     return d3.scaleSequential()
         .domain([maxValue, minValue])
         .interpolator(d3.interpolateViridis);
 };
 
+    // Centralizes map value formatting for tooltips, legend hover, and popups.
 const formatMapValue = (value, digits) => {
     return value != null
         ? value.toLocaleString(undefined, {
@@ -110,6 +120,7 @@ const formatMapValue = (value, digits) => {
         : '—';
 };
 
+    // Builds shared popup markup for both choropleth polygons and bubble markers.
 const createMapPopupContent = (properties, metadata, options = {}) => {
     const requireGeoRank = options.requireGeoRank ?? true;
     const valueDigits = options.valueDigits ?? 2;
@@ -148,6 +159,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     `;
 };
 
+// Coordinates legend hover text and tick placement with hovered map features.
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     const calculatePercent = (x) => {
         const range = maxValue - minValue;
@@ -179,6 +191,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     };
 };
 
+// Copies filtered indicator rows onto matching geometry features before rendering.
 const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
     geojson.features.forEach((feature) => {
         const geoID = feature.properties.GEOCODE;
@@ -274,7 +287,7 @@ const renderMap = (
 
 const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 
-        // Switch units and subtitle formatting when the measure is percentage-based.
+    // Percent measures show percent-formatted legends; everything else stays unitless here.
     if (metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent') && !metadata[0].MeasurementType.includes('percentile')) {
 
         isPercent = true;
@@ -335,6 +348,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
         .then(response => response.json())
         .then(topology => {
             
+            // Convert TopoJSON once, then enrich each feature with filtered indicator data.
             // --- Convert TopoJSON to GeoJSON ---
             let geojson = topojson.feature(topology, topology.objects.collection);
 

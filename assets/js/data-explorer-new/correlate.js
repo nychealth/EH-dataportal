@@ -4,6 +4,12 @@
 
 // console.log(">> correlate.js");
 
+// Correlate scatterplot rendering, note handling, and CSV export
+
+// ----------------------------------------------------------------------- //
+// correlate chart rendering
+// ----------------------------------------------------------------------- //
+
 // Renders the linked-measure scatterplot used by the correlate tab.
 const renderCorrelate = (
     data,
@@ -46,6 +52,7 @@ const renderCorrelate = (
     correlateHolder.classList.remove('hide');
     linksMenuHolder?.classList.remove('d-none');
 
+    // Keep holder width fixed so repeated redraws do not stretch the overlay.
     // Lock the chart holder to the overlay panel width so Vega can size to a
     // stable container without expanding the overlay on each redraw.
     const deTabsPanel = correlateHolder.closest('.de-tabs');
@@ -110,6 +117,7 @@ const renderCorrelate = (
         link => link.MeasureID === secondaryMeasureId
     )[0]?.SecondaryAxis;
 
+    // Resolve which measure belongs on each axis from metadata instead of hard-coding.
     let xMeasure;
     let yMeasure;
     let xMeasureName;
@@ -184,6 +192,7 @@ const renderCorrelate = (
     const combinedUnreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2));
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
+    // Show each distinct note once even if both joined measures repeat it.
     unreliabilityHolder.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
     unreliabilityHolder.classList.add('hide');
 
@@ -192,6 +201,7 @@ const renderCorrelate = (
         unreliabilityHolder.classList.remove('hide');
     });
 
+    // Build the scatterplot after axis labels and joined-value formatting are settled.
     const correlateSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
@@ -386,6 +396,7 @@ const renderCorrelate = (
     vizSource = primaryMetadata[0].Sources;
     vizSourceSecond = secondaryMetadata[0].Sources;
 
+    // Export only analyst-facing columns, then append readable measure labels.
     const dataForDownload = [...correlateSpec.data.values];
 
     const downloadTable = aq.from(dataForDownload)

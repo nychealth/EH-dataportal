@@ -2,13 +2,14 @@
 // table.js
 // ======================================================================= //
 
-// builds and renders the Arquero-backed summary data table
+
+// builds and renders the Arquero-backed summary data table, with filtering, DataTables integration, and grouped-row toggles
 
 // console.log('>> table.js')
 
 
 // ----------------------------------------------------------------------- //
-// render table
+// filter helpers
 // ----------------------------------------------------------------------- //
 
 // Returns the available time period and geography filter values for the table.
@@ -105,6 +106,10 @@ const getCurrentMapTableFilters = (rows) => {
 };
 
 
+// ----------------------------------------------------------------------- //
+// table filter sync + summary helpers
+// ----------------------------------------------------------------------- //
+
 // Syncs table filters back to the current map dropdown selections.
 const syncTableFiltersToMapSelection = (force = false) => {
 
@@ -198,6 +203,10 @@ const updateTableReliabilityNotes = (rows) => {
 
 };
 
+
+// ----------------------------------------------------------------------- //
+// DataTables search helpers
+// ----------------------------------------------------------------------- //
 
 // Keeps the visible DataTables search box aligned with the Area column-search state.
 const syncTableAreaSearchInput = () => {
@@ -321,6 +330,10 @@ const applyTableFilters = (rows) => {
 
 };
 
+
+// ----------------------------------------------------------------------- //
+// filter-control rendering
+// ----------------------------------------------------------------------- //
 
 // Renders table checkbox controls and wires them to re-rendering.
 const renderTableFilterControls = (rows) => {
@@ -450,6 +463,11 @@ const renderTableFilterControls = (rows) => {
     updateTableFilterSummary(availableTimes, availableGeos);
 
 };
+
+
+// ----------------------------------------------------------------------- //
+// table rendering
+// ----------------------------------------------------------------------- //
 
 // Builds the summary table HTML and activates the DataTables wrapper around it.
 const renderTable = (tableData) => {
@@ -702,6 +720,11 @@ const renderTable = (tableData) => {
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
     bindAreaOnlySearch(dataTable);
 };
+
+
+// ----------------------------------------------------------------------- //
+// grouped-row toggles
+// ----------------------------------------------------------------------- //
 
 // Binds click handlers that expand and collapse grouped summary-table rows.
 const handleToggle = () => {

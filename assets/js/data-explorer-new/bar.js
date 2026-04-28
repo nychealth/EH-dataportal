@@ -4,8 +4,15 @@
 
 // console.log(">> bar.js");
 
+// Bar-chart rendering, resize coordination, and Vega-Lite layer assembly
+
+// ----------------------------------------------------------------------- //
+// resize helpers
+// ----------------------------------------------------------------------- //
+
 let barResizeEventRegistered = false;
 
+// Defers Vega resize until the overlay pane has fully repainted.
 const scheduleBarViewResize = () => {
     if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
         return;
@@ -18,6 +25,7 @@ const scheduleBarViewResize = () => {
     });
 };
 
+// Registers one Bootstrap tab listener so hidden-pane charts can resize on reopen.
 const registerBarTabResizeHandler = () => {
     if (barResizeEventRegistered) {
         return;
@@ -36,6 +44,11 @@ const registerBarTabResizeHandler = () => {
 
     barResizeEventRegistered = true;
 };
+
+
+// ----------------------------------------------------------------------- //
+// bar chart rendering
+// ----------------------------------------------------------------------- //
 
 // Builds and renders the Vega-Lite bar chart for the active geography slice.
 const renderBar = (
@@ -80,6 +93,11 @@ const renderBar = (
     let setCircleSize = 250
 
 
+    // ----------------------------------------------------------------------- //
+    // display-rule selection
+    // ----------------------------------------------------------------------- //
+
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // Determine data parameters that inform bar style
@@ -114,8 +132,7 @@ const renderBar = (
     // -----------------------------------------------------------------------  */
 
     
-        // Keep the layer recipe branchy here so each data shape gets its own readable Vega encoding.
-        // Choose the visual layer recipe based on whether the measure is a mean, has CIs, or is a plain bar.
+        // Keep layer selection explicit so each data shape keeps its own readable spec branch.
         if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
             
             // For means, show a dot against a light bar
@@ -218,7 +235,7 @@ const renderBar = (
 
         } else if (hasCI == true) {
 
-            // If data has CIs, then show dots with a gray bar for the CIs
+            // Confidence-interval rows get error bars plus a point estimate marker.
             barDisplay = [
                 {
                     "height": setHeight,
@@ -356,7 +373,7 @@ const renderBar = (
         
         else {
         
-            // Otherwise, standard display is fully color-encoded bars
+            // Plain measures render as a standard single-layer ranked bar chart.
 
             barDisplay = [
                 {

@@ -2,15 +2,13 @@
 // 311.js
 // ======================================================================= //
 
-//  fetch and load 311 Crosswalk into global object
+// 311 crosswalk loading and action-link rendering
 
 // console.log(">> 311.js");
 
-//------- call function
-
-// draw311Buttons(this_IndicatorID)
-
-//------- function to draw 311 buttons
+// ----------------------------------------------------------------------- //
+// 311 action links
+// ----------------------------------------------------------------------- //
 
 // Loads 311 crosswalk links and prints the matching action buttons for one indicator.
 const draw311Buttons = (indicator_id) => {
@@ -32,7 +30,7 @@ const draw311Buttons = (indicator_id) => {
 
             document.getElementById('311').innerHTML = ''
 
-            // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
+            // The take-action partial renders twice on the explorer, so update both destinations.
             let dest = document.querySelectorAll('.destination311')
 
             dest.forEach(element => element.innerHTML = '')
@@ -40,8 +38,6 @@ const draw311Buttons = (indicator_id) => {
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
             // console.log(filteredCrosswalk)
-
-            // Creates label if there are 311 links
 
             // Show or hide the 311 heading and containers based on whether links exist.
             if (filteredCrosswalk.length > 0) {
@@ -56,7 +52,6 @@ const draw311Buttons = (indicator_id) => {
 
             };
 
-            // draws 311 buttons
             // Render one outbound 311 article link per matching crosswalk record.
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
 

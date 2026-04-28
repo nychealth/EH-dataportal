@@ -4,6 +4,8 @@
 
 // data loading and manipulation functions
 
+// Fetch pipelines for indicator metadata, comparison joins, and derived data tables
+
 // console.log(">> data.js");
 
 // ----------------------------------------------------------------------- //
@@ -176,6 +178,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
         : (indicator?.Comparisons ? [indicator.Comparisons] : []);
     indicatorMeasures = indicator?.Measures;
 
+    // Reset per-view manual selection state so new indicator starts from clean defaults.
+
     // console.log("indicatorMeasures [loadIndicator]", indicatorMeasures);
 
     // create Citation
@@ -241,7 +245,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
-    // make sure metadata is empty, so that we can use its length for conditionals
+    // Clear comparison metadata early so downstream branches can rely on simple length checks.
     comparisonMetadata = [];
     
     // why are we waiting for this?

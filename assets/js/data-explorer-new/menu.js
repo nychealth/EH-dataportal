@@ -4,9 +4,11 @@
 
 // console.log(">> menu.js");
 
+// Dropdown-menu defaults, cascading menu rebuilds, and selection handling
+
 
 // ----------------------------------------------------------------------- //
-// HELPERS
+// helpers
 // ----------------------------------------------------------------------- //
 
 // Selects the default measure using the project's priority order.
@@ -23,6 +25,7 @@ const getDefaultMeasure = (indicator) => {
 
     let matchedMeasure = null;
 
+    // Formats whichever value is currently active into every cloned trigger label.
     // Walk the priority list until the first matching measurement type is found.
     for (let word of priority) {
         matchedMeasure = indicator.Measures.find(m =>
@@ -58,9 +61,10 @@ const setDropdownLabel = (type, value) => {
 
 
 // ----------------------------------------------------------------------- //
-// INIT — set default measure, then build all menus
+// menu initialization
 // ----------------------------------------------------------------------- //
 
+// Ensures one valid measure is selected before any menu rendering begins.
 const printMenus = async (indicatorID) => {
 
     console.log('* printMenus');
@@ -87,9 +91,10 @@ const printMenus = async (indicatorID) => {
 
 
 // ----------------------------------------------------------------------- //
-// CORE UPDATE — rebuild all three dropdowns from globals
+// full menu rebuild
 // ----------------------------------------------------------------------- //
 
+// Rebuilds all dependent menus from current globals after one selection changes.
 const updateAllMenus = (indicator) => {
 
     console.log('* updateAllMenus');
@@ -187,7 +192,7 @@ const updateAllMenus = (indicator) => {
 
 
 // ----------------------------------------------------------------------- //
-// MENU RENDERER
+// menu renderer
 // ----------------------------------------------------------------------- //
 
 // Renders a dropdown menu and binds its click behavior.
@@ -238,7 +243,7 @@ const styleAndPrintMenu = (items, destination, type) => {
 
 
 // ----------------------------------------------------------------------- //
-// SELECTION HANDLER — update globals, push URL, rebuild menus, re-render
+// selection handler
 // ----------------------------------------------------------------------- //
 
 const handleSelection = (type, value) => {
@@ -299,7 +304,7 @@ const handleSelection = (type, value) => {
 
 
 // ----------------------------------------------------------------------- //
-// DROPDOWN UI
+// dropdown ui
 // ----------------------------------------------------------------------- //
 
 // Reflects the clicked option text back into the visible dropdown trigger.

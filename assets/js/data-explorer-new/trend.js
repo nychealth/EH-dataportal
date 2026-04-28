@@ -2,6 +2,12 @@
 // trend.js
 // ======================================================================= //
 
+// Trend rendering helpers, note handling, and Vega-Lite chart assembly
+
+// ----------------------------------------------------------------------- //
+// note helpers
+// ----------------------------------------------------------------------- //
+
 // Reuses the same note markup for unreliability notes and other trend footnotes.
 const appendTrendNote = (trendUnreliability, note) => {
 
@@ -14,6 +20,10 @@ const appendTrendNote = (trendUnreliability, note) => {
 
 };
 
+
+// ----------------------------------------------------------------------- //
+// layout helpers
+// ----------------------------------------------------------------------- //
 
 // Keeps the viewport-based chart layout choices in one place.
 const getTrendLayoutConfig = (viewportWidth) => {
@@ -59,6 +69,10 @@ const getTrendLayoutConfig = (viewportWidth) => {
 };
 
 
+// ----------------------------------------------------------------------- //
+// note rendering
+// ----------------------------------------------------------------------- //
+
 // Resets the note area before populating the current trend-specific notes.
 const renderTrendNotes = (trendUnreliability, notes) => {
 
@@ -74,6 +88,11 @@ const renderTrendNotes = (trendUnreliability, notes) => {
     });
 
 };
+
+
+// ----------------------------------------------------------------------- //
+// trend chart rendering
+// ----------------------------------------------------------------------- //
 
 const renderTrendChart = (
     data,
@@ -212,6 +231,7 @@ const renderTrendChart = (
         ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
     ];
 
+    // Build paired line + label layers so each threshold stays self-contained.
     const thresholdSpec = [];
 
     for (let i = 0; i < uniqueThresholds.length; i++) {
@@ -260,6 +280,7 @@ const renderTrendChart = (
 
     if (compNoCompare && hasGreaterEndPeriod) {
 
+        // Add the method-change marker only when charted dates reach the break point.
         const noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`;
 
         appendTrendNote(trendUnreliability, noCompareFootnote);
@@ -292,6 +313,7 @@ const renderTrendChart = (
         comparisonToolTipLabel = compMeasurementType;
     }
 
+    // Assemble the full trend spec after titles, thresholds, and layout are resolved.
     const compspec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {

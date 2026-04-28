@@ -4,10 +4,16 @@
 
 // top-scope shared state and utility functions available to all modules
 
+// Shared explorer state, rendering globals, and small cross-module utilities
+
 // console.log(">> global.js");
 
 // ----------------------------------------------------------------------- //
 // top scope variables
+// ----------------------------------------------------------------------- //
+
+// ----------------------------------------------------------------------- //
+// shared explorer state
 // ----------------------------------------------------------------------- //
 
 // Summary-table filter state persists across redraws until a new indicator resets it.
@@ -235,7 +241,7 @@ const renderAboutSources = (about, sources) => {
 
     dataSources.innerHTML = '';
 
-    // de-dupe data sources
+    // De-dupe repeated sources so multi-measure views do not print identical lines twice.
     let type = typeof sources;
 
     // Collapse repeated source arrays to one string before printing.
