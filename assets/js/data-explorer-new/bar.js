@@ -144,7 +144,8 @@ const renderBar = (
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
                                     "test": "datum.GeoID == selectedGeo",
-                                    "value": "black"
+                                        "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                        "value": "black"
                                 }
                             ],
                             "value": "transparent"
@@ -172,7 +173,7 @@ const renderBar = (
                 "x": {"field": "Value", "type": "quantitative"},
                 "color": {
                 "condition": {
-                "test": "datum.GeoID == selectedGeo",
+                "test": "datum.Value != null && datum.GeoID == selectedGeo",
                 "value": "black"
                 },
                 "value": "transparent"
@@ -235,7 +236,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": "black"
                                 }
                             ],
@@ -245,7 +246,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": 2},
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": 2
                                 }
                             ],
@@ -299,7 +300,7 @@ const renderBar = (
                         "stroke": {
                             "condition": [
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": "black"
                                 }
                             ],
@@ -308,7 +309,7 @@ const renderBar = (
                         "strokeWidth": {
                             "condition": [
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": 2
                                 }
                             ],
@@ -356,7 +357,7 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": "black"
                                 }
                             ],
@@ -380,7 +381,7 @@ const renderBar = (
                         "x": {"field": "Value", "type": "quantitative"},
                         "color": {
                             "condition": {
-                                "test": "datum.GeoID == selectedGeo",
+                                "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                 "value": "black"
                             },
                         "value": "transparent"

@@ -206,9 +206,17 @@ const renderMap = (
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
         document.getElementById('hoveredValue').textContent = props.Value != null ? props.Value.toFixed(2) : '\u2014';
         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
-        
-        document.getElementById('legend-tick').style.display = 'block';
-        
+
+        const legendTick = document.getElementById('legend-tick');
+
+        // Missing values still get the text readout, but they should not draw a tick on the legend.
+        if (props.Value == null) {
+            legendTick.style.display = 'none';
+            return;
+        }
+
+        legendTick.style.display = 'block';
+
         const percentage = calculatePercent(props.Value);
         document.querySelector('.viridis-tick').style.left = percentage + '%';
 
@@ -326,6 +334,7 @@ const renderMap = (
 
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
+                        const hasMappedValue = props.Value != null;
 
                         // 🔥 HARD RESET: clear ALL highlights
                         // Clear any previous highlight before applying the current hover state.
@@ -338,8 +347,11 @@ const renderMap = (
 
                         updateHoverUI(props);
 
-                        if (window.myVegaView && linkedGeoID !== undefined && linkedGeoID !== null) {
+                        // Do not push no-data geographies into the linked bar highlight.
+                        if (window.myVegaView && hasMappedValue && linkedGeoID !== undefined && linkedGeoID !== null) {
                             window.myVegaView.signal("selectedGeo", linkedGeoID).run();
+                        } else if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", null).run();
                         }
                     });
                     
