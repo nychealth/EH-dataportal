@@ -168,6 +168,36 @@ const dismissIndicatorModal = () => {
 
 
 // ----------------------------------------------------------------------- //
+// Return from indicator selection to the topic chooser
+// ----------------------------------------------------------------------- //
+
+const relaunchTopicSelector = (event) => {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    // Section pages use hash-based modal history, so go back there instead
+    // of forcing a second manual modal transition.
+    if (typeof resetSelectionForNewIndicator !== 'function' && window.location.hash === '#indicators') {
+        window.history.back();
+        return false;
+    }
+
+    $('#indicatorSelector').one('hidden.bs.modal', () => {
+        $('#topicSelector').modal('show');
+    });
+
+    $('#indicatorSelector').modal('hide');
+
+    return false;
+
+};
+
+window.relaunchTopicSelector = relaunchTopicSelector;
+
+
+// ----------------------------------------------------------------------- //
 // Print basic indicator info from metadata to page 
 // ----------------------------------------------------------------------- //
 

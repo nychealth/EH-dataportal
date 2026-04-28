@@ -620,6 +620,13 @@ $color-data-explorer: #0A408A;
     text-decoration: underline;
   }
 
+  .indicator-modal-topic-trigger {
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    cursor: pointer;
+  }
+
 
   /* Smooth accordion slide animations - horizontal slide */
   .de-accordion .collapse {
