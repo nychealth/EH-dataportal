@@ -18,7 +18,7 @@ seo_description: TKTK
 aliases:
   - /key-topics/airquality/nyccas/
 
-image: images/BrooklynPublicLibrary_TaggerYancey.jpg
+image: images/shutterstock.jpg
 layout: congestion-pricing-report
 report: true
 related:
