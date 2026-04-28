@@ -498,7 +498,7 @@ const renderBar = (
     vegaSpec.signals.push(geoSignal)
     
     
-    vegaEmbed("#barHolder", vegaSpec, {
+    return vegaEmbed("#barHolder", vegaSpec, {
 
         actions: {
             export: { png: false, svg: false },
@@ -586,4 +586,4 @@ const renderBar = (
         
     });
 
-}
+};

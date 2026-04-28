@@ -224,21 +224,6 @@ const renderMap = (
     let mapTime = mapTimes[0];
     let topoFile = '';
 
-    const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
-    // console.log('has CI?', hasCI)
-
-
-
-    // --- Create a lookup for data and attributes ---
-    const dataLookup = {};
-
-    // Index rows by GeoID so each feature lookup stays O(1) during attachment.
-    data.forEach(item => {
-        dataLookup[item.GeoID] = item;  // store the full record
-    });
-
-    const hasCI = data.some(d => /\(.*\)/.test(d.CI));
-
     // ----------------------------------------------------------------------- //
     // set geo file based on geo type
     // ----------------------------------------------------------------------- //
@@ -345,129 +330,6 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
         clearHoverUI,
         calculatePercent
     } = createHoverUIHelpers(metadata, minValue, maxValue, 2);
-
-    // ----------------------------------------------------------------------- //
-    // data-derived values and display helpers
-    // (defined before the fetch so they read top-to-bottom in usage order)
-    // ----------------------------------------------------------------------- //
-
-    const values = data.map(d => d.Value).filter(v => v != null);
-    const minValue = Math.min(...values).toFixed(2);
-    const maxValue = Math.max(...values).toFixed(2);
-
-    document.getElementById('minVal').innerHTML = minValue
-    document.getElementById('maxVal').innerHTML = maxValue
-
-    const colorScale = d3.scaleSequential()
-        // domain inverted: high values map to the dark end of viridis, low to light
-        .domain([maxValue, minValue]) 
-        .interpolator(d3.interpolateViridis);
-
-
-    // Returns the choropleth style object for one geography feature.
-    const styleFeature = (feature) => {
-
-        const value = feature.properties.Value;
-
-        return {
-            fillColor: value != null ? colorScale(value) : '#ccc',  // gray if no data
-            weight: 0.35,
-            color: 'black',
-            fillOpacity: 0.8
-        };
-
-    }
-
-
-    // Emphasizes the hovered geography with a thicker outline.
-    const highlightFeature = (e) => {
-
-        const layer = e.target;
-        layer.setStyle({
-            weight: 3,
-            color: '#000',
-            fillOpacity: 0.9
-        });
-        
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            // bring to front so the highlighted border renders above neighboring polygons
-            layer.bringToFront();
-        }
-
-    }
-
-    // Restores a feature's default style after hover or chart interop clears it.
-    const resetHighlight = (layer, e) => {
-
-        layer.resetStyle(e.target);
-
-    }
-
-
-    // Builds the HTML popup shown when a geography is clicked.
-    const createPopupContent = (properties) => {
-
-        // Only render a popup when the feature has joined indicator metadata.
-        if (properties.GeoRank) {
-            
-            return `
-            <div class="popup-content">
-            <strong>${properties.Geography}</strong>
-            <hr class="my-1">
-            <em>${indicator.IndicatorName}</em>: <strong>${properties.Value != null ? properties.Value.toFixed(2) : '\u2014'}</strong> ${metadata[0].DisplayType.toLowerCase()} (${properties.TimePeriod || 'Unknown'})
-            <span style="font-size:12px">${properties.Note.length > 1 ? `<hr><em>Note:</em> ${properties.Note}` : ''}</span>
-            </div>
-        `;
-
-        } else {
-            return;
-        }
-    }
-
-
-    // Converts a raw map value into a legend tick percentage.
-    const calculatePercent = (x) => {
-
-        const range = maxValue - minValue;
-        const placement = x - minValue;
-        const calculation = 100 * placement / range;
-
-        return calculation;
-    }
-
-
-    // Updates the legend readout so map hover matches the active geography.
-    const updateHoverUI = (props) => {
-
-        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
-        document.getElementById('hoveredValue').textContent = props.Value != null ? props.Value.toFixed(2) : '\u2014';
-        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
-
-        const legendTick = document.getElementById('legend-tick');
-
-        // Missing values still get the text readout, but they should not draw a tick on the legend.
-        if (props.Value == null) {
-            legendTick.style.display = 'none';
-            return;
-        }
-
-        legendTick.style.display = 'block';
-
-        const percentage = calculatePercent(props.Value);
-        document.querySelector('.viridis-tick').style.left = percentage + '%';
-
-    }
-
-    // Resets the legend readout back to its idle placeholder state.
-    const clearHoverUI = () => {
-        
-        document.getElementById('hoveredGeo').textContent = 'Hover for details';
-        document.getElementById('hoveredValue').textContent = '';
-        document.getElementById('hoveredUnits').textContent = '';
-        document.getElementById('legend-tick').style.display = 'none';
-
-    }
-
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
         .then(response => response.json())
@@ -747,6 +609,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
                     }
                 },
                 resetBubble: (geoID) => {
+                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
+                    if (markerObj) {
+                        markerObj.marker.setStyle(markerObj.originalStyle);
+                    }
+                },
+                // Keep interop API shape consistent with choropleth mode.
+                resetHighlight: (geoID) => {
                     const markerObj = circleMarkers.find(c => c.geoID === geoID);
                     if (markerObj) {
                         markerObj.marker.setStyle(markerObj.originalStyle);
