@@ -292,6 +292,25 @@ const handleSelection = (type, value) => {
         gtag('event', 'click_option', { option: type });
     }
 
+    if (type === 'measure' && overlay === 'table') {
+        // Summary table already includes all measure columns, so keep the current
+        // DataTable instance intact and only refresh the map-side selection state.
+        showMap();
+        return;
+    }
+
+    if (type === 'time' && overlay === 'table') {
+        // Time changes should resync the existing table filters, not rebuild the
+        // entire DataTable while the table overlay is already open.
+        if (tableData) {
+            renderTableFilterControls(tableData);
+            applyTableFilters(tableData);
+        }
+
+        showMap();
+        return;
+    }
+
     // re-render the active tab, and update the Leaflet map for the new selection
 
     renderCurrentView(true);

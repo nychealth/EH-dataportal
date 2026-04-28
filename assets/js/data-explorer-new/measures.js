@@ -1321,7 +1321,11 @@ const renderMeasures = async () => {
         // updateChartPlotSize();
 
         const dataTables = $.fn.dataTable.tables(false);
-        if (!didRenderTable && dataTables.length) {
+        if (didRenderTable && dataTables.length) {
+            // First-open path still initializes while pane is hidden, so headers need one
+            // follow-up width pass after Bootstrap finishes showing the panel.
+            scheduleVisibleSummaryTableAdjust();
+        } else if (!didRenderTable && dataTables.length) {
             $(dataTables)
                 .DataTable()
                 .columns.adjust();
