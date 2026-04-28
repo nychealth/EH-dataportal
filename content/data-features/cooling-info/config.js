@@ -18,7 +18,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on vulnerable friends, family, or neighbors.  Be ready to change plans if you need to move to a safer place.",
+                "message": "When it's hot outside or the air quality is unhealthy, listen to your body and check in on vulnerable friends, family, or neighbors.  Be ready to change plans if you need to move to a safer place. <a href='https://www.nyc.gov/site/doh/providers/emergency-prep/heat-and-medications.page'>Learn more about how some medications can impact your heat sensitivity.</a>",
                 "setVariable": "sensitive('Yes')",
                 "goTo": 2
             },
