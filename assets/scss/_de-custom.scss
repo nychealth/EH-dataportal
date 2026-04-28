@@ -452,7 +452,9 @@ $color-data-explorer: #0A408A;
     font-size: 14px;
     background-color: #DCF4E7 !important;
     width: calc(100% - 4rem);
-     border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
   }
 
   .de-main-details .main-heading {
@@ -844,4 +846,73 @@ $color-data-explorer: #0A408A;
   background: #000;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.popup-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-width: 250px;
+    padding: 0;
+}
+
+.popup-header {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.popup-body {
+    padding: 12px;
+}
+
+.popup-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.popup-indicator {
+    flex: 1;
+    color: #40454a;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.popup-period {
+    font-size: 12px;
+    color: #40454a;
+    font-style: normal;
+    margin-top: 2px;
+}
+
+.popup-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.value-number {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1;
+}
+
+.value-unit {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+.popup-note {
+    background: #fff3cd;
+    border-top: 1px solid #ffc107;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #856404;
+    line-height: 1.4;
 }

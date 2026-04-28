@@ -12,6 +12,11 @@
 
 let currentMap = null;
 let currentGeojsonLayer = null;
+let currentBubbleMarkers = [];
+
+// Display Parameters
+var isPercent;
+var displayType;
 
 // ----------------------------------------------------------------------- //
 // base map initialization (fires immediately on script load)
@@ -40,6 +45,157 @@ const initBaseMap = () => {
 
 };
 
+// ----------------------------------------------------------------------- //
+// Clear existing bubbles from the map
+// ----------------------------------------------------------------------- //
+
+const clearBubbles = () => {
+    currentBubbleMarkers.forEach(marker => {
+        currentMap.removeLayer(marker);
+    });
+    currentBubbleMarkers = [];
+};
+
+// Shared helpers for map rendering
+const createDataLookup = (data) => {
+    const dataLookup = {};
+    data.forEach(item => {
+        dataLookup[item.GeoID] = item;
+    });
+    return dataLookup;
+};
+
+const resetMapForRender = () => {
+    clearBubbles();
+    initBaseMap();
+    if (currentGeojsonLayer) {
+        currentMap.removeLayer(currentGeojsonLayer);
+        currentGeojsonLayer = null;
+    }
+    return currentMap;
+};
+
+const getMapStats = (data) => {
+    const values = data.map(d => d.Value).filter(v => v != null);
+    return {
+        values,
+        minValue: values.length ? Math.min(...values) : 0,
+        maxValue: values.length ? Math.max(...values) : 0
+    };
+};
+
+const setMapLegendValues = (minValue, maxValue, digits) => {
+    document.getElementById('minVal').innerHTML = minValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+    document.getElementById('maxVal').innerHTML = maxValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+};
+
+const createColorScale = (minValue, maxValue) => {
+    return d3.scaleSequential()
+        .domain([maxValue, minValue])
+        .interpolator(d3.interpolateViridis);
+};
+
+const formatMapValue = (value, digits) => {
+    return value != null
+        ? value.toLocaleString(undefined, {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits
+        }) + displayType
+        : '—';
+};
+
+const createMapPopupContent = (properties, metadata, options = {}) => {
+    const requireGeoRank = options.requireGeoRank ?? true;
+    const valueDigits = options.valueDigits ?? 2;
+
+    if (requireGeoRank && !properties.GeoRank) {
+        return;
+    }
+
+    if (!requireGeoRank && properties.Value == null && !properties.GeoRank) {
+        return;
+    }
+
+    const note = properties.Note && properties.Note.length > 1
+        ? `<div class="popup-note">${properties.Note}</div>`
+        : '';
+
+    return `
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>${properties.Geography}</strong>
+            </div>
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${indicator.IndicatorName}
+                        <div class="popup-period">(${properties.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${formatMapValue(properties.Value, valueDigits)}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            ${note}
+        </div>
+    `;
+};
+
+const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+    const calculatePercent = (x) => {
+        const range = maxValue - minValue;
+        if (range === 0 || x == null) {
+            return 0;
+        }
+        return 100 * (x - minValue) / range;
+    };
+
+    const updateHoverUI = (props) => {
+        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
+        document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
+        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
+        document.getElementById('legend-tick').style.display = 'block';
+        document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
+    };
+
+    const clearHoverUI = () => {
+        document.getElementById('hoveredGeo').textContent = 'Hover for details';
+        document.getElementById('hoveredValue').textContent = '';
+        document.getElementById('hoveredUnits').textContent = '';
+        document.getElementById('legend-tick').style.display = 'none';
+    };
+
+    return {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    };
+};
+
+const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+    geojson.features.forEach((feature) => {
+        const geoID = feature.properties.GEOCODE;
+        const matchedData = dataLookup[geoID];
+
+        if (matchedData) {
+            feature.properties = {
+                ...feature.properties,
+                ...matchedData
+            };
+        } else {
+            feature.properties.dataValue = null;
+        }
+    });
+    return geojson;
+};
+
 // Fire immediately
 
 initBaseMap();
@@ -51,11 +207,7 @@ const renderMap = (
 ) => {
 
     console.log("** renderMap");
-
-    // document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
-
-    // console.log("data [renderMap]", data);
-    // console.log("metadata [renderMap]", metadata);
+    console.log(metadata);
 
     // ----------------------------------------------------------------------- //
     // get unique time in data
@@ -63,13 +215,12 @@ const renderMap = (
     
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // console.log("mapTimes [map.js]", mapTimes);
-
     // ----------------------------------------------------------------------- //
     // set metadata
     // ----------------------------------------------------------------------- //
 
-    let mapGeoType            = data[0]?.GeoType;
+    let mapGeoType = data[0]?.GeoType;
+    let mapMeasurementType = metadata[0]?.MeasurementType;
     let mapTime = mapTimes[0];
     let topoFile = '';
 
@@ -86,29 +237,114 @@ const renderMap = (
         dataLookup[item.GeoID] = item;  // store the full record
     });
 
-
-    topoFile = getGeoFile(mapGeoType)
+    const hasCI = data.some(d => /\(.*\)/.test(d.CI));
 
     // ----------------------------------------------------------------------- //
-    // define spec
+    // set geo file based on geo type
     // ----------------------------------------------------------------------- //
-    
-    // Ensure base map is ready (no-op if already initialized)
 
-    initBaseMap();
+    topoFile = getGeoFile(mapGeoType);
 
-    // Remove previous data layer if it exists
+    // Determine if the data are citywide only
+    if (metadata[0].AvailableGeoTypes.length === 1 && metadata[0].AvailableGeoTypes[0] === 'Citywide') {
+        console.log(">>> CITYWIDE ONLY - Rendering citywide map");
+        
+        // Render choro or bubble, as necessary
 
-    // Remove the previous thematic layer before drawing the next one.
-    if (currentGeojsonLayer) {
+        // Pop up the map popup, with additional content explaining citywide data
 
-        currentMap.removeLayer(currentGeojsonLayer);
-        currentGeojsonLayer = null;
-
+        // Fire event to open the Trend chart
+        
     }
 
-    let map = currentMap;
+    // ----------------------------------------------------------------------- //
+    // Determine map type based on measurement type
+    // ----------------------------------------------------------------------- //
 
+    const isNumberMap = mapMeasurementType.includes('number') || 
+                        mapMeasurementType.includes('Number') || 
+                        mapMeasurementType.includes('Total');
+
+    if (isNumberMap) {
+        
+        console.log(">>> NUMBER MAP - Bubble map rendering");
+        return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile);
+                
+    } else {
+        
+        console.log(">>> CHOROPLETH MAP - Rendering choropleth");
+        
+        // ----------------------------------------------------------------------- //
+        // CHOROPLETH MAP RENDERING
+        // ----------------------------------------------------------------------- //
+        
+        return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile);
+    }
+
+};
+
+// ----------------------------------------------------------------------- //
+// Choropleth map rendering function
+// ----------------------------------------------------------------------- //
+
+const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
+
+        // Switch units and subtitle formatting when the measure is percentage-based.
+    if (metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent') && !metadata[0].MeasurementType.includes('percentile')) {
+
+        isPercent = true;
+        displayType = '%';
+        
+    } else {
+        isPercent = false;
+        displayType = '';
+    }
+
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
+
+    setMapLegendValues(minValue, maxValue, 2);
+
+    const colorScale = createColorScale(minValue, maxValue);
+
+    const styleFeature = (feature) => {
+        const value = feature.properties.Value;
+        return {
+            fillColor: value != null ? colorScale(value) : '#ccc',
+            weight: 0.35,
+            color: 'black',
+            fillOpacity: 0.8
+        };
+    };
+
+    const highlightFeature = (e) => {
+        const layer = e.target;
+        layer.setStyle({
+            weight: 3,
+            color: '#000',
+            fillOpacity: 0.9
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+    };
+
+    const resetHighlight = (layer, e) => {
+        layer.resetStyle(e.target);
+    };
+
+    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
+        requireGeoRank: true,
+        valueDigits: 2
+    });
+
+    const {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    } = createHoverUIHelpers(metadata, minValue, maxValue, 2);
 
     // ----------------------------------------------------------------------- //
     // data-derived values and display helpers
@@ -238,41 +474,12 @@ const renderMap = (
         .then(topology => {
             
             // --- Convert TopoJSON to GeoJSON ---
-
             let geojson = topojson.feature(topology, topology.objects.collection);
 
-            // console.log("geojson [renderMap fetch]", geojson);
-
             // --- Attach data to each feature ---
-
-            // Merge the filtered indicator row onto each matching geography feature.
-            geojson.features.forEach((feature, i) => {
-
-                if (i == 0) {
-                    // console.log("***** properties", feature.properties)
-                }
-
-                const geoID = feature.properties.GEOCODE;
-                const matchedData = dataLookup[geoID];
-
-                // Preserve original geometry props and append joined indicator attributes when found.
-                if (matchedData) {
-
-                    feature.properties = {
-                        ...feature.properties,  // keep original properties (like GEOCODE, GEONAME, etc)
-                        ...matchedData          // add all fields from matchedData
-                    };
-
-                } else {
-
-                    // Missing rows stay on the map so the style function can show them as no-data areas.
-                    feature.properties.dataValue = null;  // mark as missing data
-
-                }
-            });
+            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
 
             return geojson;
-            
             
         })
         .then(geojson => {
@@ -285,15 +492,10 @@ const renderMap = (
 
             // --- Add the GeoJSON to the map ---
 
-            // console.log("geojson [renderMap]", geojson);
-
             const geojsonLayer = L.geoJson(geojson, {
 
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
-
-                    // console.log(">>> feature", feature.properties);
-                    // console.log(">>> layer", layer);
                     
                     // Store reference so we can highlight later using GeoID from chart
                     
@@ -314,9 +516,7 @@ const renderMap = (
                     layer.bindPopup(createPopupContent(feature.properties));
                     
                     layer.on('click', (e) => {
-
                         const props = feature.properties;
-
                         console.log("** click", feature.properties);
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
@@ -325,13 +525,11 @@ const renderMap = (
                             // Forward map clicks into the bar chart only when the Vega view has finished loading.
                             window.myVegaView.signal("selectedGeo", linkedGeoID).run();
                         }
-                        
                     });
 
-                    let currentlyHighlighted = null
+                    let currentlyHighlighted = null;
                     
                     layer.on('mouseover', (e) => {
-
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
                         const hasMappedValue = props.Value != null;
@@ -356,9 +554,7 @@ const renderMap = (
                     });
                     
                     layer.on('mouseout', (e) => {
-
                         geojsonLayer.resetStyle(e.target);
-
                         clearHoverUI();
 
                         if (window.myVegaView) {
@@ -381,18 +577,191 @@ const renderMap = (
                 clearHoverUI
             };
 
-
-
         });
-
 
     // send info for printing
     vizYear = mapTime;
     vizGeography = mapGeoType;
-    // vizSource = metadata[0].Sources
-    // printSpec = mapspec;
-    chartType = 'map'
+    chartType = 'map';
 
     return mapRenderPromise;
+};
 
-}
+// ----------------------------------------------------------------------- //
+// Bubble map rendering function
+// ----------------------------------------------------------------------- //
+
+const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
+    isPercent = false;
+    displayType = '';
+
+    setMapLegendValues(minValue, maxValue, 0);
+
+    const colorScale = createColorScale(minValue, maxValue);
+
+    const radiusScale = d3.scaleSqrt()
+        .domain([minValue, maxValue])
+        .range([4, 20]);
+
+    const styleFeature = () => ({
+        fillColor: '#eee',
+        weight: 1,
+        color: '#999',
+        fillOpacity: 0.3
+    });
+
+    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
+        requireGeoRank: false,
+        valueDigits: 0
+    });
+
+    const {
+        updateHoverUI,
+        clearHoverUI,
+        calculatePercent
+    } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
+
+    const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
+        .then(response => response.json())
+        .then(topology => {
+            
+            // --- Convert TopoJSON to GeoJSON ---
+            let geojson = topojson.feature(topology, topology.objects.collection);
+
+            // --- Attach data to each feature ---
+            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
+
+            return geojson;
+            
+        })
+        .then(geojson => {
+            
+            // --------------------------------------------------------------------------- //
+            // Lookup to match GeoID → Leaflet layer (for chart interop)
+            // --------------------------------------------------------------------------- //
+            const geoIDtoLayer = {};
+            const circleMarkers = [];  // Store all circle markers for interop
+            // --------------------------------------------------------------------------- //
+
+            // --- Add the GeoJSON overlay (light gray polygons) ---
+            const geojsonLayer = L.geoJson(geojson, {
+                style: styleFeature,
+                onEachFeature: (feature, layer) => {
+                    const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
+                    if (geoID) {
+                        geoIDtoLayer[geoID] = layer;
+                    }
+                    
+                    layer.bindPopup(createPopupContent(feature.properties));
+                }
+            }).addTo(map);
+
+            currentGeojsonLayer = geojsonLayer;
+
+            // --- Add bubbles on top ---
+            data.forEach(item => {
+                if (item.Lat != null && item.Long != null && item.Value != null) {
+                    const latlng = [item.Lat, item.Long];
+                    const circle = L.circleMarker(latlng, {
+                        radius: radiusScale(item.Value),
+                        fillColor: colorScale(item.Value),
+                        color: '#333',  // dark stroke
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                    }).addTo(map);
+
+                    // Track for cleanup
+                    currentBubbleMarkers.push(circle);
+
+                    circle.bindPopup(createPopupContent(item));
+
+                    // Store reference for chart interop
+                    circleMarkers.push({
+                        geoID: item.GeoID,
+                        marker: circle,
+                        originalStyle: {
+                            radius: radiusScale(item.Value),
+                            fillColor: colorScale(item.Value),
+                            color: '#333',
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }
+                    });
+
+                    // --- Add hover and click interactions to bubbles ---
+                    circle.on('click', (e) => {
+                        console.log("** click", item);
+
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", item.GeoID).run();
+                        }
+                    });
+
+                    circle.on('mouseover', (e) => {
+                        // Highlight the bubble
+                        circle.setStyle({
+                            weight: 3,
+                            color: '#000',
+                            fillOpacity: 1
+                        });
+
+                        updateHoverUI(item);
+
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", item.GeoID).run();
+                        }
+                    });
+
+                    circle.on('mouseout', (e) => {
+                        // Reset the bubble style
+                        const original = circleMarkers.find(c => c.marker === circle).originalStyle;
+                        circle.setStyle(original);
+
+                        clearHoverUI();
+
+                        if (window.myVegaView) {
+                            window.myVegaView.signal("selectedGeo", null).run();
+                        }
+                    });
+                }
+            });
+
+            // --- Expose map functions globally for chart-to-map hover cross-linking ---
+            window.mapInterop = {
+                geoIDtoLayer,
+                geojsonLayer,
+                circleMarkers,
+                highlightBubble: (geoID) => {
+                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
+                    if (markerObj) {
+                        markerObj.marker.setStyle({
+                            weight: 3,
+                            color: '#000',
+                            fillOpacity: 1
+                        });
+                    }
+                },
+                resetBubble: (geoID) => {
+                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
+                    if (markerObj) {
+                        markerObj.marker.setStyle(markerObj.originalStyle);
+                    }
+                },
+                updateHoverUI,
+                clearHoverUI
+            };
+
+        });
+
+    // send info for printing
+    vizYear = mapTime;
+    vizGeography = mapGeoType;
+    chartType = 'bubble-map';
+
+    return mapRenderPromise;
+};

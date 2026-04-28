@@ -28,9 +28,6 @@
 
 </article>
 
-{{- $basemap            := resources.Get "js/data-explorer-new/basemap.js" -}}
-{{- $basemap_secure     := $basemap | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $basemap_secure.RelPermalink }}" integrity="{{ $basemap_secure.Data.Integrity }}" defer></script>
 
 {{- $selector            := resources.Get "js/data-explorer-new/topic-indicator-selector.js" -}}
 {{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}

@@ -4,6 +4,39 @@
 
 // console.log(">> bar.js");
 
+let barResizeEventRegistered = false;
+
+const scheduleBarViewResize = () => {
+    if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
+        return;
+    }
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            window.myVegaView.resize().run();
+        });
+    });
+};
+
+const registerBarTabResizeHandler = () => {
+    if (barResizeEventRegistered) {
+        return;
+    }
+
+    const barTab = document.getElementById('v-pills-bar-tab');
+    if (!barTab) {
+        return;
+    }
+
+    barTab.addEventListener('shown.bs.tab', () => {
+        if (overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {
+            window.myVegaView.resize().run();
+        }
+    });
+
+    barResizeEventRegistered = true;
+};
+
 // Builds and renders the Vega-Lite bar chart for the active geography slice.
 const renderBar = (
     data, 
@@ -308,6 +341,7 @@ const renderBar = (
                         },
                         "strokeWidth": {
                             "condition": [
+                                {"param": "highlight", "empty": false, "value": 2},
                                 {
                                     "test": "datum.Value != null && datum.GeoID == selectedGeo",
                                     "value": 2
@@ -476,8 +510,10 @@ const renderBar = (
     }).then(result => {
         
         window.myVegaView = result.view; // store the vega view globally
-        
-        let lastHighlightedLayer = null;
+        registerBarTabResizeHandler();
+        scheduleBarViewResize();
+
+        let lastHighlighted = null; // can be a Leaflet layer (choropleth) or geoID (bubble)
 
         // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
         result.view.addEventListener('mouseover', (event, item) => {
@@ -490,25 +526,39 @@ const renderBar = (
 
                 if (!mapAPI) return; // map not ready yet
 
-                const layer =
-                    mapAPI.geoIDtoLayer[geoID] ||
-                    mapAPI.geoIDtoLayer[String(geoID)] ||
-                    mapAPI.geoIDtoLayer[item.datum.GEOCODE] ||
-                    mapAPI.geoIDtoLayer[String(item.datum.GEOCODE)];
-
-                // Reset the previous highlight before moving focus to the new geography.
-                if (layer && layer !== lastHighlightedLayer) {
-
-                    // Reset previous
-                    if (lastHighlightedLayer) {
-                        mapAPI.resetHighlight(lastHighlightedLayer);
+                // Check if it's a bubble map (has circleMarkers) or choropleth (has geoIDtoLayer)
+                if (mapAPI.circleMarkers) {
+                    // Bubble map
+                    const markerObj = mapAPI.circleMarkers.find(c => c.geoID === geoID);
+                    if (markerObj && markerObj !== lastHighlighted) {
+                        // Reset previous highlight
+                        if (lastHighlighted) {
+                            mapAPI.resetBubble(lastHighlighted);
+                        }
+                        // Highlight new bubble
+                        mapAPI.highlightBubble(geoID);
+                        lastHighlighted = geoID;
+                        // Update UI with bar data properties
+                        mapAPI.updateHoverUI(item.datum);
                     }
-
-                    // Highlight new
-                    mapAPI.highlightFeature({ target: layer });
-                    lastHighlightedLayer = layer;
-
-                    mapAPI.updateHoverUI(layer.feature.properties);
+                } else if (mapAPI.geoIDtoLayer) {
+                    // Choropleth map
+                    const layer =
+                        mapAPI.geoIDtoLayer[geoID] ||
+                        mapAPI.geoIDtoLayer[String(geoID)] ||
+                        mapAPI.geoIDtoLayer[item.datum.GEOCODE] ||
+                        mapAPI.geoIDtoLayer[String(item.datum.GEOCODE)];
+                        
+                    if (layer && layer !== lastHighlighted) {
+                        // Reset previous
+                        if (lastHighlighted) {
+                            mapAPI.resetHighlight(lastHighlighted);
+                        }
+                        // Highlight new
+                        mapAPI.highlightFeature({ target: layer });
+                        lastHighlighted = layer;
+                        mapAPI.updateHoverUI(layer.feature.properties);
+                    }
                 }
             }
         });
@@ -520,9 +570,15 @@ const renderBar = (
 
             if (!mapAPI) return;
 
-            if (lastHighlightedLayer) {
-                mapAPI.resetHighlight(lastHighlightedLayer);
-                lastHighlightedLayer = null;
+            if (lastHighlighted) {
+                if (typeof lastHighlighted === 'string') {
+                    // Bubble map: lastHighlighted is geoID
+                    mapAPI.resetBubble(lastHighlighted);
+                } else {
+                    // Choropleth: lastHighlighted is layer
+                    mapAPI.resetHighlight(lastHighlighted);
+                }
+                lastHighlighted = null;
             }
 
             mapAPI.clearHoverUI();
