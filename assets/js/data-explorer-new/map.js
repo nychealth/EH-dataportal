@@ -232,6 +232,18 @@ const renderMap = (
 
     topoFile = getGeoFile(mapGeoType);
 
+    // Determine if the data are citywide only
+    if (metadata[0].AvailableGeoTypes.length === 1 && metadata[0].AvailableGeoTypes[0] === 'Citywide') {
+        console.log(">>> CITYWIDE ONLY - Rendering citywide map");
+        
+        // Render choro or bubble, as necessary
+
+        // Pop up the map popup, with additional content explaining citywide data
+
+        // Fire event to open the Trend chart
+        
+    }
+
     // ----------------------------------------------------------------------- //
     // Determine map type based on measurement type
     // ----------------------------------------------------------------------- //
