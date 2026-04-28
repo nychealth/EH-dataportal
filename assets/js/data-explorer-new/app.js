@@ -42,6 +42,20 @@ const buildCanonicalSearchParams = () => {
 };
 
 
+
+// ----------------------------------------------------------------------- //
+// history state helpers
+// ----------------------------------------------------------------------- //
+
+// Centralizes history writes so replace/push state stay consistent.
+const writeHistoryState = (historyMethod, nextState, nextURL) => {
+
+    window.history[historyMethod](nextState, '', nextURL);
+    console.log(`${historyMethod} →`, nextURL.search);
+
+};
+
+
 // Resets sub-selections before loading a different indicator.
 const resetSelectionForNewIndicator = (nextIndicatorID) => {
 
@@ -55,13 +69,7 @@ const resetSelectionForNewIndicator = (nextIndicatorID) => {
     const nextURL = new URL(window.location);
     nextURL.search = new URLSearchParams({ id: Number(nextIndicatorID) }).toString();
 
-    window.history.replaceState(
-        { id: Number(nextIndicatorID) },
-        '',
-        nextURL
-    );
-
-    console.log("replaceState →", nextURL.search);
+    writeHistoryState('replaceState', { id: Number(nextIndicatorID) }, nextURL);
 
 };
 
@@ -73,13 +81,7 @@ const pushSelectionToURL = () => {
     // Rebuild the explorer params in a stable order and drop legacy aliases.
     url.search = buildCanonicalSearchParams().toString();
 
-    window.history.pushState(
-        { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay },
-        '',
-        url
-    );
-
-    console.log("pushState →", url.search);
+    writeHistoryState('pushState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay }, url);
 };
 
 
@@ -135,13 +137,7 @@ const normalizeLegacyGeoTypeURL = () => {
 
     nextURL.search = normalizedParts.join('&');
 
-    window.history.replaceState(
-        { id: IndicatorID, MeasureID, GeoType: GeoType || renamedGeoType, TimePeriodID, overlay },
-        '',
-        nextURL
-    );
-
-    console.log("replaceState →", nextURL.search);
+    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType: GeoType || renamedGeoType, TimePeriodID, overlay }, nextURL);
 
 };
 
@@ -158,13 +154,7 @@ const normalizeLegacyOverlayURL = () => {
 
     nextURL.searchParams.set('overlay', 'bar');
 
-    window.history.replaceState(
-        { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay: 'bar' },
-        '',
-        nextURL
-    );
-
-    console.log("replaceState →", nextURL.search);
+    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay: 'bar' }, nextURL);
 
 };
 
@@ -180,6 +170,7 @@ const normalizeLegacyOverlayURL = () => {
 
 let pendingTableOverlayToken = 0;
 
+// Runs renderer only when module has assigned active show* function.
 const runOverlayRenderer = (renderer) => {
 
     if (typeof renderer !== 'function') {

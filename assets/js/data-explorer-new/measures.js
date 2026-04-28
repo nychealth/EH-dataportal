@@ -8,68 +8,57 @@
 // tab default measure functions
 // ----------------------------------------------------------------------- //
 
+
 // Picks one default measure using the shared priority order used by all tabs.
+const findFirstMeasureByType = (visArray, typeMatcher) => {
+
+    return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
+
+};
+
 const pickDefaultMeasureByPriority = (visArray) => {
 
-    const hasAgeAdjustedRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('Age-adjusted rate')
+    if (!visArray.length) {
+        return null;
+    }
+
+    // Keep explicit case handling so behavior matches legacy priority checks.
+    const ageAdjustedRateTotal = findFirstMeasureByType(visArray, measurementType =>
+        measurementType.includes('Age-adjusted rate') && measurementType.includes('Total')
     );
 
-    const hasRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('rate')
-    );
+    if (ageAdjustedRateTotal) {
+        return ageAdjustedRateTotal;
+    }
 
-    const isRate = visArray.filter(measure =>
-        measure.MeasurementType.includes('Rate')
-    );
+    const priorityMatchers = [
+        measurementType => measurementType.includes('Age-adjusted rate'),
+        measurementType => measurementType.includes('rate'),
+        measurementType => measurementType.includes('Rate'),
+        measurementType => measurementType.includes('Percent'),
+        measurementType => measurementType.includes('percent'),
+        measurementType => measurementType.includes('Density')
+    ];
 
-    const hasPercent = visArray.filter(measure =>
-        measure.MeasurementType.includes('Percent')
-    );
+    for (const matcher of priorityMatchers) {
+        const matchedMeasure = findFirstMeasureByType(visArray, matcher);
 
-    const hasPercent2 = visArray.filter(measure =>
-        measure.MeasurementType.includes('percent')
-    );
-
-    const hasDensity = visArray.filter(measure =>
-        measure.MeasurementType.includes('Density')
-    );
-
-    if (hasAgeAdjustedRate.length) {
-
-        const hasAgeAdjustedRateTotal = hasAgeAdjustedRate.filter(measure =>
-            measure.MeasurementType.includes('Total')
-        );
-
-        if (hasAgeAdjustedRateTotal.length) {
-            return hasAgeAdjustedRateTotal[0];
+        if (matchedMeasure) {
+            return matchedMeasure;
         }
-
-        return hasAgeAdjustedRate[0];
-
-    }
-
-    if (hasRate.length) {
-        return hasRate[0];
-    }
-
-    if (isRate.length) {
-        return isRate[0];
-    }
-
-    if (hasPercent.length) {
-        return hasPercent[0];
-    }
-
-    if (hasPercent2.length) {
-        return hasPercent2[0];
-    }
-
-    if (hasDensity.length) {
-        return hasDensity[0];
     }
 
     return visArray[0];
+
+};
+
+
+// Builds one-item metadata arrays used by tab defaults.
+const buildDefaultMetadataArray = (visArray) => {
+
+    const defaultMeasure = pickDefaultMeasureByPriority(visArray);
+
+    return defaultMeasure ? [defaultMeasure] : [];
 
 };
 
@@ -80,16 +69,7 @@ const setDefaultMapMeasure = (visArray) => {
 
     console.log("* setDefaultMapMeasure");
 
-    // modified so that defaultMapMetadata is explicitly set, instead of by reference
-    //  through defaultArray
-    
-    let defaultArray = [];
-
-    defaultArray.push(pickDefaultMeasureByPriority(visArray));
-
-    // assigning to global object
-
-    defaultMapMetadata = defaultArray;
+    defaultMapMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultMapMetadata", defaultMapMetadata);
 
@@ -103,19 +83,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     // console.log("* setDefaultTrendMeasure");
 
-    // modified so that defaultTrendMetadata is explicitly set, instead of by reference
-    //  through defaultArray
-
-    let defaultArray = [];
-
-    if (visArray.length > 0) {
-
-        defaultArray.push(pickDefaultMeasureByPriority(visArray));
-    }
-
-    // assigning to global object
-
-    defaultTrendMetadata = defaultArray;
+    defaultTrendMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
 
@@ -129,47 +97,26 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     console.log("* setDefaultLinksMeasure");
 
-    // modified so that defaultPrimaryLinksMeasureMetadata is explicitly set, instead of by reference
-    //  through defaultArray
+    const defaultArray = buildDefaultMetadataArray(visArray);
 
-    let defaultArray = [];
-
-    if (visArray.length > 0) {
-
-        defaultArray.push(pickDefaultMeasureByPriority(visArray));
-
-
-        const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
-        const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
-
-        // console.log("defaultSecondaryMeasureId", defaultSecondaryMeasureId);
-
-        // assigning to global object
-        defaultPrimaryLinksMeasureMetadata = defaultArray;
-
-        // console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
-
-        // using await here because createJoinedLinksData calls fetch, and we need that data
-
-        let defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
-
-        // console.log("defaultLinksDataMetadata [setDefaultLinksMeasure]", defaultLinksDataMetadata);
-
-        // extract secondary metadata from data function return, assign to global object
-
-        defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
-
-        // console.log("defaultSecondaryMeasureMetadata [setDefaultLinksMeasure]", defaultSecondaryMeasureMetadata);
-        
-        // extract data element from data function return, assign to global object
-
-        // console.log("defaultLinksDataMetadata.data", defaultLinksDataMetadata.data);
-
-        joinedLinksDataObjects = defaultLinksDataMetadata.data
-
-        // console.log(">> joinedLinksDataObjects [setDefaultLinksMeasure]", joinedLinksDataObjects);
-
+    if (!defaultArray.length) {
+        return;
     }
+
+    const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
+    const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
+
+    // assigning to global object
+    defaultPrimaryLinksMeasureMetadata = defaultArray;
+
+    // using await here because createJoinedLinksData calls fetch, and we need that data
+    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+    // extract secondary metadata from data function return, assign to global object
+    defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+    
+    // extract data element from data function return, assign to global object
+    joinedLinksDataObjects = defaultLinksDataMetadata.data
 }
 
 
@@ -181,21 +128,16 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
     console.log("* setDefaultDisparitiesMeasure");
 
-    let defaultArray = [];
-
-    if (visArray.length > 0) {
-
-        defaultArray.push(pickDefaultMeasureByPriority(visArray));
-    }
-
-    // assigning to global object
-
-    defaultDisparitiesMetadata = defaultArray;
+    defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
     
 }
 
+
+// ----------------------------------------------------------------------- //
+// links / disparities metadata helpers
+// ----------------------------------------------------------------------- //
 
 // Returns metadata for one measure on the active indicator.
 const getMeasureMetadataById = (measureId) => {
@@ -485,7 +427,7 @@ const renderMeasures = async () => {
     // ===== populate per-tab measure arrays ================================================== //
 
     // Sort each measure into the tabs where its metadata says data exists.
-    indicatorMeasures.map((measure, index) => {
+    indicatorMeasures.forEach(measure => {
 
         // check which viz types exist for this measure
 
@@ -533,6 +475,7 @@ const renderMeasures = async () => {
     const trendSyncButton = document.getElementById('trendSyncButton');
     const trendControlsToggle = document.getElementById('trendControlsToggle');
 
+    // Keeps summary text within tab header width so long labels do not break layout.
     const constrainSummaryWidthToPanel = (summaryElement, toggleElement, reservePx = 170) => {
 
         if (!summaryElement || !toggleElement) {
@@ -554,6 +497,7 @@ const renderMeasures = async () => {
 
     };
 
+    // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getSyncedTrendMeasureId = () => {
 
         const matchingMapMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(MeasureID));
@@ -573,6 +517,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Picks comparison that best matches current indicator and active measure.
     const getSyncedComparisonId = () => {
 
         if (!comparisonMetadata?.length) {
@@ -603,6 +548,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Uses manual trend measure only while custom state is active and still valid.
     const getActiveTrendMeasureId = () => {
 
         const manualMeasureId = selectedTrendMeasureId == null ? null : Number(selectedTrendMeasureId);
@@ -613,6 +559,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Uses manual comparison only while custom state is active and still valid.
     const getActiveComparisonId = () => {
 
         const manualComparisonId = selectedComparisonId == null ? null : Number(selectedComparisonId);
@@ -625,6 +572,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Clears active styling before one trend or comparison button is reselected.
     const clearTrendButtonState = () => {
 
         document.querySelectorAll('.trendbutton, .comparisonbutton').forEach(button => {
@@ -635,6 +583,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Highlights whichever control currently owns trend rendering state.
     const setTrendButtonState = () => {
 
         clearTrendButtonState();
@@ -671,6 +620,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Rebuilds compact summary line from current trend/comparison selection state.
     const updateTrendSelectionSummary = () => {
 
         if (!trendSelectionSummary) {
@@ -694,6 +644,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Re-syncs custom trend selections back to map-driven defaults when requested.
     syncTrendSelectionsToMapSelection = (force = false) => {
 
         let didChange = false;
@@ -728,6 +679,7 @@ const renderMeasures = async () => {
     };
 
 
+    // Rebuilds trend and comparison dropdowns for current indicator context.
     const buildTrendSelectionControls = () => {
 
         if (trendSelectionLabel) {
@@ -753,6 +705,7 @@ const renderMeasures = async () => {
 
             trendMenuHolder?.classList.remove('d-none');
 
+            // One button per trend-capable measure keeps borough trend choices flat.
             trendMeasures.forEach(measure => {
                 dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
                     data-measure-id="${measure.MeasureID}" title="${measure.MeasurementType}">
@@ -760,6 +713,7 @@ const renderMeasures = async () => {
                 </button>`);
             });
 
+            // Measure picks immediately leave comparison mode and render borough trend.
             dropdownTrendSelection.onclick = event => {
 
                 const button = event.target.closest('.trendbutton');
@@ -799,6 +753,7 @@ const renderMeasures = async () => {
 
                 dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${title}</strong></span>`);
 
+                // Group related comparisons under one legend title for shorter menus.
                 const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
 
                 comparisonIDs.forEach(comp => {
@@ -814,6 +769,7 @@ const renderMeasures = async () => {
                     let buttonTitle;
                     let buttonLabel;
 
+                    // Prefer most specific readable label available for each comparison option.
                     if (compIndicatorLabel.length === 1) {
 
                         if (compGeoTypeName[0] === 'Citywide') {
@@ -845,6 +801,7 @@ const renderMeasures = async () => {
 
             });
 
+            // Comparison picks immediately switch render mode away from borough trends.
             dropdownCompSelection.onclick = event => {
 
                 const button = event.target.closest('.comparisonbutton');
@@ -876,6 +833,7 @@ const renderMeasures = async () => {
                 selectedTrendMeasure = false;
                 selectedComparison = false;
 
+                // Force both controls back to map-synced defaults before optional redraw.
                 syncTrendSelectionsToMapSelection(true);
 
                 if (overlay === 'trend') {
