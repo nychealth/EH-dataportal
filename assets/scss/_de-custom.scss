@@ -385,6 +385,14 @@ $color-data-explorer: #0A408A;
     max-width: 600px;
   }
 
+  .de-tabs-layout {
+    width: 100%;
+  }
+
+  .de-tabs-panel-shell {
+    width: 100%;
+  }
+
   /* Ensure mobile bottom nav sits above iOS Safari toolbar */
   @media (max-width: 719.98px) {
     .de-tabs {
@@ -458,6 +466,7 @@ $color-data-explorer: #0A408A;
       bottom: auto;
       top: 2rem;
       width: 50%;
+      max-width: 860px;
     }
     .de-tabs:not(.has-open-panel) {
       width: 72px !important;
@@ -466,6 +475,13 @@ $color-data-explorer: #0A408A;
       left: 2rem;
       top: 2rem;
       width: 380px;
+    }
+
+    // Let the panel shrink within the tab shell so DataTables scrolls horizontally
+    // instead of forcing the whole overlay to resize to the current table content.
+    .de-tabs-panel-shell {
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .de-legend {
