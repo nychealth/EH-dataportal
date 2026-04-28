@@ -252,6 +252,8 @@ indicator JSON → Arquero table with GeoRank
 - Live investigation on the `lead` NTA page showed `fixedHeader` added meaningful startup cost while producing no floating header DOM in this overlay table. Baseline first-open time was about 75.5 ms with `fixedHeader`; removing it in the runtime probe dropped the same path to about 52.2 ms, so the source config should omit it.
 - The summary-table grouping `drawCallback` was not the main bottleneck on the same page. Instrumented callback time was about 0.9 ms on initial draw and about 0.5 ms on a geo filter redraw, with about a 6 ms difference between full init with and without the callback.
 - After removing `fixedHeader` from source, the live first-open table path measured about 50.2 ms, and a later API-driven geo filter change measured about 9.2 ms with the grouped rows still present.
+- The persistent table-panel width ratchet was a layout bug in the `de-tabs` flex shell, not a DataTables redraw bug by itself. The panel wrapper was an unconstrained flex item, so the DataTables scroll container's min-content width was allowed to resize the whole overlay when geography changes changed the table's intrinsic width.
+- Fix by wrapping the panel content in a dedicated `.de-tabs-panel-shell` and, on desktop, setting that flex item to `flex: 1 1 0` with `min-width: 0`. That keeps the overlay width fixed and lets DataTables scroll horizontally inside it. After this fix, the table-overlay measure/time workaround branches in `menu.js` were no longer needed and were removed.
 
 
 
