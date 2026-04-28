@@ -714,7 +714,7 @@ $color-data-explorer: #0A408A;
   .indicator-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1rem 2.5rem;
+      gap: 0 2.5rem;
       margin-bottom: 1rem;
   }
 
@@ -728,6 +728,7 @@ $color-data-explorer: #0A408A;
       display: flex;
       flex-direction: column;
       position: relative;
+      padding-top: 0.25rem;
   }
 
   .indicator-card h6 {
@@ -746,20 +747,8 @@ $color-data-explorer: #0A408A;
       inset: 0;
   }
 
-  .indicator-card > div {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      transition: background-color 0.2s ease;
-  }
-
-  .indicator-card:hover > div {
-      background-color: #DCF4E7 !important;
-  }
-
-  /* Fix border color for cards */
-  .indicator-card .border {
-      border-color: #dee2e6 !important;
+    .indicator-card:hover {
+      background-color: rgba(220, 244, 231, 0.35);
   }
 }
 

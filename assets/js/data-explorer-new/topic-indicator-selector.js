@@ -132,13 +132,9 @@ const printIndicators = async (indList, destination) => {
             
             // inline onclick: buttons are injected via innerHTML, so addEventListener would not survive DOM replacement
             return `
-                <div class="indicator-card mb-1">
-                    <div class="border p-2 border-gray-300 rounded">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <button class='h6 btn btn-link text-left p-0' onclick='selectIndicator(${indicator.IndicatorID})'>${indicator.IndicatorName}</button>
-                        </div>
-                        <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
-                    </div>
+                <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
+                    <button class='h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left' onclick='selectIndicator(${indicator.IndicatorID})'>${indicator.IndicatorName}</button>
+                    <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                 </div>
             `;
         }).join('');
