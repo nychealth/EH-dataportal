@@ -429,6 +429,11 @@ $color-data-explorer: #0A408A;
     left: 2rem;
     z-index: 2;
     width: calc(100% - 4rem);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  #v-pills-tabContent {
+    border: 1px solid rgba(0, 0, 0, 0.12);
   }
 
   .de-legend {
@@ -439,6 +444,7 @@ $color-data-explorer: #0A408A;
     font-size: 14px;
     background-color: #DCF4E7 !important;
     width: calc(100% - 4rem);
+     border: 1px solid rgba(0, 0, 0, 0.12);
   }
 
   .de-main-details .main-heading {
@@ -503,6 +509,10 @@ $color-data-explorer: #0A408A;
       max-width: 100%;
     }
 
+    .tab-pane > .bg-white.d-none.d-md-block.bl50 {
+      margin-left: -33px !important;
+    }
+    
     .close-tab-pane {
       position: absolute;
     }
