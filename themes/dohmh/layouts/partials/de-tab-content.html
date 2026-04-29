@@ -88,8 +88,8 @@
             -->
             <p class="fs-sm">Hover over a neighborhood on the map or bar chart to see it highlighted on the other view.</p>
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()">Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline" href="#">Download data</a>
+                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
         </div>
@@ -104,52 +104,52 @@
         </div>
         <div class="pt-md-0">
 
-            <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end">
-                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle" data-toggle="collapse" data-target="#tableFilterPanel" aria-expanded="false" aria-controls="tableFilterPanel">
+            <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
+                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle">
                     <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
                     Table filters
                     <span id="tableFilterSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
                 </button>
             </div>
 
-            <div id="tableFilterPanel" class="collapse px-2 pb-2">
-                <div class="border rounded bg-white p-2">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <p class="fs-xs mb-0 text-muted">Table filters follow the map until you customize them.</p>
-                        <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="tableFilterSyncButton">Sync to map</button>
-                    </div>
 
+            <div id="summary-table" style="width:100%;">
+                DE table goes here
+            </div>
+
+            <div id="table-unreliability" class="popup-note p-2 mt-2">
+                Unreliability flag
+            </div>
+
+            <div id="tableFilterPanel" class="px-2 pb-2">
+                <div class="bg-white">
                     <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0">
+                        <div class="col-md-6 mb-2 mb-md-0" >
                             <div>
                                 <p class="fs-xs mb-1">Time periods</p>
-                                <div id="tableTimeCheckboxes" class="border de-table-optionbox"></div>
+                                <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div>
                                 <p class="fs-xs mb-1">Geographies</p>
-                                <div id="tableGeoCheckboxes" class="border de-table-optionbox"></div>
+                                <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
                             </div>
+                        </div>
+
+                        <div class="col-12">
+                        <p class="fs-xs mt-1 text-muted">Table filters follow the map until you customize them. <a href="#" id="tableFilterSyncButton">Sync to map</a></p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="summary-table" style="width:100%;">
-                DE table goes here
-            </div>
-
-            <div id="table-unreliability" class="p-2 mt-2">
-                Unreliability flag
             </div>
 
             <!--
             <img src={{ relURL "images/de-table.png" }} alt="">
             -->
 
-            <div id="tableCopy" class="p-2 mt-2">
+            <div id="tableCopy" class="p-2 mt-2 sr-only">
             <p>
                 This <strong>table view</strong> shows all data for this indicator, including different geographies, time periods, and measures.
             </p>
@@ -157,8 +157,8 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()">Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline" href="#">Download data</a>
+                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
          
             </div>
         </div>
@@ -221,7 +221,7 @@
 
             <div id="trend" class="w-100" style="min-height: 400px"></div>
 
-            <div id="trend-unreliability" class="pt-2 hide my-1 fs-xs">
+            <div id="trend-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
 
@@ -234,8 +234,8 @@
             <p class="fs-sm">When there are small areas (like neighborhoods) or small counts (of uncommon outcomes), data can be unstable: small changes in counts can lead to large changes in rates. Because of this, we aggregate trend data up to the Borough level.</p>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()">Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline" href="#">Download data</a>
+                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
         </div>
@@ -299,7 +299,7 @@
                 </div>
             </div>
 
-            <div id="links-unreliability" class="pt-2 hide my-1 fs-xs">
+            <div id="links-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
 
@@ -316,8 +316,8 @@
             -->
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()">Save Chart</a>
-                <a class="btn-sm btn-light-green-bg-outline" href="#">Download data</a>
+                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
         </div>
