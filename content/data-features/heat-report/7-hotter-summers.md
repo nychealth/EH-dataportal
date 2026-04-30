@@ -9,4 +9,4 @@ The five average temperature range categories (of 0-3 days average of daily maxi
 
 - The measurable and significant rise in hot summer days highlights the urgency for the city to achieve universal access to at-home cooling, combined with equitable access to affordable energy for low-income households to ensure safe indoor thermal environments for the even hotter summers anticipated in the coming decades.
 
-- Occupational heat safety standards are also needed to ensure safe working conditions for workers.
+- Occupational heat safety standards are also needed to ensure safe working conditions.
