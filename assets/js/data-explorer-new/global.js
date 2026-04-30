@@ -285,6 +285,7 @@ const GEO_FILE_BY_TYPE = {
     NYCKIDS2021: 'NYCKids_2021.topo.json',
     NYCKIDS2023: 'NYCKids_2023.topo.json',
     Borough: 'borough.topo.json',
+    Citywide: 'citywide.topo.json',
     RMZ: 'RMZ.topo.json'
 };
 
