@@ -32,7 +32,7 @@ related:
 
 This tool shows the leading causes of emergency department visits (ED visits), hospitalizations, and deaths in New York City with a special focus on injuries by age group.
 
-Showing injuries by severity–(ED visits, hospitalizations, or deaths)–demonstrates patterns of harm.
+Showing injuries by severity–(ED visits, hospitalizations, or deaths)–demonstrates patterns of harm. While many injuries can cause deaths, some, such as those caused by firearms, are more deadly.  Unintentional falls, on the other hand, are the leading cause of non-fatal injury ED visits and hospitalizations.
 
 By looking at injuries by age group, we can see the different impacts of injury across the lifespan. For example, falls injuries rank highly among older adults, while suffocation injuries rank highly among infants.
 Injury prevention efforts focused on top causes for people by ages will be most effective.
