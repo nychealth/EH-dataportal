@@ -274,9 +274,9 @@ const renderTitleDescription = (title, desc) => {
 // Maps known source names to their URLs for inline hyperlinking
 
 const sourcesLinkMap = {
-    'New York City Community Health Survey (CHS)': 'https://placeholder-chs',
+    'New York City Community Health Survey (CHS)': 'https://www.nyc.gov/site/doh/data/data-sets/community-health-survey-public-use-data.page',
     'Metropolitan Transportation Authority':        'https://www.mta.info/developers',
-    'New York City Housing and Vacancy Survey (NYCHVS)': 'https://placeholder-nychvs',
+    'New York City Housing and Vacancy Survey (NYCHVS)': 'https://www.nyc.gov/site/hpd/about/research.page',
     'American Community Survey':                    'https://www.census.gov/programs-surveys/acs/data.html'
 };
 
