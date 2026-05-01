@@ -141,7 +141,7 @@ const url = new URL(window.location);
 let hashchange = new Event('hashchange');
 
 // ----------------------------------------------------------------------- //
-// geo ranks
+// geo helpers
 // ----------------------------------------------------------------------- //
 
 // define georank function at top scope, so we can use it later
@@ -201,6 +201,18 @@ const geoTypes = [
     "NYHarbor",
     "RMZ"
 ]
+
+// shared-geo helpers for links/disparities
+
+const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filter(g => !/Citywide|Borough/.test(g));
+
+const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
+
+    const primaryMeasureGeos = getLinksMeasureGeos(primaryMeasure);
+    const secondaryMeasureGeos = getLinksMeasureGeos(secondaryMeasure);
+
+    return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
+}
 
 // ----------------------------------------------------------------------- //
 // pretty generic geotypes
