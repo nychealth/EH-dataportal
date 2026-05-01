@@ -123,7 +123,7 @@ const formatMapValue = (value, digits) => {
     // Builds shared popup markup for both choropleth polygons and bubble markers.
 const createMapPopupContent = (properties, metadata, options = {}) => {
     const requireGeoRank = options.requireGeoRank ?? true;
-    const valueDigits = options.valueDigits ?? 2;
+    const valueDigits = options.valueDigits ?? 1;
 
     if (requireGeoRank && !properties.GeoRank) {
         return;
@@ -302,7 +302,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
     const map = resetMapForRender();
     const { minValue, maxValue } = getMapStats(data);
 
-    setMapLegendValues(minValue, maxValue, 2);
+    setMapLegendValues(minValue, maxValue, 1);
 
     const colorScale = createColorScale(minValue, maxValue);
 
@@ -335,14 +335,14 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 
     const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
         requireGeoRank: true,
-        valueDigits: 2
+        valueDigits: 1
     });
 
     const {
         updateHoverUI,
         clearHoverUI,
         calculatePercent
-    } = createHoverUIHelpers(metadata, minValue, maxValue, 2);
+    } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
         .then(response => response.json())
