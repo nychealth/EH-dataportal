@@ -426,6 +426,10 @@ const renderMeasures = async () => {
 
     // ===== populate per-tab measure arrays ================================================== //
 
+    const disparitiesSecondaryMeasure = indicators
+        .flatMap(indicator => indicator.Measures)
+        .find(measure => measure.MeasureID === 221);
+
     // Sort each measure into the tabs where its metadata says data exists.
     indicatorMeasures.forEach(measure => {
 
@@ -435,7 +439,8 @@ const renderMeasures = async () => {
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0]?.MeasureID;
         // Disparities == 1 in metadata signals this measure supports the disparities chart
-        const disparities = measure.VisOptions[0].Links[0].Disparities == 1;
+        const disparities = measure.VisOptions[0].Links[0].Disparities == 1
+            && getSharedLinksGeos(measure, disparitiesSecondaryMeasure).length > 0;
 
         // Each tab only gets measures that actually have data for that view.
         if (map)         mapMeasures.push(measure);

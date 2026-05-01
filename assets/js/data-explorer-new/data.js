@@ -718,13 +718,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // console.log("primaryMeasureMetadata [createJoinedLinksData]", primaryMeasureMetadata);
 
-    // get available geos for primary measure (excluding citywide and boro)
-
-    const primaryMeasureGeos = primaryMeasureMetadata[0]?.AvailableGeoTypes
-        .filter(g => !/Citywide|Borough/.test(g))
-
-    // console.log("primaryMeasureGeos [createJoinedLinksData]", primaryMeasureGeos);
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // secondary measure metadata
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -759,18 +752,19 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // ==== geography ==== //
 
-    // get avilable geos for secondary measure (excluding citywide and boro)
-
-    const secondaryMeasureGeos = secondaryMeasureMetadata[0]?.AvailableGeoTypes
-        .filter(g => !/Citywide|Borough/.test(g))
-
-    // console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
-
     // ---- get primary x secondary intersection ---- //
 
-    const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
+    const sharedGeos = getSharedLinksGeos(primaryMeasureMetadata[0], secondaryMeasureMetadata[0]);
 
     // console.log("sharedGeos [createJoinedLinksData]", sharedGeos);
+
+    if (!sharedGeos.length) {
+        return {
+            "data": [],
+            "primaryMeasureMetadata": primaryMeasureMetadata,
+            "secondaryMeasureMetadata": secondaryMeasureMetadata
+        };
+    }
 
 
     // ==== times ==== //
@@ -793,6 +787,14 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .filter(d => sharedGeos.includes(d.GeoType))
 
     // console.log("filteredPrimaryMeasureData [createJoinedLinksData]", filteredPrimaryMeasureData);
+
+    if (!filteredPrimaryMeasureData.length) {
+        return {
+            "data": [],
+            "primaryMeasureMetadata": primaryMeasureMetadata,
+            "secondaryMeasureMetadata": secondaryMeasureMetadata
+        };
+    }
 
 
     // get most recent time period for primary measure
@@ -865,6 +867,10 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             const filteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureData.objects();
 
             // console.log("filteredSecondaryMeasureTimesDataObjects", filteredSecondaryMeasureTimesDataObjects);
+
+            if (!filteredSecondaryMeasureTimesDataObjects.length) {
+                return [];
+            }
             
 
             // ==== get closest data ==== //
@@ -876,7 +882,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
 
-            });
+            }, filteredSecondaryMeasureTimesDataObjects[0]);
 
             // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
 
