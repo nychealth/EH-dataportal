@@ -1285,6 +1285,10 @@ const renderMeasures = async () => {
 
     let header = "";
 
+    const disparitiesSecondaryMeasure = indicators
+        .flatMap(indicator => indicator.Measures)
+        .find(measure => measure.MeasureID === 221);
+
     indicatorMeasures.map((measure, index) => {
 
         // console.log("index", index);
@@ -1297,6 +1301,7 @@ const renderMeasures = async () => {
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1
+            && getSharedLinksGeos(measure, disparitiesSecondaryMeasure).length > 0
         const type        = measure.MeasurementType;
         const measureId   = measure.MeasureID;
 
