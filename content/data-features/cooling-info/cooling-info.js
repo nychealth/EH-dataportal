@@ -1,3 +1,5 @@
+console.log("cooling-info JS");
+
 // set up variables for questions
 
 var sensitiveGroup  = "No"
