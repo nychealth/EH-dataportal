@@ -22,19 +22,19 @@
 
           <div class="row my-2">
             <div class="col-3 px-1">
-              <img src="{{ relURL "data-features/cooling-info/img/AC.svg" }}" />
+              <img src={{ urls.JoinPath ( .Page.RelPermalink )  "img/AC.svg" }} />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ relURL "data-features/cooling-info/img/Neighbors.svg" }}" />
+              <img src={{ urls.JoinPath ( .Page.RelPermalink )  "img/Neighbors.svg" }} />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ relURL "data-features/cooling-info/img/ACperson.svg" }}" />
+              <img src={{ urls.JoinPath ( .Page.RelPermalink )  "img/ACperson.svg" }} />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ relURL "data-features/cooling-info/img/Piggy_bank.svg" }}" />
+              <img src={{ urls.JoinPath ( .Page.RelPermalink )  "img/Piggy_bank.svg" }} />
             </div>
           </div>
 
@@ -269,8 +269,7 @@
 <!-- #primary-content -->
 
 <!-- add JS -->
-<script type="text/javascript" src="{{ .Params.config }}"></script>
-
-<script type="text/javascript" src="{{ .Params.customJS }}"></script>
+<script type="text/javascript" src="{{ urls.JoinPath ( .Page.RelPermalink ) .Params.config }}"></script>
+<script type="text/javascript" src="{{ urls.JoinPath ( .Page.RelPermalink ) .Params.customJS }}"></script>
 
 {{- end -}}
