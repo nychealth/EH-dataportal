@@ -83,28 +83,28 @@
     
     // Buttons for sites
     const site_names = [
-        "Mott Haven",
-        "Cross Bronx Expwy",
+        "Deegan",
+        "Cross Bronx",
         "BQE",
         "Van Wyck",
-        "Staten Island",
+        "SI Expwy",
         "FDR",
-        "Hamilton Bridge",
+        "Trans-Manhattan",
     ];
     
     // Site-specific text content
     const siteText = {
-        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
-        "Cross Bronx Expwy": "<h3 class='h5'>The air quality in Cross Bronx Expwy...</h3><p style='display:inline;''>ENTER CBE TEXT</p>",
+        "Deegan": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
+        "Cross Bronx": "<h3 class='h5'>The air quality in Cross Bronx...</h3><p style='display:inline;''>ENTER CROSS BRONX TEXT</p>",
         "BQE": "<h3 class='h5'>The air quality in BQE...</h3><p style='display:inline;'>ENTER BQE TEXT.</p>",
         "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>ENTER VAN Wyck text.</p>",
-        "Staten Island": "<h3 class='h5'>The air quality in Staten Island...</h3><p style='display:inline;'>ENTER STATEN ISLAND TEXT</p>",
+        "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER SI EXPWY TEXT</p>",
         "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
-        "Hamilton Bridge": "<h3 class='h5'>The air quality near the Hamilton Bridge...</h3><p style='display:inline;'>ENTER HAM BRIDGE TEXT</p>"
+        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER TRANS-MANHATTAN TEXT</p>"
     };
     
     // Default selection
-    let currentSite = "Mott Haven";
+    let currentSite = "Deegan";
     
     // Base spec
     const baseSpec = {
@@ -128,7 +128,7 @@
             },
         },
         data: {
-            url: "https://gist.githubusercontent.com/etorem/8b94d2aaea09ff76b8eeaca81f94207b/raw/8d962630ccec8561a448951e92df1f943406232d/EJ_pollutants_7_O3.csv",
+            url: "https://gist.githubusercontent.com/etorem/544ed3c7d5432d0bc735841dca017264/raw/22a8d9258e0840f8899eb0af42620117fe5adba0/EJ_pollutants_8_sitenames.csv",
         },
         resolve: { scale: { y: "independent" } },
         transform: [
