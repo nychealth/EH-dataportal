@@ -25,8 +25,53 @@
         img.PM-monitor { 
             filter: hue-rotate(90deg);
         }
-        img.BC-monitor { 
-            filter: hue-rotate(180deg);
+ 
+        /* Legend Styles */
+        .legend {
+            background: white;
+            opacity: 0.9;
+            padding: 11px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            font-size: 13px;
+            line-height: 1.6;
+            min-width: 200px;
+        }
+        
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 15px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 6px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .legend-color.traffic {
+            background-color: #ac22ae;
+        }
+        
+        .legend-color.integrated-monitor {
+            background-color: #007153;
+        }
+        
+        .legend-color.pm-monitor {
+            background-color: #ae3400;
         }
         
     </style>
@@ -52,14 +97,39 @@
             {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}
         ).addTo(map);
         
+        // Create Legend Control
+        var legend = L.control({position: 'topright'});
+        
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = `
+                <div class="legend-item">
+                    <div class="legend-color traffic"></div>
+                    <span>Traffic Counter</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color integrated-monitor"></div>
+                    <span>Integrated Monitor</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color pm-monitor"></div>
+                    <span>PM2.5 Real Time Monitor</span>
+                </div>
+            `;
+            return div;
+        };
+        
+        legend.addTo(map);
+        
+        
         // Site coordinates for zoom functionality
         const siteCoordinates = {
             "Mott Haven": { lat: 40.80911, lng: -73.928824, zoom: 16 },
             "Cross Bronx Expwy": { lat: 40.844967, lng: -73.906263, zoom: 16 },
             "BQE": { lat: 40.705511, lng: -73.958846, zoom: 16 },
             "Van Wyck": { lat: 40.690155, lng: -73.80908, zoom: 16 },
-            "Staten Island": { lat: 40.609209, lng: -74.151182, zoom: 18 },
-            "FDR": { lat: 40.722282, lng: -73.974417, zoom: 16 },
+            "Staten Island": { lat: 40.609209, lng: -74.151182, zoom: 12 },
+            "FDR": { lat: 40.722282, lng: -73.974417, zoom: 14 },
             "Hamilton Bridge": { lat: 40.847353, lng: -73.934027, zoom: 16 },
         };
         
