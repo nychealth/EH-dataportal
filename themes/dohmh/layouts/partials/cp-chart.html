@@ -83,28 +83,28 @@
     
     // Buttons for sites
     const site_names = [
-        "Mott Haven",
-        "Cross Bronx Expwy",
+        "Deegan",
+        "Cross Bronx",
         "BQE",
         "Van Wyck",
-        "Staten Island",
+        "SI Expwy",
         "FDR",
-        "Hamilton Bridge",
+        "Trans-Manhattan",
     ];
     
     // Site-specific text content
     const siteText = {
-        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
-        "Cross Bronx Expwy": "<h3 class='h5'>The air quality in Cross Bronx Expwy...</h3><p style='display:inline;''>ENTER CBE TEXT</p>",
+        "Deegan": "<h3 class='h5'>The air quality in Deegan...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
+        "Cross Bronx": "<h3 class='h5'>The air quality in Cross Bronx...</h3><p style='display:inline;''>ENTER CBE TEXT</p>",
         "BQE": "<h3 class='h5'>The air quality in BQE...</h3><p style='display:inline;'>ENTER BQE TEXT.</p>",
         "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>ENTER VAN Wyck text.</p>",
-        "Staten Island": "<h3 class='h5'>The air quality in Staten Island...</h3><p style='display:inline;'>ENTER STATEN ISLAND TEXT</p>",
+        "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER STATEN ISLAND TEXT</p>",
         "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
-        "Hamilton Bridge": "<h3 class='h5'>The air quality near the Hamilton Bridge...</h3><p style='display:inline;'>ENTER HAM BRIDGE TEXT</p>"
+        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER HAM BRIDGE TEXT</p>"
     };
     
     // Default selection
-    let currentSite = "Mott Haven";
+    let currentSite = "Deegan";
     
     // Base spec
     const baseSpec = {
@@ -132,7 +132,7 @@
         },
         resolve: { scale: { y: "independent" } },
         transform: [
-        { filter: "datum.Site === 'Mott Haven'" },
+        { filter: "datum.Site === 'Deegan'" },
         {
             calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
             as: "ParameterWithUnit",
