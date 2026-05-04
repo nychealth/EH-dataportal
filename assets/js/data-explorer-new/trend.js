@@ -365,12 +365,12 @@ const renderTrendChart = (
             "subtitlePadding": 5,
             "fontWeight": "normal",
             "anchor": "start",
-            "fontSize": 18,
+            "fontSize": 14,
             "font": "sans-serif",
             "baseline": "top",
             "subtitle": plotSubtitle,
             "dy": -5,
-            "subtitleFontSize": 13
+            "subtitleFontSize": 12
         },
         "transform": [
             {

@@ -460,7 +460,7 @@ const renderBar = (
             "font": "sans-serif",
             "baseline": "top",
             "subtitle": metadata[0].MeasureName,
-            "subtitleFontSize": 10
+            "subtitleFontSize": 12
         },
         "data": {
             "values": barData,

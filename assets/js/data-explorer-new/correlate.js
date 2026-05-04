@@ -208,13 +208,13 @@ const renderCorrelate = (
             "text": [`${yIndicatorName}`],
             "align": "left",
             "anchor": "start",
-            "fontSize": 18,
+            "fontSize": 14,
             "fontWeight": "normal",
             "font": "sans-serif",
             "baseline": "top",
             "dy": -10,
             "subtitle": yAxisLabel,
-            "subtitleFontSize": 13,
+            "subtitleFontSize": 12,
             "limit": 1000
         },
         "width": "container",
@@ -222,8 +222,8 @@ const renderCorrelate = (
         "config": {
             "background": "#FFFFFF",
             "axisX": {
-                "labelFontSize": 11,
-                "titleFontSize": 15,
+                "labelFontSize": 12,
+                "titleFontSize": 14,
                 "titleFont": "sans-serif",
                 "titlePadding": 10,
                 "titleFontWeight": "normal"

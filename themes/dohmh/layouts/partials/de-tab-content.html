@@ -172,7 +172,7 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div id="trendControls" class="py-2 d-flex justify-content-end">
+            <div id="trendControls" class="py-2 d-flex justify-content-end sr-only">
                 <button class="badge badge-pill badge-light border-0" type="button" id="trendControlsToggle" data-toggle="collapse" data-target="#trendControlsPanel" aria-expanded="false" aria-controls="trendControlsPanel">
                     <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
                     Trend options
@@ -180,7 +180,7 @@
                 </button>
             </div>
 
-            <div id="trendControlsPanel" class="collapse pb-2">
+            <div id="trendControlsPanel" class="collapse pb-2 sr-only">
                 <div class="border rounded bg-white p-2">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <p class="fs-xs mb-0 trend-control-help">Trend selections follow the map measure until you customize them.</p>
@@ -219,11 +219,18 @@
                 </div>
             </div>
 
+            <!-- BUILD OUT PILLS HERE -->
+            <div class="my-1">
+                <p class="fs-sm text-right">Show by: <span class="badge badge-pill badge-primary">Geography</span> <span id="ddcHolder">HOLDER</span></P>
+            </div>
+
             <div id="trend" class="w-100" style="min-height: 400px"></div>
 
             <div id="trend-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
+
+
 
             <!--
             <div class="card-body bg-white">

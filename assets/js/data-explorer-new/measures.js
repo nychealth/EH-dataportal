@@ -758,6 +758,10 @@ const renderMeasures = async () => {
 
                 dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${title}</strong></span>`);
 
+                // BUILD OUT PILLS HERE
+                document.getElementById('ddcHolder').innerHTML = ''
+                document.getElementById('ddcHolder').innerHTML += `<span class="badge badge-pill badge-light">${title}</span>`
+
                 // Group related comparisons under one legend title for shorter menus.
                 const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
 
