@@ -62,6 +62,9 @@ const ensureIndicatorsLoaded = async (topic) => {
 const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     console.log("* getIndicatorsForTopic");
+    console.log("Title:", title);
+
+    document.getElementById('printTopic').textContent = title.toLowerCase();
 
     const indicators = JSON.parse(indicatorsJSON);
 
