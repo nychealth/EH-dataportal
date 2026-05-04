@@ -139,7 +139,7 @@
                         </div>
 
                         <div class="col-12">
-                        <p class="fs-xs mt-1 text-muted">Table filters follow the map until you customize them. <a href="#" id="tableFilterSyncButton">Sync to map</a></p>
+                        <p class="fs-xs mt-1 text-muted">Table filters follow the map until you customize them. <a href="#" id="tableFilterSyncButton">Sync to map</a>.</p>
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div id="correlateControls" class="py-2 d-flex justify-content-end">
+            <div id="correlateControls" class="py-2 d-flex justify-content-end sr-only">
                 <button class="badge badge-pill badge-light border-0" type="button" id="correlateControlsToggle" data-toggle="collapse" data-target="#correlateControlsPanel" aria-expanded="false" aria-controls="correlateControlsPanel">
                     <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
                     Correlate options
@@ -264,7 +264,7 @@
                 </button>
             </div>
 
-            <div id="correlateControlsPanel" class="collapse pb-2">
+            <div id="correlateControlsPanel" class="collapse pb-2 sr-only">
                 <div class="border rounded bg-white p-2">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <p class="fs-xs mb-0 links-control-help">Correlate and disparities selections follow the map measure until you customize them.</p>
@@ -298,7 +298,10 @@
                 </div>
             </div>
 
-            <p id="viewDescription" class="fs-sm pt-2 mb-2">Hover on points for more information.</p>
+            <!-- BUILD OUT PILLS HERE -->
+            <div class="my-1">
+                <p class="fs-sm text-right"><span class="badge badge-pill badge-primary"><i class="fas fa-chevron-circle-down mr-1" aria-hidden="true"></i>Show with</span> <span class="badge badge-pill badge-light">Disparities</span></P>
+            </div>
 
             <div id="correlateHolder" class="w-100">
                 <div id="links" style="width:100%; height: 450px">
