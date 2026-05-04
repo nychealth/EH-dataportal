@@ -83,28 +83,28 @@
     
     // Buttons for sites
     const site_names = [
-        "Deegan",
-        "Cross Bronx",
+        "Mott Haven",
+        "Cross Bronx Expwy",
         "BQE",
         "Van Wyck",
-        "SI Expwy",
+        "Staten Island",
         "FDR",
-        "Trans-Manhattan",
+        "Hamilton Bridge",
     ];
     
     // Site-specific text content
     const siteText = {
-        "Deegan": "<h3 class='h5'>The air quality in Deegan...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
-        "Cross Bronx": "<h3 class='h5'>The air quality in Cross Bronx...</h3><p style='display:inline;''>ENTER CBE TEXT</p>",
+        "Mott Haven": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
+        "Cross Bronx Expwy": "<h3 class='h5'>The air quality in Cross Bronx Expwy...</h3><p style='display:inline;''>ENTER CBE TEXT</p>",
         "BQE": "<h3 class='h5'>The air quality in BQE...</h3><p style='display:inline;'>ENTER BQE TEXT.</p>",
         "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>ENTER VAN Wyck text.</p>",
-        "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER STATEN ISLAND TEXT</p>",
+        "Staten Island": "<h3 class='h5'>The air quality in Staten Island...</h3><p style='display:inline;'>ENTER STATEN ISLAND TEXT</p>",
         "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
-        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER HAM BRIDGE TEXT</p>"
+        "Hamilton Bridge": "<h3 class='h5'>The air quality near the Hamilton Bridge...</h3><p style='display:inline;'>ENTER HAM BRIDGE TEXT</p>"
     };
     
     // Default selection
-    let currentSite = "Deegan";
+    let currentSite = "Mott Haven";
     
     // Base spec
     const baseSpec = {
@@ -128,11 +128,11 @@
             },
         },
         data: {
-            url: "https://gist.githubusercontent.com/etorem/76d41156e74b8b94dc1caa5646c58bf8/raw/bf90b33baa021c822ac59c47a0b9f5f5130491c3/EJ_pollutants_7_O3.csv",
+            url: "https://gist.githubusercontent.com/etorem/8b94d2aaea09ff76b8eeaca81f94207b/raw/8d962630ccec8561a448951e92df1f943406232d/EJ_pollutants_7_O3.csv",
         },
         resolve: { scale: { y: "independent" } },
         transform: [
-        { filter: "datum.Site === 'Deegan'" },
+        { filter: "datum.Site === 'Mott Haven'" },
         {
             calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
             as: "ParameterWithUnit",
