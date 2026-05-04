@@ -138,8 +138,12 @@
             as: "ParameterWithUnit",
         },
         {
-            calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Average + ' ' + datum.Unit + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Average + ' ' + datum.Unit",
+            calculate: "datum.Average + ' ' + datum.Unit",
             as: "ValueWithUnit",
+        },
+        {
+            calculate: "datum.LC + ', ' + datum.UC",
+            as: "ciRange",
         },
         {
             calculate:
@@ -188,6 +192,11 @@
                     { field: "Parameter", title: "Pollutant", type: "nominal" },
                     { field: "TimeLabel", title: "Period", type: "nominal" },
                     { field: "ValueWithUnit", title: "Average", type: "nominal" },
+                    {
+                        field: "ciRange",
+                        title: "Confidence interval",
+                        type: "nominal",
+                    },
                     ],
                 },
             },
