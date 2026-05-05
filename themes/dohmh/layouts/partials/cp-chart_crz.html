@@ -63,11 +63,15 @@
         },
       },
       data: {
-        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/204ca4a6ac8808024ed84631157edc25/raw/208a7ee5ccf336e311cfc53a4a342d05ebb56ea8/within_CRZ.csv",
+        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/204ca4a6ac8808024ed84631157edc25/raw/df0ab6461db886410417935470fb4f20a46479b5/within_CRZ.csv",
       },
       resolve: { scale: { y: "independent" } },
       transform: [
         { filter: "datum.Site === 'CRZ'" },
+        {
+          calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+          as: "ParameterWithUnit",
+        },
         {
           calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? format(datum.Average, '.2f') + ' ' + datum.Unit + ' (' + format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f') + ')' : format(datum.Average, '.2f') + ' ' + datum.Unit",
           as: "ValueWithUnit",
@@ -78,7 +82,7 @@
           as: "TimeLabel",
         },
       ],
-      facet: { field: "Parameter", title: null },
+      facet: { field: "ParameterWithUnit", title: null },
       spec: {
         width: 150,
         height: 250,
