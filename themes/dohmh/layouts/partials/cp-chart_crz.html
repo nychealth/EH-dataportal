@@ -68,8 +68,10 @@
       resolve: { scale: { y: "independent" } },
       transform: [
         { filter: "datum.Site === 'CRZ'" },
-        { calculate: "format(datum.Average, '.2f')", as: "ValueWithUnit" },
-        { calculate: "format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f')", as: "ciRange" },
+        {
+          calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? format(datum.Average, '.2f') + ' ' + datum.Unit + ' (' + format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f') + ')' : format(datum.Average, '.2f') + ' ' + datum.Unit",
+          as: "ValueWithUnit",
+        },
         {
           calculate:
             "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
@@ -117,11 +119,6 @@
                 { field: "Parameter", type: "nominal", title: "Pollutant" },
                 { field: "TimeLabel", type: "nominal", title: "Period" },
                 { field: "ValueWithUnit", type: "nominal", title: "Average" },
-                {
-                  field: "ciRange",
-                  type: "nominal",
-                  title: "Confidence interval",
-                },
               ],
             },
           },
