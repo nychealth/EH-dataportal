@@ -134,11 +134,15 @@
         transform: [
         { filter: "datum.Site === 'Mott Haven'" },
         {
-            calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+          calculate: "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
+          as: "UnitFmt",
+        },
+        {
+            calculate: "datum.Parameter + ' (' + datum.UnitFmt + ')'",
             as: "ParameterWithUnit",
         },
         {
-            calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Average + ' ' + datum.Unit + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Average + ' ' + datum.Unit",
+            calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Average + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Average + ' ' + datum.UnitFmt",
             as: "ValueWithUnit",
         },
         {

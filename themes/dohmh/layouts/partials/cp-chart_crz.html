@@ -63,17 +63,21 @@
         },
       },
       data: {
-        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/204ca4a6ac8808024ed84631157edc25/raw/df0ab6461db886410417935470fb4f20a46479b5/within_CRZ.csv",
+        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/204ca4a6ac8808024ed84631157edc25/raw/5fdc0f7128a0780ae0211dd759058a13917c2e00/within_CRZ.csv",
       },
       resolve: { scale: { y: "independent" } },
       transform: [
         { filter: "datum.Site === 'CRZ'" },
         {
-          calculate: "datum.Parameter + ' (' + datum.Unit + ')'",
+          calculate: "replace(datum.Unit, '3', '³')",
+          as: "UnitFmt",
+        },
+        {
+          calculate: "datum.Parameter + ' (' + datum.UnitFmt + ')'",
           as: "ParameterWithUnit",
         },
         {
-          calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? format(datum.Average, '.2f') + ' ' + datum.Unit + ' (' + format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f') + ')' : format(datum.Average, '.2f') + ' ' + datum.Unit",
+          calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? format(datum.Average, '.2f') + ' ' + datum.UnitFmt + ' (' + format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f') + ')' : format(datum.Average, '.2f') + ' ' + datum.UnitFmt",
           as: "ValueWithUnit",
         },
         {
