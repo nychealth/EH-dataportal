@@ -1,16 +1,5 @@
 <div class="row justify-content-center">
- <div class="col-2">
-    <div class="sticky-top" style="top: 42px;">
-      <div
-        id="cpSiteButtons2"
-        class="btn-group-vertical w-100"
-        style="gap: 6px;"
-        role="group"
-        aria-label="Choose site"
-      ></div>
-    </div>
-  </div>
-  <div class="col-10">
+  <div class="col-12">
     <div id="cpVis2" style="width: 100%;"></div>
     <h3 class="h4 cp-sticky-header cp-sticky-only">Air pollution inside of the CRZ</h3>
     <div class="row py-2 border-top">
@@ -50,20 +39,6 @@
 
   <script>
     const CP_CONTAINER2_ID = "cpVis2";
-
-    // Buttons for sites
-    const SITES2 = [
-      "CRZ",
-      "Bway/35",
-      "Canal Street",
-      "Williamsburg Bridge",
-      "Queensborough Bridge",
-      "MidtownDOT",
-      "FDR",
-    ];
-
-    // Default selection
-    let currentSite_1 = "CRZ";
 
     // Base spec
     const baseSpec_1 = {
@@ -154,25 +129,14 @@
       columns: 5,
     };
 
-    function specForSite1(site) {
-      // structuredClone first; fallback to JSON clone
-      const spec1 =
-        typeof structuredClone === "function"
-          ? structuredClone(baseSpec_1)
-          : JSON.parse(JSON.stringify(baseSpec_1));
-
-      spec1.transform[0].filter = `datum.Site === '${site}'`;
-      return spec1;
-    }
-
-    async function draw_crz(site) {
+    async function draw_crz() {
       const el = document.getElementById(CP_CONTAINER2_ID);
       if (!el) return;
 
       el.innerHTML = ""; // clear previous render
 
       try {
-        await vegaEmbed(el, specForSite1(site), {
+        await vegaEmbed(el, baseSpec_1, {
           actions: false,
           renderer: "canvas",
         });
@@ -183,35 +147,6 @@
       }
     }
 
-    function renderButtons_crz() {
-      const btnWrap1 = document.getElementById("cpSiteButtons2");
-      if (!btnWrap1) return;
-
-      btnWrap1.innerHTML = "";
-
-      SITES2.forEach((site) => {
-        const btn1 = document.createElement("button");
-        btn1.type = "button";
-        btn1.className = "btn btn-sm btn-outline-dark";
-        btn1.textContent = site;
-
-        if (site === currentSite_1) btn1.classList.add("active");
-
-        btn1.addEventListener("click", async () => {
-          currentSite_1 = site;
-          // toggle active state
-          [...btnWrap1.querySelectorAll("button")].forEach((b) =>
-            b.classList.remove("active")
-          );
-          btn1.classList.add("active");
-
-          await draw_crz(site);
-        });
-
-        btnWrap1.appendChild(btn1);
-      });
-    }
-
     document.addEventListener("DOMContentLoaded", async () => {
       if (typeof vegaEmbed !== "function") {
         console.error(
@@ -220,8 +155,7 @@
         return;
       }
 
-      renderButtons_crz();
-      await draw_crz(currentSite_1);
+      await draw_crz();
     });
 
   </script>
