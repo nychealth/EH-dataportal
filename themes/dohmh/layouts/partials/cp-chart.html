@@ -35,8 +35,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 my-1">
-                                <div style="min-height:301px" id="datawrapper-vis-0jrLJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/0jrLJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-0jrLJ"></script><noscript><img src="https://datawrapper.dwcdn.net/0jrLJ/full.png" alt="Line chart" /></noscript></div>
+                            <div class="col-12 my-1" id="datawrapper-line-chart-container">
+                                <div style="min-height:301px" id="datawrapper-vis-Deegan" class="datawrapper-site-chart" data-site="Deegan"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-Cross Bronx" class="datawrapper-site-chart" data-site="Cross Bronx"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-BQE" class="datawrapper-site-chart" data-site="BQE"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-Van Wyck" class="datawrapper-site-chart" data-site="Van Wyck"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-SI Expwy" class="datawrapper-site-chart" data-site="SI Expwy"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-FDR" class="datawrapper-site-chart" data-site="FDR"></div>
+                                <div style="min-height:301px; display:none;" id="datawrapper-vis-Trans-Manhattan" class="datawrapper-site-chart" data-site="Trans-Manhattan"></div>
                             </div>
                         </div>
                     </div>
@@ -101,6 +107,17 @@
         "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER SI EXPWY TEXT</p>",
         "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
         "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER TRANS-MANHATTAN TEXT</p>"
+    };
+    
+    // Datawrapper embed IDs for each site
+    const datawrapperIds = {
+        "Deegan": "0jrLJ",
+        "Cross Bronx": "FLrt2",
+        "BQE": "JICED",
+        "Van Wyck": "l9HaM",
+        "SI Expwy": "IvyTs",
+        "FDR": "IzOmg",
+        "Trans-Manhattan": "WEHcl"
     };
     
     // Default selection
@@ -210,6 +227,47 @@
         return spec;
     }
     
+    function updateDatawrapperChart(site) {
+        // Hide all datawrapper site charts and clear their content
+        const allCharts = document.querySelectorAll(".datawrapper-site-chart");
+        allCharts.forEach(chart => {
+            chart.style.display = "none";
+            chart.innerHTML = ""; // Clear content to prevent multiple embeds
+        });
+        
+        // Show the selected site chart
+        const siteChartId = `datawrapper-vis-${site}`;
+        const selectedChart = document.getElementById(siteChartId);
+        if (selectedChart) {
+            selectedChart.style.display = "block";
+            
+            // Re-add the datawrapper embed script for the visible chart
+            const embedId = datawrapperIds[site];
+            if (embedId) {
+                // Clear the container first
+                selectedChart.innerHTML = "";
+                
+                // Create script element dynamically
+                const script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = `https://datawrapper.dwcdn.net/${embedId}/embed.js`;
+                script.charset = "utf-8";
+                script.setAttribute("data-target", `#${siteChartId}`);
+                script.async = true;
+                
+                // Append script to trigger loading and rendering
+                selectedChart.appendChild(script);
+                
+                // Give datawrapper time to load and embed the chart
+                setTimeout(() => {
+                    if (window.datawrapper && window.datawrapper.embedAll) {
+                        window.datawrapper.embedAll();
+                    }
+                }, 300);
+            }
+        }
+    }
+    
     
     async function draw(site) {
 
@@ -284,6 +342,9 @@
                     textElement.innerHTML = siteText[site];
                 }
                 
+                // Update datawrapper chart for the site
+                updateDatawrapperChart(site);
+                
                 await draw(site);
             });
             
@@ -323,6 +384,15 @@
         }
         
         renderButtons();
+        updateDatawrapperChart(currentSite);
+        
+        // Give datawrapper library time to load before initializing
+        setTimeout(() => {
+            if (window.datawrapper && window.datawrapper.embedAll) {
+                window.datawrapper.embedAll();
+            }
+        }, 500);
+        
         addAccordionlisteners();
         await draw(currentSite);
     });
