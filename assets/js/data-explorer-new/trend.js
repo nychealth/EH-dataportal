@@ -132,7 +132,7 @@ const renderTrendChart = (
 
     renderTrendNotes(trendUnreliability, compUnreliability);
 
-    const {
+    let {
         columns,
         xAxisLabelField,
         mobileLegend,

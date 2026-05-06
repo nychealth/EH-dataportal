@@ -34,7 +34,6 @@ const renderCorrelate = (
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
     const unreliabilityHolder = document.getElementById('links-unreliability');
-    const linksMenuHolder = document.getElementById('linksMenuHolder');
     const linksViewNote = document.getElementById('linksViewNote');
 
     if (!correlateHolder || !linksChart || !unreliabilityHolder) {
@@ -50,7 +49,6 @@ const renderCorrelate = (
     }
 
     correlateHolder.classList.remove('hide');
-    linksMenuHolder?.classList.remove('d-none');
 
     // Keep holder width fixed so repeated redraws do not stretch the overlay.
     // Lock the chart holder to the overlay panel width so Vega can size to a

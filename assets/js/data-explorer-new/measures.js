@@ -287,7 +287,7 @@ const clickLinksToggle = (e) => {
 
         }
 
-        if (!button.matches('#show-links') || !linksMeasures.length) {
+        if (!button.matches('#show-links, #dropdownLinksMeasures') || !linksMeasures.length) {
             return;
         }
 
@@ -469,36 +469,64 @@ const renderMeasures = async () => {
 
     // ===== trend selection controls ============================================ //
 
-    const contentTrend = document.querySelector('#v-pills-trends');
-    const dropdownTrendSelection = contentTrend?.querySelector('div[aria-labelledby="dropdownTrendSelection"]');
-    const dropdownCompSelection = contentTrend?.querySelector('div[aria-labelledby="dropdownCompSelection"]');
-    const trendSelectionLabel = document.getElementById('tc1');
-    const compSelectionLabel = document.getElementById('tc2');
-    const trendMenuHolder = document.getElementById('trendMenuHolder');
-    const compMenu = document.getElementById('compMenu');
-    const trendSelectionSummary = document.getElementById('trendSelectionSummary');
+    const trendMeasurePills = document.getElementById('trendMeasurePills');
+    const trendComparisonPills = document.getElementById('trendComparisonPills');
     const trendSyncButton = document.getElementById('trendSyncButton');
-    const trendControlsToggle = document.getElementById('trendControlsToggle');
 
-    // Keeps summary text within tab header width so long labels do not break layout.
-    const constrainSummaryWidthToPanel = (summaryElement, toggleElement, reservePx = 170) => {
+    // Normalizes active and disabled styles so the new visible pills stay in sync.
+    const setBadgePillState = (button, isActive, isDisabled = false) => {
 
-        if (!summaryElement || !toggleElement) {
+        if (!button) {
             return;
         }
 
-        const tabsPanel = toggleElement.closest('.de-tabs');
-        const panelWidth = tabsPanel
-            ? Math.round(tabsPanel.getBoundingClientRect().width)
-            : Math.round(toggleElement.getBoundingClientRect().width);
+        button.classList.toggle('active', isActive && !isDisabled);
+        button.classList.remove('badge-primary', 'badge-light', 'text-white');
+        button.classList.add(isActive && !isDisabled ? 'badge-primary' : 'badge-light');
+        button.classList.toggle('text-white', isActive && !isDisabled);
+        button.classList.toggle('disabled', isDisabled);
+        button.disabled = isDisabled;
+        button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+        button.setAttribute('aria-pressed', isActive && !isDisabled ? 'true' : 'false');
+        button.setAttribute('aria-selected', isActive && !isDisabled ? 'true' : 'false');
 
-        const summaryMaxWidth = Math.max(96, panelWidth - reservePx);
+    };
 
-        summaryElement.style.display = 'inline-block';
-        summaryElement.style.maxWidth = `${summaryMaxWidth}px`;
-        summaryElement.style.overflow = 'hidden';
-        summaryElement.style.textOverflow = 'ellipsis';
-        summaryElement.style.whiteSpace = 'nowrap';
+
+    const createBadgePillButton = ({
+        buttonClass,
+        label,
+        title,
+        dataAttributes = {}
+    }) => {
+
+        const button = document.createElement('button');
+
+        button.type = 'button';
+        button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+        button.textContent = label;
+
+        if (title) {
+            button.title = title;
+        }
+
+        Object.entries(dataAttributes).forEach(([key, value]) => {
+            button.dataset[key] = value;
+        });
+
+        return button;
+
+    };
+
+
+    const createBadgePillLabel = (label) => {
+
+        const span = document.createElement('span');
+
+        span.className = 'de-viz-pill-label';
+        span.textContent = label;
+
+        return span;
 
     };
 
@@ -581,8 +609,7 @@ const renderMeasures = async () => {
     const clearTrendButtonState = () => {
 
         document.querySelectorAll('.trendbutton, .comparisonbutton').forEach(button => {
-            button.classList.remove('active');
-            button.setAttribute('aria-selected', 'false');
+            setBadgePillState(button, false);
         });
 
     };
@@ -604,8 +631,7 @@ const renderMeasures = async () => {
                 : document.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
 
             if (comparisonButton) {
-                comparisonButton.classList.add('active');
-                comparisonButton.setAttribute('aria-selected', 'true');
+                setBadgePillState(comparisonButton, true);
             }
 
             return;
@@ -618,8 +644,7 @@ const renderMeasures = async () => {
             : document.querySelector(`.trendbutton[data-measure-id='${trendMeasureId}']`);
 
         if (trendButton) {
-            trendButton.classList.add('active');
-            trendButton.setAttribute('aria-selected', 'true');
+            setBadgePillState(trendButton, true);
         }
 
     };
@@ -628,23 +653,21 @@ const renderMeasures = async () => {
     // Rebuilds compact summary line from current trend/comparison selection state.
     const updateTrendSelectionSummary = () => {
 
-        if (!trendSelectionSummary) {
-            return;
-        }
-
         const trendMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
         const trendLabel = trendMeasure?.MeasurementType || 'No borough trend';
 
         const comparisonId = getActiveComparisonId();
         const comparisonButton = comparisonId == null
             ? null
-            : dropdownCompSelection?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
+            : trendComparisonPills?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
         const comparisonLabel = comparisonButton?.textContent.trim() || 'No comparison';
 
         const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
 
-        trendSelectionSummary.textContent = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
-        constrainSummaryWidthToPanel(trendSelectionSummary, trendControlsToggle, 160);
+        if (trendSyncButton) {
+            trendSyncButton.title = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
+            trendSyncButton.setAttribute('aria-label', `Sync trend selections to map. Current selection: ${trendLabel}; ${comparisonLabel}; ${syncState}.`);
+        }
 
     };
 
@@ -684,42 +707,37 @@ const renderMeasures = async () => {
     };
 
 
-    // Rebuilds trend and comparison dropdowns for current indicator context.
+    // Rebuilds visible trend measure and comparison pills for current indicator context.
     const buildTrendSelectionControls = () => {
 
-        if (trendSelectionLabel) {
-            trendSelectionLabel.textContent = 'By geography';
+        if (trendMeasurePills) {
+            trendMeasurePills.innerHTML = '';
+            trendMeasurePills.hidden = trendMeasures.length === 0;
         }
 
-        if (compSelectionLabel) {
-            compSelectionLabel.textContent = 'Show with:';
+        if (trendComparisonPills) {
+            trendComparisonPills.innerHTML = '';
+            trendComparisonPills.hidden = true;
         }
 
-        if (dropdownTrendSelection) {
-            dropdownTrendSelection.innerHTML = '';
-        }
+        if (trendMeasures.length > 0 && trendMeasurePills) {
 
-        if (dropdownCompSelection) {
-            dropdownCompSelection.innerHTML = '';
-        }
-
-        trendMenuHolder?.classList.add('d-none');
-        compMenu?.classList.add('hide');
-
-        if (trendMeasures.length > 0 && dropdownTrendSelection) {
-
-            trendMenuHolder?.classList.remove('d-none');
+            trendMeasurePills.appendChild(createBadgePillLabel('Show by:'));
 
             // One button per trend-capable measure keeps borough trend choices flat.
             trendMeasures.forEach(measure => {
-                dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
-                    data-measure-id="${measure.MeasureID}" title="${measure.MeasurementType}">
-                    ${measure.MeasurementType}
-                </button>`);
+                trendMeasurePills.appendChild(createBadgePillButton({
+                    buttonClass: 'trendbutton',
+                    label: measure.MeasurementType,
+                    title: measure.MeasurementType,
+                    dataAttributes: {
+                        measureId: String(measure.MeasureID)
+                    }
+                }));
             });
 
             // Measure picks immediately leave comparison mode and render borough trend.
-            dropdownTrendSelection.onclick = event => {
+            trendMeasurePills.onclick = event => {
 
                 const button = event.target.closest('.trendbutton');
 
@@ -728,7 +746,7 @@ const renderMeasures = async () => {
                 }
 
                 selectedTrendMeasure = true;
-                selectedTrendMeasureId = parseInt(button.dataset.measureId);
+                selectedTrendMeasureId = parseInt(button.dataset.measureId, 10);
                 showingComparisonTrend = false;
                 showingBoroughTrend = true;
 
@@ -738,29 +756,27 @@ const renderMeasures = async () => {
 
             };
 
-        } else if (dropdownTrendSelection) {
+        } else if (trendMeasurePills) {
 
-            dropdownTrendSelection.onclick = null;
+            trendMeasurePills.onclick = null;
 
         }
 
-        if (comparisonMetadata?.length && aqCombinedComparisonMetadata && dropdownCompSelection) {
+        if (comparisonMetadata?.length && aqCombinedComparisonMetadata && trendComparisonPills) {
 
             const compLegendTitles = [...new Set(aqCombinedComparisonMetadata.array('LegendTitle'))];
 
             if (compLegendTitles.length) {
-                compMenu?.classList.remove('hide');
+                trendComparisonPills.hidden = false;
             }
 
             compLegendTitles.forEach(title => {
 
                 const titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title));
+                const comparisonGroup = document.createElement('div');
 
-                dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${title}</strong></span>`);
-
-                // BUILD OUT PILLS HERE
-                document.getElementById('ddcHolder').innerHTML = ''
-                document.getElementById('ddcHolder').innerHTML += `<span class="badge badge-pill badge-light">${title}</span>`
+                comparisonGroup.className = 'de-viz-pill-group';
+                comparisonGroup.appendChild(createBadgePillLabel(`${title}:`));
 
                 // Group related comparisons under one legend title for shorter menus.
                 const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
@@ -801,17 +817,23 @@ const renderMeasures = async () => {
 
                     }
 
-                    dropdownCompSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
-                        data-comparison-id="${comp}" title="${buttonTitle}">
-                        ${buttonLabel}
-                    </button>`);
+                    comparisonGroup.appendChild(createBadgePillButton({
+                        buttonClass: 'comparisonbutton',
+                        label: buttonLabel,
+                        title: buttonTitle,
+                        dataAttributes: {
+                            comparisonId: String(comp)
+                        }
+                    }));
 
                 });
+
+                trendComparisonPills.appendChild(comparisonGroup);
 
             });
 
             // Comparison picks immediately switch render mode away from borough trends.
-            dropdownCompSelection.onclick = event => {
+            trendComparisonPills.onclick = event => {
 
                 const button = event.target.closest('.comparisonbutton');
 
@@ -820,7 +842,7 @@ const renderMeasures = async () => {
                 }
 
                 selectedComparison = true;
-                selectedComparisonId = parseInt(button.dataset.comparisonId);
+                selectedComparisonId = parseInt(button.dataset.comparisonId, 10);
                 showingComparisonTrend = true;
                 showingBoroughTrend = false;
 
@@ -830,9 +852,9 @@ const renderMeasures = async () => {
 
             };
 
-        } else if (dropdownCompSelection) {
+        } else if (trendComparisonPills) {
 
-            dropdownCompSelection.onclick = null;
+            trendComparisonPills.onclick = null;
 
         }
 
@@ -862,14 +884,44 @@ const renderMeasures = async () => {
 
     // ===== correlate / disparities selection controls ======================== //
 
-    const contentLinks = document.querySelector('#v-pills-correlate');
-    const dropdownLinksMeasures = contentLinks?.querySelector('div[aria-labelledby="dropdownLinksMeasures"]');
-    const linksMenuHolder = document.getElementById('linksMenuHolder');
-    const linksSelectionSummary = document.getElementById('linksSelectionSummary');
+    const dropdownLinksMeasures = document.getElementById('linksDropdownMenu');
+    const linksDropdownToggle = document.getElementById('dropdownLinksMeasures');
+    const linksToggleLabel = document.getElementById('linksToggleLabel');
     const linksSyncButton = document.getElementById('linksSyncButton');
-    const showLinksButton = document.getElementById('show-links');
     const showDisparitiesButton = document.getElementById('show-disparities');
-    const correlateControlsToggle = document.getElementById('correlateControlsToggle');
+
+    const getLinksOptionCount = () => {
+
+        return linksMeasures.reduce((count, measure) => {
+            return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
+        }, 0);
+
+    };
+
+
+    const updateLinksDropdownToggle = () => {
+
+        if (!linksDropdownToggle || !linksToggleLabel) {
+            return;
+        }
+
+        const activeLinksState = getActiveLinksState();
+        const linksOptionCount = getLinksOptionCount();
+        const hasMultipleLinksOptions = linksOptionCount > 1;
+        const activeSecondaryLabel = activeLinksState.secondaryMeasureId == null
+            ? 'Show with'
+            : getLinksButtonLabel(activeLinksState.secondaryMeasureId);
+
+        linksToggleLabel.textContent = hasMultipleLinksOptions ? 'Show with' : activeSecondaryLabel;
+
+        if (hasMultipleLinksOptions) {
+            linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
+            linksDropdownToggle.setAttribute('aria-haspopup', 'true');
+        } else {
+            linksDropdownToggle.removeAttribute('data-toggle');
+        }
+
+    };
 
     const getLinksButtonLabel = (secondaryMeasureId) => {
 
@@ -986,36 +1038,26 @@ const renderMeasures = async () => {
             }
         }
 
-        if (showLinksButton) {
-            showLinksButton.classList.toggle('active', activeLinksState.view === 'links' && linksMeasures.length > 0);
-            showLinksButton.classList.toggle('disabled', linksMeasures.length === 0);
-            showLinksButton.setAttribute('aria-disabled', linksMeasures.length === 0);
-            showLinksButton.setAttribute('aria-selected', activeLinksState.view === 'links' && linksMeasures.length > 0);
-        }
+        setBadgePillState(
+            linksDropdownToggle,
+            activeLinksState.view === 'links' && linksMeasures.length > 0,
+            linksMeasures.length === 0
+        );
 
         if (showDisparitiesButton) {
-            showDisparitiesButton.classList.toggle('active', activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0);
-            showDisparitiesButton.classList.toggle('disabled', disparitiesMeasures.length === 0);
-            showDisparitiesButton.setAttribute('aria-disabled', disparitiesMeasures.length === 0);
-            showDisparitiesButton.setAttribute('aria-selected', activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0);
+            setBadgePillState(
+                showDisparitiesButton,
+                activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0,
+                disparitiesMeasures.length === 0
+            );
         }
 
-        if (linksMenuHolder) {
-            if (activeLinksState.view === 'links' && linksMeasures.length > 0) {
-                linksMenuHolder.classList.remove('d-none');
-            } else {
-                linksMenuHolder.classList.add('d-none');
-            }
-        }
+        updateLinksDropdownToggle();
 
     };
 
 
     const updateLinksSelectionSummary = () => {
-
-        if (!linksSelectionSummary) {
-            return;
-        }
 
         const activeLinksState = getActiveLinksState();
         const primaryMeasure = getMeasureMetadataById(activeLinksState.primaryMeasureId)[0];
@@ -1023,15 +1065,23 @@ const renderMeasures = async () => {
         const syncState = selectedLinksMeasure ? 'Custom' : 'Synced';
 
         if (activeLinksState.view === 'disparities') {
-            linksSelectionSummary.textContent = `Measure: ${primaryLabel} | Disparities | ${syncState}`;
-            constrainSummaryWidthToPanel(linksSelectionSummary, correlateControlsToggle, 180);
+            if (linksSyncButton) {
+                linksSyncButton.title = `Measure: ${primaryLabel} | Disparities | ${syncState}`;
+                linksSyncButton.setAttribute('aria-label', `Sync correlate selections to map. Current selection: ${primaryLabel}; Disparities; ${syncState}.`);
+            }
+
+            updateLinksDropdownToggle();
             return;
         }
 
         const secondaryLabel = getLinksButtonLabel(activeLinksState.secondaryMeasureId);
 
-        linksSelectionSummary.textContent = `Measure: ${primaryLabel} | With: ${secondaryLabel} | ${syncState}`;
-        constrainSummaryWidthToPanel(linksSelectionSummary, correlateControlsToggle, 180);
+        if (linksSyncButton) {
+            linksSyncButton.title = `Measure: ${primaryLabel} | With: ${secondaryLabel} | ${syncState}`;
+            linksSyncButton.setAttribute('aria-label', `Sync correlate selections to map. Current selection: ${primaryLabel}; ${secondaryLabel}; ${syncState}.`);
+        }
+
+        updateLinksDropdownToggle();
 
     };
 
@@ -1080,18 +1130,27 @@ const renderMeasures = async () => {
 
             linksMeasures.forEach(measure => {
 
-                dropdownLinksMeasures.innerHTML += DOMPurify.sanitize(`<span class="fs-xs"><strong>${measure.MeasurementType}</strong></span>`);
+                const heading = document.createElement('h6');
+
+                heading.className = 'dropdown-header';
+                heading.textContent = measure.MeasurementType;
+
+                dropdownLinksMeasures.appendChild(heading);
 
                 measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.forEach(link => {
 
                     const secondaryLabel = getLinksButtonLabel(link.MeasureID);
 
-                    dropdownLinksMeasures.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item linksbutton pl-2"
-                        data-primary-measure-id="${measure.MeasureID}"
-                        data-secondary-measure-id="${link.MeasureID}"
-                        title="${secondaryLabel}">
-                        ${secondaryLabel}
-                    </button>`);
+                    const button = document.createElement('button');
+
+                    button.type = 'button';
+                    button.className = 'dropdown-item linksbutton';
+                    button.dataset.primaryMeasureId = String(measure.MeasureID);
+                    button.dataset.secondaryMeasureId = String(link.MeasureID);
+                    button.title = secondaryLabel;
+                    button.textContent = secondaryLabel;
+
+                    dropdownLinksMeasures.appendChild(button);
 
                 });
 
@@ -1617,10 +1676,39 @@ const renderMeasures = async () => {
         'table': '#v-pills-table-tab'
     };
 
+    const tabContent = document.querySelector('#v-pills-tabContent');
+    const tabLinks = document.querySelectorAll('#v-pills-tab .nav-link[data-toggle="pill"]');
+    const tabPanes = document.querySelectorAll('#v-pills-tabContent > .tab-pane');
+
+    const resetOverlayTabState = () => {
+
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+            link.setAttribute('aria-selected', 'false');
+        });
+
+        tabPanes.forEach(pane => {
+            pane.classList.remove('show', 'active');
+        });
+
+    };
+
     // Re-open the tab that matches the restored overlay after menus are rebuilt.
     if (overlay !== 'none') {
+        resetOverlayTabState();
+
+        if (tabContent) {
+            tabContent.style.display = 'block';
+        }
+
         const target = tabSelector[overlay] || '#v-pills-bar-tab';
         $(target).tab('show');
+    } else {
+        resetOverlayTabState();
+
+        if (tabContent) {
+            tabContent.style.display = 'none';
+        }
     }
 
 }

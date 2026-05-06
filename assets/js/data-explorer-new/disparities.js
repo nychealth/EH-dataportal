@@ -23,15 +23,12 @@ const renderDisparitiesChart = async (
     }
 
     const viewDescription = document.getElementById('viewDescription');
-    const linksMenuHolder = document.getElementById('linksMenuHolder');
     const linksViewNote = document.getElementById('linksViewNote');
     const unreliabilityHolder = document.getElementById('links-unreliability');
 
     if (viewDescription) {
         viewDescription.innerHTML = 'Hover on points for more information.';
     }
-
-    linksMenuHolder?.classList.add('d-none');
 
     if (linksViewNote) {
         linksViewNote.innerHTML = 'The <strong>disparities view</strong> groups neighborhoods by poverty category to show how the selected measure varies across neighborhoods with different levels of poverty.';

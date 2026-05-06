@@ -32,40 +32,71 @@
         text-decoration: none;
     }
 
-    #trendControlsPanel .de-trend-optionbox {
-        max-height: 9rem;
-        overflow-y: auto;
-        background: #f6fafb;
+    .de-viz-pill-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
     }
 
-    #trendControlsToggle {
-        text-decoration: none;
+    .de-viz-pill-groups {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.35rem;
     }
 
-    #trendControlsPanel .trend-control-help {
+    .de-viz-pill-group,
+    .de-viz-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .de-viz-pill-label {
         color: #5c646d;
+        font-size: 0.875rem;
     }
 
-    #correlateControlsPanel .de-links-optionbox,
-    #correlateControlsPanel .de-links-optionbox-lg {
-        overflow-y: auto;
-        background: #f6fafb;
+    .de-viz-pill-button {
+        cursor: pointer;
+        font-size: 0.75rem;
+        line-height: 1.2;
+        padding: 0.4rem 0.75rem;
+        text-align: left;
+        white-space: normal;
     }
 
-    #correlateControlsPanel .de-links-optionbox {
-        max-height: 9rem;
+    .de-viz-pill-button.badge-light {
+        color: #1f2328;
     }
 
-    #correlateControlsPanel .de-links-optionbox-lg {
+    .de-viz-pill-button.disabled,
+    .de-viz-pill-button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    #linksDropdownMenu {
         max-height: 12rem;
+        overflow-y: auto;
     }
 
-    #correlateControlsToggle {
-        text-decoration: none;
+    #linksDropdownMenu .dropdown-item.active,
+    #linksDropdownMenu .dropdown-item:active,
+    #linksDropdownMenu .dropdown-item.active:focus,
+    #linksDropdownMenu .dropdown-item.active:hover {
+        background-color: rgba(10, 64, 138, 0.08);
+        color: #0a408a;
+        font-weight: 600;
     }
 
-    #correlateControlsPanel .links-control-help {
+    #linksDropdownMenu .dropdown-header {
         color: #5c646d;
+        font-size: 0.75rem;
     }
 </style>
 
@@ -176,56 +207,10 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div id="trendControls" class="py-2 d-flex justify-content-end sr-only">
-                <button class="badge badge-pill badge-light border-0" type="button" id="trendControlsToggle" data-toggle="collapse" data-target="#trendControlsPanel" aria-expanded="false" aria-controls="trendControlsPanel">
-                    <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
-                    Trend options
-                    <span id="trendSelectionSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
-                </button>
-            </div>
-
-            <div id="trendControlsPanel" class="collapse pb-2 sr-only">
-                <div class="border rounded bg-white p-2">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <p class="fs-xs mb-0 trend-control-help">Trend selections follow the map measure until you customize them.</p>
-                        <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="trendSyncButton">Sync to map</button>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0">
-                            <div id="trendMenuHolder" class="d-none">
-                                <p class="fs-xs mb-1">
-                                    <span id="tc1" class="font-weight-bold">By geography</span>
-                                </p>
-
-                                <div class="border rounded de-trend-optionbox">
-                                    <div aria-labelledby="dropdownTrendSelection">
-                                        <!-- INSERT TREND MENU ITEMS HERE -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div id="compMenu" class="hide">
-                                <p class="fs-xs mb-1">
-                                    <span id="tc2" class="font-weight-bold">Show with:</span>
-                                </p>
-
-                                <div class="border rounded de-trend-optionbox">
-                                    <div aria-labelledby="dropdownCompSelection">
-                                        <!-- INSERT COMPARISON MENU ITEMS HERE -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BUILD OUT PILLS HERE -->
-            <div class="my-1">
-                <p class="fs-sm text-right">Show by: <span class="badge badge-pill badge-primary">Geography</span> <span id="ddcHolder">HOLDER</span></P>
+            <div id="trendPillControls" class="de-viz-pill-controls my-1">
+                <div id="trendMeasurePills" class="de-viz-pill-group"></div>
+                <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                <button class="badge badge-pill badge-light border-0 de-viz-pill-button" type="button" id="trendSyncButton">Sync to map</button>
             </div>
 
             <div id="trend" class="w-100" style="min-height: 400px"></div>
@@ -261,59 +246,23 @@
             </button>
         </div>
         <div class="p-2 pt-md-0">
-            <div id="correlateControls" class="py-2 d-flex justify-content-end sr-only">
-                <button class="badge badge-pill badge-light border-0" type="button" id="correlateControlsToggle" data-toggle="collapse" data-target="#correlateControlsPanel" aria-expanded="false" aria-controls="correlateControlsPanel">
-                    <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
-                    Correlate options
-                    <span id="linksSelectionSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
-                </button>
-            </div>
-
-            <div id="correlateControlsPanel" class="collapse pb-2 sr-only">
-                <div class="border rounded bg-white p-2">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <p class="fs-xs mb-0 links-control-help">Correlate and disparities selections follow the map measure until you customize them.</p>
-                        <button class="btn btn-sm btn-light-green-bg-outline" type="button" id="linksSyncButton">Sync to map</button>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 mb-2 mb-md-0">
-                            <p class="fs-xs mb-1"><span class="font-weight-bold">Show as:</span></p>
-
-                            <div class="border rounded de-links-optionbox mb-0 py-1">
-                                <div class="btn-toggle-disparities">
-                                    <button class="btn btn-primary dropdown-item pl-2" id="show-links" type="button">Correlates</button>
-                                    <button class="btn btn-primary dropdown-item pl-2" id="show-disparities" type="button">Disparities</button>
-                                </div>
+            <div id="correlatePillControls" class="de-viz-pill-controls my-1">
+                <div class="de-viz-pill-group">
+                    <span class="de-viz-pill-label">Show as:</span>
+                    <div class="btn-toggle-disparities de-viz-pill-row">
+                        <div class="dropdown d-inline-block">
+                            <button class="badge badge-pill badge-light border-0 de-viz-pill-button" type="button" id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chevron-circle-down mr-1" aria-hidden="true"></i>
+                                <span id="linksToggleLabel">Show with</span>
+                            </button>
+                            <div id="linksDropdownMenu" class="dropdown-menu dropdown-menu-right fs-sm" aria-labelledby="dropdownLinksMeasures">
+                                <!-- INSERT LINKED MEASURE OPTIONS HERE -->
                             </div>
                         </div>
-
-                        <div class="col-md-8">
-                            <div id="linksMenuHolder" class="d-none">
-                                <p class="fs-xs mb-1"><span class="font-weight-bold">Correlate with:</span></p>
-
-                                <div class="border rounded de-links-optionbox-lg">
-                                    <div aria-labelledby="x-dropdownLinksMeasures">
-                                        <!-- INSERT LINKED MEASURE OPTIONS HERE -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button class="badge badge-pill badge-light border-0 de-viz-pill-button" id="show-disparities" type="button">Disparities</button>
                     </div>
                 </div>
-            </div>
-
-            <!-- BUILD OUT PILLS HERE -->
-            <div class="my-1 text-right">
-                <div class="dropdown d-inline-block">
-                    <span class="badge badge-pill badge-primary" style="cursor: pointer;" id="dropdownLinksMeasures" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-chevron-circle-down mr-1" aria-hidden="true"></i>Show with
-                    </span>
-                    <div class="dropdown-menu dropdown-menu-right fs-sm" aria-labelledby="dropdownLinksMeasures">
-                        <!-- INSERT LINKED MEASURE OPTIONS HERE -->
-                    </div>
-                </div>
-                <span class="badge badge-pill badge-light">Disparities</span>
+                <button class="badge badge-pill badge-light border-0 de-viz-pill-button" type="button" id="linksSyncButton">Sync to map</button>
             </div>
 
             <div id="correlateHolder" class="w-100">
