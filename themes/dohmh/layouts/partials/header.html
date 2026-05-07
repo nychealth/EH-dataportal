@@ -367,11 +367,13 @@
                                     </div>
     </div>
 
-        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
+        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal" data-subscribe-form-url="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform">
             <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
                 <div class='modal-content'>
                     <div class='modal-body' style="height:75vh;">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform" width="100%" frameborder="no" height="100%"></iframe>
+                        <div class='subscribe-form-placeholder d-flex align-items-center justify-content-center h-100'>
+                            <p class='mb-0'>Loading subscription form...</p>
+                        </div>
                     </div>
                     <hr>
                     <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>

@@ -40,12 +40,11 @@
 
                                 {{ end }}
 
-                                <a class="text-black" href="../../{{ .url }}">
-                                    <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
-                                </a>
-                                <hr class="my-2">
-
-                            {{ end }}
+                        <a class="text-black" href={{ relURL .url }}>
+                          <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
+                        </a>
+                        <hr class="my-2">
+                      {{ end }}
 
                         {{ else }}
                             {{- partial "related-footer-content" (dict "section" "data-stories" "layout" "singlelisticon" "content" . ) -}}
