@@ -61,6 +61,43 @@ $(document).ready(function () {
     });
 
     ////////////////////////////////////////
+    // Email Subscription Modal
+    ////////////////////////////////////////
+
+    const subscribe_modal = $('#subscribeModal');
+
+    if ( subscribe_modal.length ) {
+
+        subscribe_modal.on('show.bs.modal', function () {
+            const subscribe_form = $(this);
+            const subscribe_modal_body = subscribe_form.find('.modal-body');
+            const subscribe_placeholder = subscribe_modal_body.find('.subscribe-form-placeholder');
+            const subscribe_form_url = subscribe_form.data('subscribe-form-url');
+
+            if ( !subscribe_form_url || subscribe_modal_body.find('.subscribe-form-frame').length ) {
+                return;
+            }
+
+            const subscribe_iframe = $('<iframe>', {
+                'class': 'subscribe-form-frame',
+                src: subscribe_form_url,
+                width: '100%',
+                height: '100%',
+                frameborder: '0',
+                loading: 'lazy',
+                title: 'Subscription form'
+            }).css('display', 'none');
+
+            subscribe_iframe.on('load', function () {
+                subscribe_placeholder.addClass('d-none');
+                $(this).css('display', 'block');
+            });
+
+            subscribe_modal_body.append(subscribe_iframe);
+        });
+    }
+
+    ////////////////////////////////////////
     // Back to top
     ////////////////////////////////////////
 
