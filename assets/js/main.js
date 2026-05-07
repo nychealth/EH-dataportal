@@ -4,9 +4,9 @@ $(document).ready(function () {
     // Mutation observer - watch for RTL
     ////////////////////////////////////////
 
-    var target = document.querySelector('html');
+    const target = document.querySelector('html');
 
-    var observer = new MutationObserver( function(mutations) {
+    const observer = new MutationObserver( function(mutations) {
         mutations.forEach( function() {
             var classes = target.getAttribute('class');
             var single_class = 'translated-rtl';
@@ -18,7 +18,7 @@ $(document).ready(function () {
         });
     });
 
-    var config = {
+    const config = {
         attributes: true,
         attributeFilter: ['class']
     }
@@ -101,7 +101,7 @@ $(document).ready(function () {
     // Back to top
     ////////////////////////////////////////
 
-    var scroll_speed = 800;
+    const scroll_speed = 800;
 
     if( $('#back-to-top').length ){
 
@@ -113,8 +113,8 @@ $(document).ready(function () {
 
         $(window).scroll(function() {
 
-            var window_scroll = $(document).scrollTop();
-            var primary_content = $('#primary-content').offset().top;
+            const window_scroll = $(document).scrollTop();
+            const primary_content = $('#primary-content').offset().top;
 
             if ( window_scroll > primary_content ) {
                 $('#back-to-top').addClass('show');
@@ -133,23 +133,23 @@ $(document).ready(function () {
 
 $('.lang-select').click(function (e) {
     e.preventDefault();
-    var lang = $(this).attr('data-lang')
+    const lang = $(this).attr('data-lang')
     setLanguage(lang);
 });
 
 function setLanguage(theLang) {
-    var theSelect = $('.goog-te-combo');
-    var db = theSelect.get(0);
+    const theSelect = $('.goog-te-combo');
+    const db = theSelect.get(0);
     theSelect.val(theLang);
     fireEvent(db, 'change');
 }
 
 function fireEvent(element, event) {
     if (document.createEventObject) {
-        var evt = document.createEventObject();
+        const evt = document.createEventObject();
         return element.fireEvent('on' + event, evt)
     } else {
-        var evt = document.createEvent("HTMLEvents");
+        const evt = document.createEvent("HTMLEvents");
         // event type, bubbling, cancelable
         evt.initEvent(event, false, true); 
         return !element.dispatchEvent(evt);
