@@ -195,10 +195,7 @@
                                     <!-- .nav-item -->
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a class="nav-link text-white subscribe-link" href={{ relURL "About/subscribe" }}>Subscribe</a>
-                                            
-
-                                        </a>
+                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
                                     </div>
 
                                 </nav>
@@ -356,8 +353,8 @@
         
                                             <!-- .nav-item -->
                                             <div class="nav-item bg-none text-primary border">
-        
-                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>
@@ -367,19 +364,7 @@
                                     </div>
     </div>
 
-        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal" data-subscribe-form-url="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform">
-            <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
-                <div class='modal-content'>
-                    <div class='modal-body' style="height:75vh;">
-                        <div class='subscribe-form-placeholder d-flex align-items-center justify-content-center h-100'>
-                            <p class='mb-0'>Loading subscription form...</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+        {{- partial "subscribe-modal.html" . -}}
 
 </header>
 <!-- #global-header -->
