@@ -40,9 +40,9 @@ _This story was recently updated with new data._
 
 Every year in NYC between 2017 and 2019 (The most recent data available. [See all recorded years of health impacts data here](../../data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)), fine particulate matter pollution from motor vehicles and burning fossil fuels caused:
 
-- At least [1,800 deaths]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
-- About 900 hospital admissions for [lung]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
-- [3,100 emergency department admissions for asthma]({{< baseurl >}}data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
+- At least [1,800 deaths]({{< relURL >}}data-explorer/health-impacts-of-air-pollution/?id=2108#display=summary)
+- About 900 hospital admissions for [lung]({{< relURL >}}data-explorer/health-impacts-of-air-pollution/?id=2119#display=summary) and [heart conditions]({{< relURL >}}data-explorer/health-impacts-of-air-pollution/?id=2120#display=summary)
+- [3,100 emergency department admissions for asthma]({{< relURL >}}data-explorer/health-impacts-of-air-pollution/?id=2117#display=summary)
 
 Since air pollution causes significant illness and death in New York City, it's important to reduce air pollution. So where do we start?
 

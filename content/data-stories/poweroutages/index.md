@@ -40,7 +40,7 @@ But the power is out. Without the nebulizer, your child’s breathing gets worse
 
 #### This scenario - or something like it - is a reality for many New Yorkers.
 
-Asthma and many other medical conditions are treated at-home with electrical medical equipment. [Citywide, 7.6% of households include someone who uses electric medical equipment, with some neighborhoods at nearly 17%]({{< baseurl >}}data-explorer/housing-safety/?id=2377).
+Asthma and many other medical conditions are treated at-home with electrical medical equipment. [Citywide, 7.6% of households include someone who uses electric medical equipment, with some neighborhoods at nearly 17%]({{< relURL >}}data-explorer/housing-safety/?id=2377).
 
 <!-- CHART 1 -->
 
@@ -48,10 +48,10 @@ Asthma and many other medical conditions are treated at-home with electrical med
 
 As the chart above shows, neighborhoods with more households that rely on electrical medical equipment also have higher rates of poverty.
 
-<!-- <p> Poverty is created by current and historical racist practices, like [redlining]({{< baseurl >}}data-stories/redlining/), that deprive people and communities of resources and harm people’s health. [The Health Department has declared racism a public health crisis](https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page). -->
+<!-- <p> Poverty is created by current and historical racist practices, like [redlining]({{< relURL >}}data-stories/redlining/), that deprive people and communities of resources and harm people’s health. [The Health Department has declared racism a public health crisis](https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page). -->
 
 <div class="asidebox px-2 py-2 my-4 fs-sm">
-    <p><em>Poverty is created by current and historical racist practices, like <a href="{{< baseurl >}}data-stories/redlining/"><u>redlining</u></a>, that deprive people and communities of resources and harm people’s health. <a href="https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page"><u>The Health Department has declared racism a public health crisis</u></a>.</p></em>
+    <p><em>Poverty is created by current and historical racist practices, like <a href="{{< relURL >}}data-stories/redlining/"><u>redlining</u></a>, that deprive people and communities of resources and harm people’s health. <a href="https://www1.nyc.gov/site/doh/about/press/pr2021/board-of-health-declares-racism-public-health-crisis.page"><u>The Health Department has declared racism a public health crisis</u></a>.</p></em>
 </div>
 
 #### Power outages threaten health.
