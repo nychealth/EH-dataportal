@@ -34,7 +34,7 @@
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
 
-    original_url = original_url ? original_url : "/IndicatorPublic/";
+    original_url = original_url ? original_url : "{{ relURL "" }}";
 
 </script>
 
@@ -104,7 +104,7 @@
         .find((row) => row.startsWith('original_url='))
         ?.replace("original_url=", "");
 
-    original_url = original_url ? original_url : "/IndicatorPublic/";
+    original_url = original_url ? original_url : "{{ relURL "" }}";
     
     {{- /*  console.log("original_url", original_url);  */}}
     
