@@ -41,7 +41,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/?id=2122", "text": "Health impacts of air pollution"}
+  {"src": "data-explorer/health-impacts-of-air-pollution/?id=2122", "text": "Health impacts of air pollution"}
 ]` >}}
 
 New York City’s air quality is generally good and has been improving over time. Still, air pollution threatens health: two pollutants, [ozone and PM2.5 cause about 2,400 deaths per year in NYC, and thousands more emergency department visits and hospitalizations for asthma, heart, and lung problems]({{< relURL >}}data-explorer/health-impacts-of-air-pollution/?id=2122#display=summary).

@@ -29,7 +29,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/mice-and-rats/?id=2434", "text": "Rat inspections"}
+  {"src": "data-explorer/mice-and-rats/?id=2434", "text": "Rat inspections"}
 ]` >}}
 
 New York City’s modern history of public health starts in the 1600s with the Bureau of Sanitary Inspections, and ever since, sanitation has been an essential part of public health — fighting disease by keeping our city clean.

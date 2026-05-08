@@ -62,10 +62,10 @@ related:
     <div class="my-2">
         <div class="narrow">
             <p>{{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
-  {"src": "../../data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
+  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
   
 ]` >}}</p>
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 

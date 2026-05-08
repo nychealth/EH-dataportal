@@ -29,7 +29,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
 ]` >}}
 
 Imagine your child has asthma. One summer night, a powerful storm rolls in and knocks the power out.

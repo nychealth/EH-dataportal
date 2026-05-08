@@ -32,8 +32,8 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=92", "text": "Air quality action days"},
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
+  {"src": "data-explorer/air-quality/?id=92", "text": "Air quality action days"},
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
 ]` >}}
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.

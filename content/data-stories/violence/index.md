@@ -39,8 +39,8 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/violence/?id=2400", "text": "Violence"},
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+  {"src": "data-explorer/violence/?id=2400", "text": "Violence"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
 ]` >}}
 
 ## Using public health to prevent violence

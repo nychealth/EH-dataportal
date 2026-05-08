@@ -34,7 +34,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Air quality"}
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Air quality"}
 ]` >}}
 
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
