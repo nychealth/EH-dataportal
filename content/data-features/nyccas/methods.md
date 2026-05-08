@@ -5,7 +5,7 @@ hide: true
 pollutantsMeasured:
   - name: Fine Particles
     copy: >
-      [Fine particles (PM<sub>2.5</sub>)](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/traffic-and-air-pollution/) are tiny airborne solid and liquid
+      [Fine particles (PM<sub>2.5</sub>)]({{< relURL >}}data-stories/traffic-and-air-pollution/) are tiny airborne solid and liquid
       particles less than 2.5 microns in diameter. They are small enough to
       penetrate deep into the lungs and enter the bloodstream, which can worsen
       lung and heart disease and lead to hospital admissions and premature
@@ -75,6 +75,6 @@ The New York State Department of Environmental Conservation also has a network o
 
 NYCCAS has also deployed 14 monitors that can measure PM<sub>2\.5</sub> levels in real time. These monitors allow us to monitor air pollution as it changes based on the time of day, weather or due to local pollution sources, such as heavy-duty trucks. [Get data on real-time air quality]({{< relURL >}}data-features/realtime-air-quality/).
 
-In 2024, an additional six real time monitors were deployed to help measure any potential air quality changes as a result of [Congestion Relief Zone tolling](https://www.mta.info/fares-tolls/tolls/congestion-relief-zone) in Manhattan below 61st Street. Five locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some nearby major roads. An additional monitor was placed along the Van Wyck Expressway in Queens. This site is used as a control because it was not expected to be have any changes in traffic due to the toll. Read more about the [initial data results from Congestion Relief Zone tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update).
+In 2024, an additional six real time monitors were deployed to help measure any potential air quality changes as a result of [Congestion Relief Zone tolling](https://www.mta.info/fares-tolls/tolls/congestion-relief-zone) in Manhattan below 61st Street. Five locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some nearby major roads. An additional monitor was placed along the Van Wyck Expressway in Queens. This site is used as a control because it was not expected to be have any changes in traffic due to the toll. Read more about the [initial data results from Congestion Relief Zone tolling]({{< relURL >}}data-stories/congestion-tolling-update/).
 
 &nbsp;

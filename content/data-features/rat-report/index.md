@@ -50,7 +50,7 @@ The Department’s rat control program takes a multi-pronged, evidence-based app
   - Case management for properties failing to remediate rats or conditions attracting rats.
   - Information at health fairs and community events and community walkthroughs.
   - Sharing data on the Rat Information Portal and Environment and Health Data Portal.
-    - [Rat Inspection Mapping Tool](https://a816-dohbesp.nyc.gov/IndicatorPublic/Rats)
+   - [Rat Inspection Mapping Tool]({{< relURL >}}Rats/)
    - [Environment and Health Data Portal]({{< relURL >}}data-features/rat-mitigation-zones/)
    - [Inspection data at the borough and community district level]({{< relURL >}}data-explorer/mice-and-rats/?id=2434#display=summary)
 - Collaboration with other city agencies and City Hall to coordinate IPM efforts across neighborhoods and in the public realm by:
