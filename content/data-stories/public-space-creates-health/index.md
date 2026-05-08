@@ -37,7 +37,7 @@ photocredit: "Alexander Thompson/NYC & Company"
 {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
 ]` >}}
 
-Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="../housing-creates-health">housing</a>, <a href="../economic-stability/">economic stability</a> and public space create health.</strong>
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong><a href="{{< relURL >}}data-stories/housing-creates-health/">housing</a>, <a href="{{< relURL >}}data-stories/economic-stability/">economic stability</a> and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -70,7 +70,7 @@ Public space that is designed to reflect community priorities advances equity fo
 </figure>
 </div>
 
-Covering 8,000 miles, streets make up most of the public space in NYC. Cars and other motor vehicles dominate these many miles of public space. <a href="https://nationalequityatlas.org/indicators/Car_access?geo=07000000003651000&breakdown=by-race-ethnicity">Fifty-five percent of New York City households do not have a car</a> and only 41% of adults report having driven a car in the past 30 days. <a href="https://www.nyc.gov/assets/visionzero/downloads/pdf/vision-zero-year-7-report.pdf"> People in vehicles use most of the space on the roads but people outside of vehicles have the most roadway deaths</a>. More pedestrians die in road crashes than drivers or passengers in New York City each year. In addition, <a href="../../data-explorer/transportation-related-injuries/?id=2094#display=summary">each year there are more than 8,000 emergency department visits for pedestrian injuries</a>. There have been fewer injuries where New York City redesigned streets.
+Covering 8,000 miles, streets make up most of the public space in NYC. Cars and other motor vehicles dominate these many miles of public space. <a href="https://nationalequityatlas.org/indicators/Car_access?geo=07000000003651000&breakdown=by-race-ethnicity">Fifty-five percent of New York City households do not have a car</a> and only 41% of adults report having driven a car in the past 30 days. <a href="https://www.nyc.gov/assets/visionzero/downloads/pdf/vision-zero-year-7-report.pdf"> People in vehicles use most of the space on the roads but people outside of vehicles have the most roadway deaths</a>. More pedestrians die in road crashes than drivers or passengers in New York City each year. In addition, <a href="{{< relURL >}}data-explorer/transportation-related-injuries/?id=2094#display=summary">each year there are more than 8,000 emergency department visits for pedestrian injuries</a>. There have been fewer injuries where New York City redesigned streets.
 
 <div class="asidebox my-4">
 <strong> Vision Zero </strong><br>
@@ -86,7 +86,7 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 
 ### Designing streets for people walking and biking—not just driving—can improve safety.
 
-<a href="../streets/"> In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries</a>. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits. Boroughs have similar percentages of bike commuters.
+<a href="{{< relURL >}}data-stories/streets/"> In areas with more bike safety infrastructure (including bike lanes and protected bike lanes), we see more people traveling by bike and lower rates of bike injuries</a>. This is the case in Manhattan, which has more than double the number of bike lanes as Brooklyn and a correspondingly lower rate of bicycle injury ED visits. Boroughs have similar percentages of bike commuters.
 
 <div class="my-4 py-2 border-top border-bottom">
 
@@ -103,7 +103,7 @@ The guidelines align and build upon design guidelines and ongoing initiatives at
 
 Neighborhoods closest to highways are impacted by increased noise and air pollution and experience long-term consequences from the fracturing of communities that resulted from highway construction. <a href="https://www.nyc.gov/office-of-the-mayor/news/919-22/mayor-adams-kicks-off-landmark-study-reimagine-cross-bronx-expressway#/0">Community-informed impact studies on highways like the Brooklyn Queens Expressway (BQE) and the Cross Bronx Expressway (CBE) will work to mitigate the degree of these negative effects</a>. They aim to increase connectivity and resource access for those living close to a highway while reducing exposure to noise and pollution.
 
-<a href="../breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light and air pollution, and encourage active transit.
+<a href="{{< relURL >}}data-stories/breatheeasy/">Though New York City’s air quality is overall improving, air quality can vary between neighborhoods due to a variety of factors</a>, such as traffic levels, heating oil use, tree canopy and local green space. All neighborhoods can benefit from strategic car-free zones, which may look like greenways for bicycle and pedestrian access, and more trees along roadways, since trees clean the air. Policies that reduce vehicle traffic can reduce noise, light and air pollution, and encourage active transit.
 
 ### Maintaining public space is critical to ensuring that all New Yorkers can use it.
 
@@ -119,7 +119,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 </figure>
 </div>
 
-<a href="../sanitation/"> Clean, well-maintained, and attractive public space is essential to maximize the benefits to public health</a>. Broken equipment and seating, and cracked and uneven sidewalks can make public spaces feel unsafe; trash, pests, and unsanitary items on the streets and in parks can spread disease. This can discourage neighborhood residents from playing in these spaces, impacting their mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports and community events</a>. The NYC Parks, Transportation, and Sanitation Departments work together to find and resolve maintenance issues. Residents can call 311 to report unresolved maintenance issues.
+<a href="{{< relURL >}}data-stories/sanitation/"> Clean, well-maintained, and attractive public space is essential to maximize the benefits to public health</a>. Broken equipment and seating, and cracked and uneven sidewalks can make public spaces feel unsafe; trash, pests, and unsanitary items on the streets and in parks can spread disease. This can discourage neighborhood residents from playing in these spaces, impacting their mental health. <a href="https://www.nycgovparks.org/park-features/parks-inspection-program">Parks also need to be well-maintained, and have enough waste bins, public restrooms, and water fountains to support activities like fitness classes, sports and community events</a>. The NYC Parks, Transportation, and Sanitation Departments work together to find and resolve maintenance issues. Residents can call 311 to report unresolved maintenance issues.
 
 ### Public space should be designed with all New Yorkers in mind. 
 

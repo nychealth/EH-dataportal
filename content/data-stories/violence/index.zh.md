@@ -66,7 +66,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 
 {{< rawhtml >}}
 <div class="my-3">
-<iframe src="../../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="{{< relURL >}}maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
 

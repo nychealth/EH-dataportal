@@ -141,7 +141,7 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 
 <div aria-hidden="true">
 <div class="my-3">
-<iframe src="../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="{{< relURL >}}maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
 {{< /rawhtml >}}
