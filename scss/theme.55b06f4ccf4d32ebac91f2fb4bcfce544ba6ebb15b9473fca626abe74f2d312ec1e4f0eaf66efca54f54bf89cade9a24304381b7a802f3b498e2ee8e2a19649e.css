@@ -8779,6 +8779,13 @@ In this file:
   height: 75vh;
   overflow-y: auto; }
 
+#subscribeModal .subscribe-modal-dialog {
+  max-width: 680px; }
+
+#subscribeModal .subscribe-modal-body {
+  height: 60vh;
+  max-height: 34rem; }
+
 #searchModal .pagefind-ui__filter-block {
   position: sticky;
   top: 0; }
