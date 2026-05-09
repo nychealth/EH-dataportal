@@ -1,9 +1,12 @@
+{{/*  
+now uses relURL for internal links, so shortcode src param should start with section, e.g. {"src": "data-explorer/climate/?id=2143", [...] }  
+*/}}
 <div class="border mb-4 p-1 fs-sm">
     <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this data story, some data in it have been updated. Get updated data on:
     {{- $data := .Get "data" | transform.Unmarshal -}}
         <ul>
         {{- range $data }}
-            <li><a href="{{ .src }}">{{ .text }}</a></li>
+            <li><a href="{{ relURL .src }}">{{ .text }}</a></li>
         {{- end }}
         </ul>
 </div>
