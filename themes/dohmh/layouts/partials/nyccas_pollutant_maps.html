@@ -25,26 +25,26 @@
       <div class="col-sm-5" id="mapText" style="height: 100%;overflow-y:scroll;">
           <div id="bcText" class="polText">
             {{- with .Resources.GetMatch "map-text.md" -}}
-                {{ .Params.BC | markdownify }}
+                {{ $.RenderString .Params.BC }}
           </div>
 
           <div id="noText" class="polText hide">
-            {{ .Params.NO | markdownify }}
+            {{ $.RenderString .Params.NO }}
 
           </div>
 
           <div id="no2Text" class="polText hide">
-            {{ .Params.NO2 | markdownify }}
+            {{ $.RenderString .Params.NO2 }}
 
           </div>
 
           <div id="o3Text" class="polText hide">
-            {{ .Params.O3 | markdownify }}
+            {{ $.RenderString .Params.O3 }}
 
           </div>
 
           <div id="pm25Text" class="polText hide">
-            {{ .Params.PM | markdownify }}
+            {{ $.RenderString .Params.PM }}
 
           </div>
           {{- end -}}
