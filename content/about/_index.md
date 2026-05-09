@@ -11,10 +11,10 @@ The NYC Environment & Health Data Portal shows how environments affect health, b
 
 The Environment & Health Data Portal is a project by the NYC Department of Health and Mental Hygiene's Bureau of Environmental Surveillance and Policy. Our bureau works to analyze data on environmental health and translate it to Health Department and Citywide policies that protect New Yorkers, improve our environment, and maintain our health. We are grateful for the support and collaboration of our principal design partners, [Minds On Design Lab](https://mod-lab.com/), to develop and enhance the Environment and Health Data Portal.
 
-<i class="fas fa-info-circle mr-1"></i>[Check out open positions in our bureau]({{< baseurl >}}about/jobs/).
+<i class="fas fa-info-circle mr-1"></i>[Check out open positions in our bureau]({{< relURL >}}about/jobs/).
 
-<i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a>, or <a class="subscribe-link" href="../about/subscribe">sign up for our email list</a>. We won't share your email address.</p>
+<i class="fas fa-envelope mr-1"></i>Email us with thoughts, questions, or concerns at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;">&#101;&#104;&#100;&#112;&#64;&#104;&#101;&#97;&#108;&#116;&#104;&#46;&#110;&#121;&#99;&#46;&#103;&#111;&#118;</a>, or <a class="subscribe-link" href="{{< relURL >}}about/subscribe/">sign up for our email list</a>. We won't share your email address.</p>
 
 <i class="fas fa-question-circle mr-1"></i>[Questions about the data? Visit our Github repo for info or to file an issue](https://www.github.com/nychealth/EH-dataportal).
 
-<i class="fas fa-envelope-open-text mr-1"></i>Concerned about an environment and health issue? Take action and [email your elected officials.](../take-action/email-electeds/).
+<i class="fas fa-envelope-open-text mr-1"></i>Concerned about an environment and health issue? Take action and [email your elected officials.]({{< relURL >}}take-action/email-electeds/).
