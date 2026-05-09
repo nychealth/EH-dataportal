@@ -4,8 +4,9 @@ This file mirrors repo-scoped workspace memory notes for easier in-repo review.
 Source memories:
 - /memories/repo/data-explorer-analysis.md
 - /memories/repo/geotype-normalization.md
+- /memories/repo/shared-shell-modals.md
 
-Last mirrored: 2026-04-24
+Last mirrored: 2026-05-09
 
 ---
 
@@ -198,6 +199,16 @@ indicator JSON → Arquero table with GeoRank
 ## Geotype Normalization (bar.js)
 
 - In data-explorer-new, UI state stores prettified geotypes like `NTA`, `CDTA`, and `PUMA`, while data rows can still carry raw versioned values like `NTA2020`, `CDTA2020`, and `PUMA2020`.
+
+---
+
+## shared-shell-modals.md
+
+# Shared Shell Modal Placement
+
+- Render the shared search modal once from `baseof.html` so footerless `headerDE` pages still have `#searchModal`.
+- Do not embed a second `#searchModal` in `footer.html`; footered pages then initialize Pagefind twice and show duplicate search inputs.
+- After shell template changes, validate both `/dev-stage/` and a footerless `/dev-stage/data-explorer-new/.../` page.
 - `showMap()` already filters with `prettifyGeoType(obj.GeoType) == GeoType` in `measures.js`.
 - Renderer-specific filtering must not compare raw `datum.GeoType` directly to the UI `GeoType` value, or versioned geotypes will disappear.
 - `bar.js` was fixed by normalizing geotypes before building the Vega spec and by accepting either raw or prettified geography values.
