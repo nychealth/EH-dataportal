@@ -524,9 +524,10 @@
                 
                     <img class="block mb-3" src="/IndicatorPublic/data-stories/air-quality-and-covid-part-2/ds-aqcovid_hu_e1a335aaa26ce8c0.jpeg" width="1200" height="801" alt="">
                 
-            </div><div class="border mb-4 p-1 fs-sm">
+            </div>
+<div class="border mb-4 p-1 fs-sm">
     <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this data story, some data in it have been updated. Get updated data on:<ul>
-            <li><a href="../../data-explorer/air-quality/?id=2023">Air quality</a></li>
+            <li><a href="/IndicatorPublic/data-explorer/air-quality/?id=2023">Air quality</a></li>
         </ul>
 </div>
 <p>On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.</p>
@@ -673,7 +674,7 @@
             <button id="btn2" type="button" class="btn btn-sm btn-primary float-right mr-1" onclick="mapNO()">
                 NO2
             </button>
-        <iframe id="dest" src="no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
+        <iframe id="dest" src="/IndicatorPublic/data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -686,7 +687,7 @@
     function mapPM() {
         // console.log('map PM')
         var iframe = document.getElementById('dest')
-        iframe.src = "pm25_differences_leaflet.html"
+        iframe.src = "/IndicatorPublic/data-stories/air-quality-and-covid-part-2/pm25_differences_leaflet.html"
         document.getElementById('btn1').classList.remove('btn-outline-primary')
         document.getElementById('btn1').classList.add('btn-primary')
         document.getElementById('btn2').classList.add('btn-outline-primary')
@@ -696,7 +697,7 @@
     function mapNO() {
         // console.log('map NO')
         var iframe = document.getElementById('dest')
-        iframe.src = "no2_differences_leaflet.html"
+        iframe.src = "/IndicatorPublic/data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html"
         document.getElementById('btn2').classList.remove('btn-outline-primary')
         document.getElementById('btn2').classList.add('btn-primary')
         document.getElementById('btn1').classList.add('btn-outline-primary')
