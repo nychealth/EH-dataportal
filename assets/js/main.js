@@ -1,6 +1,45 @@
 $(document).ready(function () {
 
     ////////////////////////////////////////
+    // Shared helpers
+    ////////////////////////////////////////
+
+    const trackSubscribeClick = function (event) {
+        if ( typeof gtag !== 'function' ) {
+            return;
+        }
+
+        const subscribe_target = event.currentTarget;
+
+        gtag('event', 'click_subscribe', {
+            page: window.location.pathname,
+            place: subscribe_target.dataset.subscribeClick,
+        });
+    };
+
+    const queueSubscribeModal = function (subscribe_trigger) {
+        const parent_modal_selector = subscribe_trigger.data('subscribe-parent-modal');
+        const subscribe_modal = $('#subscribeModal');
+
+        if ( !parent_modal_selector || !subscribe_modal.length ) {
+            return;
+        }
+
+        const parent_modal = $(parent_modal_selector);
+
+        if ( !parent_modal.length ) {
+            subscribe_modal.modal('show');
+            return;
+        }
+
+        parent_modal.one('hidden.bs.modal', function () {
+            subscribe_modal.modal('show');
+        });
+
+        parent_modal.modal('hide');
+    };
+
+    ////////////////////////////////////////
     // Mutation observer - watch for RTL
     ////////////////////////////////////////
 
@@ -8,9 +47,10 @@ $(document).ready(function () {
 
     const observer = new MutationObserver( function(mutations) {
         mutations.forEach( function() {
-            var classes = target.getAttribute('class');
-            var single_class = 'translated-rtl';
-            if (classes.includes(single_class)) {
+            const classes = target.getAttribute('class') || '';
+            const single_class = 'translated-rtl';
+
+            if ( classes.includes(single_class) ) {
                 target.setAttribute('dir', 'rtl');
             } else {
                 target.setAttribute('dir', 'ltr');
@@ -22,7 +62,7 @@ $(document).ready(function () {
         attributes: true,
         attributeFilter: ['class']
     }
-    
+
     observer.observe(target, config);
 
     ////////////////////////////////////////
@@ -61,8 +101,23 @@ $(document).ready(function () {
     });
 
     ////////////////////////////////////////
-    // Email Subscription Modal
+    // Subscribe links and modal
     ////////////////////////////////////////
+
+    const subscribe_triggers = $('[data-subscribe-click]');
+
+    if ( subscribe_triggers.length ) {
+        subscribe_triggers.on('click', function (event) {
+            const subscribe_trigger = $(this);
+
+            trackSubscribeClick(event);
+
+            if ( subscribe_trigger.data('subscribe-parent-modal') ) {
+                event.preventDefault();
+                queueSubscribeModal(subscribe_trigger);
+            }
+        });
+    }
 
     const subscribe_modal = $('#subscribeModal');
 
@@ -80,19 +135,23 @@ $(document).ready(function () {
 
             const subscribe_iframe = $('<iframe>', {
                 'class': 'subscribe-form-frame',
-                src: subscribe_form_url,
                 width: '100%',
                 height: '100%',
                 frameborder: '0',
-                loading: 'lazy',
                 title: 'Subscription form'
-            }).css('display', 'none');
-
-            subscribe_iframe.on('load', function () {
-                subscribe_placeholder.addClass('d-none');
-                $(this).css('display', 'block');
+            }).css({
+                display: 'none',
+                position: 'absolute',
+                inset: 0,
+                border: 0,
             });
 
+            subscribe_iframe.one('load', function () {
+                subscribe_placeholder.hide();
+                subscribe_iframe.css('display', 'block');
+            });
+
+            subscribe_iframe.attr('src', subscribe_form_url);
             subscribe_modal_body.append(subscribe_iframe);
         });
     }
