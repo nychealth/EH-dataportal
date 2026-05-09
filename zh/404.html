@@ -265,7 +265,7 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                        <a class="nav-link text-white subscribe-link" data-subscribe-click="header-nav" href=/IndicatorPublic/About/subscribe>Subscribe</a>
                                             
 
                                         </a>
@@ -385,7 +385,7 @@
                                             
                                             <div class="nav-item bg-none text-primary border">
         
-                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-toggle="modal" data-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>
@@ -411,104 +411,102 @@
 
 </header>
 <main id="skip-header-target" role="main" data-pagefind-body><article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
-
+  
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
-
       
-        <div class="chunk row my-4 mb-6" id="main404">
-            <div class="col-9 mx-auto mb-6">
-                <h1>Oops!</h1>
-                <p>This isn't a page on this site. </p>
-                <p>You'll be redirected to the <a href="/IndicatorPublic/zh/">
-                        Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.</p>
+      
+      <div class="chunk row my-4 mb-6" id="main404">
+        <div class="col-9 mx-auto mb-6">
+          <h1>Oops!</h1>
+          <p>This isn't a page on this site. </p>
+          <p>You'll be redirected to the <a href="/IndicatorPublic/zh/">
+              Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.</p>
             </div>
-        </div>
-
-        <div class="chunk row my-4 hide mb-6" id="redirectBeta">
+          </div>
+          
+          <div class="chunk row my-4 hide mb-6" id="redirectBeta">
             <div class="col-9 mx-auto mb-6">
               <h1>Time to update your bookmarks!</h1>
               <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
-
+              
             </div>
-
+            
+          </div>
+          
+          
+          
         </div>
-
-
-
-    </div>
-    
-  </div>
-
-<script>
-
-
- var url = window.location.href                              
-
-
-
-var chunks = document.querySelectorAll('.chunk')
-
-chunks.forEach(x => x.classList.add('hide'))
-
-
-
-
-url.includes("beta") ? removeBeta(url) : redirectHome()
-
-
-
-
-function removeBeta(x) {
-  
-  document.getElementById('redirectBeta').classList.remove('hide')
-  
-
-  
-  url = x.replace('/beta','')
-  
-
-  
-  setTimeout(() => {
-    window.location.href = url
-  }, 2000)
-}
-
-
-
-function redirectHome() {
-  
-  document.getElementById('main404').classList.remove('hide')
-
-  
-  countDown(5)
-}
-
-
-function countDown(x) {
-
-  if (x > 0) {
-    var print = document.getElementById('sec')
-    print.innerHTML = x
-    var oneLess = x - 1
-    setTimeout(() => {
-      countDown(oneLess)
-    }, 1000)
-
-  } else {
-    sendHome()
-  }
-}
-
-function sendHome() {
-  setTimeout(() => {
-    window.location.href = "/IndicatorPublic/"
-  }, 1000)
-}
-
-</script>
-  
-</article><ul id="results"></ul>
+        
+      </div>
+      
+      <script>
+        
+        
+        var url = window.location.href                              
+        
+        var chunks = document.querySelectorAll('.chunk')
+        
+        chunks.forEach(x => x.classList.add('hide'))
+        
+        
+        
+        
+        url.includes("beta") ? removeBeta(url) : redirectHome()
+        
+        
+        
+        
+        function removeBeta(x) {
+          
+          document.getElementById('redirectBeta').classList.remove('hide')
+          
+          
+          
+          url = x.replace('/beta','')
+          
+          
+          
+          setTimeout(() => {
+            window.location.href = url
+          }, 2000)
+        }
+        
+        
+        
+        function redirectHome() {
+          
+          document.getElementById('main404').classList.remove('hide')
+          
+          
+          countDown(5)
+        }
+        
+        
+        function countDown(x) {
+          
+          if (x > 0) {
+            var print = document.getElementById('sec')
+            print.innerHTML = x
+            var oneLess = x - 1
+            setTimeout(() => {
+              countDown(oneLess)
+            }, 1000)
+            
+          } else {
+            sendHome()
+          }
+        }
+        
+        function sendHome() {
+          setTimeout(() => {
+            window.location.href = "/IndicatorPublic/"
+          }, 1000)
+        }
+        
+      </script>
+      
+    </article><ul id="results"></ul>
   </main>
   
   <footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
@@ -762,18 +760,6 @@ function sendHome() {
                             });
 
                             
-                            
-                            
-
-                            
-                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
-
-                            
-                            for (h = 0; h < allResults.length; h += 1) {
-
-                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
-
-                            }
 
                             
 
@@ -844,21 +830,15 @@ function sendHome() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-  document.querySelectorAll(".subscribe-link").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      gtag("event", "click_subscribe", {
-        page: window.location.pathname,
-        place: e.target.dataset.subscribeClick,
-      });
-    });
-  });
-</script>
 <script
   type="text/javascript"
   src="/IndicatorPublic/js/main.5dff10bda2edefc2.js"
   integrity="sha512-0Am8FWdFdRHni5X9jgsaCCv/ZEKpRbDgISu2Vf0ek39Lf&#43;QqfAzoynP8pi/IhG15pyXljFAsGI36FGdqo2XW6w=="
+></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
+  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
 ></script>
 
   

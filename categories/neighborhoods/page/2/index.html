@@ -285,7 +285,7 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                        <a class="nav-link text-white subscribe-link" data-subscribe-click="header-nav" href=/IndicatorPublic/About/subscribe>Subscribe</a>
                                             
 
                                         </a>
@@ -429,7 +429,7 @@
                                             
                                             <div class="nav-item bg-none text-primary border">
         
-                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-toggle="modal" data-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>
@@ -818,18 +818,6 @@ Housing stability In NYC, …</p>
                             });
 
                             
-                            
-                            
-
-                            
-                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
-
-                            
-                            for (h = 0; h < allResults.length; h += 1) {
-
-                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
-
-                            }
 
                             
 
@@ -899,21 +887,15 @@ Housing stability In NYC, …</p>
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-  document.querySelectorAll(".subscribe-link").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      gtag("event", "click_subscribe", {
-        page: window.location.pathname,
-        place: e.target.dataset.subscribeClick,
-      });
-    });
-  });
-</script>
 <script
   type="text/javascript"
   src="/IndicatorPublic/js/main.5dff10bda2edefc2.js"
   integrity="sha512-0Am8FWdFdRHni5X9jgsaCCv/ZEKpRbDgISu2Vf0ek39Lf&#43;QqfAzoynP8pi/IhG15pyXljFAsGI36FGdqo2XW6w=="
+></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
+  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
 ></script>
 </body>
 </html>

@@ -45,11 +45,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='viernes, 8 de mayo de 2026, 22:00:48 EDT'>
+<meta name="build_datetime" content='viernes, 8 de mayo de 2026, 23:10:09 EDT'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='0116b1f716'>
-<meta name="git_last_msg" content='Merge pull request #1421 from nychealth:hotfix-relURL-standardization'>
+<meta name="git_last_hash" content='16d98bd3af'>
+<meta name="git_last_msg" content='Merge pull request #1422 from nychealth:feature-ga-events-on-feature-boxes'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -273,7 +273,7 @@
                                     
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a class="nav-link text-white subscribe-link" href=/IndicatorPublic/About/subscribe>Subscribe</a>
+                                        <a class="nav-link text-white subscribe-link" data-subscribe-click="header-nav" href=/IndicatorPublic/About/subscribe>Subscribe</a>
                                             
 
                                         </a>
@@ -393,7 +393,7 @@
                                             
                                             <div class="nav-item bg-none text-primary border">
         
-                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-toggle="modal" data-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>
@@ -445,7 +445,7 @@
               </p>
             </div>
 
-            <div class="row">
+            <div class="row" data-homepage-section="topics">
               <div class="col-md-6 px-20">
                 <ul class="list-unstyled font-weight-bold">
                   <li class="link-w-underline px-0"><a href=/IndicatorPublic/key-topics/accessibility>Accessibility</a></li>
@@ -473,8 +473,8 @@
             </div>
           </div>
           <div class="col-md-6 px-20">
-            <div class="card content-card">
-              <a href="/IndicatorPublic/data-stories/public-transit-creates-health/">
+            <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
+              <a href="/IndicatorPublic/data-stories/public-transit-creates-health/" data-homepage-label="Public transit creates health">
               <div class="card-content primary">
 
                 
@@ -502,10 +502,10 @@
 
     <div class="container wide">
       <div class="row">
-        <div class="col-lg-4 px-20">
+        <div class="col-lg-4 px-20" data-homepage-section="data-stories">
           <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
           <div class="mb-4 ds-card">
-            <div><a href="/IndicatorPublic/es/data-stories/violence/" class="row no-gutters border-bottom py-3">
+            <div><a href="/IndicatorPublic/es/data-stories/violence/" class="row no-gutters border-bottom py-3" data-homepage-label="Por qué la violencia es un problema de salud pública ">
                 <div class="col-4">
                   
                   
@@ -515,7 +515,7 @@
                 <div class="col-8 ml-auto h-100 pl-2">
                   <p class="text-black fs-md"><span class="font-weight-bold">Por qué la violencia es un problema de salud pública </span> Uso de la salud pública para prevenir la violencia Sufrir violencia afecta a las personas de muchas … </p>
                 </div>
-              </a><a href="/IndicatorPublic/es/data-stories/housing/" class="row no-gutters border-bottom py-3">
+              </a><a href="/IndicatorPublic/es/data-stories/housing/" class="row no-gutters border-bottom py-3" data-homepage-label="Salud, vivienda e historia">
                 <div class="col-4">
                   
                   
@@ -525,7 +525,7 @@
                 <div class="col-8 ml-auto h-100 pl-2">
                   <p class="text-black fs-md"><span class="font-weight-bold">Salud, vivienda e historia</span> Para la salud, el lugar importa ¿Qué determina si usted está saludable o no? Puede pensar en lo que … </p>
                 </div>
-              </a><a href="/IndicatorPublic/es/data-stories/redlining/" class="row no-gutters border-bottom py-3">
+              </a><a href="/IndicatorPublic/es/data-stories/redlining/" class="row no-gutters border-bottom py-3" data-homepage-label="Una breve historia del redlining ">
                 <div class="col-4">
                   
                   
@@ -541,7 +541,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 px-20">
+        <div class="col-lg-4 px-20" data-homepage-section="recently-updated-data">
 
           <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2><div class="link-w-underline">
             <a href=/IndicatorPublic/data-explorer/chronic-disease/?id&#61;2465>Adults with diabetes</a>
@@ -575,10 +575,10 @@
                 <i class="fas fa-bullhorn h2 text-primary" aria-hidden="true"></i>
               </div>
             </div>
-            <p class="text-black mb-4"><a class="font-weight-bold subscribe-link" href=/IndicatorPublic/About/subscribe>Sign up here!</a> We won't share your email address.</p>
+            <p class="text-black mb-4"><a class="font-weight-bold subscribe-link" data-subscribe-click="homepage" href=/IndicatorPublic/About/subscribe>Sign up here!</a> We won't share your email address.</p>
           </div>
 
-          <div class="shadow-sm mb-3 p-3 card-left-border">
+          <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
             <div class="row no-gutters">
               <div class="col-11">
                 <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
@@ -597,14 +597,14 @@
     </div>
 
     <div class="container wide">
-      <div class="row">
+      <div class="row" data-homepage-section="tools">
         <div class="col-12 mb-2">
           <h3>Tools</h3>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-stories>
+            <a class="position-relative" href=/IndicatorPublic/data-stories data-homepage-label="Data stories">
             <div class="card-content data-stories mb-4">
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 
@@ -622,7 +622,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-features>
+            <a class="position-relative" href=/IndicatorPublic/data-features data-homepage-label="Data Features">
             <div class="card-content data-features mb-4">
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 
@@ -641,7 +641,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/neighborhood-reports>
+            <a class="position-relative" href=/IndicatorPublic/neighborhood-reports data-homepage-label="Neighborhood Reports">
             <div class="card-content n-reports mb-4">
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 
@@ -662,7 +662,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href=/IndicatorPublic/data-explorer>
+            <a class="position-relative" href=/IndicatorPublic/data-explorer data-homepage-label="Data Explorer">
             <div class="card-content data-explorer mb-4">
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 
@@ -688,7 +688,7 @@
       <div class="container wide">
         <div class="row">
           <div class="col-md-11 mx-auto">
-            <div class="row">
+            <div class="row" data-homepage-section="secondary-links">
               <div class="col-md-4 my-2">
                 <div class="card card-left-border shadow-sm h-100">
                   <div class="card-body">
@@ -1175,18 +1175,6 @@ async  function initialize() {
                             });
 
                             
-                            
-                            
-
-                            
-                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
-
-                            
-                            for (h = 0; h < allResults.length; h += 1) {
-
-                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
-
-                            }
 
                             
 
@@ -1257,21 +1245,15 @@ async  function initialize() {
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-  document.querySelectorAll(".subscribe-link").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      gtag("event", "click_subscribe", {
-        page: window.location.pathname,
-        place: e.target.dataset.subscribeClick,
-      });
-    });
-  });
-</script>
 <script
   type="text/javascript"
   src="/IndicatorPublic/js/main.5dff10bda2edefc2.js"
   integrity="sha512-0Am8FWdFdRHni5X9jgsaCCv/ZEKpRbDgISu2Vf0ek39Lf&#43;QqfAzoynP8pi/IhG15pyXljFAsGI36FGdqo2XW6w=="
+></script>
+<script
+  type="text/javascript"
+  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
+  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
 ></script>
 
   <script type="text/javascript" src="/IndicatorPublic/js/accessible-autocomplete.min.20e7e606a030b0c1.js" integrity="sha512-oo28/kU49CzsZKQudUKfhzvYZkH&#43;oLMms6SAC1mRe5m4d9NxWwdAX/NpF&#43;2ePMCHP3tYplkF/1CM1C6MQnpfmg=="></script><script type="text/javascript" src="/IndicatorPublic/js/uhflist.b1536832e3971312.js" integrity="sha512-Ojx3jYf1cvDARSQmePsSFfMk&#43;i59zFIu/I6Xq8f9Ob7PldTwRb6IcoydnNE41ZxncucYAU1sW88itK/Cpna4gQ=="></script>
