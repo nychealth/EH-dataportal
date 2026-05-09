@@ -147,7 +147,7 @@ $(document).ready(function () {
             });
 
             subscribe_iframe.one('load', function () {
-                subscribe_placeholder.hide();
+                subscribe_placeholder.removeClass('d-flex').addClass('d-none');
                 subscribe_iframe.css('display', 'block');
             });
 
