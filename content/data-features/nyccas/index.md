@@ -38,9 +38,9 @@ The New York City Health Department (Health Department) established the New York
 * Track changes in air quality over time
 * Estimate air pollution exposures for health research
 * Help inform <a href="https://www.nyc.gov/content/climate/pages/planyc-getting-sustainabilty-done" target="_blank" rel="noopener">PlaNYC</a>, the City’s sustainability plan
-* Inform the public about local topics, such as [recent air quality improvements](../../data-stories/breatheeasy), [car-free zones](../../data-stories/aqts/), [changes in the sources of air pollution](../../data-stories/aq-cooking/), [unique air quality studies conducted in New York City](../../data-stories/air-quality-snapshots/), [efforts to reduce health impacts](../../data-stories/hia/), [public health benefits of public transit](../../data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods](../../data-stories/aq2/)
+* Inform the public about local topics, such as [recent air quality improvements]({{< relURL >}}data-stories/breatheeasy/), [car-free zones]({{< relURL >}}data-stories/aqts/), [changes in the sources of air pollution]({{< relURL >}}data-stories/aq-cooking/), [unique air quality studies conducted in New York City]({{< relURL >}}data-stories/air-quality-snapshots/), [efforts to reduce health impacts]({{< relURL >}}data-stories/hia/), [public health benefits of public transit]({{< relURL >}}data-stories/public-transit-creates-health/) and [differences in air quality and related health impacts across NYC neighborhoods]({{< relURL >}}data-stories/aq2/)
 * Develop <a href="https://treehug-app.its.unc.edu/trappa/" target="_blank" rel="noopener">a tool (TRAPPA) to show how policy changes can change local emissions</a>
-* Publish [initial air quality data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/)
+* Publish [initial air quality data from Congestion Relief Tolling]({{< relURL >}}data-stories/congestion-tolling-update/)
 
 This report:
 

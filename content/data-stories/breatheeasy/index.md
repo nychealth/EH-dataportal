@@ -32,8 +32,8 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=92", "text": "Air quality action days"},
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
+  {"src": "data-explorer/air-quality/?id=92", "text": "Air quality action days"},
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
 ]` >}}
 
 The air we breathe can have a major effect on our health — air pollution can make asthma worse and can cause heart disease, lung disease, strokes, and even cancer.
@@ -58,7 +58,7 @@ Over the years, though, the number of advisory days has gone down. That’s good
 
 ### What's behind this improvement?
 
-Since the winter of 2008/2009, the Health Department has been measuring air quality through the <a href="../../data-features/nyccas">NYC Community Air Survey (NYCCAS)</a>. It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
+Since the winter of 2008/2009, the Health Department has been measuring air quality through the <a href="{{< relURL >}}data-features/nyccas/">NYC Community Air Survey (NYCCAS)</a>. It’s the largest urban air monitoring program in the USA, and measures six different kinds of air pollution at about 100 locations around the city.
 
 <div class="wide my-4" aria-hidden="true">
 <iframe title="NYCCAS monitor locations" aria-label="Map" id="datawrapper-chart-d7DDS" src="https://datawrapper.dwcdn.net/d7DDS/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="656" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
@@ -95,7 +95,7 @@ So it’s good news that since monitoring neighborhood-level air pollution began
 
 <div class="narrow">
 
-By burning heating oil, New York City's buildings are responsible for about 22 percent of the city’s PM2.5 emissions—and traffic is responsible for another 17 percent (see a data story on the <a href="../traffic-and-air-pollution/">Public Health Impacts of PM2.5 from Traffic Air Pollution).</a> That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
+By burning heating oil, New York City's buildings are responsible for about 22 percent of the city’s PM2.5 emissions—and traffic is responsible for another 17 percent (see a data story on the <a href="{{< relURL >}}data-stories/traffic-and-air-pollution/">Public Health Impacts of PM2.5 from Traffic Air Pollution).</a> That means that reducing traffic and working to make sure that buildings burn cleaner fuel are great ways to clean up the air and help keep our air cleaner - and both are important parts of OneNYC, the city’s sustainability plan.
 
 But since 20 to 30 percent of PM2.5 in NYC comes from outside the city, rollbacks of federal regulations like the Clean Power Plan will also affect the quality of our air. The City is providing comments to the Environmental Protection Agency in support of stricter emissions standards for power plants, cars, and trucks so that NYC's air quality continues to improve.
 
