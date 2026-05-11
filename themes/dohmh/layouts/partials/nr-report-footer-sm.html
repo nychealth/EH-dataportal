@@ -21,10 +21,10 @@
                     <hr class="my-2">
                   </div>
                   <div class="fs-lg">
-                    {{- range $content.city -}}
-                    <a class="text-black">{{ if .link }}<a
-                        href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                    <hr class="my-2">
+                    {{- range $i, $item := $content.city -}}
+                    <a class="text-black">{{ if $item.link }}<a
+                        href="{{ $item.link }}">{{- end -}}{{ $item.copy }}{{ if $item.link }}</a>{{- end -}}</li>
+                    {{ if lt (add $i 1) (len $content.city) }}<hr class="my-2">{{ end }}
                     {{- end -}}
                 </div>
                 </div>
@@ -37,10 +37,10 @@
                     <hr class="my-2">
                   </div>
                   <div class="fs-lg">
-                    {{- range $content.you -}}
-                    <a class="text-black">{{ if .link }}<a
-                        href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
-                    <hr class="my-2">
+                    {{- range $i, $item := $content.you -}}
+                    <a class="text-black">{{ if $item.link }}<a
+                        href="{{ $item.link }}">{{- end -}}{{ $item.copy }}{{ if $item.link }}</a>{{- end -}}</li>
+                    {{ if lt (add $i 1) (len $content.you) }}<hr class="my-2">{{ end }}
                     {{- end -}}
                 </div>
                 </div>
@@ -53,9 +53,9 @@
                     <hr class="my-2">
                   </div>
                   <div class="fs-lg">
-                    {{- range $content.keytopic -}}
-                     <a href={{ urls.JoinPath ( relURL "key-topics" ) .link }}>{{ .text }}</a>
-                    <hr class="my-2">
+                    {{- range $i, $item := $content.keytopic -}}
+                     <a href={{ urls.JoinPath ( relURL "key-topics" ) $item.link }}>{{ $item.text }}</a>
+                    {{ if lt (add $i 1) (len $content.keytopic) }}<hr class="my-2">{{ end }}
                     {{- end -}}
                 </div>
                 </div>

@@ -16,33 +16,34 @@
                   </div>
                   <div class="fs-lg">
                     {{ if .Params.related }}
-                      {{ range .Params.related }}
+                      {{ $related := .Params.related }}
+                      {{ range $i, $item := $related }}
 
                       {{ $icon := "" }}
                       {{ $accent := "" }}
 
-                      {{ if in .url "data-stories" }}
+                      {{ if in $item.url "data-stories" }}
                         {{ $icon ="<i class='fas fa-passport' aria-hidden='true'></i>" }}
                         {{ $accent = "ds-accent" }}
 
-                      {{ else if in .url "data-explorer" }}
+                      {{ else if in $item.url "data-explorer" }}
                         {{ $icon = "<i class='fas fa-chart-line' aria-hidden='true'></i>" }}
                         {{ $accent = "de-accent" }}
 
-                      {{ else if in .url "data-features" }}
+                      {{ else if in $item.url "data-features" }}
                         {{ $icon = "<i class='fas fa-chart-bar' aria-hidden='true'></i>" }}
                         {{ $accent = "df-accent" }}
 
-                      {{ else if in .url "neighborhood-reports" }}
+                      {{ else if in $item.url "neighborhood-reports" }}
                         {{ $icon = "<i class='fas fa-map-marked-alt' aria-hidden='true'></i>" }}
                         {{ $accent = "nr-accent" }}
 
                       {{ end }}
 
-                        <a class="text-black" href={{ relURL .url }}>
-                          <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
+                        <a class="text-black" href={{ relURL $item.url }}>
+                          <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ $item.title }}
                         </a>
-                        <hr class="my-2">
+                        {{ if lt (add $i 1) (len $related) }}<hr class="my-2">{{ end }}
                       {{ end }}
 
                     {{ else }}
