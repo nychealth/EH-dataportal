@@ -76,21 +76,37 @@
         <!-- two-column xx and xx -->
 
         <div class="col-md-8 col-sm-12 mx-auto my-1">
-            <h2 class="h3 cp-sticky-header">Key sites</h2>
+            <h2 class="h3 cp-sticky-header">Methods</h2>
                 <div class="row">
-            <div class="col-6 mx-auto my-1 fs-xs">
-                    <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
+                        <div class="col-md-6">
+                                {{- with .Resources.GetMatch "monitors.md" -}}
+                                    {{ .Content }}
+                                {{- end -}}
+                        </div>
+
+                        <div class="col-md-6">
+                                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
+                        </div>
+
             </div>
-                <div class="col-6">
-                    {{- with .Resources.GetMatch "key-sites.md" -}}
-                        {{ .Content }}
-                    {{- end -}}
-                </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <h3 class="h4">EJ-Designated Community Site Analysis</h3>
+                <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the Health Department increased monitoring. These areas communities are:​</p>
+
             </div>
-        <div class="row">
             {{- with .Resources.GetMatch "ej-sites.md" -}}
             {{ .Content }}
             {{- end -}}
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-12">
+                <h4>Analysis</h4>
+                {{- with .Resources.GetMatch "analysis.md" -}}
+                    {{ .Content }}
+                {{- end -}}
+            </div>
         </div>
         </div>
 
@@ -103,24 +119,9 @@
     </div>
 
     <div class="row">
-        <div class="col-md-11 col-sm-12 mx-auto">
-            <h3 class="h3 cp-sticky-header px-2 my-1">Results from Environmental Justice sites</h3>
-        </div>
-    </div>
 
-    <!-- neighborhood snapshots begin -->
-
-    <div class="row my-1">
-        <div class="col-md-11 mx-auto col-sm-12 mb-2">
-            
-                <div class="col-10"> 
                     {{ partial "cp-chart.html" . }}
-                </div>
 
-
-                <!-- trying out without cards --> 
-    </div>
-    </div>
         
         
         
