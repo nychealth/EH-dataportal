@@ -143,13 +143,16 @@
                 orient: "left",
                 title: null,
             },
+            legend: {
+                orient: "top",
+                title: "",}
         },
         data: {
             url: "https://gist.githubusercontent.com/etorem/9d8b93de1eb9c992ff01a55fdebf4a78/raw/b780751967e9d6bba0c035eb45e4e7f6250d5517/EJ_pollutants_9.csv",
         },
         resolve: { scale: { y: "independent" } },
         transform: [
-        { filter: "datum.Site === 'Mott Haven'" },
+        { filter: "datum.Site === 'Mott Haven' || datum.Site === 'Van Wyck'" },
         {
           calculate: "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
           as: "UnitFmt",
@@ -191,11 +194,13 @@
                 encoding: {
                     y: { field: "UC", type: "quantitative" },
                     y2: { field: "LC", type: "quantitative" },
-                },
+                }
             },
             {
-                mark: { type: "line", color: "blue", strokeDash: [2, 2] },
-                encoding: { y: { field: "Average", type: "quantitative" } },
+                mark: { type: "line",  strokeDash: [2, 2] },
+                encoding: { 
+                    y: { field: "Average", type: "quantitative" },
+                    color: {field: "Site"} },
             },
             {
                 mark: { type: "circle", size: 100, color: "blue" },
@@ -205,7 +210,9 @@
                         type: "quantitative",
                         scale: { domainMin: 0, nice: false },
                     },
+                    color: {field: "Site"},
                     tooltip: [
+                    { field: "Site", title: "Site", type: "nominal" },    
                     { field: "Parameter", title: "Pollutant", type: "nominal" },
                     { field: "TimeLabel", title: "Period", type: "nominal" },
                     { field: "ValueWithUnit", title: "Average", type: "nominal" },
@@ -222,7 +229,7 @@
         // structuredClone first; fallback to JSON clone
         const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
         
-        spec.transform[0].filter = `datum.Site === '${site}'`;
+        spec.transform[0].filter = `datum.Site === '${site}' || datum.Site === 'Van Wyck'`;
         
         return spec;
     }
