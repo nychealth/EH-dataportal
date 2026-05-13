@@ -1132,14 +1132,13 @@
     
     
     
-    </script><p><strong>About the data:</strong> Data in this archive are hourly averaged measurements of PM2.5 from the New York City Community Air Survey&rsquo;s network of TSI DustTrak sensors. Different sensor technologies will result in different readings; we apply a correction factor to raw data, based on environmental factors, to better match federal regulatory sensors.</p>
-<p><strong>Measurements:</strong> The value shown is PM2.5 in micrograms per cubic meter of air (µg/m3). <code>ObservationTimeUTC</code> datetime stamp displayed is the beginning of the averaged PM2.5 measurements for the hour (e.g. 2/1/2020 1:00:00 AM (UTC) reflects data collected between 2/1/2020 1:00:00 AM (UTC) and 2/1/2020 1:59:00 AM (UTC)).</p>
-<p>External factors can sometimes affect monitor functioning. Data are preliminary and subject to change.</p>
-<p><strong>Change Log:</strong></p>
-<ul>
-<li>6/10/2024: Updated correction factor applied to all current and historical data. Data downloaded before this date may differ slightly from data downloaded after this date.</li>
-</ul>
-</div>
+    </script><hr>
+
+            <div id="rtaqReadme" class="pt-2">
+                 
+            </div>
+
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -1149,6 +1148,66 @@
 
 
 </article>
+
+<script>
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function markdownToHTML(md) {
+  const lines = md.split(/\r?\n/);
+  let html = "";
+  let paragraph = [];
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      html += `<p>${paragraph.join(" ")}</p>\n`;
+      paragraph = [];
+    }
+  }
+
+  for (let line of lines) {
+    line = line.trim();
+
+    
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+
+    
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      flushParagraph();
+      html += `<h2 class="h5">${escapeHTML(line.slice(2))}</h2>\n`;
+      continue;
+    }
+
+    
+    paragraph.push(escapeHTML(line));
+  }
+
+  flushParagraph();
+  return html;
+}
+
+
+fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
+  .then(r => r.text())
+  .then(md => {
+    document.getElementById("rtaqReadme").innerHTML = markdownToHTML(md);
+  });
+
+</script>
+
 
 
 
