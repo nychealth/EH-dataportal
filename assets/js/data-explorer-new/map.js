@@ -268,7 +268,7 @@ const renderMap = (
                         </div>
                     </div>
                 </div>
-                <div class="popup-note fs-xs">Data on rare health outcomes like this are only shown at the Citywide level, to protect privacy.</div>
+                <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
             </div>
         `;
         
