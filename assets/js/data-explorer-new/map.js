@@ -345,7 +345,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
             fillColor: value != null ? colorScale(value) : '#ccc',
             weight: 0.35,
             color: 'black',
-            fillOpacity: 0.8
+            fillOpacity: 0.65
         };
     };
 
