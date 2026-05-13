@@ -31,7 +31,7 @@ const renderDisparitiesChart = async (
     }
 
     if (linksViewNote) {
-        linksViewNote.innerHTML = 'The <strong>disparities view</strong> groups neighborhoods by poverty category to show how the selected measure varies across neighborhoods with different levels of poverty.';
+        linksViewNote.innerHTML = 'The <strong>disparities view</strong> groups neighborhoods by poverty category to show how this measure varies by neighborhood poverty.';
     }
 
     const primaryIndicatorName = indicatorName;
