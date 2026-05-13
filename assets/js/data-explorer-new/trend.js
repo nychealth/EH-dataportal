@@ -29,19 +29,19 @@ const appendTrendNote = (trendUnreliability, note) => {
 const getTrendLayoutConfig = (viewportWidth) => {
 
     let columns;
-    let xAxisLabelField;
+    let xAxisLabelField = 'fallbackYear'
 
     if (viewportWidth < 340) {
         columns = 1;
     } else if (viewportWidth < 440) {
         columns = 2;
-        xAxisLabelField = 'fallbackYear';
+        // xAxisLabelField = 'fallbackYear';
     } else if (viewportWidth < 1200) {
         columns = 3;
-        xAxisLabelField = 'fallbackYear';
+        // xAxisLabelField = 'fallbackYear';
     } else {
         columns = 6;
-        xAxisLabelField = 'TimePeriodSplit';
+        // xAxisLabelField = 'TimePeriodSplit';
     }
 
     let mobileLegend = null;

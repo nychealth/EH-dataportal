@@ -58,7 +58,7 @@ const renderCorrelate = (
         280,
         Math.round(
             deTabsPanel
-                ? deTabsPanel.getBoundingClientRect().width - 32
+                ? deTabsPanel.getBoundingClientRect().width - 64
                 : correlateHolder.getBoundingClientRect().width
         )
     );
@@ -185,7 +185,7 @@ const renderCorrelate = (
 
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
     const columns = window.innerWidth < 576 ? 3 : 6;
-    const height = window.innerWidth < 576 ? 350 : 500;
+    const height = window.innerWidth < 576 ? 350 : 400;
 
     const combinedUnreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2));
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
