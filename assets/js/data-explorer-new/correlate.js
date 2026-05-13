@@ -45,7 +45,7 @@ const renderCorrelate = (
     }
 
     if (linksViewNote) {
-        linksViewNote.innerHTML = 'The <strong>correlates view</strong> shows data at the finest available geography shared by both indicators on the chart. That means that the chart may show a different geography (or set of neighborhood boundaries) than what is on the map.';
+        linksViewNote.innerHTML = '<strong>Correlates</strong> shows data at the finest available geography for both indicators. It may be different than what is on the map.';
     }
 
     correlateHolder.classList.remove('hide');
@@ -191,7 +191,7 @@ const renderCorrelate = (
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
     // Show each distinct note once even if both joined measures repeat it.
-    unreliabilityHolder.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    unreliabilityHolder.innerHTML =  "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
     unreliabilityHolder.classList.add('hide');
 
     linksUnreliability.forEach(note => {

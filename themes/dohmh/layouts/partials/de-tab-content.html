@@ -150,10 +150,6 @@
                 DE table goes here
             </div>
 
-            <div id="table-unreliability" class="popup-note p-2 mt-2">
-                Unreliability flag
-            </div>
-
             <div id="tableFilterPanel" class="px-2 pb-2">
                 <div class="bg-white">
                     <div class="row">
@@ -180,9 +176,9 @@
                 </div>
             </div>
 
-            <!--
-            <img src={{ relURL "images/de-table.png" }} alt="">
-            -->
+            <div id="table-unreliability" class="popup-note p-2 mx-2">
+                Unreliability flag
+            </div>
 
             <div id="tableCopy" class="p-2 mt-2 sr-only">
             <p>
@@ -215,19 +211,12 @@
 
             <div id="trend" class="w-100" style="min-height: 400px"></div>
 
-            <div id="trend-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
-                <!-- INSERT UNRELIABILITY FLAGS HERE -->
-            </div>
-
-
-
-            <!--
-            <div class="card-body bg-white">
-                <img src={{ relURL "images/de-trend-chart.png" }} alt="">
-            </div>
-            -->
             <div class="chart-note">
                 <p id="trendViewNote" class="fs-sm">The <strong>trends view</strong> usually aggregates neighborhood-level data to the Borough level to show more stable trends. </p>
+            </div>
+
+            <div id="trend-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
 
             <div class="d-flex align-items-center pt-2">
@@ -271,24 +260,14 @@
                 </div>
             </div>
 
+            <div class="chart-note">
+                <p id="linksViewNote" class="fs-sm"><strong>Correlates</strong> shows data at the finest available geography for both indicators. It may be different than what is on the map.</p>
+
+            </div>
+
             <div id="links-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
                 <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
-
-            <!--
-            <div class="card-body bg-white">
-                <img src={{ relURL "images/de-correlate.png" }} alt="">
-            </div>
-            -->
-
-            <div class="chart-note">
-                <p id="linksViewNote" class="fs-sm">The <strong>correlates view</strong> shows data at the finest available geography shared by both indicators on the chart. That means that the chart may show a different geography (or set of neighborhood boundaries) than what is on the map.</p>
-
-            </div>
-
-            <!--
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-            -->
 
             <div class="d-flex align-items-center pt-2">
                 <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>

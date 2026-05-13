@@ -101,7 +101,7 @@ const renderDisparitiesChart = async (
 
     if (unreliabilityHolder) {
         // Show each note once even when both joined measures carry the same warning.
-        unreliabilityHolder.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+        unreliabilityHolder.innerHTML = "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
         unreliabilityHolder.classList.add('hide');
 
         disparityUnreliability.forEach(note => {

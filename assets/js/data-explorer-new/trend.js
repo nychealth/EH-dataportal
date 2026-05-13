@@ -80,7 +80,7 @@ const renderTrendNotes = (trendUnreliability, notes) => {
         return;
     }
 
-    trendUnreliability.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    trendUnreliability.innerHTML = "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
     trendUnreliability.classList.add('hide');
 
     notes.forEach(note => {

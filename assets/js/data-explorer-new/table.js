@@ -193,7 +193,7 @@ const updateTableReliabilityNotes = (rows) => {
     const tableUnreliabilityEl = document.getElementById('table-unreliability');
 
     // Start hidden, then reveal the notes block only when the filtered rows contribute note text.
-    tableUnreliabilityEl.innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> ";
+    tableUnreliabilityEl.innerHTML = "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
     tableUnreliabilityEl.classList.add('hide');
 
     tableUnreliability.forEach(element => {
