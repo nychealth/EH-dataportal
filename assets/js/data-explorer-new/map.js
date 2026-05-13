@@ -247,12 +247,45 @@ const renderMap = (
     if (metadata[0].AvailableGeoTypes.length === 1 && metadata[0].AvailableGeoTypes[0] === 'Citywide') {
         console.log(">>> CITYWIDE ONLY - Rendering citywide map");
         
-        // Render choro or bubble, as necessary
-
-        // Pop up the map popup, with additional content explaining citywide data
-
-        // Fire event to open the Trend chart
+        // Get the citywide data point
+        const citywideData = data[0];
         
+        // Create custom popup content for citywide
+        const citywidePopupContent = `
+            <div class="popup-content">
+                <div class="popup-header">
+                    <strong>NYC</strong>
+                </div>
+                <div class="popup-body">
+                    <div class="popup-row">
+                        <div class="popup-indicator">
+                            ${indicator.IndicatorName}
+                            <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
+                        </div>
+                        <div class="popup-value">
+                            <span class="value-number">${citywideData.Value}</span>
+                            <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-note fs-xs">Data on rare health outcomes like this are only shown at the Citywide level, to protect privacy.</div>
+            </div>
+        `;
+        
+        // Create and open the popup at the map center
+        const mapCenter = currentMap.getCenter();
+        L.popup()
+            .setLatLng([40.711409, -74.016813])
+            .setContent(citywidePopupContent)
+            .openOn(currentMap);
+
+            const element = document.getElementById('v-pills-trend');
+            if (element) {
+                element.click();
+            } else {
+                console.warn("Trend tab element not found for citywide map click-through.");
+            }
+
     }
 
     // ----------------------------------------------------------------------- //
