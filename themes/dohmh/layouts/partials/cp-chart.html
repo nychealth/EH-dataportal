@@ -373,6 +373,7 @@
                 updateDatawrapperChart(site);
                 
                 await draw(site);
+                if (typeof drawTODTraffic === "function") await drawTODTraffic(site);
             });
             
             btnWrap.appendChild(btn);
@@ -412,6 +413,7 @@
         
         renderButtons();
         updateDatawrapperChart(currentSite);
+        if (typeof drawTODTraffic === "function") await drawTODTraffic(currentSite);
         
         // Give datawrapper library time to load before initializing
         setTimeout(() => {

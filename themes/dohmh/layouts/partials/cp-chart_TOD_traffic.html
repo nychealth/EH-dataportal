@@ -1,6 +1,5 @@
-<div class="row justify-content-center">
-  <div class="col-2"></div>
-  <div class="col-10">
+<div id="cpTODTrafficSection" class="row justify-content-center" style="display:none;">
+  <div class="col-12">
     <div id="cpVisTOD" style="width: 100%"></div>
     <h3 class="h4 cp-sticky-header cp-sticky-only">
       Air pollution inside of the CRZ
@@ -85,7 +84,7 @@
       },
 
       spec: {
-        width: 150,
+        width: 200,
         height: 250,
         encoding: {
           x: {
@@ -166,17 +165,30 @@
       },
     };
 
-    async function drawTODTraffic() {
-      const el = document.getElementById(TOD_CONTAINER_ID);
-      if (!el) return;
+    const TOD_SITES = ["BQE", "Cross Bronx", "Deegan", "SI Expwy", "FDR", "Van Wyck", "Trans-Manhattan"];
 
-      el.innerHTML = ""; // clear previous render
+    async function drawTODTraffic(site) {
+      const section = document.getElementById("cpTODTrafficSection");
+      const el = document.getElementById(TOD_CONTAINER_ID);
+      if (!el || !section) return;
+
+      if (!TOD_SITES.includes(site)) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "";
+      el.innerHTML = "";
+
+      const spec =
+        typeof structuredClone === "function"
+          ? structuredClone(todTrafficSpec)
+          : JSON.parse(JSON.stringify(todTrafficSpec));
+
+      spec.transform[0].filter = `datum.Site === '${site}'`;
 
       try {
-        await vegaEmbed(el, todTrafficSpec, {
-          actions: false,
-          renderer: "canvas",
-        });
+        await vegaEmbed(el, spec, { actions: false, renderer: "canvas" });
       } catch (err) {
         console.error("TOD Traffic Vega render failed:", err);
         el.innerHTML =
@@ -191,8 +203,6 @@
         );
         return;
       }
-
-      await drawTODTraffic();
     });
   </script>
 </div>
