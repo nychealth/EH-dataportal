@@ -4,9 +4,7 @@ draft: false
 hide: true
 ---
 
-To see if congestion pricing affected air quality, we use a "difference in differences" study design. That means that we look at the air quality changes from a year before congestion pricing began, compared to a year with congestion pricing. 
-
-We expect there to be changes over time, some due to congestion pricing, and some due to broader factors: overall citywide trends, other emissions, and weather patterns. So, we compare these changes to the changes we see at a control site that is unaffected by congestion pricing. 
+To see if congestion pricing affected air quality, we use a statistical model called interrupted time series. With this design, we start with a year of data before congestion pricing, and we gathered a year of data with congestion pricing. We expect there to be changes over time: some due to congestion pricing, and some due to things like overall citywide trends, other emissions, and weather patterns. To determine if changes are due to congestion pricing, we compare changes we see at study sites to the changes we see at a control site that is unaffected by congestion pricing. 
 
 To date, this represents the most comprehensive evaluation of congestion pricing's impact on air quality.
 
