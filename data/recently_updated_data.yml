@@ -1,5 +1,11 @@
 ---
 featured:
+- copy: Rat inspections
+  link: mice-and-rats/?id=2434
+- copy: Rat indexing in Rat Mitigation Zones (RMZs)
+  link: mice-and-rats/?id=2433
+- copy: Foreign-born population
+  link: social-conditions/?id=14
 - copy: Adults with diabetes
   link: chronic-disease/?id=2465
 - copy: Adults with very high blood sugar levels (A1C > 9%)
@@ -10,9 +16,5 @@ featured:
   link: chronic-disease/?id=2468
 - copy: Residents living in a hurricane evacuation zone
   link: climate/?id=2140
-- copy: Accessible subway stations
-  link: accessibility/?id=2455
 - copy: Walking distance to an accessible subway station
   link: accessibility/?id=2458
-- copy: Public bathroom availability
-  link: accessibility/?id=2457
