@@ -1,0 +1,198 @@
+<div class="row justify-content-center">
+  <div class="col-2"></div>
+  <div class="col-10">
+    <div id="cpVisTOD" style="width: 100%"></div>
+    <h3 class="h4 cp-sticky-header cp-sticky-only">
+      Air pollution inside of the CRZ
+    </h3>
+    <div class="row py-2 border-top"></div>
+  </div>
+
+  <style>
+    .vega-embed {
+      height: 200px !important;
+    }
+  </style>
+
+  <script>
+    const TOD_CONTAINER_ID = "cpVisTOD";
+
+    // Base spec
+    const todTrafficSpec = {
+      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+
+      config: {
+        header: {
+          labelAlign: "left",
+          labelAnchor: "start",
+          labelFont: "Helvetica",
+          labelFontWeight: "bold",
+          labelFontSize: 12,
+        },
+
+        view: { stroke: null },
+        axisX: { labelAngle: 0, domain: false },
+        axisY: {
+          domain: false,
+          ticks: false,
+          tickCount: 3,
+          orient: "left",
+          title: null,
+        },
+
+        legend: { orient: "right", title: "" },
+
+        range: {
+          category: ["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"],
+        },
+      },
+
+      data: {
+        url: "https://gist.githubusercontent.com/etorem/9be058ffbdadae1aa1d32a656cd4bff7/raw/e0dc6a9c86f68a8c49515d2392cc46619eb7b975/rtpm-traffic_1.csv",
+      },
+
+      resolve: { scale: { y: "independent" } },
+
+      transform: [
+        { filter: "datum.Site === 'BQE'" },
+
+        {
+          calculate: "datum.Value + ' (' + datum.Units + ')'",
+
+          as: "ValueWithUnits",
+        },
+
+        {
+          calculate: "datum.Measure + ' (' + datum.Units + ')'",
+
+          as: "ParamWithUnit",
+        },
+
+        {
+          calculate:
+            "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+
+          as: "TimeLabel",
+        },
+      ],
+
+      facet: {
+        field: "ParamWithUnit",
+
+        title: null,
+
+        sort: ["Traffic (vehicles per hour)"],
+      },
+
+      spec: {
+        width: 150,
+        height: 250,
+        encoding: {
+          x: {
+            field: "Time",
+
+            type: "nominal",
+
+            sort: "descending",
+
+            title: null,
+          },
+        },
+        layer: [
+          {
+            mark: { type: "line", strokeDash: [0, 0] },
+
+            encoding: {
+              y: { field: "Value", type: "quantitative" },
+
+              color: {
+                field: "TOD",
+
+                scale: {
+                  domain: [
+                    "Morning rush",
+                    "Midday",
+                    "Evening rush",
+                    "Overnight",
+                  ],
+
+                  range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                },
+              },
+            },
+          },
+
+          {
+            mark: { type: "circle", size: 75 },
+
+            encoding: {
+              y: {
+                field: "Value",
+
+                type: "quantitative",
+
+                scale: { domainMin: 0, nice: false },
+              },
+
+              color: {
+                field: "TOD",
+
+                scale: {
+                  domain: [
+                    "Morning rush",
+                    "Midday",
+                    "Evening rush",
+                    "Overnight",
+                  ],
+
+                  range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                },
+              },
+
+              tooltip: [
+                { field: "Site", title: "Site", type: "nominal" },
+
+                { field: "TOD", title: "Time of day", type: "nominal" },
+
+                { field: "TimeLabel", title: "Period", type: "nominal" },
+
+                { field: "Measure", title: "Measure", type: "nominal" },
+
+                { field: "ValueWithUnits", title: "Value", type: "nominal" },
+              ],
+            },
+          },
+        ],
+      },
+    };
+
+    async function drawTODTraffic() {
+      const el = document.getElementById(TOD_CONTAINER_ID);
+      if (!el) return;
+
+      el.innerHTML = ""; // clear previous render
+
+      try {
+        await vegaEmbed(el, todTrafficSpec, {
+          actions: false,
+          renderer: "canvas",
+        });
+      } catch (err) {
+        console.error("TOD Traffic Vega render failed:", err);
+        el.innerHTML =
+          "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      if (typeof vegaEmbed !== "function") {
+        console.error(
+          "vegaEmbed not available. Are the Vega scripts loaded above this script?",
+        );
+        return;
+      }
+
+      await drawTODTraffic();
+    });
+  </script>
+</div>

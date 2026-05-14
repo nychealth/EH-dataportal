@@ -68,26 +68,14 @@
                         </div>
                     </div>
     
-                    <div class="col-md-6 mt-2">
-                        <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
-                        <p>Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day. While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.​</p>
+    <div class="col-md-6 mt-2">
+        <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
+            <p>Traffic and truck-related pollutants (PM2.5, BC) decreased after CRZ tolling began during all periods of the day. While traffic was highest during morning rush hours, PM2.5 levels varied slightly over the day due to the influence of other sources like heating systems in buildings, restaurant cooking and construction.​</p>
+
+            {{ partial "cp-chart_TOD_traffic.html" . }}
+        
                         
-    <!-- note that these numbers do not line up so make sure the new/real data matches these claims --> 
-      <div class="row">
-        <div class="col-12 my-1">
-            <div style="min-height:200px" id="datawrapper-vis-uKU2j"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/uKU2j/embed.js" charset="utf-8" data-target="#datawrapper-vis-uKU2j"></script><noscript><img src="https://datawrapper.dwcdn.net/uKU2j/full.png" alt="Arrow Plot" /></noscript></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 my-1">
-            <div style="min-height:200px" id="datawrapper-vis-kzIZl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/kzIZl/embed.js" charset="utf-8" data-target="#datawrapper-vis-kzIZl"></script><noscript><img src="https://datawrapper.dwcdn.net/kzIZl/full.png" alt="Arrow Plot" /></noscript></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 my-1">
-            <div style="min-height:200px" id="datawrapper-vis-vEUVy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vEUVy/embed.js" charset="utf-8" data-target="#datawrapper-vis-vEUVy"></script><noscript><img src="https://datawrapper.dwcdn.net/vEUVy/full.png" alt="Arrow Plot" /></noscript></div>
-        </div>
-    </div>
+ 
     </div>
                    
     </div> 
@@ -121,6 +109,9 @@
         "FDR",
         "Trans-Manhattan",
         "Van Wyck",
+        "CRZ",
+        "Rest of City",
+        "Region"
     ];
     
     // Site-specific text content
@@ -131,7 +122,10 @@
         "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>ENTER VAN Wyck text.</p>",
         "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER SI EXPWY TEXT</p>",
         "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
-        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER TRANS-MANHATTAN TEXT</p>"
+        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>ENTER TRANS-MANHATTAN TEXT</p>",
+        "CRZ": "<h3 class='h5'>The air quality in the Congestion Relief Zone (CRZ)...</h3><p style='display:inline;'>Along major roads inside the CRZ, daily average PM2.5 declined by 7%. ​In the neighborhoods within the CRZ, NO2 and NO went down by X% ​and PM2.5 and BC by X%.</p>",
+        "Rest of City": "<h3 class='h5'>The air quality in the Rest of City...</h3><p style='display:inline;'>Outside of the CRZ, pollution levels did not change.​ Average pollution levels in the region outside of NYC also did not change.</p>",
+        "Region": "<h3 class='h5'>The air quality in the rest of the region...</h3><p style='display:inline;'>At EPA monitoring sites on the map below, PM2.5, NO2 and O3 levels following the start of CRZ tolling were similar to levels prior to tolling.</p>",
     };
     
     // Datawrapper embed IDs for each site
@@ -150,7 +144,7 @@
     
     // Base spec
     const baseSpec = {
-        $schema: "https://vega.github.io/schema/vega-lite/v6.json",
+        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
         config: {
             header: {
                 labelAlign: "left",
