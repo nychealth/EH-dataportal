@@ -80,21 +80,25 @@
         pointer-events: none;
     }
 
-    #linksDropdownMenu {
+    .de-viz-pill-menu {
         max-height: 12rem;
         overflow-y: auto;
     }
 
-    #linksDropdownMenu .dropdown-item.active,
-    #linksDropdownMenu .dropdown-item:active,
-    #linksDropdownMenu .dropdown-item.active:focus,
-    #linksDropdownMenu .dropdown-item.active:hover {
+    .de-viz-pill-menu .dropdown-item {
+        white-space: normal;
+    }
+
+    .de-viz-pill-menu .dropdown-item.active,
+    .de-viz-pill-menu .dropdown-item:active,
+    .de-viz-pill-menu .dropdown-item.active:focus,
+    .de-viz-pill-menu .dropdown-item.active:hover {
         background-color: rgba(10, 64, 138, 0.08);
         color: #0a408a;
         font-weight: 600;
     }
 
-    #linksDropdownMenu .dropdown-header {
+    .de-viz-pill-menu .dropdown-header {
         color: #5c646d;
         font-size: 0.75rem;
     }
@@ -204,8 +208,10 @@
         </div>
         <div class="p-2 pt-md-0">
             <div id="trendPillControls" class="de-viz-pill-controls pt-1">
-                <div id="trendMeasurePills" class="de-viz-pill-group"></div>
-                <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                <div class="de-viz-pill-row">
+                    <div id="trendMeasurePills" class="de-viz-pill-group"></div>
+                    <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                </div>
                 <button class="badge badge-pill badge-light border-0 de-viz-pill-button" type="button" id="trendSyncButton">Sync to map</button>
             </div>
 
@@ -244,7 +250,7 @@
                                 <i class="fas fa-chevron-circle-down mr-1" aria-hidden="true"></i>
                                 <span id="linksToggleLabel">Show with</span>
                             </button>
-                            <div id="linksDropdownMenu" class="dropdown-menu dropdown-menu-right fs-sm" aria-labelledby="dropdownLinksMeasures">
+                            <div id="linksDropdownMenu" class="dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu" aria-labelledby="dropdownLinksMeasures">
                                 <!-- INSERT LINKED MEASURE OPTIONS HERE -->
                             </div>
                         </div>

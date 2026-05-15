@@ -519,14 +519,86 @@ const renderMeasures = async () => {
     };
 
 
-    const createBadgePillLabel = (label) => {
+    const createDropdownIdFragment = (label) => {
 
-        const span = document.createElement('span');
+        const nextIdFragment = String(label || 'option')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
 
-        span.className = 'de-viz-pill-label';
-        span.textContent = label;
+        return nextIdFragment || 'option';
 
-        return span;
+    };
+
+
+    const createBadgePillDropdown = ({
+        buttonClass,
+        label,
+        menuId
+    }) => {
+
+        const dropdown = document.createElement('div');
+        const button = document.createElement('button');
+        const icon = document.createElement('i');
+        const labelSpan = document.createElement('span');
+        const menu = document.createElement('div');
+
+        dropdown.className = 'dropdown d-inline-block';
+
+        button.type = 'button';
+        button.id = `${menuId}Toggle`;
+        button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+        button.dataset.baseLabel = label;
+        button.setAttribute('data-toggle', 'dropdown');
+        button.setAttribute('aria-haspopup', 'true');
+        button.setAttribute('aria-expanded', 'false');
+
+        icon.className = 'fas fa-chevron-circle-down mr-1';
+        icon.setAttribute('aria-hidden', 'true');
+
+        labelSpan.className = 'de-viz-pill-toggle-label';
+        labelSpan.textContent = label;
+
+        button.append(icon, labelSpan);
+
+        menu.id = menuId;
+        menu.className = 'dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu';
+        menu.setAttribute('aria-labelledby', button.id);
+
+        dropdown.append(button, menu);
+
+        return {
+            dropdown,
+            button,
+            menu
+        };
+
+    };
+
+
+    const setDropdownMenuItemState = (button, isActive) => {
+
+        if (!button) {
+            return;
+        }
+
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+    };
+
+
+    const setDropdownToggleLabel = (button, label) => {
+
+        if (!button) {
+            return;
+        }
+
+        const labelSpan = button.querySelector('.de-viz-pill-toggle-label');
+
+        if (labelSpan) {
+            labelSpan.textContent = label;
+        }
 
     };
 
@@ -608,7 +680,15 @@ const renderMeasures = async () => {
     // Clears active styling before one trend or comparison button is reselected.
     const clearTrendButtonState = () => {
 
-        document.querySelectorAll('.trendbutton, .comparisonbutton').forEach(button => {
+        trendMeasurePills?.querySelectorAll('.trendbutton').forEach(button => {
+            setDropdownMenuItemState(button, false);
+        });
+
+        trendComparisonPills?.querySelectorAll('.comparisonbutton').forEach(button => {
+            setDropdownMenuItemState(button, false);
+        });
+
+        document.querySelectorAll('.trenddropdown-toggle').forEach(button => {
             setBadgePillState(button, false);
         });
 
@@ -628,10 +708,11 @@ const renderMeasures = async () => {
             const comparisonId = getActiveComparisonId();
             const comparisonButton = comparisonId == null
                 ? null
-                : document.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
+                : trendComparisonPills?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
 
             if (comparisonButton) {
-                setBadgePillState(comparisonButton, true);
+                setDropdownMenuItemState(comparisonButton, true);
+                setBadgePillState(comparisonButton.closest('.dropdown')?.querySelector('.trenddropdown-toggle'), true);
             }
 
             return;
@@ -641,10 +722,11 @@ const renderMeasures = async () => {
         const trendMeasureId = getActiveTrendMeasureId();
         const trendButton = trendMeasureId == null
             ? null
-            : document.querySelector(`.trendbutton[data-measure-id='${trendMeasureId}']`);
+            : trendMeasurePills?.querySelector(`.trendbutton[data-measure-id='${trendMeasureId}']`);
 
         if (trendButton) {
-            setBadgePillState(trendButton, true);
+            setDropdownMenuItemState(trendButton, true);
+            setBadgePillState(trendButton.closest('.dropdown')?.querySelector('.trenddropdown-toggle'), true);
         }
 
     };
@@ -661,8 +743,36 @@ const renderMeasures = async () => {
             ? null
             : trendComparisonPills?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
         const comparisonLabel = comparisonButton?.textContent.trim() || 'No comparison';
+        const trendMeasureToggle = trendMeasurePills?.querySelector('.trenddropdown-toggle');
 
         const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
+
+        if (trendMeasureToggle) {
+            const trendToggleLabel = trendLabel === 'No borough trend'
+                ? 'Show by:'
+                : `Show by: ${trendLabel}`;
+
+            setDropdownToggleLabel(trendMeasureToggle, trendToggleLabel);
+            trendMeasureToggle.title = trendToggleLabel;
+            trendMeasureToggle.setAttribute('aria-label', `Trend measure menu. Current selection: ${trendLabel}.`);
+        }
+
+        trendComparisonPills?.querySelectorAll('.trenddropdown-toggle').forEach(button => {
+
+            const baseLabel = button.dataset.baseLabel || 'Comparison:';
+            const activeItem = button.closest('.dropdown')?.querySelector('.comparisonbutton.active');
+            const activeLabel = activeItem?.textContent.trim();
+            const nextLabel = activeLabel ? `${baseLabel} ${activeLabel}` : baseLabel;
+
+            setDropdownToggleLabel(button, nextLabel);
+            button.title = activeLabel
+                ? `${baseLabel} ${activeLabel}`
+                : baseLabel;
+            button.setAttribute('aria-label', activeLabel
+                ? `${baseLabel} Current selection: ${activeLabel}.`
+                : `${baseLabel} comparison menu.`);
+
+        });
 
         if (trendSyncButton) {
             trendSyncButton.title = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
@@ -722,19 +832,31 @@ const renderMeasures = async () => {
 
         if (trendMeasures.length > 0 && trendMeasurePills) {
 
-            trendMeasurePills.appendChild(createBadgePillLabel('Show by:'));
+            const {
+                dropdown: trendMeasureDropdown,
+                menu: trendMeasureMenu
+            } = createBadgePillDropdown({
+                buttonClass: 'trenddropdown-toggle',
+                label: 'Show by:',
+                menuId: 'trendMeasureDropdownMenu'
+            });
 
             // One button per trend-capable measure keeps borough trend choices flat.
             trendMeasures.forEach(measure => {
-                trendMeasurePills.appendChild(createBadgePillButton({
-                    buttonClass: 'trendbutton',
-                    label: measure.MeasurementType,
-                    title: measure.MeasurementType,
-                    dataAttributes: {
-                        measureId: String(measure.MeasureID)
-                    }
-                }));
+
+                const button = document.createElement('button');
+
+                button.type = 'button';
+                button.className = 'dropdown-item trendbutton';
+                button.textContent = measure.MeasurementType;
+                button.title = measure.MeasurementType;
+                button.dataset.measureId = String(measure.MeasureID);
+
+                trendMeasureMenu.appendChild(button);
+
             });
+
+            trendMeasurePills.appendChild(trendMeasureDropdown);
 
             // Measure picks immediately leave comparison mode and render borough trend.
             trendMeasurePills.onclick = event => {
@@ -774,9 +896,17 @@ const renderMeasures = async () => {
 
                 const titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title));
                 const comparisonGroup = document.createElement('div');
+                const {
+                    dropdown: comparisonDropdown,
+                    menu: comparisonMenu
+                } = createBadgePillDropdown({
+                    buttonClass: 'trenddropdown-toggle',
+                    label: `${title}:`,
+                    menuId: `trendComparisonDropdownMenu-${createDropdownIdFragment(title)}`
+                });
 
                 comparisonGroup.className = 'de-viz-pill-group';
-                comparisonGroup.appendChild(createBadgePillLabel(`${title}:`));
+                comparisonGroup.appendChild(comparisonDropdown);
 
                 // Group related comparisons under one legend title for shorter menus.
                 const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
@@ -817,14 +947,15 @@ const renderMeasures = async () => {
 
                     }
 
-                    comparisonGroup.appendChild(createBadgePillButton({
-                        buttonClass: 'comparisonbutton',
-                        label: buttonLabel,
-                        title: buttonTitle,
-                        dataAttributes: {
-                            comparisonId: String(comp)
-                        }
-                    }));
+                    const button = document.createElement('button');
+
+                    button.type = 'button';
+                    button.className = 'dropdown-item comparisonbutton';
+                    button.textContent = buttonLabel;
+                    button.title = buttonTitle;
+                    button.dataset.comparisonId = String(comp);
+
+                    comparisonMenu.appendChild(button);
 
                 });
 
