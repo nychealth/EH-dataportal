@@ -4,7 +4,7 @@ shortTitle: Food safety 101
 date: 2026-01-24T09:01:00-04:00
 draft: false
 seo_title: "Tracking food poisoning outbreaks in NYC"
-seo_description: "A data story about understanding the ."
+seo_description: "A data story about understanding food safety and how NYC tracks and prevents outbreaks."
 tags:
 categories: ["foodanddrink"]
 keywords:
@@ -30,7 +30,7 @@ related:
 
 Each year, the NYC Health Department receives thousands of complaints of foodborne illness, commonly called “food poisoning.” When two or more people get sick after consuming a common food or drink, we investigate a potential foodborne illness outbreak.
 
-We start by reviewing 311 complaints about food poisoning from eating and drinking establishments., These include restaurants, food carts and trucks, bakeries, bars, cafeterias, catering services, correctional facilities, hospitals, delis, soup kitchens, and summer camps.
+We start by reviewing 311 complaints about food poisoning from eating and drinking establishments. These include restaurants, food carts and trucks, bakeries, bars, cafeterias, catering services, correctional facilities, hospitals, delis, soup kitchens, and summer camps.
 
 There are around 40,000 eating and drinking establishments in NYC. From 2012 to 2022, there were 268 confirmed foodborne illness outbreaks in these establishments. However, many foodborne illnesses are not reported, so the true number of outbreaks was likely higher.
 
@@ -139,7 +139,7 @@ Unsafe on-site food preparation practices cause three of the top five contributi
 
 Sick workers are the most common factor causing foodborne illness outbreaks with a confirmed cause. The Health Department requires that workers in eating establishments do not work when sick. We also promote <a href="https://www.nyc.gov/site/dca/about/paid-sick-leave-law.page">NYC’s law entitling all employees to sick leave.</a> To further promote safe on-site food preparation practices, we conduct routine inspections. You can find inspection results on <a href="https://a816-health.nyc.gov/ABCEatsRestaurants/#!/Search">ABC Eats.</a>
 
-While <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/?id=2065#display=summary">establishments that get “A” grades</a> have demonstrated better food safety practices than those with Bs or Cs, this doesn’t guarantee that people can’t get sick eating there. A restaurant may have excellent food safety practices, but contamination and improper food handling can also occur in a food’s natural environment, or during harvesting, processing, or shipping. In NYC, 11% of foodborne illness outbreaks were caused by contamination before the food reached the establishment. If you get sick after eating at an establishment, it’s still important to <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02051">report suspected foodborne illness to 311. The Health Department will investigate and work to prevent more illnesses.</a>
+While <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/restaurant-food-safety/?id=2065#display=summary">establishments that get “A” grades</a> have demonstrated better food safety practices than those with Bs or Cs, this doesn’t guarantee that people can’t get sick eating there. A restaurant may have excellent food safety practices, but contamination and improper food handling can also occur in a food’s natural environment, or during harvesting, processing, or shipping. In NYC, 11% of foodborne illness outbreaks were caused by contamination before the food reached the establishment. If you get sick after eating at an establishment, it’s still important to <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02051">report suspected foodborne illness to 311.</a> The Health Department will investigate and work to prevent more illnesses.
 
 ### Case studies of real foodborne illness outbreaks occurring in NYC
 
