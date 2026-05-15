@@ -6,20 +6,22 @@ draft: false
 seo_title: "Tracking food poisoning outbreaks in NYC"
 seo_description: "A data story about understanding the ."
 tags:
-categories:
-  ["housing", "inequality", "climatehealth", "neighborhoods", "accessibility"]
+categories: ["foodanddrink"]
 keywords:
   [
     "food safety",
     "foodborne illness",
     "food safety inspections",
     "food poisoning outbreaks",
+    "eating",
+    "food",
+    "restaurants",
   ]
 image: Kitchenwhitehouse.jpg
 photocredit: Samantha Appleton / United states of America
 related:
-  - title: "Heat Vulnerability Index"
-    url: "data-features/hvi/"
+  - title: "NYC is working to protect your health — but we can’t do it alone"
+    url: "data-stories/federal-funding/"
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
   - title: "Rat Mitigation Zone report"
