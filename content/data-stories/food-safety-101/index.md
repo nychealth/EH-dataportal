@@ -11,21 +11,19 @@ categories:
 keywords:
   [
     "food safety",
-    "heat",
-    "inequities",
-    "affordable housing",
-    "social determinants",
-    "air conditioning",
+    "foodborne illness",
+    "food safety inspections",
+    "food poisoning outbreaks",
   ]
-image: AC_buildings.jpg
-photocredit: Photographer/Mayoral Photography Office, City of New York or NYC
+image: Kitchenwhitehouse.jpg
+photocredit: Samantha Appleton / United states of America
 related:
   - title: "Heat Vulnerability Index"
     url: "data-features/hvi/"
-  - title: "How power outages affect health"
+  - title: "What hot weather means for food safety"
     url: "data-stories/food/"
-  - title: "The urban heat island effect in NYC"
-    url: "data-stories/urban-heat-island/"
+  - title: "Rat Mitigation Zone report"
+    url: "data-features/rat-report/"
 ---
 
 Each year, the NYC Health Department receives thousands of complaints of foodborne illness, commonly called “food poisoning.” When two or more people get sick after consuming a common food or drink, we investigate a potential foodborne illness outbreak.
@@ -38,9 +36,9 @@ There are around 40,000 eating and drinking establishments in NYC. From 2012 to 
 
 <strong>There are three main ways food can become unsafe to eat:</strong>
 
-- <strong>Contamination: pathogens, like bacteria, or other hazards get into food.</strong> Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.
+- <strong>Contamination: pathogens, like bacteria, or other hazards get into food.</strong> Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.<br><br>
 
-- <strong>Proliferation: pathogens or toxins already in food proliferate (grow) to dangerous levels.</strong>When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.
+- <strong>Proliferation: pathogens or toxins already in food proliferate (grow) to dangerous levels.</strong> When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.<br><br>
 
 - <strong>Survival: pathogens survive a process meant to kill them.</strong> Pathogens can survive when cooking, freezing, pasteurization, or acidification processes are incomplete.<br><br>
 
