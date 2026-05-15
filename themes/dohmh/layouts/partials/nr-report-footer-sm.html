@@ -54,7 +54,7 @@
                   </div>
                   <div class="fs-lg">
                     {{- range $content.keytopic -}}
-                     <a href="../../../key-topics/{{ .link }}">{{ .text }}</a>
+                     <a href={{ urls.JoinPath ( relURL "key-topics" ) .link }}>{{ .text }}</a>
                     <hr class="my-2">
                     {{- end -}}
                 </div>

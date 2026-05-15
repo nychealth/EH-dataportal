@@ -23,6 +23,32 @@
     </div>
     </div>
 
+  <!-- Invisible button to trigger cold modal --> 
+
+  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="wzModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
+        </div>
+        <div class="modal-body">
+          <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+              <ul>
+                  <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
+                  <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
+                  <li><a href="https://www.nyc.gov/site/hpd/services-and-information/heat-and-hot-water-information.page">Heat and hot water info</a></li>
+                  <li><a href="https://portal.311.nyc.gov/article/?kanumber=KA-03702">Warming centers</a></li>
+              </ul>
+              </p>
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
   <!-- Invisible button to trigger modal -->
   <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
@@ -38,6 +64,8 @@
                 <ul>
                   <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
                   <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
+                  <li><a href="google.com">All Air Quality data and resources</a></li>
+                  <!-- add additional resources -->
                 </ul>
               </p>
         </div>
@@ -67,11 +95,17 @@ async  function initialize() {
       const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
       console.log(`NYC High Temp: ${high}°F`);
 
+      // Step 4: Extract the low temp from the first daytime period
+      const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
+      console.log(`NYC Low Temp: ${low}°F`);
+
       if (high > 85) {
         fireHeatModal(high)
         document.getElementById('forecasthigh').textContent = high + '°F'
+       } else if (low < 32) {
+        fireColdModal(low)
+        document.getElementById('forecastlow').textContent = low + '°F'
       } else {}
-
 
     // get AQI API to retrieve forecast AQI
     fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
@@ -101,6 +135,16 @@ async  function initialize() {
       button.click();
 
   }
+
+  function fireColdModal(x) {
+    var button = document.getElementById('openModalBtnC');
+    button.addEventListener('click', function() {
+        console.log('cold modal fired.');
+    });
+
+    button.click();
+
+}
 
   function fireAQmodal(aqi) {
     var button = document.getElementById('openModalBtn2')

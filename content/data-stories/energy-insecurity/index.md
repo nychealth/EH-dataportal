@@ -73,7 +73,7 @@ But 34% of energy-insecure New Yorkers reduced or did not use air conditioning d
 
 Rented units with cracks, gaps, or holes in need of maintenance are also more expensive to heat and cool.
 
-New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards](../../data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels](../../data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
+New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards]({{< relURL >}}data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels]({{< relURL >}}data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
 
 <div class= "my-4">
 <div aria-hidden="true">

@@ -10,8 +10,6 @@ categories:
 keyTopic: 
 keywords: 
 layout: indicator-catalog
-
-
 aliases: data-reference
 ---
 

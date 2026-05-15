@@ -103,7 +103,7 @@ const renderLinksChart = (
             yTimePeriod    = primaryTimePeriod;
             xIndicatorName = secondaryIndicatorName;
             yIndicatorName = primaryIndicatorName;
-            xAxisLabel     = [secondaryIndicatorName, `${secondaryMeasurementType}, ${secondaryMetadata[0].DisplayType} (${secondaryTimePeriod})`]
+            xAxisLabel     = [secondaryIndicatorName, `${secondaryMeasurementType}${secondaryMetadata[0].DisplayType && `, ${secondaryMetadata[0].DisplayType}`} (${secondaryTimePeriod})`]
             yAxisLabel     = primaryMeasurementDisplay + ` (${yTimePeriod})` 
             break;
         case 'y':
@@ -120,7 +120,7 @@ const renderLinksChart = (
             yTimePeriod    = secondaryTimePeriod;
             xIndicatorName = primaryIndicatorName;
             yIndicatorName = secondaryIndicatorName;
-            xAxisLabel     = [primaryIndicatorName, `${primaryMeasurementType}, ${primaryMetadata[0].DisplayType} (${primaryTimePeriod})`]
+            xAxisLabel     = [primaryIndicatorName, `${primaryMeasurementType}${primaryMetadata[0].DisplayType && `, ${primaryMetadata[0].DisplayType}`} (${primaryTimePeriod})`]
             yAxisLabel     = secondaryMeasurementDisplay + ` (${yTimePeriod})`  
             break;
     }

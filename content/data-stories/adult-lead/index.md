@@ -15,16 +15,6 @@ keywords:
     "worker health",
     "elevated blood lead levels",
   ]
-tags:
-keywords:
-  [
-    "lead",
-    "lead poisoning",
-    "employment",
-    "workers",
-    "worker health",
-    "elevated blood lead levels",
-  ]
 image: OneWorldObservatory_TaggerYanceyIV_6565.jpg
 photocredit: "Tagger Yancey IV/NYC & Company"
 related:
@@ -37,7 +27,7 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/worker-health/?id=2209", "text": "Adult lead poisoning"}
+  {"src": "data-explorer/worker-health/?id=2209", "text": "Adult lead poisoning"}
 ]` >}}
 
 Lead is a harmful metal that can cause serious health issues. When lead poisoning makes headlines, the focus is usually on children’s health: Kids are at higher risk for lead exposure, which can cause developmental, learning and behavior issues.

@@ -219,6 +219,7 @@ Noise,KA-02125,2134,Disruptive Noise Exposure
 Dangerous Location or Situation,KA-01033,2135,Fall-related emergency department visits (age 65+)
 Dangerous Location or Situation,KA-01033,2136,Fall-related hospitalizations (age 65+)
 Know Your Zone,KA-03485,2140,Area in hurricane evacuation zone
+Hurricane Preparedness,KA-02810,2140,Area in hurricane evacuation zone
 Summer Heat Health Tips,KA-03034,2141,Daytime summer surface temperature
 Census,KA-03388,2142,Neighborhood Poverty (ACS)
 Greenstreets Program,KA-01554,2143,Vegetative cover
@@ -481,3 +482,15 @@ Housing Resources for People with Disabilities,KA-02800,2463,Self-care difficult
 People with Disabilities Service,KA-02386,2464,Vision difficulty
 Blindness and Low Vision Support,KA-02582,2464,Vision difficulty
 Students with Disabilities,KA-02442,2464,Vision difficulty
+Diabetes,KA-02687,2465,Adults with diabetes
+Diabetes,KA-02687,2466,Adults with very high blood sugar levels (A1C > 9%)
+Diabetes,KA-02687,2467,Lower extremity amputations (diabetes-related)
+Diabetes,KA-02687,2468,Dialysis patients (diabetes-related)
+Health Screenings,KA-02769,2465,Adults with diabetes
+Health Screenings,KA-02769,2466,Adults with very high blood sugar levels (A1C > 9%)
+Health Screenings,KA-02769,2467,Lower extremity amputations (diabetes-related)
+Health Screenings,KA-02769,2468,Dialysis patients (diabetes-related)
+Eating Healthy,KA-02734,2465,Adults with diabetes
+Eating Healthy,KA-02734,2466,Adults with very high blood sugar levels (A1C > 9%)
+Eating Healthy,KA-02734,2467,Lower extremity amputations (diabetes-related)
+Eating Healthy,KA-02734,2468,Dialysis patients (diabetes-related)
