@@ -32,16 +32,9 @@
   </div>
 </div>
 
-  <style>
-    .vega-embed {
-        height: 200px !important;
-    }
-</style>
-
   <script>
     const CP_CONTAINER2_ID = "cpVis2";
 
-    // Base spec
     const baseSpec_1 = {
       $schema: "https://vega.github.io/schema/vega-lite/v5.json",
       config: {
@@ -53,93 +46,65 @@
           labelFontSize: 12,
         },
         view: { stroke: null },
-        axisX: { labelAngle: 0, domain: false },
-        axisY: {
-          domain: false,
-          ticks: false,
-          tickCount: 3,
-          orient: "left",
-          title: null,
-        },
+        axisX: { labelAngle: 0, domain: true, grid: false },
+        axisY: { domain: false, ticks: false, title: null },
       },
       data: {
-        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/204ca4a6ac8808024ed84631157edc25/raw/5fdc0f7128a0780ae0211dd759058a13917c2e00/within_CRZ.csv",
+        url: "https://gist.githubusercontent.com/jgoldsmith-nyc/ae50455071bbe585f5b756e8af1e0146/raw/17a39c656c22e6060c840b080cc537211053e0b1/Q2_2025_regional_tables.csv",
       },
-      resolve: { scale: { y: "independent" } },
-      transform: [
-        { filter: "datum.Site === 'CRZ'" },
-        {
-          calculate: "replace(datum.Unit, '3', '³')",
-          as: "UnitFmt",
-        },
-        {
-          calculate: "datum.Parameter + ' (' + datum.UnitFmt + ')'",
-          as: "ParameterWithUnit",
-        },
-        {
-          calculate: "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? format(datum.Average, '.2f') + ' ' + datum.UnitFmt + ' (' + format(datum.LC, '.2f') + ', ' + format(datum.UC, '.2f') + ')' : format(datum.Average, '.2f') + ' ' + datum.UnitFmt",
-          as: "ValueWithUnit",
-        },
-        {
-          calculate:
-            "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-          as: "TimeLabel",
-        },
-      ],
-      facet: { field: "ParameterWithUnit", title: null },
+      resolve: { scale: { x: "independent", y: "independent" } },
+      facet: { field: "Parameter", title: null },
       spec: {
-        width: 150,
-        height: 250,
+        width: 180,
+        height: { step: 22 },
         encoding: {
-          x: {
-            field: "Time",
+          y: {
+            field: "Site Name",
             type: "nominal",
-            sort: "descending",
             title: null,
+            axis: { labelLimit: 160 },
           },
         },
         layer: [
           {
-            mark: {
-              type: "rule",
-              strokeWidth: 5,
-              color: "lightgray",
-              strokeCap: "round",
-            },
+            mark: { type: "rule", color: "lightgray", strokeWidth: 4, strokeCap: "round" },
             encoding: {
-              y: { field: "UC", type: "quantitative" },
-              y2: { field: "LC", type: "quantitative" },
+              x: { field: "HistoricalMin", type: "quantitative", title: "Historical range  /  Q2 2025" },
+              x2: { field: "HistoricalMax" },
             },
           },
           {
-            mark: { type: "line", color: "blue", strokeDash: [2, 2] },
-            encoding: { y: { field: "Average", type: "quantitative" } },
-          },
-          {
-            mark: { type: "circle", size: 100, color: "blue" },
+            mark: { type: "point", filled: true, size: 80 },
             encoding: {
-              y: {
-                field: "Average",
-                type: "quantitative",
-                scale: { domainMin: 0, nice: false },
+              x: { field: "Arithmetic Mean", type: "quantitative", title: "" },
+              color: {
+                field: "State",
+                type: "nominal",
+                legend: { title: null, orient: "top" },
+                scale: {
+                  domain: ["New York", "New Jersey", "Connecticut"],
+                  range: ["#2b6cb0", "#276749", "#9b2c2c"],
+                },
               },
               tooltip: [
-                { field: "Parameter", type: "nominal", title: "Pollutant" },
-                { field: "TimeLabel", type: "nominal", title: "Period" },
-                { field: "ValueWithUnit", type: "nominal", title: "Average" },
+                { field: "Site Name", type: "nominal", title: "Site" },
+                { field: "State", type: "nominal", title: "State" },
+                { field: "Arithmetic Mean", type: "quantitative", title: "Q2 2025", format: ".3f" },
+                { field: "HistoricalMin", type: "quantitative", title: "Historical min", format: ".3f" },
+                { field: "HistoricalMax", type: "quantitative", title: "Historical max", format: ".3f" },
               ],
             },
           },
         ],
       },
-      columns: 5,
+      columns: 3,
     };
 
     async function draw_crz() {
       const el = document.getElementById(CP_CONTAINER2_ID);
       if (!el) return;
 
-      el.innerHTML = ""; // clear previous render
+      el.innerHTML = "";
 
       try {
         await vegaEmbed(el, baseSpec_1, {
@@ -155,9 +120,7 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       if (typeof vegaEmbed !== "function") {
-        console.error(
-          "vegaEmbed not available. Are the Vega scripts loaded above this script?"
-        );
+        console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
         return;
       }
 
