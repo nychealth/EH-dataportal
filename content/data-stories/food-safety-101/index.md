@@ -4,7 +4,7 @@ shortTitle: Food safety 101
 date: 2026-01-24T09:01:00-04:00
 draft: false
 seo_title: "Tracking food poisoning outbreaks in NYC"
-seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
+seo_description: "A data story about understanding the ."
 tags:
 categories:
   ["housing", "inequality", "climatehealth", "neighborhoods", "accessibility"]
@@ -36,18 +36,48 @@ There are around 40,000 eating and drinking establishments in NYC. From 2012 to 
 
 <a href="https://www.cdc.gov/mmwr/volumes/67/ss/ss6710a1.htm">Over half of reported foodborne illness outbreaks nationwide came from restaurant meals.</a>
 
-There are three main ways food can become unsafe to eat:
+<strong>There are three main ways food can become unsafe to eat:</strong>
 
-- <strong>Contamination</strong> – pathogens, like bacteria, or other hazards get into food
-  - Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.<br><br>
+- <strong>Contamination: pathogens, like bacteria, or other hazards get into food.</strong> Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.
 
-- <strong>Proliferation</strong> – pathogens or toxins already in food proliferate (grow) to dangerous levels
-  - When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.<br><br>
+- <strong>Proliferation: pathogens or toxins already in food proliferate (grow) to dangerous levels.</strong>When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.
 
-- <strong>Survival</strong> – pathogens survive a process meant to kill them.
-  - Pathogens can survive when cooking, freezing, pasteurization, or acidification processes are incomplete.<br>
+- <strong>Survival: pathogens survive a process meant to kill them.</strong> Pathogens can survive when cooking, freezing, pasteurization, or acidification processes are incomplete.<br><br>
 
-<div class="card card-left-border shadow-sm mb-2 fs-md">
+</div>
+
+<!-- cards for contributing factors
+<div class="wide my-4">
+  <div class="row">
+    <div class="col-4">
+      <div class="card card-left-border shadow-sm mb-2">
+          <div class="card-body">
+            <p><strong>Contamination:</strong><br> pathogens, like bacteria, or other hazards get into food. Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.<p>
+            </div>
+      </div>
+      </div>
+      <div class="col-4">
+      <div class="card card-left-border shadow-sm mb-2">
+          <div class="card-body">
+            <p><strong>Proliferation:</strong><br> pathogens or toxins already in food proliferate (grow) to dangerous levels. When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.<p>
+            </div>
+      </div>
+      </div>
+      <div class="col-4">
+      <div class="card card-left-border shadow-sm mb-2">
+          <div class="card-body">
+            <p><strong>Survival:</strong><br> pathogens survive a process meant to kill them. Pathogens can survive when cooking, freezing, pasteurization, or acidification processes are incomplete.<p>
+            </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  -->
+
+<div class="narrow">
+
+<div class="card card-left-border shadow-sm mb-2">
     <div class="card-body">   
       <p>If we suspect food is making people sick, the Health Department launches an investigation. Understanding how the food became unsafe is critical to determining the right fix. This could be correcting unsafe food handling practices, retraining staff, or tracing and removing the food from shelves and plates to keep people safe.<p>
       </div>
@@ -93,9 +123,9 @@ The Health Department uses both the environmental assessment and food interviews
 
 <div class="my-4">
 <div style="min-height:248px" id="datawrapper-vis-0KCMy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/0KCMy/embed.js" charset="utf-8" data-target="#datawrapper-vis-0KCMy"></script><noscript><img src="https://datawrapper.dwcdn.net/0KCMy/full.png" alt="Bar Chart" /></noscript></div>
-</div>
-
+<br>
 <figcaption class="figure-caption">This chart shows the most common contributing factors for the 142 foodborne illness outbreaks from 2012 to 2022 for which the Health Department could identify the cause.</figcaption>
+</div>
 
 <div class="narrow">
 
