@@ -4,9 +4,14 @@ draft: false
 hide: true
 ---
 
-To see if congestion pricing affected air quality, we use a statistical model called interrupted time series. With this design, we start with a year of data before congestion pricing, and we gathered a year of data with congestion pricing. We expect there to be changes over time: some due to congestion pricing, and some due to things like overall citywide trends, other emissions, and weather patterns. To determine if changes are due to congestion pricing, we compare changes we see at study sites to the changes we see at a control site that is unaffected by congestion pricing. 
+To see if congestion pricing affected air quality, we use a statistical model called **interrupted time series**. We use a year of data before congestion pricing, and a year of data after congestion pricing started. 
 
-To date, this represents the most comprehensive evaluation of congestion pricing's impact on air quality.
+Since many things affect air quality, we expect there to be changes over time. To determine if congestion pricing caused the changes, we compare changes at study sites to the changes at a control site, chosen because it's unaffected by congestion pricing.
+
+We run statistical calculations to see if the study site, affected by congestion pricing, experienced different changes than the control site, unaffected by congestion pricing. 
+
+In the example to the right, both sites saw a change. But the lines are parallel: the study site and the control site saw similar changes. Congestion pricing didn't affect the air quality. 
+
 
 <!--
 We compared monthly pollution levels at each EJ site before and after the start of CRZ tolling using a statistical model called interrupted time series (ITS). This model compared levels of pollution before and after go-live between the control site and each of the EJ-designated community sites to reveal the overall percent increase or decrease in pollution at each of these sites and a measure of how confident we are that that difference is true.

@@ -113,12 +113,20 @@
         </div>
         -->
 
-        <div class="row mt-2">
+        <div class="row mt-4">
             <div class="col-12">
                 <h4>Analysis</h4>
+            </div>
+            <div class="col-md-6">
                 {{- with .Resources.GetMatch "analysis.md" -}}
                     {{ .Content }}
                 {{- end -}}
+            </div>
+            <div class="col-md-6 px-2">
+                <div style="width:100%;" id="explainChart"></div>
+            </div>
+            <div class="col-12 mt-2">
+                <p>To date, this represents the most comprehensive evaluation of congestion pricing's impact on air quality.</p>
             </div>
         </div>
         </div>
@@ -298,5 +306,165 @@ $(function() {
     $window.on('scroll.cp-sticky', update);
     update();
 });
+
+
+function drawExplainChart() {
+const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": "container",
+    "height": 375,
+  "config": {
+    "header": {
+      "labelAlign": "left",
+      "labelAnchor": "start",
+      "labelFont": "Helvetica",
+      "labelFontWeight": "bold",
+      "labelFontSize": 12
+    },
+    "view": {"stroke": null},
+    "axisX": {"labelAngle": 0, "domain": false},
+    "axisY": {
+      "domain": false,
+      "ticks": false,
+      "tickCount": 3,
+      "orient": "left",
+      "title": null
+    },
+    "legend": {
+      "orient": "right",
+      "title": "",
+      "labelFontSize": 14,
+      "labelFontWeight": "bold",
+      "labelColor": {
+        "expr": "datum.label"
+      }
+    }
+  },
+  "data": {
+    "url": "https://gist.githubusercontent.com/etorem/61dee757df2abd7e83db09075989240e/raw/8f826bc1df5371ee8c9b1722b509946ce297caa2/EJ_pollutants_11.csv"
+  },
+  "resolve": {"scale": {"y": "shared"}},
+  "transform": [
+    {"filter": "datum.Site === 'Deegan' || datum.Site === 'Van Wyck'"},
+    {"filter": "datum.Parameter === 'PM2.5'"},
+    {
+      "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
+      "as": "UnitFmt"
+    },
+    {
+      "calculate": "datum.Site === 'Deegan' ? 'Study' : datum.Site === 'Van Wyck' ? 'Control' : datum.Site",
+      "as": "newName"
+    },
+    {
+      "calculate": "datum.Parameter + ' (' + datum.UnitFmt + ')'",
+      "as": "ParameterWithUnit"
+    },
+    {
+      "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Average + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Average + ' ' + datum.UnitFmt",
+      "as": "ValueWithUnit"
+    },
+    {
+      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+      "as": "TimeLabel"
+    }
+  ],
+    "encoding": {
+      "x": {
+        "field": "TimeLabel",
+        "type": "nominal",
+        "sort": ["Before congestion pricing", "With congestion pricing"],
+        "title": null
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rule",
+          "strokeWidth": 6,
+          "color": "black",
+          "opacity": 0.2,
+          "strokeCap": "round"
+        },
+        "encoding": {
+          "y": {"field": "UC", "type": "quantitative"},
+          "y2": {"field": "LC", "type": "quantitative"}
+        }
+      },
+      {
+        "mark": {"type": "line", "strokeDash": [2, 2]},
+        "encoding": {
+          "y": {"field": "Average", "type": "quantitative"},
+          "color": {"field": "newName",
+            "scale": {
+              "domain": ["Study", "Control"],
+              "range": ["blue", "darkorange"]
+            }
+  }
+        }
+      },
+      {
+        "mark": {"type": "circle", "size": 150},
+        "encoding": {
+          "y": {
+            "field": "Average",
+            "type": "quantitative",
+            "scale": {"domainMin": 0, "nice": false}
+          },
+          "color": {"field": "newName"},
+          "tooltip": [
+            {"field": "newName", "title": "Site", "type": "nominal"},
+            {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
+            {"field": "TimeLabel", "title": "Period", "type": "nominal"},
+            {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "TimeLabel": "Before congestion pricing",
+              "y": 7.15,
+              "label": "Is the gap between the\ntwo sites before tolling..."
+            },
+            {
+              "TimeLabel": "With congestion pricing",
+              "y": 7,
+              "label": "...different than it\n is after tolling?"
+            }
+          ]
+        },
+
+        "mark": {
+          "type": "text",
+          "dx": -50,
+          "lineBreak": "\n",
+          "align": "left",
+          "baseline": "middle",
+          "fontSize": 12,
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "x": {
+            "field": "TimeLabel",
+            "type": "nominal"
+          },
+          "y": {
+            "field": "y",
+            "type": "quantitative"
+          },
+          "text": {"field": "label"}
+        }
+      }
+    ]
+} 
+
+vegaEmbed('#explainChart', spec, { actions: false, renderer: 'canvas' });
+
+
+}
+
+drawExplainChart();
+
 </script>
 {{ end }}
