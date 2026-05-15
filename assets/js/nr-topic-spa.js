@@ -15,13 +15,17 @@
 //   - Demographics sidebar populated from uhflist.js.
 //   - Neighborhood persistence via URL query parameter.
 ;(function () {
+
+  console.log('bootstrap:start');
   var config = window.NR_TOPIC_SPA_CONFIG;
   if (!config || !config.sections || !config.sections.length) {
+    console.log('bootstrap:missing-config', config);
     return;
   }
 
   var mapContainer = document.getElementById('nr-map');
   if (!mapContainer) {
+    console.log('bootstrap:missing-map-container');
     return;
   }
 
@@ -51,17 +55,20 @@
   // --- URL param persistence ---
 
   function getNeighborhoodFromURL() {
+    console.log('getNeighborhoodFromURL:enter', window.location.search);
     var params = new URLSearchParams(window.location.search);
     return params.get('neighborhood') || '';
   }
 
   function setNeighborhoodInURL(name) {
+    console.log('setNeighborhoodInURL:enter', name);
     var url = new URL(window.location);
     url.searchParams.set('neighborhood', name);
     history.replaceState(null, '', url);
   }
 
   function updateTopicLinks(neighborhoodName) {
+    console.log('updateTopicLinks:enter', neighborhoodName);
     var links = document.querySelectorAll('.nr-topic-link');
     links.forEach(function (a) {
       var url = new URL(a.href, window.location.origin);
@@ -201,13 +208,16 @@
   }
 
   function renderDemographics(geocode) {
+    console.log('renderDemographics:enter', geocode);
     if (typeof neighborhoods === 'undefined' || geocode == null || geocode === '') {
+      console.log('renderDemographics:branch-clear-missing-neighborhoods-or-geocode');
       clearDemographicsSidebar();
       return;
     }
 
     var here = neighborhoods.filter(function (n) { return n.UHF_id == geocode; });
     if (!here.length) {
+      console.log('renderDemographics:branch-clear-no-match', geocode);
       clearDemographicsSidebar();
       return;
     }
@@ -359,8 +369,15 @@
   }
 
   function renderSection(section, neighborhoodName) {
+    console.log('renderSection:enter', {
+      sectionId: section && section.id,
+      neighborhoodName: neighborhoodName
+    });
     var container = document.getElementById(section.containerId);
-    if (!container) return;
+    if (!container) {
+      console.log('renderSection:branch-missing-container', section.containerId);
+      return;
+    }
 
     var byNeighborhood = sectionData[section.id] || {};
     var rows = byNeighborhood[neighborhoodName] || [];
@@ -368,6 +385,10 @@
     container.innerHTML = '';
 
     if (!rows.length) {
+      console.log('renderSection:branch-no-rows', {
+        sectionId: section.id,
+        neighborhoodName: neighborhoodName
+      });
       container.innerHTML =
         '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
       return;
@@ -383,6 +404,10 @@
   }
 
   function renderAll(neighborhoodName, mapGeocode) {
+    console.log('renderAll:enter', {
+      neighborhoodName: neighborhoodName,
+      mapGeocode: mapGeocode
+    });
     currentNeighborhood = neighborhoodName;
     renderedPanels = {};
     accordionCounter = 0;
@@ -397,6 +422,10 @@
             ? row0.geo_join_id
             : row0.geo_entity_id;
         if (gj != null && gj !== '') {
+          console.log('renderAll:branch-found-geocode-in-section', {
+            sectionId: sid,
+            geocode: gj
+          });
           currentGeocode = gj;
           break;
         }
@@ -408,10 +437,12 @@
       mapGeocode != null &&
       mapGeocode !== ''
     ) {
+      console.log('renderAll:branch-fallback-map-geocode', mapGeocode);
       currentGeocode = mapGeocode;
     }
 
     if (currentGeocode == null || currentGeocode === '') {
+      console.log('renderAll:branch-fallback-display-name-lookup', neighborhoodName);
       currentGeocode = getUhfIdForDisplayName(neighborhoodName);
     }
 
@@ -444,7 +475,11 @@
   // --- CSV download ---
 
   function downloadCSV() {
-    if (!vizTable || !currentNeighborhood) return;
+    console.log('downloadCSV:enter', { hasVizTable: !!vizTable, currentNeighborhood: currentNeighborhood });
+    if (!vizTable || !currentNeighborhood) {
+      console.log('downloadCSV:branch-missing-prereqs');
+      return;
+    }
 
     var csv = vizTable
       .select(aq.not('report_id', 'indicator_id', 'indicator_data_name', 'start_date', 'end_date'))
@@ -468,6 +503,12 @@
   // --- Vega map + bar chart ---
 
   function renderNRMap(data, destination, legendLabel, geocode) {
+    console.log('renderNRMap:enter', {
+      rowCount: data && data.length,
+      destination: destination,
+      legendLabel: legendLabel,
+      geocode: geocode
+    });
     var boroTopoUrl = config.dataRepo + config.dataBranch + '/geography/borough.topo.json';
     var uhfTopoUrl = config.dataRepo + config.dataBranch + '/geography/UHF42.topo.json';
 
@@ -602,14 +643,25 @@
   }
 
   function onAccordionExpand(event) {
+    console.log('onAccordionExpand:enter', event && event.target && event.target.id);
     var panel = event.target;
     var panelId = panel.id;
-    if (renderedPanels[panelId]) return;
+    if (renderedPanels[panelId]) {
+      console.log('onAccordionExpand:branch-already-rendered', panelId);
+      return;
+    }
 
     var indicatorName = panel.getAttribute('data-indicator-name');
     var geocode = panel.getAttribute('data-geocode') || currentGeocode;
     var mapEl = panel.querySelector('.nr-map-container');
-    if (!indicatorName || !mapEl || !vizTable) return;
+    if (!indicatorName || !mapEl || !vizTable) {
+      console.log('onAccordionExpand:branch-missing-prereqs', {
+        indicatorName: indicatorName,
+        hasMapEl: !!mapEl,
+        hasVizTable: !!vizTable
+      });
+      return;
+    }
 
     try {
       var summaryData = vizTable
@@ -626,13 +678,20 @@
         .objects();
 
       if (summaryData.length) {
+        console.log('onAccordionExpand:branch-render-map', {
+          panelId: panelId,
+          indicatorName: indicatorName,
+          summaryRows: summaryData.length
+        });
         mapEl.innerHTML = '';
         var legendLabel = panel.getAttribute('data-legend-label');
         if (!legendLabel || !String(legendLabel).trim()) {
+          console.log('onAccordionExpand:branch-default-legend-label');
           legendLabel = 'Value';
         }
         renderNRMap(summaryData, '#' + mapEl.id, legendLabel, geocode);
       } else {
+        console.log('onAccordionExpand:branch-no-summary-data', indicatorName);
         mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
       }
     } catch (e) {
@@ -722,7 +781,10 @@
     var name = geocodeToName(geocode) || layer.feature.properties.GEONAME;
     selectLayer(layer, true);
     if (dataReady) {
+      console.log('onMapClick:branch-render-all', { name: name, geocode: geocode });
       renderAll(name, geocode);
+    } else {
+      console.log('onMapClick:branch-data-not-ready', { name: name, geocode: geocode });
     }
   }
 
@@ -740,6 +802,7 @@
   }
 
   function initLeafletMap() {
+    console.log('initLeafletMap:enter', config.geojsonUrl);
     leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
 
     L.tileLayer(
@@ -755,6 +818,9 @@
     fetch(config.geojsonUrl)
       .then(function (response) { return response.json(); })
       .then(function (data) {
+        console.log('initLeafletMap:branch-geojson-loaded', {
+          featureCount: data && data.features && data.features.length
+        });
         uhfLayer = L.geoJSON(data, {
           style: styleFeature,
           onEachFeature: onEachFeature,
@@ -766,6 +832,7 @@
       })
       .catch(function (err) {
         console.error('Error loading UHF42 GeoJSON:', err);
+        console.log('initLeafletMap:branch-geojson-load-failed', err);
         mapReady = true;
         tryInitialRender();
       });
@@ -774,12 +841,18 @@
   // --- data loading ---
 
   function tryInitialRender() {
-    if (!dataReady || !mapReady) return;
+    console.log('tryInitialRender:enter', { dataReady: dataReady, mapReady: mapReady });
+    if (!dataReady || !mapReady) {
+      console.log('tryInitialRender:branch-waiting');
+      return;
+    }
 
     var fromURL = getNeighborhoodFromURL();
     if (fromURL) {
+      console.log('tryInitialRender:branch-from-url', fromURL);
       var layer = findLayerByName(fromURL);
       if (layer) {
+        console.log('tryInitialRender:branch-select-layer-from-url');
         selectLayer(layer, true);
       }
       renderAll(fromURL);
@@ -787,8 +860,13 @@
   }
 
   function checkAllLoaded() {
+    console.log('checkAllLoaded:enter', {
+      fetchesCompleteBefore: fetchesComplete,
+      totalFetches: totalFetches
+    });
     fetchesComplete++;
     if (fetchesComplete >= totalFetches) {
+      console.log('checkAllLoaded:branch-ready');
       dataReady = true;
       tryInitialRender();
     }
@@ -797,6 +875,7 @@
   // GitHub raw URLs must not contain literal spaces in the path; some clients
   // reject them or fail inconsistently. Encode the last path segment if needed.
   function normalizeReportUrl(url) {
+    console.log('normalizeReportUrl:enter', url);
     if (!url || url.indexOf(' ') === -1) return url;
     try {
       var u = new URL(url);
@@ -810,13 +889,19 @@
       }
       parts[parts.length - 1] = last;
       u.pathname = '/' + parts.join('/');
+      console.log('normalizeReportUrl:branch-encoded', u.href);
       return u.href;
     } catch (err) {
+      console.log('normalizeReportUrl:branch-parse-failed', err);
       return url;
     }
   }
 
   function loadSection(section) {
+    console.log('loadSection:enter', {
+      sectionId: section && section.id,
+      reportUrl: section && section.reportUrl
+    });
     fetch(normalizeReportUrl(section.reportUrl))
       .then(function (response) {
         if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -824,6 +909,10 @@
       })
       .then(function (data) {
         var rows = Array.isArray(data) ? data : [];
+        console.log('loadSection:branch-data-loaded', {
+          sectionId: section.id,
+          rowCount: rows.length
+        });
         var byNeighborhood = {};
 
         rows.forEach(function (row) {
@@ -846,23 +935,31 @@
       })
       .catch(function (error) {
         console.error('Error loading section "' + section.id + '":', error);
+        console.log('loadSection:branch-load-failed', {
+          sectionId: section.id,
+          error: error
+        });
         sectionData[section.id] = {};
       })
       .then(checkAllLoaded);
   }
 
   function loadVizData() {
+    console.log('loadVizData:enter', config.vizUrl);
     if (!config.vizUrl) {
+      console.log('loadVizData:branch-no-viz-url');
       checkAllLoaded();
       return;
     }
 
     aq.loadJSON(config.vizUrl, { autoMax: 10000, parse: { time: String } })
       .then(function (table) {
+        console.log('loadVizData:branch-data-loaded', table && table.numRows && table.numRows());
         vizTable = table;
       })
       .catch(function (error) {
         console.error('Error loading viz data:', error);
+        console.log('loadVizData:branch-load-failed', error);
         vizTable = null;
       })
       .then(checkAllLoaded);
