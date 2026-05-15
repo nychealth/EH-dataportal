@@ -4,11 +4,11 @@ draft: false
 hide: true
 ---
 
-To see if congestion pricing affected air quality, we use a statistical model called **interrupted time series**. We use a year of data before congestion pricing, and a year of data after congestion pricing started. 
+To see if congestion pricing affected air quality, we use a statistical model called **interrupted time series with control**. We use a year of data before congestion pricing, and a year of data after congestion pricing started - from study sites, and a control site. 
 
-Since many things affect air quality, we expect there to be changes over time. To determine if congestion pricing caused the changes, we compare changes at study sites to the changes at a control site, chosen because it's unaffected by congestion pricing.
+Since many things affect air quality, we expect there to be changes over time. To determine if congestion pricing caused the changes, we compare changes at study sites to the changes at a control site.
 
-We run statistical calculations to see if the study site, affected by congestion pricing, experienced different changes than the control site, unaffected by congestion pricing. 
+We run statistical calculations to see if the study site, affected by congestion pricing, experienced different changes than the control site, which is unaffected by congestion pricing. 
 
 In the example to the right, both sites saw a change. But the lines are parallel: the study site and the control site saw similar changes. Congestion pricing didn't affect the air quality. 
 
