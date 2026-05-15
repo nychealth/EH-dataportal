@@ -519,6 +519,18 @@ const renderMeasures = async () => {
     };
 
 
+    const createBadgePillLabel = (label) => {
+
+        const span = document.createElement('span');
+
+        span.className = 'de-viz-pill-label';
+        span.textContent = label;
+
+        return span;
+
+    };
+
+
     const createDropdownIdFragment = (label) => {
 
         const nextIdFragment = String(label || 'option')
@@ -586,22 +598,6 @@ const renderMeasures = async () => {
         button.setAttribute('aria-selected', isActive ? 'true' : 'false');
 
     };
-
-
-    const setDropdownToggleLabel = (button, label) => {
-
-        if (!button) {
-            return;
-        }
-
-        const labelSpan = button.querySelector('.de-viz-pill-toggle-label');
-
-        if (labelSpan) {
-            labelSpan.textContent = label;
-        }
-
-    };
-
     // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getSyncedTrendMeasureId = () => {
 
@@ -748,29 +744,18 @@ const renderMeasures = async () => {
         const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
 
         if (trendMeasureToggle) {
-            const trendToggleLabel = trendLabel === 'No borough trend'
-                ? 'Show by:'
-                : `Show by: ${trendLabel}`;
-
-            setDropdownToggleLabel(trendMeasureToggle, trendToggleLabel);
-            trendMeasureToggle.title = trendToggleLabel;
-            trendMeasureToggle.setAttribute('aria-label', `Trend measure menu. Current selection: ${trendLabel}.`);
+            trendMeasureToggle.title = 'Geography';
+            trendMeasureToggle.setAttribute('aria-label', `Trend measure menu for geography. Current selection: ${trendLabel}.`);
         }
 
         trendComparisonPills?.querySelectorAll('.trenddropdown-toggle').forEach(button => {
 
-            const baseLabel = button.dataset.baseLabel || 'Comparison:';
+            const baseLabel = button.dataset.baseLabel || 'Comparison';
             const activeItem = button.closest('.dropdown')?.querySelector('.comparisonbutton.active');
-            const activeLabel = activeItem?.textContent.trim();
-            const nextLabel = activeLabel ? `${baseLabel} ${activeLabel}` : baseLabel;
+            const activeLabel = activeItem?.textContent.trim() || 'No comparison';
 
-            setDropdownToggleLabel(button, nextLabel);
-            button.title = activeLabel
-                ? `${baseLabel} ${activeLabel}`
-                : baseLabel;
-            button.setAttribute('aria-label', activeLabel
-                ? `${baseLabel} Current selection: ${activeLabel}.`
-                : `${baseLabel} comparison menu.`);
+            button.title = baseLabel;
+            button.setAttribute('aria-label', `${baseLabel} comparison menu. Current selection: ${activeLabel}.`);
 
         });
 
@@ -837,9 +822,11 @@ const renderMeasures = async () => {
                 menu: trendMeasureMenu
             } = createBadgePillDropdown({
                 buttonClass: 'trenddropdown-toggle',
-                label: 'Show by:',
+                label: 'Geography',
                 menuId: 'trendMeasureDropdownMenu'
             });
+
+            trendMeasurePills.appendChild(createBadgePillLabel('Show by:'));
 
             // One button per trend-capable measure keeps borough trend choices flat.
             trendMeasures.forEach(measure => {
@@ -901,7 +888,7 @@ const renderMeasures = async () => {
                     menu: comparisonMenu
                 } = createBadgePillDropdown({
                     buttonClass: 'trenddropdown-toggle',
-                    label: `${title}:`,
+                    label: title,
                     menuId: `trendComparisonDropdownMenu-${createDropdownIdFragment(title)}`
                 });
 
@@ -1043,7 +1030,7 @@ const renderMeasures = async () => {
             ? 'Show with'
             : getLinksButtonLabel(activeLinksState.secondaryMeasureId);
 
-        linksToggleLabel.textContent = hasMultipleLinksOptions ? 'Show with' : activeSecondaryLabel;
+        linksToggleLabel.textContent = hasMultipleLinksOptions ? 'Measures' : activeSecondaryLabel;
 
         if (hasMultipleLinksOptions) {
             linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
