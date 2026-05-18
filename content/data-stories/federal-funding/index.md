@@ -15,8 +15,8 @@ related:
     url: "data-stories/restaurants-and-air-quality/"
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
-  - title: "What hot weather means for food safety"
-    url: "data-stories/food/"
+  - title: "Tracking food poisoning outbreaks in NYC"
+    url: "data-stories/food-safety-101/"
 ---
 
 New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating foodborne illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department's work supports the health of all New Yorkers.
