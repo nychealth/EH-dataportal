@@ -33,26 +33,8 @@
     <lastmod>2025-06-16T10:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/heat-report-archive/2024/</loc>
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/about/publications/</loc>
-    <lastmod>2026-01-20T13:30:21-05:00</lastmod></url><url>
-    <loc>/IndicatorPublic/</loc>
-    <lastmod>2026-01-20T13:30:21-05:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/"
-                /></url><url>
-    <loc>/IndicatorPublic/keywords/accessibility/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/categories/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod><xhtml:link
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/categories/"
@@ -65,14 +47,36 @@
                 hreflang="en"
                 href="/IndicatorPublic/categories/"
                 /></url><url>
-    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/internal/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-stories/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/data-stories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/data-stories/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/data-stories/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/eating/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/food/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/food-poisoning-outbreaks/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/food-safety/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/food-safety-inspections/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/foodanddrink/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/foodborne-illness/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/</loc>
-    <lastmod>2026-01-20T08:49:22-04:00</lastmod><xhtml:link
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod><xhtml:link
                 rel="alternate"
                 hreflang="es"
                 href="/IndicatorPublic/es/keywords/"
@@ -85,6 +89,34 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/restaurants/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/"
+                /></url><url>
+    <loc>/IndicatorPublic/data-stories/food-safety-101/</loc>
+    <lastmod>2026-05-18T09:01:00-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/about/publications/</loc>
+    <lastmod>2026-01-20T13:30:21-05:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/accessibility/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/data-visualization/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/how-we-work/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/internal/</loc>
+    <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/open-source/</loc>
     <lastmod>2026-01-20T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/redesign/</loc>
@@ -181,25 +213,7 @@
                 /></url><url>
     <loc>/IndicatorPublic/categories/climatehealth/</loc>
     <lastmod>2025-11-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/data-stories/</loc>
-    <lastmod>2025-11-04T08:49:22-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/data-stories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/data-stories/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/data-stories/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/federal-funding/</loc>
-    <lastmod>2025-11-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/food-safety/</loc>
-    <lastmod>2025-11-04T08:49:22-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/foodanddrink/</loc>
     <lastmod>2025-11-04T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/heat/</loc>
     <lastmod>2025-11-04T08:49:22-04:00</lastmod></url><url>
@@ -891,8 +905,6 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/covid-19/"
                 /></url><url>
-    <loc>/IndicatorPublic/keywords/restaurants/</loc>
-    <lastmod>2022-04-20T08:33:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/buildings/</loc>
     <lastmod>2022-03-22T19:30:55-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/cars/</loc>
@@ -926,8 +938,6 @@
     <loc>/IndicatorPublic/about/jobs/</loc>
     <lastmod>2021-11-24T13:30:21-05:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/drink/</loc>
-    <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/food/</loc>
     <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/food-desert/</loc>
     <lastmod>2021-11-17T12:01:22-05:00</lastmod></url><url>
@@ -1445,11 +1455,7 @@
     <lastmod>2019-11-25T13:24:52-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/breatheeasy/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/eating/</loc>
-    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/food-poisoning/</loc>
-    <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/foodborne-illness/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/grades/</loc>
     <lastmod>2019-10-24T08:18:56-04:00</lastmod></url><url>
