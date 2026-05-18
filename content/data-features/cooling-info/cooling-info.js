@@ -333,7 +333,7 @@ function runFinal() {
 
   // Message: warm, no AC, Fan
   if (maxTemp > 78 && hasAC === 'No' && hasFan === 'Yes') {
-    msg = `<p>💡 If it's cooler outside than inside, your fan can help cool you down. But if it's too hot, it can actually make you even warmer. <strong>It's better to spend time in AC</strong>.  <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>. Also, you can <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors">use your fan as a DIY air purifier for when the Air Quality Index is unhealthy</a>.</p>`
+    msg = `<p>💡 If it's cooler outside than inside, your fan can help cool you down. But if it's too hot, it can actually make you even warmer. <strong>It's better to spend time in an air-conditioned space</strong>.  <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>. Also, you can <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors#infographic">use your fan as a DIY air purifier for when the Air Quality Index is unhealthy</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 

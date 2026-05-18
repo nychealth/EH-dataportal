@@ -12,7 +12,7 @@ var content = [
     {
         "id": 1,
         "text": "Do any of these describe you or someone you live with?",
-        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
+        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnancy, diabetes, limited mobility, immunodeficiency, mental health, cognitive or developmental conditions </li> <li><strong>Life situations</strong>:  work or exercise outside, have limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
         "image": "Vulnerable_groups1.svg",
         "options": [
             {
@@ -126,7 +126,7 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if you're eligible for help cooling your home.",
+                "message": "Setting your air conditioner to 78F or low cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if you're eligible for help cooling your home.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
