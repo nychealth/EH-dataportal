@@ -27,6 +27,19 @@
 .cp-sticky-only.cp-is-fixed {
     visibility: visible;
 }
+/* Site badge styles */
+.site-badge {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.site-badge:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+.site-badge.active {
+    background-color: #18a1cd !important;
+    color: white !important;
+}
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -88,15 +101,15 @@
                                 <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
                                     <h3 class="h4">EJ-Designated Community Site Analysis</h3>
                                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the Health Department increased monitoring. These areas communities are:​ 
-                                        <span class="badge badge-light badge-pill">Deegan</span> 
-                                        <span class="badge badge-light badge-pill">Cross Bronx</span><span class="badge badge-light badge-pill">BQE</span>
-                                        <span class="badge badge-light badge-pill">SI Exwy</span>
-                                        <span class="badge badge-light badge-pill">FDR</span>
-                                        <span class="badge badge-light badge-pill">Trans-Manhattan</span>
-                                        <span class="badge badge-light badge-pill">Van Wyck</span></p>.
+                                        <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span> 
+                                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span><span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="si-exwy">SI Exwy</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="fdr">FDR</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="van-wyck">Van Wyck</span></p>.
                                         We analyzed the data from these monitors to understand how pollution levels changed in these communities after congestion pricing was implemented.</p>
                                         <div class="card card-header mb-0 fs-sm border">
-                                        <p>Copy about the selected area / location in this green box.</p>
+                                        <p id="site-info-box">Click on a site above to learn more about that community.</p>
                                         </div>
 
                         </div>
@@ -307,6 +320,30 @@ $(function() {
     update();
 });
 
+
+// Site information mapping
+const siteInfo = {
+    'deegan': 'The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).',
+    'cross-bronx': 'The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).',
+    'bqe': 'The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).',
+    'si-exwy': 'The Staten Island Expressway</strong> and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
+    'fdr': 'The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).',
+    'trans-manhattan': 'The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).',
+    'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
+};
+
+// Initialize badge click handlers
+$(function() {
+    $('.site-badge').on('click', function() {
+        var site = $(this).data('site');
+        var info = siteInfo[site] || 'No information available for this site.';
+        $('#site-info-box').text(info);
+        
+        // Optional: highlight the clicked badge
+        $('.site-badge').removeClass('active');
+        $(this).addClass('active');
+    });
+});
 
 function drawExplainChart() {
 const spec = {
