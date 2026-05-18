@@ -1,6 +1,6 @@
 ---
 title: Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why
-shortTitle: Food safety 101
+shortTitle: Foodborne illness 101
 date: 2026-01-24T09:01:00-04:00
 draft: false
 seo_title: "Tracking food poisoning outbreaks in NYC"
