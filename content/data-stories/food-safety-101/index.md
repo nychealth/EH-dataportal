@@ -1,7 +1,7 @@
 ---
 title: Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why
 shortTitle: Foodborne illness 101
-date: 2026-01-24T09:01:00-04:00
+date: 2026-05-18T09:01:00-04:00
 draft: false
 seo_title: "Tracking food poisoning outbreaks in NYC"
 seo_description: "A data story about understanding food safety and how NYC tracks and prevents outbreaks."
@@ -46,35 +46,6 @@ There are around 40,000 eating and drinking establishments in NYC. From 2012 to 
 
 </div>
 
-<!-- cards for contributing factors
-<div class="wide my-4">
-  <div class="row">
-    <div class="col-4">
-      <div class="card card-left-border shadow-sm mb-2">
-          <div class="card-body">
-            <p><strong>Contamination:</strong><br> pathogens, like bacteria, or other hazards get into food. Contact with sick workers or contaminants (such as chemicals, or raw meat) can introduce harmful substances or bacteria into food. Poisonous substances or toxins can naturally occur in plants or animals. For example, some fish can contain illness-causing toxins above safe limits.<p>
-            </div>
-      </div>
-      </div>
-      <div class="col-4">
-      <div class="card card-left-border shadow-sm mb-2">
-          <div class="card-body">
-            <p><strong>Proliferation:</strong><br> pathogens or toxins already in food proliferate (grow) to dangerous levels. When food is stored at incorrect temperatures for several hours, bacteria, toxins, and fungi can multiply to unsafe levels. Even cooking will not make the food safe. This “danger zone” temperature is between 41 and 140 degrees F. Cold food should be properly refrigerated, and hot food should be kept hot enough.<p>
-            </div>
-      </div>
-      </div>
-      <div class="col-4">
-      <div class="card card-left-border shadow-sm mb-2">
-          <div class="card-body">
-            <p><strong>Survival:</strong><br> pathogens survive a process meant to kill them. Pathogens can survive when cooking, freezing, pasteurization, or acidification processes are incomplete.<p>
-            </div>
-      </div>
-      </div>
-    </div>
-  </div>
-
-  -->
-
 <div class="narrow">
 
 <div class="card card-left-border shadow-sm mb-2">
@@ -83,7 +54,7 @@ There are around 40,000 eating and drinking establishments in NYC. From 2012 to 
       </div>
 </div>
 
-### What is foodborne illness – and what causes it?
+### What is foodborne illness—and what causes it?
 
 You or someone you know may have had “food poisoning.” But did you know that “food poisoning” could actually be one of <a href="https://www.who.int/health-topics/foodborne-diseases#tab=tab_1">more than 200 illnesses</a> caused by <a href="https://www.fda.gov/files/food/published/Most-Common-Foodborne-Illnesses-%28PDF%29.pdf#:~:text=Many%20outbreaks%20and%20individual%20cases%20of%20foodborne%20illness,l%20Viruses%2C%20such%20as%20norovirus%20or%20hepatitis%20A">bacteria, viruses, parasites, toxins, and chemical substances in food,</a> each with their own symptoms?
 
