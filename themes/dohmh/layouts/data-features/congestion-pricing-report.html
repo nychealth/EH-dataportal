@@ -98,7 +98,7 @@
                         </div>
 
                         <div class="col-md-6">
-                                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
+                                <iframe id="cpReportMap" src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
                                     <h3 class="h4">EJ-Designated Community Site Analysis</h3>
                                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the Health Department increased monitoring. These area's communities are:​ &nbsp;
                                         <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span> 
@@ -332,16 +332,34 @@ const siteInfo = {
     'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
 };
 
+// Map data-site values to proper site names for the map
+const siteNameMapping = {
+    'deegan': 'Deegan',
+    'cross-bronx': 'Cross Bronx',
+    'bqe': 'BQE',
+    'si-exwy': 'SI Expwy',
+    'fdr': 'FDR',
+    'trans-manhattan': 'Trans-Manhattan',
+    'van-wyck': 'Van Wyck'
+};
+
 // Initialize badge click handlers
 $(function() {
     $('.site-badge').on('click', function() {
-        var site = $(this).data('site');
-        var info = siteInfo[site] || 'No information available for this site.';
+        var siteKey = $(this).data('site');
+        var info = siteInfo[siteKey] || 'No information available for this site.';
         $('#site-info-box').text(info);
         
-        // Optional: highlight the clicked badge
+        // Highlight the clicked badge
         $('.site-badge').removeClass('active');
         $(this).addClass('active');
+        
+        // Zoom to site on the map
+        var siteName = siteNameMapping[siteKey];
+        var iframeElement = document.getElementById('cpReportMap');
+        if (iframeElement && iframeElement.contentWindow) {
+            iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: siteName }, '*');
+        }
     });
 });
 
