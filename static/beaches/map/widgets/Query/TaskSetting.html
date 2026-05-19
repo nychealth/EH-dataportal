@@ -1,0 +1,47 @@
+<div tabindex="0" data-a11y-label-by="taskSettingName">
+  <table class="top">
+    <tr>
+      <td class="first-td">
+        <div role="button" tabindex="0" aria-label="${nls.back}" class="back-arrow feature-action icon-arrow-back" data-dojo-attach-point="backArrow" data-dojo-attach-event="onclick:_onBtnParamsBackClicked,onkeydown:_onBtnParamsBackKeydown"></div>
+      </td>
+      <td class="second-td">
+        <div class="task-name jimu-ellipsis" data-dojo-attach-point="taskNameDiv" data-a11y-label-id="taskSettingName"></div>
+      </td>
+      <td class="third-td"></td>
+    </tr>
+  </table>
+  <div class="content-container">
+
+    <div class="params-container" data-dojo-attach-point="paramsContainer">
+      <div tabindex="0" class="not-visible" data-dojo-attach-point="noFilterTip">${nls.noAttributeSpatialFilterTip}</div>
+      <div class="attributes-section" data-dojo-attach-point="attributesSectionDiv" data-a11y-label-by="queryCriteira-label queryCriteira-sql">
+        <div data-dojo-attach-point="criteiraLabelDiv" class="first-stress attribute-filter-label" data-a11y-label-id="queryCriteira-label">${nls.queryCriteira}</div>
+        <div class="sql-div jimu-widget-note" data-dojo-attach-point="sqlDiv" data-a11y-label-id="queryCriteira-sql"></div>
+      </div>
+      <div class="spatial-section" data-dojo-attach-point="spatialSectionDiv" data-a11y-label-by="spatialFilter-label spatialFilter-tip">
+        <div tabindex="0" class="spearator not-visible" data-dojo-attach-point="spatialSpearator"></div>
+        <div data-dojo-attach-point="spatialFilterLabelDiv" class="first-stress spatial-filter-label" data-a11y-label-id="spatialFilter-label">${nls.spatialFilter}</div>
+        <div class="spatial-filter-tip" data-dojo-attach-point="spatialFilterTip" data-a11y-label-id="spatialFilter-tip"></div>
+        <select data-dojo-type="jimu/dijit/formSelect" data-a11y-label-by="spatialFilter-label spatialFilter-tip" data-dojo-attach-point="spatialTypeSelect" data-dojo-attach-event="change:_onSpatialTypeSelectChanged" class="restrict-select-width" style="width:100%;box-sizing:border-box;"></select>
+
+        <div class="spatial-filter-content" data-dojo-attach-point="spatialFilterContent">
+          <div class="drawing-section" data-dojo-attach-point="drawingSection"></div>
+          <div class="features-section" data-dojo-attach-point="featuresSection">
+            <div class="relationship-section">
+              <div class="second-stress relationship-tip" data-a11y-label-id="spatialRelationship">${nls.spatialRelationship}</div>
+              <select data-dojo-attach-point="relationshipSelect" data-a11y-label-by="spatialRelationship" data-dojo-type="jimu/dijit/formSelect" class="restrict-select-width relationship-select" style="width:100%;box-sizing:border-box;"></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-dojo-attach-point="layerNameContainer" class="result-name-container">
+      <div class="first-stress" data-a11y-label-id="layerName" >${nls.layerName}</div>
+      <div class="result-name-text" data-a11y-label-by="layerName" data-dojo-attach-point="layerNameTextBox" data-dojo-type="dijit/form/TextBox" data-dojo-attach-event="change:_onLayerNameTextChanged"></div>
+    </div>
+  </div>
+
+  <div role="button" tabindex="0" class="jimu-btn btn-execute" data-dojo-attach-point="btnExecute" data-dojo-attach-event="onclick:_onBtnApplyClicked,onkeydown:_onBtnApplyKeydown">${nls.apply}</div>
+  <div data-dojo-attach-point="shelter" data-dojo-type="jimu/dijit/LoadingIndicator" data-dojo-props='hidden:true'></div>
+</div>

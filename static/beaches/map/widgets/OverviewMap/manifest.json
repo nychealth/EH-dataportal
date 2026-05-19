@@ -1,0 +1,17 @@
+{
+  "name": "OverviewMap",
+  "platform": "HTML",
+  "version": "2.15",
+  "wabVersion": "2.15",
+  "author": "Esri R&D Center Beijing",
+  "description": "",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+    "inPanel": false,
+    "hasUIFile": false,
+    "hasStyle": false,
+    "supportMultiInstance": false,
+    "hasVersionManager": true
+  }
+}

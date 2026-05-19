@@ -1,0 +1,5 @@
+{
+  "about": {
+    "aboutContent": "<div>\n  <b style=\"font-size: 18px;\">Click on a dot for address and contact information.</b>\n</div>\n<div style=\"display: flex; align-items: center; margin-top: 10px;\">\n  <span style=\"color: rgb(209, 52, 91); font-size: 30px; margin-right: 10px;\">●</span>\n  <b style=\"font-size: 14px;\">Commissary Location</b>\n</div>\n<div style=\"display: flex; align-items: center; margin-top: 5px;\">\n  <span style=\"color: rgb(20, 158, 206); font-size: 30px; margin-right: 10px;\">●</span>\n  <b style=\"font-size: 14px;\">Commissary with Frozen Desserts</b>\n</div>\n\n<b style=\"font-size: 14px;\">Record ID: Permit number, which is a unique identifier for the commissary</b>"
+  }
+}

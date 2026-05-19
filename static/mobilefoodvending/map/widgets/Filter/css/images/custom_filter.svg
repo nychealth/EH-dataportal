@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>custom filter-20</title>
+    <desc>Created with Sketch.</desc>
+    <g id="filter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="open-30" transform="translate(-287.000000, -618.000000)" fill="#FFFFFF">
+            <g id="Group-3-Copy-2" transform="translate(282.000000, 613.000000)">
+                <g id="custom-filter" transform="translate(5.000000, 5.000000)">
+                    <polygon id="Path-150" points="1 3 14.5 3 8.76579311 10.2 8.76579353 16.3297637 6.69491525 17.4 6.69491483 10.2"></polygon>
+                    <path d="M15.3513514,9.3 L17.2,11.1362416 L11.8486486,16.5 L10,16.5 L10,14.6637584 L15.3513514,9.3 Z M17.137931,7.63728814 C17.3241379,7.45423729 17.6034483,7.45423729 17.7896552,7.63728814 L17.7896552,7.63728814 L18.8603448,8.68983051 C19.0465517,8.87288136 19.0465517,9.14745763 18.8603448,9.33050847 L18.8603448,9.33050847 L18.0689655,10.2 L16.3,8.46101695 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

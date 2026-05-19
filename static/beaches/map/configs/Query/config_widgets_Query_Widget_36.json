@@ -1,0 +1,65 @@
+{
+  "hideLayersAfterWidgetClosed": false,
+  "labelTasks": "Tasks",
+  "labelResults": "Results",
+  "showFilterLabel": false,
+  "criteiraLabel": "Query criteria",
+  "spatialFilterLabel": "Spatial filters",
+  "queries": [
+    {
+      "url": "",
+      "name": "NYC Beaches",
+      "icon": {
+        "color": [
+          0,
+          0,
+          128,
+          128
+        ],
+        "size": 18,
+        "angle": 0,
+        "xoffset": 0,
+        "yoffset": 0,
+        "type": "esriSMS",
+        "style": "esriSMSCircle",
+        "outline": {
+          "color": [
+            0,
+            0,
+            128,
+            255
+          ],
+          "width": 0.75,
+          "type": "esriSLS",
+          "style": "esriSLSSolid"
+        }
+      },
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [],
+        "expr": "1=1"
+      },
+      "showSQL": false,
+      "spatialFilter": {
+        "currentMapExtent": null,
+        "drawing": null,
+        "useFeatures": null,
+        "fullLayerExtent": null
+      },
+      "popupInfo": {
+        "readFromWebMap": true
+      },
+      "orderByFields": [
+        "SortNYCPark ASC"
+      ],
+      "useLayerSymbol": true,
+      "resultsSymbol": null,
+      "canModifySymbol": false,
+      "enableExport": false,
+      "defaultExpand": false,
+      "singleResultLayer": true,
+      "webMapLayerId": "PHE_BeachWaterQuality_Public_5434",
+      "customResultName": false
+    }
+  ]
+}

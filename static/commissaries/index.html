@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://a816-health.nyc.gov/ABCEatsRestaurants/#/faq -->
+<html data-ng-app="restaurant" lang="en-us"
+	class="js no-touch csstransforms csstransforms3d csstransitions svg ng-scope js-ready">
+
+<head>
+
+	<!--Metadata-->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Title -->
+	<title>Mobile Food Vending Commissaries Map</title>
+
+	<!-- Favicon -->
+	<link rel="icon" href="https://a816-health.nyc.gov/ABCEatsRestaurants/favicon.ico">
+
+	<!-- jQuery UI Stylesheet -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- Leaflet CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+	<!-- Custom Stylesheets should convert to bootsrap CDN -->
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/dohmh.css">
+	<link rel="stylesheet" href="./css/mfv.css">
+	<link rel="stylesheet" href="./css/circle.css">
+	<link rel="stylesheet" href="./css/my.css">
+	<link rel="stylesheet" href="./css/translateelement.css">
+	<link rel="stylesheet" href="./css/tabulator.min.css">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+
+	<!-- Javascript for jQuery, may need to update -->
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<!-- Javascript for Tabulator and Moment-->
+	<script src="./js/tabulator.min.js"></script>
+	<script src="./js/moment.min.js"></script>
+
+
+
+
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element');
+		}
+
+		$(function () {
+			$("#tabs").tabs(
+				{
+					activate: function (event, ui) { return onTabChange(event, ui); },
+				}
+			);
+		});
+
+		// turn off translations
+		var c = document.cookie.split(";");
+		var numcookies = c.filter(function (x) { return x.indexOf('googtrans') > -1 }).length;
+		if (numcookies) {
+			document.cookie = "googtrans=/en/en;session;path=/";
+			// if there is more than one the second is set for a different domain
+			if (numcookies > 1) document.cookie = "googtrans=/en/en;session;path=/;domain=." + document.location.host;
+		}
+
+
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script type="text/javascript" src="./js/WebAppDevEx.js"></script>
+	<style>
+		/* Basic CSS for styling the table */
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		th {
+			cursor: pointer;
+			padding: 3px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+			font-size: 14px;
+			color: #EFEFEF;
+			background-color: #0080A9;
+		}
+
+		td {
+			padding: 3px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+			font-size: 12px;
+		}
+
+		tr:hover {
+			background-color: #f5f5f5;
+		}
+	</style>
+</head>
+
+
+
+
+<body>
+
+	<div id="outer-wrap">
+
+		<!-- This inner wrap section includes everything but the footer -->
+
+		<div id="inner-wrap">
+
+			<!-- This main-header section includes the tob black bar and the white banner directly underneath -->
+
+			<div class="main-header" id="top">
+
+				<!-- This agency-header section contains the black bar header -->
+
+				<div class="agency-header">
+					<div class="upper-header-black">
+						<div class="NYCcontainer">
+							<span id="Health" class="upper-header-left">
+								<a class="NYClinks" href="http://www1.nyc.gov/"><img src="./img/nyc_white.png" alt="NYC"
+										class="small-nyc-logo NYCimg"></a>
+								<img class="NYCimg" src="./img/upper-header-divider.gif" alt="header divider">
+								<label aria-label="Health" id="health" class="label-adahideme">Health</label>
+								<span aria-labelledby="Health" class="upper-header-black-title">Health</span>
+							</span>
+							<span class="upper-header-padding"></span>
+							<span class="upper-header-right">
+								<span class="upper-header-three-one-one"><a class="NYClinks"
+										href="http://www1.nyc.gov/311/index.page">311</a></span>
+								<img class="NYCimg" src="./img/upper-header-divider.gif" alt="Header divider image">
+								<span class="upper-header-search"><a class="NYClinks exitlink"
+										href="http://www1.nyc.gov/home/search/index.page">Search all NYC.gov
+										websites</a></span>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- This banner section contains the white header, change text size and the google translate dropdown-->
+
+				<div role="banner" id="top">
+					<div class="NYCblock">
+						<div class="header-top" id="DOHBrandHeader">
+							<div class="NYCcontainer">
+								<a href="#" class="toggle-mobile-side-nav visible-phone" id="nav-open-btn">Menu</a>
+								<div class="agency-logo-wrapper">
+									<div id="header-logo">
+										<div id="NYCleftHeader"><span class="hidden-phone agency-header">Promoting and
+												Protecting the City's Health</span></div>
+										<div id="NYCmiddleHeader">
+											<a class="NYClinks" href="#"><img class="agency-logo NYCimg"
+													src="./img/logo.png" alt="NYC Health"></a>
+											<div class="centerText">
+												<h1 class="NYC_Blue_Text h1-header" style="margin-top:0px;">Mobile Food
+													Vending Commissary Map</h1>
+											</div>
+										</div>
+										<div id="NYCrightHeader">
+											<a style="float:right;" id="textSize" class="text-size hidden-phone"
+												href="http://www1.nyc.gov/home/text-size.page">Text-Size</a>
+											<div class="language-selector hidden-phone">
+												<div id="google_translate_element"></div>
+											</div>
+										</div>
+									</div>
+									<div id="header-logo-mobile">
+										<a class="NYClinks" href="#"><img class="agency-logo NYCimg"
+												src="./img/logo.png" alt="NYC Health"></a>
+										<div class="centerText">
+											<h2 class="NYC_Blue_Text h2-header">Mobile Food Vending Commissaries Map
+											</h2>
+										</div>
+										<div id="return-mobile"><a href="https://www.nyc.gov/site/doh/business/food-operators/mobile-and-temporary-food-vendors.page?article=collapsible6"
+												class="btn btn-link pull-right"
+												role="button"><i>Commissary Information</i></a></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- This section contains the tabs, legend and map -->
+
+			<div id="tabs">
+
+				<!-- Navigational Tabs -->
+				<ul class="NYC-nav-tabs" id="tabsUL" style="background-color:white;">
+					<li class="NYC-nav-tabs-li NYCclick active" ui-sref-active="active">
+						<a class="NYC-a" ui-sref="map" href="#webappbld">Map View</a>
+					</li>
+					<li class="NYC-nav-tabs-li NYCclick active">
+						<a class="NYC-a" ui-sref="content" href="#commlist">List View</a>
+					</li>
+					<span id="return-browser" class="mobileHide">
+						<a href="https://www.nyc.gov/site/doh/business/food-operators/mobile-and-temporary-food-vendors.page?article=collapsible7"  class="btn btn-link pull-right" style="font-weight: bold;">
+							<i>Commissary Information</i>
+						</a>
+					</span>
+				</ul>
+
+				<!-- Map View -->
+				<div id="webappbld">
+					<iframe width="100%" height="500px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+						src="./map/index.html?mobileBreakPoint=500" onload="onIframeLoad();"></iframe>
+				</div>
+
+				<!-- List View -->
+				<div id="commlist">
+					
+					<div class="about-row" id="basicsearch">
+						<div class="about-title">Commissaries in New York City</div>
+						<p style="font-size: 14px; font-style: italic;">Click on the column headers to sort the table.</p>
+
+						<!-- Table of Commissaries -->
+						<div id="tableContainer" class="dynamic-table-container"></div>
+			
+						<!-- Link to External JavaScript -->
+						<script src="js/comlist.js"></script>
+					</div>
+				</div>
+			
+			</div>
+
+		</div>
+
+		<!-- Footer -->
+		<!-- Footer -->
+		<div id="NYCfooterOuter">
+			<div id="NYCspace"></div>
+			<div id="NYCfooterInner">
+				<div id="NYCspace"></div>
+				<div id="NYC-footer">
+					<div class="NYCcontainer footer-container">
+						<div class="span9 footer-links">
+							<a href="http://www1.nyc.gov/nyc-resources/agencies.page">Directory of City Agencies </a>
+							<a href="http://www1.nyc.gov/home/contact-us.page">Contact NYC Government </a>
+							<a href="https://a127-ess.nyc.gov/">City Employees </a>
+							<a href="https://a858-nycnotify.nyc.gov/notifynyc/">Notify NYC </a>
+							<a href="http://a856-citystore.nyc.gov/">CityStore </a>
+							<a href="http://www1.nyc.gov/connect/social-media.page">Stay Connected </a>
+							<a href="http://www1.nyc.gov/connect/applications.page">NYC Mobile Apps </a>
+							<a href="http://www1.nyc.gov/nyc-resources/nyc-maps.page">Maps </a>
+							<a href="http://www1.nyc.gov/nyc-resources/resident-toolkit.page">Resident Toolkit</a>
+						</div>
+						<div class="span3">
+							<span class="logo-nyc">NYC</span>
+							<form class="nyc-form-search ng-pristine ng-valid" method="get"
+								action="https://www1.nyc.gov/home/search/index.page" target="_blank">
+								<label class="nyc-visuallyhidden" for="search-input">Search</label>
+								<input title="Search" id="search-input" type="text" placeholder="Search"
+									class="nyc-input-search" name="search-terms" aria-label="searchbutton">
+								<button id="searchbutton" class="nyc-ico-search">Search</button>
+							</form>
+							<div class="copyright">
+								<p>City of New York. 2020 All Rights Reserved,</p>
+								<p>NYC is a trademark and service mark of the City of New York</p>
+								<p id="nyc-pp-tou">
+									<a href="http://www1.nyc.gov/home/privacy-policy.page" title="Privacy Policy">
+										Privacy Policy.</a>
+									<a href="http://www1.nyc.gov/home/terms-of-use.page" title="Terms of Use"> Terms of
+										Use.</a>
+									<a href="http://www.nyc.gov/mopd"><img id="nyc-accessibility-img"
+											src="./img/accessibility_icon.svg"
+											alt="Learn about services for people with disabilities"></a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="popup-translate" class='translate-hide'>
+						<div id="popup-original" class="notranslate" style="visibility:hidden;display:none">
+							<div id="popup-original-0" key="0">Restrictions are year round</div>
+							<div id="popup-original-1" key="1">Current restrictions are in effect between</div>
+							<div id="popup-original-2" key="2">Monday</div>
+							<div id="popup-original-3" key="3">Tuesday</div>
+							<div id="popup-original-4" key="4">Wednesday</div>
+							<div id="popup-original-5" key="5">Thursday</div>
+							<div id="popup-original-6" key="6">Friday</div>
+							<div id="popup-original-7" key="7">Saturday</div>
+							<div id="popup-original-8" key="8">Sunday</div>
+							<div id="popup-original-9" key="9">No Restriction</div>
+							<div id="popup-original-10" key="10">Mobile food vending is restricted on</div>
+							<div id="popup-original-11" key="11">and might be different during other times of the year
+							</div>
+							<div id="popup-original-12" key="12">between</div>
+							<div id="popup-original-13" key="13">and</div>
+						</div>
+						<div id="popup-translated" class='translate-hide'>
+							<div id="popup-translated-0" key="0" class='translate-hide'>Restrictions are year round
+							</div>
+							<div id="popup-translated-1" key="1" class='translate-hide'>Current restrictions are in
+								effect between</div>
+							<div id="popup-translated-2" key="2" class='translate-hide'>Monday</div>
+							<div id="popup-translated-3" key="3" class='translate-hide'>Tuesday</div>
+							<div id="popup-translated-4" key="4" class='translate-hide'>Wednesday</div>
+							<div id="popup-translated-5" key="5" class='translate-hide'>Thursday</div>
+							<div id="popup-translated-6" key="6" class='translate-hide'>Friday</div>
+							<div id="popup-translated-7" key="7" class='translate-hide'>Saturday</div>
+							<div id="popup-translated-8" key="8" class='translate-hide'>Sunday</div>
+							<div id="popup-translated-9" key="9" class='translate-hide'>No Restriction</div>
+							<div id="popup-translated-10" key="10" class='translate-hide'>Mobile food vending is
+								restricted on</div>
+							<div id="popup-translated-11" key="11" class='translate-hide'>and might be different during
+								other times of the year</div>
+							<div id="popup-translated-12" key="12" class='translate-hide'>between</div>
+							<div id="popup-translated-13" key="13" class='translate-hide'>and</div>
+						</div>
+					</div </div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+
+		<!--div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./FAQ_files/translate_24dp.png" width="20" height="20" alt="Google Translate"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe frameborder="0" class="goog-te-menu-frame skiptranslate" title="Language Translate Widget" style="visibility: visible; box-sizing: content-box; width: 1027px; height: 274px; display: none;" src="./FAQ_files/saved_resource.html"></iframe><script class="" type="text/javascript" src="./FAQ_files/World_Street_Map" id="c0"></script-->
+
+
+</body>
+
+</html>

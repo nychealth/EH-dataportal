@@ -1,0 +1,19 @@
+@import url("panels/TabPanel/style.css");
+
+/*set positon for attribute table widget since side panel is open/hidden by default*/
+.sideBarHidden .jimu-widget-attributetable{
+    left: 55px;
+}
+.jimu-rtl .sideBarHidden .jimu-widget-attributetable{
+    left: 0px;
+    right: 55px;
+}
+
+.sideBarDisplay .jimu-widget-attributetable{
+    left: 365px;
+}
+.jimu-rtl .sideBarDisplay .jimu-widget-attributetable{
+    left: 0px;
+    right: 365px;
+}
+

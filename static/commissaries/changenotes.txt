@@ -1,0 +1,29 @@
+Change Notes:
+
+1/23/2025 - epoulsen
+
+Original hot pink commisary dot:
+Shape: 12
+Fill: #D1345B
+Outline: #FF73DF line .93 px
+
+
+
+Original Web appbuilder widget changed to add blue frozen dot (path: C:\Users\epoulsen\ehs-besp-portal-maps\commissaries\map\configs\About\config_widgets_About_Widget_37.json):
+
+
+{
+  "about": {
+    "aboutContent": "<div><span style=\"color: rgb(209, 52, 91); font-size: 50px;\">●</span></div>\n<div><b style=\"font-size: 16px;\">A red dot identifies the location of a commissary. Click on a red dot for address and contact information.</b></div>"
+  }
+}
+
+
+New legend:
+
+
+{
+  "about": {
+    "aboutContent": "<div><b style=\"font-size: 18px;\">Click on a dot for address and contact information.</b></div>\n<div style=\"display: flex; align-items: center; margin-top: 10px;\"><span style=\"color: rgb(209, 52, 91); font-size: 30px; margin-right: 10px;\">●</span><b style=\"font-size: 14px;\">Commissary Location</b></div>\n<div style=\"display: flex; align-items: center; margin-top: 5px;\"><span style=\"color: rgb(20, 158, 206); font-size: 30px; margin-right: 10px;\">●</span><b style=\"font-size: 14px;\">Commissary with Frozen Desserts</b></div>"
+  }
+}

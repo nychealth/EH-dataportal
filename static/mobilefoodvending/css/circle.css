@@ -1,0 +1,241 @@
+﻿
+
+
+
+
+.btn.btn-circle {
+  padding: 0;
+  border-radius: 50% !important;
+}
+
+/* -- Buttons colors -------------------------------- */
+//## Button template
+.btn-temlate (@color500; @color600; @color700; @color800; @color900) {
+  background-color: @color500; // Color 500
+  
+  &:hover {
+    background-color: @color600; // Color 600
+  }
+  
+  &:active, &.active {
+    background-color: @color600; // Color 600
+  }
+  
+  &:focus {
+    background-color: @color700; // Color 700
+  }
+  
+  &:disabled, &.disabled, &[disabled] {
+    background-color: darken(#ccc, 10%);
+  }
+  
+  //## color for riple-effect
+  .ink {
+    background-color: @color800; // Color 800
+  }
+}
+.btn-flat-temlate (@color500; @color600; @color700; @color800; @color900) {
+  color: @color500; // Color 500
+  background-color: transparent;
+  
+  &:hover {
+    color: @color600; // Color 600
+    background-color: lighten(#999, 30%);
+  }
+  
+  &:active, &.active {
+    color: @color700; // Color 700
+    background-color: lighten(#999, 20%);
+  }
+  
+  &:focus {
+    color: @color800; // Color 800
+    background-color: lighten(#999, 20%);
+  } 
+  
+  //## color for riple-effect
+  .ink {
+    background-color: darken(#ccc, 30%);
+  }
+}
+
+//## Default // color: white
+.btn-default, .dropdown-toggle.btn-default {
+  .btn-temlate(#fff; lighten(#999, 30%); lighten(#999, 20%); lighten(#999, 12%); lighten(#999, 20%);) 
+}
+.btn-flat.btn-default {
+  .btn-flat-temlate(#212121; darken(#212121, 5%); darken(#212121, 12%); #000; #000;) 
+}
+
+//## Primary // color: blue
+.btn-primary, .dropdown-toggle.btn-primary {
+  .btn-temlate(#5677fc; #4e6cef; #455ede; #3b50ce; #2a36b1;) 
+}
+.btn-flat.btn-primary {
+  .btn-flat-temlate(#5677fc; #4e6cef; #455ede; #3b50ce; #2a36b1;) 
+}
+
+//## Success // color: green
+.btn-success, .dropdown-toggle.btn-success {
+  .btn-temlate(#259b24; #0a8f08; #0a7e07; #056f00; #0d5302;)   
+}
+.btn-flat.btn-success {
+  .btn-flat-temlate(#259b24; #0a8f08; #0a7e07; #056f00; #0d5302;) 
+}
+
+//## Info // color: light blue
+.btn-info, .dropdown-toggle.btn-info {
+  .btn-temlate(#03a9f4; #039be5; #0288d1; #0277bd; #01579b;)   
+}
+.btn-flat.btn-info {
+  .btn-flat-temlate(#03a9f4; #039be5; #0288d1; #0277bd; #01579b;) 
+}
+
+//## Warning // color: amber
+.btn-warning, .dropdown-toggle.btn-warning {
+  .btn-temlate(#ffc107; #ffb300; #ffa000; #ff8f00; #ff6f00;)   
+}
+.btn-flat.btn-warning {
+  .btn-flat-temlate(#ffc107; #ffb300; #ffa000; #ff8f00; #ff6f00;)   
+}
+
+//## Danger // color: deep orange
+.btn-danger, .dropdown-toggle.btn-danger {
+  .btn-temlate(#ff5722; #f4511e; #e64a19; #d84315; #bf360c;)   
+}
+.btn-flat.btn-danger {
+  .btn-flat-temlate(#ff5722; #f4511e; #e64a19; #d84315; #bf360c;)  
+}
+
+/* -- Buttons sizes -------------------------------- */
+.btn-circle {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  
+  span {
+    line-height: 56px;
+  }
+}
+
+.btn-circle.btn-lg {
+  width: 78px;
+  height: 78px;
+  min-width: 78px;
+  
+  span {
+    line-height: 78px;
+  }
+}
+
+.btn-circle.btn-sm {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  
+  span {
+    line-height: 40px;
+  }
+}
+
+.btn-circle.btn-xs {
+  width: 30px;
+  height: 30px; 
+  min-width: 30px;
+  
+  span {
+    line-height: 30px;
+  }
+}
+
+
+/*-- Button groups --------------------------------- */
+.btn-group .btn {
+  border-radius: 2px;
+}
+
+.btn-group.open .dropdown-toggle {
+  outline: 0;
+  outline-offset: 0;  
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn, .btn-group .btn-group+.btn-group {
+  margin-left: 0;
+}
+
+.btn-group>.btn:hover, .btn-group-vertical>.btn:hover {
+  z-index: 0;
+}
+ .btn-group>.btn:focus:hover, .btn-group-vertical>.btn:focus:hover, .btn-group>.btn:active:hover, .btn-group-vertical>.btn:active:hover, .btn-group>.btn.active:hover, .btn-group-vertical>.btn.active:hover {
+  z-index: 2;
+}
+
+
+
+/* -- Ripple effect -------------------------------- */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0,0,0);
+}
+.ink {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50% ;
+  
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+
+  background: #fff;
+  opacity: 1;
+}
+
+// animation effect
+.ink.animate {
+  -webkit-animation: ripple .5s linear;
+  -moz-animation: ripple .5s linear;
+  -ms-animation: ripple .5s linear;
+  -o-animation: ripple .5s linear;
+  animation: ripple .5s linear;
+}
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+@-webkit-keyframes ripple {
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-moz-keyframes ripple {
+  100% {
+    opacity: 0;
+    -moz-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-ms-keyframes ripple {
+  100% {
+    opacity: 0;
+    -ms-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}
+@-o-keyframes ripple {
+  100% {
+    opacity: 0;
+    -o-transform: scale(2.5);
+    transform: scale(2.5);
+  }
+}

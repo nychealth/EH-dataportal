@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Beach Water Quality CHANGED?</title>
+
+  <!-- ArcGIS Maps SDK 4.34 -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.34/esri/themes/light/main.css" />
+  <link rel="preconnect" href="https://js.arcgis.com">
+  <link rel="preconnect" href="https://static.arcgis.com">
+  <link rel="preconnect" href="https://basemaps.arcgis.com">
+  <link rel="preconnect" href="https://services3.arcgis.com">
+  <link rel="dns-prefetch" href="https://js.arcgis.com">
+
+  <!-- Calcite Design System 3.3.3 -->
+  <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/3.3.3/calcite.css" />
+  <script type="module" src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"></script>
+
+  <!-- ArcGIS Map Components (ESM) -->
+  <script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
+
+  <!-- ArcGIS Core API (AMD — required for $arcgis.import) -->
+  <script src="https://js.arcgis.com/4.34/"></script>
+
+  <!-- Single combined stylesheet -->
+  <link rel="stylesheet" href="./css/standard.css">
+  <!-- <link rel="stylesheet" href="./css/beach.css"> -->
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ══════════════════════════════════════════════════════════
+       START AGENCY HEADER
+  ══════════════════════════════════════════════════════════ -->
+    <header class="agency-header" role="banner">
+
+      <!-- Thin black utility bar -->
+      <div class="header-top">
+        <div class="site-header">
+          <div class="site-header__top">
+            <div class="site-header__inner">
+
+              <div class="site-header__left">
+                <a href="https://www.nyc.gov" aria-label="NYC.gov Home">
+                  <img src="./img/nyc_white.png" alt="NYC" class="site-header__logo NYCimg">
+                </a>
+                <img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
+                <span aria-label="Health" class="site-header__title">Health</span>
+              </div>
+
+              <div class="site-header__right">
+                <span class="site-header__service-link">
+                  <a href="https://www.nyc.gov/311">311</a>
+                </span>
+                <img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
+                <span class="site-header__search">
+                  <a href="https://www.nyc.gov/home/search/index.page">
+                    Search all NYC.gov websites
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- White agency banner -->
+      <div class="site-banner">
+        <div class="site-banner__inner">
+          <div class="site-banner__content">
+
+            <div class="site-banner__left">
+              <span class="site-banner__tagline">
+                Promoting and Protecting the City's Health
+              </span>
+            </div>
+
+            <div class="site-banner__center">
+              <a href="https://www.nyc.gov/site/doh/index.page" class="site-banner__logo">
+                <img src="./img/logo_sm.png" alt="NYC Health">
+              </a>
+              <div class="site-banner__title-container">
+                <h1>Beach Water Quality</h1>
+              </div>
+            </div>
+
+            <div class="site-banner__right">
+              <div class="language-selector">
+                <div id="google_translate_element"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="site-banner-legend">
+        <div class="status-legend" role="list" aria-label="Status key">
+          <div class="legend-item" role="listitem"><span class="legend-dot open"></span>Open</div>
+          <div class="legend-item" role="listitem"><span class="legend-dot adv"></span>Advisory</div>
+          <div class="legend-item" role="listitem"><span class="legend-dot closed"></span>Closed</div>
+          <div class="legend-item" role="listitem"><span class="legend-dot closedseason"></span>Closed for Season</div>
+          <div class="legend-item"><img src="./img/DPR.png" width="15" height="15" alt="NYC Parks Logo" />
+            NYC Parks Beach</div>
+        </div>
+      </div>
+
+    </header>
+    <!-- ══════════════════════════════════════════════════════════
+       END AGENCY HEADER
+  ══════════════════════════════════════════════════════════ -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+       START TAB NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+    <div class="tab-container">
+      <nav class="tab-nav" role="tablist" aria-label="Main navigation">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-map" id="tab-map"
+          data-panel="panel-map">
+          Map View
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-beaches" id="tab-beaches"
+          data-panel="panel-beaches">
+          Beach List
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-faq" id="tab-faq"
+          data-panel="panel-faq">
+          FAQ
+        </button>
+      </nav>
+    </div>
+    <!-- ══════════════════════════════════════════════════════════
+       END TAB NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+
+
+    <!-- ══════════════════════════════════════════════════════════
+       START TAB CONTENT
+  ══════════════════════════════════════════════════════════ -->
+    <main class="tab-content">
+
+      <!-- ── START MAP  ──────────────────────────────────────────── -->
+      <div class="tab-panel active" id="panel-map" role="tabpanel" aria-labelledby="tab-map">
+        <arcgis-map id="arcmap" item-id="6fd2202c15cb4b5785703ad0085d4a5b" center="-73.95, 40.74" zoom="9" locale="en">
+          <arcgis-zoom slot="top-left"></arcgis-zoom>
+          <arcgis-home slot="top-left"></arcgis-home>
+          <arcgis-locate slot="top-left" scale="5000"></arcgis-locate>
+
+          <!-- <arcgis-expand slot="top-left">
+            <arcgis-legend legend-style="classic"></arcgis-legend>
+          </arcgis-expand> -->
+
+          <arcgis-search id="arcsearch" slot="top-right" all-placeholder="Address or BBL"></arcgis-search>
+        </arcgis-map>
+      </div>
+      <!-- ── END MAP  ──────────────────────────────────────────── -->
+
+
+      <!-- ── START BEACH LIST  ──────────────────────────────────────── -->
+      <div class="tab-panel" id="panel-beaches" role="tabpanel" aria-labelledby="tab-beaches">
+        <div class="beaches-panel">
+
+          <div class="panel-header">
+            <h2>Beach Water Quality Status</h2>
+            <p>Tap a beach to zoom to its location on the map</p>
+          </div>
+
+          <!-- Last-updated timestamp — shown by JS once data loads -->
+          <div class="list-updated" id="list-updated" aria-live="polite"></div>
+
+          <!-- Beach list — populated by JS from feature service -->
+          <ul class="beach-list" id="beach-list" aria-label="Beach list">
+            <!-- Loading spinner shown while querying -->
+            <li id="list-loading" class="list-state" role="status" aria-label="Loading beach data">
+              <div class="list-spinner" aria-hidden="true"></div>
+              <span>Loading beach data…</span>
+            </li>
+          </ul>
+
+          <!-- Error state — hidden until needed -->
+          <div class="list-state hidden" id="list-error" role="alert">
+            <span class="list-error-icon" aria-hidden="true">⚠️</span>
+            <span class="list-error-msg" id="list-error-msg">Could not load beach data.</span>
+            <span class="list-error-sub">Check your connection and try again.</span>
+            <button class="retry-btn" id="retry-btn">Retry</button>
+          </div>
+
+        </div>
+      </div>
+      <!-- ── END BEACH LIST  ──────────────────────────────────────── -->
+
+
+      <!-- ── START FAQ PANEL ───────────────────────────────────────────── -->
+      <div class="tab-panel" id="panel-faq" role="tabpanel" aria-labelledby="tab-faq">
+        <div class="faq-panel">
+
+          <!--FAQ Header-->
+          <div class="faq-intro">
+            <h2>Frequently Asked Questions</h2>
+          </div>
+
+          <!--Questions in FAQ-->
+          <div class="faq-list">
+
+            <!--How does dohmh monitor and sample beaches?-->
+            <details class="faq-item">
+              <summary>
+                <span class="faq-chevron">▾</span>
+                <span class="faq-q-text">How does the NYC Health Department monitor and sample beaches?</span>
+              </summary>
+              <div class="faq-answer">
+                <p>The Health Department begins to <a
+                    href="https://www1.nyc.gov/site/doh/health/health-topics/beach-class.page" target="_blank"
+                    rel="noopener noreferrer"> <span class="faq-link">monitor and sample beaches</span></a> one month
+                  before they open to the public. Each beach is monitored and sampled every week, except for Rockaway
+                  and Breezy Point beaches, which are sampled bi-weekly. Monitoring identifies sources of pollution that
+                  can affect beach water quality, and sampling provides data about current water quality conditions.
+                <ul>
+                  <li>"Advisory"</li>
+                  <li>"Closed",</li>
+                  <li>"Closed for the Season",</li>
+                  <li>"Open",</li>
+                  <li>"Sample Date",</li>
+                  <li>"Single Day Results",</li>
+                  <li>"30-Day Geometric Mean",</li>
+                  <li>"Water quality is measured in most probable number per 100 mL of water (MPN/100mL), an estimate of
+                    the number of bacteria in a water sample."</li>
+                </ul>
+                </p>
+              </div>
+            </details>
+
+            <!--How is beach water quality determined?-->
+            <details class="faq-item">
+              <summary>
+                <span class="faq-chevron">▾</span>
+                <span class="faq-q-text">How is beach water quality determined?</span>
+              </summary>
+              <div class="faq-answer">
+                <p>Water samples are tested for contaminants that lower water quality. These include:</p>
+                <ul>
+                  <li>Bacteria</li>
+                  <li>Floatable debris</li>
+                  <li>Animal waste</li>
+                  <li>Medical or infectious waste</li>
+                  <li>Toxic contaminants</li>
+                  <li>Petroleum products</li>
+                  <li>Sewage and wastewater discharge following heavy rainfall</li>
+                </ul>
+              </div>
+            </details>
+
+            <!--When is a water quality warning/advisory issued?-->
+            <details class="faq-item">
+              <summary>
+                <span class="faq-chevron">▾</span>
+                <span class="faq-q-text">When is a water quality warning/advisory issued?</span>
+              </summary>
+              <div class="faq-answer">
+                <p>When water has high levels of bacteria, the Health Department issues an advisory. This means
+                  swimming and wading are not recommended, but the beach is open.</p>
+                <p>An advisory may be issued based on:</p>
+                <ul>
+                  <li>Water quality concerns</li>
+                  <li>
+                    Presence of:
+                    <ul>
+                      <li>Floatable debris</li>
+                      <li>Medical or infectious waste</li>
+                      <li>Toxic contaminants</li>
+                      <li>Petroleum products</li>
+                      <li>Other contamination</li>
+                    </ul>
+                  </li>
+                  <li>Sewage and wastewater discharge following heavy rainfall</li>
+                </ul>
+              </div>
+            </details>
+
+            <!--When is a beach closed?-->
+            <details class="faq-item">
+              <summary>
+                <span class="faq-chevron">▾</span>
+                <span class="faq-q-text">When is a beach closed?</span>
+              </summary>
+              <div class="faq-answer">
+                <p>City beaches may be closed for swimming and wading when:</p>
+                <ul>
+                  <li>Samples show that beach water quality does not meet established standards.</li>
+                  <li>There have been a high number of illnesses or complaints about illness or injury.</li>
+                  <li>
+                    There are hazardous amounts of:
+                    <ul>
+                      <li>Floatable debris</li>
+                      <li>Medical or infectious waste</li>
+                      <li>Toxic contaminants</li>
+                      <li>Petroleum products</li>
+                    </ul>
+                  </li>
+                  <li>Sewage and wastewater discharge have lowered the water quality.</li>
+                  <li>Any other environmental factors that may be a public health or safety hazard, such as extreme
+                    weather conditions.</li>
+                </ul>
+                <p>Though swimming and wading is not permitted, exercise such as walking and running, and spending time
+                  on the sand and boardwalk, are permitted during regular park hours.</p>
+              </div>
+            </details>
+
+            <!--How can I help protect local waterways?-->
+            <details class="faq-item">
+              <summary>
+                <span class="faq-chevron">▾</span>
+                <span class="faq-q-text">How can I help protect local waterways?</span>
+              </summary>
+              <div class="faq-answer">
+                <p>How you can help improve the health of local waterways:</p>
+                <ul>
+                  <li>Report stormwater pollution to 311</li>
+                  <li>
+                    Learn about:
+                    <ul>
+                      <li>
+                        <a href="https://www1.nyc.gov/site/dep/whats-new/wait.page" target="_blank"
+                          rel="noopener noreferrer">
+                          <span class="faq-link">Wait...</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www1.nyc.gov/site/dep/water/trash-in-waterways.page" target="_blank"
+                          rel="noopener noreferrer">
+                          <span class="faq-link">Trash Free Waters</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www1.nyc.gov/site/dep/water/safe-disposal-of-harmful-products.page"
+                          target="_blank" rel="noopener noreferrer">
+                          <span class="faq-link">Safe Disposal of Harmful Products</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.nyc.gov/site/dep/whats-new/trash-it-dont-flush-it.page" target="_blank"
+                          rel="noopener noreferrer">
+                          <span class="faq-link">Trash It. Don't Flush It.</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </details>
+
+          </div>
+
+          <div class="faq-contact-box" role="complementary" aria-label="Contact information">
+            <!-- <h3>Questions or Concerns?</h3> -->
+            <p>
+              For more information please visit
+              <a href="https://www.nyc.gov/site/doh/health/health-topics/beach-homepage.page" target="_blank"
+                rel="noopener noreferrer">
+                NYC Health Department's Beaches page.
+              </a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+      <!-- ── END FAQ PANEL ───────────────────────────────────────────── -->
+
+    </main>
+    <!-- ══════════════════════════════════════════════════════════
+       END TAB CONTENT
+  ══════════════════════════════════════════════════════════ -->
+
+  </div><!-- /.app -->
+
+      <!-- ══════════════════════════════════════════════════════════
+       START Google Translate
+  ══════════════════════════════════════════════════════════ -->
+  <!-- Zoom-to toast notification -->
+  <div class="zoom-toast" id="zoom-toast" role="status" aria-live="polite"></div>
+
+  <script src="./js/translate-keys.js"></script>
+  <script src="./js/beach.js"></script>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'ar,bn,zh-CN,yue,en,fr,ht,it,ko,pl,ru,es,ur,yi',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- ══════════════════════════════════════════════════════════
+       END Google Translate
+  ══════════════════════════════════════════════════════════ -->
+
+</body>
+
+</html>

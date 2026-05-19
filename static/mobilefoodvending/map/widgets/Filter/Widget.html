@@ -1,0 +1,30 @@
+<div>
+  <div class="filter-list-container" data-dojo-attach-point="filterListContainerNode">
+    <ul class="filter-list" data-dojo-attach-point="filterList"></ul>
+
+  </div>
+  <div role="button" aria-haspopup="true" class="action-icon group-icon absolute-icon" data-dojo-attach-point="showFilterActionsButtonNode" data-dojo-attach-event="onclick:_onShowFilterActionsClick, onkeydown:_onShowFilterActionsKeydown" title="${nls.filterActions}" tabindex="0"></div>
+  <div class="filter-actions-container" data-dojo-attach-point="filterActionsPopup">
+    <div class="filter-actions-flex-container">
+      <div role="button" class="action-icon turn-off-icon" data-dojo-attach-point="showTurnOffAllButtonNode" data-dojo-attach-event="onclick:_onShowTurnOffAllClick, onkeydown:_onShowTurnOffAllKeydown" title="${nls.turnOffAll}" tabindex="0"></div>
+      <div role="button" class="action-icon reset-all-icon" data-dojo-attach-point="showResetAllButtonNode" data-dojo-attach-event="onclick:_onShowResetAllClick, onkeydown:_onShowResetAllKeydown" title="${nls.resetAll}" tabindex="0"></div>
+      <div role="button" class="action-icon custom-icon" data-dojo-attach-point="showCustomButtonNode" data-dojo-attach-event="onclick:_onShowCustomClick, onkeydown:_onShowCustomKeydown" title="${nls.createCustomFilter}" tabindex="0"></div>
+    </div>
+  </div>
+
+  <div class="custom-filter" data-dojo-attach-point="customFilterContainerNode">
+    <div class="title-part">
+      <span role="button" tabindex="0" class="back-list" data-dojo-attach-point="customBackNode" data-dojo-attach-event="click:_onBackToListClick,keydown:_onBackToListKeydown"></span>
+      <span>${nls.customFilter}</span>
+      <div class="toggle-filter" data-dojo-type="jimu/dijit/ToggleButton" data-dojo-props="checked:true,toggleTips:{toggleOn:'${nls.toggleOn}',toggleOff:'${nls.toggleOff}'}" title="${nls.toggleCustomFilter}" data-dojo-attach-event="change:_onCustomFilterToggle" data-dojo-attach-point="customFilterToggleButton"></div>
+    </div>
+
+    <div class="layer-part">
+      <div class="layer-title">${jimuNls.common.layer}</div>
+      <div class="layer-select" data-dojo-attach-point="layerSelectNode"></div>
+    </div>
+
+    <div class="custom-filter-node" data-dojo-attach-point="customFilterNode"></div>
+  </div>
+
+</div>

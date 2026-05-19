@@ -1,0 +1,60 @@
+.jimu-widget-mylocation{
+	border-radius: 5px;
+	background-color: #555;
+	border: 1px solid #999;
+}
+
+.jimu-widget-mylocation.onCenter {
+	background-color: #000;
+}
+
+.jimu-widget-mylocation .place-holder {
+	padding: 2px;
+	width: 30px;
+	height: 30px;
+	background-color: #555;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	background-image: url("images/locate.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.jimu-widget-mylocation .place-holder.locating{
+	background-image: url("images/loading.gif");
+}
+
+.jimu-widget-mylocation .place-holder.tracking{
+	background-image: url("images/stop.png") !important;
+	background-color: #000;
+}
+.jimu-widget-mylocation .place-holder.nohttps{
+	background-image: url("images/locate_disabled.png") !important;
+}
+.jimu-widget-mylocation .place-holder.nohttps:hover{
+	background-color: #555;
+}
+
+.jimu-widget-mylocation .place-holder.nohttps,
+.jimu-widget-mylocation .place-holder{
+  background-color: #555;
+}
+
+.jimu-widget-mylocation.onLocate .place-holder{
+	background-color: rgba(0,0,0,0.4);
+}
+
+.jimu-widget-mylocation.onCenter .place-holder{
+	background-color: #000;
+}
+
+.jimu-widget-mylocation .place-holder:hover{
+  background-color: #333;
+}

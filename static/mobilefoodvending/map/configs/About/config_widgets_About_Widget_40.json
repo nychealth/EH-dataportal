@@ -1,0 +1,5 @@
+{
+  "about": {
+    "aboutContent": "<b><font size=\"6\" style=\"color: rgb(220, 70, 60);\">____________</font></b><div><br /><table style=\"font-size: 12px; font-family: 'Avenir Light', Verdana, Geneva, sans-serif;\" width=\"95%\"><tbody style=\"box-sizing: border-box;\"><tr style=\"box-sizing: border-box;\"><td align=\"left\" style=\"box-sizing: border-box; margin: 0px; padding: 0px;\"><span class=\"esriLegendServiceLabel\" style=\"box-sizing: border-box; font-weight: bold; font-size: 14px;\">A\nred line means a street with current mobile food vending restrictions.\nRestrictions can change during the year. Click on a red line to see day, time,\nor seasonal restrictions.</span></td></tr></tbody></table></div>"
+  }
+}

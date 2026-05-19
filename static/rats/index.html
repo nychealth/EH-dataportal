@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NYC Rat Map</title>
+
+	<!-- ArcGIS Core API CSS -->
+	<link rel="stylesheet" href="https://js.arcgis.com/4.34/esri/themes/light/main.css" />
+
+	<!-- Calcite Components CSS -->
+	<script type="module" src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"></script>
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="./css/standardDOHMH.css">
+	<link rel="stylesheet" href="./css/ratCSS.css">
+
+	<!-- ArcGIS Map Components -->
+	<script type="module" src="https://js.arcgis.com/4.34/map-components/"></script>
+
+	<!-- ArcGIS Core API (needed for $arcgis.import) -->
+	<script src="https://js.arcgis.com/4.34/"></script>
+
+	<!-- Custom JS -->
+	<script src="./JS/ratJS.js"></script>
+
+</head>
+
+<body>
+	<!-- START Black Site Header -->
+	<div class="site-header">
+		<div class="site-header__top">
+			<div class="site-header__inner">
+
+				<!-- Left: NYC logo + Health text -->
+				<div class="site-header__left">
+					<a href="https://www.nyc.gov" aria-label="NYC.gov Home">
+						<img src="./img/nyc_white.png" alt="NYC" class="site-header__logo NYCimg">
+					</a>
+					<img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
+					<span aria-label="Health" class="site-header__title">Health</span>
+				</div>
+
+				<!-- Right: 311 + Search links -->
+				<div class="site-header__right">
+					<span class="site-header__service-link">
+						<a href="https://www.nyc.gov/311">311</a>
+					</span>
+					<img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
+					<span class="site-header__search">
+						<a href="https://www.nyc.gov/home/search/index.page">
+							Search all NYC.gov websites
+						</a>
+					</span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- END Black Site Header -->
+
+
+
+
+
+	<!-- START White Header -->
+	<header class="site-banner" role="banner">
+		<div class="site-banner__inner">
+			<div class="site-banner__content">
+
+				<!-- Left Tagline-->
+				<div class="site-banner__left">
+					<span class="site-banner__tagline">
+						Promoting and Protecting the City's Health
+					</span>
+					<!-- Hidden by default; shown on mobile -->
+					<div class="site-banner__program-page site-banner__program-page--mobile">
+						<a href="http://www.nyc.gov/rats">nyc.gov/rats</a>
+					</div>
+				</div>
+
+
+				<!-- Center Logo & Title -->
+				<div class="site-banner__center">
+					<a href="https://www.nyc.gov/site/doh/index.page" class="site-banner__logo">
+						<img src="./img/logo_sm.png" alt="NYC Health">
+					</a>
+					<div class="site-banner__title-container">
+						<h1>Rat Information Portal</h1>
+					</div>
+				</div>
+
+				<!-- Right Translate & Program Home -->
+				<div class="site-banner__right">
+					<div class="language-selector">
+						<div id="google_translate_element"></div>
+					</div>
+					<div class="site-banner__program-page">
+						<a href="http://www.nyc.gov/rats">nyc.gov/rats</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	<!-- END White Site Banner -->
+
+
+
+
+
+	<!-- START section containing the tabs, map, history and about -->
+	<div>
+		<!--Nav Tabs START-->
+		<div class="tab-container">
+			<div class="tab-header">
+				<button class="tab-button active" onclick="openTab(event, 'mapView')">
+					Map View
+				</button>
+				<button class="tab-button" onclick="openTab(event, 'propHis')">
+					Property History
+				</button>
+				<button class="tab-button" onclick="openTab(event, 'aboutView')">
+					About
+				</button>
+				<button class="tab-button" onclick="openTab(event, 'faqView')">
+					FAQ
+				</button>
+			</div>
+		</div>
+		<!--Nav Tabs END-->
+
+		<!--Map View START-->
+		<div id="mapView" class="tab-content active">
+			<arcgis-map item-id="a613c0d4bbda42b3a2569c3a828e60b3" center="-74.006, 40.7128" zoom="15" id="arcmap">
+				<arcgis-zoom slot="top-left"></arcgis-zoom>
+				<arcgis-home slot="top-left"></arcgis-home>
+				<arcgis-expand slot="top-left">
+					<arcgis-legend legend-style="classic"></arcgis-legend>
+				</arcgis-expand>
+				<arcgis-locate slot="top-left" scale="5000"></arcgis-locate>
+				<arcgis-search id="arcsearch" slot="top-right" all-placeholder="Address or BBL"></arcgis-search>
+			</arcgis-map>
+		</div>
+		<!--Map View END-->
+
+		<!--Property History START-->
+		<div id="propHis" class="tab-content">
+			<h3><span id="property-history-head">Property History</span></h3>
+			<h4><span id="propertyAddress">[address goes here]</span></h4>
+			<h4>BBL&nbsp;<span id="propertyBBL">[bbl goes here]</span></h4><br>
+
+			<!-- Add loading indicator -->
+			<div id="loadingIndicator" style="display: none;">
+				Loading inspection history...
+			</div>
+
+			<div id="property-history" class="my-tabulator-table" style="max-width:900px;"></div>
+		</div>
+		<!--Property History END-->
+
+		<!--About Section START-->
+		<div id="aboutView" class="tab-content">
+
+			<!--START subheader-->
+			<div id="anchorTop" class="subheader">
+				<h3>How To Use This Map</h3>
+				<h4>Welcome to New York City’s Rat Information Portal. This web-based mapping application lets you view
+					rat inspection and action data collected by the NYC Health Department.</h4>
+			</div>
+			<!--END subheader-->
+
+			<!--START basicsearch-->
+			<div class="about-row" id="basicsearch">
+
+				<div class="about-descr">
+					<div class="about-title">Basic Search</div>
+					<span class="about-descr-txt">
+						<p>For <strong>Address, ZIP code, or neighborhood:</strong> Enter search text and select a
+							result. </p>
+						<br>
+						<p>For <strong>BBL:</strong> Click the drop-down arrow on the left side of the search bar and
+							select <strong>NYC Health Department Inspections</strong>, then enter the BBL. Or enter the
+							BBL, wait briefly, and select the <strong>BBL</strong> result shown below the search box.
+						</p>
+						<br>
+						<p>Use the Community Board toggle and drop-down menu to zoom to a Community Board. The map will
+							re-center and zoom to the selected area. Select <strong>Community Board (All)</strong> to
+							reset the map and show all properties. </p>
+					</span>
+				</div>
+				<div class="about-img">
+					<img src="img/howtosearch.jpg" alt="How to Locate Inspections">
+				</div>
+			</div>
+			<!--END basicsearch-->
+
+
+			<!--START infopopup-->
+			<div class="about-row" id="infopopup">
+				<div class="about-descr">
+					<div class="about-title">Information Pop-Up</div>
+					<span class="about-descr-txt">
+						<p>Click any property to view inspection and NYC Health Department action information. The
+							pop-up shows the latest inspection type, result, and total number of inspections in the last
+							5 years. Properties not inspected in the last six months appear gray.</p>
+						<br>
+						<p>You can view a list of inspections and NYC Health Department actions by clicking on View
+							Property History and the results will open in a new tab.</p>
+						<br>
+						<p>For a full description of the inspection process and outcomes, see the<a href="#"
+								onclick="openTab(event, 'faqView')"> FAQ</a>.</p>
+					</span>
+				</div>
+				<div class="about-img">
+					<img src="img/rat_popup.jpg" alt="Information Pop-Up">
+				</div>
+			</div>
+			<!--END infopopup-->
+		</div>
+		<!--About Section END-->
+
+
+
+
+		<!--FAQ Question/Answer START-->
+		<div id="faqView" class="tab-content">
+			<div class="faq-container container-fluid">
+				<div id="anchorTop" class="subheader">
+					<h3>Frequently Asked Questions</h3>
+				</div>
+
+				<!-- Each Q/A pair is wrapped as a faq-item -->
+				<div class="faq-item">
+					<div class="faq-question">What is the Rat Information Portal map?</div>
+					<div class="faq-answer">
+						<p>The Rat Information Portal map is a web-based mapping application that allows users to view
+							rat inspection and action data collected by the NYC Health Department over the past 5 years.
+						</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What does it mean to search by BBL?</div>
+					<div class="faq-answer">
+						<p>BBL stands for Borough Block and Lot and is a unique ID for every tax lot in NYC. The NYC
+							Health Department uses BBL to track and identify properties that may have many different
+							street addresses or no street address. For properties without an address, such as parks and
+							vacant lots, BBL is the best way to search. Some BBLs in NYC have many different buildings
+							on them. The NYC Health Department performs and reports on inspections by BBL. If
+							enforcement is needed on a property, the NYC Health Department will determine the owner of
+							the BBL.</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What is the difference between inspection types?</div>
+					<div class="faq-answer">
+						<ul>
+							<li>An <strong>initial inspection</strong> is conducted in response to a 311 complaint or a
+								proactive rat indexing inspection. If an initial inspection finds rat activity,
+								conditions that attract rats, or other animal nuisance conditions, the property will
+								fail the inspection, and the property owner will be mailed a Commissioner’s Order to
+								Abate (COTA). If the property is owned or managed by a City, State, or Federal agency, a
+								City Agency Referral Letter is mailed, requesting that the conditions be remediated.
+							</li>
+							<li>A <strong>compliance inspection</strong> is conducted on private property after a
+								property fails its initial inspection and receives a COTA. The Health Department will
+								only schedule a compliance inspection after the property owner has been notified of the
+								rat conditions and given time to remediate. A compliance inspection is a follow-up visit
+								to see if the problem was corrected. If the problem is not corrected, the owner of the
+								property will receive one or more summons depending on the severity of the conditions.
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What do inspectors look for?</div>
+					<div class="faq-answer">
+						<p>Inspectors look for signs of rat activity, such as:</p>
+						<ul>
+							<li>Tracks</li>
+							<li>Fresh Droppings</li>
+							<li>Burrows</li>
+							<li>Active runways or rubmarks </li>
+							<li>Fresh Gnawing</li>
+							<li>Live or dead rats</li>
+						</ul></br>
+						<p>Inspectors also look for mice and conditions that may attract rodents such as harborage,
+							clutter, and uncontained garbage that may be feeding rodents. Inspectors will check for
+							animal nuisance conditions in response to 311 complaints. </p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What does “Passed at Last Inspection” mean?</div>
+					<div class="faq-answer">
+						<p>A property “Passed at Last Inspection” if the inspector did not observe any active signs of
+							rats or mouse activity, conditions that attract rodent activity, or animal nuisance
+							conditions. The property will appear green on the map.</p>
+						<div class="dot-wrapper"><span class="dot" style="background-color:#a7c636;"></span></div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What does “Rat Activity at Last Inspection” mean?</div>
+					<div class="faq-answer">
+						<p>A property is marked “Rat Activity at Last Inspection” when an inspector observed signs of
+							rat activity. Signs of rat activity include: </p>
+						<ul>
+							<li>Tracks</li>
+							<li>Fresh Droppings</li>
+							<li>Burrows</li>
+							<li>Active runways or rubmarks </li>
+							<li>Fresh Gnawing</li>
+							<li>Live or dead rats</li>
+						</ul></br>
+						<p>The property will appear pink on the map. </p>
+						<div class="dot-wrapper"><span class="dot" style="background-color:#fc30cd;"></span></div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What does “Failed for Other Reason” include?</div>
+					<div class="faq-answer">
+						<p>A property is marked “Failed for Other Reason” when an inspector observed any other health
+							code violation such as: </p>
+						<ul>
+							<li>Exposed or uncontained garbage</li>
+							<li>Harborage conditions, such as clutter or overgrown vegetation</li>
+							<li>Mice</li>
+							<li>Animal nuisance conditions, such as pigeon droppings</li>
+						</ul></br>
+						<p>The property will appear purple on the map.</p>
+						<div class="dot-wrapper"><span class="dot" style="background-color:#6f43a8;"></span></div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">How long does it take for an inspection to appear on the Rat Information
+						Portal?</div>
+					<div class="faq-answer">
+						<p>Inspection results are typically available within 5 business days of the inspection being
+							conducted and approved by a supervisor.</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What happens after an inspection?</div>
+					<div class="faq-answer">
+						<p>If inspectors find signs of rat activity, mice, conditions that attract rats, or animal
+							nuisance conditions, the property owner will receive a Commissioner’s Order to Abate (COTA)
+							with an inspection report and guidance on how to fix the problems.</p>
+						<p>Twelve to thirty (12-30) days after an order is mailed to a private property owner, the
+							Health Department will conduct a follow-up compliance inspection. If conditions have not
+							been corrected, the owner will receive a summons. The NYC Health Department may also treat
+							properties and bill owners for the service. The NYC Health Department occasionally cleans or
+							performs stoppage on properties. </p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What if a property has not been inspected in the last six months? </div>
+					<div class="faq-answer">
+						<p>Properties that have not been inspected in the last six months will appear gray on the map.
+							You can still view their inspection history by clicking on the property.</p>
+							<p>The property will appear grey on the map.</p>
+							<div class="dot-wrapper"><span class="dot" style="background-color:#969696;"></span></div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What if a property I want to search for is not appearing on the map?</div>
+					<div class="faq-answer">
+						<p>If a property is not appearing on the map, it may not have a valid BBL (Borough, Block, and
+							Lot number), or its BBL may have changed due to a property merger, subdivision, or update.
+							To find the current or previous BBLs for a property, please visit the <a
+								href="https://propertyinformationportal.nyc.gov/" target="_blank">Department of Finance’s Property
+								Information Portal.</a> You can search by Borough, Block, and Lot or by address, and
+							then click on "Tax Map History" and then on "History of Tax Map Changes" to see any BBL
+							changes.</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What are the NYC Health Department Actions?</div>
+					<div class="faq-answer">
+						<p>The NYC Health Department may send staff to take action on a property if the owner fails to do so
+							after receiving an order. Actions that may be taken include:</p>
+						<ul>
+							<li><strong>Bait:</strong> Application of rodenticide or other treatment.
+							</li>
+							<li><strong>Monitoring:</strong> Monitoring a property for rat activity after an
+								intervention.
+							</li>
+							<li><strong>Clean up:</strong> Removal of garbage and clutter.</li>
+							<li><strong>Stoppage:</strong> Collapsing or sealing rat burrows in structures or soil.</li>
+						</ul></br>
+						<p>The property will have a black outline:</p>
+						<div class="dot-wrapper">
+							<span class="dot-outline"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What if I have a question about an inspection or NYC Health Department
+						action?</div>
+					<div class="faq-answer">
+						<p>You can refer to the Job ID in the information pop-up and email <a
+								href="mailto:ratportal@health.nyc.gov">ratportal@health.nyc.gov</a> with your question.
+						</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">What if a property has no NYC Health Department Action information listed?
+					</div>
+					<div class="faq-answer">Properties that have no NYC Health Department Action information listed have
+						not received any treatment by the NYC Health Department in the last 5 years.</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="faq-question">How can I submit a rodent complaint?</div>
+					<div class="faq-answer">
+						<p>You can <a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107" target="_blank">submit a complaint
+								online through 311.</a></p>
+						<p>Include a description of the problem and the address of the location. Inspectors can only
+							inspect areas accessible to them. If it is a private area, include contact info to schedule
+							access. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--FAQ Question/Answer END-->
+	</div>
+	<!-- END section containing the tabs, map, list and about -->
+
+
+
+
+
+
+
+	<!-- START Footer -->
+	<footer class="site-footer">
+		<div class="site-footer__container">
+			<img class="site-footer__logo" src="img/nyc_white.png" alt="NYC Logo" width="93" height="31" />
+			<div class="site-footer__copyright">
+				<p>
+					&copy; City of New York. 2026 All Rights Reserved. NYC is a trademark and service mark of the
+					City of New York.
+					<!-- <p style="color:rgb(84, 240, 206);"> Test Version 2/18 </p> -->
+				</p>
+			</div>
+		</div>
+	</footer>
+	<!-- END Footer -->
+
+
+
+
+
+	<!-- Google Translate -->
+
+	<!-- Desktop Google Translate -->
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'en',
+				includedLanguages: 'ar,bn,zh-CN,yue,en,fr,ht,it,ko,pl,ru,es,ur,yi',
+				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+			}, 'google_translate_element');
+		}
+	</script>
+	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+	</script>
+
+
+
+	<!-- FAQ INTERACTIVITY -->
+	<script>
+		document.querySelectorAll('.faq-question').forEach(q => {
+			q.addEventListener('click', () => {
+				// Close all other answers
+				document.querySelectorAll('.faq-question').forEach(otherQ => {
+					if (otherQ !== q) {
+						otherQ.classList.remove('active');
+						otherQ.nextElementSibling.classList.remove('show');
+					}
+				});
+
+				// Toggle this one
+				q.classList.toggle('active');
+				q.nextElementSibling.classList.toggle('show');
+			});
+		});
+	</script>
+	<!--Side menu for mobile-->
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<div>
+  <div class="features-result" data-dojo-attach-point="featuresResultDiv">
+    <div role="button" tabindex="0" class="popup-menu-button query-result-action-button" data-dojo-attach-point="btnFeatureAction" data-dojo-attach-event="click:_onBtnMenuClicked,keydown:_onBtnMenuKeydown"></div>
+    <div tabindex="0" class="results-number" data-dojo-attach-point="resultsNumberDiv">
+      <div class="number-container">
+        <div>${nls.displayedFeatures}:</div>
+        <span data-dojo-attach-point="numSpan"></span>
+      </div>
+      <div class="action-container">
+        <div role="button" tabindex="0" data-dojo-attach-point="loadMoreIcon" class="icon load-more-button query-hidden" title="${nls.loadMore}" data-dojo-attach-event="onclick:_onLoadMoreClicked,onkeydown:_onLoadMoreKeydown"></div>
+        <div role="button" tabindex="0" data-dojo-attach-point="expandedListIcon" class="icon expand-list" data-dojo-attach-event="onclick:_onExpandClicked,onkeydown:_onExpandKeydown"></div>
+      </div>
+    </div>
+    <div class="results-container" data-dojo-attach-point="resultsContainer" data-dojo-attach-event="onscroll:_onResultsScroll" onselectstart="return false;">
+      <table data-dojo-attach-point="resultsTable" valign="top" class="results-table" data-dojo-attach-event="onclick:_onResultsTableClicked,onkeydown:_onResultsTableKeydown" cellpadding="0" cellspacing="0" >
+        <tbody data-dojo-attach-point="resultsTbody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="multiple-related-records-section not-visible" data-dojo-attach-point="multipleRelatedRecordsDiv">
+    <table class="related-records-header multiple-related-records-header">
+      <tbody>
+        <tr>
+          <td class="first-td">
+            <div role="button" tabindex="0" aria-label="${nls.back}" class="back-arrow feature-action icon-arrow-back"  data-dojo-attach-point="multipleRelatedRecordsResultBackBtn" data-dojo-attach-event="onclick:_onBtnMultipleRelatedBackClicked,onkeydown:_onBtnMultipleRelatedBackKeydown"></div>
+          </td>
+          <td class="middle-td">
+            <select data-dojo-type="jimu/dijit/formSelect" aria-label="${nls.relatedLayer}" data-dojo-attach-point="relatedLayersSelect" data-dojo-attach-event="change:_onRelatedLayersSelectChanged" style="width:100%;"></select>
+          </td>
+          <td class="last-td"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="single-related-records-section not-visible" data-dojo-attach-point="singleRelatedRecordsResultDiv">
+    <table role="title" tabindex="0" class="related-records-header single-related-records-header" data-dojo-attach-point="singleRelatedRecordsResultTitle" data-a11y-label-by="single-related-records-title"  data-dojo-attach-event="onkeydown:_onBtnSingleRelatedTitleKeydown">
+      <tbody>
+        <tr>
+          <td class="first-td">
+            <div role="button" tabindex="0" aria-label="${nls.back}" class="back-arrow feature-action icon-arrow-back" data-dojo-attach-point="singleRelatedRecordsResultBackBtn" data-dojo-attach-event="onclick:_onBtnSingleRelatedBackClicked,onkeydown:_onBtnSingleRelatedBackKeydown"></div>
+          </td>
+          <td class="middle-td">
+            <div class="related-records-title jimu-ellipsis" data-dojo-attach-point="relatedTitleDiv" data-a11y-label-id="single-related-records-title"></div>
+          </td>
+          <td class="last-td"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div data-dojo-attach-point="shelter" data-dojo-type="jimu/dijit/LoadingIndicator" data-dojo-props="hidden:true"></div>
+</div>

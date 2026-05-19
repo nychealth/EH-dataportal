@@ -1,0 +1,24 @@
+﻿<div>
+	<table class="header-table" cellspacing="0" cellpadding="0">
+		<tbody>
+			<tr>
+				<td>
+					<div>
+						<select data-dojo-attach-point="allAnySelect">
+							<option value="AND" selected>${nls.matchMsgSetAll}</option>
+							<option value="OR">${nls.matchMsgSetAny}</option>
+						</select>
+					</div>
+				</td>
+				<td class="jimu-filter-set-delete">
+					<div role="button" data-dojo-attach-point="btnDelete" aria-label="'${nls.deleteText}'" class="jimu-icon jimu-icon-delete" tabindex="0"></div>
+				</td>
+				<td class="jimu-filter-set-add">
+					<div role="button" data-dojo-attach-point="btnAdd" aria-label="'${nls.addText}'" class="jimu-icon jimu-icon-add" tabindex="0"></div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div data-dojo-attach-point="allExpsBox" class="jimu-filter-exps-box">
+	</div>
+</div>

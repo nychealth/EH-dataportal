@@ -1,0 +1,515 @@
+/* === START Global View Section  === */
+#propHis h3,
+#faqView h3,
+#aboutView h3 {
+    color: #0080a9;          /* NYC blue */
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #0080a9;
+    padding-bottom: 5px;
+}
+
+/* === END Global View Section  === */
+
+
+
+
+
+
+
+
+/* Start MapDiv */
+#mapDiv {
+    /* height: 770px; */
+    width: 100%;
+}
+#mapView {
+    padding: 0;
+    height: calc(100vh - 200px); /* Adjust based on your header/footer height */
+    min-height: 500px;
+    position: relative;
+}
+
+/* Ensure the arcgis-map component fills its container */
+#mapView arcgis-map {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#arcmap {
+    width: 100%;
+    height: 100%;
+}
+/* End MapDiv */
+
+
+
+
+
+
+
+
+
+
+/* Start data table (Dog License)*/
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    /* allows horizontal scroll on small screens */
+    -webkit-overflow-scrolling: touch;
+    /* smooth scrolling for iOS */
+}
+
+.data-table {
+    width: 100%;
+    min-width: 600px;
+    /* prevents columns from squishing too much */
+}
+
+.data-table,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.data-table th,
+table th {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #ccc;
+}
+
+.data-table td,
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.data-table tr:nth-child(even),
+table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.data-table tr:hover,
+table tr:hover {
+    background-color: #f5f5f5;
+}
+
+table a {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+table a:hover {
+    color: #003d80;
+}
+
+/* End of data table */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Property History */
+
+#loadingIndicator {
+    padding: 15px;
+    text-align: center;
+    color: #0066cc;
+    font-weight: bold;
+    background-color: #f0f8ff;
+    border: 1px solid #0066cc;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+#propertyBBL,
+#propertyAddress {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Optional: style when no property is selected */
+#propHis {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 50px;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+#propHis h4 span:empty::after {
+    content: "Click on a property in the map to view history";
+    font-style: italic;
+    color: #999;
+    font-weight: normal;
+}
+
+/* End of Property history */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Start FAQ Style */
+#faqView {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 50px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.dot-wrapper {
+    text-align: center;   /* centers horizontally */
+    margin-top: 10px;     /* space above the dot */
+  }
+
+.dot {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-outline {
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    /* black outline */
+    border-radius: 50%;
+    /* makes it a circle */
+    background-color: transparent;
+    /* no fill */
+    display: inline-block;
+}
+
+
+#faqView p {
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+#faqView ul {
+    margin: 0 0 0px;
+    font-size: 15px;
+    padding-left: 50px;
+}
+
+.faq-question {
+    background-color: #e6e6e6;
+    /* gray when not selected */
+    color: #333;
+    font-weight: bold;
+    padding: 10px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question:hover {
+    background-color: #d5d5d5;
+}
+
+/* Active (selected) header */
+.faq-question.active {
+    background-color: #0080a9;
+    /* NYC blue */
+    color: white;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Add a plus/minus icon */
+.faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 18px;
+    font-size: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+    content: "–";
+}
+
+/* Answer box */
+.faq-answer {
+    background-color: #f5f5f7;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    display: none;
+    line-height: 1.6;
+}
+
+/* When active */
+.faq-answer.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Links inside answers */
+.faq-answer a {
+    color: #0080a9;
+    text-decoration: underline;
+}
+
+.faq-answer a:hover {
+    text-decoration: none;
+}
+
+/* Optional subtle hover box-shadow */
+.faq-question:hover,
+.faq-answer.show {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* End FAQ Style */
+
+/* Start status message */
+.loading {
+    text-align: center;
+    color: #555;
+    font-size: 16px;
+    padding: 20px;
+    font-style: italic;
+}
+
+.error {
+    text-align: center;
+    color: #b00020;
+    font-size: 16px;
+    padding: 20px;
+    font-weight: 600;
+    background-color: #fcebea;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* End status message */
+
+/*Start about section*/
+#aboutView {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 50px;
+    color: #333;
+    line-height: 1.6;
+}
+
+#aboutView h4 {
+    color: #555;
+    font-weight: 400;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.about-row {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-title {
+    color: #0080a9;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.about-descr {
+    flex: 1 1 60%;
+    padding-right: 20px;
+}
+
+.about-img {
+    flex: 1 1 35%;
+    text-align: center;
+}
+
+.about-img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.about-descr-txt {
+    display: block;
+    color: #333;
+}
+
+.about-descr a {
+    color: #0080a9;
+    text-decoration: underline;
+}
+
+.about-descr a:hover {
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-row {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .about-descr {
+        padding-right: 0;
+    }
+
+    .about-img {
+        margin-top: 15px;
+    }
+}
+
+/*End about section*/
+
+/* Start Side navigation container */
+/* Sidenav container */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+    /* White background */
+    border-left: 2px solid #0055a5;
+    /* Blue outline */
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+/* Links inside sidenav */
+.sidenav a {
+    padding: 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #0055a5;
+    display: block;
+    transition: 0.2s;
+}
+
+/* Hover effect */
+.sidenav a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Close button */
+.sidenav .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 36px;
+}
+
+/* Mobile Google Translate wrapper */
+.mobile-language-selector {
+    padding: 8px 32px;
+    margin-bottom: 16px;
+}
+
+/* End Side navigation container */
+
+
+
+
+
+
+/*Start mobile/responsive section*/
+@media (max-width: 768px) {
+
+
+    .about-content {
+        grid-template-columns: 1fr;
+        /* stacked sections */
+        gap: 20px;
+    }
+
+    .about-container,
+    .list-container {
+        padding: 15px;
+        /* tight but not cramped */
+    }
+
+    .data-table,
+    table {
+        font-size: 14px;
+    }
+
+    .data-table th,
+    .data-table td,
+    table th,
+    table td {
+        padding: 8px 10px;
+    }
+
+    /* optional: make container full width on mobile */
+    .container {
+        margin: 0 10px;
+    }
+}
+
+/*End mobile/responsive section*/

@@ -1,0 +1,105 @@
+
+ 
+ 
+ 
+ 
+ 
+ /* ─── RESET & BASE ─────────────────────────────────────────── */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+ :root {
+   --navy:        #0d2b45;
+   --navy-mid:    #1a4060;
+   --teal:        #0077b6;
+   --teal-light:  #90e0ef;
+   --sand:        #f5f0e8;
+   --sand-dark:   #e8dfc8;
+   --white:       #ffffff;
+   --ink:         #1a1a1a;
+   --muted:       #6b7280;
+   --border:      #dde3ea;
+
+   --status-open:     #32cd32;
+   --status-open-bg:  #e6f5ee;
+   --status-adv:      #ffff00;
+   --status-adv-bg:   #b9b9b7;
+   --status-closedswim:   #ffaa00;
+   --status-closedclosedswim-bg:#fee2e2;
+ 
+   --status-closed:   #ff0000;
+   --status-closed-bg:#fee2e2;
+ 
+   --status-closedseason:   #006eff ;
+   --status-closedseason-bg:#b3cae9; 
+
+   --status-unknown:  #4b5563;
+   --status-unknown-bg:#f3f4f6;
+
+   --header-black-h:  24px;
+   --header-banner-h: 54px;
+   --header-total-h:  calc(var(--header-black-h) + var(--header-banner-h));
+   --tab-nav-h:       44px;
+   --chrome-h:        calc(var(--header-total-h) + var(--tab-nav-h));
+
+   --font-main: 'Public Sans', system-ui, sans-serif;
+   --font-mono: 'DM Mono', monospace;
+ }
+
+ html, body {
+   height: 100%;
+   font-family: var(--font-main);
+   background: var(--sand);
+   color: var(--ink);
+   overflow: hidden;        /* No body scroll — each panel scrolls independently */
+ }
+
+ /* ─── APP SHELL ────────────────────────────────────────────── */
+ .app {
+   display: flex;
+   flex-direction: column;
+   height: 100dvh;           /* Dynamic viewport height — correct on mobile */
+ }
+
+
+
+
+
+
+ 
+
+ /* ─── CONTENT AREA ─────────────────────────────────────────── */
+
+
+
+
+ /* ─── BEACHES PANEL ────────────────────────────────────────── */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* ─── FAQ PANEL ────────────────────────────────────────────── */
+
+
+
+
+
+
+
+
+
+
+
+
+

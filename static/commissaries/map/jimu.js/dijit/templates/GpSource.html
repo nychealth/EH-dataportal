@@ -1,0 +1,17 @@
+﻿<div>
+  <div style="display: flex;">
+    <div>
+      <input name="gpsource_mode" id="gpsource_fromportal_${uniqueID}" data-dojo-attach-point="portalRadio" data-dojo-type="dijit/form/RadioButton"/>
+      <label for="gpsource_fromportal_${uniqueID}" data-dojo-attach-point="portalLabel">${nls.selectFromPortal}</label>
+    </div>
+    <div style="margin-left: 20px;">
+      <input name="gpsource_mode" id="gpsource_fromurl_${uniqueID}" data-dojo-attach-point="urlRadio" data-dojo-type="dijit/form/RadioButton"/>
+      <label for="gpsource_fromurl_${uniqueID}" data-dojo-attach-point="urlLabel">${nls.addServiceUrl}</label>
+    </div>
+  </div>
+  <div class="source-content">
+    <div data-dojo-attach-point="operationTip" class="operation-tip"></div>
+    <div data-dojo-attach-point="hflcContainer" class="dijit-container hflc-container" style="display:none;"></div>
+    <div data-dojo-attach-point="flscContainer" class="dijit-container flsc-container" style="display:none;"></div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div>
+	<div>${nls.addTaskTip}</div>
+	<div class="content">
+		<div class="items-list jimu-not-selectable">
+			<div class="add-btn" data-dojo-attach-event="click:_onBtnAddItemClicked">
+				<div class="icon"></div>
+				<div class="tip">${nls.newFilter}</div>
+			</div>
+			<div data-dojo-attach-point="matchMsgTask" class="match-msg">
+				<select data-dojo-attach-point="allAnyTaskSelect" class="items-list-operSelect">
+					<option value="AND" selected>${nls.matchMsgSetAll}</option>
+					<option value="OR">${nls.matchMsgSetAny}</option>
+				</select>
+			</div>
+			<div class="items-list-content" data-dojo-attach-point="listContent" data-dojo-attach-event="click:_onListContentClicked"></div>
+		</div>
+		<div class="separator not-visible" data-dojo-attach-point="separator"></div>
+		<div class="single-setting-content" data-dojo-attach-point="singleSettingContent">
+			<div class="no-task-tip" data-dojo-attach-point="noTaskTip"></div>
+		</div>
+	</div>
+	<div class="cbx-options-container">
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxGroupByLayer"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="groupByLayerTip"></span>
+		</div>
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxZoomto"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="zoomtoTip"></span>
+		</div>
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxZoomBackto"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="zoombacktoTip"></span>
+		</div>
+		<div class="cbx-title">${nls.filterActions}</div>
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxAllowCustom"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="allowCustomTip"></span>
+		</div>
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxAllowResetAll"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="resetAllTip"></span>
+		</div>
+		<div class="cbx-option">
+			<div class="jimu-float-leading cbx-input" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxAllowTurnOffAll"></div>
+			<span class="jimu-float-leading cbx-tip" data-dojo-attach-point="turnOffAllTip"></span>
+		</div>
+	</div>
+	<div data-dojo-attach-point="shelter" data-dojo-type="jimu/dijit/LoadingShelter" data-dojo-props='hidden:true'></div>
+</div>

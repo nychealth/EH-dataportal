@@ -1,0 +1,40 @@
+{
+  "allPlaceholder": "Address or Commissary",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "FS_Active_Commissaries_554",
+      "url": "https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/FS_Active_Commissaries/FeatureServer/1",
+      "name": "Commissary Name",
+      "placeholder": "Commissary Name",
+      "searchFields": [
+        "CommissaryName"
+      ],
+      "displayField": "CommissaryName",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+      "name": "Address",
+      "singleLineFieldName": "SingleLine",
+      "placeholder": "Find address or place",
+      "countryCode": "New York",
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "searchInCurrentMapExtent": false,
+      "enableLocalSearch": true,
+      "localSearchMinScale": 300000,
+      "localSearchDistance": 10,
+      "radiusUnit": "mile",
+      "type": "locator"
+    }
+  ]
+}

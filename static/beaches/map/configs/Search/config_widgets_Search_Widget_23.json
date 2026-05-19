@@ -1,0 +1,24 @@
+{
+  "allPlaceholder": "Enter Beach Name",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "PHE_BeachWaterQuality_Public_5434",
+      "url": "https://services3.arcgis.com/A6Zjpzrub8ESZ3c7/arcgis/rest/services/PHE_BeachWaterQuality_Public/FeatureServer/0",
+      "name": "Beach Water Quality",
+      "placeholder": "Enter Beach Name",
+      "searchFields": [
+        "Name",
+        "Type"
+      ],
+      "displayField": "Name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 25,
+      "maxResults": 25,
+      "type": "query"
+    }
+  ]
+}

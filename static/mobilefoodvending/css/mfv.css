@@ -1,0 +1,89 @@
+.embed-container {
+    position: relative; 
+    padding-bottom: 45%; 
+    height: 0; 
+    max-width: 100%;
+} 
+
+.embed-container iframe, .embed-container object, .embed-container iframe {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;} 
+    
+small {
+    position: absolute; 
+    z-index: 40; 
+    bottom: 0; 
+    margin-bottom: -15px;
+}
+
+.translate-hide {
+    font-size: 1px;
+    color: transparent;
+}
+
+@media only screen and (max-width: 767px) {
+    .embed-container {
+        padding-bottom: 140%; 
+    }
+
+    #NYCfooterOuter {
+        height: 0px;
+    }
+
+    .footer-links {
+        line-height: 0px;
+        height: 0px;
+        visibility: hidden;
+    }
+
+    #NYC-footer {
+        padding: 0px;
+        height: 0px;
+    }
+
+    .footer-container {
+        height: 0px;
+        visibility: hidden;
+    }
+
+    .js-ready #NYCspace {
+        height:0px;
+    }
+
+    #NYC-footer .footer-links a {
+        padding: 0px;
+    }
+
+    #NYC-footer .logo-nyc {
+        height: 0px;
+    }
+
+    #NYC-footer .span3 {
+        margin: 0px;
+    }
+
+    #NYC-footer .nyc-form-search .nyc-input-search {
+        padding: 0px;
+        height: 0px;
+    }
+
+    #NYC-footer .nyc-form-search .nyc-ico-search {
+        padding: 0px;
+        height: 0px;
+    }
+
+    #NYC-footer .copyright p {
+        line-height: 0px;
+    }
+
+    #nyc-pp-tou {
+        font-size: 0px;
+    }
+
+    #nyc-accessibility-img {
+        height: 0px;
+    }
+}

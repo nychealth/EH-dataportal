@@ -1,0 +1,58 @@
+<div>
+	<div class="query-label hor-center">${nls.querySettings}</div>
+	<div style="margin-top:3px;" class="add-task-tip hor-center">${nls.addTaskTip}</div>
+	<div class="content">
+
+		<div class="items-list jimu-not-selectable">
+			<div class="add-btn" data-dojo-attach-event="click:_onBtnAddItemClicked">
+				<div class="icon"></div>
+				<div class="tip">${nls.newQuery}</div>
+			</div>
+			<div class="items-list-content" data-dojo-attach-point="listContent" data-dojo-attach-event="click:_onListContentClicked"></div>
+		</div>
+
+		<div class="separator not-visible" data-dojo-attach-point="separator"></div>
+		
+		<div class="single-setting-content" data-dojo-attach-point="singleSettingContent">
+			<div class="no-query-tip" data-dojo-attach-point="noQueryTip"></div>
+		</div>
+
+	</div>
+	<div class="general-setting">
+		<div class="query-label hor-center">${nls.optionsText}</div>
+		
+		<div class="check-box-container hor-center">
+			<div data-dojo-type="jimu/dijit/CheckBox" class="normal-font-size" data-dojo-attach-point="cbxHideLayersAfterWidgetClosed" data-dojo-props='checked:true'></div>
+		</div>
+		
+
+		<div style="margin-bottom: 19px;" class="query-label">${nls.tabLabels}:</div>
+		<div style="margin-bottom: 19px;" class="tab-labels-container">
+			<div class="label-box-group">
+				<div class="query-sub-label text-over-flow" title="${nls.tasks}">${nls.tasks}</div>
+				<div class="general-text-box" data-dojo-attach-point="labelTasksTextBox" data-dojo-type="dijit/form/TextBox" value="${nls.tasks}"></div>
+			</div>
+
+			<div class="label-box-group margin-lr-60">
+				<div class="query-sub-label text-over-flow" title="${nls.results}">${nls.results}</div>
+				<div class="general-text-box" data-dojo-attach-point="labelResultsTextBox" data-dojo-type="dijit/form/TextBox" value="${nls.results}"></div>
+			</div>
+		</div>
+
+		<div data-dojo-attach-event="change:_onShowFilterLabelCbxChanged" style="margin-bottom: 13px;" data-dojo-type="jimu/dijit/CheckBox" class="normal-font-size" data-dojo-attach-point="cbxShowFilterLabels" data-dojo-props='checked:true'></div>
+
+		<div data-dojo-attach-point="filterLabelOptionContainer" class="tab-labels-container">
+			<div class="label-box-group">
+				<div class="query-sub-label text-over-flow" title="${nls.queryCriteira}">${nls.queryCriteira}</div>
+				<div class="general-text-box" data-dojo-attach-point="criteiraTextBox" data-dojo-type="dijit/form/TextBox" value="${nls.queryCriteira}"></div>
+			</div>
+
+			<div class="label-box-group margin-lr-60">
+				<div class="query-sub-label text-over-flow" title="${nls.spatialFilter}">${nls.spatialFilter}</div>
+				<div class="general-text-box" data-dojo-attach-point="spatialTextBox" data-dojo-type="dijit/form/TextBox" value="${nls.spatialFilter}"></div>
+			</div>
+		</div>
+		
+	</div>
+	<div data-dojo-attach-point="shelter" data-dojo-type="jimu/dijit/LoadingIndicator" data-dojo-props='hidden:true'></div>
+</div>

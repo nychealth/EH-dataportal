@@ -1,0 +1,105 @@
+﻿<div>
+  <div class="settings-container">
+    <div data-dojo-attach-point="fieldsSelect" data-dojo-type="dijit/form/FilteringSelect" data-dojo-props='searchAttr:"displayName",required:true,intermediateChanges:true' class="fields-select dijit-form-FilteringSelect"></div>
+    <select data-dojo-attach-point="operatorsSelect" data-dojo-type="dijit/form/Select" class="operator-select dijit-form-Select restrict-select-width">
+      <option value="none">${nls.none}</option>
+    </select>
+    <div data-dojo-attach-point="attributeValueContainer" class="attribute-value-container">
+      <div data-dojo-attach-point="valueProviderContainer" class="value-provider-container"></div>
+      <div role="button" tabindex="0" data-dojo-attach-point="valueTypeSetNode" title="${nls.setInputType}" class="value-type-set jimu-icon jimu-icon-setting"></div>
+    </div>
+    <div role="button" tabindex="0" aria-label="'${nls.deleteText}'" class="jimu-icon jimu-icon-delete" data-dojo-attach-point="btnDelete"></div>
+  </div>
+
+  <div class="askvalues">
+    <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxAskValues" label="${nls.askForValues}" class="jimu-trailing-margin6"></div>
+    <div data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="cbxCaseSensitive" label="${nls.caseSensitive}" style="display:none;"></div>
+  </div>
+
+  <div data-dojo-attach-point="promptSection" class="prompt">
+    <table data-dojo-attach-point="promptTable" cellpadding="0" cellspacing="0" class="prompt-table" style="width:100%;">
+      <tbody>
+        <tr>
+          <td class="first-td">
+            <span>${nls.prompt}</span>
+          </td>
+          <td class="second-td">
+            <div data-dojo-attach-point="promptTB" data-dojo-type="dijit/form/ValidationTextBox" data-dojo-props="required:true,trim:true" style="width:257px;" class="dijit-form-ValidationTextBox" ></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="first-td">
+            <span>${nls.hint}</span>
+          </td>
+          <td class="second-td">
+            <div data-dojo-attach-point="hintTB" data-dojo-type="dijit/form/ValidationTextBox" data-dojo-props="trim:true" style="width:257px;" class="dijit-form-ValidationTextBox" ></div>
+          </td>
+        </tr>
+        <tr data-dojo-attach-point="relativeDatesTr" class="relative-start-date-tr">
+          <td class="first-td">
+            <div data-dojo-attach-point="startDateOptions">${nls.dateOptions}</div>
+          </td>
+          <td class="second-td">
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="custom_start_date" data-dojo-props='title:"${nls.custom}"'></div>
+              <span>${nls.custom}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="today_start_date" data-dojo-props='title:"${nls.today}"'></div>
+              <span>${nls.today}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="yesterday_start_date" data-dojo-props='title:"${nls.yesterday}"'></div>
+              <span>${nls.yesterday}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="tomorrow_start_date" data-dojo-props='title:"${nls.tomorrow}"'></div>
+              <span>${nls.tomorrow}</span>
+            </div>
+          </td>
+        </tr>
+        <tr data-dojo-attach-point="relativeDatesTr" class="relative-end-date-tr">
+          <td class="first-td">
+            <div data-dojo-attach-point="endDateOptions">${nls.endDateOptions}</div>
+          </td>
+          <td class="second-td">
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="custom_end_date" data-dojo-props='title:"${nls.custom}"'></div>
+              <span>${nls.custom}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="today_end_date" data-dojo-props='title:"${nls.today}"'></div>
+              <span>${nls.today}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="yesterday_end_date" data-dojo-props='title:"${nls.yesterday}"'></div>
+              <span>${nls.yesterday}</span>
+            </div>
+
+            <div class="showItems">
+              <div class="opers" data-dojo-type="jimu/dijit/CheckBox" data-dojo-attach-point="tomorrow_end_date" data-dojo-props='title:"${nls.tomorrow}"'></div>
+              <span>${nls.tomorrow}</span>
+            </div>
+          </td>
+        </tr>
+        <tr data-dojo-attach-point="cascadeTr" class="cascade-tr">
+          <td class="first-td">
+            <div style="margin-bottom:5px;">${nls.listValues}:</div>
+          </td>
+          <td class="second-td">
+            <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="cascadeSelect" class="cascade-select restrict-select-width" style="width:100%;">
+              <option value="none">${nls.noneCascadeFilterTip}</option>
+              <option value="previous">${nls.previousCascadeFilterTip}</option>
+              <option value="all">${nls.allCascadeFilterTip}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
