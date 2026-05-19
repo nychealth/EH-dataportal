@@ -5,8 +5,9 @@ Source memories:
 - /memories/repo/data-explorer-analysis.md
 - /memories/repo/geotype-normalization.md
 - /memories/repo/shared-shell-modals.md
+- /memories/repo/leaflet-map-export.md
 
-Last mirrored: 2026-05-09
+Last mirrored: 2026-05-19
 
 ---
 
@@ -279,3 +280,14 @@ indicator JSON → Arquero table with GeoRank
 
 
 - On indicator changes, clear `#summary-table` so first table-tab open rebuilds with new data and fresh filter options.
+
+---
+
+## leaflet-map-export.md
+
+# Leaflet Map Export
+
+- New explorer map export is owned by `assets/js/data-explorer-new/print.js` and builds a separate off-screen Leaflet map instead of screen-capturing the live map.
+- Export paths should use an export-only canvas renderer with `L.canvas({ padding: 0 })`; Leaflet's default padded path canvas produced a negative-origin overlay canvas and contributed to browser-zoom-sensitive export drift.
+- `buildTemporaryLeafletExport()` should keep `preferCanvas: true` so bubble and choropleth overlays render to canvas before PNG compositing.
+- Number-measure export can fail if vector layers are added before the export map view is set; fit or set the view first, then add pending layers.

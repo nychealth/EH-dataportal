@@ -36,6 +36,7 @@ const initBaseMap = () => {
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
         attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        crossOrigin: true,
         subdomains: 'abcd',
         maxZoom: 11,
         minZoom: 7
@@ -515,6 +516,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     // send info for printing
     vizYear = mapTime;
     vizGeography = mapGeoType;
+    selectedMapMetadata = metadata[0] || null;
+    vizSource = metadata[0]?.Sources;
     chartType = 'map';
 
     return mapRenderPromise;
@@ -747,6 +750,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
     // send info for printing
     vizYear = mapTime;
     vizGeography = mapGeoType;
+    selectedMapMetadata = metadata[0] || null;
+    vizSource = metadata[0]?.Sources;
     chartType = 'bubble-map';
 
     return mapRenderPromise;

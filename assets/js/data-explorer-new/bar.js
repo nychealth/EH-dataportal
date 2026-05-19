@@ -513,6 +513,10 @@ const renderBar = (
     }
     
     vegaSpec.signals.push(geoSignal)
+
+    printSpec = vegaSpec;
+    vizSource = metadata[0]?.Sources;
+    chartType = 'bar';
     
     
     return vegaEmbed("#barHolder", vegaSpec, {

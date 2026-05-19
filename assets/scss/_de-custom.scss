@@ -643,6 +643,12 @@ $color-data-explorer: #0A408A;
     color: #008939 !important;
   }
 
+  .de-tabs-nav .nav-pills .de-nav-action-link:hover,
+  .de-tabs-nav .nav-tabs .de-nav-action-link:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: white;
+  }
+
   @media (min-width: 720px) {
     .w-md-40 {
         width: 40% !important;
