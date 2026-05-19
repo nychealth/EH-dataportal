@@ -1,5 +1,5 @@
 <div class="col-md-11 col-sm-12 mx-auto">
-    <h3 class="h3 cp-sticky-header px-2 my-1">Air quality in <span style="color:blue">SITE</span> compared to the <span style="color:orange">control site</span></h3>
+    <h3 class="h3 cp-sticky-header px-2 my-1">Air quality in <span style="color:blue" id="site-name">SITE</span> compared to the <span style="color:orange">Van Wyck</span></h3>
 </div>
 </div>
 
@@ -103,8 +103,15 @@
         "Rest of City": "<h3 class='h5'>The air quality in the Rest of City...</h3><p style='display:inline;'>Outside of the CRZ, pollution levels did not change.​ Average pollution levels in the region outside of NYC also did not change.</p>",
         "Region": "<h3 class='h5'>The air quality in the rest of the region...</h3><p style='display:inline;'>At EPA monitoring sites on the map below, PM2.5, NO2 and O3 levels following the start of CRZ tolling were similar to levels prior to tolling.</p>",
     };
+
+    // Site titles for the main sites
+
+    const siteTitles = {
+        "Deegan_1": "Deegan",
+        "Cross_Bronx_1": "Cross Bronx",
+    }
     
-    // Datawrapper embed IDs for each site
+    // Datawrapper embed IDs for each site - I guess we can get rid of these?
     const datawrapperIds = {
         "Deegan": "0jrLJ",
         "Cross Bronx": "FLrt2",
@@ -344,7 +351,12 @@
                 if (textElement && siteText[site]) {
                     textElement.innerHTML = siteText[site];
                 }
-                
+
+                // Update site title in the header
+                const siteTitleElement = document.getElementById("site-name");    
+                if (siteTitleElement) {
+                    siteTitleElement.textContent = siteTitles[site] || site;
+                }            
                 // Update datawrapper chart for the site
                 updateDatawrapperChart(site);
                 
