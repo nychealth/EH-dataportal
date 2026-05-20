@@ -140,13 +140,13 @@
 
   
                 <div class="col-md-6 mt-2">
-                    <p>If the error bars don't overlap, then there's a significant difference caused by congestion pricing.</p>
+                    <p>If the error bars don't overlap, then there's a <strong>significant difference</strong> from congestion pricing.</p>
                     <div style="width:100%;" id="explainChart" class="mt-2"></div>
 
                 </div>
 
-                <div class="col-md-6 mt-2">
-                    <p>If the error bars don't overlap, then there's no significant difference due to congestion pricing.</p>
+                <div class="col-md-6 mt-2 border-left">
+                    <p>If they overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
                     <div id="explainChart2" style="width:100%;" class="mt-2"></div>
                 </div>
 
@@ -403,15 +403,13 @@ const spec = {
   "data": {
     "values": [
       {
-        "SITE": "Deegan",
-        "Var": "Counterfactual",
+        "Var": "Modelled",
         "Parameter": "PM2.5",
         "Time": "Pre",
         "Value": 7.82,
         "Unit": "mcg/m3"
       },
       {
-        "SITE": "Deegan",
         "Var": "Observed",
         "Parameter": "PM2.5",
         "Time": "Pre",
@@ -422,8 +420,7 @@ const spec = {
       },
 
       {
-        "SITE": "Deegan",
-        "Var": "Counterfactual",
+        "Var": "Modelled",
         "Parameter": "PM2.5",
         "Time": "Post",
         "Value": 7.14,
@@ -432,7 +429,6 @@ const spec = {
         "Unit": "mcg/m3"
       },
       {
-        "SITE": "Deegan",
         "Var": "Observed",
         "Parameter": "PM2.5",
         "Time": "Post",
@@ -448,10 +444,6 @@ const spec = {
     {
       "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
       "as": "UnitFmt"
-    },
-    {
-      "calculate": "datum.SITE === 'Deegan' ? 'Study' : datum.SITE === 'Van Wyck' ? 'Control' : datum.SITE",
-      "as": "newName"
     },
     {
       "calculate": "datum.Parameter + ' (' + datum.UnitFmt + ')'",
@@ -503,7 +495,7 @@ const spec = {
         "expr": "datum.label"
       }},
           "scale": {
-            "domain": ["Observed", "Counterfactual"],
+            "domain": ["Observed", "Modelled"],
             "range": ["blue", "darkorange"]
           }
         }
@@ -538,7 +530,7 @@ const spec = {
       {
         "TimeLabel": "With congestion pricing",
         "y": 6,
-        "label": "there is a significant\n difference in observed vs \ncounterfactual: congestion pricing\ncaused this difference.",
+        "label": "there is a significant\n difference in observed vs \nmodelled: congestion pricing\ncaused this difference.",
         "textColor": "black"
       }
     ]
@@ -593,7 +585,7 @@ const spec2 = {
   "data": {
     "values": [
       {
-        "Var": "Counterfactual",
+        "Var": "Modelled",
         "Parameter": "PM2.5",
         "Time": "Pre",
         "Value": 7.12,
@@ -610,7 +602,7 @@ const spec2 = {
       },
 
       {
-        "Var": "Counterfactual",
+        "Var": "Modelled",
         "Parameter": "PM2.5",
         "Time": "Post",
         "Value": 6.34,
@@ -686,7 +678,7 @@ const spec2 = {
         "expr": "datum.label"
       }},
           "scale": {
-            "domain": ["Observed", "Counterfactual"],
+            "domain": ["Observed", "Modelled"],
             "range": ["blue", "darkorange"]
           }
         }
