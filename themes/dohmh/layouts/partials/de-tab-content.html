@@ -110,7 +110,7 @@
     <!-- Bar -->
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-bar')">
+            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-bar">
                 <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
             </button>
         </div>
@@ -125,7 +125,7 @@
                 <p class="fs-sm">Hover over a neighborhood on the map or bar chart to see it highlighted on the other view.</p>
             </div>
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -135,7 +135,7 @@
     <!-- Table -->
     <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-table')">
+            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-table">
                 <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
             </button>
         </div>
@@ -192,7 +192,7 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="table" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
          
             </div>
@@ -202,7 +202,7 @@
     <!-- Trends -->
     <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-trends')">
+            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-trends">
                 <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
             </button>
         </div>
@@ -226,7 +226,7 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -236,7 +236,7 @@
     <!-- Correlate -->
     <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-correlate')">
+            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-correlate">
                 <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
             </button>
         </div>
@@ -276,7 +276,7 @@
             </div>
 
             <div class="d-flex align-items-center pt-2">
-                <a class="btn-sm btn-light-green-bg-outline" href="#" onclick="printModal()"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
             </div>
@@ -286,7 +286,7 @@
     <!-- Data Source -->
     <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
         <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane" aria-label="Close" onclick="closeTabPane('v-pills-ds')">
+            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-ds">
                 <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
             </button>
         </div>
@@ -377,9 +377,9 @@
         });
     });
 
-    // Function to close a specific tab pane
-
-    function closeTabPane(paneId) {
+    // Close buttons carry their target pane in markup so the script can
+    // bind once here without relying on inline handlers.
+    const closeExplorerTabPane = (paneId) => {
         const targetPane = document.querySelector('#' + paneId);
         const targetTab = document.querySelector('[href="#' + paneId + '"]');
 
@@ -401,7 +401,21 @@
             overlay = 'none';
             if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
         }
-    }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const closeTabPaneButtons = document.querySelectorAll('.de-close-tab-button[data-pane-id]');
+
+        closeTabPaneButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const paneId = this.dataset.paneId;
+
+                if (paneId) {
+                    closeExplorerTabPane(paneId);
+                }
+            });
+        });
+    });
 
     // Mobile accordion functionality
 

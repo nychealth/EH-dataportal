@@ -812,22 +812,42 @@ const renderMapPreview = async () => {
 // public modal entrypoint
 // ----------------------------------------------------------------------- //
 
-window.saveMapModal = () => {
+const openChartSaveModal = () => {
+
+    openPrintModal();
+    renderChartPreview();
+
+};
+
+const openMapSaveModal = () => {
 
     openPrintModal();
     renderMapPreview();
 
 };
 
-window.printModal = () => {
 
-    openPrintModal();
+const bindPrintControls = () => {
 
-    if (chartType === 'map' || chartType === 'bubble-map') {
-        renderMapPreview();
-        return;
+    const mapSaveButton = document.getElementById('deSaveMapButton');
+
+    if (mapSaveButton) {
+        mapSaveButton.addEventListener('click', event => {
+            event.preventDefault();
+            openMapSaveModal();
+        });
     }
 
-    renderChartPreview();
+    const chartSaveButtons = document.querySelectorAll('.de-save-chart-button[data-print-target="chart"]');
+
+    chartSaveButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            openChartSaveModal();
+        });
+    });
 
 };
+
+
+bindPrintControls();
