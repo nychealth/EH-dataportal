@@ -151,12 +151,16 @@
           <arcgis-zoom slot="top-left"></arcgis-zoom>
           <arcgis-home slot="top-left"></arcgis-home>
           <arcgis-locate slot="top-left" scale="5000"></arcgis-locate>
-
+          <div slot="top-right" class="beach-select-wrapper">
+            <select id="beach-select" aria-label="Select a beach">
+              <option value="">— Select a beach —</option>
+            </select>
+          </div>
           <!-- <arcgis-expand slot="top-left">
             <arcgis-legend legend-style="classic"></arcgis-legend>
           </arcgis-expand> -->
 
-          <arcgis-search id="arcsearch" slot="top-right" all-placeholder="Address or BBL"></arcgis-search>
+          <!-- <arcgis-search id="arcsearch" slot="top-right" all-placeholder="Address or BBL"></arcgis-search> -->
         </arcgis-map>
       </div>
       <!-- ── END MAP  ──────────────────────────────────────────── -->
@@ -222,15 +226,14 @@
                   and Breezy Point beaches, which are sampled bi-weekly. Monitoring identifies sources of pollution that
                   can affect beach water quality, and sampling provides data about current water quality conditions.
                 <ul>
-                  <li>"Advisory"</li>
-                  <li>"Closed",</li>
-                  <li>"Closed for the Season",</li>
-                  <li>"Open",</li>
-                  <li>"Sample Date",</li>
-                  <li>"Single Day Results",</li>
-                  <li>"30-Day Geometric Mean",</li>
-                  <li>"Water quality is measured in most probable number per 100 mL of water (MPN/100mL), an estimate of
-                    the number of bacteria in a water sample."</li>
+                  <li>Advisory</li>
+                  <li>Closed</li>
+                  <li>Closed for the Season</li>
+                  <li>Open</li>
+                  <li>Sample Date</li>
+                  <li>Single Day Results</li>
+                  <li>30-Day Geometric Mean</li>
+                  <li>Water quality is measured in most probable number per 100 mL of water (MPN/100mL), an estimate of the number of bacteria in a water sample.</li>
                 </ul>
                 </p>
               </div>

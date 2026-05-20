@@ -136,6 +136,7 @@ function hideLoadingState() {
 // ──────────────────────────────────────────────────────────────
 function buildBeachList(features) {
   hideLoadingState();
+  buildBeachDropdown(features); // ← add this line
   listEl.querySelectorAll('.beach-item, .borough-header').forEach(el => el.remove());
 
   if (!features || features.length === 0) {
@@ -209,6 +210,78 @@ function buildBeachList(features) {
 
   updatedEl.classList.add('visible');
 }
+
+
+
+
+// ─────────────────────────────────────────────────────────────────
+// BEACH SELECT DROPDOWN
+// Populates the map overlay dropdown with the same sorted feature
+// list used by the beach list tab. Selecting a beach calls
+// zoomToFeature() exactly as clicking a row in the list does.
+// The dropdown uses the same Parks-first, then alphabetical sort.
+// ─────────────────────────────────────────────────────────────────
+function buildBeachDropdown(features) {
+  const select = document.getElementById('beach-select');
+  if (!select) return;
+
+  // Clear any previously loaded options except the placeholder
+  select.innerHTML = '<option value="">— Select a Beach —</option>';
+
+  // Reuse the same sort logic as the beach list
+  const parksBeaches = [];
+  const otherBeaches = [];
+
+  features.forEach(feature => {
+    const type = feature.attributes[CONFIG.fields.beachType] ?? '';
+    if (type === 'NYC Parks') {
+      parksBeaches.push(feature);
+    } else {
+      otherBeaches.push(feature);
+    }
+  });
+
+  const sortByName = (a, b) => {
+    const nameA = (a.attributes[CONFIG.fields.beachName] ?? '').toString();
+    const nameB = (b.attributes[CONFIG.fields.beachName] ?? '').toString();
+    return nameA.localeCompare(nameB);
+  };
+
+  parksBeaches.sort(sortByName);
+  otherBeaches.sort(sortByName);
+
+  const sortedFeatures = [...parksBeaches, ...otherBeaches];
+
+  // Build one <option> per beach, storing the index as the value
+  sortedFeatures.forEach((feature, index) => {
+    const name = feature.attributes[CONFIG.fields.beachName] ?? 'Unnamed Beach';
+    const option = document.createElement('option');
+    option.value = index;
+    const isPark = feature.attributes[CONFIG.fields.beachType] === 'NYC Parks';
+    option.textContent = isPark ? `${name} (NYC Parks)` : name;
+    select.appendChild(option);
+  });
+
+  // On selection, zoom to that beach and reset the dropdown
+  select.addEventListener('change', () => {
+    const index = select.value;
+    if (index === '') return;
+    const feature = sortedFeatures[index];
+    const name = feature.attributes[CONFIG.fields.beachName] ?? 'Unnamed Beach';
+    zoomToFeature(feature, name);
+    // Reset to placeholder after selection so it's ready for next use
+    select.value = '';
+  });
+}
+
+
+
+
+
+
+
+
+
 
 
 // ──────────────────────────────────────────────────────────────
