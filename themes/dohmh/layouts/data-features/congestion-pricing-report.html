@@ -192,19 +192,17 @@
         </div>
     </div>
 
-        <div class="row">
-
-            <div class="col-md-8 col-sm-12 mx-auto mb-2 px-2">
-                <h2></h2>
-                <img src="{{ .Params.fullurl }}images/map5.png" alt="" align="right" width="500px" class="" />
-                <div class="col-6">
-                {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
-                    {{ .Content }}
-                {{- end -}}
-            </div>
-
-            </div>
+ <div class="col-md-8 col-sm-12 mx-auto mb-2 px-2">
+    <div class="row mt-4">
+        <div class="col-6">
+            <iframe id="cpRegional" src={{ relURL "congestion_pricing/embeds/congestion_pricing_regional.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
         </div>
+        <div class="col-6">
+        {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
+                {{ .Content }}
+            {{- end -}}
+        </div>
+    </div>
 
 
 
@@ -217,6 +215,10 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
+    <!-- Conclusion -->
 
         <div class="col-md-8 col-sm-12 mx-auto">
 
