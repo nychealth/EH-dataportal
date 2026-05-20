@@ -159,6 +159,30 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     `;
 };
 
+// Builds popup markup specifically for citywide-only data
+const createCitywidePopupContent = (citywideData, metadata) => {
+    return `
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>NYC</strong>
+            </div>
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${indicator.IndicatorName}
+                        <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${citywideData.Value}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
+        </div>
+    `;
+};
+
 // Coordinates legend hover text and tick placement with hovered map features.
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     const calculatePercent = (x) => {
@@ -243,49 +267,15 @@ const renderMap = (
 
     topoFile = getGeoFile(mapGeoType);
 
-    // Determine if the data are citywide only
-    if (metadata[0].AvailableGeoTypes.length === 1 && metadata[0].AvailableGeoTypes[0] === 'Citywide') {
+    // ----------------------------------------------------------------------- //
+    // Check if the data are citywide only
+    // ----------------------------------------------------------------------- //
+    
+    const isCitywideOnly = metadata[0].AvailableGeoTypes.length === 1 && 
+                           metadata[0].AvailableGeoTypes[0] === 'Citywide';
+    
+    if (isCitywideOnly) {
         console.log(">>> CITYWIDE ONLY - Rendering citywide map");
-        
-        // Get the citywide data point
-        const citywideData = data[0];
-        
-        // Create custom popup content for citywide
-        const citywidePopupContent = `
-            <div class="popup-content">
-                <div class="popup-header">
-                    <strong>NYC</strong>
-                </div>
-                <div class="popup-body">
-                    <div class="popup-row">
-                        <div class="popup-indicator">
-                            ${indicator.IndicatorName}
-                            <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
-                        </div>
-                        <div class="popup-value">
-                            <span class="value-number">${citywideData.Value}</span>
-                            <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
-            </div>
-        `;
-        
-        // Create and open the popup at the map center
-        const mapCenter = currentMap.getCenter();
-        L.popup()
-            .setLatLng([40.711409, -74.016813])
-            .setContent(citywidePopupContent)
-            .openOn(currentMap);
-
-            const element = document.getElementById('v-pills-trend');
-            if (element) {
-                element.click();
-            } else {
-                console.warn("Trend tab element not found for citywide map click-through.");
-            }
-
     }
 
     // ----------------------------------------------------------------------- //
@@ -299,7 +289,7 @@ const renderMap = (
     if (isNumberMap) {
         
         console.log(">>> NUMBER MAP - Bubble map rendering");
-        return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile);
+        return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
                 
     } else {
         
@@ -309,7 +299,7 @@ const renderMap = (
         // CHOROPLETH MAP RENDERING
         // ----------------------------------------------------------------------- //
         
-        return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile);
+        return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
     }
 
 };
@@ -318,7 +308,7 @@ const renderMap = (
 // Choropleth map rendering function
 // ----------------------------------------------------------------------- //
 
-const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
+const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
 
     // Percent measures show percent-formatted legends; everything else stays unitless here.
     if (metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent') && !metadata[0].MeasurementType.includes('percentile')) {
@@ -366,10 +356,17 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
         layer.resetStyle(e.target);
     };
 
-    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
-        requireGeoRank: true,
-        valueDigits: 1
-    });
+    const createPopupContent = (properties) => {
+        // Use citywide-specific popup if this is citywide-only data
+        if (isCitywideOnly) {
+            return createCitywidePopupContent(data[0], metadata);
+        }
+        
+        return createMapPopupContent(properties, metadata, {
+            requireGeoRank: true,
+            valueDigits: 1
+        });
+    };
 
     const {
         updateHoverUI,
@@ -428,6 +425,16 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
                         const props = feature.properties;
                         console.log("** click", feature.properties);
 
+                        // For citywide-only data, switch to trend tab
+                        if (isCitywideOnly) {
+                            const element = document.getElementById('v-pills-trend');
+                            if (element) {
+                                element.click();
+                            } else {
+                                console.warn("Trend tab element not found for citywide map click-through.");
+                            }
+                        }
+
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
                         if (window.myVegaView && linkedGeoID !== undefined && linkedGeoID !== null) {
@@ -476,6 +483,23 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 
             currentGeojsonLayer = geojsonLayer;
 
+            // For citywide-only data, open the popup immediately at map center
+            if (isCitywideOnly) {
+                const citywidePopupContent = createCitywidePopupContent(data[0], metadata);
+                L.popup()
+                    .setLatLng([40.711409, -74.016813])
+                    .setContent(citywidePopupContent)
+                    .openOn(map);
+                
+                // Switch to trend tab
+                const element = document.getElementById('v-pills-trend');
+                if (element) {
+                    element.click();
+                } else {
+                    console.warn("Trend tab element not found for citywide map click-through.");
+                }
+            }
+
             // exposes map functions globally for chart-to-map hover cross-linking
             window.mapInterop = {
                 geoIDtoLayer,
@@ -500,7 +524,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
 // Bubble map rendering function
 // ----------------------------------------------------------------------- //
 
-const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
+const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();
     const { minValue, maxValue } = getMapStats(data);
@@ -522,10 +546,17 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
         fillOpacity: 0.3
     });
 
-    const createPopupContent = (properties) => createMapPopupContent(properties, metadata, {
-        requireGeoRank: false,
-        valueDigits: 0
-    });
+    const createPopupContent = (properties) => {
+        // Use citywide-specific popup if this is citywide-only data
+        if (isCitywideOnly) {
+            return createCitywidePopupContent(data[0], metadata);
+        }
+        
+        return createMapPopupContent(properties, metadata, {
+            requireGeoRank: false,
+            valueDigits: 0
+        });
+    };
 
     const {
         updateHoverUI,
@@ -565,6 +596,18 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
                     }
                     
                     layer.bindPopup(createPopupContent(feature.properties));
+                    
+                    // For citywide-only data, add click handler to switch to trend tab
+                    if (isCitywideOnly) {
+                        layer.on('click', () => {
+                            const element = document.getElementById('v-pills-trend');
+                            if (element) {
+                                element.click();
+                            } else {
+                                console.warn("Trend tab element not found for citywide map click-through.");
+                            }
+                        });
+                    }
                 }
             }).addTo(map);
 
@@ -606,6 +649,16 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
                     circle.on('click', (e) => {
                         console.log("** click", item);
 
+                        // For citywide-only data, switch to trend tab
+                        if (isCitywideOnly) {
+                            const element = document.getElementById('v-pills-trend');
+                            if (element) {
+                                element.click();
+                            } else {
+                                console.warn("Trend tab element not found for citywide map click-through.");
+                            }
+                        }
+
                         if (window.myVegaView) {
                             window.myVegaView.signal("selectedGeo", item.GeoID).run();
                         }
@@ -639,6 +692,23 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile) => {
                     });
                 }
             });
+
+            // For citywide-only data, open the popup immediately at map center
+            if (isCitywideOnly) {
+                const citywidePopupContent = createCitywidePopupContent(data[0], metadata);
+                L.popup()
+                    .setLatLng([40.711409, -74.016813])
+                    .setContent(citywidePopupContent)
+                    .openOn(map);
+                
+                // Switch to trend tab
+                const element = document.getElementById('v-pills-trend');
+                if (element) {
+                    element.click();
+                } else {
+                    console.warn("Trend tab element not found for citywide map click-through.");
+                }
+            }
 
             // --- Expose map functions globally for chart-to-map hover cross-linking ---
             window.mapInterop = {
