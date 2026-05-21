@@ -33,69 +33,65 @@
   </div>
 
 <script>
-// ---------- Get URL, and hide page content options -------------------------------------- // 
+const url = window.location.href;
 
- var url = window.location.href                              // use this when live
+document.querySelectorAll('.chunk').forEach(x => x.classList.add('hide'));
 
-// var url = 'http://localhost:1313/IndicatorPublic/beta'   // test URL
+// ---------- NR SPA: /topic/neighborhood — redirect to topic, restore neighborhood via sessionStorage ---------- //
+//
+// In dev (hugo serve), Hugo has no equivalent of IIS's internal URL rewrite rule, so navigating
+// directly to a neighborhood-specific URL like /neighborhood-reports/asthma_and_the_environment/east_new_york
+// lands here as a 404. We intercept it, store the neighborhood slug in sessionStorage, and redirect
+// to the clean topic URL. When the topic SPA loads, it reads the slug from sessionStorage and
+// pre-selects the neighborhood — the same result as if IIS had handled it transparently.
+//
+// On production this block still runs for any genuinely broken NR URLs (e.g. a mistyped neighborhood
+// slug that doesn't match the IIS rewrite rule), providing a graceful fallback rather than a dead end.
 
-var chunks = document.querySelectorAll('.chunk')
+// The 5 NR topic slugs — these match the url: frontmatter on the SPA content files
+const nrTopicSlugs = [
+  'active_design_physical_activity_and_health',
+  'asthma_and_the_environment',
+  'climate_and_health',
+  'housing_and_health',
+  'outdoor_air_and_health'
+];
 
-chunks.forEach(x => x.classList.add('hide'))
+// Split the path into segments and find which one is a known topic slug
+const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+const topicIdx = pathParts.findIndex(p => nrTopicSlugs.includes(p));
 
+// If a topic slug is found and there is a segment after it, treat that segment as the neighborhood slug
+if (topicIdx !== -1 && pathParts.length > topicIdx + 1) {
+  sessionStorage.setItem('nr_pending_neighborhood', pathParts[topicIdx + 1]);
+  window.location.replace({{ relURL "neighborhood-reports/" }} + pathParts[topicIdx] + '/');
+} else if (url.includes('beta')) {
+  removeBeta(url);
+} else {
+  redirectHome();
+}
 
-// ---------- does the URL include beta? ---------- // 
-
-url.includes("beta") ? removeBeta(url) : redirectHome()
-
-
-// ----------  remove /beta from URL and redirect to otherwise same URL -------------------- // 
+// ----------  remove /beta from URL and redirect to otherwise same URL -------------------- //
 
 function removeBeta(x) {
-  // expose page content
-  document.getElementById('redirectBeta').classList.remove('hide')
-  //console.log('It is a beta URL')
-
-  // remove beta from URL
-  url = x.replace('/beta','')
-  // console.log('new url: ', url)
-
-  // send to new location
-  setTimeout(() => {
-    window.location.href = url
-  }, 2000)
+  document.getElementById('redirectBeta').classList.remove('hide');
+  setTimeout(() => { window.location.href = x.replace('/beta', ''); }, 2000);
 }
 
-// ----------  redirect to Home Page -------------------------------------------------------- // 
+// ----------  redirect to Home Page -------------------------------------------------------- //
 
 function redirectHome() {
-  // expose content
-  document.getElementById('main404').classList.remove('hide')
-
-  // start countdown
-  countDown(5)
+  document.getElementById('main404').classList.remove('hide');
+  countDown(5);
 }
-
 
 function countDown(x) {
-
   if (x > 0) {
-    var print = document.getElementById('sec')
-    print.innerHTML = x
-    var oneLess = x - 1
-    setTimeout(() => {
-      countDown(oneLess)
-    }, 1000)
-
+    document.getElementById('sec').innerHTML = x;
+    setTimeout(() => { countDown(x - 1); }, 1000);
   } else {
-    sendHome()
+    setTimeout(() => { window.location.href = {{ relURL "" }}; }, 1000);
   }
-}
-
-function sendHome() {
-  setTimeout(() => {
-    window.location.href = {{ relURL "" }}
-  }, 1000)
 }
 
 </script>

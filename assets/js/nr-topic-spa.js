@@ -55,32 +55,81 @@ const init = () => {
 
     const getNeighborhoodFromURL = () => {
 
-        const params = new URLSearchParams(window.location.search);
+        // Two-step lookup for the active neighborhood on page load.
+        //
+        // Step 1 — path: handles externally shared or bookmarked URLs like
+        //   /neighborhood-reports/asthma_and_the_environment/east_new_york
+        // On production, IIS rewrites these to serve the topic page, and the slug
+        // is still visible in the path for us to read here.
+        const config = window.NR_TOPIC_SPA_CONFIG;
+        const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+        const slug = pathParts[pathParts.length - 1];
 
-        return params.get('neighborhood') || '';
+        if (config.neighborhoodMap[slug]) {
+            return config.neighborhoodMap[slug];
+        }
+
+        // Step 2 — sessionStorage: handles internal navigation from the landing page,
+        // topic tabs, neighborhood cards, and the 404 fallback. Each of those entry
+        // points stores the neighborhood slug before navigating to the clean topic URL,
+        // so the page load never hits the server with a neighborhood in the path.
+        // The item is consumed immediately so it doesn't bleed into subsequent page loads.
+        const pending = sessionStorage.getItem('nr_pending_neighborhood');
+        if (pending && config.neighborhoodMap[pending]) {
+            sessionStorage.removeItem('nr_pending_neighborhood');
+            return config.neighborhoodMap[pending];
+        }
+
+        return '';
 
     };
 
     const setNeighborhoodInURL = name => {
 
-        // Keep the browser URL synchronized with the current neighborhood selection
-        const url = new URL(window.location);
+        // Update the browser's address bar to show the neighborhood in the path, e.g.
+        //   /neighborhood-reports/asthma_and_the_environment/east_new_york
+        // Uses history.replaceState so the page does not reload — this is purely cosmetic,
+        // making the URL shareable and bookmarkable without triggering a new server request.
+        const config = window.NR_TOPIC_SPA_CONFIG;
+        const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
 
-        url.searchParams.set('neighborhood', name);
-        history.replaceState(null, '', url);
+        if (!slug) {
+            return;
+        }
+
+        // Find the topic slug in the current path and replace everything after it
+        // with the neighborhood slug, preserving any site path prefix (e.g. /dev-prod/)
+        const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+        const topicIdx = pathParts.findIndex(p => p === config.topicSlug);
+
+        if (topicIdx === -1) {
+            return;
+        }
+
+        const newPath = '/' + pathParts.slice(0, topicIdx + 1).join('/') + '/' + slug;
+        history.replaceState(null, '', newPath);
 
     };
 
     const updateTopicLinks = neighborhoodName => {
 
-        // Ensure in-page topic links preserve the active neighborhood context
+        // When the user clicks a topic tab (e.g. switching from Asthma to Housing),
+        // we need the new topic page to open with the same neighborhood pre-selected.
+        // Rather than embedding the neighborhood in the link href (which would cause a
+        // 404 in dev and requires IIS rewrite in production), we store the slug in
+        // sessionStorage just before the navigation fires. The new topic SPA reads it
+        // on load via getNeighborhoodFromURL above.
+        const config = window.NR_TOPIC_SPA_CONFIG;
+        const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === neighborhoodName);
         const links = document.querySelectorAll('.nr-topic-link');
 
         links.forEach(a => {
 
-            const url = new URL(a.href, window.location.origin);
-            url.searchParams.set('neighborhood', neighborhoodName);
-            a.href = url.toString();
+            a.onclick = () => {
+                if (slug) {
+                    sessionStorage.setItem('nr_pending_neighborhood', slug);
+                }
+            };
 
         });
 

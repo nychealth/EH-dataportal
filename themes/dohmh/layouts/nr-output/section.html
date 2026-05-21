@@ -46,11 +46,11 @@
                 </div>
                 {{- end -}}
                   <div class="card-body p-2">
-                      <h2 class="card-title fs-md"><a href="{{ relURL "neighborhood-reports/" }}{{ .File.BaseFileName }}/?neighborhood={{ $.Title | urlquery }}" class="text-primary fs-lg">{{ .Title }}</a></h2>
+                      <h2 class="card-title fs-md"><a href="{{ relURL "neighborhood-reports/" }}{{ .File.BaseFileName | lower }}/" class="text-primary fs-lg">{{ .Title }}</a></h2>
                       <p class="card-text fs-sm">
                           {{ .Summary | truncate 150}}
                           </p>
-                         <p class="fs-sm text-right"> <a href="{{ relURL "neighborhood-reports/" }}{{ .File.BaseFileName }}/?neighborhood={{ $.Title | urlquery }}">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                         <p class="fs-sm text-right"> <a href="{{ relURL "neighborhood-reports/" }}{{ .File.BaseFileName | lower }}/">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                         </p>                   
                     </div>
                   </div>
@@ -61,6 +61,16 @@
 
           </div>
         </div>
+
+<script>
+    // Store neighborhood slug before navigating to a topic page, so the SPA can pre-select it
+    const _nrNeighborhoodSlug = '{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}';
+    document.querySelectorAll('.card a').forEach(a => {
+        a.addEventListener('click', () => {
+            sessionStorage.setItem('nr_pending_neighborhood', _nrNeighborhoodSlug);
+        });
+    });
+</script>
 
       </div>
 

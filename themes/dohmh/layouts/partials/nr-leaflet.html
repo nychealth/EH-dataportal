@@ -318,8 +318,11 @@
             
             // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
             
-            const buildURL = {{ relURL "neighborhood-reports/" }} + dest + '/?neighborhood=' + encodeURIComponent(match.UHF_name)
-            
+            const buildURL = {{ relURL "neighborhood-reports/" }} + dest + '/'
+
+            // Store neighborhood slug so the SPA can pre-select it without a full-path URL
+            sessionStorage.setItem('nr_pending_neighborhood', match.page_name);
+
             // Redirect - send to new page
             window.location.href = buildURL;
             // console.log(buildURL)

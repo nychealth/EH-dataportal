@@ -92,6 +92,17 @@
     let thisInd;
     let NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
 
+    // The old site served neighborhood+topic pages at /neighborhood-reports/{neighborhood}/{topic}/.
+    // The new SPA uses the reversed order: /neighborhood-reports/{topic}/{neighborhood}.
+    // Any user or search engine arriving at an old URL is immediately sent to the correct new URL
+    // using window.location.replace (which replaces the history entry, so the back button skips
+    // the old page). On production, the IIS 301 redirect rule fires before this page even loads,
+    // so this JS redirect is primarily a dev fallback and a safety net for any edge cases IIS misses.
+    const _nrParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+    const _nrNeighborhood = _nrParts[_nrParts.length - 2];
+    const _nrTopic = _nrParts[_nrParts.length - 1];
+    window.location.replace(`{{ .Site.BaseURL }}` + 'neighborhood-reports/' + _nrTopic + '/' + _nrNeighborhood);
+
     // this gets a json of topics and nested indicators
     async function get_topic_indicators() {
         d3.json('{{ relURL "IndicatorMetadata/topic_indicators.json" }}').then(data => {
@@ -597,21 +608,8 @@ const buttons = document.querySelectorAll('.output-topic-button');
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log('button clicked for: ', button.id)
-
-        // change URL destination in a way that matches topicSlugs 
         const reportDestination = topicSlugs[button.id] || null;
-
-        // assemble new url
-        const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlParts = pageURL.split('/')
-
-            urlParts.pop();
-            urlParts.pop();
-            console.log(urlParts)
-
-        var newURL = `{{ .Site.BaseURL }}` + 'neighborhood-reports/' + reportDestination + '/?neighborhood=' + encodeURIComponent(NeighborhoodName)
-        console.log(newURL)
+        const newURL = `{{ .Site.BaseURL }}` + 'neighborhood-reports/' + reportDestination + '/{{ $.CurrentSection.RelPermalink | strings.TrimSuffix "/" | path.Base }}';
 
         window.location.href = newURL
 

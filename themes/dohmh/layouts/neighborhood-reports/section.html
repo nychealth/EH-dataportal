@@ -308,7 +308,12 @@ function loadList() {
     // console.log('chosen neighb:')
     // console.log(set.page_name);
 
-    window.location.href = {{ relURL "neighborhood-reports/" }} + intendedDestinationName + '/?neighborhood=' + encodeURIComponent(set.UHF_name)
+    // Store the neighborhood slug before navigating to the topic SPA page.
+    // The SPA reads this from sessionStorage on load and pre-selects the neighborhood.
+    // We navigate to the clean topic URL (no neighborhood in the path) so the request
+    // always resolves to a real static file, both in dev and on production.
+    sessionStorage.setItem('nr_pending_neighborhood', set.page_name);
+    window.location.href = {{ relURL "neighborhood-reports/" }} + intendedDestinationName + '/'
 
 })
 
