@@ -198,7 +198,16 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
         document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
         document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
-        document.getElementById('legend-tick').style.display = 'block';
+
+        const legendTick = document.getElementById('legend-tick');
+
+        // Keep no-data hover text visible without drawing a stray tick on the legend.
+        if (props.Value == null) {
+            legendTick.style.display = 'none';
+            return;
+        }
+
+        legendTick.style.display = 'block';
         document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
     };
 
