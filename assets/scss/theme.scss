@@ -692,6 +692,14 @@ h2.report-info {
     }
 }
 
+@media print {
+    .report-section .btn[data-toggle="collapse"] {
+        border: none;
+        background: none;
+        padding: 8px 0;
+    }
+}
+
 // Report Modal
 
 .report-modal {
