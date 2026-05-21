@@ -1,36 +1,19 @@
 <div class="row justify-content-center">
   <div class="col-2"></div>
   <div class="col-10">
-    <div id="cpVis2" style="width: 100%;"></div>
-    <h3 class="h4 cp-sticky-header cp-sticky-only">Air pollution inside of the CRZ</h3>
+    <div id="cpVis2" style="width: 100%"></div>
+    <h3 class="h4 cp-sticky-header cp-sticky-only">
+      Air pollution inside of the CRZ
+    </h3>
     <div class="row py-2 border-top">
-        <div class="col-5 border-right">
-            <div style="min-height:250px" id="datawrapper-vis-YFkVt"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/YFkVt/embed.js" charset="utf-8" data-target="#datawrapper-vis-YFkVt"></script><noscript><img src="https://datawrapper.dwcdn.net/YFkVt/full.png" alt="Locator map" /></noscript></div>
-        </div>
-        <div class="col-7">
-            {{- with .Resources.GetMatch "aq-inside-crz.md" -}}
-                {{ .Content }}
-            {{- end -}}
-            <div class="row mt-1">
-                <div class="col-12 my-1">
-                    <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 my-1">
-                  <div style="min-height:92px" id="datawrapper-vis-vEUVy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vEUVy/embed.js" charset="utf-8" data-target="#datawrapper-vis-vEUVy"></script><noscript><img src="https://datawrapper.dwcdn.net/vEUVy/full.png" alt="Arrow Plot" /></noscript></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12 my-1">
-                    <div style="min-height:109px" id="datawrapper-vis-3F9Bw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3F9Bw/embed.js" charset="utf-8" data-target="#datawrapper-vis-3F9Bw"></script><noscript><img src="https://datawrapper.dwcdn.net/3F9Bw/full.png" alt="Arrow Plot" /></noscript></div>
-                </div>
-            </div>
-        </div>
+      <div class="col-5 border-right"></div>
+      <div class="col-7">
+        {{- with .Resources.GetMatch "aq-inside-crz.md" -}} {{ .Content }} {{-
+        end -}}
+        <div class="row mt-1"></div>
+      </div>
     </div>
-    
   </div>
-</div>
 
   <script>
     const CP_CONTAINER2_ID = "cpVis2";
@@ -67,9 +50,18 @@
         },
         layer: [
           {
-            mark: { type: "rule", color: "lightgray", strokeWidth: 4, strokeCap: "round" },
+            mark: {
+              type: "rule",
+              color: "lightgray",
+              strokeWidth: 4,
+              strokeCap: "round",
+            },
             encoding: {
-              x: { field: "HistoricalMin", type: "quantitative", title: "Historical range  /  Q2 2025" },
+              x: {
+                field: "HistoricalMin",
+                type: "quantitative",
+                title: "Historical range  /  Q2 2025",
+              },
               x2: { field: "HistoricalMax" },
             },
           },
@@ -89,9 +81,24 @@
               tooltip: [
                 { field: "Site Name", type: "nominal", title: "Site" },
                 { field: "State", type: "nominal", title: "State" },
-                { field: "Arithmetic Mean", type: "quantitative", title: "Q2 2025", format: ".3f" },
-                { field: "HistoricalMin", type: "quantitative", title: "Historical min", format: ".3f" },
-                { field: "HistoricalMax", type: "quantitative", title: "Historical max", format: ".3f" },
+                {
+                  field: "Arithmetic Mean",
+                  type: "quantitative",
+                  title: "Q2 2025",
+                  format: ".3f",
+                },
+                {
+                  field: "HistoricalMin",
+                  type: "quantitative",
+                  title: "Historical min",
+                  format: ".3f",
+                },
+                {
+                  field: "HistoricalMax",
+                  type: "quantitative",
+                  title: "Historical max",
+                  format: ".3f",
+                },
               ],
             },
           },
@@ -120,12 +127,13 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
       if (typeof vegaEmbed !== "function") {
-        console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
+        console.error(
+          "vegaEmbed not available. Are the Vega scripts loaded above this script?",
+        );
         return;
       }
 
       await draw_crz();
     });
-
   </script>
 </div>

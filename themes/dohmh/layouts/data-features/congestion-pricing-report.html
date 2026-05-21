@@ -340,7 +340,7 @@ const siteInfo = {
     'deegan': 'The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).',
     'cross-bronx': 'The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).',
     'bqe': 'The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).',
-    'si-exwy': 'The Staten Island Expressway</strong> and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
+    'si-exwy': 'The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
     'fdr': 'The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).',
     'trans-manhattan': 'The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).',
     'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
@@ -375,6 +375,9 @@ $(function() {
             iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: siteName }, '*');
         }
     });
+    
+    // Load Deegan site by default on page load
+    $('.site-badge[data-site="deegan"]').trigger('click');
 });
 
 function drawExplainChart() {

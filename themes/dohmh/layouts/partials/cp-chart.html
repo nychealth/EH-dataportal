@@ -106,10 +106,16 @@
     };
 
     // Site titles for the main sites
-
     const siteTitles = {
-        "Deegan_1": "Deegan",
-        "Cross_Bronx_1": "Cross Bronx",
+        "Deegan": "Deegan",
+        "Cross Bronx": "Cross Bronx",
+        "BQE": "BQE",
+        "Van Wyck": "Van Wyck",
+        "SI Expwy": "SI Expwy",
+        "FDR": "FDR",
+        "Trans-Manhattan": "Trans-Manhattan",
+        "CRZ": "CRZ",
+        "Rest of City": "Rest of City"
     }
     
     // Datawrapper embed IDs for each site - I guess we can get rid of these?
@@ -413,5 +419,14 @@
         
         addAccordionlisteners();
         await draw(currentSite);
+        
+        // Trigger Deegan button click on initial load to ensure all handlers fire
+        // Use a small delay to ensure button is fully initialized
+        setTimeout(() => {
+            const deaganButton = document.getElementById("Deegan");
+            if (deaganButton) {
+                deaganButton.click();
+            }
+        }, 50);
     });
 </script>
