@@ -318,7 +318,7 @@
             
             // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
             
-            const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
+            const buildURL = {{ relURL "neighborhood-reports/" }} + dest + '/?neighborhood=' + encodeURIComponent(match.UHF_name)
             
             // Redirect - send to new page
             window.location.href = buildURL;

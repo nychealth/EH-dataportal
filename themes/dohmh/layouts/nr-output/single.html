@@ -610,7 +610,7 @@ buttons.forEach(button => {
             urlParts.pop();
             console.log(urlParts)
 
-        var newURL = `{{ .Site.BaseURL }}` + urlParts[0] + '/' + urlParts[1] + '/' + reportDestination + '/'
+        var newURL = `{{ .Site.BaseURL }}` + 'neighborhood-reports/' + reportDestination + '/?neighborhood=' + encodeURIComponent(NeighborhoodName)
         console.log(newURL)
 
         window.location.href = newURL

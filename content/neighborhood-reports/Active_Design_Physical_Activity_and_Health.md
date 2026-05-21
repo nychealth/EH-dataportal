@@ -3,6 +3,7 @@ title: "Active Design, Physical Activity and Health"
 categories:
   ["airquality", "publicspace", "housing", "inequality", "accessibility"]
 layout: nr-topic-spa
+url: /neighborhood-reports/active_design_physical_activity_and_health/
 content_yml: Active_Design_Physical_Activity_and_Health
 seo_title: "Active Design, Physical Activity and Health in NYC"
 urlExtension: "/active_design_physical_activity_and_health/"
