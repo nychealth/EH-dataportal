@@ -3,7 +3,7 @@ _schema: default
 draft: false
 ---
 
-- Black and Latino New Yorkers had higher age-adjusted heat-stress death rates compared with white New Yorkers (1.2 and 1.0 deaths per million respectively compared with 0.4 deaths per million) from 2016-2025. This inequity is rooted in systemic racism [\[1\]](https://www.sciencedirect.com/science/article/pii/S014067361730569X?via%3Dihub) that disproportionately impairs access to resources for New Yorkers of color — for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care.
+- Black and Latino New Yorkers had higher age-adjusted heat-stress death rates compared with white New Yorkers (1.2 and 1.0 deaths per million, respectively, compared with 0.4 deaths per million) from 2016-2025. This inequity is rooted in systemic racism [\[1\]](https://www.sciencedirect.com/science/article/pii/S014067361730569X?via%3Dihub) that disproportionately impairs access to resources for New Yorkers of color — for example, jobs that pay a living wage, affordable and healthy housing with air conditioning, and health care.
 - Death rates were highest in neighborhoods with more than 20% of residents having a household income below the federal poverty level compared with wealthier neighborhoods.
 - Heat-stress deaths occurred among all age groups, with the lowest rates among people ages 20 and younger and the highest among people ages 60 and older.
 - Age-adjusted death rates were higher among males than females.

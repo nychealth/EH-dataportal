@@ -25,7 +25,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   - Continue to strengthen emergency response to extreme heat, such as opening cooling centers, expanding awareness of other cool indoor spaces, and issuing heat-health warnings, prioritizing people and communities with the greatest need.
 - Work with local, state, and federal partners to ensure that indoor and outdoor workplaces are safe during hot weather, such as by setting occupational heat safety standards.
 
-More data and information about heat, climate, energy insecurity and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
+More data and information about heat, climate, energy insecurity, and health is available on the NYC Health Department’s&nbsp;[Climate and Health page.](..) Learn more about what the City is doing to mitigate the effects of heat as part of [PlaNYC: Getting Sustainability Done](https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/).&nbsp;
 
 <div id="note-on-years-of-data-included">
 <div class="asidebox"><strong>Note on years of data included:</strong> For heat-stress, data for 2024 and 2025 are considered provisional because death data are still being compiled by the NYC Health Department Bureau of Vital Statistics. These numbers may be updated in future reports as final data become available. The heat-exacerbated mortality analysis requires complete daily death counts to produce accurate estimates, making 2023 the most recent available year of data.  </div>
