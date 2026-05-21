@@ -11,7 +11,7 @@ Each summer, on average, approximately 500 **New Yorkers die prematurely becau
 
 **Heat-exacerbated deaths have remained high in recent years, after increasing in the previous decade.** Increases were mainly due to hotter summers overall, with more “non-extreme hot days” from 82°F to below the extreme heat threshold (95°F).
 
-The **average annual number of heat stress deaths increased from 5 to 7** for 2016-2025. The increase reflects a record-breaking heat event in June 2025 that resulted in 19 deaths.
+The **average annual number of heat-stress deaths increased from 5 to 7** for 2016-2025. The increase reflects a record-breaking heat event in June 2025 that resulted in 19 deaths.
 
 **Black and Latino New Yorkers are more likely to die from heat stress.** Black New Yorkers had heat-stress death rates three times higher and Latino New Yorkers had death rates two times higher than white New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity reflects past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.
 
