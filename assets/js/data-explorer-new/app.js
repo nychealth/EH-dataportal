@@ -392,7 +392,7 @@ $('#howCalcButton').on('click', e => {
     gtag('event', 'click_how_calculated');
 });
 
-$('#citeButton').on('click', e => {
+$('.de-copy-citation-button[data-citation-target]').on('click', e => {
     gtag('event', 'click_citation');
 });
 

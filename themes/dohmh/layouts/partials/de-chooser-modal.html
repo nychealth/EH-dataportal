@@ -21,10 +21,11 @@
             
             <div class="border-bottom pb-1 mb-1">
                 <a
-                    href=""
-                    class="font-weight-bold"
+                    href="{{ .RelPermalink }}"
+                    class="font-weight-bold de-topic-indicator-link"
                     data-indicators="{{ $json }}"
-                    onclick="event.preventDefault(); getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                    data-topic-title="{{ .Title }}"
+                    data-topic-destination="{{ .RelPermalink }}">
                     {{ .Title }}
                 </a>
 
@@ -53,10 +54,11 @@
         
         <div class="border-bottom pb-1 mb-1">
             <a
-                href=""
-                class="font-weight-bold"
+                href="{{ .RelPermalink }}"
+                class="font-weight-bold de-topic-indicator-link"
                 data-indicators="{{ $json }}"
-                onclick="event.preventDefault(); getIndicatorsForTopic(`{{ .Title }}`, this.dataset.indicators, `{{ .RelPermalink }}`)">
+                data-topic-title="{{ .Title }}"
+                data-topic-destination="{{ .RelPermalink }}">
                 {{ .Title }}
             </a>
             

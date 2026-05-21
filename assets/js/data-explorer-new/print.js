@@ -829,6 +829,8 @@ const openMapSaveModal = () => {
 
 const bindPrintControls = () => {
 
+    // These triggers live in server-rendered partials, so keep the modal
+    // entrypoints private here instead of exporting window-level helpers.
     const mapSaveButton = document.getElementById('deSaveMapButton');
 
     if (mapSaveButton) {

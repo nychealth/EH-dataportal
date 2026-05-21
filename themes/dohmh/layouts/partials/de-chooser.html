@@ -18,8 +18,8 @@
             <a 
                 href="#chooser" 
                 id="kt1" 
-                onclick="changeKT(1)" 
-                class="kt list-group-item list-group-item-action"
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="1"
                 aria-current="true">
 
                 Air quality 
@@ -38,8 +38,8 @@
             <a 
                 href="#chooser" 
                 id="kt2" 
-                onclick="changeKT(2)" 
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="2">
                 
                 Climate and health
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -57,8 +57,8 @@
             <a 
                 href="#chooser" 
                 id="kt3" 
-                onclick="changeKT(3)"
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="3">
                 
                 Housing
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -76,8 +76,8 @@
             <a 
                 href="#chooser" 
                 id="kt4" 
-                onclick="changeKT(4)"
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="4">
                 
                 Inequality and health inequities 
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -95,8 +95,8 @@
             <a 
                 href="#chooser" 
                 id="kt5" 
-                onclick="changeKT(5)" 
-                class="kt list-group-item list-group-item-action"
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="5"
                 aria-current="true">
                 
                 Active design and transportation
@@ -115,8 +115,8 @@
             <a 
                 href="#chooser" 
                 id="kt6" 
-                onclick="changeKT(6)"
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="6">
                 
                 Environmental health outcomes
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -134,8 +134,8 @@
             <a 
                 href="#chooser" 
                 id="kt7" 
-                onclick="changeKT(7)" 
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="7">
                 
                 Child health
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -153,8 +153,8 @@
             <a 
                 href="#chooser" 
                 id="kt8" 
-                onclick="changeKT(8)" 
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="8">
                 
                 Pests and pesticides
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -172,8 +172,8 @@
             <a 
                 href="#chooser" 
                 id="kt9" 
-                onclick="changeKT(9)" 
-                class="kt list-group-item list-group-item-action">
+                class="kt de-topic-filter-button list-group-item list-group-item-action"
+                data-topic-id="9">
                 
                 Food and drink
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -192,8 +192,8 @@
             <a 
                 href="#chooser" 
                 id="kt10" 
-                onclick="changeKT(10)"
-                class="kt list-group-item list-group-item-action active">
+                class="kt de-topic-filter-button list-group-item list-group-item-action active"
+                data-topic-id="10">
                 
                 All topics
                 <span class="badge badge-primary badge-pill float-right">{{ $.Scratch.Get "counter"}}</span>
@@ -359,7 +359,7 @@
 
     let destination = document.getElementById('indicatorNames')
 
-    function changeKT(topic) {
+    const changeKT = (topic) => {
 
         // console.log(topic)
 
@@ -387,5 +387,23 @@
         document.getElementById(link).classList.add('active')
 
     }
+
+
+    const bindTopicFilterButtons = () => {
+
+        // Topic filter links stay static for the life of the chooser, so a
+        // single startup bind is enough after removing inline handlers.
+        const topicFilterButtons = document.querySelectorAll('.de-topic-filter-button[data-topic-id]');
+
+        topicFilterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                changeKT(button.dataset.topicId);
+            });
+        });
+
+    }
+
+
+    bindTopicFilterButtons();
 
 </script>

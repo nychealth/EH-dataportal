@@ -85,6 +85,50 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 }
 
 
+const bindTopicSelectorControls = () => {
+
+    // Topic links and the relaunch control are rendered once in Hugo, so
+    // bind them directly to their explicit data hooks instead of inline HTML.
+    const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
+
+    topicLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            getIndicatorsForTopic(
+                link.dataset.topicTitle,
+                link.dataset.indicators,
+                link.dataset.topicDestination
+            );
+        });
+    });
+
+    const relaunchButtons = document.querySelectorAll('.indicator-modal-topic-trigger[data-topic-selector-action="relaunch"]');
+
+    relaunchButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            relaunchTopicSelector();
+        });
+    });
+
+    const indicatorDestination = document.getElementById('indicatorDestination');
+
+    if (indicatorDestination) {
+        // The indicator list is rebuilt with innerHTML on every topic change,
+        // so delegate from the stable modal container.
+        indicatorDestination.addEventListener('click', event => {
+            const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
+
+            if (!indicatorButton) {
+                return;
+            }
+
+            selectIndicator(indicatorButton.dataset.indicatorId);
+        });
+    }
+
+}
+
+
 // ----------------------------------------------------------------------- //
 // Print chosen topic's indicators to indicator selection modal 
 // ----------------------------------------------------------------------- //
@@ -133,10 +177,11 @@ const printIndicators = async (indList, destination) => {
                 return ''; // skip if not found
             }
             
-            // inline onclick: buttons are injected via innerHTML, so addEventListener would not survive DOM replacement
+            // Use event delegation on #indicatorDestination so rerendered buttons
+            // keep working without inline handlers.
             return `
                 <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
-                    <button class='h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left' onclick='selectIndicator(${indicator.IndicatorID})'>${indicator.IndicatorName}</button>
+                    <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                 </div>
             `;
@@ -197,7 +242,12 @@ const relaunchTopicSelector = (event) => {
 
 };
 
-window.relaunchTopicSelector = relaunchTopicSelector;
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindTopicSelectorControls);
+} else {
+    bindTopicSelectorControls();
+}
 
 
 // ----------------------------------------------------------------------- //
@@ -207,13 +257,17 @@ window.relaunchTopicSelector = relaunchTopicSelector;
 const printIndicatorInfo = async (IndicatorID) => {
 
     console.log("* printIndicatorInfo");
+
+    // URL params and data-* attributes reach this path as strings.
+    // Normalize once so metadata lookups stay in sync with the load pipeline.
+    const normalizedIndicatorId = Number(IndicatorID);
     
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('printing to page');
     // console.log("Indicators ready to print to page!");
     
     // Find the indicator object where IndicatorID matches IndicatorID
-    const indicator = data.find(d => d.IndicatorID === IndicatorID);
+    const indicator = data.find(d => Number(d.IndicatorID) === normalizedIndicatorId);
     
     console.log('This indicator:');
     console.log(indicator)
