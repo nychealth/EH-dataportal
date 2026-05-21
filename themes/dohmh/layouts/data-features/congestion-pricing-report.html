@@ -140,13 +140,19 @@
 
   
                 <div class="col-md-6 mt-2">
-                    <p>If the error bars don't overlap, then there's a <strong>significant difference</strong> from congestion pricing.</p>
+                    <div class="asidebox border">
+                    <p class="fs-sm">If the error bars don't overlap, then there's a <strong>significant difference</strong> from congestion pricing.</p>
+
+                    </div>
                     <div style="width:100%;" id="explainChart" class="mt-2"></div>
 
                 </div>
 
                 <div class="col-md-6 mt-2 border-left">
-                    <p>If they overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
+                  <div class="asidebox border">
+                    <p class="fs-sm">If the error bars overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
+
+                  </div>
                     <div id="explainChart2" style="width:100%;" class="mt-2"></div>
                 </div>
 
@@ -406,7 +412,7 @@ const spec = {
   "data": {
     "values": [
       {
-        "Var": "Modelled",
+        "Var": "Hypothetical",
         "Parameter": "PM2.5",
         "Time": "Pre",
         "Value": 7.82,
@@ -423,7 +429,7 @@ const spec = {
       },
 
       {
-        "Var": "Modelled",
+        "Var": "Hypothetical",
         "Parameter": "PM2.5",
         "Time": "Post",
         "Value": 7.14,
@@ -498,7 +504,7 @@ const spec = {
         "expr": "datum.label"
       }},
           "scale": {
-            "domain": ["Observed", "Modelled"],
+            "domain": ["Observed", "Hypothetical"],
             "range": ["blue", "darkorange"]
           }
         }
@@ -514,7 +520,6 @@ const spec = {
         },
         "color": {"field": "Var"},
         "tooltip": [
-          {"field": "newName", "title": "Site", "type": "nominal"},
           {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
           {"field": "TimeLabel", "title": "Period", "type": "nominal"},
           {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
@@ -527,13 +532,13 @@ const spec = {
       {
         "TimeLabel": "With congestion pricing",
         "y": 9.6,
-        "label": "When the error bars don't overlap,",
+        "label": "",
         "textColor": "black"
       },
       {
         "TimeLabel": "With congestion pricing",
         "y": 6,
-        "label": "there is a significant\n difference in observed vs \nmodelled: congestion pricing\ncaused this difference.",
+        "label": "",
         "textColor": "black"
       }
     ]
@@ -588,7 +593,7 @@ const spec2 = {
   "data": {
     "values": [
       {
-        "Var": "Modelled",
+        "Var": "Hypothetical",
         "Parameter": "PM2.5",
         "Time": "Pre",
         "Value": 7.12,
@@ -605,7 +610,7 @@ const spec2 = {
       },
 
       {
-        "Var": "Modelled",
+        "Var": "Hypothetical",
         "Parameter": "PM2.5",
         "Time": "Post",
         "Value": 6.34,
@@ -681,7 +686,7 @@ const spec2 = {
         "expr": "datum.label"
       }},
           "scale": {
-            "domain": ["Observed", "Modelled"],
+            "domain": ["Observed", "Hypothetical"],
             "range": ["blue", "darkorange"]
           }
         }
@@ -697,7 +702,6 @@ const spec2 = {
         },
         "color": {"field": "Var"},
         "tooltip": [
-          {"field": "newName", "title": "Site", "type": "nominal"},
           {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
           {"field": "TimeLabel", "title": "Period", "type": "nominal"},
           {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
@@ -710,13 +714,13 @@ const spec2 = {
       {
         "TimeLabel": "With congestion pricing",
         "y": 8.2,
-        "label": "When the error bars overlap,",
+        "label": "",
         "textColor": "black"
       },
       {
         "TimeLabel": "With congestion pricing",
         "y": 5.2,
-        "label": "there is no significant\n difference - no measured effect\nfrom congestion pricing.",
+        "label": "",
         "textColor": "black"
       }
     ]
