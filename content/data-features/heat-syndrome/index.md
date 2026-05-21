@@ -26,7 +26,6 @@ layout: syndromic
 js: heatsyndrome.js
 image: syndromic.png
 related:
-related:
   - title: "The urban heat island effect in NYC"
     url: "data-stories/urban-heat-island/"
   - title: "Protecting New Yorkers from extreme heat"

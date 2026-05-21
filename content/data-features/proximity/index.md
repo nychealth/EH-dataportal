@@ -21,7 +21,6 @@ leaflet: true
 js: proximity.js
 image: preview.png
 related:
-related:
   - title: "Accessibility data"
     url: "data-explorer/accessibility/"
   - title: "Neighborhood boundaries on the EH Data Portal"
