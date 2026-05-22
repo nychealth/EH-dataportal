@@ -468,3 +468,24 @@ const updateChartPlotSize = () => {
     }, 200)
 
 }
+
+// Resizer for chart print modal
+window.addEventListener('load', () => {
+  const printVis = document.getElementById('printVis');
+  
+  if (!printVis) {
+    console.error('Element printVis not found');
+    return;
+  }
+  
+  let resizeTimeout;
+  
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      updateChartPlotSize();
+    }, 1000);
+  });
+  
+  resizeObserver.observe(printVis);
+});
