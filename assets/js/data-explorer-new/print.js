@@ -14,8 +14,18 @@ const printModalDownload = document.getElementById('printModalDownload');
 const modalFootnotes = document.getElementById('modalFootnotes');
 
 const MAP_EXPORT_BASEMAP_ATTRIBUTION = 'Basemap: CARTO, OpenStreetMap';
-const EXPORT_MAP_PADDING = 24;
-const EXPORT_MAP_MAX_ZOOM = 11;
+const EXPORT_MAP_PADDING = 0;
+const EXPORT_MAP_MAX_ZOOM = 15;
+const EXPORT_CHOROPLETH_BOUNDS_PAD_RATIO = 0.01;
+const EXPORT_BUBBLE_BOUNDS_PAD_RATIO = 0.03;
+const EXPORT_CHOROPLETH_ZOOM_BONUS = 0;
+const EXPORT_BUBBLE_ZOOM_BONUS = 0;
+const EXPORT_FEATURE_EDGE_BUFFER_PX = 8;
+const EXPORT_TILE_COVERAGE_BUFFER_PX = 6;
+const EXPORT_TILE_COVERAGE_MAX_ATTEMPTS = 8;
+const EXPORT_TILE_COVERAGE_WAIT_MS = 250;
+const EXPORT_MAP_WIDTH = 1920;
+const EXPORT_MAP_HEIGHT = 1080;
 
 
 // ----------------------------------------------------------------------- //
@@ -40,6 +50,7 @@ const setPrintModalState = ({
 
     if (printVis) {
         printVis.innerHTML = contentHTML;
+        printVis.scrollTop = 0;
     }
 
     if (modalFootnotes) {
@@ -152,6 +163,43 @@ const splitTextIntoPrintLines = (value, maxLength = 88) => {
 };
 
 
+const splitCanvasTextIntoLines = (ctx, value, maxWidth) => {
+
+    const sourceText = Array.isArray(value)
+        ? value.filter(Boolean).join(' ')
+        : String(value || '').trim();
+
+    if (!sourceText) {
+        return [];
+    }
+
+    const words = sourceText.split(/\s+/);
+    const lines = [];
+    let currentLine = '';
+
+    words.forEach(word => {
+
+        const nextLine = currentLine ? `${currentLine} ${word}` : word;
+
+        if (currentLine && ctx.measureText(nextLine).width > maxWidth) {
+            lines.push(currentLine);
+            currentLine = word;
+            return;
+        }
+
+        currentLine = nextLine;
+
+    });
+
+    if (currentLine) {
+        lines.push(currentLine);
+    }
+
+    return lines;
+
+};
+
+
 const buildSourceHTML = (values = [], warning = '') => {
 
     const sourceValues = values.filter(Boolean);
@@ -172,6 +220,49 @@ const buildSourceHTML = (values = [], warning = '') => {
 
 const buildWarningHTML = (warning = '') => {
     return warning ? `<div>${warning}</div>` : '';
+};
+
+
+const getFixedMapExportSize = () => {
+    return {
+        width: EXPORT_MAP_WIDTH,
+        height: EXPORT_MAP_HEIGHT
+    };
+};
+
+
+const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
+
+    const headerTextWidth = Math.max(320, width - (paddingX * 2));
+
+    // Measure against the actual export width so long indicator names wrap
+    // before they can clip off the right edge of the PNG.
+    ctx.save();
+    ctx.font = '700 30px Arial';
+    const titleLines = splitCanvasTextIntoLines(ctx, title, headerTextWidth);
+    ctx.font = '16px Arial';
+    const subtitleLines = subtitle
+        ? splitCanvasTextIntoLines(ctx, subtitle, headerTextWidth)
+        : [];
+    ctx.restore();
+
+    const titleLineHeight = 36;
+    const subtitleLineHeight = 22;
+    const topPadding = 24;
+    const gapAfterTitle = subtitleLines.length ? 6 : 0;
+    const bottomPadding = 18;
+    const height = topPadding + (titleLines.length * titleLineHeight) + gapAfterTitle + (subtitleLines.length * subtitleLineHeight) + bottomPadding;
+
+    return {
+        titleLines,
+        subtitleLines,
+        titleLineHeight,
+        subtitleLineHeight,
+        topPadding,
+        gapAfterTitle,
+        height
+    };
+
 };
 
 
@@ -340,6 +431,160 @@ const waitForLeafletIdle = (mapInstance) => {
 };
 
 
+const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) => {
+
+    if (!bounds || !bounds.isValid()) {
+        return;
+    }
+
+    const maxAdjustments = 8;
+    const visibleEdgeTolerance = EXPORT_FEATURE_EDGE_BUFFER_PX;
+    const mapMinZoom = typeof mapInstance.getMinZoom === 'function'
+        ? mapInstance.getMinZoom()
+        : 0;
+
+    for (let adjustment = 0; adjustment < maxAdjustments; adjustment += 1) {
+
+        const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
+        const southEast = mapInstance.latLngToContainerPoint(bounds.getSouthEast());
+        const boundsAreVisible = northWest.x >= visibleEdgeTolerance &&
+            northWest.y >= visibleEdgeTolerance &&
+            southEast.x <= (width - visibleEdgeTolerance) &&
+            southEast.y <= (height - visibleEdgeTolerance);
+
+        if (boundsAreVisible) {
+            return;
+        }
+
+        const currentZoom = mapInstance.getZoom();
+        const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
+
+        if (zoomedOutLevel === currentZoom) {
+            return;
+        }
+
+        mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
+
+    }
+
+};
+
+
+const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
+
+    const tileImages = Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
+    const loadedTiles = tileImages.filter(tileImage => tileImage.complete && tileImage.naturalWidth > 0);
+
+    if (!loadedTiles.length) {
+        return {
+            hasCoverage: false,
+            totalTileCount: tileImages.length,
+            loadedTileCount: 0,
+            minX: 0,
+            maxX: 0,
+            minY: 0,
+            maxY: 0
+        };
+    }
+
+    let minX = Number.POSITIVE_INFINITY;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+
+    loadedTiles.forEach(tileImage => {
+
+        const tileBox = getLeafletLayerDrawBox(tileImage, mapRect, { useRenderedBounds: true });
+
+        minX = Math.min(minX, tileBox.x);
+        maxX = Math.max(maxX, tileBox.x + tileBox.width);
+        minY = Math.min(minY, tileBox.y);
+        maxY = Math.max(maxY, tileBox.y + tileBox.height);
+
+    });
+
+    return {
+        hasCoverage: true,
+        totalTileCount: tileImages.length,
+        loadedTileCount: loadedTiles.length,
+        minX,
+        maxX,
+        minY,
+        maxY
+    };
+
+};
+
+
+const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect) => {
+
+    if (!bounds || !bounds.isValid()) {
+        return true;
+    }
+
+    const tileCoverage = getLoadedTileCoverageBounds(mapElement, mapRect);
+
+    if (!tileCoverage.hasCoverage) {
+        return false;
+    }
+
+    const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
+    const southEast = mapInstance.latLngToContainerPoint(bounds.getSouthEast());
+    const coverageBuffer = EXPORT_TILE_COVERAGE_BUFFER_PX;
+
+    return northWest.x >= (tileCoverage.minX + coverageBuffer) &&
+        northWest.y >= (tileCoverage.minY + coverageBuffer) &&
+        southEast.x <= (tileCoverage.maxX - coverageBuffer) &&
+        southEast.y <= (tileCoverage.maxY - coverageBuffer);
+
+};
+
+
+const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bounds, width, height) => {
+
+    if (!bounds || !bounds.isValid()) {
+        return true;
+    }
+
+    const retryThresholdBeforeZoomOut = Math.floor(EXPORT_TILE_COVERAGE_MAX_ATTEMPTS / 2);
+    const mapMinZoom = typeof mapInstance.getMinZoom === 'function'
+        ? mapInstance.getMinZoom()
+        : 0;
+
+    for (let attempt = 0; attempt < EXPORT_TILE_COVERAGE_MAX_ATTEMPTS; attempt += 1) {
+
+        const tileImages = Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
+
+        await waitForLoadedImages(tileImages);
+
+        if (areExportBoundsCoveredByTiles(mapInstance, bounds, mapElement, mapRect)) {
+            return true;
+        }
+
+        if (attempt < retryThresholdBeforeZoomOut) {
+            await new Promise(resolve => window.setTimeout(resolve, EXPORT_TILE_COVERAGE_WAIT_MS));
+            continue;
+        }
+
+        const currentZoom = mapInstance.getZoom();
+        const zoomedOutLevel = Math.max(mapMinZoom, currentZoom - 0.25);
+
+        if (zoomedOutLevel === currentZoom) {
+            break;
+        }
+
+        mapInstance.setView(bounds.getCenter(), zoomedOutLevel, { animate: false });
+        ensureBoundsWithinExportViewport(mapInstance, bounds, width, height);
+
+        await waitForLeafletIdle(mapInstance);
+
+    }
+
+    return areExportBoundsCoveredByTiles(mapInstance, bounds, mapElement, mapRect);
+
+};
+
+
 const buildTemporaryLeafletExport = async (width, height) => {
 
     if (!currentGeojsonLayer) {
@@ -353,6 +598,8 @@ const buildTemporaryLeafletExport = async (width, height) => {
         fadeAnimation: false,
         zoomAnimation: false,
         markerZoomAnimation: false,
+        zoomSnap: 0,
+        zoomDelta: 0.25,
         preferCanvas: true
     });
     const exportRenderer = L.canvas({ padding: 0 });
@@ -360,7 +607,8 @@ const buildTemporaryLeafletExport = async (width, height) => {
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
         crossOrigin: true,
         subdomains: 'abcd',
-        maxZoom: 11,
+        maxNativeZoom: 11,
+        maxZoom: EXPORT_MAP_MAX_ZOOM,
         minZoom: 7
     }).addTo(exportMap);
 
@@ -369,8 +617,9 @@ const buildTemporaryLeafletExport = async (width, height) => {
     const colorScale = createColorScale(minValue, maxValue);
     const pendingLayers = [];
     let exportBounds = null;
+    const bubbleMapExport = isBubbleMapExport();
 
-    if (isBubbleMapExport()) {
+    if (bubbleMapExport) {
 
         const exportGeojsonLayer = L.geoJson(exportGeojson, {
             renderer: exportRenderer,
@@ -451,11 +700,35 @@ const buildTemporaryLeafletExport = async (width, height) => {
     }
 
     if (exportBounds && exportBounds.isValid()) {
-        exportMap.fitBounds(exportBounds.pad(0.04), {
+        // Bubble markers need a bit more room so edge circles stay visible,
+        // while choropleths can fit tighter to reduce empty padding.
+        const exportBoundsPadRatio = bubbleMapExport
+            ? EXPORT_BUBBLE_BOUNDS_PAD_RATIO
+            : EXPORT_CHOROPLETH_BOUNDS_PAD_RATIO;
+        const exportZoomBonus = bubbleMapExport
+            ? EXPORT_BUBBLE_ZOOM_BONUS
+            : EXPORT_CHOROPLETH_ZOOM_BONUS;
+
+        exportMap.fitBounds(exportBounds.pad(exportBoundsPadRatio), {
             animate: false,
             padding: [EXPORT_MAP_PADDING, EXPORT_MAP_PADDING],
             maxZoom: EXPORT_MAP_MAX_ZOOM
         });
+
+        // The fixed 16:9 frame is wider than many NYC map bounds. A small
+        // post-fit zoom uses more of the canvas without changing the export
+        // ratio or relying on the live viewport size.
+        if (exportZoomBonus > 0) {
+            exportMap.setView(
+                exportBounds.getCenter(),
+                Math.min(exportMap.getZoom() + exportZoomBonus, EXPORT_MAP_MAX_ZOOM),
+                { animate: false }
+            );
+        }
+
+        // Keep every feature inside the export viewport so polygon edges are
+        // never clipped and each visible feature has basemap tiles underneath.
+        ensureBoundsWithinExportViewport(exportMap, exportBounds, width, height);
     } else {
         exportMap.setView([40.700142, -73.921546], EXPORT_MAP_MAX_ZOOM);
     }
@@ -470,11 +743,22 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
     await idlePromise;
 
+    const exportRect = exportContainer.getBoundingClientRect();
+    const tileCoverageIsComplete = await ensureTileCoverageForExport(
+        exportMap,
+        exportContainer,
+        exportRect,
+        exportBounds,
+        width,
+        height
+    );
+
     return {
         exportMap,
         exportContainer,
         minLabel: document.getElementById('minVal')?.textContent || 'Min',
-        maxLabel: document.getElementById('maxVal')?.textContent || 'Max'
+        maxLabel: document.getElementById('maxVal')?.textContent || 'Max',
+        tileCoverageIsComplete
     };
 
 };
@@ -519,7 +803,20 @@ const parseLeafletTransform = (transformValue = '') => {
 };
 
 
-const getLeafletLayerDrawBox = (layerElement, mapRect) => {
+const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
+
+    const { useRenderedBounds = false } = options;
+
+    if (useRenderedBounds) {
+        const layerRect = layerElement.getBoundingClientRect();
+
+        return {
+            x: layerRect.left - mapRect.left,
+            y: layerRect.top - mapRect.top,
+            width: layerRect.width,
+            height: layerRect.height
+        };
+    }
 
     const transformedPosition = parseLeafletTransform(layerElement.style.transform || '');
 
@@ -557,7 +854,9 @@ const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
             return;
         }
 
-        const tileBox = getLeafletLayerDrawBox(tileImage, mapRect);
+        // Leaflet can scale the parent tile container at fractional zoom.
+        // Use rendered bounds so export math includes that parent scaling.
+        const tileBox = getLeafletLayerDrawBox(tileImage, mapRect, { useRenderedBounds: true });
         const x = tileBox.x;
         const y = tileBox.y + offsetY;
 
@@ -699,20 +998,25 @@ const exportLeafletMap = async () => {
         throw new Error('The map container could not be found.');
     }
 
-    const mapRect = mapElement.getBoundingClientRect();
-    const exportWidth = Math.max(1, Math.round(mapRect.width));
-    const exportHeight = Math.max(1, Math.round(mapRect.height));
+    // Keep exports stable even when devtools or viewport changes resize the
+    // live map. The off-screen export map is responsible for fitting bounds.
+    const { width: exportWidth, height: exportHeight } = getFixedMapExportSize();
 
     const title = getMapExportTitle();
     const subtitle = getMapExportSubtitle();
-    const sourceLines = splitTextIntoPrintLines(`Sources: ${getMapExportSources().join(' ')}`, 96);
-
-    const headerHeight = subtitle ? 74 : 56;
+    const sourceLines = splitTextIntoPrintLines(`Sources: ${getMapExportSources().join(' ')}`, 120);
     const legendBlockHeight = 88;
     const footerHeight = sourceLines.length ? (sourceLines.length * 16) + 24 : 0;
-    const paddingX = 20;
+    const paddingX = 24;
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
+
+    if (!ctx) {
+        throw new Error('The map export canvas could not be prepared.');
+    }
+
+    const headerLayout = getMapExportHeaderLayout(ctx, exportWidth, paddingX, title, subtitle);
+    const headerHeight = headerLayout.height;
 
     canvas.width = exportWidth;
     canvas.height = headerHeight + exportHeight + legendBlockHeight + footerHeight;
@@ -720,24 +1024,36 @@ const exportLeafletMap = async () => {
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    ctx.save();
+    ctx.textBaseline = 'top';
     ctx.fillStyle = '#0f172a';
-    ctx.font = '700 24px Arial';
-    ctx.fillText(title, paddingX, 30);
+    ctx.font = '700 30px Arial';
+    let textBaselineY = headerLayout.topPadding;
 
-    if (subtitle) {
+    headerLayout.titleLines.forEach(line => {
+        ctx.fillText(line, paddingX, textBaselineY);
+        textBaselineY += headerLayout.titleLineHeight;
+    });
+
+    if (headerLayout.subtitleLines.length) {
+        textBaselineY += headerLayout.gapAfterTitle;
         ctx.fillStyle = '#475569';
-        ctx.font = '14px Arial';
-        ctx.fillText(subtitle, paddingX, 52);
+        ctx.font = '16px Arial';
+
+        headerLayout.subtitleLines.forEach(line => {
+            ctx.fillText(line, paddingX, textBaselineY);
+            textBaselineY += headerLayout.subtitleLineHeight;
+        });
     }
 
-    ctx.strokeStyle = '#d0d7de';
-    ctx.strokeRect(0.5, headerHeight + 0.5, exportWidth - 1, exportHeight - 1);
+    ctx.restore();
 
     const {
         exportMap,
         exportContainer,
         minLabel,
-        maxLabel
+        maxLabel,
+        tileCoverageIsComplete
     } = await buildTemporaryLeafletExport(exportWidth, exportHeight);
 
     let skippedTiles = false;
@@ -745,6 +1061,14 @@ const exportLeafletMap = async () => {
     try {
 
         const exportRect = exportContainer.getBoundingClientRect();
+
+        // Leaflet keeps extra tiles and overlays just outside the visible map
+        // viewport. Clip them so they cannot paint over the export header.
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(0, headerHeight, exportWidth, exportHeight);
+        ctx.clip();
+
         const tileResult = await drawLeafletTiles(ctx, exportContainer, exportRect, headerHeight);
 
         skippedTiles = tileResult.skippedTiles;
@@ -755,12 +1079,17 @@ const exportLeafletMap = async () => {
             await drawLeafletSvgLayers(ctx, exportContainer, exportRect, headerHeight);
         }
 
+        ctx.restore();
+
     } finally {
 
         exportMap.remove();
         exportContainer.remove();
 
     }
+
+    ctx.strokeStyle = '#d0d7de';
+    ctx.strokeRect(0.5, headerHeight + 0.5, exportWidth - 1, exportHeight - 1);
 
     const legendWidth = Math.min(280, Math.max(190, Math.round(exportWidth * 0.28)));
 
@@ -777,8 +1106,8 @@ const exportLeafletMap = async () => {
 
     return {
         dataURL: canvas.toDataURL('image/png'),
-        tileWarning: skippedTiles
-            ? 'Some basemap tiles could not be copied into the PNG. If this happens consistently, the tile server may be blocking canvas export.'
+        tileWarning: (skippedTiles || !tileCoverageIsComplete)
+            ? 'Some basemap tiles were unavailable in part of the export area. The exporter attempted to zoom out to recover coverage; if this persists, retry in a moment.'
             : ''
     };
 
