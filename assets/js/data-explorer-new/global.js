@@ -456,3 +456,44 @@ window.addEventListener('load', () => {
   
   resizeObserver.observe(printVis);
 });
+
+
+// ----------------------------------------------------------------------- //
+// Download data
+// ----------------------------------------------------------------------- //
+
+const downloadData = (
+    // data,
+    // chartType
+) => {
+   
+        console.log('Downloading data')
+
+        // else, for chart view downloads: 
+        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
+        let hiddenElement = document.createElement('a');
+
+        // set view to send to file name
+        let view;
+        if (window.location.hash == '#display=trend') {
+            view = 'trend'
+        } else if (window.location.hash == '#display=map') {
+            view = 'map'
+        } else {
+            view = 'links'
+        }
+
+        hiddenElement.href = csvData;
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
+        hiddenElement.click();
+
+        // trigger GA event
+        gtag('event', 'file_download', {
+            'file_name': hiddenElement.download,
+            'file_extension': '.csv',
+            'link_text': 'Download chart data'
+        });
+
+        e.stopPropagation();
+}
