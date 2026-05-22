@@ -6,7 +6,8 @@ draft: false
 seo_title: "Affordable energy is key to health and climate resilience"
 seo_description: "A data story about the health impacts from climate change-driven energy insecurity."
 tags:
-categories: ["housing", "inequality", "climatehealth", "neighborhoods"]
+categories:
+  ["housing", "inequality", "climatehealth", "neighborhoods", "accessibility"]
 keywords:
   [
     "energy insecurity",
@@ -72,7 +73,7 @@ But 34% of energy-insecure New Yorkers reduced or did not use air conditioning d
 
 Rented units with cracks, gaps, or holes in need of maintenance are also more expensive to heat and cool.
 
-New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards](../../data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels](../../data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
+New Yorkers who have trouble paying utility bills are more likely to be renters and live in properties with housing problems that threaten health. In [some lower-income neighborhoods, more than half of renter-occupied homes need maintenance to address mold, pests, lead paint hazards]({{< relURL >}}data-stories/housing-creates-health/), or other issues that affect health. [Neighborhood poverty levels]({{< relURL >}}data-explorer/economic-conditions/?id=103#display=summary) are determined by the percentage of people in a neighborhood with an income below the federal poverty line.
 
 <div class= "my-4">
 <div aria-hidden="true">
@@ -117,4 +118,4 @@ With improvements to housing and energy assistance programs, we can work towards
 - [Learn about the signs of heat-related illness and what to do if you or someone you know is experiencing it](https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page).
 - [Sign up for notify NYC](https://portal.311.nyc.gov/article/?kanumber=KA-01082). Look out for alerts about severe weather, power outages, and dangerous hot weather
 
-<em>To learn more about how energy insecurity and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/">There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can real the full assessment along with overviews, key messages, and special reports.</em>
+<em>To learn more about how energy insecurity and health impacts are changing in NYC, <a href="https://climateassessment.nyc/assessment/climate-change-and-new-york-citys-health-risk/">read the NPCC4 Climate and Health chapter.</a> <a href="https://climateassessment.nyc/assessment/overview/">There are also dedicated chapters in NPCC4 on flooding, climate justice, and more at the New York City Panel on Climate Change website,</a> where you can read the full assessment along with overviews, key messages, and special reports. Read about <a href="https://e2h2hernandez.com/wp-content/uploads/2025/12/Powering-Up-for-Health-Policy-Solutions-for-EI-in-NYC-E2H2_Report_final.pdf">policy solutions to address energy insecurity in New York City<a>.</em>

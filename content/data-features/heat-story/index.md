@@ -7,6 +7,7 @@ seo_description: "Explore this summer's high temps and health effects."
 categories:
   - climatehealth
   - inequality
+  - accessibility
 keywords:
   [
     "interactive",
@@ -22,7 +23,7 @@ keywords:
   ]
 layout: heatstory
 leaflet: true
-arquero: true
+
 image: heatstory.png
 related:
   - title: "NYC Heat-Related Mortality Report"
@@ -37,8 +38,10 @@ weight: 2
 
 As climate change worsens, extreme heat becomes more frequent and more intense. <a href="{{<baseurl>}}data-stories/localtemp/"> Cities get even hotter because of the urban heat island effect.</a> But even within New York City, some areas are hotter than others.
 
-Heat can <a href="{{< baseurl >}}data-stories/heat/"> harm people’s health and more than 500 people die from heat-related causes each year in New York City.</a> But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, [death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.](../data-features/heat-report)</a>
+Heat can <a href="{{< relURL >}}data-stories/heat/"> harm people’s health and more than 500 people die from heat-related causes each year in New York City.</a> But these health impacts are not distributed equally; historic patterns of discrimination and disinvestment create disproportionate public health impacts from heat. For example, [death rates are higher among Black New Yorkers and in neighborhoods with more residents living below the poverty line.]({{< relURL >}}data-features/heat-report/)
 
-In this heat story map, explore personal stories about how heat affects New Yorkers, contextualized through citywide data on air quality, air conditioning access and more. Building upon the original initiative Heat story, which was developed by Columbia University and South Bronx Unite (with new stories from South Queens Women’s March, Queer Disability Aid, and Fountain House) this project continues the map’s mission of humanizing the impacts of heat by going beyond the data. <a href="#communityScience">The map also includes hyperlocal temperature data, collected by SBU, WE ACT, and community boards.</a>
+In this heat story map, explore personal stories about how heat affects New Yorkers, contextualized through citywide data on air quality, air conditioning access and more. Building upon the original initiative Heat story, which was developed by Columbia University and South Bronx Unite (SBU) (with new stories from South Queens Women’s March, Queer Disability Aid, and Fountain House) this project continues the map’s mission of humanizing the impacts of heat by going beyond the data. <a href="#communityScience">The map also includes hyperlocal temperature data, collected by SBU, WE ACT, and community boards.</a>
+
+**Explore New Yorkers' heat stories by clicking on the pins below.**
 
 <!-- Explore your neighbors' stories about how heat affects them. You can also <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwGh2hb4LeLsQxH-w9awMAF2qc_UgOsD_bBYhRVa3ECxM8Bg/viewform" target="_blank"> submit your own story </a> about how heat has affected your life. -->

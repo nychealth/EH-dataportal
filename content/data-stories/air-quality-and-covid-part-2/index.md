@@ -22,20 +22,6 @@ keywords:
     "breathing",
     "restaurants",
   ]
-tags:
-keywords:
-  [
-    "air quality",
-    "traffic",
-    "transportation",
-    "covid",
-    "covid-19",
-    "coronavirus",
-    "air pollution",
-    "lungs",
-    "breathing",
-    "restaurants",
-  ]
 image: ds-aqcovid.jpeg
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
@@ -46,6 +32,10 @@ related:
   - title: "Air quality during COVID-19"
     url: "data-stories/air-quality-and-covid/"
 ---
+
+{{< updateflag data=`[
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Air quality"}
+]` >}}
 
 On March 20, 2020, New York State announced the COVID-19 shutdown, officially known as NY Pause. In NYC, it lasted until June 8, 2020.
 
@@ -205,7 +195,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
             <button id="btn2" type="button" class="btn btn-sm btn-primary float-right mr-1" onclick="mapNO()">
                 NO2
             </button>
-        <iframe id="dest" src="no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
+        <iframe id="dest" src="{{< relURL >}}data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -218,7 +208,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     function mapPM() {
         // console.log('map PM')
         var iframe = document.getElementById('dest')
-        iframe.src = "pm25_differences_leaflet.html"
+        iframe.src = "{{< relURL >}}data-stories/air-quality-and-covid-part-2/pm25_differences_leaflet.html"
         document.getElementById('btn1').classList.remove('btn-outline-primary')
         document.getElementById('btn1').classList.add('btn-primary')
         document.getElementById('btn2').classList.add('btn-outline-primary')
@@ -228,7 +218,7 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     function mapNO() {
         // console.log('map NO')
         var iframe = document.getElementById('dest')
-        iframe.src = "no2_differences_leaflet.html"
+        iframe.src = "{{< relURL >}}data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html"
         document.getElementById('btn2').classList.remove('btn-outline-primary')
         document.getElementById('btn2').classList.add('btn-primary')
         document.getElementById('btn1').classList.add('btn-outline-primary')

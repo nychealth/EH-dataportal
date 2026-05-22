@@ -26,14 +26,15 @@
               </p>
             </div>
 
-            <div class="row">
+            <div class="row" data-homepage-section="topics">
               <div class="col-md-6 px-20">
                 <ul class="list-unstyled font-weight-bold">
+                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/accessibility" }}>Accessibility</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/airquality" }}>Air quality</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/childhealth" }}>Child health</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/climatehealth" }}>Climate</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/foodanddrink" }}>Food and drink</a></li>
-                  <li class="link-w-underline px-0"><a href={{ relURL "key-topics/healthoutcomes" }}>Health outcomes</a></li>
+                  <li class="link-w-underline px-0" style="border-bottom: none"><a href={{ relURL "key-topics/healthoutcomes" }}>Health outcomes</a></li>
                 </ul>
               </div>
               <div class="col-md-6 px-20">
@@ -43,16 +44,22 @@
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/injury-and-violence" }}>Injury and violence</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/pests" }}>Pests</a></li>
                   <li class="link-w-underline px-0"><a href={{ relURL "key-topics/transportation" }}>Public space</a></li>
+                  <li class="link-w-underline px-0" style="border-bottom: none"><a class="" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+</li>
+
                 </ul>
               </div>
+              <!--
               <div class="d-flex mt-3 w-100 mb-4 mb-md-0 pl-2">
                 <a class="btn btn-primary" href={{ relURL "key-topics" }}>See all topics<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
               </div>
+              -->
+
             </div>
           </div>
           <div class="col-md-6 px-20">
-            <div class="card content-card">
-              <a href="{{ relURL .Params.featured_link }}">
+            <div class="card content-card" id="featured-homepage" data-homepage-section="featured">
+              <a href="{{ relURL .Params.featured_link }}" data-homepage-label="{{ .Params.featured_title }}">
               <div class="card-content primary">
 
                 {{ $src := resources.GetMatch ( path.Join "**" .Params.featured_image )}}
@@ -80,13 +87,13 @@
 
     <div class="container wide">
       <div class="row">
-        <div class="col-lg-4 px-20">
+        <div class="col-lg-4 px-20" data-homepage-section="data-stories">
           <h2 class="fs-xl data-stories border-bottom pb-2"><i class="fas fa-passport mr-1" aria-hidden="true"></i>New data stories</h2>
           <div class="mb-4 ds-card">
             <div>
               {{- range first 3 ((where .Site.RegularPages "Section" "data-stories")) -}}
 
-              <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3">
+              <a href="{{ .RelPermalink }}" class="row no-gutters border-bottom py-3" data-homepage-label="{{ .Title }}">
                 <div class="col-4">
                   {{ $src := .Resources.GetMatch .Params.image }}
                   {{ $image := $src.Resize "740x"}}
@@ -105,13 +112,13 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 px-20">
+        <div class="col-lg-4 px-20" data-homepage-section="recently-updated-data">
 
           <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2>
 
           {{- range .Site.Data.recently_updated_data.featured -}}
           <div class="link-w-underline">
-            <a href="{{ relURL .link }}">{{ .copy }}</a>
+            <a href={{ relURL ( path.Join "data-explorer" .link ) }}>{{ .copy }}</a>
           </div>
           {{- end -}}
 
@@ -134,7 +141,7 @@
             <p class="text-black mb-4"><a class="font-weight-bold" href="#" data-subscribe-click="homepage" data-toggle="modal" data-target="#subscribeModal">Sign up here!</a> We won't share your email address.</p>
           </div>
 
-          <div class="shadow-sm mb-3 p-3 card-left-border">
+          <div class="shadow-sm mb-3 p-3 card-left-border" data-homepage-section="site-search">
             <div class="row no-gutters">
               <div class="col-11">
                 <h3 class="text-black fs-xl pr-2 mb-2">Find what you need</h3>
@@ -153,14 +160,14 @@
     </div>
 
     <div class="container wide">
-      <div class="row">
+      <div class="row" data-homepage-section="tools">
         <div class="col-12 mb-2">
           <h3>Tools</h3>
         </div>
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-stories" }}>
+            <a class="position-relative" href={{ relURL "data-stories" }} data-homepage-label="Data stories">
             <div class="card-content data-stories mb-4">
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
@@ -178,7 +185,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-features" }}>
+            <a class="position-relative" href={{ relURL "data-features" }} data-homepage-label="Data Features">
             <div class="card-content data-features mb-4">
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
@@ -197,7 +204,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href={{ relURL "neighborhood-reports" }}>
+            <a class="position-relative" href={{ relURL "neighborhood-reports" }} data-homepage-label="Neighborhood Reports">
             <div class="card-content n-reports mb-4">
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
@@ -218,7 +225,7 @@
 
         <div class="col-lg-3 col-sm-6">
           <div class="card content-card">
-            <a class="position-relative" href={{ relURL "data-explorer" }}>
+            <a class="position-relative" href={{ relURL "data-explorer" }} data-homepage-label="Data Explorer">
             <div class="card-content data-explorer mb-4">
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
@@ -244,7 +251,7 @@
       <div class="container wide">
         <div class="row">
           <div class="col-md-11 mx-auto">
-            <div class="row">
+            <div class="row" data-homepage-section="secondary-links">
               <div class="col-md-4 my-2">
                 <div class="card card-left-border shadow-sm h-100">
                   <div class="card-body">

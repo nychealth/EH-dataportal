@@ -30,7 +30,7 @@ keywords:
     "maintenance deficiencies",
   ]
 image: ds-housing.jpeg
-vega: true
+
 related:
   - title: "Housing creates health"
     url: "data-stories/housing-creates-health/"
@@ -39,6 +39,13 @@ related:
   - title: "Housing maintenance"
     url: "data-explorer/housing-maintenance/?id=2396#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+]` >}}
 
 ### For health, place matters
 
@@ -672,7 +679,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 <strong>Get the data</strong>
 
 - Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood]({{< baseurl >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
+- [Data on childhood asthma emergency department visits]({{< relURL >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
+- [Data on the race/ethnicity of people by neighborhood]({{< relURL >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
 
 </div>

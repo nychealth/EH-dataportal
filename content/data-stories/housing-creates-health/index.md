@@ -27,13 +27,19 @@ photocredit: "Will Steacy/NYC & Company"
 related:
   - title: "Economic stability creates health"
     url: "data-stories/economic-stability/"
+  - title: "Raising the minimum wage would save lives"
+    url: "data-features/minimum-wage"
   - title: "A walk through history"
     url: "data-stories/block-by-block/"
-  - title: "Health, housing, and history"
-    url: "data-stories/housing/"
 ---
 
-Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
+{{< updateflag data=`[
+{"src": "data-explorer/housing-stability/?id=15", "text": "Housing stability"},
+{"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+{"src": "data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"}
+]` >}}
+
+Health is determined by many factors. People tend to be healthier when they have economic stability, live in quality housing and have access to public space and safe, connected communities. In 2020, the NYC Health Department held a series of community conversations with residents and local stakeholders across 26 neighborhoods. New Yorkers shared personal stories about their priorities for building healthier neighborhoods, healthier childhoods and more. This is one part of a three-part series on how <strong> housing, <a href="{{< relURL >}}data-stories/economic-stability/"> economic stability </a> and public space create health.</strong>
 
 <div class="pullquote my-4">
 <figure class="">
@@ -63,7 +69,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 </figure>
 </div>
 
-Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
+Across New York, half of all households are rent-burdened, meaning that more than 30% of their household income goes to rent. Spending so much on rent can leave too little money for food and other essentials. <a href="{{< relURL >}}data-stories/economic-stability/"> Learn more about the health implications of experiencing rent burden in "How economic stability creates health." </a>
 
 <div class="chart-wrapper-ds">
 <div aria-hidden="true">
@@ -172,7 +178,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 Homes that are not properly maintained can undermine health, including because they may have:
 
-- <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/lead/?id=2189#display=summary"> Lead paint hazards, which can cause behavioral and brain problems in children. </a> Lead exposure can also cause increased blood pressure, kidney and brain problems, infertility and impotence in adults.
+- <a href="{{< relURL >}}data-explorer/lead/?id=2189#display=summary"> Lead paint hazards, which can cause behavioral and brain problems in children. </a> Lead exposure can also cause increased blood pressure, kidney and brain problems, infertility and impotence in adults.
 
 - Pests, like cockroaches and mice, which can make food unclean and contribute to the worsening of asthma and its symptoms.
 
@@ -285,7 +291,7 @@ The NYC Health Department has a supportive housing program offering 11,200 perma
 
 ### High-quality, affordable and stable housing is essential to public health.
 
-Effective policy must take into consideration how individual needs are shaped by their experience and can also change at every stage of life. Accessibility and support for older adults should be part of housing discussions too. <a href="https://wherewelive.cityofnewyork.us/">The NYC Department of Housing Preservation and Development undertook the Where We Live (WWL) project to hear from residents, government, and community leaders </a> about their experiences with housing access, accessibility, and discrimination. WWL initiatives draw on this feedback to <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/beta/data-stories/housing/"> prioritize the equitable expansion of housing opportunities in neighborhoods harmed by structural racism.</a>
+Effective policy must take into consideration how individual needs are shaped by their experience and can also change at every stage of life. Accessibility and support for older adults should be part of housing discussions too. <a href="https://wherewelive.cityofnewyork.us/">The NYC Department of Housing Preservation and Development undertook the Where We Live (WWL) project to hear from residents, government, and community leaders </a> about their experiences with housing access, accessibility, and discrimination. WWL initiatives draw on this feedback to <a href="{{< relURL >}}data-stories/housing/"> prioritize the equitable expansion of housing opportunities in neighborhoods harmed by structural racism.</a>
 
 Also, individuals can call 311 to report health and safety hazards and problems that landlords must legally address.
 

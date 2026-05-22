@@ -248,19 +248,7 @@
 
                             });
 
-                            // ----------------------------------------------------------------------- //
-                            // add Google Analytics tag to each result
-                            // ----------------------------------------------------------------------- //
-
-                            // Get all search results
-                            var allResults = document.getElementsByClassName('pagefind-ui__result-link');
-
-                            // add a click listener to each result
-                            for (h = 0; h < allResults.length; h += 1) {
-
-                                allResults[h].setAttribute('onclick',"gtag('event', 'search_click', { page_viewed: '" + allResults[h].href + "' });");
-
-                            }
+                            // Search result click tracking is handled centrally in site.js.
 
                             // log results to console for debugging
 

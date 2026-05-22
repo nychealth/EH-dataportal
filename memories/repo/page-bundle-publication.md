@@ -1,0 +1,9 @@
+# Page Bundle Publication
+
+- In this repo, the `index.md` versus `_index.md` distinction is not the main cause of missing iframe/app files. The real problem is resource type and publication path.
+- Leaf-bundle non-page resources such as images and GIFs are emitted with the bundle. Verified example: `air-quality-and-covid-part-2` publishes `PM-animated-map.gif` and `NO2-animated-map.gif` into `docs/data-stories/air-quality-and-covid-part-2/`.
+- Bundle resources that are consumed inside templates or shortcodes are safe to keep in the bundle. Verified examples: `csvtable` reads bundled CSV via `.Page.Resources.GetMatch`, and `nyccas-report` reads bundled Markdown via `.Resources.GetMatch`.
+- Standalone HTML files that need their own URL should not rely on raw bundle-relative iframe paths. In a leaf bundle, extra `.html` files behave like page resources, not guaranteed standalone published pages.
+- Fixed case: `content/data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html` and `pm25_differences_leaflet.html` were not emitted when referenced as raw bundle files. Solution was to publish them from `static/data-stories/air-quality-and-covid-part-2/` and point the iframe/script at `{{< relURL >}}data-stories/air-quality-and-covid-part-2/...`.
+- Safe existing standalone HTML patterns in this repo use static-published paths. Verified examples: `maps/HOLC-shootings/map.html`, `maps/HOLC_map/HOLC_map.html`, `html/2023-heat-report-fig-1.html`, `html/2025-heat-report-fig-1.html`, `nyccas/embeds/nyccas-sites-leaflet.html`, and `data-stories/cold/source/index.html`.
+- Latent risk: `content/data-features/healthy-homes-info/source/index.html` is a bundled HTML file under a draft page. If that page is revived and the file needs its own browser URL, use `static/` or another explicit publication strategy instead of relying on bundle-relative raw HTML paths.

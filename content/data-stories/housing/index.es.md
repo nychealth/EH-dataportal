@@ -8,7 +8,7 @@ tags:
 categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
 keywords: ["poverty","asthma","injustice","housing","social determinants","redlining","disinvestment","racism","renting","pests","maintenance","maintenance deficiencies"]
 image: ds-housing.jpeg
-vega: true
+
 ---
 ### Para la salud, el lugar importa
 ¿Qué determina si usted está saludable o no? Puede pensar en lo que come, si hace ejercicio, si fuma y los antecedentes médicos de su familia.
@@ -91,7 +91,7 @@ El mapa a continuación muestra cómo se categorizaban los vecindarios de la ciu
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -443,8 +443,8 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 
 #### Obtenga los datos 
 - Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
-- [La información sobre las visitas a la sala de emergencias por asma infantil ]({{< baseurl >}}data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
-- [Los datos sobre la raza/etnia de las personas por vecindario]({{< baseurl >}}data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ]({{< relURL >}}data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario]({{< relURL >}}data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 

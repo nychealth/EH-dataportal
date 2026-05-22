@@ -17,7 +17,7 @@
   <div class="row">
       <div class="col-sm-7" style="height: 60vh;">
         
-          <iframe id="iframeEmbed" src={{ relURL "nyccas/raster/bc_2023.html" }} style="width:100%;height:100%;" frameborder="off"></iframe>
+          <iframe id="iframeEmbed" src={{ relURL "nyccas/raster/bc.html" }} style="width:100%;height:100%;" frameborder="off"></iframe>
 
 
       </div>
@@ -25,26 +25,26 @@
       <div class="col-sm-5" id="mapText" style="height: 100%;overflow-y:scroll;">
           <div id="bcText" class="polText">
             {{- with .Resources.GetMatch "map-text.md" -}}
-                {{ .Params.BC | markdownify }}
+                {{ $.RenderString .Params.BC }}
           </div>
 
           <div id="noText" class="polText hide">
-            {{ .Params.NO | markdownify }}
+            {{ $.RenderString .Params.NO }}
 
           </div>
 
           <div id="no2Text" class="polText hide">
-            {{ .Params.NO2 | markdownify }}
+            {{ $.RenderString .Params.NO2 }}
 
           </div>
 
           <div id="o3Text" class="polText hide">
-            {{ .Params.O3 | markdownify }}
+            {{ $.RenderString .Params.O3 }}
 
           </div>
 
           <div id="pm25Text" class="polText hide">
-            {{ .Params.PM | markdownify }}
+            {{ $.RenderString .Params.PM }}
 
           </div>
           {{- end -}}
@@ -77,7 +77,7 @@
   <div class="col-sm-3 ml-auto">
       <div class="float-right">
           <button id="btnPlus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(-1)">-</button>
-          <button id="yearPrint" class="font-weight-bold btn btn-sm btn-dark" disabled>2023</button>
+          <button id="yearPrint" class="font-weight-bold btn btn-sm btn-dark" disabled>YEAR</button>
           <button id="btnMinus" class="btnYearChange btn btn-sm btn-outline-dark" onclick="changeYear(1)">+</button>
       </div>
   </div>
@@ -88,16 +88,20 @@
 
 <div class="row no-gutters">
   <div class="col-md-9 col-sm-12 mx-auto">
-    <img id="raster" src="embed/map-images/BC_2023.png" style="width:100%; height: auto;">
+    <img id="raster" src="embed/map-images/BC_2024.png" style="width:100%; height: auto;">
 
   </div>
 </div>
 
 <script>
+  // This script controls the static images for all years. These maps are all on the same scale for any one pollutant so that somebody can see change over time as they click through it. Images are stored in /content/data-features/nyccas/embed/map-images/
+
   // update image
-  var thisYear = 2025
-  var chosenYear = thisYear - 2
+  var thisYear = 2026             // Update this for the report
+  var chosenYear = thisYear - 2   // This is the year for which the data goes through
   var mtPol = "BC"
+
+  document.getElementById('yearPrint').innerHTML = chosenYear
 
   function updateRaster() {
   var filename = mtPol + "_" + chosenYear + ".png"
@@ -156,6 +160,8 @@
 </style>
 
 <script>
+  // This script controls which pollutant's leaflet map is displayed, based on button clicks. These maps are stored in /static/nyccas/raster
+
   const polbtns = document.querySelectorAll('.polbtn')
   var mapPol;
   var embed;
@@ -165,7 +171,7 @@
           //Turns off highlights on everything based on class
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
-          embed = '{{ relURL "nyccas/raster/" }}' + this.value + '_2023.html'
+          embed = '{{ relURL "nyccas/raster/" }}' + this.value + '.html'
           document.getElementById('iframeEmbed').src = embed;
 
           const mapTexts = document.querySelectorAll('.polText')

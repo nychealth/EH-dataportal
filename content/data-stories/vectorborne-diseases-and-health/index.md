@@ -112,7 +112,7 @@ Although the increase in Lyme disease cases reported that began in 2022 is due t
 
 ## Climate variables like temperature and rainfall can affect vector-borne diseases
 
-Climate change impacts vector-borne diseases as it does many other health issues. However, the direct impact of the changing climate on vector-borne diseases is more challenging to anticipate than it is for <a href="../../data-features/heat-report">frequent heat waves</a> and <a href="../flooding-and-health/">intense storms.</a> This is because of the complex interactions between climate factors, like heat and rainfall, and the vectors themselves, their ecosystems, and the animals and people they bite.
+Climate change impacts vector-borne diseases as it does many other health issues. However, the direct impact of the changing climate on vector-borne diseases is more challenging to anticipate than it is for <a href="{{< relURL >}}data-features/heat-report/">frequent heat waves</a> and <a href="{{< relURL >}}data-stories/flooding-and-health/">intense storms.</a> This is because of the complex interactions between climate factors, like heat and rainfall, and the vectors themselves, their ecosystems, and the animals and people they bite.
 
 </div>
 <div class="wide my-4">

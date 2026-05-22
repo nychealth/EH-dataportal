@@ -9,6 +9,6 @@ type: nr-output
 seo_title: "Outdoor Air and Health in Kingsbridge - Riverdale"
 seo_description: "Outdoor Air and Health data profile for the Kingsbridge - Riverdale neighborhood of NYC."
 seo_image: "images/nyc_health_report_outdoor_air_health.jpg"
-vega: true
-arquero: true
+
+
 ---

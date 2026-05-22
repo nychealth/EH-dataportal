@@ -9,7 +9,7 @@ Each summer, on average, **more than 500 New Yorkers die prematurely because of 
 - There was an average of about **520 heat-exacerbated deaths** (caused indirectly by heat aggravating an underlying illness) per year.
 
 **Heat-exacerbated deaths increased in the past decade**, mainly due to hotter summers overall with more “non-extreme hot days” of 82°F up to but below the extreme heat threshold (95°F). Estimates of the number of deaths have remained relatively steady in the most recent years. The 2018-2022 estimate is similar in magnitude to the 2017-2021 estimate of 570 in last year’s report, with more than 500 New Yorkers dying due to the heat every summer. The number of heat-exacerbated deaths in last year’s report was corrected to 570.
-<a href="{{< baseurl >}}pdf/memo_heat_mort_2024.pdf" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:500px;">See details on the correction here.</a>
+<a href="{{< relURL >}}pdf/memo_heat_mort_2024.pdf" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none; height:500px;">See details on the correction here.</a>
 
 **Black New Yorkers are more likely to die from heat stress**, with death rates two times higher than white New Yorkers. Black New Yorkers also have a higher likelihood of heat-exacerbated death compared to other New Yorkers. This inequity is due to past and current structural racism that creates economic, health care, housing, energy, and other systems that benefit white people and disadvantage people of color.
 

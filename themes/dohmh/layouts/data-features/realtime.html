@@ -339,19 +339,26 @@
     <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">
             <div class="row p-2 border-top border-bottom">
-                <div class="col-md-8 ml-auto">
+                <div class="col-md-4">
                     <h3>The Air Quality Index</h3>
                     <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
                     <p><strong>AQI Resources:</strong></p>
                     <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
                     <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
-
                 </div>
-
-                <div class="col-md-3 mr-auto">
-                    <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+                <div class="col-md-3 mr-auto border-right">
+                    <iframe class="my-2 float-left" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+            </div>
+                <div class="col-md-5 mx-auto">
+                    <h3>Community air quality programs</h3>
+                    <p>Many community-based organizations run independent air quality monitoring systems, which contribute to the broader picture of air quality and health in NYC. </p>
+                    <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
+                    <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
+                    <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
+                    <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
+                    <p class="fs-sm">Does your organization conduct hyperlocal air quality monitoring? Get in touch at <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
                 </div>
-
+                </div>
             </div>
         </div>
     </div>
@@ -413,9 +420,11 @@
             <!-- Download interface -->
             {{- partial "realtime-download" . -}}
 
-            {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                {{ .Content }}
-            {{- end -}}
+            <hr>
+
+            <div id="rtaqReadme" class="pt-2">
+                <!-- RTAQ readme accessed from Git repo and deposited here via client-side JS --> 
+            </div>
 
         </div>
         <div class="modal-footer">
@@ -427,6 +436,66 @@
 
 
 </article>
+
+<script>
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function markdownToHTML(md) {
+  const lines = md.split(/\r?\n/);
+  let html = "";
+  let paragraph = [];
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      html += `<p>${paragraph.join(" ")}</p>\n`;
+      paragraph = [];
+    }
+  }
+
+  for (let line of lines) {
+    line = line.trim();
+
+    // Blank line → paragraph break
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+
+    // Headers
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      flushParagraph();
+      html += `<h2 class="h5">${escapeHTML(line.slice(2))}</h2>\n`;
+      continue;
+    }
+
+    // Normal text → paragraph
+    paragraph.push(escapeHTML(line));
+  }
+
+  flushParagraph();
+  return html;
+}
+
+// Fetch + render
+fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
+  .then(r => r.text())
+  .then(md => {
+    document.getElementById("rtaqReadme").innerHTML = markdownToHTML(md);
+  });
+
+</script>
+
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
