@@ -15,8 +15,8 @@ let currentGeojsonLayer = null;
 let currentBubbleMarkers = [];
 
 // Display Parameters
-var isPercent;
-var displayType;
+let isPercent;
+let displayType;
 
 // ----------------------------------------------------------------------- //
 // base map initialization (fires immediately on script load)
@@ -111,7 +111,7 @@ const createColorScale = (minValue, maxValue) => {
         .interpolator(d3.interpolateViridis);
 };
 
-    // Centralizes map value formatting for tooltips, legend hover, and popups.
+// Centralizes map value formatting for tooltips, legend hover, and popups.
 const formatMapValue = (value, digits) => {
     return value != null
         ? value.toLocaleString(undefined, {
@@ -121,7 +121,7 @@ const formatMapValue = (value, digits) => {
         : '—';
 };
 
-    // Builds shared popup markup for both choropleth polygons and bubble markers.
+// Builds shared popup markup for both choropleth polygons and bubble markers.
 const createMapPopupContent = (properties, metadata, options = {}) => {
     const requireGeoRank = options.requireGeoRank ?? true;
     const valueDigits = options.valueDigits ?? 1;
@@ -460,7 +460,6 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
                         const hasMappedValue = props.Value != null;
 
-                        // 🔥 HARD RESET: clear ALL highlights
                         // Clear any previous highlight before applying the current hover state.
                         geojsonLayer.eachLayer((l) => {
                             geojsonLayer.resetStyle(l);
