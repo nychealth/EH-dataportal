@@ -1,6 +1,6 @@
 <!-- Print Modal -->
 <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true" data-pagefind-ignore="all">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-dialog print-modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
@@ -27,6 +27,12 @@
 </div>
 
 <style>
+    /* Keep the save modal narrower than the generic extra-large Bootstrap
+       modal so the preview area stays focused and easier to scan. */
+    #printModal .print-modal-dialog {
+        max-width: 760px;
+    }
+
     div.vis-print-modal {
         resize:both;
         overflow:auto; /* something other than visible */
