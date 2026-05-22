@@ -223,6 +223,8 @@ const renderChartPreview = () => {
         showPrintErrorState('This chart preview could not be rendered.');
     });
 
+    setTimeout(updateChartPlotSize(),1000);
+
 };
 
 
