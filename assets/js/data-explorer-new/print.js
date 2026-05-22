@@ -126,11 +126,18 @@ const sanitizeFilename = (value) => {
 };
 
 
-const splitTextIntoPrintLines = (value, maxLength = 88) => {
-
-    const sourceText = Array.isArray(value)
+// Keep line-wrapping helpers aligned so titles, subtitles, and footnotes all
+// normalize arrays and plain strings the same way before wrapping.
+const normalizePrintTextInput = (value) => {
+    return Array.isArray(value)
         ? value.filter(Boolean).join(' ')
         : String(value || '').trim();
+};
+
+
+const buildWrappedPrintLines = (value, shouldStartNewLine) => {
+
+    const sourceText = normalizePrintTextInput(value);
 
     if (!sourceText) {
         return [];
@@ -144,7 +151,7 @@ const splitTextIntoPrintLines = (value, maxLength = 88) => {
 
         const nextLine = currentLine ? `${currentLine} ${word}` : word;
 
-        if (nextLine.length > maxLength && currentLine) {
+        if (shouldStartNewLine(nextLine, currentLine)) {
             lines.push(currentLine);
             currentLine = word;
             return;
@@ -163,39 +170,22 @@ const splitTextIntoPrintLines = (value, maxLength = 88) => {
 };
 
 
+const splitTextIntoPrintLines = (value, maxLength = 88) => {
+
+    return buildWrappedPrintLines(
+        value,
+        (nextLine, currentLine) => nextLine.length > maxLength && Boolean(currentLine)
+    );
+
+};
+
+
 const splitCanvasTextIntoLines = (ctx, value, maxWidth) => {
 
-    const sourceText = Array.isArray(value)
-        ? value.filter(Boolean).join(' ')
-        : String(value || '').trim();
-
-    if (!sourceText) {
-        return [];
-    }
-
-    const words = sourceText.split(/\s+/);
-    const lines = [];
-    let currentLine = '';
-
-    words.forEach(word => {
-
-        const nextLine = currentLine ? `${currentLine} ${word}` : word;
-
-        if (currentLine && ctx.measureText(nextLine).width > maxWidth) {
-            lines.push(currentLine);
-            currentLine = word;
-            return;
-        }
-
-        currentLine = nextLine;
-
-    });
-
-    if (currentLine) {
-        lines.push(currentLine);
-    }
-
-    return lines;
+    return buildWrappedPrintLines(
+        value,
+        (nextLine, currentLine) => Boolean(currentLine) && ctx.measureText(nextLine).width > maxWidth
+    );
 
 };
 
@@ -431,6 +421,48 @@ const waitForLeafletIdle = (mapInstance) => {
 };
 
 
+// Several export safeguards need to answer the same question: where do the
+// current feature bounds land inside the off-screen map viewport?
+const getBoundsViewportBox = (mapInstance, bounds) => {
+
+    const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
+    const southEast = mapInstance.latLngToContainerPoint(bounds.getSouthEast());
+
+    return {
+        left: northWest.x,
+        top: northWest.y,
+        right: southEast.x,
+        bottom: southEast.y,
+        width: southEast.x - northWest.x,
+        height: southEast.y - northWest.y
+    };
+
+};
+
+
+const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
+    return viewportBox.left >= edgeBuffer &&
+        viewportBox.top >= edgeBuffer &&
+        viewportBox.right <= (width - edgeBuffer) &&
+        viewportBox.bottom <= (height - edgeBuffer);
+};
+
+
+// Keep map-type-specific framing rules together so buildTemporaryLeafletExport
+// can read like a single flow instead of a series of paired ternaries.
+const getExportBoundsTuning = (bubbleMapExport) => {
+    return bubbleMapExport
+        ? {
+            padRatio: EXPORT_BUBBLE_BOUNDS_PAD_RATIO,
+            zoomBonus: EXPORT_BUBBLE_ZOOM_BONUS
+        }
+        : {
+            padRatio: EXPORT_CHOROPLETH_BOUNDS_PAD_RATIO,
+            zoomBonus: EXPORT_CHOROPLETH_ZOOM_BONUS
+        };
+};
+
+
 const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) => {
 
     if (!bounds || !bounds.isValid()) {
@@ -445,12 +477,13 @@ const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) =>
 
     for (let adjustment = 0; adjustment < maxAdjustments; adjustment += 1) {
 
-        const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
-        const southEast = mapInstance.latLngToContainerPoint(bounds.getSouthEast());
-        const boundsAreVisible = northWest.x >= visibleEdgeTolerance &&
-            northWest.y >= visibleEdgeTolerance &&
-            southEast.x <= (width - visibleEdgeTolerance) &&
-            southEast.y <= (height - visibleEdgeTolerance);
+        const viewportBox = getBoundsViewportBox(mapInstance, bounds);
+        const boundsAreVisible = isViewportBoxInsideFrame(
+            viewportBox,
+            width,
+            height,
+            visibleEdgeTolerance
+        );
 
         if (boundsAreVisible) {
             return;
@@ -470,10 +503,20 @@ const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) =>
 };
 
 
+const getTileImages = (mapElement) => {
+    return Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
+};
+
+
+const getLoadedTileImages = (mapElement) => {
+    return getTileImages(mapElement).filter(tileImage => tileImage.complete && tileImage.naturalWidth > 0);
+};
+
+
 const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
 
-    const tileImages = Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
-    const loadedTiles = tileImages.filter(tileImage => tileImage.complete && tileImage.naturalWidth > 0);
+    const tileImages = getTileImages(mapElement);
+    const loadedTiles = getLoadedTileImages(mapElement);
 
     if (!loadedTiles.length) {
         return {
@@ -528,14 +571,13 @@ const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect)
         return false;
     }
 
-    const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
-    const southEast = mapInstance.latLngToContainerPoint(bounds.getSouthEast());
+    const viewportBox = getBoundsViewportBox(mapInstance, bounds);
     const coverageBuffer = EXPORT_TILE_COVERAGE_BUFFER_PX;
 
-    return northWest.x >= (tileCoverage.minX + coverageBuffer) &&
-        northWest.y >= (tileCoverage.minY + coverageBuffer) &&
-        southEast.x <= (tileCoverage.maxX - coverageBuffer) &&
-        southEast.y <= (tileCoverage.maxY - coverageBuffer);
+    return viewportBox.left >= (tileCoverage.minX + coverageBuffer) &&
+        viewportBox.top >= (tileCoverage.minY + coverageBuffer) &&
+        viewportBox.right <= (tileCoverage.maxX - coverageBuffer) &&
+        viewportBox.bottom <= (tileCoverage.maxY - coverageBuffer);
 
 };
 
@@ -553,7 +595,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
 
     for (let attempt = 0; attempt < EXPORT_TILE_COVERAGE_MAX_ATTEMPTS; attempt += 1) {
 
-        const tileImages = Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
+        const tileImages = getTileImages(mapElement);
 
         await waitForLoadedImages(tileImages);
 
@@ -619,7 +661,13 @@ const buildTemporaryLeafletExport = async (width, height) => {
     let exportBounds = null;
     const bubbleMapExport = isBubbleMapExport();
 
+    // Rebuild the live map state inside a stable, off-screen Leaflet instance.
+    // That gives export logic full control over size, zoom, and tile loading.
+
     if (bubbleMapExport) {
+
+        // Number layers need both the geography shell and the point markers in
+        // the export bounds calculation so the fitted view leaves room for both.
 
         const exportGeojsonLayer = L.geoJson(exportGeojson, {
             renderer: exportRenderer,
@@ -673,6 +721,9 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
     } else {
 
+        // Choropleths only need the filled geometry, so the feature bounds come
+        // directly from the export GeoJSON layer.
+
         const exportGeojsonLayer = L.geoJson(exportGeojson, {
             renderer: exportRenderer,
             style: feature => {
@@ -700,14 +751,10 @@ const buildTemporaryLeafletExport = async (width, height) => {
     }
 
     if (exportBounds && exportBounds.isValid()) {
-        // Bubble markers need a bit more room so edge circles stay visible,
-        // while choropleths can fit tighter to reduce empty padding.
-        const exportBoundsPadRatio = bubbleMapExport
-            ? EXPORT_BUBBLE_BOUNDS_PAD_RATIO
-            : EXPORT_CHOROPLETH_BOUNDS_PAD_RATIO;
-        const exportZoomBonus = bubbleMapExport
-            ? EXPORT_BUBBLE_ZOOM_BONUS
-            : EXPORT_CHOROPLETH_ZOOM_BONUS;
+        const {
+            padRatio: exportBoundsPadRatio,
+            zoomBonus: exportZoomBonus
+        } = getExportBoundsTuning(bubbleMapExport);
 
         exportMap.fitBounds(exportBounds.pad(exportBoundsPadRatio), {
             animate: false,
@@ -735,6 +782,8 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
     exportMap.invalidateSize(false);
 
+    // Lock the export viewport before adding vector layers. Adding them first
+    // can change renderer timing and produce unstable export bounds.
     pendingLayers.forEach(layer => {
         layer.addTo(exportMap);
     });
@@ -744,6 +793,9 @@ const buildTemporaryLeafletExport = async (width, height) => {
     await idlePromise;
 
     const exportRect = exportContainer.getBoundingClientRect();
+
+    // Give tiles a final chance to catch up after the fitted export view has
+    // settled, and only zoom out if the current tile coverage is still short.
     const tileCoverageIsComplete = await ensureTileCoverageForExport(
         exportMap,
         exportContainer,
@@ -808,6 +860,8 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
     const { useRenderedBounds = false } = options;
 
     if (useRenderedBounds) {
+        // Tile images inherit scale from their parent tile container, so their
+        // rendered box is the only reliable source of export coordinates.
         const layerRect = layerElement.getBoundingClientRect();
 
         return {
@@ -1021,6 +1075,8 @@ const exportLeafletMap = async () => {
     canvas.width = exportWidth;
     canvas.height = headerHeight + exportHeight + legendBlockHeight + footerHeight;
 
+    // Build the final PNG in bands: header first, then the clipped map view,
+    // then legend and sources. That keeps export layout deterministic.
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -1093,6 +1149,8 @@ const exportLeafletMap = async () => {
 
     const legendWidth = Math.min(280, Math.max(190, Math.round(exportWidth * 0.28)));
 
+    // Keep the legend and sources outside the map frame so export framing work
+    // only has to reason about the actual map viewport.
     drawMapLegend(ctx, paddingX, headerHeight + exportHeight + 30, legendWidth, minLabel, maxLabel);
 
     if (sourceLines.length) {
