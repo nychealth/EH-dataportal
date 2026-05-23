@@ -437,7 +437,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
                         // For citywide-only data, switch to trend tab
                         if (isCitywideOnly) {
-                            const element = document.getElementById('v-pills-trend');
+                            const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
                             } else {
