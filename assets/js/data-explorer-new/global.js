@@ -180,11 +180,18 @@ let btnToggleDisparities;
 // ----------------------------------------------------------------------- //
 
 // Copies the current citation text to the clipboard and updates button feedback.
-const copyCitation = () => {
+const copyCitation = (button = null) => {
 
     console.log("* copyCitation");
 
-    const citeText = document.getElementById('citeText').innerText;
+    const citationTargetId = button?.dataset.citationTarget || 'citeText';
+    const citationTextElement = document.getElementById(citationTargetId);
+
+    if (!citationTextElement) {
+        return;
+    }
+
+    const citeText = citationTextElement.innerText;
     
     // Create temporary textarea
     const temp = document.createElement('textarea');
@@ -194,11 +201,37 @@ const copyCitation = () => {
     temp.setSelectionRange(0, 99999);
     
     navigator.clipboard.writeText(temp.value).then(() => {
-        const btn = document.getElementById('citeButton');
-        btn.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
+        const feedbackButton = button || document.querySelector(`.de-copy-citation-button[data-citation-target="${citationTargetId}"]`);
+
+        if (feedbackButton) {
+            feedbackButton.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
+        }
     });
     
     document.body.removeChild(temp); // clean up
+}
+
+
+const bindCitationCopyButton = () => {
+
+    // The citation markup provides the text source so this helper can support
+    // more than one citation block without hard-coding element ids.
+    const citationButtons = document.querySelectorAll('.de-copy-citation-button[data-citation-target]');
+
+    citationButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            copyCitation(event.currentTarget);
+        });
+    });
+
+};
+
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindCitationCopyButton);
+} else {
+    bindCitationCopyButton();
 }
 
 
