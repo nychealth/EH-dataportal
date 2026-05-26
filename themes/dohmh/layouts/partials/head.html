@@ -38,6 +38,11 @@
 
 {{ end }}
 
+<!-- Don't index the "Resources" section --> 
+{{ if eq .Section "resources" }}
+  <meta name="robots" content="noindex">
+{{ end }}
+
 
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
