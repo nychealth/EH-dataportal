@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resources on Environment &amp; Health Data Portal</title>
+    <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/</link>
+    <description>Recent content in Resources on Environment &amp; Health Data Portal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Food Safety Health Code Reference Tool</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/health-code-reference/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/health-code-reference/</guid>
+      <description>&lt;p&gt;Food Safety Health Code Reference Tool for inspectors:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://datawrapper.dwcdn.net/Bk4zv/6/&#34;&gt;Mobile version&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://datawrapper.dwcdn.net/e59pb/4/&#34;&gt;Desktop version&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>The Department’s Pre-calculations Sugar Lookup Tool</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/sugar-lookup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/resources/sugar-lookup/</guid>
+      <description>&lt;p&gt;Use this tool to look up beverages to see how many calories it takes to have 50g of added sugar.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
