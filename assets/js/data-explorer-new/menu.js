@@ -269,10 +269,6 @@ const handleSelection = (type, value) => {
 
     updateAllMenus(ind);
 
-    if (type === 'measure' && typeof syncTrendSelectionsToMapSelection === 'function') {
-        syncTrendSelectionsToMapSelection();
-    }
-
     if (type === 'measure' && typeof syncLinksSelectionsToMapSelection === 'function') {
         syncLinksSelectionsToMapSelection();
     }

@@ -471,7 +471,7 @@ const renderMeasures = async () => {
 
     const trendMeasurePills = document.getElementById('trendMeasurePills');
     const trendComparisonPills = document.getElementById('trendComparisonPills');
-    const trendSyncButton = document.getElementById('trendSyncButton');
+    let selectedComparisonLegendTitle = null;
 
     // Normalizes active and disabled styles so the new visible pills stay in sync.
     const setBadgePillState = (button, isActive, isDisabled = false) => {
@@ -649,26 +649,107 @@ const renderMeasures = async () => {
     };
 
 
-    // Uses manual trend measure only while custom state is active and still valid.
-    const getActiveTrendMeasureId = () => {
+    // Resolves one comparison button back to the comparison rows it owns.
+    const getComparisonRowsForLegendTitle = (legendTitle) => {
 
-        const manualMeasureId = selectedTrendMeasureId == null ? null : Number(selectedTrendMeasureId);
-        const hasManualMeasure = selectedTrendMeasure && trendMeasures.some(m => Number(m.MeasureID) === manualMeasureId);
+        if (!legendTitle || !aqCombinedComparisonMetadata) {
+            return [];
+        }
 
-        return hasManualMeasure ? manualMeasureId : getSyncedTrendMeasureId();
+        return aqCombinedComparisonMetadata
+            .objects()
+            .filter(row => row.LegendTitle === legendTitle);
 
     };
 
 
-    // Uses manual comparison only while custom state is active and still valid.
-    const getActiveComparisonId = () => {
+    // Keeps comparison buttons synced to the current MBT measure when possible.
+    const getComparisonIdForLegendTitle = (legendTitle) => {
 
-        const manualComparisonId = selectedComparisonId == null ? null : Number(selectedComparisonId);
-        const hasManualComparison = selectedComparison && comparisonMetadata?.some(comp =>
-            Number(comp.ComparisonID) === manualComparisonId
+        const comparisonRows = getComparisonRowsForLegendTitle(legendTitle);
+
+        if (!comparisonRows.length) {
+            return null;
+        }
+
+        const matchingMeasureRow = comparisonRows.find(row =>
+            Number(row.IndicatorID) === Number(IndicatorID) &&
+            Number(row.MeasureID) === Number(MeasureID)
         );
 
-        return hasManualComparison ? manualComparisonId : getSyncedComparisonId();
+        if (matchingMeasureRow) {
+            return Number(matchingMeasureRow.ComparisonID);
+        }
+
+        const matchingIndicatorRow = comparisonRows.find(row =>
+            Number(row.IndicatorID) === Number(IndicatorID)
+        );
+
+        if (matchingIndicatorRow) {
+            return Number(matchingIndicatorRow.ComparisonID);
+        }
+
+        return Number(comparisonRows[0].ComparisonID);
+
+    };
+
+
+    const getComparisonLegendTitleById = (comparisonId) => {
+
+        if (comparisonId == null || !aqCombinedComparisonMetadata) {
+            return null;
+        }
+
+        return aqCombinedComparisonMetadata
+            .objects()
+            .find(row => Number(row.ComparisonID) === Number(comparisonId))
+            ?.LegendTitle || null;
+
+    };
+
+
+    const getActiveTrendMeasureId = () => {
+
+        return getSyncedTrendMeasureId();
+
+    };
+
+
+    const getActiveTrendMeasureLabel = () => {
+
+        const trendMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
+
+        return trendMeasure?.MeasurementType || 'No borough trend';
+
+    };
+
+
+    const getActiveComparisonId = () => {
+
+        if (selectedComparisonLegendTitle) {
+
+            const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(selectedComparisonLegendTitle);
+
+            if (comparisonIdForLegendTitle != null) {
+                return comparisonIdForLegendTitle;
+            }
+
+            selectedComparisonLegendTitle = null;
+
+        }
+
+        return getSyncedComparisonId();
+
+    };
+
+
+    const getActiveComparisonLegendTitle = () => {
+
+        if (selectedComparisonLegendTitle) {
+            return selectedComparisonLegendTitle;
+        }
+
+        return getComparisonLegendTitleById(getActiveComparisonId()) || 'Comparison';
 
     };
 
@@ -676,15 +757,11 @@ const renderMeasures = async () => {
     // Clears active styling before one trend or comparison button is reselected.
     const clearTrendButtonState = () => {
 
-        trendMeasurePills?.querySelectorAll('.trendbutton').forEach(button => {
-            setDropdownMenuItemState(button, false);
+        trendMeasurePills?.querySelectorAll('.trendmode-button').forEach(button => {
+            setBadgePillState(button, false);
         });
 
-        trendComparisonPills?.querySelectorAll('.comparisonbutton').forEach(button => {
-            setDropdownMenuItemState(button, false);
-        });
-
-        document.querySelectorAll('.trenddropdown-toggle').forEach(button => {
+        trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
             setBadgePillState(button, false);
         });
 
@@ -701,28 +778,22 @@ const renderMeasures = async () => {
 
         if (useComparisonState) {
 
-            const comparisonId = getActiveComparisonId();
-            const comparisonButton = comparisonId == null
-                ? null
-                : trendComparisonPills?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
+            const activeLegendTitle = getActiveComparisonLegendTitle();
+            const comparisonButton = Array.from(trendComparisonPills?.querySelectorAll('.trendmode-button') || [])
+                .find(button => button.dataset.legendTitle === activeLegendTitle);
 
             if (comparisonButton) {
-                setDropdownMenuItemState(comparisonButton, true);
-                setBadgePillState(comparisonButton.closest('.dropdown')?.querySelector('.trenddropdown-toggle'), true);
+                setBadgePillState(comparisonButton, true);
             }
 
             return;
 
         }
 
-        const trendMeasureId = getActiveTrendMeasureId();
-        const trendButton = trendMeasureId == null
-            ? null
-            : trendMeasurePills?.querySelector(`.trendbutton[data-measure-id='${trendMeasureId}']`);
+        const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
 
         if (trendButton) {
-            setDropdownMenuItemState(trendButton, true);
-            setBadgePillState(trendButton.closest('.dropdown')?.querySelector('.trenddropdown-toggle'), true);
+            setBadgePillState(trendButton, true);
         }
 
     };
@@ -731,73 +802,32 @@ const renderMeasures = async () => {
     // Rebuilds compact summary line from current trend/comparison selection state.
     const updateTrendSelectionSummary = () => {
 
-        const trendMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
-        const trendLabel = trendMeasure?.MeasurementType || 'No borough trend';
+        const trendLabel = getActiveTrendMeasureLabel();
+        const comparisonLabel = comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
+        const useComparisonState = (showingComparisonTrend && comparisonMetadata?.length) ||
+            (!trendMeasures.length && comparisonMetadata?.length);
 
-        const comparisonId = getActiveComparisonId();
-        const comparisonButton = comparisonId == null
-            ? null
-            : trendComparisonPills?.querySelector(`.comparisonbutton[data-comparison-id='${comparisonId}']`);
-        const comparisonLabel = comparisonButton?.textContent.trim() || 'No comparison';
-        const trendMeasureToggle = trendMeasurePills?.querySelector('.trenddropdown-toggle');
+        const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
 
-        const syncState = selectedTrendMeasure || selectedComparison ? 'Custom' : 'Synced';
-
-        if (trendMeasureToggle) {
-            trendMeasureToggle.title = 'Geography';
-            trendMeasureToggle.setAttribute('aria-label', `Trend measure menu for geography. Current selection: ${trendLabel}.`);
+        if (geographyButton) {
+            geographyButton.title = `Geography. Current selection: ${trendLabel}.`;
+            geographyButton.setAttribute('aria-label', `Geography trend button. Current selection: ${trendLabel}.`);
         }
 
-        trendComparisonPills?.querySelectorAll('.trenddropdown-toggle').forEach(button => {
+        trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
 
-            const baseLabel = button.dataset.baseLabel || 'Comparison';
-            const activeItem = button.closest('.dropdown')?.querySelector('.comparisonbutton.active');
-            const activeLabel = activeItem?.textContent.trim() || 'No comparison';
+            const legendTitle = button.dataset.legendTitle || button.textContent.trim() || 'Comparison';
+            const isActive = legendTitle === comparisonLabel && useComparisonState;
 
-            button.title = baseLabel;
-            button.setAttribute('aria-label', `${baseLabel} comparison menu. Current selection: ${activeLabel}.`);
+            button.title = `${legendTitle}.`;
+            button.setAttribute(
+                'aria-label',
+                isActive
+                    ? `${legendTitle} comparison button. Current selection.`
+                    : `${legendTitle} comparison button.`
+            );
 
         });
-
-        if (trendSyncButton) {
-            trendSyncButton.title = `Trend: ${trendLabel} | Comparison: ${comparisonLabel} | ${syncState}`;
-            trendSyncButton.setAttribute('aria-label', `Sync trend selections to map. Current selection: ${trendLabel}; ${comparisonLabel}; ${syncState}.`);
-        }
-
-    };
-
-
-    // Re-syncs custom trend selections back to map-driven defaults when requested.
-    syncTrendSelectionsToMapSelection = (force = false) => {
-
-        let didChange = false;
-
-        const syncedTrendMeasureId = getSyncedTrendMeasureId();
-
-        if (force || !selectedTrendMeasure) {
-            if (selectedTrendMeasureId !== syncedTrendMeasureId) {
-                selectedTrendMeasureId = syncedTrendMeasureId;
-                didChange = true;
-            }
-
-            selectedTrendMeasure = false;
-        }
-
-        const syncedComparisonId = getSyncedComparisonId();
-
-        if (force || !selectedComparison) {
-            if (selectedComparisonId !== syncedComparisonId) {
-                selectedComparisonId = syncedComparisonId;
-                didChange = true;
-            }
-
-            selectedComparison = false;
-        }
-
-        setTrendButtonState();
-        updateTrendSelectionSummary();
-
-        return didChange;
 
     };
 
@@ -817,45 +847,16 @@ const renderMeasures = async () => {
 
         if (trendMeasures.length > 0 && trendMeasurePills) {
 
-            const {
-                dropdown: trendMeasureDropdown,
-                menu: trendMeasureMenu
-            } = createBadgePillDropdown({
-                buttonClass: 'trenddropdown-toggle',
+            const geographyButton = createBadgePillButton({
+                buttonClass: 'trendmode-button',
                 label: 'Geography',
-                menuId: 'trendMeasureDropdownMenu'
+                title: 'Geography'
             });
 
-            trendMeasurePills.appendChild(createBadgePillLabel('Show by:'));
+            geographyButton.dataset.trendMode = 'geography';
 
-            // One button per trend-capable measure keeps borough trend choices flat.
-            trendMeasures.forEach(measure => {
+            geographyButton.addEventListener('click', () => {
 
-                const button = document.createElement('button');
-
-                button.type = 'button';
-                button.className = 'dropdown-item trendbutton';
-                button.textContent = measure.MeasurementType;
-                button.title = measure.MeasurementType;
-                button.dataset.measureId = String(measure.MeasureID);
-
-                trendMeasureMenu.appendChild(button);
-
-            });
-
-            trendMeasurePills.appendChild(trendMeasureDropdown);
-
-            // Measure picks immediately leave comparison mode and render borough trend.
-            trendMeasurePills.onclick = event => {
-
-                const button = event.target.closest('.trendbutton');
-
-                if (!button) {
-                    return;
-                }
-
-                selectedTrendMeasure = true;
-                selectedTrendMeasureId = parseInt(button.dataset.measureId, 10);
                 showingComparisonTrend = false;
                 showingBoroughTrend = true;
 
@@ -863,7 +864,9 @@ const renderMeasures = async () => {
                 updateTrendSelectionSummary();
                 showBoroughTrend();
 
-            };
+            });
+
+            trendMeasurePills.appendChild(geographyButton);
 
         } else if (trendMeasurePills) {
 
@@ -874,125 +877,56 @@ const renderMeasures = async () => {
         if (comparisonMetadata?.length && aqCombinedComparisonMetadata && trendComparisonPills) {
 
             const compLegendTitles = [...new Set(aqCombinedComparisonMetadata.array('LegendTitle'))];
+            let comparisonButtonCount = 0;
 
-            if (compLegendTitles.length) {
-                trendComparisonPills.hidden = false;
+            if (selectedComparisonLegendTitle && !compLegendTitles.includes(selectedComparisonLegendTitle)) {
+                selectedComparisonLegendTitle = null;
             }
 
             compLegendTitles.forEach(title => {
 
-                const titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title));
-                const comparisonGroup = document.createElement('div');
-                const {
-                    dropdown: comparisonDropdown,
-                    menu: comparisonMenu
-                } = createBadgePillDropdown({
-                    buttonClass: 'trenddropdown-toggle',
-                    label: title,
-                    menuId: `trendComparisonDropdownMenu-${createDropdownIdFragment(title)}`
-                });
+                const comparisonId = getComparisonIdForLegendTitle(title);
 
-                comparisonGroup.className = 'de-viz-pill-group';
-                comparisonGroup.appendChild(comparisonDropdown);
-
-                // Group related comparisons under one legend title for shorter menus.
-                const comparisonIDs = [...new Set(titleGroup.array('ComparisonID'))];
-
-                comparisonIDs.forEach(comp => {
-
-                    const compGroup = titleGroup.filter(aq.escape(d => d.ComparisonID == comp));
-                    const compIndicatorLabel = [...new Set(compGroup.array('IndicatorLabel'))];
-                    const compMeasurementType = [...new Set(compGroup.array('MeasurementType'))];
-                    const compY_axis_title = [...new Set(compGroup.array('Y_axis_title'))];
-                    const compGeoTypeName = [...new Set(compGroup.array('GeoTypeName'))];
-                    const compGeography = [...new Set(compGroup.array('Geography'))];
-                    const compName = [...new Set(compGroup.array('ComparisonName'))];
-
-                    let buttonTitle;
-                    let buttonLabel;
-
-                    // Prefer most specific readable label available for each comparison option.
-                    if (compIndicatorLabel.length === 1) {
-
-                        if (compGeoTypeName[0] === 'Citywide') {
-                            buttonTitle = compY_axis_title;
-                            buttonLabel = compY_axis_title;
-                        } else {
-                            buttonTitle = compGeography[compGeography.length - 1];
-                            buttonLabel = compGeography[compGeography.length - 1];
-                        }
-
-                    } else if (compMeasurementType.length === 1) {
-
-                        buttonTitle = compMeasurementType;
-                        buttonLabel = compMeasurementType;
-
-                    } else {
-
-                        buttonTitle = compName;
-                        buttonLabel = compName;
-
-                    }
-
-                    const button = document.createElement('button');
-
-                    button.type = 'button';
-                    button.className = 'dropdown-item comparisonbutton';
-                    button.textContent = buttonLabel;
-                    button.title = buttonTitle;
-                    button.dataset.comparisonId = String(comp);
-
-                    comparisonMenu.appendChild(button);
-
-                });
-
-                trendComparisonPills.appendChild(comparisonGroup);
-
-            });
-
-            // Comparison picks immediately switch render mode away from borough trends.
-            trendComparisonPills.onclick = event => {
-
-                const button = event.target.closest('.comparisonbutton');
-
-                if (!button) {
+                if (comparisonId == null) {
                     return;
                 }
 
-                selectedComparison = true;
-                selectedComparisonId = parseInt(button.dataset.comparisonId, 10);
-                showingComparisonTrend = true;
-                showingBoroughTrend = false;
+                const comparisonButton = createBadgePillButton({
+                    buttonClass: 'trendmode-button',
+                    label: title,
+                    title
+                });
 
-                setTrendButtonState();
-                updateTrendSelectionSummary();
-                showComparisonTrend();
+                comparisonButton.dataset.legendTitle = title;
 
-            };
+                comparisonButton.addEventListener('click', () => {
+
+                    selectedComparisonLegendTitle = title;
+                    showingComparisonTrend = true;
+                    showingBoroughTrend = false;
+
+                    setTrendButtonState();
+                    updateTrendSelectionSummary();
+                    showComparisonTrend();
+
+                });
+
+                trendComparisonPills.appendChild(comparisonButton);
+                comparisonButtonCount += 1;
+
+            });
+
+            trendComparisonPills.hidden = comparisonButtonCount === 0;
 
         } else if (trendComparisonPills) {
 
             trendComparisonPills.onclick = null;
+            selectedComparisonLegendTitle = null;
 
         }
 
-        if (trendSyncButton) {
-            trendSyncButton.onclick = () => {
-
-                selectedTrendMeasure = false;
-                selectedComparison = false;
-
-                // Force both controls back to map-synced defaults before optional redraw.
-                syncTrendSelectionsToMapSelection(true);
-
-                if (overlay === 'trend') {
-                    showTrend();
-                }
-
-            };
-        }
-
-        syncTrendSelectionsToMapSelection(true);
+        setTrendButtonState();
+        updateTrendSelectionSummary();
 
     };
 
@@ -1544,8 +1478,6 @@ const renderMeasures = async () => {
 
         overlay = 'trend';
 
-        syncTrendSelectionsToMapSelection();
-
         // Use comparison mode when no borough trend data exists or comparison mode is already active.
         if ((trendMeasures.length === 0 && comparisonMetadata?.length) || (showingComparisonTrend && comparisonMetadata?.length)) {
             showComparisonTrend();
@@ -1581,7 +1513,6 @@ const renderMeasures = async () => {
             return;
         }
 
-        selectedTrendMeasureId = Number(resolvedTrendMeasureId);
         aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
             .derive({
                 IndicatorLabel: aq.escape(indicatorName),
@@ -1651,8 +1582,6 @@ const renderMeasures = async () => {
 
             return;
         }
-
-        selectedComparisonId = Number(comparisonId);
 
         const selectedComparisonRows = aqCombinedComparisonMetadata
             .objects()
