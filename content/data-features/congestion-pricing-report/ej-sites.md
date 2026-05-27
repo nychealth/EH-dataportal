@@ -26,7 +26,7 @@ hide: true
 
   <div class="col-md-4 mb-3">
     <div class="card card-header  h-100 mb-0 fs-sm border">
-      <p><strong>The Major Deegan Expressway</strong> and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).</p>
+      <p><strong>The Major Deegan Expressway</strong> and the Bruckner in the Mott Haven neighborhood (Hunts Point-Mott Haven community).</p>
     </div>
   </div>
 
