@@ -7,7 +7,7 @@ Source memories:
 - /memories/repo/shared-shell-modals.md
 - /memories/repo/leaflet-map-export.md
 
-Last mirrored: 2026-05-19
+Last mirrored: 2026-05-27
 
 ---
 
@@ -23,6 +23,10 @@ Two parallel implementations of the data explorer:
 ## Working Preference
 - In `assets/js/data-explorer-new`, prefer generous vertical whitespace inside functions, especially around guard clauses, setup blocks, and major conditionals.
 - Use `measures.js` as the spacing reference when adjusting readability in the newer explorer scripts.
+
+## Local Validation
+- `hugo --environment local_stage --cleanDestinationDir --logLevel debug` rebuilds the static output in `docs`.
+- The localhost static-server flow can keep serving cached HTML that references old fingerprinted JS bundles; use a fresh page or a cache-busting query param when validating rebuilt explorer assets.
 
 
 ## Architecture Summary
