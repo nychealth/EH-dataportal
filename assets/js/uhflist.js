@@ -69,9 +69,9 @@ var neighborhoods = [
     "PercentLimitedEnglish":31.42,
     "PercentOwnerOccupied":7.06,
     "PercentRentBurdened":57.41,
-    "UHF_name":"Crotona -Tremont",
+    "UHF_name":"Crotona - Tremont",
     "Zipcodes":"10453, 10457, 10460",
-    "namezip":"Crotona -Tremont (10453,10457,10460)",
+    "namezip":"Crotona - Tremont (10453,10457,10460)",
     "page_name":"crotona_tremont"
   },
   {

@@ -13,18 +13,23 @@
 //   - Vega choropleth map + bar chart rendered on first accordion expand
 //   - Borough/city comparison logic with judgment styling
 //   - Demographics sidebar populated from uhflist.js
-//   - Neighborhood persistence via URL query parameter
+//   - Neighborhood persistence via path + sessionStorage bridging
 
 // Named init function used in place of an IIFE so early returns remain available
 const init = () => {
 
+    console.log('bootstrap: start');
+
+    // Read server-injected SPA configuration from the global scope
     const config = window.NR_TOPIC_SPA_CONFIG;
 
     if (!config || !config.sections || !config.sections.length) {
+        console.log('bootstrap: missing-config:', config);
         return;
     }
 
     if (!document.getElementById('nr-map')) {
+        console.log('bootstrap: missing-map-container');
         return;
     }
 
@@ -61,9 +66,10 @@ const init = () => {
         //   /neighborhood-reports/asthma_and_the_environment/east_new_york
         // On production, IIS rewrites these to serve the topic page, and the slug
         // is still visible in the path for us to read here.
-        const config = window.NR_TOPIC_SPA_CONFIG;
         const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
         const slug = pathParts[pathParts.length - 1];
+
+        console.log('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
 
         if (config.neighborhoodMap[slug]) {
             return config.neighborhoodMap[slug];
@@ -86,11 +92,12 @@ const init = () => {
 
     const setNeighborhoodInURL = name => {
 
+        console.log('setNeighborhoodInURL: enter:', name);
+
         // Update the browser's address bar to show the neighborhood in the path, e.g.
         //   /neighborhood-reports/asthma_and_the_environment/east_new_york
         // Uses history.replaceState so the page does not reload — this is purely cosmetic,
         // making the URL shareable and bookmarkable without triggering a new server request.
-        const config = window.NR_TOPIC_SPA_CONFIG;
         const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
 
         if (!slug) {
@@ -113,13 +120,14 @@ const init = () => {
 
     const updateTopicLinks = neighborhoodName => {
 
+        console.log('updateTopicLinks: enter:', neighborhoodName);
+
         // When the user clicks a topic tab (e.g. switching from Asthma to Housing),
         // we need the new topic page to open with the same neighborhood pre-selected.
         // Rather than embedding the neighborhood in the link href (which would cause a
         // 404 in dev and requires IIS rewrite in production), we store the slug in
         // sessionStorage just before the navigation fires. The new topic SPA reads it
         // on load via getNeighborhoodFromURL above.
-        const config = window.NR_TOPIC_SPA_CONFIG;
         const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === neighborhoodName);
         const links = document.querySelectorAll('.nr-topic-link');
 
@@ -215,10 +223,12 @@ const init = () => {
 
     const getComparison = (neighVal, refVal, rankReverse) => {
 
+        // Parse defensively because the source payload can contain string numerics
         const n = Number(neighVal);
         const r = Number(refVal);
         const reverse = rankReverse === true || rankReverse === 'true';
 
+        // When either side is not numeric, omit comparison messaging
         if (isNaN(n) || isNaN(r)) {
             return { text: '', cssClass: '' };
         }
@@ -226,6 +236,7 @@ const init = () => {
         let comp;
         let cls;
 
+        // rankReverse flips "good" vs "bad" judgment for metrics where lower values are better
         if (n > r) {
             comp = 'Higher than';
             cls = reverse ? 'comp-good' : 'comp-bad';
@@ -243,6 +254,7 @@ const init = () => {
 
     let accordionCounter = 0;
 
+    // Generate unique IDs so collapse/expand controls are correctly paired
     const nextAccordionId = () => 'nr-acc-' + (++accordionCounter);
 
     // Safe for double-quoted HTML attributes (e.g. data-legend-label)
@@ -262,6 +274,7 @@ const init = () => {
 
     const getUhfIdForDisplayName = displayName => {
 
+        // Neighborhood metadata may not be loaded in every page context
         if (!displayName || typeof neighborhoods === 'undefined') return null;
 
         const entry = neighborhoods.find(n => {
@@ -288,6 +301,7 @@ const init = () => {
             'nr-rent'
         ];
 
+        // Clear each field explicitly so stale values do not persist between selections
         metricIds.forEach(id => {
             const node = document.getElementById(id);
             if (node) node.innerHTML = '';
@@ -306,7 +320,10 @@ const init = () => {
 
     const renderDemographics = geocode => {
 
+        console.log('renderDemographics: enter:', geocode);
+
         if (typeof neighborhoods === 'undefined' || geocode == null || geocode === '') {
+            console.log('renderDemographics: branch-clear-missing-neighborhoods-or-geocode');
             clearDemographicsSidebar();
             return;
         }
@@ -314,11 +331,14 @@ const init = () => {
         const here = neighborhoods.filter(n => n.UHF_id == geocode);
 
         if (!here.length) {
+            console.log('renderDemographics: branch-clear-no-match:', geocode);
             clearDemographicsSidebar();
             return;
         }
 
         const d = here[0];
+
+        // The sidebar has a fixed set of target nodes, so keep the mapping explicit
         const el = id => document.getElementById(id);
 
         if (el('nr-pop'))   el('nr-pop').innerHTML   = Number(d.TotalPopulation).toLocaleString();
@@ -350,11 +370,13 @@ const init = () => {
         const headingId = accId + '-h';
         const collapseId = accId + '-c';
 
+        // Preserve dash placeholder when the row has no direct neighborhood value
         const value =
             row.data_value_geo_entity !== null && row.data_value_geo_entity !== undefined
                 ? row.data_value_geo_entity
                 : '–';
 
+        // Build a compact units label from optional type and unit fields
         const unitParts = [];
         if (row.measurement_type) unitParts.push(row.measurement_type);
         if (row.units) unitParts.push(row.units);
@@ -375,7 +397,7 @@ const init = () => {
                 '<button class="btn btn-block btn-sm text-left" type="button" ' +
                     'data-toggle="collapse" data-target="#' + collapseId + '" ' +
                     'aria-expanded="false" aria-controls="' + collapseId + '">' +
-                    '<div class="row no-gutters" style="width:100%">' +
+                    '<div class="row no-gutters d-print-none" style="width:100%">' +
                         '<div class="col-7">' +
                             '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
                             '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
@@ -395,6 +417,7 @@ const init = () => {
         // Some indicators do not have comparative rank metadata
         const hasRank = row.data_value_rank != null;
 
+        // Comparison blocks rely on the unmodified values for direction and text
         const boroComp = getComparison(
             row.unmodified_data_value_geo_entity,
             row.data_value_boro,
@@ -412,6 +435,8 @@ const init = () => {
         const cityVal = row.data_value_nyc != null ? row.data_value_nyc : '';
 
         let unitSuffix = '';
+
+        // Use percent suffix for percentage-like metrics, otherwise append units
         if (row.measurement_type && row.measurement_type.toLowerCase().indexOf('ercent') !== -1) {
             unitSuffix = '%';
         } else if (row.units) {
@@ -420,6 +445,7 @@ const init = () => {
 
         const tertileInlineHTML = getTertileInlineLabel(row.data_value_rank, row.rankReverse);
 
+        // Hide comparison copy when rank-derived context is unavailable
         const hideClass = hasRank ? '' : ' d-none';
 
         const comparisonsHTML =
@@ -474,10 +500,15 @@ const init = () => {
 
     const renderSection = (section, neighborhoodName) => {
 
+        console.log('renderSection: enter:', { sectionId: section.id, neighborhoodName });
+
         // Section containers are layout-driven and may be absent in some templates
         const container = document.getElementById(section.containerId);
 
-        if (!container) return;
+        if (!container) {
+            console.log('renderSection: branch-missing-container:', section.containerId);
+            return;
+        }
 
         // Neighborhood-level rows are pre-grouped during loadSection
         const byNeighborhood = sectionData[section.id] || {};
@@ -487,6 +518,7 @@ const init = () => {
         container.innerHTML = '';
 
         if (!rows.length) {
+            console.log('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
             container.innerHTML =
                 '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
             return;
@@ -506,6 +538,8 @@ const init = () => {
     };
 
     const renderAll = (neighborhoodName, mapGeocode) => {
+
+        console.log('renderAll: enter:', { neighborhoodName, mapGeocode });
 
         // Record the active neighborhood used by downloads and rerenders
         currentNeighborhood = neighborhoodName;
@@ -529,6 +563,7 @@ const init = () => {
                         : row0.geo_entity_id;
 
                 if (gj != null && gj !== '') {
+                    console.log('renderAll: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
                     currentGeocode = gj;
                     break;
                 }
@@ -537,17 +572,19 @@ const init = () => {
 
         }
 
-        // Fall back to the geocode supplied by the map click event
+        // Map click geocode is used when no geocode is discoverable in report rows
         if (
             (currentGeocode == null || currentGeocode === '') &&
             mapGeocode != null &&
             mapGeocode !== ''
         ) {
+            console.log('renderAll: branch-fallback-map-geocode:', mapGeocode);
             currentGeocode = mapGeocode;
         }
 
-        // Last resort: resolve geocode by display name from uhflist
+        // Last fallback: resolve geocode by matching display name in neighborhood metadata
         if (currentGeocode == null || currentGeocode === '') {
+            console.log('renderAll: branch-fallback-display-name-lookup:', neighborhoodName);
             currentGeocode = getUhfIdForDisplayName(neighborhoodName);
         }
 
@@ -574,8 +611,10 @@ const init = () => {
         if (mobileTitle) mobileTitle.style.display = '';
         if (mobileNeighborhood) mobileNeighborhood.textContent = neighborhoodName;
 
+        // Refresh demographics after geocode resolution is complete
         renderDemographics(currentGeocode);
 
+        // Synchronize deep-link state after the page content has been refreshed
         setNeighborhoodInURL(neighborhoodName);
         updateTopicLinks(neighborhoodName);
 
@@ -585,8 +624,15 @@ const init = () => {
 
     const downloadCSV = () => {
 
-        if (!vizTable || !currentNeighborhood) return;
+        console.log('downloadCSV: enter:', { hasVizTable: !!vizTable, currentNeighborhood });
 
+        // Export only if both the viz table and active neighborhood are available
+        if (!vizTable || !currentNeighborhood) {
+            console.log('downloadCSV: branch-missing-prereqs');
+            return;
+        }
+
+        // Remove columns that are not useful in the public CSV export
         const csv = vizTable
             .select(aq.not('report_id', 'indicator_id', 'indicator_data_name', 'start_date', 'end_date'))
             .filter(aq.escape(d => d.neighborhood === currentNeighborhood))
@@ -595,6 +641,7 @@ const init = () => {
         const filename = 'NYC EH Data Portal - Neighborhood Report - ' +
             (config.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
 
+        // Use Blob URL download flow for broad browser compatibility
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -613,9 +660,18 @@ const init = () => {
 
     const renderNRMap = (data, destination, legendLabel, geocode) => {
 
+        console.log('renderNRMap: enter:', {
+            rowCount: data && data.length,
+            destination,
+            legendLabel,
+            geocode
+        });
+
+        // Build external geography URLs from the configured EHDP-data branch
         const boroTopoUrl = config.dataRepo + config.dataBranch + '/geography/borough.topo.json';
         const uhfTopoUrl = config.dataRepo + config.dataBranch + '/geography/UHF42.topo.json';
 
+        // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
         const spec = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "data": {
@@ -743,6 +799,7 @@ const init = () => {
             ]
         };
 
+        // Embed into the target container and keep action menu enabled for debugging/export
         vegaEmbed(destination, spec, { actions: true });
 
     };
@@ -752,17 +809,28 @@ const init = () => {
         const panel = event.target;
         const panelId = panel.id;
 
-        // Skip panels that have already been rendered
-        if (renderedPanels[panelId]) return;
+        console.log('onAccordionExpand: enter:', panelId);
 
+        // Skip panels that have already been rendered
+        if (renderedPanels[panelId]) {
+            console.log('onAccordionExpand: branch-already-rendered:', panelId);
+            return;
+        }
+
+        // Pull rendering inputs from data-* attributes stored on the collapse node
         const indicatorName = panel.getAttribute('data-indicator-name');
         const geocode = panel.getAttribute('data-geocode') || currentGeocode;
         const mapEl = panel.querySelector('.nr-map-container');
 
-        if (!indicatorName || !mapEl || !vizTable) return;
+        // If required inputs are missing, keep the panel open but do not attempt render
+        if (!indicatorName || !mapEl || !vizTable) {
+            console.log('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl, hasVizTable: !!vizTable });
+            return;
+        }
 
         try {
 
+            // Collapse the dataset to the latest value per neighborhood before drawing
             const summaryData = vizTable
                 .filter(aq.escape(d => d.indicator_data_name === indicatorName))
                 .select('geo_join_id', 'neighborhood', 'unmodified_data_value_geo_entity', 'end_date')
@@ -776,26 +844,34 @@ const init = () => {
                 .select(aq.not('end_date'))
                 .objects();
 
+            // Draw map and bar chart once summary data is available
             if (summaryData.length) {
+
+                console.log('onAccordionExpand: branch-render-map:', { panelId, indicatorName, summaryRows: summaryData.length });
 
                 mapEl.innerHTML = '';
 
                 let legendLabel = panel.getAttribute('data-legend-label');
+
+                // Fall back to a generic legend title when no unit text is available
                 if (!legendLabel || !String(legendLabel).trim()) {
+                    console.log('onAccordionExpand: branch-default-legend-label');
                     legendLabel = 'Value';
                 }
 
                 renderNRMap(summaryData, '#' + mapEl.id, legendLabel, geocode);
 
             } else {
+                console.log('onAccordionExpand: branch-no-summary-data:', indicatorName);
                 mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
             }
 
         } catch (e) {
-            console.error('Error rendering map for ' + indicatorName + ':', e);
+            console.error('onAccordionExpand: error rendering map for ' + indicatorName + ':', e);
             mapEl.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
         }
 
+        // Mark panel as rendered even on no-data/error to prevent repeated work
         renderedPanels[panelId] = true;
 
     };
@@ -818,10 +894,12 @@ const init = () => {
         fillOpacity: 0.5
     };
 
+    // Base style for all UHF polygons before hover/selection overrides
     const styleFeature = () => defaultStyle;
 
     const highlightFeature = e => {
 
+        // Temporary hover state for visual affordance
         const layer = e.target;
         layer.setStyle({ weight: 5, color: '#444', dashArray: '' });
         layer.bringToFront();
@@ -833,7 +911,7 @@ const init = () => {
         const layer = e.target;
         const geocode = layer.feature.properties.GEOCODE;
 
-        // Preserve the selected neighborhood's highlight on mouseout
+        // Preserve selected style for the active neighborhood while mousing out
         if (geocode == currentGeocode) return;
 
         layer.setStyle({ weight: 1.5, color: 'black', dashArray: '1' });
@@ -842,11 +920,13 @@ const init = () => {
 
     const selectLayer = (layer, zoom) => {
 
+        // Clear previous selection style first
         if (uhfLayer) uhfLayer.resetStyle();
 
         layer.setStyle(highlightStyle);
         layer.bringToFront();
 
+        // Optionally animate map to selection bounds for click-driven navigation
         if (zoom && leafletMap) {
             leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5 });
         }
@@ -855,6 +935,7 @@ const init = () => {
 
     const geocodeToName = geocode => {
 
+        // Resolve UHF geocode to display name used by report rows
         if (typeof neighborhoods === 'undefined') return null;
 
         const match = neighborhoods.find(n => n.UHF_id == geocode);
@@ -867,6 +948,7 @@ const init = () => {
 
     const findLayerByGeocode = geocode => {
 
+        // Find the matching rendered Leaflet layer by UHF geocode
         if (!uhfLayer) return null;
 
         let match = null;
@@ -883,6 +965,7 @@ const init = () => {
 
     const findLayerByName = name => {
 
+        // Convert display name -> UHF id -> Leaflet layer
         if (typeof neighborhoods === 'undefined' || !uhfLayer) return null;
 
         const entry = neighborhoods.find(n => {
@@ -898,20 +981,26 @@ const init = () => {
 
     const onMapClick = e => {
 
+        // Map click drives neighborhood selection for the full report UI
         const layer = e.target;
         const geocode = layer.feature.properties.GEOCODE;
         const name = geocodeToName(geocode) || layer.feature.properties.GEONAME;
 
         selectLayer(layer, true);
 
+        // Ignore click-driven render until all report and viz payloads have loaded
         if (dataReady) {
+            console.log('onMapClick: branch-render-all:', { name, geocode });
             renderAll(name, geocode);
+        } else {
+            console.log('onMapClick: branch-data-not-ready:', { name, geocode });
         }
 
     };
 
     const onEachFeature = (feature, layer) => {
 
+        // Attach tooltip and pointer handlers for each UHF polygon
         layer.bindTooltip(feature.properties.GEONAME, {
             permanent: false,
             opacity: 0.9,
@@ -928,8 +1017,12 @@ const init = () => {
 
     const initLeafletMap = () => {
 
+        console.log('initLeafletMap: enter:', config.geojsonUrl);
+
+        // Initialize Leaflet with a neutral NYC-centered default view
         leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
 
+        // Use CARTO basemap tiles to match existing portal styling
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
             {
@@ -940,9 +1033,12 @@ const init = () => {
 
         L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
 
+        // Load the neighborhood polygons once, then wait for the data pipeline to finish
         fetch(config.geojsonUrl)
             .then(res => res.json())
             .then(data => {
+
+                console.log('initLeafletMap: branch-geojson-loaded:', { featureCount: data && data.features && data.features.length });
 
                 uhfLayer = L.geoJSON(data, {
                     style: styleFeature,
@@ -957,6 +1053,7 @@ const init = () => {
             .catch(err => {
 
                 console.error('Error loading UHF42 GeoJSON:', err);
+                console.log('initLeafletMap: branch-geojson-load-failed:', err);
                 mapReady = true;
                 tryInitialRender();
 
@@ -968,14 +1065,24 @@ const init = () => {
 
     const tryInitialRender = () => {
 
-        if (!dataReady || !mapReady) return;
+        console.log('tryInitialRender: enter:', { dataReady, mapReady });
 
+        // Guard initial render until both data payloads and map geometry are ready
+        if (!dataReady || !mapReady) {
+            console.log('tryInitialRender: branch-waiting');
+            return;
+        }
+
+        // If a neighborhood is already in the URL, honor it after both data sources are ready
         const fromURL = getNeighborhoodFromURL();
 
         if (fromURL) {
 
+            console.log('tryInitialRender: branch-from-url:', fromURL);
+
             const layer = findLayerByName(fromURL);
             if (layer) {
+                console.log('tryInitialRender: branch-select-layer-from-url');
                 selectLayer(layer, true);
             }
 
@@ -987,10 +1094,13 @@ const init = () => {
 
     const checkAllLoaded = () => {
 
+        console.log('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
+
         fetchesComplete++;
 
         // Trigger initial render once all sections and viz data have loaded
         if (fetchesComplete >= totalFetches) {
+            console.log('checkAllLoaded: branch-ready');
             dataReady = true;
             tryInitialRender();
         }
@@ -1001,10 +1111,14 @@ const init = () => {
     // reject them or fail inconsistently. Encode the last path segment if needed
     const normalizeReportUrl = url => {
 
+        console.log('normalizeReportUrl: enter:', url);
+
+        // Normalize only when needed so already-safe URLs remain untouched
         if (!url || url.indexOf(' ') === -1) return url;
 
         try {
 
+            // Parse via URL API so we can safely target only the path segment
             const u = new URL(url);
             const parts = u.pathname.split('/').filter(Boolean);
 
@@ -1012,6 +1126,7 @@ const init = () => {
 
             let last = parts[parts.length - 1];
 
+            // Re-encode defensively for names that may already be partially encoded
             try {
                 last = encodeURIComponent(decodeURIComponent(last));
             } catch (e) {
@@ -1021,15 +1136,19 @@ const init = () => {
             parts[parts.length - 1] = last;
             u.pathname = '/' + parts.join('/');
 
+            console.log('normalizeReportUrl: branch-encoded:', u.href);
             return u.href;
 
         } catch (err) {
+            console.log('normalizeReportUrl: branch-parse-failed:', err);
             return url;
         }
 
     };
 
     const loadSection = section => {
+
+        console.log('loadSection: enter:', { sectionId: section.id, reportUrl: section.reportUrl });
 
         fetch(normalizeReportUrl(section.reportUrl))
             .then(res => {
@@ -1038,7 +1157,12 @@ const init = () => {
             })
             .then(data => {
 
+                // Non-array responses are treated as empty to keep rendering resilient
                 const rows = Array.isArray(data) ? data : [];
+
+                console.log('loadSection: branch-data-loaded:', { sectionId: section.id, rowCount: rows.length });
+
+                // Build neighborhood buckets once during load for faster rerenders
                 const byNeighborhood = {};
 
                 rows.forEach(row => {
@@ -1069,6 +1193,7 @@ const init = () => {
             })
             .catch(error => {
                 console.error('Error loading section "' + section.id + '":', error);
+                console.log('loadSection: branch-load-failed:', { sectionId: section.id, error });
                 sectionData[section.id] = {};
             })
             .then(checkAllLoaded);
@@ -1077,17 +1202,23 @@ const init = () => {
 
     const loadVizData = () => {
 
+        console.log('loadVizData: enter:', config.vizUrl);
+
+        // If no viz URL is configured, continue with section-only rendering
         if (!config.vizUrl) {
+            console.log('loadVizData: branch-no-viz-url');
             checkAllLoaded();
             return;
         }
 
         aq.loadJSON(config.vizUrl, { autoMax: 10000, parse: { time: String } })
             .then(table => {
+                console.log('loadVizData: branch-data-loaded:', table && table.numRows && table.numRows());
                 vizTable = table;
             })
             .catch(error => {
                 console.error('Error loading viz data:', error);
+                console.log('loadVizData: branch-load-failed:', error);
                 vizTable = null;
             })
             .then(checkAllLoaded);
@@ -1096,8 +1227,10 @@ const init = () => {
 
     // --- init ---
 
+    // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
 
+    // Start map and data loads in parallel
     initLeafletMap();
 
     config.sections.forEach(section => {
