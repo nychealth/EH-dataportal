@@ -939,12 +939,11 @@ const renderMeasures = async () => {
     const dropdownLinksMeasures = document.getElementById('linksDropdownMenu');
     const linksDropdownToggle = document.getElementById('dropdownLinksMeasures');
     const linksToggleLabel = document.getElementById('linksToggleLabel');
-    const linksSyncButton = document.getElementById('linksSyncButton');
     const showDisparitiesButton = document.getElementById('show-disparities');
 
     const getLinksOptionCount = () => {
 
-        return linksMeasures.reduce((count, measure) => {
+        return getVisibleLinksMeasures().reduce((count, measure) => {
             return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
         }, 0);
 
@@ -957,14 +956,10 @@ const renderMeasures = async () => {
             return;
         }
 
-        const activeLinksState = getActiveLinksState();
         const linksOptionCount = getLinksOptionCount();
         const hasMultipleLinksOptions = linksOptionCount > 1;
-        const activeSecondaryLabel = activeLinksState.secondaryMeasureId == null
-            ? 'Show with'
-            : getLinksButtonLabel(activeLinksState.secondaryMeasureId);
 
-        linksToggleLabel.textContent = hasMultipleLinksOptions ? 'Measures' : activeSecondaryLabel;
+        linksToggleLabel.textContent = 'Measures';
 
         if (hasMultipleLinksOptions) {
             linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
@@ -1034,14 +1029,32 @@ const renderMeasures = async () => {
     };
 
 
+    const getVisibleLinksMeasures = () => {
+
+        const syncedLinksState = getSyncedLinksState();
+
+        if (syncedLinksState.view !== 'links' || syncedLinksState.primaryMeasureId == null) {
+            return [];
+        }
+
+        return linksMeasures.filter(measure => Number(measure.MeasureID) === Number(syncedLinksState.primaryMeasureId));
+
+    };
+
+
     const getActiveLinksState = () => {
+
+        const syncedLinksState = getSyncedLinksState();
 
         const manualPrimaryMeasureId = selectedLinksPrimaryMeasureId == null ? null : Number(selectedLinksPrimaryMeasureId);
         const manualSecondaryMeasureId = selectedLinksSecondaryMeasureId == null ? null : Number(selectedLinksSecondaryMeasureId);
+        const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
+            && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
 
         const hasManualDisparities = selectedLinksMeasure
             && selectedDisparity
-            && manualPrimaryMeasureId != null
+            && manualMatchesCurrentPrimary
+            && syncedLinksState.view === 'disparities'
             && measureSupportsDisparities(manualPrimaryMeasureId);
 
         if (hasManualDisparities) {
@@ -1054,7 +1067,8 @@ const renderMeasures = async () => {
 
         const hasManualLinks = selectedLinksMeasure
             && !selectedDisparity
-            && manualPrimaryMeasureId != null
+            && manualMatchesCurrentPrimary
+            && syncedLinksState.view === 'links'
             && manualSecondaryMeasureId != null
             && measureSupportsLinks(manualPrimaryMeasureId)
             && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
@@ -1067,7 +1081,7 @@ const renderMeasures = async () => {
             };
         }
 
-        return getSyncedLinksState();
+        return syncedLinksState;
 
     };
 
@@ -1110,28 +1124,6 @@ const renderMeasures = async () => {
 
 
     const updateLinksSelectionSummary = () => {
-
-        const activeLinksState = getActiveLinksState();
-        const primaryMeasure = getMeasureMetadataById(activeLinksState.primaryMeasureId)[0];
-        const primaryLabel = primaryMeasure?.MeasurementType || 'No measure';
-        const syncState = selectedLinksMeasure ? 'Custom' : 'Synced';
-
-        if (activeLinksState.view === 'disparities') {
-            if (linksSyncButton) {
-                linksSyncButton.title = `Measure: ${primaryLabel} | Disparities | ${syncState}`;
-                linksSyncButton.setAttribute('aria-label', `Sync correlate selections to map. Current selection: ${primaryLabel}; Disparities; ${syncState}.`);
-            }
-
-            updateLinksDropdownToggle();
-            return;
-        }
-
-        const secondaryLabel = getLinksButtonLabel(activeLinksState.secondaryMeasureId);
-
-        if (linksSyncButton) {
-            linksSyncButton.title = `Measure: ${primaryLabel} | With: ${secondaryLabel} | ${syncState}`;
-            linksSyncButton.setAttribute('aria-label', `Sync correlate selections to map. Current selection: ${primaryLabel}; ${secondaryLabel}; ${syncState}.`);
-        }
 
         updateLinksDropdownToggle();
 
@@ -1178,9 +1170,11 @@ const renderMeasures = async () => {
             dropdownLinksMeasures.innerHTML = '';
         }
 
-        if (linksMeasures.length > 0 && dropdownLinksMeasures) {
+        const visibleLinksMeasures = getVisibleLinksMeasures();
 
-            linksMeasures.forEach(measure => {
+        if (visibleLinksMeasures.length > 0 && dropdownLinksMeasures) {
+
+            visibleLinksMeasures.forEach(measure => {
 
                 const heading = document.createElement('h6');
 
@@ -1231,22 +1225,10 @@ const renderMeasures = async () => {
 
         }
 
-        if (linksSyncButton) {
-            linksSyncButton.onclick = () => {
-
-                selectedLinksMeasure = false;
-
-                syncLinksSelectionsToMapSelection(true);
-
-                if (overlay === 'links') {
-                    showLinks();
-                }
-
-            };
-        }
-
         clickLinksToggle();
-        syncLinksSelectionsToMapSelection(true);
+
+        setLinksButtonState();
+        updateLinksSelectionSummary();
 
     };
 
@@ -1641,6 +1623,8 @@ const renderMeasures = async () => {
         console.log("* showLinks");
 
         overlay = 'links';
+
+        buildLinksSelectionControls();
 
         syncLinksSelectionsToMapSelection();
 
