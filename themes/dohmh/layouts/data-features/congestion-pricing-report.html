@@ -136,18 +136,18 @@
                 {{- end -}}
             </div>
 
-            <div class="col-md-6"></div>
-
-  
-                <div class="col-md-6 mt-2">
-                    <div class="asidebox border">
-                    <p class="fs-sm">If the error bars don't overlap, then there's a <strong>significant difference</strong> from congestion pricing.</p>
-
-                    </div>
+            <div class="col-md-6">
                     <div style="width:100%;" id="explainChart" class="mt-2"></div>
 
+                                    <div class="asidebox border">
+                    <p class="fs-sm">
+                    The gray bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we collected more data, and we are more certain that our calculated average isn't a fluke or coincidence.</p>
                 </div>
+            </div>
 
+  
+
+              <!--
                 <div class="col-md-6 mt-2 border-left">
                   <div class="asidebox border">
                     <p class="fs-sm">If the error bars overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
@@ -155,6 +155,7 @@
                   </div>
                     <div id="explainChart2" style="width:100%;" class="mt-2"></div>
                 </div>
+              -->
 
         </div>
 
@@ -748,7 +749,8 @@ const spec2 = {
 }
   ]
 };
-vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
+
+// vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
 
 }
 
