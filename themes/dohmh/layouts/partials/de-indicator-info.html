@@ -1,5 +1,5 @@
 <!-- Upper left indicator detail box -->
-<div class="position-absolute  de-main-details">
+<div class="position-absolute  de-main-details border-top">
 
     <!-- Mobile Indicator Header -->
     <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
@@ -80,7 +80,7 @@
 
     <!-- Desktop Content (always visible) -->
     <div class="d-none d-md-block">
-        <div class="bg-white p-2 fs-sm">
+        <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
             <div class="d-flex my-0">
                 <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector" style="margin-left: auto;">Change dataset ></button>
@@ -89,7 +89,7 @@
 
         <div>
             <!-- Dropdown 1 -->
-            <div class="card">
+            <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
                         <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Measure:</div>
@@ -104,7 +104,7 @@
             </div>
 
             <!-- Dropdown 2 -->
-            <div class="card">
+            <div class="card border-left border-right">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center">
                         <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Boundary:</div>
@@ -119,7 +119,7 @@
             </div>
 
             <!-- Dropdown 3 -->
-            <div class="card">
+            <div class="card border-left border-right border-bottom">
                 <div class="card-header pb-0">
                     <div class="dropdown fs-sm d-flex align-items-center mb-2">
                         <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Time:</div>
@@ -133,10 +133,13 @@
                 </div>
             </div>
 
-            <div class="card card-header p-0 bg-transparent d-inline-block printMap">
-                <div style="background-color:#DCF4E7" class="p-1 d-inline-block float-right">
+            <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
+                <div style="background-color:#DCF4E7" class="p-0 d-inline-block">
                         <a href="#" id="deSaveMapButton" class="fs-sm mx-1 de-save-map-button" role="button" aria-label="Save map" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</a>
-                </div>
+                        <!--
+                        <a href="#" id="options" class="fs-sm mx-1 de-save-map-button" role="button" ><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                        -->
+                    </div>
             </div>
 
         </div>

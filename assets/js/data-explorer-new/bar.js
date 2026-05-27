@@ -64,6 +64,13 @@ const renderBar = (
     console.log("metadata [renderBar]", metadata);
     console.log("geo [renderBar]", geography);
 
+    // Render notes
+    const barUnreliability = document.getElementById('bar-unreliability');
+    const uniqueNotes = [...new Set(data.map(item => item.Note))];
+    barUnreliability.classList.remove('hide');
+    barUnreliability.innerHTML = uniqueNotes.map(note => `<p>${note}</p>`).join('');
+
+
     // Accept either a raw backend geotype or the prettified UI label.
     const barData = data.filter(item => {
         return item.GeoType === geography || prettifyGeoType(item.GeoType) === geography;

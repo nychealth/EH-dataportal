@@ -122,7 +122,10 @@
             <img src={{ relURL "images/de-bar-chart.png" }} alt="" style="max-width:100%;">
             -->
             <div class="chart-note">
-                <p class="fs-sm">Hover over a neighborhood on the map or bar chart to see it highlighted on the other view.</p>
+                <p class="fs-sm">This <strong>bar chart</strong> shows the same data on as the map. Hover on one to see the same neighborhood highlighted on the other.</p>
+            </div>
+            <div id="bar-unreliability" class="popup-note pt-1 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
             </div>
             <div class="d-flex align-items-center pt-2">
                 <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
@@ -192,7 +195,6 @@
             </div>
 
             <div class="d-flex align-items-center p-2">
-                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="table" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
                 <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
          
             </div>
