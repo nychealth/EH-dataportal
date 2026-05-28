@@ -13,7 +13,11 @@ keywords:
 indicators:
   - header: null
     IndicatorID:
+      - 2478
+      - 2479
       - 2065
+      - 2480
+      - 2481
 related:
   - title: "What hot weather means for food safety"
     url: "data-stories/food/"
