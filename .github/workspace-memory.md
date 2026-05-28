@@ -7,7 +7,7 @@ Source memories:
 - /memories/repo/shared-shell-modals.md
 - /memories/repo/leaflet-map-export.md
 
-Last mirrored: 2026-05-27
+Last mirrored: 2026-05-28
 
 ---
 
@@ -27,6 +27,9 @@ Two parallel implementations of the data explorer:
 ## Local Validation
 - `hugo --environment local_stage --cleanDestinationDir --logLevel debug` rebuilds the static output in `docs`.
 - The localhost static-server flow can keep serving cached HTML that references old fingerprinted JS bundles; use a fresh page or a cache-busting query param when validating rebuilt explorer assets.
+
+## Links / Disparities State
+- In `assets/js/data-explorer-new/measures.js`, a manual disparities selection must override synced correlate defaults whenever the selected primary measure is disparities-capable, or `#show-disparities` can reopen the correlate chart.
 
 
 ## Architecture Summary

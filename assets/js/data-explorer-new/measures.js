@@ -1051,10 +1051,11 @@ const renderMeasures = async () => {
         const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
             && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
 
+        // Keep an explicit disparities toggle active even when the synced
+        // correlate default points at a different primary measure.
         const hasManualDisparities = selectedLinksMeasure
             && selectedDisparity
-            && manualMatchesCurrentPrimary
-            && syncedLinksState.view === 'disparities'
+            && manualPrimaryMeasureId != null
             && measureSupportsDisparities(manualPrimaryMeasureId);
 
         if (hasManualDisparities) {
