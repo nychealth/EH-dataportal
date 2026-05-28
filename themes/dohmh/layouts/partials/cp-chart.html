@@ -432,15 +432,8 @@
         }, 500);
         
         addAccordionlisteners();
-        await draw(currentSite);
         
-        // Trigger Deegan button click on initial load to ensure all handlers fire
-        // Use a small delay to ensure button is fully initialized
-        setTimeout(() => {
-            const deaganButton = document.getElementById("Deegan");
-            if (deaganButton) {
-                deaganButton.click();
-            }
-        }, 50);
+        // Draw the initial chart and wait for it to complete
+        await draw(currentSite);
     });
 </script>
