@@ -29,9 +29,9 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
-  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
-  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
 ]` >}}
 
 ### Inside the 90-year-old financial policy that harms our health

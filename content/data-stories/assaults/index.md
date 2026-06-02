@@ -30,8 +30,8 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/violence/?id=2375", "text": "Violence-related hospitalizations (all ages)"},
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+  {"src": "data-explorer/violence/?id=2375", "text": "Violence-related hospitalizations (all ages)"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
 ]` >}}
 
 Violence has profound effects. An assault, a shooting, a homicide, or any use of force affects people in many deep ways.
