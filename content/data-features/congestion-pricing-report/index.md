@@ -18,7 +18,7 @@ seo_description: TKTK
 aliases:
   - /key-topics/airquality/nyccas/
 
-image: images/shutterstock1.jpg
+image: images/GettyImages.jpg
 layout: congestion-pricing-report
 report: true
 related:
@@ -55,6 +55,7 @@ Modeling from the mandatory environmental review process did not identify air po
 With a full year of data since CRZ tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ tolling program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that air pollution either did not change or slightly decreased both within and outside the zone.
 
 <strong>Key takeaways</strong>
+
 <ul>
   <li>This is the most complete evaluation of air quality, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in Environmental Justice neighborhoods.
   <li>Air quality generally improved inside the CRZ.
@@ -62,4 +63,3 @@ With a full year of data since CRZ tolling began, we can now accurately evaluate
 </ul>
 
 </div>
-
