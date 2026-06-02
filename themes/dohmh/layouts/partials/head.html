@@ -267,6 +267,10 @@
     <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{- end }}
 
+{{- if (eq .Section "data-explorer-new") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Explorer New">
+{{- end }}
+
 {{- if (eq .Section "key-topics") -}}
     <meta data-pagefind-filter="section[content]" content="Key Topics">
 {{- end -}}
