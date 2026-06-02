@@ -23,6 +23,7 @@
 
 {{- partial "de-print-chart-modal" . -}}
 
+
 <!-- Populate indicator selection modal for this page -->
 
 {{- $indicatorsJSON := slice -}}
@@ -32,6 +33,11 @@
 {{- end }}
 
 {{- $json := $indicatorsJSON | jsonify -}}
+
+
+{{/*  call partial to insert indicator names and descriptions for pagefind  */}}
+
+{{ partial "de-indicator-names-pf" . }}
 
 
 <!-- JAVASCRIPT FILES -->
