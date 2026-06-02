@@ -77,6 +77,9 @@ const renderCorrelate = (
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');
 
+    console.log("aqData [renderCorrelate]");
+    aqData.print(100)
+
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;
 

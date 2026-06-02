@@ -90,6 +90,8 @@ const renderDisparitiesChart = async (
         selectedDisparityPrimaryMeasureId = Number(primaryMeasureId);
     }
 
+    console.log("disparityData [renderDisparitiesChart]", disparityData);
+
     selectedDisparity = true;
 
     const primaryTime = disparityData[0]?.TimePeriod_1;
