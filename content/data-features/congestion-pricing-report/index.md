@@ -18,7 +18,7 @@ seo_description: TKTK
 aliases:
   - /key-topics/airquality/nyccas/
 
-image: images/GettyImages-resize.jpg
+image: images/GettyImages-resize.png
 layout: congestion-pricing-report
 report: true
 related:
