@@ -175,7 +175,7 @@
             
             for (let i = 0; i < sites.length; i++) {
 
-                console.log(">>> site data", sites[i]);
+                // console.log(">>> site data", sites[i]);
                 
                 var site = 
                     L.marker([Number(sites[i].Lat), Number(sites[i].Long)], {icon: testIcon})
@@ -190,7 +190,7 @@
                 });
 
                 // console.log(">>>> site", site._popup._content)
-                console.log(">>> site marker", site)
+                // console.log(">>> site marker", site)
                 
                 // All regional sites use the default icon style
                 site._icon.classList.add("regional-site");

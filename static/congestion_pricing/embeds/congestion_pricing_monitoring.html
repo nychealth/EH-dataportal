@@ -182,7 +182,7 @@
             
             for (let i = 0; i < sites.length; i++) {
 
-                console.log(">>> site data", sites[i]);
+                {{/*  console.log(">>> site data", sites[i]);  */}}
                 
                 var site = 
                     L.marker([Number(sites[i].Latitude), Number(sites[i].Longitude)], {icon: testIcon})
@@ -197,7 +197,7 @@
                 });
 
                 // console.log(">>>> site", site._popup._content)
-                console.log(">>> site marker", site)
+                // console.log(">>> site marker", site)
                 
                 // style based on SiteType (or, use: https://github.com/pointhi/leaflet-color-markers)
                 
