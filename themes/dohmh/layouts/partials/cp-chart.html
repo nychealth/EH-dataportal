@@ -387,7 +387,7 @@
                 const siteTitleElement = document.getElementById("site-name");    
                 if (siteTitleElement) {
                     siteTitleElement.textContent = siteTitles[site] || site;
-                }            
+                }
                 // Update datawrapper chart for the site
                 updateDatawrapperChart(site);
                 
@@ -457,6 +457,13 @@
         }, 500);
         
         // addAccordionlisteners();
+        
+
+        // Update site title in the header
+        const siteTitleElement = document.getElementById("site-name");    
+        if (siteTitleElement) {
+            siteTitleElement.textContent = siteTitles[currentSite] || currentSite;
+        }
         
         // Draw the initial chart (with datawrapper) and wait for it to complete
         await draw(currentSite);
