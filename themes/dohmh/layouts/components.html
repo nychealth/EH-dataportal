@@ -128,7 +128,7 @@ Left-Green-Border
     <li><a href="pdf/Appendix1.pdf">Appendix 1 (PDF)</a>: Sampling Methodology and Data Sources for Emissions Indicators.</li>
     <li><a href="pdf/Appendix2.pdf">Appendix 2 (PDF)</a>: Seasonal Average Pollutant Maps.</li>
     <li><a href="pdf/Appendix3.pdf">Appendix 3 (PDF)</a>: Community District Average Pollution Levels.</li>
-    <li><a href="../../data-stories/traffic-and-air-pollution">The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story</a>.</li>
+    <li><a href={{ relURL "data-stories/traffic-and-air-pollution" }}>The Public Health Impacts of PM<sub>2.5</sub> from Traffic Air Pollution data story</a>.</li>
     <li><a href="https://data.cityofnewyork.us/Environment/NYCCAS-Air-Pollution-Rasters/q68s-8qxv">NYC OpenData: NYCCAS Air Pollution Rasters</a>.</li>
     <li><a href="https://www.nyc.gov/site/doh/data/data-sets/air-quality-nyc-community-air-survey.page">New York Community Air Survey: past reports</a></li>
     </ul>
@@ -145,10 +145,10 @@ Plain shadow cards.
     <div class="card-content">
 
         <div class="card-body">
-        <p class="fs-sm card-title fs-sm"><a href="/IndicatorPublic/about/jobs/" class="text-primary">We&#39;re Hiring!</a></p>
+                <p class="fs-sm card-title fs-sm"><a href="{{ relURL "about/jobs" }}" class="text-primary">We&#39;re Hiring!</a></p>
         <p class="fs-sm">Join our team! See below for open positions in our bureau - or, search cityjobs.nyc.gov for …
         </p>
-        <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/about/jobs/">Read more <i
+                <p class="fs-sm text-primary float-right mb-2"><a href="{{ relURL "about/jobs" }}">Read more <i
             class="fas fa-arrow-circle-right"></i></a></p>
       </div>
     </div>
@@ -188,3 +188,15 @@ Photo attribution caption
     From markdown files, use the baseURL shortcode. 
 
 -->
+
+<!-- Rendering accessible tables -->
+
+{{/* 
+    We have a few partials and shortcodes that can be used to render accessible tables.
+
+    The shortcode 'csvtable.html' is called this way: {{< csvtable src="data/mytable.csv" screenreader="false" >}}
+    This can be used in a data story to render an accessible table. Set screenreader="true" to give it an sr-only class.
+    This shortcode invokes the render-table.html partial (this partial can also be used from templates.
+    Additionally, the render-accessible-table.html partial can be used to do this with Javascript on the client side, rather than at build time. 
+
+*/}}

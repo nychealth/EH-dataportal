@@ -26,9 +26,9 @@ layout: cooling-info
 customJS: cooling-info.js
 config: config.js
 image: AC.png
-hide: true
+hide: false
 ---
 
 When it is hot and the air outside is unhealthy, how can you stay safe?
 
-Answer these questions - for you, or for someone in your household - to get tips on how to stay safe on hot days. These are general tips, not personal medical advice.
+Answer these questions - for you, or for someone in your household - to get tips on how to stay safe on hot days. <a href="https://www.nyc.gov/site/doh/providers/emergency-prep/heat-and-medications.page">Medications and certain conditions might mean different recommendations for you.</a> These are general tips, not personal medical advice.

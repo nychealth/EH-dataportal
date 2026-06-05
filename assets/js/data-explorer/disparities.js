@@ -16,7 +16,7 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
-    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('viewDescription').innerHTML = 'Hover on points for more information.'
     document.getElementById('correlateHolder').classList.add('hide')
 
 

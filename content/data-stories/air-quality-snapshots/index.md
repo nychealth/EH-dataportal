@@ -61,9 +61,16 @@ related:
 <div class="col-xl-8 overflow-hidden fs-rg mr-auto" id="primary-content">
     <div class="my-2">
         <div class="narrow">
+            <p>{{< updateflag data=`[
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
+  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+  
+]` >}}</p>
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 
                 </p>
-            <p>Our full findings are available in <a href="{{< baseurl >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
+            <p>Our full findings are available in <a href="{{< relURL >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
             </div>
             <div class="my-2 border" style="background:#f2f2f2;">
                 <div class="narrow py-4">
@@ -79,7 +86,7 @@ related:
             <p>Air toxics are air pollutants that increase the risk of cancer and other serious health effects. A study by the Environmental Protection Agency found that 49% of New York City residents live in census tracts that exceed a common benchmark for cancer risk because of exposure to benzene and formaldehyde, compared with 4.8% of the population nationwide.</p>
             <p>To further understand New Yorkers’ exposure to these air toxics, we measured air toxics - including benzene, formaldehyde and other compounds - at 70 sites across the city in 2011. </p>
             <p>We found that average levels of benzene and formaldehyde varied across NYC, with some sites showing two, three or even six times more air toxics than cleaner sites - mostly due to traffic volume, congestion, and fuel-burning buildings. </p>
-                <div style="background: white;" class="py-2 px-2 border" aria-hidden="true">>
+                <div style="background: white;" class="py-2 px-2 border" aria-hidden="true">
                 <iframe title="Benzene levels are related to traffic and building emissions" aria-label="USA new york city neighborhoods (ntas) Symbol map" id="datawrapper-chart-EPzEn" src="//datawrapper.dwcdn.net/EPzEn/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="514"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
                 </div>
@@ -255,7 +262,7 @@ related:
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="{{< baseurl >}}key-topics/airquality/">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="{{< relURL >}}key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">
