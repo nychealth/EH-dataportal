@@ -158,6 +158,58 @@ const normalizeLegacyOverlayURL = () => {
 
 };
 
+// Converts legacy hash-based display state into the canonical overlay query param.
+const normalizeLegacyHashOverlayURL = () => {
+
+    // Keep the mapping aligned with the legacy explorer's hash vocabulary so old bookmarks and
+    // server-side path rewrites land on the intended overlay without duplicating view logic.
+    const legacyOverlayByHash = {
+        '#display=summary': 'table',
+        '#display=map': 'bar',
+        '#display=trend': 'trend',
+        '#display=links': 'links',
+        '#tab-table': 'table',
+        '#tab-map': 'bar',
+        '#tab-trend': 'trend',
+        '#tab-links': 'links'
+    };
+
+    const nextOverlay = legacyOverlayByHash[window.location.hash];
+
+    if (!nextOverlay) {
+        return;
+    }
+
+    const nextURL = new URL(window.location.href);
+    let didChange = false;
+
+    // Respect a query-string overlay when it already exists. That value is the canonical state in
+    // the new explorer, so the legacy hash should only backfill missing information.
+    if (!nextURL.searchParams.has('overlay')) {
+        nextURL.searchParams.set('overlay', nextOverlay);
+        didChange = true;
+    }
+
+    // Remove the legacy fragment after conversion so later startup code reads one authoritative
+    // representation instead of having query params and hash state compete with each other.
+    if (nextURL.hash) {
+        nextURL.hash = '';
+        didChange = true;
+    }
+
+    if (!didChange) {
+        return;
+    }
+
+    // This is a normalization pass, not a user navigation event, so replaceState keeps history
+    // clean while still making the URL canonical for refreshes and copied links.
+    window.history.replaceState(window.history.state, '', nextURL);
+    console.log('replaceState →', nextURL.search);
+
+};
+
+normalizeLegacyHashOverlayURL();
+
 
 // ----------------------------------------------------------------------- //
 // render the active tab with current globals
@@ -270,6 +322,8 @@ const renderCurrentView = (updateMap = false) => {
 window.addEventListener('popstate', async (event) => {
 
     console.log("popstate →", window.location.search, window.location.hash);
+
+    normalizeLegacyHashOverlayURL();
 
     const params = new URLSearchParams(window.location.search);
 

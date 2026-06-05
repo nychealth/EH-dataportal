@@ -355,6 +355,64 @@
 
     </style>
 
+{{- $legacyTopicPath := .RelPermalink -}}
+{{- $redirectTopicPath := replace .RelPermalink "/data-explorer/" "/data-explorer-new/" -}}
+
+<script>
+    (() => {
+        const legacyTopicPath = {{ $legacyTopicPath | jsonify | safeJS }};
+        const redirectTopicPath = {{ $redirectTopicPath | jsonify | safeJS }};
+        const currentURL = new URL(window.location.href);
+        // Treat trailing-slash differences as equivalent so the redirect only reacts to the route,
+        // not to how the local server happened to serialize it.
+        const normalizePath = (path) => path.replace(/\/+$/, '/') || '/';
+
+        // Keep this redirect scoped to the exact legacy topic page being rendered.
+        // That avoids surprising cross-topic rewrites if this layout is reused elsewhere.
+        if (normalizePath(currentURL.pathname) !== normalizePath(legacyTopicPath)) {
+            return;
+        }
+
+        // Legacy explorer URLs stored the active pane in the hash, while the new explorer reads a
+        // canonical overlay query param. Converting here preserves deep links during the hop.
+        const legacyOverlayByHash = {
+            '#display=summary': 'table',
+            '#display=map': 'bar',
+            '#display=trend': 'trend',
+            '#display=links': 'links',
+            '#tab-table': 'table',
+            '#tab-map': 'bar',
+            '#tab-trend': 'trend',
+            '#tab-links': 'links'
+        };
+
+        const nextURL = new URL(currentURL.href);
+        const legacyOverlay = legacyOverlayByHash[currentURL.hash];
+
+        // Only the explorer segment changes. Keeping the topic slug and current query string intact
+        // lets the new page's existing defaults pipeline decide which optional params still matter.
+        nextURL.pathname = redirectTopicPath;
+
+        // Do not overwrite an explicit new-style overlay param if one is already present.
+        // That keeps this redirect forward-compatible while still rescuing legacy hash links.
+        if (legacyOverlay && !nextURL.searchParams.has('overlay')) {
+            nextURL.searchParams.set('overlay', legacyOverlay);
+        }
+
+        // Once a legacy display/tab hash has been translated into query state, drop it so the new
+        // explorer sees one source of truth. Non-routing hashes are preserved unchanged.
+        nextURL.hash = currentURL.hash.startsWith('#display=') || currentURL.hash.startsWith('#tab-')
+            ? ''
+            : currentURL.hash;
+
+        // Use replace so the back button does not bounce the user through an immediately-obsolete
+        // legacy URL before returning to the page they actually came from.
+        if (nextURL.href !== currentURL.href) {
+            window.location.replace(nextURL.toString());
+        }
+    })();
+</script>
+
 
 <article class="container-fluid" id="skip-header-target">
     <div class="row">
