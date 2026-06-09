@@ -23,6 +23,8 @@
     <lastmod>2021-09-08T11:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/rat-report/</loc>
     <lastmod>2025-12-01T11:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/data-features/leading-causes/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/minimum-wage/</loc>
     <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-features/find-your-uhf/</loc>
@@ -183,6 +185,72 @@
                 hreflang="en"
                 href="/IndicatorPublic/keywords/pests/"
                 /></url><url>
+    <loc>/IndicatorPublic/keywords/deaths/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/ed-visits/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/ed-visits/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/ed-visits/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/ed-visits/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/health/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/healthoutcomes/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/healthoutcomes/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/hospitalizations/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/injury/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/categories/injuryandviolence/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/categories/injuryandviolence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/categories/injuryandviolence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/categories/injuryandviolence/"
+                /></url><url>
+    <loc>/IndicatorPublic/keywords/mortality/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod></url><url>
+    <loc>/IndicatorPublic/keywords/violence/</loc>
+    <lastmod>2025-11-08T21:14:56-04:00</lastmod><xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="/IndicatorPublic/es/keywords/violence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/IndicatorPublic/zh/keywords/violence/"
+                /><xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/IndicatorPublic/keywords/violence/"
+                /></url><url>
     <loc>/IndicatorPublic/keywords/air-quality/</loc>
     <lastmod>2025-11-04T08:49:22-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -249,22 +317,6 @@
     <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/vectorborne-diseases-and-health/</loc>
     <lastmod>2025-09-24T09:01:00-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/health/</loc>
-    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/healthoutcomes/</loc>
-    <lastmod>2025-09-08T21:14:56-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/healthoutcomes/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/healthoutcomes/"
-                /></url><url>
     <loc>/IndicatorPublic/categories/inequality/</loc>
     <lastmod>2025-09-08T21:14:56-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -280,8 +332,6 @@
                 href="/IndicatorPublic/categories/inequality/"
                 /></url><url>
     <loc>/IndicatorPublic/keywords/minimum-wage/</loc>
-    <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/mortality/</loc>
     <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/policy/</loc>
     <lastmod>2025-09-08T21:14:56-04:00</lastmod></url><url>
@@ -551,20 +601,6 @@
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/suicide/</loc>
     <lastmod>2024-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/violence/</loc>
-    <lastmod>2024-05-28T18:02:58+00:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/violence/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/violence/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/violence/"
-                /></url><url>
     <loc>/IndicatorPublic/categories/childhealth/</loc>
     <lastmod>2024-03-05T01:18:56-04:00</lastmod><xhtml:link
                 rel="alternate"
@@ -665,28 +701,12 @@
     <lastmod>2023-11-07T08:49:22-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/accidents/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/deaths/</loc>
-    <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/homicide/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/injuries/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/injury-deaths/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/categories/injuryandviolence/</loc>
-    <lastmod>2023-10-18T13:11:44-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/categories/injuryandviolence/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/categories/injuryandviolence/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/categories/injuryandviolence/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/means-reduction/</loc>
     <lastmod>2023-10-18T13:11:44-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/unintentional-injury/</loc>
@@ -995,8 +1015,6 @@
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/health-equity/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/injury/</loc>
-    <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/key-topics/injury-and-violence/</loc>
     <lastmod>2021-10-01T07:59:16-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/oppression/</loc>
@@ -1208,8 +1226,6 @@
     <loc>/IndicatorPublic/keywords/home/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/home-ownership/</loc>
-    <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/hospitalizations/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-explorer/housing-maintenance/</loc>
     <lastmod>2021-05-28T18:02:58+00:00</lastmod></url><url>
@@ -1423,20 +1439,6 @@
     <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/data-stories/assaults/</loc>
     <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
-    <loc>/IndicatorPublic/keywords/ed-visits/</loc>
-    <lastmod>2020-02-13T08:29:34-04:00</lastmod><xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/IndicatorPublic/es/keywords/ed-visits/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/IndicatorPublic/zh/keywords/ed-visits/"
-                /><xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/IndicatorPublic/keywords/ed-visits/"
-                /></url><url>
     <loc>/IndicatorPublic/keywords/research/</loc>
     <lastmod>2020-02-13T08:29:34-04:00</lastmod></url><url>
     <loc>/IndicatorPublic/keywords/technology/</loc>

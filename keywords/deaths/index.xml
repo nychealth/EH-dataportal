@@ -6,8 +6,15 @@
     <description>Recent content in Deaths on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Oct 2023 13:11:44 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 08 Nov 2025 21:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/deaths/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leading causes of injuries and deaths in NYC (2021 - 2023)</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/leading-causes/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/leading-causes/</guid>
+      <description>&lt;p&gt;This tool shows the leading causes of emergency department visits (ED visits), hospitalizations, and deaths in New York City with a special focus on injuries by age group.&lt;/p&gt;&#xA;&lt;p&gt;Showing injuries by severity–(ED visits, hospitalizations, or deaths)–demonstrates patterns of harm. While many injuries can cause deaths, some, such as those caused by firearms, are more deadly.  Unintentional falls, on the other hand, are the leading cause of non-fatal injury ED visits and hospitalizations.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Injury deaths in NYC adults: how homicide and suicide contribute</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/injury-deaths/</link>

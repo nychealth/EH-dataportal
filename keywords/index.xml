@@ -142,6 +142,55 @@
       <description></description>
     </item>
     <item>
+      <title>Deaths</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/deaths/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/deaths/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ed Visits</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ed-visits/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ed-visits/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Health</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/health/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/health/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Hospitalizations</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hospitalizations/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hospitalizations/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Injury</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injury/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injury/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mortality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Violence</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/violence/</link>
+      <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/violence/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Air Quality</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/air-quality/</link>
       <pubDate>Tue, 04 Nov 2025 08:49:22 -0400</pubDate>
@@ -205,24 +254,10 @@
       <description></description>
     </item>
     <item>
-      <title>Health</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/health/</link>
-      <pubDate>Mon, 08 Sep 2025 21:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/health/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Minimum Wage</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/minimum-wage/</link>
       <pubDate>Mon, 08 Sep 2025 21:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/minimum-wage/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mortality</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</link>
-      <pubDate>Mon, 08 Sep 2025 21:14:56 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/</guid>
       <description></description>
     </item>
     <item>
@@ -772,13 +807,6 @@
       <description></description>
     </item>
     <item>
-      <title>Violence</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/violence/</link>
-      <pubDate>Tue, 28 May 2024 18:02:58 +0000</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/violence/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Disrepair</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/disrepair/</link>
       <pubDate>Tue, 05 Mar 2024 01:18:56 -0400</pubDate>
@@ -888,13 +916,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/accidents/</link>
       <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/accidents/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Deaths</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/deaths/</link>
-      <pubDate>Wed, 18 Oct 2023 13:11:44 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/deaths/</guid>
       <description></description>
     </item>
     <item>
@@ -1402,13 +1423,6 @@
       <description></description>
     </item>
     <item>
-      <title>Injury</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injury/</link>
-      <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/injury/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Oppression</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/oppression/</link>
       <pubDate>Fri, 01 Oct 2021 07:59:16 -0400</pubDate>
@@ -1836,13 +1850,6 @@
       <description></description>
     </item>
     <item>
-      <title>Hospitalizations</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hospitalizations/</link>
-      <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/hospitalizations/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Illness</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/illness/</link>
       <pubDate>Fri, 28 May 2021 18:02:58 +0000</pubDate>
@@ -2141,13 +2148,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/design/</link>
       <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/design/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ed Visits</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ed-visits/</link>
-      <pubDate>Thu, 13 Feb 2020 08:29:34 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/ed-visits/</guid>
       <description></description>
     </item>
     <item>
