@@ -186,8 +186,8 @@ const renderTable = () => {
             { before: 0 }
         )
     
-    // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 100})
+    console.log("filteredTableAqData [renderTable]");
+    filteredTableAqData.print({limit: 20});
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
@@ -217,6 +217,10 @@ const renderTable = () => {
     // set some properties
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+    // get the names of columns
+
+    const dataColumnNames = filteredTableAqData.columnNames();
+
     // get the number of columns
 
     const dataColumnsCount = filteredTableAqData.numCols();
@@ -227,7 +231,8 @@ const renderTable = () => {
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
 
-    const sortBy = dataColumnsCount - 1 // get index position of last column
+    const sortBy = 2 // geoID
+    const sortName = dataColumnNames[sortBy]
 
     // define which column indexes define which groups
     
@@ -254,7 +259,7 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        order: [[sortBy, 'desc']],                  // Initial sort by the last column
+        order: [[sortBy, 'asc']],                   // Initial sort by geoID (or whatever column index you choose)
         orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]],  // TimePeriod, GeoRank 
         columnDefs: [
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
