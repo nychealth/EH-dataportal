@@ -10,6 +10,78 @@
 // correlate chart rendering
 // ----------------------------------------------------------------------- //
 
+const getNoCorrelatesMessage = (measureLabel) => {
+
+    const resolvedMeasureLabel = `${measureLabel || selectedMapMetadata?.MeasurementType || selectedMapMetadata?.MeasureName || 'the selected measure'}`;
+
+    return `No correlates available for ${resolvedMeasureLabel}. Change the Measure on the map to see available correlates.`;
+
+};
+
+
+const setCorrelateActionState = (isEnabled) => {
+
+    const saveChartButton = document.querySelector('.de-save-chart-button[data-print-context="correlate"]');
+    const downloadDataButton = saveChartButton?.parentElement?.querySelector('a[onclick="downloadData()"]');
+
+    [saveChartButton, downloadDataButton].forEach(button => {
+
+        if (!button) {
+            return;
+        }
+
+        button.classList.toggle('disabled', !isEnabled);
+        button.setAttribute('aria-disabled', String(!isEnabled));
+        button.style.pointerEvents = isEnabled ? '' : 'none';
+
+        if (isEnabled) {
+            button.removeAttribute('tabindex');
+        } else {
+            button.setAttribute('tabindex', '-1');
+        }
+
+    });
+
+};
+
+
+const renderNoCorrelatesMessage = (measureLabel) => {
+
+    const viewDescription = document.getElementById('viewDescription');
+    const correlateHolder = document.getElementById('correlateHolder');
+    const linksChart = document.getElementById('links');
+    const unreliabilityHolder = document.getElementById('links-unreliability');
+    const linksViewNote = document.getElementById('linksViewNote');
+
+    if (correlateHolder && linksChart) {
+        correlateHolder.classList.remove('hide');
+        linksChart.classList.add('d-flex', 'align-items-center', 'justify-content-center');
+        linksChart.innerHTML = `<div class="alert alert-warning mb-0 w-100" role="alert">${getNoCorrelatesMessage(measureLabel)}</div>`;
+    }
+
+    if (viewDescription) {
+        viewDescription.innerHTML = '';
+    }
+
+    if (linksViewNote) {
+        linksViewNote.innerHTML = '';
+        linksViewNote.classList.add('hide');
+    }
+
+    if (unreliabilityHolder) {
+        unreliabilityHolder.innerHTML = '';
+        unreliabilityHolder.classList.add('hide');
+    }
+
+    printSpec = null;
+    CSVforDownload = '';
+    vizSource = null;
+    vizSourceSecond = null;
+
+    setCorrelateActionState(false);
+
+};
+
 // Renders the linked-measure scatterplot used by the correlate tab.
 const renderCorrelate = (
     data,
@@ -40,12 +112,18 @@ const renderCorrelate = (
         return;
     }
 
+    linksChart.classList.remove('d-flex', 'align-items-center', 'justify-content-center');
+    linksChart.innerHTML = '';
+
+    setCorrelateActionState(true);
+
     if (viewDescription) {
         viewDescription.innerHTML = 'Hover on points for more information.';
     }
 
     if (linksViewNote) {
         linksViewNote.innerHTML = '<strong>Correlates</strong> shows data at the finest available geography for both indicators. It may be different than what is on the map.';
+        linksViewNote.classList.remove('hide');
     }
 
     correlateHolder.classList.remove('hide');

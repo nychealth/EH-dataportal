@@ -10,6 +10,42 @@
 // disparities chart rendering
 // ----------------------------------------------------------------------- //
 
+// Clears correlate-specific layout constraints before the shared links pane
+// renders a disparities chart into the same container.
+const resetDisparitiesPaneLayout = () => {
+
+    const correlateHolder = document.getElementById('correlateHolder');
+    const linksChart = document.getElementById('links');
+
+    if (!correlateHolder || !linksChart) {
+        return;
+    }
+
+    // remove some properties and classes
+
+    correlateHolder.style.removeProperty('width');
+    correlateHolder.style.removeProperty('min-width');
+    correlateHolder.style.removeProperty('max-width');
+    correlateHolder.style.removeProperty('overflow');
+
+    linksChart.classList.remove('d-flex', 'align-items-center', 'justify-content-center');
+    linksChart.style.removeProperty('overflow');
+    linksChart.style.removeProperty('width');
+    linksChart.style.removeProperty('max-width');
+
+};
+
+
+const scheduleDisparitiesViewResize = () => {
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            updateChartPlotSize();
+        });
+    });
+
+};
+
 // Renders the disparities scatterplot for the selected primary measure.
 const renderDisparitiesChart = async (
     primaryMetadata,
@@ -25,6 +61,8 @@ const renderDisparitiesChart = async (
     const viewDescription = document.getElementById('viewDescription');
     const linksViewNote = document.getElementById('linksViewNote');
     const unreliabilityHolder = document.getElementById('links-unreliability');
+
+    resetDisparitiesPaneLayout();
 
     if (viewDescription) {
         viewDescription.innerHTML = 'Hover on points for more information.';
@@ -279,6 +317,8 @@ const renderDisparitiesChart = async (
             compiled: false,
             editor: true
         }
+    }).then(() => {
+        scheduleDisparitiesViewResize();
     });
 
     printSpec = disparitiesSpec;

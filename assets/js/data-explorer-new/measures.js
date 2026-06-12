@@ -151,9 +151,49 @@ const getMeasureMetadataById = (measureId) => {
 };
 
 
+// Returns the configured correlate links for one measure from metadata.
+const getMeasureLinksMetadata = (measureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(measureId)[0];
+
+    return primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.filter(link =>
+        link?.MeasureID != null
+    ) || [];
+
+};
+
+
+// Reads the active map measure metadata even before the map finishes a redraw.
+const getActiveMapMeasureMetadata = () => {
+
+    return getMeasureMetadataById(MeasureID)[0] || selectedMapMetadata || null;
+
+};
+
+
+// Matches the label shown in the map measure dropdown.
+const getActiveMapMeasureLabel = () => {
+
+    const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
+
+    return activeMapMeasureMetadata?.MeasurementType
+        || activeMapMeasureMetadata?.MeasureName
+        || 'the selected measure';
+
+};
+
+
+// Whether the current map measure exposes at least one correlate in metadata.
+const activeMapMeasureSupportsLinks = () => {
+
+    return getMeasureLinksMetadata(MeasureID).length > 0;
+
+};
+
+
 // Whether the active indicator exposes correlate links for a measure.
 const measureSupportsLinks = (measureId) => {
-    return linksMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
+    return getMeasureLinksMetadata(measureId).length > 0;
 };
 
 
@@ -166,8 +206,7 @@ const measureSupportsDisparities = (measureId) => {
 // Finds the first linked secondary measure configured for one primary measure.
 const getDefaultLinksSecondaryMeasureId = (primaryMeasureId) => {
 
-    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId)[0];
-    const defaultSecondaryMeasureId = primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.[0]?.MeasureID;
+    const defaultSecondaryMeasureId = getMeasureLinksMetadata(primaryMeasureId)[0]?.MeasureID;
 
     return defaultSecondaryMeasureId != null ? Number(defaultSecondaryMeasureId) : null;
 
@@ -205,9 +244,7 @@ const getDefaultDisparitiesPrimaryMeasureId = () => {
 // Validates that the selected primary measure can link to the selected secondary measure.
 const primaryLinksToSecondary = (primaryMeasureId, secondaryMeasureId) => {
 
-    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId)[0];
-
-    return primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.some(link =>
+    return getMeasureLinksMetadata(primaryMeasureId).some(link =>
         Number(link.MeasureID) === Number(secondaryMeasureId)
     ) || false;
 
@@ -957,15 +994,19 @@ const renderMeasures = async () => {
         }
 
         const linksOptionCount = getLinksOptionCount();
-        const hasMultipleLinksOptions = linksOptionCount > 1;
+        const linksSwitcherDisabled = linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+        const hasMultipleLinksOptions = !linksSwitcherDisabled && linksOptionCount > 1;
 
         linksToggleLabel.textContent = 'Measures';
+        linksDropdownToggle.setAttribute('aria-disabled', String(linksSwitcherDisabled));
 
         if (hasMultipleLinksOptions) {
             linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
             linksDropdownToggle.setAttribute('aria-haspopup', 'true');
         } else {
             linksDropdownToggle.removeAttribute('data-toggle');
+            linksDropdownToggle.removeAttribute('aria-haspopup');
+            linksDropdownToggle.setAttribute('aria-expanded', 'false');
         }
 
     };
@@ -984,8 +1025,10 @@ const renderMeasures = async () => {
 
     const getSyncedLinksState = () => {
 
-        if (measureSupportsLinks(MeasureID)) {
-            const syncedPrimaryMeasureId = Number(MeasureID);
+        const syncedMapMeasureId = MeasureID == null ? null : Number(MeasureID);
+
+        if (measureSupportsLinks(syncedMapMeasureId)) {
+            const syncedPrimaryMeasureId = syncedMapMeasureId;
 
             return {
                 primaryMeasureId: syncedPrimaryMeasureId,
@@ -994,11 +1037,11 @@ const renderMeasures = async () => {
             };
         }
 
-        if (measureSupportsDisparities(MeasureID)) {
+        if (syncedMapMeasureId != null) {
             return {
-                primaryMeasureId: Number(MeasureID),
-                secondaryMeasureId: 221,
-                view: 'disparities'
+                primaryMeasureId: syncedMapMeasureId,
+                secondaryMeasureId: null,
+                view: 'links'
             };
         }
 
@@ -1031,13 +1074,13 @@ const renderMeasures = async () => {
 
     const getVisibleLinksMeasures = () => {
 
-        const syncedLinksState = getSyncedLinksState();
+        const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
 
-        if (syncedLinksState.view !== 'links' || syncedLinksState.primaryMeasureId == null) {
+        if (!activeMapMeasureSupportsLinks() || !activeMapMeasureMetadata) {
             return [];
         }
 
-        return linksMeasures.filter(measure => Number(measure.MeasureID) === Number(syncedLinksState.primaryMeasureId));
+        return [activeMapMeasureMetadata];
 
     };
 
@@ -1090,13 +1133,14 @@ const renderMeasures = async () => {
     const setLinksButtonState = () => {
 
         const activeLinksState = getActiveLinksState();
+        const linksSwitcherDisabled = linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
 
         document.querySelectorAll('.linksbutton').forEach(button => {
             button.classList.remove('active');
             button.setAttribute('aria-selected', 'false');
         });
 
-        if (activeLinksState.view === 'links') {
+        if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
             const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
 
             if (activeLinksButton) {
@@ -1107,8 +1151,8 @@ const renderMeasures = async () => {
 
         setBadgePillState(
             linksDropdownToggle,
-            activeLinksState.view === 'links' && linksMeasures.length > 0,
-            linksMeasures.length === 0
+            activeLinksState.view === 'links' && !linksSwitcherDisabled,
+            linksSwitcherDisabled
         );
 
         if (showDisparitiesButton) {
@@ -1618,7 +1662,7 @@ const renderMeasures = async () => {
 
     // ===== links ================================================== //
 
-    // Renders the links view, or falls back to disparities when links are unavailable.
+    // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
     showLinks = async (e) => {
 
         console.log("* showLinks");
@@ -1630,6 +1674,14 @@ const renderMeasures = async () => {
         syncLinksSelectionsToMapSelection();
 
         const activeLinksState = getActiveLinksState();
+
+        if (activeLinksState.view === 'links' && !activeMapMeasureSupportsLinks()) {
+            renderNoCorrelatesMessage(getActiveMapMeasureLabel());
+            setLinksButtonState();
+            updateLinksSelectionSummary();
+            return;
+        }
+
         let didRender = false;
 
         if (activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0) {
