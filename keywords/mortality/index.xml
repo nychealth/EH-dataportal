@@ -6,7 +6,7 @@
     <description>Recent content in Mortality on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 08 Nov 2025 21:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2026 10:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/mortality/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Leading causes of injuries and deaths in NYC (2021 - 2023)</title>
@@ -23,10 +23,17 @@
       <description>&lt;p&gt;In 2016, the Health Department published a paper showing how a higher minimum wage could have reduced thousands of premature deaths in NYC — up to 8%.&lt;/p&gt;&#xA;&lt;p&gt;Since our initial analysis, inequities in premature death have only grown. These inequities motivated us to launch &lt;a href=&#34;https://www.nyc.gov/site/doh/about/about-doh/healthynyc.page&#34;&gt;Healthy NYC&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We’ve since updated this data using the same methods, analyzing adjusted minimum wages of $20 and $30 an hour. These new estimates continue to suggest that raising the minimum wage can significantly reduce the inequities in premature death — with the most benefits going to the neighborhoods with the most low-income residents.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2025 NYC Heat-Related Mortality Report</title>
+      <title>2026 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
-      <pubDate>Mon, 16 Jun 2025 10:14:56 -0400</pubDate>
+      <pubDate>Sun, 14 Jun 2026 10:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
+      <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2025/</link>
+      <pubDate>Mon, 16 Jun 2025 10:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2025/</guid>
       <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>

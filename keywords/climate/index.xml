@@ -6,7 +6,7 @@
     <description>Recent content in Climate on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Jun 2025 10:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jun 2026 10:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/keywords/climate/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Climate</title>
@@ -23,10 +23,17 @@
       <description>&lt;p&gt;The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines information about &lt;strong&gt;exposure&lt;/strong&gt; (estimated flood extents under different current and future scenarios) with information about &lt;strong&gt;susceptibility to harm and capacity to recover&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;This information is used to estimate areas&amp;rsquo; relative vulnerability to flooding to storm surges, and to tidal flooding. To account for changes in sea levels and flood plains, there are Flood Vulnerability Indices for three time periods: present-day (the 2020s), the 2050s, and the 2080s.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>2025 NYC Heat-Related Mortality Report</title>
+      <title>2026 NYC Heat-Related Mortality Report</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</link>
-      <pubDate>Mon, 16 Jun 2025 10:14:56 -0400</pubDate>
+      <pubDate>Sun, 14 Jun 2026 10:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
+      <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025 NYC Heat-Related Mortality Report</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2025/</link>
+      <pubDate>Mon, 16 Jun 2025 10:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report-archive/2025/</guid>
       <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
     </item>
     <item>
