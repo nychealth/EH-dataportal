@@ -24,13 +24,10 @@
                         <div class="col-12">
                             <span class="fs-sm">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
                             
-                            <div id="cpVis" style="width: 100%; max-width: 1000px;"></div>
+                            <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
 
-                            <hr class="my-2">
+                            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="mt-2 border-top border-bottom py-2"></div>
 
-                            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="">
-                                Second vis
-                            </div>
                         </div>
                     </div>
                     
@@ -142,13 +139,27 @@
     // Base spec
     const baseSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Change in air quality after congestion pricing",
+            "subtitlePadding": 10,
+            "fontWeight": "bold",
+            "anchor": "start",
+            "fontSize": 14,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
+            "subtitleLineHeight": 24,            
+            "subtitleFontSize": 12,
+            "subtitleColor": "#585858"
+        },
         "config": {
             "header": {
                 "labelAlign": "left",
                 "labelAnchor": "start",
                 "labelFont": "Helvetica",
                 "labelFontWeight": "bold",
-                "labelFontSize": 12
+                "labelFontSize": 12,
+                "labelPadding": 20
             },
             "view": {"stroke": null},
             "axisX": {"labelAngle": 0, "domain": false},
@@ -160,7 +171,7 @@
                 "title": null
             },
             "legend": {
-                "orient": "top",
+                "orient": "right",
                 "title": "",
                 "symbolOpacity": 1,
                 "labelFontSize": 14,
@@ -196,8 +207,8 @@
         ],
         "facet": {"field": "ParameterWithUnit", "title": null},
         "spec": {
-            "width": 150,
-            "height": 250,
+            "width": 125,
+            "height": 200,
             "encoding": {
                 "x": {
                     "field": "time",
@@ -215,6 +226,7 @@
             },
             "layer": [
             {
+                "transform": [{"filter": {"field": "pred_type", "equal": "predicted"}}],
                 "mark": {
                     "type": "rule",
                     "strokeWidth": 6,
@@ -252,12 +264,25 @@
             }
             ]
         },
-        "columns": 4
+        "columns": 4,
+        "spacing": 50
     };
     
     const secondSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Difference between Hypothetical and Observed, after implementation (Post)",
+    "title": {
+    "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
+    "subtitlePadding": 10,
+    "fontWeight": "bold",
+    "anchor": "start",
+    "fontSize": 14,
+    "font": "sans-serif",
+    "baseline": "top",
+    "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
+    "subtitleLineHeight": 24,     
+    "subtitleFontSize": 12,
+    "subtitleColor": "#585858"
+  },
   "config": {
     "header": {
       "labelAlign": "left",
@@ -280,8 +305,6 @@
       "title": null
     }
   },
-  "vconcat": [
-    {
       "data": {
         "url": "https://gist.githubusercontent.com/mmontesanonyc/2817a3e51e64fbec39105b193064bea9/raw/d914ebc6348ebbe5b4a0a31fef9fa33beb9b6814/gistfile1.csv"
       },
@@ -293,7 +316,7 @@
         "height": 35,
         "encoding": {
           "x": {"field": "estimate", "type": "quantitative", "title": null},
-          "color": {"value": "blue"}
+          "color": {"value": "purple"}
         },
         "layer": [
           {
@@ -336,21 +359,8 @@
         ]
       },
       "columns": 4,
-      "spacing": 50
-    },
-    {
-      "data": {"values": [{}]},
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "top",
-        "fontSize": 12,
-        "color": "#585858",
-        "text": "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes."
-      },
-      "encoding": {}
-    }
-  ]
+      "spacing": 55
+
 }
 
     vegaEmbed("#aqChangeVis", secondSpec, {
