@@ -22,7 +22,7 @@ Everyone has a story about rats — or more likely, a complaint. If you have mad
 
 ### What happens to my 311 complaint?
 
-Each year, the Health Department gets about 40,000 complaints about rat activity through 311 (<a href="../../data-features/rat-mitigation-zones/">you can explore these data on NYC Open Data)</a>.
+Each year, the Health Department gets about 40,000 complaints about rat activity through 311 (<a href="{{< relURL >}}data-features/rat-mitigation-zones/">you can explore these data on NYC Open Data)</a>.
 
 When you submit a complaint via 311, it goes to the NYC Health Department, which is responsible for enforcing the New York City Health Code requirement that building owners keep their properties pest-free. The Health Department checks your complaint against our records. If the property hasn't been inspected recently, the Health Department will send an inspector.
 
@@ -87,9 +87,9 @@ In some cases, where conditions are especially severe, a Health Department exter
 
 ### How to make a rat complaint – the smart way
 
-Not every complaint will trigger an inspection. If a property has recently been inspected, a new complaint won’t trigger another inspection. To find out if a new complaint will help, <a href="../../data-features/rat-information-portal/">visit the Rat Information Portal for up-to-date inspection results</a>. You can look up an address and see when it was last inspected, and if it passed or failed.
+Not every complaint will trigger an inspection. If a property has recently been inspected, a new complaint won’t trigger another inspection. To find out if a new complaint will help, <a href="{{< relURL >}}data-features/rat-information-portal/">visit the Rat Information Portal for up-to-date inspection results</a>. You can look up an address and see when it was last inspected, and if it passed or failed.
 
-<strong><a href="../../data-stories/rat-inspections">Read more about how inspection data is the key to understanding rat activity.</a></strong><br>
+<strong><a href="{{< relURL >}}data-stories/rat-inspections/">Read more about how inspection data is the key to understanding rat activity.</a></strong><br>
 
 ### Get involved
 
@@ -99,6 +99,6 @@ Want to help work toward a cleaner New York City?
 - If you’re a property owner, learn about rat prevention and management.
   - Enroll in a Health Department <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">Rat Academy class</a> – it’s free!
   - <a href="https://www.nyc.gov/site/doh/health/health-topics/rats.page">Read about the best ways to control rats</a>.
-- Learn more about the Health Department’s <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/rat-mitigation-zones/">rat control program</a>.
+- Learn more about the Health Department’s <a href="{{< relURL >}}data-features/rat-mitigation-zones/">rat control program</a>.
 
 If we work together, we can reduce rats in our communities and prevent them from harming our parks, homes, and make our neighborhoods more livable.

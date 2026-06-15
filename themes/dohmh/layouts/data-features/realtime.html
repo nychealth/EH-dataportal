@@ -420,9 +420,11 @@
             <!-- Download interface -->
             {{- partial "realtime-download" . -}}
 
-            {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                {{ .Content }}
-            {{- end -}}
+            <hr>
+
+            <div id="rtaqReadme" class="pt-2">
+                <!-- RTAQ readme accessed from Git repo and deposited here via client-side JS --> 
+            </div>
 
         </div>
         <div class="modal-footer">
@@ -434,6 +436,66 @@
 
 
 </article>
+
+<script>
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function markdownToHTML(md) {
+  const lines = md.split(/\r?\n/);
+  let html = "";
+  let paragraph = [];
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      html += `<p>${paragraph.join(" ")}</p>\n`;
+      paragraph = [];
+    }
+  }
+
+  for (let line of lines) {
+    line = line.trim();
+
+    // Blank line → paragraph break
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+
+    // Headers
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      flushParagraph();
+      html += `<h2 class="h5">${escapeHTML(line.slice(2))}</h2>\n`;
+      continue;
+    }
+
+    // Normal text → paragraph
+    paragraph.push(escapeHTML(line));
+  }
+
+  flushParagraph();
+  return html;
+}
+
+// Fetch + render
+fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
+  .then(r => r.text())
+  .then(md => {
+    document.getElementById("rtaqReadme").innerHTML = markdownToHTML(md);
+  });
+
+</script>
+
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}

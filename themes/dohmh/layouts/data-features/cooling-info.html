@@ -22,19 +22,19 @@
 
           <div class="row my-2">
             <div class="col-3 px-1">
-              <img src="img/AC.svg" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/AC.svg" }}" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="img/Neighbors.svg" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Neighbors.svg" }}" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="img/ACperson.svg" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/ACperson.svg" }}" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="img/Piggy_bank.svg" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Piggy_bank.svg" }}" />
             </div>
           </div>
 
@@ -46,10 +46,10 @@
               ></i
               >Before we get started:</strong
             ><br />
-            if you are feeling very hot, with nausea or vomiting, fast pulse,
+            If you are feeling very hot, with nausea or vomiting, fast pulse,
             weakness or dizziness, you may need medical help.
             <a
-              href="https://www.cdc.gov/extreme-heat/signs-symptoms/?CDC_AAref_Val=https://www.cdc.gov/disasters/extremeheat/warning.html"
+              href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page"
               >See a full list of symptoms of heat-related illness</a
             >.
           </div>
@@ -269,8 +269,7 @@
 <!-- #primary-content -->
 
 <!-- add JS -->
-<script type="text/javascript" src="{{ .Params.config }}"></script>
-
-<script type="text/javascript" src="{{ .Params.customJS }}"></script>
+<script type="text/javascript" src="{{ urls.JoinPath ( .Page.RelPermalink ) .Params.config }}"></script>
+<script type="text/javascript" src="{{ urls.JoinPath ( .Page.RelPermalink ) .Params.customJS }}"></script>
 
 {{- end -}}
