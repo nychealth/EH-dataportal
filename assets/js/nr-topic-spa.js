@@ -397,7 +397,7 @@ const init = () => {
                 '<button class="btn btn-block btn-sm text-left" type="button" ' +
                     'data-toggle="collapse" data-target="#' + collapseId + '" ' +
                     'aria-expanded="false" aria-controls="' + collapseId + '">' +
-                    '<div class="row no-gutters d-print-none" style="width:100%">' +
+                    '<div class="row no-gutters" style="width:100%">' +
                         '<div class="col-7">' +
                             '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
                             '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
