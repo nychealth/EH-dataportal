@@ -45,8 +45,8 @@ More data and information about heat, climate, energy insecurity, and health is 
 
 ## Previous reports {#previous-reports}
 
-- [2025 Heat Mortality Report](../heat-report-archive/2025)
-- [2024 Heat Mortality Report](../heat-report-archive/2024/)
-- [2023 Heat Mortality Report](../heat-report-archive/2023/)
-- [2022 Heat Mortality Report](../heat-report-archive/2022/)
-- [2021 Heat Mortality Report](../heat-report-archive/2021/)
+- [2025 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2025/)
+- [2024 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2024/)
+- [2023 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2023/)
+- [2022 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2022/)
+- [2021 Heat Mortality Report]({{< relURL >}}data-features/heat-report-archive/2021/)
