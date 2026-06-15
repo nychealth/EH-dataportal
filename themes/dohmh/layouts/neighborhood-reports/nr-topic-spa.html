@@ -85,6 +85,16 @@
   #nr-map:hover {
     cursor: pointer;
   }
+  @media print {
+    .col-print-12 {
+      max-width: 100%;
+      flex: 0 0 100%;
+    }
+    /* Ensure expanded accordion bodies remain visible in print */
+    .collapse.show {
+      display: block !important;
+    }
+  }
 </style>
 
 <section class="container-fluid" id="skip-header-target">
@@ -166,41 +176,50 @@
         </div>
 
         {{/* Right column: topic buttons + report header + sections */}}
-        <div class="col-md-8">
+        <div class="col-md-8 col-print-12">
 
           {{/*
-            Topic mini-menu: row of buttons matching the production layout.
-            The "nr-topic-link" class is used by the JS to rewrite hrefs
-            with the current ?neighborhood= param for persistence.
+            Topic mini-menu: row of buttons for switching between the 5 NR topic pages.
+            The "nr-topic-link" class is used by the JS to attach an onclick handler that
+            stores the active neighborhood slug in sessionStorage before navigating, so the
+            destination topic page can pre-select the same neighborhood on load.
+            Hrefs point to the clean topic URL (no neighborhood in the path) — the
+            neighborhood is carried via sessionStorage, not the URL, to avoid 404s in dev
+            and to keep navigation independent of IIS rewrite rules.
           */}}
           <div class="row no-gutters d-print-none mb-2">
             <div class="col-sm mb-2 mr-1 mb-lg-0">
               <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Active_Design_Physical_Activity_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/Active_Design_Physical_Activity_and_Health/" }}">
+                 href="{{ relURL "neighborhood-reports/active_design_physical_activity_and_health/" }}"
+>
                 Active Design
               </a>
             </div>
             <div class="col-sm mb-2 mr-1 mb-lg-0">
               <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Asthma_and_the_Environment" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/Asthma_and_the_Environment/" }}">
+                 href="{{ relURL "neighborhood-reports/asthma_and_the_environment/" }}"
+>
                 Asthma
               </a>
             </div>
             <div class="col-sm mb-2 mr-1 mb-lg-0">
               <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Climate_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/Climate_and_Health/" }}">
+                 href="{{ relURL "neighborhood-reports/climate_and_health/" }}"
+>
                 Climate
               </a>
             </div>
             <div class="col-sm mb-2 mr-1 mb-lg-0">
               <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Housing_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/Housing_and_Health/" }}">
+                 href="{{ relURL "neighborhood-reports/housing_and_health/" }}"
+>
                 Housing
               </a>
             </div>
             <div class="col-sm mb-2 mr-1 mb-lg-0">
               <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Outdoor_Air_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/Outdoor_Air_and_Health/" }}">
+                 href="{{ relURL "neighborhood-reports/outdoor_air_and_health/" }}"
+>
                 Outdoor Air
               </a>
             </div>
@@ -295,7 +314,23 @@
           "reportUrl": "{{ $url }}"
         }
       {{- end -}}
-    ]
+    ],
+    // URL slug for this topic page, e.g. "asthma_and_the_environment".
+    // Used by setNeighborhoodInURL to locate the topic segment in the current path
+    // when updating the address bar after a neighborhood is selected.
+    topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
+    // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
+    // e.g. { "east_new_york": "East New York", ... }. Generated at build time by Hugo
+    // from the neighborhood section content files so it stays in sync automatically.
+    // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
+    neighborhoodMap: {
+      {{- $nrSections := ($.Site.GetPage "/neighborhood-reports").Sections -}}
+      {{- range $i, $p := $nrSections -}}
+        {{- $slug := $p.RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+        {{- if $i }},{{ end -}}
+        "{{ $slug }}": "{{ $p.Title }}"
+      {{- end -}}
+    }
   };
 </script>
 

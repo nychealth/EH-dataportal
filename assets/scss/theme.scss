@@ -692,6 +692,21 @@ h2.report-info {
     }
 }
 
+@media print {
+    .report-section .btn[data-toggle="collapse"] {
+        border: none;
+        background: none;
+        padding: 8px 0;
+    }
+    .card-body-no-top .col-md-7 {
+        display: none !important;
+    }
+    .card-body-no-top .col-md-5 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
 // Report Modal
 
 .report-modal {

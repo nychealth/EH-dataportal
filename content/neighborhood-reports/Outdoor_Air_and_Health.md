@@ -2,6 +2,7 @@
 title: "Outdoor Air and Health"
 categories: ["airquality", "childhealth", "publicspace", "neighborhoods"]
 layout: nr-topic-spa
+url: /neighborhood-reports/outdoor_air_and_health/
 content_yml: Outdoor_Air_and_Health
 seo_title: "Outdoor Air and Health in NYC"
 urlExtension: "/outdoor_air_and_health/"

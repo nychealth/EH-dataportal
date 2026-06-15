@@ -2,6 +2,7 @@
 title: "Climate and Health"
 categories: ["climatehealth", "housing", "inequality", "neighborhoods"]
 layout: nr-topic-spa
+url: /neighborhood-reports/climate_and_health/
 content_yml: Climate_and_Health
 seo_title: "Neighborhood reports on climate and health in NYC | Environment and Health Data Portal"
 urlExtension: "/climate_and_health/"
