@@ -25,10 +25,16 @@
                             <span class="fs-sm">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
                             
                             <div id="cpVis" style="width: 100%; max-width: 1000px;"></div>
+
+                            <hr class="my-2">
+
+                            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="">
+                                Second vis
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-8">
                             <div id="EJ_text" id="EJ-text-${id}" class=""><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
                             </div>
@@ -44,7 +50,7 @@
                     
                     <div class="row"> 
                         <div class="col-md-12 mx-auto col-sm-12">
-                            <div class="row border-top border-bottom">
+                            <div class="row border-top my-2">
                                 
                                 
                                 <div class="col-md-12 mt-2">
@@ -158,6 +164,7 @@
                 "title": "",
                 "symbolOpacity": 1,
                 "labelFontSize": 14,
+                "labelFontWeight": "bold",
                 "labelColor": {
                     "expr": "datum.value === 'Observed' ? 'blue' : 'darkorange'"
                 }
@@ -248,6 +255,109 @@
         "columns": 4
     };
     
+    const secondSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Difference between Hypothetical and Observed, after implementation (Post)",
+  "config": {
+    "header": {
+      "labelAlign": "left",
+      "labelAnchor": "start",
+      "labelFont": "Helvetica",
+      "labelFontWeight": "bold",
+      "labelFontSize": 12
+    },
+    "view": {"stroke": null},
+    "axisX": {
+      "labelAngle": 0, 
+      "domain": false,
+      "ticks": false,
+      "tickCount": 3
+  
+      },
+    "axisY": {
+      "domain": false,
+      "orient": "left",
+      "title": null
+    }
+  },
+  "vconcat": [
+    {
+      "data": {
+        "url": "https://gist.githubusercontent.com/mmontesanonyc/2817a3e51e64fbec39105b193064bea9/raw/d914ebc6348ebbe5b4a0a31fef9fa33beb9b6814/gistfile1.csv"
+      },
+      "resolve": {"scale": {"x": "independent"}},
+      "transform": [{"filter": "datum.site === 'Mott Haven'"}],
+      "facet": {"field": "pollutant", "title": null},
+      "spec": {
+        "width": 125,
+        "height": 35,
+        "encoding": {
+          "x": {"field": "estimate", "type": "quantitative", "title": null},
+          "color": {"value": "blue"}
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "rule",
+              "strokeWidth": 6,
+              "opacity": 0.3,
+              "strokeCap": "round"
+            },
+            "encoding": {
+              "x": {"field": "lower", "type": "quantitative"},
+              "x2": {"field": "upper", "type": "quantitative"}
+            }
+          },
+{
+  "mark": {"type": "rule", "color": "#888", "strokeWidth": 2, "strokeDash": [2,2]},
+  "encoding": {
+    "x": {"datum": 0, "type": "quantitative"}
+  }
+},
+          {
+            "mark": {"type": "circle", "size": 150, "opacity": 1},
+            "encoding": {
+              "x": {
+                "field": "estimate",
+                "type": "quantitative",
+                "scale": {"nice": false}
+              },
+              "tooltip": [
+                {"field": "site", "title": "Site", "type": "nominal"},
+                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                {
+                  "field": "Estimate (95% CI)",
+                  "title": "Difference",
+                  "type": "nominal"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "columns": 4,
+      "spacing": 50
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "fontSize": 12,
+        "color": "#585858",
+        "text": "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes."
+      },
+      "encoding": {}
+    }
+  ]
+}
+
+    vegaEmbed("#aqChangeVis", secondSpec, {
+        actions: false,
+        renderer: "canvas",
+    });
+
     function specForSite(site) {
         
         console.log(">> specForSite:", site);
