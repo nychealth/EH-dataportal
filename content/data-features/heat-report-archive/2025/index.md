@@ -1,9 +1,9 @@
 ---
 _schema: default
-title: 2026 NYC Heat-Related Mortality Report
+title: 2025 NYC Heat-Related Mortality Report
 draft: false
-date: 2026-06-14T10:14:56-04:00
-categories: [climatehealth, inequality, healthoutcomes]
+date: 2025-06-16T10:14:56-04:00
+categories: [climatehealth, inequality,healthoutcomes]
 keywords:
   - heat
   - report
@@ -12,11 +12,11 @@ keywords:
   - summer
   - disparities
   - mortality
-seo_title: 2026 Heat Mortality Report | Environment and Health Data Portal
+seo_title: 2025 Heat Mortality Report | Environment and Health Data Portal
 seo_description: Data and findings on the impact of heat in NYC.
 layout: 24-25-heat-report
 content_weight: 6.0
-image: Figure4.jpg
+image: fig-4.jpeg
 report: true
 related:
   - title: "Heat Vulnerability Index"

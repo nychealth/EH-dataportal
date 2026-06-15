@@ -11,7 +11,7 @@ draft: false
 </div>
 
 <div id="map2" class="hide">
-<div style="min-height:717px" id="datawrapper-vis-bB99w"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/bB99w/embed.js" charset="utf-8" data-target="#datawrapper-vis-bB99w"></script><noscript><img src="https://datawrapper.dwcdn.net/bB99w/full.png" alt="Map of heat stress deaths for 2025 by neighborhood tabulation areas in New York City" /></noscript></div>
+<div style="min-height:717px" id="datawrapper-vis-05b1J"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/05b1J/embed.js" charset="utf-8" data-target="#datawrapper-vis-05b1J"></script><noscript><img src="https://datawrapper.dwcdn.net/05b1J/full.png" alt="Map of heat stress deaths for 2022 by neighborhood tabulation areas in New York City" /></noscript></div>
 </div>
 
 <script>
