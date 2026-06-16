@@ -319,6 +319,8 @@ const clickLinksToggle = (e) => {
             selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
             selectedLinksSecondaryMeasureId = 221;
 
+            trackDataExplorerOption('links_disparities');
+
             showLinks();
             return;
 
@@ -897,6 +899,8 @@ const renderMeasures = async () => {
                 showingComparisonTrend = false;
                 showingBoroughTrend = true;
 
+                trackDataExplorerOption('trend_comparison');
+
                 setTrendButtonState();
                 updateTrendSelectionSummary();
                 showBoroughTrend();
@@ -941,6 +945,8 @@ const renderMeasures = async () => {
                     selectedComparisonLegendTitle = title;
                     showingComparisonTrend = true;
                     showingBoroughTrend = false;
+
+                    trackDataExplorerOption('trend_comparison');
 
                     setTrendButtonState();
                     updateTrendSelectionSummary();
@@ -1259,6 +1265,8 @@ const renderMeasures = async () => {
                 selectedDisparity = false;
                 selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
                 selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
+
+                trackDataExplorerOption('links_measure');
 
                 showLinks();
 

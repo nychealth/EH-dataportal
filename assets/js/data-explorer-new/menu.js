@@ -286,11 +286,10 @@ const handleSelection = (type, value) => {
 
     pushSelectionToURL();
 
-    // Google Analytics
+    const analyticsOption = getLegacyMapControlAnalyticsOption(type);
 
-    // Emit analytics only when the global gtag helper is available on the page.
-    if (typeof gtag === 'function') {
-        gtag('event', 'click_option', { option: type });
+    if (analyticsOption) {
+        trackDataExplorerOption(analyticsOption);
     }
 
     // re-render the active tab, and update the Leaflet map for the new selection

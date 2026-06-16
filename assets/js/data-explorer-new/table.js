@@ -421,6 +421,7 @@ const renderTableFilterControls = (rows) => {
         // Preserve display order from availableTimes instead of checkbox click order.
         selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
         tableTimeFilterIsManual = true;
+        trackDataExplorerOption('table_time');
         renderTableFilterControls(rows);
         applyTableFilters(rows);
     });
@@ -443,6 +444,7 @@ const renderTableFilterControls = (rows) => {
             // Re-sort to canonical geography order before redrawing controls and rows.
             selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
             tableGeoFilterIsManual = true;
+            trackDataExplorerOption('table_geo');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
         },
@@ -455,6 +457,7 @@ const renderTableFilterControls = (rows) => {
         syncButton.onclick = () => {
             // Force both dimensions back into map-following mode in one click.
             syncTableFiltersToMapSelection(true);
+            trackDataExplorerOption('table_sync');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
         };

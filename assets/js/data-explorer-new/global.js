@@ -495,6 +495,98 @@ window.addEventListener('load', () => {
 // Download data
 // ----------------------------------------------------------------------- //
 
+// Centralizes GA calls so new explorer interactions stay aligned with the
+// legacy explorer event names and payload shapes.
+const trackDataExplorerEvent = (eventName, eventParams = null) => {
+
+    if (typeof gtag !== 'function') {
+        return;
+    }
+
+    if (eventParams && Object.keys(eventParams).length > 0) {
+        gtag('event', eventName, eventParams);
+        return;
+    }
+
+    gtag('event', eventName);
+
+};
+
+
+const trackDataExplorerOption = (option) => {
+
+    if (!option) {
+        return;
+    }
+
+    trackDataExplorerEvent('click_option', { option });
+
+};
+
+
+const getLegacyMapControlAnalyticsOption = (type) => {
+
+    const optionMap = {
+        measure: 'map_measure',
+        geo: 'map_geo',
+        time: 'map_time'
+    };
+
+    return optionMap[type] || null;
+
+};
+
+
+const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) => {
+
+    if (!fileName || !fileExtension || !linkText) {
+        return;
+    }
+
+    trackDataExplorerEvent('file_download', {
+        file_name: fileName,
+        file_extension: fileExtension,
+        link_text: linkText
+    });
+
+};
+
+
+const trackDataExplorerPrintView = (chartView) => {
+
+    if (!chartView) {
+        return;
+    }
+
+    trackDataExplorerEvent('print_viz', {
+        chart_type: chartView === 'bubble-map' ? 'map' : chartView
+    });
+
+};
+
+
+const getCurrentDataDownloadView = () => {
+
+    if (chartType) {
+        return chartType === 'bubble-map' ? 'map' : chartType;
+    }
+
+    if (overlay === 'trend') {
+        return 'trend';
+    }
+
+    if (overlay === 'links') {
+        return 'links';
+    }
+
+    if (overlay === 'table') {
+        return 'table';
+    }
+
+    return 'bar';
+
+};
+
 const downloadData = (
     // data,
     // chartType
@@ -507,25 +599,17 @@ const downloadData = (
         let hiddenElement = document.createElement('a');
 
         // set view to send to file name
-        let view;
-        if (window.location.hash == '#display=trend') {
-            view = 'trend'
-        } else if (window.location.hash == '#display=map') {
-            view = 'map'
-        } else {
-            view = 'links'
-        }
+        const view = getCurrentDataDownloadView();
 
         hiddenElement.href = csvData;
         hiddenElement.target = '_blank';
         hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
         hiddenElement.click();
 
-        // trigger GA event
-        gtag('event', 'file_download', {
-            'file_name': hiddenElement.download,
-            'file_extension': '.csv',
-            'link_text': 'Download chart data'
+        trackDataExplorerFileDownload({
+            fileName: hiddenElement.download,
+            fileExtension: '.csv',
+            linkText: 'Download chart data'
         });
 
         e.stopPropagation();

@@ -1203,6 +1203,7 @@ const renderMapPreview = async () => {
 
 const openChartSaveModal = () => {
 
+    trackDataExplorerPrintView(chartType || overlay || 'chart');
     openPrintModal();
     renderChartPreview();
 
@@ -1210,6 +1211,7 @@ const openChartSaveModal = () => {
 
 const openMapSaveModal = () => {
 
+    trackDataExplorerPrintView('map');
     openPrintModal();
     renderMapPreview();
 
@@ -1237,6 +1239,24 @@ const bindPrintControls = () => {
             openChartSaveModal();
         });
     });
+
+    if (printModalDownload) {
+        printModalDownload.addEventListener('click', () => {
+
+            const fileName = printModalDownload.getAttribute('download');
+
+            if (!fileName) {
+                return;
+            }
+
+            trackDataExplorerFileDownload({
+                fileName,
+                fileExtension: '.png',
+                linkText: printModalDownload.textContent.trim() || 'Download PNG'
+            });
+
+        });
+    }
 
 };
 

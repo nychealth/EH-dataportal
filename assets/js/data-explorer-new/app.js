@@ -418,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Tab switches reuse the current map state, so they do not request a map redraw.
             renderCurrentView();
 
-            gtag('event', 'click_tab', { tab: value });
+            trackDataExplorerEvent('click_tab', { tab: value });
         });
     });
 
@@ -443,15 +443,15 @@ function reveal() {
 // ----------------------------------------------------------------------- //
 
 $('#howCalcButton').on('click', e => {
-    gtag('event', 'click_how_calculated');
+    trackDataExplorerEvent('click_how_caclulated');
 });
 
 $('.de-copy-citation-button[data-citation-target]').on('click', e => {
-    gtag('event', 'click_citation');
+    trackDataExplorerEvent('click_citation');
 });
 
 $('#v-pills-ds-tab').on('click', e => {
-    gtag('event', 'click_about');
+    trackDataExplorerEvent('click_about');
 });
 
 
@@ -471,8 +471,8 @@ $('#indicatorButtons').on('click', e => {
 
     // record google analytics event
 
-    gtag('event', 'click_indicator', {
-       IndicatorID: IndicatorID
+    trackDataExplorerEvent('click_indicator', {
+        IndicatorID: IndicatorID
     });
 
 });
