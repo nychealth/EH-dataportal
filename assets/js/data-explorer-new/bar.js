@@ -66,9 +66,16 @@ const renderBar = (
 
     // Render notes
     const barUnreliability = document.getElementById('bar-unreliability');
-    const uniqueNotes = [...new Set(data.map(item => item.Note))];
-    barUnreliability.classList.remove('hide');
-    barUnreliability.innerHTML = uniqueNotes.map(note => `<p>${note}</p>`).join('');
+    const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
+
+    if (barUnreliability) {
+        barUnreliability.innerHTML = '';
+        barUnreliability.classList.toggle('hide', uniqueNotes.length === 0);
+
+        if (uniqueNotes.length > 0) {
+            barUnreliability.innerHTML = uniqueNotes.map(note => `<p>${note}</p>`).join('');
+        }
+    }
 
 
     // Accept either a raw backend geotype or the prettified UI label.
@@ -103,8 +110,6 @@ const renderBar = (
     // ----------------------------------------------------------------------- //
     // display-rule selection
     // ----------------------------------------------------------------------- //
-
-
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // Determine data parameters that inform bar style
