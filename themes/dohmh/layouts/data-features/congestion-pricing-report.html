@@ -144,7 +144,7 @@
                     The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we collected more data, and we are more certain that our calculated average isn't a fluke or coincidence.</p>
                 </div>
 
-                <div class="border w-100">Second chart</div>
+                <div class="w-100 mt-3 mb-1" id="explainChart2" style="max-height: 50px!important;">Second chart</div>
                 <div class="asidebox border">
                     <p class="fs-sm">This shows the difference between the observed and hypothetical values, after congestion pricing. The bar is the 95% confidence interval. If the bar crosses 0, it means that the difference between Observed and Hypothetical is not statistically significant: congestion pricing didn't cause an observable change in pollution levels.</p>
                 </div>
@@ -202,13 +202,13 @@
     
      <div class="col-md-8 col-sm-12 mx-auto mb-2 px-2">
     <div class="row mt-4">
-        <div class="col-6">
-            <iframe id="cpRegional" src={{ relURL "congestion_pricing/embeds/congestion_pricing_regional.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
-        </div>
-        <div class="col-6">
+              <div class="col-6">
         {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
                 {{ .Content }}
             {{- end -}}
+        </div>
+        <div class="col-6">
+            <iframe id="cpRegional" src={{ relURL "congestion_pricing/embeds/congestion_pricing_regional.html" }} frameborder="no" style="width: 100%; height: 400px"></iframe>
         </div>
     </div>
 
@@ -227,16 +227,6 @@
         <div class="col-md-11 mx-auto col-sm-12 mb-2">
             <div class="col-10">
                 {{ partial "cp-chart_crz.html" . }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-10 mx-auto">
-            <div class="row">
-                <div class="col-10 mx-auto">
-                    <hr class="my-2 px-6" />
-                </div>
             </div>
         </div>
     </div>
@@ -573,186 +563,70 @@ vegaEmbed('#explainChart', spec, { actions: false, renderer: 'canvas' });
 
 const spec2 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 300,
   "config": {
-    "header": {
-      "labelAlign": "left",
-      "labelAnchor": "start",
-      "labelFont": "Helvetica",
-      "labelFontWeight": "bold",
-      "labelFontSize": 12
-    },
     "view": {"stroke": null},
-    "axisX": {"labelAngle": 0, "domain": false},
-    "axisY": {
-      "domain": false,
-      "ticks": false,
-      "tickCount": 4,
-      "orient": "left",
-      "title": null
-    }
+    "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
+    "axisY": {"domain": false, "orient": "left", "title": null}
   },
   "data": {
-    "values": [
-      {
-        "Var": "Hypothetical",
-        "Parameter": "PM2.5",
-        "Time": "Pre",
-        "Value": 7.12,
-        "Unit": "mcg/m3"
-      },
-      {
-        "Var": "Observed",
-        "Parameter": "PM2.5",
-        "Time": "Pre",
-        "Value": 7.12,
-        "LC": 8.1,
-        "UC": 6.14,
-        "Unit": "mcg/m3"
-      },
-
-      {
-        "Var": "Hypothetical",
-        "Parameter": "PM2.5",
-        "Time": "Post",
-        "Value": 6.34,
-        "LC": 5.7,
-        "UC": 6.85,
-
-        "Unit": "mcg/m3"
-      },
-      {
-        "Var": "Observed",
-        "Parameter": "PM2.5",
-        "Time": "Post",
-        "Value": 7.24,
-        "LC": 6.75,
-        "UC": 7.76,
-        "Unit": "mcg/m3"
-      }
-    ]
+    "url": "https://gist.githubusercontent.com/mmontesanonyc/2817a3e51e64fbec39105b193064bea9/raw/5269a0cb952f001859e80c8142b6b07d83046ddb/gistfile1.csv"
   },
-  "resolve": {"scale": {"y": "shared"}},
   "transform": [
-    {
-      "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
-      "as": "UnitFmt"
-    },
-    {
-      "calculate": "datum.Parameter + ' (' + datum.UnitFmt + ')'",
-      "as": "ParameterWithUnit"
-    },
-    {
-      "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Value + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Value + ' ' + datum.UnitFmt",
-      "as": "ValueWithUnit"
-    },
-    {
-      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
-      "as": "TimeLabel"
-    }
+    {"filter": "datum.Site === 'Deegan'"},
+    {"filter": "datum.pollutant === 'BC'"},
+    {"calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance"}
   ],
+  "width": "container",
+  "height": 35,
   "encoding": {
-    "x": {
-      "field": "TimeLabel",
-      "type": "nominal",
-      "sort": ["Before congestion pricing", "With congestion pricing"],
-      "title": null
-    }
+    "x": {"field": "estimate", "type": "quantitative", "title": null},
+    "color": {"value": "purple"}
   },
   "layer": [
     {
       "mark": {
         "type": "rule",
-        "strokeWidth": 8,
-        "color": "black",
-        "opacity": 0.2,
+        "strokeWidth": 6,
+        "opacity": 0.3,
         "strokeCap": "round"
       },
       "encoding": {
-        "y": {"field": "UC", "type": "quantitative"},
-        "y2": {"field": "LC", "type": "quantitative"}
+        "x": {"field": "lower", "type": "quantitative"},
+        "x2": {"field": "upper", "type": "quantitative"}
       }
     },
     {
-      "mark": {"type": "line", "strokeDash": [2, 2]},
-      "encoding": {
-        "y": {"field": "Value", "type": "quantitative"},
-        "color": {
-          "field": "Var",
-              "legend": {
-      "orient": "top",
-      "title": "",
-      "labelFontSize": 14,
-      "labelFontWeight": "bold",
-      "labelColor": {
-        "expr": "datum.label"
-      }},
-          "scale": {
-            "domain": ["Observed", "Hypothetical"],
-            "range": ["blue", "darkorange"]
-          }
-        }
-      }
+      "mark": {
+        "type": "rule",
+        "color": "#888",
+        "strokeWidth": 2,
+        "strokeDash": [2, 2]
+      },
+      "encoding": {"x": {"datum": 0, "type": "quantitative"}}
     },
     {
-      "mark": {"type": "circle", "size": 200},
+      "mark": {"type": "circle", "size": 150, "opacity": 1},
       "encoding": {
-        "y": {
-          "field": "Value",
+        "x": {
+          "field": "estimate",
           "type": "quantitative",
-          "scale": {"domainMin": 0, "nice": false}
+          "scale": {"nice": false}
         },
-        "color": {"field": "Var"},
         "tooltip": [
-          {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
-          {"field": "TimeLabel", "title": "Period", "type": "nominal"},
-          {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
+          {"field": "Site", "title": "Site", "type": "nominal"},
+          {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+          {
+            "field": "Estimate (95% CI)",
+            "title": "Difference",
+            "type": "nominal"
+          }
         ]
       }
-    },
-{
-  "data": {
-    "values": [
-      {
-        "TimeLabel": "With congestion pricing",
-        "y": 8.2,
-        "label": "",
-        "textColor": "black"
-      },
-      {
-        "TimeLabel": "With congestion pricing",
-        "y": 5.2,
-        "label": "",
-        "textColor": "black"
-      }
-    ]
-  },
-  "mark": {
-    "type": "text",
-    "dx": -100,
-    "lineBreak": "\n",
-    "align": "left",
-    "baseline": "middle",
-    "fontSize": 14,
-    "fontWeight": "normal"
-  },
-  "encoding": {
-    "x": {"field": "TimeLabel", "type": "nominal"},
-    "y": {"field": "y", "type": "quantitative"},
-    "text": {"field": "label"},
-    "color": {
-      "field": "textColor",
-      "type": "nominal",
-      "scale": null,
-      "legend": false
     }
-  }
-}
   ]
-};
+}
 
-// vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
+vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
 
 }
 
