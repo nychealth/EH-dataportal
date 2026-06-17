@@ -456,7 +456,7 @@ const spec = {
       "as": "ValueWithUnit"
     },
     {
-      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'After congestion pricing' : datum.Time",
       "as": "TimeLabel"
     }
   ],
@@ -464,7 +464,7 @@ const spec = {
     "x": {
       "field": "TimeLabel",
       "type": "nominal",
-      "sort": ["Before congestion pricing", "With congestion pricing"],
+      "sort": ["Before congestion pricing", "After congestion pricing"],
       "title": null
     }
   },
@@ -514,6 +514,7 @@ const spec = {
         "color": {"field": "Var"},
         "tooltip": [
           {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
+          {"field": "Var", "title": "Type", "type": "nominal"},
           {"field": "TimeLabel", "title": "Period", "type": "nominal"},
           {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
         ]
@@ -523,13 +524,13 @@ const spec = {
   "data": {
     "values": [
       {
-        "TimeLabel": "With congestion pricing",
+        "TimeLabel": "After congestion pricing",
         "y": 9.6,
         "label": "",
         "textColor": "black"
       },
       {
-        "TimeLabel": "With congestion pricing",
+        "TimeLabel": "After congestion pricing",
         "y": 6,
         "label": "",
         "textColor": "black"
