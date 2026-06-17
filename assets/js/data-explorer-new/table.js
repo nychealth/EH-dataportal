@@ -579,20 +579,36 @@ const renderTable = (tableData) => {
     document.querySelector('#summary-table table').width = "100%";
 
     // ----------------------------------------------------------------------- //
-    // DataTables setup (UNCHANGED)
+    // DataTables setup
     // ----------------------------------------------------------------------- //
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // set some properties
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // get the names of columns
+
+    const dataColumnNames = filteredTableAqData.columnNames();
+
+    // get the number of columns
     const dataColumnsCount = filteredTableAqData.numCols();
     const { timeSearch, geoSearch } = getTableColumnSearchValues(tableData);
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
         .filter(x => ![0, 1, 8].includes(x));
 
-    // Sort by the rightmost visible measure column so the leading metric drives the first impression.
-    const sortBy = dataColumnsCount - 1;
+    // Sort by the geoid so that the table is initially ordered by geographic identifier, providing a consistent and logical initial view for the user.
+    // also has the benefit of grouping by boro
+
+    const sortBy = 2 // geoID
+    const sortName = dataColumnNames[sortBy]
 
     const groupColumnTime = 0;
     const groupColumnGeo = 2;
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // initialize the table
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const dataTable = $('#tableID').DataTable({
         scrollY: 500,
