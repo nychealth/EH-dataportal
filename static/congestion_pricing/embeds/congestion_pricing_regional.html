@@ -81,6 +81,25 @@
             background-color: #4a90e2;
         }
         
+        .legend-color.type-all {
+            background-color: #4a90e2;
+        }
+        .legend-color.type-no2 {
+            background-color: #c0392b;
+        }
+        .legend-color.type-no2-ozone {
+            background-color: #8e44ad;
+        }
+        .legend-color.type-ozone {
+            background-color: #f39c12;
+        }
+        .legend-color.type-pm25 {
+            background-color: #27ae60;
+        }
+        .legend-color.type-pm25-ozone {
+            background-color: #16a085;
+        }
+        
     </style>
 </head>
 
@@ -97,7 +116,7 @@
     <script>
         
         var map = L.map('map',{minZoom: 2,
-            maxZoom: 16}).setView([40.715554,-74.0026642],10); // [Lat,Long],Zoom
+            maxZoom: 16}).setView([41.118333,-73.336667],8); // [Lat,Long],Zoom
         
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', 
@@ -110,11 +129,13 @@
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'legend');
             div.innerHTML = `
-                <div class="legend-title">EPA Regional Monitoring Sites</div>
-                <div class="legend-item">
-                    <div class="legend-color regional-site"></div>
-                    <span>Regional Monitoring Site</span>
-                </div>
+                <div class="legend-title fs-sm">EPA Regional Monitors</div>
+                <div class="legend-item fs-xs"><div class="legend-color type-all"></div><span>All</span></div>
+                <div class="legend-item fs-xs"><div class="legend-color type-no2"></div><span>NO2</span></div>
+                <div class="legend-item fs-xs"><div class="legend-color type-no2-ozone"></div><span>NO2 and Ozone</span></div>
+                <div class="legend-item fs-xs"><div class="legend-color type-ozone"></div><span>Ozone</span></div>
+                <div class="legend-item fs-xs"><div class="legend-color type-pm25"></div><span>PM2.5</span></div>
+                <div class="legend-item fs-xs"><div class="legend-color type-pm25-ozone"></div><span>PM2.5 and Ozone</span></div>
             `;
             return div;
         };
@@ -160,40 +181,38 @@
             addSitesToMap()
         })
 
-        // var testSite = L.marker([40.748817, -73.985428]).addTo(map).bindPopup('This is TEST.');
-        var testIcon = L.icon({
-            iconUrl: 'map-pin-hollow_P.svg',
-            
-            iconSize:     [32, 32], // size of the icon
-            iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
-            popupAnchor:  [-3, -30] // point from which the popup should open relative to the iconAnchor
-        });
+        const typeColorMap = {
+            'All': '#4a90e2',
+            'NO2': '#c0392b',
+            'NO2 and Ozone': '#8e44ad',
+            'Ozone': '#f39c12',
+            'PM2.5': '#27ae60',
+            'PM2.5 and Ozone': '#16a085'
+        };
 
-        
         // loop through RegionalSites.csv, add them to map as points
         function addSitesToMap() {
             
             for (let i = 0; i < sites.length; i++) {
 
                 // console.log(">>> site data", sites[i]);
+                var siteType = sites[i].Type || 'All';
+                var fillColor = typeColorMap[siteType] || '#4a90e2';
                 
-                var site = 
-                    L.marker([Number(sites[i].Lat), Number(sites[i].Long)], {icon: testIcon})
-                        .bindPopup("<strong>" + sites[i]['Site Name'] + "</strong><br>" + sites[i].County + " County, " + sites[i].State) // popup content
-                        .addTo(map) // add to map
+                var site = L.circleMarker([Number(sites[i].Lat), Number(sites[i].Long)], {
+                        radius: 8,
+                        fillColor: fillColor,
+                        color: '#333',
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                    })
+                    .bindPopup("<strong>" + sites[i]['Site Name'] + "</strong><br>" + sites[i].County + " County, " + sites[i].State + "<br><strong>Monitor type:</strong> " + sites[i].Type)
+                    .addTo(map);
                 
-                // setting up zoom on click
-        
                 site.on('click', function (e) {
                     map.setView(e.latlng, 13);
-                    // updateData(monitor_locations[i].loc_col)
                 });
-
-                // console.log(">>>> site", site._popup._content)
-                // console.log(">>> site marker", site)
-                
-                // All regional sites use the default icon style
-                site._icon.classList.add("regional-site");
             }
         }
         
