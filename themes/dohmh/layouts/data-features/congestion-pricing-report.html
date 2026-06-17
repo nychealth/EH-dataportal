@@ -67,9 +67,7 @@
 
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ with $src }}
-                    {{ $image := .Resize "1200x" }}
-                    <img class="block mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}"
-                        height="{{ $image.Height }}" alt="">
+                    <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="">
                 {{ end }}
             </div>
 
@@ -102,15 +100,17 @@
                                     <h3 class="h4">EJ-Designated Community Site Analysis</h3>
                                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the Health Department increased monitoring. These area's communities are:​ &nbsp;
                                         <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span> 
-                                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span><span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span>
+                                        <span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
                                         <span class="badge badge-light badge-pill site-badge" data-site="si-exwy">SI Exwy</span>
                                         <span class="badge badge-light badge-pill site-badge" data-site="fdr">FDR</span>
                                         <span class="badge badge-light badge-pill site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
                                         <span class="badge badge-light badge-pill site-badge" data-site="van-wyck">Van Wyck</span></p>
-                                        <p>We analyzed the data from these monitors to understand how pollution levels changed in these communities after congestion pricing was implemented.</p>
-                                        <div class="card card-header mb-0 fs-sm border">
-                                        <p id="site-info-box">Click on a site above to learn more about that community.</p>
+                                        <div class="card card-header mb-1 fs-sm border">
+                                          <p id="site-info-box">Click on a site above to learn more about that community.</p>
                                         </div>
+                                        <p>We analyzed the data from these monitors to understand how pollution levels changed in these communities after congestion pricing was implemented.</p>
+
 
                         </div>
 
@@ -139,9 +139,14 @@
             <div class="col-md-6">
                     <div style="width:100%;" id="explainChart" class="mt-2"></div>
 
-                                    <div class="asidebox border">
+                <div class="asidebox border">
                     <p class="fs-sm">
                     The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we collected more data, and we are more certain that our calculated average isn't a fluke or coincidence.</p>
+                </div>
+
+                <div class="border w-100">Second chart</div>
+                <div class="asidebox border">
+                    <p class="fs-sm">This shows the difference between the observed and hypothetical values, after congestion pricing. The bar is the 95% confidence interval. If the bar crosses 0, it means that the difference between Observed and Hypothetical is not statistically significant: congestion pricing didn't cause an observable change in pollution levels.</p>
                 </div>
             </div>
 
@@ -172,14 +177,17 @@
     </div>
 
     <div class="row">
-
+      <div class="col-md-8 col-sm-12 mx-auto my-1">
         {{ partial "cp-chart.html" . }}
+
+      </div>
+
         
     </div>
 
 
     <div class="row">
-        <div class="col-10 mx-auto">
+        <div class="col-8 mx-auto">
             <hr class="my-2 px-6" />
         </div>
     </div>

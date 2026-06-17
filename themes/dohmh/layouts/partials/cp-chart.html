@@ -1,76 +1,35 @@
-<div class="col-md-11 col-sm-12 mx-auto">
-    <h3 class="h3 cp-sticky-header px-2 my-1">Did congestion pricing affect air quality in <span style="color:blue" id="site-name">SITE</span>?</h3>
-</div>
-</div>
+<h3 class="h3 cp-sticky-header">Did congestion pricing affect air quality in <span style="color:blue" id="site-name">SITE</span>?</h3>
 
-<div class="row my-1">
-    <div class="col-md-11 mx-auto col-sm-12 mb-2">
-        <div class="col-10"> 
+
             
-            <div class="row justify-content-center">
-                <div class="col-2">
-                    <div class="sticky-top" style="top: 42px;">
-                        <div
-                        id="cpSiteButtons"
-                        class="btn-group-vertical w-100"
-                        style="gap: 6px;"
-                        role="group"
-                        aria-label="Choose site"
-                        ></div>
-                    </div>
-                </div>
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-12">
-                            <span class="fs-sm">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
-                            
-                            <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
-
-                            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="mt-2 border-top border-bottom py-2"></div>
-
-                        </div>
-                    </div>
-                    
-                    <div class="row mt-2">
-                        <div class="col-md-8">
-                            <div id="EJ_text" id="EJ-text-${id}" class=""><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
-                            </div>
-                        </div>
-                        <!--
-                            <div class="col-md-4 fs-xs">
-                                <iframe src={{ relURL "congestion_pricing/embeds/congestion_pricing_monitoring.html" }} frameborder="no" style="width: 100%; height: 450px" id="congestionMap"></iframe> 
-                            </div>
-                        -->
-                        
-                        
-                    </div>
-                    
-                    <div class="row"> 
-                        <div class="col-md-12 mx-auto col-sm-12">
-                            <div class="row border-top my-2">
-                                
-                                
-                                <div class="col-md-12 mt-2">
-                                    <h3 class="h4">How did traffic and PM2.5 near the highways change?</h3>
-                                    <p>With hourly traffic and PM2.5 data, we can look at the time of day that levels measured alongside the highways were highest before and after CRZ tolling began. We see that traffic was highest during morning or evening rush hours and that PM2.5 levels were also highest during rush hours but also overnight.  This is due to the influence of other pollution sources like heating systems in buildings, restaurant cooking and construction.​</p>
-                                    
-                                    {{ partial "cp-chart_TOD_traffic.html" . }}
-                                    
-                                    
-                                    
-                                </div>
-                                
-                            </div> 
-                            
-                            
-                        </div>
-                    </div>
-                </div> 
-            </div>
-            
+<div class="row justify-content-center mt-2">
+    <div class="col-2">
+        <div class="sticky-top" style="top: 42px;">
+            <div
+            id="cpSiteButtons"
+            class="btn-group-vertical w-100"
+            style="gap: 6px;"
+            role="group"
+            aria-label="Choose site"
+            ></div>
         </div>
     </div>
+
+    <div class="col-10">
+
+        <div id="EJ_text" id="EJ-text-${id}" class="fs-rg"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p></div>
+
+        <hr class="my-1">
+
+        <span class="fs-sm">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
+        
+        <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
+
+        <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="my-2 border-top border-bottom py-2"></div>
+
+    </div> 
 </div>
+            
 
 <style>
     .vega-embed {
@@ -80,6 +39,7 @@
 
 <script>
     const cp_container_id = "cpVis";
+    const aq_container_id = "aqChangeVis";
     const text_container_id = "EJ_text"
     
     // Buttons for sites
@@ -97,15 +57,15 @@
     
     // Site-specific text content
     const siteText = {
-        "Deegan": "<h3 class='h5'>The air quality in Mott Haven...</h3><p style='display:inline;''>ENTER MOTT HAVEN TEXT</p>",
-        "Cross Bronx": "<h3 class='h5'>The air quality in Cross Bronx...</h3><p style='display:inline;''>ENTER CROSS BRONX TEXT</p>",
-        "BQE": "<h3 class='h5'>The air quality in BQE...</h3><p style='display:inline;'>ENTER BQE TEXT.</p>",
-        "Van Wyck": "<h3 class='h5'>The air quality near the Van Wyck...</h3><p style='display:inline;'>ENTER VAN Wyck text.</p>",
-        "SI Expwy": "<h3 class='h5'>The air quality in SI Expwy...</h3><p style='display:inline;'>ENTER SI EXPWY TEXT</p>",
-        "FDR": "<h3 class='h5'>The air quality near the FDR is...</h3><p style='display:inline;'>ENTER FDR TEXT</p>",
-        "Trans-Manhattan": "<h3 class='h5'>The air quality near the Trans-Manhattan...</h3><p style='display:inline;'>In the neighborhoods of Washington Heights near the Trans-Manhattan, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality, total traffic decreased by 1% from 2024 to 2025 and truck traffic remained the same while BC and NO decreased slightly and NO2 and PM2.5 remained unchanged.</p>",
-        "CRZ": "<h3 class='h5'>The air quality in the Congestion Relief Zone (CRZ)...</h3><p style='display:inline;'>Along major roads inside the CRZ, daily average PM2.5 declined by 7%. ​In the neighborhoods within the CRZ, NO2 and NO went down by X% ​and PM2.5 and BC by X%.</p>",
-        "Rest of City": "<h3 class='h5'>The air quality in the Rest of City...</h3><p style='display:inline;'>Outside of the CRZ, pollution levels did not change.​ Average pollution levels in the region outside of NYC also did not change.</p>",
+        "Deegan": "<p>In the neighborhoods of Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.  After controlling for seasonality, total traffic decreased by 1% from 2024 to 2025 and truck traffic remained the same while BC and NO decreased slightly and NO2 and PM2.5 remained unchanged.",
+        "Cross Bronx": "<p>In the neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.  After controlling for seasonality, total traffic decreased by 5% from 2024 to 2025 and truck traffic decreased by 2% while BC and NO decreased slightly and NO2 and PM2.5 increased slightly.</p>",
+        "BQE": "<p>In the neighborhoods of south Williamsburg near the BQE, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened for NO2, PM2.5 and BC.  NO levels, although decreasing, were significantly higher with the tolling program than the hypothetical post-tolling levels.  However, after controlling for seasonality, total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3% suggesting that other factors drove the change in NO.  </p>",
+        "Van Wyck": "<p>This site is our control site.  The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling.  After controlling for seasonality, total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%.  This change reflects general trends in traffic volumes throughout NY State.  In the neighborhoods around the Van Wyck, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality. At the control site the observed value is the same as the hypothetical.</p>",
+        "SI Expwy": "<p>In the neighborhoods of Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.  After controlling for seasonality, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10% while BC, NO, and NO2 decreased slightly and PM2.5 increased slightly.  </p>",
+        "FDR": "<p>In the neighborhoods of the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality, total traffic increased by 9% from 2024 to 2025; however, BC and NO decreased slightly and NO2 and PM2.5 remained unchanged.  </p>",
+        "Trans-Manhattan": "<p>In the neighborhoods of Washington Heights near the Trans-Manhattan, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same while BC and NO decreased slightly and NO2 and PM2.5 remained unchanged.  </p>",
+        "CRZ": "<p>Within the neighborhoods of the CRZ, congestion pricing did not cause the measured NO2, NO, PM2.5, BC or O3 (not shown) levels to be significantly different than they would have been if the program had never happened.  O3 increased slightly, BC and NO decreased and NO2 and PM2.5 remained the same.</p>",
+        "Rest of City": "<p>In the NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured NO2, NO, PM2.5, BC or O3 (not shown) levels to be significantly different than they would have been if the program had never happened.  BC and NO decreased while NO2, PM2.5 and O3 remained the same.  </p>",
         "Region": "<h3 class='h5'>The air quality in the rest of the region...</h3><p style='display:inline;'>At EPA monitoring sites on the map below, PM2.5, NO2 and O3 levels following the start of CRZ tolling were similar to levels prior to tolling.</p>",
     };
     
@@ -121,18 +81,7 @@
         "CRZ": "CRZ",
         "Rest of City": "Rest of City"
     }
-    
-    // Datawrapper embed IDs for each site - I guess we can get rid of these?
-    const datawrapperIds = {
-        "Deegan": "0jrLJ",
-        "Cross Bronx": "FLrt2",
-        "BQE": "JICED",
-        "Van Wyck": "l9HaM",
-        "SI Expwy": "IvyTs",
-        "FDR": "IzOmg",
-        "Trans-Manhattan": "WEHcl"
-    };
-    
+        
     // Default selection
     let currentSite = "Deegan";
     
@@ -171,7 +120,7 @@
                 "title": null
             },
             "legend": {
-                "orient": "right",
+                "orient": "bottom",
                 "title": "",
                 "symbolOpacity": 1,
                 "labelFontSize": 14,
@@ -208,7 +157,7 @@
         "facet": {"field": "ParameterWithUnit", "title": null},
         "spec": {
             "width": 125,
-            "height": 200,
+            "height": 175,
             "encoding": {
                 "x": {
                     "field": "time",
@@ -306,10 +255,13 @@
     }
   },
       "data": {
-        "url": "https://gist.githubusercontent.com/mmontesanonyc/2817a3e51e64fbec39105b193064bea9/raw/d914ebc6348ebbe5b4a0a31fef9fa33beb9b6814/gistfile1.csv"
+        "url": "https://gist.githubusercontent.com/mmontesanonyc/2817a3e51e64fbec39105b193064bea9/raw/5269a0cb952f001859e80c8142b6b07d83046ddb/gistfile1.csv"
       },
       "resolve": {"scale": {"x": "independent"}},
-      "transform": [{"filter": "datum.site === 'Mott Haven'"}],
+      "transform": [
+        {"filter": "datum.Site === 'Deegan'"},
+        { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance"}
+      ],
       "facet": {"field": "pollutant", "title": null},
       "spec": {
         "width": 125,
@@ -346,13 +298,14 @@
                 "scale": {"nice": false}
               },
               "tooltip": [
-                {"field": "site", "title": "Site", "type": "nominal"},
+                {"field": "Site", "title": "Site", "type": "nominal"},
                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                 {
                   "field": "Estimate (95% CI)",
                   "title": "Difference",
                   "type": "nominal"
-                }
+                },
+                {"field": "Significance", "title": "Significance", "type": "nominal"}
               ]
             }
           }
@@ -363,91 +316,58 @@
 
 }
 
-    vegaEmbed("#aqChangeVis", secondSpec, {
-        actions: false,
-        renderer: "canvas",
-    });
-
     function specForSite(site) {
         
         console.log(">> specForSite:", site);
         
         // structuredClone first; fallback to JSON clone
         const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
-        
+        const spec2 = typeof structuredClone === "function" ? structuredClone(secondSpec) : JSON.parse(JSON.stringify(secondSpec));
+
         spec.transform[0].filter = `datum.Site === '${site}'`;
-        
-        return spec;
+        spec2.transform[0].filter = `datum.Site === '${site}'`;
+
+        return { spec, spec2 };
     }
     
-    function updateDatawrapperChart(site) {
-        
-        console.log(">> updateDatawrapperChart:", site);
-        
-        // Hide all datawrapper site charts and clear their content
-        const allCharts = document.querySelectorAll(".datawrapper-site-chart");
-        allCharts.forEach(chart => {
-            chart.style.display = "none";
-            chart.innerHTML = ""; // Clear content to prevent multiple embeds
-        });
-        
-        // Show the selected site chart
-        const siteChartId = `datawrapper-vis-${site}`;
-        const selectedChart = document.getElementById(siteChartId);
-        
-        if (selectedChart) {
-            selectedChart.style.display = "block";
-            
-            // Re-add the datawrapper embed script for the visible chart
-            const embedId = datawrapperIds[site];
-            if (embedId) {
-                // Clear the container first
-                selectedChart.innerHTML = "";
-                
-                // Create script element dynamically
-                const script = document.createElement("script");
-                script.type = "text/javascript";
-                script.src = `https://datawrapper.dwcdn.net/${embedId}/embed.js`;
-                script.charset = "utf-8";
-                script.setAttribute("data-target", `#${siteChartId}`);
-                script.async = true;
-                
-                // Append script to trigger loading and rendering
-                selectedChart.appendChild(script);
-                
-                // Give datawrapper time to load and embed the chart
-                setTimeout(() => {
-                    if (window.datawrapper && window.datawrapper.embedAll) {
-                        window.datawrapper.embedAll();
-                    }
-                }, 300);
-            }
-        }
-    }
-    
-    
+
     async function draw(site) {
         
         console.log(">> draw:", site);
         
-        const el = document.getElementById(cp_container_id);
+        const cpEl = document.getElementById(cp_container_id);
+        const aqEl = document.getElementById(aq_container_id);
         
-        if (!el) return;
+        if (!cpEl || !aqEl) return;
         
-        el.innerHTML = ""; // clear previous render
+        cpEl.innerHTML = ""; // clear previous render
+        aqEl.innerHTML = "";
+        
+        const { spec, spec2 } = specForSite(site);
         
         try {
-            await vegaEmbed(el, specForSite(site), {
-                
-                actions: true,
+            await vegaEmbed(cpEl, spec, {
+                actions: false,
                 renderer: "canvas",
-                
             });
         } catch (err) {
-            
             console.error("CP Vega render failed:", err);
-            el.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
-            
+            cpEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+        }
+
+        if (site !== "Van Wyck") {
+            aqEl.style.display = "";
+            try {
+                await vegaEmbed(aqEl, spec2, {
+                    actions: true,
+                    renderer: "canvas",
+                });
+            } catch (err) {
+                console.error("AQ change Vega render failed:", err);
+                aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+            }
+        } else {
+            aqEl.style.display = "none";
         }
     }
     
@@ -467,78 +387,51 @@
             
             btn.type = "button";
             btn.id = site.replaceAll(" ", "-");
-            btn.className = "btn btn-sm btn-outline-dark";
+            btn.className = "btn btn-sm btn-outline-dark fs-xs";
             btn.textContent = site;
             
             if (site === currentSite) btn.classList.add("active");
             
             btn.addEventListener("click", async () => {
-                
                 currentSite = site;
-                
+
                 // toggle active state
                 [...btnWrap.querySelectorAll("button")].forEach((b) =>
-                b.classList.remove("active")
+                    b.classList.remove("active")
                 );
                 btn.classList.add("active");
-                
-                // Zoom map to the site location
-                try {
-                    const iframeElement = document.getElementById("congestionMap");
-                    console.log("Button clicked for site:", site);
-                    console.log("iframe element:", iframeElement);
-                    if (iframeElement && iframeElement.contentWindow) {
-                        console.log("Sending zoom message to iframe");
-                        iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: site }, '*');
-                    } else {
-                        console.error("Iframe element or contentWindow not found");
-                    }
-                } catch (err) {
-                    console.error("Error zooming map:", err);
-                }
-                
+
                 // Update text content for the site
                 const textElement = document.getElementById(text_container_id);
                 if (textElement && siteText[site]) {
                     textElement.innerHTML = siteText[site];
                 }
-                
+
                 // Update site title in the header
                 const siteTitleElement = document.getElementById("site-name");    
                 if (siteTitleElement) {
                     siteTitleElement.textContent = siteTitles[site] || site;
                 }
-                // Update datawrapper chart for the site
-                updateDatawrapperChart(site);
-                
-                await draw(site);
-                await drawTODTraffic(site);
 
+                await draw(site);
             });
             
             btnWrap.appendChild(btn);
         });
     }
-    
+
     function addAccordionlisteners() {
-        
         console.log(">> addAccordionlisteners");
-        
-        const map = document.getElementById("congestionMap").contentWindow.map;
         const accordions = document.querySelectorAll(".collapse");
-        
         console.log("accordions", accordions);
-        
         accordions.forEach((accordion) => {
-            
             accordion.addEventListener("click", (e) => {
-                
                 console.log("clicked", e.target);
                 e.target.parentElement.classList.add("active");
             });
         });
     }
-    
+
     document.addEventListener("DOMContentLoaded", async () => {
         
         console.log(">> DOMContentLoaded");
@@ -546,9 +439,8 @@
         const el = document.getElementById(cp_container_id);
         if (!el) return;
         
-        const info = document.getElementById
-        (text_container_id);
-        if (!el) return;
+        const info = document.getElementById(text_container_id);
+        if (!info) return;
         
         // wait for vegaEmbed to be available
         if (typeof vegaEmbed !== "function") {
@@ -565,10 +457,7 @@
         
         renderButtons();
 
-        // draw traffic chart (with Vega Lite) and wait for it to complete
 
-        await drawTODTraffic(currentSite);
-        
         // Give datawrapper library time to load before initializing
         setTimeout(() => {
             if (window.datawrapper && window.datawrapper.embedAll) {
@@ -576,9 +465,7 @@
             }
         }, 500);
         
-        // addAccordionlisteners();
-        
-
+    
         // Update site title in the header
         const siteTitleElement = document.getElementById("site-name");    
         if (siteTitleElement) {

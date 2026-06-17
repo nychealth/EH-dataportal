@@ -28,7 +28,7 @@ related:
     url: "data-features/realtime-air-quality/"
   - title: "Air quality snapshots: special findings from 10 years of NYCCAS"
     url: "data-stories/air-quality-snapshots/"
-blurb: CP summer report
+blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
 ---
 
 <!-- note this text is not final / approved and still needs links! -->
@@ -54,12 +54,9 @@ Modeling from the mandatory environmental review process did not identify air po
 
 With a full year of data since CRZ tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ tolling program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that air pollution either did not change or slightly decreased both within and outside the zone.
 
-<strong>Key takeaways</strong>
-
-<ul>
-  <li>This is the most complete evaluation of air quality, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in Environmental Justice neighborhoods.
-  <li>Air quality generally improved inside the CRZ.
-  <li>In EJ neighborhoods, congestion pricing did not cause an increase in pollution. Some changes were observed due to other factors.
-</ul>
+**Key Takeaways**
+- This is the most complete evaluation of air quality , using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in Environmental Justice neighborhoods. 
+- At the Environmental Justice neighborhood sites, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.   
+- Within the neighborhoods of the CRZ, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.   
 
 </div>
