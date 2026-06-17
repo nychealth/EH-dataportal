@@ -2,17 +2,7 @@
   <div class="col-2"></div>
   <div class="col-10">
     <div id="cpVis2" style="width: 100%"></div>
-    <h3 class="h4 cp-sticky-header cp-sticky-only">
-      Air pollution inside of the CRZ
-    </h3>
-    <div class="row py-2 border-top">
-      <div class="col-5 border-right"></div>
-      <div class="col-7">
-        {{- with .Resources.GetMatch "aq-inside-crz.md" -}} {{ .Content }} {{-
-        end -}}
-        <div class="row mt-1"></div>
-      </div>
-    </div>
+
   </div>
 
   <script>
@@ -73,7 +63,7 @@
       "title": {
         "text": "PM2.5",
         "anchor": "center",
-        "dx": -15,
+        "dx": 5,
         "font": "Helvetica",
         "fontWeight": "bold",
         "fontSize": 12
@@ -148,7 +138,7 @@
             "strokeWidth": {
               "condition": {
                 "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 3
+                "value": 0
               },
               "value": 0
             }
@@ -251,7 +241,7 @@
             "strokeWidth": {
               "condition": {
                 "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 3
+                "value": 0
               },
               "value": 0
             }
@@ -352,7 +342,7 @@
             "strokeWidth": {
               "condition": {
                 "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 3
+                "value": 0
               },
               "value": 0
             }
