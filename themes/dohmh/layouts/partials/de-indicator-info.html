@@ -20,7 +20,10 @@
     <div id="detailsContent" class="collapse d-md-none">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
-            <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
+                <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
         </div>
 
         <div>
@@ -83,7 +86,10 @@
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
             <div class="d-flex my-0">
-                <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector" style="margin-left: auto;">Change dataset ></button>
+                <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap ml-auto">
+                    <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
+                    <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+                </div>
             </div>
         </div>
 

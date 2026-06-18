@@ -18,6 +18,13 @@ let indicatorSelectDestination = null;
 // stores this in history.state so back/forward can replay the indicator modal.
 let lastTopicData = null;
 
+// Track whether the topic modal was dismissed after a real selection.
+// If not, section landing pages can show a clear nudge beside the trigger.
+let topicSelectionConfirmed = false;
+
+// Track whether the indicator modal closed after a real dataset selection.
+let indicatorSelectionConfirmed = false;
+
 // ----------------------------------------------------------------------- //
 // Immediately start loading metadata.json
 // ----------------------------------------------------------------------- //
@@ -54,6 +61,107 @@ const ensureIndicatorsLoaded = async (topic) => {
 }
 
 
+// Clears the temporary required-selection hint around the topic trigger.
+const clearTopicSelectorPrompt = () => {
+
+    const topicSelectorButton = document.getElementById('topicSelectorButton');
+    const topicSelectorPrompt = document.getElementById('topicSelectorPrompt');
+    const topicSelectorWrap = topicSelectorButton?.closest('.topic-selector-trigger-wrap');
+
+    if (topicSelectorWrap) {
+        topicSelectorWrap.classList.remove('topic-selector-required');
+    }
+
+    if (topicSelectorButton) {
+        topicSelectorButton.removeAttribute('aria-describedby');
+    }
+
+    if (topicSelectorPrompt) {
+        topicSelectorPrompt.classList.add('d-none');
+        topicSelectorPrompt.setAttribute('aria-hidden', 'true');
+    }
+
+};
+
+
+// Single-topic pages without ?id= should nudge users back to dataset selection.
+const isTopicLandingPageWithoutIndicator = () => {
+
+    if (typeof resetSelectionForNewIndicator !== 'function') {
+        return false;
+    }
+
+    const indicatorParam = new URLSearchParams(window.location.search).get('id');
+
+    return !indicatorParam || Number.isNaN(Number(indicatorParam));
+
+};
+
+
+// Clears the temporary required-selection hint around Change dataset links.
+const clearIndicatorSelectorPrompt = () => {
+
+    document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
+        wrapper.classList.remove('indicator-selector-required');
+    });
+
+    document.querySelectorAll('.indicator-selector-trigger').forEach(button => {
+        button.removeAttribute('aria-describedby');
+    });
+
+    document.querySelectorAll('.indicator-selector-prompt').forEach(prompt => {
+        prompt.classList.add('d-none');
+        prompt.setAttribute('aria-hidden', 'true');
+    });
+
+};
+
+
+// Highlights Change dataset links when the chooser closes with no dataset picked.
+const showIndicatorSelectorPrompt = () => {
+
+    document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
+        const button = wrapper.querySelector('.indicator-selector-trigger');
+        const prompt = wrapper.querySelector('.indicator-selector-prompt');
+
+        wrapper.classList.add('indicator-selector-required');
+
+        if (button && prompt?.id) {
+            button.setAttribute('aria-describedby', prompt.id);
+        }
+
+        if (prompt) {
+            prompt.classList.remove('d-none');
+            prompt.setAttribute('aria-hidden', 'false');
+        }
+    });
+
+};
+
+
+// Highlights the topic trigger when the chooser closes with no selection.
+const showTopicSelectorPrompt = () => {
+
+    const topicSelectorButton = document.getElementById('topicSelectorButton');
+    const topicSelectorPrompt = document.getElementById('topicSelectorPrompt');
+    const topicSelectorWrap = topicSelectorButton?.closest('.topic-selector-trigger-wrap');
+
+    if (topicSelectorWrap) {
+        topicSelectorWrap.classList.add('topic-selector-required');
+    }
+
+    if (topicSelectorButton) {
+        topicSelectorButton.setAttribute('aria-describedby', 'topicSelectorPrompt');
+    }
+
+    if (topicSelectorPrompt) {
+        topicSelectorPrompt.classList.remove('d-none');
+        topicSelectorPrompt.setAttribute('aria-hidden', 'false');
+    }
+
+};
+
+
 // ----------------------------------------------------------------------- //
 // When a topic is selected, show indicator menu modal, and print indicators
 // ----------------------------------------------------------------------- //
@@ -71,6 +179,11 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
     // Stash for section.html's history state
     lastTopicData = { indicators, destination: dest };
 
+    // Mark this hide transition as a successful topic pick so the section
+    // header does not show the required-selection prompt.
+    topicSelectionConfirmed = true;
+    clearTopicSelectorPrompt();
+
     // Wait for topic modal to fully hide before showing indicator modal.
     // Sequencing avoids double-backdrop issues with Bootstrap 4.
 
@@ -86,6 +199,47 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
 
 const bindTopicSelectorControls = () => {
+
+    const topicSelectorModal = document.getElementById('topicSelector');
+    const indicatorSelectorModal = document.getElementById('indicatorSelector');
+
+    if (topicSelectorModal) {
+        $('#topicSelector').on('show.bs.modal', () => {
+            clearTopicSelectorPrompt();
+        });
+
+        $('#topicSelector').on('hidden.bs.modal', () => {
+            if (topicSelectionConfirmed) {
+                topicSelectionConfirmed = false;
+                return;
+            }
+
+            if (typeof resetSelectionForNewIndicator === 'function') {
+                return;
+            }
+
+            showTopicSelectorPrompt();
+        });
+    }
+
+    if (indicatorSelectorModal) {
+        $('#indicatorSelector').on('show.bs.modal', () => {
+            clearIndicatorSelectorPrompt();
+        });
+
+        $('#indicatorSelector').on('hidden.bs.modal', () => {
+            if (indicatorSelectionConfirmed) {
+                indicatorSelectionConfirmed = false;
+                return;
+            }
+
+            if (!isTopicLandingPageWithoutIndicator()) {
+                return;
+            }
+
+            showIndicatorSelectorPrompt();
+        });
+    }
 
     // Topic links and the relaunch control are rendered once in Hugo, so
     // bind them directly to their explicit data hooks instead of inline HTML.
@@ -370,6 +524,9 @@ const selectIndicator = async (id) => {
     }
 
     // SPA path — same topic, dismiss modal and reload in place
+
+    indicatorSelectionConfirmed = true;
+    clearIndicatorSelectorPrompt();
 
     dismissIndicatorModal();
 

@@ -278,9 +278,12 @@
       </button>
   </div>
   <div class="h4 font-weight-bold d-flex align-items-center mb-0">
-      <button type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
-          <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
-      </button>
+      <div class="position-relative d-flex align-items-center topic-selector-trigger-wrap">
+          <button id="topicSelectorButton" type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
+              <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
+          </button>
+          <span id="topicSelectorPrompt" class="topic-selector-prompt d-none" aria-hidden="true" role="status">Choose topic</span>
+      </div>
       <span class="ml-1 text-white">{{ .Title }}</span>
   </div>
 
