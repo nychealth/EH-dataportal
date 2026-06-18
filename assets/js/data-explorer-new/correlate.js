@@ -7,6 +7,80 @@
 // Correlate scatterplot rendering, note handling, and CSV export
 
 // ----------------------------------------------------------------------- //
+// resize helpers
+// ----------------------------------------------------------------------- //
+
+let correlateResizeEventRegistered = false;
+
+// Keeps the shared links pane width aligned with the current overlay width.
+const updateCorrelatePaneLayout = () => {
+
+    const correlateHolder = document.getElementById('correlateHolder');
+    const linksChart = document.getElementById('links');
+
+    if (!correlateHolder || !linksChart) {
+        return;
+    }
+
+    const deTabsPanel = correlateHolder.closest('.de-tabs');
+    const fixedHolderWidth = Math.max(
+        280,
+        Math.round(
+            deTabsPanel
+                ? deTabsPanel.getBoundingClientRect().width - 64
+                : correlateHolder.getBoundingClientRect().width
+        )
+    );
+
+    correlateHolder.style.removeProperty('overflow');
+    correlateHolder.style.setProperty('width', `${fixedHolderWidth}px`, 'important');
+    correlateHolder.style.setProperty('min-width', `${fixedHolderWidth}px`, 'important');
+    correlateHolder.style.setProperty('max-width', `${fixedHolderWidth}px`, 'important');
+
+    linksChart.style.removeProperty('overflow');
+    linksChart.style.width = '100%';
+    linksChart.style.maxWidth = '100%';
+
+};
+
+
+// Waits for the overlay panel to repaint before resizing the embedded view.
+const scheduleCorrelateViewResize = () => {
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            updateCorrelatePaneLayout();
+
+            if (window.correlateVegaView && typeof window.correlateVegaView.resize === 'function') {
+                window.correlateVegaView.resize().run();
+            }
+        });
+    });
+
+};
+
+
+// Registers one window listener so the correlate chart follows viewport changes.
+const registerCorrelateResizeHandler = () => {
+
+    if (correlateResizeEventRegistered) {
+        return;
+    }
+
+    window.addEventListener('resize', () => {
+        if (chartType !== 'links') {
+            return;
+        }
+
+        scheduleCorrelateViewResize();
+    });
+
+    correlateResizeEventRegistered = true;
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // correlate chart rendering
 // ----------------------------------------------------------------------- //
 
@@ -77,6 +151,7 @@ const renderNoCorrelatesMessage = (measureLabel) => {
     CSVforDownload = '';
     vizSource = null;
     vizSourceSecond = null;
+    window.correlateVegaView = null;
 
     setCorrelateActionState(false);
 
@@ -128,27 +203,10 @@ const renderCorrelate = (
 
     correlateHolder.classList.remove('hide');
 
-    // Keep holder width fixed so repeated redraws do not stretch the overlay.
-    // Lock the chart holder to the overlay panel width so Vega can size to a
-    // stable container without expanding the overlay on each redraw.
-    const deTabsPanel = correlateHolder.closest('.de-tabs');
-    const fixedHolderWidth = Math.max(
-        280,
-        Math.round(
-            deTabsPanel
-                ? deTabsPanel.getBoundingClientRect().width - 64
-                : correlateHolder.getBoundingClientRect().width
-        )
-    );
-
-    correlateHolder.style.removeProperty('overflow');
-    correlateHolder.style.setProperty('width', `${fixedHolderWidth}px`, 'important');
-    correlateHolder.style.setProperty('min-width', `${fixedHolderWidth}px`, 'important');
-    correlateHolder.style.setProperty('max-width', `${fixedHolderWidth}px`, 'important');
-
-    linksChart.style.removeProperty('overflow');
-    linksChart.style.width = '100%';
-    linksChart.style.maxWidth = '100%';
+    // Keep the holder width fixed to the current overlay width, but refresh it
+    // whenever the window changes so the correlate chart stays responsive.
+    updateCorrelatePaneLayout();
+    registerCorrelateResizeHandler();
 
     // Pull plotting values up front so axis/domain logic stays readable.
     const aqData = aq.from(data);
@@ -468,6 +526,9 @@ const renderCorrelate = (
             compiled: false,
             editor: true
         }
+    }).then((result) => {
+        window.correlateVegaView = result.view;
+        scheduleCorrelateViewResize();
     });
 
     printSpec = correlateSpec;
