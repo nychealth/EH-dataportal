@@ -1,403 +1,496 @@
-<div class="row justify-content-center">
-  <div class="col-2"></div>
-  <div class="col-10">
-    <div id="cpVis2" style="width: 100%"></div>
+<div id="cpVis2" style="width: 100%"></div>
 
-  </div>
+<script>
+  const CP_CONTAINER2_ID = "cpVis2";
 
-  <script>
-    const CP_CONTAINER2_ID = "cpVis2";
+  const baseSpec_1 = {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"title": {
+  "text": "How does Q3 2025 air quality around the region compare to historical ranges?",
+  "subtitle": ["Dot: Average (Q3 2025)","Bar: Range (Q3 2022-2024)",  ""],
+  "anchor": "start",
+  "font": "Helvetica",
+  "subtitleFont": "Helvetica",
+  "fontSize": 14,
+  "subtitlePadding": 5,
+  "subtitleFontSize": 11,
+  "subtitleColor": "gray"
+},
+"config": {
+  "view": {"stroke": null},
+  "axisX": {
+    "labelAngle": 0,
+    "domain": true,
+    "grid": true,
+    "gridDash": [4, 2]
+  },
+  "axisY": {
+    "domain": false,
+    "ticks": false,
+    "title": null,
+    "grid": false,
+    "gridColor": "#e0e0e0"
+  }
+},
+"data": {
+  "name": "source",
+  "url": "https://gist.githubusercontent.com/mmontesanonyc/45cd30d0ca9b0fe779c9f3839738b1a9/raw/bb1a4896a0558c1cc5aae4326130c84ee24433c4/regional.csv"
+},
+"resolve": {"scale": {"color": "shared"}, "legend": {"color": "shared"}},
+"transform": [
+  {
+    "calculate": "{'Connecticut': '1', 'New Jersey': '2', 'New York': '3'}[datum.State] + ': ' + datum['Site Name']",
+    "as": "SortKey"
+  },
+  {
+    "calculate": "datum.State + ': ' + datum['Site Name']",
+    "as": "StateAndSite"
+  },
+  {
+    "calculate": "datum.Parameter === 'PM2.5' ? 'μg/m3' : 'ppb'",
+    "as": "Units"
+  },
+  {
+    "calculate": "datum['Arithmetic Mean'] + ' ' + datum.Units",
+    "as": "valuePlusUnits"
+  }
+],
 
-    const baseSpec_1 = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "How does Q3 2025 air quality around the region compare to historical ranges?",
-    "subtitle": "Gray bar = historical min\u2013max   \u2022   Dot = Q3 2025 mean",
-    "anchor": "start",
-    "font": "Helvetica",
-    "subtitleFont": "Helvetica",
-    "fontSize": 14,
-    "subtitleFontSize": 11,
-    "subtitleColor": "gray"
-  },
-  "config": {
-    "view": {
-      "stroke": null
+"hconcat": [
+  {
+    "title": {
+      "text": "PM2.5",
+      "anchor": "center",
+      "dx": -15,
+      "font": "Helvetica",
+      "fontWeight": "bold",
+      "fontSize": 12
     },
-    "axisX": {
-      "labelAngle": 0,
-      "domain": true,
-      "grid": true,
-      "gridDash": [4, 2]
-    },
-    "axisY": {
-      "domain": false,
-      "ticks": false,
-      "title": null,
-      "grid": false,
-      "gridColor": "#e0e0e0"
-    }
-  },
-  "data": {
-    "name": "source",
-    "url": "https://gist.githubusercontent.com/mmontesanonyc/45cd30d0ca9b0fe779c9f3839738b1a9/raw/bb1a4896a0558c1cc5aae4326130c84ee24433c4/regional.csv"
-  },
-  "resolve": {
-    "scale": {
-      "color": "shared"
-    },
-    "legend": {
-      "color": "shared"
-    }
-  },
-  "transform": [
-    {
-      "calculate": "{'Connecticut': '1', 'New Jersey': '2', 'New York': '3'}[datum.State] + ': ' + datum['Site Name']", "as": "SortKey"
-    },
-    {
-      "calculate": "datum.State + ': ' + datum['Site Name']", "as": "StateAndSite"
-    }
-  ],
-  "hconcat": [
-    {
-      "title": {
-        "text": "PM2.5",
-        "anchor": "center",
-        "dx": 5,
-        "font": "Helvetica",
-        "fontWeight": "bold",
-        "fontSize": 12
-      },
-      "transform": [
-        {
-          "filter": "datum.Parameter === 'PM2.5'"
-        }
-      ],
-      "width": 200,
-      "height": {
-        "step": 22
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "rule",
-            "color": "lightgray",
-            "strokeWidth": 6,
-            "strokeCap": "round"
+    "transform": [{"filter": "datum.Parameter === 'PM2.5'"}],
+    "width": 200,
+    "height": {"step": 22},
+    "layer": [
+      {
+        "mark": {"type": "rule", "strokeWidth": 6, "strokeCap": "round"},
+        "encoding": {
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
           },
-          "encoding": {
-            "x": {
+          "x": {
+            "field": "HistoricalMin",
+            "type": "quantitative",
+            "title": null
+          },
+          "x2": {"field": "HistoricalMax"},
+          "opacity": {"value": 0.5},
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
               "field": "HistoricalMin",
-              "type": "quantitative",
-              "title": null
+              "title": "Historic min",
+              "type": "quantitative"
             },
-            "x2": {
-              "field": "HistoricalMax"
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
             }
-          }
-        },
-        {
-          "mark": {
-            "type": "point",
-            "filled": true,
-            "size": 150
-          },
-          "encoding": {
-            "x": {
-              "field": "Arithmetic Mean",
-              "type": "quantitative",
-              "title": null
-            },
-            "color": {
-              "field": "State",
-              "type": "nominal",
-              "legend": {
-                "title": null,
-                "orient": "bottom"
-              },
-              "scale": {
-                "domain": [
-                  "New York",
-                  "New Jersey",
-                  "Connecticut"
-                ],
-                "range": [
-                  "#2b6cb0",
-                  "#276749",
-                  "#9b2c2c"
-                ]
-              }
-            },
-            "stroke": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": "black"
-              },
-              "value": null
-            },
-            "strokeWidth": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 0
-              },
-              "value": 0
-            }
-          }
+          ]
         }
-      ],
-      "encoding": {
-        "y": {
-          "field": "StateAndSite",
-          "type": "nominal",
-          "title": null,
-          "sort": {
-            "field": "SortKey"
+      },
+      {
+        "mark": {"type": "point", "filled": true, "size": 150},
+        "encoding": {
+          "x": {
+            "field": "Arithmetic Mean",
+            "type": "quantitative",
+            "title": null
           },
-          "scale": {
-            "domain": {
-              "data": "source",
-              "field": "StateAndSite"
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
+          },
+          "opacity": {"value": 1},
+          "stroke": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": "black"
             },
-            "bandPosition": 0
+            "value": null
           },
-          "axis": {
-            "labelLimit": 220
+          "strokeWidth": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": 0
+            },
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
+              "field": "HistoricalMin",
+              "title": "Historic min",
+              "type": "quantitative"
+            },
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
+            }
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [{"Site Name": "Leonia"}, {"Site Name": "Mt Ninham"}]
+        },
+        "mark": {"type": "rule", "yOffset": -11},
+        "encoding": {
+          "color": {"value": "gray"},
+          "y": {
+            "field": "Site Name",
+            "type": "nominal",
+            "scale": {
+              "domain": {"data": "source", "field": "Site Name"},
+              "bandPosition": 0
+            }
           }
         }
       }
-    },
-    {
-      "title": {
-        "text": "NO2",
-        "anchor": "start",
-        "font": "Helvetica",
-        "fontWeight": "bold",
-        "fontSize": 12
-      },
-      "transform": [
-        {
-          "filter": "datum.Parameter === 'NO2'"
-        }
-      ],
-      "width": 200,
-      "height": {
-        "step": 22
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "rule",
-            "color": "lightgray",
-            "strokeWidth": 6,
-            "strokeCap": "round"
-          },
-          "encoding": {
-            "x": {
-              "field": "HistoricalMin",
-              "type": "quantitative",
-              "title": null
-            },
-            "x2": {
-              "field": "HistoricalMax"
-            }
-          }
-        },
-        {
-          "mark": {
-            "type": "point",
-            "filled": true,
-            "size": 150
-          },
-          "encoding": {
-            "x": {
-              "field": "Arithmetic Mean",
-              "type": "quantitative",
-              "title": null
-            },
-            "color": {
-              "field": "State",
-              "type": "nominal",
-              "legend": null,
-              "scale": {
-                "domain": [
-                  "New York",
-                  "New Jersey",
-                  "Connecticut"
-                ],
-                "range": [
-                  "#2b6cb0",
-                  "#276749",
-                  "#9b2c2c"
-                ]
-              }
-            },
-            "stroke": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": "black"
-              },
-              "value": null
-            },
-            "strokeWidth": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 0
-              },
-              "value": 0
-            }
-          }
-        }
-      ],
-      "encoding": {
-        "y": {
-          "field": "StateAndSite",
-          "type": "nominal",
-          "title": null,
-          "sort": {
-            "field": "SortKey"
-          },
-          "scale": {
-            "domain": {
-              "data": "source",
-              "field": "StateAndSite"
-            },
-            "bandPosition": 1
-          },
-          "axis": null
-        }
-      }
-    },
-    {
-      "title": {
-        "text": "Ozone",
-        "anchor": "start",
-        "font": "Helvetica",
-        "fontWeight": "bold",
-        "fontSize": 12
-      },
-      "transform": [
-        {
-          "filter": "datum.Parameter === 'Ozone'"
-        }
-      ],
-      "width": 200,
-      "height": {
-        "step": 22
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "rule",
-            "color": "lightgray",
-            "strokeWidth": 6,
-            "strokeCap": "round"
-          },
-          "encoding": {
-            "x": {
-              "field": "HistoricalMin",
-              "type": "quantitative",
-              "title": null
-            },
-            "x2": {
-              "field": "HistoricalMax"
-            }
-          }
-        },
-        {
-          "mark": {
-            "type": "point",
-            "filled": true,
-            "size": 150
-          },
-          "encoding": {
-            "x": {
-              "field": "Arithmetic Mean",
-              "type": "quantitative",
-              "title": null
-            },
-            "color": {
-              "field": "State",
-              "type": "nominal",
-              "legend": null,
-              "scale": {
-                "domain": [
-                  "New York",
-                  "New Jersey",
-                  "Connecticut"
-                ],
-                "range": [
-                  "#2b6cb0",
-                  "#276749",
-                  "#9b2c2c"
-                ]
-              }
-            },
-            "stroke": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": "black"
-              },
-              "value": null
-            },
-            "strokeWidth": {
-              "condition": {
-                "test": "datum['Site Name'] === 'Bayonne'",
-                "value": 0
-              },
-              "value": 0
-            }
-          }
-        }
-      ],
-      "encoding": {
-        "y": {
-          "field": "StateAndSite",
-          "type": "nominal",
-          "title": null,
-          "sort": {
-            "field": "SortKey"
-          },
-          "scale": {
-            "domain": {
-              "data": "source",
-              "field": "StateAndSite"
-            },
-            "bandPosition": 1
-          },
-          "axis": null
-        }
+    ],
+    "encoding": {
+      "y": {
+        "field": "Site Name",
+        "type": "nominal",
+        "title": null,
+        "sort": {"field": "SortKey"},
+        "scale": {"domain": {"data": "source", "field": "Site Name"}},
+        "axis": {"labelLimit": 220, "labelPadding": 10}
       }
     }
-  ],
-  "spacing": 40
-}   
-  async function draw_crz() {
-      const el = document.getElementById(CP_CONTAINER2_ID);
-      if (!el) return;
-
-      el.innerHTML = "";
-
-      try {
-        await vegaEmbed(el, baseSpec_1, {
-          actions: true,
-          renderer: "canvas",
-        });
-      } catch (err) {
-        console.error("CP Vega render failed:", err);
-        el.innerHTML =
-          "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+  },
+  {
+    "title": {
+      "text": "NO2",
+      "anchor": "start",
+      "font": "Helvetica",
+      "fontWeight": "bold",
+      "fontSize": 12
+    },
+    "transform": [{"filter": "datum.Parameter === 'NO2'"}],
+    "width": 200,
+    "height": {"step": 22},
+    "layer": [
+      {
+        "mark": {"type": "rule", "strokeWidth": 6, "strokeCap": "round"},
+        "encoding": {
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
+          },
+          "opacity": {"value": 0.5},
+          "x": {
+            "field": "HistoricalMin",
+            "type": "quantitative",
+            "title": null
+          },
+          "x2": {"field": "HistoricalMax"},
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
+              "field": "HistoricalMin",
+              "title": "Historic min",
+              "type": "quantitative"
+            },
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {"type": "point", "filled": true, "size": 150},
+        "encoding": {
+          "x": {
+            "field": "Arithmetic Mean",
+            "type": "quantitative",
+            "title": null
+          },
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
+          },
+          "opacity": {"value": 1},
+          "stroke": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": "black"
+            },
+            "value": null
+          },
+          "strokeWidth": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": 0
+            },
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
+              "field": "HistoricalMin",
+              "title": "Historic min",
+              "type": "quantitative"
+            },
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
+            }
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [{"Site Name": "Leonia"}, {"Site Name": "Mt Ninham"}]
+        },
+        "mark": {"type": "rule", "yOffset": -11},
+        "encoding": {
+          "color": {"value": "gray"},
+          "y": {
+            "field": "Site Name",
+            "type": "nominal",
+            "scale": {
+              "domain": {"data": "source", "field": "Site Name"},
+              "bandPosition": 0
+            }
+          }
+        }
+      }
+    ],
+    "encoding": {
+      "y": {
+        "field": "Site Name",
+        "type": "nominal",
+        "title": null,
+        "sort": {"field": "SortKey"},
+        "scale": {
+          "domain": {"data": "source", "field": "Site Name"},
+          "bandPosition": 1
+        },
+        "axis": null
       }
     }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      if (typeof vegaEmbed !== "function") {
-        console.error(
-          "vegaEmbed not available. Are the Vega scripts loaded above this script?",
-        );
-        return;
+  },
+  {
+    "title": {
+      "text": "Ozone",
+      "anchor": "start",
+      "font": "Helvetica",
+      "fontWeight": "bold",
+      "fontSize": 12
+    },
+    "transform": [{"filter": "datum.Parameter === 'Ozone'"}],
+    "width": 200,
+    "height": {"step": 22},
+    "layer": [
+      {
+        "mark": {"type": "rule", "strokeWidth": 6, "strokeCap": "round"},
+        "encoding": {
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
+          },
+          "opacity": {"value": 0.5},
+          "x": {
+            "field": "HistoricalMin",
+            "type": "quantitative",
+            "title": null
+          },
+          "x2": {"field": "HistoricalMax"},
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
+              "field": "HistoricalMin",
+              "title": "Historic min",
+              "type": "quantitative"
+            },
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {"type": "point", "filled": true, "size": 150},
+        "encoding": {
+          "x": {
+            "field": "Arithmetic Mean",
+            "type": "quantitative",
+            "title": null
+          },
+          "color": {
+            "field": "State",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "domain": ["New York", "New Jersey", "Connecticut"],
+              "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+            }
+          },
+          "opacity": {"value": 1},
+          "stroke": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": "black"
+            },
+            "value": null
+          },
+          "strokeWidth": {
+            "condition": {
+              "test": "datum['Site Name'] === 'Bayonne'",
+              "value": 0
+            },
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "Site Name", "type": "nominal"},
+            {
+              "field": "valuePlusUnits",
+              "title": "Average, June-Sept 2025",
+              "type": "nominal"
+            },
+            {
+              "field": "HistoricalMin",
+              "title": "Historic min",
+              "type": "quantitative"
+            },
+            {
+              "field": "HistoricalMax",
+              "title": "Historic max",
+              "type": "quantitative"
+            }
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [{"Site Name": "Leonia"}, {"Site Name": "Mt Ninham"}]
+        },
+        "mark": {"type": "rule", "yOffset": -11},
+        "encoding": {
+          "color": {"value": "gray"},
+          "y": {
+            "field": "Site Name",
+            "type": "nominal",
+            "scale": {
+              "domain": {"data": "source", "field": "Site Name"},
+              "bandPosition": 0
+            }
+          }
+        }
       }
+    ],
+    "encoding": {
+      "y": {
+        "field": "Site Name",
+        "type": "nominal",
+        "title": null,
+        "sort": {"field": "SortKey"},
+        "scale": {
+          "domain": {"data": "source", "field": "Site Name"},
+          "bandPosition": 1
+        },
+        "axis": null
+      }
+    }
+  }
+],
+"spacing": 40
+};
 
-      await draw_crz();
-    });
-  </script>
-</div>
+async function draw_crz() {
+    const el = document.getElementById(CP_CONTAINER2_ID);
+    if (!el) return;
+
+    el.innerHTML = "";
+
+    try {
+      await vegaEmbed(el, baseSpec_1, {
+        actions: true,
+        renderer: "canvas",
+      });
+    } catch (err) {
+      console.error("CP Vega render failed:", err);
+      el.innerHTML =
+        "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    if (typeof vegaEmbed !== "function") {
+      console.error(
+        "vegaEmbed not available. Are the Vega scripts loaded above this script?",
+      );
+      return;
+    }
+
+    await draw_crz();
+  });
+</script>
+

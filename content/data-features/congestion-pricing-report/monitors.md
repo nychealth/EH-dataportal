@@ -11,3 +11,4 @@ We collect data using two different types of air quality monitors:
 They are placed in sites designed to reflect long-term neighborhood-level exposures to pollution. Integrated monitors measure 5 different pollutants: Fine particulate matter (PM2.5), nitrogen dioxide (NO2), nitric oxide (NO), and black carbon (BC).
 
 <strong><i class="fas fa-clock mr-1" aria-hidden="true"></i>Realtime monitors</strong> are placed next to high-traffic roadways and measure PM2.5. They are best at capturing daily patterns, so that we can correlate them with traffic levels, but are more affected by factors like  weather and particle size than filter-based integrated monitors are.
+

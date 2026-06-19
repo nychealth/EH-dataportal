@@ -1,23 +1,6 @@
-<div
-  id="cpTODTrafficSection"
-  class="row justify-content-center"
-  style="display: none"
->
-  <div class="col-12">
-    <span class="fs-sm"
-      >Data source:
-      <span class="badge badge-pill badge-light"
-        ><i class="fas fa-clock mr-1" aria-hidden="true"></i>Realtime
-        monitors</span
-      ></span
-    >
 
-    <div id="cpVisTOD" style="width: 100%"></div>
-    <h3 class="h4 cp-sticky-header cp-sticky-only">
-      Air pollution inside of the CRZ
-    </h3>
-    <div class="row py-2 border-top"></div>
-  </div>
+<div id="cpVisTOD" style="width: 100%" class="mt-2"></div>
+
 
   <style>
     .vega-embed {
@@ -97,14 +80,14 @@
 
       spec: {
         width: 300,
-        height: 350,
+        height: 200,
         encoding: {
           x: {
-            field: "Time",
+            field: "TimeLabel",
 
             type: "nominal",
 
-            sort: "descending",
+            sort: "ascending",
 
             title: null,
           },
@@ -177,38 +160,12 @@
       },
     };
 
-    const TOD_SITES = [
-      "BQE",
-      "Cross Bronx",
-      "Deegan",
-      "SI Expwy",
-      "FDR",
-      "Van Wyck",
-      "Trans-Manhattan",
-    ];
-
-    async function drawTODTraffic(site) {
-      const section = document.getElementById("cpTODTrafficSection");
+    async function renderTODChart() {
       const el = document.getElementById(TOD_CONTAINER_ID);
-      if (!el || !section) return;
-
-      if (!TOD_SITES.includes(site)) {
-        section.style.display = "none";
-        return;
-      }
-
-      section.style.display = "";
-      el.innerHTML = "";
-
-      const spec =
-        typeof structuredClone === "function"
-          ? structuredClone(todTrafficSpec)
-          : JSON.parse(JSON.stringify(todTrafficSpec));
-
-      spec.transform[0].filter = `datum.Site === '${site}'`;
+      if (!el) return;
 
       try {
-        await vegaEmbed(el, spec, { actions: false, renderer: "canvas" });
+        await vegaEmbed(el, todTrafficSpec, { actions: false, renderer: "canvas" });
       } catch (err) {
         console.error("TOD Traffic Vega render failed:", err);
         el.innerHTML =
@@ -216,13 +173,5 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      if (typeof vegaEmbed !== "function") {
-        console.error(
-          "vegaEmbed not available. Are the Vega scripts loaded above this script?",
-        );
-        return;
-      }
-    });
+    renderTODChart();
   </script>
-</div>

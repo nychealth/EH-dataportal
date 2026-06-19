@@ -5,6 +5,7 @@ draft: false
 date: 2026-02-08T11:14:56-04:00
 categories:
   - airquality
+  - publicspace
 keywords:
   - air quality
   - report
@@ -22,10 +23,10 @@ image: images/GettyImages-resize-1.png
 layout: congestion-pricing-report
 report: true
 related:
-  - title: "What our air quality monitors tell us about NYC's neighborhoods"
-    url: "data-stories/air-quality-by-neighborhood/"
   - title: "Real-Time Air Quality: PM2.5 in NYC"
     url: "data-features/realtime-air-quality/"
+  - title: "What our air quality monitors tell us about NYC's neighborhoods"
+    url: "data-stories/air-quality-by-neighborhood/"
   - title: "Air quality snapshots: special findings from 10 years of NYCCAS"
     url: "data-stories/air-quality-snapshots/"
 blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
@@ -55,8 +56,27 @@ Modeling from the mandatory environmental review process did not identify air po
 With a full year of data since CRZ tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ tolling program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that air pollution either did not change or slightly decreased both within and outside the zone.
 
 **Key Takeaways**
-- This is the most complete evaluation of air quality , using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in Environmental Justice neighborhoods. 
-- At the Environmental Justice neighborhood sites, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.   
-- Within the neighborhoods of the CRZ, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened.   
+
+This is the most complete evaluation of air quality to date, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in EJ neighborhoods. 
+
+<div class="row mb-4">
+  <div class="col-md-4 card content-card">
+    <div class="card-content primary card-body">
+      <p><strong>Air quality improved slightly or stayed the same in 2025 compared to 2024</strong>. It's not clear that congestion pricing caused this - rather, it is consistent with long-term trends in the city. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
+    </div>
+  </div>
+    <div class="col-md-4 card content-card">
+    <div class="card-content primary card-body">
+      <p><strong>At EJ sites, congestion pricing didn't increase the measured pollution</strong>. This is good news for those concerned that tolling would make air quality worse at boundary neighborhoods. Pollutions levels aren't higher than what they would have been if the program never happened.</p>
+    </div>
+  </div>
+  <div class="col-md-4 card content-card">
+    <div class="card-content primary card-body">
+      <p><strong>Pollution at all locations held steady, or improved slightly</strong> - though most changes aren't statistically significant. At one location, levels of one pollutant didn't improve as much as expected.</p>
+    </div>
+  </div>
+</div>
+
+<div style="min-height:529px" id="datawrapper-vis-pEdt9"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pEdt9/embed.js" charset="utf-8" data-target="#datawrapper-vis-pEdt9"></script><noscript><img src="https://datawrapper.dwcdn.net/pEdt9/full.png" alt="Is air pollution worse than it would have been without Congestion Pricing? (Table)" /></noscript></div>
 
 </div>

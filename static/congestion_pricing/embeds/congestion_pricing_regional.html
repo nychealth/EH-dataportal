@@ -123,26 +123,6 @@
             {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}
         ).addTo(map);
         
-        // Create Legend Control
-        var legend = L.control({position: 'topright'});
-        
-        legend.onAdd = function (map) {
-            var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML = `
-                <div class="legend-title fs-sm">EPA Regional Monitors</div>
-                <div class="legend-item fs-xs"><div class="legend-color type-all"></div><span>All</span></div>
-                <div class="legend-item fs-xs"><div class="legend-color type-no2"></div><span>NO2</span></div>
-                <div class="legend-item fs-xs"><div class="legend-color type-no2-ozone"></div><span>NO2 and Ozone</span></div>
-                <div class="legend-item fs-xs"><div class="legend-color type-ozone"></div><span>Ozone</span></div>
-                <div class="legend-item fs-xs"><div class="legend-color type-pm25"></div><span>PM2.5</span></div>
-                <div class="legend-item fs-xs"><div class="legend-color type-pm25-ozone"></div><span>PM2.5 and Ozone</span></div>
-            `;
-            return div;
-        };
-        
-        legend.addTo(map);
-        
-        
         // Site coordinates for zoom functionality
         const siteCoordinates = {
             "Deegan": { lat: 40.80911, lng: -73.928824, zoom: 16 },
@@ -181,13 +161,10 @@
             addSitesToMap()
         })
 
-        const typeColorMap = {
-            'All': '#4a90e2',
-            'NO2': '#c0392b',
-            'NO2 and Ozone': '#8e44ad',
-            'Ozone': '#f39c12',
-            'PM2.5': '#27ae60',
-            'PM2.5 and Ozone': '#16a085'
+        const stateColorMap = {
+            'New York': '#2b6cb0',
+            'New Jersey': '#276749',
+            'Connecticut': '#9b2c2c'
         };
 
         // loop through RegionalSites.csv, add them to map as points
@@ -196,8 +173,8 @@
             for (let i = 0; i < sites.length; i++) {
 
                 // console.log(">>> site data", sites[i]);
-                var siteType = sites[i].Type || 'All';
-                var fillColor = typeColorMap[siteType] || '#4a90e2';
+                var state = sites[i].State || 'New York';
+                var fillColor = stateColorMap[state] || '#2b6cb0';
                 
                 var site = L.circleMarker([Number(sites[i].Lat), Number(sites[i].Long)], {
                         radius: 8,
