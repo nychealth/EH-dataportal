@@ -307,6 +307,13 @@ const printIndicators = async (indList, destination) => {
     // Ensure metadata are loaded
     const data = await ensureIndicatorsLoaded('indicator selection modal');
     // console.log("Indicators ready to print to indicator selection modal!", data);
+
+    // Hugo exposes the curated updated-ID list on the shared indicator shell.
+    // Reuse it here so modal decorations match the main indicator header.
+    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedIndicatorIds = JSON.parse(
+        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+    ).map(Number);
     
     // Clear existing content
     indicatorDestination.innerHTML = '';
@@ -330,12 +337,20 @@ const printIndicators = async (indList, destination) => {
                 console.warn(`Indicator with ID ${id} not found.`);
                 return ''; // skip if not found
             }
+
+            const isRecentlyUpdated = recentlyUpdatedIndicatorIds.includes(Number(indicator.IndicatorID));
+            const recentlyUpdatedBadge = isRecentlyUpdated
+                ? '<span class="ml-2 text-nowrap font-weight-bold fs-xs" style="color: #2F7D32;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>'
+                : '';
             
             // Use event delegation on #indicatorDestination so rerendered buttons
             // keep working without inline handlers.
             return `
                 <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
-                    <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
+                    <div class="d-flex flex-wrap align-items-start">
+                        <button type="button" class="h6 font-weight-bold border-0 text-primary bg-transparent hover-underline p-0 text-left de-select-indicator-button" data-indicator-id="${indicator.IndicatorID}">${indicator.IndicatorName}</button>
+                        ${recentlyUpdatedBadge}
+                    </div>
                     <p class="mb-0" style="font-size: 14px;">${indicator.IndicatorDescription}</p>
                 </div>
             `;
