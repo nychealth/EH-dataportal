@@ -329,6 +329,18 @@
         color: green;
         font-weight: bold;
         }
+
+    /* nested grouping levels (Time > GeoType > Borough): progressively indented and lighter so the hierarchy reads visually */
+    table .group td[data-group-level="1"] {
+        padding-left: 1.75rem;
+        background-color: #F5F5F5;
+        }
+    table .group td[data-group-level="2"] {
+        padding-left: 3.25rem;
+        background-color: #FAFAFA;
+        font-weight: 600;
+        font-size: .9em;
+        }
     .de-tab {
         font-size: 16px;
     }
@@ -578,6 +590,14 @@
                                             <!-- INSERT MENU ITEMS HERE -->
                                         </div>
 
+                                    </div>
+
+                                    <p class="fs-xs mb-0">Display:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <label class="fs-xs mb-0 px-2 d-flex align-items-center" for="groupByBoroughToggle" style="cursor:pointer;">
+                                            <input class="largerCheckbox mr-1" type="checkbox" id="groupByBoroughToggle" checked />
+                                            <span>Group neighborhoods by borough</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>

@@ -186,8 +186,8 @@ const renderTable = () => {
             { before: 0 }
         )
     
-    console.log("filteredTableAqData [renderTable]");
-    filteredTableAqData.print({limit: 20});
+    // console.log("filteredTableAqData [renderTable]");
+    // filteredTableAqData.print({limit: 20});
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // export Arquero table to HTML
@@ -231,13 +231,46 @@ const renderTable = () => {
 
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
 
-    const sortBy = 2 // geoID
+    // default sort: when grouped by borough, GeoID keeps boroughs in a sensible
+    //  order; when ungrouped, sort areas alphabetically so the flat list is useful
+    //  (the user can still re-sort any column by clicking its header)
+    const sortBy = groupTableByBorough ? 2 : 7 // 2 = GeoID, 7 = Area
     const sortName = dataColumnNames[sortBy]
 
     // define which column indexes define which groups
-    
+
     const groupColumnTime = 0
     const groupColumnGeo = 1;
+    const groupColumnBoro = 5;  // Borough
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // hierarchical group keys
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+    // keys are fully-qualified (they include their parents) so that, e.g., the
+    //  same borough appearing under different geo types / time periods stays a
+    //  distinct group. They're used both to insert group header rows and to
+    //  let the collapse/expand handler find a header's descendant rows.
+
+    // borough is only a meaningful sub-group for the smaller geo types: not
+    //  Citywide (no borough) and not Borough itself (the borough *is* the row).
+    //  Null boroughs render as "-" in the table, so guard against that too.
+    //  This mirrors the condition used to build the "Area" column above.
+
+    const hasBorough = (geoTypeDesc, borough) =>
+        Boolean(borough) && borough !== '-' && geoTypeDesc !== 'Borough';
+
+    const timeKey = (time) => `${time}`;
+    const geoKey  = (time, geoTypeDesc) => `${time}||${geoTypeDesc}`;
+    const boroKey = (time, geoTypeDesc, borough) => `${time}||${geoTypeDesc}||${borough}`;
+
+    // borough grouping is optional. When on, BoroID is added to the fixed order so
+    //  boroughs stay contiguous (required for grouping). When off, we drop it so the
+    //  user can sort columns freely across boroughs within a geo type.
+
+    const tableOrderFixed = groupTableByBorough
+        ? [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]]  // TimePeriod, GeoRank, BoroID
+        : [[ 0, 'desc' ], [ 3, 'asc' ]];               // TimePeriod, GeoRank
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // initialize the table
@@ -259,8 +292,8 @@ const renderTable = () => {
         ],
         bInfo: false,
         fixedHeader: true,
-        order: [[sortBy, 'asc']],                   // Initial sort by geoID (or whatever column index you choose)
-        orderFixed: [[ 0, 'desc' ], [ 3, 'asc' ]],  // TimePeriod, GeoRank 
+        order: [[sortBy, 'asc']],   // Initial sort by geoID
+        orderFixed: tableOrderFixed, // TimePeriod, GeoRank (+ BoroID when grouping by borough)
         columnDefs: [
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
             { searchable: false, targets: [...notSearchCols] },
@@ -296,9 +329,15 @@ const renderTable = () => {
         createdRow: function ( row, data, index ) {
             const time        = data[0];
             const GeoTypeDesc = data[1];
+            const borough     = data[5];
             if (time && GeoTypeDesc) {
-                row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`)
-                row.setAttribute(`data-time`, `${time}`);
+                // ancestry attributes let a group header find (and toggle) all of
+                //  its descendant rows: nested group headers + data rows
+                row.setAttribute(`data-time`, timeKey(time));
+                row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
+                if (hasBorough(GeoTypeDesc, borough)) {
+                    row.setAttribute(`data-boro`, boroKey(time, GeoTypeDesc, borough));
+                }
             }
         },
         drawCallback: function ( settings ) {
@@ -307,40 +346,66 @@ const renderTable = () => {
             const rows = api.rows( {page:'current'} ).nodes();
             const visibleColumnsCount =  dataColumnsCount - 7;
 
-            let last = null;
-            let lastTime = null;
-            
-            const createGroupRow = (groupColumn, lvl) => {
+            // insert a group header row for one level of the hierarchy.
+            //  - keyFn:   builds the fully-qualified key for a row at this level
+            //  - attrsFn: builds the ancestry data-* attributes for the header,
+            //             matching those put on descendant rows in createdRow
+            //  - skipFn:  (optional) true for rows that get no header at this
+            //             level (e.g. boroughs for Citywide / Borough geo types)
 
-                // console.log("groupColumn", groupColumn);
-                // console.log("lvl", lvl);
-                
+            const createGroupRow = (groupColumn, lvl, keyFn, attrsFn, skipFn) => {
+
+                let last = null;
+
                 api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
 
-                    // console.log("group", group);
-                    // console.log("i", i);
-                    
-                    const time = data[i][0]
-                    
-                    // console.log("time", time);
+                    const time        = data[i][0];
+                    const geoTypeDesc = data[i][1];
+                    const borough     = data[i][5];
 
-                    if ( last !== group || lastTime !== time ) {
-                        
+                    if (skipFn && skipFn(geoTypeDesc, borough)) {
+                        return;
+                    }
+
+                    const key = keyFn(time, geoTypeDesc, borough);
+
+                    if ( last !== key ) {
+
                         $(rows)
                             .eq( i )
                             .before(
-                                `<tr class="group"><td colspan="${visibleColumnsCount}" data-time="${time}" data-group="${group}" data-group-level="${lvl}"> ${group}</td></tr>`
+                                `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
                             );
 
-                        last = group;
-                        lastTime = time
-                        
+                        last = key;
                     }
                 });
             }
-            
-            createGroupRow(groupColumnTime, 0);
-            createGroupRow(groupColumnGeo, 1);
+
+            // level 0: time period
+            createGroupRow(
+                groupColumnTime, 0,
+                (time) => timeKey(time),
+                (time) => `data-time="${time}"`
+            );
+
+            // level 1: geo type
+            createGroupRow(
+                groupColumnGeo, 1,
+                (time, geoTypeDesc) => geoKey(time, geoTypeDesc),
+                (time, geoTypeDesc) => `data-time="${time}" data-geo="${geoKey(time, geoTypeDesc)}"`
+            );
+
+            // level 2: borough (only for the smaller geo types, and only when the borough grouping toggle is on)
+            if (groupTableByBorough) {
+                createGroupRow(
+                    groupColumnBoro, 2,
+                    (time, geoTypeDesc, borough) => boroKey(time, geoTypeDesc, borough),
+                    (time, geoTypeDesc, borough) => `data-time="${time}" data-geo="${geoKey(time, geoTypeDesc)}" data-boro="${boroKey(time, geoTypeDesc, borough)}"`,
+                    (geoTypeDesc, borough) => !hasBorough(geoTypeDesc, borough)
+                );
+            }
+
             handleToggle();
         }
     })
@@ -357,65 +422,40 @@ const handleToggle = () => {
     $('body').off('click', '#summary-table tr.group td');
     $('body').on('click', '#summary-table tr.group td', (e) => {
 
-        const td = $(e.target);
-        const tr = td.parent();
-        const group = td.data('group');
-        const groupLevel = td.data('group-level');
+        const td    = $(e.currentTarget);
+        const tr    = td.closest('tr.group');
+        const level = parseInt(tr.attr('data-group-level'), 10);
 
-        const handleGroupToggle = () => {
+        // descendants share this header's value on one attribute:
+        //  level 0 (time) -> data-time, level 1 (geo) -> data-geo, level 2 (boro) -> data-boro
 
-            const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
-            const subGroupRow = $(`tr[data-time="${group}"]`);
+        const descendantAttr = level === 0 ? 'data-time'
+                             : level === 1 ? 'data-geo'
+                             : 'data-boro';
 
-            if (subGroupToggle.css('display') === 'none') {
+        const key = tr.attr(descendantAttr);
 
-                subGroupToggle.removeClass('hidden');
-                subGroupRow.removeClass('hidden');
-                td.removeClass('hidden');
-                subGroupToggle.show();
-                subGroupRow.show();
+        // every row carrying this key (data rows + nested group headers),
+        //  excluding the clicked header itself
 
-            } else {
+        const descendants = $('#summary-table tr[' + descendantAttr + ']')
+            .filter(function () {
+                return this.getAttribute(descendantAttr) === key && this !== tr[0];
+            });
 
-                subGroupToggle.addClass('hidden');
-                subGroupRow.addClass('hidden');
-                td.addClass('hidden');
-                subGroupToggle.hide();
-                subGroupRow.hide();
+        if (td.hasClass('hidden')) {
 
-            }
-        }
-
-        const handleSubGroupToggle = () => {
-
-            const subDataGroup = tr.next(`tr`).data(`group`);
-            const parentDataGroup = subDataGroup.split('-')[0];
-            const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
-            const parentGroupToggle = $(`td[data-group="${parentDataGroup}"]`);
-
-            if (subGroupRow.css('display') == 'none')  {
-
-                subGroupRow.show();
-                td.removeClass('hidden');
-                subGroupRow.removeClass('hidden');
-                parentGroupToggle.removeClass('hidden');
-
-            } else {
-
-                subGroupRow.hide();
-                td.addClass('hidden');
-                subGroupRow.addClass('hidden');
-            }
-        }
-
-        if (groupLevel === 0) {
-
-            handleGroupToggle();
+            // expand: reveal everything beneath, and reset nested headers to expanded (− icon)
+            td.removeClass('hidden');
+            descendants.show();
+            descendants.find('td').removeClass('hidden');
 
         } else {
 
-            handleSubGroupToggle();
-            
+            // collapse: hide everything beneath
+            td.addClass('hidden');
+            descendants.hide();
+
         }
 
     });
