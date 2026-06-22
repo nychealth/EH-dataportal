@@ -1,11 +1,18 @@
+{{/*  loop through recently updated for decoration  */}}
+
+{{- $recentlyUpdatedIds := slice -}}
+{{- range .Site.Data.recently_updated_data.featured -}}
+    {{- $recentlyUpdatedIds = $recentlyUpdatedIds | append (int .id) -}}
+{{- end -}}
+
 <!-- Upper left indicator detail box -->
-<div class="position-absolute  de-main-details border-top">
+<div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ $recentlyUpdatedIds | jsonify }}'>
 
     <!-- Mobile Indicator Header -->
     <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 main-heading indicator-name">Loading indicator...</div>
-            <div class="font-weight-bold fs-xs" style="color: #FFED98;">Popular ★</div>
+            <div class="font-weight-bold fs-xs recently-updated d-none" style="color: #FFED98;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></div>
         </div>
         <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
     </div>
@@ -13,7 +20,7 @@
     <!-- Desktop Indicator Header (always visible) -->
     <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
         <div class="h6 font-weight-bold mb-0 indicator-name">Loading indicator...</div>
-        <span class="ml-2 text-nowrap font-weight-bold flex-grow-1 text-right fs-xs" style="color: #FFED98;">Popular ★</span>
+        <span class="ml-2 text-nowrap font-weight-bold flex-grow-1 text-right fs-xs recently-updated d-none" style="color: #FFED98;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>
     </div>
 
     <!-- Mobile Collapsible Content -->

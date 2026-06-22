@@ -422,6 +422,19 @@ const printIndicatorInfo = async (IndicatorID) => {
     
     // Find the indicator object where IndicatorID matches IndicatorID
     const indicator = data.find(d => Number(d.IndicatorID) === normalizedIndicatorId);
+
+    // Hugo writes the curated "recently updated" indicator IDs into the shell.
+    // Read them here so the badge stays aligned with the active SPA selection.
+    const indicatorInfoRoot = document.querySelector('.de-main-details');
+    const recentlyUpdatedIndicatorIds = JSON.parse(
+        indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
+    ).map(Number);
+    const showRecentlyUpdatedBadge = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
+
+    // Toggle both mobile and desktop badges together from one indicator-level rule.
+    document.querySelectorAll('.recently-updated').forEach(el => {
+        el.classList.toggle('d-none', !showRecentlyUpdatedBadge);
+    });
     
     console.log('This indicator:');
     console.log(indicator)

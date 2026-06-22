@@ -2,17 +2,25 @@
 featured:
 - copy: Adults with diabetes
   link: chronic-disease/?id=2465
+  id: 2465
 - copy: Adults with very high blood sugar levels (A1C > 9%)
   link: chronic-disease/?id=2466
+  id: 2466
 - copy: Lower extremity amputations (diabetes-related)
   link: chronic-disease/?id=2467
+  id: 2467
 - copy: Dialysis patients (diabetes-related)
   link: chronic-disease/?id=2468
+  id: 2468
 - copy: Residents living in a hurricane evacuation zone
   link: climate/?id=2140
+  id: 2140
 - copy: Accessible subway stations
   link: accessibility/?id=2455
+  id: 2455
 - copy: Walking distance to an accessible subway station
   link: accessibility/?id=2458
+  id: 2458
 - copy: Public bathroom availability
   link: accessibility/?id=2457
+  id: 2457
