@@ -415,6 +415,27 @@
                 }
             });
         });
+
+        // close tab pane with Escape key
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
+
+            if (openPane?.id) {
+                closeExplorerTabPane(openPane.id);
+                return;
+            }
+
+            const detailsContent = document.querySelector('#detailsContent.show');
+
+            if (detailsContent) {
+                $('#detailsContent').collapse('hide');
+            }
+        });
     });
 
     // Mobile accordion functionality
