@@ -340,7 +340,7 @@ const printIndicators = async (indList, destination) => {
 
             const isRecentlyUpdated = recentlyUpdatedIndicatorIds.includes(Number(indicator.IndicatorID));
             const recentlyUpdatedBadge = isRecentlyUpdated
-                ? '<span class="ml-2 text-nowrap font-weight-bold fs-xs" style="color: #2F7D32;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>'
+                ? '<span class="ml-2 text-nowrap font-weight-bold fs-xs text-info">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>'
                 : '';
             
             // Use event delegation on #indicatorDestination so rerendered buttons
