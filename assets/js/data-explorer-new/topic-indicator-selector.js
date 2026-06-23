@@ -340,7 +340,7 @@ const printIndicators = async (indList, destination) => {
 
             const isRecentlyUpdated = recentlyUpdatedIndicatorIds.includes(Number(indicator.IndicatorID));
             const recentlyUpdatedBadge = isRecentlyUpdated
-                ? '<span class="ml-2 text-nowrap font-weight-bold fs-xs text-info">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>'
+                ? '<span class="ml-1 text-nowrap font-weight-bold fs-xs text-info align-bottom">Recently updated &nbsp;<i class="fa-regular fa-clock fs-xs"></i></span>'
                 : '';
             
             // Use event delegation on #indicatorDestination so rerendered buttons
@@ -439,17 +439,12 @@ const printIndicatorInfo = async (IndicatorID) => {
     const indicator = data.find(d => Number(d.IndicatorID) === normalizedIndicatorId);
 
     // Hugo writes the curated "recently updated" indicator IDs into the shell.
-    // Read them here so the badge stays aligned with the active SPA selection.
+    // Read them here so the indicator title can reflect updated datasets.
     const indicatorInfoRoot = document.querySelector('.de-main-details');
     const recentlyUpdatedIndicatorIds = JSON.parse(
         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
-    const showRecentlyUpdatedBadge = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
-
-    // Toggle both mobile and desktop badges together from one indicator-level rule.
-    document.querySelectorAll('.recently-updated').forEach(el => {
-        el.classList.toggle('d-none', !showRecentlyUpdatedBadge);
-    });
+    const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
     
     console.log('This indicator:');
     console.log(indicator)
@@ -467,10 +462,17 @@ const printIndicatorInfo = async (IndicatorID) => {
     const nameHolders = document.querySelectorAll('.indicator-name');
     const descriptionHolders = document.querySelectorAll('.indicator-description');
     
-    // Fill name fields
-    // Keep desktop and mobile indicator titles in sync.
+    // Fill name fields.
+    // Updated indicators get the clock icon inline with the title instead of a separate badge.
     nameHolders.forEach(el => {
-        el.textContent = indicator.IndicatorName ?? "";
+        el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
+
+        if (showRecentlyUpdatedIcon) {
+            const icon = document.createElement('i');
+            icon.className = 'fa-regular fa-clock ml-1 fs-sm';
+            icon.setAttribute('aria-hidden', 'true');
+            el.appendChild(icon);
+        }
     });
     
     // Fill description fields

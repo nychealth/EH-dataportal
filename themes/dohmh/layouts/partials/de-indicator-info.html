@@ -12,7 +12,10 @@
     <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 main-heading indicator-name">Loading indicator...</div>
-            <div class="font-weight-bold fs-xs recently-updated d-none" style="color: #FFED98;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></div>
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="border-0 bg-transparent hover-underline p-0 indicator-selector-trigger font-weight-bold fs-md" data-toggle="modal" data-target="#indicatorSelector" style="color: #FFED98;">Change dataset &gt;</button>
+                <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
         </div>
         <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
     </div>
@@ -20,17 +23,18 @@
     <!-- Desktop Indicator Header (always visible) -->
     <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
         <div class="h6 font-weight-bold mb-0 indicator-name">Loading indicator...</div>
-        <span class="ml-2 text-nowrap font-weight-bold flex-grow-1 text-right fs-xs recently-updated d-none" style="color: #FFED98;">Recently updated &nbsp;<i class="fa-regular fa-clock"></i></span>
+        <div class="ml-2 text-nowrap flex-grow-1 text-right">
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="border-0 bg-transparent hover-underline p-0 indicator-selector-trigger font-weight-bold fs-sm" data-toggle="modal" data-target="#indicatorSelector" style="color: #FFED98;">Change dataset &gt;</button>
+                <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
+        </div>
     </div>
 
     <!-- Mobile Collapsible Content -->
     <div id="detailsContent" class="collapse d-md-none">
         <div class="bg-white p-2 fs-sm">
             <p class="indicator-description">Loading indicator description...</p>
-            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
-                <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
-                <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
-            </div>
         </div>
 
         <div>
@@ -92,12 +96,6 @@
     <div class="d-none d-md-block">
         <div class="bg-white p-2 fs-sm border-left border-right">
             <p class="indicator-description fs-sm">Loading indicator description... </p>
-            <div class="d-flex my-0">
-                <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap ml-auto">
-                    <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset ></button>
-                    <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
-                </div>
-            </div>
         </div>
 
         <div>
