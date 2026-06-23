@@ -471,6 +471,8 @@ const printIndicatorInfo = async (IndicatorID) => {
             const icon = document.createElement('i');
             icon.className = 'fa-regular fa-clock ml-1 fs-sm';
             icon.setAttribute('aria-hidden', 'true');
+            icon.setAttribute('aria-label', 'Recently updated');
+            icon.setAttribute('title', 'Recently updated');
             el.appendChild(icon);
         }
     });
