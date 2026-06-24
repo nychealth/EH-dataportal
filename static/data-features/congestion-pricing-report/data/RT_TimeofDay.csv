@@ -1,105 +1,57 @@
-SiteName,group,Year,PM25
-BQE,EveningRush,2024,4.862931034
-BQE,EveningRush,2025,4.641363636
-BQE,Midday,2024,5.598816739
-BQE,Midday,2025,5.577485795
-BQE,MorningRush,2024,6.652758621
-BQE,MorningRush,2025,5.958068182
-BQE,Overnight,2024,5.445766284
-BQE,Overnight,2025,5.152888258
-Broadway/35th St,EveningRush,2024,9.867807692
-Broadway/35th St,EveningRush,2025,8.663596154
-Broadway/35th St,Midday,2024,9.98066442
-Broadway/35th St,Midday,2025,8.467907425
-Broadway/35th St,MorningRush,2024,8.977915058
-Broadway/35th St,MorningRush,2025,7.970810811
-Broadway/35th St,Overnight,2024,8.416984892
-Broadway/35th St,Overnight,2025,7.222603664
-Cross Bronx Expy,EveningRush,2024,8.687642487
-Cross Bronx Expy,EveningRush,2025,8.498429319
-Cross Bronx Expy,Midday,2024,9.788316062
-Cross Bronx Expy,Midday,2025,8.898586387
-Cross Bronx Expy,MorningRush,2024,9.97234375
-Cross Bronx Expy,MorningRush,2025,9.427565445
-Cross Bronx Expy,Overnight,2024,9.443170204
-Cross Bronx Expy,Overnight,2025,8.94825784
-FDR,EveningRush,2024,6.938606061
-FDR,EveningRush,2025,5.336627219
-FDR,Midday,2024,8.052361427
-FDR,Midday,2025,7.158343195
-FDR,MorningRush,2024,8.73429878
-FDR,MorningRush,2025,8.775828402
-FDR,Overnight,2024,7.049123163
-FDR,Overnight,2025,6.219293827
-Hamilton Bridge,EveningRush,2024,6.194230769
-Hamilton Bridge,EveningRush,2025,9.116028037
-Hamilton Bridge,Midday,2024,7.178052885
-Hamilton Bridge,Midday,2025,9.16703271
-Hamilton Bridge,MorningRush,2024,6.938365385
-Hamilton Bridge,MorningRush,2025,9.484252336
-Hamilton Bridge,Overnight,2024,6.598184
-Hamilton Bridge,Overnight,2025,8.971806854
-Manhattan Bridge,EveningRush,2024,9.070203046
-Manhattan Bridge,EveningRush,2025,7.709520202
-Manhattan Bridge,Midday,2024,9.912734772
-Manhattan Bridge,Midday,2025,8.007809343
-Manhattan Bridge,MorningRush,2024,9.931218274
-Manhattan Bridge,MorningRush,2025,8.212373737
-Manhattan Bridge,Overnight,2024,9.033362944
-Manhattan Bridge,Overnight,2025,7.427015993
-Midtown-DOT,EveningRush,2024,10.33402299
-Midtown-DOT,EveningRush,2025,11.71823864
-Midtown-DOT,Midday,2024,10.66547414
-Midtown-DOT,Midday,2025,9.860667614
-Midtown-DOT,MorningRush,2024,8.97091954
-Midtown-DOT,MorningRush,2025,8.554886364
-Midtown-DOT,Overnight,2024,7.917998084
-Midtown-DOT,Overnight,2025,8.415198864
-Mott Haven,EveningRush,2024,6.921450617
-Mott Haven,EveningRush,2025,6.821073446
-Mott Haven,Midday,2024,8.264049844
-Mott Haven,Midday,2025,7.582846045
-Mott Haven,MorningRush,2024,8.287125
-Mott Haven,MorningRush,2025,7.945480226
-Mott Haven,Overnight,2024,7.333234837
-Mott Haven,Overnight,2025,7.212048023
-Queens College,EveningRush,2024,5.801230769
-Queens College,EveningRush,2025,5.527325581
-Queens College,Midday,2024,6.983615385
-Queens College,Midday,2025,6.160339147
-Queens College,MorningRush,2024,6.982730769
-Queens College,MorningRush,2025,6.501007752
-Queens College,Overnight,2024,6.389980769
-Queens College,Overnight,2025,5.752015504
-Queensboro Bridge,EveningRush,2024,7.357440758
-Queensboro Bridge,EveningRush,2025,6.26843318
-Queensboro Bridge,Midday,2024,8.270335132
-Queensboro Bridge,Midday,2025,6.866544928
-Queensboro Bridge,MorningRush,2024,8.119666667
-Queensboro Bridge,MorningRush,2025,6.808232558
-Queensboro Bridge,Overnight,2024,7.284717726
-Queensboro Bridge,Overnight,2025,6.025892514
-SI Expwy,EveningRush,2024,6.294538462
-SI Expwy,EveningRush,2025,6.132868852
-SI Expwy,Midday,2024,6.076531008
-SI Expwy,Midday,2025,6.179485597
-SI Expwy,MorningRush,2024,8.8246875
-SI Expwy,MorningRush,2025,7.802083333
-SI Expwy,Overnight,2024,6.967684347
-SI Expwy,Overnight,2025,6.767266388
-Van Wyck,EveningRush,2024,6.925524691
-Van Wyck,EveningRush,2025,5.481540698
-Van Wyck,Midday,2024,7.613993832
-Van Wyck,Midday,2025,6.45346657
-Van Wyck,MorningRush,2024,8.188664596
-Van Wyck,MorningRush,2025,7.172994186
-Van Wyck,Overnight,2024,7.363042806
-Van Wyck,Overnight,2025,6.164956395
-Williamsburg Bridge,EveningRush,2024,8.615
-Williamsburg Bridge,EveningRush,2025,6.338167939
-Williamsburg Bridge,Midday,2024,9.955307692
-Williamsburg Bridge,Midday,2025,7.140610687
-Williamsburg Bridge,MorningRush,2024,9.839769231
-Williamsburg Bridge,MorningRush,2025,8.071984733
-Williamsburg Bridge,Overnight,2024,8.635102564
-Williamsburg Bridge,Overnight,2025,6.643778626
+Time,Site,TOD,Measure,Value,Units
+Pre,BQE,Evening rush,PM2.5,4.862931034,µg/m³
+Post,BQE,Evening rush,PM2.5,4.641363636,µg/m³
+Pre,BQE,Midday,PM2.5,5.598816739,µg/m³
+Post,BQE,Midday,PM2.5,5.577485795,µg/m³
+Pre,BQE,Evening rush,PM2.5,6.652758621,µg/m³
+Post,BQE,Evening rush,PM2.5,5.958068182,µg/m³
+Pre,BQE,Overnight,PM2.5,5.445766284,µg/m³
+Post,BQE,Overnight,PM2.5,5.152888258,µg/m³
+Pre,Cross Bronx,Evening rush,PM2.5,8.687642487,µg/m³
+Post,Cross Bronx,Evening rush,PM2.5,8.498429319,µg/m³
+Pre,Cross Bronx,Midday,PM2.5,9.788316062,µg/m³
+Post,Cross Bronx,Midday,PM2.5,8.898586387,µg/m³
+Pre,Cross Bronx,Evening rush,PM2.5,9.97234375,µg/m³
+Post,Cross Bronx,Evening rush,PM2.5,9.427565445,µg/m³
+Pre,Cross Bronx,Overnight,PM2.5,9.443170204,µg/m³
+Post,Cross Bronx,Overnight,PM2.5,8.94825784,µg/m³
+Pre,FDR,Evening rush,PM2.5,6.938606061,µg/m³
+Post,FDR,Evening rush,PM2.5,5.336627219,µg/m³
+Pre,FDR,Midday,PM2.5,8.052361427,µg/m³
+Post,FDR,Midday,PM2.5,7.158343195,µg/m³
+Pre,FDR,Evening rush,PM2.5,8.73429878,µg/m³
+Post,FDR,Evening rush,PM2.5,8.775828402,µg/m³
+Pre,FDR,Overnight,PM2.5,7.049123163,µg/m³
+Post,FDR,Overnight,PM2.5,6.219293827,µg/m³
+Pre,Trans-Manhattan,Evening rush,PM2.5,6.194230769,µg/m³
+Post,Trans-Manhattan,Evening rush,PM2.5,9.116028037,µg/m³
+Pre,Trans-Manhattan,Midday,PM2.5,7.178052885,µg/m³
+Post,Trans-Manhattan,Midday,PM2.5,9.16703271,µg/m³
+Pre,Trans-Manhattan,Evening rush,PM2.5,6.938365385,µg/m³
+Post,Trans-Manhattan,Evening rush,PM2.5,9.484252336,µg/m³
+Pre,Trans-Manhattan,Overnight,PM2.5,6.598184,µg/m³
+Post,Trans-Manhattan,Overnight,PM2.5,8.971806854,µg/m³
+Pre,Deegan,Evening rush,PM2.5,6.921450617,µg/m³
+Post,Deegan,Evening rush,PM2.5,6.821073446,µg/m³
+Pre,Deegan,Midday,PM2.5,8.264049844,µg/m³
+Post,Deegan,Midday,PM2.5,7.582846045,µg/m³
+Pre,Deegan,Evening rush,PM2.5,8.287125,µg/m³
+Post,Deegan,Evening rush,PM2.5,7.945480226,µg/m³
+Pre,Deegan,Overnight,PM2.5,7.333234837,µg/m³
+Post,Deegan,Overnight,PM2.5,7.212048023,µg/m³
+Pre,SI Expwy,Evening rush,PM2.5,6.294538462,µg/m³
+Post,SI Expwy,Evening rush,PM2.5,6.132868852,µg/m³
+Pre,SI Expwy,Midday,PM2.5,6.076531008,µg/m³
+Post,SI Expwy,Midday,PM2.5,6.179485597,µg/m³
+Pre,SI Expwy,Evening rush,PM2.5,8.8246875,µg/m³
+Post,SI Expwy,Evening rush,PM2.5,7.802083333,µg/m³
+Pre,SI Expwy,Overnight,PM2.5,6.967684347,µg/m³
+Post,SI Expwy,Overnight,PM2.5,6.767266388,µg/m³
+Pre,Van Wyck,Evening rush,PM2.5,6.925524691,µg/m³
+Post,Van Wyck,Evening rush,PM2.5,5.481540698,µg/m³
+Pre,Van Wyck,Midday,PM2.5,7.613993832,µg/m³
+Post,Van Wyck,Midday,PM2.5,6.45346657,µg/m³
+Pre,Van Wyck,Evening rush,PM2.5,8.188664596,µg/m³
+Post,Van Wyck,Evening rush,PM2.5,7.172994186,µg/m³
+Pre,Van Wyck,Overnight,PM2.5,7.363042806,µg/m³
+Post,Van Wyck,Overnight,PM2.5,6.164956395,µg/m³

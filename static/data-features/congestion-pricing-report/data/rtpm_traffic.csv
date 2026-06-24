@@ -1,60 +1,60 @@
 Time,Site,TOD,Measure,Value,Units
-Pre,BQE,Evening rush,PM2.5,5.096839,µg/m³
-Pre,BQE,Midday,PM2.5,5.119871,µg/m³
-Pre,BQE,Morning rush,PM2.5,5.213895,µg/m³
-Pre,BQE,Overnight,PM2.5,5.920125,µg/m³
-Post,BQE,Evening rush,PM2.5,5.03642,µg/m³
-Post,BQE,Midday,PM2.5,4.988196,µg/m³
-Post,BQE,Morning rush,PM2.5,5.487614,µg/m³
-Post,BQE,Overnight,PM2.5,5.569267,µg/m³
-Pre,Cross Bronx,Evening rush,PM2.5,9.608575,µg/m³
-Pre,Cross Bronx,Midday,PM2.5,9.055835,µg/m³
-Pre,Cross Bronx,Morning rush,PM2.5,9.800363,µg/m³
-Pre,Cross Bronx,Overnight,PM2.5,9.756316,µg/m³
-Post,Cross Bronx,Evening rush,PM2.5,9.680052,µg/m³
-Post,Cross Bronx,Midday,PM2.5,8.764175,µg/m³
-Post,Cross Bronx,Morning rush,PM2.5,8.917199,µg/m³
-Post,Cross Bronx,Overnight,PM2.5,8.989738,µg/m³
-Pre,FDR,Evening rush,PM2.5,7.026848,µg/m³
-Pre,FDR,Midday,PM2.5,7.180136,µg/m³
-Pre,FDR,Morning rush,PM2.5,7.789939,µg/m³
-Pre,FDR,Overnight,PM2.5,7.786702,µg/m³
-Post,FDR,Evening rush,PM2.5,6.060536,µg/m³
-Post,FDR,Midday,PM2.5,5.87923,µg/m³
-Post,FDR,Morning rush,PM2.5,7.419408,µg/m³
-Post,FDR,Overnight,PM2.5,7.243236,µg/m³
-Pre,Trans-Manhattan,Evening rush,PM2.5,6.752067,µg/m³
-Pre,Trans-Manhattan,Midday,PM2.5,6.526514,µg/m³
-Pre,Trans-Manhattan,Morning rush,PM2.5,7.208702,µg/m³
-Pre,Trans-Manhattan,Overnight,PM2.5,6.916206,µg/m³
-Post,Trans-Manhattan,Evening rush,PM2.5,8.834953,µg/m³
-Post,Trans-Manhattan,Midday,PM2.5,9.155245,µg/m³
-Post,Trans-Manhattan,Morning rush,PM2.5,9.087897,µg/m³
-Post,Trans-Manhattan,Overnight,PM2.5,9.204984,µg/m³
-Pre,Deegan,Evening rush,PM2.5,7.459444,µg/m³
-Pre,Deegan,Midday,PM2.5,7.101932,µg/m³
-Pre,Deegan,Morning rush,PM2.5,8.063882,µg/m³
-Pre,Deegan,Overnight,PM2.5,7.957334,µg/m³
-Post,Deegan,Evening rush,PM2.5,7.271723,µg/m³
-Post,Deegan,Midday,PM2.5,7.073213,µg/m³
-Post,Deegan,Morning rush,PM2.5,7.371525,µg/m³
-Post,Deegan,Overnight,PM2.5,7.632364,µg/m³
-Pre,SI Expwy,Evening rush,PM2.5,6.710538,µg/m³
-Pre,SI Expwy,Midday,PM2.5,6.135404,µg/m³
-Pre,SI Expwy,Morning rush,PM2.5,5.692923,µg/m³
-Pre,SI Expwy,Overnight,PM2.5,7.395821,µg/m³
-Post,SI Expwy,Evening rush,PM2.5,6.522966,µg/m³
-Post,SI Expwy,Midday,PM2.5,6.123678,µg/m³
-Post,SI Expwy,Morning rush,PM2.5,6.054672,µg/m³
-Post,SI Expwy,Overnight,PM2.5,7.028706,µg/m³
-Pre,Van Wyck,Evening rush,PM2.5,6.522966,µg/m³
-Pre,Van Wyck,Midday,PM2.5,6.123678,µg/m³
-Pre,Van Wyck,Morning rush,PM2.5,6.054672,µg/m³
-Pre,Van Wyck,Overnight,PM2.5,7.028706,µg/m³
-Post,Van Wyck,Evening rush,PM2.5,5.745044,µg/m³
-Post,Van Wyck,Midday,PM2.5,5.745044,µg/m³
-Post,Van Wyck,Morning rush,PM2.5,6.234855,µg/m³
-Post,Van Wyck,Overnight,PM2.5,6.702117,µg/m³
+Pre,BQE,Evening rush,PM2.5,4.862931034,µg/m³
+Post,BQE,Evening rush,PM2.5,4.641363636,µg/m³
+Pre,BQE,Midday,PM2.5,5.598816739,µg/m³
+Post,BQE,Midday,PM2.5,5.577485795,µg/m³
+Pre,BQE,Evening rush,PM2.5,6.652758621,µg/m³
+Post,BQE,Evening rush,PM2.5,5.958068182,µg/m³
+Pre,BQE,Overnight,PM2.5,5.445766284,µg/m³
+Post,BQE,Overnight,PM2.5,5.152888258,µg/m³
+Pre,Cross Bronx,Evening rush,PM2.5,8.687642487,µg/m³
+Post,Cross Bronx,Evening rush,PM2.5,8.498429319,µg/m³
+Pre,Cross Bronx,Midday,PM2.5,9.788316062,µg/m³
+Post,Cross Bronx,Midday,PM2.5,8.898586387,µg/m³
+Pre,Cross Bronx,Evening rush,PM2.5,9.97234375,µg/m³
+Post,Cross Bronx,Evening rush,PM2.5,9.427565445,µg/m³
+Pre,Cross Bronx,Overnight,PM2.5,9.443170204,µg/m³
+Post,Cross Bronx,Overnight,PM2.5,8.94825784,µg/m³
+Pre,FDR,Evening rush,PM2.5,6.938606061,µg/m³
+Post,FDR,Evening rush,PM2.5,5.336627219,µg/m³
+Pre,FDR,Midday,PM2.5,8.052361427,µg/m³
+Post,FDR,Midday,PM2.5,7.158343195,µg/m³
+Pre,FDR,Evening rush,PM2.5,8.73429878,µg/m³
+Post,FDR,Evening rush,PM2.5,8.775828402,µg/m³
+Pre,FDR,Overnight,PM2.5,7.049123163,µg/m³
+Post,FDR,Overnight,PM2.5,6.219293827,µg/m³
+Pre,Trans-Manhattan,Evening rush,PM2.5,6.194230769,µg/m³
+Post,Trans-Manhattan,Evening rush,PM2.5,9.116028037,µg/m³
+Pre,Trans-Manhattan,Midday,PM2.5,7.178052885,µg/m³
+Post,Trans-Manhattan,Midday,PM2.5,9.16703271,µg/m³
+Pre,Trans-Manhattan,Evening rush,PM2.5,6.938365385,µg/m³
+Post,Trans-Manhattan,Evening rush,PM2.5,9.484252336,µg/m³
+Pre,Trans-Manhattan,Overnight,PM2.5,6.598184,µg/m³
+Post,Trans-Manhattan,Overnight,PM2.5,8.971806854,µg/m³
+Pre,Deegan,Evening rush,PM2.5,6.921450617,µg/m³
+Post,Deegan,Evening rush,PM2.5,6.821073446,µg/m³
+Pre,Deegan,Midday,PM2.5,8.264049844,µg/m³
+Post,Deegan,Midday,PM2.5,7.582846045,µg/m³
+Pre,Deegan,Evening rush,PM2.5,8.287125,µg/m³
+Post,Deegan,Evening rush,PM2.5,7.945480226,µg/m³
+Pre,Deegan,Overnight,PM2.5,7.333234837,µg/m³
+Post,Deegan,Overnight,PM2.5,7.212048023,µg/m³
+Pre,SI Expwy,Evening rush,PM2.5,6.294538462,µg/m³
+Post,SI Expwy,Evening rush,PM2.5,6.132868852,µg/m³
+Pre,SI Expwy,Midday,PM2.5,6.076531008,µg/m³
+Post,SI Expwy,Midday,PM2.5,6.179485597,µg/m³
+Pre,SI Expwy,Evening rush,PM2.5,8.8246875,µg/m³
+Post,SI Expwy,Evening rush,PM2.5,7.802083333,µg/m³
+Pre,SI Expwy,Overnight,PM2.5,6.967684347,µg/m³
+Post,SI Expwy,Overnight,PM2.5,6.767266388,µg/m³
+Pre,Van Wyck,Evening rush,PM2.5,6.925524691,µg/m³
+Post,Van Wyck,Evening rush,PM2.5,5.481540698,µg/m³
+Pre,Van Wyck,Midday,PM2.5,7.613993832,µg/m³
+Post,Van Wyck,Midday,PM2.5,6.45346657,µg/m³
+Pre,Van Wyck,Evening rush,PM2.5,8.188664596,µg/m³
+Post,Van Wyck,Evening rush,PM2.5,7.172994186,µg/m³
+Pre,Van Wyck,Overnight,PM2.5,7.363042806,µg/m³
+Post,Van Wyck,Overnight,PM2.5,6.164956395,µg/m³
 Pre,BQE,Evening rush,Traffic,6897.5,vehicles per hour
 Pre,BQE,Midday,Traffic,7131.563,vehicles per hour
 Pre,BQE,Morning rush,Traffic,7620.2,vehicles per hour
