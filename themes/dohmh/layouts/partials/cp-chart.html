@@ -1,35 +1,32 @@
 <h3 class="h3 cp-sticky-header">Did congestion pricing affect air quality in <span style="color:blue" id="site-name">SITE</span>?</h3>
 
-
-            
 <div class="row justify-content-center mt-2">
     <div class="col-2">
         <div class="sticky-top" style="top: 42px;">
-            <div
-            id="cpSiteButtons"
-            class="btn-group-vertical w-100"
-            style="gap: 6px;"
-            role="group"
-            aria-label="Choose site"
-            ></div>
+            <div id="cpSiteButtons" class="btn-group-vertical w-100" style="gap: 6px;" role="group" aria-label="Choose site"></div>
         </div>
     </div>
 
     <div class="col-10">
 
-        <div id="EJ_text" id="EJ-text-${id}" class="fs-rg"><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p></div>
+        <div id="EJ_text" id="EJ-text-${id}" class="fs-rg">
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+        </div>
 
         <hr class="my-1">
 
         <span class="fs-sm">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
-        
-        <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
 
-        <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="my-2 border-top border-bottom py-2"></div>
+            <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
 
-    </div> 
+            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="my-2 border-top border-bottom py-2"></div>
+
+    </div>
 </div>
-            
+
 
 <style>
     .vega-embed {
@@ -41,20 +38,20 @@
     const cp_container_id = "cpVis";
     const aq_container_id = "aqChangeVis";
     const text_container_id = "EJ_text"
-    
+
     // Buttons for sites
     const site_names = [
-    "Deegan",
-    "Cross Bronx",
-    "BQE",
-    "SI Expwy",
-    "FDR",
-    "Trans-Manhattan",
-    "Van Wyck",
-    "CRZ",
-    "Rest of City",
+        "Deegan",
+        "Cross Bronx",
+        "BQE",
+        "SI Expwy",
+        "FDR",
+        "Trans-Manhattan",
+        "Van Wyck",
+        "CRZ",
+        "Rest of City",
     ];
-    
+
     // Site-specific text content
     const siteText = {
         "Deegan": "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 1% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</ul>",
@@ -68,7 +65,7 @@
         "Rest of City": "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>",
         "Region": "<h3 class='h5'>The air quality in the rest of the region...</h3><p style='display:inline;'>At EPA monitoring sites on the map below, PM2.5, NO2 and O3 levels following the start of CRZ tolling were similar to levels prior to tolling.</p>",
     };
-    
+
     // Site titles for the main sites
     const siteTitles = {
         "Deegan": "Deegan",
@@ -81,10 +78,10 @@
         "CRZ": "CRZ",
         "Rest of City": "Rest of City"
     }
-        
+
     // Default selection
     let currentSite = "Deegan";
-    
+
     // Base spec
     const baseSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -97,7 +94,7 @@
             "font": "sans-serif",
             "baseline": "top",
             "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
-            "subtitleLineHeight": 24,            
+            "subtitleLineHeight": 24,
             "subtitleFontSize": 12,
             "subtitleColor": "#585858"
         },
@@ -110,8 +107,8 @@
                 "labelFontSize": 12,
                 "labelPadding": 20
             },
-            "view": {"stroke": null},
-            "axisX": {"labelAngle": 0, "domain": false},
+            "view": { "stroke": null },
+            "axisX": { "labelAngle": 0, "domain": false },
             "axisY": {
                 "domain": false,
                 "ticks": false,
@@ -133,28 +130,28 @@
         "data": {
             "url": "https://gist.githubusercontent.com/etorem/df7c76e6ed92093d7d4f5ace1cbcff52/raw/e9d75a0aa05c438f9959f37fadcd513610223b94/EJ_pollutants_CF_P_1_noCFbar.csv"
         },
-        "resolve": {"scale": {"y": "independent"}},
+        "resolve": { "scale": { "y": "independent" } },
         "transform": [
-        {"filter": "datum.Site === 'Mott Haven'"},
-        {"calculate": "datum.pred_type === 'predicted' ? 'Observed' : 'Hypothetical'", "as": "language"},
-        {
-            "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
-            "as": "UnitFmt"
-        },
-        {
-            "calculate": "datum.pollutant + ' (' + datum.UnitFmt + ')'",
-            "as": "ParameterWithUnit"
-        },
-        {
-            "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.average + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.average + ' ' + datum.UnitFmt",
-            "as": "ValueWithUnit"
-        },
-        {
-            "calculate": "datum.time === 'Pre' ? 'Before congestion pricing' : datum.time === 'Post' ? 'With congestion pricing' : datum.time",
-            "as": "TimeLabel"
-        }
+            { "filter": "datum.Site === 'Mott Haven'" },
+            { "calculate": "datum.pred_type === 'predicted' ? 'Observed' : 'Hypothetical'", "as": "language" },
+            {
+                "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
+                "as": "UnitFmt"
+            },
+            {
+                "calculate": "datum.pollutant + ' (' + datum.UnitFmt + ')'",
+                "as": "ParameterWithUnit"
+            },
+            {
+                "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.average + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.average + ' ' + datum.UnitFmt",
+                "as": "ValueWithUnit"
+            },
+            {
+                "calculate": "datum.time === 'Pre' ? 'Before congestion pricing' : datum.time === 'Post' ? 'With congestion pricing' : datum.time",
+                "as": "TimeLabel"
+            }
         ],
-        "facet": {"field": "ParameterWithUnit", "title": null},
+        "facet": { "field": "ParameterWithUnit", "title": null },
         "spec": {
             "width": 125,
             "height": 175,
@@ -174,152 +171,152 @@
                 }
             },
             "layer": [
-            {
-                "transform": [{"filter": {"field": "pred_type", "equal": "predicted"}}],
-                "mark": {
-                    "type": "rule",
-                    "strokeWidth": 6,
-                    "color": "black",
-                    "opacity": 0.2,
-                    "strokeCap": "round"
-                },
-                "encoding": {
-                    "y": {"field": "UC", "type": "quantitative"},
-                    "y2": {"field": "LC", "type": "quantitative"}
-                }
-            },
-            {
-                "mark": {"type": "line", "strokeDash": [2, 2]},
-                "encoding": {
-                    "y": {"field": "average", "type": "quantitative"}
-                }
-            },
-            {
-                "mark": {"type": "circle", "size": 150, "opacity": 1},
-                "encoding": {
-                    "y": {
-                        "field": "average",
-                        "type": "quantitative",
-                        "scale": {"domainMin": 0, "nice": false}
+                {
+                    "transform": [{ "filter": { "field": "pred_type", "equal": "predicted" } }],
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 6,
+                        "color": "black",
+                        "opacity": 0.2,
+                        "strokeCap": "round"
                     },
-                    "tooltip": [
-                    {"field": "Site", "title": "Site", "type": "nominal"},
-                    {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
-                    {"field": "language", "title": "Type", "type": "nominal"},
-                    {"field": "TimeLabel", "title": "Period", "type": "nominal"},
-                    {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
-                    ]
+                    "encoding": {
+                        "y": { "field": "UC", "type": "quantitative" },
+                        "y2": { "field": "LC", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "line", "strokeDash": [2, 2] },
+                    "encoding": {
+                        "y": { "field": "average", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "circle", "size": 150, "opacity": 1 },
+                    "encoding": {
+                        "y": {
+                            "field": "average",
+                            "type": "quantitative",
+                            "scale": { "domainMin": 0, "nice": false }
+                        },
+                        "tooltip": [
+                            { "field": "Site", "title": "Site", "type": "nominal" },
+                            { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
+                            { "field": "language", "title": "Type", "type": "nominal" },
+                            { "field": "TimeLabel", "title": "Period", "type": "nominal" },
+                            { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
+                        ]
+                    }
                 }
-            }
             ]
         },
         "columns": 4,
         "spacing": 50
     };
-    
-    const secondSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-    "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
-    "subtitlePadding": 10,
-    "fontWeight": "bold",
-    "anchor": "start",
-    "fontSize": 14,
-    "font": "sans-serif",
-    "baseline": "top",
-    "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
-    "subtitleLineHeight": 24,     
-    "subtitleFontSize": 12,
-    "subtitleColor": "#585858"
-  },
-  "config": {
-    "header": {
-      "labelAlign": "left",
-      "labelAnchor": "start",
-      "labelFont": "Helvetica",
-      "labelFontWeight": "bold",
-      "labelFontSize": 12
-    },
-    "view": {"stroke": null},
-    "axisX": {
-      "labelAngle": 0, 
-      "domain": false,
-      "ticks": false,
-      "tickCount": 3
-  
-      },
-    "axisY": {
-      "domain": false,
-      "orient": "left",
-      "title": null
-    }
-  },
-      "data": {
-        "url": "data/gistfile1.csv"
-      },
-      "resolve": {"scale": {"x": "independent"}},
-      "transform": [
-        {"filter": "datum.Site === 'Deegan'"},
-        { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance"}
-      ],
-      "facet": {"field": "pollutant", "title": null},
-      "spec": {
-        "width": 125,
-        "height": 35,
-        "encoding": {
-          "x": {"field": "estimate", "type": "quantitative", "title": null},
-          "color": {"value": "purple"}
-        },
-        "layer": [
-          {
-            "mark": {
-              "type": "rule",
-              "strokeWidth": 6,
-              "opacity": 0.3,
-              "strokeCap": "round"
-            },
-            "encoding": {
-              "x": {"field": "lower", "type": "quantitative"},
-              "x2": {"field": "upper", "type": "quantitative"}
-            }
-          },
-{
-  "mark": {"type": "rule", "color": "#888", "strokeWidth": 2, "strokeDash": [2,2]},
-  "encoding": {
-    "x": {"datum": 0, "type": "quantitative"}
-  }
-},
-          {
-            "mark": {"type": "circle", "size": 150, "opacity": 1},
-            "encoding": {
-              "x": {
-                "field": "estimate",
-                "type": "quantitative",
-                "scale": {"nice": false}
-              },
-              "tooltip": [
-                {"field": "Site", "title": "Site", "type": "nominal"},
-                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
-                {
-                  "field": "Estimate (95% CI)",
-                  "title": "Difference",
-                  "type": "nominal"
-                },
-                {"field": "Significance", "title": "Significance", "type": "nominal"}
-              ]
-            }
-          }
-        ]
-      },
-      "columns": 4,
-      "spacing": 55
 
-}
+    const secondSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
+            "subtitlePadding": 10,
+            "fontWeight": "bold",
+            "anchor": "start",
+            "fontSize": 14,
+            "font": "sans-serif",
+            "baseline": "top",
+            "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
+            "subtitleLineHeight": 24,
+            "subtitleFontSize": 12,
+            "subtitleColor": "#585858"
+        },
+        "config": {
+            "header": {
+                "labelAlign": "left",
+                "labelAnchor": "start",
+                "labelFont": "Helvetica",
+                "labelFontWeight": "bold",
+                "labelFontSize": 12
+            },
+            "view": { "stroke": null },
+            "axisX": {
+                "labelAngle": 0,
+                "domain": false,
+                "ticks": false,
+                "tickCount": 3
+
+            },
+            "axisY": {
+                "domain": false,
+                "orient": "left",
+                "title": null
+            }
+        },
+        "data": {
+            "url": "data/AQ_Post.csv"
+        },
+        "resolve": { "scale": { "x": "independent" } },
+        "transform": [
+            { "filter": "datum.Site === 'Deegan'" },
+            { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+        ],
+        "facet": { "field": "pollutant", "title": null },
+        "spec": {
+            "width": 125,
+            "height": 35,
+            "encoding": {
+                "x": { "field": "estimate", "type": "quantitative", "title": null },
+                "color": { "value": "purple" }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 6,
+                        "opacity": 0.3,
+                        "strokeCap": "round"
+                    },
+                    "encoding": {
+                        "x": { "field": "lower", "type": "quantitative" },
+                        "x2": { "field": "upper", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "rule", "color": "#888", "strokeWidth": 2, "strokeDash": [2, 2] },
+                    "encoding": {
+                        "x": { "datum": 0, "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "circle", "size": 150, "opacity": 1 },
+                    "encoding": {
+                        "x": {
+                            "field": "estimate",
+                            "type": "quantitative",
+                            "scale": { "nice": false }
+                        },
+                        "tooltip": [
+                            { "field": "Site", "title": "Site", "type": "nominal" },
+                            { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
+                            {
+                                "field": "Estimate (95% CI)",
+                                "title": "Difference",
+                                "type": "nominal"
+                            },
+                            { "field": "Significance", "title": "Significance", "type": "nominal" }
+                        ]
+                    }
+                }
+            ]
+        },
+        "columns": 4,
+        "spacing": 55
+
+    }
 
     function specForSite(site) {
-        
+
         console.log(">> specForSite:", site);
-        
+
         // structuredClone first; fallback to JSON clone
         const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
         const spec2 = typeof structuredClone === "function" ? structuredClone(secondSpec) : JSON.parse(JSON.stringify(secondSpec));
@@ -329,22 +326,22 @@
 
         return { spec, spec2 };
     }
-    
+
 
     async function draw(site) {
-        
+
         console.log(">> draw:", site);
-        
+
         const cpEl = document.getElementById(cp_container_id);
         const aqEl = document.getElementById(aq_container_id);
-        
+
         if (!cpEl || !aqEl) return;
-        
+
         cpEl.innerHTML = ""; // clear previous render
         aqEl.innerHTML = "";
-        
+
         const { spec, spec2 } = specForSite(site);
-        
+
         try {
             await vegaEmbed(cpEl, spec, {
                 actions: false,
@@ -370,28 +367,29 @@
             aqEl.style.display = "none";
         }
     }
-    
+
+
     function renderButtons() {
-        
+
         console.log(">> renderButtons");
-        
+
         const btnWrap = document.getElementById("cpSiteButtons");
-        
+
         if (!btnWrap) return;
-        
+
         btnWrap.innerHTML = "";
-        
+
         site_names.forEach((site) => {
-            
+
             const btn = document.createElement("button");
-            
+
             btn.type = "button";
             btn.id = site.replaceAll(" ", "-");
             btn.className = "btn btn-sm btn-outline-dark fs-xs";
             btn.textContent = site;
-            
+
             if (site === currentSite) btn.classList.add("active");
-            
+
             btn.addEventListener("click", async () => {
                 currentSite = site;
 
@@ -408,14 +406,14 @@
                 }
 
                 // Update site title in the header
-                const siteTitleElement = document.getElementById("site-name");    
+                const siteTitleElement = document.getElementById("site-name");
                 if (siteTitleElement) {
                     siteTitleElement.textContent = siteTitles[site] || site;
                 }
 
                 await draw(site);
             });
-            
+
             btnWrap.appendChild(btn);
         });
     }
@@ -433,28 +431,28 @@
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
-        
+
         console.log(">> DOMContentLoaded");
-        
+
         const el = document.getElementById(cp_container_id);
         if (!el) return;
-        
+
         const info = document.getElementById(text_container_id);
         if (!info) return;
-        
+
         // wait for vegaEmbed to be available
         if (typeof vegaEmbed !== "function") {
             console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
             return;
         }
-        
+
         // Set initial text for default site
         if (info && siteText[currentSite]) {
             info.innerHTML = siteText[currentSite];
         }
 
         // draw buttons
-        
+
         renderButtons();
 
 
@@ -464,16 +462,17 @@
                 window.datawrapper.embedAll();
             }
         }, 500);
-        
-    
+
+
         // Update site title in the header
-        const siteTitleElement = document.getElementById("site-name");    
+        const siteTitleElement = document.getElementById("site-name");
         if (siteTitleElement) {
             siteTitleElement.textContent = siteTitles[currentSite] || currentSite;
         }
-        
+
         // Draw the initial chart (with datawrapper) and wait for it to complete
         await draw(currentSite);
-        
+
     });
+    
 </script>

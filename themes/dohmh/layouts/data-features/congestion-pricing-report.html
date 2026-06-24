@@ -1,45 +1,51 @@
 {{- define "main" -}}
 
 <style>
-.cp-follow-wrap {
-    position: relative;
-}
-.cp-sticky-header.cp-is-fixed {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 1025;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-bottom: 2px solid #18a1cd;
-    padding: 6px 24px;
-    margin: 0;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
-    font-size: 0.9rem;
-    text-align: center;
-}
-/* Headers that only exist for the sticky bar */
-.cp-sticky-only {
-    visibility: hidden;
-}
-.cp-sticky-only.cp-is-fixed {
-    visibility: visible;
-}
-/* Site badge styles */
-.site-badge {
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.site-badge:hover {
-    opacity: 0.8;
-    transform: translateY(-2px);
-}
-.site-badge.active {
-    background-color: #18a1cd !important;
-    color: white !important;
-}
+    .cp-follow-wrap {
+        position: relative;
+    }
+
+    .cp-sticky-header.cp-is-fixed {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 1025;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border-bottom: 2px solid #18a1cd;
+        padding: 6px 24px;
+        margin: 0;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    /* Headers that only exist for the sticky bar */
+    .cp-sticky-only {
+        visibility: hidden;
+    }
+
+    .cp-sticky-only.cp-is-fixed {
+        visibility: visible;
+    }
+
+    /* Site badge styles */
+    .site-badge {
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .site-badge:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+    }
+
+    .site-badge.active {
+        background-color: #18a1cd !important;
+        color: white !important;
+    }
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -66,8 +72,8 @@
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
-                {{ with $src }}
-                    <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="">
+                {{ with $src -}}
+                <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="">
                 {{ end }}
             </div>
 
@@ -88,80 +94,92 @@
 
         <div class="col-md-8 col-sm-12 mx-auto my-1">
             <h2 class="h3 cp-sticky-header">Methods</h2>
-                <div class="row">
-                        <div class="col-md-6">
-                                {{- with .Resources.GetMatch "monitors.md" -}}
-                                    {{ .Content }}
-                                {{- end -}}
-                        </div>
-
-                        <div class="col-md-6">
-                                <iframe id="cpReportMap" src="embeds/congestion_pricing_monitoring.html" frameborder="no" style="width: 100%; height: 400px"></iframe>
-                                    <h3 class="h5">EJ-Designated Community Site Analysis</h3>
-                                    <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the Health Department increased monitoring. These areas are:
-                                        <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span> 
-                                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span>
-                                        <span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
-                                        <span class="badge badge-light badge-pill site-badge" data-site="si-exwy">SI Exwy</span>
-                                        <span class="badge badge-light badge-pill site-badge" data-site="fdr">FDR</span>
-                                        <span class="badge badge-light badge-pill site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
-                                        <span class="badge badge-light badge-pill site-badge" data-site="van-wyck">Van Wyck</span></p>
-                                        <div class="card card-header mb-1 fs-sm border">
-                                          <p id="site-info-box">Click on a site above to learn more about that community.</p>
-                                        </div>
-
-
-                        </div>
-
-            </div>
-        <!--    
-        <div class="row mt-4">
-            <div class="col-12">
-
-            </div>
-            {{- with .Resources.GetMatch "ej-sites.md" -}}
-            {{ .Content }}
-            {{- end -}}
-        </div>
-        -->
-
-        <div class="row mt-4">
-            <div class="col-12">
-                <h4>Analysis</h4>
-            </div>
-            <div class="col-md-6">
-                {{- with .Resources.GetMatch "analysis.md" -}}
+            <div class="row">
+                <div class="col-md-6">
+                    {{- with .Resources.GetMatch "monitors.md" -}}
                     {{ .Content }}
-                {{- end -}}
-            </div>
+                    {{- end -}}
+                </div>
 
-            <div class="col-md-6">
+                <div class="col-md-6">
+                    <iframe id="cpReportMap" src="embeds/congestion_pricing_monitoring.html" frameborder="no"
+                            style="width: 100%; height: 400px"></iframe>
+                    <h3 class="h5">EJ-Designated Community Site Analysis</h3>
+                    <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the
+                        Health Department increased monitoring. These areas are:
+                        <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span>
+                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span>
+                        <span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
+                        <span class="badge badge-light badge-pill site-badge" data-site="si-exwy">SI Exwy</span>
+                        <span class="badge badge-light badge-pill site-badge" data-site="fdr">FDR</span>
+                        <span class="badge badge-light badge-pill site-badge"
+                              data-site="trans-manhattan">Trans-Manhattan</span>
+                        <span class="badge badge-light badge-pill site-badge" data-site="van-wyck">Van Wyck</span>
+                    </p>
+                    <div class="card card-header mb-1 fs-sm border">
+                        <p id="site-info-box">Click on a site above to learn more about that community.</p>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!--    
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                
+                            </div>
+                            {{- with .Resources.GetMatch "ej-sites.md" -}}
+                            {{ .Content }}
+                            {{- end -}}
+                        </div>
+                    -->
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h4>Analysis</h4>
+                </div>
+                <div class="col-md-6">
+                    {{- with .Resources.GetMatch "analysis.md" -}}
+                    {{ .Content }}
+                    {{- end -}}
+                </div>
+
+                <div class="col-md-6">
                     <div style="width:100%;" id="explainChart" class="mt-2"></div>
 
-                <div class="asidebox border">
-                    <p class="fs-sm">
-                    The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we collected more data, and we are more confident in our calculated average.</p>
+                    <div class="asidebox border">
+                        <p class="fs-sm">
+                            The vertical bars show the Standard Error. Think of them as a reality check on the data: a
+                            shorter bar means we collected more data, and we are more confident in our calculated
+                            average.</p>
+                    </div>
+
+                    <div class="w-100 mt-4 mb-1" id="explainChart2" style="max-height: 50px!important;">Second chart
+                    </div>
+                    <div class="asidebox border">
+                        <p class="fs-sm">This shows the difference between the <span
+                                  style="color:blue;font-weight:bold">observed</span> and <span
+                                  style="color:darkorange;font-weight:bold">hypothetical</span> values after congestion
+                            pricing. The bar is the 95% confidence interval. If the bar crosses 0, it means that the
+                            difference between Observed and Hypothetical is not statistically significant: congestion
+                            pricing didn't cause an observable change in pollution levels.</p>
+                    </div>
                 </div>
 
-                <div class="w-100 mt-4 mb-1" id="explainChart2" style="max-height: 50px!important;">Second chart</div>
-                <div class="asidebox border">
-                    <p class="fs-sm">This shows the difference between the <span style="color:blue;font-weight:bold">observed</span> and <span style="color:darkorange;font-weight:bold">hypothetical</span> values after congestion pricing. The bar is the 95% confidence interval. If the bar crosses 0, it means that the difference between Observed and Hypothetical is not statistically significant: congestion pricing didn't cause an observable change in pollution levels.</p>
-                </div>
+
+
+                <!--
+                                <div class="col-md-6 mt-2 border-left">
+                                    <div class="asidebox border">
+                                        <p class="fs-sm">If the error bars overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
+                                        
+                                    </div>
+                                    <div id="explainChart2" style="width:100%;" class="mt-2"></div>
+                                </div>
+                            -->
+
             </div>
-
-  
-
-              <!--
-                <div class="col-md-6 mt-2 border-left">
-                  <div class="asidebox border">
-                    <p class="fs-sm">If the error bars overlap, then there's <strong>no significant difference</strong> from congestion pricing.</p>
-
-                  </div>
-                    <div id="explainChart2" style="width:100%;" class="mt-2"></div>
-                </div>
-              -->
-
-        </div>
 
 
 
@@ -176,12 +194,12 @@
     </div>
 
     <div class="row">
-      <div class="col-md-8 col-sm-12 mx-auto my-1">
-        {{ partial "cp-chart.html" . }}
+        <div class="col-md-8 col-sm-12 mx-auto my-1">
+            {{ partial "cp-chart.html" . }}
 
-      </div>
+        </div>
 
-        
+
     </div>
 
 
@@ -195,81 +213,80 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h3 class="cp-sticky-header cp-is-fixed">Air quality changes throughout the day</h3>
-            <p>We used realtime monitors to measure PM2.5 levels throughout the day, capturing daily patterns that filter-based integrated monitors can't. These realtime monitors measure PM2.5 levels every hour, giving us a detailed picture of how pollution changes throughout the day. These data let us examine correlations with traffic volumes.</p>
+            <p>We used realtime monitors to measure PM2.5 levels throughout the day, capturing daily patterns that
+                filter-based integrated monitors can't. These realtime monitors measure PM2.5 levels every hour, giving
+                us a detailed picture of how pollution changes throughout the day. These data let us examine
+                correlations with traffic volumes.</p>
 
-            <p>This chart shows us data from the <strong>BQE monitor</strong>. <a href="">Download time-of-day data for all sites</a>.</p>
+            <p>This chart shows us data from the <strong>BQE monitor</strong>. <a href="">Download time-of-day data for
+                    all sites</a>.</p>
 
-            <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light"><i class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
+            <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light"><i
+                       class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
 
-            {{ partial "cp-chart_TOD_traffic.html" . }}
-
-
-            <hr class="my-2">
-
+                {{ partial "cp-chart_TOD_traffic.html" . }}
 
 
-            <div class="row mt-4">
-              <div class="col-12">
-                <h3 class="cp-sticky-header cp-is-fixed">Pollution outside of NYC </h3>
-              </div>
-              <div class="col-md-6 fs-rg">
-                {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
+                <hr class="my-2">
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h3 class="cp-sticky-header cp-is-fixed">Pollution outside of NYC </h3>
+                    </div>
+                    <div class="col-md-6 fs-rg">
+                        {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
                         {{ .Content }}
-                    {{- end -}}
-              </div>
-              <div class="col-md-6">
-                  <iframe id="cpRegional" src="embeds/congestion_pricing_regional.html" frameborder="no" style="width: 100%; height: 400px"></iframe>
-              </div>
+                        {{- end -}}
+                    </div>
+                    <div class="col-md-6">
+                        <iframe id="cpRegional" src="embeds/congestion_pricing_regional.html" frameborder="no"
+                                style="width: 100%; height: 400px"></iframe>
+                    </div>
 
-              <div class="col-12 mt-2">
-                  {{ partial "cp-chart_crz.html" . }}
-              </div>
-              
-            </div>
+                    <div class="col-12 mt-2">
+                        {{ partial "cp-chart_crz.html" . }}
+                    </div>
+
+                </div>
         </div>
     </div>
 
 
-    
-
-
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <div class="row">
-                    <div class="col-10 mx-auto">
-                        <hr class="my-2 px-6" />
-                    </div>
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <hr class="my-2 px-6" />
                 </div>
             </div>
         </div>
+    </div>
 
     <!-- Conclusion -->
 
-        <div class="col-md-8 col-sm-12 mx-auto">
+    <div class="col-md-8 col-sm-12 mx-auto">
 
-            <h2 class="cp-sticky-header cp-is-fixed">Conclusion</h2>
-            <div class="mt-2">
+        <h2 class="cp-sticky-header cp-is-fixed">Conclusion</h2>
+        <div class="mt-2">
             {{- with .Resources.GetMatch "conclusion.md" -}}
-                {{ .Content }}
+            {{ .Content }}
             {{- end -}}
-            </div>
-
-
-
-
         </div>
 
-        <div class="row">
-            <div class="col-10 mx-auto">
-                <div class="row">
-                    <div class="col-10 mx-auto">
-                        <hr class="my-2 px-6" />
-                    </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <hr class="my-2 px-6" />
                 </div>
             </div>
         </div>
-
     </div>
+
+ </div>
 
     <!-- .row -->
 
@@ -282,371 +299,375 @@
 {{- end -}}
 
 {{ define "js_bot" }}
+
 <script>
-$(function() {
-    var $window = $(window);
-    var $headers = $('.cp-sticky-header');
 
-    if (!$headers.length) return;
+    $(function () {
+        var $window = $(window);
+        var $headers = $('.cp-sticky-header');
 
-    // Wrap each header to preserve layout height when it goes fixed
-    $headers.each(function() {
-        var $h = $(this);
-        $h.wrap('<div class="cp-follow-wrap" />');
-        $h.parent().height($h.outerHeight());
-    });
+        if (!$headers.length) return;
 
-    function recordPositions() {
-        $headers.each(function() {
+        // Wrap each header to preserve layout height when it goes fixed
+        $headers.each(function () {
             var $h = $(this);
-            $h.data('origTop', $h.parent().offset().top)
-              .data('origHeight', $h.outerHeight());
+            $h.wrap('<div class="cp-follow-wrap" />');
+            $h.parent().height($h.outerHeight());
         });
-    }
 
-    // Initial measurement
-    recordPositions();
+        function recordPositions() {
+            $headers.each(function () {
+                var $h = $(this);
+                $h.data('origTop', $h.parent().offset().top)
+                    .data('origHeight', $h.outerHeight());
+            });
+        }
 
-    // Re-measure after full page load and after async charts (Vega) have rendered
-    $(window).on('load', function() {
+        // Initial measurement
         recordPositions();
-        setTimeout(function() { recordPositions(); update(); }, 1000);
-    });
 
-    // Re-measure on resize
-    $(window).on('resize.cp-sticky', function() {
-        recordPositions();
+        // Re-measure after full page load and after async charts (Vega) have rendered
+        $(window).on('load', function () {
+            recordPositions();
+            setTimeout(function () { recordPositions(); update(); }, 1000);
+        });
+
+        // Re-measure on resize
+        $(window).on('resize.cp-sticky', function () {
+            recordPositions();
+            update();
+        });
+
+        function update() {
+            var scrollTop = $window.scrollTop();
+
+            $headers.each(function (i) {
+                var $h = $(this);
+                var origTop = $h.data('origTop');
+                var h = $h.data('origHeight');
+
+                if (scrollTop < origTop) {
+                    $h.removeClass('cp-is-fixed').css('top', '');
+                } else {
+                    var fixedTop = 0;
+                    var $next = $headers.eq(i + 1);
+
+                    if ($next.length) {
+                        var nextOrigTop = $next.data('origTop');
+                        if (scrollTop > nextOrigTop - h) {
+                            // Next header is displacing this one
+                            fixedTop = -(scrollTop - (nextOrigTop - h));
+                        }
+                    }
+
+                    $h.addClass('cp-is-fixed').css('top', fixedTop + 'px');
+                }
+            });
+        }
+
+        $window.on('scroll.cp-sticky', update);
         update();
     });
 
-    function update() {
-        var scrollTop = $window.scrollTop();
 
-        $headers.each(function(i) {
-            var $h = $(this);
-            var origTop = $h.data('origTop');
-            var h = $h.data('origHeight');
+    // Site information mapping
+    const siteInfo = {
+        'deegan': 'The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).',
+        'cross-bronx': 'The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).',
+        'bqe': 'The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).',
+        'si-exwy': 'The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
+        'fdr': 'The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).',
+        'trans-manhattan': 'The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).',
+        'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
+    };
 
-            if (scrollTop < origTop) {
-                $h.removeClass('cp-is-fixed').css('top', '');
-            } else {
-                var fixedTop = 0;
-                var $next = $headers.eq(i + 1);
+    // Map data-site values to proper site names for the map
+    const siteNameMapping = {
+        'deegan': 'Deegan',
+        'cross-bronx': 'Cross Bronx',
+        'bqe': 'BQE',
+        'si-exwy': 'SI Expwy',
+        'fdr': 'FDR',
+        'trans-manhattan': 'Trans-Manhattan',
+        'van-wyck': 'Van Wyck'
+    };
 
-                if ($next.length) {
-                    var nextOrigTop = $next.data('origTop');
-                    if (scrollTop > nextOrigTop - h) {
-                        // Next header is displacing this one
-                        fixedTop = -(scrollTop - (nextOrigTop - h));
-                    }
-                }
+    // Initialize badge click handlers
+    $(function () {
+        $('.site-badge').on('click', function () {
+            var siteKey = $(this).data('site');
+            var info = siteInfo[siteKey] || 'No information available for this site.';
+            $('#site-info-box').text(info);
 
-                $h.addClass('cp-is-fixed').css('top', fixedTop + 'px');
+            // Highlight the clicked badge
+            $('.site-badge').removeClass('active');
+            $(this).addClass('active');
+
+            // Zoom to site on the map
+            var siteName = siteNameMapping[siteKey];
+            var iframeElement = document.getElementById('cpReportMap');
+            if (iframeElement && iframeElement.contentWindow) {
+                iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: siteName }, '*');
             }
         });
-    }
 
-    $window.on('scroll.cp-sticky', update);
-    update();
-});
-
-
-// Site information mapping
-const siteInfo = {
-    'deegan': 'The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).',
-    'cross-bronx': 'The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).',
-    'bqe': 'The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).',
-    'si-exwy': 'The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
-    'fdr': 'The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).',
-    'trans-manhattan': 'The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).',
-    'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
-};
-
-// Map data-site values to proper site names for the map
-const siteNameMapping = {
-    'deegan': 'Deegan',
-    'cross-bronx': 'Cross Bronx',
-    'bqe': 'BQE',
-    'si-exwy': 'SI Expwy',
-    'fdr': 'FDR',
-    'trans-manhattan': 'Trans-Manhattan',
-    'van-wyck': 'Van Wyck'
-};
-
-// Initialize badge click handlers
-$(function() {
-    $('.site-badge').on('click', function() {
-        var siteKey = $(this).data('site');
-        var info = siteInfo[siteKey] || 'No information available for this site.';
-        $('#site-info-box').text(info);
-        
-        // Highlight the clicked badge
-        $('.site-badge').removeClass('active');
-        $(this).addClass('active');
-        
-        // Zoom to site on the map
-        var siteName = siteNameMapping[siteKey];
-        var iframeElement = document.getElementById('cpReportMap');
-        if (iframeElement && iframeElement.contentWindow) {
-            iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: siteName }, '*');
-        }
+        // Load Deegan site by default on page load
+        $('.site-badge[data-site="deegan"]').trigger('click');
     });
-    
-    // Load Deegan site by default on page load
-    $('.site-badge[data-site="deegan"]').trigger('click');
-});
 
-function drawExplainChart() {
-const spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": "container",
-  "height": 225,
-  "config": {
-    "header": {
-      "labelAlign": "left",
-      "labelAnchor": "start",
-      "labelFont": "Helvetica",
-      "labelFontWeight": "bold",
-      "labelFontSize": 12
-    },
-    "view": {"stroke": null},
-    "axisX": {"labelAngle": 0, "domain": false},
-    "axisY": {
-      "domain": false,
-      "ticks": false,
-      "tickCount": 4,
-      "orient": "left",
-      "title": null
-    }
-  },
-  "data": {
-    "values": [
-      {
-        "Var": "Hypothetical",
-        "Parameter": "PM2.5",
-        "Time": "Pre",
-        "Value": 7.82,
-        "Unit": "mcg/m3"
-      },
-      {
-        "Var": "Observed",
-        "Parameter": "PM2.5",
-        "Time": "Pre",
-        "Value": 7.82,
-        "LC": 8.5,
-        "UC": 7.14,
-        "Unit": "mcg/m3"
-      },
+    function drawExplainChart() {
+        const spec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "width": "container",
+            "height": 225,
+            "config": {
+                "header": {
+                    "labelAlign": "left",
+                    "labelAnchor": "start",
+                    "labelFont": "Helvetica",
+                    "labelFontWeight": "bold",
+                    "labelFontSize": 12
+                },
+                "view": { "stroke": null },
+                "axisX": { "labelAngle": 0, "domain": false },
+                "axisY": {
+                    "domain": false,
+                    "ticks": false,
+                    "tickCount": 4,
+                    "orient": "left",
+                    "title": null
+                }
+            },
+            "data": {
+                "values": [
+                    {
+                        "Var": "Hypothetical",
+                        "Parameter": "PM2.5",
+                        "Time": "Pre",
+                        "Value": 7.82,
+                        "Unit": "mcg/m3"
+                    },
+                    {
+                        "Var": "Observed",
+                        "Parameter": "PM2.5",
+                        "Time": "Pre",
+                        "Value": 7.82,
+                        "LC": 8.5,
+                        "UC": 7.14,
+                        "Unit": "mcg/m3"
+                    },
 
-      {
-        "Var": "Hypothetical",
-        "Parameter": "PM2.5",
-        "Time": "Post",
-        "Value": 7.14,
-        "Unit": "mcg/m3"
-      },
-      {
-        "Var": "Observed",
-        "Parameter": "PM2.5",
-        "Time": "Post",
-        "Value": 8.24,
-        "LC": 7.72,
-        "UC": 8.76,
-        "Unit": "mcg/m3"
-      }
-    ]
-  },
-  "resolve": {"scale": {"y": "shared"}},
-  "transform": [
-    {
-      "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
-      "as": "UnitFmt"
-    },
-    {
-      "calculate": "datum.Parameter + ' (' + datum.UnitFmt + ')'",
-      "as": "ParameterWithUnit"
-    },
-    {
-      "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Value + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Value + ' ' + datum.UnitFmt",
-      "as": "ValueWithUnit"
-    },
-    {
-      "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'After congestion pricing' : datum.Time",
-      "as": "TimeLabel"
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "TimeLabel",
-      "type": "nominal",
-      "sort": ["Before congestion pricing", "After congestion pricing"],
-      "title": null
-    }
-  },
-  "layer": [
-    {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 8,
-        "color": "black",
-        "opacity": 0.2,
-        "strokeCap": "round"
-      },
-      "encoding": {
-        "y": {"field": "UC", "type": "quantitative"},
-        "y2": {"field": "LC", "type": "quantitative"}
-      }
-    },
-    {
-      "mark": {"type": "line", "strokeDash": [2, 2]},
-      "encoding": {
-        "y": {"field": "Value", "type": "quantitative"},
-        "color": {
-          "field": "Var",
-              "legend": {
-      "orient": "top",
-      "title": "",
-      "labelFontSize": 14,
-      "labelFontWeight": "bold",
-      "labelColor": {
-        "expr": "datum.label"
-      }},
-          "scale": {
-            "domain": ["Observed", "Hypothetical"],
-            "range": ["blue", "darkorange"]
-          }
+                    {
+                        "Var": "Hypothetical",
+                        "Parameter": "PM2.5",
+                        "Time": "Post",
+                        "Value": 7.14,
+                        "Unit": "mcg/m3"
+                    },
+                    {
+                        "Var": "Observed",
+                        "Parameter": "PM2.5",
+                        "Time": "Post",
+                        "Value": 8.24,
+                        "LC": 7.72,
+                        "UC": 8.76,
+                        "Unit": "mcg/m3"
+                    }
+                ]
+            },
+            "resolve": { "scale": { "y": "shared" } },
+            "transform": [
+                {
+                    "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
+                    "as": "UnitFmt"
+                },
+                {
+                    "calculate": "datum.Parameter + ' (' + datum.UnitFmt + ')'",
+                    "as": "ParameterWithUnit"
+                },
+                {
+                    "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.Value + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.Value + ' ' + datum.UnitFmt",
+                    "as": "ValueWithUnit"
+                },
+                {
+                    "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'After congestion pricing' : datum.Time",
+                    "as": "TimeLabel"
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "TimeLabel",
+                    "type": "nominal",
+                    "sort": ["Before congestion pricing", "After congestion pricing"],
+                    "title": null
+                }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 8,
+                        "color": "black",
+                        "opacity": 0.2,
+                        "strokeCap": "round"
+                    },
+                    "encoding": {
+                        "y": { "field": "UC", "type": "quantitative" },
+                        "y2": { "field": "LC", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "line", "strokeDash": [2, 2] },
+                    "encoding": {
+                        "y": { "field": "Value", "type": "quantitative" },
+                        "color": {
+                            "field": "Var",
+                            "legend": {
+                                "orient": "top",
+                                "title": "",
+                                "labelFontSize": 14,
+                                "labelFontWeight": "bold",
+                                "labelColor": {
+                                    "expr": "datum.label"
+                                }
+                            },
+                            "scale": {
+                                "domain": ["Observed", "Hypothetical"],
+                                "range": ["blue", "darkorange"]
+                            }
+                        }
+                    }
+                },
+                {
+                    "mark": { "type": "circle", "size": 200 },
+                    "encoding": {
+                        "y": {
+                            "field": "Value",
+                            "type": "quantitative",
+                            "scale": { "domainMin": 0, "nice": false }
+                        },
+                        "color": { "field": "Var" },
+                        "tooltip": [
+                            { "field": "Parameter", "title": "Pollutant", "type": "nominal" },
+                            { "field": "Var", "title": "Type", "type": "nominal" },
+                            { "field": "TimeLabel", "title": "Period", "type": "nominal" },
+                            { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
+                        ]
+                    }
+                },
+                {
+                    "data": {
+                        "values": [
+                            {
+                                "TimeLabel": "After congestion pricing",
+                                "y": 9.6,
+                                "label": "",
+                                "textColor": "black"
+                            },
+                            {
+                                "TimeLabel": "After congestion pricing",
+                                "y": 6,
+                                "label": "",
+                                "textColor": "black"
+                            }
+                        ]
+                    },
+                    "mark": {
+                        "type": "text",
+                        "dx": -100,
+                        "lineBreak": "\n",
+                        "align": "left",
+                        "baseline": "middle",
+                        "fontSize": 14,
+                        "fontWeight": "normal"
+                    },
+                    "encoding": {
+                        "x": { "field": "TimeLabel", "type": "nominal" },
+                        "y": { "field": "y", "type": "quantitative" },
+                        "text": { "field": "label" },
+                        "color": {
+                            "field": "textColor",
+                            "type": "nominal",
+                            "scale": null,
+                            "legend": false
+                        }
+                    }
+                }
+            ]
+        };
+        vegaEmbed('#explainChart', spec, { actions: false, renderer: 'canvas' });
+
+        const spec2 = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "config": {
+                "view": { "stroke": null },
+                "axisX": { "labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3 },
+                "axisY": { "domain": false, "orient": "left", "title": null }
+            },
+            "data": {
+                "url": "data/AQ_Post.csv"
+            },
+            "transform": [
+                { "filter": "datum.Site === 'Deegan'" },
+                { "filter": "datum.pollutant === 'BC'" },
+                { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+            ],
+            "width": "container",
+            "height": 35,
+            "encoding": {
+                "x": { "field": "estimate", "type": "quantitative", "title": null },
+                "color": { "value": "purple" }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 6,
+                        "opacity": 0.3,
+                        "strokeCap": "round"
+                    },
+                    "encoding": {
+                        "x": { "field": "lower", "type": "quantitative" },
+                        "x2": { "field": "upper", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "rule",
+                        "color": "#888",
+                        "strokeWidth": 2,
+                        "strokeDash": [2, 2]
+                    },
+                    "encoding": { "x": { "datum": 0, "type": "quantitative" } }
+                },
+                {
+                    "mark": { "type": "circle", "size": 150, "opacity": 1 },
+                    "encoding": {
+                        "x": {
+                            "field": "estimate",
+                            "type": "quantitative",
+                            "scale": { "nice": false }
+                        },
+                        "tooltip": [
+                            { "field": "Site", "title": "Site", "type": "nominal" },
+                            { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
+                            {
+                                "field": "Estimate (95% CI)",
+                                "title": "Difference",
+                                "type": "nominal"
+                            }
+                        ]
+                    }
+                }
+            ]
         }
-      }
-    },
-    {
-      "mark": {"type": "circle", "size": 200},
-      "encoding": {
-        "y": {
-          "field": "Value",
-          "type": "quantitative",
-          "scale": {"domainMin": 0, "nice": false}
-        },
-        "color": {"field": "Var"},
-        "tooltip": [
-          {"field": "Parameter", "title": "Pollutant", "type": "nominal"},
-          {"field": "Var", "title": "Type", "type": "nominal"},
-          {"field": "TimeLabel", "title": "Period", "type": "nominal"},
-          {"field": "ValueWithUnit", "title": "Average", "type": "nominal"}
-        ]
-      }
-    },
-{
-  "data": {
-    "values": [
-      {
-        "TimeLabel": "After congestion pricing",
-        "y": 9.6,
-        "label": "",
-        "textColor": "black"
-      },
-      {
-        "TimeLabel": "After congestion pricing",
-        "y": 6,
-        "label": "",
-        "textColor": "black"
-      }
-    ]
-  },
-  "mark": {
-    "type": "text",
-    "dx": -100,
-    "lineBreak": "\n",
-    "align": "left",
-    "baseline": "middle",
-    "fontSize": 14,
-    "fontWeight": "normal"
-  },
-  "encoding": {
-    "x": {"field": "TimeLabel", "type": "nominal"},
-    "y": {"field": "y", "type": "quantitative"},
-    "text": {"field": "label"},
-    "color": {
-      "field": "textColor",
-      "type": "nominal",
-      "scale": null,
-      "legend": false
+
+        vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
+
     }
-  }
-}
-  ]
-};
-vegaEmbed('#explainChart', spec, { actions: false, renderer: 'canvas' });
 
-const spec2 = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "config": {
-    "view": {"stroke": null},
-    "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
-    "axisY": {"domain": false, "orient": "left", "title": null}
-  },
-  "data": {
-    "url": "data/gistfile1.csv"
-  },
-  "transform": [
-    {"filter": "datum.Site === 'Deegan'"},
-    {"filter": "datum.pollutant === 'BC'"},
-    {"calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance"}
-  ],
-  "width": "container",
-  "height": 35,
-  "encoding": {
-    "x": {"field": "estimate", "type": "quantitative", "title": null},
-    "color": {"value": "purple"}
-  },
-  "layer": [
-    {
-      "mark": {
-        "type": "rule",
-        "strokeWidth": 6,
-        "opacity": 0.3,
-        "strokeCap": "round"
-      },
-      "encoding": {
-        "x": {"field": "lower", "type": "quantitative"},
-        "x2": {"field": "upper", "type": "quantitative"}
-      }
-    },
-    {
-      "mark": {
-        "type": "rule",
-        "color": "#888",
-        "strokeWidth": 2,
-        "strokeDash": [2, 2]
-      },
-      "encoding": {"x": {"datum": 0, "type": "quantitative"}}
-    },
-    {
-      "mark": {"type": "circle", "size": 150, "opacity": 1},
-      "encoding": {
-        "x": {
-          "field": "estimate",
-          "type": "quantitative",
-          "scale": {"nice": false}
-        },
-        "tooltip": [
-          {"field": "Site", "title": "Site", "type": "nominal"},
-          {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
-          {
-            "field": "Estimate (95% CI)",
-            "title": "Difference",
-            "type": "nominal"
-          }
-        ]
-      }
-    }
-  ]
-}
-
-vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
-
-}
-
-drawExplainChart();
+    drawExplainChart();
 
 </script>
+
 {{ end }}
