@@ -102,8 +102,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <iframe id="cpReportMap" src="embeds/congestion_pricing_monitoring.html" frameborder="no"
-                            style="width: 100%; height: 400px"></iframe>
+                        {{ partial "cp-map-monitoring.html" . }}
                     <h3 class="h5">EJ-Designated Community Site Analysis</h3>
                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the
                         Health Department increased monitoring. These areas are:
@@ -239,8 +238,7 @@
                         {{- end -}}
                     </div>
                     <div class="col-md-6">
-                        <iframe id="cpRegional" src="embeds/congestion_pricing_regional.html" frameborder="no"
-                                style="width: 100%; height: 400px"></iframe>
+                        {{ partial "cp-map-regional.html" . }}
                     </div>
 
                     <div class="col-12 mt-2">
@@ -405,9 +403,8 @@
 
             // Zoom to site on the map
             var siteName = siteNameMapping[siteKey];
-            var iframeElement = document.getElementById('cpReportMap');
-            if (iframeElement && iframeElement.contentWindow) {
-                iframeElement.contentWindow.postMessage({ action: 'zoomToSite', siteName: siteName }, '*');
+            if (typeof window.cpReportZoomToSite === 'function') {
+                window.cpReportZoomToSite(siteName);
             }
         });
 
