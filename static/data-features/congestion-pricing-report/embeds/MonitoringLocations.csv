@@ -1,0 +1,113 @@
+﻿SiteID,SiteType,Latitude,Longitude,Group
+01S000000001,Traffic Counter,40.80911,-73.928824,Mott Haven
+04S000000003,Traffic Counter,40.847353,-73.934027,Hamilton Bridge
+04S000000002,Traffic Counter,40.722282,-73.974417,FDR
+04S000000001,Traffic Counter,40.710899,-73.980074,Williamsburg Bridge
+04S000000004,Traffic Counter,40.709472,-73.993081,Manhattan Bridge
+05S000000002,Traffic Counter,40.706203,-73.818162,Van Wyck
+06S000000002,Traffic Counter,40.629432,-74.145606,Port Richmond
+06S000000001,Traffic Counter,40.607881,-74.08713,SI Expwy
+02S000000001,Traffic Counter,40.705511,-73.958846,BQE
+"	
+010003000000",Traffic Counter,40.844967,-73.906263,Cross Bronx Expy
+7191,Integrated Monitor,40.68033,-73.8799,NA
+11712,Integrated Monitor,40.81481,-73.95768,NA
+10953,Integrated Monitor,40.78105,-73.9092,NA
+7384,Integrated Monitor,40.6859,-73.91166,NA
+9927,Integrated Monitor,40.7565,-73.99561,NA
+11605,Integrated Monitor,40.80994,-73.9032,NA
+952,Integrated Monitor,40.54816,-74.18042,NA
+3162,Integrated Monitor,40.5971,-73.96774,NA
+12398,Integrated Monitor,40.84606,-73.86861,NA
+8984,Integrated Monitor,40.7296,-73.8411,NA
+5424,Integrated Monitor,40.64013,-73.95414,NA
+8259,Integrated Monitor,40.71076,-74.01016,NA
+9303,Integrated Monitor,40.73529,-73.7578,NA
+10515,Integrated Monitor,40.77218,-73.93233,NA
+13371,Integrated Monitor,40.89148,-73.90791,NA
+6642,Integrated Monitor,40.6652,-73.78041,NA
+9151,Integrated Monitor,40.73385,-73.94982,NA
+8664-EJ,Integrated Monitor,40.72232,-73.93536,NA
+5408-EJ,Integrated Monitor,40.639914,-74.010684,NA
+10228,Integrated Monitor,40.76415,-73.9571,NA
+10027,Integrated Monitor,40.74226,-73.98879,NA
+6404,Integrated Monitor,40.65879,-73.91587,NA
+12528-EJ,Integrated Monitor,40.85009,-73.84734,NA
+5531,Integrated Monitor,40.64303,-74.07163,NA
+10023,Integrated Monitor,40.75531,-73.99487,NA
+11888,Integrated Monitor,40.82353,-73.95858,NA
+6712-EJ,Integrated Monitor,40.665607,-73.865989,NA
+12264,Integrated Monitor,40.84114,-73.90726,NA
+12260,Integrated Monitor,40.83785,-73.92097,NA
+4698,Integrated Monitor,40.62605,-74.0245,NA
+11813-EJ,Integrated Monitor,40.81878,-73.80678,NA
+9931B,Integrated Monitor,40.76463,-73.97702,NA
+7980-EJ,Integrated Monitor,40.70129,-73.9447,NA
+9748,Integrated Monitor,40.74965,-73.93776,NA
+11389,Integrated Monitor,40.80209,-73.96547,NA
+4298,Integrated Monitor,40.61834,-73.95767,NA
+9929,Integrated Monitor,40.75612,-73.98937,NA
+10072,Integrated Monitor,40.75967,-73.82447,NA
+228,Integrated Monitor,40.51055,-74.23717,NA
+11464-EJ,Integrated Monitor,40.804045,-73.934414,NA
+11103,Integrated Monitor,40.79175,-73.94094,NA
+2616,Integrated Monitor,40.58541,-73.8959,NA
+9836,Integrated Monitor,40.75343,-73.97105,NA
+13385,Integrated Monitor,40.89092,-73.8574,NA
+12456-EJ,Integrated Monitor,40.84705,-73.88215,NA
+4937,Integrated Monitor,40.63236,-74.18393,NA
+2596,Integrated Monitor,40.58558,-73.96881,NA
+2496,Integrated Monitor,40.58262,-73.82596,NA
+11899,Integrated Monitor,40.82381,-73.9151,NA
+7155,Integrated Monitor,40.68082,-74.00401,NA
+8464,Integrated Monitor,40.71556,-73.96089,NA
+9373,Integrated Monitor,40.74078,-73.86559,NA
+8550,Integrated Monitor,40.7166,-73.99742,NA
+7766,Integrated Monitor,40.69611,-73.98914,NA
+8312,Integrated Monitor,40.71047,-73.82222,NA
+8745,Integrated Monitor,40.72299,-73.99611,NA
+5390,Integrated Monitor,40.6393,-74.07548,NA
+3649-EJ,Integrated Monitor,40.603649,-73.752951,NA
+6485-EJ,Integrated Monitor,40.662231,-73.99801,NA
+10853,Integrated Monitor,40.78343,-73.96811,NA
+12900,Integrated Monitor,40.86758,-73.82069,NA
+11548,Integrated Monitor,40.80862,-73.87201,NA
+10343,Integrated Monitor,40.76636,-73.88711,NA
+7868,Integrated Monitor,40.69897,-73.98579,NA
+6689,Integrated Monitor,40.66693,-73.94706,NA
+6747,Integrated Monitor,40.66689,-73.74119,NA
+10024,Integrated Monitor,40.75881,-73.99736,NA
+2818,Integrated Monitor,40.5893,-74.18737,NA
+3156,Integrated Monitor,40.5963,-73.9892,NA
+7165,Integrated Monitor,40.68161,-73.97109,NA
+8869,Integrated Monitor,40.72622,-73.90026,NA
+9254,Integrated Monitor,40.73702,-73.93281,NA
+13516,Integrated Monitor,40.89536,-73.8797,NA
+11774,Integrated Monitor,40.81791,-73.94751,NA
+5007,Integrated Monitor,40.63185,-73.92933,NA
+8159,Integrated Monitor,40.70642,-74.01506,NA
+12757,Integrated Monitor,40.86071,-73.90809,NA
+2269,Integrated Monitor,40.58056044,-74.15177419,NA
+9285,Integrated Monitor,40.73710716,-73.82155565,NA
+7974,Integrated Monitor,40.70292945,-73.96486109,BQE
+8555,Integrated Monitor,40.71852252,-73.97937985,FDR
+12441,Integrated Monitor,40.849181,-73.937962,Hamilton Bridge
+7717,Integrated Monitor,40.69307988,-73.8056653,Van Wyck
+4664-EJ,Integrated Monitor,40.627484,-74.144312,SI Expwy
+11532,Integrated Monitor,40.80954866,-73.92896235,Mott Haven
+12449,Integrated Monitor,40.847658,-73.908112,Cross Bronx Expy
+36061NY09929,PM2.5 Real Time Monitor,40.755082,-73.990415,NA
+36061NY10130,PM2.5 Real Time Monitor,40.761234,-73.963886,NA
+36061NY08552,PM2.5 Real Time Monitor,40.718073,-73.986059,NA
+36081NY09285,PM2.5 Real Time Monitor,40.737107,-73.821556,NA
+36005NY12387,PM2.5 Real Time Monitor,40.845167,-73.906143,Cross Bronx Expy
+36061NY08454,PM2.5 Real Time Monitor,40.71651,-73.997004,NA
+36061NY09734,PM2.5 Real Time Monitor,40.75069,-73.98783,NA
+36005NY11790,PM2.5 Real Time Monitor,40.819092,-73.885659,NA
+36005NY11534,PM2.5 Real Time Monitor,40.806486,-73.922487,Mott Haven
+36061NY08653,PM2.5 Real Time Monitor,40.722288,-73.974651,FDR
+36081NY07615,PM2.5 Real Time Monitor,40.690155,-73.80908,Van Wyck
+36085NY03820,PM2.5 Real Time Monitor,40.609209,-74.151182,SI Expwy
+36047NY07974,PM2.5 Real Time Monitor,40.702798,-73.960824,BQE
+36061NY12380,PM2.5 Real Time Monitor,40.846544,-73.933023,Hamilton Bridge
+36081NY08198,PM2.5 Real Time Monitor,40.70574257,-73.88626892,NA
