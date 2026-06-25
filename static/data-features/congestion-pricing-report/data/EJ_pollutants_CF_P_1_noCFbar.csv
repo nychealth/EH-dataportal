@@ -95,22 +95,22 @@ counterfactual,Pre,PM2.5,,,6.73,FDR,mcg/m3
 counterfactual,Post,PM2.5,,,6.79,FDR,mcg/m3
 predicted,Pre,PM2.5,7.39,6.07,6.73,FDR,mcg/m3
 predicted,Post,PM2.5,7.44,6.24,6.84,FDR,mcg/m3
-counterfactual,Pre,BC,,,0.54,Rest of City,mcg/m3
-counterfactual,Post,BC,,,0.46,Rest of City,mcg/m3
-predicted,Pre,BC,0.58,0.5,0.54,Rest of City,mcg/m3
-predicted,Post,BC,0.48,0.41,0.44,Rest of City,mcg/m3
-counterfactual,Pre,NO2,,,16.42,Rest of City,ppb
-counterfactual,Post,NO2,,,16.82,Rest of City,ppb
-predicted,Pre,NO2,17.1,15.74,16.42,Rest of City,ppb
-predicted,Post,NO2,16.91,15.64,16.28,Rest of City,ppb
-counterfactual,Pre,NO,,,11.73,Rest of City,ppb
-counterfactual,Post,NO,,,8.66,Rest of City,ppb
-predicted,Pre,NO,12.41,11.05,11.73,Rest of City,ppb
-predicted,Post,NO,11.33,10.05,10.69,Rest of City,ppb
-counterfactual,Pre,PM2.5,,,6.93,Rest of City,mcg/m3
-counterfactual,Post,PM2.5,,,7.05,Rest of City,mcg/m3
-predicted,Pre,PM2.5,7.6,6.26,6.93,Rest of City,mcg/m3
-predicted,Post,PM2.5,7.4,6.19,6.79,Rest of City,mcg/m3
+counterfactual,Pre,BC,,,0.54,Rest of the City,mcg/m3
+counterfactual,Post,BC,,,0.46,Rest of the City,mcg/m3
+predicted,Pre,BC,0.58,0.5,0.54,Rest of the City,mcg/m3
+predicted,Post,BC,0.48,0.41,0.44,Rest of the City,mcg/m3
+counterfactual,Pre,NO2,,,16.42,Rest of the City,ppb
+counterfactual,Post,NO2,,,16.82,Rest of the City,ppb
+predicted,Pre,NO2,17.1,15.74,16.42,Rest of the City,ppb
+predicted,Post,NO2,16.91,15.64,16.28,Rest of the City,ppb
+counterfactual,Pre,NO,,,11.73,Rest of the City,ppb
+counterfactual,Post,NO,,,8.66,Rest of the City,ppb
+predicted,Pre,NO,12.41,11.05,11.73,Rest of the City,ppb
+predicted,Post,NO,11.33,10.05,10.69,Rest of the City,ppb
+counterfactual,Pre,PM2.5,,,6.93,Rest of the City,mcg/m3
+counterfactual,Post,PM2.5,,,7.05,Rest of the City,mcg/m3
+predicted,Pre,PM2.5,7.6,6.26,6.93,Rest of the City,mcg/m3
+predicted,Post,PM2.5,7.4,6.19,6.79,Rest of the City,mcg/m3
 counterfactual,Pre,BC,,,0.82,CRZ,mcg/m3
 counterfactual,Post,BC,,,0.72,CRZ,mcg/m3
 predicted,Pre,BC,0.86,0.78,0.82,CRZ,mcg/m3
