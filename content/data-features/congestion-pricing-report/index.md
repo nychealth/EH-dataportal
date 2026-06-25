@@ -67,7 +67,7 @@ This is the most complete evaluation of air quality to date, using deeply detail
   </div>
     <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>At EJ sites, congestion pricing didn't increase the measured pollution</strong>. This is good news for those concerned that tolling would make air quality worse at boundary neighborhoods. Pollutions levels aren't higher than what they would have been if the program never happened.</p>
+      <p><strong>At EJ sites, congestion pricing didn't increase the measured pollution</strong>. This is good news for those concerned that tolling would make air quality worse at boundary neighborhoods. Pollution levels aren't higher than what they would have been if the program never happened.</p>
     </div>
   </div>
   <div class="col-md-4 card content-card">
