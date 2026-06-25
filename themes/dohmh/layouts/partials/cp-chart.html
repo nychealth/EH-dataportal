@@ -1,4 +1,4 @@
-<h3 class="h3 cp-sticky-header">Did congestion pricing affect air quality near the <span style="color:blue" id="site-name">SITE</span>?</h3>
+<h3 class="h3 cp-sticky-header">Did congestion pricing affect air quality <span id="site-prep">near the</span> <span style="color:blue" id="site-name">SITE</span>?</h3>
 
 <div class="row justify-content-center mt-2">
     <div class="col-2">
@@ -38,6 +38,18 @@
     const cp_container_id = "cpVis";
     const aq_container_id = "aqChangeVis";
     const text_container_id = "EJ_text"
+
+    // Sites that are zones/areas use "in the"; highway corridor sites use "near the"
+    const IN_THE_SITES = new Set(["CRZ", "Rest of the City"]);
+
+    // Updates both the preposition span and the site name span in the heading
+    function updateSiteHeading(site) {
+        const prepEl = document.getElementById("site-prep");
+        if (prepEl) prepEl.textContent = IN_THE_SITES.has(site) ? "in the" : "near the";
+
+        const nameEl = document.getElementById("site-name");
+        if (nameEl) nameEl.textContent = siteTitles[site] || site;
+    }
 
     // Buttons for sites
     const site_names = [
@@ -128,7 +140,7 @@
             }
         },
         "data": {
-            "url": "https://gist.githubusercontent.com/etorem/df7c76e6ed92093d7d4f5ace1cbcff52/raw/e9d75a0aa05c438f9959f37fadcd513610223b94/EJ_pollutants_CF_P_1_noCFbar.csv"
+            "url": "data/EJ_pollutants_CF_P_1_noCFbar.csv"
         },
         "resolve": { "scale": { "y": "independent" } },
         "transform": [
@@ -405,11 +417,8 @@
                     textElement.innerHTML = siteText[site];
                 }
 
-                // Update site title in the header
-                const siteTitleElement = document.getElementById("site-name");
-                if (siteTitleElement) {
-                    siteTitleElement.textContent = siteTitles[site] || site;
-                }
+                // Update preposition and site name in the heading
+                updateSiteHeading(site);
 
                 await draw(site);
             });
@@ -464,11 +473,8 @@
         }, 500);
 
 
-        // Update site title in the header
-        const siteTitleElement = document.getElementById("site-name");
-        if (siteTitleElement) {
-            siteTitleElement.textContent = siteTitles[currentSite] || currentSite;
-        }
+        // Update preposition and site name in the heading
+        updateSiteHeading(currentSite);
 
         // Draw the initial chart (with datawrapper) and wait for it to complete
         await draw(currentSite);
