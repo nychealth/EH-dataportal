@@ -100,16 +100,17 @@
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
             "text": "Change in air quality after congestion pricing",
-            "subtitlePadding": 10,
+            "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
             "fontWeight": "bold",
             "anchor": "start",
             "fontSize": 14,
-            "font": "sans-serif",
             "baseline": "top",
-            "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
-            "subtitleLineHeight": 24,
+            "subtitlePadding": 10,
+            "subtitleLineHeight": 14,
             "subtitleFontSize": 12,
-            "subtitleColor": "#585858"
+            "font": "Helvetica",
+            "subtitleFont": "Helvetica",
+            "subtitleColor": "#585858",
         },
         "config": {
             "header": {
@@ -231,15 +232,14 @@
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
             "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
-            "subtitlePadding": 10,
-            "fontWeight": "bold",
-            "anchor": "start",
-            "fontSize": 14,
-            "font": "sans-serif",
-            "baseline": "top",
             "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
-            "subtitleLineHeight": 24,
+            "fontSize": 14,
+            "baseline": "top",
+            "subtitlePadding": 10,
+            "subtitleLineHeight": 14,
             "subtitleFontSize": 12,
+            "font": "Helvetica",
+            "subtitleFont": "Helvetica",
             "subtitleColor": "#585858"
         },
         "config": {
