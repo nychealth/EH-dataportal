@@ -7,13 +7,13 @@
 </style>
 
 <div class="row justify-content-center mt-2">
-    <div class="col-2">
+    <div class="col-12 col-md-2">
         <div class="sticky-top" style="top: 42px;">
             <div id="cpSiteButtons" class="btn-group-vertical w-100" style="gap: 6px;" role="group" aria-label="Choose site"></div>
         </div>
     </div>
 
-    <div class="col-10">
+    <div class="col-12 col-md-10">
 
         <div id="EJ_text" id="EJ-text-${id}" class="fs-rg">
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
@@ -341,6 +341,59 @@
     }
 
 
+    // Word-wrap a string to fit `maxPx` at the given font size, returning an array
+    // of lines (Vega-Lite renders each array element as its own title line). A long
+    // single-line title/subtitle otherwise stretches the whole canvas wider than
+    // its container, regardless of how narrow the plotting panels are. The 0.6
+    // factor is a conservative average glyph width (em) for sans-serif.
+    function wrapText(text, maxPx, fontSize) {
+        const charsPerLine = Math.max(8, Math.floor(maxPx / (fontSize * 0.6)));
+        const lines = [];
+        let line = "";
+        for (const word of text.split(" ")) {
+            const candidate = line ? line + " " + word : word;
+            if (candidate.length > charsPerLine && line) {
+                lines.push(line);
+                line = word;
+            } else {
+                line = candidate;
+            }
+        }
+        if (line) lines.push(line);
+        return lines;
+    }
+
+    // Wrap a spec's title + subtitle text to the container width. On a wide
+    // (desktop) container the text fits on one line, so the spec is unchanged.
+    function wrapTitle(spec, avail) {
+        if (!spec.title) return;
+        const tw = avail - 10;
+        if (typeof spec.title.text === "string") {
+            spec.title.text = wrapText(spec.title.text, tw, spec.title.fontSize || 14);
+        }
+        if (spec.title.subtitle != null) {
+            const sub = Array.isArray(spec.title.subtitle) ? spec.title.subtitle : [spec.title.subtitle];
+            const out = [];
+            sub.forEach((s) => s ? out.push(...wrapText(s, tw, spec.title.subtitleFontSize || 12)) : out.push(""));
+            spec.title.subtitle = out;
+        }
+    }
+
+    // Vega-Lite's width:"container" doesn't work on faceted charts, so size the
+    // panels ourselves. Only ever shrinks below the authored width (125) and drops
+    // 4 columns to 2 below Bootstrap's sm breakpoint (576px) — so wide/desktop
+    // layouts are unchanged while narrow screens reflow to a 2-column grid.
+    function fitFacet(spec, el) {
+        const avail = (el && el.clientWidth) || 600;
+        const cols = avail < 576 ? 2 : 4;
+        const spacing = spec.spacing || 0;
+        const w = Math.floor((avail - spacing * (cols - 1)) / cols);
+        spec.columns = cols;
+        spec.spec.width = Math.max(60, Math.min(w, 125));
+        wrapTitle(spec, avail);
+    }
+
+
     async function draw(site) {
 
         console.log(">> draw:", site);
@@ -359,6 +412,10 @@
         aqEl.innerHTML = "";
 
         const { spec, spec2 } = specForSite(site);
+
+        // Size both faceted charts to their containers before embedding
+        fitFacet(spec, cpEl);
+        fitFacet(spec2, aqEl);
 
         try {
             await vegaEmbed(cpEl, spec, {
@@ -391,50 +448,55 @@
     }
 
 
+    // Shared handler called by both the button click and the select change event
+    async function handleSiteChange(site) {
+        currentSite = site;
+        const textElement = document.getElementById(text_container_id);
+        if (textElement && siteText[site]) textElement.innerHTML = siteText[site];
+        updateSiteHeading(site);
+        await draw(site);
+    }
+
+    // Below md (768px) render a native <select> dropdown; above render the
+    // vertical button sidebar. Re-called on resize when crossing the breakpoint.
     function renderButtons() {
-
-        console.log(">> renderButtons");
-
         const btnWrap = document.getElementById("cpSiteButtons");
-
         if (!btnWrap) return;
-
         btnWrap.innerHTML = "";
 
-        site_names.forEach((site) => {
+        if (window.innerWidth < 768) {
+            const sel = document.createElement("select");
+            sel.className = "form-control form-control-sm mb-2";
+            sel.setAttribute("aria-label", "Choose site");
 
-            const btn = document.createElement("button");
-
-            btn.type = "button";
-            btn.id = site.replaceAll(" ", "-");
-            btn.className = "btn btn-sm btn-outline-dark fs-xs";
-            btn.textContent = site;
-
-            if (site === currentSite) btn.classList.add("active");
-
-            btn.addEventListener("click", async () => {
-                currentSite = site;
-
-                // toggle active state
-                [...btnWrap.querySelectorAll("button")].forEach((b) =>
-                    b.classList.remove("active")
-                );
-                btn.classList.add("active");
-
-                // Update text content for the site
-                const textElement = document.getElementById(text_container_id);
-                if (textElement && siteText[site]) {
-                    textElement.innerHTML = siteText[site];
-                }
-
-                // Update preposition and site name in the heading
-                updateSiteHeading(site);
-
-                await draw(site);
+            site_names.forEach((site) => {
+                const opt = document.createElement("option");
+                opt.value = site;
+                opt.textContent = site;
+                if (site === currentSite) opt.selected = true;
+                sel.appendChild(opt);
             });
 
-            btnWrap.appendChild(btn);
-        });
+            sel.addEventListener("change", () => handleSiteChange(sel.value));
+            btnWrap.appendChild(sel);
+        } else {
+            site_names.forEach((site) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.id = site.replaceAll(" ", "-");
+                btn.className = "btn btn-sm btn-outline-dark fs-xs";
+                btn.textContent = site;
+                if (site === currentSite) btn.classList.add("active");
+
+                btn.addEventListener("click", async () => {
+                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    await handleSiteChange(site);
+                });
+
+                btnWrap.appendChild(btn);
+            });
+        }
     }
 
     function addAccordionlisteners() {
@@ -489,6 +551,25 @@
         // Draw the initial chart (with datawrapper) and wait for it to complete
         await draw(currentSite);
 
+        // Re-render charts and controls when the container width changes.
+        // Also re-render controls when crossing the 768px breakpoint so the
+        // select/button swap happens live. Guards on width so vertical-only
+        // resizes (mobile address bar) don't trigger needless re-renders.
+        let cpLastW = el.clientWidth, cpLastMobile = window.innerWidth < 768, cpResizeT;
+        window.addEventListener("resize", () => {
+            const w = el.clientWidth;
+            const mobile = window.innerWidth < 768;
+            if (w === cpLastW) return;
+            const crossedBreakpoint = mobile !== cpLastMobile;
+            cpLastW = w;
+            cpLastMobile = mobile;
+            clearTimeout(cpResizeT);
+            cpResizeT = setTimeout(() => {
+                if (crossedBreakpoint) renderButtons();
+                draw(currentSite);
+            }, 200);
+        });
+
     });
-    
+
 </script>

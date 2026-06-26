@@ -46,6 +46,12 @@
         background-color: #18a1cd !important;
         color: white !important;
     }
+
+    /* Override the global .vega-embed { height: 500px } rule from __portal-custom.scss
+       so the methodology explanation charts size to their canvas content. */
+    #explainChart, #explainChart2 { height: auto; }
+
+
 </style>
 
 <article class="container-fluid" id="skip-header-target">

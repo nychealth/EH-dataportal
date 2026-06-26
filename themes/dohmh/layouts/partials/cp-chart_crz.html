@@ -464,14 +464,44 @@
         "spacing": 40
     };
 
+    // Size the three hconcat panels to the container on mobile only. The first
+    // panel carries a wide site-label axis; subtract an allowance for it, divide
+    // the rest among the panels, shrink the label limit, and wrap the long title
+    // (a long single-line title otherwise stretches the canvas). On desktop the
+    // authored spec is left untouched.
+    function fitCRZ(spec, el) {
+        const avail = (el && el.clientWidth) || 700;
+        if (avail >= 576) return; // desktop: leave the authored spec unchanged
+        const spacing = spec.spacing || 40;
+        const labelAllow = 100; // y-label column on the first panel
+        const margin = 24;      // slack for per-panel x-axis label overhang
+        const panels = spec.hconcat.length;
+        const w = Math.floor((avail - labelAllow - spacing * (panels - 1) - margin) / panels);
+        const panelW = Math.max(40, Math.min(w, 200));
+        spec.hconcat.forEach((p) => { p.width = panelW; });
+
+        const firstAxis = spec.hconcat[0].encoding?.y?.axis;
+        if (firstAxis) firstAxis.labelLimit = 80;
+
+        // wrapTitle is defined in cp-chart.html (included earlier on this page);
+        // skip gracefully if this partial is ever used on its own.
+        if (typeof wrapTitle === "function") wrapTitle(spec, avail);
+    }
+
     async function draw_crz() {
         const el = document.getElementById(CP_CONTAINER2_ID);
         if (!el) return;
 
         el.innerHTML = "";
 
+        // Clone so the base spec stays pristine across resize re-renders
+        const spec = typeof structuredClone === "function"
+            ? structuredClone(baseSpec_1)
+            : JSON.parse(JSON.stringify(baseSpec_1));
+        fitCRZ(spec, el);
+
         try {
-            await vegaEmbed(el, baseSpec_1, {
+            await vegaEmbed(el, spec, {
                 actions: true,
                 renderer: "canvas",
             });
@@ -491,6 +521,19 @@
         }
 
         await draw_crz();
+
+        // Re-render on real width changes so the chart re-fits its container.
+        // Guarded on width so vertical-only mobile resizes don't re-render.
+        const crzEl = document.getElementById(CP_CONTAINER2_ID);
+        let crzLastW = crzEl ? crzEl.clientWidth : null, crzResizeT;
+        window.addEventListener("resize", () => {
+            if (!crzEl) return;
+            const w = crzEl.clientWidth;
+            if (w === crzLastW) return;
+            crzLastW = w;
+            clearTimeout(crzResizeT);
+            crzResizeT = setTimeout(() => draw_crz(), 200);
+        });
     });
-    
+
 </script>
