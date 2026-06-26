@@ -112,14 +112,14 @@
                     <h3 class="h5 mt-1">EJ-Designated Community Site Analysis</h3>
                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the
                         Health Department increased monitoring. These areas are:
-                        <span class="badge badge-light badge-pill site-badge" data-site="deegan">Deegan</span>
-                        <span class="badge badge-light badge-pill site-badge" data-site="cross-bronx">Cross Bronx</span>
-                        <span class="badge badge-light badge-pill site-badge" data-site="bqe">BQE</span>
-                        <span class="badge badge-light badge-pill site-badge" data-site="si-exwy">SI Exwy</span>
-                        <span class="badge badge-light badge-pill site-badge" data-site="fdr">FDR</span>
-                        <span class="badge badge-light badge-pill site-badge"
+                        <span class="badge badge-light site-badge" data-site="deegan">Deegan</span>
+                        <span class="badge badge-light site-badge" data-site="cross-bronx">Cross Bronx</span>
+                        <span class="badge badge-light site-badge" data-site="bqe">BQE</span>
+                        <span class="badge badge-light site-badge" data-site="si-exwy">SI Exwy</span>
+                        <span class="badge badge-light site-badge" data-site="fdr">FDR</span>
+                        <span class="badge badge-light site-badge"
                               data-site="trans-manhattan">Trans-Manhattan</span>
-                        <span class="badge badge-light badge-pill site-badge" data-site="van-wyck">Van Wyck</span>
+                        <span class="badge badge-light site-badge" data-site="van-wyck">Van Wyck</span>
                     </p>
                     <div class="card card-header mb-1 fs-sm border">
                         <p id="site-info-box">Click on a site above to learn more about that community.</p>
@@ -210,9 +210,9 @@
                 correlations with traffic volumes. Notice that the time of day when the traffic is highest is not always the time of day that PM2.5 is highest.  This is because other sources of PM2.5, like building heating and restaurant cooking, contribute to the levels of PM2.5 in the air.</p>
 
             {{/* #tod-site-name is updated dynamically by renderTODButtons() in cp-chart_TOD_traffic.html */}}
-            <p>This chart shows us data from the <strong><span id="tod-site-name">Deegan</span> monitor</strong>.</p>
+            <p>This chart shows us data from the <strong><span id="tod-site-name">Deegan</span></strong> monitor.</p>
 
-            <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light"><i
+            <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light fs-xs"><i
                        class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
 
                 {{ partial "cp-chart_TOD_traffic.html" . }}
