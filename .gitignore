@@ -65,3 +65,6 @@ hugo145-server-help.txt
 
 # don't track workspace settings
 .vscode/
+
+# don't track playwright files
+.playwright-mcp/
