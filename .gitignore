@@ -73,3 +73,6 @@ documents/improvements-gemini-3.1-pro.md
 documents/improvements-grok-code-fast-1.md
 documents/improvements-opus-4.6.md
 documents/improvements-gpt-5.4.md
+
+# don't track playwright files
+.playwright-mcp/
