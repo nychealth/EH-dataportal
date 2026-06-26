@@ -1,5 +1,11 @@
 <h3 class="h3 cp-sticky-header">Did congestion pricing affect air quality <span id="site-prep">near the</span> <span style="color:blue" id="site-name">SITE</span>?</h3>
 
+<style>
+    /* Override the global .vega-embed { height: 500px } rule from __portal-custom.scss
+       so these containers size to their canvas content instead of a fixed height. */
+    #cpVis, #aqChangeVis { height: auto; }
+</style>
+
 <div class="row justify-content-center mt-2">
     <div class="col-2">
         <div class="sticky-top" style="top: 42px;">
@@ -22,17 +28,12 @@
 
             <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
 
-            <div id="aqChangeVis" style="width: 100%; max-width: 1000px; height: 100px;" class="my-2 border-top border-bottom py-2"></div>
+            <div id="aqChangeVis" style="width: 100%; max-width: 1000px;" class="my-2 border-top border-bottom py-2"></div>
 
     </div>
 </div>
 
 
-<style>
-    .vega-embed {
-        height: 200px !important;
-    }
-</style>
 
 <script>
     const cp_container_id = "cpVis";
@@ -349,7 +350,12 @@
 
         if (!cpEl || !aqEl) return;
 
-        cpEl.innerHTML = ""; // clear previous render
+        // Lock heights before clearing so the page doesn't jump while containers
+        // are momentarily empty between renders
+        cpEl.style.minHeight = cpEl.offsetHeight + "px";
+        if (aqEl.offsetHeight > 0) aqEl.style.minHeight = aqEl.offsetHeight + "px";
+
+        cpEl.innerHTML = "";
         aqEl.innerHTML = "";
 
         const { spec, spec2 } = specForSite(site);
@@ -359,6 +365,8 @@
                 actions: false,
                 renderer: "canvas",
             });
+            // Release the lock now that the new chart is in place
+            cpEl.style.minHeight = "";
         } catch (err) {
             console.error("CP Vega render failed:", err);
             cpEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
@@ -371,12 +379,14 @@
                     actions: true,
                     renderer: "canvas",
                 });
+                aqEl.style.minHeight = "";
             } catch (err) {
                 console.error("AQ change Vega render failed:", err);
                 aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
             }
         } else {
             aqEl.style.display = "none";
+            aqEl.style.minHeight = "";
         }
     }
 

@@ -6,6 +6,12 @@
     Data source: data/rtpm_traffic.csv
 */}}
 
+<style>
+    /* Override the global .vega-embed { height: 500px } rule from __portal-custom.scss
+       so this container sizes to its canvas content instead of a fixed height. */
+    #cpVisTOD { height: auto; }
+</style>
+
 <!-- Two-column layout: site buttons (left) + chart (right) -->
 <div class="row justify-content-center mt-2">
     <div class="col-2">
@@ -19,12 +25,6 @@
     </div>
 </div>
 
-<style>
-    /* Constrain Vega embed height to prevent oversized canvases */
-    .vega-embed {
-        height: 200px !important;
-    }
-</style>
 
 <script>
     // ID of the chart container div; referenced throughout for rendering and clearing
@@ -204,11 +204,15 @@
         const el = document.getElementById(TOD_CONTAINER_ID);
         if (!el) return;
 
-        // Clear the previous render before embedding a new one
+        // Lock the container's current height before clearing so the page doesn't
+        // jump when innerHTML empties the element momentarily
+        el.style.minHeight = el.offsetHeight + "px";
         el.innerHTML = "";
 
         try {
             await vegaEmbed(el, specForTODSite(site), { actions: false, renderer: "canvas" });
+            // Release the lock now that the new chart is in place
+            el.style.minHeight = "";
         } catch (err) {
             console.error("TOD Traffic Vega render failed:", err);
             el.innerHTML =
