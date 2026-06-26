@@ -155,9 +155,7 @@
 
                     <div class="asidebox border">
                         <p class="fs-sm">
-                            The vertical bars show the Standard Error. Think of them as a reality check on the data: a
-                            shorter bar means we collected more data, and we are more confident in our calculated
-                            average.</p>
+                            The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we are more confident in our calculated average.</p>
                     </div>
 
                     <div class="w-100 mt-4 mb-1" id="explainChart2" style="max-height: 50px!important;">Second chart
@@ -221,11 +219,10 @@
             <p>We used realtime monitors to measure PM2.5 levels throughout the day, capturing daily patterns that
                 filter-based integrated monitors can't. These realtime monitors measure PM2.5 levels every hour, giving
                 us a detailed picture of how pollution changes throughout the day. These data let us examine
-                correlations with traffic volumes.</p>
+                correlations with traffic volumes. Notice that the time of day when the traffic is highest is not always the time of day that PM2.5 is highest.  This is because other sources of PM2.5, like building heating and restaurant cooking, contribute to the levels of PM2.5 in the air.</p>
 
             {{/* #tod-site-name is updated dynamically by renderTODButtons() in cp-chart_TOD_traffic.html */}}
-            <p>This chart shows us data from the <strong><span id="tod-site-name">BQE</span> monitor</strong>. <a href="">Download time-of-day data for
-                    all sites</a>.</p>
+            <p>This chart shows us data from the <strong><span id="tod-site-name">BQE</span> monitor</strong>.</p>
 
             <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light"><i
                        class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
