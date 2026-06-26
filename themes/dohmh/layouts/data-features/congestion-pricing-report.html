@@ -117,8 +117,7 @@
                         <span class="badge badge-light site-badge" data-site="bqe">BQE</span>
                         <span class="badge badge-light site-badge" data-site="si-exwy">SI Exwy</span>
                         <span class="badge badge-light site-badge" data-site="fdr">FDR</span>
-                        <span class="badge badge-light site-badge"
-                              data-site="trans-manhattan">Trans-Manhattan</span>
+                        <span class="badge badge-light site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
                         <span class="badge badge-light site-badge" data-site="van-wyck">Van Wyck</span>
                     </p>
                     <div class="card card-header mb-1 fs-sm border">
@@ -212,7 +211,7 @@
             {{/* #tod-site-name is updated dynamically by renderTODButtons() in cp-chart_TOD_traffic.html */}}
             <p>This chart shows us data from the <strong><span id="tod-site-name">Deegan</span></strong> monitor.</p>
 
-            <span class="fs-sm mb-2">Data source: <span class="badge badge-pill badge-light fs-xs"><i
+            <span class="fs-md mb-2">Data source: <span class="badge badge-pill badge-light fs-sm" style="color: #ae3400"><i
                        class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
 
                 {{ partial "cp-chart_TOD_traffic.html" . }}
@@ -401,7 +400,7 @@
         });
 
         // Load Deegan site by default on page load
-        $('.site-badge[data-site="deegan"]').trigger('click');
+        {{/*  $('.site-badge[data-site="deegan"]').trigger('click');  */}}
     });
 
     function drawExplainChart() {
