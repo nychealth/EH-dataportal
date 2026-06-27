@@ -510,6 +510,17 @@
     const CP_STATE_COLORS = { "New York": "#2b6cb0", "New Jersey": "#276749", "Connecticut": "#9b2c2c" };
     const CP_STATE_DOMAIN = Object.keys(CP_STATE_COLORS);
     const CP_STATE_RANGE = Object.values(CP_STATE_COLORS);
+
+    // Create a Leaflet map with the shared CARTO Voyager basemap. Called only
+    // from the map blocks (after Leaflet's L is loaded); markers, legends, and
+    // handlers stay in each block since the two maps diverge there.
+    function createCpMap(id, options, center, zoom) {
+        const map = L.map(id, options).setView(center, zoom);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+        return map;
+    }
 </script>
 
 <!-- moved from partials/cp-map-monitoring.html -->
@@ -527,11 +538,7 @@
 
         mapElement.dataset.mapInitialized = 'true';
 
-        var map = L.map('cpReportMap', { minZoom: 8, maxZoom: 16 }).setView([40.715554, -74.0026642], 10);
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        }).addTo(map);
+        var map = createCpMap('cpReportMap', { minZoom: 8, maxZoom: 16 }, [40.715554, -74.0026642], 10);
 
         var legend = L.control({ position: 'topright' });
         legend.onAdd = function () {
@@ -657,11 +664,7 @@
 
         mapElement.dataset.mapInitialized = 'true';
 
-        var map = L.map('cpRegional', { minZoom: 2, maxZoom: 16 }).setView([41.118333, -73.336667], 8);
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        }).addTo(map);
+        var map = createCpMap('cpRegional', { minZoom: 2, maxZoom: 16 }, [41.118333, -73.336667], 8);
 
         var regionalDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/RegionalSites.csv" }}';
 
