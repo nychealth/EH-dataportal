@@ -48,10 +48,84 @@
     }
 
     /* Override the global .vega-embed { height: 500px } rule from __portal-custom.scss
-       so the methodology explanation charts size to their canvas content. */
-    #explainChart, #explainChart2 { height: auto; }
+       so the chart containers size to their canvas content instead of a fixed height. */
+    #cpVis, #aqChangeVis, #cpVisTOD, #explainChart, #explainChart2 { height: auto; }
 
 
+</style>
+
+<style>
+    #cpReportMap {
+        width: 100%;
+        height: 400px;
+    }
+
+    #cpReportMap img.traffic {
+        filter: hue-rotate(0deg);
+    }
+
+    #cpReportMap img.integrated-monitor {
+        filter: hue-rotate(230deg);
+    }
+
+    #cpReportMap img.PM-monitor {
+        filter: hue-rotate(90deg);
+    }
+
+    #cpReportMap .legend {
+        background: white;
+        opacity: 0.9;
+        padding: 11px;
+        border-radius: 5px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        font-size: 13px;
+        line-height: 1.6;
+        min-width: 200px;
+        color: #212529;
+    }
+
+    #cpReportMap .legend span {
+        color: inherit;
+    }
+
+    #cpReportMap .legend-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    #cpReportMap .legend-color {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #cpReportMap .legend-color.traffic {
+        background-color: #ac22ae;
+    }
+
+    #cpReportMap .legend-color.integrated-monitor {
+        background-color: #007153;
+    }
+
+    #cpReportMap .legend-color.pm-monitor {
+        background-color: #ae3400;
+    }
+
+    #cpReportMap .legend-color.crz {
+        background-color: #2a72d8;
+    }
+</style>
+
+<style>
+    #cpRegional {
+        width: 100%;
+        height: 400px;
+    }
 </style>
 
 <article class="container-fluid" id="skip-header-target">
@@ -287,6 +361,1539 @@
 {{- end -}}
 
 {{ define "js_bot" }}
+
+<!-- moved from partials/cp-map-monitoring.html -->
+<script>
+    (function () {
+        if (typeof L !== 'object' || typeof d3 !== 'object') {
+            console.error('Leaflet or D3 is not available for cpReportMap.');
+            return;
+        }
+
+        var mapElement = document.getElementById('cpReportMap');
+        if (!mapElement || mapElement.dataset.mapInitialized === 'true') {
+            return;
+        }
+
+        mapElement.dataset.mapInitialized = 'true';
+
+        var map = L.map('cpReportMap', { minZoom: 8, maxZoom: 16 }).setView([40.715554, -74.0026642], 10);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+
+        var legend = L.control({ position: 'topright' });
+        legend.onAdd = function () {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = [
+                '<div class="legend-item"><div class="legend-color traffic"></div><span>Traffic Counter</span></div>',
+                '<div class="legend-item"><div class="legend-color integrated-monitor"></div><span>Integrated Monitor</span></div>',
+                '<div class="legend-item"><div class="legend-color pm-monitor"></div><span>PM2.5 Real Time Monitor</span></div>',
+                '<div class="legend-item"><div class="legend-color crz"></div><span>CRZ</span></div>'
+            ].join('');
+            return div;
+        };
+        legend.addTo(map);
+
+        var cpAreaGeoJSON = {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: [
+                            [-73.9928192, 40.7733783], [-73.9817404, 40.7686493], [-73.9819419, 40.7682679],
+                            [-73.9741867, 40.7649115], [-73.9731796, 40.765293], [-73.9589786, 40.7589613],
+                            [-73.9609929, 40.7560623], [-73.9688488, 40.7469066], [-73.9717695, 40.7440833],
+                            [-73.9728774, 40.7423283], [-73.9731796, 40.7409547], [-73.9732803, 40.7397337],
+                            [-73.9749925, 40.7366812], [-73.9738851, 40.7309571], [-73.9720722, 40.729507],
+                            [-73.9722736, 40.7267593], [-73.9751944, 40.7214926], [-73.9755972, 40.7176759],
+                            [-73.9766044, 40.7153094], [-73.9781151, 40.7127139], [-73.9791223, 40.7114924],
+                            [-73.9967476, 40.7093547], [-74.0039091, 40.7062205], [-74.0080385, 40.7033192],
+                            [-74.0100528, 40.7023266], [-74.013345, 40.7014514], [-74.0155607, 40.7023676],
+                            [-74.0165679, 40.7049636], [-74.0186829, 40.7048109], [-74.0188844, 40.7068723],
+                            [-74.0179779, 40.7079412], [-74.0188844, 40.708323], [-74.0176758, 40.7121402],
+                            [-74.0166686, 40.7120638], [-74.016165, 40.7133617], [-74.0173736, 40.7138197],
+                            [-74.0167693, 40.7185526], [-74.0129421, 40.7183236], [-74.0110132, 40.7285625],
+                            [-74.0099352, 40.739836], [-74.0093961, 40.7439201], [-74.007779, 40.7480856],
+                            [-74.0089649, 40.7509441], [-74.0023886, 40.7606623], [-74.0012027, 40.7618055],
+                            [-73.9957044, 40.7679295], [-73.9939795, 40.7699707], [-73.9927936, 40.7733998],
+                            [-73.9927936, 40.7734815]
+                        ]
+                    }
+                }
+            ]
+        };
+
+        var cpAreaLayer = L.geoJSON(cpAreaGeoJSON, {
+            style: {
+                color: '#2a72d8',
+                weight: 4,
+                opacity: 0.8,
+                dashArray: '6,4'
+            }
+        }).addTo(map);
+
+        if (cpAreaLayer.getBounds && cpAreaLayer.getBounds().isValid()) {
+            map.fitBounds(cpAreaLayer.getBounds(), { padding: [20, 20] });
+        }
+        cpAreaLayer.bringToFront();
+
+        var siteCoordinates = {
+            'Deegan': { lat: 40.80911, lng: -73.928824, zoom: 16 },
+            'Cross Bronx': { lat: 40.844967, lng: -73.906263, zoom: 16 },
+            'BQE': { lat: 40.705511, lng: -73.958846, zoom: 16 },
+            'Van Wyck': { lat: 40.690155, lng: -73.80908, zoom: 16 },
+            'SI Expwy': { lat: 40.609209, lng: -74.151182, zoom: 14 },
+            'FDR': { lat: 40.722282, lng: -73.974417, zoom: 14 },
+            'Trans-Manhattan': { lat: 40.847353, lng: -73.934027, zoom: 16 }
+        };
+
+        window.cpReportZoomToSite = function (siteName) {
+            if (!siteCoordinates[siteName]) {
+                return;
+            }
+
+            var coords = siteCoordinates[siteName];
+            map.setView([coords.lat, coords.lng], coords.zoom);
+        };
+
+        var iconUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/map-pin-hollow_P.svg" }}';
+        var monitoringDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/MonitoringLocations.csv" }}';
+
+        var markerIcon = L.icon({
+            iconUrl: iconUrl,
+            iconSize: [32, 32],
+            iconAnchor: [16, 32],
+            popupAnchor: [-3, -30]
+        });
+
+        d3.csv(monitoringDataUrl).then(function (data) {
+            var sites = data.filter(function (site) {
+                return site.SiteType !== 'Retired Site';
+            });
+
+            sites.forEach(function (siteData) {
+                var site = L.marker([Number(siteData.Latitude), Number(siteData.Longitude)], { icon: markerIcon })
+                    .bindPopup('Site ID: ' + siteData.SiteID + '<br><strong>Type: </strong>' + siteData.SiteType + '<br>Group: ' + siteData.Group)
+                    .addTo(map);
+
+                site.on('click', function (event) {
+                    map.setView(event.latlng, 13);
+                });
+
+                if (!site._icon) {
+                    return;
+                }
+
+                if (siteData.SiteType === 'Traffic Counter') {
+                    site._icon.classList.add('traffic');
+                } else if (siteData.SiteType === 'Integrated Monitor') {
+                    site._icon.classList.add('integrated-monitor');
+                } else if (siteData.SiteType === 'PM2.5 Real Time Monitor') {
+                    site._icon.classList.add('PM-monitor');
+                }
+            });
+
+            map.invalidateSize();
+        });
+    })();
+</script>
+
+<!-- moved from partials/cp-map-regional.html -->
+<script>
+    (function () {
+        if (typeof L !== 'object' || typeof d3 !== 'object') {
+            console.error('Leaflet or D3 is not available for cpRegional.');
+            return;
+        }
+
+        var mapElement = document.getElementById('cpRegional');
+        if (!mapElement || mapElement.dataset.mapInitialized === 'true') {
+            return;
+        }
+
+        mapElement.dataset.mapInitialized = 'true';
+
+        var map = L.map('cpRegional', { minZoom: 2, maxZoom: 16 }).setView([41.118333, -73.336667], 8);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+
+        var regionalDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/RegionalSites.csv" }}';
+        var stateColorMap = {
+            'New York': '#2b6cb0',
+            'New Jersey': '#276749',
+            'Connecticut': '#9b2c2c'
+        };
+
+        d3.csv(regionalDataUrl).then(function (sites) {
+            sites.forEach(function (siteData) {
+                var state = siteData.State || 'New York';
+                var fillColor = stateColorMap[state] || '#2b6cb0';
+
+                var site = L.circleMarker([Number(siteData.Lat), Number(siteData.Long)], {
+                    radius: 8,
+                    fillColor: fillColor,
+                    color: '#333',
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                })
+                    .bindPopup('<strong>' + siteData['Site Name'] + '</strong><br>' + siteData.County + ' County, ' + siteData.State + '<br><strong>Monitor type:</strong> ' + siteData.Type)
+                    .addTo(map);
+
+                site.on('click', function (event) {
+                    map.setView(event.latlng, 13);
+                });
+            });
+
+            map.invalidateSize();
+        });
+    })();
+</script>
+
+<!-- moved from partials/cp-chart.html -->
+<script>
+    const cp_container_id = "cpVis";
+    const aq_container_id = "aqChangeVis";
+    const text_container_id = "EJ_text"
+
+    // Sites that are zones/areas use "in the"; highway corridor sites use "near the"
+    const IN_THE_SITES = new Set(["CRZ", "Rest of the City"]);
+
+    // Updates both the preposition span and the site name span in the heading
+    function updateSiteHeading(site) {
+        const prepEl = document.getElementById("site-prep");
+        if (prepEl) prepEl.textContent = IN_THE_SITES.has(site) ? "in the" : "near the";
+
+        const nameEl = document.getElementById("site-name");
+        if (nameEl) nameEl.textContent = site;
+    }
+
+    // Buttons for sites
+    const site_names = [
+        "Deegan",
+        "Cross Bronx",
+        "BQE",
+        "SI Expwy",
+        "FDR",
+        "Trans-Manhattan",
+        "Van Wyck",
+        "CRZ",
+        "Rest of the City",
+    ];
+
+    // Site-specific text content
+    const siteText = {
+        "Deegan": "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</ul>",
+        "Cross Bronx": "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%  </li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly </li></ul></p>",
+        "BQE": "<p>In South Williamsburg near the BQE, congestion pricing did not cause the measured PM2.5, NO2, or BC levels to be significantly different than they would have been if the program had never happened.</p><p><strong>NO levels decreased, but were significantly higher than they would have been without congestion pricing</strong>. However, total traffic decreased by 2%, and truck traffic decreased by 3%. If we only looked at the statistics, we'd say congestion pricing caused higher NO here. But the lower traffic volume makes this is a logically uncertain finding.</p>",
+        "Van Wyck": "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.  </li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.  </li></ul> </p>",
+        "SI Expwy": "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%  </li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly </li></ul> </p>",
+        "FDR": "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 9% from 2024 to 2025 </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul></p>",
+        "Trans-Manhattan": "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:<ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same  </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul> </p>",
+        "CRZ": "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same </ul></p>",
+        "Rest of the City": "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>",
+    };
+
+    // Default selection
+    let currentSite = "Deegan";
+
+    // Base spec
+    const baseSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Change in air quality after congestion pricing",
+            "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
+            "fontWeight": "bold",
+            "anchor": "start",
+            "fontSize": 14,
+            "baseline": "top",
+            "subtitlePadding": 10,
+            "subtitleLineHeight": 14,
+            "subtitleFontSize": 12,
+            "font": "Helvetica",
+            "subtitleFont": "Helvetica",
+            "subtitleColor": "#585858",
+        },
+        "config": {
+            "header": {
+                "labelAlign": "left",
+                "labelAnchor": "start",
+                "labelFont": "Helvetica",
+                "labelFontWeight": "bold",
+                "labelFontSize": 12,
+                "labelPadding": 20
+            },
+            "view": { "stroke": null },
+            "axisX": { "labelAngle": 0, "domain": false },
+            "axisY": {
+                "domain": false,
+                "ticks": false,
+                "tickCount": 3,
+                "orient": "left",
+                "title": null
+            },
+            "legend": {
+                "orient": "bottom",
+                "title": "",
+                "symbolOpacity": 1,
+                "labelFontSize": 14,
+                "labelFontWeight": "bold",
+                "labelColor": {
+                    "expr": "datum.value === 'Observed' ? 'blue' : 'darkorange'"
+                }
+            }
+        },
+        "data": {
+            "url": "data/EJ_pollutants_CF_P_1_noCFbar.csv"
+        },
+        "resolve": { "scale": { "y": "independent" } },
+        "transform": [
+            { "filter": "datum.Site === 'Mott Haven'" },
+            { "calculate": "datum.pred_type === 'predicted' ? 'Observed' : 'Hypothetical'", "as": "language" },
+            {
+                "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
+                "as": "UnitFmt"
+            },
+            {
+                "calculate": "datum.pollutant + ' (' + datum.UnitFmt + ')'",
+                "as": "ParameterWithUnit"
+            },
+            {
+                "calculate": "datum.LC != null && datum.UC != null && datum.LC !== '' && datum.UC !== '' ? datum.average + ' ' + datum.UnitFmt + ' (' + datum.LC + ', ' + datum.UC + ')' : datum.average + ' ' + datum.UnitFmt",
+                "as": "ValueWithUnit"
+            },
+            {
+                "calculate": "datum.time === 'Pre' ? 'Before congestion pricing' : datum.time === 'Post' ? 'With congestion pricing' : datum.time",
+                "as": "TimeLabel"
+            }
+        ],
+        "facet": { "field": "ParameterWithUnit", "title": null },
+        "spec": {
+            "width": 125,
+            "height": 175,
+            "encoding": {
+                "x": {
+                    "field": "time",
+                    "type": "nominal",
+                    "sort": "descending",
+                    "title": null
+                },
+                "color": {
+                    "field": "language",
+                    "scale": {
+                        "domain": ["Observed", "Hypothetical"],
+                        "range": ["blue", "darkorange"]
+                    }
+                }
+            },
+            "layer": [
+                {
+                    "transform": [{ "filter": { "field": "pred_type", "equal": "predicted" } }],
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 6,
+                        "color": "black",
+                        "opacity": 0.2,
+                        "strokeCap": "round"
+                    },
+                    "encoding": {
+                        "y": { "field": "UC", "type": "quantitative" },
+                        "y2": { "field": "LC", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "line", "strokeDash": [2, 2] },
+                    "encoding": {
+                        "y": { "field": "average", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "circle", "size": 150, "opacity": 1 },
+                    "encoding": {
+                        "y": {
+                            "field": "average",
+                            "type": "quantitative",
+                            "scale": { "domainMin": 0, "nice": false }
+                        },
+                        "tooltip": [
+                            { "field": "Site", "title": "Site", "type": "nominal" },
+                            { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
+                            { "field": "language", "title": "Type", "type": "nominal" },
+                            { "field": "TimeLabel", "title": "Period", "type": "nominal" },
+                            { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
+                        ]
+                    }
+                }
+            ]
+        },
+        "columns": 4,
+        "spacing": 50
+    };
+
+    const secondSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
+            "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
+            "fontSize": 14,
+            "baseline": "top",
+            "subtitlePadding": 10,
+            "subtitleLineHeight": 14,
+            "subtitleFontSize": 12,
+            "font": "Helvetica",
+            "subtitleFont": "Helvetica",
+            "subtitleColor": "#585858"
+        },
+        "config": {
+            "header": {
+                "labelAlign": "left",
+                "labelAnchor": "start",
+                "labelFont": "Helvetica",
+                "labelFontWeight": "bold",
+                "labelFontSize": 12
+            },
+            "view": { "stroke": null },
+            "axisX": {
+                "labelAngle": 0,
+                "domain": false,
+                "ticks": false,
+                "tickCount": 3
+
+            },
+            "axisY": {
+                "domain": false,
+                "orient": "left",
+                "title": null
+            }
+        },
+        "data": {
+            "url": "data/AQ_Post.csv"
+        },
+        "resolve": { "scale": { "x": "independent" } },
+        "transform": [
+            { "filter": "datum.Site === 'Deegan'" },
+            { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+        ],
+        "facet": { "field": "pollutant", "title": null },
+        "spec": {
+            "width": 125,
+            "height": 35,
+            "encoding": {
+                "x": { "field": "estimate", "type": "quantitative", "title": null },
+                "color": { "value": "purple" }
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rule",
+                        "strokeWidth": 6,
+                        "opacity": 0.3,
+                        "strokeCap": "round"
+                    },
+                    "encoding": {
+                        "x": { "field": "lower", "type": "quantitative" },
+                        "x2": { "field": "upper", "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "rule", "color": "#888", "strokeWidth": 2, "strokeDash": [2, 2] },
+                    "encoding": {
+                        "x": { "datum": 0, "type": "quantitative" }
+                    }
+                },
+                {
+                    "mark": { "type": "circle", "size": 150, "opacity": 1 },
+                    "encoding": {
+                        "x": {
+                            "field": "estimate",
+                            "type": "quantitative",
+                            "scale": { "nice": false }
+                        },
+                        "tooltip": [
+                            { "field": "Site", "title": "Site", "type": "nominal" },
+                            { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
+                            {
+                                "field": "Estimate (95% CI)",
+                                "title": "Difference",
+                                "type": "nominal"
+                            },
+                            { "field": "Significance", "title": "Significance", "type": "nominal" }
+                        ]
+                    }
+                }
+            ]
+        },
+        "columns": 4,
+        "spacing": 55
+
+    }
+
+    function specForSite(site) {
+
+        // structuredClone first; fallback to JSON clone
+        const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
+        const spec2 = typeof structuredClone === "function" ? structuredClone(secondSpec) : JSON.parse(JSON.stringify(secondSpec));
+
+        spec.transform[0].filter = `datum.Site === '${site}'`;
+        spec2.transform[0].filter = `datum.Site === '${site}'`;
+
+        return { spec, spec2 };
+    }
+
+
+    // Word-wrap a string to fit `maxPx` at the given font size, returning an array
+    // of lines (Vega-Lite renders each array element as its own title line). A long
+    // single-line title/subtitle otherwise stretches the whole canvas wider than
+    // its container, regardless of how narrow the plotting panels are. The 0.6
+    // factor is a conservative average glyph width (em) for sans-serif.
+    function wrapText(text, maxPx, fontSize) {
+        const charsPerLine = Math.max(8, Math.floor(maxPx / (fontSize * 0.6)));
+        const lines = [];
+        let line = "";
+        for (const word of text.split(" ")) {
+            const candidate = line ? line + " " + word : word;
+            if (candidate.length > charsPerLine && line) {
+                lines.push(line);
+                line = word;
+            } else {
+                line = candidate;
+            }
+        }
+        if (line) lines.push(line);
+        return lines;
+    }
+
+    // Wrap a spec's title + subtitle text to the container width. On a wide
+    // (desktop) container the text fits on one line, so the spec is unchanged.
+    function wrapTitle(spec, avail) {
+        if (!spec.title) return;
+        const tw = avail - 10;
+        if (typeof spec.title.text === "string") {
+            spec.title.text = wrapText(spec.title.text, tw, spec.title.fontSize || 14);
+        }
+        if (spec.title.subtitle != null) {
+            const sub = Array.isArray(spec.title.subtitle) ? spec.title.subtitle : [spec.title.subtitle];
+            const out = [];
+            sub.forEach((s) => s ? out.push(...wrapText(s, tw, spec.title.subtitleFontSize || 12)) : out.push(""));
+            spec.title.subtitle = out;
+        }
+    }
+
+    // Vega-Lite's width:"container" doesn't work on faceted charts, so size the
+    // panels ourselves. Only ever shrinks below the authored width (125) and drops
+    // 4 columns to 2 below Bootstrap's sm breakpoint (576px) — so wide/desktop
+    // layouts are unchanged while narrow screens reflow to a 2-column grid.
+    function fitFacet(spec, el) {
+        const avail = (el && el.clientWidth) || 600;
+        const cols = avail < 576 ? 2 : 4;
+        const spacing = spec.spacing || 0;
+        const w = Math.floor((avail - spacing * (cols - 1)) / cols);
+        spec.columns = cols;
+        spec.spec.width = Math.max(60, Math.min(w, 125));
+        wrapTitle(spec, avail);
+    }
+
+
+    async function draw(site) {
+
+        const cpEl = document.getElementById(cp_container_id);
+        const aqEl = document.getElementById(aq_container_id);
+
+        if (!cpEl || !aqEl) return;
+
+        // Lock heights before clearing so the page doesn't jump while containers
+        // are momentarily empty between renders
+        cpEl.style.minHeight = cpEl.offsetHeight + "px";
+        if (aqEl.offsetHeight > 0) aqEl.style.minHeight = aqEl.offsetHeight + "px";
+
+        cpEl.innerHTML = "";
+        aqEl.innerHTML = "";
+
+        const { spec, spec2 } = specForSite(site);
+
+        // Size both faceted charts to their containers before embedding
+        fitFacet(spec, cpEl);
+        fitFacet(spec2, aqEl);
+
+        try {
+            await vegaEmbed(cpEl, spec, {
+                actions: false,
+                renderer: "canvas",
+            });
+            // Release the lock now that the new chart is in place
+            cpEl.style.minHeight = "";
+        } catch (err) {
+            console.error("CP Vega render failed:", err);
+            cpEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+        }
+
+        if (site !== "Van Wyck") {
+            aqEl.style.display = "";
+            try {
+                await vegaEmbed(aqEl, spec2, {
+                    actions: true,
+                    renderer: "canvas",
+                });
+                aqEl.style.minHeight = "";
+            } catch (err) {
+                console.error("AQ change Vega render failed:", err);
+                aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+            }
+        } else {
+            aqEl.style.display = "none";
+            aqEl.style.minHeight = "";
+        }
+    }
+
+
+    // Shared handler called by both the button click and the select change event
+    async function handleSiteChange(site) {
+        currentSite = site;
+        const textElement = document.getElementById(text_container_id);
+        if (textElement && siteText[site]) textElement.innerHTML = siteText[site];
+        updateSiteHeading(site);
+        await draw(site);
+    }
+
+    // Below md (768px) render a native <select> dropdown; above render the
+    // vertical button sidebar. Re-called on resize when crossing the breakpoint.
+    function renderButtons() {
+        const btnWrap = document.getElementById("cpSiteButtons");
+        if (!btnWrap) return;
+        btnWrap.innerHTML = "";
+
+        if (window.innerWidth < 768) {
+            const sel = document.createElement("select");
+            sel.className = "form-control form-control-sm mb-2";
+            sel.setAttribute("aria-label", "Choose site");
+
+            site_names.forEach((site) => {
+                const opt = document.createElement("option");
+                opt.value = site;
+                opt.textContent = site;
+                if (site === currentSite) opt.selected = true;
+                sel.appendChild(opt);
+            });
+
+            sel.addEventListener("change", () => handleSiteChange(sel.value));
+            btnWrap.appendChild(sel);
+        } else {
+            site_names.forEach((site) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.id = site.replaceAll(" ", "-");
+                btn.className = "btn btn-sm btn-outline-dark fs-xs";
+                btn.textContent = site;
+                if (site === currentSite) btn.classList.add("active");
+
+                btn.addEventListener("click", async () => {
+                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    await handleSiteChange(site);
+                });
+
+                btnWrap.appendChild(btn);
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+
+        const el = document.getElementById(cp_container_id);
+        if (!el) return;
+
+        const info = document.getElementById(text_container_id);
+        if (!info) return;
+
+        // wait for vegaEmbed to be available
+        if (typeof vegaEmbed !== "function") {
+            console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
+            return;
+        }
+
+        // Set initial text for default site
+        if (info && siteText[currentSite]) {
+            info.innerHTML = siteText[currentSite];
+        }
+
+        // draw buttons
+
+        renderButtons();
+
+
+        // Update preposition and site name in the heading
+        updateSiteHeading(currentSite);
+
+        // Draw the initial chart and wait for it to complete
+        await draw(currentSite);
+
+        // Re-render charts and controls when the container width changes.
+        // Also re-render controls when crossing the 768px breakpoint so the
+        // select/button swap happens live. Guards on width so vertical-only
+        // resizes (mobile address bar) don't trigger needless re-renders.
+        let cpLastW = el.clientWidth, cpLastMobile = window.innerWidth < 768, cpResizeT;
+        window.addEventListener("resize", () => {
+            const w = el.clientWidth;
+            const mobile = window.innerWidth < 768;
+            if (w === cpLastW) return;
+            const crossedBreakpoint = mobile !== cpLastMobile;
+            cpLastW = w;
+            cpLastMobile = mobile;
+            clearTimeout(cpResizeT);
+            cpResizeT = setTimeout(() => {
+                if (crossedBreakpoint) renderButtons();
+                draw(currentSite);
+            }, 200);
+        });
+
+    });
+
+</script>
+
+<!-- moved from partials/cp-chart_TOD_traffic.html -->
+<script>
+    // ID of the chart container div; referenced throughout for rendering and clearing
+    const TOD_CONTAINER_ID = "cpVisTOD";
+
+    // Sites present in rtpm_traffic.csv — must match the Site column values exactly
+    const tod_site_names = ["Deegan", "Cross Bronx", "BQE", "SI Expwy", "FDR", "Trans-Manhattan", "Van Wyck"];
+    // Tracks the currently selected site; updated on each button click
+    let todCurrentSite = "Deegan";
+
+    // -------------------------------------------------------------------------
+    // Base Vega-Lite spec
+    // The filter in transform[0] is a placeholder — specForTODSite() patches it
+    // before each render so we never mutate this object directly.
+    // -------------------------------------------------------------------------
+    const todBaseSpec = {
+        $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+
+        // Global chart styling — fonts, axis appearance, legend placement, color palette
+        config: {
+            header: {
+                labelAlign: "left",
+                labelAnchor: "start",
+                labelFont: "Helvetica",
+                labelFontWeight: "bold",
+                labelFontSize: 12,
+            },
+
+            view: { stroke: null },
+            axisX: { labelAngle: 0, domain: false },
+            axisY: {
+                domain: false,
+                ticks: false,
+                tickCount: 3,
+                orient: "left",
+                title: null,
+            },
+
+            legend: { orient: "right", title: "" },
+
+            range: {
+                category: ["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"],
+            },
+        },
+
+        // CSV data source (served as a Hugo static asset)
+        data: {
+            url: "data/rtpm_traffic.csv",
+        },
+
+        // Each facet panel gets its own y-axis scale so panels with different units are readable
+        resolve: { scale: { y: "independent" } },
+
+        // Data transformations applied before encoding — filtering, calculated fields, label mapping
+        transform: [
+            // Placeholder — replaced by specForTODSite() before each render
+            { filter: "datum.Site === 'BQE'" },
+            {
+                calculate: "datum.Value + ' (' + datum.Units + ')'",
+                as: "ValueWithUnits",
+            },
+            {
+                calculate: "datum.Measure + ' (' + datum.Units + ')'",
+                as: "ParamWithUnit",
+            },
+            {
+                // Expand terse Time codes into readable labels for the x-axis
+                calculate: "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+                as: "TimeLabel",
+            },
+        ],
+
+        // One panel per measure (e.g. Traffic, PM2.5), laid out as a row of small multiples
+        facet: {
+            field: "ParamWithUnit",
+            title: null,
+            // Put traffic volume first; remaining panels sort alphabetically
+            sort: ["Traffic (vehicles per hour)"],
+        },
+
+        // The repeated chart spec applied to each facet panel
+        spec: {
+            width: 300,
+            height: 200,
+            encoding: {
+                x: {
+                    field: "TimeLabel",
+                    type: "nominal",
+                    sort: "ascending",
+                    title: null,
+                },
+            },
+            layer: [
+                // Layer 1: lines connecting Pre → Post for each TOD period
+                {
+                    mark: { type: "line", strokeDash: [0, 0] },
+
+                    encoding: {
+                        y: { field: "Value", type: "quantitative" },
+
+                        color: {
+                            field: "TOD",
+
+                            scale: {
+                                domain: [
+                                    "Morning rush",
+                                    "Midday",
+                                    "Evening rush",
+                                    "Overnight",
+                                ],
+
+                                range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                            },
+                        },
+                    },
+                },
+
+                // Layer 2: dots at each data point, with tooltip
+                {
+                    mark: { type: "circle", size: 75 },
+
+                    encoding: {
+                        y: {
+                            field: "Value",
+                            type: "quantitative",
+                            // Force y-axis to start at 0 so differences are proportional
+                            scale: { domainMin: 0, nice: false },
+                        },
+
+                        color: {
+                            field: "TOD",
+
+                            scale: {
+                                domain: [
+                                    "Morning rush",
+                                    "Midday",
+                                    "Evening rush",
+                                    "Overnight",
+                                ],
+
+                                range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                            },
+                        },
+
+                        tooltip: [
+                            { field: "Site", title: "Site", type: "nominal" },
+                            { field: "TOD", title: "Time of day", type: "nominal" },
+                            { field: "TimeLabel", title: "Period", type: "nominal" },
+                            { field: "Measure", title: "Measure", type: "nominal" },
+                            { field: "ValueWithUnits", title: "Value", type: "nominal" },
+                        ],
+                    },
+                },
+            ],
+        },
+    };
+
+    // -------------------------------------------------------------------------
+    // specForTODSite(site)
+    // Returns a deep clone of todBaseSpec with the Site filter patched in.
+    // Cloning is required because vegaEmbed may mutate the spec object it receives,
+    // and we need todBaseSpec to remain pristine for subsequent site switches.
+    // -------------------------------------------------------------------------
+    function specForTODSite(site) {
+        const spec = typeof structuredClone === "function"
+            ? structuredClone(todBaseSpec)
+            : JSON.parse(JSON.stringify(todBaseSpec));
+        spec.transform[0].filter = `datum.Site === '${site}'`;
+        return spec;
+    }
+
+    // Size the faceted panels to the container (Vega's width:"container" doesn't
+    // work on facets). Only shrinks below the authored width (300); stacks the
+    // panels into a single column and moves the right-side legend below the chart
+    // below Bootstrap's sm breakpoint (576px), since the legend adds width.
+    function fitTODFacet(spec, el) {
+        const avail = (el && el.clientWidth) || 700;
+        const mobile = avail < 576;
+        const cols = mobile ? 1 : 2;
+        const spacing = 20; // Vega-Lite default facet spacing
+        const w = Math.floor((avail - spacing * (cols - 1)) / cols);
+        spec.columns = cols;
+        spec.spec.width = Math.max(120, Math.min(w, 300));
+        if (mobile && spec.config && spec.config.legend) {
+            spec.config.legend.orient = "bottom";
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // renderTODChart(site)
+    // Clears the container and re-renders the chart for the given site.
+    // -------------------------------------------------------------------------
+    async function renderTODChart(site) {
+        const el = document.getElementById(TOD_CONTAINER_ID);
+        if (!el) return;
+
+        // Lock the container's current height before clearing so the page doesn't
+        // jump when innerHTML empties the element momentarily
+        el.style.minHeight = el.offsetHeight + "px";
+        el.innerHTML = "";
+
+        const spec = specForTODSite(site);
+        fitTODFacet(spec, el);
+
+        try {
+            await vegaEmbed(el, spec, { actions: false, renderer: "canvas" });
+            // Release the lock now that the new chart is in place
+            el.style.minHeight = "";
+        } catch (err) {
+            console.error("TOD Traffic Vega render failed:", err);
+            el.innerHTML =
+                "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+        }
+    }
+
+    // Shared handler for both button click and select change
+    async function handleTODSiteChange(site) {
+        todCurrentSite = site;
+        const todSiteTitleEl = document.getElementById("tod-site-name");
+        if (todSiteTitleEl) todSiteTitleEl.textContent = site;
+        await renderTODChart(site);
+    }
+
+    // -------------------------------------------------------------------------
+    // renderTODButtons()
+    // Populates #todSiteButtons with one button per site (desktop) or a native
+    // <select> dropdown (mobile, < 768px). IDs are prefixed "tod-" to avoid
+    // collisions with #cpSiteButtons (cp-chart.html) on the same page.
+    // -------------------------------------------------------------------------
+    function renderTODButtons() {
+        const btnWrap = document.getElementById("todSiteButtons");
+        if (!btnWrap) return;
+        btnWrap.innerHTML = "";
+
+        if (window.innerWidth < 768) {
+            const sel = document.createElement("select");
+            sel.className = "form-control form-control-sm mb-2";
+            sel.setAttribute("aria-label", "Choose site");
+
+            tod_site_names.forEach((site) => {
+                const opt = document.createElement("option");
+                opt.value = site;
+                opt.textContent = site;
+                if (site === todCurrentSite) opt.selected = true;
+                sel.appendChild(opt);
+            });
+
+            sel.addEventListener("change", () => handleTODSiteChange(sel.value));
+            btnWrap.appendChild(sel);
+        } else {
+            tod_site_names.forEach((site) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.id = "tod-" + site.replaceAll(" ", "-");
+                btn.className = "btn btn-sm btn-outline-dark fs-xs";
+                btn.textContent = site;
+                if (site === todCurrentSite) btn.classList.add("active");
+
+                btn.addEventListener("click", async () => {
+                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    await handleTODSiteChange(site);
+                });
+
+                btnWrap.appendChild(btn);
+            });
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Initialization — wait for DOM so #todSiteButtons and #cpVisTOD exist
+    // -------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", async () => {
+        renderTODButtons();
+        await renderTODChart(todCurrentSite);
+
+        // Re-render chart and controls when the container width changes.
+        // Also swap select/buttons when crossing the 768px breakpoint.
+        // Guarded on width so vertical-only resizes (mobile address bar) don't re-render.
+        const todEl = document.getElementById(TOD_CONTAINER_ID);
+        let todLastW = todEl ? todEl.clientWidth : null, todLastMobile = window.innerWidth < 768, todResizeT;
+        window.addEventListener("resize", () => {
+            if (!todEl) return;
+            const w = todEl.clientWidth;
+            const mobile = window.innerWidth < 768;
+            if (w === todLastW) return;
+            const crossedBreakpoint = mobile !== todLastMobile;
+            todLastW = w;
+            todLastMobile = mobile;
+            clearTimeout(todResizeT);
+            todResizeT = setTimeout(() => {
+                if (crossedBreakpoint) renderTODButtons();
+                renderTODChart(todCurrentSite);
+            }, 200);
+        });
+    });
+</script>
+
+<!-- moved from partials/cp-chart_crz.html -->
+<script>
+    const CP_CONTAINER2_ID = "cpVis2";
+
+    const baseSpec_1 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": {
+            "text": "How does Q3 2025 air quality around the region compare to historical ranges?",
+            "subtitle": ["Dot: Average (Q3 2025)", "Bar: Range (Q3 2022-2024)", ""],
+            "anchor": "start",
+            "font": "Helvetica",
+            "subtitleFont": "Helvetica",
+            "fontSize": 18,
+            "subtitlePadding": 10,
+            "subtitleLineHeight": 16,
+            "subtitleFontSize": 13,
+            "subtitleColor": "#585858"
+        },
+        "config": {
+            "view": { "stroke": null },
+            "axisX": {
+                "labelAngle": 0,
+                "domain": true,
+                "grid": true,
+                "gridDash": [4, 2]
+            },
+            "axisY": {
+                "domain": false,
+                "ticks": false,
+                "title": null,
+                "grid": false,
+                "gridColor": "#e0e0e0"
+            }
+        },
+        "data": {
+            "name": "source",
+            "url": "data/regional.csv"
+        },
+        "resolve": { "scale": { "color": "shared" }, "legend": { "color": "shared" } },
+        "transform": [
+            {
+                "calculate": "{'Connecticut': '1', 'New Jersey': '2', 'New York': '3'}[datum.State] + ': ' + datum['Site Name']",
+                "as": "SortKey"
+            },
+            {
+                "calculate": "datum.State + ': ' + datum['Site Name']",
+                "as": "StateAndSite"
+            },
+            {
+                "calculate": "datum.Parameter === 'PM2.5' ? 'μg/m3' : 'ppb'",
+                "as": "Units"
+            },
+            {
+                "calculate": "datum['Arithmetic Mean'] + ' ' + datum.Units",
+                "as": "valuePlusUnits"
+            }
+        ],
+
+        "hconcat": [
+            {
+                "title": {
+                    "text": "PM2.5",
+                    "anchor": "center",
+                    "dx": -15,
+                    "font": "Helvetica",
+                    "fontWeight": "bold",
+                    "fontSize": 12
+                },
+                "transform": [{ "filter": "datum.Parameter === 'PM2.5'" }],
+                "width": 200,
+                "height": { "step": 22 },
+                "layer": [
+                    {
+                        "mark": { "type": "rule", "strokeWidth": 6, "strokeCap": "round" },
+                        "encoding": {
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "x": {
+                                "field": "HistoricalMin",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "x2": { "field": "HistoricalMax" },
+                            "opacity": { "value": 0.5 },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "mark": { "type": "point", "filled": true, "size": 150 },
+                        "encoding": {
+                            "x": {
+                                "field": "Arithmetic Mean",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "opacity": { "value": 1 },
+                            "stroke": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": "black"
+                                },
+                                "value": null
+                            },
+                            "strokeWidth": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": 0
+                                },
+                                "value": 0
+                            },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "data": {
+                            "values": [{ "Site Name": "Leonia" }, { "Site Name": "Mt Ninham" }]
+                        },
+                        "mark": { "type": "rule", "yOffset": -11 },
+                        "encoding": {
+                            "color": { "value": "gray" },
+                            "y": {
+                                "field": "Site Name",
+                                "type": "nominal",
+                                "scale": {
+                                    "domain": { "data": "source", "field": "Site Name" },
+                                    "bandPosition": 0
+                                }
+                            }
+                        }
+                    }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "Site Name",
+                        "type": "nominal",
+                        "title": null,
+                        "sort": { "field": "SortKey" },
+                        "scale": { "domain": { "data": "source", "field": "Site Name" } },
+                        "axis": { "labelLimit": 220, "labelPadding": 10 }
+                    }
+                }
+            },
+            {
+                "title": {
+                    "text": "NO2",
+                    "anchor": "start",
+                    "font": "Helvetica",
+                    "fontWeight": "bold",
+                    "fontSize": 12
+                },
+                "transform": [{ "filter": "datum.Parameter === 'NO2'" }],
+                "width": 200,
+                "height": { "step": 22 },
+                "layer": [
+                    {
+                        "mark": { "type": "rule", "strokeWidth": 6, "strokeCap": "round" },
+                        "encoding": {
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "opacity": { "value": 0.5 },
+                            "x": {
+                                "field": "HistoricalMin",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "x2": { "field": "HistoricalMax" },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "mark": { "type": "point", "filled": true, "size": 150 },
+                        "encoding": {
+                            "x": {
+                                "field": "Arithmetic Mean",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "opacity": { "value": 1 },
+                            "stroke": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": "black"
+                                },
+                                "value": null
+                            },
+                            "strokeWidth": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": 0
+                                },
+                                "value": 0
+                            },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "data": {
+                            "values": [{ "Site Name": "Leonia" }, { "Site Name": "Mt Ninham" }]
+                        },
+                        "mark": { "type": "rule", "yOffset": -11 },
+                        "encoding": {
+                            "color": { "value": "gray" },
+                            "y": {
+                                "field": "Site Name",
+                                "type": "nominal",
+                                "scale": {
+                                    "domain": { "data": "source", "field": "Site Name" },
+                                    "bandPosition": 0
+                                }
+                            }
+                        }
+                    }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "Site Name",
+                        "type": "nominal",
+                        "title": null,
+                        "sort": { "field": "SortKey" },
+                        "scale": {
+                            "domain": { "data": "source", "field": "Site Name" },
+                            "bandPosition": 1
+                        },
+                        "axis": null
+                    }
+                }
+            },
+            {
+                "title": {
+                    "text": "Ozone",
+                    "anchor": "start",
+                    "font": "Helvetica",
+                    "fontWeight": "bold",
+                    "fontSize": 12
+                },
+                "transform": [{ "filter": "datum.Parameter === 'Ozone'" }],
+                "width": 200,
+                "height": { "step": 22 },
+                "layer": [
+                    {
+                        "mark": { "type": "rule", "strokeWidth": 6, "strokeCap": "round" },
+                        "encoding": {
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "opacity": { "value": 0.5 },
+                            "x": {
+                                "field": "HistoricalMin",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "x2": { "field": "HistoricalMax" },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "mark": { "type": "point", "filled": true, "size": 150 },
+                        "encoding": {
+                            "x": {
+                                "field": "Arithmetic Mean",
+                                "type": "quantitative",
+                                "title": null
+                            },
+                            "color": {
+                                "field": "State",
+                                "type": "nominal",
+                                "legend": null,
+                                "scale": {
+                                    "domain": ["New York", "New Jersey", "Connecticut"],
+                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                }
+                            },
+                            "opacity": { "value": 1 },
+                            "stroke": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": "black"
+                                },
+                                "value": null
+                            },
+                            "strokeWidth": {
+                                "condition": {
+                                    "test": "datum['Site Name'] === 'Bayonne'",
+                                    "value": 0
+                                },
+                                "value": 0
+                            },
+                            "tooltip": [
+                                { "field": "Site Name", "type": "nominal" },
+                                {
+                                    "field": "valuePlusUnits",
+                                    "title": "Average, June-Sept 2025",
+                                    "type": "nominal"
+                                },
+                                {
+                                    "field": "HistoricalMin",
+                                    "title": "Historic min",
+                                    "type": "quantitative"
+                                },
+                                {
+                                    "field": "HistoricalMax",
+                                    "title": "Historic max",
+                                    "type": "quantitative"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "data": {
+                            "values": [{ "Site Name": "Leonia" }, { "Site Name": "Mt Ninham" }]
+                        },
+                        "mark": { "type": "rule", "yOffset": -11 },
+                        "encoding": {
+                            "color": { "value": "gray" },
+                            "y": {
+                                "field": "Site Name",
+                                "type": "nominal",
+                                "scale": {
+                                    "domain": { "data": "source", "field": "Site Name" },
+                                    "bandPosition": 0
+                                }
+                            }
+                        }
+                    }
+                ],
+                "encoding": {
+                    "y": {
+                        "field": "Site Name",
+                        "type": "nominal",
+                        "title": null,
+                        "sort": { "field": "SortKey" },
+                        "scale": {
+                            "domain": { "data": "source", "field": "Site Name" },
+                            "bandPosition": 1
+                        },
+                        "axis": null
+                    }
+                }
+            }
+        ],
+        "spacing": 40
+    };
+
+    // Size the three hconcat panels to the container on mobile only. The first
+    // panel carries a wide site-label axis; subtract an allowance for it, divide
+    // the rest among the panels, shrink the label limit, and wrap the long title
+    // (a long single-line title otherwise stretches the canvas). On desktop the
+    // authored spec is left untouched.
+    function fitCRZ(spec, el) {
+        const avail = (el && el.clientWidth) || 700;
+        if (avail >= 576) return; // desktop: leave the authored spec unchanged
+        const spacing = spec.spacing || 40;
+        const labelAllow = 100; // y-label column on the first panel
+        const margin = 24;      // slack for per-panel x-axis label overhang
+        const panels = spec.hconcat.length;
+        const w = Math.floor((avail - labelAllow - spacing * (panels - 1) - margin) / panels);
+        const panelW = Math.max(40, Math.min(w, 200));
+        spec.hconcat.forEach((p) => { p.width = panelW; });
+
+        const firstAxis = spec.hconcat[0].encoding?.y?.axis;
+        if (firstAxis) firstAxis.labelLimit = 80;
+
+        // wrapTitle is defined in cp-chart.html (included earlier on this page);
+        // skip gracefully if this partial is ever used on its own.
+        if (typeof wrapTitle === "function") wrapTitle(spec, avail);
+    }
+
+    async function draw_crz() {
+        const el = document.getElementById(CP_CONTAINER2_ID);
+        if (!el) return;
+
+        el.innerHTML = "";
+
+        // Clone so the base spec stays pristine across resize re-renders
+        const spec = typeof structuredClone === "function"
+            ? structuredClone(baseSpec_1)
+            : JSON.parse(JSON.stringify(baseSpec_1));
+        fitCRZ(spec, el);
+
+        try {
+            await vegaEmbed(el, spec, {
+                actions: true,
+                renderer: "canvas",
+            });
+        } catch (err) {
+            console.error("CP Vega render failed:", err);
+            el.innerHTML =
+                "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        if (typeof vegaEmbed !== "function") {
+            console.error(
+                "vegaEmbed not available. Are the Vega scripts loaded above this script?",
+            );
+            return;
+        }
+
+        await draw_crz();
+
+        // Re-render on real width changes so the chart re-fits its container.
+        // Guarded on width so vertical-only mobile resizes don't re-render.
+        const crzEl = document.getElementById(CP_CONTAINER2_ID);
+        let crzLastW = crzEl ? crzEl.clientWidth : null, crzResizeT;
+        window.addEventListener("resize", () => {
+            if (!crzEl) return;
+            const w = crzEl.clientWidth;
+            if (w === crzLastW) return;
+            crzLastW = w;
+            clearTimeout(crzResizeT);
+            crzResizeT = setTimeout(() => draw_crz(), 200);
+        });
+    });
+
+</script>
 
 <script>
 
