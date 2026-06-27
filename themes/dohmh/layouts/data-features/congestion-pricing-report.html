@@ -182,7 +182,7 @@
                 </div>
 
                 <div class="col-md-6">
-                        {{ partial "cp-map-monitoring.html" . }}
+                    <div id="cpReportMap" class="cp-inline-map"></div>
                     <h3 class="h5 mt-1">EJ-Designated Community Site Analysis</h3>
                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the
                         Health Department increased monitoring. These areas are:
@@ -302,11 +302,11 @@
                         {{- end -}}
                     </div>
                     <div class="col-md-6">
-                        {{ partial "cp-map-regional.html" . }}
+                        <div id="cpRegional" class="cp-inline-map"></div>
                     </div>
 
                     <div class="col-12 mt-2">
-                        {{ partial "cp-chart_crz.html" . }}
+                        <div id="cpVis2" class="mt-2" style="width: 100%"></div>
                     </div>
 
                 </div>
@@ -523,7 +523,7 @@
     }
 </script>
 
-<!-- moved from partials/cp-map-monitoring.html -->
+<!-- Monitoring map (#cpReportMap) -->
 <script>
     (function () {
         if (typeof L !== 'object' || typeof d3 !== 'object') {
@@ -649,7 +649,7 @@
     })();
 </script>
 
-<!-- moved from partials/cp-map-regional.html -->
+<!-- Regional map (#cpRegional) -->
 <script>
     (function () {
         if (typeof L !== 'object' || typeof d3 !== 'object') {
@@ -1363,7 +1363,7 @@
     });
 </script>
 
-<!-- moved from partials/cp-chart_crz.html -->
+<!-- CRZ chart (#cpVis2) -->
 <script>
     const CP_CONTAINER2_ID = "cpVis2";
 
