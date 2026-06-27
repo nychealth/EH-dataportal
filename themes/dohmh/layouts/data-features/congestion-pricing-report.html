@@ -427,6 +427,51 @@
     const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
     const CP_BADGE_TO_SITE = {};
     site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s; });
+
+    // Builds the site picker for a wrap element: a native <select> below 768px,
+    // a vertical button group above. Re-called on resize to swap across the
+    // breakpoint, so getCurrent must read the live selection each call.
+    // Shared by the EJ (#cpSiteButtons) and TOD (#todSiteButtons) charts.
+    function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
+        const btnWrap = document.getElementById(wrapId);
+        if (!btnWrap) return;
+        btnWrap.innerHTML = "";
+        const current = getCurrent();
+
+        if (window.innerWidth < 768) {
+            const sel = document.createElement("select");
+            sel.className = "form-control form-control-sm mb-2";
+            sel.setAttribute("aria-label", "Choose site");
+
+            sites.forEach((site) => {
+                const opt = document.createElement("option");
+                opt.value = site;
+                opt.textContent = site;
+                if (site === current) opt.selected = true;
+                sel.appendChild(opt);
+            });
+
+            sel.addEventListener("change", () => onChange(sel.value));
+            btnWrap.appendChild(sel);
+        } else {
+            sites.forEach((site) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.id = idPrefix + site.replaceAll(" ", "-");
+                btn.className = "btn btn-sm btn-outline-dark fs-xs";
+                btn.textContent = site;
+                if (site === current) btn.classList.add("active");
+
+                btn.addEventListener("click", async () => {
+                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    await onChange(site);
+                });
+
+                btnWrap.appendChild(btn);
+            });
+        }
+    }
 </script>
 
 <!-- moved from partials/cp-map-monitoring.html -->
@@ -989,46 +1034,14 @@
         await draw(site);
     }
 
-    // Below md (768px) render a native <select> dropdown; above render the
-    // vertical button sidebar. Re-called on resize when crossing the breakpoint.
     function renderButtons() {
-        const btnWrap = document.getElementById("cpSiteButtons");
-        if (!btnWrap) return;
-        btnWrap.innerHTML = "";
-
-        if (window.innerWidth < 768) {
-            const sel = document.createElement("select");
-            sel.className = "form-control form-control-sm mb-2";
-            sel.setAttribute("aria-label", "Choose site");
-
-            site_names.forEach((site) => {
-                const opt = document.createElement("option");
-                opt.value = site;
-                opt.textContent = site;
-                if (site === currentSite) opt.selected = true;
-                sel.appendChild(opt);
-            });
-
-            sel.addEventListener("change", () => handleSiteChange(sel.value));
-            btnWrap.appendChild(sel);
-        } else {
-            site_names.forEach((site) => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.id = site.replaceAll(" ", "-");
-                btn.className = "btn btn-sm btn-outline-dark fs-xs";
-                btn.textContent = site;
-                if (site === currentSite) btn.classList.add("active");
-
-                btn.addEventListener("click", async () => {
-                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    await handleSiteChange(site);
-                });
-
-                btnWrap.appendChild(btn);
-            });
-        }
+        createSiteSelector({
+            wrapId: "cpSiteButtons",
+            sites: site_names,
+            idPrefix: "",
+            getCurrent: () => currentSite,
+            onChange: handleSiteChange,
+        });
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
@@ -1306,50 +1319,16 @@
         await renderTODChart(site);
     }
 
-    // -------------------------------------------------------------------------
-    // renderTODButtons()
-    // Populates #todSiteButtons with one button per site (desktop) or a native
-    // <select> dropdown (mobile, < 768px). IDs are prefixed "tod-" to avoid
-    // collisions with #cpSiteButtons (cp-chart.html) on the same page.
-    // -------------------------------------------------------------------------
+    // IDs are prefixed "tod-" to avoid collisions with #cpSiteButtons on the
+    // same page (both selectors share createSiteSelector).
     function renderTODButtons() {
-        const btnWrap = document.getElementById("todSiteButtons");
-        if (!btnWrap) return;
-        btnWrap.innerHTML = "";
-
-        if (window.innerWidth < 768) {
-            const sel = document.createElement("select");
-            sel.className = "form-control form-control-sm mb-2";
-            sel.setAttribute("aria-label", "Choose site");
-
-            tod_site_names.forEach((site) => {
-                const opt = document.createElement("option");
-                opt.value = site;
-                opt.textContent = site;
-                if (site === todCurrentSite) opt.selected = true;
-                sel.appendChild(opt);
-            });
-
-            sel.addEventListener("change", () => handleTODSiteChange(sel.value));
-            btnWrap.appendChild(sel);
-        } else {
-            tod_site_names.forEach((site) => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.id = "tod-" + site.replaceAll(" ", "-");
-                btn.className = "btn btn-sm btn-outline-dark fs-xs";
-                btn.textContent = site;
-                if (site === todCurrentSite) btn.classList.add("active");
-
-                btn.addEventListener("click", async () => {
-                    [...btnWrap.querySelectorAll("button")].forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    await handleTODSiteChange(site);
-                });
-
-                btnWrap.appendChild(btn);
-            });
-        }
+        createSiteSelector({
+            wrapId: "todSiteButtons",
+            sites: tod_site_names,
+            idPrefix: "tod-",
+            getCurrent: () => todCurrentSite,
+            onChange: handleTODSiteChange,
+        });
     }
 
     // -------------------------------------------------------------------------
