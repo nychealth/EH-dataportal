@@ -495,6 +495,14 @@
             }, 200);
         });
     }
+
+    // Deep-clone a Vega-Lite spec before mutating it per render. structuredClone
+    // where available, JSON round-trip as a fallback (specs are plain JSON).
+    function cloneSpec(spec) {
+        return typeof structuredClone === "function"
+            ? structuredClone(spec)
+            : JSON.parse(JSON.stringify(spec));
+    }
 </script>
 
 <!-- moved from partials/cp-map-monitoring.html -->
@@ -932,9 +940,8 @@
 
     function specForSite(site) {
 
-        // structuredClone first; fallback to JSON clone
-        const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
-        const spec2 = typeof structuredClone === "function" ? structuredClone(secondSpec) : JSON.parse(JSON.stringify(secondSpec));
+        const spec = cloneSpec(baseSpec);
+        const spec2 = cloneSpec(secondSpec);
 
         spec.transform[0].filter = `datum.Site === '${site}'`;
         spec2.transform[0].filter = `datum.Site === '${site}'`;
@@ -1268,9 +1275,7 @@
     // and we need todBaseSpec to remain pristine for subsequent site switches.
     // -------------------------------------------------------------------------
     function specForTODSite(site) {
-        const spec = typeof structuredClone === "function"
-            ? structuredClone(todBaseSpec)
-            : JSON.parse(JSON.stringify(todBaseSpec));
+        const spec = cloneSpec(todBaseSpec);
         spec.transform[0].filter = `datum.Site === '${site}'`;
         return spec;
     }
@@ -1850,9 +1855,7 @@
         el.innerHTML = "";
 
         // Clone so the base spec stays pristine across resize re-renders
-        const spec = typeof structuredClone === "function"
-            ? structuredClone(baseSpec_1)
-            : JSON.parse(JSON.stringify(baseSpec_1));
+        const spec = cloneSpec(baseSpec_1);
         fitCRZ(spec, el);
 
         try {
