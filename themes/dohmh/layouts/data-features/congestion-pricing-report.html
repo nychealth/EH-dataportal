@@ -362,6 +362,73 @@
 
 {{ define "js_bot" }}
 
+<!-- Single source of truth for per-site config (Stage 3 consolidation).
+     Keyed by display name, which is also the value the CSV `Site` columns
+     filter on. badgeKey / mapCoords / badgeInfo exist only for the 7 EJ
+     monitoring sites shown as map badges; showCI:false marks the control
+     site (Van Wyck has no AQ_Post data); hasTOD:false excludes CRZ and
+     Rest of the City from the time-of-day chart. -->
+<script>
+    const CP_SITES = {
+        "Deegan": {
+            preposition: "near the", hasTOD: true, badgeKey: "deegan",
+            mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
+            badgeInfo: "The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).",
+            text: "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</ul>"
+        },
+        "Cross Bronx": {
+            preposition: "near the", hasTOD: true, badgeKey: "cross-bronx",
+            mapCoords: { lat: 40.844967, lng: -73.906263, zoom: 16 },
+            badgeInfo: "The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).",
+            text: "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%  </li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly </li></ul></p>"
+        },
+        "BQE": {
+            preposition: "near the", hasTOD: true, badgeKey: "bqe",
+            mapCoords: { lat: 40.705511, lng: -73.958846, zoom: 16 },
+            badgeInfo: "The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).",
+            text: "<p>In South Williamsburg near the BQE, congestion pricing did not cause the measured PM2.5, NO2, or BC levels to be significantly different than they would have been if the program had never happened.</p><p><strong>NO levels decreased, but were significantly higher than they would have been without congestion pricing</strong>. However, total traffic decreased by 2%, and truck traffic decreased by 3%. If we only looked at the statistics, we'd say congestion pricing caused higher NO here. But the lower traffic volume makes this is a logically uncertain finding.</p>"
+        },
+        "SI Expwy": {
+            preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
+            mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
+            badgeInfo: "The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).",
+            text: "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%  </li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly </li></ul> </p>"
+        },
+        "FDR": {
+            preposition: "near the", hasTOD: true, badgeKey: "fdr",
+            mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
+            badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).",
+            text: "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 9% from 2024 to 2025 </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul></p>"
+        },
+        "Trans-Manhattan": {
+            preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
+            mapCoords: { lat: 40.847353, lng: -73.934027, zoom: 16 },
+            badgeInfo: "The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).",
+            text: "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:<ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same  </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul> </p>"
+        },
+        "Van Wyck": {
+            preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
+            mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
+            badgeInfo: "The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.",
+            text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.  </li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.  </li></ul> </p>"
+        },
+        "CRZ": {
+            preposition: "in the", hasTOD: false,
+            text: "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same </ul></p>"
+        },
+        "Rest of the City": {
+            preposition: "in the", hasTOD: false,
+            text: "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>"
+        }
+    };
+
+    // Derived once from CP_SITES (replace the former scattered literals)
+    const site_names = Object.keys(CP_SITES);
+    const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
+    const CP_BADGE_TO_SITE = {};
+    site_names.forEach(s => { if (CP_SITES[s].badgeKey) CP_BADGE_TO_SITE[CP_SITES[s].badgeKey] = s; });
+</script>
+
 <!-- moved from partials/cp-map-monitoring.html -->
 <script>
     (function () {
@@ -442,22 +509,11 @@
         }
         cpAreaLayer.bringToFront();
 
-        var siteCoordinates = {
-            'Deegan': { lat: 40.80911, lng: -73.928824, zoom: 16 },
-            'Cross Bronx': { lat: 40.844967, lng: -73.906263, zoom: 16 },
-            'BQE': { lat: 40.705511, lng: -73.958846, zoom: 16 },
-            'Van Wyck': { lat: 40.690155, lng: -73.80908, zoom: 16 },
-            'SI Expwy': { lat: 40.609209, lng: -74.151182, zoom: 14 },
-            'FDR': { lat: 40.722282, lng: -73.974417, zoom: 14 },
-            'Trans-Manhattan': { lat: 40.847353, lng: -73.934027, zoom: 16 }
-        };
-
         window.cpReportZoomToSite = function (siteName) {
-            if (!siteCoordinates[siteName]) {
+            var coords = CP_SITES[siteName] && CP_SITES[siteName].mapCoords;
+            if (!coords) {
                 return;
             }
-
-            var coords = siteCoordinates[siteName];
             map.setView([coords.lat, coords.lng], coords.zoom);
         };
 
@@ -563,43 +619,14 @@
     const aq_container_id = "aqChangeVis";
     const text_container_id = "EJ_text"
 
-    // Sites that are zones/areas use "in the"; highway corridor sites use "near the"
-    const IN_THE_SITES = new Set(["CRZ", "Rest of the City"]);
-
     // Updates both the preposition span and the site name span in the heading
     function updateSiteHeading(site) {
         const prepEl = document.getElementById("site-prep");
-        if (prepEl) prepEl.textContent = IN_THE_SITES.has(site) ? "in the" : "near the";
+        if (prepEl) prepEl.textContent = CP_SITES[site].preposition;
 
         const nameEl = document.getElementById("site-name");
         if (nameEl) nameEl.textContent = site;
     }
-
-    // Buttons for sites
-    const site_names = [
-        "Deegan",
-        "Cross Bronx",
-        "BQE",
-        "SI Expwy",
-        "FDR",
-        "Trans-Manhattan",
-        "Van Wyck",
-        "CRZ",
-        "Rest of the City",
-    ];
-
-    // Site-specific text content
-    const siteText = {
-        "Deegan": "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</ul>",
-        "Cross Bronx": "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%  </li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly </li></ul></p>",
-        "BQE": "<p>In South Williamsburg near the BQE, congestion pricing did not cause the measured PM2.5, NO2, or BC levels to be significantly different than they would have been if the program had never happened.</p><p><strong>NO levels decreased, but were significantly higher than they would have been without congestion pricing</strong>. However, total traffic decreased by 2%, and truck traffic decreased by 3%. If we only looked at the statistics, we'd say congestion pricing caused higher NO here. But the lower traffic volume makes this is a logically uncertain finding.</p>",
-        "Van Wyck": "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.  </li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.  </li></ul> </p>",
-        "SI Expwy": "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%  </li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly </li></ul> </p>",
-        "FDR": "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 9% from 2024 to 2025 </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul></p>",
-        "Trans-Manhattan": "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:<ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same  </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul> </p>",
-        "CRZ": "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same </ul></p>",
-        "Rest of the City": "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>",
-    };
 
     // Default selection
     let currentSite = "Deegan";
@@ -934,7 +961,7 @@
             cpEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
         }
 
-        if (site !== "Van Wyck") {
+        if (CP_SITES[site].showCI !== false) {
             aqEl.style.display = "";
             try {
                 await vegaEmbed(aqEl, spec2, {
@@ -957,7 +984,7 @@
     async function handleSiteChange(site) {
         currentSite = site;
         const textElement = document.getElementById(text_container_id);
-        if (textElement && siteText[site]) textElement.innerHTML = siteText[site];
+        if (textElement && CP_SITES[site].text) textElement.innerHTML = CP_SITES[site].text;
         updateSiteHeading(site);
         await draw(site);
     }
@@ -1019,8 +1046,8 @@
         }
 
         // Set initial text for default site
-        if (info && siteText[currentSite]) {
-            info.innerHTML = siteText[currentSite];
+        if (info && CP_SITES[currentSite].text) {
+            info.innerHTML = CP_SITES[currentSite].text;
         }
 
         // draw buttons
@@ -1062,8 +1089,7 @@
     // ID of the chart container div; referenced throughout for rendering and clearing
     const TOD_CONTAINER_ID = "cpVisTOD";
 
-    // Sites present in rtpm_traffic.csv — must match the Site column values exactly
-    const tod_site_names = ["Deegan", "Cross Bronx", "BQE", "SI Expwy", "FDR", "Trans-Manhattan", "Van Wyck"];
+    // tod_site_names is derived from CP_SITES (hasTOD) at the top of js_bot
     // Tracks the currently selected site; updated on each button click
     let todCurrentSite = "Deegan";
 
@@ -1965,33 +1991,12 @@
     });
 
 
-    // Site information mapping
-    const siteInfo = {
-        'deegan': 'The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).',
-        'cross-bronx': 'The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).',
-        'bqe': 'The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).',
-        'si-exwy': 'The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).',
-        'fdr': 'The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).',
-        'trans-manhattan': 'The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).',
-        'van-wyck': 'The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.'
-    };
-
-    // Map data-site values to proper site names for the map
-    const siteNameMapping = {
-        'deegan': 'Deegan',
-        'cross-bronx': 'Cross Bronx',
-        'bqe': 'BQE',
-        'si-exwy': 'SI Expwy',
-        'fdr': 'FDR',
-        'trans-manhattan': 'Trans-Manhattan',
-        'van-wyck': 'Van Wyck'
-    };
-
     // Initialize badge click handlers
     $(function () {
         $('.site-badge').on('click', function () {
             var siteKey = $(this).data('site');
-            var info = siteInfo[siteKey] || 'No information available for this site.';
+            var siteName = CP_BADGE_TO_SITE[siteKey];
+            var info = (siteName && CP_SITES[siteName].badgeInfo) || 'No information available for this site.';
             $('#site-info-box').text(info);
 
             // Highlight the clicked badge
@@ -1999,8 +2004,7 @@
             $(this).addClass('active');
 
             // Zoom to site on the map
-            var siteName = siteNameMapping[siteKey];
-            if (typeof window.cpReportZoomToSite === 'function') {
+            if (siteName && typeof window.cpReportZoomToSite === 'function') {
                 window.cpReportZoomToSite(siteName);
             }
         });
