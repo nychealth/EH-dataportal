@@ -41,14 +41,14 @@ Below we focus on homicide and suicide, reflecting areas of focus in the [NYC He
 Suicide and homicide do not just affect the immediate victims. The impacts radiate, potentially widening disparities and causing stress, trauma and other negative health effects for victims’ friends, neighbors, colleagues and family members. [In communities where New Yorkers are more likely to experience either homicide or suicide, violence is both a personal and public health concern]({{< relURL >}}data-stories/violence/). Below we focus on homicide and suicide.
 
 <div class="asidebox">
-<em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em>
+<em><i class="fas fa-hands-helping text-center me-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em>
 </div>
 
 </div>
 <div class="wide my-4" aria-hidden="true">
   <iframe title=" Homicide and Suicideare among top causes of death from  ages 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-jtm6b" src="https://datawrapper.dwcdn.net/jtm6b/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
   </div>
-  <div class="sr-only">
+  <div class="visually-hidden">
   <iframe title=" Homicide and Suicide are among top causes of death from  ages 15 to 44 (2017 - 2019)" aria-label="Table" id="datawrapper-chart-nyBxm" src="https://datawrapper.dwcdn.net/nyBxm/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1102" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
   </script>
 </div>
@@ -75,7 +75,7 @@ Among 15- to 24-year-olds from 2017 to 2019, we also see disparities in homicide
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Details: Injury death rates, ages 15 to 24 " aria-label="Table" id="datawrapper-chart-uzpwR" src="https://datawrapper.dwcdn.net/uzpwR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="529" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
@@ -106,7 +106,7 @@ Among 25- to 34-year-olds, homicides are the fourth-leading cause of death. Raci
   </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="Details: Injury death rates, ages 25 to 34" aria-label="Table" id="datawrapper-chart-gecpf" src="https://datawrapper.dwcdn.net/gecpf/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="575" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
   </script>
 </div>
@@ -120,7 +120,7 @@ White New Yorkers had a suicide death rate roughly twice that of other race/ethn
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Details: Injury death rates, ages 35 to 44" aria-label="Table" id="datawrapper-chart-iiqCJ" src="https://datawrapper.dwcdn.net/iiqCJ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="568" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
@@ -158,7 +158,7 @@ Explore more data here:
 <iframe title="Preventable injuries like Homicide and Suicide are top causes of death in NYC - especially age 15 to 44" aria-label="Scatter Plot" id="datawrapper-chart-blYxp" src="https://datawrapper.dwcdn.net/blYxp/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="720" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Preventable injuries
 like Homicide and Suicide are top causes of death in NYC—especially among ages 15 to 44" aria-label="Table" id="datawrapper-chart-67kB9" src="https://datawrapper.dwcdn.net/67kB9/8/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="997" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
@@ -168,5 +168,5 @@ like Homicide and Suicide are top causes of death in NYC—especially among ages
 <hr class="my-2">
 
 <div class="asidebox">
-<em><i class="fas fa-hands-helping text-center mr-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
+<em><i class="fas fa-hands-helping text-center me-1"></i>New Yorkers seeking support with their mental health can connect to trained counselors, for free and in over 200 languages, through 988. For 24/7 support, call or text 988. If you or someone you know is at immediate risk of hurting themselves, or in immediate danger, call 911.</em></div>
 </div>

@@ -50,7 +50,7 @@ We can look at violence by looking at data on non-fatal assault hospitalizations
 {{< datawrapper title="Violence rates are highest in the Bronx and Brooklyn" src="dVe0S/4/" height="559" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:1006px" id="datawrapper-vis-xLudO"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/xLudO/embed.js" charset="utf-8" data-target="#datawrapper-vis-xLudO"></script><noscript><img src="https://datawrapper.dwcdn.net/xLudO/full.png" alt="" /></noscript></div>
 </div>
 
@@ -62,7 +62,7 @@ Hospitalization rates for these neighborhoods are nearly four times the City’s
 {{< datawrapper title="A huge disparity in NYC's neighborhood violence rates" src="062qz/2/" height="357" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:613px" id="datawrapper-vis-RZtwq"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RZtwq/embed.js" charset="utf-8" data-target="#datawrapper-vis-RZtwq"></script><noscript><img src="https://datawrapper.dwcdn.net/RZtwq/full.png" alt="" /></noscript></div>
 </div>
 These higher rates of violence means that the health consequences ripple throughout the residents of these neighborhoods - often with devastating consequences.
@@ -72,7 +72,7 @@ These higher rates of violence means that the health consequences ripple through
 {{< datawrapper title="A disparity in violence by neighborhood poverty rate" src="vBeo1/3/" height="400" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:251px" id="datawrapper-vis-F4xxE"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/F4xxE/embed.js" charset="utf-8" data-target="#datawrapper-vis-F4xxE"></script><noscript><img src="https://datawrapper.dwcdn.net/F4xxE/full.png" alt="" /></noscript></div>
 </div>
 

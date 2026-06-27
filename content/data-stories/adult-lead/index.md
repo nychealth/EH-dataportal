@@ -52,7 +52,7 @@ For example, New York State law requires that health care providers check pregna
   <iframe title="Lead poisoning in NYC adults" aria-label="Interactive line chart" id="datawrapper-chart-i7Bgo" src="https://datawrapper.dwcdn.net/i7Bgo/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="485" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
   <div style="min-height:750px" id="datawrapper-vis-c7jtG"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/c7jtG/embed.js" charset="utf-8" data-target="#datawrapper-vis-c7jtG"></script><noscript><img src="https://datawrapper.dwcdn.net/c7jtG/full.png" alt="Between 2001-2003 and 2016-2018, annual average lead poisoning rates among adult New Yorkers had fallen from 7.1 per 100,000 workers to 2.1 per 100,000 workers. Staten Island had the highest current annual average at 5.5 and Manhattan had the lowest at 0.7 in 2016-2018." /></noscript></div>
 </div>
 
@@ -89,7 +89,7 @@ As part of our investigations, we work to get these products off NYC store shelv
 
 <img src="anon lead picture 1.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
 <img src="anon lead picture 2.png" alt="An investigator looking at potentially-contaminated products." style="width:48%; height:auto" class="px-1">
-<p class="fs-sm pl-1"><em>An investigator looking at potentially contaminated products.</em></p>
+<p class="fs-sm ps-1"><em>An investigator looking at potentially contaminated products.</em></p>
 </div>
 <div class="narrow">
 
@@ -100,7 +100,7 @@ We buy products from NYC stores and send them to a lab for testing. Between 2017
     <span style="font-size:50px; font-weight:bold;">3,000</span><br>
     products</p>
     </div>
-    <div class="col-md-6 text-right">
+    <div class="col-md-6 text-end">
     <p class="fs-xl">and found that over<br>
     <span style="font-size:50px; font-weight:bold">1,800</span><br>
     had detectable levels of lead.</p>

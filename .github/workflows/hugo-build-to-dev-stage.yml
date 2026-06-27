@@ -104,6 +104,11 @@ jobs:
           hugo-version: "0.147.3"
           extended: true
 
+      # set up Dart Sass (required by Bootstrap 5; theme.scss is compiled with transpiler "dartsass")
+
+      - name: Set up Dart Sass
+        run: sudo snap install dart-sass
+
       # build site with Hugo
 
       - name: Build site with Hugo

@@ -75,28 +75,28 @@ image: ds-redlining.jpeg
 
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
+        <a class="nav-link active" id="manhattan-tab" data-bs-toggle="tab"
             href="#manhattan" role="tab" aria-controls="manhattan"
             aria-selected="true">Manhattan</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="bronx-tab" data-toggle="tab" href="#bronx" role="tab"
+        <a class="nav-link" id="bronx-tab" data-bs-toggle="tab" href="#bronx" role="tab"
             aria-controls="bronx" aria-selected="false">The Bronx</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="brooklyn-tab" data-toggle="tab" href="#brooklyn"
+        <a class="nav-link" id="brooklyn-tab" data-bs-toggle="tab" href="#brooklyn"
             role="tab" aria-controls="brooklyn" aria-selected="false">Brooklyn</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="queens-tab" data-toggle="tab" href="#queens" role="tab"
+        <a class="nav-link" id="queens-tab" data-bs-toggle="tab" href="#queens" role="tab"
             aria-controls="queens" aria-selected="false">Queens</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="staten-tab" data-toggle="tab" href="#staten" role="tab"
+        <a class="nav-link" id="staten-tab" data-bs-toggle="tab" href="#staten" role="tab"
             aria-controls="staten" aria-selected="false">Staten island</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="map-tab" data-toggle="tab" href="#citywidemap"
+        <a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#citywidemap"
             role="tab" aria-controls="citywidemap" aria-selected="false">全市地图 </a>
     </li>
 </ul>

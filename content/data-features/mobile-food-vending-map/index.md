@@ -12,4 +12,4 @@ layout: restaurants
 
 The Mobile Food Vending Streets Map allows you to view sections of streets where mobile food vending is allowed, and where there are restrictions on food vending depending on the day of the week, time of day, or time of year.
 
-<a href="{{< relURL >}}mobilefoodvending/" class="button btn btn-lg btn-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link mr-1"></i>Mobile Food Vending Map</a>
+<a href="{{< relURL >}}mobilefoodvending/" class="button btn btn-lg btn-primary mb-4" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link me-1"></i>Mobile Food Vending Map</a>

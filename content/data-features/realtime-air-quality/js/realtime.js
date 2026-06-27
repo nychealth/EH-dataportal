@@ -206,7 +206,7 @@ function drawCheckboxes() {
                   Invisible column with all values - for sorting
                 </td>
                 <td>
-                    <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pr-1 my-1 barchart">
+                    <div id="value-${activeMonitors[i].loc_col}-2" style="background-color:lightblue;width:0%;" class="pe-1 my-1 barchart">
                     </div>
                 </td>
 
@@ -358,7 +358,7 @@ function printRecentAverage() {
                 if (average > 35 ) {
                     document.getElementById('exceeds').classList.remove('hide')
                     document.getElementById('allUnder').classList.add('hide')
-                    document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ml-1" style="color:red">'
+                    document.getElementById(print2).innerHTML += '<i class="fas fa-exclamation-circle ms-1" style="color:red">'
                 }
 
             var cont = 'value-' + activeMonitors[i].loc_col + '-2';

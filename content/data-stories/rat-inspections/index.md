@@ -56,7 +56,7 @@ This neighborhood-level approach means that rat problems can be tackled block by
 The Health Department designates some areas that have a high burden of rats as Rat Mitigation Zones (RMZ). In an RMZ, the Department conducts indexing, provides extra support to property owners and businesses, and works with multiple NYC agencies to reduce rats on public property.
 
 <div class="row">
-  <div class="col-6 mr-auto">
+  <div class="col-6 me-auto">
 <div class="card card-left-border shadow-sm mb-2 mt-2 fs-sm">
     <div class="card-body">
     <strong>Rat Mitigation Zone data</strong>

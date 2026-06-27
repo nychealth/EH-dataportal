@@ -9,7 +9,7 @@
             <!--start main column-->
             
             <nav aria-label="breadcrumb" class="my-2">
-                <ul class="breadcrumb mr-auto">
+                <ul class="breadcrumb me-auto">
                     <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
                     <li class="breadcrumb-item"><a href="..">
                         {{- with .Parent -}} {{ .Title }} </a></li>{{- end -}}
@@ -50,9 +50,9 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Office</th>
-                                    <th><i class="fas fa-globe mr-1" aria-hidden="true"></i>Name & website</th>
-                                    <th><i class="fas fa-phone-square mr-1" aria-hidden="true"></i>Office phone</th>
-                                    <th><i class="fas fa-envelope mr-1" aria-hidden="true"></i>Email address</th>
+                                    <th><i class="fas fa-globe me-1" aria-hidden="true"></i>Name & website</th>
+                                    <th><i class="fas fa-phone-square me-1" aria-hidden="true"></i>Office phone</th>
+                                    <th><i class="fas fa-envelope me-1" aria-hidden="true"></i>Email address</th>
                                 </tr>
                             </thead>
                             <tbody id="newTableBody">
@@ -70,7 +70,7 @@
                 <div class="row my-2 hide" id="contactContainer" data-pagefind-ignore="all">
                     <div class="col-12">
                         <h2 class="h4">Then, write them an email.</h2>
-                        <h3 class="h5" id="tips"><i class="fas fa-envelope-open-text mr-1"></i>Email tips</h3>
+                        <h3 class="h5" id="tips"><i class="fas fa-envelope-open-text me-1"></i>Email tips</h3>
                         <p>Elected officials serve the people - and want to know how their constituents feel. Here are some tips for writing an effective email, or script for a phone call.</p>
                         <p><strong>Identify yourself as a constituent:</strong> tell them where you live and that they are your elected representative. For example: <em>"I live on Hunts Point Ave in the Bronx, in your district."</em></p>
                         <p><strong>State your concerns.</strong> For example: <em>"Our neighborhood's rates of childhood asthma are among the highest in the city."</em></p>
@@ -85,15 +85,15 @@
                     
                     <div class="col-md-6">
                         <div class="p-3 my-2 asidebox">
-                            <p><i class="fas fa-vote-yea mr-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
-                                <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt mr-1"></i>register to vote here</a>.</p>
+                            <p><i class="fas fa-vote-yea me-1"></i>You can contact elected officials whether or not you are registered to vote. If you're not, 
+                                <a class="" href="https://voterreg.dmv.ny.gov/motorvoter/" target="_blank" rel="noreferrer noopener"><i class="fas fa-external-link-alt me-1"></i>register to vote here</a>.</p>
                             </div>
                             
                         </div>
                         
                         <div class="col-md-6">
                             <div class="p-3 my-2 asidebox">
-                                <p><i class="fas fa-phone-square mr-1"></i><em>Some officials don't have email addresses, but you can always call their offices and use your email as a script.</em></p>
+                                <p><i class="fas fa-phone-square me-1"></i><em>Some officials don't have email addresses, but you can always call their offices and use your email as a script.</em></p>
                             </div>
                             
                         </div>
@@ -117,7 +117,7 @@
                     
                     
                     <div class="row my-4 hide" id="register">
-                        <div class="col p-3 mx-4 sr-only" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
+                        <div class="col p-3 mx-4 visually-hidden" style="background-color: #f1f1f1; border-left: 2px solid darkgray;">
                             <p>You can contact these elected officials whether you are registered to vote, or not. If you're not, <a href="https://voterreg.dmv.ny.gov/motorvoter/">click here to register to vote</a>.</a></p>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                     if (isValidEmail(email) === true) {
                         cell_email.innerHTML =  `<strong><a href="mailto:${email}">${email}</a></strong>`
                     } else {
-                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Contact page</a></strong>`
+                        cell_email.innerHTML =  `<strong><a href="${email}" target="_blank"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Contact page</a></strong>`
                     }
                     
                     // Append cells to row

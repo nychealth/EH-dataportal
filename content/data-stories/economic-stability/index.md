@@ -67,7 +67,7 @@ The combined effects of poverty are increased sickness and death.
 <iframe title="Premature deaths rates are twice as high in poor neighborhoods as in wealthier ones " aria-label="Map" id="datawrapper-chart-56Vg1" src="https://datawrapper.dwcdn.net/56Vg1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="786" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Premature death rates are twice as high in poor neighborhoods as in wealthier ones" aria-label="Table" id="datawrapper-chart-2Rqll" src="https://datawrapper.dwcdn.net/2Rqll/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="932" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -102,7 +102,7 @@ We see severe rent burden among New Yorkers of all income levels — but low-inc
 <iframe title="Food insecurity in NYC" aria-label="Donut Chart" id="datawrapper-chart-XiHSE" src="https://datawrapper.dwcdn.net/XiHSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Ten percent of New Yorkers don't have enough food" aria-label="Table" id="datawrapper-chart-HNb3L" src="https://datawrapper.dwcdn.net/HNb3L/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="299" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -116,7 +116,7 @@ Our health is shaped not just by having <i> enough </i> food to eat but also by 
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods - a higher ratio of bodegas to supermarkets" aria-label="Scatter Plot" id="datawrapper-chart-we5Yo" src="https://datawrapper.dwcdn.net/we5Yo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Neighborhoods with higher poverty have less access to healthy foods — a higher ratio of bodegas to supermarkets" aria-label="Table" id="datawrapper-chart-Pg8tP" src="https://datawrapper.dwcdn.net/Pg8tP/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1381" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -131,7 +131,7 @@ Residents living in high-poverty neighborhoods are more likely to postpone healt
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Dot Plot" id="datawrapper-chart-W8Je1" src="https://datawrapper.dwcdn.net/W8Je1/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="523" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Households in higher-poverty neighborhoods are more likely to postpone medical care" aria-label="Table" id="datawrapper-chart-Mz3G5" src="https://datawrapper.dwcdn.net/Mz3G5/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="925" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -166,7 +166,7 @@ In NYC, as in most places in the United States, there are more Black and Latino 
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Scatter Plot" id="datawrapper-chart-qBcx4" src="https://datawrapper.dwcdn.net/qBcx4/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Poverty rates in segregated NYC neighborhoods" aria-label="Table" id="datawrapper-chart-uzt3a" src="https://datawrapper.dwcdn.net/uzt3a/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="946" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -176,7 +176,7 @@ In NYC, as in most places in the United States, there are more Black and Latino 
 <div aria-hidden="true">
 <iframe title="Self-reported health status" aria-label="Split Bars" id="datawrapper-chart-26GS0" src="https://datawrapper.dwcdn.net/26GS0/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="291" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Self-reported health status" aria-label="Table" id="datawrapper-chart-SEtPT" src="https://datawrapper.dwcdn.net/SEtPT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="322" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -231,6 +231,6 @@ Public health is about searching for and addressing the root causes of different
 
 To hear more from New Yorkers about how they view economic stability and health, listen to recordings from the community conversations:
 
-<div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="https://media.sparemin.com/embed-video/videos/85/29/24/b9/852924b9-b985-49c4-bfd7-bce681df222d_10793355.mp4"></iframe>
+<div class="ratio ratio-16x9">
+  <iframe src="https://media.sparemin.com/embed-video/videos/85/29/24/b9/852924b9-b985-49c4-bfd7-bce681df222d_10793355.mp4"></iframe>
 </div>

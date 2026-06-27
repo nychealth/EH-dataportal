@@ -13,7 +13,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-md-2 mr-auto"></div>
+        <div class="col-md-2 me-auto"></div>
     </div>
 
     <div class="row">
@@ -36,9 +36,9 @@
 
 
             </div>
-            <div class="col-6 ml-auto">
-            <button class="btn btn-outline-primary btn-sm float-right" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
-            <div class="float-right mt-1" id="prevYears">
+            <div class="col-6 ms-auto">
+            <button class="btn btn-outline-primary btn-sm float-end" onclick="toggle(1)" id="toggle">Hide previous years</button><br>
+            <div class="float-end mt-1" id="prevYears">
             <button class="btn btn-sm" disabled>Highlight:</button>
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2016btn" onclick="changeYear(2016)">2016</button>
             <button class="btn btn-outline-secondary btn-sm yearbtn" id="2017btn" onclick="changeYear(2017)">2017</button>
@@ -54,7 +54,7 @@
           </div>
 
             <div id="chartContainer py-1 my-1">
-            <em class="pl-2 fs-sm" style="clear:both">Emergency department visits for asthma in NYC</em>
+            <em class="ps-2 fs-sm" style="clear:both">Emergency department visits for asthma in NYC</em>
             <div id="vis1" class="chartdest" style="width:100%;"></div>
             </div>
 
@@ -84,9 +84,9 @@
                         <strong>About asthma</strong>
                         {{ .Content }}
 
-                        <a class="btn btn-sm btn-outline-primary btn-block my-1" href="/data-explorer/asthma/?id=2380#display=summary"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>More asthma data</a>
+                        <a class="btn btn-sm btn-outline-primary w-100 my-1" href="/data-explorer/asthma/?id=2380#display=summary"><i class="fas fa-chart-line me-1" aria-hidden="true"></i>More asthma data</a>
 
-                        <a class="btn btn-sm btn-outline-primary btn-block my-1" href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Explore more syndromic data on EpiQuery</a>
+                        <a class="btn btn-sm btn-outline-primary w-100 my-1" href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Explore more syndromic data on EpiQuery</a>
                     </div>
                 </div>
 

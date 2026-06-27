@@ -19,24 +19,24 @@
 <article class="container-fluid" id="skip-header-target">
   {{ partial "df-front-block" . }}
 
-  <a href="#accessibleTables" class="sr-only"
+  <a href="#accessibleTables" class="visually-hidden"
     >Skip to accessible data tables.</a
   >
 
   <div class="row mt-4 mb-4">
     <div class="col-11 mx-auto px-0">
-      <h2 class="sr-only" id="visualization">Visualization</h2>
+      <h2 class="visually-hidden" id="visualization">Visualization</h2>
 
       <div class="row">
         <div class="col-lg-2 col-md-4 col-sm">
-          <button class="btn btn-block btn-outline-primary type-button" id="ED">
+          <button class="btn w-100 btn-outline-primary type-button" id="ED">
             ED visits
           </button>
         </div>
 
         <div class="col-lg-2 col-md-4 col-sm">
           <button
-            class="btn btn-block btn-outline-primary type-button 3"
+            class="btn w-100 btn-outline-primary type-button 3"
             id="Hospitalization"
           >
             Hospitalizations
@@ -45,7 +45,7 @@
 
         <div class="col-lg-2 col-md-4 col-sm">
           <button
-            class="btn btn-block btn-outline-primary active type-button"
+            class="btn w-100 btn-outline-primary active type-button"
             id="Death"
           >
             Deaths
@@ -56,7 +56,7 @@
       <div class="row mt-1">
         <div class="col-lg-2 col-md-4 col-sm">
           <button
-            class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4"
+            class="btn btn-sm w-100 btn-outline-secondary subtype-button px-4"
             id="all"
             data-injury="0"
           >
@@ -66,7 +66,7 @@
 
         <div class="col-lg-2 col-md-4 col-sm">
           <button
-            class="btn btn-sm btn-block btn-outline-secondary subtype-button active"
+            class="btn btn-sm w-100 btn-outline-secondary subtype-button active"
             id="injuryOnly"
             data-injury="1"
           >
@@ -77,9 +77,9 @@
         <div class="col-lg-2 col-md-4 col-sm">
           <div class="dropdown d-inline-block">
             <button
-              class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0"
+              class="btn btn-sm w-100 btn-outline-info dropdown-toggle ms-0"
               type="button"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown"
               aria-expanded="false"
               id="buttonTitle"
             >
@@ -126,20 +126,20 @@
 
           <div id="readout" class="my-2 hide">
             <span class="fs-sm">Age:</span><br />
-            <span class="font-weight-bold" id="agePrint">---</span>
+            <span class="fw-bold" id="agePrint">---</span>
             <hr class="my-1" />
             <p class="fs-sm mb-0">
               <span id="rank">--</span> cause of <span id="intent"></span>
               <span class="outcome">outcome</span>:
             </p>
-            <span class="font-weight-bold my-0" id="causePrint">---</span>
+            <span class="fw-bold my-0" id="causePrint">---</span>
             <p class="mt-0 fs-xs" id="printDescription">---</p>
             <hr class="my-1" />
             <span class="fs-sm">Rate:</span><br />
-            <span class="font-weight-bold" id="ratePrint">---</span>
+            <span class="fw-bold" id="ratePrint">---</span>
             <hr class="my-1" />
             <span class="fs-sm">Average annual number:</span><br />
-            <span class="font-weight-bold" id="countPrint">---</span>
+            <span class="fw-bold" id="countPrint">---</span>
             <hr class="my-1" />
             <p class="fs-xs">
               <em><span id="flagNote" class="fs-xs">Note:</span></em>
@@ -223,7 +223,7 @@
     </div>
   </div>
 
-  <div class="sr-only" id="accessibleTables">
+  <div class="visually-hidden" id="accessibleTables">
     <h2>Accessible data table</h2>
     {{ partial "render-accessible-table.html" (dict "csvPath"
     "data/leading-causes.csv" "containerId" "csv-table-container-1") }}

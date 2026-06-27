@@ -34,7 +34,7 @@
                     <div class="col-12">
                     <nav class="navbar navbar-default my-2">
                             <ul class="nav navbar-nav fs-sm">
-                                <span class="mr-2">Read this data story in:</span>
+                                <span class="me-2">Read this data story in:</span>
                                 {{- range .Translations -}}
                                 <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                                 {{- end -}}
@@ -84,7 +84,7 @@
         </div>
         <div class="narrow my-4">
 
-        This is an example of the Urban Heat Island Effect: when some areas in a city are <a href="#collapseOne" data-toggle="collapse" class="badge badge-pill badge-warning">hotter than others</a>. Temperatures can even vary from block to block.
+        This is an example of the Urban Heat Island Effect: when some areas in a city are <a href="#collapseOne" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">hotter than others</a>. Temperatures can even vary from block to block.
 
         <div class="collapse asidebox m-2 fs-sm" id="collapseOne"
         style="margin-top: 0px!important;">
@@ -121,7 +121,7 @@
                         <th scope="row"><span class="justabox"
                                 style="background-color: green"></span>Tree canopy</th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-warning">Low</a>
+                                class="badge rounded-pill text-bg-warning">Low</a>
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +129,7 @@
                                 style="background-color: greenyellow"></span>Grass/shrubs
                         </th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-warning">Low</a>
+                                class="badge rounded-pill text-bg-warning">Low</a>
                         </td>
                     </tr>
                     <tr>
@@ -137,15 +137,15 @@
                                 style="background-color: lightgray"></span>Building height:
                         </th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-light">Low</span>
+                                class="badge rounded-pill text-bg-light">Low</span>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><i class="fas fa-thermometer-full pr-1"></i>Average
+                        <th scope="row"><i class="fas fa-thermometer-full pe-1"></i>Average
                             temp:</th>
                         <td>
                             <span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-danger">82°</span>
+                                class="badge rounded-pill text-bg-danger">82°</span>
                         </td>
                     </tr>
                 </tbody>
@@ -167,7 +167,7 @@
                         <th scope="row"><span class="justabox"
                                 style="background-color: green"></span>Tree canopy</th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-success">High</span>
+                                class="badge rounded-pill text-bg-success">High</span>
                         </td>
                     </tr>
                     <tr>
@@ -175,7 +175,7 @@
                                 style="background-color: greenyellow"></span>Grass/shrubs
                         </th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-success">High</span>
+                                class="badge rounded-pill text-bg-success">High</span>
                         </td>
                     </tr>
                     <tr>
@@ -183,14 +183,14 @@
                                 style="background-color: lightgray"></span>Building height:
                         </th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-light">Medium</span>
+                                class="badge rounded-pill text-bg-light">Medium</span>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><i class="fas fa-thermometer-full pr-1"></i>Average
+                        <th scope="row"><i class="fas fa-thermometer-full pe-1"></i>Average
                             temp:</th>
                         <td><span style="display:inline-block; width: 100%;"
-                                class="badge badge-pill badge-warning">79.8°</span>
+                                class="badge rounded-pill text-bg-warning">79.8°</span>
                         </td>
                     </tr>
                 </tbody>
@@ -208,14 +208,14 @@
                 <div class="row fs-sm">
                     <div class="col-md-6">
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01"
-                                data-toggle="collapse" href="#panel-acc-button-01" role="tab"
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-01"
+                                data-bs-toggle="collapse" href="#panel-acc-button-01" role="tab"
                                 aria-expanded="false" aria-controls="panel-acc-button-01">
                                 <span class="title" role="heading" aria-level="3">Tree canopy
                                     coverage</span>
                             </a>
                             <div class="collapse" id="panel-acc-button-01" role="tabpanel"
-                                aria-labelledby="acc-button-01" data-parent="#accordion-01">
+                                aria-labelledby="acc-button-01" data-bs-parent="#accordion-01">
                                 <div class="card-body">
                                     <p>
                                         <strong>Total tree canopy coverage</strong> is the percent of the sidewalk in the right of way of the monitored street that is shaded by trees. Trees provide shade and prevent the ground from heating up. They also can cool the air through evapotranspiration. Evapotranspiration happens when the sun’s rays hit plants, causing water to evaporate from the leaves. This change from liquid to vapor cools the plants – just as sweating cools our bodies – and uses energy, thereby reducing the amount of energy left to warm the air.
@@ -226,14 +226,14 @@
                         </div>
                         <!-- .card (end of first accordion, repeat as needed) -->
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-03"
-                                data-toggle="collapse" href="#panel-acc-button-03" role="tab"
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-03"
+                                data-bs-toggle="collapse" href="#panel-acc-button-03" role="tab"
                                 aria-expanded="false" aria-controls="panel-acc-button-03">
                                 <span class="title" role="heading" aria-level="3">Grass and
                                     shrubs</span>
                             </a>
                             <div class="collapse" id="panel-acc-button-03" role="tabpanel"
-                                aria-labelledby="acc-button-03" data-parent="#accordion-01">
+                                aria-labelledby="acc-button-03" data-bs-parent="#accordion-01">
                                 <div class="card-body">
                                     <p>
                                         The percent of <strong>grass and shrubs</strong> in front of buildings on the
@@ -256,14 +256,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02"
-                                data-toggle="collapse" href="#panel-acc-button-02" role="tab"
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-02"
+                                data-bs-toggle="collapse" href="#panel-acc-button-02" role="tab"
                                 aria-expanded="false" aria-controls="panel-acc-button-02">
                                 <span class="title" role="heading" aria-level="3">Building
                                     height</span>
                             </a>
                             <div class="collapse" id="panel-acc-button-02" role="tabpanel"
-                                aria-labelledby="acc-button-02" data-parent="#accordion-01">
+                                aria-labelledby="acc-button-02" data-bs-parent="#accordion-01">
                                 <div class="card-body">
                                     <p>
                                         Our model looks at the <strong>median building
@@ -278,14 +278,14 @@
                         </div>
                         <!-- .card (end of first accordion, repeat as needed) -->
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-04"
-                                data-toggle="collapse" href="#panel-acc-button-04" role="tab"
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-04"
+                                data-bs-toggle="collapse" href="#panel-acc-button-04" role="tab"
                                 aria-expanded="false" aria-controls="panel-acc-button-04">
                                 <span class="title" role="heading" aria-level="3">Impervious
                                     surfaces</span>
                             </a>
                             <div class="collapse" id="panel-acc-button-04" role="tabpanel"
-                                aria-labelledby="acc-button-04" data-parent="#accordion-01">
+                                aria-labelledby="acc-button-04" data-bs-parent="#accordion-01">
                                 <div class="card-body">
                                     <p>
                                         <strong>Impervious surfaces</strong> are made from
@@ -305,14 +305,14 @@
                     </div>
                     <div class="col mt-1">
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-06"
-                                data-toggle="collapse" href="#panel-acc-button-06" role="tab"
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-06"
+                                data-bs-toggle="collapse" href="#panel-acc-button-06" role="tab"
                                 aria-expanded="false" aria-controls="panel-acc-button-06">
                                 <span class="title" role="heading" aria-level="3">Other
                                     factors</span>
                             </a>
                             <div class="collapse" id="panel-acc-button-06" role="tabpanel"
-                                aria-labelledby="acc-button-06" data-parent="#accordion-01">
+                                aria-labelledby="acc-button-06" data-bs-parent="#accordion-01">
                                 <div class="card-body">
                                     <p>
                                         <strong>Other factors</strong>, like the orientation of
@@ -387,7 +387,7 @@
             </div>
         </div>
 
-        <div class="sr-only">
+        <div class="visually-hidden">
         <p> An image of an apartment building in NYC overlaid with a transparent green layer that represents how much vegetative cover there is. As the user adds a higher percentage of green cover using a slider, the percentage of impervious surfaces is reduced (from 0% to 100% in both categories), which also reduces the temperature on the block (from 76.97 to 79.09 F).</p>
         </div>
         <script>
@@ -474,7 +474,7 @@
 
         As the climate changes, NYC faces rising average temperatures and heat waves that place New Yorkers at risk. The increase in cooling provided from neighborhoods with trees and other vegetation helps increase equitable resilience between neighborhoods in New York, offsets the effects of the urban heat island, and makes daily life safer and more comfortable on hot days and during extreme heat. The modest cooling provided by increased greenery can also reduce the load of air conditioners and lower energy bills, as air conditioning is a vital public health intervention for reducing heat-related illness and death.
 
-        <div class="sr-only">
+        <div class="visually-hidden">
         <p>Surface temperature data taken from monitors mounted on trees varied between 6pm and 9pm throughout NYC shows that in upper Manhattan, sites in both the north and south Bronx, and in parts of northwest Queens, temperatures were measured to higher than in northwest Brooklyn and northeast Queens. These disparities were similar between 2018 and 2019.</p>
         </div>
         </div>
@@ -490,7 +490,7 @@
                 </ul></p>
                 </div>
             <form name="chooser">
-                <div class="map-chooser border-top float-right" id="mapRadio">
+                <div class="map-chooser border-top float-end" id="mapRadio">
                     <input type="radio" id="2018btn" name="mapRadioGroup" value="2018">
                     <label for="2018btn">2018</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="radio" id="2019btn" name="mapRadioGroup" value="2019" checked>
@@ -500,7 +500,7 @@
             <iframe id="mapframe" width="100%" height="600" frameborder="0" scrolling="no"
                 src="{{ .Site.BaseURL }}maps/UHI/2019.html"></iframe>
             </iframe>
-            <div class="float-right fs-sm">
+            <div class="float-end fs-sm">
                 <img src="tree.png" width="15px" alt="A tree icon."> Temperature sensor mounted on tree.
             </div>
             <br><br><br><br>
@@ -545,7 +545,7 @@
                     <ul class="extensible-list text-muted mt-3">
                         <li>
                             <p class="text-muted" >
-                                <span class="fa fa-envelope"></span> Like this story? <a href="#" data-subscribe-click="data-story" data-toggle="modal" data-target="#subscribeModal"> Sign up to find out when we post something new.</a></p> 
+                                <span class="fa fa-envelope"></span> Like this story? <a href="#" data-subscribe-click="data-story" data-bs-toggle="modal" data-bs-target="#subscribeModal"> Sign up to find out when we post something new.</a></p> 
                         </li>
                     </ul>
                 </div>
@@ -571,7 +571,7 @@
 
                 <div class="fs-sm">
                     {{- if .Params.photocredit -}}
-                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
+                        <i class="fas fa-images me-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
                     {{- end }}

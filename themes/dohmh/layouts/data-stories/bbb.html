@@ -15,7 +15,7 @@
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span>
+                        <span class="me-2">Read this data story in:</span>
                         {{- range .Translations -}}
                         <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
                         {{- end -}}
@@ -158,7 +158,7 @@
   /* (E2) FOR EVENTS ON THE LEFT */
   div.alt-event::before {
     /* (E2-1) "MAGIC TRIANGLE" */
-    border-left-color: #66666650;
+    border-start-color: #66666650;
     border-right: 0;
 
     /* (E2-2) POSITION TRIANGLE ON THE RIGHT */
@@ -168,7 +168,7 @@
   /* (E3) FOR EVENTS ON THE RIGHT */
   div.alt-event.right::before {
     /* (E3-1) "MAGIC TRIANGLE" */
-    border-right-color: #66666650;
+    border-end-color: #66666650;
     border-left: 0;
 
     /* (E3-2) POSITION TRIANGLE ON THE LEFT */
@@ -395,7 +395,7 @@
 
                 <div class="fs-sm">
                     {{- if .Params.photocredit -}}
-                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
+                        <i class="fas fa-images me-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
                     {{- end }}

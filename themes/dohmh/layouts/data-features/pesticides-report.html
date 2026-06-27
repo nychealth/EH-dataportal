@@ -111,11 +111,11 @@ function printTable(data, destination, year, noDataProvided) {
                     <thead>
                     <tr class="fs-sm">
                         <th>Type</th>
-                        <th class="border-left num">Volume (gallons)</th>
+                        <th class="border-start num">Volume (gallons)</th>
                         <th class="num">Percent of total volume</th>
-                        <th class="border-left num">Weight (lbs)</th>
+                        <th class="border-start num">Weight (lbs)</th>
                         <th class="num">Percent of total weight</th>
-                        <th class="border-left num">Total applications</th>
+                        <th class="border-start num">Total applications</th>
                         <th class="num">Percent of total applications</th>
                     </tr>
                     </thead>
@@ -134,23 +134,23 @@ function printTable(data, destination, year, noDataProvided) {
 
         table += `<tr>
                     <td>${rowName}</td>
-                    <td class="border-left num">${volume.toLocaleString()}</td>
+                    <td class="border-start num">${volume.toLocaleString()}</td>
                     <td class="num">${volumePct}</td>
-                    <td class="border-left num">${weight.toLocaleString()}</td>
+                    <td class="border-start num">${weight.toLocaleString()}</td>
                     <td class="num">${weightPct}</td>
-                    <td class="border-left num">${apps.toLocaleString()}</td>
+                    <td class="border-start num">${apps.toLocaleString()}</td>
                     <td class="num">${appsPct}</td>
                   </tr>`;
     });
 
     // totals row
-    table += `<tr class="font-weight-bold border-top total-row">
+    table += `<tr class="fw-bold border-top total-row">
                 <td>Total</td>
-                <td class="border-left num">${totalVolume.toLocaleString()}</td>
+                <td class="border-start num">${totalVolume.toLocaleString()}</td>
                 <td class="num"></td>
-                <td class="border-left num">${totalWeight.toLocaleString()}</td>
+                <td class="border-start num">${totalWeight.toLocaleString()}</td>
                 <td class="num"></td>
-                <td class="border-left num">${totalApps.toLocaleString()}</td>
+                <td class="border-start num">${totalApps.toLocaleString()}</td>
                 <td class="num"></td>
               </tr>`;
 

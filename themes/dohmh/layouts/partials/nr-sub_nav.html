@@ -20,7 +20,7 @@
 
         {{/*  {{- partial "warn_counter" (print $index " - page: " $page) }}  */}}
 
-        <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary btn-block{{ if (eq $report_filename $page.File.BaseFileName) }} active{{- end -}}" aria-current="page">
+        <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary w-100{{ if (eq $report_filename $page.File.BaseFileName) }} active{{- end -}}" aria-current="page">
             
             {{- .Title -}}
             

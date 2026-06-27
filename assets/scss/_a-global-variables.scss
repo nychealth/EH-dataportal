@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /*
 
 In this file:
@@ -119,7 +121,7 @@ $text-muted: $gray-700;
 
 // Set grays for better accessibility
 
-$blockquote-small-color: $gray-700;
+$blockquote-footer-color: $gray-700;
 $input-placeholder-color: $gray-700;
 $dropdown-header-color: $gray-700;
 $figure-caption-color: $body-color;
@@ -193,7 +195,7 @@ $grid-gutter-width: ($spacer-2 * 2);
 // Convert Grid $grid-gutter-width from REM to PX
 
 @function parseInt($n) {
-    @return $n / ($n * 0 + 1);
+    @return math.div($n, ($n * 0 + 1));
 }
 
 @function rem-to-px($size) {
@@ -282,22 +284,15 @@ $font-size-lg: $fs-lg;
 $font-size-sm: $fs-sm;
 $small-font-size: $fs-sm;
 
-// Enable responsive font sizes
-
-$enable-responsive-font-sizes: true;
-
 // Font-weight values should match the weights that you import (above)
 
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 700 !default;
 
-// .display-* selector font weight
+// .display-* selector font weight (BS5 uses a single $display-font-weight)
 
-$display1-weight: $font-weight-bold;
-$display2-weight: $font-weight-bold;
-$display3-weight: $font-weight-bold;
-$display4-weight: $font-weight-bold;
+$display-font-weight: $font-weight-bold;
 
 // h1 - h6 font-weight
 
@@ -411,7 +406,7 @@ $accessible-box-shadow: 0 0 0 $border-width $input-border-color;
 // N. Forms and alerts
 ////////////////////////////////////////
 
-$form-group-margin-bottom: $spacer-4;
+$form-label-margin-bottom: $spacer-2;
 
 $input-btn-padding-x: $spacer-2;
 $input-btn-focus-width: 0.15rem;
@@ -427,13 +422,12 @@ $enable-validation-icons: false;
 
 $nav-item-search-button-width: 28px;
 
-// Custom checkbox and radio settings
+// Checkbox and radio settings (BS5 form-check)
+// Preserve the prior blue checked state from BS4 custom-control
 
-$custom-control-indicator-checked-color: white;
-$custom-control-indicator-checked-bg: lighten($blue, 5%);
-$custom-control-indicator-active-bg: lighten($blue, 35%);
-
-$custom-control-indicator-active-box-shadow: 0 0 1rem rgba($blue, $box-shadow-opacity);
+$form-check-input-checked-color: white;
+$form-check-input-checked-bg-color: lighten($blue, 5%);
+$form-check-input-checked-border-color: lighten($blue, 5%);
 
 // Alert padding
 

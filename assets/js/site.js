@@ -4,7 +4,7 @@
 	}
 
 	function getClickUrl(element) {
-		return element.getAttribute("href") || element.getAttribute("data-target") || "";
+		return element.getAttribute("href") || element.getAttribute("data-bs-target") || "";
 	}
 
 	function getAnalyticsLabel(element) {
@@ -94,7 +94,7 @@
 		if (
 			clickTarget.classList.contains("subscribe-link") ||
 			clickTarget.dataset.subscribeClick ||
-			clickTarget.getAttribute("data-target") === "#subscribeModal"
+			clickTarget.getAttribute("data-bs-target") === "#subscribeModal"
 		) {
 			sendAnalyticsEvent("click_subscribe", {
 				place: clickTarget.dataset.subscribeClick || getAnalyticsPlace(clickTarget),
@@ -103,7 +103,7 @@
 			return;
 		}
 
-		if (clickTarget.getAttribute("data-target") === "#searchModal") {
+		if (clickTarget.getAttribute("data-bs-target") === "#searchModal") {
 			sendAnalyticsEvent("click_search_open", {
 				place: getAnalyticsPlace(clickTarget),
 			});
@@ -142,7 +142,7 @@
 			navigationRoot &&
 			clickUrl &&
 			clickUrl !== "#" &&
-			!clickTarget.hasAttribute("data-toggle")
+			!clickTarget.hasAttribute("data-bs-toggle")
 		) {
 			const clickLabel = getAnalyticsLabel(clickTarget);
 

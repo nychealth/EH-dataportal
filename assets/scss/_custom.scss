@@ -265,11 +265,11 @@ $color-data-explorer: #0A408A;
 }
 
 
-.accordion-group a[data-toggle="collapse"][aria-expanded="false"]:after {
+.accordion-group a[data-bs-toggle="collapse"][aria-expanded="false"]:after {
   content: "\002B";
 }
 
-.accordion-group a[data-toggle="collapse"][aria-expanded="true"]:after {
+.accordion-group a[data-bs-toggle="collapse"][aria-expanded="true"]:after {
   content: "\2014";
 }
 

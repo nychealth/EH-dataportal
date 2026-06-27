@@ -15,7 +15,7 @@
         <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
 
             <div class="row my-2">
-                <div class="col-md-6 mr-auto">
+                <div class="col-md-6 me-auto">
                     <h3 class="h5">Enter your address</h3>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="mb-1">
                         <input class="form-control form-control-lg" id="map-search1" placeholder="Search Address">
                     </div>
-                    <div id='nycMap' class="sr-only" style="height:350px;"></div>
+                    <div id='nycMap' class="visually-hidden" style="height:350px;"></div>
                     <div id="leafletMap" class="d-sm-none d-md-block">
                     </div>  
                 </div>
@@ -35,8 +35,8 @@
                     <div class="card content-card mb-4" id="noOutput">
                         <div class="card-content primary">
                             <div class="card-body">
-                                <span class="home-label font-weight-bold h4">
-                                    <i class="fas fa-map mr-1" aria-hidden="true"></i>Rats in your neighborhood:
+                                <span class="home-label fw-bold h4">
+                                    <i class="fas fa-map me-1" aria-hidden="true"></i>Rats in your neighborhood:
                                 </span>
                                 <div class="mb-2">
                                     <em><span id="status">Waiting for an address...</span></em>
@@ -51,19 +51,19 @@
                     <div class="card content-card mb-4 hide" id="cdOutput">
                         <div class="card-content primary">
                             <div class="card-body">
-                                <span class="home-label font-weight-bold h4">
-                                    <i class="fas fa-map mr-1" aria-hidden="true"></i>Your neighborhood:
+                                <span class="home-label fw-bold h4">
+                                    <i class="fas fa-map me-1" aria-hidden="true"></i>Your neighborhood:
                                 </span>
                                 <div class="py-2">
-                                    <p>This address is in <span id="cdID" class="cd-color">CD XXX</span>. This neighborhood has <span id="activityValue" class="font-weight-bold">moderate</span> rat activity. In <span id="yearPrint"></span>:</p>
+                                    <p>This address is in <span id="cdID" class="cd-color">CD XXX</span>. This neighborhood has <span id="activityValue" class="fw-bold">moderate</span> rat activity. In <span id="yearPrint"></span>:</p>
                                     <ul>
-                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdProp">XX%</span> of properties were inspected for rats
+                                        <li><i class="fas fa-caret-right me-1" aria-hidden="true"></i><span class="fw-bold" id="cdProp">XX%</span> of properties were inspected for rats
                                         </li>
-                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i><span class="font-weight-bold" id="cdFail">YY%</span> of properties had signs of rat activity</li>
+                                        <li><i class="fas fa-caret-right me-1" aria-hidden="true"></i><span class="fw-bold" id="cdFail">YY%</span> of properties had signs of rat activity</li>
                                     </ul>
                                 </div>
                                 <div class="d-flex justify-content-end border-top link fs-sm pt-1">
-                                    <p class="fs-sm"><a href={{ relURL "data-explorer/mice-and-rats/?id=2434#display=map" }}><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
+                                    <p class="fs-sm"><a href={{ relURL "data-explorer/mice-and-rats/?id=2434#display=map" }}><i class="fas fa-chart-line me-1" aria-hidden="true"></i>Get data on rat inspections by neighborhood</a>.</p>
 
                                 </div>
 
@@ -76,23 +76,23 @@
                     <div class="card content-card mb-4 hide" id="propertyOutput">
                         <div class="card-content primary">
                             <div class="card-body">
-                                <span class="home-label font-weight-bold h4">
-                                    <i class="fas fa-map-marker mr-1" aria-hidden="true"></i>This address:
+                                <span class="home-label fw-bold h4">
+                                    <i class="fas fa-map-marker me-1" aria-hidden="true"></i>This address:
                                 </span>
                                 <div class="py-2">
                                     <ul>
-                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i>This address <span class="font-weight-bold" id="result">XXXXX</span> its last inspection, on <span class="font-weight-bold" id="mostRecentInspection">DATE</span>.
+                                        <li><i class="fas fa-caret-right me-1" aria-hidden="true"></i>This address <span class="fw-bold" id="result">XXXXX</span> its last inspection, on <span class="fw-bold" id="mostRecentInspection">DATE</span>.
                                         </li>
         
-                                        <li><i class="fas fa-caret-right mr-1" aria-hidden="true"></i>In the last 5 years, it has been inspected <span class="font-weight-bold" id="numOfInspections">X times</span>. 
+                                        <li><i class="fas fa-caret-right me-1" aria-hidden="true"></i>In the last 5 years, it has been inspected <span class="fw-bold" id="numOfInspections">X times</span>. 
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="d-flex justify-content-end link fs-sm border-top py-1">
-                                    <p class="fs-sm"><a href="{{ relURL "Rats/?applicationName=DOH_RIP" }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get detailed inspection results for any property</a>.</p>
+                                    <p class="fs-sm"><a href="{{ relURL "Rats/?applicationName=DOH_RIP" }}"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Get detailed inspection results for any property</a>.</p>
                                 </div>
                                 <div id="rmzYes" class="hide fs-sm border-top py-1">
-                                        <p>This address is in a <span class="rmz-color">Rat Mitigation Zone</span>. Properties in these areas are inspected more regularly, to help fight rats on a neighborhood-wide scale. <a href="{{ relURL "data-features/rat-mitigation-zones" }}"><i class="fas fa-chart-bar mr-1" aria-hidden="true"></i>Explore Rat Mitigation Zones</a>.</p>
+                                        <p>This address is in a <span class="rmz-color">Rat Mitigation Zone</span>. Properties in these areas are inspected more regularly, to help fight rats on a neighborhood-wide scale. <a href="{{ relURL "data-features/rat-mitigation-zones" }}"><i class="fas fa-chart-bar me-1" aria-hidden="true"></i>Explore Rat Mitigation Zones</a>.</p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <h4>See a problem with rats or trash?</h4>
-                    <p class="fs-rg"><a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>If there aren't recent inspections, you can use 311 to make a complaint, </a>and the NYC Health Department will send an inspector. The property owner may then be required to fix the problems. 
+                    <p class="fs-rg"><a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>If there aren't recent inspections, you can use 311 to make a complaint, </a>and the NYC Health Department will send an inspector. The property owner may then be required to fix the problems. 
                         <!-- Await 311 data story
                         <a href="">Read more about how we inspect properties for rats</a>.
                         -->

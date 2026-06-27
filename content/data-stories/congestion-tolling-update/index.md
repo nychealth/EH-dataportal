@@ -34,7 +34,7 @@ related:
 ---
 
 <div class="border mb-4 p-1 fs-sm">
-  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Read MTA's report on the first year of the program, which includes our updated air quality analyses.</li></ul></a>
+  <i class="far fa-clock me-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Read MTA's report on the first year of the program, which includes our updated air quality analyses.</li></ul></a>
 </div>
 
 In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (the zone) to reduce traffic within the zone and raise money for public transportation improvements.
@@ -64,7 +64,7 @@ This map shows the locations of [real-time air quality monitoring]({{< relURL >}
   </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 Monitors inside the tolling zone:
 
 - Manhattan side of the Queensboro bridge, Williamsburg Bridge, and Manhattan Bridge.
@@ -95,7 +95,7 @@ PM2.5, or _fine particle air pollution_, is a major form of air pollution that c
 <div style="min-height:429px" id="datawrapper-vis-poCeg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/poCeg/embed.js" charset="utf-8" data-target="#datawrapper-vis-poCeg"></script><noscript><img src="https://datawrapper.dwcdn.net/poCeg/full.png" alt="" /></noscript></div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:499px" id="datawrapper-vis-1gL1D"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/1gL1D/embed.js" charset="utf-8" data-target="#datawrapper-vis-1gL1D"></script><noscript><img src="https://datawrapper.dwcdn.net/1gL1D/full.png" alt="" /></noscript></div>
 </div>
 
@@ -112,7 +112,7 @@ Most locations showed steady or decreasing concentrations of PM2.5.
 <div style="min-height:683px" id="datawrapper-vis-QnCs4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/QnCs4/embed.js" charset="utf-8" data-target="#datawrapper-vis-QnCs4"></script><noscript><img src="https://datawrapper.dwcdn.net/QnCs4/full.png" alt="" /></noscript></div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:496px" id="datawrapper-vis-34i25"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/34i25/embed.js" charset="utf-8" data-target="#datawrapper-vis-34i25"></script><noscript><img src="https://datawrapper.dwcdn.net/34i25/full.png" alt="" /></noscript></div>
 </div>
 <div class="narrow">
@@ -126,7 +126,7 @@ Did this location see an increase in traffic that would explain this increase in
 <iframe title="Traffic counts at Hamilton Bridge" aria-label="Multiple Columns" id="datawrapper-chart-A09XN" src="https://datawrapper.dwcdn.net/A09XN/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="590" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:344px" id="datawrapper-vis-zvNzf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zvNzf/embed.js" charset="utf-8" data-target="#datawrapper-vis-zvNzf"></script><noscript><img src="https://datawrapper.dwcdn.net/zvNzf/full.png" alt="" /></noscript></div>
 </div>
 <div class="narrow">

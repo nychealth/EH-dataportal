@@ -135,7 +135,7 @@
 {{- /*  main CSS  */}}
 
 {{- $sass := resources.Get "scss/theme.scss" }}
-{{- $style := $sass | toCSS | resources.Fingerprint "sha512" }}
+{{- $style := $sass | toCSS (dict "transpiler" "dartsass") | resources.Fingerprint "sha512" }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
 
 {{- /*  Call all data libraries if it's not a section page, except for Neighborhood Reports  */}}

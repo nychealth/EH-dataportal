@@ -45,7 +45,7 @@ To understand the connection between poverty and asthma, take a look at this map
 <div aria-hidden="true">
 {{< datawrapper title="Poverty in New York City" src="s32oq/3/" height="600" >}}
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:930px" id="datawrapper-vis-ecp3d"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ecp3d/embed.js" charset="utf-8" data-target="#datawrapper-vis-ecp3d"></script><noscript><img src="https://datawrapper.dwcdn.net/ecp3d/full.png" alt="" /></noscript></div>
 </div>
 
@@ -55,7 +55,7 @@ Now, compare that to a map of emergency department visits for asthma in children
 {{< datawrapper title="Child asthma in NYC" src="xHdgu/1/" height="600" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:907px" id="datawrapper-vis-KvyVJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/KvyVJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-KvyVJ"></script><noscript><img src="https://datawrapper.dwcdn.net/KvyVJ/full.png" alt="" /></noscript></div>
 </div>
 
@@ -70,7 +70,7 @@ On the scatter plot below, each dot represents one neighborhood. Its horizontal 
 <div aria-hidden="true">
 {{< datawrapper title="The correlation between poverty and asthma" src="YiBqa/2/" height="409" >}}
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:8325px" id="datawrapper-vis-pxkwE"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pxkwE/embed.js" charset="utf-8" data-target="#datawrapper-vis-pxkwE"></script><noscript><img src="https://datawrapper.dwcdn.net/pxkwE/full.png" alt="Higher poverty areas overlap with higher child ED visits for asthma. In Mott Haven-Port Morris, where there is a 45.1% poverty rate, there are	683 ED visits by children per 10,000 residents. In Park Slope-Gowanus, there is a 7.3% poverty rate, and fewer child ED visits at 68 per 10,000 residents. " /></noscript></div>
 </div>
 

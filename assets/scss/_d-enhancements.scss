@@ -160,28 +160,12 @@ html[dir="rtl"] {
 
   .accordion-group,
   .btn-toggle {
-    [data-toggle="collapse"] {
+    [data-bs-toggle="collapse"] {
       &::after {
         margin-left: 0;
         margin-right: $spacer-2;
       }
     }
-  }
-
-  // Flip Custom Control Background from left to right
-
-  .custom-control-label {
-
-    &::before,
-    &::after {
-      right: -($custom-control-gutter + $custom-control-indicator-size);
-    }
-  }
-
-  // Add padding to custom checkboxes and radios '.custom-control selector' to ensure spacing during rtl translation  
-
-  .custom-control {
-    padding-right: ($custom-control-gutter + $custom-control-indicator-size);
   }
 
   .sidebar-fixed-width {
@@ -265,8 +249,8 @@ a,
   }
 }
 
-.btn-toggle [data-toggle="collapse"],
-.accordion-group [data-toggle="collapse"],
+.btn-toggle [data-bs-toggle="collapse"],
+.accordion-group [data-bs-toggle="collapse"],
 a.card,
 #back-to-top a,
 .btn.file-choose {
@@ -357,29 +341,13 @@ fieldset {
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  @extend .custom-select;
+  @extend .form-select;
 }
 
 label,
 .label {
   font-size: $fs-md;
-  margin-bottom: $label-margin-bottom;
-}
-
-// Add accessible box-shadow to 'custom-control-label'
-
-.custom-control-label {
-  &::before {
-    box-shadow: $accessible-box-shadow;
-  }
-}
-
-// Remove border-radius on 'custom-checkbox' when global $border-radius is set to true
-
-.custom-checkbox .custom-control-label {
-  &::before {
-    border-radius: 0;
-  }
+  margin-bottom: $form-label-margin-bottom;
 }
 
 // Google Translate dropdown
@@ -388,7 +356,7 @@ label,
   text-align: center;
 
   select {
-    @extend .custom-select-lg;
+    @extend .form-select-lg;
     margin-bottom: $spacer-1;
   }
 
@@ -412,24 +380,6 @@ thead th {
 ////////////////////////////////////////
 // F. Font size media queries
 ////////////////////////////////////////
-
-@include media-breakpoint-down(md) {
-  .display-1 {
-    font-size: $display1-size * 0.75;
-  }
-
-  .display-2 {
-    font-size: $display2-size * 0.75;
-  }
-
-  .display-3 {
-    font-size: $display3-size * 0.75;
-  }
-
-  .display-4 {
-    font-size: $display4-size * 0.75;
-  }
-}
 
 @include media-breakpoint-down(sm) {
   main {

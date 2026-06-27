@@ -4,9 +4,9 @@
 
 
 <div class="card accordion-item border">
-  <a class="card-header font-weight-bold collapse"
+  <a class="card-header fw-bold collapse"
      id="acc-button-{{ $i }}"
-     data-toggle="collapse"
+     data-bs-toggle="collapse"
      href="#panel-acc-button-{{ $i }}"
      role="tab"
      aria-expanded="false"
@@ -19,11 +19,11 @@
        id="panel-acc-button-{{ $i }}"
        role="tabpanel"
        aria-labelledby="acc-button-{{ $i }}"
-       data-parent="#sectionsAccordion">
+       data-bs-parent="#sectionsAccordion">
     <div class="bg-white text-black p-2">
       <p>{{ $p.Content }}</p>
         
-      <p class="font-weight-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
+      <p class="fw-bold">Types of pesticides used by {{ $p.Params.filterBy }}:</p>
 
       <div id="table-{{ $i }}"></div>
 

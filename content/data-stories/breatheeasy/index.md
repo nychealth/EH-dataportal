@@ -46,7 +46,7 @@ Fortunately, New York City has made great strides in recent years to improve air
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:713px" id="datawrapper-vis-840ts"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/840ts/embed.js" charset="utf-8" data-target="#datawrapper-vis-840ts"></script><noscript><img src="https://datawrapper.dwcdn.net/840ts/full.png" alt="" /></noscript></div>
 </div>
 
@@ -65,7 +65,7 @@ Since the winter of 2008/2009, the Health Department has been measuring air qual
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
   <div style="min-height:873px" id="datawrapper-vis-dB6XN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dB6XN/embed.js" charset="utf-8" data-target="#datawrapper-vis-dB6XN"></script><noscript><img src="https://datawrapper.dwcdn.net/dB6XN/full.png" alt="" /></noscript></div>
 </div>
 
@@ -88,7 +88,7 @@ So it’s good news that since monitoring neighborhood-level air pollution began
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="PM2.5 levels have decreased by 28%" aria-label="Table" id="datawrapper-chart-gIQSz" src="https://datawrapper.dwcdn.net/gIQSz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="517" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

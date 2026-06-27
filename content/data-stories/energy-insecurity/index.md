@@ -50,7 +50,7 @@ Heat-exacerbated deaths, which can happen when being too hot makes a chronic con
 <div style="min-height:578px" id="datawrapper-vis-moaSW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/moaSW/embed.js" charset="utf-8" data-target="#datawrapper-vis-moaSW"></script><noscript><img src="https://datawrapper.dwcdn.net/moaSW/full.png" alt="" /></noscript></div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="" /></noscript></div>
 </div>
 <div class="narrow">
@@ -65,7 +65,7 @@ But 34% of energy-insecure New Yorkers reduced or did not use air conditioning d
 </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:962px" id="datawrapper-vis-y773P"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/y773P/embed.js" charset="utf-8" data-target="#datawrapper-vis-y773P"></script><noscript><img src="https://datawrapper.dwcdn.net/y773P/full.png" alt="" /></noscript></div>
 </div>
 
@@ -81,7 +81,7 @@ New Yorkers who have trouble paying utility bills are more likely to be renters 
 </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:973px" id="datawrapper-vis-A255F"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A255F/embed.js" charset="utf-8" data-target="#datawrapper-vis-A255F"></script><noscript><img src="https://datawrapper.dwcdn.net/A255F/full.png" alt="" /></noscript></div>
 </div>
 

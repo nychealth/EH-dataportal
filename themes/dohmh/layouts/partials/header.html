@@ -1,5 +1,5 @@
 <!-- For keyboard users -->
-<a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+<a class="visually-hidden visually-hidden-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
 <header id="global-header" role="banner">
 
@@ -72,7 +72,7 @@
 
                     <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pr-1"></a>
+                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pe-1"></a>
 
                             <p class="text-white title-hover">
                                 <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
@@ -95,7 +95,7 @@
 
                                     <div class="nav-item bg-white text-primary border dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Topics
                                         </a>
 
@@ -121,7 +121,7 @@
 
                                     <div class="nav-item bg-white text-primary border dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="nav-item-type-top"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Explore
                                         </a>
 
@@ -154,7 +154,7 @@
 
                                                     {{- /*  add element  */ -}}
 
-                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                    <a href="{{ .URL }}"><li><span class="me-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
 
                                                     {{- /*  only add the horizontal bar if it's not the last item  */ -}}
 
@@ -185,17 +185,17 @@
                                     
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
-                                                    <span class="sr-only">Search</span>
+                                        <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" title="Search" data-bs-toggle="collapse">
+                                                    <span class="visually-hidden">Search</span>
                                                     <i class="fa fa-magnifying-glass text-body"></i>
                                                 </a>
                                     </div>
                                     <!-- .nav-item -->
 
                                     <!-- .nav-item -->
-                                    <div class="nav-item bg-none text-white border border-white ml-1">
+                                    <div class="nav-item bg-none text-white border border-white ms-1">
 
-                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
+                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-bs-toggle="modal" data-bs-target="#subscribeModal">Subscribe</a>
                                     </div>
 
                                 </nav>
@@ -232,17 +232,17 @@
 
                                     <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
                                         <li>
-                                            <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-toggle="collapse"
-                                                data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
+                                            <button class="navbar-toggler no-btn-style" type="button" title="Main Menu" data-bs-toggle="collapse"
+                                                data-bs-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false"
                                                 aria-label="Toggle navigation">
-                                                <span class="sr-only">Main Menu</span>
+                                                <span class="visually-hidden">Main Menu</span>
                                                 <span class="fas fa-bars fa-lg text-primary" ></span>
                                             </button>
                                         </li>
         
                                         <li>
-                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
-                                                <span class="sr-only">Search</span>
+                                            <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" title="Search" data-bs-toggle="collapse">
+                                                <span class="visually-hidden">Search</span>
                                                 <i class="fa fa-magnifying-glass text-primary"></i>
                                             </a>
                                         </li>
@@ -254,7 +254,7 @@
         
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Topics
                                                 </a>
         
@@ -280,7 +280,7 @@
         
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Explore
                                                 </a>
         
@@ -313,7 +313,7 @@
         
                                                             {{- /*  add element  */ -}}
         
-                                                            <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                            <a href="{{ .URL }}"><li><span class="me-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
         
                                                             {{- /*  only add the horizontal bar if it's not the last item  */ -}}
         
@@ -344,8 +344,8 @@
                                             
         
                                             <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
-                                                            <span class="sr-only">Search</span>
+                                                <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#searchModal" title="Search" data-bs-toggle="collapse">
+                                                            <span class="visually-hidden">Search</span>
                                                             <i class="fa fa-magnifying-glass text-body"></i>
                                                         </a>
                                             </div>
@@ -354,7 +354,7 @@
                                             <!-- .nav-item -->
                                             <div class="nav-item bg-none text-primary border">
 
-                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-toggle="modal" data-target="#subscribeModal">
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-bs-toggle="modal" data-bs-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>

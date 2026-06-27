@@ -40,7 +40,7 @@ For example, dig around in the asthma data pages and you'll find [Adults with As
 
 The most common neighborhood boundary schemes on the EH Data Portal are United Hospital Fund neighborhoods, Community Districts, and Public Use Microdata Areas.
 
-<div class="my-2 ml-3">
+<div class="my-2 ms-3">
 
 **United Hospital Fund neighborhoods**
 
@@ -115,10 +115,10 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
             </script>
         </div>
         </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <p>While these geographies have similar boundaries between neighborhood areas, they are not identical. For example, areas in Mott Haven/Port Morris, Melrose South/Mott Haven-North, Longwood, and Hunts Point are all in separate Neighborhood Tabulation Areas. But in Community Districts, Mott Haven/Melrose is one Community District, and Hunts Point/Longwood is another. And in PUMAs, Mott Haven and Hunts point are both in one PUMA. These divisions don't nest neatly within one another - familiar neighborhoods can be broken up or aggregated into smaller and larger geographic schemes.</p>
 </div>
-        <div class="col-6 border-left pl-2">
+        <div class="col-6 border-start ps-2">
 <div aria-hidden="true">
 <input type="radio" name="uhfRadioGroup" value="42" id="42" checked> <label for="42">UHF42</label> &nbsp;&nbsp;
 <input type="radio" name="uhfRadioGroup" value="34" id="34"/> <label for="34">UHF34</label> &nbsp;&nbsp;
@@ -171,7 +171,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
         </div>
     </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <p>Continuing from the previous example, United Hospital Fund neighborhoods have similar boundaries, but they are not identical. Most UH42s break UH34s into smaller geographies; note how the South Bronx UH34 combines three UH42 neighborhoods (Highbridge - Morrisania, Crotona - Tremont and Hunts Point - Mott Haven).</p>
 </div>
 
@@ -183,7 +183,7 @@ These neighborhood schemes have different building blocks. Let’s explore these
 
 ##### United Hospital Fund neighborhoods
 
-<div class="ml-3 mb-1">
+<div class="ms-3 mb-1">
 
 United Hospital Fund neighborhoods (UHFs) have boundaries based on ZIP codes. This geography was created by the Health Department, the United Hospital Fund, and other city agencies in the 1980s. They were designed for health research, and to be similar to NYC’s Community Districts.
 
@@ -280,7 +280,7 @@ In the map below, notice how three UHF42 neighborhoods in the South Bronx are co
 
 ##### Public Use Microdata Areas
 
-<div class="ml-3 mb-1">
+<div class="ms-3 mb-1">
 
 Public Use Microdata Areas (PUMAs) have boundaries defined by the US Census. They are made up of groups of census tracts.
 
@@ -292,7 +292,7 @@ Each PUMA breaks down into Neighborhood Tabulation Areas (NTAs), and each NTA br
 
 ##### Community districts
 
-<div class="ml-3 mb-2">
+<div class="ms-3 mb-2">
 
 Unlike PUMAs and UHFs, Community Districts don’t have a convenient root unit. So, NYC Planning created Community District Tabulation Areas (CDTAs) to approximate Community Districts using census tracts as their building blocks. Census tracts don’t always align perfectly with Community District boundaries—there are areas where tract lines and CD boundaries differ slightly. But, they’re close enough that CDTAs can serve as a “census-compatible” version of CDs. This makes them especially useful for linking Community District data with data from the US Census or American Community Survey (ACS).
 

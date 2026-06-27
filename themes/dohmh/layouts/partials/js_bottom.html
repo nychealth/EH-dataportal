@@ -1,15 +1,6 @@
-<!-- Popper.js and Bootstrap JS -->
+<!-- Bootstrap JS -->
 
-<!-- need to include popper first; umd is non-module version -->
-
-{{- $popper_secure := resources.Get
-"node_modules/popper.js/dist/umd/popper.min.js" | partial
-"short-fingerprint.html" }}
-<script
-  src="{{ $popper_secure.RelPermalink }}"
-  integrity="{{ $popper_secure.Data.Integrity }}"
-  crossorigin="anonymous"
-></script>
+{{- /* bootstrap.bundle bundles Popper v2; jQuery (loaded in head) enables BS5's optional jQuery plugin API */}}
 
 {{- $bootstrap_secure := resources.Get
 "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | partial

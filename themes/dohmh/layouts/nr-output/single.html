@@ -237,7 +237,7 @@
                     <div class="report-section card-body-no-top my-2">
 
                         <table class="table fs-sm" style="color:darkslategrey">
-                        <thead class="sr-only">
+                        <thead class="visually-hidden">
                         <tr>
                             <th>Metric</th>
                             <th>Value</th>
@@ -246,35 +246,35 @@
                         <tbody>
                             <tr>
                             <td><strong>Population</strong></td>
-                            <td id="popPrint" class="text-right">XX,XXX</td>
+                            <td id="popPrint" class="text-end">XX,XXX</td>
                         </tr>
                         <tr>
                             <td><strong>Over age 65</strong></td>
-                            <td id="oldPrint" class="text-right">YY%</td>
+                            <td id="oldPrint" class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Under age 18</strong></td>
-                            <td id="youngPrint" class="text-right">YY%</td>
+                            <td id="youngPrint" class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Poverty</strong></td>
-                            <td id="povPrint" class="text-right">YY%</td>
+                            <td id="povPrint" class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Graduated high school</strong></td>
-                            <td id="gradPrint"  class="text-right">YY%</td>
+                            <td id="gradPrint"  class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Limited English</strong></td>
-                            <td id="engPrint"  class="text-right">YY%</td>
+                            <td id="engPrint"  class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Owner-occupied homes</strong></td>
-                            <td id="ownPrint"  class="text-right">YY%</td>
+                            <td id="ownPrint"  class="text-end">YY%</td>
                         </tr>
                         <tr>
                             <td><strong>Rent-burdened households</strong></td>
-                            <td id="rentPrint" class="text-right">YY%</td>
+                            <td id="rentPrint" class="text-end">YY%</td>
                         </tr>
                         </tbody>
                         </table>
@@ -288,10 +288,10 @@
                             <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
 
                             <div class="row no-gutters">
-                                <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                <div class="col-4 me-auto fs-xs" style="line-height: 100%">
                                     <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
                                 </div>
-                                <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                <div class="col-4 ms-auto fs-xs" style="line-height: 100%;">
                                     <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods. </div>
                             </div>
                             <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
@@ -304,20 +304,20 @@
 
                 <div class="col-md-8 col-print-12">
                     <div class="row no-gutters d-print-none">
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Active" id="Active">Active design</button>
+                        <div class="col-sm mb-2 me-1 mb-lg-0">
+                        <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Active" id="Active">Active design</button>
                         </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Asthma" id="Asthma">Asthma</button>
+                        <div class="col-sm mb-2 me-1 mb-lg-0">
+                        <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Asthma" id="Asthma">Asthma</button>
                         </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Climate" id="Climate">Climate</button>
+                        <div class="col-sm mb-2 me-1 mb-lg-0">
+                        <button class="btn btn-sm  w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Climate" id="Climate">Climate</button>
                         </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Housing" id="Housing">Housing</button>
+                        <div class="col-sm mb-2 me-1 mb-lg-0">
+                        <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Housing" id="Housing">Housing</button>
                         </div>
-                        <div class="col-sm mb-2 mr-1 mb-lg-0">
-                        <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Outdoor" id="Outdoor">Outdoor Air</button>
+                        <div class="col-sm mb-2 me-1 mb-lg-0">
+                        <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 output-topic-button" dest="Outdoor" id="Outdoor">Outdoor Air</button>
                         </div>
                     </div>
 
@@ -368,8 +368,8 @@
                     {{ end }}
 
                     <div class="d-print-none">
-                        <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print mr-1"></i>Print</button>
-                        <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                        <button onclick="window.print()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fas fa-print me-1"></i>Print</button>
+                        <button onclick="downloadData()" class="btn btn-sm btn-report mt-2" target="_blank"><i class="fa fa-download me-1"></i>Download <span class="visually-hidden">(opens in a new tab)</span></button>
                     </div>
 
 
@@ -377,7 +377,7 @@
                     {{- range $index, $rt := $report_topics -}}
                         {{ $accordionIndex := $index }}
                         
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-{{ $index }}">
+                        <div class="accordion my-4 report-section pt-2 border-start border-end border-bottom" id="accordion-{{ $index }}">
 
                             <div class="px-2 pb-2">
                                 <h3 class="h4 fs-rg">
@@ -551,7 +551,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="modal-title h4" id="rankModalLabel">Indicator ranking</div>
-                <button type="button" class="close no-btn-style" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="no-btn-style" data-bs-dismiss="modal" aria-label="Close">
                     <span class="fas fa-times-circle"></span>
                 </button>
             </div>
@@ -568,7 +568,7 @@
             </div>
             <!-- .modal-body -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary px-6" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary px-6" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

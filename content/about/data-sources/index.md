@@ -26,11 +26,11 @@ We get data from many sources: some from the NYC Health Department or other city
 
 <div class="accordion-group my-3" role="tablist" id="accordion-02">
   <div class="card">
-    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2a" data-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
+    <a class="card-header collapse collapsed fw-bold" id="acc-button-2a" data-bs-toggle="collapse" href="#panel-acc-button-2a"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2a">
       <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> Community Health Survey</span>
     </a>
 
-  <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-parent="#accordion-02">
+  <div class="collapse" id="panel-acc-button-2a" role="tabpanel" aria-labelledby="acc-button-2a" data-bs-parent="#accordion-02">
     <div class="card-body card-white fs-md">
 <p><strong><a href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey.page">What is the Community Health Survey (CHS)?</a></strong> This survey is conducted by the NYC Health Department and interviews about 10,000 New Yorkers each year. Running since 2002, CHS reports detailed data on many chronic diseases and health behaviors, helping us see trends at the neighborhood, borough, and citywide level.<br><br>
         <strong>Some CHS indicators include:</strong>
@@ -49,11 +49,11 @@ We get data from many sources: some from the NYC Health Department or other city
   <!-- .card (end of first accordion, repeat as needed) -->
 
   <div class="card">
-      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-2b" data-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
+      <a class="card-header collapse collapsed fw-bold" id="acc-button-2b" data-bs-toggle="collapse" href="#panel-acc-button-2b"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2b">
         <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-hospital"></i> Statewide Planning and Research Cooperative System</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2b" role="tabpanel" aria-labelledby="acc-button-2b" data-bs-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
 <strong><a href="https://www.health.ny.gov/statistics/sparcs/">What is New York Statewide Planning and Research Cooperative System (SPARCS)?</a></strong> SPARCS is a billing claims data system that collects patient-level data, like diagnoses, treatments, and characteristics for both inpatient and outpatient stays in every hospital throughout New York state. It is a collaboration between the NY state government and the healthcare system. At the NYC Health Department, we restrict data to hospitals within NYC and sometimes to NYC residents.<br><br>
@@ -74,11 +74,11 @@ We get data from many sources: some from the NYC Health Department or other city
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2c" data-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-2c" data-bs-toggle="collapse" href="#panel-acc-button-2c"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2c">
         <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-house"></i> Housing and Vacancy Survey</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2c" role="tabpanel" aria-labelledby="acc-button-2c" data-bs-parent="#accordion-02">
     <div class="card-body fs-md">
 <p>
 <strong><a href="http://census.gov/programs-surveys/nychvs.html">What is the Housing and Vacancy Survey (HVS)?</a></strong> The NYC Department of Housing Preservation and Development (HPD) and the US Census Bureau together conduct the HVS every 3 years. The main purpose of HVS is to describe how many rental units are vacant to understand more about rent control and stabilization and the housing market.<br><br>
@@ -98,11 +98,11 @@ We get data from many sources: some from the NYC Health Department or other city
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2d" data-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-2d" data-bs-toggle="collapse" href="#panel-acc-button-2d"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2d">
         <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-clipboard-list"></i> American Community Survey</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2d" role="tabpanel" aria-labelledby="acc-button-2d" data-bs-parent="#accordion-02">
     <div class="card-body  fs-md"><p>
 <strong><a href="https://www.census.gov/programs-surveys/acs.html">What is the American Community Survey (ACS)?</a></strong> The US Census Bureau conducts the ACS annually, collecting population, housing, and workforce data like unemployment, income, insurance, and more. <br><br>
         <strong>Some ACS indicators include: </a></strong>
@@ -118,11 +118,11 @@ We get data from many sources: some from the NYC Health Department or other city
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2e" data-toggle="collapse" href="#panel-acc-button-2e"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2e">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-2e" data-bs-toggle="collapse" href="#panel-acc-button-2e"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2e">
         <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-smog"></i> NYCCAS</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-2e" role="tabpanel" aria-labelledby="acc-button-2e" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2e" role="tabpanel" aria-labelledby="acc-button-2e" data-bs-parent="#accordion-02">
     <div class="card-body  fs-md">
 <strong><a href="{{< relURL >}}data-features/nyccas/">What is the New York City Community Air Survey (NYCCAS)?</a></strong> Started in 2008, NYCCAS is the largest ongoing urban air monitoring program of any U.S. city. NYCCAS tracks air pollutants at the street-level, where people spend most of their time. <br><br>
         <strong>Some NYCCAS indicators include:</strong>
@@ -139,11 +139,11 @@ We get data from many sources: some from the NYC Health Department or other city
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2f" data-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-2f" data-bs-toggle="collapse" href="#panel-acc-button-2f"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2f">
         <span class="title" role="heading" aria-level="3"><i class="fa-solid fa-cake-candles"></i></i> Bureau of Vital Statistics</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-2f" role="tabpanel" aria-labelledby="acc-button-2f" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2f" role="tabpanel" aria-labelledby="acc-button-2f" data-bs-parent="#accordion-02">
     <div class="card-body  fs-md">
 <strong><a href="https://www.nyc.gov/site/doh/data/data-sets/vital-statistics-data.page">What is the Bureau of Vital Statistics?</a></strong>
 
@@ -175,11 +175,11 @@ There are many kinds of data, which are collected, cleaned, and updated in diffe
 
 <div class="accordion-group my-3" role="tablist" id="accordion-01">
   <div class="card">
-    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+    <a class="card-header collapse collapsed fw-bold" id="acc-button-01" data-bs-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
       <span class="title" role="heading" aria-level="3">Regulatory data</span>
     </a>
 
-  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-bs-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
 Collecting this type of data is mandated by the local, state, or federal government, which typically means it is updated regularly and reliably. In New York state, blood lead level testing is mandated. Because it is mandatory, it also means that blood lead levels of NYC populations are regularly updated, so there are many years of this data available. Still, not everyone goes to the doctor, even if testing is required. Federal air quality monitoring required by the Clean Air Act is another example of regulatory data.
@@ -192,11 +192,11 @@ Collecting this type of data is mandated by the local, state, or federal governm
   <!-- .card (end of first accordion, repeat as needed) -->
 
   <div class="card">
-      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+      <a class="card-header collapse collapsed fw-bold" id="acc-button-02" data-bs-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
         <span class="title" role="heading" aria-level="3">Survey data</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-bs-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
 A selection of survey respondents answer questions online, via phone, or e-mail. Surveys like the Community Health Survey, the Housing and Vacancy Survey, and the American Community Survey are conducted regularly at different intervals. While most surveys are voluntary, some, like ACS, are compulsory.
@@ -212,11 +212,11 @@ Sometimes, a survey conducted every year drops a question, and we have to decide
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-03" data-bs-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
         <span class="title" role="heading" aria-level="3">Registry / population data</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-bs-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
 Registry and population data is standardized information that must be collected about every person or event. This includes birth and death records, and Census data, which have all been recorded for a long time.
@@ -231,11 +231,11 @@ Premature mortality from the NYC Bureau of Vital Statistics and the US Census; o
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-04" data-bs-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
         <span class="title" role="heading" aria-level="3">Near real-time data</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-bs-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
 Collected continuously and systematically, near real-time data can include environmental data, like <a href="{{< relURL >}}data-features/realtime-air-quality/">real-time air quality (PM2.5) monitoring</a>, which is updated hourly. It can also include near real-time health data, <a href="{{< relURL >}}data-features/heat-syndrome/">such as the total daily visits to the Emergency Department during the hot weather season</a>.
@@ -248,11 +248,11 @@ Collected continuously and systematically, near real-time data can include envir
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-05" data-bs-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
         <span class="title" role="heading" aria-level="3">Other types of data and Open Data</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-bs-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
 There are other kinds of data, too. There is administrative data, which is collected by healthcare or government organizations as part of conducting routine business or activities. An example of this are evictions (court-ordered), which are available through the Department of Investigations (DOI). There is also operational data, like our litter basket coverage data, which is from the Department of Sanitation (DSNY), but available through <a href="https://opendata.cityofnewyork.us/">NYC Open Data</a>.

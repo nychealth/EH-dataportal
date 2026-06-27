@@ -50,7 +50,7 @@
                       <p class="card-text fs-sm">
                           {{ .Summary | truncate 150}}
                           </p>
-                         <p class="fs-sm text-right"> <a href="{{ .RelPermalink }}">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
+                         <p class="fs-sm text-end"> <a href="{{ .RelPermalink }}">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                         </p>                   
                     </div>
                   </div>
@@ -86,8 +86,8 @@
                 {{- end -}}
               </div>
 
-              <div class="col-8 ml-auto h-100 p-1">
-                <p class="h4"><a class="link-track text-primary font-weight-bold" href="">{{ .Title }}</a></p>
+              <div class="col-8 ms-auto h-100 p-1">
+                <p class="h4"><a class="link-track text-primary fw-bold" href="">{{ .Title }}</a></p>
                  <p class="fs-md">{{ .Summary }}
                   <a href="{{ .RelPermalink }}">See Report ></a>
                 </p>

@@ -1,6 +1,6 @@
 <footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
 
-  <h2 class="sr-only">
+  <h2 class="visually-hidden">
       Page Footer
   </h2>
 
@@ -147,7 +147,7 @@
                   <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
                       {{ $logo := resources.Get "images/nyc-bubble-logo.svg" }}
                       <img class="mb-2" src="{{ $logo.RelPermalink }}" width="90" alt="NYC Logo">
-                      <span class="sr-only">(opens in a new tab)</span>
+                      <span class="visually-hidden">(opens in a new tab)</span>
                   </a>
                   <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
                     York.</p>
@@ -164,7 +164,7 @@
                       <li>
                           <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
                               title="Mayor's Office for People with Disabilities">
-                              <span class="sr-only">Learn more about Digital Accessibility
+                              <span class="visually-hidden">Learn more about Digital Accessibility
                                 from the Mayor's Office for People with Disabilities.</span>
                               <span class="fab fa-lg fa-accessible-icon"></span>
                           </a>
@@ -191,9 +191,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <link href={{ relURL "pagefind/pagefind-ui.css" }} rel="stylesheet">
@@ -277,7 +275,7 @@
             </script>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@
 <article class="container-fluid" id="skip-header-target">
   {{ partial "df-front-block" . }}
 
-  <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
+  <a href="#accessibleTables" class="visually-hidden">Skip to accessible data tables.</a>
 
   <div class="row mb-4">
     <div class="col-11 mx-auto">
@@ -141,11 +141,11 @@
               </h3>
             </div>
             <div class="col-md-4 col-sm-12">
-              <div class="fs-xs font-weight-bold">Percent with low income</div>
+              <div class="fs-xs fw-bold">Percent with low income</div>
               <div id="chartDest">Chart goes here</div>
             </div>
             <div class="col-md-8 col-sm-12">
-              <div class="fs-xs font-weight-bold">
+              <div class="fs-xs fw-bold">
                 Change in low income percentage
               </div>
 
@@ -167,14 +167,14 @@
               </h3>
             </div>
             <div class="col-md-4 col-sm-12">
-              <div class="fs-xs font-weight-bold">
-                Expected premature deaths<br><span class="font-weight-normal">Per 100,000 people</span>
+              <div class="fs-xs fw-bold">
+                Expected premature deaths<br><span class="fw-normal">Per 100,000 people</span>
               </div>
 
               <div id="chartDest2">Chart goes here</div>
             </div>
             <div class="col-md-8 col-sm-12">
-              <div class="fs-xs font-weight-bold">
+              <div class="fs-xs fw-bold">
                 Change in expected premature deaths
               </div>
 
@@ -248,7 +248,7 @@
       </div>
 
       <div class="row mt-4">
-        <div class="col-md-6 mr-auto">
+        <div class="col-md-6 me-auto">
           <h2 class="h3">
             Demographic data by proportion of low-income residents
           </h2>
@@ -314,7 +314,7 @@
     </div>
   </div>
 
-  <div class="sr-only" id="accessibleTables">
+  <div class="visually-hidden" id="accessibleTables">
     <h2>Chart data</h2>
     {{ partial "render-accessible-table.html" (dict "csvPath" "data/chart-data.csv" "containerId" "csv-table-container-1") }}
 

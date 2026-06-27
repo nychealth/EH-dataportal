@@ -62,12 +62,12 @@ El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva Y
 {{< /rawhtml >}}
 
 ### El redlining impulsó la segregación residencial 
-Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como {{< rawhtml >}}<a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">el acoso inmobiliario</a>, <a
-        href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">la venta de contratos </a>, y <a
-        href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">los convenios racialmente restrictivos</a>, para profundizar y reforzar la segregación en los vecindarios.</p>
+Como resultado del redlining, a las personas negras se les negaba el acceso a los vecindarios “atractivos” con prácticas inmobiliarias racistas, y se les negaban préstamos para comprar viviendas en vecindarios catalogados como “en declive” o “peligrosos”. Los agentes inmobiliarios también usaban tácticas explotadoras, como {{< rawhtml >}}<a href="#bbcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">el acoso inmobiliario</a>, <a
+        href="#contractcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">la venta de contratos </a>, y <a
+        href="#rrccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">los convenios racialmente restrictivos</a>, para profundizar y reforzar la segregación en los vecindarios.</p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="bbcollapse"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
@@ -95,28 +95,28 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
 {{< rawhtml >}}
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
+        <a class="nav-link active" id="manhattan-tab" data-bs-toggle="tab"
             href="#manhattan" role="tab" aria-controls="manhattan"
             aria-selected="true">Manhattan</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="bronx-tab" data-toggle="tab" href="#bronx" role="tab"
+        <a class="nav-link" id="bronx-tab" data-bs-toggle="tab" href="#bronx" role="tab"
             aria-controls="bronx" aria-selected="false">The Bronx</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="brooklyn-tab" data-toggle="tab" href="#brooklyn"
+        <a class="nav-link" id="brooklyn-tab" data-bs-toggle="tab" href="#brooklyn"
             role="tab" aria-controls="brooklyn" aria-selected="false">Brooklyn</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="queens-tab" data-toggle="tab" href="#queens" role="tab"
+        <a class="nav-link" id="queens-tab" data-bs-toggle="tab" href="#queens" role="tab"
             aria-controls="queens" aria-selected="false">Queens</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="staten-tab" data-toggle="tab" href="#staten" role="tab"
+        <a class="nav-link" id="staten-tab" data-bs-toggle="tab" href="#staten" role="tab"
             aria-controls="staten" aria-selected="false">Staten island</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="map-tab" data-toggle="tab" href="#citywidemap"
+        <a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#citywidemap"
             role="tab" aria-controls="citywidemap" aria-selected="false">Mapa de toda la ciudad </a>
     </li>
 </ul>
@@ -169,8 +169,8 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
 ### Los efectos del redlining continúan en la actualidad 
 En la ciudad de Nueva York, muchos vecindarios que alguna vez fueron prósperos sufrieron una grave falta de inversión como resultado del redlining, lo que provocó desigualdades que continuaron de una generación a otra. Los vecindarios discriminados en la década de 1930 tienen índices de pobreza más altos incluso en la actualidad, casi 90 años después de la creación de los mapas. Según [la Coalición Nacional de Reinversión Comunitaria](https://ncrc.org/holc/), 3 de cada 4 vecindarios en los EE. UU. que fueron discriminados en la década de 1930 aún son de ingresos bajos a moderados en la actualidad, y 2 de cada 3 poseen una población mayoritariamente negra. 
 
-El redlining es el principal ejemplo de {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml >}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”](https://www.who.int/hdp/poverty/en/). 
+El redlining es el principal ejemplo de {{< rawhtml >}}  <a href="#disinvestmentCollapseTwo" data-bs-toggle="collapse"
+class="badge rounded-pill text-bg-warning">la falta de inversión en los vecindarios</a>{{< /rawhtml >}}: : negar o retener fondos públicos y privados, servicios de la ciudad y otros recursos que los vecindarios y sus residentes necesitan para progresar. Cuando se retienen estos recursos, se crean [“entornos que enferman [a las personas]”](https://www.who.int/hdp/poverty/en/). 
 
 {{< rawhtml >}}
 <div class="collapse py-2 px-2 mx-2 fs-sm" id="disinvestmentCollapseTwo"

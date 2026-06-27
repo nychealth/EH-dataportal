@@ -56,7 +56,7 @@ For example, when we group neighborhoods based on traffic (high, medium, or low 
 {{< datawrapper title="Seasonal PM2.5 concentrations" src="1iDTX/2/" height="400" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:426px" id="datawrapper-vis-JA1Yk"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JA1Yk/embed.js" charset="utf-8" data-target="#datawrapper-vis-JA1Yk"></script><noscript><img src="https://datawrapper.dwcdn.net/JA1Yk/full.png" alt="" /></noscript></div>
 </div>
 
@@ -74,7 +74,7 @@ Because the level of PM2.5 varies by season, it can be helpful to look at one se
 
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:455px" id="datawrapper-vis-ODTtg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ODTtg/embed.js" charset="utf-8" data-target="#datawrapper-vis-ODTtg"></script><noscript><img src="https://datawrapper.dwcdn.net/ODTtg/full.png" alt="" /></noscript></div>
 </div>
 

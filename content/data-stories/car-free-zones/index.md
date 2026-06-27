@@ -64,7 +64,7 @@ First, let’s look at NO, a pollutant that primarily comes from car emissions. 
 {{< datawrapper title="Nitric Oxide in a car-free Times Square" src="Un0yG/1/" height="450" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:473px" id="datawrapper-vis-Hb6ua"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Hb6ua/embed.js" charset="utf-8" data-target="#datawrapper-vis-Hb6ua"></script><noscript><img src="https://datawrapper.dwcdn.net/Hb6ua/full.png" alt="In summer 2009: Times Square went car-free, and Nitric oxide, a pollutant that mostly comes from car emissions, fell from 135 parts per billion in spring 2009, to 30 parts per billion that summer. " /></noscript></div>
 </div>
 
@@ -78,7 +78,7 @@ In winter 2008, Times Square’s PM2.5 was a little bit higher than the Midtown 
 {{< datawrapper title="PM2.5 in a car-free Times Square" src="xBWEn/1/" height="450" >}}
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:473px" id="datawrapper-vis-4Ryy6"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4Ryy6/embed.js" charset="utf-8" data-target="#datawrapper-vis-4Ryy6"></script><noscript><img src="https://datawrapper.dwcdn.net/4Ryy6/full.png" alt="" /></noscript></div>
 </div>
 

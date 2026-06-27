@@ -1,14 +1,14 @@
   <!-- Invisible button to trigger modal -->
-  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
+  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#wxModal">Open Modal</button>
 
     <div class="modal" tabindex="-1" role="dialog" id="wxModal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's hot!</h5>
+            <h5 class="modal-title"><i class="fas fa-temperature-high me-1" aria-hidden="true"></i>It's hot!</h5>
         </div>
         <div class="modal-body">
-            <p><span class="font-weight-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+            <p><span class="fw-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
                 <ul>
                     <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
                     <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
@@ -17,7 +17,7 @@
                 </p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
         </div>
         </div>
     </div>
@@ -25,16 +25,16 @@
 
   <!-- Invisible button to trigger cold modal --> 
 
-  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
+  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#wzModal">Open Modal</button>
 
     <div class="modal" tabindex="-1" role="dialog" id="wzModal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
+            <h5 class="modal-title"><i class="fas fa-temperature-high me-1" aria-hidden="true"></i>It's cold!</h5>
         </div>
         <div class="modal-body">
-          <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+          <p><span class="fw-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
               <ul>
                   <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
                   <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
@@ -44,23 +44,23 @@
               </p>
       </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
         </div>
         </div>
     </div>
     </div>
 
   <!-- Invisible button to trigger modal -->
-  <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
+  <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-bs-toggle="modal" data-bs-target="#aqiModal">Open Modal</button>
 
     <div class="modal" tabindex="-1" role="dialog" id="aqiModal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-smog mr-1" aria-hidden="true"></i></h5>
+            <h5 class="modal-title"><i class="fas fa-smog me-1" aria-hidden="true"></i></h5>
         </div>
         <div class="modal-body">
-              <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
+              <p><span class="fw-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
                 <ul>
                   <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
                   <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
@@ -70,7 +70,7 @@
               </p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
         </div>
         </div>
     </div>

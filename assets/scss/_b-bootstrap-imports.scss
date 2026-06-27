@@ -12,9 +12,33 @@ In this file:
 // A. Required Bootstrap imports
 ////////////////////////////////////////
 
-@import "../bootstrap/scss/functions";
-@import "../bootstrap/scss/variables";
-@import "../bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// Re-merge Bootstrap's standard theme colors.
+// BS4 merged a user-defined $theme-colors into the defaults automatically; BS5 instead
+// declares $theme-colors with !default, so our pre-import override in _a-global-variables
+// (which lists only custom additions) would otherwise drop primary/secondary/success/
+// warning/danger. Standard colors go first; our custom map overlays them (so our info/
+// light/dark win and white/black/hover/light-green/active are added).
+
+$theme-colors: map-merge(
+    (
+        "primary":   $primary,
+        "secondary": $secondary,
+        "success":   $success,
+        "info":      $info,
+        "warning":   $warning,
+        "danger":    $danger,
+        "light":     $light,
+        "dark":      $dark
+    ),
+    $theme-colors
+);
+
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
 
 ////////////////////////////////////////
 // B. Required Bootstrap imports
@@ -28,37 +52,27 @@ $form-validation-states: map-remove( $form-validation-states, "valid" );
 
 // Note: Comment out unneeded dependencies
 
-@import "../bootstrap/scss/root";
-@import "../bootstrap/scss/reboot";
-@import "../bootstrap/scss/type";
-@import "../bootstrap/scss/images";
-@import "../bootstrap/scss/code";
-@import "../bootstrap/scss/grid";
-@import "../bootstrap/scss/tables";
-@import "../bootstrap/scss/forms";
-@import "../bootstrap/scss/buttons";
-@import "../bootstrap/scss/transitions";
-@import "../bootstrap/scss/dropdown";
-@import "../bootstrap/scss/button-group";
-@import "../bootstrap/scss/input-group";
-@import "../bootstrap/scss/custom-forms";
-@import "../bootstrap/scss/nav";
-// @import "../bootstrap/scss/navbar";
-@import "../bootstrap/scss/card";
-// @import "../bootstrap/scss/breadcrumb";
-@import "../bootstrap/scss/pagination";
-@import "../bootstrap/scss/badge";
-// @import "../bootstrap/scss/jumbotron";
-@import "../bootstrap/scss/alert";
-// @import "../bootstrap/scss/progress";
-@import "../bootstrap/scss/media";
-@import "../bootstrap/scss/list-group";
-// @import "../bootstrap/scss/close";
-// @import "../bootstrap/scss/toasts";
-@import "../bootstrap/scss/modal";
-// @import "../bootstrap/scss/tooltip";
-// @import "../bootstrap/scss/popover";
-// @import "../bootstrap/scss/carousel";
-// @import "../bootstrap/scss/spinners";
-@import "../bootstrap/scss/utilities";
-// @import "../bootstrap/scss/print";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/nav";
+// @import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/card";
+// @import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/utilities/api";

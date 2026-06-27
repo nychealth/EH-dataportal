@@ -4,8 +4,22 @@ In this file:
 
 // A. Linear gradient
 // B. Background image
+// C. Hover/focus
 
 */
+
+////////////////////////////////////////
+// C. Hover/focus
+////////////////////////////////////////
+
+// Bootstrap 4 provided this helper; removed in BS5, so we keep our own.
+
+@mixin hover-focus {
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
 
 ////////////////////////////////////////
 // A. Linear gradient

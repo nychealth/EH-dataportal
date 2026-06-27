@@ -62,7 +62,7 @@ or is somebody you know affected by violence? Help is available and you don't ha
 
 ### NYC's homicide rate has declined...
 
-There is a lot less violence than there used to be in NYC. {{< rawhtml >}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Note on the COVID-19 pandemic</a></p>
+There is a lot less violence than there used to be in NYC. {{< rawhtml >}}<a href="#covidcollapse" data-bs-toggle="collapse" class="badge badge-outline rounded-pill text-bg-danger">Note on the COVID-19 pandemic</a></p>
 
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
     <p>Data for 2020 is not included here, but since the start of the COVID-19 pandemic, NYC has seen an increase in assaults, shooting incidents, and non-fatal assault emergency room visits and hospitalizations.</p>
@@ -76,7 +76,7 @@ To look at violence, people often look at homicide rates. In recent years, NYC�
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Rates of homicide have fallen overall in NYC since the 1980s" aria-label="Table" id="datawrapper-chart-QFBsi" src="https://datawrapper.dwcdn.net/QFBsi/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="577" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -98,7 +98,7 @@ This pattern is consistent across the three indicators. And, neighborhoods that 
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Rates of violence across three indicators are much higher in some NYC neighborhoods" aria-label="Table" id="datawrapper-chart-gxP5i" src="https://datawrapper.dwcdn.net/gxP5i/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1214" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -116,7 +116,7 @@ To prevent violence among those most affected by it, we need to explore what fac
 
 Evidence shows that violence results from social structures that limit access to basic needs - structures that are fueled by racism, residential segregation, and neighborhood disinvestment. Where these structures persist, people are exposed to violence. For example, low-income neighborhoods of color are known to be hit the hardest.
 
-This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
+This map shows the parts of NYC that were {{< rawhtml >}}<a href="#redliningCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">redlined</a> 90 years ago as part of racist housing policy that set off decades of disinvestment and intergenerational poverty.</p>
 
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
 <p><span style="font-weight: bold; color:#7e0000">Redlining</span> was a federal policy that
@@ -145,11 +145,11 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 </div>
 </div>
 {{< /rawhtml >}}
-<div class="sr-only">
+<div class="visually-hidden">
 A map shows 2,887 dots representing shootings in NYC from 2017 - 2019. These shootings align closely with redlined areas in the Bronx, Harlem, and northern and eastern Brooklyn that were marked "Class D: Hazardous."
 </div>
 
-Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
+Decades of government and societal {{< rawhtml >}}<a href="#disinvestmentCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">disinvestment</a> from practices like redlining means limited opportunity and resources, and results in higher rates of poverty in some neighborhoods.</p>
 
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <strong>Disinvestment</strong> is when either government agencies or private companies deliberately withhold or withdraw resources and opportunity from a neighborhood or community. </p>
@@ -167,7 +167,7 @@ As a result of this disinvestment, we see a clear relationship between poverty a
 
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Disinvestment underlies a clear relationship between poverty and assaults in NYC" aria-label="Table" id="datawrapper-chart-UnJ1o" src="https://datawrapper.dwcdn.net/UnJ1o/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="959" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -178,7 +178,7 @@ As a result of this disinvestment, we see a clear relationship between poverty a
 
 {{< rawhtml >}}
 
-<p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
+<p><a href="#disinvestmentCollapseTwo" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">Disinvestment takes many forms</a>. It promotes segregation, limits people’s access to basic resources, and creates environments that threaten people’s health. </p>
 <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
 <p>Disinvestment can be:
 <ul>
@@ -198,11 +198,11 @@ In terms of public health, we say that disinvestment produces environmental fact
 
 <div class="d-sm-none d-md-block">
     <div class="row py-2">
-        <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 ms-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>Environmental factors</button></div>
         <div class="col-1 text-center"><i class="fas fa-arrow-alt-circle-right h2"
                 style="color: #999999"></i></div>
-        <div class="col-4 mr-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 me-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>Health outcomes</button></div>
     </div>
 </div>
@@ -220,7 +220,7 @@ Whether or not a neighborhood experiences more violence can be explained by look
     <div class="col mx-auto">
         <div class="medium">
             <div class="row mt-4 mb-2">
-                <div class="col-5 mr-auto">
+                <div class="col-5 me-auto">
                     <div class="card text-white bg-success w-100">
                         <div class="card-body">
                             <h5 class="card-title">Protective factors include:</h5>
@@ -234,8 +234,8 @@ Whether or not a neighborhood experiences more violence can be explained by look
                         </div>
                     </div>
                 </div>
-                <div class="col-5 ml-auto">
-                    <div class="card text-white bg-danger float-right w-100">
+                <div class="col-5 ms-auto">
+                    <div class="card text-white bg-danger float-end w-100">
                         <div class="card-body">
                             <h5 class="card-title">Risk factors include:</h5>
                             <p class="card-text">
@@ -272,7 +272,7 @@ Let's explore how by comparing two neighborhoods: <span style="color: #b820bb; f
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Belmont/East Tremont has one of the highest poverty rates in NYC and Tottenville/Great Kills has one of the lowest" aria-label="Table" id="datawrapper-chart-4zdNl" src="https://datawrapper.dwcdn.net/4zdNl/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2385" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -292,7 +292,7 @@ Neighborhood poverty is one of the environmental factors that can predict violen
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Belmont/East Tremont has a high rate of non-fatal assault hospitalizations, while Tottenville/Great Kills has one of the lowest" aria-label="Table" id="datawrapper-chart-kqsJS" src="https://datawrapper.dwcdn.net/kqsJS/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2334" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -313,7 +313,7 @@ Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/
 </script>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Poverty and Assaults" aria-label="Table" id="datawrapper-chart-t0Uzm" src="https://datawrapper.dwcdn.net/t0Uzm/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1010" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -322,8 +322,8 @@ Below, we can see that <span style="color: #b820bb; font-weight: bold;">Belmont/
 
 Below, each vertical line represents the neighborhood rankings for the risk factors of total poverty, child poverty, child homelessness, high school incompletion, disconnected youth, unemployment, evictions, foreclosures – and the violent outcome of assault hospitalizations, shootings, and homicides. Each line connects one neighborhood through its ranks – the flatter the line, the more consistent the ranks.
 
-These risk factors describe a network of threatening {{< rawhtml >}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">environmental factors</a>
-in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of <a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">violence</a>.</p>
+These risk factors describe a network of threatening {{< rawhtml >}}<a href="#envcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">environmental factors</a>
+in communities that have experienced disinvestment, place residents in poverty and expose them to risks throughout their lives – culminating in higher rates of <a href="#violcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">violence</a>.</p>
 
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
 Environmental factors in the chart below:
@@ -334,8 +334,8 @@ Environmental factors in the chart below:
             youth, and unemployment</li>
         <li><strong>Housing stability</strong>: evictions, foreclosures</li>
     </ul>
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
 data</button>
 </div>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="violcollapse">
@@ -345,8 +345,8 @@ data</button>
         <li>Shootings</li>
         <li>Homicides</li>
     </ul>
-    <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-        data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
+    <button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+        data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the
         data</button>
 </div>
 {{< /rawhtml >}}
@@ -356,11 +356,11 @@ data</button>
 <div aria-hidden="true">
 {{< datawrapper title="Environmental factors and violence outcomes" src="7Dx2d/4/" height="714" >}}
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Belmont and Tottenville" aria-label="Table" id="datawrapper-chart-W3X69" src="https://datawrapper.dwcdn.net/W3X69/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="3846" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
 
 A pattern emerges: <span style="font-weight: bold; color: #b820bb;">neighborhoods with the highest poverty rates</span> consistently rank high for risk factors experience more violence. <span style="font-weight:bold; color: #5c8ea5">Neighborhoods with the lowest poverty rates</span> consistently rank low for risk factors experience less violence.
 
@@ -371,7 +371,7 @@ These risk factors make up a network of environmental threats in communities tha
 In environments where risk factors far outweigh protective factors, higher rates of neighborhood violence emerge - and threaten the health of residents of these neighborhoods.
 
 {{< datawrapper title="Environmental factors and violence outcomes" src="CZuTa/6/" height="714" >}}
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;About the data</button>
 <br>
 
 ## Breaking the cycle of violence
@@ -412,9 +412,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">About the data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p><strong>Poverty:</strong> the percent of people whose annual income is below 100% of
@@ -460,7 +458,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
                         the data</a>. </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

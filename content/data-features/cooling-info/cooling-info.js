@@ -183,7 +183,7 @@ function runQuestions() {
     // Draw answer buttons
     question.options.forEach(option => {
 
-      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1 mb-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
+      var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 me-1 mb-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
       questionBlock.innerHTML += btn
 
     })

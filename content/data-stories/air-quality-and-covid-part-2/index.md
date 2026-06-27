@@ -60,7 +60,7 @@ But the improvements in pollution from winter to spring were much greater in 202
             <iframe title="NO2 fell during NY Pause in 2020..." aria-label="Interactive line chart" id="datawrapper-chart-9jeJb" src="https://datawrapper.dwcdn.net/9jeJb/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
             </div>
-             <div class="sr-only">
+             <div class="visually-hidden">
             <div style="min-height:213px" id="datawrapper-vis-sQ5bC"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sQ5bC/embed.js" charset="utf-8" data-target="#datawrapper-vis-sQ5bC"></script><noscript><img src="https://datawrapper.dwcdn.net/sQ5bC/full.png" alt="" /></noscript></div>
             </div>
             <div class="card card-left-border shadow-sm">
@@ -73,7 +73,7 @@ But the improvements in pollution from winter to spring were much greater in 202
             <div aria-hidden="true">
             <iframe title="So did PM2.5 - more than in 2019." aria-label="Interactive line chart" id="datawrapper-chart-WHK8J" src="https://datawrapper.dwcdn.net/WHK8J/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="398"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script></div>
-            <div class="sr-only">
+            <div class="visually-hidden">
             <div style="min-height:181px" id="datawrapper-vis-pqAjI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pqAjI/embed.js" charset="utf-8" data-target="#datawrapper-vis-pqAjI"></script><noscript><img src="https://datawrapper.dwcdn.net/pqAjI/full.png" alt="In 2019 before the &quot;NY Pause&quot;, PM2.5, an air pollutant, was 7.8 micrograms per cubic meter, in the winter, and 6.1 in the spring. During 2020, as stay at home orders went into effect, levels dropped to 7.6 in the winter and 4.4 in the spring." /></noscript></div>
             </div>
             <div class="card card-left-border shadow-sm">
@@ -109,7 +109,7 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 </div>
 <div class="narrow">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#ModalCenter" aria-hidden="true">
+<button type="button" class="btn w-100 btn-outline-primary mb-4" data-bs-toggle="modal" data-bs-target="#ModalCenter" aria-hidden="true">
     View these data in an interactive map
 </button>
 {{< /rawhtml >}}
@@ -124,7 +124,7 @@ Since PM2.5 levels normally vary by season, we used the difference in PM2.5 betw
 
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:866px" id="datawrapper-vis-10P9Z"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/10P9Z/embed.js" charset="utf-8" data-target="#datawrapper-vis-10P9Z"></script><noscript><img src="https://datawrapper.dwcdn.net/10P9Z/full.png" alt="" /></noscript></div>
 </div>
 
@@ -140,7 +140,7 @@ During NY Pause, the Lincoln Tunnel's morning rush travel time to NYC plummeted,
 
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:873px" id="datawrapper-vis-iwPzz"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/iwPzz/embed.js" charset="utf-8" data-target="#datawrapper-vis-iwPzz"></script><noscript><img src="https://datawrapper.dwcdn.net/iwPzz/full.png" alt="" /></noscript></div>
 </div>
 
@@ -154,7 +154,7 @@ There were about 50% fewer small leisure and hospitality businesses operating du
 
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:898px" id="datawrapper-vis-zNG5O"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zNG5O/embed.js" charset="utf-8" data-target="#datawrapper-vis-zNG5O"></script><noscript><img src="https://datawrapper.dwcdn.net/zNG5O/full.png" alt="" /></noscript></div>
 </div>
 
@@ -184,21 +184,19 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title" id="ModalCenterTitle">Air quality changes from Spring 2019 to Spring 2020</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <button id="btn1" type="button" class="btn btn-sm btn-outline-primary float-right" onclick="mapPM()">
+            <button id="btn1" type="button" class="btn btn-sm btn-outline-primary float-end" onclick="mapPM()">
                 PM2.5
             </button>
-            <button id="btn2" type="button" class="btn btn-sm btn-primary float-right mr-1" onclick="mapNO()">
+            <button id="btn2" type="button" class="btn btn-sm btn-primary float-end me-1" onclick="mapNO()">
                 NO2
             </button>
         <iframe id="dest" src="{{< relURL >}}data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
     </div>
     </div>

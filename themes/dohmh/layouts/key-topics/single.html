@@ -29,19 +29,19 @@
             <div class="col-12 mb-3">
                 <div class="key-topics">
                     <h1 class="h2" data-pagefind-weight="10.0">
-                        <i class="fas fa-star mr-1" aria-hidden="true"></i>{{ .Title }}
+                        <i class="fas fa-star me-1" aria-hidden="true"></i>{{ .Title }}
                     </h1>
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-8 pr-xl-4 mb-4">
+            <div class="col-md-12 col-lg-8 pe-xl-4 mb-4">
                 <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                 {{- .Content -}}
             </div>
 
-            <div class="col-md-12 col-lg-4 mr-auto pl-xl-4">
+            <div class="col-md-12 col-lg-4 me-auto ps-xl-4">
                         <div class="de-accent">
-                            <div class="h3 fs-lg"><i class="fas fa-chart-line pr-1" aria-hidden="true"></i>
+                            <div class="h3 fs-lg"><i class="fas fa-chart-line pe-1" aria-hidden="true"></i>
                                 {{ if .Params.shortTitle }}
                                 {{ .Params.shortTitle }} data
                                 {{ else }}
@@ -56,7 +56,7 @@
                             <!-- First, get the main DE pages linked from KT page frontmatter -->
                             {{ if .Params.mainDEPages }}
                                 {{ range $index, $element := .Params.mainDEPages }}
-                                <a class="font-weight-bold" href="{{ relURL .url }}">
+                                <a class="fw-bold" href="{{ relURL .url }}">
                                     {{ .title }}
                                 </a>
                                     {{ if eq (add $index 1) (len $.Params.mainDEPages) }}
@@ -88,7 +88,7 @@
                                     
                                         <!-- Only print if no match was found -->
                                         {{- if $print }}
-                                            <a class="font-weight-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
+                                            <a class="fw-bold" href="{{ $deLink }}">{{ $deTitle }}</a>
                                             <hr class="my-1">
                                         {{- end }}
                                     
@@ -100,7 +100,7 @@
                                 <!-- if there are no mainDEPages set, then just do alphabetical --> 
                                 {{- $DEpages := where (where .Site.RegularPages "Section" "data-explorer") ".Params.categories" "intersect" (slice .Params.keyTopic) }}
                                 {{- range $DEpages.ByTitle -}}
-                                    <a class="font-weight-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                                    <a class="fw-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
                                     <hr class="my-1">
                                 {{- end -}}
 
@@ -110,10 +110,10 @@
                         <!-- Neighborhood Reports -->
                         {{- if where ( where .Site.RegularPages "Section" "neighborhood-reports") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="nr-accent mt-4">
-                          <div class="h3 fs-lg"><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>Neighborhood Reports:</div>
+                          <div class="h3 fs-lg"><i class="fas fa-map-marked-alt me-1" aria-hidden="true"></i>Neighborhood Reports:</div>
                         </div>
                             <div class="mt-2">
-                              {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-left" "content" . ) -}}
+                              {{ partial "related" (dict "section" "neighborhood-reports" "layout" "button" "extraClass" "link-track text-start" "content" . ) -}}
                             </div>
                         {{- end -}}
 
@@ -137,7 +137,7 @@
                 {{- $filteredPages := where (where .Site.RegularPages "Section" "data-features") ".Params.categories" "intersect" (slice .Params.keyTopic) -}}
                 {{- if gt (len $filteredPages) 0 -}}
                     <div class="df-accent mt-4 mb-2 mt-md-0">
-                        <div class="h3 fs-lg"><i class="fas fa-chart-bar mr-1 key-topics" aria-hidden="true"></i>Data Features:</div>
+                        <div class="h3 fs-lg"><i class="fas fa-chart-bar me-1 key-topics" aria-hidden="true"></i>Data Features:</div>
                     </div>
 
                     <div class="row">
@@ -173,7 +173,7 @@
                                             {{ end }}
                                         </div>
                                         <div class="d-flex justify-content-end link">
-                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+                                            <a class="fs-sm fw-bold" href="{{ .RelPermalink }}">Get the data</a>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                                     {{ end }}      
                                     </p>
                                     <div class="d-flex justify-content-end">
-                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ml-1" aria-hidden="true"></i></a>
+                                        <a class="fs-sm fw-bold" href="{{ .RelPermalink }}">Read report<i class="fas fa-arrow-circle-right ms-1" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -210,14 +210,14 @@
                     <div class="col-md-5 col-sm-12">
                         {{- if where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) -}}
                         <div class="ds-accent">
-                            <div class="h3 fs-lg"><i class="fas fa-passport mr-1" aria-hidden="true"></i>Data Stories:</div>
+                            <div class="h3 fs-lg"><i class="fas fa-passport me-1" aria-hidden="true"></i>Data Stories:</div>
                         </div>
 
 
                         {{- range first 5 ( where ( where .Site.RegularPages "Section" "data-stories") ".Params.categories" "intersect" ( slice .Params.keyTopic ) ) -}}
                             <div class="row no-gutters mt-2">
                                 <div class="col-12">
-                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="font-weight-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
+                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="fw-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
                                 </div>
                             </div>
                             <div class="row no-gutters mt-1">
@@ -228,14 +228,14 @@
                                         <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                     </a>
                                 </div>
-                                <div class="col-7 ml-auto h-100 pr-1 pl-2">
+                                <div class="col-7 ms-auto h-100 pe-1 ps-2">
                                     {{ $title := .Title | plainify | htmlUnescape }}
                                     {{- $content := .Content | plainify | htmlUnescape }}
 
                                     {{- .Scratch.Set "intro" $title }}
                                     {{- .Scratch.Add "intro" " | " }}
                                     {{- .Scratch.Add "intro" $content }}
-                                  <p class="fs-sm text-align-right h-100 pl-0 mb-2">{{ $content | truncate 225 }}</p>
+                                  <p class="fs-sm text-align-right h-100 ps-0 mb-2">{{ $content | truncate 225 }}</p>
                                 </div>
                               </div>
 
@@ -253,7 +253,7 @@
                         {{- if gt $dataStories 5 }}
 
                             <!-- Button to toggle the collapse -->
-                            <a class="btn btn-primary mb-3" data-toggle="collapse" href="#collapseStories" role="button" aria-expanded="false" aria-controls="collapseStories" id="toggleButton">
+                            <a class="btn btn-primary mb-3" data-bs-toggle="collapse" href="#collapseStories" role="button" aria-expanded="false" aria-controls="collapseStories" id="toggleButton">
                                 Show More
                             </a>
 
@@ -264,7 +264,7 @@
                             {{- range after 5 $dataStories -}}
                             <div class="row no-gutters mt-2">
                                 <div class="col-12">
-                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="font-weight-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
+                                    <p class="fs-md text-align-right h-100"><a class="link-track text-primary" href="{{ .RelPermalink }}"><span class="fw-bold">{{ .Title | plainify | htmlUnescape }}</span></a></p>
                                 </div>
                             </div>
                             <div class="row no-gutters mt-1">
@@ -275,14 +275,14 @@
                                         <img src="{{ $image.RelPermalink }}" class="mb-3" alt="">
                                     </a>
                                 </div>
-                                <div class="col-7 ml-auto h-100 pr-1 pl-2">
+                                <div class="col-7 ms-auto h-100 pe-1 ps-2">
                                     {{ $title := .Title | plainify | htmlUnescape }}
                                     {{- $content := .Content | plainify | htmlUnescape }}
 
                                     {{- .Scratch.Set "intro" $title }}
                                     {{- .Scratch.Add "intro" " | " }}
                                     {{- .Scratch.Add "intro" $content }}
-                                  <p class="fs-sm text-align-right h-100 pl-0 mb-2">{{ $content | truncate 225 }}</p>
+                                  <p class="fs-sm text-align-right h-100 ps-0 mb-2">{{ $content | truncate 225 }}</p>
                                 </div>
                               </div>
 

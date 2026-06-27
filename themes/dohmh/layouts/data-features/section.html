@@ -10,13 +10,13 @@
                     <li class="breadcrumb-item active"><a href="/data-features/">Data Features</a></li>
                 </ul>
               </nav>
-            <h1 class="mt-4"><i class='fas fa-chart-bar mr-1' aria-hidden='true'></i>Data Features</h1>
+            <h1 class="mt-4"><i class='fas fa-chart-bar me-1' aria-hidden='true'></i>Data Features</h1>
             <p>Interactive infographics, real-time data feeds, and annual reports on important environmental health topics.</p>
 
 
             <div class="row my-4">
                 <div class="col-12">
-                    <p class="home-label font-weight-bold">Interactives</p>
+                    <p class="home-label fw-bold">Interactives</p>
                     <div class="row">
                     {{ range where .Pages "Params.hide" "ne" true }}
 
@@ -39,7 +39,7 @@
                                     <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | truncate 150 }}</div>
                                     <div class="d-flex justify-content-end link">
-                                        <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+                                        <a class="fs-sm fw-bold" href="{{ .RelPermalink }}">Get the data</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
 
             <div class="row my-4">
                 <div class="col-12">
-                    <p class="home-label font-weight-bold">Reports</p>
+                    <p class="home-label fw-bold">Reports</p>
                     <div class="row">
                         {{ range where .Pages "Params.hide" "ne" true }}
 
@@ -77,7 +77,7 @@
                                         <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
                                         <div class="mb-2 fs-sm">{{ .Content | plainify | htmlUnescape | truncate 150 }}</div>
                                         <div class="d-flex justify-content-end link">
-                                            <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
+                                            <a class="fs-sm fw-bold" href="{{ .RelPermalink }}">Get the data</a>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,7 @@
 
             <div class="row my-4">
                 <div class="col-12">
-                    <p class="home-label font-weight-bold">Portals</p>
+                    <p class="home-label fw-bold">Portals</p>
                     <div class="row">
                         {{ range where .Pages "Params.hide" "ne" true }}
 
@@ -114,7 +114,7 @@
                                     <h4 class="fs-md mt-1"><a class="" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
                                     <p class="fs-sm">{{ .Content | plainify | htmlUnescape | truncate 175 }}
                                     </p>
-                                    <p class="fs-sm text-primary float-right mb-1"><a class="font-weight-bold float-right" href="{{ .RelPermalink }}">Get the data</a></p>
+                                    <p class="fs-sm text-primary float-end mb-1"><a class="fw-bold float-end" href="{{ .RelPermalink }}">Get the data</a></p>
                                 </div>
                             </div>
                             {{- end -}}

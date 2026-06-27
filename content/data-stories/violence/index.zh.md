@@ -26,7 +26,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ## 有关纽约市的暴力背景 
 
 ### 纽约市的凶杀率已经下降…… 
-纽约市的暴力事件比过去少了很多。 {{< rawhtml >}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">关于COVID-19大流行的注意事项</a></p>
+纽约市的暴力事件比过去少了很多。 {{< rawhtml >}}<a href="#covidcollapse" data-bs-toggle="collapse" class="badge badge-outline rounded-pill text-bg-danger">关于COVID-19大流行的注意事项</a></p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
     <p>此处不包括2020年的数据，但自COVID-19疫情开始以来，纽约市的袭击、枪击事件以及非致命袭击急诊室就诊和住院人数有所增加。由于国家经历了前所未有的失业、住房和粮食不安全、政治动荡以及对未来的不确定性，在全国范围内也观察到了类似的情况。在这场历史性危机中，可能影响暴力率的社会、经济和环境因素被放大。 </p> </div>{{< /rawhtml >}}
 
@@ -53,7 +53,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 ### 暴力植根于投资缩减和种族主义。 
 证据表明，暴力源于限制满足基本需求的社会结构——种族主义、住宅隔离和社区的投资缩减。在这些结构持续存在的地方，人们就会遭受暴力。例如，众所周知，有色人种的低收入社区受到的打击最为严重。 
 
-这张地图显示的是纽约市的部分地区，作为90年前种族主义住房政策的一部分，这些地区被划为 {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">红线圈定</a> 区，该政策引发了数十年的投资缩减和代际贫困。</p>
+这张地图显示的是纽约市的部分地区，作为90年前种族主义住房政策的一部分，这些地区被划为 {{< rawhtml >}}<a href="#redliningCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">红线圈定</a> 区，该政策引发了数十年的投资缩减和代际贫困。</p>
     <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
     <p>红线圈定是一项始于20世纪30年代的联邦政策。一个政府机构绘制了美国数百个城市的地图，并将其中的社区从“最好”到“危险”进行分级。他们的标准包括居住在这些社区的人的种族。 </p>
     <p>联邦政府和私人银行都使用这些地图来确定是否提供贷款支持，以便人们可以购买房屋。通过这个系统，有色人种被剥夺了购房的机会，而白人的购房则得到了联邦政府的补贴。 </p>
@@ -70,7 +70,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 </div>
 {{< /rawhtml >}}
 
-几十年来，政府和社会 {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">投资缩减</a> 像红线圈定这样的做法意味着机会和资源被限制，并且导致某些社区的贫困率更高。</p>
+几十年来，政府和社会 {{< rawhtml >}}<a href="#disinvestmentCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">投资缩减</a> 像红线圈定这样的做法意味着机会和资源被限制，并且导致某些社区的贫困率更高。</p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <p>投资缩减是指政府机构或私营公司故意扣留或撤回社区的资源和机会。  </p>
     <p>投资缩减的历史与种族主义行为和政策有关——比如拒绝有色人种贷款买房。投资缩减也是计划性收缩，即公共住房、服务、教育的公共资金稳步下降，在城市和主要由有色人种居住的社区中，这种现象尤其突出。</p>
@@ -86,7 +86,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 
 ### 投资缩减创造了威胁健康的环境。 
 {{< rawhtml >}}
-    <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">投资缩减有多种形式.</a> 它促进了种族隔离，限制了人们获得基本资源的机会，并滋生了威胁人们健康的环境。</p>
+    <p><a href="#disinvestmentCollapseTwo" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">投资缩减有多种形式.</a> 它促进了种族隔离，限制了人们获得基本资源的机会，并滋生了威胁人们健康的环境。</p>
     <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
     <p>投资缩减可以是： 
         <ul>
@@ -105,11 +105,11 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 {{< rawhtml >}}
 <div class="d-sm-none d-md-block">
     <div class="row py-2">
-        <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 ms-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>环境因素</button></div>
         <div class="col-1 text-center"><i class="fas fa-arrow-alt-circle-right h2"
                 style="color: #999999"></i></div>
-        <div class="col-4 mr-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 me-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>健康结果</button></div>
     </div>
 </div>
@@ -126,7 +126,7 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
     <div class="col mx-auto">
         <div class="medium">
             <div class="row mt-4 mb-2">
-                <div class="col-5 mr-auto">
+                <div class="col-5 me-auto">
                     <div class="card text-white bg-success w-100">
                         <div class="card-body">
                             <h5 class="card-title">保护性因素包括:</h5>
@@ -139,8 +139,8 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
                         </div>
                     </div>
                 </div>
-                <div class="col-5 ml-auto">
-                    <div class="card text-white bg-danger float-right w-100">
+                <div class="col-5 ms-auto">
+                    <div class="card text-white bg-danger float-end w-100">
                         <div class="card-body">
                             <h5 class="card-title">风险因素包括:</h5>
                             <p class="card-text">
@@ -187,8 +187,8 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
 
 下面，每条垂直线代表了社区对完全贫困、儿童贫困、儿童无家可归、高中毕业、脱节青年、失业、驱逐、止赎法拍等风险因素，以及袭击住院、枪击和凶杀的暴力后果的排名。每条线将一个社区及其排名进行连接——线越平坦，排名越一致。 
 
-这些风险因素描述了社区中的威胁性{{< rawhtml >}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">环境因素</a>
-网络，这些社区经历了投资缩减、使居民陷入贫困并使他们终生面临风险——最终导致更高的<a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">暴力。</a></p>
+这些风险因素描述了社区中的威胁性{{< rawhtml >}}<a href="#envcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">环境因素</a>
+网络，这些社区经历了投资缩减、使居民陷入贫困并使他们终生面临风险——最终导致更高的<a href="#violcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">暴力。</a></p>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
 下表中的环境因素： 
     <ul>
@@ -197,8 +197,8 @@ photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
         <li>教育和就业：高中毕业、脱节青年和失业 </li>
         <li>住房稳定：驱逐，止赎法拍 </li>
     </ul>
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
 </div>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="violcollapse">
     下表中的暴力结果： 
@@ -207,15 +207,15 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
         <li>枪击案 </li>
         <li>凶杀案 </li>
     </ul>
-    <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-        data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
+    <button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+        data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
 </div>
 {{< /rawhtml >}}
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> 在这些使暴力更有可能发生的风险因素中排名靠前。相比较 <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> 在这些因素中排名较低。
 
 {{< datawrapper title="Environmental factors and violence outcomes" src="aVd3y/1/" height="714" >}}
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
 
 出现了一种模式：<span style="font-weight: bold; color: #b820bb;">贫困率最高的社区</span> 始终排名较高，因为风险因素遭受更多暴力。 <span style="font-weight:bold; color: #5c8ea5">贫困率最低的社区</span> 出现了一种模式：贫困率最高的社区始终排名较高，因为风险因素遭受更多暴力。贫困率最低的社区在风险因素方面始终排名较低，因为风险因素遭受的暴力较少。 
 
@@ -225,7 +225,7 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
 在风险因素远远超过保护性因素的环境中，社区暴力发生率更高，并威胁到这些社区居民的健康。 
 
 {{< datawrapper title="Environmental factors and violence outcomes" src="ASU8a/1/" height="714" >}}
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数据</button>
 <br>
 
 ## 打破暴力循环 
@@ -260,9 +260,7 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">关于数据 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p><strong>贫困：:</strong> 年收入低于联邦贫困水平线100%的人口百分比，2013-2017年美国社区调查。 <a
@@ -289,7 +287,7 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;关于数�
                         href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=tsi&PopulationSource=Death&Topic=8&Subtopic=49&Indicator=Assault%20(Homicide)&Year=2015">探索数据</a>. </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭 </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭 </button>
             </div>
         </div>
     </div>

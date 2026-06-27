@@ -31,7 +31,7 @@ The Federal Reserve Board’s 2019 Survey of Consumer Finances (SCF) shows that,
 <div class="chart-wrapper-ds" aria-hidden="true">
 <iframe title="Mean and median net worth for  White, Black, and  Hispanic people in the US" aria-label="Grouped Column Chart" id="datawrapper-chart-nqi4y" src="https://datawrapper.dwcdn.net/nqi4y/7/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="481" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Mean and median net worth for White, Black and Hispanic people in the US" aria-label="Table" id="datawrapper-chart-vmOjI" src="https://datawrapper.dwcdn.net/vmOjI/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="271" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -54,11 +54,11 @@ White households are more likely than Black and Hispanic households to hold all 
 
 <div class="accordion-group narrow my-3" role="tablist" id="accordion-01">
   <div class="card">
-    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-01" data-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
+    <a class="card-header collapse collapsed fw-bold" id="acc-button-01" data-bs-toggle="collapse" href="#panel-acc-button-01"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-01">
       <span class="title" role="heading" aria-level="3">Wealth allows families to access better medical care…</span>
     </a>
 
-  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-01">
+  <div class="collapse" id="panel-acc-button-01" role="tabpanel" aria-labelledby="acc-button-01" data-bs-parent="#accordion-01">
     <div class="card-body card-white fs-md">
     <p>
     Wealth is strongly correlated with individual and population health in more ways than one. Wealth allows families to afford better medical care, higher quality insurance, and goods and services that promote physical and mental wellbeing. Liquid assets, like savings and stocks, allow households to more readily pay for basic needs, preventative and routine medical care, and weather financial shocks.
@@ -71,11 +71,11 @@ White households are more likely than Black and Hispanic households to hold all 
   <!-- .card (end of first accordion, repeat as needed) -->
 
   <div class="card">
-      <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
+      <a class="card-header collapse collapsed fw-bold" id="acc-button-02" data-bs-toggle="collapse" href="#panel-acc-button-02"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-02">
         <span class="title" role="heading" aria-level="3">…and to live in health-promoting neighborhoods.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-02" role="tabpanel" aria-labelledby="acc-button-02" data-bs-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
 Greater wealth allows people to live in neighborhoods with fewer environmental hazards and more resources, like healthier housing.
@@ -87,11 +87,11 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-03" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-03" data-bs-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-03">
         <span class="title" role="heading" aria-level="3">Wealth can reduce stress from financial challenges.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-03" data-bs-parent="#accordion-01">
     <div class="card-body fs-md">
 <p>
    Wealth can protect families from the negative consequences of financial hardship, including job loss, homelessness or housing insecurity, food insecurity, and the negative psychological effects associated with financial hardship. Intergenerational wealth passed down through inheritance can provide educational and social opportunities that can benefit health in the long run.
@@ -102,11 +102,11 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-04" data-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-04" data-bs-toggle="collapse" href="#panel-acc-button-04"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-04">
         <span class="title" role="heading" aria-level="3">Debt and tight budgets lead to reduced spending on medical care and preventative lifestyle habits.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-04" role="tabpanel" aria-labelledby="acc-button-04" data-bs-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
  Conversely, research shows that when household budgets are constrained, families tend to reduce spending on medical care, groceries, and other health-related goods. Households with limited liquid assets may be less able to afford health-promoting opportunities (for example, quality medical care, physical activity, etc.) and more likely to forgo preventative or emergency medical treatments. Financial hardship is consistently correlated with poorer self-rated health, more chronic diseases, and depressive symptoms in children and adults.
@@ -117,11 +117,11 @@ Greater wealth allows people to live in neighborhoods with fewer environmental h
 </div>
 
   <div class="card">
-      <a class="card-header font-weight-bold collapse collapsed" id="acc-button-05" data-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
+      <a class="card-header fw-bold collapse collapsed" id="acc-button-05" data-bs-toggle="collapse" href="#panel-acc-button-05"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-05">
         <span class="title" role="heading" aria-level="3">Debt and lower incomes impact socioemotional well-being in negative ways.</span>
       </a>
 
-<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-parent="#accordion-01">
+<div class="collapse" id="panel-acc-button-05" role="tabpanel" aria-labelledby="acc-button-05" data-bs-parent="#accordion-01">
     <div class="card-body  fs-md">
 <p>
   Debt type plays an important role in health and well-being in both positive and negative ways. For instance, higher levels of home and student loan debt are associated with greater socioemotional well-being for children, whereas higher levels of and increases in unsecured debt (for example, credit card debt) are associated with lower levels of and declines in child socioemotional well-being, respectively.
@@ -148,7 +148,7 @@ Between 2019 and 2021, the U.S. experienced a widening of its life expectancy ga
 <iframe title="Health inequities have not improved over time" aria-label="Interactive line chart" id="datawrapper-chart-AbBga" src="https://datawrapper.dwcdn.net/AbBga/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Racial health inequities have not improved over time (Copy)" aria-label="Table" id="datawrapper-chart-uPSl8" src="https://datawrapper.dwcdn.net/uPSl8/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="836" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -181,19 +181,19 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 
 <div class="row">
   <div class="col-md-4 card content-card mb-3">
-    <a class="p-2 card-content primary font-weight-bold resource-card" href="racial-wealth-gap-health-equity.pdf" target="_blank">
-      <i class="fas fa-2xl fa-file-pdf mr-1 mb-1"></i>
+    <a class="p-2 card-content primary fw-bold resource-card" href="racial-wealth-gap-health-equity.pdf" target="_blank">
+      <i class="fas fa-2xl fa-file-pdf me-1 mb-1"></i>
       <div>Analyzing the Racial Wealth Gap and Implications for Health Equity (full report).</div>
     </a>
   </div>
   <div class="col-md-4 card content-card mb-3">
-    <a class="p-2 card-content primary font-weight-bold resource-card"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank">
-      <i class="fas fa-2xl fa-play-circle mr-1 mb-1"></i>
+    <a class="p-2 card-content primary fw-bold resource-card"  href="https://www.youtube.com/watch?v=yDgGR-r2xdc" target="_blank">
+      <i class="fas fa-2xl fa-play-circle me-1 mb-1"></i>
       <div>Reimagining Public Health: A Discussion on the Racial Wealth Gap and Health Equity</div>
     </a>
   </div>
   <div class="col-md-4 card content-card mb-3">
-    <button type="button" class="p-2 card-content primary resource-card font-weight-bold" data-toggle="modal" data-target="#glossaryModal"><i class="fas fa-book-open mr-1 fa-2xl mb-1"></i>Glossary</button>
+    <button type="button" class="p-2 card-content primary resource-card fw-bold" data-bs-toggle="modal" data-bs-target="#glossaryModal"><i class="fas fa-book-open me-1 fa-2xl mb-1"></i>Glossary</button>
   </div>
   <div class="col-md-4 card content-card mb-3">
     <div class="card-content primary p-2">
@@ -209,9 +209,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="glossaryModalLabel" data-pagefind-ignore="all">Glossary</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <table class="table table-striped" id="glossary">
@@ -258,7 +256,7 @@ Effective solutions to racial inequities in wealth and health must simultaneousl
 </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

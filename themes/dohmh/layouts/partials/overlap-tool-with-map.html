@@ -24,7 +24,7 @@
 
     <div class="col-4">
 
-        <strong><i class="fas fa-square mr-1" style="color:#66c2a5" aria-hidden="true"></i>Chosen neighborhood:</strong> 
+        <strong><i class="fas fa-square me-1" style="color:#66c2a5" aria-hidden="true"></i>Chosen neighborhood:</strong> 
 
         <div id="chosen" class="mb-2">
             <span id="neighbHolder">
@@ -34,7 +34,7 @@
 
         <hr class="my-2">
 
-        <strong><i class="far fa-square mr-1" style="color:red" aria-hidden="true"></i>Overlapping UHF neighborhoods:</strong>
+        <strong><i class="far fa-square me-1" style="color:red" aria-hidden="true"></i>Overlapping UHF neighborhoods:</strong>
         <div id="overlaps" class="">
           <!-- Printing -->            
         </div>
@@ -376,7 +376,7 @@ function drawUHFs(UHF_ids) {
                 } else {
                 overlaps.innerHTML += `
                 <a href="{{ .Site.BaseURL }}neighborhood-reports/${dest}" class="dropdown-item text-primary">
-                    <span class="font-weight-bold">
+                    <span class="fw-bold">
                     ${name} 
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population

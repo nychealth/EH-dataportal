@@ -284,7 +284,7 @@ function setupMap() {
             .join('');
 
         div.innerHTML = `
-            <span class="fs-sm font-weight-bold text-black p-1">Filter stories:</span>
+            <span class="fs-sm fw-bold text-black p-1">Filter stories:</span>
             <div class="list-group list-group-flush" id="themeBullets">
                 ${content}
                 <a href="#map" onClick="placeAllStoryPins()" class="list-group-item">Show all</a>
@@ -669,7 +669,7 @@ function drawStoryCard(id) {
             <div class="card content-card ">
                 <div class="card-content content-card-height">
                     <div class="card-body story-card-content">
-                        <span class="fs-md font-weight-bold">${story.title}</span>
+                        <span class="fs-md fw-bold">${story.title}</span>
                         <blockquote class="blockquote mb-0 fs-md">
                             <p class="card-text">${story.content}</p>
                         </blockquote>
@@ -1095,7 +1095,7 @@ async function createGeotiffLayer({ id, url, args, name }) {
 
             const collapseId = `${id}LegendCollapse`;
 
-            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-bs-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
                 + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }
 
@@ -1604,7 +1604,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     const display = value ? value + ' ' + units : 'Supressed'
 
     document.getElementById('infoboxHolderTarget').innerHTML = 
-    `<div class="fs-xs mt-1 text-black font-weight-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
+    `<div class="fs-xs mt-1 text-black fw-bold border-bottom" style="max-width: 275px; overflow-x: wrap;">
         ${geoName ?? 'This area'}: <br>
         ${display}
     </div>`;
@@ -1964,7 +1964,7 @@ const legendFuncForColorMap = (id, name, args) => {
 
         const collapseId = `${id}LegendCollapse`;
 
-        legend += `<div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+        legend += `<div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-bs-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
             + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
     }
 
@@ -2039,7 +2039,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
 
             const collapseId = `${id}LegendCollapse`;
 
-            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
+            legend += `<br /><div style="display: block; width: 100%; max-width: 275px; font-size: 90%"><a data-bs-toggle="collapse" href="#${collapseId}" role="button" aria-expanded="false" aria-controls="${collapseId}">More info about ${name}</a>`
                 + `<div class="collapse" id="${collapseId}">${args.legendDescription}</div></div>`;
         }
 

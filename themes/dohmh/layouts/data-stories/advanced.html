@@ -24,8 +24,8 @@
 <div class="container-fluid d-xl-none d-lg-none">
     <div class="narrow">
         <div class="btn-toggle narrow">
-            <button class="btn btn-block btn-lg btn-primary shadow" data-toggle="collapse"
-                data-target="#main-nav" aria-expanded="false" aria-controls="sidebar-nav">
+            <button class="btn w-100 btn-lg btn-primary shadow" data-bs-toggle="collapse"
+                data-bs-target="#main-nav" aria-expanded="false" aria-controls="sidebar-nav">
                 <span class="title">Contents</span>
             </button>
         </div>
@@ -66,13 +66,13 @@
         <!-- .col -->
 
         <!--start main content section-->
-        <div class="col-xl-7 overflow-hidden fs-rg mr-auto" id="primary-content">
+        <div class="col-xl-7 overflow-hidden fs-rg me-auto" id="primary-content">
             
         <!-- language selection -->
         {{- if .IsTranslated -}}
             <nav class="navbar navbar-default my-2">
                     <ul class="nav navbar-nav fs-sm">
-                        <span class="mr-2">Read this data story in:</span> 
+                        <span class="me-2">Read this data story in:</span> 
                         {{- range .Translations -}}
                         <li class="mb-1"><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>  
                         {{- end -}}
@@ -118,7 +118,7 @@
 
                 <div class="fs-sm">
                     {{- if .Params.photocredit -}}
-                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
+                        <i class="fas fa-images me-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}
                         <hr class="my-2">
                     {{- end }}

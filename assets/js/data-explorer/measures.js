@@ -1257,7 +1257,7 @@ const renderMeasures = async () => {
 
         // console.log("selectedTableGeography:", selectedTableGeography);
 
-        dropdownMapGeos.innerHTML += `<button class="btn btn-primary dropdown-item link-time mapgeosbutton pl-2"
+        dropdownMapGeos.innerHTML += `<button class="btn btn-primary dropdown-item link-time mapgeosbutton ps-2"
             data-geo="${geo}">
             ${geo}
             </button>`;
@@ -1273,7 +1273,7 @@ const renderMeasures = async () => {
 
     mapTimes.map(time => {
 
-        dropdownMapTimes.innerHTML += `<button class="btn btn-primary dropdown-item link-time maptimesbutton pl-2"
+        dropdownMapTimes.innerHTML += `<button class="btn btn-primary dropdown-item link-time maptimesbutton ps-2"
             data-time="${time}">
             ${time}
             </button>`;
@@ -1316,7 +1316,7 @@ const renderMeasures = async () => {
             
             mapMeasures.push(measure)
             
-            dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item link-measure mapmeasuresbutton pl-2"
+            dropdownMapMeasures.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item link-measure mapmeasuresbutton ps-2"
                 data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
@@ -1355,7 +1355,7 @@ const renderMeasures = async () => {
             trendSelectionLabel.innerHTML += header ?  header.toLowerCase()  : '';
 
             if (trendData) {
-                dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton pl-2"
+                dropdownTrendSelection.innerHTML += DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item trendbutton ps-2"
                 data-measure-id="${measureId}" title="${type}">
                 ${type}
                 </button>`);
@@ -1400,7 +1400,7 @@ const renderMeasures = async () => {
                     // console.log("defaultSecondaryMeasureMetadata", defaultSecondaryMeasureMetadata);
 
                     dropdownLinksMeasures.innerHTML +=
-                        DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item linksbutton pl-2"
+                        DOMPurify.sanitize(`<button class="btn btn-primary dropdown-item linksbutton ps-2"
                             data-primary-measure-id="${measureId}"
                             data-measure-id="${measure.MeasureID}"
                             data-secondary-measure-id="${link.MeasureID}" title="${defaultSecondaryMeasureMetadata[0]?.MeasureName}">
@@ -1480,14 +1480,14 @@ const renderMeasures = async () => {
 
                     if (compGeoTypeName[0] == "Citywide") {
 
-                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton ps-2"
                         data-comparison-id="${comp}"  title="${compY_axis_title}">
                         ${compY_axis_title}
                         </button>`;
 
                     } else {
                         // I am very unhappy with this kludge
-                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                        dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton ps-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
                             </button>`;
@@ -1498,7 +1498,7 @@ const renderMeasures = async () => {
                     // console.log("1 measure [MeasurementType]");
                     // console.log(compMeasurementType);
 
-                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton ps-2"
                         data-comparison-id="${comp}" title="${compMeasurementType}">
                         ${compMeasurementType}
                         </button>`;
@@ -1509,7 +1509,7 @@ const renderMeasures = async () => {
                     // console.log("compIndicatorMeasure", compIndicatorMeasure);
                     // console.log("compName", compName);
 
-                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
+                    dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton ps-2"
                         data-comparison-id="${comp}" title="${compName}">
                         ${compName}
                         </button>`;

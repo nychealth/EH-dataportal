@@ -68,7 +68,7 @@ That blackout was dangerous for NYC residents, and we can see the effects in hea
   <iframe title="The 2003 Blackout caused a spike in respiratory hospitalizations..." aria-label="Interactive line chart" id="datawrapper-chart-6ivif" src="https://datawrapper.dwcdn.net/6ivif/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="438" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="The 2003 Blackout caused a spike in respiratory hospitalizations, exceeding the upper range of predictions..." aria-label="Table" id="datawrapper-chart-jGcgz" src="https://datawrapper.dwcdn.net/jGcgz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1292" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
@@ -84,7 +84,7 @@ The health impacts were not limited to just hospitalizations. In fact, the power
   <iframe title="...and a spike in deaths in NYC." aria-label="Interactive line chart" id="datawrapper-chart-Y2D7s" src="https://datawrapper.dwcdn.net/Y2D7s/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="463" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="...and a spike in deaths in NYC. " aria-label="Table" id="datawrapper-chart-415MD" src="https://datawrapper.dwcdn.net/415MD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1249" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
@@ -106,7 +106,7 @@ The chart below from [www.climatecentral.org](https://www.climatecentral.org) sh
   <iframe title="Increasing weather-related power outages in the Northeast U.S." aria-label="Column Chart" id="datawrapper-chart-sbTUE" src="https://datawrapper.dwcdn.net/sbTUE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="407" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="Increasing weather-related power outages in the Northeast U.S." aria-label="Table" id="datawrapper-chart-AwXYk" src="https://datawrapper.dwcdn.net/AwXYk/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="449" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>

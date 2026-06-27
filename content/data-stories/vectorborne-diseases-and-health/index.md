@@ -45,7 +45,7 @@ Vector-borne disease cases are increasing in NYC, likely due to climate change.
 </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Since 1999, years with over 25 cases have become more frequent" aria-label="Table" id="datawrapper-chart-SV4Jp" src="https://datawrapper.dwcdn.net/SV4Jp/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="930" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();
 </script>
 </div>
@@ -63,15 +63,15 @@ People can get West Nile virus when mosquitoes are active, usually between July 
 
 <div aria-hidden="true">
 <div class="nav nav-tabs device-md mb-3" role="tablist">
-    <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+    <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-bs-toggle="tab"
         aria-controls="tab-02-a" aria-selected="true" role="tab">
         Anaplasmosis cases
     </a>
-    <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+    <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-bs-toggle="tab"
         aria-controls="tab-02-b" aria-selected="false" role="tab">
         Babesiosis cases
     </a>
-    <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-toggle="tab"
+    <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-bs-toggle="tab"
         aria-controls="tab-02-c" aria-selected="false" role="tab">
         Lyme cases
     </a>
@@ -91,13 +91,13 @@ People can get West Nile virus when mosquitoes are active, usually between July 
 </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:930px" id="datawrapper-vis-mPZdX"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mPZdX/embed.js" charset="utf-8" data-target="#datawrapper-vis-mPZdX"></script><noscript><img src="https://datawrapper.dwcdn.net/mPZdX/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:910px" id="datawrapper-vis-wLmZA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/wLmZA/embed.js" charset="utf-8" data-target="#datawrapper-vis-wLmZA"></script><noscript><img src="https://datawrapper.dwcdn.net/wLmZA/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:953px" id="datawrapper-vis-eDTvQ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eDTvQ/embed.js" charset="utf-8" data-target="#datawrapper-vis-eDTvQ"></script><noscript><img src="https://datawrapper.dwcdn.net/eDTvQ/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
 </div>
 </div>
@@ -151,7 +151,7 @@ The number of days per warm season where the average temperature exceeded 86 deg
 <div style="min-height:597px" id="datawrapper-vis-moaSW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/moaSW/embed.js" charset="utf-8" data-target="#datawrapper-vis-moaSW"></script><noscript><img src="https://datawrapper.dwcdn.net/moaSW/full.png" alt="The number of very hot days has been rising in NYC (Line chart)" /></noscript></div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:910px" id="datawrapper-vis-6t3WI"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/6t3WI/embed.js" charset="utf-8" data-target="#datawrapper-vis-6t3WI"></script><noscript><img src="https://datawrapper.dwcdn.net/6t3WI/full.png" alt="The number of days over 86°F has been rising in NYC each summer (Table)" /></noscript></div>
 </div>
 

@@ -64,7 +64,7 @@
 
                     <!-- BRAND FILTER (50%) -->
                     <div class="col-md-6">
-                        <label class="mb-1 font-weight-bold" for="brandFilter">Filter</label>
+                        <label class="mb-1 fw-bold" for="brandFilter">Filter</label>
                         <div class="d-flex">
                             <select id="brandFilter" class="form-control form-control-sm flex-grow-1">
                                 <option value="">All Brands</option>
@@ -75,7 +75,7 @@
 
                     <!-- SEARCH (50%) -->
                     <div class="col-md-6">
-                        <label class="mb-1 font-weight-bold">Search</label>
+                        <label class="mb-1 fw-bold">Search</label>
                         <div id="searchContainer"></div>
                     </div>
 
@@ -156,7 +156,7 @@ function renderFullSugarTable() {
           const original = row[0]; // text from CSV
 
           return `
-            <span class="fs-rg font-weight-bold">${original}</span>
+            <span class="fs-rg fw-bold">${original}</span>
           `;
         }
       },
@@ -167,7 +167,7 @@ function renderFullSugarTable() {
           const original = row[1]; // text from CSV
 
           return `
-            <span class="fs-sm font-weight-bold">${original}</span>
+            <span class="fs-sm fw-bold">${original}</span>
           `;
         }
       },

@@ -53,8 +53,8 @@ What determines whether or not you’re healthy? You may think about what you ea
 
 {{< rawhtml >}}
 
-<p>But you may not think about <a href="#healthcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">how your home affects your health</a>
+<p>But you may not think about <a href="#healthcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">how your home affects your health</a>
     - and you may not think about the factors that influence where you live.
 </p>
 <div class="asidebox collapse fs-sm m-2" id="healthcollapse">
@@ -93,8 +93,8 @@ Throughout history, many different practices have shaped racial and residential 
 
 {{< rawhtml >}}
 
-<p>In the 1930s, <a href="#holccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">the federal government</a> developed
+<p>In the 1930s, <a href="#holccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">the federal government</a> developed
     color-coded maps to guide loans to potential home buyers in cities across the
     U.S.
 
@@ -162,12 +162,12 @@ Since home ownership is an important way to accrue wealth, redlining drove econo
 {{< rawhtml >}}
 
 <p>Other real estate practices, like
-    <a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">Blockbusting</a>&nbsp;<a
-        href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">Contract selling</a> &nbsp;<a
-        href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">Racially restrictive covenants</a>,
+    <a href="#bbcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">Blockbusting</a>&nbsp;<a
+        href="#contractcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">Contract selling</a> &nbsp;<a
+        href="#rrccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">Racially restrictive covenants</a>,
     have maintained segregation.
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="bbcollapse"
@@ -233,7 +233,7 @@ Explore NYC's common housing problems in the map below.
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown" aria-hidden="true">
 
   <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle me-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Healthy housing problems:
     </button>
       <button type="button" class="btn btn-sm btn-outline-secondary mapselectbutton" onclick="changeMap('No healthy housing problems')">No healthy housing problems</button>
@@ -419,7 +419,7 @@ changeMap('3+ healthy housing problems')
 
 {{< /rawhtml >}}
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Percent of households with healthy housing problems" aria-label="Table" id="datawrapper-chart-IlMbE" src="https://datawrapper.dwcdn.net/IlMbE/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="992" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
@@ -428,7 +428,7 @@ changeMap('3+ healthy housing problems')
 
 These problems go far beyond inconvenience or mess. {{< rawhtml >}}
 <a href="#disrepaircollapse"
-        data-toggle="collapse" class="badge badge-pill badge-success">Disrepair can
+        data-bs-toggle="collapse" class="badge rounded-pill text-bg-success">Disrepair can
 harm health.</a></p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="disrepaircollapse"
@@ -469,7 +469,7 @@ As a result of the segregation and disinvestment caused by redlining, Black and 
 </script>
 
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Disrepair can harm health" aria-label="Table" id="datawrapper-chart-L4GDU" src="https://datawrapper.dwcdn.net/L4GDU/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="313" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 </div>
@@ -566,7 +566,7 @@ Black and Latino people with higher incomes are also more likely to live in buil
 </script>
 <hr>
 {{< /rawhtml >}}
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Black and Latino people have less access to healthy housing -- even across income levels (extremely low income table)" aria-label="Table" id="datawrapper-chart-IKPCG" src="https://datawrapper.dwcdn.net/IKPCG/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="386" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
 
@@ -596,11 +596,11 @@ As a result, the highest rates of asthma emergency department visits for childre
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">Bar charts</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">Scatterplot</a>
     </li>
 </ul>

@@ -14,8 +14,8 @@ image: ds-housing.jpeg
 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。
 
 {{< rawhtml >}}
-<p>但您可能不会想到 <a href="#healthcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">您的住房会怎样影响您的健康</a>
+<p>但您可能不会想到 <a href="#healthcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">您的住房会怎样影响您的健康</a>
     - 您可能也不会考虑会影响您选择住房的因素。
 </p>
 <div class="collapse fs-sm py-2 px-2 mb-2" id="healthcollapse"
@@ -51,8 +51,8 @@ image: ds-housing.jpeg
 
 ### 联邦政策导致了住宅隔离。
 {{< rawhtml >}}
-<p>20世纪30年代, <a href="#holccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">联邦政府</a> 开发了彩色编码的地图，为全美各城市的潜在购房者提供贷款指导。
+<p>20世纪30年代, <a href="#holccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">联邦政府</a> 开发了彩色编码的地图，为全美各城市的潜在购房者提供贷款指导。
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="holccollapse"
     style="background-color: #f9f9f9;">
@@ -109,12 +109,12 @@ image: ds-housing.jpeg
 ### 其他一些歧视性做法使得住宅隔离持续。
 {{< rawhtml >}}
 <p>
-    <a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">诱骗房产主贱卖房地产</a>&nbsp;<a
-        href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">合同操纵</a> &nbsp;<a
-        href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">种族限制条款</a> 等其他房地产行为使住宅隔离持续。
+    <a href="#bbcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">诱骗房产主贱卖房地产</a>&nbsp;<a
+        href="#contractcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">合同操纵</a> &nbsp;<a
+        href="#rrccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">种族限制条款</a> 等其他房地产行为使住宅隔离持续。
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="bbcollapse"
     style="margin-top: 0px!important; background-color: #f9f9f9;">
@@ -136,7 +136,7 @@ image: ds-housing.jpeg
 
 {{< rawhtml >}}
 <div class="dsquote my-2 py-2"><em>“这位业主通常在有色人种工薪阶层社区买老旧住宅，使长期租户租住的公寓年久失修，让他们等几个月才为其进行低质量维修。很多租户还表示，这位业主会给新租户优惠条款。” </em> </div>
-<div class="text-right mb-3">——选自 <a
+<div class="text-end mb-3">——选自 <a
 href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联盟（Right to Counsel NYC Coalition）：《最差驱逐者名单》</a></div>
 {{< /rawhtml >}}
 
@@ -156,7 +156,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle me-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       健康住房问题：
     </button>
       <button type="button" class="btn btn-sm btn-outline-secondary mapselectbutton" onclick="changeMap(0)">没有健康住房问题</button>
@@ -264,7 +264,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 ### 谁承担房屋年久失修的责任？
 这些问题远不只是造成了不便或混乱。 {{< rawhtml >}}
 <a href="#disrepaircollapse"
-        data-toggle="collapse" class="badge badge-pill badge-success">年久失修会损害健康。</a></p>
+        data-bs-toggle="collapse" class="badge rounded-pill text-bg-success">年久失修会损害健康。</a></p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="disrepaircollapse"
     style="background-color: #f9f9f9;">
@@ -381,11 +381,11 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">条形图</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">散点图</a>
     </li>
 </ul>

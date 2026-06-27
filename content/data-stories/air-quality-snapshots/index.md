@@ -34,10 +34,10 @@ related:
 
 {{< rawhtml >}}
 
-<div class="col-xl-3 border-right">
+<div class="col-xl-3 border-end">
     <div class="sticky-top narrow collapse d-xl-block" id="sidebar-nav">
         <nav class="mx-xl-n2 pt-4 py-xl-0" role="navigation" id="myScrollspy">
-            <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
+            <a class="visually-hidden visually-hidden-focusable skip-menu" href="#primary-content">Skip Nav</a>
             <div class="list-group list-group-flush border-bottom fs-rg" role="list">
                 <a href="#section1" class="list-group-item">
                     A traffic health threat: air toxics
@@ -58,7 +58,7 @@ related:
 </div>
 <!-- .col -->
 <!--start main content section-->
-<div class="col-xl-8 overflow-hidden fs-rg mr-auto" id="primary-content">
+<div class="col-xl-8 overflow-hidden fs-rg me-auto" id="primary-content">
     <div class="my-2">
         <div class="narrow">
             <p>{{< updateflag data=`[
@@ -90,7 +90,7 @@ related:
                 <iframe title="Benzene levels are related to traffic and building emissions" aria-label="USA new york city neighborhoods (ntas) Symbol map" id="datawrapper-chart-EPzEn" src="//datawrapper.dwcdn.net/EPzEn/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="514"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
                 </div>
-                <div class="sr-only"><div style="min-height:888px" id="datawrapper-vis-qAS0v"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qAS0v/embed.js" charset="utf-8" data-target="#datawrapper-vis-qAS0v"></script><noscript><img src="https://datawrapper.dwcdn.net/qAS0v/full.png" alt="" /></noscript></div></div>
+                <div class="visually-hidden"><div style="min-height:888px" id="datawrapper-vis-qAS0v"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qAS0v/embed.js" charset="utf-8" data-target="#datawrapper-vis-qAS0v"></script><noscript><img src="https://datawrapper.dwcdn.net/qAS0v/full.png" alt="" /></noscript></div></div>
             </div>
         </div>
         <div class="my-2 mx-2 border" style="background:#EEF4E3">
@@ -109,7 +109,7 @@ related:
                 <iframe title="Noise levels at all sites exceeded health guidelines." aria-label="USA new york city neighborhoods (ntas) Symbol map" id="datawrapper-chart-OkXon" src="//datawrapper.dwcdn.net/OkXon/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="514"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
             </div>
-            <div class="sr-only"><div style="min-height:922px" id="datawrapper-vis-vSUtR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vSUtR/embed.js" charset="utf-8" data-target="#datawrapper-vis-vSUtR"></script><noscript><img src="https://datawrapper.dwcdn.net/vSUtR/full.png" alt="" /></noscript></div>
+            <div class="visually-hidden"><div style="min-height:922px" id="datawrapper-vis-vSUtR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/vSUtR/embed.js" charset="utf-8" data-target="#datawrapper-vis-vSUtR"></script><noscript><img src="https://datawrapper.dwcdn.net/vSUtR/full.png" alt="" /></noscript></div>
             </div>
             </div>
             </div>
@@ -128,7 +128,7 @@ related:
                 <iframe title="Areas with high PM2.5 will see the biggest improvements from cleaner heating fuel rules" aria-label="USA new york city neighborhoods (ntas) choropleth map" id="datawrapper-chart-iGatY" src="//datawrapper.dwcdn.net/iGatY/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="570"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                 </script>
             </div>
-            <div class="sr-only"><div style="min-height:968px" id="datawrapper-vis-5yPxF"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5yPxF/embed.js" charset="utf-8" data-target="#datawrapper-vis-5yPxF"></script><noscript><img src="https://datawrapper.dwcdn.net/5yPxF/full.png" alt="" /></noscript></div>
+            <div class="visually-hidden"><div style="min-height:968px" id="datawrapper-vis-5yPxF"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5yPxF/embed.js" charset="utf-8" data-target="#datawrapper-vis-5yPxF"></script><noscript><img src="https://datawrapper.dwcdn.net/5yPxF/full.png" alt="" /></noscript></div>
             </div>
             <p>Then, we estimated the health benefits of reduced exposure to air pollution. We gathered neighborhood-level population and health outcome data, and we estimated the health events (like asthma, deaths, and more) that New Yorkers avoided due to this cleaner air. Here's what we found:</p>
             <p><strong>Mortality reductions in areas with the worst air quality:</strong> Cleaner fuels will save the most lives in areas with the greatest reduction in PM2.5, and areas with the highest rates of baseline premature mortality.  These are the neighborhoods that already have poor air quality and high rates of death - including the Upper East and West Sides and Northern Manhattan. </p>
@@ -136,19 +136,19 @@ related:
             <p>In other words, reducing PM2.5 benefits areas that have high PM2.5, but also communities with lower PM2.5 but high rates of respiratory diseases. You can explore these findings in the maps below.
                 </p>
                 <div class="nav nav-tabs device-md fs-sm" role="tablist">
-                    <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-toggle="tab"
+                    <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-bs-toggle="tab"
                         aria-controls="tab-02-a" aria-selected="true" role="tab">
                         Deaths
                     </a>
-                    <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-toggle="tab"
+                    <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-bs-toggle="tab"
                         aria-controls="tab-01-b" aria-selected="false" role="tab">
                         Heart disease
                     </a>
-                    <a class="nav-item nav-link" id="tab-btn-01-c" href="#tab-01-c" data-toggle="tab"
+                    <a class="nav-item nav-link" id="tab-btn-01-c" href="#tab-01-c" data-bs-toggle="tab"
                         aria-controls="tab-01-c" aria-selected="false" role="tab">
                         Asthma
                     </a>
-                    <a class="nav-item nav-link" id="tab-btn-01-d" href="#tab-01-d" data-toggle="tab"
+                    <a class="nav-item nav-link" id="tab-btn-01-d" href="#tab-01-d" data-bs-toggle="tab"
                         aria-controls="tab-01-d" aria-selected="false" role="tab">
                         Respiratory disease
                     </a>
@@ -156,30 +156,30 @@ related:
                 <div class="tab-content mb-2" id="tabs-01-content">
                     <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
                         role="tabpanel">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left" aria-hidden="true">
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start" aria-hidden="true">
                             <iframe title="Deaths" aria-label="choropleth map" id="datawrapper-chart-mD8qz" src="//datawrapper.dwcdn.net/mD8qz/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">
                             <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel" aria-hidden="true">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">
                             <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel" aria-hidden="true">
-                        <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">
                             <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
-                    <div class="sr-only"><div style="min-height:1301px" id="datawrapper-vis-Z1D4u"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Z1D4u/embed.js" charset="utf-8" data-target="#datawrapper-vis-Z1D4u"></script><noscript><img src="https://datawrapper.dwcdn.net/Z1D4u/full.png" alt="" /></noscript></div></div>
+                    <div class="visually-hidden"><div style="min-height:1301px" id="datawrapper-vis-Z1D4u"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Z1D4u/embed.js" charset="utf-8" data-target="#datawrapper-vis-Z1D4u"></script><noscript><img src="https://datawrapper.dwcdn.net/Z1D4u/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         </div>
@@ -189,15 +189,15 @@ related:
             <p>Across public health research, we see that communities with higher concentrations of poverty have higher rates of a variety of health conditions - including health conditions that are sensitive to air pollution. This makes people in these communities more vulnerable to harm from air pollution.</p>
             <p>We make sure that our monitoring network accurately models air quality in high-poverty neighborhoods with supplemental monitoring at 15 environmental justice (EJ) sites. We placed monitors in high-poverty neighborhoods with lower than average density of air quality monitors, or near important emissions sources, starting in 2014. </p>
             <div class="nav nav-tabs device-md fs-sm" role="tablist">
-                <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+                <a class="nav-item nav-link active" id="tab-btn-02-a" href="#tab-02-a" data-bs-toggle="tab"
                     aria-controls="tab-02-a" aria-selected="true" role="tab">
                     High poverty
                 </a>
-                <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+                <a class="nav-item nav-link" id="tab-btn-02-b" href="#tab-02-b" data-bs-toggle="tab"
                     aria-controls="tab-02-b" aria-selected="false" role="tab">
                     Low monitor density
                 </a>
-                <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-toggle="tab"
+                <a class="nav-item nav-link" id="tab-btn-02-c" href="#tab-02-c" data-bs-toggle="tab"
                     aria-controls="tab-02-c" aria-selected="false" role="tab">
                     EJ neighborhoods
                 </a>
@@ -205,25 +205,25 @@ related:
             <div class="tab-content mb-2" id="tabs-02-content">
                 <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
                     role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">                               
                         <iframe title="High poverty  neighborhoods" aria-label="choropleth map" id="datawrapper-chart-Ji3w3" src="//datawrapper.dwcdn.net/Ji3w3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">                               
                         <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-end border-start">                               
                         <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <br>
-                <div class="sr-only">
+                <div class="visually-hidden">
     <iframe title="Special monitoring for environmental justice
     " aria-label="Table" id="datawrapper-chart-wwfaQ" src="https://datawrapper.dwcdn.net/wwfaQ/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1019" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}}))}();
 </script>
@@ -237,10 +237,10 @@ related:
                 <div class="row">
                     <div class="col-6" aria-hidden="true"><iframe title="" aria-label="Grouped Bars" id="datawrapper-chart-sAqVm" src="//datawrapper.dwcdn.net/sAqVm/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
-                <div class="sr-only"><div style="min-height:383px" id="datawrapper-vis-dX7RW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dX7RW/embed.js" charset="utf-8" data-target="#datawrapper-vis-dX7RW"></script><noscript><img src="https://datawrapper.dwcdn.net/dX7RW/full.png" alt="" /></noscript></div></div>
+                <div class="visually-hidden"><div style="min-height:383px" id="datawrapper-vis-dX7RW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/dX7RW/embed.js" charset="utf-8" data-target="#datawrapper-vis-dX7RW"></script><noscript><img src="https://datawrapper.dwcdn.net/dX7RW/full.png" alt="" /></noscript></div></div>
                 <div class="col-6" aria-hidden="true"><iframe title="" aria-label="Grouped Bars" id="datawrapper-chart-c9A7X" src="//datawrapper.dwcdn.net/c9A7X/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
-                <div class="sr-only"><div style="min-height:383px" id="datawrapper-vis-Gebhh"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Gebhh/embed.js" charset="utf-8" data-target="#datawrapper-vis-Gebhh"></script><noscript><img src="https://datawrapper.dwcdn.net/Gebhh/full.png" alt="" /></noscript></div></div>
+                <div class="visually-hidden"><div style="min-height:383px" id="datawrapper-vis-Gebhh"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Gebhh/embed.js" charset="utf-8" data-target="#datawrapper-vis-Gebhh"></script><noscript><img src="https://datawrapper.dwcdn.net/Gebhh/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         <p><strong>Lower average concentrations of pollutants at 15 EJ sites</strong>. The 15 environmental justice sites measured, on average, 4% less PM2.5 than the citywide average of the 60 core sites, and 6% lower average NO2.</p>
@@ -250,10 +250,10 @@ related:
                 <div class="row">
                 <div class="col-6" aria-hidden="true"><iframe title="" aria-label="Column Chart" id="datawrapper-chart-H1gyT" src="//datawrapper.dwcdn.net/H1gyT/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
-                <div class="sr-only"><div style="min-height:187px" id="datawrapper-vis-K8QIw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/K8QIw/embed.js" charset="utf-8" data-target="#datawrapper-vis-K8QIw"></script><noscript><img src="https://datawrapper.dwcdn.net/K8QIw/full.png" alt="" /></noscript></div></div>
+                <div class="visually-hidden"><div style="min-height:187px" id="datawrapper-vis-K8QIw"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/K8QIw/embed.js" charset="utf-8" data-target="#datawrapper-vis-K8QIw"></script><noscript><img src="https://datawrapper.dwcdn.net/K8QIw/full.png" alt="" /></noscript></div></div>
                 <div class="col-6" aria-hidden="true" aria-hidden="true"><iframe title="" aria-label="Column Chart" id="datawrapper-chart-YLti3" src="//datawrapper.dwcdn.net/YLti3/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                     </script></div>
-                <div class="sr-only"> <div style="min-height:187px" id="datawrapper-vis-nmAUj"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/nmAUj/embed.js" charset="utf-8" data-target="#datawrapper-vis-nmAUj"></script><noscript><img src="https://datawrapper.dwcdn.net/nmAUj/full.png" alt="" /></noscript></div></div>
+                <div class="visually-hidden"> <div style="min-height:187px" id="datawrapper-vis-nmAUj"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/nmAUj/embed.js" charset="utf-8" data-target="#datawrapper-vis-nmAUj"></script><noscript><img src="https://datawrapper.dwcdn.net/nmAUj/full.png" alt="" /></noscript></div></div>
                 </div>
             </div>
         <p><strong>Additional confidence in our model.</strong> These findings show that the original model, based on the 60 core monitoring sites, is useful for predicting PM2.5 and NO2 levels - even in high-poverty neighborhoods that previously had fewer monitors. They offer additional confidence in our air quality monitor network and model, and tell us that NYCCAS does a good job of describing pollution levels in all NYC neighborhoods, even locations without monitors.</p>

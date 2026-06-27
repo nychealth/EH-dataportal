@@ -29,7 +29,7 @@
       <thead>
         <tr>
           {{- range $j, $cell := $row }}
-            <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
+            <th class="{{ if gt $j 0 }}text-end{{ end }}">{{ $cell }}</th>
           {{- end }}
           <th class="d-none">_totals_flag</th> {{/* header for hidden flag col */}}
         </tr>
@@ -39,9 +39,9 @@
       {{- $first := index $row 0 }}
       {{- $lower := lower $first }}
       {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
-      <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
+      <tr class="{{ if $isTotal }}fw-bold{{ end }}">
         {{- range $j, $cell := $row }}
-          <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
+          <td class="{{ if gt $j 0 }}text-end{{ end }}">{{ $cell }}</td>
         {{- end }}
         <td class="d-none dt-totals-flag">{{ if $isTotal }}1{{ else }}0{{ end }}</td>
       </tr>
@@ -50,8 +50,8 @@
   </tbody>
 </table>
 {{ if eq $download "true" }}
-  <div class="float-right fs-sm border p-1">
-      <a href="{{ $file }}"><i class="fa-solid fa-download mr-1"></i>Download data</a>
+  <div class="float-end fs-sm border p-1">
+      <a href="{{ $file }}"><i class="fa-solid fa-download me-1"></i>Download data</a>
   </div>
 {{ end }}
 </div>

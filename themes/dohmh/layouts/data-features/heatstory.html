@@ -155,7 +155,7 @@
   <div class="row my-3">
     <div class="col-12 mx-auto px-2" style="height: 95vh">
         <div id="map">
-          <button id="refreshButton" class="btn btn-sm btn-light btn-white sr-only"><i class="fas fa-undo" aria-hidden="true"> </i><span class="sr-only"> Reset</span></button>
+          <button id="refreshButton" class="btn btn-sm btn-light btn-white visually-hidden"><i class="fas fa-undo" aria-hidden="true"> </i><span class="visually-hidden"> Reset</span></button>
         </div>
       <div class="border" id="legendDescriptions"></div>
     </div>
@@ -166,7 +166,7 @@
     <div class="col-4">
         <!-- Story card: dropdown meu --> 
         <div id="story-dropdown" class="dropdown" >
-          <button class="btn btn-outline-primary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-outline-primary w-100 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             View story
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="storyTitleDropdown">
@@ -182,14 +182,14 @@
     <div class="col-8">
         <!-- Data buttons - initially deposited here, and then duped into Leaflet Legend --> 
         <div id="allDataButtons" class="fs-xs p-0 mb-1">
-            <span class="font-weight-bold text-black fs-sm p-1">Community science data<a href="#communityScience"><i class="fas fa-info-circle ml-1"></i></a></span>
+            <span class="fw-bold text-black fs-sm p-1">Community science data<a href="#communityScience"><i class="fas fa-info-circle ms-1"></i></a></span>
               <div id="buttonHolderStudyArea" class="list-group">
               </div>
             <hr>
-            <span class="font-weight-bold text-black fs-sm p-1">Citywide data</span>
+            <span class="fw-bold text-black fs-sm p-1">Citywide data</span>
               <div id="buttonHolderBase" class="list-group"></div>
             <hr>
-             <span class="font-weight-bold text-black fs-sm p-1">Add layer</span>
+             <span class="fw-bold text-black fs-sm p-1">Add layer</span>
               <div id="buttonHolderAdditional" class="list-group"></div>
         </div>
         <!-- end data buttons --> 
@@ -216,7 +216,7 @@
       <div class="row my-4">
         <div class="col-md-6 col-sm-12">
           <div class="btn-toggle">
-            <button class="btn btn-block btn-md btn-outline-primary" data-toggle="collapse" data-target="#toggle-target-1" aria-expanded="false" aria-controls="toggle-target-1">
+            <button class="btn w-100 btn-md btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#toggle-target-1" aria-expanded="false" aria-controls="toggle-target-1">
                 <span class="title" id="communityScience">Community science data collection</span>
             </button>
           </div>
@@ -265,7 +265,7 @@
 
         <div class="col-md-6 col-sm-12">
           <div class="btn-toggle">
-            <button class="btn btn-block btn-md btn-outline-primary" data-toggle="collapse" data-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
+            <button class="btn w-100 btn-md btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#toggle-target" aria-expanded="false" aria-controls="toggle-target">
                 <span class="title">Project credits</span>
             </button>
         </div>
@@ -304,7 +304,7 @@
       
 
 <div class="row pt-5">
-    <div class="col-6 justify-content-start ml-5 mt-1">
+    <div class="col-6 justify-content-start ms-5 mt-1">
 
 
       </div> 

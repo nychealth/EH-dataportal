@@ -43,7 +43,7 @@ Health is determined by many factors. People tend to be healthier when they have
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.”<span class="float-right"></span></figcaption>
+    <figcaption>“When someone has a decent house with security…they can lock their door at night, they can sleep at night, know their children are safe. That can create a better frame of mind of how you’re living your life.”<span class="float-end"></span></figcaption>
     <audio controls src="frame-of-mind.mp3" style="width:100%;" class="mt-2">
             <a href="frame-of-mind.mp3">
                 Download audio
@@ -60,7 +60,7 @@ People living in higher-poverty neighborhoods are more likely to experience nega
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”<span class="float-right"></span>   </figcaption>
+    <figcaption figcaption class="mb-2">“Many people have moved to the neighborhood with different and higher incomes that may skew the definition of affordable housing, thereby creating a gap of income and services.”<span class="float-end"></span>   </figcaption>
     <audio controls src="clip-gap-of-services.mp3" style="width:100%;" class="mt-2">
             <a href="clip-gap-of-services.mp3">
                 Download audio
@@ -75,7 +75,7 @@ Across New York, half of all households are rent-burdened, meaning that more tha
 <div aria-hidden="true">
 <iframe class="" title="Percent of households that are rent-burdened by neighborhood (NTA)" aria-label="Map" id="datawrapper-chart-L4j3j" src="https://datawrapper.dwcdn.net/L4j3j/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="756" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Across New York City, half of all households are rent-burdened" aria-label="Table" id="datawrapper-chart-yWecX" src="https://datawrapper.dwcdn.net/yWecX/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="943" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -85,7 +85,7 @@ A person who has a high rent burden is often confronting other housing challenge
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…”<span class="float-right"></span>
+    <figcaption figcaption class="mb-2"> "… like many people I choose between paying my internet or food…”<span class="float-end"></span>
  </figcaption>
     <audio controls src="clip-internet-or-food.mp3" style="width:100%;" class="mt-2">
             <a href="clip-internet-or-food.mp3">
@@ -146,13 +146,13 @@ function changeBoro(x) {
     document.getElementById(cont).classList.remove('hide')
 }
 </script>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Overcrowding tends to occur in areas with high poverty" aria-label="Table" id="datawrapper-chart-aV8VC" src="https://datawrapper.dwcdn.net/aV8VC/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="933" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “A lot of the young people I work with openly share that maybe they’re sharing a bed with several siblings.” <span class="float-end"></span> </figcaption>
     <audio controls src="clip-sharing-space.mp3" style="width:100%;" class="mt-2">
             <a href="clip-sharing-space.mp3">
                 Download audio
@@ -167,7 +167,7 @@ When housing is unaffordable, options become limited, and people often end up in
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “We didn’t have any heat for last year up until the middle of December. And then we didn’t have any air conditioning through the middle of August.” <span class="float-end"></span> </figcaption>
     <audio controls src="clip-ac-and-heat.mp3" style="width:100%;" class="mt-2">
             <a href="clip-ac-and-heat.mp3">
                 Download audio
@@ -235,7 +235,7 @@ function changeBoro2(x) {
     document.getElementById(cont).classList.remove('hide')
 }
 </script>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Maintenance issues are more common in high poverty-neighborhoods" aria-label="Table" id="datawrapper-chart-DOJSE" src="https://datawrapper.dwcdn.net/DOJSE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="703" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -252,13 +252,13 @@ A lack of affordable housing often leads to housing instability. Most evictions 
 <iframe title="Evictions are more common in higher poverty neighborhoods" class="" aria-label="Scatter Plot" id="datawrapper-chart-DEEg2" src="https://datawrapper.dwcdn.net/DEEg2/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="550" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Evictions are more common in higher poverty neighborhoods" aria-label="Table" id="datawrapper-chart-VVpyh" src="https://datawrapper.dwcdn.net/VVpyh/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1148" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.”<span class="float-right"></span></figcaption>
+    <figcaption figcaption class="mb-2"> “Children whose families are homeless, and they're being shuffled from place to place—they need to have stability. I think that needs to be addressed. Because it also affects their schooling, their mental health, their medical, you know, needs for both parents and the children. And I think the children are impacted most.”<span class="float-end"></span></figcaption>
     <audio controls src="clip-place-to-place.mp3" style="width:100%;" class="mt-2">
             <a href="clip-place-to-place.mp3">
                 Download audio
@@ -278,7 +278,7 @@ When COVID-19 hit, New York City paused evictions, recognizing the twin threats 
 <iframe title="Evictions plummeted in 2020" class="" aria-label="Interactive line chart" id="datawrapper-chart-xy1ku" src="https://datawrapper.dwcdn.net/xy1ku/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="423" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Evictions plummeted in 2020" aria-label="Table" id="datawrapper-chart-cL0W5" src="https://datawrapper.dwcdn.net/cL0W5/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="380" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

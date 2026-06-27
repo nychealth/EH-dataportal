@@ -42,7 +42,7 @@ Health is determined by many factors. People tend to be healthier when they have
 <div class="pullquote my-4">
 <figure class="">
     <figcaption>“To be able to go out where they can either bike, walk, hike a trail, fish. I think that all those things are important for self-care and for the family at home. Sometimes you want things in your own backyard.”
-    <br><span class="float-right"></span></figcaption>
+    <br><span class="float-end"></span></figcaption>
     <audio controls src="Own-backyard.mp3" style="width:100%;" class="mt-2">
             <a href="Own-backyard.mp3">
                 Download audio
@@ -61,7 +61,7 @@ Public space that is designed to reflect community priorities advances equity fo
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2">“...I use an electric scooter. I have so much damage to my back and my spine because of all the broken sidewalks.” <br> <span class="float-right"></span>   </figcaption>
+    <figcaption figcaption class="mb-2">“...I use an electric scooter. I have so much damage to my back and my spine because of all the broken sidewalks.” <br> <span class="float-end"></span>   </figcaption>
     <audio controls src="Electric-scooters.mp3" style="width:100%;" class="mt-2">
             <a href="Electric-scooters.mp3">
                 Download audio
@@ -79,7 +79,7 @@ Covering 8,000 miles, streets make up most of the public space in NYC. Cars and 
 <div aria-hidden="true">
 <iframe title="Ped Injury ED visit rate" aria-label="Map" id="datawrapper-chart-hhMJr" src="https://datawrapper.dwcdn.net/hhMJr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="675" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();</script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Pedestrian injury emergency department visits, per 100,000 people" aria-label="Table" id="datawrapper-chart-ST3yX" src="https://datawrapper.dwcdn.net/ST3yX/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="926" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -109,7 +109,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “It’s not enough that there are structures like parks and sidewalks. There needs to be upkeep, it needs to be clean for people to actually want to access the parks and sidewalks to keep their health maintained.” <br><span class="float-right"></span>
+    <figcaption figcaption class="mb-2"> “It’s not enough that there are structures like parks and sidewalks. There needs to be upkeep, it needs to be clean for people to actually want to access the parks and sidewalks to keep their health maintained.” <br><span class="float-end"></span>
  </figcaption>
     <audio controls src="Maintaining-health.mp3" style="width:100%;" class="mt-2">
             <a href="Maintaining-health.mp3">
@@ -125,7 +125,7 @@ Neighborhoods closest to highways are impacted by increased noise and air pollut
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “It’s a nightmare to travel with strollers, wheelchairs or special equipment.” <br><span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “It’s a nightmare to travel with strollers, wheelchairs or special equipment.” <br><span class="float-end"></span> </figcaption>
     <audio controls src="Nightmare-to-travel.mp3" style="width:100%;" class="mt-2">
             <a href="Nightmare-to-travel.mp3">
                 Download audio
@@ -146,7 +146,7 @@ Designing public space for people also means creating parks, pools, and other re
 </script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="In most NYC neighborhoods, most residents live within walking distance to a park" aria-label="Table" id="datawrapper-chart-XMwmK" src="https://datawrapper.dwcdn.net/XMwmK/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="959" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -159,7 +159,7 @@ As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href=
 
 <div class="pullquote my-4">
 <figure class="">
-    <figcaption figcaption class="mb-2"> “I think the parks need to be safer. I do not think more policing is the answer to it, but I do think there needs to be more around, like, making those kinds of public spaces safer for kids and families to engage in.” <br><span class="float-right"></span> </figcaption>
+    <figcaption figcaption class="mb-2"> “I think the parks need to be safer. I do not think more policing is the answer to it, but I do think there needs to be more around, like, making those kinds of public spaces safer for kids and families to engage in.” <br><span class="float-end"></span> </figcaption>
     <audio controls src="Park-safety.mp3" style="width:100%;" class="mt-2">
             <a href="Park-safety.mp3">
                 Download audio
@@ -175,7 +175,7 @@ As of 2023, 84.6% of New Yorkers live within walking distance to a park.<a href=
 </div>
 </div>
 
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="In higher-poverty neighborhoods, fewer people perceive their neighborhoods as safe" aria-label="Table" id="datawrapper-chart-64Jkr" src="https://datawrapper.dwcdn.net/64Jkr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1334" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

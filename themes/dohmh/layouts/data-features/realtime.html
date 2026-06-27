@@ -7,8 +7,8 @@
     {{ partial "df-front-block" . }}
 
             
-            <div class="sr-only">
-                <h2 class="sr-only">Download accessible data</h2>
+            <div class="visually-hidden">
+                <h2 class="visually-hidden">Download accessible data</h2>
                 <p>This page contains visualizations. If you are using a screenreader, you can <a href="https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv">download a CSV file of the last 7 days of realtime air quality data.</a></p>
                 </div>
             <div class="row">
@@ -97,27 +97,27 @@
                             <tr>
                                 <th scope="col">Location</th>
                                 <th scope="col" class="hide">Sort</th>
-                                <th scope="col">Last 24 hours <span class="font-weight-normal">(µg/m<sup>3</sup>)</span></th>
+                                <th scope="col">Last 24 hours <span class="fw-normal">(µg/m<sup>3</sup>)</span></th>
                             </tr>
                         </thead>
                         <tbody id="tableBody">
                         </tbody>
                     </table>
                     <hr class="my-2">
-                        <p class="fs-sm hide" id="exceeds" style="color:red;"><i class="fas fa-exclamation-circle mr-1"></i>Exceeds NAAQS 24-hour standard</p>
-                        <p class="fs-sm" id="allUnder" style="color:green;"><i class="fas fa-check-circle mr-1"></i>All levels are below the NAAQS 24-hour standard (35 µg/m<sup>3</sup>)</p>
+                        <p class="fs-sm hide" id="exceeds" style="color:red;"><i class="fas fa-exclamation-circle me-1"></i>Exceeds NAAQS 24-hour standard</p>
+                        <p class="fs-sm" id="allUnder" style="color:green;"><i class="fas fa-check-circle me-1"></i>All levels are below the NAAQS 24-hour standard (35 µg/m<sup>3</sup>)</p>
 
                         <p class="fs-xs hide" id="insufficient"><em>*Monitor reported less than 18 hours in the last day.</em></p>
 
                     <div class="btn-group mb-2">
-                        <button href="#table24" class="fs-sm btn btn-sm btn-light mr-1" onclick="resetZoom()"><i class="fas fa-redo mr-1" aria-hidden="true"></i>Clear</button>
+                        <button href="#table24" class="fs-sm btn btn-sm btn-light me-1" onclick="resetZoom()"><i class="fas fa-redo me-1" aria-hidden="true"></i>Clear</button>
 
-                        <button type="button" class="btn btn-sm d-block d-md-none btn-outline-primary mr-1" data-toggle="modal" data-target="#mapModal">
+                        <button type="button" class="btn btn-sm d-block d-md-none btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#mapModal">
                             Monitors
                           </button>
     
-                        <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#archiveModal">
-                            <i class="fas fa-download mr-1" aria-hidden="true"></i>Download
+                        <button type="button" class="btn btn-sm btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#archiveModal">
+                            <i class="fas fa-download me-1" aria-hidden="true"></i>Download
                           </button>
                     </div>
 
@@ -127,13 +127,13 @@
 
                 </div>
 
-                <div class="col-md-8 border-left">
+                <div class="col-md-8 border-start">
 
 
                     <!-- Chart set -->
                     <div style="width:100%" class="">
 
-                    <div id="numberinput" class="float-right pt-1"
+                    <div id="numberinput" class="float-end pt-1"
                     style="font-size: 12px;">
                         <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
                         <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
@@ -141,7 +141,7 @@
                         </form>
                     </div>
 
-                        <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
+                        <span class="fs-sm"><span class="fw-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
 
                     <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
@@ -164,7 +164,7 @@
         <div class="rtaqbox p-1 hide my-1" id="averageBox">
             <p class="fs-md"><strong>Last 24 hours:</strong></p>
 
-            <p class="fs-md"><span id="locColor"><i class="fas fa-square mr-1"></i></span><span id="locationSend" class="home-label font-weight-bold">LOCATION</span>: the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge badge-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
+            <p class="fs-md"><span id="locColor"><i class="fas fa-square me-1"></i></span><span id="locationSend" class="home-label fw-bold">LOCATION</span>: the average PM2.5 at this location is <span id="locAverage" style="font-weight:bold;" class="badge text-bg-primary">XX</span>. This is <span id="aboveBelow" style="font-weight:bold;">XX</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">24-hour NAAQS standard of 35</a>.</p>
         </div>
 
         <!-- last 24-hour info box -->
@@ -172,7 +172,7 @@
             <div id="locInfoDesc">
 
                 <p class="fs-md"><strong>Last 24 hours</strong> </p>
-                <p class="fs-md">No value from the <span id="locColor2"><i class="fas fa-square mr-1"></i></span><span id="locationSend2" class="font-weight-bold"></span> monitor. Sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
+                <p class="fs-md">No value from the <span id="locColor2"><i class="fas fa-square me-1"></i></span><span id="locationSend2" class="fw-bold"></span> monitor. Sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>
 
             </div>
         </div>
@@ -185,11 +185,11 @@
                                 in the Midwest. But more than half comes from <b>local sources</b>. </p>
                     <div class="accordion-group narrow my-3" role="tablist" id="accordion-3">
                         <div class="card">
-                        <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3A" data-toggle="collapse" href="#panel-acc-button-3A"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3A">
-                            <span class="title" role="heading" aria-level="3"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</span>
+                        <a class="card-header collapse collapsed fw-bold" id="acc-button-3A" data-bs-toggle="collapse" href="#panel-acc-button-3A"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3A">
+                            <span class="title" role="heading" aria-level="3"><i class="fas fa-building me-1" aria-hidden="true"></i>Buildings</span>
                         </a>
                     
-                        <div class="collapse" id="panel-acc-button-3A" role="tabpanel" aria-labelledby="acc-button-01" data-parent="#accordion-3">
+                        <div class="collapse" id="panel-acc-button-3A" role="tabpanel" aria-labelledby="acc-button-01" data-bs-parent="#accordion-3">
                         <div class="card-body card-white fs-md">
                             <p>Building density affects a neighborhood's air quality because like vehicles, buildings
                                 burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
@@ -202,11 +202,11 @@
                         <!-- .card (end of first accordion, repeat as needed) -->
                     
                         <div class="card">
-                            <a class="card-header collapse collapsed font-weight-bold" id="acc-button-02" data-toggle="collapse" href="#panel-acc-button-3B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3B">
-                            <span class="title" role="heading" aria-level="3"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</span>
+                            <a class="card-header collapse collapsed fw-bold" id="acc-button-02" data-bs-toggle="collapse" href="#panel-acc-button-3B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3B">
+                            <span class="title" role="heading" aria-level="3"><i class="fas fa-industry me-1" aria-hidden="true"></i>Industrial area</span>
                             </a>
                     
-                    <div class="collapse" id="panel-acc-button-3B" role="tabpanel" aria-labelledby="acc-button-3B" data-parent="#accordion-3">
+                    <div class="collapse" id="panel-acc-button-3B" role="tabpanel" aria-labelledby="acc-button-3B" data-bs-parent="#accordion-3">
                         <div class="card-body fs-md">
                     <p>
                         Industrial areas affect a neighborhood's air quality because of diesel exhaust from
@@ -220,11 +220,11 @@
 
                     <!-- new card --> 
                     <div class="card">
-                        <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3C" data-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3C">
-                        <span class="title" role="heading" aria-level="3"><i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</span>
+                        <a class="card-header collapse collapsed fw-bold" id="acc-button-3C" data-bs-toggle="collapse" href="#panel-acc-button-03"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3C">
+                        <span class="title" role="heading" aria-level="3"><i class="fas fa-car me-1" aria-hidden="true"></i>Traffic</span>
                         </a>
                 
-                <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-3C" data-parent="#accordion-3">
+                <div class="collapse" id="panel-acc-button-03" role="tabpanel" aria-labelledby="acc-button-3C" data-bs-parent="#accordion-3">
                     <div class="card-body fs-md">
                 <p>
                     Traffic density affects a neighborhood's air quality because engines produce PM2.5,
@@ -240,11 +240,11 @@
                 <!-- new card --> 
 
                 <div class="card">
-                    <a class="card-header collapse collapsed font-weight-bold" id="acc-button-3D" data-toggle="collapse" href="#panel-acc-button-3D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3D">
-                    <span class="title" role="heading" aria-level="3"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</span>
+                    <a class="card-header collapse collapsed fw-bold" id="acc-button-3D" data-bs-toggle="collapse" href="#panel-acc-button-3D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-3D">
+                    <span class="title" role="heading" aria-level="3"><i class="fas fa-truck me-1" aria-hidden="true"></i>Trucks</span>
                     </a>
             
-            <div class="collapse" id="panel-acc-button-3D" role="tabpanel" aria-labelledby="acc-button-3D" data-parent="#accordion-3">
+            <div class="collapse" id="panel-acc-button-3D" role="tabpanel" aria-labelledby="acc-button-3D" data-bs-parent="#accordion-3">
                 <div class="card-body fs-md">
             <p>
                 Truck traffic density affects a neighborhood's air quality because diesel combustion
@@ -263,11 +263,11 @@
             <p class="fs-md">There are several patterns that commonly show up in the data from our air quality monitors. Look at recent data for patterns that indicate:</p>
     <div class="accordion-group narrow my-3" role="tablist" id="accordion-02">
         <div class="card">
-            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2A" data-toggle="collapse" href="#panel-acc-button-2A"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2A">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</span>
+            <a class="card-header fw-bold collapse collapsed" id="acc-button-2A" data-bs-toggle="collapse" href="#panel-acc-button-2A"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2A">
+            <span class="title" role="heading" aria-level="3"><i class="fas fa-map-signs me-1" aria-hidden="true"></i>Spatial differences</span>
             </a>
     
-    <div class="collapse" id="panel-acc-button-2A" role="tabpanel" aria-labelledby="acc-button-2A" data-parent="#accordion-02">
+    <div class="collapse" id="panel-acc-button-2A" role="tabpanel" aria-labelledby="acc-button-2A" data-bs-parent="#accordion-02">
         <div class="card-body fs-md">
     <p>
         The monitors are in neighborhoods with different emissions sources, so have
@@ -280,11 +280,11 @@
     </div>
 <!-- new card -->
         <div class="card">
-            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2B" data-toggle="collapse" href="#panel-acc-button-2B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2B">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes</span>
+            <a class="card-header fw-bold collapse collapsed" id="acc-button-2B" data-bs-toggle="collapse" href="#panel-acc-button-2B"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2B">
+            <span class="title" role="heading" aria-level="3"><i class="fas fa-chart-line me-1" aria-hidden="true"></i>Daily spikes</span>
             </a>
     
-    <div class="collapse" id="panel-acc-button-2B" role="tabpanel" aria-labelledby="acc-button-2B" data-parent="#accordion-02">
+    <div class="collapse" id="panel-acc-button-2B" role="tabpanel" aria-labelledby="acc-button-2B" data-bs-parent="#accordion-02">
         <div class="card-body  fs-md">
     <p> PM2.5 levels usually rise in the morning as traffic volume increases. These
         <em>temporal</em> differences (time spikes) are usually greater than
@@ -296,11 +296,11 @@
     </div>
 <!-- new card -->
         <div class="card">
-            <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2C" data-toggle="collapse" href="#panel-acc-button-2C"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2C">
-            <span class="title" role="heading" aria-level="3"><i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</span>
+            <a class="card-header fw-bold collapse collapsed" id="acc-button-2C" data-bs-toggle="collapse" href="#panel-acc-button-2C"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2C">
+            <span class="title" role="heading" aria-level="3"><i class="fas fa-cloud-showers-heavy me-1" aria-hidden="true"></i>Weather patterns</span>
             </a>
     
-    <div class="collapse" id="panel-acc-button-2C" role="tabpanel" aria-labelledby="acc-button-2C" data-parent="#accordion-02">
+    <div class="collapse" id="panel-acc-button-2C" role="tabpanel" aria-labelledby="acc-button-2C" data-bs-parent="#accordion-02">
         <div class="card-body  fs-md">
     <p>
         Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a clear west-to-east pattern in rising PM2.5, as weather patterns moving into NYC traps local emissions. Other times, weather can bring wildfire smoke from far-away fires.
@@ -310,11 +310,11 @@
 </div>
     <!-- .collapse -->
     <div class="card">
-        <a class="card-header font-weight-bold collapse collapsed" id="acc-button-2D" data-toggle="collapse" href="#panel-acc-button-2D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2D">
-        <span class="title" role="heading" aria-level="3"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</span>
+        <a class="card-header fw-bold collapse collapsed" id="acc-button-2D" data-bs-toggle="collapse" href="#panel-acc-button-2D"  role="tab" aria-expanded="false" aria-controls="panel-acc-button-2D">
+        <span class="title" role="heading" aria-level="3"><i class="fas fa-exclamation-triangle me-1" aria-hidden="true"></i>Other spikes</span>
         </a>
 
-<div class="collapse" id="panel-acc-button-2D" role="tabpanel" aria-labelledby="acc-button-2D" data-parent="#accordion-02">
+<div class="collapse" id="panel-acc-button-2D" role="tabpanel" aria-labelledby="acc-button-2D" data-bs-parent="#accordion-02">
     <div class="card-body  fs-md">
 <p>
     Sometimes there are dramatic, short-term spikes at unexpected times, and without having a camera on each monitor, we don't know what causes them. However, they can be explained by something as simple as a truck idling for a few minutes underneath the monitor.
@@ -328,7 +328,7 @@
 
         <div class="col-md-4 col-sm-12">
             <h3 class="h4">Explore the effects of Congestion Pricing</h3>
-            <p class="fs-md">Interested in seeing if congestion pricing affects air quality? You can use real-time air quality data to get a quick sense of how congestion pricing is affecting PM2.5 levels in NYC. You can <a href="#archiveModal" data-toggle="modal" data-target="#archiveModal">download this data</a> to compare air pollution trends at sites that might be affected by congestion pricing — for example Midtown-West, or the Cross Bronx Expressway — to trends at the Van Wyck, a site we don't think will see changes in traffic due to congestion pricing. Changing traffic patterns will underlie any differences in air quality we see that relate to congestion pricing. <a href="https://www.mta.info/article/most-detailed-view-of-nyc-traffic-so-far">You can find detailed traffic pattern data via the MTA.</a></p>
+            <p class="fs-md">Interested in seeing if congestion pricing affects air quality? You can use real-time air quality data to get a quick sense of how congestion pricing is affecting PM2.5 levels in NYC. You can <a href="#archiveModal" data-bs-toggle="modal" data-bs-target="#archiveModal">download this data</a> to compare air pollution trends at sites that might be affected by congestion pricing — for example Midtown-West, or the Cross Bronx Expressway — to trends at the Van Wyck, a site we don't think will see changes in traffic due to congestion pricing. Changing traffic patterns will underlie any differences in air quality we see that relate to congestion pricing. <a href="https://www.mta.info/article/most-detailed-view-of-nyc-traffic-so-far">You can find detailed traffic pattern data via the MTA.</a></p>
             <strong>Limitations on short-term and small sample comparisons</strong>
             <p class="fs-md">Because air pollution can vary from day to day for many reasons, we need data from a longer time period to reliably determine whether congestion pricing has affected air quality in different parts of the city. That’s why we will collect a full year of data before we do a more rigorous analysis with a larger sample size. <a href="https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf">This analysis will account for multiple variables, including traffic data, and other air pollutants </a> associated with traffic, like NO2 and BC.</p>
         </div>
@@ -343,19 +343,19 @@
                     <h3>The Air Quality Index</h3>
                     <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
                     <p><strong>AQI Resources:</strong></p>
-                    <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
-                    <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
+                    <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
+                    <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
                 </div>
-                <div class="col-md-3 mr-auto border-right">
-                    <iframe class="my-2 float-left" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+                <div class="col-md-3 me-auto border-end">
+                    <iframe class="my-2 float-start" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
             </div>
                 <div class="col-md-5 mx-auto">
                     <h3>Community air quality programs</h3>
                     <p>Many community-based organizations run independent air quality monitoring systems, which contribute to the broader picture of air quality and health in NYC. </p>
-                    <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
-                    <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
-                    <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
-                    <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
+                    <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
+                    <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
+                    <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
+                    <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt me-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
                     <p class="fs-sm">Does your organization conduct hyperlocal air quality monitoring? Get in touch at <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
                 </div>
                 </div>
@@ -371,15 +371,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="sevenModalLongTitle" data-pagefind-ignore="all">Oops!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           We can only show you realtime PM<sup>2.5</sup> data for the last 7 days. Please enter a number between 1 and 7.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -391,15 +389,13 @@
       <div class="modal-content modal-lg">
         <div class="modal-header">
           <h5 class="modal-title" id="mapModalLabel">Monitor locations</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div style="min-height:684px" id="datawrapper-vis-26bBi"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/26bBi/embed.js" charset="utf-8" data-target="#datawrapper-vis-26bBi"></script><noscript><img src="https://datawrapper.dwcdn.net/26bBi/full.png" alt="" /></noscript></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -411,9 +407,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="archiveModalLabel">Download archived data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
@@ -428,7 +422,7 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

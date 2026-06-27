@@ -49,7 +49,7 @@ The chart below shows the relationship between each neighborhood's poverty rate 
 <iframe title="Race, poverty, and health are connected in NYC" aria-label="Scatter Plot" id="datawrapper-chart-KOI8H" src="//datawrapper.dwcdn.net/KOI8H/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="516" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Race, poverty, and health are connected in NYC" aria-label="Table" id="datawrapper-chart-iQTOe" src="https://datawrapper.dwcdn.net/iQTOe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1066" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -101,12 +101,12 @@ The map below shows the extent of redlining in New York City.
 
 ### Redlining drove residential segregation
 
-As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml >}}<a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">blockbusting</a>, <a
-        href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">contract selling</a>, and <a
-        href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-warning">racially restrictive covenants</a>, to
+As a result of redlining, people of color were denied access to “desirable” neighborhoods by racist real estate practices - and denied loans to buy homes in neighborhoods labeled "declining" or "hazardous." Real estate agents also used exploitative tactics like {{< rawhtml >}}<a href="#bbcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">blockbusting</a>, <a
+        href="#contractcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">contract selling</a>, and <a
+        href="#rrccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-warning">racially restrictive covenants</a>, to
 deepen and enforce neighborhood segregation.</p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2 mx-2" id="bbcollapse"
@@ -148,28 +148,28 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 <div aria-hidden="true">
 <ul class="nav nav-tabs fs-sm" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="manhattan-tab" data-toggle="tab"
+        <a class="nav-link active" id="manhattan-tab" data-bs-toggle="tab"
             href="#manhattan" role="tab" aria-controls="manhattan"
             aria-selected="true">Manhattan</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="bronx-tab" data-toggle="tab" href="#bronx" role="tab"
+        <a class="nav-link" id="bronx-tab" data-bs-toggle="tab" href="#bronx" role="tab"
             aria-controls="bronx" aria-selected="false">The Bronx</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="brooklyn-tab" data-toggle="tab" href="#brooklyn"
+        <a class="nav-link" id="brooklyn-tab" data-bs-toggle="tab" href="#brooklyn"
             role="tab" aria-controls="brooklyn" aria-selected="false">Brooklyn</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="queens-tab" data-toggle="tab" href="#queens" role="tab"
+        <a class="nav-link" id="queens-tab" data-bs-toggle="tab" href="#queens" role="tab"
             aria-controls="queens" aria-selected="false">Queens</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="staten-tab" data-toggle="tab" href="#staten" role="tab"
+        <a class="nav-link" id="staten-tab" data-bs-toggle="tab" href="#staten" role="tab"
             aria-controls="staten" aria-selected="false">Staten island</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="map-tab" data-toggle="tab" href="#citywidemap"
+        <a class="nav-link" id="map-tab" data-bs-toggle="tab" href="#citywidemap"
             role="tab" aria-controls="citywidemap" aria-selected="false">Citywide
             Map</a>
     </li>
@@ -258,7 +258,7 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 </div>
 </div>
 {{< /rawhtml >}}
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Percent of each neighborhood in NYC that was redlined" aria-label="Table" id="datawrapper-chart-JB9Yc" src="https://datawrapper.dwcdn.net/JB9Yc/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1389" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 <p>Large parts of Manhattan were redlined. However, reinvestment in recent decades has lead to rising property values and the displacement of some former residents. Neighborhoods that were once redlined now have some of the city's most expensive real estate.</p>
@@ -274,8 +274,8 @@ Enormous areas of New York City were redlined. Explore the extent of HOLC's redl
 
 In New York City, many once-thriving neighborhoods experienced severe disinvestment as a result of redlining, which caused inequality that continued from one generation to the next. Neighborhoods that were redlined in the 1930s have higher rates of poverty even today – nearly 90 years after the maps were created. According to the [National Community Reinvestment Coalition](https://ncrc.org/holc/), 3 out of every 4 neighborhoods in the USA that were redlined in the 1930s are still low-to-moderate income today - and 2 out of every 3 are predominantly populated by people of color.
 
-Redlining is a prime example of {{< rawhtml >}} <a href="#disinvestmentCollapseTwo" data-toggle="collapse"
-class="badge badge-pill badge-warning">neighborhood disinvestment</a>{{< /rawhtml >}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
+Redlining is a prime example of {{< rawhtml >}} <a href="#disinvestmentCollapseTwo" data-bs-toggle="collapse"
+class="badge rounded-pill text-bg-warning">neighborhood disinvestment</a>{{< /rawhtml >}}: denying or withholding public and private funding, city services, or other resources that neighborhoods - and their residents - need to thrive. When these resources are withheld, it creates ["environments that make [people] sick"](https://www.who.int/hdp/poverty/en/).
 
 {{< rawhtml >}}
 

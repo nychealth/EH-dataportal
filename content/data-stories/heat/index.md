@@ -49,7 +49,7 @@ At the NYC Health Department, we track heat stress deaths by reviewing causes of
 </script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Heat can be deadly" aria-label="Table" id="datawrapper-chart-3cap9" src="https://datawrapper.dwcdn.net/3cap9/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="866" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -80,7 +80,7 @@ What prevents heat-related illness at home? Air conditioning. Of the records wit
 </script>
 </div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Air conditioning access varies by neighborhood." aria-label="Table" id="datawrapper-chart-NSUaQ" src="https://datawrapper.dwcdn.net/NSUaQ/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="2372" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

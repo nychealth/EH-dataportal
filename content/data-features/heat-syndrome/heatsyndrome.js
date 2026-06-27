@@ -40,7 +40,7 @@ function init() {
     for (let i = 0; i < allYears.length; i++) {
       var oneYear = allYears[i]
       var btnID = oneYear + 'button'
-      var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ml-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`
+      var yearButton = `<button class='btn btn-sm btn-outline-secondary yearButtons ms-1' id='${btnID}' onclick='changeYear(${oneYear})'>${oneYear}</button>`
       document.getElementById('yearButtonHolder').innerHTML += yearButton
 
       if (i == 0) {

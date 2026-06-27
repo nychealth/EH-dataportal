@@ -20,7 +20,7 @@
       <div class="nr-accent">
         <div class="row">
           <div class="col-md-7 col-sm-12 my-2">
-            <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
+            <h1><i class="fas fa-map-marked-alt me-1" aria-hidden="true"></i>{{ .Title }}</h1>
             <p>{{- .Content -}}</p>
           </div>
         </div>
@@ -31,20 +31,20 @@
               <h3>Choose report</h3>
 
               <div class="row no-gutters">
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button active" id="Active">Active design</button>
+                <div class="col-sm mb-2 me-1 mb-lg-0">
+                  <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button active" id="Active">Active design</button>
                 </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Asthma">Asthma</button>
+                <div class="col-sm mb-2 me-1 mb-lg-0">
+                  <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Asthma">Asthma</button>
                 </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Climate">Climate</button>
+                <div class="col-sm mb-2 me-1 mb-lg-0">
+                  <button class="btn btn-sm  w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Climate">Climate</button>
                 </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Housing">Housing</button>
+                <div class="col-sm mb-2 me-1 mb-lg-0">
+                  <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Housing">Housing</button>
                 </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Outdoor">Outdoor Air</button>
+                <div class="col-sm mb-2 me-1 mb-lg-0">
+                  <button class="btn btn-sm w-100 btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Outdoor">Outdoor Air</button>
                 </div>
 
                 <div class="col-12">
@@ -57,9 +57,9 @@
 
             <div class="row mt-6">
               <div class="col-12 fs-sm">
-                <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+                <strong><i class="fas fa-info-circle me-1" aria-hidden="true"></i>About these neighborhoods</strong>
                 <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
-                <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
+                <p><i class="fas fa-question-circle me-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-bs-toggle="modal" data-bs-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
 
               </div>
             </div>
@@ -110,9 +110,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="CCDModalTitle">Get data for Community Districts or City Council District</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row no-gutters">
@@ -128,7 +126,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -26,7 +26,7 @@ Podemos usar datos e investigaciones para comprender qué conduce a la violencia
 ## Antecedentes de violencia en la ciudad de Nueva York 
 
 ### El índice de homicidios en la ciudad de Nueva York se redujo... 
-Hay mucha menos violencia que la que solía haber en la ciudad de Nueva York. {{< rawhtml >}}<a href="#covidcollapse" data-toggle="collapse" class="badge badge-outline badge-pill badge-danger">Nota sobre la pandemia de la COVID-19</a></p>
+Hay mucha menos violencia que la que solía haber en la ciudad de Nueva York. {{< rawhtml >}}<a href="#covidcollapse" data-bs-toggle="collapse" class="badge badge-outline rounded-pill text-bg-danger">Nota sobre la pandemia de la COVID-19</a></p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="covidcollapse">
     <p>No se incluyen aquí datos de 2020, pero desde el comienzo de la pandemia de la COVID-19, en la ciudad de Nueva York se ha observado un aumento en las agresiones, los tiroteos, y las visitas a la sala de emergencias y hospitalizaciones por agresiones no mortales. </p>
     <p>A nivel nacional, también se han observado patrones similares, ya que el país experimenta índices de desempleo sin precedentes, inseguridad edilicia y alimentaria, inestabilidad política e incertidumbre sobre el futuro. Los factores sociales, económicos y ambientales que pueden influir en los índices de violencia han aumentado durante esta crisis histórica.</p> </div>{{< /rawhtml >}}
@@ -54,7 +54,7 @@ Para prevenir la violencia entre las personas más afectadas, debemos analizar l
 ### La violencia está arraigada en la falta de inversión y el racismo históricos. 
 La evidencia muestra que la violencia es el resultado de estructuras sociales que limitan el acceso a las necesidades básicas; son estructuras impulsadas por el racismo, la segregación residencial y la falta de inversión en los vecindarios. En los lugares en los que persisten estas estructuras, las personas están expuestas a la violencia. Por ejemplo, se conoce que los vecindarios negros de bajos ingresos son los más afectados. 
 
-Este mapa muestra las áreas de la ciudad de Nueva York que fueron {{< rawhtml >}}<a href="#redliningCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">discriminadas por el redlining</a> hace 90 años como parte de una política edilicia racista que ocasionó décadas de falta de inversión y pobreza intergeneracional.</p>
+Este mapa muestra las áreas de la ciudad de Nueva York que fueron {{< rawhtml >}}<a href="#redliningCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">discriminadas por el redlining</a> hace 90 años como parte de una política edilicia racista que ocasionó décadas de falta de inversión y pobreza intergeneracional.</p>
     <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="redliningCollapse">
     <p>El redlining fue una política federal que comenzó en la década de 1930. Una agencia gubernamental diagramó mapas de cientos de ciudades de todos los EE. UU., y clasificó a los vecindarios de “mejores” a “peligrosos”. Sus criterios incluían la raza de las personas que vivían en estos vecindarios. </p>
     <p>Tanto el gobierno federal como los bancos privados usaban estos mapas para determinar si podían o no emitir préstamos para que las personas compraran viviendas. A través de este sistema, a las personas negras se les negaba la oportunidad de comprar viviendas, y las personas blancas compraban sus viviendas con subsidios federales.  </p>
@@ -70,7 +70,7 @@ Un mapa de los tiroteos recientes se alinea con las áreas considerablemente d
 </div>
 {{< /rawhtml >}}
 
-Las décadas de {{< rawhtml >}}<a href="#disinvestmentCollapse" data-toggle="collapse" class="badge badge-pill badge-warning">falta de inversión</a> del gobierno y la sociedad que surgen de prácticas como el redlining hacen referencia a oportunidades y recursos limitados, y resultan en mayores índices de pobreza en algunos vecindarios.</p>
+Las décadas de {{< rawhtml >}}<a href="#disinvestmentCollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">falta de inversión</a> del gobierno y la sociedad que surgen de prácticas como el redlining hacen referencia a oportunidades y recursos limitados, y resultan en mayores índices de pobreza en algunos vecindarios.</p>
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2" id="disinvestmentCollapse">
     <p>La falta de inversión se da cuando las agencias gubernamentales o las empresas privadas niegan o retiran recursos y oportunidades de forma deliberada a un vecindario o una comunidad.  </p>
     <p>La historia de la falta de inversión está vinculada con prácticas y políticas racistas, como negarles préstamos a las personas negras para comprar viviendas. La falta de inversión también es una disminución planificada: un descenso estable de los fondos públicos para viviendas, servicios y educación de carácter público, en especial en ciudades y en vecindarios con una población mayormente negra.</p>
@@ -86,7 +86,7 @@ Como resultado de esta falta de inversión, vemos **una clara relación entre 
 
 ### La falta de inversión crea entornos que atentan contra la salud. 
 {{< rawhtml >}}
-    <p><a href="#disinvestmentCollapseTwo" data-toggle="collapse" class="badge badge-pill badge-warning">La falta de inversión adopta muchas formas</a>. Promueve la segregación, limita el acceso de las personas a recursos básicos y crea entornos que atentan contra la salud.</p>
+    <p><a href="#disinvestmentCollapseTwo" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">La falta de inversión adopta muchas formas</a>. Promueve la segregación, limita el acceso de las personas a recursos básicos y crea entornos que atentan contra la salud.</p>
     <div class="collapse py-2 px-2 mx-2 mb-2 drawerbg" id="disinvestmentCollapseTwo">
     <p>La falta de inversión puede darse mediante lo siguiente: 
         <ul>
@@ -105,11 +105,11 @@ En términos de salud pública, decimos que la falta de inversión genera **fa
 {{< rawhtml >}}
 <div class="d-sm-none d-md-block">
     <div class="row py-2">
-        <div class="col-4 ml-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 ms-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>Factores ambientales </button></div>
         <div class="col-1 text-center"><i class="fas fa-arrow-alt-circle-right h2"
                 style="color: #999999"></i></div>
-        <div class="col-4 mr-auto"><button type="button" class="btn btn-light btn-med btn-block"
+        <div class="col-4 me-auto"><button type="button" class="btn btn-light btn-med w-100"
                 disabled>Consecuencias en la salud</button></div>
     </div>
 </div>
@@ -126,7 +126,7 @@ El hecho de que un vecindario experimente o no más violencia se puede explicar 
     <div class="col mx-auto">
         <div class="medium">
             <div class="row mt-4 mb-2">
-                <div class="col-5 mr-auto">
+                <div class="col-5 me-auto">
                     <div class="card text-white bg-success w-100">
                         <div class="card-body">
                             <h5 class="card-title">Los factores de protección incluyen los siguientes:</h5>
@@ -139,8 +139,8 @@ El hecho de que un vecindario experimente o no más violencia se puede explicar 
                         </div>
                     </div>
                 </div>
-                <div class="col-5 ml-auto">
-                    <div class="card text-white bg-danger float-right w-100">
+                <div class="col-5 ms-auto">
+                    <div class="card text-white bg-danger float-end w-100">
                         <div class="card-body">
                             <h5 class="card-title">Los factores de riesgo incluyen los siguientes:</h5>
                             <p class="card-text">
@@ -187,8 +187,8 @@ A continuación, podemos ver que <span style="color: #b820bb; font-weight: bold;
 
 A continuación, cada línea vertical representa los rangos de los vecindarios para los factores de riesgo de pobreza total, pobreza infantil, desamparo infantil, educación secundaria incompleta, juventud desconectada, desempleo, desalojos y ejecuciones hipotecarias, y las consecuencias violentas de hospitalizaciones por agresiones, tiroteos y homicidios. Cada línea conecta a un vecindario a través de sus rangos; mientras más plana sea la línea, más consistentes serán los rangos. 
 
-Estos factores de riesgo describen una red de {{< rawhtml >}}<a href="#envcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">factores ambientales</a>
-amenazantes en comunidades que sufren falta de inversión, llevan a los residentes a la pobreza y los exponen a riesgos durante todas sus vidas, lo que culmina en índices más altos de <a href="#violcollapse" data-toggle="collapse" class="badge badge-pill badge-warning">violencia</a>.</p>
+Estos factores de riesgo describen una red de {{< rawhtml >}}<a href="#envcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">factores ambientales</a>
+amenazantes en comunidades que sufren falta de inversión, llevan a los residentes a la pobreza y los exponen a riesgos durante todas sus vidas, lo que culmina en índices más altos de <a href="#violcollapse" data-bs-toggle="collapse" class="badge rounded-pill text-bg-warning">violencia</a>.</p>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="envcollapse">
 Los factores ambientales se enumeran en la siguiente tabla: 
     <ul>
@@ -197,8 +197,8 @@ Los factores ambientales se enumeran en la siguiente tabla:
         <li><strong>Educación y empleo:</strong>: educación secundaria incompleta, juventud desconectada y desempleo</li>
         <li><strong>Estabilidad edilicia:</strong>: desalojos, ejecuciones hipotecarias</li>
     </ul>
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
 </div>
 <div class="collapse drawerbg my-2 pt-2 pb-2 mx-2" id="violcollapse">
     Las consecuencias de la violencia se enumeran en la siguiente tabla: 
@@ -207,15 +207,15 @@ data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de l
         <li>Tiroteos</li>
         <li>Homicidios</li>
     </ul>
-    <button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal"
-        data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
+    <button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal"
+        data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
 </div>
 {{< /rawhtml >}}
 
 <span style="color: #b820bb; font-weight: bold;">Belmont/East Tremont</span> tiene un rango alto en estos factores de riesgo que hacen que la violencia sea más probable. En comparación, <span style="color: #5c8ea5; font-weight: bold;">Tottenville/Great Kills</span> tiene un rango bajo en estos factores.
 
 {{< datawrapper title="Environmental factors and violence outcomes" src="87oQA/1/" height="714" >}}
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
 
 Emerge un patrón: <span style="font-weight: bold; color: #b820bb;">los vecindarios con los índices de pobreza más altos</span> que tienen un rango sistemático alto en los factores de riesgo, experimentan más violencia. <span style="font-weight:bold; color: #5c8ea5">Los vecindarios con los índices de pobreza más bajos</span>, que tienen un rango sistemático bajo en los factores de riesgo, experimentan menos violencia.
 
@@ -225,7 +225,7 @@ Estos factores de riesgo conforman una red de amenazas ambientales en comunidade
 En los entornos donde los factores de riesgo superan ampliamente los factores de protección, emergen índices más altos de violencia en los vecindarios, que amenazan la salud de sus residentes. 
 
 {{< datawrapper title="Environmental factors and violence outcomes" src="d1gPe/1/" height="714" >}}
-<button type="button" class="btn btn-sm btn-block btn-light" data-toggle="modal" data-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
+<button type="button" class="btn btn-sm w-100 btn-light" data-bs-toggle="modal" data-bs-target="#dataModal"><i class="fas fa-question-circle"></i>&nbsp;Acerca de los datos</button>
 <br>
 
 ## Romper el círculo de violencia 
@@ -260,9 +260,7 @@ Significa que podemos prevenir la violencia eliminando la pobreza; ofreciendo em
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dataModalTitle" data-pagefind-ignore="all">About the data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p><strong>Pobreza:</strong> thel porcentaje de personas cuyos ingresos anuales son inferiores al 100 % del nivel de pobreza federal, Encuesta Comunitaria Estadounidense (American Community Survey) de 2013-2017. <a
@@ -290,7 +288,7 @@ Significa que podemos prevenir la violencia eliminando la pobreza; ofreciendo em
                         href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=tsi&PopulationSource=Death&Topic=8&Subtopic=49&Indicator=Assault%20(Homicide)&Year=2015">Explore los datos</a>. </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

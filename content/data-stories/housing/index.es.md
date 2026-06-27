@@ -14,8 +14,8 @@ image: ds-housing.jpeg
 ¿Qué determina si usted está saludable o no? Puede pensar en lo que come, si hace ejercicio, si fuma y los antecedentes médicos de su familia.
 
 {{< rawhtml >}}
-<p>Pero es posible que no piense en <a href="#healthcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">como su hogar affecta su salud</a>, ni en los factores que influyen en el lugar donde vive.
+<p>Pero es posible que no piense en <a href="#healthcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">como su hogar affecta su salud</a>, ni en los factores que influyen en el lugar donde vive.
 </p>
 <div class="collapse fs-sm py-2 px-2 mb-2" id="healthcollapse"
     style="background-color: #f9f9f9;">
@@ -50,8 +50,8 @@ A lo largo de la historia, muchas prácticas diferentes han moldeado los patrone
 
 ### La política federal impulsó la segregación residencial.
 {{< rawhtml >}}
-<p>En la década de 1930, <a href="#holccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">el gobierno federal</a> desarrolló mapas codificados por colores para dirigir los préstamos a posibles compradores de viviendas en los EE. UU.
+<p>En la década de 1930, <a href="#holccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">el gobierno federal</a> desarrolló mapas codificados por colores para dirigir los préstamos a posibles compradores de viviendas en los EE. UU.
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="holccollapse"
     style="background-color: #f9f9f9;">
@@ -108,12 +108,12 @@ Debido al hecho de que ser propietario de una vivienda es una forma importante d
 ### Otras prácticas discriminatorias mantienen la segregación.
 {{< rawhtml >}}
 <p>Otras prácticas inmobiliarias, como el
-    <a href="#bbcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">acoso immobilario</a>&nbsp;<a
-        href="#contractcollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">la venta de contractos</a> &nbsp;<a
-        href="#rrccollapse" data-toggle="collapse"
-        class="badge badge-pill badge-success">y los convenios racialmente restrictivos</a>,
+    <a href="#bbcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">acoso immobilario</a>&nbsp;<a
+        href="#contractcollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">la venta de contractos</a> &nbsp;<a
+        href="#rrccollapse" data-bs-toggle="collapse"
+        class="badge rounded-pill text-bg-success">y los convenios racialmente restrictivos</a>,
 han mantenido la segregación.
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="bbcollapse"
@@ -136,7 +136,7 @@ En la actualidad, los defensores inmobiliarios señalan que algunos arrendadores
 
 {{< rawhtml >}}
 <div class="dsquote my-2 py-2"><em>“Este arrendador tiene el patrón de comprar edificios antiguos y desgastados en vecindarios negros de clase trabajadora; deja que los apartamentos de los inquilinos a largo plazo se deterioren y los hace esperar meses para hacer reparaciones de baja calidad. Muchos inquilinos también dicen que el arrendador tiene un trato preferencial con los inquilinos nuevos”. </em> </div>
-<div class="text-right mb-3">-tomado de <a
+<div class="text-end mb-3">-tomado de <a
 href="https://www.worstevictorsnyc.org/evictors-list/">Coalición de Derecho a un Consejo de la Ciudad de Nueva York: Lista de los peores desalojadores</a></div>
 {{< /rawhtml >}}
 
@@ -154,7 +154,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <div class="btn-group" role="group">
-    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle me-2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Problemas sanitarios de vivienda
     </button>
       <button type="button" class="btn btn-sm btn-outline-secondary mapselectbutton" onclick="changeMap(0)">Sin problemas sanitarios de vivienda</button>
@@ -263,7 +263,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
 ### ¿Quiénes asumen la carga del mal estado de la vivienda?
 Estos problemas van más allá de la incomodidad o el desastre. {{< rawhtml >}}
 <a href="#disrepaircollapse"
-        data-toggle="collapse" class="badge badge-pill badge-success">El mal estado de una vivienda puede dañar la salud.</a></p>
+        data-bs-toggle="collapse" class="badge rounded-pill text-bg-success">El mal estado de una vivienda puede dañar la salud.</a></p>
 
 <div class="collapse fs-sm py-2 px-2 mb-2" id="disrepaircollapse"
     style="background-color: #f9f9f9;">
@@ -375,11 +375,11 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
 <div class="wide my-4">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
+        <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home"
             role="tab" aria-controls="home" aria-selected="true">Gráfico de barras</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile"
             role="tab" aria-controls="profile" aria-selected="false">Diagrama de dispersión</a>
     </li>
 </ul>

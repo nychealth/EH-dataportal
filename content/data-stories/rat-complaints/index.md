@@ -81,7 +81,7 @@ In some cases, where conditions are especially severe, a Health Department exter
 <div class="my-4" aria-hidden="true">
   <div style="min-height:730px" id="datawrapper-vis-tTpnA"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/tTpnA/embed.js" charset="utf-8" data-target="#datawrapper-vis-tTpnA"></script><noscript><img src="https://datawrapper.dwcdn.net/tTpnA/full.png" alt="" /></noscript></div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <div style="min-height:1065px" id="datawrapper-vis-S4nq0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/S4nq0/embed.js" charset="utf-8" data-target="#datawrapper-vis-S4nq0"></script><noscript><img src="https://datawrapper.dwcdn.net/S4nq0/full.png" alt="" /></noscript></div>
 </div>
 

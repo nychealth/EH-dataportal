@@ -115,7 +115,7 @@ $global-header-toggle-button-color: $primary-nav-link-color;
     border-radius: 0;
   }
 
-  button[data-toggle="collapse"] {
+  button[data-bs-toggle="collapse"] {
     color: $global-header-toggle-button-color;
   }
 
@@ -130,7 +130,7 @@ $global-header-toggle-button-color: $primary-nav-link-color;
   
   // Add opacity to toggle buttons on 'expanded'
 
-  button[data-toggle="collapse"] {
+  button[data-bs-toggle="collapse"] {
     &[aria-expanded="true"] {
       @extend .opacity-50;
 
@@ -350,7 +350,7 @@ $global-header-toggle-button-color: $primary-nav-link-color;
 
   &[tabindex="-1"] {
     &:focus {
-      box-shadow: 0 0 0 $input-btn-focus-width theme-color("danger");
+      box-shadow: 0 0 0 $input-btn-focus-width map-get($theme-colors, "danger");
     }
   }
 }
@@ -387,7 +387,7 @@ $global-header-toggle-button-color: $primary-nav-link-color;
 
     label,
     .label {
-      color: theme-color("danger");
+      color: map-get($theme-colors, "danger");
     }
 
     .invalid-feedback {
@@ -396,7 +396,7 @@ $global-header-toggle-button-color: $primary-nav-link-color;
 
     .form-control:invalid {
       &:focus {
-        box-shadow: 0 0 0 $input-btn-focus-width theme-color("danger");
+        box-shadow: 0 0 0 $input-btn-focus-width map-get($theme-colors, "danger");
       }
     }
   }
@@ -471,7 +471,7 @@ legend,
     }
 
     .file-name {
-      @extend .font-weight-normal;
+      @extend .fw-normal;
 
       @extend .text-truncate;
 
@@ -525,7 +525,7 @@ legend,
 }
 
 .overlay-gradient-x-info::before {
-  @include linear-gradient($direction: to right, $first-color: theme-color("info"), $second-color: theme-color("info"), $first-color-opacity: 0, $second-color-opacity: 0.75, $first-color-position: 0, $second-color-position: 100%);
+  @include linear-gradient($direction: to right, $first-color: map-get($theme-colors, "info"), $second-color: map-get($theme-colors, "info"), $first-color-opacity: 0, $second-color-opacity: 0.75, $first-color-position: 0, $second-color-position: 100%);
 }
 
 ////////////////////////////////////////
@@ -778,14 +778,14 @@ $accordion-margin-y: $spacer-1;
 .btn-toggle,
 .accordion-group {
 
-  [data-toggle="collapse"] {
+  [data-bs-toggle="collapse"] {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  [data-toggle="collapse"]::after {
+  [data-bs-toggle="collapse"]::after {
     margin-left: $spacer-2;
   }
 
@@ -795,7 +795,7 @@ $accordion-margin-y: $spacer-1;
 
 .btn-toggle {
 
-  [data-toggle="collapse"] {
+  [data-bs-toggle="collapse"] {
 
     overflow: hidden;
 
@@ -843,7 +843,7 @@ $accordion-margin-y: $spacer-1;
     }
   }
 
-  a[data-toggle="collapse"] {
+  a[data-bs-toggle="collapse"] {
 
     @if $accordion-button-border {
       border: $border-width solid $border-color;
@@ -1044,7 +1044,7 @@ table {
 
     @include media-breakpoint-down(md) {
       thead {
-        @include sr-only;
+        @include visually-hidden;
       }
 
       tbody tr {

@@ -39,7 +39,7 @@
         <!-- .col (main) -->
 
         <!-- two-column methods and pollutants -->
-        <div class="col-md-5 ml-auto col-sm-12">
+        <div class="col-md-5 ms-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
                 <h3>Methods</h3>
                 {{- with .Resources.GetMatch "methods.md" -}}
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <div class="col-md-5 mr-auto col-sm-12">
+        <div class="col-md-5 me-auto col-sm-12">
             <h3>Pollutants Measured</h3>
 
             <div class="accordion-group mt-2 mb-3" role="tablist" id="accordion-01">
@@ -57,12 +57,12 @@
                 {{- range .Params.pollutantsMeasured -}}
 
                 <div class="card accordion-item border">
-                    <a class="card-header font-weight-bold collapse" id="acc-button-{{ .number }}" data-toggle="collapse" href="#panel-acc-button-{{ .number }}" role="tab" aria-expanded="false" aria-controls="panel-acc-button-{{ .number }}">
+                    <a class="card-header fw-bold collapse" id="acc-button-{{ .number }}" data-bs-toggle="collapse" href="#panel-acc-button-{{ .number }}" role="tab" aria-expanded="false" aria-controls="panel-acc-button-{{ .number }}">
                         <span class="title" role="heading" aria-level="3">
                             {{ .name }}
                         </span>
                     </a>
-                    <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-parent="#accordion-01">
+                    <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-bs-parent="#accordion-01">
                         <div class="bg-white text-black p-2">
                             {{ $.RenderString .copy }}
                         </div>
@@ -80,7 +80,7 @@
         </div>
 
         <!-- two-column Sites -->
-        <div class="col-md-5 ml-auto col-sm-12">
+        <div class="col-md-5 ms-auto col-sm-12">
             <div class="l-green-border px-1 mb-2">
                 <h3>NYCCAS Sites</h3>
 
@@ -108,7 +108,7 @@
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto">
             <h2>Pollutant Maps</h2>
-            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 pl-2">
+            <img src="{{ .Params.fullurl }}images/NyccasInstall_red.jpg" alt="NYCCAS installation" align="right" style="width:50%;" class="my-2 ps-2">
 
             {{- with .Resources.GetMatch "pollutant-maps.md" -}}
                 {{ .Content }}

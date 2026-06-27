@@ -53,7 +53,7 @@ The New York City Community Air Survey, an extensive air quality monitoring prog
   <iframe title="NYC's 10 worst neighborhoods for air quality..." aria-label="Map" id="datawrapper-chart-3CeEA" src="https://datawrapper.dwcdn.net/3CeEA/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="590" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="NYC's 10 worst neighborhoods for air quality..." aria-label="Table" id="datawrapper-chart-NvVfw" src="https://datawrapper.dwcdn.net/NvVfw/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="577" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
@@ -68,7 +68,7 @@ In cities across the USA, there's a clear pattern: [the worst air quality tends 
   <iframe title="...and air-quality-related health effects" aria-label="Map" id="datawrapper-chart-V1NVo" src="https://datawrapper.dwcdn.net/V1NVo/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="580" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
   <iframe title="...and air-quality-related health effects" aria-label="Table" id="datawrapper-chart-Rl7wk" src="https://datawrapper.dwcdn.net/Rl7wk/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="1794" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
@@ -85,7 +85,7 @@ We can use data modelling tools to predict which policies to improve air quality
   <iframe title="Reductions in PM2.5 would be similar across neighborhoods..." aria-label="Arrow Plot" id="datawrapper-chart-pt7no" src="https://datawrapper.dwcdn.net/pt7no/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="199" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Reductions in PM2.5 would be similar across neighborhoods... " aria-label="Table" id="datawrapper-chart-LVfkJ" src="https://datawrapper.dwcdn.net/LVfkJ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="339" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -98,7 +98,7 @@ But, despite similar improvements in air quality, high poverty neighborhoods wou
   <iframe title="...but higher poverty areas would get the most health benefits." aria-label="Arrow Plot" id="datawrapper-chart-OSgDo" src="https://datawrapper.dwcdn.net/OSgDo/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="219" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
   </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="...but higher poverty areas would get the most health benefits." aria-label="Table" id="datawrapper-chart-4YVOx" src="https://datawrapper.dwcdn.net/4YVOx/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="358" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>

@@ -39,7 +39,7 @@ related:
   {"src": "data-explorer/air-quality/?id=2023", "text": "Fine particles (PM2.5)"}
 ]` >}}
 
-As city life changes, so does its air quality, as sources of emissions that affect the city's outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the {{< rawhtml >}} <a href="#NYCCAS" data-toggle="collapse" class="badge badge-pill badge-primary">NYC Community Air Survey (NYCCAS)</a>{{< /rawhtml >}} and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.
+As city life changes, so does its air quality, as sources of emissions that affect the city's outdoor air quality, like truck traffic, building boilers and restaurants, also change. For more than a decade, we have been tracking air quality through the {{< rawhtml >}} <a href="#NYCCAS" data-bs-toggle="collapse" class="badge rounded-pill text-bg-primary">NYC Community Air Survey (NYCCAS)</a>{{< /rawhtml >}} and exploring the factors that drive neighborhood differences. We have found some interesting changes in the sources of air pollution across NYC neighborhoods.
 
 {{< rawhtml >}}
 
@@ -53,7 +53,7 @@ different pollutants.
 </div>
 {{< /rawhtml >}}
 
-Let's look at PM2.5, or {{< rawhtml >}} <a href="#pm25" data-toggle="collapse" class="badge badge-pill badge-primary">fine particles</a>{{< /rawhtml >}}. PM2.5 is the most harmful urban pollutant. It can cause cancer, worsen heart and lung disease and lead to premature death. PM2.5 levels vary across the city and the pollutant comes from a lot of different sources - the most important of which had been building boilers. We have been able to accurately estimate (or model) PM2.5 concentrations by looking at data on building boilers, which burn fossil fuels to generate heat and hot water and release PM2.5.
+Let's look at PM2.5, or {{< rawhtml >}} <a href="#pm25" data-bs-toggle="collapse" class="badge rounded-pill text-bg-primary">fine particles</a>{{< /rawhtml >}}. PM2.5 is the most harmful urban pollutant. It can cause cancer, worsen heart and lung disease and lead to premature death. PM2.5 levels vary across the city and the pollutant comes from a lot of different sources - the most important of which had been building boilers. We have been able to accurately estimate (or model) PM2.5 concentrations by looking at data on building boilers, which burn fossil fuels to generate heat and hot water and release PM2.5.
 {{< rawhtml >}}
 
 <div class="collapse mb-2 drawerbg px-2 py-2 mx-2 fs-sm" id="pm25">
@@ -72,17 +72,17 @@ You can see in the chart below that neighborhoods with high building density hav
 <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-XPYgD" src="https://datawrapper.dwcdn.net/XPYgD/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="411" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-</div><div class="sr-only">
+</div><div class="visually-hidden">
 <iframe title="Winter PM2.5 levels (in micrograms per meter cubed (µg/m³) by neighborhood building density" aria-label="Table" id="datawrapper-chart-VZMcj" src="https://datawrapper.dwcdn.net/VZMcj/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="555" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 <div class="narrow">
-You can also see that the wintertime PM2.5 concentrations have gone down dramatically over time, largely because the city has required buildings to {{< rawhtml >}}<a href="#laws" data-toggle="collapse" class="badge badge-pill badge-primary">reduce emissions</a>.</p>
+You can also see that the wintertime PM2.5 concentrations have gone down dramatically over time, largely because the city has required buildings to {{< rawhtml >}}<a href="#laws" data-bs-toggle="collapse" class="badge rounded-pill text-bg-primary">reduce emissions</a>.</p>
 <div id="laws" class="collapse mb-2 drawerbg px-2 py-2 mx-2 fs-sm">
 <a href="https://www1.nyc.gov/assets/dep/downloads/pdf/air/local-law-43-biodiesel-fuel-requirement.pdf">Local Law 43 of 2010</a> outlawed the burning of heavy fuel oil (Number 6) in New York
 City buildings, requiring buildings to switch to cleaner fuels. In 2012, New York State lowered the allowed sulfur content of Number 2 fuel oil, which further cleaned up building emissions.
 </div>{{< /rawhtml >}}
 
-Meanwhile, emissions from another source - commercial cooking - has gone up, according to {{< rawhtml >}}<a href="#epa" data-toggle="collapse"class="badge badge-pill badge-primary">emissions estimates</a>{{< /rawhtml >}}. Commercial cooking refers to cooking in restaurants, especially meat cooked on grills or charbroilers. The smoke this creates is vented out of the building and contributes to PM2.5 measured by NYCCAS.
+Meanwhile, emissions from another source - commercial cooking - has gone up, according to {{< rawhtml >}}<a href="#epa" data-bs-toggle="collapse"class="badge rounded-pill text-bg-primary">emissions estimates</a>{{< /rawhtml >}}. Commercial cooking refers to cooking in restaurants, especially meat cooked on grills or charbroilers. The smoke this creates is vented out of the building and contributes to PM2.5 measured by NYCCAS.
 
 {{< rawhtml >}}
 
@@ -104,11 +104,11 @@ more about the NEI</a>.
 <iframe title="Emissions over time (revised)" aria-label="Interactive line chart" id="datawrapper-chart-3bOXl" src="https://datawrapper.dwcdn.net/3bOXl/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="450" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Emissions over time (revised)" aria-label="Table" id="datawrapper-chart-jQ5R1" src="https://datawrapper.dwcdn.net/jQ5R1/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="370" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div><div class="narrow">
-We can see these trends in our PM2.5 land-use regression model, which links neighborhood factors to measured pollution, and allows us to estimate pollution levels in places where we don't measure it. Our model tells us which emissions sources explain the {{< rawhtml >}}<a href="#var" data-toggle="collapse" class="badge badge-pill badge-primary">differences across neighborhoods</a>.
+We can see these trends in our PM2.5 land-use regression model, which links neighborhood factors to measured pollution, and allows us to estimate pollution levels in places where we don't measure it. Our model tells us which emissions sources explain the {{< rawhtml >}}<a href="#var" data-bs-toggle="collapse" class="badge rounded-pill text-bg-primary">differences across neighborhoods</a>.
 
 </p>
 
@@ -129,7 +129,7 @@ With the increase in commercial cooking emissions, our model shows that the numb
 <iframe title="Winter" aria-label="Interactive line chart" id="datawrapper-chart-AEQXF" src="https://datawrapper.dwcdn.net/AEQXF/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="453" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script></div>
 </div>
-<div class="sr-only"><iframe title="Percent of variation explained (Winter)" aria-label="Table" id="datawrapper-chart-M1AkD" src="https://datawrapper.dwcdn.net/M1AkD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="495" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+<div class="visually-hidden"><iframe title="Percent of variation explained (Winter)" aria-label="Table" id="datawrapper-chart-M1AkD" src="https://datawrapper.dwcdn.net/M1AkD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="495" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
 <div class="narrow">

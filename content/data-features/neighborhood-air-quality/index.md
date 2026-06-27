@@ -36,7 +36,7 @@ related:
     url: "data-stories/hia/"
 weight: 2
 blurb: Two major air pollutant measurements and some factors that influence them across NYC neighborhoods.
-aboutTheData: 'Data for PM2.5 and NO2 are from 2023. Data for industrial areas are from 2022. Data on commercial cooking, traffic, and buildings are from 2019. For details on data sources and measurements, see [NYCCAS Annual Report]({{< relURL >}}data-features/nyccas/). <a href="aqe-nta.csv"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data<i class="fas fa-file-csv ml-1" aria-hidden="true"></i></a>.'
+aboutTheData: 'Data for PM2.5 and NO2 are from 2023. Data for industrial areas are from 2022. Data on commercial cooking, traffic, and buildings are from 2019. For details on data sources and measurements, see [NYCCAS Annual Report]({{< relURL >}}data-features/nyccas/). <a href="aqe-nta.csv"><i class="fas fa-download me-1" aria-hidden="true"></i>Download data<i class="fas fa-file-csv ms-1" aria-hidden="true"></i></a>.'
 ---
 
 We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes air quality in one neighborhood different from air quality in another. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.

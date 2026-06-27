@@ -14,10 +14,10 @@ this partial takes 5 arguments as a dict:
   <div class="card-header border-top" id="heading-{{ .data.indicator_data_name }}">
     <h2 class="mb-0">
       <button
-        class="btn btn-block btn-sm text-left"
+        class="btn w-100 btn-sm text-start"
         type="button"
-        data-toggle="collapse"
-        data-target="#collapse-{{ .data.indicator_data_name }}"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse-{{ .data.indicator_data_name }}"
         aria-expanded="true"
         aria-controls="collapse-{{ .data.indicator_data_name }}"
         onclick="getURL({{ .data.IndicatorID }}, '{{ .data.indicator_data_name }}')"
@@ -25,19 +25,19 @@ this partial takes 5 arguments as a dict:
         <!-- MAIN ROW: SCREEN ONLY -->
         <div class="row no-gutters" style="width: 100%">
           <div class="col-7 d-print-none">
-            <span class="font-weight-bold fs-md"
+            <span class="fw-bold fs-md"
               >{{ .data.indicator_short_name }}</span
             ><br />
-            <span class="fs-sm font-weight-normal"
+            <span class="fs-sm fw-normal"
               >{{- .data.indicator_long_name -}}</span
             >
           </div>
-          <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+          <div class="col-3 ps-1 d-print-none">
+            <span class="fw-bold fs-lg"
               >{{ .data.data_value_geo_entity }}</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-xs fw-normal"
               >{{ .data.measurement_type }} {{ .data.units }}</span
             >
           </div>
@@ -45,7 +45,7 @@ this partial takes 5 arguments as a dict:
           {{/*  comparison pills  */}}
 
           <div class="col-2 d-print-none">
-              <div class="float-right mt-1">
+              <div class="float-end mt-1">
               {{ if eq $rankReverse false }}
                   {{- if eq (string .data.data_value_rank) "1" -}}<span
                     class="worse">Higher</span>
@@ -68,21 +68,21 @@ this partial takes 5 arguments as a dict:
           <div class="col-12 print-only" style="flex-direction:row; width:100%;">
 
             <!-- Column 1: 50% -->
-            <div style="width:50%;" class="border-right pl-1">
-              <span class="font-weight-bold fs-md">
+            <div style="width:50%;" class="border-end ps-1">
+              <span class="fw-bold fs-md">
                 {{ .data.indicator_short_name }}
               </span><br />
-              <span class="fs-sm font-weight-normal">
+              <span class="fs-sm fw-normal">
                 {{- .data.indicator_long_name -}}
               </span>
             </div>
 
             <!-- Column 2: 25% -->
-            <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+            <div style="width:25%" class="border-end ps-1">
+              <span class="fw-bold fs-lg">
                 {{ .data.data_value_geo_entity }}
               </span><br />
-              <span class="fs-xs font-weight-normal">
+              <span class="fs-xs fw-normal">
                 {{ .data.measurement_type }} {{ .data.units }}
               </span>
             </div>
@@ -90,7 +90,7 @@ this partial takes 5 arguments as a dict:
             {{/*  neighborhood comparisons for print  */}}
 
             <!-- Column 3: 25% -->
-            <div style="width:25%;" class="pl-1">
+            <div style="width:25%;" class="ps-1">
 
               {{ if eq $rankReverse false }}
 
@@ -130,7 +130,7 @@ this partial takes 5 arguments as a dict:
     id="collapse-{{ .data.indicator_data_name }}"
     class="collapse border-bottom "
     aria-labelledby="heading-{{ .data.indicator_data_name }}"
-    data-parent="#accordion-{{ .accordionIndex }}"
+    data-bs-parent="#accordion-{{ .accordionIndex }}"
     data-indicator-name="{{ .data.indicator_data_name }}"
     data-count="{{ .count }}"
   >
@@ -144,7 +144,7 @@ this partial takes 5 arguments as a dict:
             </p>
         </div>
 
-                <div class="col-md-7 border-right h-100">
+                <div class="col-md-7 border-end h-100">
                 <!-- MAP -->
                 <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-{{ .data.indicator_data_name }}-{{ .count }}">
                     ...map is loading...
@@ -194,13 +194,13 @@ this partial takes 5 arguments as a dict:
                   <p>
                     <span id="b-{{ urlize .data.indicator_short_name }}"></span> the <strong>{{ .borough }} average</strong> 
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
+                    <span class="fs-sm ps-3">(<span id="bv-{{ urlize .data.indicator_short_name }}">boro val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
                   </p>
 
                   <p>
                     <span id="c-{{ urlize .data.indicator_short_name }}"></span> the <strong>Citywide average</strong> 
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
+                    <span class="fs-sm ps-3">(<span id="cv-{{ urlize .data.indicator_short_name }}">city val</span>{{ if in .data.measurement_type "ercent" }}%{{ else }} {{ .data.units }}{{ end }})</span>
                   </p>
 
                     </div>
@@ -214,7 +214,7 @@ this partial takes 5 arguments as a dict:
 
             <!-- About the data -->
 
-            <span id="year-{{ urlize .data.indicator_short_name }}" class="sr-only">YEAR</span>
+            <span id="year-{{ urlize .data.indicator_short_name }}" class="visually-hidden">YEAR</span>
 
           
 
@@ -227,7 +227,7 @@ this partial takes 5 arguments as a dict:
 
         </div>
         <div class="col-5">
-            <p class="float-right"><a id="{{ .data.IndicatorID }}" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+            <p class="float-end"><a id="{{ .data.IndicatorID }}" href="" class="ms-1" style="display:none"><i class="fas fa-chart-line me-1" aria-hidden="true"></i>Full dataset</a></p>
         </div>
       </div>
     </div>

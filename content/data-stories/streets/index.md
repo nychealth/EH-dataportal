@@ -71,7 +71,7 @@ What’s behind the very different rates across the five boroughs? By looking at
 <iframe title="Brooklyn has a higher rate of cycling injuries" aria-label="map" id="datawrapper-chart-jDbZr" src="https://datawrapper.dwcdn.net/jDbZr/10/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="727"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Brooklyn has a higher rate of cycling injuries" aria-label="Table" id="datawrapper-chart-yy7ko" src="https://datawrapper.dwcdn.net/yy7ko/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="970" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -93,7 +93,7 @@ scrolling="no" frameborder="0"
 style="width: 0; min-width: 100% !important; border: none;"
 height="531"></iframe>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Manhattan has higher traffic density than Brooklyn" aria-label="Table" id="datawrapper-chart-Muxbx" src="https://datawrapper.dwcdn.net/Muxbx/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="873" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -110,7 +110,7 @@ Now let’s look at the number of cyclists on NYC streets. When we map cycling i
 <iframe title="Cycling rates are higher in Manhattan" aria-label="map" id="datawrapper-chart-QCtIR" src="https://datawrapper.dwcdn.net/QCtIR/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="694"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Cycling rates are higher in Manhattan" aria-label="Table" id="datawrapper-chart-Uu8zR" src="https://datawrapper.dwcdn.net/Uu8zR/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="978" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
@@ -131,7 +131,7 @@ Bicycle network coverage may be a factor influencing NYC injury rates.
 <iframe title="Manhattan's bicycle network is denser" aria-label="Map" id="datawrapper-chart-6Iwi2" src="https://datawrapper.dwcdn.net/6Iwi2/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="629" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
-<div class="sr-only">
+<div class="visually-hidden">
 <iframe title="Manhattan's bicycle network is denser" aria-label="Table" id="datawrapper-chart-sdrHi" src="https://datawrapper.dwcdn.net/sdrHi/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="829" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 </div>
