@@ -503,6 +503,13 @@
             ? structuredClone(spec)
             : JSON.parse(JSON.stringify(spec));
     }
+
+    // NY/NJ/CT colors for the regional comparison — single source for the
+    // regional Leaflet map and the CRZ chart's six color scales. The derived
+    // domain/range arrays keep the Vega scale order aligned to this map.
+    const CP_STATE_COLORS = { "New York": "#2b6cb0", "New Jersey": "#276749", "Connecticut": "#9b2c2c" };
+    const CP_STATE_DOMAIN = Object.keys(CP_STATE_COLORS);
+    const CP_STATE_RANGE = Object.values(CP_STATE_COLORS);
 </script>
 
 <!-- moved from partials/cp-map-monitoring.html -->
@@ -657,16 +664,11 @@
         }).addTo(map);
 
         var regionalDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/RegionalSites.csv" }}';
-        var stateColorMap = {
-            'New York': '#2b6cb0',
-            'New Jersey': '#276749',
-            'Connecticut': '#9b2c2c'
-        };
 
         d3.csv(regionalDataUrl).then(function (sites) {
             sites.forEach(function (siteData) {
                 var state = siteData.State || 'New York';
-                var fillColor = stateColorMap[state] || '#2b6cb0';
+                var fillColor = CP_STATE_COLORS[state] || CP_STATE_COLORS['New York'];
 
                 var site = L.circleMarker([Number(siteData.Lat), Number(siteData.Long)], {
                     radius: 8,
@@ -1438,8 +1440,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "x": {
@@ -1482,8 +1484,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "opacity": { "value": 1 },
@@ -1570,8 +1572,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "opacity": { "value": 0.5 },
@@ -1614,8 +1616,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "opacity": { "value": 1 },
@@ -1705,8 +1707,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "opacity": { "value": 0.5 },
@@ -1749,8 +1751,8 @@
                                 "type": "nominal",
                                 "legend": null,
                                 "scale": {
-                                    "domain": ["New York", "New Jersey", "Connecticut"],
-                                    "range": ["#2b6cb0", "#276749", "#9b2c2c"]
+                                    "domain": CP_STATE_DOMAIN,
+                                    "range": CP_STATE_RANGE
                                 }
                             },
                             "opacity": { "value": 1 },
