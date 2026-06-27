@@ -157,8 +157,7 @@
                             The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we are more confident in our calculated average.</p>
                     </div>
 
-                    <div class="w-100 mt-4 mb-1" id="explainChart2" style="max-height: 50px!important;">Second chart
-                    </div>
+                    <div class="w-100 mt-4 mb-1" id="explainChart2"></div>
                     <div class="asidebox border">
                         <p class="fs-sm">This shows the difference between the <span
                                   style="color:blue;font-weight:bold">observed</span> and <span
@@ -211,8 +210,8 @@
             {{/* #tod-site-name is updated dynamically by renderTODButtons() in cp-chart_TOD_traffic.html */}}
             <p>This chart shows us data from the <strong><span id="tod-site-name">Deegan</span></strong> monitor.</p>
 
-            <span class="fs-md mb-2">Data source: <span class="badge badge-pill badge-light fs-sm" style="color: #ae3400"><i
-                       class="fas fa-clock mr-1" aria-hidden=true></i>Realtime monitors</span>
+            <p class="fs-md mb-2">Data source: <span class="badge badge-pill badge-light fs-sm" style="color: #ae3400"><i
+                       class="fas fa-clock mr-1" aria-hidden="true"></i>Realtime monitors</span></p>
 
                 {{ partial "cp-chart_TOD_traffic.html" . }}
 
@@ -541,44 +540,6 @@
                             { "field": "TimeLabel", "title": "Period", "type": "nominal" },
                             { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
                         ]
-                    }
-                },
-                {
-                    "data": {
-                        "values": [
-                            {
-                                "TimeLabel": "After congestion pricing",
-                                "y": 9.6,
-                                "label": "",
-                                "textColor": "black"
-                            },
-                            {
-                                "TimeLabel": "After congestion pricing",
-                                "y": 6,
-                                "label": "",
-                                "textColor": "black"
-                            }
-                        ]
-                    },
-                    "mark": {
-                        "type": "text",
-                        "dx": -100,
-                        "lineBreak": "\n",
-                        "align": "left",
-                        "baseline": "middle",
-                        "fontSize": 14,
-                        "fontWeight": "normal"
-                    },
-                    "encoding": {
-                        "x": { "field": "TimeLabel", "type": "nominal" },
-                        "y": { "field": "y", "type": "quantitative" },
-                        "text": { "field": "label" },
-                        "color": {
-                            "field": "textColor",
-                            "type": "nominal",
-                            "scale": null,
-                            "legend": false
-                        }
                     }
                 }
             ]

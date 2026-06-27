@@ -15,16 +15,13 @@
 
     <div class="col-12 col-md-10">
 
-        <div id="EJ_text" id="EJ-text-${id}" class="fs-rg">
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam es. </p>
+        <div id="EJ_text" class="fs-rg">
+            <p></p>
         </div>
 
         <hr class="my-1">
 
-        <span class="fs-md">Data source: <span class="badge badge-pill badge-light fs-sm" style="color: #007153"><i class="fas fa-smog mr-1" aria-hidden=true></i>Integrated monitors</span>
+        <p class="fs-md">Data source: <span class="badge badge-pill badge-light fs-sm" style="color: #007153"><i class="fas fa-smog mr-1" aria-hidden="true"></i>Integrated monitors</span></p>
 
             <div id="cpVis" style="width: 100%; max-width: 1000px;" class="my-2"></div>
 
@@ -49,7 +46,7 @@
         if (prepEl) prepEl.textContent = IN_THE_SITES.has(site) ? "in the" : "near the";
 
         const nameEl = document.getElementById("site-name");
-        if (nameEl) nameEl.textContent = siteTitles[site] || site;
+        if (nameEl) nameEl.textContent = site;
     }
 
     // Buttons for sites
@@ -76,21 +73,7 @@
         "Trans-Manhattan": "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:<ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same  </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul> </p>",
         "CRZ": "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same </ul></p>",
         "Rest of the City": "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>",
-        "Region": "<h3 class='h5'>The air quality in the rest of the region...</h3><p style='display:inline;'>At EPA monitoring sites on the map below, PM2.5, NO2 and O3 levels following the start of CRZ tolling were similar to levels prior to tolling.</p>",
     };
-
-    // Site titles for the main sites
-    const siteTitles = {
-        "Deegan": "Deegan",
-        "Cross Bronx": "Cross Bronx",
-        "BQE": "BQE",
-        "Van Wyck": "Van Wyck",
-        "SI Expwy": "SI Expwy",
-        "FDR": "FDR",
-        "Trans-Manhattan": "Trans-Manhattan",
-        "CRZ": "CRZ",
-        "Rest of the City": "Rest of the City"
-    }
 
     // Default selection
     let currentSite = "Deegan";
@@ -328,8 +311,6 @@
 
     function specForSite(site) {
 
-        console.log(">> specForSite:", site);
-
         // structuredClone first; fallback to JSON clone
         const spec = typeof structuredClone === "function" ? structuredClone(baseSpec) : JSON.parse(JSON.stringify(baseSpec));
         const spec2 = typeof structuredClone === "function" ? structuredClone(secondSpec) : JSON.parse(JSON.stringify(secondSpec));
@@ -395,8 +376,6 @@
 
 
     async function draw(site) {
-
-        console.log(">> draw:", site);
 
         const cpEl = document.getElementById(cp_container_id);
         const aqEl = document.getElementById(aq_container_id);
@@ -499,21 +478,7 @@
         }
     }
 
-    function addAccordionlisteners() {
-        console.log(">> addAccordionlisteners");
-        const accordions = document.querySelectorAll(".collapse");
-        console.log("accordions", accordions);
-        accordions.forEach((accordion) => {
-            accordion.addEventListener("click", (e) => {
-                console.log("clicked", e.target);
-                e.target.parentElement.classList.add("active");
-            });
-        });
-    }
-
     document.addEventListener("DOMContentLoaded", async () => {
-
-        console.log(">> DOMContentLoaded");
 
         const el = document.getElementById(cp_container_id);
         if (!el) return;
@@ -537,18 +502,10 @@
         renderButtons();
 
 
-        // Give datawrapper library time to load before initializing
-        setTimeout(() => {
-            if (window.datawrapper && window.datawrapper.embedAll) {
-                window.datawrapper.embedAll();
-            }
-        }, 500);
-
-
         // Update preposition and site name in the heading
         updateSiteHeading(currentSite);
 
-        // Draw the initial chart (with datawrapper) and wait for it to complete
+        // Draw the initial chart and wait for it to complete
         await draw(currentSite);
 
         // Re-render charts and controls when the container width changes.
