@@ -472,6 +472,29 @@
             });
         }
     }
+
+    // Debounced resize handler shared by the chart blocks. Fires onResize (200ms
+    // after the container's width settles) only when the width actually changes,
+    // so vertical-only mobile resizes (address-bar show/hide) don't re-render.
+    // If onBreakpoint is given, it also fires when crossing the 768px mobile
+    // boundary — used to swap the native <select>/button selector live.
+    function addResizeHandler(el, onResize, onBreakpoint) {
+        if (!el) return;
+        let lastW = el.clientWidth, lastMobile = window.innerWidth < 768, timer;
+        window.addEventListener("resize", () => {
+            const w = el.clientWidth;
+            const mobile = window.innerWidth < 768;
+            if (w === lastW) return;
+            const crossedBreakpoint = mobile !== lastMobile;
+            lastW = w;
+            lastMobile = mobile;
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                if (crossedBreakpoint && onBreakpoint) onBreakpoint();
+                onResize();
+            }, 200);
+        });
+    }
 </script>
 
 <!-- moved from partials/cp-map-monitoring.html -->
@@ -1074,24 +1097,9 @@
         // Draw the initial chart and wait for it to complete
         await draw(currentSite);
 
-        // Re-render charts and controls when the container width changes.
-        // Also re-render controls when crossing the 768px breakpoint so the
-        // select/button swap happens live. Guards on width so vertical-only
-        // resizes (mobile address bar) don't trigger needless re-renders.
-        let cpLastW = el.clientWidth, cpLastMobile = window.innerWidth < 768, cpResizeT;
-        window.addEventListener("resize", () => {
-            const w = el.clientWidth;
-            const mobile = window.innerWidth < 768;
-            if (w === cpLastW) return;
-            const crossedBreakpoint = mobile !== cpLastMobile;
-            cpLastW = w;
-            cpLastMobile = mobile;
-            clearTimeout(cpResizeT);
-            cpResizeT = setTimeout(() => {
-                if (crossedBreakpoint) renderButtons();
-                draw(currentSite);
-            }, 200);
-        });
+        // Re-render the chart on width changes; swap the select/button selector
+        // when crossing the 768px breakpoint.
+        addResizeHandler(el, () => draw(currentSite), renderButtons);
 
     });
 
@@ -1338,25 +1346,10 @@
         renderTODButtons();
         await renderTODChart(todCurrentSite);
 
-        // Re-render chart and controls when the container width changes.
-        // Also swap select/buttons when crossing the 768px breakpoint.
-        // Guarded on width so vertical-only resizes (mobile address bar) don't re-render.
-        const todEl = document.getElementById(TOD_CONTAINER_ID);
-        let todLastW = todEl ? todEl.clientWidth : null, todLastMobile = window.innerWidth < 768, todResizeT;
-        window.addEventListener("resize", () => {
-            if (!todEl) return;
-            const w = todEl.clientWidth;
-            const mobile = window.innerWidth < 768;
-            if (w === todLastW) return;
-            const crossedBreakpoint = mobile !== todLastMobile;
-            todLastW = w;
-            todLastMobile = mobile;
-            clearTimeout(todResizeT);
-            todResizeT = setTimeout(() => {
-                if (crossedBreakpoint) renderTODButtons();
-                renderTODChart(todCurrentSite);
-            }, 200);
-        });
+        // Re-render the chart on width changes; swap the select/button selector
+        // when crossing the 768px breakpoint.
+        addResizeHandler(document.getElementById(TOD_CONTAINER_ID),
+            () => renderTODChart(todCurrentSite), renderTODButtons);
     });
 </script>
 
@@ -1884,18 +1877,8 @@
 
         await draw_crz();
 
-        // Re-render on real width changes so the chart re-fits its container.
-        // Guarded on width so vertical-only mobile resizes don't re-render.
-        const crzEl = document.getElementById(CP_CONTAINER2_ID);
-        let crzLastW = crzEl ? crzEl.clientWidth : null, crzResizeT;
-        window.addEventListener("resize", () => {
-            if (!crzEl) return;
-            const w = crzEl.clientWidth;
-            if (w === crzLastW) return;
-            crzLastW = w;
-            clearTimeout(crzResizeT);
-            crzResizeT = setTimeout(() => draw_crz(), 200);
-        });
+        // Re-fit the chart on width changes (no selector to swap).
+        addResizeHandler(document.getElementById(CP_CONTAINER2_ID), draw_crz);
     });
 
 </script>
