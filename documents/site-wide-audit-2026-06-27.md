@@ -1,7 +1,8 @@
 # Site-Wide Audit (2026-06-27)
 
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
-`data-explorer-new` SPA. This document covers **everything else**: the Hugo
+Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
+**everything else**: the Hugo
 theme (136 layout files, 63 partials, 10 shortcodes), the non-DE JavaScript
 (~12K lines), the SCSS, the build/CI pipeline, configuration, and overall
 organization + refactoring opportunities.
@@ -16,6 +17,13 @@ correctness/perf/maintainability risk, **P3** quality/cleanup.
 > (R/SQL that produces `EHDP-data`) lives in a separate repo and is out of
 > scope here.
 
+> **Updated 2026-06-27 (post-cutover).** The Data Explorer endpoint cutover has
+> since landed: the new SPA now owns `/data-explorer/` (`assets/js/data-explorer/`)
+> and the legacy explorer moved to `/data-explorer-old/`
+> (`assets/js/data-explorer-old/`). §1, §5, and §9 below were revised to match;
+> the old explorer is now retired but **not yet deleted**, so it is still built
+> and served.
+
 ---
 
 ## 1. The headline: parallel implementations and "duplicate-and-version" cruft
@@ -23,13 +31,16 @@ correctness/perf/maintainability risk, **P3** quality/cleanup.
 The single biggest organizational drag is that features are **forked rather than
 refactored** — old and new versions live side by side, both shipping.
 
-- **Two complete Data Explorers.** `content/data-explorer` + `layouts/data-explorer`
-  + `assets/js/data-explorer/` (~6,560 lines) is the *currently linked* explorer
-  (`config/_default/config.toml:77` points the main menu at `/data-explorer/`),
-  while `data-explorer-new` (~9,800 live lines) is the replacement. That's
-  ~16K lines of JS maintaining two versions of one feature. **Plan a cutover
-  date and a deletion of the old tree** — until then, every shared change risks
-  being made in the wrong copy.
+- **Two complete Data Explorers — cutover done 2026-06-27, deletion still
+  pending.** The new SPA was promoted to the canonical `/data-explorer/`
+  (`assets/js/data-explorer/`, ~9,800 lines) and the legacy explorer was moved to
+  `/data-explorer-old/` (`assets/js/data-explorer-old/`, ~6,560 lines) — still
+  rendered and built, just unlinked from the main menu. So the *active-fork*
+  hazard (changes landing in the wrong copy) is largely resolved, but the old
+  tree (content + layouts + JS) is still in the repo and still ships. **Next
+  step: delete the three `*-old` trees** once nothing depends on
+  `/data-explorer-old/`; that removes ~6,560 lines of JS plus the parallel
+  content and layouts in one stroke.
 - **Versioned partials/shortcodes** never cleaned up:
   `featured-data.html` + `featured-data-2.html`; `vega.html` + `vega0.html`;
   `nyccas_pollutant_trends.html` + `nyccas_pollutant_trends_new.html`;
@@ -54,7 +65,7 @@ refactored** — old and new versions live side by side, both shipping.
 every page. Current issues, roughly in impact order:
 
 - **~20 render-blocking `<script>` in `<head>` with no `defer`/`async`.** For any
-  `page`/`neighborhood-reports`/`data-explorer-new` route it loads Vega + Vega-Lite
+  `page`/`neighborhood-reports`/`data-explorer` route it loads Vega + Vega-Lite
   + Vega-Embed + D3 + DataTables(+buttons/rowgroup) + Arquero + Leaflet
   (+geocoder, easybutton, colorIcon, pip) + TopoJSON + uhflist.js, all blocking
   parse. jQuery and Font Awesome load blocking on *every* page.
@@ -163,8 +174,9 @@ every page. Current issues, roughly in impact order:
   *data*; move them to `data/` (Hugo `site.Data`) or fetch as JSON so they're not
   parsed as JS on every page load. (Same anti-pattern as the dead
   `geography.js`.)
-- **Legacy `assets/js/data-explorer/`** (~6,560 lines) is dead weight once the
-  new explorer ships — delete with the old tree (§1).
+- **Legacy `assets/js/data-explorer-old/`** (~6,560 lines) — the cutover retired
+  it but it is still built and reachable at `/data-explorer-old/`. Dead weight;
+  delete with the rest of the old tree (§1).
 
 ---
 
@@ -276,25 +288,29 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
 1. **`sendAnalyticsEvent`** — guarded wrapper in [site.js:58](../assets/js/site.js)
    (homepage/nav/search/subscribe/language link tracking, via delegation). The
    cleanest of the three.
-2. **`trackDataExplorerEvent`** family — guarded wrappers in the new explorer
-   ([global.js:500-565](../assets/js/data-explorer-new/global.js)). This is the
-   consolidated docs' "#30 guard analytics" recommendation, done — **but only in
-   the not-yet-live explorer.**
+2. **`trackDataExplorerEvent`** family — guarded wrappers in the SPA
+   ([global.js:500-565](../assets/js/data-explorer/global.js)). This is the
+   consolidated docs' "#30 guard analytics" recommendation, done — and after the
+   2026-06-27 cutover this **is now the live explorer**, so production DE
+   analytics finally runs through a guarded wrapper.
 3. **Raw `gtag('event', …)`** — scattered and unguarded: [main.js:14](../assets/js/main.js);
-   the **currently-live old explorer**
-   ([data-explorer/app.js:106-302](../assets/js/data-explorer/app.js),
-   [measures.js](../assets/js/data-explorer/measures.js) ×8,
-   [print.js:60](../assets/js/data-explorer/print.js)); and four templates
+   the **now-retired old explorer** (still reachable at `/data-explorer-old/`)
+   ([data-explorer-old/app.js:106-302](../assets/js/data-explorer-old/app.js),
+   [measures.js](../assets/js/data-explorer-old/measures.js) ×8,
+   [print.js:60](../assets/js/data-explorer-old/print.js)); and four templates
    ([nr-indicator-old.html:274](../themes/dohmh/layouts/partials/nr-indicator-old.html),
    [nr-indicator-new.html:311](../themes/dohmh/layouts/partials/nr-indicator-new.html),
    [search-modal.html:33](../themes/dohmh/layouts/partials/search-modal.html),
    [nr-output/single.html:533](../themes/dohmh/layouts/nr-output/single.html)).
 
-> Net effect: the "guarded wrapper" improvement exists only in code paths that
-> aren't shipped yet, while most *production* analytics flows through raw calls in
-> the old explorer and inline templates. **Recommend one shared `track(name,
-> params)` helper** (promote `sendAnalyticsEvent` to a tiny module) used
-> everywhere, and delete the per-area variants as each section migrates.
+> Net effect after the cutover: production DE analytics now flows through the
+> SPA's guarded wrapper, but the picture is still fragmented — `main.js`, the
+> retired old explorer, and four inline templates call `gtag` raw, and there are
+> two separate guarded wrappers (`sendAnalyticsEvent` and
+> `trackDataExplorerEvent`). **Recommend one shared `track(name, params)` helper**
+> (promote `sendAnalyticsEvent` to a tiny module) used everywhere, and delete the
+> per-area variants — including the old explorer's raw calls when its tree is
+> removed (§1).
 
 ### Event-taxonomy problems
 - **Double-counting `click_subscribe`** (also §11): fired by both
@@ -306,8 +322,8 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
   `search_click` and `click_search_open` (both in [site.js](../assets/js/site.js)).
   Decide one search vocabulary.
 - **Inherited typo `click_how_caclulated`** ("caclulated") exists in **both**
-  explorers — [old app.js:152](../assets/js/data-explorer/app.js) and
-  [new app.js:446](../assets/js/data-explorer-new/app.js) — so it has been
+  explorers — [old app.js:152](../assets/js/data-explorer-old/app.js) and the
+  live [app.js:446](../assets/js/data-explorer/app.js) — so it has been
   miscounting in GA for a long time and was faithfully copied into the rewrite.
 - **Param-name casing is inconsistent:** `IndicatorID` (PascalCase) in
   `click_indicator` vs snake_case everywhere else (`file_name`, `chart_type`,
@@ -363,7 +379,7 @@ In addition to the map/chart gaps in the DE audit:
 | 9 | P3 | [header.html:107…](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup |
 | 10 | P3 | [head.html:121-127](../themes/dohmh/layouts/partials/head.html) | Dead webfont `range` loop |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
-| 12 | P3 | [app.js:152](../assets/js/data-explorer/app.js) + [new app.js:446](../assets/js/data-explorer-new/app.js) | Misspelled GA event `click_how_caclulated` in both explorers (see §9) |
+| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
 
 ---
 
@@ -380,9 +396,12 @@ In addition to the map/chart gaps in the DE audit:
 CSS; de-dupe favicon/nyc-lib; fix the header markup bugs; gate GA out of
 dev/local and fix the double-fire + `click_how_caclulated` typo (§9).
 
-**Phase 2 — delete forks.** Set the explorer cutover; delete `data-explorer`
-(old) tree + dead `geography.js`/`_*.js` (~12K lines gone); sweep the
-`*-old/-new/-2/0` partial pairs; move geo crosswalks from JS to `data/`.
+**Phase 2 — delete forks (cutover done 2026-06-27; deletion pending).** The
+endpoint cutover landed. Remaining: delete the three `data-explorer-old` trees
+(content + layouts + JS, ~6,560 lines) once nothing depends on
+`/data-explorer-old/`, plus the dead `geography.js`/`_*.js` in the live
+`data-explorer` tree; sweep the `*-old/-new/-2/0` partial pairs; move geo
+crosswalks from JS to `data/`.
 
 **Phase 3 — structural.** Extract `nav-items` partial (de-dupe header); collapse
 the `related*` partials; move inline `<script>` out of the 66 templates into

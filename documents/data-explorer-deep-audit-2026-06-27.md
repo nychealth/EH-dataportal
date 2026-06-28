@@ -3,8 +3,17 @@
 Addendum to `consolidated-improvements-2026-04-17.md` and `-04-19.md`. Those
 documents merged four model reviews into 33 (then 24) recommendations. This
 audit was produced by reading every actively-loaded file in
-`assets/js/data-explorer-new/` line-by-line against the current `production`
+`assets/js/data-explorer/` line-by-line against the current `production`
 branch, plus the Hugo templates and partials that render the SPA.
+
+> **Updated 2026-06-27 (post-cutover).** The SPA was promoted to the canonical
+> `/data-explorer/` endpoint: its files moved from `assets/js/data-explorer-new/`
+> to `assets/js/data-explorer/`, and the retired legacy explorer is now at
+> `assets/js/data-explorer-old/`. All paths below have been updated to the
+> post-cutover layout, and these findings now describe the **live production**
+> explorer. (Line numbers were re-verified against the moved files — the cutover
+> only renamed directories and rewrote layout resource paths; it did not change
+> the SPA JavaScript, so every finding still stands.)
 
 Its purpose is twofold:
 
@@ -35,7 +44,7 @@ Not loaded by any template — **dead files totalling ~5,360 lines**:
 
 `utilities.js` no longer exists as a separate file — it was concatenated into
 `global.js` (see the `// ===== utilities.js =====` banner at
-[global.js:293](../assets/js/data-explorer-new/global.js)). Any plan that still
+[global.js:293](../assets/js/data-explorer/global.js)). Any plan that still
 references load-ordering `utilities.js` is out of date.
 
 > **Recommendation (extends consolidated #14/#25):** delete the four dead files.
@@ -48,10 +57,10 @@ references load-ordering `utilities.js` is out of date.
 
 | # (04-17) | Topic | Status today | Evidence |
 |---|---|---|---|
-| 9 | Consolidate default-measure priority | **Partial** | Done in measures.js via `pickDefaultMeasureByPriority` ([measures.js:19](../assets/js/data-explorer-new/measures.js)); but menu.js still has its own `getDefaultMeasure` ([menu.js:15](../assets/js/data-explorer-new/menu.js)) with *different* rules. Two sources of truth. |
-| 10 | Geo lookups → table | **Partial** | `getGeoFile` now uses `GEO_FILE_BY_TYPE` object ([global.js:305](../assets/js/data-explorer-new/global.js)); `prettifyGeoType` and `assignGeoRank` are still parallel `switch`es. |
-| 14 | DataTables destroy before re-init | **Partial** | Destroy is done ([table.js:481](../assets/js/data-explorer-new/table.js)); the handler-rebind half is *not* — `handleToggle()` still `off/on`s a body-delegated click on every `drawCallback` ([table.js:732](../assets/js/data-explorer-new/table.js), [:749](../assets/js/data-explorer-new/table.js)). |
-| 30 | Guard analytics | **Done** | `trackDataExplorerEvent` wraps `gtag` ([global.js:500](../assets/js/data-explorer-new/global.js)). |
+| 9 | Consolidate default-measure priority | **Partial** | Done in measures.js via `pickDefaultMeasureByPriority` ([measures.js:19](../assets/js/data-explorer/measures.js)); but menu.js still has its own `getDefaultMeasure` ([menu.js:15](../assets/js/data-explorer/menu.js)) with *different* rules. Two sources of truth. |
+| 10 | Geo lookups → table | **Partial** | `getGeoFile` now uses `GEO_FILE_BY_TYPE` object ([global.js:305](../assets/js/data-explorer/global.js)); `prettifyGeoType` and `assignGeoRank` are still parallel `switch`es. |
+| 14 | DataTables destroy before re-init | **Partial** | Destroy is done ([table.js:481](../assets/js/data-explorer/table.js)); the handler-rebind half is *not* — `handleToggle()` still `off/on`s a body-delegated click on every `drawCallback` ([table.js:732](../assets/js/data-explorer/table.js), [:749](../assets/js/data-explorer/table.js)). |
+| 30 | Guard analytics | **Done** | `trackDataExplorerEvent` wraps `gtag` ([global.js:500](../assets/js/data-explorer/global.js)). |
 | 18 | "Stub renderers" trend/correlate/disparities | **Stale claim** | All three are fully implemented (~630 / ~570 / ~360 lines). Do not treat them as stubs. |
 | 1–8, 11–13, 15–17, 19–24, 26–29, 31–33 | State store, URL module, renderer registry, fetch cache, layer/Vega reuse, hover reset, event bus, inline handlers, dead code, execCommand, debug logger, etc. | **Still open** | Confirmed live in this read; specifics cited below where I found exact locations the model reviews didn't. |
 
@@ -59,13 +68,13 @@ Two consolidated items deserve a concrete pin:
 
 - **#15/#17 (hover reset):** still O(n). Every map `mouseover` runs
   `geojsonLayer.eachLayer(l => geojsonLayer.resetStyle(l))`
-  ([map.js:464](../assets/js/data-explorer-new/map.js)). There is even a
+  ([map.js:464](../assets/js/data-explorer/map.js)). There is even a
   `let currentlyHighlighted = null` declared and never used
-  ([map.js:456](../assets/js/data-explorer-new/map.js)) — the fix was started and
+  ([map.js:456](../assets/js/data-explorer/map.js)) — the fix was started and
   abandoned.
 - **#26 (execCommand copy):** `copyCitation` no longer uses `execCommand`, but it
   still builds a throwaway `<textarea>`, selects it, then calls
-  `navigator.clipboard.writeText(temp.value)` ([global.js:197](../assets/js/data-explorer-new/global.js)).
+  `navigator.clipboard.writeText(temp.value)` ([global.js:197](../assets/js/data-explorer/global.js)).
   The textarea is fully redundant — `writeText` uses the string, not the
   selection. Delete the textarea dance.
 
@@ -74,7 +83,7 @@ Two consolidated items deserve a concrete pin:
 ## 2. Confirmed bugs the model reviews missed (P1/P2)
 
 ### 2.1 `downloadData()` throws on every chart-data download — **P1**
-[global.js:590-616](../assets/js/data-explorer-new/global.js). The function
+[global.js:590-616](../assets/js/data-explorer/global.js). The function
 signature is `downloadData()` (all params commented out), but the last line is
 `e.stopPropagation();`. `e` is undefined → `ReferenceError` every time. It is
 wired via inline `onclick="downloadData()"` in three places
@@ -84,8 +93,8 @@ on each download and anything added after that line would never run. **Fix:**
 delete the stray `e.stopPropagation();`.
 
 ### 2.2 Percentile measures mis-formatted as percent — **P1 (data display)**
-[map.js:324](../assets/js/data-explorer-new/map.js) and
-[bar.js:122](../assets/js/data-explorer-new/bar.js):
+[map.js:324](../assets/js/data-explorer/map.js) and
+[bar.js:122](../assets/js/data-explorer/bar.js):
 
 ```js
 if (mt.includes('Percent') || mt.includes('percent') && !mt.includes('percentile'))
@@ -95,40 +104,40 @@ if (mt.includes('Percent') || mt.includes('percent') && !mt.includes('percentile
 A measure named with "Percentile" contains the substring "Percent", so it takes
 the first branch → `isPercent = true`, `displayType = '%'`. A 90th-percentile
 value renders as "90 %". The correct parenthesization `(A || B) && !C` already
-exists in [trend.js:168](../assets/js/data-explorer-new/trend.js),
-[correlate.js:225](../assets/js/data-explorer-new/correlate.js), and
-[disparities.js:85](../assets/js/data-explorer-new/disparities.js) — map and bar
+exists in [trend.js:168](../assets/js/data-explorer/trend.js),
+[correlate.js:225](../assets/js/data-explorer/correlate.js), and
+[disparities.js:85](../assets/js/data-explorer/disparities.js) — map and bar
 are simply the two that got it wrong. **Fix:** add the parentheses; extract one
 shared `isPercentMeasure(measurementType)` helper so all five sites agree.
 
 ### 2.3 Citywide click-through targets a nonexistent element — **P2**
-[map.js:504,614,665,716](../assets/js/data-explorer-new/map.js) call
+[map.js:504,614,665,716](../assets/js/data-explorer/map.js) call
 `document.getElementById('v-pills-trend')`. The real pane is `v-pills-trends`
 (plural) and the tab button is `v-pills-trends-tab`
 ([de-tab-content.html:205](../themes/dohmh/layouts/partials/de-tab-content.html)).
 One spot inside the same file uses the correct `'v-pills-trends-tab'`
-([map.js:440](../assets/js/data-explorer-new/map.js)). So for citywide-only
+([map.js:440](../assets/js/data-explorer/map.js)). So for citywide-only
 indicators the auto-switch-to-trend silently no-ops (and logs a warning). **Fix:**
 use `v-pills-trends-tab` everywhere.
 
 ### 2.4 `setTimeout(updateChartPlotSize(), 1000)` runs immediately — **P2**
-[print.js:307](../assets/js/data-explorer-new/print.js). The `()` invokes the
+[print.js:307](../assets/js/data-explorer/print.js). The `()` invokes the
 function now and passes its `undefined` return to `setTimeout`; the 1000 ms delay
 is a no-op. **Fix:** `setTimeout(updateChartPlotSize, 1000)`.
 
 ### 2.5 Misspelled analytics event — **P2 (data quality)**
-[app.js:446](../assets/js/data-explorer-new/app.js) fires
+[app.js:446](../assets/js/data-explorer/app.js) fires
 `'click_how_caclulated'` ("caclulated"). GA will bucket it under the typo.
 
 ### 2.6 `.reduce((a,b)=>a.concat(b))` with no seed can crash — **P2**
-[data.js:463,509,557](../assets/js/data-explorer-new/data.js) (and
-[:128](../assets/js/data-explorer-new/data.js)). If a measure's
+[data.js:463,509,557](../assets/js/data-explorer/data.js) (and
+[:128](../assets/js/data-explorer/data.js)). If a measure's
 `VisOptions[0].Table|Map|Trend` array is empty, the mapped array is empty and
 `reduce` with no initial value throws *"Reduce of empty array with no initial
 value."* **Fix:** pass an empty Arquero table as the seed, or guard for length.
 
 ### 2.7 Fabricated confidence intervals left in from testing — **P1 (data integrity)**
-[bar.js:493,497](../assets/js/data-explorer-new/bar.js). The Vega transform sets
+[bar.js:493,497](../assets/js/data-explorer/bar.js). The Vega transform sets
 `ciLow = datum.Value * .95` / `ciHigh = datum.Value * 1.05` when `CI` is empty,
 commented `// hard set for test`. In a dataset where *some* rows carry a real CI
 (so `hasCI` is true) and others don't, the others render error bars at an
@@ -136,19 +145,19 @@ invented ±5 %. **Fix:** drop rows without a real CI out of the error-bar layer
 rather than synthesizing one.
 
 ### 2.8 Duplicate `"test"` key silently dropped — **P3**
-[bar.js:208-210](../assets/js/data-explorer-new/bar.js): two `"test"` keys in one
+[bar.js:208-210](../assets/js/data-explorer/bar.js): two `"test"` keys in one
 object literal; the first is overwritten. Harmless at runtime, but it signals the
 intended condition isn't what runs.
 
 ### 2.9 Dead indicator-list handler carrying a casing bug — **P3**
-[app.js:463-478](../assets/js/data-explorer-new/app.js) binds
+[app.js:463-478](../assets/js/data-explorer/app.js) binds
 `$('#indicatorButtons').on('click', …)`, but `#indicatorButtons` exists only in
-the *old* `data-explorer/single.html`, never in `data-explorer-new`. The handler
+the *old* explorer (now `data-explorer-old/single.html`), never in the new SPA. The handler
 never fires. If it ever did, `e.target.dataset.IndicatorID`
-([app.js:465](../assets/js/data-explorer-new/app.js)) would read `undefined` —
+([app.js:465](../assets/js/data-explorer/app.js)) would read `undefined` —
 HTML lowercases attributes, so the dataset key is `indicatorid`. The live path is
 the modal's delegated `.de-select-indicator-button[data-indicator-id]`
-([topic-indicator-selector.js:272](../assets/js/data-explorer-new/topic-indicator-selector.js)).
+([topic-indicator-selector.js:272](../assets/js/data-explorer/topic-indicator-selector.js)).
 **Fix:** delete the dead handler.
 
 ### 2.10 Table-tab "Download data" button does nothing — **P3**
@@ -158,7 +167,7 @@ Three tabs wire `onclick="downloadData()"`; the Table tab's button has no handle
 remove or wire it.)
 
 ### 2.11 Disparities jitter likely non-deterministic — **P2 (verify)**
-[disparities.js:114](../assets/js/data-explorer-new/disparities.js) uses
+[disparities.js:114](../assets/js/data-explorer/disparities.js) uses
 `Math.seedrandom` when present, else `Math.random`. `seedrandom` is referenced
 only by the *old* explorer; it does not appear to be loaded on the new page, so
 the fallback runs and the scatter jitter re-randomizes on every redraw (points
@@ -173,7 +182,7 @@ The consolidated docs touch a11y only via "sanitize innerHTML." For a city
 government site this is a legal exposure (WCAG 2.1 AA / Section 508). Findings:
 
 - **The map has no accessible representation.** `<div id="map">`
-  ([single.html:13](../themes/dohmh/layouts/data-explorer-new/single.html)) has
+  ([single.html:13](../themes/dohmh/layouts/data-explorer/single.html)) has
   no `role`, `aria-label`, or text alternative. The choropleth conveys all of its
   data through color and **hover only** — the legend readouts (`#hoveredGeo`,
   `#hoveredValue`) update on `mouseover`, and Leaflet vector features aren't in
@@ -209,11 +218,11 @@ change silently alters behavior with no error:
 
 | Constant | Where | Meaning |
 |---|---|---|
-| `221` (×4) | [measures.js:320,470,1067,1113,1363](../assets/js/data-explorer-new/measures.js) | disparities secondary (poverty) measure |
-| `[365,370,375,391]`, `[386]` | [measures.js:1537-1538](../assets/js/data-explorer-new/measures.js) | air-quality measures needing Annual-Average / Summer time slices |
-| `[858,859,860,861,862,863]` | [measures.js:1647](../assets/js/data-explorer-new/measures.js) | "has quarters" comparison measures |
-| `[564,565,566,704,715…730]` | [trend.js:158](../assets/js/data-explorer-new/trend.js) | comparisons that suppress the subtitle |
-| `[566,565,564]` | [trend.js:310](../assets/js/data-explorer-new/trend.js) | "Action days" tooltip label |
+| `221` (×4) | [measures.js:320,470,1067,1113,1363](../assets/js/data-explorer/measures.js) | disparities secondary (poverty) measure |
+| `[365,370,375,391]`, `[386]` | [measures.js:1537-1538](../assets/js/data-explorer/measures.js) | air-quality measures needing Annual-Average / Summer time slices |
+| `[858,859,860,861,862,863]` | [measures.js:1647](../assets/js/data-explorer/measures.js) | "has quarters" comparison measures |
+| `[564,565,566,704,715…730]` | [trend.js:158](../assets/js/data-explorer/trend.js) | comparisons that suppress the subtitle |
+| `[566,565,564]` | [trend.js:310](../assets/js/data-explorer/trend.js) | "Action days" tooltip label |
 
 > **Recommendation:** move these into metadata flags on the measure/comparison
 > records, or failing that, a single `DE_MEASURE_RULES` constants block with a
@@ -223,13 +232,13 @@ change silently alters behavior with no error:
 
 ## 5. Duplication and structure not in the consolidated list (P3)
 
-- **Triplicated join expansion.** [data.js:425-564](../assets/js/data-explorer-new/data.js)
+- **Triplicated join expansion.** [data.js:425-564](../assets/js/data-explorer/data.js)
   has three ~40-line blocks for Table / Map / Trend times-geos that differ only by
   the `VisOptions[0].Table|Map|Trend` key. Collapse to one helper.
 - **Two default-measure pickers** (see §1, #9): unify menu.js onto
   `pickDefaultMeasureByPriority` so the dropdown highlight and the rendered
   default can't diverge.
-- **5× copy-pasted label-collision transform.** [trend.js:515-554](../assets/js/data-explorer-new/trend.js)
+- **5× copy-pasted label-collision transform.** [trend.js:515-554](../assets/js/data-explorer/trend.js)
   repeats the same `lag`/`calculate` pair as `prevLabel`…`prevLabel5`. Build the
   transform array in a loop.
 - **~240 lines of behavioral JS inline in a partial.**
@@ -244,28 +253,28 @@ change silently alters behavior with no error:
 ## 6. Robustness and consistency (P2/P3)
 
 - **Core fetches have no `.catch()`:** `loadData`
-  ([data.js:270](../assets/js/data-explorer-new/data.js)), both topo fetches
-  ([map.js:387,578](../assets/js/data-explorer-new/map.js)), 311 `d3.csv`
-  ([311.js:20](../assets/js/data-explorer-new/311.js)). A single failed request
+  ([data.js:270](../assets/js/data-explorer/data.js)), both topo fetches
+  ([map.js:387,578](../assets/js/data-explorer/map.js)), 311 `d3.csv`
+  ([311.js:20](../assets/js/data-explorer/311.js)). A single failed request
   leaves the UI broken with no message. (Consolidated #29, now with exact sites.)
 - **Mixed Arquero filter styles.** String-interpolated predicates —
   `.filter(\`d => d.MeasureID === ${id}\`)` — at
-  [data.js:847,895](../assets/js/data-explorer-new/data.js) and
-  [measures.js:477-478](../assets/js/data-explorer-new/measures.js) sit next to
+  [data.js:847,895](../assets/js/data-explorer/data.js) and
+  [measures.js:477-478](../assets/js/data-explorer/measures.js) sit next to
   `aq.escape(d => …)` elsewhere. The string form is an injection-shaped pattern
   and breaks on non-numeric/quoted values. Standardize on `aq.escape`.
 - **String-interpolated `derive` with indicator names.**
-  [trend.js:628](../assets/js/data-explorer-new/trend.js),
-  [correlate.js:563-564](../assets/js/data-explorer-new/correlate.js),
-  [disparities.js:354](../assets/js/data-explorer-new/disparities.js) embed
+  [trend.js:628](../assets/js/data-explorer/trend.js),
+  [correlate.js:563-564](../assets/js/data-explorer/correlate.js),
+  [disparities.js:354](../assets/js/data-explorer/disparities.js) embed
   `indicatorName` into an Arquero expression string; a name containing an
   apostrophe breaks the expression.
-- **`.filter(d => !d == "")`** at [table.js:191](../assets/js/data-explorer-new/table.js)
-  and [trend.js:131](../assets/js/data-explorer-new/trend.js) — parses as
+- **`.filter(d => !d == "")`** at [table.js:191](../assets/js/data-explorer/table.js)
+  and [trend.js:131](../assets/js/data-explorer/trend.js) — parses as
   `(!d) == ""` and works only by coincidence. Use `.filter(Boolean)`.
 - **Logging.** Nearly every function opens with `console.log`, and bar.js logs
   full data arrays and the compiled Vega spec on every render
-  ([bar.js:63-65,515-516](../assets/js/data-explorer-new/bar.js)). Gate behind a
+  ([bar.js:63-65,515-516](../assets/js/data-explorer/bar.js)). Gate behind a
   `?debug` flag (consolidated #28) and drop the array dumps.
 
 ---
