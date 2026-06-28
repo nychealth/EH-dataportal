@@ -4,6 +4,14 @@ date: 2021-05-28 18:02:58.738512
 draft: true
 seo_title: "This is a dummy topic"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+vega: true
+excludeFooter: true
 tags: 
 categories: ["transportation","climatehealth"]
 keywords: ["smoking","cigarettes","cancer","secondhand","smoke","work","home", "children","transportation","climatehealth","keyword","morekeywords"]

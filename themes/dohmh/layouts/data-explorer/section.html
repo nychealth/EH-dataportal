@@ -1,69 +1,179 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
+<article class="container-fluid de-wrapper" id="skip-header-target" data-pagefind-ignore="all">
 
-    <div class="col-lg-10 col-md-12 mx-auto">
-        <div class="row">
-            <div class="col-md-10 col-sm-12 mt-2 mb-3">
-                <nav aria-label="breadcrumb" class="">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                        <li class="breadcrumb-item active"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+    <section>
 
+        <!-- Section.html doesn't have the left-side indicator box and legend overlays-->
 
-        <div class="row mt-2">
-            <div class="col-12">
-                <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
-            </div>
-        </div>
+        <!-- For visual continuity, Section.html has the right-side green bar, but no tab content -->
 
-        <div class="row mt-2">
-            <div class="col-md-8 col-sm-12 pr-md-6">
+        <div class="row position-relative" style="z-index: 2;">
 
-                {{ .Content }}
+            <div class="position-absolute de-tabs fs-sm">
+                <div class="d-flex flex-column flex-md-row justify-content-end ">
 
-                {{ $src := .Resources.GetMatch .Params.image }}
-                {{ with $src }}
-                {{ $image := .Resize "1200x" }}
-                    <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
-                {{ end }}
+                    {{- partial "de-tab-button" . -}}
 
-                {{- partial "de-topic-indicators.html" . -}}
-
-                <p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
-                <div class="mb-3">
-                    {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" .)  }}
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12 pl-md-3 mb-5">
-
-                <!-- Recently updated data -->
-                <h3 class="h4 mb-1 pb-1">Recently updated datasets</h3>
-                {{ range .Site.Data.recently_updated_data.featured }}
-                <div class=" mb-1 pt-1 border-top font-weight-bold">
-                    <a href={{ relURL ( path.Join "data-explorer" .link ) }} class="px-2 d-inline-block">{{ .copy }}</a>
-                </div>
-                {{ end }}
-
-                <h3 class="h4 mb-1 pb-1 mt-5">Browse datasets</h3>
-
-                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="data-index">Dataset index</a> - Search by term, see available years and geographies, and filter by data source.</p>
-
-                <p class="mb-1 pt-1 border-top px-2"><a class="font-weight-bold" href="indicator-catalog">Catalog of indicators</a> - Search by term, get metadata and download links.</p>
-
+            <div id="map">
+                <!-- map -->
             </div>
 
         </div>
 
-    </div>
-
-    </div>
+    </section>
 
 </article>
+
+{{- $selector            := resources.Get "js/data-explorer/topic-indicator-selector.js" -}}
+{{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $selector_secure.RelPermalink }}" integrity="{{ $selector_secure.Data.Integrity }}" defer></script>
+
+
+<script>
+
+    // Creates the lightweight Leaflet map used on the section chooser page. Identical init to the map used by the Data Explorer SPA.
+
+    // Initialize the map
+    const map = L.map('map', {
+        zoomControl: false
+    }).setView([40.700142, -73.921546], 11);
+
+
+    // Adds the shared CARTO basemap tiles behind the chooser page map.
+    // Add a basemap
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20,
+        minZoom: 0
+    }).addTo(map);
+
+
+    // hashes and modals
+
+    $(document).ready(function() {
+
+        console.log("* section.html [document.ready]");
+
+        // ---------------------------------------------------------------
+        // Hash-based modal navigation
+        //
+        //   #topics     → topic selector modal
+        //   #indicators → indicator selector modal
+        //
+        // Selecting an indicator navigates to the topic page (full load).
+        // Back / forward traverse modal states via popstate.
+        // Topic data is stored in history.state so the indicator list
+        // can be replayed after a full page reload (back from topic page).
+        // ---------------------------------------------------------------
+
+        const state = window.history.state;
+
+        // If arriving with #indicators and valid state, replay the indicator
+        // list so the modal has content when it opens.
+
+        if (window.location.hash === '#indicators' && state && state.indicators) {
+
+            printIndicators(state.indicators, state.destination);
+
+        } else {
+
+            // Fresh visit or missing state — start at topic selection.
+
+            window.history.replaceState(null, '', '#topics');
+
+        }
+
+        // Track whether a popstate handler is driving the modal transition.
+        // When true, the hidden.bs.modal handler must NOT call history.back()
+        // since the history stack already moved.
+
+        let navigatingByHistory = false;
+
+        // Show the correct modal for the current hash. Sequences hide → show
+        // to avoid Bootstrap 4 double-backdrop issues.
+
+        const syncModalsToHash = () => {
+
+            navigatingByHistory = true;
+
+            if (window.location.hash === '#indicators') {
+
+                // Want indicator modal open
+
+                if (!$('#indicatorSelector').hasClass('show')) {
+
+                    if ($('#topicSelector').hasClass('show')) {
+                        $('#topicSelector').one('hidden.bs.modal', () => {
+                            $('#indicatorSelector').modal('show');
+                        });
+                        $('#topicSelector').modal('hide');
+                    } else {
+                        $('#indicatorSelector').modal('show');
+                    }
+
+                }
+
+            } else {
+
+                // Want topic modal open (#topics or anything else)
+
+                if (!$('#topicSelector').hasClass('show')) {
+
+                    if ($('#indicatorSelector').hasClass('show')) {
+                        $('#indicatorSelector').one('hidden.bs.modal', () => {
+                            navigatingByHistory = false;
+                            $('#topicSelector').modal('show');
+                        });
+                        $('#indicatorSelector').modal('hide');
+                    } else {
+                        navigatingByHistory = false;
+                        $('#topicSelector').modal('show');
+                    }
+
+                } else {
+                    navigatingByHistory = false;
+                }
+
+            }
+
+        };
+
+        // When the indicator modal opens from a topic click, push
+        // #indicators with the topic data so back/forward can replay it.
+        // Guard: skip if hash is already #indicators (popstate replay).
+
+        $('#indicatorSelector').on('shown.bs.modal', () => {
+            if (window.location.hash !== '#indicators') {
+                window.history.pushState(lastTopicData, '', '#indicators');
+            }
+            navigatingByHistory = false;
+        });
+
+        // When the indicator modal is dismissed by the user (X / backdrop),
+        // go back in history so #topics is restored and the topic modal
+        // reopens via popstate. Skip when the hide was triggered by
+        // back/forward navigation (syncModalsToHash already moved history).
+
+        $('#indicatorSelector').on('hidden.bs.modal', () => {
+            if (!navigatingByHistory && window.location.hash === '#indicators') {
+                window.history.back();
+            }
+        });
+
+        // Back / forward button → sync modals to the new hash
+
+        window.addEventListener('popstate', syncModalsToHash);
+
+        // Initial open
+
+        syncModalsToHash();
+
+    });
+</script>
 
 {{ end }}

@@ -1,6 +1,6 @@
 {{/* de-chooser-modal.html */}} 
 
-{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer-new" -}} 
+{{- $pages := where .Site.RegularPages.ByTitle "Section" "data-explorer" -}} 
 {{- $half := div (len $pages | add 1) 2 -}}
 
 <div class="col-md-6">
@@ -74,7 +74,7 @@
 
 {{- range .Site.RegularPages.ByTitle }} 
 
-    {{- if and (eq .Section "data-explorer-new") .Params.hideFromRange }}
+    {{- if and (eq .Section "data-explorer") .Params.hideFromRange }}
 
         <div class="col-6 mt-2 border-top pt-2">
             <p class="mb-1">

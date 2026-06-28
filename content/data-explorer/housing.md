@@ -5,6 +5,13 @@ draft: true
 seo_title: "Housing data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing in NYC."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["housing", "inequality", "neighborhoods"]
 keywords:
@@ -45,6 +52,7 @@ indicators:
       - 2179
   - header: Safety
     IndicatorID:
+      - 2188
       - 2185
       - 2377
   - header: null

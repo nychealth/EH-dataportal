@@ -5,6 +5,14 @@ draft: false
 seo_title: "Mental health data in NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mental health in NYC."
+blurb: "Depression and psychiatric conditions"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories:
   ["inequality", "publicspace", "healthoutcomes", "housing", "climatehealth"]

@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/air-quality-air-pollu
 seo_title: "Health impacts of air pollution data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations on the health impacts of air pollution in NYC."
+blurb: "Hospital and ED visits, and deaths"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["airquality", "publicspace", "healthoutcomes", "inequality"]
 keywords:
@@ -41,7 +49,7 @@ indicators:
       - 2108
 related:
   - title: "The public health impacts of PM2.5 from traffic air pollution"
-    url: "data-stories/traffic-and-air-pollution/"  
+    url: "data-stories/traffic-and-air-pollution/"
   - title: "Air quality in car-free areas"
     url: "data-stories/car-free-zones/"
   - title: "Real-Time Air Quality: PM2.5 in NYC"

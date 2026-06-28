@@ -2,85 +2,425 @@
 // app.js
 // ======================================================================= //
 
+// URL management, view rendering, tab listeners, and popstate handler
+
+// console.log(">> app.js");
+
 // ----------------------------------------------------------------------- //
-// history traversal
+// write current globals to URL and push history
 // ----------------------------------------------------------------------- //
 
-// clicking on the indicator dropdown calls loadIndicator with that IndicatorID
+// call this after any dropdown change to sync the URL
 
-// call loadindicator when traversing through the history
+const buildCanonicalSearchParams = () => {
 
-window.onpopstate = function (event) {
+    const params = new URLSearchParams();
 
-    const new_url = new URL(window.location);
-    let new_indicatorId = parseFloat(new_url.searchParams.get('id'));
-
-    if (new_indicatorId != indicatorId) {
-
-        loadIndicator(new_indicatorId, true)
-
+    if (IndicatorID != null && !Number.isNaN(Number(IndicatorID))) {
+        params.set('id', IndicatorID);
     }
+
+    // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
+    if (MeasureID) {
+        params.set('MeasureID', MeasureID);
+    }
+
+    if (GeoType) {
+        params.set('GeoType', GeoType);
+    }
+
+    if (TimePeriodID) {
+        params.set('TimePeriodID', TimePeriodID);
+    }
+
+    if (overlay) {
+        params.set('overlay', overlay);
+    }
+
+    return params;
+
 };
 
-window.addEventListener("hashchange", () => {
 
-    const hash = window.location.hash.replace('#', "");
 
-    switch (hash) {
+// ----------------------------------------------------------------------- //
+// history state helpers
+// ----------------------------------------------------------------------- //
 
-        // using fallthrough
+// Centralizes history writes so replace/push state stay consistent.
+const writeHistoryState = (historyMethod, nextState, nextURL) => {
 
-        case 'display=summary':
-        case 'tab-table':
-            currentHash = 'display=summary';
-            $('#tab-btn-table').tab('show');
-            showTable();
+    window.history[historyMethod](nextState, '', nextURL);
+    console.log(`${historyMethod} →`, nextURL.search);
+
+};
+
+
+// Resets sub-selections before loading a different indicator.
+const resetSelectionForNewIndicator = (nextIndicatorID) => {
+
+    // drop sub-selections so the new indicator starts with a clean slate
+    MeasureID = null;
+    GeoType = null;
+    TimePeriodID = null;
+
+    // overlay is intentionally preserved across indicator selection
+
+    const nextURL = new URL(window.location);
+    nextURL.search = new URLSearchParams({ id: Number(nextIndicatorID) }).toString();
+
+    writeHistoryState('replaceState', { id: Number(nextIndicatorID) }, nextURL);
+
+};
+
+// Pushes the current explorer state into the URL and history stack.
+const pushSelectionToURL = () => {
+
+    const url = new URL(window.location);
+
+    // Rebuild the explorer params in a stable order and drop legacy aliases.
+    url.search = buildCanonicalSearchParams().toString();
+
+    writeHistoryState('pushState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay }, url);
+};
+
+
+// ----------------------------------------------------------------------- //
+// rewrite legacy URL aliases to canonical params
+// ----------------------------------------------------------------------- //
+
+// Renames legacy GeoTypeID params to the canonical GeoType param.
+const normalizeLegacyGeoTypeURL = () => {
+
+    const nextURL = new URL(window.location.href);
+    const rawSearch = nextURL.search.replace(/^\?/, '');
+
+    // Exit early when there is no query string to normalize.
+    if (!rawSearch) {
+        return;
+    }
+
+    // split into individual key=value pairs, dropping empty strings
+    const searchParts = rawSearch.split('&').filter(Boolean);
+    // true if a canonical GeoType param is already present
+    const hasCanonicalGeoType = searchParts.some(part => part.split('=')[0] === 'GeoType');
+    let didChange = false;
+    let renamedGeoType = null;
+
+    // Rewrite each key=value pair while preserving everything unrelated to GeoType.
+    const normalizedParts = searchParts.flatMap(part => {
+        const [key, ...rest] = part.split('=');
+        const value = rest.join('=');
+
+        // Leave unrelated params untouched so future query params survive this rewrite.
+        // pass non-GeoTypeID params through unchanged
+        if (key !== 'GeoTypeID') {
+            return [part];
+        }
+
+        didChange = true;
+        // capture the first GeoTypeID value for the history state
+        renamedGeoType = renamedGeoType ?? decodeURIComponent(value || '');
+
+        // if GeoType already exists, drop the duplicate GeoTypeID param
+        if (hasCanonicalGeoType) {
+            return [];
+        }
+
+        // otherwise rename GeoTypeID → GeoType
+        return [`GeoType=${value}`];
+    });
+
+    if (!didChange) {
+        return;
+    }
+
+    nextURL.search = normalizedParts.join('&');
+
+    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType: GeoType || renamedGeoType, TimePeriodID, overlay }, nextURL);
+
+};
+
+
+// Rewrites the legacy overlay=map value to the current overlay=bar alias.
+const normalizeLegacyOverlayURL = () => {
+
+    const nextURL = new URL(window.location.href);
+
+    // 'map' was an old overlay value; 'bar' is its current equivalent
+    if (nextURL.searchParams.get('overlay') !== 'map') {
+        return;
+    }
+
+    nextURL.searchParams.set('overlay', 'bar');
+
+    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay: 'bar' }, nextURL);
+
+};
+
+// Converts legacy hash-based display state into the canonical overlay query param.
+const normalizeLegacyHashOverlayURL = () => {
+
+    // Keep the mapping aligned with the legacy explorer's hash vocabulary so old bookmarks and
+    // server-side path rewrites land on the intended overlay without duplicating view logic.
+    const legacyOverlayByHash = {
+        '#display=summary': 'table',
+        '#display=map': 'bar',
+        '#display=trend': 'trend',
+        '#display=links': 'links',
+        '#tab-table': 'table',
+        '#tab-map': 'bar',
+        '#tab-trend': 'trend',
+        '#tab-links': 'links'
+    };
+
+    const nextOverlay = legacyOverlayByHash[window.location.hash];
+
+    if (!nextOverlay) {
+        return;
+    }
+
+    const nextURL = new URL(window.location.href);
+    let didChange = false;
+
+    // Respect a query-string overlay when it already exists. That value is the canonical state in
+    // the new explorer, so the legacy hash should only backfill missing information.
+    if (!nextURL.searchParams.has('overlay')) {
+        nextURL.searchParams.set('overlay', nextOverlay);
+        didChange = true;
+    }
+
+    // Remove the legacy fragment after conversion so later startup code reads one authoritative
+    // representation instead of having query params and hash state compete with each other.
+    if (nextURL.hash) {
+        nextURL.hash = '';
+        didChange = true;
+    }
+
+    if (!didChange) {
+        return;
+    }
+
+    // This is a normalization pass, not a user navigation event, so replaceState keeps history
+    // clean while still making the URL canonical for refreshes and copied links.
+    window.history.replaceState(window.history.state, '', nextURL);
+    console.log('replaceState →', nextURL.search);
+
+};
+
+normalizeLegacyHashOverlayURL();
+
+
+// ----------------------------------------------------------------------- //
+// render the active tab with current globals
+// ----------------------------------------------------------------------- //
+
+// updateMap controls whether the Leaflet map is re-rendered.
+// Pass true from dropdown changes, initial load, and indicator changes.
+// Tab clicks pass false (default) — the map doesn't need to redraw just because
+// the overlay pane switches.
+
+let pendingTableOverlayToken = 0;
+
+// Runs renderer only when module has assigned active show* function.
+const runOverlayRenderer = (renderer) => {
+
+    if (typeof renderer !== 'function') {
+        return false;
+    }
+
+    renderer();
+
+    return true;
+
+};
+
+// Give the map one full paint before starting heavy table work.
+const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
+
+    pendingTableOverlayToken += 1;
+    const token = pendingTableOverlayToken;
+
+    // Token-gate delayed work so stale map renders cannot reopen an old table state later.
+    Promise.resolve(afterRender)
+        .catch(() => null)
+        .then(() => {
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    if (overlay === 'table' && token === pendingTableOverlayToken) {
+                        showTable();
+                    }
+                });
+            });
+        });
+
+};
+
+const renderCurrentView = (updateMap = false) => {
+
+    console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
+
+    // Normalize sync and async map work into one promise so overlay timing can treat both the same.
+    const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
+
+    // route the current overlay value to the matching show* renderer
+    switch (overlay) {
+
+        case 'none': {
+            // close all overlay panes without rendering a chart
+            document.querySelectorAll('.nav-link[data-toggle="pill"]').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('#v-pills-tabContent .tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            const tabContent = document.querySelector('#v-pills-tabContent');
+            if (tabContent) tabContent.style.display = 'none';
+            break;
+        }
+
+        case 'bar':
+            runOverlayRenderer(showBar);
             break;
 
-        case 'display=map':
-        case 'tab-map':
-            currentHash = 'display=map';
-            $('#tab-btn-map').tab('show');
-            showMap();
+        case 'table':
+            // If the map also changed, let that redraw settle before starting heavy table work.
+            if (updateMap) {
+                scheduleTableOverlayRender(mapRenderPromise);
+            } else {
+                runOverlayRenderer(showTable);
+            }
             break;
 
-        case 'display=trend':
-        case 'tab-trend':
-            currentHash = 'display=trend';
-            $('#tab-btn-trend').tab('show');
-            showTrend();
+        case 'map':
+            // 'map' is treated as an alias for 'bar' (bar chart with geo context)
+            runOverlayRenderer(showBar);
             break;
 
-        case 'display=links':
-        case 'tab-links':
-            currentHash = 'display=links';
-            $('#tab-btn-links').tab('show');
-            showLinks();
+        case 'trend':
+            runOverlayRenderer(showTrend);
+            break;
+
+        case 'links':
+            runOverlayRenderer(showLinks);
             break;
 
         default:
-            currentHash = 'display=summary';
+            // fall back to bar chart if overlay value is unrecognized
+            runOverlayRenderer(showBar);
             break;
     }
+};
 
-    state = window.history.state;
 
+// ----------------------------------------------------------------------- //
+// popstate — browser back / forward
+// ----------------------------------------------------------------------- //
+
+// Restores explorer state when the user navigates browser history.
+window.addEventListener('popstate', async (event) => {
+
+    console.log("popstate →", window.location.search, window.location.hash);
+
+    normalizeLegacyHashOverlayURL();
+
+    const params = new URLSearchParams(window.location.search);
+
+    // parse each URL param, coercing numeric fields to floats
+    const urlID           = params.get('id')          ? parseFloat(params.get('id'))          : null;
+    const urlMeasureID    = params.get('MeasureID')   ? parseFloat(params.get('MeasureID'))   : null;
+    const urlGeoType      = params.get('GeoType') || params.get('GeoTypeID') || null;
+    const urlTimePeriodID = params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null;
+    const urlOverlay      = params.get('overlay')     || null;
+
+    if (params.get('GeoTypeID') && !params.get('GeoType')) {
+        // rewrite GeoTypeID alias before reading it into globals
+        normalizeLegacyGeoTypeURL();
+    }
+
+    if (urlOverlay === 'map') {
+        normalizeLegacyOverlayURL();
+    }
+
+    // restore overlay
+
+    if (urlOverlay) overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
+
+    // indicator changed → full reload
+
+    // Reload the full indicator pipeline when history points to a different indicator.
+    if (urlID && urlID !== IndicatorID) {
+
+        await loadIndicator(urlID, true);
+        printIndicatorInfo(urlID);
+        printMenus(urlID);
+        await renderMeasures();
+        renderCurrentView(true);
+        return;
+    }
+
+    // sub-indicator params changed → update globals, sync menus, re-render
+
+    if (urlMeasureID)    MeasureID    = urlMeasureID;
+    if (urlGeoType)      GeoType      = urlGeoType;
+    if (urlTimePeriodID) TimePeriodID = urlTimePeriodID;
+
+    // sync the dropdown menus to match the restored globals
+
+    const ind = indicators?.find(d => d.IndicatorID === Number(IndicatorID));
+
+    // Rebuild dropdowns only when indicator metadata is already available in memory.
+    if (ind) updateAllMenus(ind);
+
+    renderCurrentView(true);
 
 });
+
 
 // ----------------------------------------------------------------------- //
 // tab event listeners
 // ----------------------------------------------------------------------- //
 
+// Wires tab clicks and shared DOM references after the page shell exists.
 document.addEventListener("DOMContentLoaded", () => {
 
-    tabTable = document.querySelector('#tab-btn-table');
-    tabMap = document.querySelector('#tab-btn-map');
-    tabTrend = document.querySelector('#tab-btn-trend');
-    tabLinks = document.querySelector('#tab-btn-links');
+    tabBar       = document.querySelector('#v-pills-bar-tab');
+    tabTrends    = document.querySelector('#v-pills-trends-tab');
+    tabCorrelate = document.querySelector('#v-pills-correlate-tab');
+    tabTable     = document.querySelector('#v-pills-table-tab');
 
-    aboutMeasures = document.querySelector('.indicator-measures');
-    dataSources = document.querySelector('.indicator-sources');
+    // grab DOM nodes for the measure-info and source sections
+    aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
+    dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
+    btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+
+    // tab clicks → set overlay, push URL, render
+
+    // maps each tab selector to its overlay string value
+    const tabMap = {
+        '#v-pills-bar-tab':       'bar',
+        '#v-pills-trends-tab':    'trend',
+        '#v-pills-correlate-tab': 'links',
+        '#v-pills-table-tab':     'table'
+    };
+
+    // Bind each Bootstrap tab to the overlay value it should activate.
+    Object.entries(tabMap).forEach(([selector, value]) => {
+
+        const el = document.querySelector(selector);
+        if (!el) return;
+
+        el.addEventListener('click', () => {
+
+            overlay = value;
+            pushSelectionToURL();
+            // Tab switches reuse the current map state, so they do not request a map redraw.
+            renderCurrentView();
+
+            trackDataExplorerEvent('click_tab', { tab: value });
+        });
+    });
 
 });
 
@@ -88,86 +428,30 @@ document.addEventListener("DOMContentLoaded", () => {
 // content truncation
 // ----------------------------------------------------------------------- //
 
+// Expands the full metadata description after the user clicks Show more.
 function reveal() {
+
+    // toggle the truncated / full description blocks
     document.getElementById('truncate').classList.toggle('hide');
     document.getElementById('full').classList.toggle('show');
     document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
 }
-
-// ----------------------------------------------------------------------- //
-// add listeners to tabs
-// ----------------------------------------------------------------------- //
-
-// ===== table ===== /
-
-$('#tab-btn-table').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=summary';
-    gtag('event', 'click_tab', {
-        tab: "table"
-    });
-});
-
-// ===== map ===== /
-
-$('#tab-btn-map').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=map';
-    gtag('event', 'click_tab', {
-        tab: "map"
-    });
-});
-
-// ===== trend ===== /
-
-$('#tab-btn-trend').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=trend';
-    gtag('event', 'click_tab', {
-        tab: "trend"
-    });
-});
-
-// ===== links ===== /
-
-$('#tab-btn-links').on('click', e => {
-    $(e.currentTarget).tab('show');
-    window.location.hash = 'display=links';
-    gtag('event', 'click_tab', {
-        tab: "links"
-    });
-});
 
 
 // ----------------------------------------------------------------------- //
 // add listeners to metadata buttons
 // ----------------------------------------------------------------------- //
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// how calculated
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
 $('#howCalcButton').on('click', e => {
-    // console.log("click_how_caclulated");
-    gtag('event', 'click_how_caclulated');
+    trackDataExplorerEvent('click_how_caclulated');
 });
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// how calculated
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-$('#citeButton').on('click', e => {
-    // console.log("click_citation");
-    gtag('event', 'click_citation');
+$('.de-copy-citation-button[data-citation-target]').on('click', e => {
+    trackDataExplorerEvent('click_citation');
 });
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// measure about
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-$('#tab-btn-02-b').on('click', e => {
-    // console.log("click_about");
-    gtag('event', 'click_about');
+$('#v-pills-ds-tab').on('click', e => {
+    trackDataExplorerEvent('click_about');
 });
 
 
@@ -175,138 +459,20 @@ $('#tab-btn-02-b').on('click', e => {
 // add event listener to indicator links
 // ----------------------------------------------------------------------- //
 
+// Handles clicks on the indicator list and starts the indicator reload pipeline.
 $('#indicatorButtons').on('click', e => {
 
-    let IndicatorID = e.target.dataset.indicatorId;
+    let IndicatorID = e.target.dataset.IndicatorID;
 
     // run the indicator loading function
 
+    resetSelectionForNewIndicator(IndicatorID);
     loadIndicator(IndicatorID);
 
     // record google analytics event
 
-    gtag('event', 'click_indicator', {
+    trackDataExplorerEvent('click_indicator', {
         IndicatorID: IndicatorID
     });
-
-});
-
-
-// ----------------------------------------------------------------------- //
-// export functions
-// ----------------------------------------------------------------------- //
-
-// export current table or chart view
-$("#chartView").on("click", (e) => {
-
-    // if it's summary table... (uses DataTables.net methods)
-    if (window.location.hash == '#display=summary') {
-        
-        let summaryTable = $('#tableID').DataTable();
-        summaryTable.button("thisView:name").trigger();
-    
-        gtag('event', 'file_download', {
-            'file_name': 'NYC EH Data Portal - ' + indicatorName + " (filtered table)" + '.csv',
-            'file_extension': '.csv',
-            'link_text': 'Current table view'
-        });
-    
-        e.stopPropagation();
-    
-    } else {
-        // else, for chart view downloads: 
-        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
-        let hiddenElement = document.createElement('a');
-
-        // set view to send to file name
-        let view;
-        if (window.location.hash == '#display=trend') {
-            view = 'trend'
-        } else if (window.location.hash == '#display=map') {
-            view = 'map'
-        } else {
-            view = 'links'
-        }
-
-        hiddenElement.href = csvData;
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
-        hiddenElement.click();
-
-        // trigger GA event
-        gtag('event', 'file_download', {
-            'file_name': hiddenElement.download,
-            'file_extension': '.csv',
-            'link_text': 'Download chart data'
-        });
-
-        e.stopPropagation();
-    }
-
-});
-
-// export full table data (i.e., original view)
-
-$("#allData").on("click", (e) => {
-
-    // pivot the full dataset
-
-    let allData = aq.from(tableData)
-        .groupby("TimePeriod", "GeoType", "GeoID", "GeoRank", "Geography")
-        .pivot("MeasurementDisplay", "DisplayCI")
-        .relocate(["TimePeriod", "GeoType", "GeoID", "GeoRank"], { before: 0 })
-
-    let downloadTableCSV = allData.toCSV();
-
-    // Data URI
-    let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-    let hiddenElement = document.createElement('a');
-
-    hiddenElement.href = csvData;
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (full table)" + '.csv';
-    hiddenElement.click();
-
-    gtag('event', 'file_download', {
-        'file_name': hiddenElement.download,
-        'file_extension': '.csv',
-        'link_text': 'Full table for this indicator'
-    });
-
-    e.stopPropagation();
-
-});
-
-// export raw dataset
-
-$("#rawData").on("click", (e) => {
-
-    let dataURL = `${data_repo}${data_branch}/indicators/data/${indicatorId}.json`
-
-    // console.log('Data are at: ' + dataURL)
-
-    aq.loadJSON(`${dataURL}`).then(function(data) {
-
-        let downloadTable = data;
-        let downloadTableCSV = downloadTable.toCSV();
-
-        // Data URI
-        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
-        let hiddenElement = document.createElement('a');
-
-        hiddenElement.href = csvData;
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - ' + indicatorName + " (raw)" + '.csv';
-        hiddenElement.click();
-
-        gtag('event', 'file_download', {
-            'file_name': hiddenElement.download,
-            'file_extension': '.csv',
-            'link_text': 'Raw data for this indicator'
-        });
-
-        e.stopPropagation();
-
-    })
 
 });

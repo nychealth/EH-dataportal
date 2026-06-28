@@ -6,8 +6,16 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/rec-water-illness.pag
 seo_title: "Waterway data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of waterway quality in NYC."
+blurb: "Quality standards"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
-categories: ["inequality", "climatehealth", "publicspace"]
+categories: ["inequality", "climatehealth"]
 keywords: ["water", "harbor", "pollution", "climate", "climatehealth"]
 indicators:
   - header: null
@@ -48,4 +56,4 @@ _Dissolved oxygen levels show that water exceeds minimum standards_
 
 NYC DEP reports the open water summer average levels of dissolved oxygen harbor-wide, from surface and bottom water, every year. Levels above the state minimum standard (5.0 mg/L) indicate a harbor suitable to most aquatic life forms. Since the 1990s, the annual summer average for surface and bottom water dissolved oxygen levels of open water sites have been above New York State standards.
 
-For more information on harbor quality, [please visit the most recent report from the NYC DEP Harbor Survey Report](https://www.nyc.gov/site/dep/water/harbor-water-quality.page). For information on current beach water quality, [please visit DOHMH's beach water quality map]({{< relURL >}}beaches/).
+For more information on harbor quality, [please visit the most recent report from the NYC DEP Harbor Survey Report](https://www.nyc.gov/site/dep/water/harbor-water-quality.page). For information on current beach water quality, [please visit DOHMH's beach water quality map](https://a816-dohbesp.nyc.gov/IndicatorPublic/Beaches/).

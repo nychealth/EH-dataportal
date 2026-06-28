@@ -4,10 +4,16 @@ title: Walking, driving, and cycling
 draft: false
 azlink: "https://www.nyc.gov/site/doh/health/health-topics/active-design.page"
 date: 2021-05-28T18:02:58Z
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 categories:
   - publicspace
   - airquality
-  - accessibility
 keywords:
   - transportation
   - walking
@@ -47,6 +53,7 @@ seo_description: >-
   Explore data, visualizations, and more on ways that environments shape health
   in New York City's neighborhoods.
 description: "Datasets and visualizations of walking, driving, and cycling in NYC."
+blurb: "Access and density"
 related:
   - title: "Public space creates health"
     url: "data-stories/public-space-creates-health/"

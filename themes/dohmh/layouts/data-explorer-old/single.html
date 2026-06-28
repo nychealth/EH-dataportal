@@ -1,0 +1,1278 @@
+{{ define "main" }}
+
+<style>
+    /* These styles overwrite default Vega-Lite tooltip styles */
+
+    /* set overall row styles */
+    #vg-tooltip-element table tr {
+        border-bottom: 1px solid #d9d9d9;
+        {{- /*  width: max-content;  */ -}}
+    }
+    /* remove bottom border from last row */
+    #vg-tooltip-element table tr:last-child {
+        border-bottom: 0px;
+    }
+
+    /* set different style for key column */
+    #vg-tooltip-element table tr td.key {
+        font-size: 12px!important;
+        color: #505050;
+        border-right: 1px solid #d9d9d9;
+        text-align: right;
+        padding-right: 10px;
+        width: max-content;
+    }
+
+    /* set different style for value column */
+    #vg-tooltip-element table tr td.value {
+        font-size: 12px!important;
+        color: black;
+        text-align: left;
+        padding-left: 10px;
+        width: max-content;
+    }
+
+
+    /* This CSS controls read more/show less toggle. */
+    [aria-expanded="false"]>.expanded,
+    [aria-expanded="true"]>.collapsed {
+        display: none;
+    }
+
+    #truncate {
+        display: block;
+    }
+
+    #full {
+        display: none;
+    }
+
+    #expand-collapse {
+        cursor: pointer;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .hide {
+        display: none !important;
+    }
+
+    /* .tab-content > .tab-pane {
+        display: block !important;
+        opacity: 1 !important;
+    } */
+
+    .dropdown-title {
+        padding: 0.25rem ;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .indicator-measures h6 {
+        margin-top: 0.5em;
+    }
+
+    .dropdown-menu {
+        z-index: 2000;
+    }
+
+    /* info text boxes */
+
+    .topic-text {
+        font-size: 14px!important;
+    }
+
+    .topic-text h3 {
+        font-size: 16px;
+        color: #656565;
+    }
+
+    .topic-text p li {
+        font-size: 12px;
+    }
+
+    /* indicator selection button */
+
+    button.text-info, button.text-info {
+        color: #841972 !important;
+    }
+    button.text-info:hover, button.text-info:focus {
+        color: #ffffff !important;
+    }
+
+    /* dropdown list items - active styles based on if they're related to a primary or secondary button style */
+
+    .dropdown-item {
+        text-decoration: none;
+    }
+
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item.active,
+    .btn-outline-primary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+        /*text-decoration: none;*/
+        background-color: #841972;
+    }
+
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item.active,
+    .btn-outline-secondary ~ .dropdown-menu .dropdown-item:active {
+        color: #ffffff;
+        /*text-decoration: none;*/
+        background-color: #181A7B;
+    }
+
+    /* strikethrough if unavailable */
+
+    .dropdown-menu .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
+    }
+
+    .dropdown-item.unavailable {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.15rem;
+    }
+
+    /* topic selection modal */
+
+    .modal-backdrop.show {
+        opacity: 0.70;
+        background-color: #424242
+    }
+
+    .de-modal-title {
+        margin-bottom: 0;
+        margin-top: 0;
+        line-height: 1;
+    }
+
+    .modal-header .close {
+        padding: 0.5rem 0.5rem;
+        margin: -1rem -1rem -1rem auto;
+    }
+
+    /* disabled checkbox */
+
+    .checkbox-geo.disabled > input {
+        accent-color: #656565;
+    }
+
+    /* make a larger checkbox */
+
+    .largerCheckbox {
+        margin-right: 0.3rem;
+        vertical-align: middle;
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    /* disabled comparison button */
+
+    .btn-comparison.disabled {
+        color: #656565;
+    }
+
+    /* SCROLLBAR */
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: rgb(246, 246, 246);
+    }
+
+    /* Track on Hover */
+    ::-webkit-scrollbar-track:hover {
+        background: rgb(240, 240, 240);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: rgb(195, 195, 195);
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(145, 145, 145);
+    }
+
+    .overflow-fade-ind {
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
+    }
+
+    .overflow-fade-about {
+        max-height: 55vmin; 
+        overflow-y: scroll; 
+        overflow-x: hidden;
+    }
+
+    .vis-bucket {
+        clear:both;
+        width:100%;
+        max-height: 75vmin;
+    }
+
+    .buttons-csv {
+        cursor: pointer;
+    }
+
+    .nav-pills .nav-link.active {
+        border: 0px!important;
+    }
+
+    .tab-border {
+        border-left: 1px solid #dee2e6 !important;
+        border-top: 1px solid #dee2e6 !important;
+        border-right: 1px solid #dee2e6 !important;
+    }
+
+    /* .nav-pills .nav-item:hover:not(.active) {
+        background-color: #fafafa;
+        
+    }*/
+
+    .optionbox {
+        max-height:150px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+    .optionbox-lg {
+        max-height: 300px;
+        overflow-y: auto;
+        overflow-x:hidden;
+    }
+
+    .optionbox::-webkit-scrollbar {
+        width: 0.25em;
+    }
+
+    .optionbox-lg::-webkit-scrollbar {
+        width: 0.25em;
+    }
+
+    .nav-pills .nav-item {
+        text-align: left!important;
+        /*background-color: #e9ecef!important; */
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: green!important;
+    }
+
+    .dropdown-item {
+        font-size: 12px;
+        padding: 0px!important;
+        padding-left: 5px!important;
+        margin-bottom: 3px!important;
+    }
+
+    .dropdown-item.active {
+        background-color: green!important;
+        color: white;
+        font-weight: bold;
+    }
+
+    .debg {
+        background-color: #e9ecef!important;
+        width: 100%; 
+        height: 52px;
+    }
+
+    .nav-tabs .nav-item.active {
+        background-color: #00923E50!important;
+        border-left: 1px solid !important;
+        border-right: 1px solid !important;
+        border-top: 1px solid !important;
+        border-bottom: 0px solid !important;
+    }
+
+    .tab-pane {
+        /* border-left: 1px solid !important;
+        border-right: 1px solid !important;
+        border-bottom: 1px solid !important;
+        */
+    }
+
+    .helper {
+        cursor: pointer;
+    }
+
+    .other-helper {
+        cursor: pointer;
+          display: block;
+        width: 100%;
+        text-align: right;
+    }
+
+    .helper:hover {
+        color: purple!important;
+    }
+
+    /* Customize table css */
+    table.dataTable tbody th,table.dataTable tbody td {
+        padding: 5px!important;
+    }
+
+    table {
+        font-size: .875rem!important; 
+    }
+
+    table .group td {
+        background-color: #F0F0F0;
+        color: green;
+        font-weight: bold;
+        }
+    .de-tab {
+        font-size: 16px;
+    }
+
+    .dataTables_filter {
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+        }
+    
+        #tableID_filter label {
+            font-size: 12px;
+        }
+
+        td {
+            line-height: 1.35
+        }
+
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            float: none;
+            text-align: right!important;
+        }
+
+    </style>
+
+<article class="container-fluid" id="skip-header-target">
+    <div class="row">
+        <div class="col-12 mt-2 mb-3">
+            <nav aria-label="breadcrumb">
+                <ul class="breadcrumb mr-auto">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
+                    <li class="breadcrumb-item d-none d-lg-block">{{ .Title }}
+                        <button type="button" 
+                            class="btn btn-outline-light text-primary badge" 
+                            title="Change topic"
+                            data-toggle="modal" 
+                            data-target="#topicModal"
+                            aria-labelledby="topicModalLabel"
+                        ><i class="fa-solid fa-list font-weight-bold" aria-hidden="true"></i>
+                        </button></li>
+                </ul>
+            </nav>
+
+            <h1 class="h2 mt-2">
+                {{ .Title }} </h1>
+
+                <!-- Desktop teaser -->
+                <div class="d-none d-lg-block">
+                    <p>Get maps, charts, tables, and more.</p>
+                </div>
+
+                <!-- Mobile about text -->
+                <div class="d-lg-none">
+                    <p class="fs-sm mb-0">{{ .Content | plainify | truncate 125 }} <a href="#" data-toggle="modal" data-target="#aboutModal"><em>Read more</em></a>.</p>   
+
+                    <span class="float-right mt-0">
+                        <a href="#"  data-toggle="modal" class="badge badge-pill badge-light" data-target="#topicModal"
+                        aria-labelledby="topicModalLabel">Change topic</a>
+                    </span>
+
+                </div>
+
+        </div>
+    </div>
+
+    <div class="row no-gutters px-0">
+    
+        <div class="col-lg-4 col-md-12 pr-2" data-pagefind-ignore="all">
+    
+            <div class="d-none d-lg-block">
+
+                <div class="nav nav-pills device-md border-bottom" role="tablist">
+
+                    <a class="nav-item nav-link active fs-sm tab-border" id="tab-btn-02-a" href="#tab-02-a" data-toggle="tab"
+                        aria-controls="tab-02-a" aria-selected="true" role="tab">
+                        <i class="fas fa-list fa-fw mr-1" aria-hidden="true"></i>Datasets
+                    </a>
+
+                    <a class="nav-item nav-link fs-sm tab-border" id="tab-btn-02-b" href="#tab-02-b" data-toggle="tab"
+                        aria-controls="tab-02-b" aria-selected="false" role="tab">
+                        <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About {{ lower .Title }}
+                    </a>
+                </div>
+                
+                <div class="tab-content  de-dash-borderbottom" id="tabs-02-content">
+                
+                    <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
+                        role="tabpanel">
+                        <div id="indicatorButtons" class="pb-0 overflow-fade-ind mb-0">
+                            <!--Rendered via renderIndicatorButtons function -->
+                    </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
+                        <div class="p-1 overflow-fade-about topic-text mb-1 border">
+                            {{ .Content  }}
+                            <hr class="my-2">
+                            {{ with .Params.azlink }}
+                            <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                            {{ end }}
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- Related data partial -->
+            <div class="d-none d-lg-block mt-4 mb-2">
+                {{- partial "related-data" . -}}
+            </div>
+
+
+            <!-- Keywords partial -->
+            <div class="d-none d-lg-block mt-2 mb-2">
+                {{- partial "keywords" . -}}
+            </div>
+
+            <!-- Take Action partial -->
+            <div class="d-none d-lg-block pt-1 mt-2 fs-sm">
+                {{- partial "takeaction" . -}}
+            </div>
+
+            <!-- Social share -->
+            <div class="d-none d-lg-block mt-4">
+                {{- partial "socialshare" . -}}
+            </div>
+
+
+
+
+        </div>
+        
+        <div class="col-lg-8 mx-auto col-md-12">
+        
+        <!-- Indicator display and selection (mobile) -->
+        <div class="dropdown d-lg-none border p-1">
+
+            <div id="indicatorNameMobile" class="font-weight-bold">Loading dataset - </div>
+
+            <p class="fs-sm mb-0">
+                <span class="indicator-description">Just a moment...</span>
+            </p>
+
+            <div class="d-flex justify-content-end mt-0">
+                <div class="dropdown show">
+                    <a class="badge badge-pill badge-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Change dataset
+                    </a>
+                  
+                    <div class="dropdown-menu dropdown-menu-right px-1" aria-labelledby="dropdownMenuLink" id="indicator-dropdown">
+                        <!-- Indicator links rendered here -->
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        {{- if .Params.archive -}}
+            <div class="border p-1"><p><strong>Note:&nbsp;</strong>{{- .Params.archive | safeHTML -}}</p></div>
+        {{- end -}}
+
+        <!-- DESKTOP: Indicator title and description -->
+        <div class="d-none d-lg-block">
+            <span class="border-bottom font-weight-bold d-block">
+                <span id="indicatorTitle">Loading indicator...</span>
+            </span>
+            <div class="d-block mt-1">
+                <p class="fs-sm indicator-description ">Just a moment...</p>
+            </div>
+        </div>
+
+        <!-- view selection buttons -->
+        <div class="mt-3">
+            <!-- Nav buttons -->
+            <div class="nav nav-pills bg-white device-xs " role="tablist">
+
+                <a class="nav-item nav-link border" id="tab-btn-table" href="#tab-table" data-toggle="pill"
+                   aria-controls="tab-table" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-table mr-1" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Table</span>
+                    </div>
+                </a>
+
+                <a class="nav-item nav-link border" id="tab-btn-map" href="#tab-map" data-toggle="pill"
+                   aria-controls="tab-map" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-map-marker-alt fa-fw"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Map</span>
+                    </div>
+                </a>
+
+                <a class="nav-item nav-link border" id="tab-btn-trend" href="#tab-trend" data-toggle="pill"
+                   aria-controls="tab-trend" aria-selected="false" role="tab" style="text-decoration:none">
+                    <i class="fas fa-chart-line fa-fw" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Trend</span>
+                    </div>
+                </a>
+
+
+                <a class="nav-item nav-link border" id="tab-btn-links" href="#tab-links" data-toggle="pill"
+                   aria-controls="tab-links" aria-selected="false" aria-disabled="true" role="tab" style="text-decoration:none">
+                   <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                    <div class="d-none d-lg-inline-block">
+                        <span class="de-tab font-weight-bold ">Correlate</span>
+                    </div>
+                </a>
+
+                <a class="ml-auto mt-auto p-1 fs-xs float-right d-none d-xl-block" id="viewDescription">
+                    Click tabs for more data views.
+                </a>
+        
+            </div>
+
+
+                <!-- visualization elements -->
+                <div class="tab-content bg-white border-top" id="tabs-01-content">
+            
+
+                <!-- TABLE TAB -->
+
+                <div class="tab-pane fade show active pt-2" id="tab-table" aria-labelledby="tab-btn-table" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-2 pl-2 pr-0">
+
+                                <div class="d-block clearfix">
+                                    <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                                </div>
+
+                                <div id="tableSidebar" class="collapse dont-collapse-sm">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+
+                                        <div class="" aria-labelledby="dropdownTableGeos">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+                                    </div>
+
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <div class="" aria-labelledby="dropdownTableTimes">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="col-md-10">
+                            <span id="tableTitle" class="home-label border-bottom"></span>
+                            <div id="summary-table" class="" style="min-height:550px!important">
+                                <!-- INSERT SUMMARY TABLE HERE -->
+                            </div>
+
+                            <div id="table-unreliability" class="pt-2 hide my-1 fs-xs">
+                                <!-- INSERT UNRELIABILITY FLAGS HERE -->
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+
+
+                <!-- MAP TAB -->
+
+                <div class="tab-pane fade pt-2" id="tab-map" aria-labelledby="tab-btn-map" role="tabpanel">
+
+                    <div class="row">
+                        <div class="col-md-2 pl-2 pr-0">
+
+                            <div class="d-block clearfix">
+                                <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#mapSidebar" aria-expanded="false" aria-controls="mapSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+
+                            </div>
+
+
+                            <div id="mapSidebar" class="collapse dont-collapse-sm">
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#measureModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapMeasures">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                <div class="border optionbox py-1 mb-2">
+                                    <div class="" aria-labelledby="dropdownMapTimes">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Boundaries:</p>
+                                <div class="border py-1 mb-2 optionbox">
+                                    <div class="" aria-labelledby="dropdownMapGeos">
+                                        <!-- INSERT MENU ITEMS HERE -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                            <div id="map" class="vis-bucket"></div>
+
+                            <div id="map-unreliability" class="pt-2 hide my-1 fs-xs">
+                                <!-- INSERT UNRELIABILITY FLAGS HERE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- TREND TAB -->
+
+                <div class="tab-pane fade pt-2" id="tab-trend" aria-labelledby="tab-btn-trend" role="tabpanel">
+
+                    <div class="row">
+                        <div class="col-md-2 pl-2 pr-0">
+
+                            <div class="d-block clearfix">
+                                <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                            </div>
+
+                            <div id="trendSidebar" class="collapse dont-collapse-sm">
+
+                                <div id="trendMenuHolder" class="d-none">
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc1" class="font-weight-bold">By </span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
+                                    <div class="border optionbox mb-2">
+                                        <div class="" aria-labelledby="dropdownTrendSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="compMenu" class="hide">
+                                    <p class="fs-xs mb-0">
+                                        <span id="tc2" class="font-weight-bold">Show with:</span>
+                                        <i data-toggle="modal" data-target="#trendModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>
+
+                                    </p>
+
+                                    <div class="border optionbox mb-0">
+                                        <div class="" aria-labelledby="dropdownCompSelection">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-10">
+                                 <!-- INSERT TREND CHART HERE -->
+                                <div id="trend" class="vis-bucket"></div>
+
+                                <div id="trend-unreliability" class="pt-2 hide my-1 fs-xs">
+                                    <!-- INSERT UNRELIABILITY FLAGS HERE -->
+                                </div>
+
+                        </div>
+                    </div>
+                     
+                </div>
+
+
+                     <!-- LINKS TAB -->
+
+                    <div class="tab-pane fade pt-2" id="tab-links" aria-labelledby="tab-btn-links" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-md-2 pl-2 pr-0">
+
+                                <div class="d-block clearfix">
+                                    <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#linksSidebar" aria-expanded="false" aria-controls="linksSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+
+                                </div>
+
+                                <div id="linksSidebar" class="collapse dont-collapse-sm">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#linksModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Show as:</p>
+                            
+                                
+                                    <div class="border optionbox mb-2 py-1">
+                                        
+                                        <div class="btn-toggle-disparities">
+    
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-disparities"> Disparities
+                                            </button>
+                                            <button class="btn btn-primary dropdown-item pl-2" id="show-links"> Correlates
+                                            </button>
+    
+                                        </div>
+
+
+                                    </div>
+    
+                                    <div id="correlateHolder">
+                                        <p class="fs-xs mb-0">Correlate with:</p>
+                                        <div class="border optionbox-lg">
+                                            <div class="" aria-labelledby="dropdownLinksMeasures">
+                                                <!-- INSERT MENU ITEMS HERE -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-10">
+                                <span id="linksTitle" class="home-label border-bottom"></span>
+                                <!-- INSERT LINKS CHART HERE -->
+                                <div id="links" class="vis-bucket"></div>
+            
+                                <div id="links-unreliability" class="pt-2 hide my-1 fs-xs">
+                                    <!-- INSERT UNRELIABILITY FLAGS HERE -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                
+            </div>
+
+
+                        <!-- FOOTER BUSINESS -->
+
+                        <div class="row mb-2">
+                            <div class="col-md-2"></div>
+
+                            <!-- Data sources -->
+                            <div class="col-md-10 col-sm-12">
+                                    <div class="visFooterBox">
+                                        <span class="fs-xs font-weight-bold">Source: <a href={{ relURL "about/data-sources" }}><i class="fa-solid fa-circle-question"></i></a></span> <p class="fs-xs indicator-sources"></p>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 mb-4">
+                            <div class="col-md-2"></div>
+
+                            <div class="col-md-10 col-sm-12">
+                                <div class="row no-gutters">
+                                    <div class="col-md-3 col-6">
+                                        <button type="button" id="howCalcButton" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" data-toggle="modal" data-target="#howCalcModal" >
+                                            <i class="fas fa-info-circle mr-1" aria-hidden="true"></i>How calculated
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary dropdown-toggle" 
+                                            type="button"
+                                            id="downloadDD"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                            ><i class="fa fa-download mr-1"></i>Download Data
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" 
+                                            aria-labelledby="downloadDD">
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="chartView"><i class="fa fa-download mr-1"></i>Download this view</a>
+                                            <a class="dropdown-item buttons-csv btn-outline-info" id="allData"><i class="fa fa-download mr-1"></i>Download full data table</a>
+                                            <a class="dropdown-item btn-outline-info" href="https://github.com/nychealth/EHDP-data/tree/production/indicators" target="_blank"><i class="fas fa-external-link-alt mr-1"></i>Data Github repo</a>
+                                            <!--<a class="dropdown-item buttons-csv btn-outline-info" id="thisView">Current table view</a>-->        
+                                            <!--<a class="dropdown-item buttons-csv btn-outline-info" id="rawData">Raw data for this indicator</a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <button class="btn btn-sm btn-block btn-outline-light fs-xs text-secondary"
+                                        onclick="copyCitation()" id="citeButton"><i class="fas fa-copy mr-1"></i>Copy citation</button>
+                                            <input type="text" id="citeText" value=""
+                                            style="display:inline-block; width:100%; height: 40px; font-size: 14px;"
+                                            class="my-2 sr-only">
+                                    </div>
+                                    <div class="col-md-3 col-6">
+                                        <a type="button" class="btn btn-sm btn-outline-light fs-xs text-secondary btn-block mb-1" onclick="printModal()" id="chartSaver">
+                                            <i class="fas fa-save mr-1" aria-hidden="true"></i>Save chart
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--.footer -->
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Topic Selection Modal -->
+
+    <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="topicModalLabel"
+         aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content mb-2 border-light shadow">
+                <div class="modal-header">
+                    <h2 class="de-modal-title h5" id="topicModalLabel">Change topic</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 ">
+                    {{ partial "de-chooser-accordion.html" (dict "layout" "double" "context" . ) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--About Modal-->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="aboutModalLabel" data-pagefind-ignore="all">About {{ .Title }}</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ .Content }}
+                    <hr class="my-2">
+                    {{ with .Params.azlink }}
+                    <a href="{{ . }}"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Get more resources about {{ lower $.Title }}</a>.
+                    {{ end }}
+                </div>
+                <div class="modal-footer" data-pagefind-ignore="all">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Geography -->
+    <div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="geoModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="geoModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About neighborhood boundaries</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>There are many schemes of neighborhood boundaries (or geographies) available for different datasets. These include:
+                        <ul>
+                            <li>Citywide</li>
+                            <li>Borough</li>
+                            <li>United Hospital Fund 42 (UHF42) and United Hospital Fund 34 (UHF34) neighborhoods</li>
+                            <li>Community Districts (CD), and, related, Community District Tabulation Areas (CDTA)</li>
+                            <li>Public Use Microdata Areas (PUMA)</li>
+                            <li>Neighborhood Tabulation Areas (NTA)</li>
+                        </ul>
+                    </p> 
+                    <p>We try to make data available at as fine a geographic resolution as we can. <a href={{ relURL "data-stories/geographies" }}>Read more about different geographies at this data story</a>.</p>
+                    <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Data Modal - Trend -->
+    <div class="modal fade" id="trendModal" tabindex="-1" role="dialog" aria-labelledby="trendModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="trendModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About trend charts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>When we have multiple years of data, we show the data as trend charts.</p>
+                    <p>Trends for individual neighborhoods tend to be very unstable (or "bouncy"), due to small counts for outcomes in individual neighborhoods. To show clearer trends, we usually aggregate up and show trend data by Borough.</p>
+                    <p>Options on some indicators let you compare this indicator to other similar indicators.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Times -->
+    <div class="modal fade" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="timeModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="timeModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>Available time periods</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>We try to make data available as soon as we can.</p>
+                    <p>Many datasets take a long time to reach us — a "lag" of several years, during which data are gathered from different entities to try to create a complete dataset; data are processed (cleaned, deduplicated, etc), and analyzed. It can take several years to prepare a dataset — so a dataset that is several years old is sometimes the most up-to-date information available. Still, this data continues to show us valuable trends and insights. </p>
+                    <p>We also try to display datasets that have been available for many years. Some datasets (like those that are asked on surveys) are not asked every year of the survey, which means that we cannot provide annual data.</p>
+                    <p>For some datasets, we have to aggregate time periods in order to break down data by borough or neighborhood.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - Measures -->
+    <div class="modal fade" id="measureModal" tabindex="-1" role="dialog" aria-labelledby="measureModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="measureModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About measures</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Measures are the numeric ways that a dataset (or indicator) are expressed. Examples of different measures might be: number, percent or rate. </p>
+                    <p>A number tells us how much of an outcome is in a certain area. But a rate (usually expressed as, for example, 40 per 100,000) tells us how much of an outcome there is, <em>relative to the population of the area in question</em>. This lets us compare neighborhoods of different sizes.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Data Modal - Links -->
+    <div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="linksModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>About correlation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
+                    <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
+                    <p><a href={{ relURL "data-stories/povasthma" }}>Read more about correlation here</a>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Modal - How calculated -->
+    <div class="modal fade" id="howCalcModal" tabindex="-1" role="dialog" aria-labelledby="howCalcModalLabel" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="howCalcModalLabel"><i  class="fas fa-question-circle mr-1" aria-hidden="true"></i>How calculated</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="indicator-measures"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print Modal -->
+    <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="printModalTitle" aria-hidden="true" data-pagefind-ignore="all">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
+                </div>
+                <div class="modal-body" style="min-height: 800px">
+                    Use this view to screenshot or print this visualization. <strong>Resize the visualization</strong> using the grab in the bottom-right. Click the <strong>three dots in the
+                    upper-right-hand corner</strong> of the chart and choose "save as PNG" or "save as SVG" to download the chart. <em>This  works best on a desktop computer.</em>
+    
+                    <div id="printVis" style="min-height: 600px; width:100%;resize:both; overflow: auto;" class="vis-print-modal border d-block">
+                        Vis container
+                    </div>
+    
+                    <div id="modalFootnotes" class="fs-xs p-1 pl-3">
+    
+                    </div>
+    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</article>
+
+
+{{/*  call partial to insert indicator names and descriptions for pagefind  */}}
+
+{{ partial "de-indicator-names-pf" . }}
+
+
+<!-- RELATED FOOTER -->
+{{- partial "related-footer" . -}}
+
+{{ end }}
+
+{{- define "js_bot" -}}
+
+    {{- /*  JS Dependencies  */}}
+
+    {{- /*  Accessible Autocomplete  */}}
+
+    {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
+
+    {{- /*  Arquero  */}}
+
+    {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+    <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+
+     {{- /*  DataTables  */}}
+
+     {{- /*  CSS  */}}
+
+    {{- $dataTablesCSS := resources.Get "node_modules/datatables.net-dt/css/jquery.dataTables.min.css" }}
+    {{- $dataTablesButtonsCSS := resources.Get "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" }}
+    {{- $dtCSS := slice $dataTablesCSS $dataTablesButtonsCSS | resources.Concat "css/dtCSS.css" | partial "short-fingerprint.html" }}
+
+    <link rel="stylesheet" href="{{ $dtCSS.RelPermalink }}" integrity="{{ $dtCSS.Data.Integrity }}">
+
+    {{- /*  JS  */}}
+
+    {{- $dataTables := resources.Get "node_modules/datatables.net/js/jquery.dataTables.min.js" }}
+    {{- $dataTablesButtons := resources.Get "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js" }}
+    {{- $dataTablesButtonsHtml5 := resources.Get "node_modules/datatables.net-buttons/js/buttons.html5.min.js" }}
+    {{- $dataTablesButtonsPrint := resources.Get "node_modules/datatables.net-buttons/js/buttons.print.min.js" }}
+    {{- $dataTablesRowGroup := resources.Get "node_modules/datatables.net-rowgroup/js/dataTables.rowGroup.min.js" }}
+
+    {{- $dataTablesBundleJS := slice $dataTables $dataTablesButtons $dataTablesButtonsHtml5 $dataTablesButtonsPrint $dataTablesRowGroup | resources.Concat "js/dataTableBundle.js" }}
+    {{- $DT_secureJS := $dataTablesBundleJS | partial "short-fingerprint.html" }}
+
+    <script type="text/javascript" src="{{ $DT_secureJS.RelPermalink }}" integrity="{{ $DT_secureJS.Data.Integrity }}"></script>
+
+    
+    {{- /*  VegaLite  */}}
+
+    {{- $vega := resources.Get "node_modules/vega/build/vega.min.js" }}
+    {{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" }}
+    {{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
+
+    {{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/vegaBundle.js" }}
+    {{- $vega_secureJS := $vegaBundleJS | partial "short-fingerprint.html" }}
+
+    <script type="text/javascript" src="{{ $vega_secureJS.RelPermalink }}" integrity="{{ $vega_secureJS.Data.Integrity }}"></script>
+
+    {{- /*  D3  */}}
+
+    {{- $d3 := resources.Get "node_modules/d3/dist/d3.min.js" }}
+    {{- $d3_secureJS := $d3 | partial "short-fingerprint.html" }}
+
+    <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
+
+    {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
+
+    {{- $naturalSort := resources.Get "js/naturalSort.js" }}
+    {{- $naturalSort_secureJS := $naturalSort | partial "short-fingerprint.html" }}
+
+    <script type="text/javascript" src="{{ $naturalSort_secureJS.RelPermalink }}" integrity="{{ $naturalSort_secureJS.Data.Integrity }}"></script>
+
+    {{- /*  seedrandom  */}}
+
+    {{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" }}
+    {{- $seedrandom_secureJS := $seedrandom | partial "short-fingerprint.html" }}
+
+    <script type="text/javascript" src="{{ $seedrandom_secureJS.RelPermalink }}" integrity="{{ $seedrandom_secureJS.Data.Integrity }}"></script>
+
+
+    {{- /*  Data Explorer JS  */}}
+
+    {{- /*  renderIndicatorDropdown needs to be here becasue of the hugo's markup  */}}
+
+    <script>
+
+        {{- /* =================================================================== */}}
+        {{- /*  fetch and load indicators metadata into global object              */}}
+        {{- /* =================================================================== */}}
+
+        {{- /*  dropdown (on mobile)  */}}
+
+        const renderIndicatorDropdown = () => {
+
+            const indicatorDropdown = document.getElementById("indicator-dropdown");
+            let this_indicatorName;
+            let header;
+
+            {{- range .Params.Indicators }}
+
+                header = '{{ .header }}';
+                indicatorDropdown.innerHTML += header.length ? '<div class="dropdown-title"><strong>' + header + '</strong></div>' : '';
+
+                {{ range $index, $id := .IndicatorID }}
+
+                    {{ if (eq $index 0) }} defaultIndicatorId = {{ $id }} {{ end }}
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorDropdown.innerHTML += "<button class='indicator-dropdown-item dropdown-item' onclick='loadIndicator({{ $id }})' data-indicator-id='{{ $id }}'>" + this_indicatorName + `</button>`;
+
+                {{ end }}
+            {{- end }}
+
+        }
+
+
+        {{/*  buttons (on desktop)  */}}
+
+        const renderIndicatorButtons = () => {
+
+            const indicatorButtons = document.getElementById("indicatorButtons");
+            let this_indicatorName;
+            let header;
+
+            {{- range .Params.Indicators }}
+
+                header = '{{ .header }}';
+                indicatorButtons.innerHTML += header.length ? '<div class="pl-1 pt-2 home-label border">' + header + '</div>': '';
+
+                {{ range $index, $id := .IndicatorID -}}
+
+                    {{ if (eq $index 0) -}} defaultIndicatorId = {{ $id -}} {{ end }}
+
+                    indicator = indicators.find(indicator => indicator.IndicatorID === {{ $id }});
+                    this_indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : 'N/A';
+                    indicatorButtons.innerHTML += "<button class='btn btn-sm btn-block btn-outline-active text-body text-left my-0 indicator-dropdown-item text-align-left font-weight-normal' data-indicator-id='{{ $id }}'>" + this_indicatorName + `<i class="indicator-arrows fas fa-arrow-circle-right float-right font-weight-bold hide" id="arrow-{{ $id }}" aria-hidden="true"></i></button>`;
+
+                {{- end }}
+            {{- end }}
+        }
+
+
+        {{- /* =================================================================== */}}
+        {{- /*  citation functions                                                 */}}
+        {{- /* =================================================================== */}}
+
+        function createCitation() {
+            // Create date
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = today.getFullYear();
+            today = mm + '/' + dd + '/' + yyyy;
+            let url = window.location.href.replace(/#.*/, "")
+
+            // Create citation
+            let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "{{ .Title }}" + " data. " + indicatorName + '. Accessed at ' + url + ' on ' + today + "."
+
+            // Add to form
+            document.getElementById('citeText').setAttribute('value', citation);
+
+            // console.log('CITATION CREATED')
+
+            let btn = document.getElementById('citeButton')
+            btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copy citation`
+
+        }
+
+        function copyCitation() {
+            let citeText = document.getElementById('citeText')
+            citeText.select()
+            citeText.setSelectionRange(0,99999);
+            navigator.clipboard.writeText(citeText.value)
+            let btn = document.getElementById('citeButton')
+            btn.innerHTML = `<i class="fas fa-copy mr-1"></i>Copied!`
+            // console.log('citation copied!')
+        }
+
+    </script>
+
+
+    {{- /*  non-bundled DE code - get resource, fingerprint, include  */}}
+
+    {{- $global      := resources.Get "js/data-explorer-old/global.js" -}}
+    {{- $data        := resources.Get "js/data-explorer-old/data.js" -}}
+    {{- $measures    := resources.Get "js/data-explorer-old/measures.js" -}}
+    {{- $table       := resources.Get "js/data-explorer-old/table.js" -}}
+    {{- $map         := resources.Get "js/data-explorer-old/map.js" -}}
+    {{- $links       := resources.Get "js/data-explorer-old/links.js" -}}
+    {{- $disparities := resources.Get "js/data-explorer-old/disparities.js" -}}
+    {{- $trend       := resources.Get "js/data-explorer-old/trend.js" -}}
+    {{- $app         := resources.Get "js/data-explorer-old/app.js" -}}
+    {{- $print       := resources.Get "js/data-explorer-old/print.js" -}}
+
+
+    {{- $global_secure      := $global | partial "short-fingerprint.html" -}}
+    {{- $data_secure        := $data | partial "short-fingerprint.html" -}}
+    {{- $measures_secure    := $measures | partial "short-fingerprint.html" -}}
+    {{- $table_secure       := $table | partial "short-fingerprint.html" -}}
+    {{- $map_secure         := $map | partial "short-fingerprint.html" -}}
+    {{- $links_secure       := $links | partial "short-fingerprint.html" -}}
+    {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
+    {{- $trend_secure       := $trend | partial "short-fingerprint.html" -}}
+    {{- $app_secure         := $app | partial "short-fingerprint.html" -}}
+    {{- $print_secure       := $print | partial "short-fingerprint.html" -}}
+
+
+    <script type="text/javascript" src="{{ $global_secure.RelPermalink }}" integrity="{{ $global_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $data_secure.RelPermalink }}" integrity="{{ $data_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $measures_secure.RelPermalink }}" integrity="{{ $measures_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $table_secure.RelPermalink }}" integrity="{{ $table_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $map_secure.RelPermalink }}" integrity="{{ $map_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $links_secure.RelPermalink }}" integrity="{{ $links_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $app_secure.RelPermalink }}" integrity="{{ $app_secure.Data.Integrity }}"></script>
+    <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
+
+
+{{- end -}}

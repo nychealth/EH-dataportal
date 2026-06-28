@@ -140,7 +140,7 @@
 
 {{- /*  Call all data libraries if it's not a section page, except for Neighborhood Reports  */}}
 
-{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer-new") }}
+{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer") }}
 
     {{- /*  VegaLite  */}}
 
@@ -272,8 +272,8 @@
     <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{- end }}
 
-{{- if (eq .Section "data-explorer-new") -}}
-    <meta data-pagefind-filter="section[content]" content="Data Explorer New">
+{{- if (eq .Section "data-explorer-old") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Explorer (Old)">
 {{- end }}
 
 {{- if (eq .Section "key-topics") -}}
