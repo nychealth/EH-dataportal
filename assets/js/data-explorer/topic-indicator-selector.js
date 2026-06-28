@@ -535,6 +535,13 @@ const selectIndicator = async (id) => {
 
     console.log("* selectIndicator:", id);
 
+    // Record the selection (mirrors the old explorer's click_indicator event).
+    // Guarded because the topic-chooser page loads this file without global.js,
+    // so the wrapper may not exist in every context that calls selectIndicator.
+    if (typeof trackDataExplorerEvent === 'function') {
+        trackDataExplorerEvent('click_indicator', { IndicatorID: Number(id) });
+    }
+
     // On pages without the full app (e.g. section.html), navigate directly.
     // Skip dismissing the modal so the back-to-topics handler doesn't fire.
 

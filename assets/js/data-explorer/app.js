@@ -443,7 +443,7 @@ function reveal() {
 // ----------------------------------------------------------------------- //
 
 $('#howCalcButton').on('click', e => {
-    trackDataExplorerEvent('click_how_caclulated');
+    trackDataExplorerEvent('click_how_calculated');
 });
 
 $('.de-copy-citation-button[data-citation-target]').on('click', e => {
@@ -455,24 +455,3 @@ $('#v-pills-ds-tab').on('click', e => {
 });
 
 
-// ----------------------------------------------------------------------- //
-// add event listener to indicator links
-// ----------------------------------------------------------------------- //
-
-// Handles clicks on the indicator list and starts the indicator reload pipeline.
-$('#indicatorButtons').on('click', e => {
-
-    let IndicatorID = e.target.dataset.IndicatorID;
-
-    // run the indicator loading function
-
-    resetSelectionForNewIndicator(IndicatorID);
-    loadIndicator(IndicatorID);
-
-    // record google analytics event
-
-    trackDataExplorerEvent('click_indicator', {
-        IndicatorID: IndicatorID
-    });
-
-});

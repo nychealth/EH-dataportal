@@ -308,10 +308,14 @@ const updateDropdownText = (clickedItem) => {
     console.log("* updateDropdownText");
 
     const dropdown = clickedItem.closest('.dropdown');
-    const button = dropdown.querySelector('button[id$="OptionsDropdownButton"]');
+    // Resolve the trigger by role, not by id suffix, so mobile/desktop variants
+    // (which now carry unique ids) both match.
+    const button = dropdown.querySelector('button[data-toggle="dropdown"]');
+    const span = button?.querySelector('span');
 
-    // Each dropdown trigger stores its visible label in a nested span.
-    const span = button.querySelector('span');
+    if (!span) {
+        return;
+    }
 
     span.textContent = clickedItem.textContent;
 

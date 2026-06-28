@@ -321,7 +321,7 @@ const renderMap = (
 const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
 
     // Percent measures show percent-formatted legends; everything else stays unitless here.
-    if (metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent') && !metadata[0].MeasurementType.includes('percentile')) {
+    if ((metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent')) && !metadata[0].MeasurementType.includes('percentile')) {
 
         isPercent = true;
         displayType = '%';
@@ -501,7 +501,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     .openOn(map);
                 
                 // Switch to trend tab
-                const element = document.getElementById('v-pills-trend');
+                const element = document.getElementById('v-pills-trends-tab');
                 if (element) {
                     element.click();
                 } else {
@@ -611,7 +611,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     // For citywide-only data, add click handler to switch to trend tab
                     if (isCitywideOnly) {
                         layer.on('click', () => {
-                            const element = document.getElementById('v-pills-trend');
+                            const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
                             } else {
@@ -662,7 +662,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         // For citywide-only data, switch to trend tab
                         if (isCitywideOnly) {
-                            const element = document.getElementById('v-pills-trend');
+                            const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
                             } else {
@@ -713,7 +713,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     .openOn(map);
                 
                 // Switch to trend tab
-                const element = document.getElementById('v-pills-trend');
+                const element = document.getElementById('v-pills-trends-tab');
                 if (element) {
                     element.click();
                 } else {

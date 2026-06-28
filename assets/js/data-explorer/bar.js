@@ -119,7 +119,7 @@ const renderBar = (
     console.log('has CI [bar.js]', hasCI)
 
     // Switch units and subtitle formatting when the measure is percentage-based.
-    if (barMeasurementType.includes('Percent') || barMeasurementType.includes('percent') && !barMeasurementType.includes('percentile')) {
+    if ((barMeasurementType.includes('Percent') || barMeasurementType.includes('percent')) && !barMeasurementType.includes('percentile')) {
 
         isPercent = true;
         displayType = '%';
@@ -490,11 +490,11 @@ const renderBar = (
             // Precompute display strings once so tooltips and CI marks can reuse them across layers.
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
             {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : datum.Value * .95", // hard set for test
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
                 "as": "ciLow"
             },
             {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : datum.Value * 1.05", // hard set for test
+                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
                 "as": "ciHigh"
             },
             {

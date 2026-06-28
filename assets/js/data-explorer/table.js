@@ -742,6 +742,24 @@ const renderTable = (tableData) => {
 
 
 // ----------------------------------------------------------------------- //
+// table data download
+// ----------------------------------------------------------------------- //
+
+// Triggers the table's configured CSV export. The DataTables CSV button is not
+// placed in the table chrome (there is no "B" in the `dom` string), so the
+// standalone "Download data" link drives it through the Buttons API.
+const downloadTableData = () => {
+
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    $('#tableID').DataTable().button(0).trigger();
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // grouped-row toggles
 // ----------------------------------------------------------------------- //
 

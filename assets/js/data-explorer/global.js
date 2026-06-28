@@ -611,6 +611,4 @@ const downloadData = (
             fileExtension: '.csv',
             linkText: 'Download chart data'
         });
-
-        e.stopPropagation();
 }
