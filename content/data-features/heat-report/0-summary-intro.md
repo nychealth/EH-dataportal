@@ -3,7 +3,7 @@ _schema: default
 draft: false
 ---
 
-Each summer, on average, approximately 500 **New Yorkers die prematurely because of hot weather** in New York City. Of those deaths:
+Each summer, on average, approximately **500 New Yorkers die prematurely because of hot weather** in New York City. Of those deaths:
 
 - There was an average of **7 heat-stress deaths** (caused directly by heat) per year from 2016-2025. A record-breaking heat event in June 2025 resulted in 19 heat-stress deaths.
 
