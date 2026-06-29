@@ -641,8 +641,8 @@
             map.setView([coords.lat, coords.lng], coords.zoom);
         };
 
-        var iconUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/map-pin-hollow_P.svg" }}';
-        var monitoringDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/MonitoringLocations.csv" }}';
+        var iconUrl = "embeds/map-pin-hollow_P.svg";
+        var monitoringDataUrl = "embeds/MonitoringLocations.csv";
 
         var markerIcon = L.icon({
             iconUrl: iconUrl,
@@ -700,7 +700,7 @@
 
         var map = createCpMap('cpRegional', { minZoom: 2, maxZoom: 16 }, [41.118333, -73.336667], 8);
 
-        var regionalDataUrl = '{{ relURL "data-features/congestion-pricing-report/embeds/RegionalSites.csv" }}';
+        var regionalDataUrl = "embeds/RegionalSites.csv";
 
         d3.csv(regionalDataUrl).then(function (sites) {
             sites.forEach(function (siteData) {
@@ -921,7 +921,7 @@
         "resolve": { "scale": { "x": "independent" } },
         "transform": [
             { "filter": "datum.Site === 'Deegan'" },
-            { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+            { "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
         ],
         "facet": { "field": "pollutant", "title": null },
         "spec": {
@@ -1079,7 +1079,7 @@
             aqEl.style.display = "";
             try {
                 await vegaEmbed(aqEl, spec2, {
-                    actions: true,
+                    actions: false,
                     renderer: "canvas",
                 });
                 aqEl.style.minHeight = "";
@@ -1899,7 +1899,7 @@
 
         try {
             await vegaEmbed(el, spec, {
-                actions: true,
+                actions: false,
                 renderer: "canvas",
             });
         } catch (err) {
@@ -1941,10 +1941,19 @@
         });
 
         function recordPositions() {
+            // Measure each header in its natural (non-fixed) geometry. A stuck
+            // header carries cp-is-fixed, which shrinks it (smaller font/padding),
+            // so reading outerHeight() while fixed records a wrong origHeight and
+            // shifts the push-up handoff. Clear the fixed state first, re-sync the
+            // placeholder height in case the header reflowed across a breakpoint,
+            // then let update() re-apply the fixed state from these fresh numbers.
+            $headers.removeClass('cp-is-fixed').css('top', '');
             $headers.each(function () {
                 var $h = $(this);
+                var natH = $h.outerHeight();
+                $h.parent().height(natH);
                 $h.data('origTop', $h.parent().offset().top)
-                    .data('origHeight', $h.outerHeight());
+                    .data('origHeight', natH);
             });
         }
 
@@ -1954,13 +1963,20 @@
         // Re-measure after full page load and after async charts (Vega) have rendered
         $(window).on('load', function () {
             recordPositions();
+            update();
             setTimeout(function () { recordPositions(); update(); }, 1000);
         });
 
-        // Re-measure on resize
+        // Re-measure on resize, debounced — resize fires rapidly during a drag
+        // and recordPositions() reads layout per header (200ms matches the
+        // addResizeHandler debounce used by the chart blocks above).
+        var resizeTimer;
         $(window).on('resize.cp-sticky', function () {
-            recordPositions();
-            update();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                recordPositions();
+                update();
+            }, 200);
         });
 
         function update() {
@@ -2054,8 +2070,8 @@
                         "Parameter": "PM2.5",
                         "Time": "Pre",
                         "Value": 7.82,
-                        "LC": 8.5,
-                        "UC": 7.14,
+                        "LC": 7.14,
+                        "UC": 8.5,
                         "Unit": "mcg/m3"
                     },
 
@@ -2092,7 +2108,7 @@
                     "as": "ValueWithUnit"
                 },
                 {
-                    "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'After congestion pricing' : datum.Time",
+                    "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
                     "as": "TimeLabel"
                 }
             ],
@@ -2100,7 +2116,7 @@
                 "x": {
                     "field": "TimeLabel",
                     "type": "nominal",
-                    "sort": ["Before congestion pricing", "After congestion pricing"],
+                    "sort": ["Before congestion pricing", "With congestion pricing"],
                     "title": null
                 }
             },
@@ -2130,7 +2146,7 @@
                                 "labelFontSize": 14,
                                 "labelFontWeight": "bold",
                                 "labelColor": {
-                                    "expr": "datum.label"
+                                    "expr": "datum.value === 'Observed' ? 'blue' : 'darkorange'"
                                 }
                             },
                             "scale": {
@@ -2174,7 +2190,7 @@
             "transform": [
                 { "filter": "datum.Site === 'Deegan'" },
                 { "filter": "datum.pollutant === 'BC'" },
-                { "calculate": "datum.lower > 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+                { "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
             ],
             "width": "container",
             "height": 35,
