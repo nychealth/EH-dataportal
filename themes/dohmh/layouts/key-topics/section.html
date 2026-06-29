@@ -18,6 +18,11 @@
 
                 <h1><i class="fas fa-star mr-1 text-primary" aria-hidden="true"></i>Key Topics in Environmental Health</h1>
                 <p>{{- .Content -}}</p>
+                <ul class="list-unstyled font-weight-bold">
+                    {{- range where .Pages ".Params.hide" "!=" true -}}
+                        <li class="link-w-underline px-0"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                    {{- end -}}
+                </ul>
             </div>
         </div>
     </div>
