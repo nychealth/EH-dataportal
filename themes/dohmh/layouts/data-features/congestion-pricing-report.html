@@ -189,7 +189,7 @@
                         <span class="badge badge-light site-badge" data-site="deegan">Deegan</span>
                         <span class="badge badge-light site-badge" data-site="cross-bronx">Cross Bronx</span>
                         <span class="badge badge-light site-badge" data-site="bqe">BQE</span>
-                        <span class="badge badge-light site-badge" data-site="si-exwy">SI Exwy</span>
+                        <span class="badge badge-light site-badge" data-site="si-exwy">SI Expwy</span>
                         <span class="badge badge-light site-badge" data-site="fdr">FDR</span>
                         <span class="badge badge-light site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
                         <span class="badge badge-light site-badge" data-site="van-wyck">Van Wyck</span>
@@ -299,7 +299,7 @@
 
     <div class="row">
         <div class="col-md-8 col-sm-12 mx-auto my-1">
-            <h3 class="cp-sticky-header cp-is-fixed">Air quality changes throughout the day</h3>
+            <h3 class="cp-sticky-header">Air quality changes throughout the day</h3>
             <p class="mt-1">We used realtime monitors to measure PM2.5 levels throughout the day, capturing daily patterns that
                 filter-based integrated monitors can't. These realtime monitors measure PM2.5 levels every hour, giving
                 us a detailed picture of how pollution changes throughout the day. These data let us examine
@@ -328,7 +328,7 @@
 
                 <div class="row mt-4">
                     <div class="col-12">
-                        <h3 class="cp-sticky-header cp-is-fixed">Pollution outside of NYC </h3>
+                        <h3 class="cp-sticky-header">Pollution outside of NYC </h3>
                     </div>
                     <div class="col-md-6 fs-rg mt-1">
                         {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
@@ -362,7 +362,7 @@
 
     <div class="col-md-8 col-sm-12 mx-auto">
 
-        <h2 class="h3 cp-sticky-header cp-is-fixed">Conclusion</h2>
+        <h2 class="h3 cp-sticky-header">Conclusion</h2>
         <div class="mt-2">
             {{- with .Resources.GetMatch "conclusion.md" -}}
             {{ .Content }}
@@ -408,13 +408,13 @@
             preposition: "near the", hasTOD: true, badgeKey: "deegan",
             mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
             badgeInfo: "The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).",
-            text: "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</ul>"
+            text: "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</li></ul>"
         },
         "Cross Bronx": {
             preposition: "near the", hasTOD: true, badgeKey: "cross-bronx",
             mapCoords: { lat: 40.844967, lng: -73.906263, zoom: 16 },
             badgeInfo: "The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).",
-            text: "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%  </li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly </li></ul></p>"
+            text: "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%</li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly</li></ul>"
         },
         "BQE": {
             preposition: "near the", hasTOD: true, badgeKey: "bqe",
@@ -426,33 +426,33 @@
             preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
             mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
             badgeInfo: "The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).",
-            text: "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%  </li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly </li></ul> </p>"
+            text: "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%</li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly</li></ul>"
         },
         "FDR": {
             preposition: "near the", hasTOD: true, badgeKey: "fdr",
             mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
             badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).",
-            text: "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality: <ul><li>Total traffic increased by 9% from 2024 to 2025 </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul></p>"
+            text: "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 9% from 2024 to 2025</li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged</li></ul>"
         },
         "Trans-Manhattan": {
             preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
             mapCoords: { lat: 40.847353, lng: -73.934027, zoom: 16 },
             badgeInfo: "The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).",
-            text: "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:<ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same  </li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged </li></ul> </p>"
+            text: "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged</li></ul>"
         },
         "Van Wyck": {
             preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
             mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
             badgeInfo: "The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.",
-            text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.  </li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.  </li></ul> </p>"
+            text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:</p><ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.</li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.</li></ul>"
         },
         "CRZ": {
             preposition: "in the", hasTOD: false,
-            text: "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same </ul></p>"
+            text: "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.</p><ul><li>BC and NO decreased</li><li>NO2 and PM2.5 remained the same</li></ul>"
         },
         "Rest of the City": {
             preposition: "in the", hasTOD: false,
-            text: "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.  <ul><li>BC and NO decreased  <li>NO2 and PM2.5 remained the same. </ul></p>"
+            text: "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.</p><ul><li>BC and NO decreased</li><li>NO2 and PM2.5 remained the same.</li></ul>"
         }
     };
 
@@ -2230,7 +2230,14 @@
 
     }
 
-    drawExplainChart();
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof vegaEmbed !== "function") {
+            console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
+            return;
+        }
+
+        drawExplainChart();
+    });
 
 </script>
 
