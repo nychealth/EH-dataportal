@@ -22,6 +22,7 @@ aliases:
 image: images/GettyImages-resize-1.png
 layout: congestion-pricing-report
 report: true
+mapLib: true
 related:
   - title: "Real-Time Air Quality: PM2.5 in NYC"
     url: "data-features/realtime-air-quality/"

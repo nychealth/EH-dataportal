@@ -574,7 +574,9 @@
 
         var map = createCpMap('cpReportMap', { minZoom: 8, maxZoom: 16 }, [40.715554, -74.0026642], 10);
 
+
         var legend = L.control({ position: 'topright' });
+
         legend.onAdd = function () {
             var div = L.DomUtil.create('div', 'legend');
             div.innerHTML = [
@@ -586,6 +588,8 @@
             return div;
         };
         legend.addTo(map);
+
+
 
         var cpAreaGeoJSON = {
             type: 'FeatureCollection',
@@ -632,6 +636,24 @@
             map.fitBounds(cpAreaLayer.getBounds(), { padding: [20, 20] });
         }
         cpAreaLayer.bringToFront();
+
+        
+        // add button to reset map to original zoom
+
+        L.easyButton({
+            position: "bottomleft",
+            states: [{
+                title: "Reset zoom",
+                icon: "fas fa-undo",
+                onClick: (btn, map) => { 
+                    if (cpAreaLayer.getBounds && cpAreaLayer.getBounds().isValid()) {
+                        map.fitBounds(cpAreaLayer.getBounds(), { padding: [20, 20] });
+                    } else {
+                        map.setView([40.715554, -74.0026642], 10) 
+                    }
+                }
+            }]
+        }).addTo(map);
 
         window.cpReportZoomToSite = function (siteName) {
             var coords = CP_SITES[siteName] && CP_SITES[siteName].mapCoords;
@@ -699,6 +721,17 @@
         mapElement.dataset.mapInitialized = 'true';
 
         var map = createCpMap('cpRegional', { minZoom: 2, maxZoom: 16 }, [41.118333, -73.336667], 8);
+
+        // add button to reset map to original zoom
+
+        L.easyButton({
+            position: "bottomleft",
+            states: [{
+                title: "Reset zoom",
+                icon: "fas fa-undo",
+                onClick: (btn, map) => map.setView([41.118333, -73.336667], 8) 
+            }]
+        }).addTo(map);
 
         var regionalDataUrl = "embeds/RegionalSites.csv";
 
@@ -2030,7 +2063,7 @@
         });
 
         // Load Deegan site by default on page load
-        {{/*  $('.site-badge[data-site="deegan"]').trigger('click');  */}}
+        // $('.site-badge[data-site="deegan"]').trigger('click');
     });
 
     function drawExplainChart() {
