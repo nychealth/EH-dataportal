@@ -73,3 +73,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 
 - `documents/data-explorer-deep-audit-2026-06-27.md`
 - `documents/site-wide-audit-2026-06-27.md`
+
+## Team context
+
+The team is mostly self-trained, so some things are done deliberately and well, others evolved organically. The team is happy with what works but open to suggestions for more professional or elegant approaches. Proactively flag patterns that have a clearly better industry-standard equivalent, even as asides during unrelated work — but don't assume everything unfamiliar is wrong, and keep suggestions brief.
