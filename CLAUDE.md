@@ -40,6 +40,8 @@ documents/      Internal audits and technical write-ups
 - Match existing file style before applying any general rule. Don't refactor untouched code.
 - Preserve accessibility: labels, keyboard support, sensible fallbacks on all interactive elements.
 
+**Orientation comments before code blocks:** Add a brief comment before each meaningful code block (function, object, initialization section, etc.) explaining what it does at a high level — even if the name alone makes it obvious. The user wants to know what's coming before reading the code, not just after.
+
 ## Hugo-specific rules
 
 - Edit source files (`content/`, `layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
