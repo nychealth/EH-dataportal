@@ -36,6 +36,7 @@ documents/      Internal audits and technical write-ups
 - 4-space indentation in all files.
 - Browser-side JS: no new frameworks or build dependencies. Keep it lightweight, readable, and explicitly branched.
 - Generous vertical whitespace in `assets/js/data-explorer/` — see `measures.js` for the style reference.
+- **JS formatting and comment conventions:** see `documents/js-conventions.md` — covers file headers, comment hierarchy, variable grouping, function-level comments, and internal step comments. Apply when writing or revising any browser-side JS.
 - Comments should be brief and intent-focused. Explain *why*, not *what*. Bias towards adding more comments, not fewer.
 - Match existing file style before applying any general rule. Don't refactor untouched code.
 - Preserve accessibility: labels, keyboard support, sensible fallbacks on all interactive elements.
