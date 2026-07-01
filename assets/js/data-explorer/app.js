@@ -11,7 +11,6 @@
 // ----------------------------------------------------------------------- //
 
 // call this after any dropdown change to sync the URL
-
 const buildCanonicalSearchParams = () => {
 
     const params = new URLSearchParams();
@@ -40,7 +39,6 @@ const buildCanonicalSearchParams = () => {
     return params;
 
 };
-
 
 
 // ----------------------------------------------------------------------- //
@@ -220,6 +218,8 @@ normalizeLegacyHashOverlayURL();
 // Tab clicks pass false (default) — the map doesn't need to redraw just because
 // the overlay pane switches.
 
+// Incremented on every scheduled table render so a stale deferred render can detect it has
+// been superseded and skip itself instead of clobbering a newer one.
 let pendingTableOverlayToken = 0;
 
 // Runs renderer only when module has assigned active show* function.
