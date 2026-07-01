@@ -481,7 +481,12 @@ const renderBar = (
         "config": {
             "view": {"stroke": "transparent"},
             "axisY": {"domain": false, "ticks": false, "labelBaseline": "bottom"},
-            "axisX": {"domain": false, "ticks": false},
+            "axisX": {
+                "domain": false, 
+                "ticks": false,
+                "labelExpr":
+                    "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
+            },
             "legend": {"disable": true},
             "scale": {"invalid": {"color": {"value": "#808080"}}}
         },

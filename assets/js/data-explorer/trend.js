@@ -169,7 +169,7 @@ const renderTrendChart = (
             compDisplayTypes = '%';
         }
 
-        comp_group_col = "Geography";
+        comp_group_col = "GeographyShort"; // point to calculated field to create abbreviated borough labels
 
     } else if (compIndicatorLabel.length == 1) {
 
@@ -336,7 +336,13 @@ const renderTrendChart = (
                 "titleFont": "sans-serif",
                 "titlePadding": 10
             },
-            "axisY": { "labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep },
+            "axisY": { 
+                "labelAngle": 0, 
+                "labelFontSize": 11, 
+                "tickMinStep": tickMinStep,
+                "labelExpr":
+                    "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
+            },
             "legend": {
                 "columns": columns,
                 "labelFontSize": 10,
@@ -373,6 +379,11 @@ const renderTrendChart = (
             "subtitleFontSize": 12
         },
         "transform": [
+            {
+                "calculate": "datum.Geography === 'New York City' ? 'NYC' : datum.Geography === 'Bronx' ? 'BX' : datum.Geography === 'Brooklyn' ? 'Bklyn' : datum.Geography === 'Manhattan' ? 'MN' : datum.Geography === 'Queens' ? 'Qns' : datum.Geography === 'Staten Island' ? 'SI' : datum.Geography",
+                "as": "GeographyShort"
+            },
+           
             {
                 "calculate": `replace(datum.${comp_group_col}, /(.{1,15})(\\s+|$)/g, '$1\\n')`,
                 "as": "textLabel"

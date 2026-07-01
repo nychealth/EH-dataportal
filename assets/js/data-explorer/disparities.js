@@ -200,7 +200,10 @@ const renderDisparitiesChart = async (
                 "tickMinStep": 1,
                 "domain": false,
                 "ticks": false,
-                "labelBaseline": "bottom"
+                "labelBaseline": "bottom",
+                "labelExpr":
+                    "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
+
             },
             "view": { "stroke": "transparent" },
             "text": {

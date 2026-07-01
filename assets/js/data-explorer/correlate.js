@@ -363,7 +363,10 @@ const renderCorrelate = (
                 "titleFontSize": 14,
                 "titleFont": "sans-serif",
                 "titlePadding": 10,
-                "titleFontWeight": "normal"
+                "titleFontWeight": "normal",
+                "labelExpr":
+                    "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
+
             },
             "axisY": {
                 "labelFontSize": 11,
@@ -374,7 +377,10 @@ const renderCorrelate = (
                 "tickMinStep": 1,
                 "domain": false,
                 "ticks": false,
-                "labelBaseline": "bottom"
+                "labelBaseline": "bottom",
+                "labelExpr":
+                    "(isObject(datum) ? datum.value : datum) === 0 ? '' : (isObject(datum) ? datum.value : datum)",
+
             },
             "legend": {
                 "columns": columns,
