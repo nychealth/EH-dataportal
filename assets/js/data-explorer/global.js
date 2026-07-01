@@ -2,15 +2,9 @@
 // global.js
 // ======================================================================= //
 
-// top-scope shared state and utility functions available to all modules
-
-// Shared explorer state, rendering globals, and small cross-module utilities
+// Shared explorer state, rendering globals, and small cross-module utilities available to all modules
 
 // console.log(">> global.js");
-
-// ----------------------------------------------------------------------- //
-// top scope variables
-// ----------------------------------------------------------------------- //
 
 // ----------------------------------------------------------------------- //
 // shared explorer state
@@ -60,6 +54,7 @@ let indicatorMeasures;
 let primaryIndicatorName;
 let secondaryIndicatorName;
 
+// Comparison-trend state tracks the secondary indicator picked for the borough-comparison overlay.
 let indicatorComparisonId;
 let comparisons;
 let comparisonMetadata;
@@ -81,6 +76,7 @@ let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources = [];
 
+// Current per-tab selections, set by menu/dropdown handlers and read back by renderers on redraw.
 let selectedMapMeasure;
 let selectedMapTime;
 let selectedMapGeo;
@@ -96,6 +92,7 @@ let selectedLinksPrimaryMeasureId;
 let selectedLinksSecondaryMeasureId;
 let selectedDisparityPrimaryMeasureId;
 
+// About/sources/metadata for the currently selected measure(s) on each tab, grouped by view.
 let selectedMapAbout;
 let selectedMapSources;
 let selectedMapMetadata;
@@ -149,11 +146,13 @@ let showLinks;
 let syncTrendSelectionsToMapSelection;
 let syncLinksSelectionsToMapSelection;
 
-let CSVforDownload; 
+// The active view's data as CSV, built on demand and read back by downloadData().
+let CSVforDownload;
 let downloadedIndicator;
 let downloadedIndicatorMeasurement;
 
-// variables for print specs
+// Print-spec state: the current view's year/geography/source labels and chart type,
+// set by each tab renderer and read back when print.js builds the export caption.
 let printSpec = {};
 let vizYear;
 let vizGeography;
@@ -161,15 +160,19 @@ let vizSource;
 let vizSourceSecond;
 let chartType;
 
+// Compared against window.history.state in data.js to detect first-load vs. popstate navigation.
 let state;
 
+// Core identity globals: which indicator/measure/geography/time is selected. Read across nearly
+// every file and kept in sync with the URL by app.js.
 let IndicatorID;
 let MeasureID;
 let GeoType;
 let TimePeriodID;
 // tracks the active overlay tab: 'bar', 'table', 'trend', 'links', or 'none'
-let overlay; 
+let overlay;
 
+// DOM ref for the disparities-toggle button, resolved once the page shell exists.
 let btnToggleDisparities;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
@@ -252,12 +255,10 @@ if (document.readyState === 'loading') {
 //     });    
 // }
 
-// Renders copy for the About the measures and the Data sources sections
-
 // Writes About and Sources content while de-duplicating repeated source text.
 const renderAboutSources = (about, sources) => {
 
-    console.log("**** renderAboutSources");
+    console.log("** renderAboutSources");
 
     // Some new-explorer templates use ids instead of the legacy class hooks.
     if (!aboutMeasures) {
