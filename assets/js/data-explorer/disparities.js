@@ -21,7 +21,7 @@ const resetDisparitiesPaneLayout = () => {
         return;
     }
 
-    // remove some properties and classes
+    // --- remove some properties and classes --- //
 
     correlateHolder.style.removeProperty('width');
     correlateHolder.style.removeProperty('min-width');
@@ -88,6 +88,7 @@ const renderDisparitiesChart = async (
     } else {
         primaryDisplay = primaryMetadata[0]?.DisplayType;
         subtitle = `${primaryMeasurementType}${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`;
+
     }
 
     const disparityIndicator = indicators.filter(indicator =>
@@ -110,12 +111,14 @@ const renderDisparitiesChart = async (
 
     if (needsFreshDisparityData) {
 
-        // Seed jitter by primary measure so redraws stay visually stable for one selection.
+        // - - - seed jitter by primary measure so redraws stay visually stable for one selection - - - //
+
         const seededRandom = typeof Math.seedrandom === 'function'
             ? Math.seedrandom(String(primaryMeasureId))
             : Math.random;
 
-        // Join the poverty measure once, then derive poverty buckets used by the plot.
+        // - - - join the poverty measure once, then derive poverty buckets used by the plot - - - //
+
         const aqDisparityData = await createJoinedLinksData(primaryMeasureId, disparityMeasureId)
             .then(res => {
                 return aq.from(res.data)
@@ -126,9 +129,10 @@ const renderDisparitiesChart = async (
 
         disparityData = aqDisparityData.objects();
         selectedDisparityPrimaryMeasureId = Number(primaryMeasureId);
+
     }
 
-    console.log("disparityData [renderDisparitiesChart]", disparityData);
+    console.log("** renderDisparitiesChart: disparityData", disparityData);
 
     selectedDisparity = true;
 
@@ -163,7 +167,8 @@ const renderDisparitiesChart = async (
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
     const height = window.innerWidth < 576 ? 350 : 400;
 
-    // Build the disparities scatterplot after jitter, notes, and subtitle text are ready.
+    // --- build the disparities scatterplot after jitter, notes, and subtitle text are ready --- //
+
     const disparitiesSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
