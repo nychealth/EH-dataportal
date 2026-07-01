@@ -334,7 +334,7 @@ const renderCorrelate = (
     unreliabilityHolder.classList.add('hide');
 
     linksUnreliability.forEach(note => {
-        unreliabilityHolder.innerHTML += `<div class='fs-xs'>${note}</div>`;
+    unreliabilityHolder.innerHTML += `<div class='fs-xs'>${note}</div>`;
         unreliabilityHolder.classList.remove('hide');
     });
 

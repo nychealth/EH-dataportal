@@ -161,7 +161,7 @@ const renderDisparitiesChart = async (
     renderAboutSources(combinedAbout, combinedSources);
 
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
-    const height = window.innerWidth < 576 ? 350 : 500;
+    const height = window.innerWidth < 576 ? 350 : 400;
 
     // Build the disparities scatterplot after jitter, notes, and subtitle text are ready.
     const disparitiesSpec = {
@@ -253,7 +253,7 @@ const renderDisparitiesChart = async (
                         "field": "PovRank",
                         "type": "ordinal",
                         "axis": {
-                            "labelExpr": "(datum.value == 4 ? 'Very high (over 30%)' : (datum.value == 3 ? 'High (20 - 29.9%)' : (datum.value == 2 ? 'Medium (10 - 19.9%)' : 'Low (0 - 9.9%)')))",
+                            "labelExpr": "(datum.value == 4 ? 'Very high' : (datum.value == 3 ? 'High' : (datum.value == 2 ? 'Medium' : 'Low')))",
                             "labelAlign": "center",
                             "labelAngle": 0,
                             "titleAlign": "center"
@@ -279,6 +279,10 @@ const renderDisparitiesChart = async (
                         {
                             "title": disparityMeasureName,
                             "field": "povLabel",
+                            "type": "nominal"
+                        },
+                        {   "title": "Poverty category", 
+                            "field": "PovCat", 
                             "type": "nominal"
                         }
                     ],
