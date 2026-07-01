@@ -57,6 +57,7 @@ const createComparisonData = async (comps) => {
     aqComparisonMetadata = aq.from(comparisonMetadata)
         .unroll("Indicators")
         .derive({
+
             IndicatorID: d => d.Indicators.IndicatorID,
             MeasureID: d => d.Indicators.MeasureID,
             GeoTypeName: d => d.Indicators.GeoTypeName,
@@ -84,6 +85,7 @@ const createComparisonData = async (comps) => {
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
+
             MeasureID: d => d.Measures.MeasureID,
             MeasureName: d => d.Measures.MeasureName,
             MeasurementType: d => d.Measures.MeasurementType,
