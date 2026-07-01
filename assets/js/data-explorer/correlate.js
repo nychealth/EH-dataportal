@@ -15,6 +15,7 @@ let correlateResizeEventRegistered = false;
 // Keeps the shared links pane width aligned with the current overlay width.
 const updateCorrelatePaneLayout = () => {
 
+    // The two elements whose fixed pixel width is kept in sync below.
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
 
@@ -22,6 +23,8 @@ const updateCorrelatePaneLayout = () => {
         return;
     }
 
+    // Derive a fixed width from the surrounding tab panel (minus its horizontal
+    // padding) so the chart doesn't reflow as Vega measures its container.
     const deTabsPanel = correlateHolder.closest('.de-tabs');
     const fixedHolderWidth = Math.max(
         280,
@@ -68,6 +71,7 @@ const registerCorrelateResizeHandler = () => {
     }
 
     window.addEventListener('resize', () => {
+
         if (chartType !== 'links') {
             return;
         }
@@ -95,6 +99,7 @@ const getNoCorrelatesMessage = (measureLabel) => {
 
 const setCorrelateActionState = (isEnabled) => {
 
+    // The two correlate-tab action controls this function enables/disables together.
     const saveChartButton = document.querySelector('.de-save-chart-button[data-print-context="correlate"]');
     const downloadDataButton = saveChartButton?.parentElement?.querySelector('a[onclick="downloadData()"]');
 
@@ -121,6 +126,7 @@ const setCorrelateActionState = (isEnabled) => {
 
 const renderNoCorrelatesMessage = (measureLabel) => {
 
+    // The correlate-tab regions this function clears/resets when no correlates exist.
     const viewDescription = document.getElementById('viewDescription');
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
@@ -177,6 +183,7 @@ const renderCorrelate = (
         return;
     }
 
+    // The correlate-tab regions this function populates for a successful render.
     const viewDescription = document.getElementById('viewDescription');
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
@@ -213,9 +220,12 @@ const renderCorrelate = (
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');
 
-    console.log("aqData [renderCorrelate]");
+    console.log("** renderCorrelate");
     aqData.print(100)
 
+    // Resolve display formatting (percent vs. other units) and time period for the
+    // primary measure, then repeat the same resolution for the secondary measure —
+    // the two branches mirror each other by design, one per joined indicator.
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;
 
@@ -526,6 +536,7 @@ const renderCorrelate = (
     };
 
     vegaEmbed('#links', correlateSpec, {
+
         actions: false
         // {
         //     export: { png: false, svg: false },
@@ -533,6 +544,7 @@ const renderCorrelate = (
         //     compiled: false,
         //     editor: true
         // }
+
     }).then((result) => {
         window.correlateVegaView = result.view;
         scheduleCorrelateViewResize();
