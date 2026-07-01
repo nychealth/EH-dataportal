@@ -15,6 +15,7 @@ const draw311Buttons = (indicator_id) => {
 
     console.log("* draw311Buttons");
 
+    // Holds the crosswalk rows matched to the current indicator, populated once the CSV loads.
     let filteredCrosswalk = [];
 
     d3.csv(`${baseURL}311/311-crosswalk.csv`)
@@ -35,6 +36,7 @@ const draw311Buttons = (indicator_id) => {
 
             dest.forEach(element => element.innerHTML = '')
 
+            // Narrows the full crosswalk to the rows relevant to the indicator being drawn.
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
             // console.log(filteredCrosswalk)
@@ -55,6 +57,7 @@ const draw311Buttons = (indicator_id) => {
             // Render one outbound 311 article link per matching crosswalk record.
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
 
+                // Link text and target come from the matching crosswalk row for this iteration.
                 let title = filteredCrosswalk[i].topic
                 let destination = filteredCrosswalk[i].kaLink
 
