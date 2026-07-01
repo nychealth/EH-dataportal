@@ -48,6 +48,7 @@ documents/      Internal audits and technical write-ups
 - Edit source files (`content/`, `layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
 - Front matter, slugs, and asset references are load-bearing — small typos can break URLs or builds.
 - Environment-specific values go in config, not hardcoded strings.
+- For a page with substantial inline JS, externalize it to `assets/js/<page-name>/*.js` and load via `resources.Get` → `partial "short-fingerprint.html"` → fingerprinted `<script src integrity=...>` — see `data-explorer/single.html` and `data-features/congestion-pricing-report.html` for two working examples. Keep scripts as classic (non-module) tags when they share global scope across files — load order matters and isn't enforced by tooling, so state it explicitly in a template comment.
 
 ## Data explorer architecture
 
