@@ -132,7 +132,7 @@ const renderDisparitiesChart = async (
 
     }
 
-    console.log("** renderDisparitiesChart: disparityData", disparityData);
+    console.log("disparityData [renderDisparitiesChart]", disparityData);
 
     selectedDisparity = true;
 

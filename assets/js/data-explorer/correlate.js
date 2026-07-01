@@ -220,8 +220,8 @@ const renderCorrelate = (
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');
 
-    console.log("** renderCorrelate");
-    aqData.print(100)
+    // console.log("aqData [renderCorrelate]");
+    // aqData.print(100)
 
     // Resolve display formatting (percent vs. other units) and time period for the
     // primary measure, then repeat the same resolution for the secondary measure —
