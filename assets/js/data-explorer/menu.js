@@ -6,7 +6,6 @@
 
 // Dropdown-menu defaults, cascading menu rebuilds, and selection handling
 
-
 // ----------------------------------------------------------------------- //
 // helpers
 // ----------------------------------------------------------------------- //
@@ -113,9 +112,9 @@ const updateAllMenus = (indicator) => {
         MeasureID = measure.MeasureID;
     }
 
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // MEASURES MENU
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const measures = indicator.Measures.map(m => ({
         label: m.MeasurementType,
@@ -126,9 +125,9 @@ const updateAllMenus = (indicator) => {
 
     setDropdownLabel('measure', measure.MeasurementType);
 
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // GEO MENU
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Prettify and deduplicate geo types (e.g., NTA2010 + NTA2020 → one "NTA" entry)
 
@@ -159,9 +158,9 @@ const updateAllMenus = (indicator) => {
 
     setDropdownLabel('geo', GeoType);
 
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // TIME MENU
-    // ----------------------------------------------------------------------- //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // Find the metadata entry whose raw GeoType prettifies to our selected GeoType
 
