@@ -2,6 +2,9 @@
 // measures.js
 // ======================================================================= //
 
+// Per-tab default measure selection, tab enable/disable state, and the
+// renderMeasures() setup that defines each tab's active show* render function.
+
 // console.log(">> measures.js");
 
 // ----------------------------------------------------------------------- //
@@ -15,6 +18,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
     return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
 
 };
+
 
 const pickDefaultMeasureByPriority = (visArray) => {
 
@@ -62,7 +66,10 @@ const buildDefaultMetadataArray = (visArray) => {
 
 };
 
-// ===== map ================================================== //
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// map
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Chooses the default measure for map and bar rendering.
 const setDefaultMapMeasure = (visArray) => {
@@ -76,7 +83,9 @@ const setDefaultMapMeasure = (visArray) => {
 }
 
 
-// ===== trend ================================================== //
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// trend
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Chooses the default measure for the trend tab.
 const setDefaultTrendMeasure = (visArray) => {
@@ -90,7 +99,9 @@ const setDefaultTrendMeasure = (visArray) => {
 }
 
 
-// ===== links ================================================== //
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// links
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Chooses the default linked measure pair and fetches the joined comparison data.
 const setDefaultLinksMeasure = async (visArray) => {
@@ -120,8 +131,9 @@ const setDefaultLinksMeasure = async (visArray) => {
 }
 
 
-
-// ===== disparities ================================================== //
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// disparities
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Chooses the default measure for the disparities tab.
 const setDefaultDisparitiesMeasure = (visArray) => {
@@ -418,7 +430,9 @@ const renderMeasures = async () => {
     measureSources = [];
 
 
-    // ===== table defaults ================================================== //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // table defaults
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     // collect unique time period labels available in the data for the table tab
     const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
@@ -435,7 +449,7 @@ const renderMeasures = async () => {
     }
 
 
-    // ----- geo types --------------------------------------------------- //
+    // --- geo types --- //
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
@@ -463,7 +477,9 @@ const renderMeasures = async () => {
     }
 
 
-    // ===== populate per-tab measure arrays ================================================== //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // populate per-tab measure arrays
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const disparitiesSecondaryMeasure = indicators
         .flatMap(indicator => indicator.Measures)
@@ -495,7 +511,9 @@ const renderMeasures = async () => {
     });
 
 
-    // ===== set metadata defaults ================================================== //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // set metadata defaults
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     setDefaultMapMeasure(mapMeasures);
     setDefaultTrendMeasure(trendMeasures);
@@ -506,7 +524,9 @@ const renderMeasures = async () => {
     await setDefaultLinksMeasure(linksMeasures);
 
 
-    // ===== trend selection controls ============================================ //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // trend selection controls
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const trendMeasurePills = document.getElementById('trendMeasurePills');
     const trendComparisonPills = document.getElementById('trendComparisonPills');
@@ -637,6 +657,8 @@ const renderMeasures = async () => {
         button.setAttribute('aria-selected', isActive ? 'true' : 'false');
 
     };
+
+
     // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getSyncedTrendMeasureId = () => {
 
@@ -977,7 +999,9 @@ const renderMeasures = async () => {
     buildTrendSelectionControls();
 
 
-    // ===== correlate / disparities selection controls ======================== //
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // correlate / disparities selection controls
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const dropdownLinksMeasures = document.getElementById('linksDropdownMenu');
     const linksDropdownToggle = document.getElementById('dropdownLinksMeasures');
@@ -1016,6 +1040,7 @@ const renderMeasures = async () => {
         }
 
     };
+
 
     const getLinksButtonLabel = (secondaryMeasureId) => {
 
@@ -1374,9 +1399,10 @@ const renderMeasures = async () => {
     // functions to show to tabs
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    // ===== table ================================================== //
+    // --- table --- //
 
     const adjustVisibleSummaryTable = () => {
+
         const tablePane = document.querySelector('#v-pills-table');
 
         // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
@@ -1395,9 +1421,12 @@ const renderMeasures = async () => {
         if (typeof lockSummaryTableScrollBodyHeight === 'function') {
             lockSummaryTableScrollBodyHeight();
         }
+
     };
 
+
     const scheduleVisibleSummaryTableAdjust = () => {
+
         // Closing the pane hides the whole tab container, so one immediate adjust often runs too early.
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
@@ -1409,6 +1438,7 @@ const renderMeasures = async () => {
         window.setTimeout(() => {
             adjustVisibleSummaryTable();
         }, 180);
+
     };
 
     // Refreshes the summary table layout after it becomes the active overlay.
@@ -1450,7 +1480,7 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== map (Leaflet — always visible) ======================== //
+    // --- map (Leaflet — always visible) --- //
 
     // Redraws the Leaflet map (always visible on the left) with the current selection.
     showMap = () => {
@@ -1482,7 +1512,7 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== bar chart (right overlay pane) ======================= //
+    // --- bar chart (right overlay pane) --- //
 
     // Renders the right-side bar overlay from the filtered map rows.
     showBar = (e) => {
@@ -1504,7 +1534,7 @@ const renderMeasures = async () => {
     };
 
 
-    // ===== trend ================================================== //
+    // --- trend --- //
 
     // Chooses between borough trend mode and comparison trend mode.
     showTrend = (e) => {
@@ -1525,7 +1555,7 @@ const renderMeasures = async () => {
 
     }
 
-    // ----- show the normal trend chart --------------------------------------------------- //
+    // - - - show the normal trend chart - - - //
 
     // Renders the standard borough trend chart for the selected measure.
     showBoroughTrend = (e) => {
@@ -1600,7 +1630,7 @@ const renderMeasures = async () => {
     };
     
 
-    // ----- show the trend comparison chart --------------------------------------------------- //
+    // - - - show the trend comparison chart - - - //
 
     // Renders the multi-indicator comparison trend chart when comparison metadata exists.
     showComparisonTrend = (e) => {
@@ -1668,7 +1698,7 @@ const renderMeasures = async () => {
     }
 
 
-    // ===== links ================================================== //
+    // --- links --- //
 
     // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
     showLinks = async (e) => {
