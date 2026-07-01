@@ -621,12 +621,13 @@ const renderTrendChart = (
     };
 
     vegaEmbed("#trend", compspec2, {
-        actions: {
-            export: { png: false, svg: false },
-            source: false,
-            compiled: false,
-            editor: true
-        }
+        actions: false
+        // {
+        //     export: { png: false, svg: false },
+        //     source: false,
+        //     compiled: false,
+        //     editor: true
+        // }
     });
 
     vizSource = metadataObjects[0].Sources;

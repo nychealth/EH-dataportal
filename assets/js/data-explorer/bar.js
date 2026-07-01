@@ -538,12 +538,14 @@ const renderBar = (
     
     return vegaEmbed("#barHolder", vegaSpec, {
 
-        actions: {
-            export: { png: false, svg: false },
-            source: false,
-            compiled: false,
-            editor: true 
-        }
+        actions: false
+        
+        // {
+        //     export: { png: false, svg: false },
+        //     source: false,
+        //     compiled: false,
+        //     editor: true 
+        // }
         
     }).then(result => {
         

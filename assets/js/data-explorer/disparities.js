@@ -318,12 +318,13 @@ const renderDisparitiesChart = async (
     };
 
     vegaEmbed('#links', disparitiesSpec, {
-        actions: {
-            export: { png: false, svg: false },
-            source: false,
-            compiled: false,
-            editor: true
-        }
+        actions: false
+        // {
+        //     export: { png: false, svg: false },
+        //     source: false,
+        //     compiled: false,
+        //     editor: true
+        // }
     }).then(() => {
         scheduleDisparitiesViewResize();
     });

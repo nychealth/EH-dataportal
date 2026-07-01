@@ -526,12 +526,13 @@ const renderCorrelate = (
     };
 
     vegaEmbed('#links', correlateSpec, {
-        actions: {
-            export: { png: false, svg: false },
-            source: false,
-            compiled: false,
-            editor: true
-        }
+        actions: false
+        // {
+        //     export: { png: false, svg: false },
+        //     source: false,
+        //     compiled: false,
+        //     editor: true
+        // }
     }).then((result) => {
         window.correlateVegaView = result.view;
         scheduleCorrelateViewResize();
