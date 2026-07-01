@@ -303,18 +303,4 @@
 
 </article>
 
-<script>
-    var linkTrack = document.getElementsByClassName("link-track");
-
-    for(let i = 0; i < linkTrack.length; i++) {
-        linkTrack[i].addEventListener("click", function(event) {
-            gtag("event", "click_topic_link", {
-            'click_url': this.getAttribute("href")
-            })
-        })
-    }
-</script>
-
-
-
 {{- end -}}

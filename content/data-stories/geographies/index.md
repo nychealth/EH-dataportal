@@ -32,7 +32,7 @@ related:
 
 New York City has hundreds of neighborhoods and nearly as many ways of drawing neighborhood boundaries. When you visit the Environment & Health Data Portal, you might notice that data is available in several different neighborhood schemes.
 
-For example, dig around in the asthma data pages and you'll find [Adults with Asthma]({{< baseurl >}}data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma]({{< baseurl >}}data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct.
+For example, dig around in the asthma data pages and you'll find [Adults with Asthma]({{< relURL >}}data-explorer/asthma/?id=18) presented by UHF34 neighborhoods, [Public School Children with Asthma]({{< relURL >}}data-explorer/asthma/?id=2147) presented by UHF42 neighborhoods, and [Asthma emergency department visits]({{< relURL >}}data-explorer/asthma/?id=2384) are offered by NTAs. Other data on the portal are offered by CD, ZIP code, PUMA, and occasionally even police precinct.
 
 **What are all these neighborhood schemes, why do we use one and not the other, and why isn’t the whole system consistent?**
 
@@ -318,7 +318,7 @@ It can be difficult to work with several datasets when the data are for differen
 
 <div class="narrow">
 
-You can also use our new <a href="{{< baseurl >}}data-features/find-your-uhf/">Find your UHF neighborhood tool</a>, where you can search by Community District or City Council District, and see what UHF42 neighborhoods overlap it.
+You can also use our new <a href="{{< relURL >}}data-features/find-your-uhf/">Find your UHF neighborhood tool</a>, where you can search by Community District or City Council District, and see what UHF42 neighborhoods overlap it.
 
 Using these tools, you can find that sometimes, neighborhoods in different “schemes” overlap pretty well—meaning that data for one “scheme” can be used in another scheme. But more often, different neighborhood schemes have boundaries that conflict and don’t conveniently overlap each other. When this happens, you can use the Boundaries or the UHF neighborhood tools to:
 

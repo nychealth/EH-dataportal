@@ -38,6 +38,11 @@
 
 {{ end }}
 
+<!-- Don't index the "Resources" section --> 
+{{ if eq .Section "resources" }}
+  <meta name="robots" content="noindex">
+{{ end }}
+
 
 <!-- favicon -->
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
@@ -86,7 +91,7 @@
 
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->
-    <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+    <link href="https://maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css" rel="stylesheet">
 {{- end }}
 
 
@@ -123,7 +128,7 @@
 {{- end }}
 
 <!-- nyc-lib css -->
-<link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+<link href="https://maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css" rel="stylesheet">
 
 
 

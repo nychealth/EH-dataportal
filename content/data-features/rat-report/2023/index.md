@@ -2,7 +2,6 @@
 title: "Rat Mitigation Zone Report: January 2023 to June 2023"
 date: 2021-09-08T11:14:56-04:00
 draft: false
-draft: false
 seo_title: "Rat Mitigation Zone Report"
 seo_description: "Reporting on rat inspection and mitigation work."
 tags: 
@@ -54,7 +53,7 @@ program. Key components of NYC’s IPM program are listed below:
   public realm;
 - Robust outreach and education helps New Yorkers learn best practices for controlling
   rats; and
-- Engaging the public by making inspection activities public on the [Rat Information Portal](../rat-information-portal) - a web-based mapping application that allows you to view the rat inspection and action data collected by the Health Department - and describing rat control programs on the [Environment and Health Portal](../rat-mitigation-zones) enables New Yorkers to see how, together, we are working to reduce rat activity.
+- Engaging the public by making inspection activities public on the [Rat Information Portal]({{< relURL >}}data-features/rat-information-portal/) - a web-based mapping application that allows you to view the rat inspection and action data collected by the Health Department - and describing rat control programs on the [Environment and Health Portal]({{< relURL >}}data-features/rat-mitigation-zones/) enables New Yorkers to see how, together, we are working to reduce rat activity.
 
 The Department’s inspection data shows that rat activity in NYC neighborhoods is not equally distributed. Some neighborhoods bear a higher burden of rat infestation. Those neighborhoods tend to be densely populated with high foot traffic, an abundance of food service establishments, and a higher proportion of public property. To effectively address rats, city agencies, property owners, and residents in these areas must work together. Rats do not observe property lines or distinguish between public and private ownership. To reduce rat populations in New York, everyone in a neighborhood, both private and public, must work together, across our usual boundaries and in times and places that matter most to rats.
 
@@ -83,7 +82,7 @@ mitigation efforts. Those are:
 
 Using these seven criteria to measure progress, the Department has intensified the city’s inter- agency anti-rat work, collaborating with NYC Parks, NYCHA, and NYC Public Schools, with additional resources provided by the Mayor’s Office. This effort, called the Neighborhood Rat Reduction (NRR) Initiative, brings together multiple city agencies to provide a concentrated IPM effort to reduce rat activity on private and public property in the four RMZ.
 
-Data collected in the first six months of 2022 was used to create a baseline measure. Data for calendar year 2022 was compiled and posted to the Department website: [Data on rat inspections | Environment & Health Data Portal](../rat-mitigation-zones).
+Data collected in the first six months of 2022 was used to create a baseline measure. Data for calendar year 2022 was compiled and posted to the Department website: [Data on rat inspections | Environment & Health Data Portal]({{< relURL >}}data-features/rat-mitigation-zones/).
 
 Under the Neighborhood Rat Reduction Initiative, inspection teams have ramped up inspections in the zones. Routine inspections in buildings with significant rat activity are holding private-property owners accountable. Monthly surveys of city agency property ensure that the agencies are doing their part to manage rats in the public realm. The Department, in partnership with Parks, Schools, and NYCHA, is testing rat mitigation methods, renewing the focus on IPM, and evaluating impact in the zones. Inter-agency work has ramped up across all four zones and is being carefully tracked in monthly Rat Task Force meetings at City Hall.
 
@@ -162,7 +161,7 @@ Table 5 provides a count of extermination visits by the Department extermination
 3. **A description of the public outreach measures undertaken by the department in
    relation to rat mitigation in each such zone.**
 
-The Department has an active community outreach program. The outreach and education program includes free “Rat Academy” classes for many different audiences to learn IPM techniques; guidance materials in multiple languages on rat reduction and prevention; along with a robust online [Rat Information Portal](../rat-information-portal/) which provides access to both guidance materials and inspection results.
+The Department has an active community outreach program. The outreach and education program includes free “Rat Academy” classes for many different audiences to learn IPM techniques; guidance materials in multiple languages on rat reduction and prevention; along with a robust online [Rat Information Portal]({{< relURL >}}data-features/rat-information-portal/) which provides access to both guidance materials and inspection results.
 
 The Health Department’s Rat Academy offers free trainings to the public on using IPM practices to safely prevent and manage rats. Any elected official, Business Improvement District, block association, or community group can sponsor or host a Rat Academy training for their area, and the Department can tailor the Rat Academy curriculum to the audience and the neighborhood. There are programs for private property management companies, landlords, owners, businesses, urban gardeners, and city agencies. Attendees are also taught to use the Rat Information Portal to track inspections.
 
