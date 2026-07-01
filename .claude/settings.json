@@ -19,7 +19,6 @@
       "PowerShell(npx *)",
       "WebFetch(domain:*)"
     ],
-    "defaultMode": "auto",
     "ask": [
       "Bash(git commit)",
       "Bash(git commit *)",
@@ -49,12 +48,13 @@
       "PowerShell(git checkout -- *)",
       "PowerShell(git branch -D)",
       "PowerShell(git branch -D *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
+    "greptile@claude-plugins-official": false,
     "commit-commands@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
