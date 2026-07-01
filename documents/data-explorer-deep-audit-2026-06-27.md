@@ -15,6 +15,14 @@ branch, plus the Hugo templates and partials that render the SPA.
 > only renamed directories and rewrote layout resource paths; it did not change
 > the SPA JavaScript, so every finding still stands.)
 
+> **Updated 2026-07-01 (post-fix-commit).** The §7 "quick, high-confidence"
+> tier shipped in `de8464ba2d` ("Fix Data Explorer bugs found in the deep
+> audit", 2026-06-28) and is verified fixed in current code: §0/§2.9 (dead
+> files + dead handler), §2.1, §2.2, §2.3, §2.4, §2.5, §2.7, §2.10, and the
+> duplicate dropdown IDs in §3. Everything else below — §1 #9/#10/#14, §2.6,
+> §2.8, §2.11, the remaining §3 accessibility items, §4, §5, and §6 — is still
+> open and accurately described as of this date.
+
 Its purpose is twofold:
 
 1. **Reconcile** the consolidated list against the code as it actually stands
