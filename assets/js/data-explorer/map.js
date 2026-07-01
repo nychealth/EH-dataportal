@@ -254,61 +254,49 @@ const renderMap = (
 ) => {
 
     console.log("** renderMap");
-    console.log(metadata);
+    console.log("** renderMap: metadata", metadata);
 
-    // ----------------------------------------------------------------------- //
-    // get unique time in data
-    // ----------------------------------------------------------------------- //
-    
+    // - - - get unique time in data - - - //
+
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // ----------------------------------------------------------------------- //
-    // set metadata
-    // ----------------------------------------------------------------------- //
+    // --- set metadata --- //
 
     let mapGeoType = data[0]?.GeoType;
     let mapMeasurementType = metadata[0]?.MeasurementType;
     let mapTime = mapTimes[0];
     let topoFile = '';
 
-    // ----------------------------------------------------------------------- //
-    // set geo file based on geo type
-    // ----------------------------------------------------------------------- //
+    // - - - set geo file based on geo type - - - //
 
     topoFile = getGeoFile(mapGeoType);
 
-    // ----------------------------------------------------------------------- //
-    // Check if the data are citywide only
-    // ----------------------------------------------------------------------- //
-    
-    const isCitywideOnly = metadata[0].AvailableGeoTypes.length === 1 && 
+    // --- check if the data are citywide only --- //
+
+    const isCitywideOnly = metadata[0].AvailableGeoTypes.length === 1 &&
                            metadata[0].AvailableGeoTypes[0] === 'Citywide';
-    
+
     if (isCitywideOnly) {
-        console.log(">>> CITYWIDE ONLY - Rendering citywide map");
+        console.log("** renderMap: citywide only");
     }
 
-    // ----------------------------------------------------------------------- //
-    // Determine map type based on measurement type
-    // ----------------------------------------------------------------------- //
+    // --- determine map type based on measurement type --- //
 
-    const isNumberMap = mapMeasurementType.includes('number') || 
-                        mapMeasurementType.includes('Number') || 
+    const isNumberMap = mapMeasurementType.includes('number') ||
+                        mapMeasurementType.includes('Number') ||
                         mapMeasurementType.includes('Total');
 
     if (isNumberMap) {
-        
-        console.log(">>> NUMBER MAP - Bubble map rendering");
+
+        console.log("** renderMap: number map, rendering bubble map");
         return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
-                
+
     } else {
-        
-        console.log(">>> CHOROPLETH MAP - Rendering choropleth");
-        
-        // ----------------------------------------------------------------------- //
-        // CHOROPLETH MAP RENDERING
-        // ----------------------------------------------------------------------- //
-        
+
+        console.log("** renderMap: choropleth map, rendering choropleth");
+
+        // - - - choropleth map rendering - - - //
+
         return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
     }
 
@@ -400,11 +388,9 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         })
         .then(geojson => {
             
-            // --------------------------------------------------------------------------- //
-            // Lookup to match GeoID → Leaflet layer
-            // --------------------------------------------------------------------------- //
-            const geoIDtoLayer = {};   
-            // --------------------------------------------------------------------------- //
+            // - - - lookup to match GeoID → Leaflet layer - - - //
+
+            const geoIDtoLayer = {};
 
             // --- Add the GeoJSON to the map ---
 
@@ -590,12 +576,10 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         })
         .then(geojson => {
             
-            // --------------------------------------------------------------------------- //
-            // Lookup to match GeoID → Leaflet layer (for chart interop)
-            // --------------------------------------------------------------------------- //
+            // - - - lookup to match GeoID → Leaflet layer (for chart interop) - - - //
+
             const geoIDtoLayer = {};
             const circleMarkers = [];  // Store all circle markers for interop
-            // --------------------------------------------------------------------------- //
 
             // --- Add the GeoJSON overlay (light gray polygons) ---
             const geojsonLayer = L.geoJson(geojson, {
