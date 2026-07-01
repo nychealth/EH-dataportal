@@ -103,8 +103,12 @@ const baseSpec = {
             "as": "ValueWithUnit"
         },
         {
-            "calculate": "datum.time === 'Pre' ? 'Before congestion pricing' : datum.time === 'Post' ? 'With congestion pricing' : datum.time",
+            "calculate": "datum.time === 'Pre' ? '2024' : datum.time === 'Post' ? '2025' : datum.time",
             "as": "TimeLabel"
+        },
+        {
+        "calculate": "datum.time === 'Pre' ? 'Before congestion pricing' : datum.time === 'Post' && datum.language === 'Observed' ? 'With congestion pricing' : 'If no congestion pricing'",
+        "as": "Note"
         }
     ],
     "facet": { "field": "ParameterWithUnit", "title": null },
@@ -113,9 +117,9 @@ const baseSpec = {
         "height": 175,
         "encoding": {
             "x": {
-                "field": "time",
+                "field": "TimeLabel",
                 "type": "nominal",
-                "sort": "descending",
+                "sort": "ascending",
                 "title": null
             },
             "color": {
@@ -158,8 +162,9 @@ const baseSpec = {
                     "tooltip": [
                         { "field": "Site", "title": "Site", "type": "nominal" },
                         { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
-                        { "field": "language", "title": "Type", "type": "nominal" },
                         { "field": "TimeLabel", "title": "Period", "type": "nominal" },
+                        { "field": "language", "title": "Type", "type": "nominal" },
+                        { "field": "Note", "title": "Note", "type": "nominal" },
                         { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
                     ]
                 }

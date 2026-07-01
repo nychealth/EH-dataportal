@@ -174,14 +174,14 @@ function drawExplainChart() {
                 {
                     "Var": "Hypothetical",
                     "Parameter": "PM2.5",
-                    "Time": "Pre",
+                    "Time": "2024",
                     "Value": 7.97,
                     "Unit": "mcg/m3"
                 },
                 {
                     "Var": "Observed",
                     "Parameter": "PM2.5",
-                    "Time": "Pre",
+                    "Time": "2024",
                     "Value": 7.97,
                     "LC": 7.24,
                     "UC": 8.66,
@@ -191,14 +191,14 @@ function drawExplainChart() {
                 {
                     "Var": "Hypothetical",
                     "Parameter": "PM2.5",
-                    "Time": "Post",
+                    "Time": "2025",
                     "Value": 7.27,
                     "Unit": "mcg/m3"
                 },
                 {
                     "Var": "Observed",
                     "Parameter": "PM2.5",
-                    "Time": "Post",
+                    "Time": "2025",
                     "Value": 7.86,
                     "LC": 7.24,
                     "UC": 8.49,
@@ -221,13 +221,17 @@ function drawExplainChart() {
                 "as": "ValueWithUnit"
             },
             {
-                "calculate": "datum.Time === 'Pre' ? 'Before congestion pricing' : datum.Time === 'Post' ? 'With congestion pricing' : datum.Time",
+                "calculate": "datum.Time === '2024' ? 'Before congestion pricing' : datum.Time === '2025' ? 'With congestion pricing' : datum.Time",
                 "as": "TimeLabel"
+            },
+            {
+                "calculate": "datum.Time === '2024' ? 'Before congestion pricing' : datum.Time === '2025' && datum.Var === 'Observed' ? 'With congestion pricing' : 'If no congestion pricing'",
+                "as": "Note"
             }
         ],
         "encoding": {
             "x": {
-                "field": "TimeLabel",
+                "field": "Time",
                 "type": "nominal",
                 "sort": ["Before congestion pricing", "With congestion pricing"],
                 "title": null
@@ -280,8 +284,9 @@ function drawExplainChart() {
                     "color": { "field": "Var" },
                     "tooltip": [
                         { "field": "Parameter", "title": "Pollutant", "type": "nominal" },
+                        { "field": "Time", "title": "Time", "type": "nominal" },
                         { "field": "Var", "title": "Type", "type": "nominal" },
-                        { "field": "TimeLabel", "title": "Period", "type": "nominal" },
+                        { "field": "Note", "title": "Note", "type": "nominal" },
                         { "field": "ValueWithUnit", "title": "Average", "type": "nominal" }
                     ]
                 }
