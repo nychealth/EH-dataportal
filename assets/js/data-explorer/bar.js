@@ -5,11 +5,11 @@
 // console.log(">> bar.js");
 
 // Bar-chart rendering, resize coordination, and Vega-Lite layer assembly
-
 // ----------------------------------------------------------------------- //
 // resize helpers
 // ----------------------------------------------------------------------- //
 
+// Tracks whether the tab-resize listener has been attached, since renderBar may be called repeatedly.
 let barResizeEventRegistered = false;
 
 // Defers Vega resize until the overlay pane has fully repainted.
@@ -27,6 +27,7 @@ const scheduleBarViewResize = () => {
 
 // Registers one Bootstrap tab listener so hidden-pane charts can resize on reopen.
 const registerBarTabResizeHandler = () => {
+
     if (barResizeEventRegistered) {
         return;
     }
@@ -69,6 +70,7 @@ const renderBar = (
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
 
     if (barUnreliability) {
+
         barUnreliability.innerHTML = '';
         barUnreliability.classList.toggle('hide', uniqueNotes.length === 0);
 
@@ -95,6 +97,9 @@ const renderBar = (
     // set metadata
     // ----------------------------------------------------------------------- //
 
+    // Working state for the display-rule branch and chart spec below: data-derived
+    // metadata, formatting flags set inside the percent check, and layout constants
+    // shared across the mean/CI/plain-bar layer variants.
     let barGeoType            = barData[0]?.GeoType;
     let barMeasurementType    = metadata[0]?.MeasurementType;
     let barTime = barTimes[0];
@@ -381,10 +386,8 @@ const renderBar = (
                     }
                 }
             ]
-        }
-        
-        else {
-        
+        } else {
+
             // Plain measures render as a standard single-layer ranked bar chart.
 
             barDisplay = [
@@ -539,16 +542,16 @@ const renderBar = (
     return vegaEmbed("#barHolder", vegaSpec, {
 
         actions: false
-        
+
         // {
         //     export: { png: false, svg: false },
         //     source: false,
         //     compiled: false,
-        //     editor: true 
+        //     editor: true
         // }
-        
+
     }).then(result => {
-        
+
         window.myVegaView = result.view; // store the vega view globally
         registerBarTabResizeHandler();
         scheduleBarViewResize();
@@ -623,7 +626,7 @@ const renderBar = (
 
             mapAPI.clearHoverUI();
         });
-        
+
     });
 
 };
