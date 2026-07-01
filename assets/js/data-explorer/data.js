@@ -2,8 +2,6 @@
 // data.js
 // ======================================================================= //
 
-// data loading and manipulation functions
-
 // Fetch pipelines for indicator metadata, comparison joins, and derived data tables
 
 // console.log(">> data.js");
@@ -36,6 +34,7 @@ const createComparisonData = async (comps) => {
     console.log("* createComparisonData");
 
     if (!Array.isArray(indicatorComparisonId) || indicatorComparisonId.length === 0) {
+
         comparisonMetadata = [];
         aqComparisonMetadata = undefined;
         aqComparisonIndicatorsMetadata = undefined;
@@ -47,6 +46,7 @@ const createComparisonData = async (comps) => {
     comparisonMetadata = comps.filter(d => indicatorComparisonId.includes(d.ComparisonID));
 
     if (!comparisonMetadata.length) {
+
         aqComparisonMetadata = undefined;
         aqComparisonIndicatorsMetadata = undefined;
         aqCombinedComparisonMetadata = undefined;
@@ -373,6 +373,7 @@ const joinData = async () => {
 
     // create table column header with display type
 
+    // Parallel accumulator arrays filled by the loop below, joined into the aqMeasureDisplay lookup table.
     let MeasureID = [];
     let MeasurementType = [];
     let DisplayType = [];
@@ -407,6 +408,7 @@ const joinData = async () => {
 
     // flatten MeasureID + TimePeriodID + GeoType
 
+    // Per-view accumulators filled by the loop below, then combined into aqTableTimesGeos, aqMapTimesGeos, and aqTrendTimesGeos.
     let tableTimesGeos = [];
     let mapTimesGeos = [];
     let trendTimesGeos = [];
@@ -759,6 +761,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // console.log("sharedGeos [createJoinedLinksData]", sharedGeos);
 
     if (!sharedGeos.length) {
+
         return {
             "data": [],
             "primaryMeasureMetadata": primaryMeasureMetadata,
@@ -789,6 +792,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // console.log("filteredPrimaryMeasureData [createJoinedLinksData]", filteredPrimaryMeasureData);
 
     if (!filteredPrimaryMeasureData.length) {
+
         return {
             "data": [],
             "primaryMeasureMetadata": primaryMeasureMetadata,
