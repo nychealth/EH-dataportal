@@ -143,6 +143,7 @@ const renderTrendChart = (
     const valueMax = Math.max.apply(null, values);
     const tickMinStep = valueMax >= 3.0 ? 1 : 0.1;
 
+    // Unique comparison-metadata values drive which title/grouping branch runs below.
     const compName = [...new Set(metadata.array("ComparisonName"))];
     const compIndicatorLabel = [...new Set(metadata.array("IndicatorLabel"))];
     const compMeasurementType = [...new Set(metadata.array("MeasurementType"))];
@@ -150,6 +151,7 @@ const renderTrendChart = (
     let compNoCompare = [...new Set(metadata.array("TrendNoCompare"))].filter(nc => nc != null)[0];
     const compThresholds = [...new Set(metadata.array("TrendThreshold"))];
 
+    // Set inside whichever branch of the if/else-if chain below matches this comparison.
     let compGroupLabel;
     let plotSubtitle;
     let plotTitle;
@@ -621,6 +623,7 @@ const renderTrendChart = (
     };
 
     vegaEmbed("#trend", compspec2, {
+
         actions: false
         // {
         //     export: { png: false, svg: false },
@@ -628,6 +631,7 @@ const renderTrendChart = (
         //     compiled: false,
         //     editor: true
         // }
+
     });
 
     vizSource = metadataObjects[0].Sources;
