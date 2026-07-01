@@ -13,6 +13,10 @@ const printModalInstructions = document.getElementById('printModalInstructions')
 const printModalDownload = document.getElementById('printModalDownload');
 const modalFootnotes = document.getElementById('modalFootnotes');
 
+// Tuning for the off-screen Leaflet export map: canvas size, fitBounds padding/zoom
+// cap, per-map-type (choropleth vs. bubble) bounds padding and zoom bonus, the edge
+// buffer used to keep features in frame, and tile-coverage retry/wait parameters that
+// make sure basemap tiles are loaded before the canvas is captured.
 const MAP_EXPORT_BASEMAP_ATTRIBUTION = 'Basemap: CARTO, OpenStreetMap';
 const EXPORT_MAP_PADDING = 0;
 const EXPORT_MAP_MAX_ZOOM = 15;
