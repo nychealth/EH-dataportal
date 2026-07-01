@@ -25,7 +25,8 @@ No blank line between the description line and the first section header.
 ## Comment hierarchy
 
 Four levels, each with a distinct marker. Use only the level appropriate to context —
-don't promote a minor step to a section header just to add visual weight.
+don't promote a minor step to a section header just to add visual weight. Headings are
+nested, so a lower heading shouldn't appear without an equal or higher heading preceding it.
 
 ### Level 1 — Major section
 Top-level named divisions within a file (`shared state`, `geo helpers`, `render functions`).
@@ -49,7 +50,7 @@ Like-items grouped within a section, typically by tab or feature area (`map`, `t
 Major logical phases inside a longer function (`resolve metadata`, `filter data`, `render`).
 
 ```js
-// --- step heading --- //
+// ----- step heading ----- //
 ```
 
 Use this level to break up functions that have 3+ distinct phases. If a function only
