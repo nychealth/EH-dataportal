@@ -2,12 +2,17 @@
 // topic-indicator-selector.js
 // ======================================================================= //
 
+// Topic and indicator chooser modals: metadata loading, modal wiring, and
+// the URL-param boot path that loads an indicator on page load.
+
 // console.log(">> topic-indicator-selector.js");
 
 // ----------------------------------------------------------------------- //
 // all indicator metadata as global variable
 // ----------------------------------------------------------------------- //
 
+// Holds the parsed metadata.json response once indicatorsPromise resolves;
+// null until then, so callers must go through ensureIndicatorsLoaded.
 let indicators = null;
 
 // Destination URL set by printIndicators; used by selectIndicator on pages
