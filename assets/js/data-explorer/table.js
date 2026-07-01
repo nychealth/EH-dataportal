@@ -2,11 +2,9 @@
 // table.js
 // ======================================================================= //
 
-
 // builds and renders the Arquero-backed summary data table, with filtering, DataTables integration, and grouped-row toggles
 
 // console.log('>> table.js')
-
 
 // ----------------------------------------------------------------------- //
 // filter helpers
@@ -484,17 +482,13 @@ const renderTable = (tableData) => {
 
     tableNeedsRender = false;
 
-    // ----------------------------------------------------------------------- //
-    // prep data (table filters)
-    // ----------------------------------------------------------------------- //
+    // --- prep data (table filters) --- //
 
     renderTableFilterControls(tableData);
 
     updateTableReliabilityNotes(getSelectedTableRows(tableData));
 
-    // ----------------------------------------------------------------------- //
-    // table column alignment (unchanged)
-    // ----------------------------------------------------------------------- //
+    // --- table column alignment (unchanged) --- //
 
     const measureAlignMap = new Map();
     const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
@@ -503,9 +497,7 @@ const renderTable = (tableData) => {
     measures.forEach(m => measureAlignMap.set(m, "r"));
     const measureAlignObj = Object.fromEntries(measureAlignMap);
 
-    // ----------------------------------------------------------------------- //
-    // pivot data (UNCHANGED)
-    // ----------------------------------------------------------------------- //
+    // --- pivot data (UNCHANGED) --- //
 
     const filteredTableAqData = aq.from(tableData)
         .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
@@ -562,9 +554,7 @@ const renderTable = (tableData) => {
         { before: 0 }
         );
 
-    // ----------------------------------------------------------------------- //
-    // render HTML table (unchanged)
-    // ----------------------------------------------------------------------- //
+    // --- render HTML table (unchanged) --- //
 
     document.getElementById('summary-table').innerHTML = 
         filteredTableAqData.toHTML({
@@ -578,9 +568,7 @@ const renderTable = (tableData) => {
     document.querySelector('#summary-table table').className = "cell-border stripe";
     document.querySelector('#summary-table table').width = "100%";
 
-    // ----------------------------------------------------------------------- //
-    // DataTables setup
-    // ----------------------------------------------------------------------- //
+    // --- DataTables setup --- //
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // set some properties
