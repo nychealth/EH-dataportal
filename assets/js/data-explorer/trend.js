@@ -28,6 +28,8 @@ const appendTrendNote = (trendUnreliability, note) => {
 // Keeps the viewport-based chart layout choices in one place.
 const getTrendLayoutConfig = (viewportWidth) => {
 
+    // ----- legend columns by breakpoint ----- //
+
     let columns;
     let xAxisLabelField = 'fallbackYear'
 
@@ -43,6 +45,8 @@ const getTrendLayoutConfig = (viewportWidth) => {
         columns = 6;
         // xAxisLabelField = 'TimePeriodSplit';
     }
+
+    // ----- mobile legend override ----- //
 
     let mobileLegend = null;
     let endLabelFontSize = 10;
@@ -94,12 +98,15 @@ const renderTrendNotes = (trendUnreliability, notes) => {
 // trend chart rendering
 // ----------------------------------------------------------------------- //
 
+// Resolves the comparison-driven title/grouping, builds threshold and no-compare markers, then assembles and renders the trend chart's Vega-Lite spec with its CSV export table.
 const renderTrendChart = (
     data,
     metadata
 ) => {
 
     console.log("*** renderTrendChart");
+
+    // ----- guard clause & element lookup ----- //
 
     const trendContainer = document.getElementById('trend');
     const trendUnreliability = document.getElementById('trend-unreliability');
@@ -120,6 +127,8 @@ const renderTrendChart = (
         return;
 
     }
+
+    // ----- notes & layout / value-domain setup ----- //
 
     const metadataObjects = metadata.objects();
 
@@ -143,6 +152,8 @@ const renderTrendChart = (
     const valueMax = Math.max.apply(null, values);
     const tickMinStep = valueMax >= 3.0 ? 1 : 0.1;
 
+    // ----- comparison-type resolution (title / subtitle / grouping) ----- //
+
     // Unique comparison-metadata values drive which title/grouping branch runs below.
     const compName = [...new Set(metadata.array("ComparisonName"))];
     const compIndicatorLabel = [...new Set(metadata.array("IndicatorLabel"))];
@@ -161,6 +172,8 @@ const renderTrendChart = (
 
     if (compName[0] === "Boroughs") {
 
+        // - - - Boroughs comparison - - - //
+
         compGroupLabel = [...new Set(data.array("Geography"))];
         const hasBoros = compGroupLabel.length > 1;
 
@@ -174,6 +187,8 @@ const renderTrendChart = (
         comp_group_col = "GeographyShort"; // point to calculated field to create abbreviated borough labels
 
     } else if (compIndicatorLabel.length == 1) {
+
+        // - - - single indicator label - - - //
 
         const compId = [...new Set(metadata.array("ComparisonID"))][0];
         const compLegendTitle = [...new Set(metadata.array("LegendTitle"))];
@@ -193,6 +208,8 @@ const renderTrendChart = (
 
     } else if (compMeasurementType.length == 1) {
 
+        // - - - single measurement type - - - //
+
         const compId = [...new Set(metadata.array("ComparisonID"))][0];
         const compLegendTitle = [...new Set(metadata.array("LegendTitle"))];
 
@@ -209,6 +226,8 @@ const renderTrendChart = (
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
     } else if (compMeasurementType.length > 1 && compIndicatorLabel.length > 1) {
+
+        // - - - multiple measurement types & indicators - - - //
 
         const compId = [...new Set(metadata.array("ComparisonID"))][0];
         const compLegendTitle = [...new Set(metadata.array("LegendTitle"))];
@@ -227,6 +246,8 @@ const renderTrendChart = (
         columns = compGroupLabel.length > 3 ? 3 : columns;
 
     }
+
+    // ----- threshold layer construction ----- //
 
     const dedupedThresholds = compThresholds.flat().filter(item => item !== null);
     const uniqueThresholds = [
@@ -272,6 +293,8 @@ const renderTrendChart = (
 
     }
 
+    // ----- no-compare marker & tooltip label resolution ----- //
+
     const maxDataEndPeriod = Math.max(...new Set(data.array("end_period")));
     const noCompareEndPeriod = compNoCompare
         ? timeTable.filter(aq.escape(d => d.TimePeriod == compNoCompare)).array("end_period")[0]
@@ -307,6 +330,8 @@ const renderTrendChart = (
 
     }
 
+    // - - - resolve comparison tooltip label - - - //
+
     let comparisonToolTipLabel;
 
     if ([566, 565, 564].includes(Number(metadataObjects[0].ComparisonID))) {
@@ -314,6 +339,8 @@ const renderTrendChart = (
     } else {
         comparisonToolTipLabel = compMeasurementType;
     }
+
+    // ----- Vega-Lite spec assembly (compspec2) ----- //
 
     // Assemble the full trend spec after titles, thresholds, and layout are resolved.
     const compspec2 = {
@@ -525,6 +552,9 @@ const renderTrendChart = (
                                 "calculate": "datum.endDateValue",
                                 "as": "labelValue"
                             },
+
+                            // - - - repeated lag/window passes stagger overlapping end-of-line label Y-positions apart - - - //
+
                             {
                                 "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel" }],
                                 "sort": [{ "field": "endDateValue", "order": "ascending" }]
@@ -621,6 +651,8 @@ const renderTrendChart = (
             }
         ]
     };
+
+    // ----- render & export ----- //
 
     vegaEmbed("#trend", compspec2, {
 

@@ -203,10 +203,15 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 }
 
 
+// Wires topic/indicator modal prompts, topic-link clicks, relaunch, and indicator selection once on load.
 const bindTopicSelectorControls = () => {
+
+    // ----- resolve modal DOM elements ----- //
 
     const topicSelectorModal = document.getElementById('topicSelector');
     const indicatorSelectorModal = document.getElementById('indicatorSelector');
+
+    // ----- wire topic-selector modal show/hidden handlers ----- //
 
     if (topicSelectorModal) {
         $('#topicSelector').on('show.bs.modal', () => {
@@ -214,18 +219,27 @@ const bindTopicSelectorControls = () => {
         });
 
         $('#topicSelector').on('hidden.bs.modal', () => {
+
+            // - - - skip prompt: this hide followed a real topic pick - - - //
+
             if (topicSelectionConfirmed) {
                 topicSelectionConfirmed = false;
                 return;
             }
 
+            // - - - skip prompt: SPA reset hook isn't loaded on this page - - - //
+
             if (typeof resetSelectionForNewIndicator === 'function') {
                 return;
             }
 
+            // - - - otherwise nudge the user back toward the topic trigger - - - //
+
             showTopicSelectorPrompt();
         });
     }
+
+    // ----- wire indicator-selector modal show/hidden handlers ----- //
 
     if (indicatorSelectorModal) {
         $('#indicatorSelector').on('show.bs.modal', () => {
@@ -246,6 +260,8 @@ const bindTopicSelectorControls = () => {
         });
     }
 
+    // ----- bind topic-link clicks ----- //
+
     // Topic links and the relaunch control are rendered once in Hugo, so
     // bind them directly to their explicit data hooks instead of inline HTML.
     const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
@@ -261,6 +277,8 @@ const bindTopicSelectorControls = () => {
         });
     });
 
+    // ----- bind relaunch-button clicks ----- //
+
     const relaunchButtons = document.querySelectorAll('.indicator-modal-topic-trigger[data-topic-selector-action="relaunch"]');
 
     relaunchButtons.forEach(button => {
@@ -268,6 +286,8 @@ const bindTopicSelectorControls = () => {
             relaunchTopicSelector();
         });
     });
+
+    // ----- bind delegated indicator-selection click handler ----- //
 
     const indicatorDestination = document.getElementById('indicatorDestination');
 
@@ -292,15 +312,17 @@ const bindTopicSelectorControls = () => {
 // Print chosen topic's indicators to indicator selection modal 
 // ----------------------------------------------------------------------- //
 
+// Rebuilds the indicator-selector modal's HTML for a topic, badging recently-updated indicators.
 const printIndicators = async (indList, destination) => {
 
     console.log("* printIndicators");
 
+    // ----- resolve destination + DOM target, guard ----- //
+
     // Store destination so selectIndicator can use it for navigation
     // (needed on section.html where app.js is not loaded)
     indicatorSelectDestination = destination;
-    
-    // Destination
+
     const indicatorDestination = document.getElementById("indicatorDestination");
 
     // Stop early if the section template is missing the modal content target.
@@ -308,8 +330,9 @@ const printIndicators = async (indList, destination) => {
         console.error("Error: No element with id 'indicatorDestination' found.");
         return;
     }
-    
-    // Ensure metadata are loaded
+
+    // ----- load metadata, resolve recently-updated IDs ----- //
+
     const data = await ensureIndicatorsLoaded('indicator selection modal');
     // console.log("Indicators ready to print to indicator selection modal!", data);
 
@@ -319,20 +342,25 @@ const printIndicators = async (indList, destination) => {
     const recentlyUpdatedIndicatorIds = JSON.parse(
         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
-    
-    // Clear existing content
+
+    // ----- clear existing content ----- //
+
     indicatorDestination.innerHTML = '';
-    
-    // Render each indicator section block in the order defined by Hugo front matter.
+
+    // ----- render each topic section (Hugo front-matter order) ----- //
+
     indList.forEach(section => {
 
-        // Only proceed if there are indicators
+        // - - - guard: skip empty sections - - - //
+
         if (!section.indicators || section.indicators.length === 0) return;
-        
-        // Header (optional)
+
+        // - - - build header (optional) - - - //
+
         const headerHtml = section.header ? `<h5 class="font-weight-bold mt-3 mb-1">${section.header}</h5>` : '';
-        
-        // Generate HTML for each indicator
+
+        // - - - build each indicator card, with recently-updated badge - - - //
+
         const indicatorsHtml = section.indicators.map(id => {
             // Look up the indicator object in the global indicators array
             const indicator = indicators.find(ind => ind.IndicatorID === id);
@@ -361,15 +389,15 @@ const printIndicators = async (indList, destination) => {
             `;
         }).join('');
         
-        // Wrap in indicator-grid
+        // - - - wrap section HTML and append to destination - - - //
+
         const sectionHtml = `
             ${headerHtml}
             <div class="indicator-grid">
                 ${indicatorsHtml}
             </div>
         `;
-        
-        // Append to destination
+
         indicatorDestination.innerHTML += sectionHtml;
 
     });
@@ -381,6 +409,7 @@ const printIndicators = async (indList, destination) => {
 // Dismiss the indicator selector modal (works before or after Bootstrap loads)
 // ----------------------------------------------------------------------- //
 
+// Hides the indicator-selector Bootstrap modal.
 const dismissIndicatorModal = () => {
 
     // By the time a user can interact with the modal, Bootstrap is loaded
@@ -393,6 +422,7 @@ const dismissIndicatorModal = () => {
 // Return from indicator selection to the topic chooser
 // ----------------------------------------------------------------------- //
 
+// Closes the indicator modal and reopens the topic chooser, falling back to browser history when the SPA isn't loaded.
 const relaunchTopicSelector = (event) => {
 
     if (event) {
@@ -428,20 +458,23 @@ if (document.readyState === 'loading') {
 // Print basic indicator info from metadata to page 
 // ----------------------------------------------------------------------- //
 
+// Fills all on-page indicator name/description/methodology/source placeholders from metadata.
 const printIndicatorInfo = async (IndicatorID) => {
 
     console.log("* printIndicatorInfo");
 
+    // ----- resolve indicator record ----- //
+
     // URL params and data-* attributes reach this path as strings.
     // Normalize once so metadata lookups stay in sync with the load pipeline.
     const normalizedIndicatorId = Number(IndicatorID);
-    
-    // Ensure metadata are loaded
+
     const data = await ensureIndicatorsLoaded('printing to page');
     // console.log("Indicators ready to print to page!");
-    
-    // Find the indicator object where IndicatorID matches IndicatorID
+
     const indicator = data.find(d => Number(d.IndicatorID) === normalizedIndicatorId);
+
+    // ----- resolve recently-updated flag ----- //
 
     // Hugo writes the curated "recently updated" indicator IDs into the shell.
     // Read them here so the indicator title can reflect updated datasets.
@@ -450,11 +483,12 @@ const printIndicatorInfo = async (IndicatorID) => {
         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
     ).map(Number);
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
-    
+
     console.log('This indicator:');
     console.log(indicator)
-    
-    // Reopen the chooser if the requested indicator is missing from metadata.
+
+    // ----- guard: reopen chooser if not found ----- //
+
     if (!indicator) {
 
         console.warn("No indicator found for ID:", IndicatorID);
@@ -462,15 +496,17 @@ const printIndicatorInfo = async (IndicatorID) => {
         return;
 
     }
-    
-    // Query holders
+
+    // ----- fill name field(s) ----- //
+
     const nameHolders = document.querySelectorAll('.indicator-name');
     const descriptionHolders = document.querySelectorAll('.indicator-description');
-    
-    // Fill name fields.
+
     // Updated indicators get the clock icon inline with the title instead of a separate badge.
     nameHolders.forEach(el => {
         el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
+
+        // - - - append recently-updated icon - - - //
 
         if (showRecentlyUpdatedIcon) {
             const icon = document.createElement('i');
@@ -481,43 +517,38 @@ const printIndicatorInfo = async (IndicatorID) => {
             el.appendChild(icon);
         }
     });
-    
-    // Fill description fields
+
+    // ----- fill description field(s) ----- //
+
     // Keep all description placeholders aligned with the chosen indicator.
     descriptionHolders.forEach(el => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
-    
-    // Handle Data Source and How Calculated
+
+    // ----- rebuild "how calculated" paragraphs, collect unique sources ----- //
+
     const howCalculatedEl = document.getElementById('howCalculated');
     const dataSourcesEl = document.getElementById('dataSources');
-    
-    // Clear previous content
+
     howCalculatedEl.innerHTML = '';
     dataSourcesEl.innerHTML = '';
-    
-    // To store unique sources
+
     const uniqueSources = new Set();
-    
-    // Loop through Measures
+
     // Collect one About paragraph and one unique source entry per measure.
     indicator.Measures.forEach(measure => {
-
-        // Append MeasurementType and how_calculated
 
         const p = document.createElement('p');
         p.innerHTML = `<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`;
         howCalculatedEl.appendChild(p);
-        
-        // Collect sources
 
         if (measure.Sources) {
             uniqueSources.add(measure.Sources);
         }
 
     });
-    
-    // Display unique sources
+
+    // ----- render collected sources ----- //
 
     uniqueSources.forEach(source => {
 
@@ -532,13 +563,15 @@ const printIndicatorInfo = async (IndicatorID) => {
 
 
 // ----------------------------------------------------------------------- //
-// Select an indicator from the modal (SPA-style, no page reload)
+// Select an indicator from the modal
 // ----------------------------------------------------------------------- //
 
 // Loads the chosen indicator either via SPA flow or full-page navigation.
 const selectIndicator = async (id) => {
 
     console.log("* selectIndicator:", id);
+
+    // ----- track selection event ----- //
 
     // Record the selection (mirrors the old explorer's click_indicator event).
     // Guarded because the topic-chooser page loads this file without global.js,
@@ -547,14 +580,16 @@ const selectIndicator = async (id) => {
         trackDataExplorerEvent('click_indicator', { IndicatorID: Number(id) });
     }
 
+    // ----- bail to plain navigation if not on the SPA app ----- //
+
     // On pages without the full app (e.g. section.html), navigate directly.
     // Skip dismissing the modal so the back-to-topics handler doesn't fire.
-
-    // Fall back to plain navigation on pages that do not load the SPA app.js helpers.
     if (typeof resetSelectionForNewIndicator !== 'function') {
         window.location.href = indicatorSelectDestination + '?id=' + Number(id);
         return;
     }
+
+    // ----- bail to plain navigation if the topic changed ----- //
 
     // Check if we're switching to a different topic (pathname changed).
     // If so, navigate to the new topic with the indicator ID instead of SPA flow.
@@ -562,12 +597,11 @@ const selectIndicator = async (id) => {
     const destinationPathname = new URL(indicatorSelectDestination, window.location).pathname;
 
     if (currentPathname !== destinationPathname) {
-        // Topic changed — full page navigation to the new topic
         window.location.href = indicatorSelectDestination + '?id=' + Number(id);
         return;
     }
 
-    // SPA path — same topic, dismiss modal and reload in place
+    // ----- confirm selection, dismiss modal, reset per-indicator UI state ----- //
 
     indicatorSelectionConfirmed = true;
     clearIndicatorSelectorPrompt();
@@ -576,7 +610,7 @@ const selectIndicator = async (id) => {
 
     resetSelectionForNewIndicator(id);
 
-    // Run the full load pipeline
+    // ----- run the full load pipeline ----- //
 
     printIndicatorInfo(id);
     draw311Buttons(id);
@@ -586,6 +620,8 @@ const selectIndicator = async (id) => {
     await printMenus(id);
     await renderMeasures();
 
+    // ----- sync URL + render ----- //
+
     pushSelectionToURL();
     renderCurrentView(true);
 
@@ -593,7 +629,7 @@ const selectIndicator = async (id) => {
 
 
 // ----------------------------------------------------------------------- //
-// Check for URL parameter (?id=XXXX) and load indicator metadata 
+// Check for URL parameter (?id=XXXX)
 // ----------------------------------------------------------------------- //
 
 // Boots the explorer from URL params or opens the chooser when none are present.
@@ -601,13 +637,15 @@ const checkURL = async () => {
 
     console.log("* checkURL");
 
+    // ----- parse URL params, normalize legacy GeoTypeID alias ----- //
+
     const urlParams = new URLSearchParams(window.location.search);
-    
+
     // URL Format: .../TOPIC/?id=2133&MeasureID=239&GeoType=CDTA&TimePeriodID=123
     // Compatibility/confusion alias: GeoTypeID also accepted on read
-    
+
     const paramsObj = Object.fromEntries(urlParams.entries());
-    
+
     console.log('URL Parameters:');
     console.log(paramsObj);
 
@@ -616,19 +654,19 @@ const checkURL = async () => {
         normalizeLegacyGeoTypeURL();
         paramsObj.GeoType = paramsObj.GeoTypeID;
     }
-    
+
     const chosenIndicator = Number(paramsObj.id);
 
-    // No indicator in URL — wait for Bootstrap to finish loading, then open the modal
+    // ----- guard: open chooser if URL has no valid indicator ID ----- //
 
-    // Open the chooser modal when the URL does not point to a valid indicator.
+    // Wait for the window load event so Bootstrap has initialized before showing the modal.
     if (!paramsObj.id || isNaN(chosenIndicator)) {
         console.log("No indicator ID in URL, opening indicator selector.");
         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
         return;
     }
 
-    // seed globals from URL params (if present) before menus build
+    // ----- seed shared globals from URL params ----- //
 
     if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
     if (paramsObj.GeoType || paramsObj.GeoTypeID) {
@@ -639,13 +677,14 @@ const checkURL = async () => {
     if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);
     if (paramsObj.overlay)      overlay      = paramsObj.overlay;
 
-    // fire indicator info and 311 buttons
+    // ----- kick off indicator-info and 311-button rendering early ----- //
 
     printIndicatorInfo(chosenIndicator);
     draw311Buttons(chosenIndicator);
 
-    // load data first so timeLookup is populated before menus build
+    // ----- load metadata, indicator, menus, and measures in sequence ----- //
 
+    // Load data first so timeLookup is populated before menus build.
     const _indicators = await ensureIndicatorsLoaded('printing measure menu');
 
     await loadIndicator(chosenIndicator);
@@ -654,11 +693,12 @@ const checkURL = async () => {
 
     await renderMeasures();
 
-    // sync full state to URL (fills in defaults the user didn't specify)
+    // ----- sync full state to URL ----- //
 
+    // Fills in defaults the user didn't specify.
     pushSelectionToURL();
 
-    // render active overlay pane and update the Leaflet map
+    // ----- render active overlay pane and update the Leaflet map ----- //
 
     renderCurrentView(true);
 

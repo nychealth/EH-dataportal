@@ -215,6 +215,7 @@ const copyCitation = (button = null) => {
 }
 
 
+// Attaches click handlers to all citation-copy buttons in the DOM, each invoking copyCitation with the clicked button as context.
 const bindCitationCopyButton = () => {
 
     // The citation markup provides the text source so this helper can support
@@ -399,6 +400,7 @@ const geoTypes = [
 // Shared-geo helpers keep links and disparities limited to measures that can join.
 const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filter(g => !/Citywide|Borough/.test(g));
 
+// Returns the intersection of link-eligible geo types for two measures — geographies where both measures have data.
 const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
 
     const primaryMeasureGeos = getLinksMeasureGeos(primaryMeasure);
@@ -514,6 +516,7 @@ const trackDataExplorerEvent = (eventName, eventParams = null) => {
 };
 
 
+// Fires a 'click_option' GA event for the given option name; no-op if option is falsy.
 const trackDataExplorerOption = (option) => {
 
     if (!option) {
@@ -525,6 +528,7 @@ const trackDataExplorerOption = (option) => {
 };
 
 
+// Maps a menu type ('measure'/'geo'/'time') to the legacy GA option label used by the old explorer; returns null for unrecognized types.
 const getLegacyMapControlAnalyticsOption = (type) => {
 
     const optionMap = {
@@ -538,6 +542,7 @@ const getLegacyMapControlAnalyticsOption = (type) => {
 };
 
 
+// Fires a 'file_download' GA event with file name, extension, and link-text params, guarding against incomplete data.
 const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) => {
 
     if (!fileName || !fileExtension || !linkText) {
@@ -553,6 +558,7 @@ const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) =>
 };
 
 
+// Fires a 'print_viz' GA event for the current chart type, normalizing 'bubble-map' to 'map' for analytics.
 const trackDataExplorerPrintView = (chartView) => {
 
     if (!chartView) {
@@ -566,6 +572,7 @@ const trackDataExplorerPrintView = (chartView) => {
 };
 
 
+// Determines the view label for the downloaded CSV filename: prefers the last-rendered chart type, falls back to the current overlay tab, defaults to 'bar'.
 const getCurrentDataDownloadView = () => {
 
     if (chartType) {
@@ -588,11 +595,12 @@ const getCurrentDataDownloadView = () => {
 
 };
 
+// Builds a CSV data-URI from CSVforDownload, names the file from indicator name + view, triggers download via a hidden anchor click, and fires a file_download GA event.
 const downloadData = (
     // data,
     // chartType
 ) => {
-   
+
         console.log('Downloading data')
 
         // else, for chart view downloads: 

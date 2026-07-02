@@ -24,7 +24,6 @@ const getDefaultMeasure = (indicator) => {
 
     let matchedMeasure = null;
 
-    // Formats whichever value is currently active into every cloned trigger label.
     // Walk the priority list until the first matching measurement type is found.
     for (let word of priority) {
         matchedMeasure = indicator.Measures.find(m =>
@@ -104,6 +103,8 @@ const updateAllMenus = (indicator) => {
         return;
     }
 
+    // ----- resolve current measure, falling back to default if stale/invalid ----- //
+
     let measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
 
     if (!measure) {
@@ -112,9 +113,7 @@ const updateAllMenus = (indicator) => {
         MeasureID = measure.MeasureID;
     }
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // MEASURES MENU
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- rebuild measures menu ----- //
 
     const measures = indicator.Measures.map(m => ({
         label: m.MeasurementType,
@@ -125,9 +124,7 @@ const updateAllMenus = (indicator) => {
 
     setDropdownLabel('measure', measure.MeasurementType);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // GEO MENU
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- rebuild geo menu, defaulting to finest available geography ----- //
 
     // Prettify and deduplicate geo types (e.g., NTA2010 + NTA2020 → one "NTA" entry)
 
@@ -158,9 +155,7 @@ const updateAllMenus = (indicator) => {
 
     setDropdownLabel('geo', GeoType);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // TIME MENU
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- rebuild time menu, defaulting to most recent period ----- //
 
     // Find the metadata entry whose raw GeoType prettifies to our selected GeoType
 
@@ -245,11 +240,13 @@ const styleAndPrintMenu = (items, destination, type) => {
 // selection handler
 // ----------------------------------------------------------------------- //
 
+// Applies a dropdown selection to global state, cascades dependent menus, and re-renders the view.
 const handleSelection = (type, value) => {
 
     console.log(`* handleSelection — ${type}: ${value}`);
 
-    // update exactly one global — updateAllMenus will cascade-reset siblings that no longer apply
+    // ----- update the one changed global ----- //
+
     if (type === 'measure') {
         MeasureID = value;
     }
@@ -262,15 +259,22 @@ const handleSelection = (type, value) => {
         TimePeriodID = value;
     }
 
-    // rebuild menus (fills in cascaded defaults for nulled-out values)
+    // ----- cascade-rebuild dependent menus ----- //
 
+    // updateAllMenus fills in cascaded defaults for any sibling selection that no longer applies
     const ind = indicators.find(d => d.IndicatorID === Number(IndicatorID));
 
     updateAllMenus(ind);
 
+    // ----- resync dependent tab selections ----- //
+
+    // - - - resync links secondary measure - - - //
+
     if (type === 'measure' && typeof syncLinksSelectionsToMapSelection === 'function') {
         syncLinksSelectionsToMapSelection();
     }
+
+    // - - - resync table filters - - - //
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
@@ -281,9 +285,11 @@ const handleSelection = (type, value) => {
         syncTableFiltersToMapSelection();
     }
 
-    // push full state to URL
+    // ----- push new state to the url ----- //
 
     pushSelectionToURL();
+
+    // ----- fire legacy analytics event ----- //
 
     const analyticsOption = getLegacyMapControlAnalyticsOption(type);
 
@@ -291,7 +297,7 @@ const handleSelection = (type, value) => {
         trackDataExplorerOption(analyticsOption);
     }
 
-    // re-render the active tab, and update the Leaflet map for the new selection
+    // ----- re-render the active view and update the map ----- //
 
     renderCurrentView(true);
 };

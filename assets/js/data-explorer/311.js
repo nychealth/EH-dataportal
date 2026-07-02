@@ -18,6 +18,8 @@ const draw311Buttons = (indicator_id) => {
     // Holds the crosswalk rows matched to the current indicator, populated once the CSV loads.
     let filteredCrosswalk = [];
 
+    // ----- fetch crosswalk CSV ----- //
+
     d3.csv(`${baseURL}311/311-crosswalk.csv`)
         .then(async data => {
 
@@ -29,6 +31,8 @@ const draw311Buttons = (indicator_id) => {
             // console.log('crosswalk')
             // console.log(crosswalk)
 
+            // ----- clear previous 311 UI state ----- //
+
             document.getElementById('311').innerHTML = ''
 
             // The take-action partial renders twice on the explorer, so update both destinations.
@@ -36,10 +40,14 @@ const draw311Buttons = (indicator_id) => {
 
             dest.forEach(element => element.innerHTML = '')
 
+            // ----- filter crosswalk to current indicator ----- //
+
             // Narrows the full crosswalk to the rows relevant to the indicator being drawn.
             filteredCrosswalk = crosswalk.filter(indicator => indicator.IndicatorID == indicator_id )
 
             // console.log(filteredCrosswalk)
+
+            // ----- toggle heading/containers by match count ----- //
 
             // Show or hide the 311 heading and containers based on whether links exist.
             if (filteredCrosswalk.length > 0) {
@@ -53,6 +61,8 @@ const draw311Buttons = (indicator_id) => {
                 dest.forEach(element => element.classList.add('hide'))
 
             };
+
+            // ----- render one link per matched row ----- //
 
             // Render one outbound 311 article link per matching crosswalk record.
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {

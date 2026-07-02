@@ -90,13 +90,16 @@ const pushSelectionToURL = () => {
 // Renames legacy GeoTypeID params to the canonical GeoType param.
 const normalizeLegacyGeoTypeURL = () => {
 
+    // ----- parse query string, exit early if empty ----- //
+
     const nextURL = new URL(window.location.href);
     const rawSearch = nextURL.search.replace(/^\?/, '');
 
-    // Exit early when there is no query string to normalize.
     if (!rawSearch) {
         return;
     }
+
+    // ----- split into parts, detect canonical GeoType ----- //
 
     // split into individual key=value pairs, dropping empty strings
     const searchParts = rawSearch.split('&').filter(Boolean);
@@ -104,6 +107,8 @@ const normalizeLegacyGeoTypeURL = () => {
     const hasCanonicalGeoType = searchParts.some(part => part.split('=')[0] === 'GeoType');
     let didChange = false;
     let renamedGeoType = null;
+
+    // ----- rewrite GeoTypeID params to GeoType ----- //
 
     // Rewrite each key=value pair while preserving everything unrelated to GeoType.
     const normalizedParts = searchParts.flatMap(part => {
@@ -120,18 +125,24 @@ const normalizeLegacyGeoTypeURL = () => {
         // capture the first GeoTypeID value for the history state
         renamedGeoType = renamedGeoType ?? decodeURIComponent(value || '');
 
-        // if GeoType already exists, drop the duplicate GeoTypeID param
+        // - - - drop duplicate GeoTypeID when GeoType already exists - - - //
+
         if (hasCanonicalGeoType) {
             return [];
         }
 
-        // otherwise rename GeoTypeID → GeoType
+        // - - - otherwise rename GeoTypeID to GeoType - - - //
+
         return [`GeoType=${value}`];
     });
+
+    // ----- exit early if nothing changed ----- //
 
     if (!didChange) {
         return;
     }
+
+    // ----- commit normalized URL ----- //
 
     nextURL.search = normalizedParts.join('&');
 
@@ -159,6 +170,8 @@ const normalizeLegacyOverlayURL = () => {
 // Converts legacy hash-based display state into the canonical overlay query param.
 const normalizeLegacyHashOverlayURL = () => {
 
+    // ----- legacy hash-to-overlay lookup table ----- //
+
     // Keep the mapping aligned with the legacy explorer's hash vocabulary so old bookmarks and
     // server-side path rewrites land on the intended overlay without duplicating view logic.
     const legacyOverlayByHash = {
@@ -172,6 +185,8 @@ const normalizeLegacyHashOverlayURL = () => {
         '#tab-links': 'links'
     };
 
+    // ----- resolve current hash, exit if unmapped ----- //
+
     const nextOverlay = legacyOverlayByHash[window.location.hash];
 
     if (!nextOverlay) {
@@ -181,6 +196,8 @@ const normalizeLegacyHashOverlayURL = () => {
     const nextURL = new URL(window.location.href);
     let didChange = false;
 
+    // ----- backfill missing overlay param ----- //
+
     // Respect a query-string overlay when it already exists. That value is the canonical state in
     // the new explorer, so the legacy hash should only backfill missing information.
     if (!nextURL.searchParams.has('overlay')) {
@@ -188,12 +205,16 @@ const normalizeLegacyHashOverlayURL = () => {
         didChange = true;
     }
 
+    // ----- strip legacy hash fragment ----- //
+
     // Remove the legacy fragment after conversion so later startup code reads one authoritative
     // representation instead of having query params and hash state compete with each other.
     if (nextURL.hash) {
         nextURL.hash = '';
         didChange = true;
     }
+
+    // ----- commit if changed ----- //
 
     if (!didChange) {
         return;
@@ -256,18 +277,25 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
 
 };
 
+// Routes to the show* renderer for the current overlay after kicking off the optional map redraw promise.
 const renderCurrentView = (updateMap = false) => {
+
+    // ----- kick off map render promise ----- //
 
     console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
     // Normalize sync and async map work into one promise so overlay timing can treat both the same.
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
+    // ----- dispatch on overlay via switch ----- //
+
     // route the current overlay value to the matching show* renderer
     switch (overlay) {
 
         case 'none': {
-            // close all overlay panes without rendering a chart
+
+            // - - - close all overlay panes - - - //
+
             document.querySelectorAll('.nav-link[data-toggle="pill"]').forEach(tab => {
                 tab.classList.remove('active');
                 tab.setAttribute('aria-selected', 'false');
@@ -321,9 +349,13 @@ const renderCurrentView = (updateMap = false) => {
 // Restores explorer state when the user navigates browser history.
 window.addEventListener('popstate', async (event) => {
 
+    // ----- normalize incoming URL ----- //
+
     console.log("popstate →", window.location.search, window.location.hash);
 
     normalizeLegacyHashOverlayURL();
+
+    // ----- parse URL params ----- //
 
     const params = new URLSearchParams(window.location.search);
 
@@ -334,6 +366,8 @@ window.addEventListener('popstate', async (event) => {
     const urlTimePeriodID = params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null;
     const urlOverlay      = params.get('overlay')     || null;
 
+    // ----- rewrite legacy param aliases ----- //
+
     if (params.get('GeoTypeID') && !params.get('GeoType')) {
         // rewrite GeoTypeID alias before reading it into globals
         normalizeLegacyGeoTypeURL();
@@ -343,11 +377,11 @@ window.addEventListener('popstate', async (event) => {
         normalizeLegacyOverlayURL();
     }
 
-    // restore overlay
+    // ----- restore overlay global ----- //
 
     if (urlOverlay) overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
 
-    // indicator changed → full reload
+    // ----- reload full pipeline on indicator change ----- //
 
     // Reload the full indicator pipeline when history points to a different indicator.
     if (urlID && urlID !== IndicatorID) {
@@ -360,7 +394,7 @@ window.addEventListener('popstate', async (event) => {
         return;
     }
 
-    // sub-indicator params changed → update globals, sync menus, re-render
+    // ----- sync sub-indicator globals, rebuild menus ----- //
 
     if (urlMeasureID)    MeasureID    = urlMeasureID;
     if (urlGeoType)      GeoType      = urlGeoType;
@@ -372,6 +406,8 @@ window.addEventListener('popstate', async (event) => {
 
     // Rebuild dropdowns only when indicator metadata is already available in memory.
     if (ind) updateAllMenus(ind);
+
+    // ----- re-render ----- //
 
     renderCurrentView(true);
 
@@ -385,6 +421,8 @@ window.addEventListener('popstate', async (event) => {
 // Wires tab clicks and shared DOM references after the page shell exists.
 document.addEventListener("DOMContentLoaded", () => {
 
+    // ----- resolve shared tab/content DOM refs ----- //
+
     tabBar       = document.querySelector('#v-pills-bar-tab');
     tabTrends    = document.querySelector('#v-pills-trends-tab');
     tabCorrelate = document.querySelector('#v-pills-correlate-tab');
@@ -395,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
     btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
 
-    // tab clicks → set overlay, push URL, render
+    // ----- define tab-to-overlay map ----- //
 
     // maps each tab selector to its overlay string value
     const tabMap = {
@@ -404,6 +442,8 @@ document.addEventListener("DOMContentLoaded", () => {
         '#v-pills-correlate-tab': 'links',
         '#v-pills-table-tab':     'table'
     };
+
+    // ----- bind tab click listeners ----- //
 
     // Bind each Bootstrap tab to the overlay value it should activate.
     Object.entries(tabMap).forEach(([selector, value]) => {

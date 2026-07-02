@@ -21,7 +21,7 @@ const resetDisparitiesPaneLayout = () => {
         return;
     }
 
-    // --- remove some properties and classes --- //
+    // - - - remove some properties and classes - - - //
 
     correlateHolder.style.removeProperty('width');
     correlateHolder.style.removeProperty('min-width');
@@ -36,6 +36,7 @@ const resetDisparitiesPaneLayout = () => {
 };
 
 
+// Waits two animation frames before resizing so the disparities chart's container has settled into its final layout (same double-rAF pattern as scheduleTableOverlayRender in app.js).
 const scheduleDisparitiesViewResize = () => {
 
     window.requestAnimationFrame(() => {
@@ -54,6 +55,8 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
+    // ----- guard clause, resolve DOM refs, reset pane layout ----- //
+
     if (!primaryMetadata?.length) {
         return;
     }
@@ -63,6 +66,8 @@ const renderDisparitiesChart = async (
     const unreliabilityHolder = document.getElementById('links-unreliability');
 
     resetDisparitiesPaneLayout();
+
+    // ----- set static view copy + derive primary-measure display metadata ----- //
 
     if (viewDescription) {
         viewDescription.innerHTML = 'Hover on points for more information.';
@@ -82,6 +87,8 @@ const renderDisparitiesChart = async (
     let subtitle;
     let primaryDisplay;
 
+    // - - - percent-type measures display as "%"; others use their configured display type - - - //
+
     if ((primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent')) && !primaryMeasurementType.includes('percentile')) {
         primaryDisplay = '%';
         subtitle = primaryMeasurementType;
@@ -90,6 +97,8 @@ const renderDisparitiesChart = async (
         subtitle = `${primaryMeasurementType}${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`;
 
     }
+
+    // ----- resolve secondary (disparity/poverty) measure metadata ----- //
 
     const disparityIndicator = indicators.filter(indicator =>
         indicator.Measures.some(measure => measure.MeasureID === disparityMeasureId)
@@ -104,6 +113,8 @@ const renderDisparitiesChart = async (
     const disparityMeasureName = disparityMetadata[0]?.MeasureName;
     const disparitySources = disparityMetadata[0]?.Sources;
     const disparitiesAbout = disparityMetadata[0]?.how_calculated;
+
+    // ----- rebuild joined disparity data when stale or the primary measure changed ----- //
 
     const needsFreshDisparityData = !Array.isArray(disparityData)
         || !disparityData.length
@@ -133,6 +144,8 @@ const renderDisparitiesChart = async (
     }
 
     console.log("disparityData [renderDisparitiesChart]", disparityData);
+
+    // ----- derive display fields, render unreliability notes, build about/sources ----- //
 
     selectedDisparity = true;
 
@@ -167,9 +180,12 @@ const renderDisparitiesChart = async (
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
     const height = window.innerWidth < 576 ? 350 : 400;
 
-    // --- build the disparities scatterplot after jitter, notes, and subtitle text are ready --- //
+    // ----- build the disparities scatterplot after jitter, notes, and subtitle text are ready ----- //
 
     const disparitiesSpec = {
+
+        // - - - schema, title, and chart-level config - - - //
+
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `${primaryIndicatorName} ${primaryMeasurementType} and poverty scatterplot`,
         "title": {
@@ -219,6 +235,9 @@ const renderDisparitiesChart = async (
                 "size": 11
             }
         },
+
+        // - - - data and transform - - - //
+
         "data": {
             "values": disparityData
         },
@@ -232,6 +251,9 @@ const renderDisparitiesChart = async (
                 "as": "povLabel"
             }
         ],
+
+        // - - - layer: marks and encodings - - - //
+
         "layer": [
             {
                 "mark": {
@@ -320,7 +342,10 @@ const renderDisparitiesChart = async (
                 }
             }
         ]
+
     };
+
+    // ----- embed chart, cache print-export state, build downloadable CSV ----- //
 
     vegaEmbed('#links', disparitiesSpec, {
         actions: false

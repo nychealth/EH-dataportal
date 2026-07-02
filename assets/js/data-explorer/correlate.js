@@ -88,6 +88,7 @@ const registerCorrelateResizeHandler = () => {
 // correlate chart rendering
 // ----------------------------------------------------------------------- //
 
+// Builds the "no correlates available" message, resolving the label from the argument, then selectedMapMetadata's type, name, and a generic fallback, in order.
 const getNoCorrelatesMessage = (measureLabel) => {
 
     const resolvedMeasureLabel = `${measureLabel || selectedMapMetadata?.MeasurementType || selectedMapMetadata?.MeasureName || 'the selected measure'}`;
@@ -97,6 +98,7 @@ const getNoCorrelatesMessage = (measureLabel) => {
 };
 
 
+// Enables or disables the correlate tab's save-chart and download-data buttons together, including removing disabled controls from keyboard tab order.
 const setCorrelateActionState = (isEnabled) => {
 
     // The two correlate-tab action controls this function enables/disables together.
@@ -124,6 +126,7 @@ const setCorrelateActionState = (isEnabled) => {
 };
 
 
+// Renders the no-correlates fallback: resets chart/note regions, shows a warning alert, clears shared print/export state, and disables tab actions.
 const renderNoCorrelatesMessage = (measureLabel) => {
 
     // The correlate-tab regions this function clears/resets when no correlates exist.
@@ -174,6 +177,8 @@ const renderCorrelate = (
 
     console.log("** renderCorrelate");
 
+    // ----- guard clauses & element setup ----- //
+
     if (
         !Array.isArray(data)
         || !data.length
@@ -199,6 +204,8 @@ const renderCorrelate = (
 
     setCorrelateActionState(true);
 
+    // ----- view text & pane layout sync ----- //
+
     if (viewDescription) {
         viewDescription.innerHTML = 'Hover on points for more information.';
     }
@@ -215,6 +222,8 @@ const renderCorrelate = (
     updateCorrelatePaneLayout();
     registerCorrelateResizeHandler();
 
+    // ----- extract plot values & resolve measurement-display formatting ----- //
+
     // Pull plotting values up front so axis/domain logic stays readable.
     const aqData = aq.from(data);
     const value1 = aqData.array('Value_1');
@@ -226,6 +235,9 @@ const renderCorrelate = (
     // Resolve display formatting (percent vs. other units) and time period for the
     // primary measure, then repeat the same resolution for the secondary measure —
     // the two branches mirror each other by design, one per joined indicator.
+
+    // - - - primary measure - - - //
+
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;
 
@@ -243,6 +255,8 @@ const renderCorrelate = (
     const primaryTimePeriod = data[0]?.TimePeriod_1;
     const geoTypeShortDesc = data[0]?.GeoTypeShortDesc_1;
 
+    // - - - secondary measure - - - //
+
     const secondaryMeasurementType = secondaryMetadata[0]?.MeasurementType;
     const secondaryMeasureName = secondaryMetadata[0]?.MeasureName;
     const secondaryMeasureId = secondaryMetadata[0]?.MeasureID;
@@ -259,6 +273,8 @@ const renderCorrelate = (
     }
 
     const secondaryTimePeriod = data[0]?.TimePeriod_2;
+
+    // ----- resolve axis assignment via secondaryAxis switch ----- //
 
     const secondaryAxis = primaryMetadata[0].VisOptions[0].Links[0].Measures.filter(
         link => link.MeasureID === secondaryMeasureId
@@ -285,6 +301,8 @@ const renderCorrelate = (
 
         case 'x':
 
+            // - - - secondary measure on x, primary on y - - - //
+
             xMeasure = secondaryMeasurementType;
             yMeasure = primaryMeasurementType;
             xMeasureName = secondaryMeasureName;
@@ -309,6 +327,8 @@ const renderCorrelate = (
         case 'y':
         default:
 
+            // - - - primary measure on x, secondary on y - - - //
+
             xMeasure = primaryMeasurementType;
             yMeasure = secondaryMeasurementType;
             xMeasureName = primaryMeasureName;
@@ -332,6 +352,8 @@ const renderCorrelate = (
 
     }
 
+    // ----- responsive layout constants & unreliability notes ----- //
+
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
     const columns = window.innerWidth < 576 ? 3 : 6;
     const height = window.innerWidth < 576 ? 350 : 400;
@@ -347,6 +369,8 @@ const renderCorrelate = (
     unreliabilityHolder.innerHTML += `<div class='fs-xs'>${note}</div>`;
         unreliabilityHolder.classList.remove('hide');
     });
+
+    // ----- Vega-Lite spec assembly (correlateSpec) ----- //
 
     // Build the scatterplot after axis labels and joined-value formatting are settled.
     const correlateSpec = {
@@ -534,6 +558,8 @@ const renderCorrelate = (
             }
         ]
     };
+
+    // ----- render, bookkeeping & CSV export ----- //
 
     vegaEmbed('#links', correlateSpec, {
 

@@ -62,7 +62,7 @@ const clearBubbles = () => {
 // shared render helpers
 // ----------------------------------------------------------------------- //
 
-// Shared helpers for map rendering
+// Builds a plain object mapping each row's GeoID to the row itself, for O(1) lookup when joining data onto GeoJSON features.
 const createDataLookup = (data) => {
     const dataLookup = {};
     data.forEach(item => {
@@ -186,6 +186,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
 
 // Coordinates legend hover text and tick placement with hovered map features.
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+    // Converts a value into a 0-100 percent position along the legend's color range.
     const calculatePercent = (x) => {
         const range = maxValue - minValue;
         if (range === 0 || x == null) {
@@ -194,6 +195,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
         return 100 * (x - minValue) / range;
     };
 
+    // Updates the legend hover panel and tick position to reflect the hovered feature.
     const updateHoverUI = (props) => {
         document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
         document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
@@ -211,6 +213,7 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
         document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
     };
 
+    // Resets the legend hover panel to its idle, no-selection state.
     const clearHoverUI = () => {
         document.getElementById('hoveredGeo').textContent = 'Hover for details';
         document.getElementById('hoveredValue').textContent = '';
@@ -247,7 +250,7 @@ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
 
 initBaseMap();
 
-// Joins filtered data onto geography features and renders the choropleth layer.
+// Derives shared time/geo/measurement metadata from the filtered data, then dispatches to renderBubbleMap or renderChoroplethMap.
 const renderMap = (
     data, 
     metadata
@@ -256,22 +259,22 @@ const renderMap = (
     console.log("** renderMap");
     console.log("** renderMap: metadata", metadata);
 
-    // - - - get unique time in data - - - //
+    // ----- get unique time in data ----- //
 
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // --- set metadata --- //
+    // ----- set metadata ----- //
 
     let mapGeoType = data[0]?.GeoType;
     let mapMeasurementType = metadata[0]?.MeasurementType;
     let mapTime = mapTimes[0];
     let topoFile = '';
 
-    // - - - set geo file based on geo type - - - //
+    // ----- set geo file based on geo type ----- //
 
     topoFile = getGeoFile(mapGeoType);
 
-    // --- check if the data are citywide only --- //
+    // ----- check if the data are citywide only ----- //
 
     const isCitywideOnly = metadata[0].AvailableGeoTypes.length === 1 &&
                            metadata[0].AvailableGeoTypes[0] === 'Citywide';
@@ -280,7 +283,7 @@ const renderMap = (
         console.log("** renderMap: citywide only");
     }
 
-    // --- determine map type based on measurement type --- //
+    // ----- determine map type based on measurement type ----- //
 
     const isNumberMap = mapMeasurementType.includes('number') ||
                         mapMeasurementType.includes('Number') ||
@@ -306,6 +309,7 @@ const renderMap = (
 // Choropleth map rendering function
 // ----------------------------------------------------------------------- //
 
+// Renders the choropleth map variant, joining data to GeoJSON polygons and wiring popup, hover, and click interactions linked to the bar chart.
 const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
 
     // Percent measures show percent-formatted legends; everything else stays unitless here.
@@ -327,6 +331,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     const colorScale = createColorScale(minValue, maxValue);
 
+    // Colors each polygon by its value using the shared color scale, falling back to gray when data is missing.
     const styleFeature = (feature) => {
         const value = feature.properties.Value;
         return {
@@ -337,6 +342,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         };
     };
 
+    // Applies the hover-highlight outline and brings the feature to the front of the layer stack.
     const highlightFeature = (e) => {
         const layer = e.target;
         layer.setStyle({
@@ -350,16 +356,18 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         }
     };
 
+    // Unused — superseded by the inline resetHighlight defined on the exposed mapInterop object below.
     const resetHighlight = (layer, e) => {
         layer.resetStyle(e.target);
     };
 
+    // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
     const createPopupContent = (properties) => {
         // Use citywide-specific popup if this is citywide-only data
         if (isCitywideOnly) {
             return createCitywidePopupContent(data[0], metadata);
         }
-        
+
         return createMapPopupContent(properties, metadata, {
             requireGeoRank: true,
             valueDigits: 1
@@ -377,10 +385,12 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         .then(topology => {
             
             // Convert TopoJSON once, then enrich each feature with filtered indicator data.
-            // --- Convert TopoJSON to GeoJSON ---
+            // ----- Convert TopoJSON to GeoJSON ----- //
+
             let geojson = topojson.feature(topology, topology.objects.collection);
 
-            // --- Attach data to each feature ---
+            // ----- Attach data to each feature ----- //
+
             geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
 
             return geojson;
@@ -392,7 +402,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
             const geoIDtoLayer = {};
 
-            // --- Add the GeoJSON to the map ---
+            // ----- Add the GeoJSON to the map ----- //
 
             const geojsonLayer = L.geoJson(geojson, {
 
@@ -413,8 +423,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         }
                     });
                     
-                    // ----------------------------------------------------------------------- //
-                    
+                    // - - - bind popup content - - - //
+
                     layer.bindPopup(createPopupContent(feature.properties));
                     
                     layer.on('click', (e) => {
@@ -521,6 +531,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 // Bubble map rendering function
 // ----------------------------------------------------------------------- //
 
+// Renders the number/total map variant, joining data to circle markers sized and colored by value, with popup, hover, and click interactions mirroring the choropleth map.
 const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();
@@ -536,6 +547,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         .domain([minValue, maxValue])
         .range([4, 20]);
 
+    // Styles the base polygons as light gray fill so the circle-marker bubbles remain the visual focus.
     const styleFeature = () => ({
         fillColor: '#eee',
         weight: 1,
@@ -543,12 +555,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         fillOpacity: 0.3
     });
 
+    // Builds popup markup for a bubble or polygon, substituting the citywide popup when the data is citywide-only.
     const createPopupContent = (properties) => {
         // Use citywide-specific popup if this is citywide-only data
         if (isCitywideOnly) {
             return createCitywidePopupContent(data[0], metadata);
         }
-        
+
         return createMapPopupContent(properties, metadata, {
             requireGeoRank: false,
             valueDigits: 0
@@ -565,10 +578,12 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         .then(response => response.json())
         .then(topology => {
             
-            // --- Convert TopoJSON to GeoJSON ---
+            // ----- Convert TopoJSON to GeoJSON ----- //
+
             let geojson = topojson.feature(topology, topology.objects.collection);
 
-            // --- Attach data to each feature ---
+            // ----- Attach data to each feature ----- //
+
             geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
 
             return geojson;
@@ -581,7 +596,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
             const geoIDtoLayer = {};
             const circleMarkers = [];  // Store all circle markers for interop
 
-            // --- Add the GeoJSON overlay (light gray polygons) ---
+            // ----- Add the GeoJSON overlay (light gray polygons) ----- //
+
             const geojsonLayer = L.geoJson(geojson, {
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
@@ -608,7 +624,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
             currentGeojsonLayer = geojsonLayer;
 
-            // --- Add bubbles on top ---
+            // ----- Add bubbles on top ----- //
+
             data.forEach(item => {
                 if (item.Lat != null && item.Long != null && item.Value != null) {
                     const latlng = [item.Lat, item.Long];
@@ -640,7 +657,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                         }
                     });
 
-                    // --- Add hover and click interactions to bubbles ---
+                    // - - - Add hover and click interactions to bubbles - - - //
+
                     circle.on('click', (e) => {
                         console.log("** click", item);
 
@@ -705,7 +723,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 }
             }
 
-            // --- Expose map functions globally for chart-to-map hover cross-linking ---
+            // ----- Expose map functions globally for chart-to-map hover cross-linking ----- //
+
             window.mapInterop = {
                 geoIDtoLayer,
                 geojsonLayer,

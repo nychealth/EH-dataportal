@@ -33,6 +33,8 @@ const createComparisonData = async (comps) => {
 
     console.log("* createComparisonData");
 
+    // ----- bail if no comparisons selected ----- //
+
     if (!Array.isArray(indicatorComparisonId) || indicatorComparisonId.length === 0) {
 
         comparisonMetadata = [];
@@ -42,6 +44,8 @@ const createComparisonData = async (comps) => {
         aqComparisonIndicatorData = undefined;
         return;
     }
+
+    // ----- filter to selected comparisons; bail if none match ----- //
 
     comparisonMetadata = comps.filter(d => indicatorComparisonId.includes(d.ComparisonID));
 
@@ -53,6 +57,8 @@ const createComparisonData = async (comps) => {
         aqComparisonIndicatorData = undefined;
         return;
     }
+
+    // ----- build aqComparisonMetadata ----- //
 
     aqComparisonMetadata = aq.from(comparisonMetadata)
         .unroll("Indicators")
@@ -66,6 +72,8 @@ const createComparisonData = async (comps) => {
         })
         .select(aq.not("Indicators"));
 
+    // ----- derive unique indicator/measure keys ----- //
+
     const aqUniqueIndicatorMeasure = aqComparisonMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe();
@@ -76,6 +84,8 @@ const createComparisonData = async (comps) => {
 
     const comparisonIndicatorIDs = [...new Set(aqComparisonMetadata.array("IndicatorID"))];
     const comparisonMeasureIDs = [...new Set(aqComparisonMetadata.array("MeasureID"))];
+
+    // ----- build aqComparisonIndicatorsMetadata ----- //
 
     const comparisonIndicatorsMetadata = indicators.filter(ind =>
         comparisonIndicatorIDs.includes(ind.IndicatorID)
@@ -99,8 +109,12 @@ const createComparisonData = async (comps) => {
         .select(aq.not("Measures"))
         .filter(aq.escape(d => comparisonMeasureIDs.includes(d.MeasureID)));
 
+    // ----- join into aqCombinedComparisonMetadata ----- //
+
     aqCombinedComparisonMetadata = aqComparisonMetadata
         .join(aqComparisonIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]]);
+
+    // ----- fetch each comparison indicator's data; semijoin; concat ----- //
 
     const comparisonDataTables = await Promise.all(
         uniqueIndicatorMeasure.map(async ind => {
@@ -142,6 +156,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // console.log("indicators [loadIndicator]", indicators);
 
+    // ----- resolve overlay default; coerce IndicatorID ----- //
+
     // preserve current tab; default to none (no overlay open) on first load
 
     // Default to no overlay until a tab is explicitly chosen or restored.
@@ -169,6 +185,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // $(thisIndicatorEl).addClass("active");
     // $(thisIndicatorEl).attr('aria-selected', true);
 
+    // ----- look up indicator record; assign metadata globals ----- //
+
     // IndicatorID comes in as  a string, so "find" uses '==' instead of '==='
 
     indicator = indicators.find(indicator => indicator.IndicatorID == IndicatorID);
@@ -188,7 +206,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // createCitation(); // re-runs on updating Indicator
 
-    // reset selected measure flags
+    // ----- reset per-view selection-state flags ----- //
 
     selectedMapMeasure = false;
     selectedMapTime = false;
@@ -204,6 +222,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedLinksPrimaryMeasureId = null;
     selectedLinksSecondaryMeasureId = null;
     selectedDisparityPrimaryMeasureId = null;
+
+    // ----- sync URL/history state ----- //
 
     // if dont_add_to_history is true, then don't push the state
     // if dont_add_to_history is false, or not set, push the state
@@ -223,13 +243,13 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
         if (window.history.state === null || state === null) {
 
-            // first load — replace the initial history entry
+            // - - - first load: replace the initial history entry - - - //
 
             window.history.replaceState({ id: IndicatorID }, '', nextURL);
 
         } else {
 
-            // indicator changed — push new history entry
+            // - - - indicator changed: push new history entry - - - //
 
             window.history.pushState({ id: IndicatorID }, '', nextURL);
 
@@ -243,7 +263,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
 
-    // call function to fetch comparisons data
+    // ----- reset comparison metadata; conditionally fetch ----- //
 
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
@@ -255,6 +275,8 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     if (indicatorComparisonId.length > 0) {
         await fetch_comparisons();
     }
+
+    // ----- kick off loadData ----- //
 
     await loadData(IndicatorID);
 
@@ -369,9 +391,7 @@ const joinData = async () => {
     // console.log("indicators [joinData]", indicators);
     // console.log("indicatorMeasures [joinData]", indicatorMeasures);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get metadata fields
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- build aqMeasureDisplay lookup table ----- //
 
     // create table column header with display type
 
@@ -404,9 +424,7 @@ const joinData = async () => {
     // console.log("aqMeasureDisplay [joinData]");
     // aqMeasureDisplay.print()
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // getting time periods for each viz for each measure x geo combo
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- expand Table/Map/Trend time × geo combinations per measure ----- //
 
     // flatten MeasureID + TimePeriodID + GeoType
 
@@ -424,7 +442,7 @@ const joinData = async () => {
 
             // console.log(i, " > MeasureID", measure.MeasureID);
 
-            // table -----------
+            // - - - table - - - //
 
             let aqTableTimesGeosMeasureArray =
 
@@ -474,7 +492,7 @@ const joinData = async () => {
             tableTimesGeos.push(aqTableTimesGeosMeasure);
 
 
-            // map -----------
+            // - - - map - - - //
 
             let aqMapTimesGeosMeasureArray =
 
@@ -521,7 +539,7 @@ const joinData = async () => {
             mapTimesGeos.push(aqMapTimesGeosMeasure);
 
 
-            // comparisons -----------
+            // - - - trend - - - //
 
             let aqTrendTimesGeosMeasureArray =
 
@@ -569,10 +587,12 @@ const joinData = async () => {
 
         }
     )
-    
+
+
+    // ----- combine into aqTableTimesGeos / aqMapTimesGeos / aqTrendTimesGeos ----- //
 
     // take array of arquero tables and combine them into 1 arquero table defined globally - like bind_rows in dplyr
-    
+
     // table
 
     aqTableTimesGeos = 
@@ -610,11 +630,7 @@ const joinData = async () => {
     // console.log(">> aqTrendTimesGeos [joinData]");
     // aqTrendTimesGeos.print()
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // joining
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    // foundational joined dataset ----------
+    // ----- build the foundational joinedAqData join ----- //
 
     // console.log(">>>> joinedAqData [joinData]");
 
@@ -633,7 +649,7 @@ const joinData = async () => {
     // joinedAqData.print()
 
 
-    // data for summary table ----------
+    // ----- derive tableData ----- //
 
     tableData = joinedAqData
         .join_left(aqMeasureDisplay, "MeasureID")
@@ -651,7 +667,7 @@ const joinData = async () => {
 
     // console.log(">>>> tableData [joinData]", tableData);
 
-    // data for map ----------
+    // ----- derive mapData ----- //
 
     mapData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
@@ -664,7 +680,7 @@ const joinData = async () => {
     // console.log(">>>> mapData [joinData]", mapData);
     
 
-    // data for trend chart ----------
+    // ----- derive trendData ----- //
 
     trendData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
@@ -676,7 +692,7 @@ const joinData = async () => {
 
     // console.log(">>>> trendData [joinData]", trendData);
 
-    // data for links & disparities chart ----------
+    // ----- derive linksData ----- //
 
     // console.log(">>> linksData [joinData]");
 
@@ -699,8 +715,6 @@ const joinData = async () => {
 // function to create data and metadata for links chart
 // ----------------------------------------------------------------------- //
 
-// WHAT'S THE MOST RECENT YEAR WHERE PRIMARY AND SECONDARY SHARE A GEOGRAPHY?
-
 // Aligns primary and secondary measures on shared geography and closest available time.
 const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
@@ -709,9 +723,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // console.log("primaryMeasureId [createJoinedLinksData]", primaryMeasureId);
     // console.log("secondaryMeasureId [createJoinedLinksData]", secondaryMeasureId);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // primary measure metadata
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- resolve primary measure metadata ----- //
 
     // get metadata for the selected primary measure, assign to global letiable
     // indicatorMeasures created in loadIndicator
@@ -722,9 +734,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // console.log("primaryMeasureMetadata [createJoinedLinksData]", primaryMeasureMetadata);
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // secondary measure metadata
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- resolve secondary measure metadata; default secondary ID ----- //
 
     // if no secondary measure ID is given, set it to the first in the primary measure's links list
 
@@ -754,9 +764,9 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // console.log("secondaryMeasureMetadata", secondaryMeasureMetadata);
 
 
-    // ==== geography ==== //
+    // ----- resolve shared geography intersection; bail if none ----- //
 
-    // ---- get primary x secondary intersection ---- //
+    // - - - get primary x secondary intersection - - - //
 
     const sharedGeos = getSharedLinksGeos(primaryMeasureMetadata[0], secondaryMeasureMetadata[0]);
 
@@ -772,16 +782,14 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     }
 
 
-    // ==== times ==== //
+    // ----- filter/resolve primary measure's most-recent time+geo slice; bail if empty ----- //
 
     // get available time periods for secondary measure
 
     // console.log("aqSecondaryMeasureTimes");
     // aqSecondaryMeasureTimes.print(50)
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // primary measure data
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // - - - primary measure data - - - //
 
     const filteredPrimaryMeasureData = linksData
 
@@ -832,9 +840,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // aqFilteredPrimaryMeasureTimesData.print()
 
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // secondary measure data
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- fetch secondary indicator data; filter/derive to shared geos ----- //
 
     // get secondary data with shared geo and time period that is closest with most recent primary data
     //  (fetches run asynchronously by default, but we need this data to do other things, so we have to 
@@ -879,7 +885,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             }
             
 
-            // ==== get closest data ==== //
+            // ----- find the most recent year primary and secondary share a geography ----- //
 
             // get the secondary end time closest to most recent primary end time
 
@@ -893,7 +899,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
 
 
-            // use end time to get closest secondary data
+            // - - - use end time to get closest secondary data - - - //
 
             const aqClosestSecondaryData = aqFilteredSecondaryMeasureData
 
@@ -908,9 +914,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
                 .filter(d => d.start_period === op.min(d.start_period))
 
 
-            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-            // join primary and secondary measure data
-            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+            // ----- join primary and secondary measure data; return combined result ----- //
 
             // console.log("filteredPrimaryMeasureData", filteredPrimaryMeasureData);
 

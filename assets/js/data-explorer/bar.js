@@ -5,6 +5,7 @@
 // console.log(">> bar.js");
 
 // Bar-chart rendering, resize coordination, and Vega-Lite layer assembly
+
 // ----------------------------------------------------------------------- //
 // resize helpers
 // ----------------------------------------------------------------------- //
@@ -65,6 +66,8 @@ const renderBar = (
     console.log("metadata [renderBar]", metadata);
     console.log("geo [renderBar]", geography);
 
+    // ----- notes rendering & data filtering ----- //
+
     // Render notes
     const barUnreliability = document.getElementById('bar-unreliability');
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
@@ -85,17 +88,13 @@ const renderBar = (
         return item.GeoType === geography || prettifyGeoType(item.GeoType) === geography;
     });
 
-    // ----------------------------------------------------------------------- //
-    // get unique time in data
-    // ----------------------------------------------------------------------- //
-    
+    // - - - get unique time in data - - - //
+
     const barTimes =  [...new Set(barData.map(item => item.TimePeriod))];
 
     console.log("barTimes [bar.js]", barTimes);
 
-    // ----------------------------------------------------------------------- //
-    // set metadata
-    // ----------------------------------------------------------------------- //
+    // ----- metadata & working-state setup ----- //
 
     // Working state for the display-rule branch and chart spec below: data-derived
     // metadata, formatting flags set inside the percent check, and layout constants
@@ -112,13 +111,7 @@ const renderBar = (
     let setCircleSize = 250
 
 
-    // ----------------------------------------------------------------------- //
-    // display-rule selection
-    // ----------------------------------------------------------------------- //
-
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // Determine data parameters that inform bar style
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- display-rule resolution (CI detection, percent formatting) ----- //
 
     const hasCI = barData.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
     console.log('has CI [bar.js]', hasCI)
@@ -141,18 +134,12 @@ const renderBar = (
     console.log('is percent? [bar.js]', isPercent)
 
 
-    /* ----------------------------------------------------------------------- //
-    // modify bar spec:
-        - If the measurement Type is a mean, then give it a dot with a gray bar. Dots better represent Means.
-        - if the data has CIs, then, give a gray CI bar
-        - Else, just give a standard bar
-    // -----------------------------------------------------------------------  */
+    // ----- layer-variant selection (Mean / CI / plain) ----- //
 
-    
         // Keep layer selection explicit so each data shape keeps its own readable spec branch.
         if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
-            
-            // For means, show a dot against a light bar
+
+            // - - - Mean: dot marker on a light bar — dots read better than solid bars for means - - - //
 
             barDisplay = [
                 {
@@ -252,7 +239,8 @@ const renderBar = (
 
         } else if (hasCI == true) {
 
-            // Confidence-interval rows get error bars plus a point estimate marker.
+            // - - - CI: gray error bar plus point-estimate marker for confidence-interval rows - - - //
+
             barDisplay = [
                 {
                     "height": setHeight,
@@ -388,7 +376,7 @@ const renderBar = (
             ]
         } else {
 
-            // Plain measures render as a standard single-layer ranked bar chart.
+            // - - - Plain: standard single-layer ranked bar (no mean dot or CI) - - - //
 
             barDisplay = [
                 {
@@ -460,10 +448,8 @@ const renderBar = (
         }
 
 
-    // ----------------------------------------------------------------------- //
-    // define spec
-    // ----------------------------------------------------------------------- //
-    
+    // ----- bar spec assembly (barSpec) ----- //
+
     var barSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "title": {
@@ -515,10 +501,8 @@ const renderBar = (
         "layer": barDisplay
     }
 
-    
-    // ----------------------------------------------------------------------- //
-    // render chart
-    // ----------------------------------------------------------------------- //
+
+    // ----- compile & finalize spec ----- //
 
     console.log('vega-lite spec:')
     console.log(barSpec)
@@ -537,8 +521,9 @@ const renderBar = (
     printSpec = vegaSpec;
     vizSource = metadata[0]?.Sources;
     chartType = 'bar';
-    
-    
+
+    // ----- render & map-hover interop ----- //
+
     return vegaEmbed("#barHolder", vegaSpec, {
 
         actions: false
@@ -571,7 +556,7 @@ const renderBar = (
 
                 // Check if it's a bubble map (has circleMarkers) or choropleth (has geoIDtoLayer)
                 if (mapAPI.circleMarkers) {
-                    // Bubble map
+                    // - - - Bubble map - - - //
                     const markerObj = mapAPI.circleMarkers.find(c => c.geoID === geoID);
                     if (markerObj && markerObj !== lastHighlighted) {
                         // Reset previous highlight
@@ -585,7 +570,7 @@ const renderBar = (
                         mapAPI.updateHoverUI(item.datum);
                     }
                 } else if (mapAPI.geoIDtoLayer) {
-                    // Choropleth map
+                    // - - - Choropleth map - - - //
                     const layer =
                         mapAPI.geoIDtoLayer[geoID] ||
                         mapAPI.geoIDtoLayer[String(geoID)] ||

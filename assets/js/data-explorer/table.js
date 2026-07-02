@@ -336,6 +336,8 @@ const applyTableFilters = (rows) => {
 // Renders table checkbox controls and wires them to re-rendering.
 const renderTableFilterControls = (rows) => {
 
+    // ----- resolve DOM holders, bail if markup absent ----- //
+
     const timeHolder = document.getElementById('tableTimeCheckboxes');
     const geoHolder = document.getElementById('tableGeoCheckboxes');
 
@@ -343,6 +345,8 @@ const renderTableFilterControls = (rows) => {
     if (!timeHolder || !geoHolder) {
         return;
     }
+
+    // ----- compute available time and geography option sets ----- //
 
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
     const filteredTableTimeData = selectedTableTimes.length
@@ -354,6 +358,8 @@ const renderTableFilterControls = (rows) => {
         ? [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))]
         : availableGeos;
 
+    // ----- prune stale selections, fall back to a valid geography ----- //
+
     // Keep only valid selections when indicator data changes.
     selectedTableTimes = selectedTableTimes.filter(time => availableTimes.includes(time));
     selectedTableGeography = selectedTableGeography.filter(geo => availableGeos.includes(geo));
@@ -363,6 +369,8 @@ const renderTableFilterControls = (rows) => {
     if (selectedTableTimes.length) {
         selectedTableGeography = selectedTableGeography.filter(geo => dataGeos.includes(geo));
 
+        // - - - fall back to a valid geography when the synced value is unavailable - - - //
+
         // Keep synced table filters on a valid geography when the current map geo
         // is unavailable for the selected table time period.
         if (!selectedTableGeography.length && dataGeos.length && !tableGeoFilterIsManual) {
@@ -370,6 +378,7 @@ const renderTableFilterControls = (rows) => {
         }
     }
 
+    // Rebuilds a checkbox list for one filter dimension, marking checked/disabled state and wiring change events back to the caller.
     const renderCheckboxes = (holder, options, selectedValues, checkboxClass, name, onChange, isDisabled = () => false) => {
 
         // Rebuild the whole checkbox block so checked and disabled states stay in sync.
@@ -407,6 +416,8 @@ const renderTableFilterControls = (rows) => {
 
     };
 
+    // ----- render time checkboxes ----- //
+
     renderCheckboxes(timeHolder, availableTimes, selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
         const nextTimes = new Set(selectedTableTimes);
 
@@ -423,6 +434,8 @@ const renderTableFilterControls = (rows) => {
         renderTableFilterControls(rows);
         applyTableFilters(rows);
     });
+
+    // ----- render geography checkboxes ----- //
 
     renderCheckboxes(
         geoHolder,
@@ -448,6 +461,8 @@ const renderTableFilterControls = (rows) => {
         },
         (option) => selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
+
+    // ----- wire sync-to-map button, refresh filter summary ----- //
 
     const syncButton = document.getElementById('tableFilterSyncButton');
 
@@ -475,6 +490,8 @@ const renderTable = (tableData) => {
 
     console.log("** renderTable");
 
+    // ----- destroy existing table instance ----- //
+
     // Rebuilding the table means throwing away the old DataTable instance and its injected wrapper DOM.
     if ($.fn.dataTable.isDataTable('#tableID')) {
         $('#tableID').DataTable().destroy();
@@ -482,13 +499,13 @@ const renderTable = (tableData) => {
 
     tableNeedsRender = false;
 
-    // --- prep data (table filters) --- //
+    // ----- prep data (table filters) ----- //
 
     renderTableFilterControls(tableData);
 
     updateTableReliabilityNotes(getSelectedTableRows(tableData));
 
-    // --- table column alignment (unchanged) --- //
+    // ----- table column alignment (unchanged) ----- //
 
     const measureAlignMap = new Map();
     const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
@@ -497,7 +514,7 @@ const renderTable = (tableData) => {
     measures.forEach(m => measureAlignMap.set(m, "r"));
     const measureAlignObj = Object.fromEntries(measureAlignMap);
 
-    // --- pivot data (UNCHANGED) --- //
+    // ----- pivot data (UNCHANGED) ----- //
 
     const filteredTableAqData = aq.from(tableData)
         .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
@@ -554,7 +571,7 @@ const renderTable = (tableData) => {
         { before: 0 }
         );
 
-    // --- render HTML table (unchanged) --- //
+    // ----- render HTML table (unchanged) ----- //
 
     document.getElementById('summary-table').innerHTML = 
         filteredTableAqData.toHTML({
@@ -568,11 +585,9 @@ const renderTable = (tableData) => {
     document.querySelector('#summary-table table').className = "cell-border stripe";
     document.querySelector('#summary-table table').width = "100%";
 
-    // --- DataTables setup --- //
+    // ----- DataTables setup ----- //
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // set some properties
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // - - - set some properties - - - //
 
     // get the names of columns
 
@@ -594,9 +609,7 @@ const renderTable = (tableData) => {
     const groupColumnTime = 0;
     const groupColumnGeo = 2;
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // initialize the table
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // - - - initialize the table - - - //
 
     const dataTable = $('#tableID').DataTable({
         scrollY: 500,
@@ -637,6 +650,7 @@ const renderTable = (tableData) => {
             { type: 'natural', targets: ['_all'] },
             {
                 targets: 9,
+                // Parses the numeric-value column to a sortable float for sort/type requests, leaving the display text untouched.
                 render: function (data, type) {
                     // Strip formatting so numeric sorts use the raw number rather than display text.
                     if (type === 'sort' || type === 'type') {
@@ -649,6 +663,7 @@ const renderTable = (tableData) => {
             },
             {
                 targets: 8,
+                // Replaces the xx/yy placeholder delimiters in the Area column with a styled line break for display only.
                 render: function (data, type) {
                     // Inject line breaks only for display mode so sorting/searching sees plain text.
                     if (type === 'display') {
@@ -664,6 +679,7 @@ const renderTable = (tableData) => {
         },
         // The table body and filter input are the only visible chrome we need here.
         dom: 'rt<"bottom"flp>',
+        // Stamps data-group/data-time attributes on each row at build time so drawCallback can detect group boundaries later.
         createdRow: function (row, data) {
             const time = data[0];
             const GeoTypeDesc = data[2];
@@ -673,6 +689,7 @@ const renderTable = (tableData) => {
                 row.setAttribute(`data-time`, `${time}`);
             }
         },
+        // Rebuilds the collapsible group-header rows and rebinds toggle/search handlers after each draw, since DataTables replaces the row DOM every time.
         drawCallback: function () {
 
             const api = this.api();
@@ -722,6 +739,8 @@ const renderTable = (tableData) => {
         }
     });
 
+    // ----- lock scroll height + rebind search ----- //
+
     lockSummaryTableScrollBodyHeight();
 
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
@@ -733,9 +752,7 @@ const renderTable = (tableData) => {
 // table data download
 // ----------------------------------------------------------------------- //
 
-// Triggers the table's configured CSV export. The DataTables CSV button is not
-// placed in the table chrome (there is no "B" in the `dom` string), so the
-// standalone "Download data" link drives it through the Buttons API.
+// Triggers the table's configured CSV export via the Buttons API, since the CSV button is not present in the table's dom-string chrome.
 const downloadTableData = () => {
 
     if (!$.fn.dataTable.isDataTable('#tableID')) {
@@ -754,10 +771,16 @@ const downloadTableData = () => {
 // Binds click handlers that expand and collapse grouped summary-table rows.
 const handleToggle = () => {
 
+    // ----- unbind stale delegated handler ----- //
+
     // Delegate from body because drawCallback recreates the synthetic group rows on every redraw.
     $('body').off('click', '#summary-table tr.group td');
 
+    // ----- bind new delegated click handler ----- //
+
     $('body').on('click', '#summary-table tr.group td', (e) => {
+
+        // - - - resolve clicked cell/row/group context - - - //
 
         const td = $(e.target);
         const tr = td.parent();
@@ -804,6 +827,8 @@ const handleToggle = () => {
                 td.addClass('hidden');
             }
         };
+
+        // - - - dispatch based on group level - - - //
 
         // Route clicks to either the time-level or subgroup-level toggle behavior.
         if (groupLevel === 0) {
