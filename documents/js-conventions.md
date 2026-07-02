@@ -117,12 +117,12 @@ Put a blank line before and after each step block.
 ```js
 showMap = () => {
 
-    // --- resolve metadata for the current MeasureID --- //
+    // ----- resolve metadata for the current MeasureID ----- //
 
     let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
     if (!metadata.length) metadata = defaultMapMetadata;
 
-    // --- filter data by current globals --- //
+    // ----- filter data by current globals ----- //
 
     filteredMapData = mapData.filter(obj =>
         obj.MeasureID == MeasureID &&
@@ -130,7 +130,7 @@ showMap = () => {
         prettifyGeoType(obj.GeoType) == GeoType
     );
 
-    // --- render --- //
+    // ----- render ----- //
 
     return renderMap(filteredMapData, metadata);
 
@@ -229,7 +229,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
         return null;
     }
 
-    // --- age-adjusted rate total has highest priority --- //
+    // ----- age-adjusted rate total has highest priority ----- //
 
     const ageAdjustedTotal = findFirstMeasureByType(visArray, t =>
         t.includes('Age-adjusted rate') && t.includes('Total')
@@ -239,7 +239,7 @@ const pickDefaultMeasureByPriority = (visArray) => {
         return ageAdjustedTotal;
     }
 
-    // --- fall through remaining priority list --- //
+    // ----- fall through remaining priority list ----- //
 
     const priorityMatchers = [
         t => t.includes('Age-adjusted rate'),
