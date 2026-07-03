@@ -296,15 +296,15 @@ change silently alters behavior with no error:
 
 ## 7. Suggested priority order
 
-**Quick, high-confidence fixes (hours):**
-1. Delete stray `e.stopPropagation()` in `downloadData` (§2.1).
-2. Parenthesize the percentile check in map.js + bar.js; extract one helper (§2.2).
-3. Fix `v-pills-trend` → `v-pills-trends-tab` (§2.3).
-4. Fix `setTimeout(updateChartPlotSize, 1000)` (§2.4).
-5. Fix `click_how_caclulated` typo (§2.5).
-6. Remove the fabricated-CI fallback (§2.7).
-7. Delete the four dead files + dead `#indicatorButtons` handler + dead table-tab download button (§0, §2.9, §2.10).
-8. De-duplicate `geoOptionsDropdownButton` / `timeOptionsDropdownButton` IDs (§3).
+**Quick, high-confidence fixes (hours): DONE — shipped in `de8464ba2d` (2026-06-28), see note above.**
+1. ~~Delete stray `e.stopPropagation()` in `downloadData` (§2.1).~~
+2. ~~Parenthesize the percentile check in map.js + bar.js; extract one helper (§2.2).~~
+3. ~~Fix `v-pills-trend` → `v-pills-trends-tab` (§2.3).~~
+4. ~~Fix `setTimeout(updateChartPlotSize, 1000)` (§2.4).~~
+5. ~~Fix `click_how_caclulated` typo (§2.5).~~
+6. ~~Remove the fabricated-CI fallback (§2.7).~~
+7. ~~Delete the four dead files + dead `#indicatorButtons` handler + dead table-tab download button (§0, §2.9, §2.10).~~
+8. ~~De-duplicate `geoOptionsDropdownButton` / `timeOptionsDropdownButton` IDs (§3).~~
 
 **Medium (days):**
 9. Accessibility pass on the map + charts (§3).
