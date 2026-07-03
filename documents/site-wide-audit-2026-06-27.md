@@ -207,6 +207,20 @@ highest-leverage gap: a single `eslint` pass would have caught most of the
 concrete bugs in the DE audit (the `ReferenceError`, the dead `v-pills-trend`
 id, the operator-precedence percentile bug, duplicate object keys).
 
+**Testing strategy is an open decision, not yet made.** Raised 2026-07-02
+while triaging DE audit items 9-10 against the TDD skill's require-a-test
+rule, which conflicts with the "no new frameworks/build deps" rule above. Two
+options to decide between when this becomes a priority:
+  - **Ad-hoc `node:test`/`assert` scripts** for pure-logic pieces only (e.g.
+    Arquero transforms, reduce/filter helpers) — zero installs, so it doesn't
+    violate "no new frameworks" literally, but it's a first-ever test
+    file/pattern in the repo and covers non-DOM logic only.
+  - **Adopt a real framework** (e.g. Vitest) and commit to ongoing coverage —
+    bigger decision, explicitly overrides the current CLAUDE.md rule.
+
+  Until one is chosen, bugfixes are verified manually (Hugo rebuild + browser
+  check), consistent with how the repo has always operated.
+
 The production workflow
 ([hugo-build-to-prod-prod.yml](../.github/workflows/hugo-build-to-prod-prod.yml))
 has these issues — most are explicit violations of the GitHub-Actions section of
@@ -391,6 +405,8 @@ In addition to the map/chart gaps in the DE audit:
 2. Add `.gitattributes` LF rules; delete the `dos2unix` build step.
 3. Pin CI actions to SHAs; add `permissions:` blocks; switch to `npm ci` + cache;
    add Dependabot.
+4. Decide a testing strategy (ad-hoc `node:test` scripts vs. adopting a
+   framework like Vitest) — unresolved as of 2026-07-02, see §7.
 
 **Phase 1 — quick wins (the §11 table).** rawgit → local PIP; drop FA JS; minify
 CSS; de-dupe favicon/nyc-lib; fix the header markup bugs; gate GA out of
