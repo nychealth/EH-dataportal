@@ -338,7 +338,7 @@ const clickLinksToggle = (e) => {
             selectedLinksMeasure = true;
             selectedDisparity = true;
             selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
-            selectedLinksSecondaryMeasureId = 221;
+            selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
             trackDataExplorerOption('links_disparities');
 
@@ -491,7 +491,7 @@ const renderMeasures = async () => {
 
     const disparitiesSecondaryMeasure = indicators
         .flatMap(indicator => indicator.Measures)
-        .find(measure => measure.MeasureID === 221);
+        .find(measure => measure.MeasureID === DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
 
     // Sort each measure into the tabs where its metadata says data exists.
     indicatorMeasures.forEach(measure => {
@@ -1121,7 +1121,7 @@ const renderMeasures = async () => {
         if (disparitiesMeasures.length) {
             return {
                 primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
-                secondaryMeasureId: 221,
+                secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
                 view: 'disparities'
             };
         }
@@ -1176,7 +1176,7 @@ const renderMeasures = async () => {
         if (hasManualDisparities) {
             return {
                 primaryMeasureId: manualPrimaryMeasureId,
-                secondaryMeasureId: 221,
+                secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
                 view: 'disparities'
             };
         }
@@ -1447,7 +1447,7 @@ const renderMeasures = async () => {
     };
 
 
-    // Renders the disparities chart for a primary measure against the fixed comparator measure 221.
+    // Renders the disparities chart for a primary measure against the fixed poverty comparator measure.
     const renderSelectedDisparities = async (primaryMeasureId) => {
 
         const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
@@ -1458,7 +1458,7 @@ const renderMeasures = async () => {
 
         selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
 
-        await renderDisparitiesChart(primaryMeasureMetadata, 221);
+        await renderDisparitiesChart(primaryMeasureMetadata, DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
 
         return true;
 
@@ -1627,8 +1627,8 @@ const renderMeasures = async () => {
 
         // special time-period filtering for certain air quality measures
 
-        const measureIdsAnnualAvg = [365, 370, 375, 391];
-        const measureIdsSummer = [386];
+        const measureIdsAnnualAvg = DE_MEASURE_RULES.trendAnnualAverageMeasureIds;
+        const measureIdsSummer = DE_MEASURE_RULES.trendSummerMeasureIds;
 
         // ----- resolve measure: use global if it has trend data, else default ----- //
 
@@ -1741,7 +1741,7 @@ const renderMeasures = async () => {
 
         // - - - restrict quarterly measures to the last 3 years - - - //
 
-        const hasQuarters = [858, 859, 860, 861, 862, 863];
+        const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
 
         if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
             aqFilteredComparisonData = aqFilteredComparisonData
@@ -1818,7 +1818,7 @@ const renderMeasures = async () => {
             if (fallbackPrimaryMeasureId != null) {
                 selectedDisparity = true;
                 selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
-                selectedLinksSecondaryMeasureId = 221;
+                selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
                 didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
             }

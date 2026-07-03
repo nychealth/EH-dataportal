@@ -179,6 +179,38 @@ let btnToggleDisparities;
 
 
 // ----------------------------------------------------------------------- //
+// measure-rules constants
+// ----------------------------------------------------------------------- //
+
+// Backend MeasureIDs / ComparisonIDs that specific render branches key off of. These
+// values live in the data (metadata.json / comparison records), not in code, so a data
+// change can silently alter behavior here with no error. Centralized — with a note per
+// entry — so the coupling is visible and greppable in one place instead of scattered as
+// bare literals across measures.js and trend.js.
+const DE_MEASURE_RULES = {
+
+    // Poverty measure used as the fixed secondary (comparator) in every disparities view.
+    disparitiesSecondaryMeasureId: 221,
+
+    // Air-quality measures whose borough trend must be restricted to Annual-Average slices.
+    trendAnnualAverageMeasureIds: [365, 370, 375, 391],
+
+    // Air-quality measure(s) whose borough trend must be restricted to Summer slices.
+    trendSummerMeasureIds: [386],
+
+    // Quarterly comparison measures; their comparison trend is capped to the last 3 years.
+    quarterlyComparisonMeasureIds: [858, 859, 860, 861, 862, 863],
+
+    // Comparisons that drop the "by <group>" suffix from the trend subtitle.
+    trendSuppressSubtitleComparisonIds: [564, 565, 566, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730],
+
+    // Comparisons whose trend tooltip label reads "Action days".
+    actionDaysComparisonIds: [564, 565, 566]
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // copy citation
 // ----------------------------------------------------------------------- //
 

@@ -390,6 +390,48 @@ const loadTime = async () => {
 // function to join indicator data and geo data
 // ----------------------------------------------------------------------- //
 
+// Expands one measure's vis geotypes for a single view (its VisOptions Table/Map/Trend array)
+// into one combined arquero table with a row per time-period × geo, or null when this view has no
+// geotypes for the measure (an unseeded reduce would throw on the empty array).
+const expandMeasureTimesGeos = (measure, visGeotypes) => {
+
+    // one arquero table per geotype: cross the geotype's time-period IDs with the measure + geotype
+    const perGeotypeTables = visGeotypes.map(geo => {
+
+        let aqTimePeriodID = aq.table({TimePeriodID: geo.TimePeriodID})
+
+        let aqMeasureGeo = aq.table({
+            GeoType:  [geo.GeoType],
+            MeasureID: [measure.MeasureID]
+        })
+
+        // cross to expand / recycle the geotype & measure row across every time period
+        return aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
+
+    });
+
+    if (!perGeotypeTables.length) {
+        return null;
+    }
+
+    return perGeotypeTables.flatMap(d => d).reduce((a, b) => a.concat(b));
+
+};
+
+
+// Row-binds an array of per-measure arquero tables into one, joins the time lookup, and orders it
+// (like bind_rows + a left join in dplyr). The empty fallback carries the columns downstream views
+// read (MeasureID, TimePeriodID, GeoType) so join/filter/orderby keep working when no measure had
+// data for that view.
+const combineTimesGeos = (perMeasureTables) =>
+    (perMeasureTables.length
+        ? perMeasureTables.flatMap(d => d).reduce((a, b) => a.concat(b))
+        : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
+    )
+        .join_left(timeTable, "TimePeriodID")
+        .orderby(aq.desc('end_period'), "MeasureID");
+
+
 // Joins indicator rows with geography and time metadata for every downstream view.
 const joinData = async () => {
 
@@ -440,215 +482,28 @@ const joinData = async () => {
     let mapTimesGeos = [];
     let trendTimesGeos = [];
 
-    // Expand each measure's Table, Map, and Trend metadata into explicit time-by-geo combinations.
-    indicatorMeasures.map(
+    // Expand each measure's Table, Map, and Trend metadata into explicit time-by-geo combinations,
+    // pushing one combined table per measure into the matching per-view accumulator.
+    indicatorMeasures.forEach(measure => {
 
-        // map over measures
+        const tableTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Table);
+        if (tableTimesGeosMeasure) tableTimesGeos.push(tableTimesGeosMeasure);
 
-        (measure, i) => {
+        const mapTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Map);
+        if (mapTimesGeosMeasure) mapTimesGeos.push(mapTimesGeosMeasure);
 
-            // console.log(i, " > MeasureID", measure.MeasureID);
+        const trendTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Trend);
+        if (trendTimesGeosMeasure) trendTimesGeos.push(trendTimesGeosMeasure);
 
-            // - - - table - - - //
-
-            let aqTableTimesGeosMeasureArray =
-
-                // Expand every table geography into one row per allowed time period.
-                measure.VisOptions[0].Table.map(
-
-                    // map over table geotypes
-
-                    (table, i) => {
-
-                        // create table of all time period IDs for this geotype
-
-                        let aqTimePeriodID = aq.table({TimePeriodID: table.TimePeriodID})
-
-                        // create 1-row table with measure ID and geotype
-
-                        let aqMeasureGeo = aq.table({
-                            GeoType:  [table.GeoType],
-                            MeasureID: [measure.MeasureID]
-                        })
-
-                        // console.log("aqMeasureGeo");
-                        // aqMeasureGeo.print()
-
-                        // cross them to expand / recycle geotype & measure table rows
-
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
-
-                        return aqTimeMeasureGeos;
-
-                    }
-                )
-
-
-            // combine array of arquero tables into 1 arquero table; skip when this measure has no
-            // table-view geotypes (VisOptions[0].Table can be empty, e.g. a Map/Trend-only measure) —
-            // reduce with no seed throws on an empty array
-            if (aqTableTimesGeosMeasureArray.length) {
-
-                let aqTableTimesGeosMeasure =
-                    aqTableTimesGeosMeasureArray
-                        .flatMap(d => d)
-                        .reduce((a, b) => a.concat(b))
-
-                // console.log(">> aqTableTimesGeosMeasure [joinData]");
-                // aqTableTimesGeosMeasure.print()
-
-                // push table for this measure to array with all measures
-
-                tableTimesGeos.push(aqTableTimesGeosMeasure);
-
-            }
-
-
-            // - - - map - - - //
-
-            let aqMapTimesGeosMeasureArray =
-
-                // Expand every map geography into one row per allowed time period.
-                measure.VisOptions[0].Map.map(
-
-                    // map over map geotypes
-
-                    (map, i) => {
-
-                        // create table of all time period IDs for this geotype
-
-                        let aqTimePeriodID = aq.table({TimePeriodID: map.TimePeriodID})
-
-                        // create 1-row table with measure ID and geotype
-
-                        let aqMeasureGeo = aq.table({
-                            GeoType:  [map.GeoType],
-                            MeasureID: [measure.MeasureID]
-                        })
-
-                        // cross them to expand / recycle geotype & measure table rows
-
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
-
-                        return aqTimeMeasureGeos;
-
-                    }
-                )
-
-
-            // combine array of arquero tables into 1 arquero table; skip when this measure has no
-            // map-view geotypes (VisOptions[0].Map can be empty, e.g. a Table/Trend-only measure) —
-            // reduce with no seed throws on an empty array
-            if (aqMapTimesGeosMeasureArray.length) {
-
-                let aqMapTimesGeosMeasure =
-                    aqMapTimesGeosMeasureArray
-                        .flatMap(d => d)
-                        .reduce((a, b) => a.concat(b))
-
-                // console.log(">> aqMapTimesGeosMeasure [joinData]");
-                // aqMapTimesGeosMeasure.print()
-
-                // push table for this measure to array with all measures
-
-                mapTimesGeos.push(aqMapTimesGeosMeasure);
-
-            }
-
-
-            // - - - trend - - - //
-
-            let aqTrendTimesGeosMeasureArray =
-
-                // Expand every trend geography into one row per allowed time period.
-                measure.VisOptions[0].Trend.map(
-
-                    // map over trend geotypes
-
-                    (trend, i) => {
-
-                        // create table of all time period IDs for this geotype
-
-                        let aqTimePeriodID = aq.table({TimePeriodID: trend.TimePeriodID})
-
-                        // create 1-row table with measure ID and geotype
-
-                        let aqMeasureGeo = aq.table({
-                            GeoType:  [trend.GeoType],
-                            MeasureID: [measure.MeasureID]
-                        })
-
-                        // cross them to expand / recycle geotype & measure table rows
-
-                        let aqTimeMeasureGeos = aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
-
-                        return aqTimeMeasureGeos;
-
-                    }
-                )
-
-
-            // combine array of arquero tables into 1 arquero table; skip when this measure has no
-            // trend-view geotypes (VisOptions[0].Trend can be empty, e.g. a Table/Map-only measure) —
-            // reduce with no seed throws on an empty array
-            if (aqTrendTimesGeosMeasureArray.length) {
-
-                let aqTrendTimesGeosMeasure =
-                    aqTrendTimesGeosMeasureArray
-                        .flatMap(d => d)
-                        .reduce((a, b) => a.concat(b))
-
-                // console.log(">> aqTrendTimesGeosMeasure [joinData]");
-                // aqTrendTimesGeosMeasure.print()
-
-                // push table for this measure to array with all measures
-
-                trendTimesGeos.push(aqTrendTimesGeosMeasure);
-
-            }
-
-        }
-    )
+    })
 
 
     // ----- combine into aqTableTimesGeos / aqMapTimesGeos / aqTrendTimesGeos ----- //
 
-    // take array of arquero tables and combine them into 1 arquero table defined globally - like bind_rows in dplyr
-
-    // table
-
-    // Empty fallback only matters if literally every measure lacked table-view data above;
-    // it carries the join/filter columns downstream code reads (MeasureID, TimePeriodID, GeoType)
-    // so semijoin/array/orderby calls on aqTableTimesGeos keep working instead of throwing on undefined.
-    aqTableTimesGeos =
-        (tableTimesGeos.length
-            ? tableTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
-            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
-        )
-            .join_left(timeTable, "TimePeriodID")
-            .orderby(aq.desc('end_period'), "MeasureID")
-    
-    // map
-
-    // See aqTableTimesGeos above for why the empty branch needs these specific columns.
-    aqMapTimesGeos =
-        (mapTimesGeos.length
-            ? mapTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
-            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
-        )
-            .join_left(timeTable, "TimePeriodID")
-            .orderby(aq.desc('end_period'), "MeasureID")
-    
-    // trend
-    
-    // See aqTableTimesGeos above for why the empty branch needs these specific columns.
-    aqTrendTimesGeos =
-        (trendTimesGeos.length
-            ? trendTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
-            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
-        )
-            .join_left(timeTable, "TimePeriodID")
-            .orderby(aq.desc('end_period'), "MeasureID")
+    // Row-bind each per-view accumulator into its global table (see combineTimesGeos above).
+    aqTableTimesGeos = combineTimesGeos(tableTimesGeos);
+    aqMapTimesGeos   = combineTimesGeos(mapTimesGeos);
+    aqTrendTimesGeos = combineTimesGeos(trendTimesGeos);
 
 
     // console.log(">> aqTableTimesGeos [joinData]");

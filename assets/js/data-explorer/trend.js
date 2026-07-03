@@ -168,7 +168,7 @@ const renderTrendChart = (
     let plotTitle;
     let comp_group_col;
 
-    const suppressSubtitleBy = [564, 565, 566, 704, 715, 716, 717, 718, 719, 720, 721, 722, 723, 724, 725, 726, 727, 728, 729, 730];
+    const suppressSubtitleBy = DE_MEASURE_RULES.trendSuppressSubtitleComparisonIds;
 
     if (compName[0] === "Boroughs") {
 
@@ -334,7 +334,7 @@ const renderTrendChart = (
 
     let comparisonToolTipLabel;
 
-    if ([566, 565, 564].includes(Number(metadataObjects[0].ComparisonID))) {
+    if (DE_MEASURE_RULES.actionDaysComparisonIds.includes(Number(metadataObjects[0].ComparisonID))) {
         comparisonToolTipLabel = 'Action days';
     } else {
         comparisonToolTipLabel = compMeasurementType;

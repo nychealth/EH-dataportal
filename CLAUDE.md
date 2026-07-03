@@ -67,7 +67,8 @@ Key gotchas:
 - `showTable()` must not run in the same turn as `showMap()` — DataTables init (~50-90 ms) blocks Leaflet's first paint. Schedule it with a double `requestAnimationFrame` after `showMap()`'s promise resolves.
 - DataTables: omit `fixedHeader`, `Buttons`, and `Select` extensions (they add 15-20 ms startup cost each with no benefit here); skip `columns.adjust()` on first render (~25 ms). Lock `.dataTables_scrollBody` to `height/min-height/max-height: 500px; overflow-y: scroll` to prevent width drift as row counts change.
 - Map export (`print.js`): uses an off-screen Leaflet map with `L.canvas({ padding: 0 })` as the renderer. Call `setView()` before adding vector layers — adding layers first causes number-measure exports to silently fail.
-- `menu.js` has its own `getDefaultMeasure` with different rules from `pickDefaultMeasureByPriority` in `measures.js` — two sources of truth for the same logic. Don't add a third; consolidate into `measures.js` before extending measure-priority logic.
+- Default-measure priority lives in one place: `pickDefaultMeasureByPriority` in `measures.js`. `menu.js`'s `getDefaultMeasure` delegates to it (passing `indicator.Measures`) so the dropdown highlight and the rendered default can't diverge — don't reintroduce a parallel priority list.
+- Magic MeasureIDs / ComparisonIDs that render logic branches on (poverty comparator, air-quality trend slices, quarterly measures, etc.) live in `DE_MEASURE_RULES` in `global.js`. Add new data-coupled IDs there with a comment, not as inline literals in `measures.js` / `trend.js`.
 
 ## Audit documents
 

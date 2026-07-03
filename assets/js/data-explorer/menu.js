@@ -10,35 +10,11 @@
 // helpers
 // ----------------------------------------------------------------------- //
 
-// Selects the default measure using the project's priority order.
-const getDefaultMeasure = (indicator) => {
-
-    const priority = [
-        'Age-adjusted rate',
-        'rate',
-        'Rate',
-        'Percent',
-        'percent',
-        'Density'
-    ];
-
-    let matchedMeasure = null;
-
-    // Walk the priority list until the first matching measurement type is found.
-    for (let word of priority) {
-        matchedMeasure = indicator.Measures.find(m =>
-            m.MeasurementType.includes(word)
-        );
-        if (matchedMeasure) break;
-    }
-
-    // fallback
-    if (!matchedMeasure) {
-        return indicator.Measures[0];
-    }
-
-    return matchedMeasure;
-};
+// Selects the indicator's default measure via the shared priority order
+// (pickDefaultMeasureByPriority in measures.js), so the dropdown highlight matches the measure
+// the map/trend tabs render by default. menu.js passes all Measures; the per-tab defaults pass
+// their filtered subsets — but the ranking rules are now a single source of truth.
+const getDefaultMeasure = (indicator) => pickDefaultMeasureByPriority(indicator.Measures);
 
 
 // Converts a TimePeriodID into its display label for dropdown text.

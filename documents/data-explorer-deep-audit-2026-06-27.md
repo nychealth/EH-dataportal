@@ -51,6 +51,25 @@ branch, plus the Hugo templates and partials that render the SPA.
 > duplicate-ID bullet in this section's prose is stale (already fixed by
 > `de8464ba2d`, see 2026-07-01 note above) — not re-touched here.
 
+> **Updated 2026-07-03 (§7 Medium items 11-12 done).** §4 magic IDs are now a
+> single commented `DE_MEASURE_RULES` block in global.js (the metadata-flag option
+> wasn't viable — `metadata.json` is a remote build-time fetch we don't own). All
+> six rule-sets moved: the poverty comparator `221` (**6** code sites, not the "×4"
+> this doc's §4 table lists — undercounted again), the two air-quality trend
+> time-slice arrays, the quarterly-comparison array, the subtitle-suppress array,
+> and the "Action days" array. §5/§1 duplication: the three ~40-line Table/Map/Trend
+> join blocks in data.js collapse onto two helpers (`expandMeasureTimesGeos` +
+> `combineTimesGeos`), and menu.js's `getDefaultMeasure` now delegates to measures.js's
+> `pickDefaultMeasureByPriority` — the priority logic is a single source of truth. That
+> delegation adds an "Age-adjusted rate + Total" first-preference menu.js lacked, but
+> it is behavior-preserving on real data: simulated against all **282** live indicators,
+> the unified picker returns the identical default to the old menu.js logic for every
+> one (0 changed). Verified live (dev server + Playwright) across map/table/trend/
+> disparities on two asthma indicators — incl. the `221` disparities render resolving
+> to the real "Poverty, Percent" measure — with zero data-explorer JS errors. Not done:
+> §5's 5× trend label-collision transform and the ~245-line inline JS in
+> de-tab-content.html remain (tracked separately, not in items 11-12).
+
 Its purpose is twofold:
 
 1. **Reconcile** the consolidated list against the code as it actually stands
@@ -329,8 +348,8 @@ change silently alters behavior with no error:
 **Medium (days):**
 9. ~~Accessibility pass on the map + charts (§3).~~ DONE 2026-07-03 — contrast measured and flagged, not fixed (design decision).
 10. ~~Seed empty-array reduces; add `.catch()` to the four fetches (§2.6, §6).~~ DONE 2026-07-03 — see note above.
-11. Centralize magic MeasureIDs into metadata/constants (§4).
-12. Unify the two default-measure pickers; collapse the triplicated join blocks (§1, §5).
+11. ~~Centralize magic MeasureIDs into metadata/constants (§4).~~ DONE 2026-07-03 — `DE_MEASURE_RULES` constants block (metadata-flag option not viable); see note above.
+12. ~~Unify the two default-measure pickers; collapse the triplicated join blocks (§1, §5).~~ DONE 2026-07-03 — verified behavior-preserving across all 282 indicators; see note above.
 
 **Structural (the consolidated docs' Tier 1–2):** single state object + dispatcher,
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,
