@@ -375,6 +375,7 @@ const renderCorrelate = (
     // Build the scatterplot after axis labels and joined-value formatting are settled.
     const correlateSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": `Scatterplot correlating ${xIndicatorName} and ${yIndicatorName}`,
         "title": {
             "text": [`${yIndicatorName}`],
             "align": "left",

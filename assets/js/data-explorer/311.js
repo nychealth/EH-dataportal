@@ -78,6 +78,9 @@ const draw311Buttons = (indicator_id) => {
 
             }
     })
+    .catch(error => {
+        console.log(error);
+    })
 }
 
 

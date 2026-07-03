@@ -10,7 +10,13 @@
 
             {{- partial "de-tabs" . -}}
 
-            <div id="map">
+            {{/*  Leaflet has no built-in accessible representation: the choropleth conveys data through color and
+                  hover only, and vector features aren't in the tab order. role="img" stops screen readers from
+                  trying (and failing) to traverse the map's internal DOM; the visually-hidden link gives keyboard
+                  and screen-reader users a real path to the same data.  */}}
+            <div id="map" role="img" aria-label="Interactive map. The data shown here is also available in the Table tab.">
+                <a href="#v-pills-table-tab" class="sr-only sr-only-focusable"
+                    onclick="document.getElementById('v-pills-table-tab').click(); return false;">View this data as a table</a>
                 <!-- map -->
             </div>
 

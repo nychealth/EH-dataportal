@@ -452,6 +452,7 @@ const renderBar = (
 
     var barSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": `Bar chart of ${indicatorName}: ${metadata[0].MeasureName}`,
         "title": {
             "text": "Indicator name",
             "subtitlePadding": 10,

@@ -11,7 +11,7 @@
     <!-- Mobile Indicator Header -->
     <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
         <div>
-            <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name">Loading indicator...</div>
+            <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
                 <button type="button" class="border-0 bg-transparent hover-underline p-0 indicator-selector-trigger font-weight-bold fs-md" data-toggle="modal" data-target="#indicatorSelector" style="color: #FFED98;">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
                 <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
@@ -22,7 +22,7 @@
 
     <!-- Desktop Indicator Header (always visible) -->
     <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
-        <div class="h6 font-weight-bold mb-0 py-1 indicator-name">Loading indicator...</div>
+        <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
         <div class="ml-2 text-nowrap flex-grow-1 text-right">
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
                 <button type="button" class="border-0 bg-transparent hover-underline p-0 indicator-selector-trigger font-weight-bold fs-sm" data-toggle="modal" data-target="#indicatorSelector" style="color: #FFED98;">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
@@ -175,7 +175,7 @@
 
     <!-- Gradient, min/max, and tick -->
     <div class="viridis-wrapper position-relative">
-        <div class="viridis-rect" role="img" aria-label="Rectangle filled with Viridis color scale"></div>
+        <div class="viridis-rect" id="viridisRect" role="img" aria-label="Legend gradient"></div>
 
         <!-- Overlayed labels and tick -->
         <div class="legend-min">

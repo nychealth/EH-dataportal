@@ -139,9 +139,13 @@ const createComparisonData = async (comps) => {
         })
     );
 
-    aqComparisonIndicatorData = comparisonDataTables
-        .flatMap(d => d)
-        .reduce((a, b) => a.concat(b));
+    // reduce with no seed throws on an empty array (e.g. the semijoin above filtered out every candidate row);
+    // undefined matches the "no comparison data" convention this function already uses above on early bail-out.
+    const flatComparisonDataTables = comparisonDataTables.flatMap(d => d);
+
+    aqComparisonIndicatorData = flatComparisonDataTables.length
+        ? flatComparisonDataTables.reduce((a, b) => a.concat(b))
+        : undefined;
 
 };
 
@@ -317,7 +321,10 @@ const loadData = async (this_IndicatorID) => {
 
             await joinData();
 
-            
+
+        })
+        .catch(error => {
+            console.log(error);
         })
 
     // trigger 311 button render after all data fetches and joins have resolved
@@ -477,19 +484,24 @@ const joinData = async () => {
                 )
 
 
-            // combine array of arquero tables into 1 arquero table
+            // combine array of arquero tables into 1 arquero table; skip when this measure has no
+            // table-view geotypes (VisOptions[0].Table can be empty, e.g. a Map/Trend-only measure) —
+            // reduce with no seed throws on an empty array
+            if (aqTableTimesGeosMeasureArray.length) {
 
-            let aqTableTimesGeosMeasure = 
-                aqTableTimesGeosMeasureArray
-                    .flatMap(d => d)
-                    .reduce((a, b) => a.concat(b))
+                let aqTableTimesGeosMeasure =
+                    aqTableTimesGeosMeasureArray
+                        .flatMap(d => d)
+                        .reduce((a, b) => a.concat(b))
 
-            // console.log(">> aqTableTimesGeosMeasure [joinData]");
-            // aqTableTimesGeosMeasure.print()
+                // console.log(">> aqTableTimesGeosMeasure [joinData]");
+                // aqTableTimesGeosMeasure.print()
 
-            // push table for this measure to array with all measures
+                // push table for this measure to array with all measures
 
-            tableTimesGeos.push(aqTableTimesGeosMeasure);
+                tableTimesGeos.push(aqTableTimesGeosMeasure);
+
+            }
 
 
             // - - - map - - - //
@@ -524,19 +536,24 @@ const joinData = async () => {
                 )
 
 
-            // combine array of arquero tables into 1 arquero table
+            // combine array of arquero tables into 1 arquero table; skip when this measure has no
+            // map-view geotypes (VisOptions[0].Map can be empty, e.g. a Table/Trend-only measure) —
+            // reduce with no seed throws on an empty array
+            if (aqMapTimesGeosMeasureArray.length) {
 
-            let aqMapTimesGeosMeasure = 
-                aqMapTimesGeosMeasureArray
-                    .flatMap(d => d)
-                    .reduce((a, b) => a.concat(b))
+                let aqMapTimesGeosMeasure =
+                    aqMapTimesGeosMeasureArray
+                        .flatMap(d => d)
+                        .reduce((a, b) => a.concat(b))
 
-            // console.log(">> aqMapTimesGeosMeasure [joinData]");
-            // aqMapTimesGeosMeasure.print()
+                // console.log(">> aqMapTimesGeosMeasure [joinData]");
+                // aqMapTimesGeosMeasure.print()
 
-            // push table for this measure to array with all measures
+                // push table for this measure to array with all measures
 
-            mapTimesGeos.push(aqMapTimesGeosMeasure);
+                mapTimesGeos.push(aqMapTimesGeosMeasure);
+
+            }
 
 
             // - - - trend - - - //
@@ -571,19 +588,24 @@ const joinData = async () => {
                 )
 
 
-            // combine array of arquero tables into 1 arquero table
+            // combine array of arquero tables into 1 arquero table; skip when this measure has no
+            // trend-view geotypes (VisOptions[0].Trend can be empty, e.g. a Table/Map-only measure) —
+            // reduce with no seed throws on an empty array
+            if (aqTrendTimesGeosMeasureArray.length) {
 
-            let aqTrendTimesGeosMeasure = 
-                aqTrendTimesGeosMeasureArray
-                    .flatMap(d => d)
-                    .reduce((a, b) => a.concat(b))
+                let aqTrendTimesGeosMeasure =
+                    aqTrendTimesGeosMeasureArray
+                        .flatMap(d => d)
+                        .reduce((a, b) => a.concat(b))
 
-            // console.log(">> aqTrendTimesGeosMeasure [joinData]");
-            // aqTrendTimesGeosMeasure.print()
+                // console.log(">> aqTrendTimesGeosMeasure [joinData]");
+                // aqTrendTimesGeosMeasure.print()
 
-            // push table for this measure to array with all measures
+                // push table for this measure to array with all measures
 
-            trendTimesGeos.push(aqTrendTimesGeosMeasure);
+                trendTimesGeos.push(aqTrendTimesGeosMeasure);
+
+            }
 
         }
     )
@@ -595,28 +617,36 @@ const joinData = async () => {
 
     // table
 
-    aqTableTimesGeos = 
-        tableTimesGeos
-            .flatMap(d => d)
-            .reduce((a, b) => a.concat(b))
+    // Empty fallback only matters if literally every measure lacked table-view data above;
+    // it carries the join/filter columns downstream code reads (MeasureID, TimePeriodID, GeoType)
+    // so semijoin/array/orderby calls on aqTableTimesGeos keep working instead of throwing on undefined.
+    aqTableTimesGeos =
+        (tableTimesGeos.length
+            ? tableTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
+            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
+        )
             .join_left(timeTable, "TimePeriodID")
             .orderby(aq.desc('end_period'), "MeasureID")
     
     // map
 
-    aqMapTimesGeos = 
-        mapTimesGeos
-            .flatMap(d => d)
-            .reduce((a, b) => a.concat(b))
+    // See aqTableTimesGeos above for why the empty branch needs these specific columns.
+    aqMapTimesGeos =
+        (mapTimesGeos.length
+            ? mapTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
+            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
+        )
             .join_left(timeTable, "TimePeriodID")
             .orderby(aq.desc('end_period'), "MeasureID")
     
     // trend
     
-    aqTrendTimesGeos = 
-        trendTimesGeos
-            .flatMap(d => d)
-            .reduce((a, b) => a.concat(b))
+    // See aqTableTimesGeos above for why the empty branch needs these specific columns.
+    aqTrendTimesGeos =
+        (trendTimesGeos.length
+            ? trendTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
+            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
+        )
             .join_left(timeTable, "TimePeriodID")
             .orderby(aq.desc('end_period'), "MeasureID")
 

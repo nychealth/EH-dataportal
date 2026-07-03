@@ -345,6 +345,7 @@ const renderTrendChart = (
     // Assemble the full trend spec after titles, thresholds, and layout are resolved.
     const compspec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "description": `Trend chart of ${plotTitle}: ${plotSubtitle}`,
         "config": {
             "range": {
                 "category": [

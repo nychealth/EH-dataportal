@@ -31,6 +31,26 @@ branch, plus the Hugo templates and partials that render the SPA.
 > re-verified against current code as part of this update; no finding's
 > substance changed.
 
+> **Updated 2026-07-03 (§7 Medium items 9-10 done).** §2.6 empty-array reduces
+> (all 7 call sites, more than this doc's original 4 — the audit undercounted;
+> see §2.6) and the four §6 fetches now handle failure without crashing.
+> §3 accessibility: map div has `role`/`aria-label` plus a visible/focusable
+> "View this data as a table" link wired to the real Table tab; the Viridis
+> legend's `aria-label` now reports the live data range instead of static
+> decoration text; Vega charts (bar/trend/correlate/disparities) all carry a
+> `description`, which vega-embed surfaces as `aria-label` automatically —
+> verified against the installed package, not assumed; the indicator-name
+> header is now `aria-live="polite"`. Contrast (§3's last bullet) was
+> measured, not fixed: `#FFED98` on `#008939` is **3.84:1**, failing WCAG AA
+> normal text (4.5:1) — confirmed failure, not a close call, and not
+> mechanically fixable by darkening/lightening the existing gold (no
+> lightness at that hue clears 4.5:1 against this green short of ~white).
+> Left for a design decision; see `documents/site-wide-audit-2026-06-27.md`.
+> Not done: §3's "no announced equivalent" is only partly addressed (the live
+> region announces indicator changes, not measure/geo/time changes), and the
+> duplicate-ID bullet in this section's prose is stale (already fixed by
+> `de8464ba2d`, see 2026-07-01 note above) — not re-touched here.
+
 Its purpose is twofold:
 
 1. **Reconcile** the consolidated list against the code as it actually stands
@@ -307,8 +327,8 @@ change silently alters behavior with no error:
 8. ~~De-duplicate `geoOptionsDropdownButton` / `timeOptionsDropdownButton` IDs (§3).~~
 
 **Medium (days):**
-9. Accessibility pass on the map + charts (§3).
-10. Seed empty-array reduces; add `.catch()` to the four fetches (§2.6, §6).
+9. ~~Accessibility pass on the map + charts (§3).~~ DONE 2026-07-03 — contrast measured and flagged, not fixed (design decision).
+10. ~~Seed empty-array reduces; add `.catch()` to the four fetches (§2.6, §6).~~ DONE 2026-07-03 — see note above.
 11. Centralize magic MeasureIDs into metadata/constants (§4).
 12. Unify the two default-measure pickers; collapse the triplicated join blocks (§1, §5).
 

@@ -94,14 +94,20 @@ const getMapStats = (data) => {
 
 // Prints current legend endpoints using the active display units.
 const setMapLegendValues = (minValue, maxValue, digits) => {
-    document.getElementById('minVal').innerHTML = minValue.toLocaleString(undefined, {
+    const minFormatted = minValue.toLocaleString(undefined, {
         minimumFractionDigits: digits,
         maximumFractionDigits: digits
     }) + displayType;
-    document.getElementById('maxVal').innerHTML = maxValue.toLocaleString(undefined, {
+    const maxFormatted = maxValue.toLocaleString(undefined, {
         minimumFractionDigits: digits,
         maximumFractionDigits: digits
     }) + displayType;
+
+    document.getElementById('minVal').innerHTML = minFormatted;
+    document.getElementById('maxVal').innerHTML = maxFormatted;
+
+    // Screen readers can't infer a data range from a color gradient; describe it in words instead.
+    document.getElementById('viridisRect').setAttribute('aria-label', `Legend: ${minFormatted} (low) to ${maxFormatted} (high)`);
 };
 
 // Uses a reversed Viridis scale so larger values remain visually darker.
@@ -515,6 +521,9 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                 clearHoverUI
             };
 
+        })
+        .catch(error => {
+            console.log(error);
         });
 
     // send info for printing
@@ -756,6 +765,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 clearHoverUI
             };
 
+        })
+        .catch(error => {
+            console.log(error);
         });
 
     // send info for printing
