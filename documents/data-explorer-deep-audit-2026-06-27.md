@@ -51,6 +51,38 @@ branch, plus the Hugo templates and partials that render the SPA.
 > duplicate-ID bullet in this section's prose is stale (already fixed by
 > `de8464ba2d`, see 2026-07-01 note above) — not re-touched here.
 
+> **Updated 2026-07-03 (§7 Medium items 13-14 done).** §2.8's duplicate
+> `"test"` key in bar.js is resolved — the dead first condition is deleted,
+> keeping the null-safe `datum.Value != null && datum.GeoID == selectedGeo`
+> version; verified against the compiled Vega spec at runtime (exactly one
+> `test`/`value` pair, no duplicate). §6's `.filter(d => !d == "")` in
+> table.js/trend.js is now `.filter(Boolean)` — algebraically identical to the
+> old double coercion for every input (`!d == ""` reduces to `Boolean(d)`;
+> checked by truth table and confirmed live for `""`, `null`, `undefined`,
+> `"0"`, and real text). §1 #10: `assignGeoRank` now derives from
+> `prettifyGeoType` via one `GEO_RANK_BY_PRETTY_TYPE` lookup instead of
+> duplicating the version-to-generic list in its own `switch` — verified
+> identical output for all 12 generic types, all 9 versioned variants, and the
+> unrecognized-type fallback. §1 #14: `handleToggle()` now binds its
+> body-delegated click handler once at table init instead of on every
+> `drawCallback` — delegation already covers the group rows the callback
+> recreates on redraw; verified live that a group toggle still works after a
+> search-triggered redraw rebuilt the table. §6 logging: all ~69 active
+> `console.log` call sites now go through a `debugLog` helper, defined in
+> `head.html` (site-wide, next to `hugoEnv`/`baseURL`/`data_repo`/
+> `data_branch`) rather than `global.js` — `topic-indicator-selector.js` also
+> runs on `data-explorer/section.html`, which loads it without the rest of the
+> SPA bundle, so a `global.js`-only helper threw `ReferenceError` there. It
+> defaults on for every Hugo environment except `production`/`prod_prod`
+> (reads `hugoEnv`) and `localStorage.de_debug` overrides it either direction
+> per browser; the 5 catch-block error logs were left as plain `console.log`
+> so failures stay visible regardless. Verified live (dev server +
+> Playwright): `dev_stage` produces every trace line with no flag
+> set, `localStorage.de_debug = '0'` silences them again, and
+> map/bar/trend/table/links all render with zero data-explorer JS errors —
+> only the pre-existing Pagefind dev-asset noise and the pre-existing benign
+> Vega trend warnings.
+
 > **Updated 2026-07-03 (§7 Medium items 11-12 done).** §4 magic IDs are now a
 > single commented `DE_MEASURE_RULES` block in global.js (the metadata-flag option
 > wasn't viable — `metadata.json` is a remote build-time fetch we don't own). All
@@ -113,8 +145,8 @@ references load-ordering `utilities.js` is out of date.
 | # (04-17) | Topic | Status today | Evidence |
 |---|---|---|---|
 | 9 | Consolidate default-measure priority | **Partial** | Done in measures.js via `pickDefaultMeasureByPriority` ([measures.js:24](../assets/js/data-explorer/measures.js)); but menu.js still has its own `getDefaultMeasure` ([menu.js:14](../assets/js/data-explorer/menu.js)) with *different* rules. Two sources of truth. |
-| 10 | Geo lookups → table | **Partial** | `getGeoFile` now uses `GEO_FILE_BY_TYPE` object ([global.js:307](../assets/js/data-explorer/global.js)); `prettifyGeoType` and `assignGeoRank` are still parallel `switch`es. |
-| 14 | DataTables destroy before re-init | **Partial** | Destroy is done ([table.js:496](../assets/js/data-explorer/table.js)); the handler-rebind half is *not* — `handleToggle()` still `off/on`s a body-delegated click on every `drawCallback` ([table.js:737](../assets/js/data-explorer/table.js), [:772](../assets/js/data-explorer/table.js)). |
+| 10 | Geo lookups → table | **Done** | `getGeoFile` uses `GEO_FILE_BY_TYPE` ([global.js:307](../assets/js/data-explorer/global.js)); `assignGeoRank` now derives from `prettifyGeoType` via one `GEO_RANK_BY_PRETTY_TYPE` lookup instead of its own parallel `switch` (global.js). Fixed 2026-07-03. |
+| 14 | DataTables destroy before re-init | **Done** | Destroy is done ([table.js:496](../assets/js/data-explorer/table.js)); `handleToggle()` now binds its body-delegated click handler once at table init instead of `off/on`-rebinding on every `drawCallback` (table.js) — delegation already covers rows the callback recreates. Fixed 2026-07-03. |
 | 30 | Guard analytics | **Done** | `trackDataExplorerEvent` wraps `gtag` ([global.js:503](../assets/js/data-explorer/global.js)). |
 | 18 | "Stub renderers" trend/correlate/disparities | **Stale claim** | All three are fully implemented (~630 / ~570 / ~360 lines). Do not treat them as stubs. |
 | 1–8, 11–13, 15–17, 19–24, 26–29, 31–33 | State store, URL module, renderer registry, fetch cache, layer/Vega reuse, hover reset, event bus, inline handlers, dead code, execCommand, debug logger, etc. | **Still open** | Confirmed live in this read; specifics cited below where I found exact locations the model reviews didn't. |
@@ -199,10 +231,12 @@ commented `// hard set for test`. In a dataset where *some* rows carry a real CI
 invented ±5 %. **Fix:** drop rows without a real CI out of the error-bar layer
 rather than synthesizing one.
 
-### 2.8 Duplicate `"test"` key silently dropped — **P3**
+### 2.8 Duplicate `"test"` key silently dropped — **P3 (fixed 2026-07-03)**
 [bar.js:200-202](../assets/js/data-explorer/bar.js): two `"test"` keys in one
 object literal; the first is overwritten. Harmless at runtime, but it signals the
-intended condition isn't what runs.
+intended condition isn't what runs. **Fixed:** the dead first condition (missing
+the `datum.Value != null` guard) is deleted; the second, more correct condition
+is the one kept.
 
 ### 2.9 Dead indicator-list handler carrying a casing bug — **P3 (fixed, historical)**
 **Already deleted** in `app.js` per `de8464ba2d` (was `app.js:463-478`, no
@@ -323,13 +357,32 @@ change silently alters behavior with no error:
   [disparities.js:392](../assets/js/data-explorer/disparities.js) embed
   `indicatorName` into an Arquero expression string; a name containing an
   apostrophe breaks the expression.
-- **`.filter(d => !d == "")`** at [table.js:189](../assets/js/data-explorer/table.js)
+- ~~**`.filter(d => !d == "")`** at [table.js:189](../assets/js/data-explorer/table.js)
   and [trend.js:140](../assets/js/data-explorer/trend.js) — parses as
-  `(!d) == ""` and works only by coincidence. Use `.filter(Boolean)`.
-- **Logging.** Nearly every function opens with `console.log`, and bar.js logs
+  `(!d) == ""` and works only by coincidence. Use `.filter(Boolean)`.~~ **FIXED
+  2026-07-03** — both now read `.filter(Boolean)`. Note: `!d == ""` isn't just a
+  precedence trap that happens to work for the common case — it's algebraically
+  identical to `Boolean(d)` for every input (`(!d) == ""` coerces both sides to
+  Number, so it's `true` iff `!d === false` iff `d` is truthy), so
+  `.filter(Boolean)` was confirmed behavior-preserving, not just "more correct."
+- ~~**Logging.** Nearly every function opens with `console.log`, and bar.js logs
   full data arrays and the compiled Vega spec on every render
   ([bar.js:65-67,507-508](../assets/js/data-explorer/bar.js)). Gate behind a
-  `?debug` flag (consolidated #28) and drop the array dumps.
+  `?debug` flag (consolidated #28) and drop the array dumps.~~ **FIXED
+  2026-07-03** — all ~69 active call sites now go through `debugLog()`,
+  defined in `head.html` rather than `global.js` (site-wide, next to
+  `hugoEnv`/`baseURL`/`data_repo`/`data_branch`) — `topic-indicator-selector.js`
+  also runs on `data-explorer/section.html`, which doesn't load `global.js`,
+  so a `global.js`-only helper threw `ReferenceError` there. Rather than a
+  `?debug` URL param, it reads `hugoEnv` and defaults **on** for every
+  environment except
+  `production`/`prod_prod`, so dev/staging/local need no manual opt-in;
+  `localStorage.setItem('de_debug', '1' | '0')` overrides either direction per
+  browser for the remaining cases (e.g. quiet console on `dev_stage`, or
+  live-debugging real production). The 5 catch-block `console.log(error)`
+  sites were left ungated so failures stay visible regardless. The bar.js
+  data/spec dumps were converted, not dropped — they're gated the same as
+  everything else.
 
 ---
 
@@ -350,6 +403,8 @@ change silently alters behavior with no error:
 10. ~~Seed empty-array reduces; add `.catch()` to the four fetches (§2.6, §6).~~ DONE 2026-07-03 — see note above.
 11. ~~Centralize magic MeasureIDs into metadata/constants (§4).~~ DONE 2026-07-03 — `DE_MEASURE_RULES` constants block (metadata-flag option not viable); see note above.
 12. ~~Unify the two default-measure pickers; collapse the triplicated join blocks (§1, §5).~~ DONE 2026-07-03 — verified behavior-preserving across all 282 indicators; see note above.
+13. ~~Fix the duplicate `"test"` key in bar.js; fix the `!d == ""` precedence trap in table.js/trend.js (§2.8, §6).~~ DONE 2026-07-03 — see note above.
+14. ~~Consolidate `assignGeoRank`/`prettifyGeoType`; stop `handleToggle` rebinding on every `drawCallback`; gate `console.log` behind a debug flag (§1 #10/#14, §6).~~ DONE 2026-07-03 — see note above.
 
 **Structural (the consolidated docs' Tier 1–2):** single state object + dispatcher,
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,

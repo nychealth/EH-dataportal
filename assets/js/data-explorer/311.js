@@ -13,7 +13,7 @@
 // Loads 311 crosswalk links and prints the matching action buttons for one indicator.
 const draw311Buttons = (indicator_id) => {
 
-    console.log("* draw311Buttons");
+    debugLog("* draw311Buttons");
 
     // Holds the crosswalk rows matched to the current indicator, populated once the CSV loads.
     let filteredCrosswalk = [];

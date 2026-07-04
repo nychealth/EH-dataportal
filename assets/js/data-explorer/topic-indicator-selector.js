@@ -37,7 +37,7 @@ let indicatorSelectionConfirmed = false;
 const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
     .then(response => response.json())
     .then(data => {
-        console.log("* fetch metadata.json");
+        debugLog("* fetch metadata.json");
         indicators = data; 
         // console.log(">> indicators [fetch]", indicators);
         return data; // resolve promise
@@ -174,8 +174,8 @@ const showTopicSelectorPrompt = () => {
 // Opens the indicator modal for the selected topic and remembers its state.
 const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
-    console.log("* getIndicatorsForTopic");
-    console.log("Title:", title);
+    debugLog("* getIndicatorsForTopic");
+    debugLog("Title:", title);
 
     document.getElementById('printTopic').textContent = title.toLowerCase();
 
@@ -315,7 +315,7 @@ const bindTopicSelectorControls = () => {
 // Rebuilds the indicator-selector modal's HTML for a topic, badging recently-updated indicators.
 const printIndicators = async (indList, destination) => {
 
-    console.log("* printIndicators");
+    debugLog("* printIndicators");
 
     // ----- resolve destination + DOM target, guard ----- //
 
@@ -461,7 +461,7 @@ if (document.readyState === 'loading') {
 // Fills all on-page indicator name/description/methodology/source placeholders from metadata.
 const printIndicatorInfo = async (IndicatorID) => {
 
-    console.log("* printIndicatorInfo");
+    debugLog("* printIndicatorInfo");
 
     // ----- resolve indicator record ----- //
 
@@ -484,8 +484,8 @@ const printIndicatorInfo = async (IndicatorID) => {
     ).map(Number);
     const showRecentlyUpdatedIcon = recentlyUpdatedIndicatorIds.includes(normalizedIndicatorId);
 
-    console.log('This indicator:');
-    console.log(indicator)
+    debugLog('This indicator:');
+    debugLog(indicator)
 
     // ----- guard: reopen chooser if not found ----- //
 
@@ -569,7 +569,7 @@ const printIndicatorInfo = async (IndicatorID) => {
 // Loads the chosen indicator either via SPA flow or full-page navigation.
 const selectIndicator = async (id) => {
 
-    console.log("* selectIndicator:", id);
+    debugLog("* selectIndicator:", id);
 
     // ----- track selection event ----- //
 
@@ -635,7 +635,7 @@ const selectIndicator = async (id) => {
 // Boots the explorer from URL params or opens the chooser when none are present.
 const checkURL = async () => {
 
-    console.log("* checkURL");
+    debugLog("* checkURL");
 
     // ----- parse URL params, normalize legacy GeoTypeID alias ----- //
 
@@ -646,8 +646,8 @@ const checkURL = async () => {
 
     const paramsObj = Object.fromEntries(urlParams.entries());
 
-    console.log('URL Parameters:');
-    console.log(paramsObj);
+    debugLog('URL Parameters:');
+    debugLog(paramsObj);
 
     if (paramsObj.GeoTypeID && !paramsObj.GeoType) {
         // Normalize the URL before menus read it so every downstream branch sees one GeoType key.
@@ -661,7 +661,7 @@ const checkURL = async () => {
 
     // Wait for the window load event so Bootstrap has initialized before showing the modal.
     if (!paramsObj.id || isNaN(chosenIndicator)) {
-        console.log("No indicator ID in URL, opening indicator selector.");
+        debugLog("No indicator ID in URL, opening indicator selector.");
         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
         return;
     }

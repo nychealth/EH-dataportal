@@ -217,7 +217,7 @@ const DE_MEASURE_RULES = {
 // Copies the current citation text to the clipboard and updates button feedback.
 const copyCitation = (button = null) => {
 
-    console.log("* copyCitation");
+    debugLog("* copyCitation");
 
     const citationTargetId = button?.dataset.citationTarget || 'citeText';
     const citationTextElement = document.getElementById(citationTargetId);
@@ -291,7 +291,7 @@ if (document.readyState === 'loading') {
 // Writes About and Sources content while de-duplicating repeated source text.
 const renderAboutSources = (about, sources) => {
 
-    console.log("** renderAboutSources");
+    debugLog("** renderAboutSources");
 
     // Some new-explorer templates use ids instead of the legacy class hooks.
     if (!aboutMeasures) {
@@ -359,7 +359,7 @@ const GEO_FILE_BY_TYPE = {
 // Maps a backend GeoType value to the corresponding TopoJSON filename.
 function getGeoFile(mapGeoType) {
 
-    console.log("*** getGeoFile");
+    debugLog("*** getGeoFile");
 
     // Return the matching geography file for the requested map geography.
     return GEO_FILE_BY_TYPE[mapGeoType];
@@ -371,46 +371,26 @@ function getGeoFile(mapGeoType) {
 
 // define georank function at top scope, so we can use it later
 
-// Assigns a sortable rank so geographies can be ordered from broad to fine.
-const assignGeoRank = (GeoType) => {
+// Rank for each generic (prettified) geotype, broad to fine. Keyed by prettifyGeoType's output
+// (defined below) so a new versioned variant only needs adding there — this table never needs
+// its own copy of the version list, unlike the parallel switch it replaced.
+const GEO_RANK_BY_PRETTY_TYPE = {
+    'Citywide': 0,
+    'Borough': 1,
+    'NYCKIDS': 2,
+    'UHF34': 3,
+    'UHF42': 4,
+    'Subboro': 5,
+    'CD': 6,
+    'CDTA': 7,
+    'PUMA': 8,
+    'NTA': 10,
+    'NYHarbor': 11,
+    'RMZ': 12
+};
 
-    // Normalize multiple backend variants into one numeric sort order.
-    switch (GeoType) {
-        case 'Citywide':
-            return 0;
-        case 'Borough':
-            return 1;
-        case 'NYCKIDS':
-        case 'NYCKIDS2017':
-        case 'NYCKIDS2019':
-        case 'NYCKIDS2021':
-        case 'NYCKIDS2023':
-            return 2;
-        case 'UHF34':
-            return 3;
-        case 'UHF42':
-            return 4;
-        case 'Subboro':
-            return 5;
-        case 'CD':
-            return 6;
-        case 'CDTA':
-        case 'CDTA2020':
-            return 7;
-        case 'PUMA':
-        case 'PUMA2010':
-        case 'PUMA2020':
-            return 8;
-        case 'NTA':
-        case 'NTA2010':
-        case 'NTA2020':
-            return 10;
-        case 'NYHarbor':
-            return 11;
-        case 'RMZ':
-            return 12;
-    }
-}
+// Assigns a sortable rank so geographies can be ordered from broad to fine.
+const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoType)];
 
 // array of (pretty) geotypes in georank order
 
@@ -496,7 +476,7 @@ const prettifyGeoType = (GeoType) => {
 // Nudges Vega and DataTables layouts to recompute after tab or panel changes.
 const updateChartPlotSize = () => {
 
-    console.log("* updateChartPlotSize");
+    debugLog("* updateChartPlotSize");
 
     setTimeout(() => {
         window.dispatchEvent(new Event('resize'));
@@ -633,7 +613,7 @@ const downloadData = (
     // chartType
 ) => {
 
-        console.log('Downloading data')
+        debugLog('Downloading data')
 
         // else, for chart view downloads: 
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);

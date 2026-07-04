@@ -75,7 +75,7 @@ const buildDefaultMetadataArray = (visArray) => {
 // Chooses the default measure for map and bar rendering.
 const setDefaultMapMeasure = (visArray) => {
 
-    console.log("* setDefaultMapMeasure");
+    debugLog("* setDefaultMapMeasure");
 
     defaultMapMetadata = buildDefaultMetadataArray(visArray);
 
@@ -107,7 +107,7 @@ const setDefaultTrendMeasure = (visArray) => {
 // Chooses the default linked measure pair and fetches the joined comparison data.
 const setDefaultLinksMeasure = async (visArray) => {
 
-    console.log("* setDefaultLinksMeasure");
+    debugLog("* setDefaultLinksMeasure");
 
     const defaultArray = buildDefaultMetadataArray(visArray);
 
@@ -139,7 +139,7 @@ const setDefaultLinksMeasure = async (visArray) => {
 // Chooses the default measure for the disparities tab.
 const setDefaultDisparitiesMeasure = (visArray) => {
 
-    console.log("* setDefaultDisparitiesMeasure");
+    debugLog("* setDefaultDisparitiesMeasure");
 
     defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
 
@@ -421,7 +421,7 @@ const renderMeasures = async () => {
 
     // ----- setup / clear per-indicator state ----- //
 
-    console.log("* renderMeasures");
+    debugLog("* renderMeasures");
 
     resolveTabReferences();
 
@@ -1515,7 +1515,7 @@ const renderMeasures = async () => {
     // Refreshes the summary table layout after it becomes the active overlay.
     showTable = (e) => {
 
-        console.log("* showTable");
+        debugLog("* showTable");
 
         overlay = 'table';
         let didRenderTable = false;
@@ -1554,7 +1554,7 @@ const renderMeasures = async () => {
     // Redraws the Leaflet map (always visible on the left) with the current selection.
     showMap = () => {
 
-        console.log("* showMap");
+        debugLog("* showMap");
 
         // ----- resolve metadata for the current MeasureID ----- //
 
@@ -1571,7 +1571,7 @@ const renderMeasures = async () => {
             prettifyGeoType(obj.GeoType) == GeoType
         );
 
-        console.log("filteredMapData:", filteredMapData.length, "rows",
+        debugLog("filteredMapData:", filteredMapData.length, "rows",
             { MeasureID, GeoType, TimePeriodID });
 
         // ----- render the Leaflet map only ----- //
@@ -1584,7 +1584,7 @@ const renderMeasures = async () => {
     // Renders the right-side bar overlay from the filtered map rows.
     showBar = (e) => {
 
-        console.log("* showBar");
+        debugLog("* showBar");
 
         overlay = 'bar';
 
@@ -1604,7 +1604,7 @@ const renderMeasures = async () => {
     // Chooses between borough trend mode and comparison trend mode.
     showTrend = (e) => {
 
-        console.log("* showTrend");
+        debugLog("* showTrend");
 
         overlay = 'trend';
 
@@ -1623,7 +1623,7 @@ const renderMeasures = async () => {
     // Renders the standard borough trend chart for the selected measure.
     showBoroughTrend = (e) => {
 
-        console.log("** showBoroughTrend");
+        debugLog("** showBoroughTrend");
 
         // special time-period filtering for certain air quality measures
 
@@ -1694,7 +1694,7 @@ const renderMeasures = async () => {
     // Renders the multi-indicator comparison trend chart when comparison metadata exists.
     showComparisonTrend = (e) => {
 
-        console.log("** showComparisonTrend");
+        debugLog("** showComparisonTrend");
 
         // ----- resolve comparison ID, falling back to borough trend ----- //
 
@@ -1770,7 +1770,7 @@ const renderMeasures = async () => {
     // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
     showLinks = async (e) => {
 
-        console.log("* showLinks");
+        debugLog("* showLinks");
 
         overlay = 'links';
 

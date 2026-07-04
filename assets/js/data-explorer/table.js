@@ -186,7 +186,9 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
 // Updates the notes block to reflect only the currently filtered rows.
 const updateTableReliabilityNotes = (rows) => {
 
-    const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(d => !d == "");
+    // `.filter(Boolean)` drops blank/null/undefined notes; equivalent to the prior
+    // `!d == ""` coercion (kept working by accident, but unreadable) — see deep-audit §6.
+    const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(Boolean);
 
     const tableUnreliabilityEl = document.getElementById('table-unreliability');
 
@@ -488,7 +490,7 @@ const renderTableFilterControls = (rows) => {
 // Builds the summary table HTML and activates the DataTables wrapper around it.
 const renderTable = (tableData) => {
 
-    console.log("** renderTable");
+    debugLog("** renderTable");
 
     // ----- destroy existing table instance ----- //
 
@@ -689,7 +691,7 @@ const renderTable = (tableData) => {
                 row.setAttribute(`data-time`, `${time}`);
             }
         },
-        // Rebuilds the collapsible group-header rows and rebinds toggle/search handlers after each draw, since DataTables replaces the row DOM every time.
+        // Rebuilds the collapsible group-header rows and resyncs the search box after each draw, since DataTables replaces the row DOM every time.
         drawCallback: function () {
 
             const api = this.api();
@@ -733,15 +735,19 @@ const renderTable = (tableData) => {
             createGroupRow(groupColumnTime, 0);
             createGroupRow(groupColumnGeo, 1);
 
-            // Group rows are rebuilt every draw, so event handlers and search-box text need to be rebound here.
-            handleToggle();
+            // Group rows are rebuilt every draw, so the search-box text needs to be resynced here.
             syncTableAreaSearchInput();
         }
     });
 
-    // ----- lock scroll height + rebind search ----- //
+    // ----- lock scroll height + bind group-toggle handler + rebind search ----- //
 
     lockSummaryTableScrollBodyHeight();
+
+    // Bind the delegated group-toggle handler once per table init, not once per draw: it's
+    // delegated from `body`, so it already covers the group rows drawCallback recreates on
+    // every redraw without needing to be rebound.
+    handleToggle();
 
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
     bindAreaOnlySearch(dataTable);

@@ -293,6 +293,26 @@
 
 </script>
 
+<script>
+
+    // Verbose tracing defaults on for every Hugo environment except the two that serve the
+    // real public site (production, prod_prod), so dev/staging/local work doesn't need a
+    // manual opt-in; localStorage.setItem('de_debug', '1' | '0') overrides either direction
+    // per browser. Site-wide (not data-explorer-specific) since hugoEnv already is — any
+    // page's inline JS or asset scripts can call debugLog() once loaded after this point.
+    const DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+    const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
+        ? DE_DEBUG_OVERRIDE === '1'
+        : !['production', 'prod_prod'].includes(hugoEnv);
+
+    const debugLog = (...args) => {
+        if (DE_DEBUG) {
+            console.log(...args);
+        }
+    };
+
+</script>
+
 
 {{/* ====  set title for pagefind search results  ==== */ -}}
 

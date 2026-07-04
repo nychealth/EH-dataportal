@@ -49,7 +49,7 @@ const buildCanonicalSearchParams = () => {
 const writeHistoryState = (historyMethod, nextState, nextURL) => {
 
     window.history[historyMethod](nextState, '', nextURL);
-    console.log(`${historyMethod} →`, nextURL.search);
+    debugLog(`${historyMethod} →`, nextURL.search);
 
 };
 
@@ -223,7 +223,7 @@ const normalizeLegacyHashOverlayURL = () => {
     // This is a normalization pass, not a user navigation event, so replaceState keeps history
     // clean while still making the URL canonical for refreshes and copied links.
     window.history.replaceState(window.history.state, '', nextURL);
-    console.log('replaceState →', nextURL.search);
+    debugLog('replaceState →', nextURL.search);
 
 };
 
@@ -282,7 +282,7 @@ const renderCurrentView = (updateMap = false) => {
 
     // ----- kick off map render promise ----- //
 
-    console.log("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
+    debugLog("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
 
     // Normalize sync and async map work into one promise so overlay timing can treat both the same.
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
@@ -351,7 +351,7 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- normalize incoming URL ----- //
 
-    console.log("popstate →", window.location.search, window.location.hash);
+    debugLog("popstate →", window.location.search, window.location.hash);
 
     normalizeLegacyHashOverlayURL();
 

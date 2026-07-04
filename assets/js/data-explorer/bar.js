@@ -60,11 +60,11 @@ const renderBar = (
     timePeriod
 ) => {
 
-    console.log("** renderBar");
+    debugLog("** renderBar");
 
-    console.log("data [renderBar]", data);
-    console.log("metadata [renderBar]", metadata);
-    console.log("geo [renderBar]", geography);
+    debugLog("data [renderBar]", data);
+    debugLog("metadata [renderBar]", metadata);
+    debugLog("geo [renderBar]", geography);
 
     // ----- notes rendering & data filtering ----- //
 
@@ -92,7 +92,7 @@ const renderBar = (
 
     const barTimes =  [...new Set(barData.map(item => item.TimePeriod))];
 
-    console.log("barTimes [bar.js]", barTimes);
+    debugLog("barTimes [bar.js]", barTimes);
 
     // ----- metadata & working-state setup ----- //
 
@@ -114,7 +114,7 @@ const renderBar = (
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
 
     const hasCI = barData.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
-    console.log('has CI [bar.js]', hasCI)
+    debugLog('has CI [bar.js]', hasCI)
 
     // Switch units and subtitle formatting when the measure is percentage-based.
     if ((barMeasurementType.includes('Percent') || barMeasurementType.includes('percent')) && !barMeasurementType.includes('percentile')) {
@@ -131,7 +131,7 @@ const renderBar = (
 
     }
 
-    console.log('is percent? [bar.js]', isPercent)
+    debugLog('is percent? [bar.js]', isPercent)
 
 
     // ----- layer-variant selection (Mean / CI / plain) ----- //
@@ -197,9 +197,8 @@ const renderBar = (
                             "condition": [
                                 {"param": "highlight", "empty": false, "value": "black"},
                                 {
-                                    "test": "datum.GeoID == selectedGeo",
-                                        "test": "datum.Value != null && datum.GeoID == selectedGeo",
-                                        "value": "black"
+                                    "test": "datum.Value != null && datum.GeoID == selectedGeo",
+                                    "value": "black"
                                 }
                             ],
                             "value": "transparent"
@@ -505,8 +504,8 @@ const renderBar = (
 
     // ----- compile & finalize spec ----- //
 
-    console.log('vega-lite spec:')
-    console.log(barSpec)
+    debugLog('vega-lite spec:')
+    debugLog(barSpec)
 
     const vegaSpec = vegaLite.compile(barSpec).spec;
 

@@ -14,7 +14,7 @@
 // used by the comparison-trend chart.
 const fetch_comparisons = async () => {
 
-    console.log("* fetch_comparisons.json");
+    debugLog("* fetch_comparisons.json");
 
     comparisons = await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
         .then(response => response.json())
@@ -31,7 +31,7 @@ const fetch_comparisons = async () => {
 // Builds the comparison metadata tables and fetches the comparison indicator rows.
 const createComparisonData = async (comps) => {
 
-    console.log("* createComparisonData");
+    debugLog("* createComparisonData");
 
     // ----- bail if no comparisons selected ----- //
 
@@ -156,7 +156,7 @@ const createComparisonData = async (comps) => {
 // Loads one indicator's metadata state and starts the downstream data pipeline.
 const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
-    console.log("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
+    debugLog("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
 
     // console.log("indicators [loadIndicator]", indicators);
 
@@ -293,7 +293,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 // Fetches indicator rows and prepares the shared Arquero tables used by all views.
 const loadData = async (this_IndicatorID) => {
 
-    console.log("* loadData");
+    debugLog("* loadData");
 
     await fetch(`${data_repo}${data_branch}/indicators/data/${this_IndicatorID}.json`)
         .then(response => response.json())
@@ -339,7 +339,7 @@ const loadData = async (this_IndicatorID) => {
 // Loads the geography lookup table used to decorate indicator rows.
 const loadGeo = async () => {
 
-    console.log("* loadGeo");
+    debugLog("* loadGeo");
 
     const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.json`; // col named "GeoType"
 
@@ -361,7 +361,7 @@ const loadGeo = async () => {
 // Loads time-period metadata and rebuilds the TimePeriodID lookup object.
 const loadTime = async () => {
 
-    console.log("* loadTime");
+    debugLog("* loadTime");
 
     const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
 
@@ -435,7 +435,7 @@ const combineTimesGeos = (perMeasureTables) =>
 // Joins indicator rows with geography and time metadata for every downstream view.
 const joinData = async () => {
 
-    console.log("* joinData");
+    debugLog("* joinData");
 
     // console.log("indicators [joinData]", indicators);
     // console.log("indicatorMeasures [joinData]", indicatorMeasures);

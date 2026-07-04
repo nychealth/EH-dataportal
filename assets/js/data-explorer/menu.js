@@ -41,7 +41,7 @@ const setDropdownLabel = (type, value) => {
 // Ensures one valid measure is selected before any menu rendering begins.
 const printMenus = async (indicatorID) => {
 
-    console.log('* printMenus');
+    debugLog('* printMenus');
 
     await ensureIndicatorsLoaded('printing menus');
 
@@ -71,8 +71,8 @@ const printMenus = async (indicatorID) => {
 // Rebuilds all dependent menus from current globals after one selection changes.
 const updateAllMenus = (indicator) => {
 
-    console.log('* updateAllMenus');
-    console.log('Globals:', { MeasureID, GeoType, TimePeriodID });
+    debugLog('* updateAllMenus');
+    debugLog('Globals:', { MeasureID, GeoType, TimePeriodID });
 
     if (!indicator || !indicator.Measures?.length) {
         console.warn('updateAllMenus: no indicator or measures available');
@@ -168,7 +168,7 @@ const updateAllMenus = (indicator) => {
 // Renders a dropdown menu and binds its click behavior.
 const styleAndPrintMenu = (items, destination, type) => {
 
-    console.log("* styleAndPrintMenu:", type);
+    debugLog("* styleAndPrintMenu:", type);
 
     const containers = document.querySelectorAll(destination);
 
@@ -219,7 +219,7 @@ const styleAndPrintMenu = (items, destination, type) => {
 // Applies a dropdown selection to global state, cascades dependent menus, and re-renders the view.
 const handleSelection = (type, value) => {
 
-    console.log(`* handleSelection — ${type}: ${value}`);
+    debugLog(`* handleSelection — ${type}: ${value}`);
 
     // ----- update the one changed global ----- //
 
@@ -286,7 +286,7 @@ const handleSelection = (type, value) => {
 // Reflects the clicked option text back into the visible dropdown trigger.
 const updateDropdownText = (clickedItem) => {
 
-    console.log("* updateDropdownText");
+    debugLog("* updateDropdownText");
 
     const dropdown = clickedItem.closest('.dropdown');
     // Resolve the trigger by role, not by id suffix, so mobile/desktop variants

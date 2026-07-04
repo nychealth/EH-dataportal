@@ -175,7 +175,7 @@ const renderCorrelate = (
     secondaryIndicatorName,
 ) => {
 
-    console.log("** renderCorrelate");
+    debugLog("** renderCorrelate");
 
     // ----- guard clauses & element setup ----- //
 

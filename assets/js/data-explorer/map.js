@@ -42,7 +42,7 @@ const initBaseMap = () => {
         minZoom: 7
     }).addTo(currentMap);
 
-    console.log("* initBaseMap: tile layer ready");
+    debugLog("* initBaseMap: tile layer ready");
 
 };
 
@@ -262,8 +262,8 @@ const renderMap = (
     metadata
 ) => {
 
-    console.log("** renderMap");
-    console.log("** renderMap: metadata", metadata);
+    debugLog("** renderMap");
+    debugLog("** renderMap: metadata", metadata);
 
     // ----- get unique time in data ----- //
 
@@ -286,7 +286,7 @@ const renderMap = (
                            metadata[0].AvailableGeoTypes[0] === 'Citywide';
 
     if (isCitywideOnly) {
-        console.log("** renderMap: citywide only");
+        debugLog("** renderMap: citywide only");
     }
 
     // ----- determine map type based on measurement type ----- //
@@ -297,12 +297,12 @@ const renderMap = (
 
     if (isNumberMap) {
 
-        console.log("** renderMap: number map, rendering bubble map");
+        debugLog("** renderMap: number map, rendering bubble map");
         return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
 
     } else {
 
-        console.log("** renderMap: choropleth map, rendering choropleth");
+        debugLog("** renderMap: choropleth map, rendering choropleth");
 
         // - - - choropleth map rendering - - - //
 
@@ -435,7 +435,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     
                     layer.on('click', (e) => {
                         const props = feature.properties;
-                        console.log("** click", feature.properties);
+                        debugLog("** click", feature.properties);
 
                         // For citywide-only data, switch to trend tab
                         if (isCitywideOnly) {
@@ -669,7 +669,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     // - - - Add hover and click interactions to bubbles - - - //
 
                     circle.on('click', (e) => {
-                        console.log("** click", item);
+                        debugLog("** click", item);
 
                         // For citywide-only data, switch to trend tab
                         if (isCitywideOnly) {

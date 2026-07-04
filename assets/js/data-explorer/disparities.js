@@ -53,7 +53,7 @@ const renderDisparitiesChart = async (
     disparityMeasureId
 ) => {
 
-    console.log("** renderDisparitiesChart");
+    debugLog("** renderDisparitiesChart");
 
     // ----- guard clause, resolve DOM refs, reset pane layout ----- //
 
@@ -143,7 +143,7 @@ const renderDisparitiesChart = async (
 
     }
 
-    console.log("disparityData [renderDisparitiesChart]", disparityData);
+    debugLog("disparityData [renderDisparitiesChart]", disparityData);
 
     // ----- derive display fields, render unreliability notes, build about/sources ----- //
 

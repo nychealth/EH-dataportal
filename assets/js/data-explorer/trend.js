@@ -104,7 +104,7 @@ const renderTrendChart = (
     metadata
 ) => {
 
-    console.log("*** renderTrendChart");
+    debugLog("*** renderTrendChart");
 
     // ----- guard clause & element lookup ----- //
 
@@ -137,7 +137,9 @@ const renderTrendChart = (
     }
 
     // Aggregate unique notes so repeated values do not duplicate in the note list.
-    const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(d => !d == "");
+    // `.filter(Boolean)` drops blank/null/undefined notes; equivalent to the prior
+    // `!d == ""` coercion (kept working by accident, but unreadable) — see deep-audit §6.
+    const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(Boolean);
 
     renderTrendNotes(trendUnreliability, compUnreliability);
 
