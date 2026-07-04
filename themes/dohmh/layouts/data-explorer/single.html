@@ -46,6 +46,16 @@
 {{ partial "de-indicator-names-pf" . }}
 
 
+{{- /*  seedrandom - seeds the disparities scatter jitter so it's stable across
+        redraws of the same measure (see disparities.js). Page-specific, not in
+        head.html: only disparities.js uses it, and only on this page.  */}}
+
+{{- $seedrandom := resources.Get "node_modules/seedrandom/seedrandom.min.js" }}
+{{- $seedrandom_secure := $seedrandom | partial "short-fingerprint.html" }}
+
+<script type="text/javascript" src="{{ $seedrandom_secure.RelPermalink }}" integrity="{{ $seedrandom_secure.Data.Integrity }}"></script>
+
+
 <!-- JAVASCRIPT FILES -->
 
 {{- /*  non-bundled DE code - get resource, fingerprint, include  */}}

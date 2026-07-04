@@ -255,13 +255,32 @@ Three tabs wire `onclick="downloadData()"`; the Table tab's button has no handle
 (DataTables' own CSV button covers it, so this stray button is just confusing —
 remove or wire it.)
 
-### 2.11 Disparities jitter likely non-deterministic — **P2 (verify)**
-[disparities.js:127](../assets/js/data-explorer/disparities.js) uses
-`Math.seedrandom` when present, else `Math.random`. `seedrandom` is referenced
-only by the *old* explorer; it does not appear to be loaded on the new page, so
-the fallback runs and the scatter jitter re-randomizes on every redraw (points
-visibly jump). **Fix:** either load seedrandom on the new page or compute a
-deterministic offset (e.g. hash of GeoID).
+### 2.11 Disparities jitter likely non-deterministic — **FIXED 2026-07-04**
+Two separate bugs, both now fixed:
+1. `seedrandom` was loaded on the *old* explorer's `single.html` but never on
+   the new `themes/dohmh/layouts/data-explorer/single.html`, so
+   `typeof Math.seedrandom === 'function'` was false and the code fell back to
+   plain `Math.random`. Added the same `resources.Get "node_modules/seedrandom/seedrandom.min.js"`
+   → `short-fingerprint.html` → `<script src integrity>` block to the new
+   single.html (page-specific, not head.html — only disparities.js uses it).
+2. Once the library was loaded, a second latent bug surfaced immediately: the
+   new [disparities.js:127-129](../assets/js/data-explorer/disparities.js)
+   called `Math.seedrandom(seed)` **without** `new`. Per the library's own
+   source (`seedrandom.js`'s calling-convention block), a call without `new`
+   is treated as `Math.seedrandom()`-style: it mutates the global `Math.random`
+   and returns the seed *string*, not the prng function — so
+   `seededRandom()` threw `TypeError: seededRandom is not a function`. The old
+   explorer's `disparities.js:100` had this right (`new Math.seedrandom(primaryMeasureId)`,
+   returning the prng directly without touching global `Math.random`); the
+   `new` was dropped when the code was ported to the new SPA. Restored it.
+
+Verified live: the raw prng is deterministic (`new Math.seedrandom(seed)` called
+twice with the same seed produces an identical value sequence; two different
+seeds produce different sequences), and the full pipeline confirms it — forcing
+`renderSelectedDisparities` to rebuild `disparityData` for the *same* primary
+measure (by resetting `selectedDisparityPrimaryMeasureId` and re-toggling the
+Disparities view) produced byte-identical `randomOffsetX` values before and
+after, with zero console errors.
 
 ---
 
@@ -427,6 +446,7 @@ change silently alters behavior with no error:
 15. ~~Externalize the inline JS in de-tab-content.html (§5).~~ DONE 2026-07-03 — moved to `assets/js/data-explorer/de-tab-content.js`; see §5 note above.
 16. ~~Build the trend.js label-collision transform array in a loop (§5).~~ DONE 2026-07-04 — `buildLabelCollisionTransforms()`; see §5 note above.
 17. ~~Standardize mixed Arquero filter styles; fix string-interpolated `derive` with indicator names (§6).~~ DONE 2026-07-04 — see §6 note above.
+18. ~~Load `seedrandom` on the new page; fix disparities jitter determinism (§2.11).~~ DONE 2026-07-04 — see §2.11 note above.
 
 **Structural (the consolidated docs' Tier 1–2):** single state object + dispatcher,
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,

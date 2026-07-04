@@ -124,8 +124,10 @@ const renderDisparitiesChart = async (
 
         // - - - seed jitter by primary measure so redraws stay visually stable for one selection - - - //
 
+        // `new` matters here: called as a plain function, seedrandom mutates the
+        // global Math.random and returns the seed string, not a callable prng.
         const seededRandom = typeof Math.seedrandom === 'function'
-            ? Math.seedrandom(String(primaryMeasureId))
+            ? new Math.seedrandom(String(primaryMeasureId))
             : Math.random;
 
         // - - - join the poverty measure once, then derive poverty buckets used by the plot - - - //
