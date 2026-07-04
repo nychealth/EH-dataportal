@@ -329,12 +329,16 @@ change silently alters behavior with no error:
 - **5× copy-pasted label-collision transform.** [trend.js:558-597](../assets/js/data-explorer/trend.js)
   repeats the same `lag`/`calculate` pair as `prevLabel`…`prevLabel5`. Build the
   transform array in a loop.
-- **~240 lines of behavioral JS inline in a partial.**
-  [de-tab-content.html:321-565](../themes/dohmh/layouts/partials/de-tab-content.html)
-  holds tab-toggle, accordion, and panel-state logic (with the close-pane logic
-  duplicated between an inline handler and `closeExplorerTabPane`). This belongs
-  in app.js; its presence is why "startup is spread across template + JS"
-  (consolidated #12) is hard to fix.
+- ~~**~240 lines of behavioral JS inline in a partial.**~~ **FIXED 2026-07-03.**
+  The tab-toggle, accordion, and panel-state logic moved verbatim to
+  [assets/js/data-explorer/de-tab-content.js](../assets/js/data-explorer/de-tab-content.js),
+  now loaded from the partial via the standard `resources.Get` →
+  `short-fingerprint.html` → `<script src integrity>` pipeline (classic,
+  non-defer, same document position so timing is unchanged). Not folded into
+  app.js: it's markup-coupled to `de-tab-content.html` and is not part of the
+  synchronous 14-file SPA bundle. The "close-pane logic duplicated between an
+  inline handler and `closeExplorerTabPane`" is a separate item, left as-is
+  (behavior-preserving move only).
 
 ---
 

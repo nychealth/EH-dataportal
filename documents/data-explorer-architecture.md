@@ -62,7 +62,7 @@ Scripts are loaded in this order by `themes/dohmh/layouts/data-explorer-new/sing
 | **single.html** | Loads all scripts in order, injects indicator JSON from front matter, calls `printIndicators()` then `checkURL()`. |
 | **de-tabs.html** | Wraps `de-tab-content` and `de-tab-button` partials inside the `de-tabs` container. |
 | **de-tab-button.html** | Renders the vertical green icon-bar: four `nav-link[data-toggle="pill"]` links (Bar, Trends, Correlate, Table) plus a Data Sources link. Mobile "Take Action" dropdown. |
-| **de-tab-content.html** | Renders tab panes (`#v-pills-bar`, `#v-pills-table`, `#v-pills-trends`, `#v-pills-correlate`, `#v-pills-ds`), close buttons, inline scripts for toggle-off, `closeTabPane()`, mobile accordion, and the `has-open-panel` MutationObserver. |
+| **de-tab-content.html** | Renders tab panes (`#v-pills-bar`, `#v-pills-table`, `#v-pills-trends`, `#v-pills-correlate`, `#v-pills-ds`) and close buttons. Its tab-toggle / `closeExplorerTabPane` / mobile-accordion / `has-open-panel` MutationObserver logic was externalized (2026-07-03) to `assets/js/data-explorer/de-tab-content.js`, loaded via the fingerprint pipeline. |
 | **de-indicator-info.html** | Upper-left indicator info box with name, description, "Change dataset" button, the three dropdown menus (Measure, Boundary, Year), and the Viridis legend with hover feedback. |
 
 **Not loaded in the active pipeline** (legacy/prototype files present in the directory):
