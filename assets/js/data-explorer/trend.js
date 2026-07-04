@@ -673,7 +673,7 @@ const renderTrendChart = (
     const dataForDownload = [...compspec2.data.values];
 
     const downloadTable = aq.from(dataForDownload)
-        .derive({ Indicator: `'${indicatorName}: ${plotTitle} ${plotSubtitle}'` })
+        .derive({ Indicator: aq.escape(`${indicatorName}: ${plotTitle} ${plotSubtitle}`) })
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
 
     CSVforDownload = downloadTable.toCSV();

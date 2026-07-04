@@ -741,7 +741,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             const aqFilteredSecondaryMeasureData = aq.table(data)
 
                 // get secondary measure data
-                .filter(`d => d.MeasureID === ${secondaryMeasureId}`)
+                .filter(aq.escape(d => d.MeasureID === secondaryMeasureId))
                 .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
 
                 // get same geotypes as most recent primary data
@@ -789,7 +789,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             const aqClosestSecondaryData = aqFilteredSecondaryMeasureData
 
                 // data with the latest end period
-                .filter(`d => d.end_period === ${closestSecondaryTime.end_period}`)
+                .filter(aq.escape(d => d.end_period === closestSecondaryTime.end_period))
 
                 // get the finest geo left
                 .filter(d => d.GeoRank === op.max(d.GeoRank))

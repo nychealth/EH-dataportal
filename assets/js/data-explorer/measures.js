@@ -498,8 +498,8 @@ const renderMeasures = async () => {
 
         // check which viz types exist for this measure
 
-        const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
-        const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
+        const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
+        const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0]?.MeasureID;
         // Disparities == 1 in metadata signals this measure supports the disparities chart
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1

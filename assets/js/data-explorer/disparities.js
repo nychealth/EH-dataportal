@@ -389,8 +389,8 @@ const renderDisparitiesChart = async (
             'MeasureID_2',
             'randomOffsetX'
         ))
-        .derive({ Value_1_Indicator: `'${primaryIndicatorName}'` })
-        .derive({ Value_2_Indicator: `'${disparityIndicatorName}'` });
+        .derive({ Value_1_Indicator: aq.escape(primaryIndicatorName) })
+        .derive({ Value_2_Indicator: aq.escape(disparityIndicatorName) });
 
     CSVforDownload = downloadTable.toCSV();
 

@@ -356,18 +356,26 @@ change silently alters behavior with no error:
   ([map.js:383,577](../assets/js/data-explorer/map.js)), 311 `d3.csv`
   ([311.js:23](../assets/js/data-explorer/311.js)). A single failed request
   leaves the UI broken with no message. (Consolidated #29, now with exact sites.)
-- **Mixed Arquero filter styles.** String-interpolated predicates —
-  `.filter(\`d => d.MeasureID === ${id}\`)` — at
-  [data.js:859,907](../assets/js/data-explorer/data.js) and
-  [measures.js:501-502](../assets/js/data-explorer/measures.js) sit next to
-  `aq.escape(d => …)` elsewhere. The string form is an injection-shaped pattern
-  and breaks on non-numeric/quoted values. Standardize on `aq.escape`.
-- **String-interpolated `derive` with indicator names.**
-  [trend.js:676](../assets/js/data-explorer/trend.js),
-  [correlate.js:608-609](../assets/js/data-explorer/correlate.js),
-  [disparities.js:392](../assets/js/data-explorer/disparities.js) embed
-  `indicatorName` into an Arquero expression string; a name containing an
-  apostrophe breaks the expression.
+- ~~**Mixed Arquero filter styles.**~~ **FIXED 2026-07-04.** The four
+  string-interpolated `.filter(\`d => d.MeasureID === ${id}\`)` predicates
+  ([data.js](../assets/js/data-explorer/data.js) — secondary-measure and
+  closest-secondary-time filters — and
+  [measures.js:501-502](../assets/js/data-explorer/measures.js)) now read
+  `.filter(aq.escape(d => d.MeasureID === measure.MeasureID))`, matching the
+  `aq.escape(d => …)` style already used everywhere else in the file.
+- ~~**String-interpolated `derive` with indicator names.**~~ **FIXED
+  2026-07-04.** [trend.js](../assets/js/data-explorer/trend.js),
+  [correlate.js](../assets/js/data-explorer/correlate.js), and
+  [disparities.js](../assets/js/data-explorer/disparities.js) now build the
+  download-CSV `Indicator` columns as `aq.escape(\`${indicatorName}: …\`)` —
+  the interpolation happens in real JS first, then `aq.escape` substitutes
+  the finished string as a literal value instead of Arquero re-parsing it as
+  an expression. Reproduced the original bug live (a name containing an
+  apostrophe threw `Expression parse error` under the old string-literal
+  pattern) and confirmed the new pattern returns the correct string
+  unchanged; then verified the real trend/correlate/disparities CSV exports
+  still produce correct `Indicator` columns for live data with no console
+  regressions.
 - ~~**`.filter(d => !d == "")`** at [table.js:189](../assets/js/data-explorer/table.js)
   and [trend.js:140](../assets/js/data-explorer/trend.js) — parses as
   `(!d) == ""` and works only by coincidence. Use `.filter(Boolean)`.~~ **FIXED
@@ -418,6 +426,7 @@ change silently alters behavior with no error:
 14. ~~Consolidate `assignGeoRank`/`prettifyGeoType`; stop `handleToggle` rebinding on every `drawCallback`; gate `console.log` behind a debug flag (§1 #10/#14, §6).~~ DONE 2026-07-03 — see note above.
 15. ~~Externalize the inline JS in de-tab-content.html (§5).~~ DONE 2026-07-03 — moved to `assets/js/data-explorer/de-tab-content.js`; see §5 note above.
 16. ~~Build the trend.js label-collision transform array in a loop (§5).~~ DONE 2026-07-04 — `buildLabelCollisionTransforms()`; see §5 note above.
+17. ~~Standardize mixed Arquero filter styles; fix string-interpolated `derive` with indicator names (§6).~~ DONE 2026-07-04 — see §6 note above.
 
 **Structural (the consolidated docs' Tier 1–2):** single state object + dispatcher,
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,

@@ -606,8 +606,8 @@ const renderCorrelate = (
             'MeasureID_1',
             'MeasureID_2'
         ))
-        .derive({ Value_1_Indicator: `'${yIndicatorName} - ${yMeasure} ${yDisplay}'` })
-        .derive({ Value_2_Indicator: `'${xIndicatorName} - ${xMeasure} ${xDisplay ? `(${xDisplay})` : ''}'` });
+        .derive({ Value_1_Indicator: aq.escape(`${yIndicatorName} - ${yMeasure} ${yDisplay}`) })
+        .derive({ Value_2_Indicator: aq.escape(`${xIndicatorName} - ${xMeasure} ${xDisplay ? `(${xDisplay})` : ''}`) });
 
     CSVforDownload = downloadTable.toCSV();
 
