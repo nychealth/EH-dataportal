@@ -74,6 +74,42 @@ const getTrendLayoutConfig = (viewportWidth) => {
 
 
 // ----------------------------------------------------------------------- //
+// label-collision transform
+// ----------------------------------------------------------------------- //
+
+// Generates the repeated lag/window Vega-Lite transform pairs that stagger
+// overlapping end-of-line label Y-positions apart. Vega has no loop construct
+// of its own, so each pass is a lag of the previous pass's output; only the
+// first pass gets the initial 0.025 * maxChartVal nudge off the line itself.
+const buildLabelCollisionTransforms = (passCount) => {
+
+    const transforms = [];
+
+    for (let i = 1; i <= passCount; i++) {
+
+        const prevField = i === 1 ? 'prevLabel' : `prevLabel${i}`;
+        const nullCase = i === 1
+            ? '(datum.labelValue - 0.025 * datum.maxChartVal)'
+            : 'datum.labelValue';
+
+        transforms.push({
+            "window": [{ "op": "lag", "field": "labelValue", "as": prevField }],
+            "sort": [{ "field": "endDateValue", "order": "ascending" }]
+        });
+
+        transforms.push({
+            "calculate": `datum.${prevField} === null ? ${nullCase} : (datum.labelValue - datum.${prevField} < 0.05 * datum.maxChartVal ? datum.${prevField} + 0.05 * datum.maxChartVal : datum.labelValue)`,
+            "as": "labelValue"
+        });
+
+    }
+
+    return transforms;
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // note rendering
 // ----------------------------------------------------------------------- //
 
@@ -558,46 +594,7 @@ const renderTrendChart = (
 
                             // - - - repeated lag/window passes stagger overlapping end-of-line label Y-positions apart - - - //
 
-                            {
-                                "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel" }],
-                                "sort": [{ "field": "endDateValue", "order": "ascending" }]
-                            },
-                            {
-                                "calculate": "datum.prevLabel === null ? (datum.labelValue - 0.025 * datum.maxChartVal) : (datum.labelValue - datum.prevLabel < 0.05 * datum.maxChartVal ? datum.prevLabel + 0.05 * datum.maxChartVal : datum.labelValue)",
-                                "as": "labelValue"
-                            },
-                            {
-                                "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel2" }],
-                                "sort": [{ "field": "endDateValue", "order": "ascending" }]
-                            },
-                            {
-                                "calculate": "datum.prevLabel2 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel2 < 0.05 * datum.maxChartVal ? datum.prevLabel2 + 0.05 * datum.maxChartVal : datum.labelValue)",
-                                "as": "labelValue"
-                            },
-                            {
-                                "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel3" }],
-                                "sort": [{ "field": "endDateValue", "order": "ascending" }]
-                            },
-                            {
-                                "calculate": "datum.prevLabel3 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel3 < 0.05 * datum.maxChartVal ? datum.prevLabel3 + 0.05 * datum.maxChartVal : datum.labelValue)",
-                                "as": "labelValue"
-                            },
-                            {
-                                "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel4" }],
-                                "sort": [{ "field": "endDateValue", "order": "ascending" }]
-                            },
-                            {
-                                "calculate": "datum.prevLabel4 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel4 < 0.05 * datum.maxChartVal ? datum.prevLabel4 + 0.05 * datum.maxChartVal : datum.labelValue)",
-                                "as": "labelValue"
-                            },
-                            {
-                                "window": [{ "op": "lag", "field": "labelValue", "as": "prevLabel5" }],
-                                "sort": [{ "field": "endDateValue", "order": "ascending" }]
-                            },
-                            {
-                                "calculate": "datum.prevLabel5 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel5 < 0.05 * datum.maxChartVal ? datum.prevLabel5 + 0.05 * datum.maxChartVal : datum.labelValue)",
-                                "as": "labelValue"
-                            }
+                            ...buildLabelCollisionTransforms(5)
                         ],
                         "encoding": {
                             "y": { "field": "labelValue" },
