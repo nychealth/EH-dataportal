@@ -46,6 +46,10 @@ branch, plus the Hugo templates and partials that render the SPA.
 > mechanically fixable by darkening/lightening the existing gold (no
 > lightness at that hue clears 4.5:1 against this green short of ~white).
 > Left for a design decision; see `documents/site-wide-audit-2026-06-27.md`.
+> **Resolved 2026-07-04** — not by adjusting the gold, but by a redesign that
+> replaced the plain-text link with a `badge-light` pill, sidestepping the
+> problem entirely (text no longer sits directly on the green). See §3's
+> contrast bullet below for the measured result.
 > Not done: §3's "no announced equivalent" is only partly addressed (the live
 > region announces indicator changes, not measure/geo/time changes), and the
 > duplicate-ID bullet in this section's prose is stale (already fixed by
@@ -314,8 +318,15 @@ government site this is a legal exposure (WCAG 2.1 AA / Section 508). Findings:
   [:137](../themes/dohmh/layouts/partials/de-indicator-info.html)) each render
   twice (mobile + desktop) and are each pointed at by `aria-labelledby`. The
   measure button was fixed (mobile got a `1` suffix); geo/time were not.
-- **Contrast:** hardcoded `color:#FFED98` on `bg-primary` for the "Change
-  dataset" link — verify it clears 4.5:1.
+- ~~**Contrast:** hardcoded `color:#FFED98` on `bg-primary` for the "Change
+  dataset" link — verify it clears 4.5:1.~~ **FIXED 2026-07-04** — resolved as
+  part of an unrelated redesign, not a targeted contrast fix: the link was
+  replaced with a `badge badge-pill badge-light` pill (matching
+  `#trendMeasurePills`'s `.de-viz-pill-button` sizing), so the text no longer
+  renders directly on `bg-primary` at all. `.de-viz-pill-button.badge-light`'s
+  `#1f2328` text on Bootstrap's `badge-light` `#f8f9fa` background measures
+  **14.99:1** (WCAG formula, computed directly — not estimated), clearing AA
+  and AAA both. Same fix applies to both the mobile and desktop headers.
 
 ---
 
@@ -437,7 +448,7 @@ change silently alters behavior with no error:
 8. ~~De-duplicate `geoOptionsDropdownButton` / `timeOptionsDropdownButton` IDs (§3).~~
 
 **Medium (days):**
-9. ~~Accessibility pass on the map + charts (§3).~~ DONE 2026-07-03 — contrast measured and flagged, not fixed (design decision).
+9. ~~Accessibility pass on the map + charts (§3).~~ DONE 2026-07-03 — contrast measured and flagged as a design decision 2026-07-03; resolved 2026-07-04 by a "Change dataset" pill redesign — see §3 note above.
 10. ~~Seed empty-array reduces; add `.catch()` to the four fetches (§2.6, §6).~~ DONE 2026-07-03 — see note above.
 11. ~~Centralize magic MeasureIDs into metadata/constants (§4).~~ DONE 2026-07-03 — `DE_MEASURE_RULES` constants block (metadata-flag option not viable); see note above.
 12. ~~Unify the two default-measure pickers; collapse the triplicated join blocks (§1, §5).~~ DONE 2026-07-03 — verified behavior-preserving across all 282 indicators; see note above.
@@ -447,6 +458,7 @@ change silently alters behavior with no error:
 16. ~~Build the trend.js label-collision transform array in a loop (§5).~~ DONE 2026-07-04 — `buildLabelCollisionTransforms()`; see §5 note above.
 17. ~~Standardize mixed Arquero filter styles; fix string-interpolated `derive` with indicator names (§6).~~ DONE 2026-07-04 — see §6 note above.
 18. ~~Load `seedrandom` on the new page; fix disparities jitter determinism (§2.11).~~ DONE 2026-07-04 — see §2.11 note above.
+19. ~~Fix "Change dataset" contrast (§3).~~ DONE 2026-07-04 — pill redesign, 14.99:1; see §3 note above.
 
 **Structural (the consolidated docs' Tier 1–2):** single state object + dispatcher,
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,
