@@ -311,7 +311,7 @@ function drawExplainChart() {
         },
         "transform": [
             { "filter": "datum.Site === 'Deegan'" },
-            { "filter": "datum.pollutant === 'BC'" },
+            { "filter": "datum.pollutant === 'PM25'" },
             { "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
         ],
         "width": "container",
@@ -352,10 +352,14 @@ function drawExplainChart() {
                     },
                     "tooltip": [
                         { "field": "Site", "title": "Site", "type": "nominal" },
-                        { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
                         {
                             "field": "Estimate (95% CI)",
                             "title": "Difference",
+                            "type": "nominal"
+                        },
+                                                {
+                            "field": "Significance",
+                            "title": "Significance",
                             "type": "nominal"
                         }
                     ]
