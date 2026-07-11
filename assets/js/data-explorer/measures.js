@@ -155,11 +155,11 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 // Returns metadata for one measure on the active indicator.
 const getMeasureMetadataById = (measureId) => {
 
-    if (!indicatorMeasures?.length || measureId == null) {
+    if (!DE.indicator.indicatorMeasures?.length || measureId == null) {
         return [];
     }
 
-    return indicatorMeasures.filter(measure => Number(measure.MeasureID) === Number(measureId));
+    return DE.indicator.indicatorMeasures.filter(measure => Number(measure.MeasureID) === Number(measureId));
 
 };
 
@@ -494,7 +494,7 @@ const renderMeasures = async () => {
         .find(measure => measure.MeasureID === DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
 
     // Sort each measure into the tabs where its metadata says data exists.
-    indicatorMeasures.forEach(measure => {
+    DE.indicator.indicatorMeasures.forEach(measure => {
 
         // check which viz types exist for this measure
 
@@ -1412,8 +1412,8 @@ const renderMeasures = async () => {
 
         // ----- build about and sources HTML ----- //
 
-        primaryIndicatorName = indicatorName;
-        secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
+        DE.indicator.primaryIndicatorName = DE.indicator.indicatorName;
+        DE.indicator.secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
 
         const primaryMeasurementType = DE.links.selectedPrimaryMeasureMetadata[0]?.MeasurementType;
         const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
@@ -1423,12 +1423,12 @@ const renderMeasures = async () => {
         const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
 
         DE.links.selectedLinksAbout =
-            `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
-            <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
+            `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
         DE.links.selectedLinksSources =
-            `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
-            <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
+            `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
 
         // ----- render ----- //
 
@@ -1438,8 +1438,8 @@ const renderMeasures = async () => {
             DE.links.joinedLinksDataObjects,
             DE.links.selectedPrimaryMeasureMetadata,
             DE.links.selectedSecondaryMeasureMetadata,
-            primaryIndicatorName,
-            secondaryIndicatorName
+            DE.indicator.primaryIndicatorName,
+            DE.indicator.secondaryIndicatorName
         );
 
         return true;
@@ -1643,7 +1643,7 @@ const renderMeasures = async () => {
 
         DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
             .derive({
-                IndicatorLabel: aq.escape(indicatorName),
+                IndicatorLabel: aq.escape(DE.indicator.indicatorName),
                 ComparisonName: aq.escape('Boroughs')
             });
 

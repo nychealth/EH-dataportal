@@ -140,6 +140,19 @@ const DE = {
         aqComparisonIndicatorsMetadata: undefined,
         aqComparisonIndicatorData: undefined,
         aqCombinedComparisonMetadata: undefined
+    },
+
+    // Active-indicator metadata, promoted here by loadIndicator so every view can
+    // read it. primary/secondary names serve the correlate About/Sources blocks.
+    indicator: {
+        indicator: undefined,
+        indicatorName: undefined,
+        indicatorDesc: undefined,
+        indicatorLabel: undefined,
+        indicatorShortName: undefined,
+        indicatorMeasures: undefined,
+        primaryIndicatorName: undefined,
+        secondaryIndicatorName: undefined
     }
 
 };
@@ -147,16 +160,6 @@ const DE = {
 // Shared content holders are resolved after the page shell exists.
 let aboutMeasures;
 let dataSources;
-
-// Active indicator metadata is promoted to globals so every view can read it.
-let indicator;
-let indicatorName;
-let indicatorDesc;
-let indicatorLabel;
-let indicatorShortName;
-let indicatorMeasures;
-let primaryIndicatorName;
-let secondaryIndicatorName;
 
 // Tab refs and render closures are assigned lazily once the current indicator is known.
 let tabBar;
@@ -639,7 +642,7 @@ const downloadData = (
 
         hiddenElement.href = csvData;
         hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - '  + indicatorName + ` (${view} view)` + '.csv',
+        hiddenElement.download = 'NYC EH Data Portal - '  + DE.indicator.indicatorName + ` (${view} view)` + '.csv',
         hiddenElement.click();
 
         trackDataExplorerFileDownload({

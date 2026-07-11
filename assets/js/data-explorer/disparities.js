@@ -77,7 +77,7 @@ const renderDisparitiesChart = async (
         linksViewNote.innerHTML = 'The <strong>disparities view</strong> groups neighborhoods by poverty category to show how this measure varies by neighborhood poverty.';
     }
 
-    const primaryIndicatorName = indicatorName;
+    const primaryIndicatorName = DE.indicator.indicatorName;
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureId = primaryMetadata[0]?.MeasureID;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;

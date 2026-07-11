@@ -215,7 +215,7 @@ const renderTrendChart = (
         compGroupLabel = [...new Set(data.array("Geography"))];
         const hasBoros = compGroupLabel.length > 1;
 
-        plotTitle = indicatorName;
+        plotTitle = DE.indicator.indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
 
         if ((compMeasurementType[0].includes('Percent') || compMeasurementType[0].includes('percent')) && !compMeasurementType[0].includes('Percentile')) {
@@ -673,7 +673,7 @@ const renderTrendChart = (
     const dataForDownload = [...compspec2.data.values];
 
     const downloadTable = aq.from(dataForDownload)
-        .derive({ Indicator: aq.escape(`${indicatorName}: ${plotTitle} ${plotSubtitle}`) })
+        .derive({ Indicator: aq.escape(`${DE.indicator.indicatorName}: ${plotTitle} ${plotSubtitle}`) })
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
 
     DE.print.CSVforDownload = downloadTable.toCSV();

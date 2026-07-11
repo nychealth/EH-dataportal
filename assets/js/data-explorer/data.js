@@ -193,14 +193,14 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // IndicatorID comes in as  a string, so "find" uses '==' instead of '==='
 
-    indicator = indicators.find(indicator => indicator.IndicatorID == IndicatorID);
-    indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
-    indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
-    indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
-    DE.lookups.indicatorComparisonId = Array.isArray(indicator?.Comparisons)
-        ? indicator.Comparisons
-        : (indicator?.Comparisons ? [indicator.Comparisons] : []);
-    indicatorMeasures = indicator?.Measures;
+    DE.indicator.indicator = indicators.find(indicator => indicator.IndicatorID == IndicatorID);
+    DE.indicator.indicatorName = DE.indicator.indicator?.IndicatorName ? DE.indicator.indicator.IndicatorName : '';
+    DE.indicator.indicatorDesc = DE.indicator.indicator?.IndicatorDescription ? DE.indicator.indicator.IndicatorDescription : '';
+    DE.indicator.indicatorShortName = DE.indicator.indicator?.IndicatorShortname ? DE.indicator.indicator.IndicatorShortname : DE.indicator.indicatorName;
+    DE.lookups.indicatorComparisonId = Array.isArray(DE.indicator.indicator?.Comparisons)
+        ? DE.indicator.indicator.Comparisons
+        : (DE.indicator.indicator?.Comparisons ? [DE.indicator.indicator.Comparisons] : []);
+    DE.indicator.indicatorMeasures = DE.indicator.indicator?.Measures;
 
     // Reset per-view manual selection state so new indicator starts from clean defaults.
 
@@ -450,7 +450,7 @@ const joinData = async () => {
     let DisplayType = [];
 
     // Extract display metadata into a lightweight table that can be joined onto view data.
-    indicatorMeasures.forEach(
+    DE.indicator.indicatorMeasures.forEach(
 
         (measure, i) => {
 
@@ -484,7 +484,7 @@ const joinData = async () => {
 
     // Expand each measure's Table, Map, and Trend metadata into explicit time-by-geo combinations,
     // pushing one combined table per measure into the matching per-view accumulator.
-    indicatorMeasures.forEach(measure => {
+    DE.indicator.indicatorMeasures.forEach(measure => {
 
         const tableTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Table);
         if (tableTimesGeosMeasure) tableTimesGeos.push(tableTimesGeosMeasure);
@@ -613,7 +613,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // get metadata for the selected primary measure, assign to global letiable
     // indicatorMeasures created in loadIndicator
 
-    let primaryMeasureMetadata = indicatorMeasures.filter(
+    let primaryMeasureMetadata = DE.indicator.indicatorMeasures.filter(
         measure => measure.MeasureID === primaryMeasureId
     )
 

@@ -152,7 +152,7 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
             <div class="popup-body">
                 <div class="popup-row">
                     <div class="popup-indicator">
-                        ${indicator.IndicatorName}
+                        ${DE.indicator.indicator.IndicatorName}
                         <div class="popup-period">(${properties.TimePeriod || 'Unknown'})</div>
                     </div>
                     <div class="popup-value">
@@ -176,7 +176,7 @@ const createCitywidePopupContent = (citywideData, metadata) => {
             <div class="popup-body">
                 <div class="popup-row">
                     <div class="popup-indicator">
-                        ${indicator.IndicatorName}
+                        ${DE.indicator.indicator.IndicatorName}
                         <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
                     </div>
                     <div class="popup-value">

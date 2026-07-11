@@ -336,7 +336,7 @@ const buildMapExportFilename = () => {
 
     const nameParts = [
         'NYC EH Data Portal',
-        indicatorName || document.querySelector('.indicator-name')?.textContent,
+        DE.indicator.indicatorName || document.querySelector('.indicator-name')?.textContent,
         DE.map.selectedMapMetadata?.MeasurementType,
         DE.print.vizGeography,
         DE.print.vizYear,
@@ -350,7 +350,7 @@ const buildMapExportFilename = () => {
 
 // Resolves the export title, falling back to the DOM indicator name or a generic portal title.
 const getMapExportTitle = () => {
-    return indicatorName || document.querySelector('.indicator-name')?.textContent || 'Environment and Health Data Portal';
+    return DE.indicator.indicatorName || document.querySelector('.indicator-name')?.textContent || 'Environment and Health Data Portal';
 };
 
 

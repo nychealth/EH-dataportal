@@ -638,7 +638,7 @@ const renderTable = (tableData) => {
             {
                 extend: 'csvHtml5',
                 name: "thisView",
-                filename: 'NYC EH Data Portal - ' + indicatorName + " (filtered)"
+                filename: 'NYC EH Data Portal - ' + DE.indicator.indicatorName + " (filtered)"
             }
         ],
         bInfo: false,
