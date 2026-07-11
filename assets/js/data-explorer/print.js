@@ -337,7 +337,7 @@ const buildMapExportFilename = () => {
     const nameParts = [
         'NYC EH Data Portal',
         indicatorName || document.querySelector('.indicator-name')?.textContent,
-        selectedMapMetadata?.MeasurementType,
+        DE.map.selectedMapMetadata?.MeasurementType,
         vizGeography,
         vizYear,
         'map'
@@ -358,7 +358,7 @@ const getMapExportTitle = () => {
 const getMapExportSubtitle = () => {
 
     return [
-        selectedMapMetadata?.MeasurementType,
+        DE.map.selectedMapMetadata?.MeasurementType,
         vizYear,
         vizGeography
     ].filter(Boolean).join(' | ');
@@ -387,7 +387,7 @@ const getMapExportSources = () => {
 // Detects a bubble (point) map export by checking the measurement type text for number/total wording.
 const isBubbleMapExport = () => {
 
-    const measurementType = selectedMapMetadata?.MeasurementType || '';
+    const measurementType = DE.map.selectedMapMetadata?.MeasurementType || '';
 
     return measurementType.includes('number') ||
         measurementType.includes('Number') ||
@@ -713,7 +713,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
     // ----- prepare shared export state ----- //
 
     const exportGeojson = currentGeojsonLayer.toGeoJSON();
-    const { minValue, maxValue } = getMapStats(filteredMapData || []);
+    const { minValue, maxValue } = getMapStats(DE.map.filteredMapData || []);
     const colorScale = createColorScale(minValue, maxValue);
     const pendingLayers = [];
     let exportBounds = null;
@@ -753,7 +753,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
             .domain(minValue === maxValue ? [0, maxValue || 1] : [minValue, maxValue])
             .range([4, 20]);
 
-        filteredMapData.forEach(item => {
+        DE.map.filteredMapData.forEach(item => {
 
             if (item.Lat == null || item.Long == null || item.Value == null) {
                 return;

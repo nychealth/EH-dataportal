@@ -212,9 +212,9 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // ----- reset per-view selection-state flags ----- //
 
-    selectedMapMeasure = false;
-    selectedMapTime = false;
-    selectedMapGeo = false;
+    DE.map.selectedMapMeasure = false;
+    DE.map.selectedMapTime = false;
+    DE.map.selectedMapGeo = false;
     DE.trend.selectedTrendMeasure = false;
     DE.links.selectedLinksMeasure = false;
     DE.disparities.selectedDisparity = false;
@@ -554,7 +554,7 @@ const joinData = async () => {
 
     // ----- derive mapData ----- //
 
-    mapData = joinedAqData
+    DE.map.mapData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])

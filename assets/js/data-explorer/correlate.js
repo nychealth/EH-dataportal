@@ -91,7 +91,7 @@ const registerCorrelateResizeHandler = () => {
 // Builds the "no correlates available" message, resolving the label from the argument, then selectedMapMetadata's type, name, and a generic fallback, in order.
 const getNoCorrelatesMessage = (measureLabel) => {
 
-    const resolvedMeasureLabel = `${measureLabel || selectedMapMetadata?.MeasurementType || selectedMapMetadata?.MeasureName || 'the selected measure'}`;
+    const resolvedMeasureLabel = `${measureLabel || DE.map.selectedMapMetadata?.MeasurementType || DE.map.selectedMapMetadata?.MeasureName || 'the selected measure'}`;
 
     return `No correlates available for ${resolvedMeasureLabel}. Change the Measure on the map to see available correlates.`;
 

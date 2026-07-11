@@ -80,6 +80,22 @@ const DE = {
         selectedComparisonMetadata: undefined,
         aqFilteredComparisonData: undefined,
         aqFilteredComparisonMetadata: undefined
+    },
+
+    // Map-view state: the joined map rows, the filtered slice showMap hands to the
+    // bar chart and print export, dropdown-selection flags, and measure metadata.
+    map: {
+        mapData: undefined,
+        filteredMapData: undefined,
+        selectedMapMeasure: undefined,
+        selectedMapTime: undefined,
+        selectedMapGeo: undefined,
+        selectedMapMetadata: undefined,
+        selectedMapAbout: undefined,
+        selectedMapSources: undefined,
+        defaultMapMetadata: undefined,
+        defaultMapAbout: undefined,
+        defaultMapSources: undefined
     }
 
 };
@@ -101,9 +117,6 @@ let aqIndicatorData;
 let joinedAqData;
 let aqMeasureIdTimes;
 
-// These plain-object arrays feed the currently active visualizations.
-let mapData;
-
 // Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
 let indicatorName;
@@ -122,23 +135,7 @@ let aqComparisonMetadata;
 let aqComparisonIndicatorsMetadata;
 let aqComparisonIndicatorData;
 
-// Per-view default metadata and about/source text are recomputed per indicator.
-let defaultMapMetadata;
-let defaultMapAbout;
-let defaultMapSources;
-
-// Current per-tab selections, set by menu/dropdown handlers and read back by renderers on redraw.
-let selectedMapMeasure;
-let selectedMapTime;
-let selectedMapGeo;
-
-// About/sources/metadata for the currently selected measure(s) on each tab, grouped by view.
-let selectedMapAbout;
-let selectedMapSources;
-let selectedMapMetadata;
-
 // Filtered slices let one renderer hand work to the next without refetching.
-let filteredMapData;
 let aqCombinedComparisonMetadata;
 
 // Joined Arquero tables capture which measures, times, and geographies each view supports.

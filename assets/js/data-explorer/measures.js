@@ -77,9 +77,9 @@ const setDefaultMapMeasure = (visArray) => {
 
     debugLog("* setDefaultMapMeasure");
 
-    defaultMapMetadata = buildDefaultMetadataArray(visArray);
+    DE.map.defaultMapMetadata = buildDefaultMetadataArray(visArray);
 
-    // console.log(">> defaultMapMetadata", defaultMapMetadata);
+    // console.log(">> defaultMapMetadata", DE.map.defaultMapMetadata);
 
 }
 
@@ -179,7 +179,7 @@ const getMeasureLinksMetadata = (measureId) => {
 // Reads the active map measure metadata even before the map finishes a redraw.
 const getActiveMapMeasureMetadata = () => {
 
-    return getMeasureMetadataById(MeasureID)[0] || selectedMapMetadata || null;
+    return getMeasureMetadataById(MeasureID)[0] || DE.map.selectedMapMetadata || null;
 
 };
 
@@ -1561,22 +1561,22 @@ const renderMeasures = async () => {
         let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
 
         // Fall back to the default map measure when the current MeasureID is unavailable here.
-        if (!metadata.length) metadata = defaultMapMetadata;
+        if (!metadata.length) metadata = DE.map.defaultMapMetadata;
 
         // ----- filter data by current globals ----- //
 
-        filteredMapData = mapData.filter(obj =>
+        DE.map.filteredMapData = DE.map.mapData.filter(obj =>
             obj.MeasureID == MeasureID &&
             obj.TimePeriodID == TimePeriodID &&
             prettifyGeoType(obj.GeoType) == GeoType
         );
 
-        debugLog("filteredMapData:", filteredMapData.length, "rows",
+        debugLog("filteredMapData:", DE.map.filteredMapData.length, "rows",
             { MeasureID, GeoType, TimePeriodID });
 
         // ----- render the Leaflet map only ----- //
 
-        return renderMap(filteredMapData, metadata);
+        return renderMap(DE.map.filteredMapData, metadata);
 
     };
 
@@ -1592,11 +1592,11 @@ const renderMeasures = async () => {
 
         let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
 
-        if (!metadata.length) metadata = defaultMapMetadata;
+        if (!metadata.length) metadata = DE.map.defaultMapMetadata;
 
         // ----- render the bar chart using the already-filtered map data ----- //
 
-        renderBar(filteredMapData, metadata, GeoType);
+        renderBar(DE.map.filteredMapData, metadata, GeoType);
 
     };
 

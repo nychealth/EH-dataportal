@@ -529,7 +529,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
     // send info for printing
     vizYear = mapTime;
     vizGeography = mapGeoType;
-    selectedMapMetadata = metadata[0] || null;
+    DE.map.selectedMapMetadata = metadata[0] || null;
     vizSource = metadata[0]?.Sources;
     chartType = 'map';
 
@@ -773,7 +773,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
     // send info for printing
     vizYear = mapTime;
     vizGeography = mapGeoType;
-    selectedMapMetadata = metadata[0] || null;
+    DE.map.selectedMapMetadata = metadata[0] || null;
     vizSource = metadata[0]?.Sources;
     chartType = 'bubble-map';
 
