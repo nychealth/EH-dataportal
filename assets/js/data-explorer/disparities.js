@@ -361,10 +361,10 @@ const renderDisparitiesChart = async (
         scheduleDisparitiesViewResize();
     });
 
-    printSpec = disparitiesSpec;
-    vizSource = primaryMetadata[0]?.Sources;
-    vizSourceSecond = disparityMetadata[0].Sources;
-    chartType = 'disparities';
+    DE.print.printSpec = disparitiesSpec;
+    DE.print.vizSource = primaryMetadata[0]?.Sources;
+    DE.print.vizSourceSecond = disparityMetadata[0].Sources;
+    DE.print.chartType = 'disparities';
 
     // Export raw joined rows without internal plotting-only helper columns.
     const dataForDownload = [...disparitiesSpec.data.values];
@@ -394,6 +394,6 @@ const renderDisparitiesChart = async (
         .derive({ Value_1_Indicator: aq.escape(primaryIndicatorName) })
         .derive({ Value_2_Indicator: aq.escape(disparityIndicatorName) });
 
-    CSVforDownload = downloadTable.toCSV();
+    DE.print.CSVforDownload = downloadTable.toCSV();
 
 };

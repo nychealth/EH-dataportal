@@ -666,9 +666,9 @@ const renderTrendChart = (
 
     });
 
-    vizSource = metadataObjects[0].Sources;
-    printSpec = compspec2;
-    chartType = 'trend';
+    DE.print.vizSource = metadataObjects[0].Sources;
+    DE.print.printSpec = compspec2;
+    DE.print.chartType = 'trend';
 
     const dataForDownload = [...compspec2.data.values];
 
@@ -676,6 +676,6 @@ const renderTrendChart = (
         .derive({ Indicator: aq.escape(`${indicatorName}: ${plotTitle} ${plotSubtitle}`) })
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
 
-    CSVforDownload = downloadTable.toCSV();
+    DE.print.CSVforDownload = downloadTable.toCSV();
 
 };

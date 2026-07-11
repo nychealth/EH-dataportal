@@ -96,6 +96,20 @@ const DE = {
         defaultMapMetadata: undefined,
         defaultMapAbout: undefined,
         defaultMapSources: undefined
+    },
+
+    // Print/export state: the current view's Vega spec, caption fields, and chart
+    // type — set by each tab renderer, read back by print.js and downloadData().
+    print: {
+        printSpec: {},
+        vizYear: undefined,
+        vizGeography: undefined,
+        vizSource: undefined,
+        vizSourceSecond: undefined,
+        chartType: undefined,
+        CSVforDownload: undefined,
+        downloadedIndicator: undefined,
+        downloadedIndicatorMeasurement: undefined
     }
 
 };
@@ -165,20 +179,6 @@ let showComparisonTrend;
 let showLinks;
 let syncTrendSelectionsToMapSelection;
 let syncLinksSelectionsToMapSelection;
-
-// The active view's data as CSV, built on demand and read back by downloadData().
-let CSVforDownload;
-let downloadedIndicator;
-let downloadedIndicatorMeasurement;
-
-// Print-spec state: the current view's year/geography/source labels and chart type,
-// set by each tab renderer and read back when print.js builds the export caption.
-let printSpec = {};
-let vizYear;
-let vizGeography;
-let vizSource;
-let vizSourceSecond;
-let chartType;
 
 // Compared against window.history.state in data.js to detect first-load vs. popstate
 // navigation. Renamed from `state` so that bare name stays free for DE.state.
@@ -608,8 +608,8 @@ const trackDataExplorerPrintView = (chartView) => {
 // Determines the view label for the downloaded CSV filename: prefers the last-rendered chart type, falls back to the current overlay tab, defaults to 'bar'.
 const getCurrentDataDownloadView = () => {
 
-    if (chartType) {
-        return chartType === 'bubble-map' ? 'map' : chartType;
+    if (DE.print.chartType) {
+        return DE.print.chartType === 'bubble-map' ? 'map' : DE.print.chartType;
     }
 
     if (overlay === 'trend') {
@@ -637,7 +637,7 @@ const downloadData = (
         debugLog('Downloading data')
 
         // else, for chart view downloads: 
-        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
+        let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(DE.print.CSVforDownload);
         let hiddenElement = document.createElement('a');
 
         // set view to send to file name

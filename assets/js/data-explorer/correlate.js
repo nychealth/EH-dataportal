@@ -72,7 +72,7 @@ const registerCorrelateResizeHandler = () => {
 
     window.addEventListener('resize', () => {
 
-        if (chartType !== 'links') {
+        if (DE.print.chartType !== 'links') {
             return;
         }
 
@@ -156,10 +156,10 @@ const renderNoCorrelatesMessage = (measureLabel) => {
         unreliabilityHolder.classList.add('hide');
     }
 
-    printSpec = null;
-    CSVforDownload = '';
-    vizSource = null;
-    vizSourceSecond = null;
+    DE.print.printSpec = null;
+    DE.print.CSVforDownload = '';
+    DE.print.vizSource = null;
+    DE.print.vizSourceSecond = null;
     window.correlateVegaView = null;
 
     setCorrelateActionState(false);
@@ -577,10 +577,10 @@ const renderCorrelate = (
         scheduleCorrelateViewResize();
     });
 
-    printSpec = correlateSpec;
-    chartType = 'links';
-    vizSource = primaryMetadata[0].Sources;
-    vizSourceSecond = secondaryMetadata[0].Sources;
+    DE.print.printSpec = correlateSpec;
+    DE.print.chartType = 'links';
+    DE.print.vizSource = primaryMetadata[0].Sources;
+    DE.print.vizSourceSecond = secondaryMetadata[0].Sources;
 
     // Export only analyst-facing columns, then append readable measure labels.
     const dataForDownload = [...correlateSpec.data.values];
@@ -609,6 +609,6 @@ const renderCorrelate = (
         .derive({ Value_1_Indicator: aq.escape(`${yIndicatorName} - ${yMeasure} ${yDisplay}`) })
         .derive({ Value_2_Indicator: aq.escape(`${xIndicatorName} - ${xMeasure} ${xDisplay ? `(${xDisplay})` : ''}`) });
 
-    CSVforDownload = downloadTable.toCSV();
+    DE.print.CSVforDownload = downloadTable.toCSV();
 
 };

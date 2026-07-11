@@ -279,7 +279,7 @@ const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
 // Returns the pre-rendered unreliability-footnote HTML for the current chart type, if any.
 const getChartFootnotesHTML = () => {
 
-    switch (chartType) {
+    switch (DE.print.chartType) {
         case 'trend':
             return document.getElementById('trend-unreliability')?.innerHTML || '';
 
@@ -297,7 +297,7 @@ const getChartFootnotesHTML = () => {
 // Clones the current spec and embeds it via vegaEmbed for the modal preview, showing an error state on failure.
 const renderChartPreview = () => {
 
-    const spec = clonePrintSpec(printSpec);
+    const spec = clonePrintSpec(DE.print.printSpec);
 
     if (!spec) {
         showPrintErrorState('Nothing is available to save for this view yet.');
@@ -338,8 +338,8 @@ const buildMapExportFilename = () => {
         'NYC EH Data Portal',
         indicatorName || document.querySelector('.indicator-name')?.textContent,
         DE.map.selectedMapMetadata?.MeasurementType,
-        vizGeography,
-        vizYear,
+        DE.print.vizGeography,
+        DE.print.vizYear,
         'map'
     ].filter(Boolean);
 
@@ -359,8 +359,8 @@ const getMapExportSubtitle = () => {
 
     return [
         DE.map.selectedMapMetadata?.MeasurementType,
-        vizYear,
-        vizGeography
+        DE.print.vizYear,
+        DE.print.vizGeography
     ].filter(Boolean).join(' | ');
 
 };
@@ -371,10 +371,10 @@ const getMapExportSources = () => {
 
     const sourceValues = [];
 
-    if (Array.isArray(vizSource)) {
-        sourceValues.push(...vizSource.filter(Boolean));
-    } else if (typeof vizSource === 'string' && vizSource.trim()) {
-        sourceValues.push(vizSource.trim());
+    if (Array.isArray(DE.print.vizSource)) {
+        sourceValues.push(...DE.print.vizSource.filter(Boolean));
+    } else if (typeof DE.print.vizSource === 'string' && DE.print.vizSource.trim()) {
+        sourceValues.push(DE.print.vizSource.trim());
     }
 
     sourceValues.push(MAP_EXPORT_BASEMAP_ATTRIBUTION);
@@ -1308,7 +1308,7 @@ const renderMapPreview = async () => {
 // Public entry point that tracks the event, opens the modal, and renders the chart preview.
 const openChartSaveModal = () => {
 
-    trackDataExplorerPrintView(chartType || overlay || 'chart');
+    trackDataExplorerPrintView(DE.print.chartType || overlay || 'chart');
     openPrintModal();
     renderChartPreview();
 

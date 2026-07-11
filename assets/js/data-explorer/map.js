@@ -527,11 +527,11 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         });
 
     // send info for printing
-    vizYear = mapTime;
-    vizGeography = mapGeoType;
+    DE.print.vizYear = mapTime;
+    DE.print.vizGeography = mapGeoType;
     DE.map.selectedMapMetadata = metadata[0] || null;
-    vizSource = metadata[0]?.Sources;
-    chartType = 'map';
+    DE.print.vizSource = metadata[0]?.Sources;
+    DE.print.chartType = 'map';
 
     return mapRenderPromise;
 };
@@ -771,11 +771,11 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         });
 
     // send info for printing
-    vizYear = mapTime;
-    vizGeography = mapGeoType;
+    DE.print.vizYear = mapTime;
+    DE.print.vizGeography = mapGeoType;
     DE.map.selectedMapMetadata = metadata[0] || null;
-    vizSource = metadata[0]?.Sources;
-    chartType = 'bubble-map';
+    DE.print.vizSource = metadata[0]?.Sources;
+    DE.print.chartType = 'bubble-map';
 
     return mapRenderPromise;
 };

@@ -518,9 +518,9 @@ const renderBar = (
     
     vegaSpec.signals.push(geoSignal)
 
-    printSpec = vegaSpec;
-    vizSource = metadata[0]?.Sources;
-    chartType = 'bar';
+    DE.print.printSpec = vegaSpec;
+    DE.print.vizSource = metadata[0]?.Sources;
+    DE.print.chartType = 'bar';
 
     // ----- render & map-hover interop ----- //
 
