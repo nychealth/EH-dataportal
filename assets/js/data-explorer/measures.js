@@ -426,8 +426,8 @@ const renderMeasures = async () => {
     resolveTabReferences();
 
     // Throw away any sticky table selection state before deriving new defaults for this indicator.
-    selectedTableTimes = [];
-    selectedTableGeography = [];
+    DE.table.selectedTableTimes = [];
+    DE.table.selectedTableGeography = [];
 
     // clear measure arrays
 
@@ -451,11 +451,11 @@ const renderMeasures = async () => {
     const selectedTableTime = timeLookup[TimePeriodID]?.TimePeriod;
 
     if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
-        selectedTableTimes = [selectedTableTime];
+        DE.table.selectedTableTimes = [selectedTableTime];
     } else if (tableTimes.length) {
-        selectedTableTimes = [tableTimes[0]];
+        DE.table.selectedTableTimes = [tableTimes[0]];
     } else {
-        selectedTableTimes = [];
+        DE.table.selectedTableTimes = [];
     }
 
 
@@ -469,16 +469,16 @@ const renderMeasures = async () => {
 
     // Default the table to the currently selected geography when available.
     if (GeoType && dropdownTableGeoTypes.includes(GeoType)) {
-        selectedTableGeography = [GeoType];
+        DE.table.selectedTableGeography = [GeoType];
     } else if (dropdownTableGeoTypes.length) {
-        selectedTableGeography = [dropdownTableGeoTypes[0]];
+        DE.table.selectedTableGeography = [dropdownTableGeoTypes[0]];
     } else {
-        selectedTableGeography = [];
+        DE.table.selectedTableGeography = [];
     }
 
-    tableTimeFilterIsManual = false;
-    tableGeoFilterIsManual = false;
-    tableNeedsRender = true;
+    DE.table.tableTimeFilterIsManual = false;
+    DE.table.tableGeoFilterIsManual = false;
+    DE.table.tableNeedsRender = true;
 
     // Force first table-tab visit to rebuild table and filter controls for this indicator.
     const tableContainer = document.getElementById('summary-table');
@@ -1523,13 +1523,13 @@ const renderMeasures = async () => {
         // Render the table on first access (lazy initialization for performance).
         // The placeholder text node in the template should not block first render.
         const tableContainer = document.getElementById('summary-table');
-        if (tableData && (!tableContainer.querySelector('table') || tableNeedsRender)) {
-            renderTable(tableData);
+        if (DE.table.tableData && (!tableContainer.querySelector('table') || DE.table.tableNeedsRender)) {
+            renderTable(DE.table.tableData);
             didRenderTable = true;
-        } else if (tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+        } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
             // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
-            renderTableFilterControls(tableData);
-            applyTableFilters(tableData);
+            renderTableFilterControls(DE.table.tableData);
+            applyTableFilters(DE.table.tableData);
         }
 
         // updateChartPlotSize();

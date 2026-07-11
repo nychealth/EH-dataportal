@@ -10,13 +10,26 @@
 // shared explorer state
 // ----------------------------------------------------------------------- //
 
-// Summary-table filter state persists across redraws until a new indicator resets it.
-let selectedTableTimes = [];
-let selectedTableGeography = [];
-let tableAreaSearchValue = '';
-let tableTimeFilterIsManual = false;
-let tableGeoFilterIsManual = false;
-let tableNeedsRender = false;
+// Grouped namespace for shared explorer state. Each sub-object is introduced by the
+// migration stage that converts its concern (see
+// documents/data-explorer-state-namespace-design-2026-07-10.md). Render closures,
+// tab refs, DOM element caches, and the static lookup constants below stay bare
+// by design — they are module seams, not churning state.
+const DE = {
+
+    // Summary-table state: filter selections and manual-override flags persist across
+    // redraws until a new indicator resets them; tableData holds the joined rows.
+    table: {
+        selectedTableTimes: [],
+        selectedTableGeography: [],
+        tableAreaSearchValue: '',
+        tableTimeFilterIsManual: false,
+        tableGeoFilterIsManual: false,
+        tableNeedsRender: false,
+        tableData: undefined
+    }
+
+};
 
 // Shared content holders are resolved after the page shell exists.
 let aboutMeasures;
@@ -36,7 +49,6 @@ let joinedAqData;
 let aqMeasureIdTimes;
 
 // These plain-object arrays feed the currently active visualizations.
-let tableData;
 let mapData;
 let trendData;
 let linksData;

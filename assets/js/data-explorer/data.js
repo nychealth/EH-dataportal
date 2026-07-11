@@ -536,7 +536,7 @@ const joinData = async () => {
 
     // ----- derive tableData ----- //
 
-    tableData = joinedAqData
+    DE.table.tableData = joinedAqData
         .join_left(aqMeasureDisplay, "MeasureID")
         // Semijoin trims the shared dataset down to only the geos and times allowed in the table tab.
         .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])

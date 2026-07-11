@@ -36,8 +36,8 @@ const escapeRegexValue = (value) => {
 // Returns the raw rows that match the current table filter state.
 const getSelectedTableRows = (rows) => {
 
-    const selectedTimes = new Set(selectedTableTimes);
-    const selectedGeos = new Set(selectedTableGeography);
+    const selectedTimes = new Set(DE.table.selectedTableTimes);
+    const selectedGeos = new Set(DE.table.selectedTableGeography);
 
     return rows.filter(d => {
         // Compare against prettified geotypes so checkbox labels and row filtering stay aligned.
@@ -56,17 +56,17 @@ const getTableColumnSearchValues = (rows) => {
 
     return {
         // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
-        timeSearch: !selectedTableTimes.length
+        timeSearch: !DE.table.selectedTableTimes.length
             ? '(?!)'
             // An empty regex means “no restriction” when every time period is selected.
-            : selectedTableTimes.length === availableTimes.length
+            : DE.table.selectedTableTimes.length === availableTimes.length
                 ? ''
-                : `^(${selectedTableTimes.map(escapeRegexValue).join('|')})$`,
-        geoSearch: !selectedTableGeography.length
+                : `^(${DE.table.selectedTableTimes.map(escapeRegexValue).join('|')})$`,
+        geoSearch: !DE.table.selectedTableGeography.length
             ? '(?!)'
-            : selectedTableGeography.length === availableGeos.length
+            : DE.table.selectedTableGeography.length === availableGeos.length
                 ? ''
-                : `^(${selectedTableGeography.map(escapeRegexValue).join('|')})$`
+                : `^(${DE.table.selectedTableGeography.map(escapeRegexValue).join('|')})$`
     };
 
 };
@@ -112,37 +112,37 @@ const getCurrentMapTableFilters = (rows) => {
 const syncTableFiltersToMapSelection = (force = false) => {
 
     // Sync requests can arrive before a new indicator has finished building tableData.
-    if (!tableData || !tableData.length) {
+    if (!DE.table.tableData || !DE.table.tableData.length) {
         return false;
     }
 
-    const { timeSelection, geoSelection } = getCurrentMapTableFilters(tableData);
+    const { timeSelection, geoSelection } = getCurrentMapTableFilters(DE.table.tableData);
     let didChange = false;
 
     // Respect manual overrides unless the caller explicitly forces a full resync.
-    if (force || !tableTimeFilterIsManual) {
-        const sameTimeSelection = selectedTableTimes.length === timeSelection.length &&
-            selectedTableTimes.every((time, index) => time === timeSelection[index]);
+    if (force || !DE.table.tableTimeFilterIsManual) {
+        const sameTimeSelection = DE.table.selectedTableTimes.length === timeSelection.length &&
+            DE.table.selectedTableTimes.every((time, index) => time === timeSelection[index]);
 
         if (!sameTimeSelection) {
-            selectedTableTimes = timeSelection;
+            DE.table.selectedTableTimes = timeSelection;
             didChange = true;
         }
 
-        tableTimeFilterIsManual = false;
+        DE.table.tableTimeFilterIsManual = false;
     }
 
     // Geography sync follows the same rule so users can customize one dimension independently.
-    if (force || !tableGeoFilterIsManual) {
-        const sameGeoSelection = selectedTableGeography.length === geoSelection.length &&
-            selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
+    if (force || !DE.table.tableGeoFilterIsManual) {
+        const sameGeoSelection = DE.table.selectedTableGeography.length === geoSelection.length &&
+            DE.table.selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
 
         if (!sameGeoSelection) {
-            selectedTableGeography = geoSelection;
+            DE.table.selectedTableGeography = geoSelection;
             didChange = true;
         }
 
-        tableGeoFilterIsManual = false;
+        DE.table.tableGeoFilterIsManual = false;
     }
 
     return didChange;
@@ -160,23 +160,23 @@ const updateTableFilterSummary = (availableTimes, availableGeos) => {
         return;
     }
 
-    const timeSummary = !selectedTableTimes.length
+    const timeSummary = !DE.table.selectedTableTimes.length
         ? 'No time periods'
-        : selectedTableTimes.length === availableTimes.length
+        : DE.table.selectedTableTimes.length === availableTimes.length
             ? 'All time periods'
-            : selectedTableTimes.length === 1
-                ? selectedTableTimes[0]
-                : `${selectedTableTimes.length} time periods`;
+            : DE.table.selectedTableTimes.length === 1
+                ? DE.table.selectedTableTimes[0]
+                : `${DE.table.selectedTableTimes.length} time periods`;
 
-    const geoSummary = !selectedTableGeography.length
+    const geoSummary = !DE.table.selectedTableGeography.length
         ? 'No geographies'
-        : selectedTableGeography.length === availableGeos.length
+        : DE.table.selectedTableGeography.length === availableGeos.length
             ? 'All geographies'
-            : selectedTableGeography.length === 1
-                ? selectedTableGeography[0]
-                : `${selectedTableGeography.length} geographies`;
+            : DE.table.selectedTableGeography.length === 1
+                ? DE.table.selectedTableGeography[0]
+                : `${DE.table.selectedTableGeography.length} geographies`;
 
-    const syncState = tableTimeFilterIsManual || tableGeoFilterIsManual ? 'Custom' : 'Synced';
+    const syncState = DE.table.tableTimeFilterIsManual || DE.table.tableGeoFilterIsManual ? 'Custom' : 'Synced';
 
     summary.textContent = `${timeSummary} | ${geoSummary} | ${syncState}`;
 
@@ -218,8 +218,8 @@ const syncTableAreaSearchInput = () => {
         return;
     }
 
-    filterInput.val(tableAreaSearchValue);
-    filterInput.data('areaOnlySearchValue', tableAreaSearchValue);
+    filterInput.val(DE.table.tableAreaSearchValue);
+    filterInput.data('areaOnlySearchValue', DE.table.tableAreaSearchValue);
 
 };
 
@@ -227,14 +227,14 @@ const syncTableAreaSearchInput = () => {
 // Applies the Area-only search term to DataTables, optionally without drawing immediately.
 const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
 
-    tableAreaSearchValue = nextValue || '';
+    DE.table.tableAreaSearchValue = nextValue || '';
 
     // Mirror the shared state back into the visible input before changing DataTables internals.
     syncTableAreaSearchInput();
 
     // Clear DataTables' global search so only the Area column-specific search stays active.
     dataTable.search('');
-    dataTable.column(8).search(tableAreaSearchValue);
+    dataTable.column(8).search(DE.table.tableAreaSearchValue);
 
     // Some callers batch search updates and will trigger the draw themselves.
     if (shouldDraw) {
@@ -247,7 +247,7 @@ const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
 // Clears the Area-only search so dropdown-driven redraws do not keep a stale hidden filter.
 const clearTableAreaSearch = () => {
 
-    tableAreaSearchValue = '';
+    DE.table.tableAreaSearchValue = '';
 
     // Only touch DataTables internals after the lazy table has actually been created.
     if ($.fn.dataTable.isDataTable('#tableID')) {
@@ -351,32 +351,32 @@ const renderTableFilterControls = (rows) => {
     // ----- compute available time and geography option sets ----- //
 
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
-    const filteredTableTimeData = selectedTableTimes.length
-        ? rows.filter(d => selectedTableTimes.includes(d.TimePeriod))
+    const filteredTableTimeData = DE.table.selectedTableTimes.length
+        ? rows.filter(d => DE.table.selectedTableTimes.includes(d.TimePeriod))
         : [];
 
     // Geography availability depends on the currently checked time periods.
-    const dataGeos = selectedTableTimes.length
+    const dataGeos = DE.table.selectedTableTimes.length
         ? [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))]
         : availableGeos;
 
     // ----- prune stale selections, fall back to a valid geography ----- //
 
     // Keep only valid selections when indicator data changes.
-    selectedTableTimes = selectedTableTimes.filter(time => availableTimes.includes(time));
-    selectedTableGeography = selectedTableGeography.filter(geo => availableGeos.includes(geo));
+    DE.table.selectedTableTimes = DE.table.selectedTableTimes.filter(time => availableTimes.includes(time));
+    DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => availableGeos.includes(geo));
 
     // Match the old explorer behavior by muting geography options that are unavailable
     // for the currently selected time period(s).
-    if (selectedTableTimes.length) {
-        selectedTableGeography = selectedTableGeography.filter(geo => dataGeos.includes(geo));
+    if (DE.table.selectedTableTimes.length) {
+        DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => dataGeos.includes(geo));
 
         // - - - fall back to a valid geography when the synced value is unavailable - - - //
 
         // Keep synced table filters on a valid geography when the current map geo
         // is unavailable for the selected table time period.
-        if (!selectedTableGeography.length && dataGeos.length && !tableGeoFilterIsManual) {
-            selectedTableGeography = [GeoType && dataGeos.includes(GeoType) ? GeoType : dataGeos[0]];
+        if (!DE.table.selectedTableGeography.length && dataGeos.length && !DE.table.tableGeoFilterIsManual) {
+            DE.table.selectedTableGeography = [GeoType && dataGeos.includes(GeoType) ? GeoType : dataGeos[0]];
         }
     }
 
@@ -420,8 +420,8 @@ const renderTableFilterControls = (rows) => {
 
     // ----- render time checkboxes ----- //
 
-    renderCheckboxes(timeHolder, availableTimes, selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
-        const nextTimes = new Set(selectedTableTimes);
+    renderCheckboxes(timeHolder, availableTimes, DE.table.selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
+        const nextTimes = new Set(DE.table.selectedTableTimes);
 
         if (checked) {
             nextTimes.add(value);
@@ -430,8 +430,8 @@ const renderTableFilterControls = (rows) => {
         }
 
         // Preserve display order from availableTimes instead of checkbox click order.
-        selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
-        tableTimeFilterIsManual = true;
+        DE.table.selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
+        DE.table.tableTimeFilterIsManual = true;
         trackDataExplorerOption('table_time');
         renderTableFilterControls(rows);
         applyTableFilters(rows);
@@ -442,26 +442,26 @@ const renderTableFilterControls = (rows) => {
     renderCheckboxes(
         geoHolder,
         availableGeos,
-        selectedTableGeography,
+        DE.table.selectedTableGeography,
         'checkbox-geo',
         'table-geo',
         (value, checked) => {
             if (checked) {
-                if (!selectedTableGeography.includes(value)) {
-                    selectedTableGeography.push(value);
+                if (!DE.table.selectedTableGeography.includes(value)) {
+                    DE.table.selectedTableGeography.push(value);
                 }
             } else {
-                selectedTableGeography = selectedTableGeography.filter(geo => geo !== value);
+                DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => geo !== value);
             }
 
             // Re-sort to canonical geography order before redrawing controls and rows.
-            selectedTableGeography = availableGeos.filter(geo => selectedTableGeography.includes(geo));
-            tableGeoFilterIsManual = true;
+            DE.table.selectedTableGeography = availableGeos.filter(geo => DE.table.selectedTableGeography.includes(geo));
+            DE.table.tableGeoFilterIsManual = true;
             trackDataExplorerOption('table_geo');
             renderTableFilterControls(rows);
             applyTableFilters(rows);
         },
-        (option) => selectedTableTimes.length > 0 && !dataGeos.includes(option)
+        (option) => DE.table.selectedTableTimes.length > 0 && !dataGeos.includes(option)
     );
 
     // ----- wire sync-to-map button, refresh filter summary ----- //
@@ -499,7 +499,7 @@ const renderTable = (tableData) => {
         $('#tableID').DataTable().destroy();
     }
 
-    tableNeedsRender = false;
+    DE.table.tableNeedsRender = false;
 
     // ----- prep data (table filters) ----- //
 
