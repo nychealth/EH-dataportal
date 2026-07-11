@@ -9,9 +9,11 @@
 // Dev-only tooling — not part of the Hugo build or the shipped bundle.
 //
 // IMPORTANT: this script must only read DOM output and window-scoped objects
-// (window.$, window.myVegaView). It must never read the bare `let` globals it
-// characterizes — their names change between stages, and the harness has to
-// stay valid across the whole migration.
+// (window.$, window.myVegaView, and window.__deVegaViews — this harness's own
+// vegaEmbed-capture hook installed by installVegaViewCapture below, since
+// trend.js/disparities.js don't expose a view of their own). It must never
+// read the bare `let` globals it characterizes — their names change between
+// stages, and the harness has to stay valid across the whole migration.
 //
 // Usage (dev server must already be running in another terminal):
 //   hugo server --environment dev_stage --cleanDestinationDir --logLevel debug -p 8080
