@@ -1308,7 +1308,7 @@ const renderMapPreview = async () => {
 // Public entry point that tracks the event, opens the modal, and renders the chart preview.
 const openChartSaveModal = () => {
 
-    trackDataExplorerPrintView(DE.print.chartType || overlay || 'chart');
+    trackDataExplorerPrintView(DE.print.chartType || DE.state.overlay || 'chart');
     openPrintModal();
     renderChartPreview();
 

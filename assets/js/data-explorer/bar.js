@@ -39,7 +39,7 @@ const registerBarTabResizeHandler = () => {
     }
 
     barTab.addEventListener('shown.bs.tab', () => {
-        if (overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {
+        if (DE.state.overlay === 'bar' && window.myVegaView && typeof window.myVegaView.resize === 'function') {
             window.myVegaView.resize().run();
         }
     });

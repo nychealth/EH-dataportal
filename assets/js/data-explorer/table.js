@@ -76,8 +76,8 @@ const getTableColumnSearchValues = (rows) => {
 const getCurrentMapTableFilters = (rows) => {
 
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
-    const currentTime = DE.lookups.timeLookup[TimePeriodID]?.TimePeriod;
-    const currentGeo = GeoType;
+    const currentTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
+    const currentGeo = DE.state.GeoType;
 
     // Prefer the current map time when it exists in the table; otherwise fall back to the first table time.
     const timeSelection = currentTime && availableTimes.includes(currentTime)
@@ -376,7 +376,7 @@ const renderTableFilterControls = (rows) => {
         // Keep synced table filters on a valid geography when the current map geo
         // is unavailable for the selected table time period.
         if (!DE.table.selectedTableGeography.length && dataGeos.length && !DE.table.tableGeoFilterIsManual) {
-            DE.table.selectedTableGeography = [GeoType && dataGeos.includes(GeoType) ? GeoType : dataGeos[0]];
+            DE.table.selectedTableGeography = [DE.state.GeoType && dataGeos.includes(DE.state.GeoType) ? DE.state.GeoType : dataGeos[0]];
         }
     }
 

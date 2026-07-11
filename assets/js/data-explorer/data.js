@@ -165,7 +165,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // preserve current tab; default to none (no overlay open) on first load
 
     // Default to no overlay until a tab is explicitly chosen or restored.
-    if (!overlay) overlay = 'none';
+    if (!DE.state.overlay) DE.state.overlay = 'none';
 
     // if IndicatorID isn't given, use the first indicator from the dropdown list
     //  (which is populated by Hugo reading the content frontmatter).
@@ -173,7 +173,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
     // coerce to float; HTML data attributes are strings, but IndicatorID comparisons use == throughout
-    IndicatorID = parseFloat(this_IndicatorID);
+    DE.state.IndicatorID = parseFloat(this_IndicatorID);
 
     // remove active class from every list element
     // $(".indicator-dropdown-item").removeClass("active");
@@ -193,7 +193,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // IndicatorID comes in as  a string, so "find" uses '==' instead of '==='
 
-    DE.indicator.indicator = indicators.find(indicator => indicator.IndicatorID == IndicatorID);
+    DE.indicator.indicator = indicators.find(indicator => indicator.IndicatorID == DE.state.IndicatorID);
     DE.indicator.indicatorName = DE.indicator.indicator?.IndicatorName ? DE.indicator.indicator.IndicatorName : '';
     DE.indicator.indicatorDesc = DE.indicator.indicator?.IndicatorDescription ? DE.indicator.indicator.IndicatorDescription : '';
     DE.indicator.indicatorShortName = DE.indicator.indicator?.IndicatorShortname ? DE.indicator.indicator.IndicatorShortname : DE.indicator.indicatorName;
@@ -240,22 +240,22 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // Use a fresh URL snapshot so we don't accidentally restore stale params.
 
     const nextURL = new URL(window.location);
-    nextURL.searchParams.set('id', parseFloat(IndicatorID));
+    nextURL.searchParams.set('id', parseFloat(DE.state.IndicatorID));
 
     // Skip history writes during popstate replays so back/forward does not create duplicate entries.
-    if (!dont_add_to_history && (window.history.state === null || historyState === null || window.history.state.id != IndicatorID)) {
+    if (!dont_add_to_history && (window.history.state === null || historyState === null || window.history.state.id != DE.state.IndicatorID)) {
 
         if (window.history.state === null || historyState === null) {
 
             // - - - first load: replace the initial history entry - - - //
 
-            window.history.replaceState({ id: IndicatorID }, '', nextURL);
+            window.history.replaceState({ id: DE.state.IndicatorID }, '', nextURL);
 
         } else {
 
             // - - - indicator changed: push new history entry - - - //
 
-            window.history.pushState({ id: IndicatorID }, '', nextURL);
+            window.history.pushState({ id: DE.state.IndicatorID }, '', nextURL);
 
         }
 
@@ -282,7 +282,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // ----- kick off loadData ----- //
 
-    await loadData(IndicatorID);
+    await loadData(DE.state.IndicatorID);
 
 }
 

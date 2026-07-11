@@ -179,7 +179,7 @@ const getMeasureLinksMetadata = (measureId) => {
 // Reads the active map measure metadata even before the map finishes a redraw.
 const getActiveMapMeasureMetadata = () => {
 
-    return getMeasureMetadataById(MeasureID)[0] || DE.map.selectedMapMetadata || null;
+    return getMeasureMetadataById(DE.state.MeasureID)[0] || DE.map.selectedMapMetadata || null;
 
 };
 
@@ -199,7 +199,7 @@ const getActiveMapMeasureLabel = () => {
 // Whether the current map measure exposes at least one correlate in metadata.
 const activeMapMeasureSupportsLinks = () => {
 
-    return getMeasureLinksMetadata(MeasureID).length > 0;
+    return getMeasureLinksMetadata(DE.state.MeasureID).length > 0;
 
 };
 
@@ -324,7 +324,7 @@ const clickLinksToggle = (e) => {
             }
 
             const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
-                ? Number(MeasureID)
+                ? Number(DE.state.MeasureID)
                 : Number(DE.links.selectedLinksPrimaryMeasureId);
 
             const nextPrimaryMeasureId = measureSupportsDisparities(activePrimaryMeasureId)
@@ -354,7 +354,7 @@ const clickLinksToggle = (e) => {
         }
 
         const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
-            ? Number(MeasureID)
+            ? Number(DE.state.MeasureID)
             : Number(DE.links.selectedLinksPrimaryMeasureId);
 
         const nextPrimaryMeasureId = measureSupportsLinks(activePrimaryMeasureId)
@@ -448,7 +448,7 @@ const renderMeasures = async () => {
     const tableTimes = [...new Set(DE.lookups.aqTableTimesGeos.array("TimePeriod"))];
 
     // Default the table to the currently selected time period when available.
-    const selectedTableTime = DE.lookups.timeLookup[TimePeriodID]?.TimePeriod;
+    const selectedTableTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
 
     if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
         DE.table.selectedTableTimes = [selectedTableTime];
@@ -468,8 +468,8 @@ const renderMeasures = async () => {
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
 
     // Default the table to the currently selected geography when available.
-    if (GeoType && dropdownTableGeoTypes.includes(GeoType)) {
-        DE.table.selectedTableGeography = [GeoType];
+    if (DE.state.GeoType && dropdownTableGeoTypes.includes(DE.state.GeoType)) {
+        DE.table.selectedTableGeography = [DE.state.GeoType];
     } else if (dropdownTableGeoTypes.length) {
         DE.table.selectedTableGeography = [dropdownTableGeoTypes[0]];
     } else {
@@ -671,7 +671,7 @@ const renderMeasures = async () => {
     // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getSyncedTrendMeasureId = () => {
 
-        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(MeasureID));
+        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
 
         if (matchingMapMeasure) {
             return Number(matchingMapMeasure.MeasureID);
@@ -697,8 +697,8 @@ const renderMeasures = async () => {
 
         const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
             comp.Indicators?.some(ind =>
-                Number(ind.IndicatorID) === Number(IndicatorID) &&
-                Number(ind.MeasureID) === Number(MeasureID)
+                Number(ind.IndicatorID) === Number(DE.state.IndicatorID) &&
+                Number(ind.MeasureID) === Number(DE.state.MeasureID)
             )
         );
 
@@ -707,7 +707,7 @@ const renderMeasures = async () => {
         }
 
         const matchingIndicatorComparison = DE.lookups.comparisonMetadata.find(comp =>
-            comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(IndicatorID))
+            comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(DE.state.IndicatorID))
         );
 
         if (matchingIndicatorComparison) {
@@ -743,8 +743,8 @@ const renderMeasures = async () => {
         }
 
         const matchingMeasureRow = comparisonRows.find(row =>
-            Number(row.IndicatorID) === Number(IndicatorID) &&
-            Number(row.MeasureID) === Number(MeasureID)
+            Number(row.IndicatorID) === Number(DE.state.IndicatorID) &&
+            Number(row.MeasureID) === Number(DE.state.MeasureID)
         );
 
         if (matchingMeasureRow) {
@@ -752,7 +752,7 @@ const renderMeasures = async () => {
         }
 
         const matchingIndicatorRow = comparisonRows.find(row =>
-            Number(row.IndicatorID) === Number(IndicatorID)
+            Number(row.IndicatorID) === Number(DE.state.IndicatorID)
         );
 
         if (matchingIndicatorRow) {
@@ -1084,7 +1084,7 @@ const renderMeasures = async () => {
     // Computes the default links/disparities state from the current map measure via a 5-tier priority waterfall.
     const getSyncedLinksState = () => {
 
-        const syncedMapMeasureId = MeasureID == null ? null : Number(MeasureID);
+        const syncedMapMeasureId = DE.state.MeasureID == null ? null : Number(DE.state.MeasureID);
 
         // Tier 1: map measure supports links — sync links to it.
         if (measureSupportsLinks(syncedMapMeasureId)) {
@@ -1476,7 +1476,7 @@ const renderMeasures = async () => {
         const tablePane = document.querySelector('#v-pills-table');
 
         // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
-        if (!tablePane || overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
+        if (!tablePane || DE.state.overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
             return;
         }
 
@@ -1517,7 +1517,7 @@ const renderMeasures = async () => {
 
         debugLog("* showTable");
 
-        overlay = 'table';
+        DE.state.overlay = 'table';
         let didRenderTable = false;
 
         // Render the table on first access (lazy initialization for performance).
@@ -1558,7 +1558,7 @@ const renderMeasures = async () => {
 
         // ----- resolve metadata for the current MeasureID ----- //
 
-        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == MeasureID);
+        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
 
         // Fall back to the default map measure when the current MeasureID is unavailable here.
         if (!metadata.length) metadata = DE.map.defaultMapMetadata;
@@ -1566,13 +1566,13 @@ const renderMeasures = async () => {
         // ----- filter data by current globals ----- //
 
         DE.map.filteredMapData = DE.map.mapData.filter(obj =>
-            obj.MeasureID == MeasureID &&
-            obj.TimePeriodID == TimePeriodID &&
-            prettifyGeoType(obj.GeoType) == GeoType
+            obj.MeasureID == DE.state.MeasureID &&
+            obj.TimePeriodID == DE.state.TimePeriodID &&
+            prettifyGeoType(obj.GeoType) == DE.state.GeoType
         );
 
         debugLog("filteredMapData:", DE.map.filteredMapData.length, "rows",
-            { MeasureID, GeoType, TimePeriodID });
+            { MeasureID: DE.state.MeasureID, GeoType: DE.state.GeoType, TimePeriodID: DE.state.TimePeriodID });
 
         // ----- render the Leaflet map only ----- //
 
@@ -1586,17 +1586,17 @@ const renderMeasures = async () => {
 
         debugLog("* showBar");
 
-        overlay = 'bar';
+        DE.state.overlay = 'bar';
 
         // ----- resolve metadata for the bar chart ----- //
 
-        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == MeasureID);
+        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
 
         if (!metadata.length) metadata = DE.map.defaultMapMetadata;
 
         // ----- render the bar chart using the already-filtered map data ----- //
 
-        renderBar(DE.map.filteredMapData, metadata, GeoType);
+        renderBar(DE.map.filteredMapData, metadata, DE.state.GeoType);
 
     };
 
@@ -1606,7 +1606,7 @@ const renderMeasures = async () => {
 
         debugLog("* showTrend");
 
-        overlay = 'trend';
+        DE.state.overlay = 'trend';
 
         // Use comparison mode when no borough trend data exists or comparison mode is already active.
         if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
@@ -1737,7 +1737,7 @@ const renderMeasures = async () => {
             .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
             .join(DE.lookups.aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
             .join(DE.lookups.timeTable, [["TimePeriodID"], ["TimePeriodID"]])
-            .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)), d => d.MeasureID);
+            .orderby(aq.desc(aq.escape(d => d.IndicatorID == DE.state.IndicatorID)), d => d.MeasureID);
 
         // - - - restrict quarterly measures to the last 3 years - - - //
 
@@ -1772,7 +1772,7 @@ const renderMeasures = async () => {
 
         debugLog("* showLinks");
 
-        overlay = 'links';
+        DE.state.overlay = 'links';
 
         // ----- rebuild selection controls and sync to the map selection ----- //
 
@@ -1895,14 +1895,14 @@ const renderMeasures = async () => {
     };
 
     // Re-open the tab that matches the restored overlay after menus are rebuilt.
-    if (overlay !== 'none') {
+    if (DE.state.overlay !== 'none') {
         resetOverlayTabState();
 
         if (tabContent) {
             tabContent.style.display = 'block';
         }
 
-        const target = tabSelector[overlay] || '#v-pills-bar-tab';
+        const target = tabSelector[DE.state.overlay] || '#v-pills-bar-tab';
         $(target).tab('show');
     } else {
         resetOverlayTabState();

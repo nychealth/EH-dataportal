@@ -153,6 +153,17 @@ const DE = {
         indicatorMeasures: undefined,
         primaryIndicatorName: undefined,
         secondaryIndicatorName: undefined
+    },
+
+    // Core identity: which indicator/measure/geography/time is selected and which
+    // overlay tab is open ('bar', 'table', 'trend', 'links', or 'none'). Read across
+    // nearly every file and kept in sync with the URL by app.js.
+    state: {
+        IndicatorID: undefined,
+        MeasureID: undefined,
+        GeoType: undefined,
+        TimePeriodID: undefined,
+        overlay: undefined
     }
 
 };
@@ -180,15 +191,6 @@ let syncLinksSelectionsToMapSelection;
 // Compared against window.history.state in data.js to detect first-load vs. popstate
 // navigation. Renamed from `state` so that bare name stays free for DE.state.
 let historyState;
-
-// Core identity globals: which indicator/measure/geography/time is selected. Read across nearly
-// every file and kept in sync with the URL by app.js.
-let IndicatorID;
-let MeasureID;
-let GeoType;
-let TimePeriodID;
-// tracks the active overlay tab: 'bar', 'table', 'trend', 'links', or 'none'
-let overlay;
 
 // DOM ref for the disparities-toggle button, resolved once the page shell exists.
 let btnToggleDisparities;
@@ -609,15 +611,15 @@ const getCurrentDataDownloadView = () => {
         return DE.print.chartType === 'bubble-map' ? 'map' : DE.print.chartType;
     }
 
-    if (overlay === 'trend') {
+    if (DE.state.overlay === 'trend') {
         return 'trend';
     }
 
-    if (overlay === 'links') {
+    if (DE.state.overlay === 'links') {
         return 'links';
     }
 
-    if (overlay === 'table') {
+    if (DE.state.overlay === 'table') {
         return 'table';
     }
 

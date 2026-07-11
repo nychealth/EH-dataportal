@@ -52,12 +52,12 @@ const printMenus = async (indicatorID) => {
         return;
     }
 
-    const selectedMeasure = indicator.Measures.find(m => m.MeasureID === MeasureID);
+    const selectedMeasure = indicator.Measures.find(m => m.MeasureID === DE.state.MeasureID);
 
     // Fall back to the preferred default when the URL or globals point to an invalid measure.
-    if (!MeasureID || !selectedMeasure) {
+    if (!DE.state.MeasureID || !selectedMeasure) {
         const defaultMeasure = getDefaultMeasure(indicator);
-        MeasureID = defaultMeasure.MeasureID;
+        DE.state.MeasureID = defaultMeasure.MeasureID;
     }
 
     updateAllMenus(indicator);
@@ -72,7 +72,7 @@ const printMenus = async (indicatorID) => {
 const updateAllMenus = (indicator) => {
 
     debugLog('* updateAllMenus');
-    debugLog('Globals:', { MeasureID, GeoType, TimePeriodID });
+    debugLog('Globals:', { MeasureID: DE.state.MeasureID, GeoType: DE.state.GeoType, TimePeriodID: DE.state.TimePeriodID });
 
     if (!indicator || !indicator.Measures?.length) {
         console.warn('updateAllMenus: no indicator or measures available');
@@ -81,12 +81,12 @@ const updateAllMenus = (indicator) => {
 
     // ----- resolve current measure, falling back to default if stale/invalid ----- //
 
-    let measure = indicator.Measures.find(m => m.MeasureID === MeasureID);
+    let measure = indicator.Measures.find(m => m.MeasureID === DE.state.MeasureID);
 
     if (!measure) {
         // Recover from stale globals or URL params by snapping back to the default measure.
         measure = getDefaultMeasure(indicator);
-        MeasureID = measure.MeasureID;
+        DE.state.MeasureID = measure.MeasureID;
     }
 
     // ----- rebuild measures menu ----- //
@@ -119,23 +119,23 @@ const updateAllMenus = (indicator) => {
     const availableGeoValues = geos.map(g => g.value);
 
     // default to the finest available geography when the current one is missing or invalid
-    if (!GeoType || !availableGeoValues.includes(GeoType)) {
+    if (!DE.state.GeoType || !availableGeoValues.includes(DE.state.GeoType)) {
 
         // Favor the most detailed geography so the map opens at the richest available level.
-        GeoType = availableGeoValues.reduce((best, current) => {
+        DE.state.GeoType = availableGeoValues.reduce((best, current) => {
             return assignGeoRank(current) > assignGeoRank(best) ? current : best;
         });
     }
 
     styleAndPrintMenu(geos, '.geo-holder', 'geo');
 
-    setDropdownLabel('geo', GeoType);
+    setDropdownLabel('geo', DE.state.GeoType);
 
     // ----- rebuild time menu, defaulting to most recent period ----- //
 
     // Find the metadata entry whose raw GeoType prettifies to our selected GeoType
 
-    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === GeoType);
+    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === DE.state.GeoType);
 
     // Look up labels and sort by end_period descending (most recent first)
 
@@ -151,13 +151,13 @@ const updateAllMenus = (indicator) => {
         .sort((a, b) => b.endPeriod - a.endPeriod);
 
     // default to the most recent available time period when the current one is invalid
-    if (!TimePeriodID || !times.find(t => t.value === TimePeriodID)) {
-        TimePeriodID = times.length ? times[0].value : null;
+    if (!DE.state.TimePeriodID || !times.find(t => t.value === DE.state.TimePeriodID)) {
+        DE.state.TimePeriodID = times.length ? times[0].value : null;
     }
 
     styleAndPrintMenu(times, '.time-holder', 'time');
 
-    setDropdownLabel('time', getTimeLabel(TimePeriodID));
+    setDropdownLabel('time', getTimeLabel(DE.state.TimePeriodID));
 };
 
 
@@ -187,9 +187,9 @@ const styleAndPrintMenu = (items, destination, type) => {
             // Subtly highlight the currently selected value in each dropdown.
             // Number() coercion on both sides: MeasureID and TimePeriodID may be string or float depending on source
             const isSelected =
-                (type === 'measure' && Number(item.value) === Number(MeasureID)) ||
-                (type === 'geo' && item.value === GeoType) ||
-                (type === 'time' && Number(item.value) === Number(TimePeriodID));
+                (type === 'measure' && Number(item.value) === Number(DE.state.MeasureID)) ||
+                (type === 'geo' && item.value === DE.state.GeoType) ||
+                (type === 'time' && Number(item.value) === Number(DE.state.TimePeriodID));
 
             // Mark the currently selected option so the menu reflects global state.
             if (isSelected) {
@@ -224,21 +224,21 @@ const handleSelection = (type, value) => {
     // ----- update the one changed global ----- //
 
     if (type === 'measure') {
-        MeasureID = value;
+        DE.state.MeasureID = value;
     }
 
     if (type === 'geo') {
-        GeoType = value;
+        DE.state.GeoType = value;
     }
 
     if (type === 'time') {
-        TimePeriodID = value;
+        DE.state.TimePeriodID = value;
     }
 
     // ----- cascade-rebuild dependent menus ----- //
 
     // updateAllMenus fills in cascaded defaults for any sibling selection that no longer applies
-    const ind = indicators.find(d => d.IndicatorID === Number(IndicatorID));
+    const ind = indicators.find(d => d.IndicatorID === Number(DE.state.IndicatorID));
 
     updateAllMenus(ind);
 

@@ -6,7 +6,7 @@
 // toggle-off, close buttons, Escape-to-close, mobile accordion, and the
 // has-open-panel state class. NOT part of the synchronous SPA bundle
 // (global.js … print.js); it's loaded on its own from de-tab-content.html and
-// only touches SPA globals (updateChartPlotSize, pushSelectionToURL, overlay)
+// only touches SPA globals (updateChartPlotSize, pushSelectionToURL, DE.state.overlay)
 // from inside deferred handlers, guarded so load order never matters.
 
 // ----------------------------------------------------------------------- //
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Persist the closed state in the URL
-                overlay = 'none';
+                DE.state.overlay = 'none';
                 if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
             }
         });
@@ -95,7 +95,7 @@ const closeExplorerTabPane = (paneId) => {
         }
 
         // Persist the closed state in the URL
-        overlay = 'none';
+        DE.state.overlay = 'none';
         if (typeof pushSelectionToURL === 'function') pushSelectionToURL();
     }
 };

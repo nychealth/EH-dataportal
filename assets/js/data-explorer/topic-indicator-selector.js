@@ -668,14 +668,14 @@ const checkURL = async () => {
 
     // ----- seed shared globals from URL params ----- //
 
-    if (paramsObj.MeasureID)    MeasureID    = parseFloat(paramsObj.MeasureID);
+    if (paramsObj.MeasureID)    DE.state.MeasureID    = parseFloat(paramsObj.MeasureID);
     if (paramsObj.GeoType || paramsObj.GeoTypeID) {
 
         // Seed the pretty geography label before menus build their available options.
-        GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
+        DE.state.GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
     }
-    if (paramsObj.TimePeriodID) TimePeriodID = parseFloat(paramsObj.TimePeriodID);
-    if (paramsObj.overlay)      overlay      = paramsObj.overlay;
+    if (paramsObj.TimePeriodID) DE.state.TimePeriodID = parseFloat(paramsObj.TimePeriodID);
+    if (paramsObj.overlay)      DE.state.overlay      = paramsObj.overlay;
 
     // ----- kick off indicator-info and 311-button rendering early ----- //
 

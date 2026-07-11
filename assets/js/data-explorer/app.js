@@ -15,25 +15,25 @@ const buildCanonicalSearchParams = () => {
 
     const params = new URLSearchParams();
 
-    if (IndicatorID != null && !Number.isNaN(Number(IndicatorID))) {
-        params.set('id', IndicatorID);
+    if (DE.state.IndicatorID != null && !Number.isNaN(Number(DE.state.IndicatorID))) {
+        params.set('id', DE.state.IndicatorID);
     }
 
     // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
-    if (MeasureID) {
-        params.set('MeasureID', MeasureID);
+    if (DE.state.MeasureID) {
+        params.set('MeasureID', DE.state.MeasureID);
     }
 
-    if (GeoType) {
-        params.set('GeoType', GeoType);
+    if (DE.state.GeoType) {
+        params.set('GeoType', DE.state.GeoType);
     }
 
-    if (TimePeriodID) {
-        params.set('TimePeriodID', TimePeriodID);
+    if (DE.state.TimePeriodID) {
+        params.set('TimePeriodID', DE.state.TimePeriodID);
     }
 
-    if (overlay) {
-        params.set('overlay', overlay);
+    if (DE.state.overlay) {
+        params.set('overlay', DE.state.overlay);
     }
 
     return params;
@@ -58,9 +58,9 @@ const writeHistoryState = (historyMethod, nextState, nextURL) => {
 const resetSelectionForNewIndicator = (nextIndicatorID) => {
 
     // drop sub-selections so the new indicator starts with a clean slate
-    MeasureID = null;
-    GeoType = null;
-    TimePeriodID = null;
+    DE.state.MeasureID = null;
+    DE.state.GeoType = null;
+    DE.state.TimePeriodID = null;
 
     // overlay is intentionally preserved across indicator selection
 
@@ -79,7 +79,13 @@ const pushSelectionToURL = () => {
     // Rebuild the explorer params in a stable order and drop legacy aliases.
     url.search = buildCanonicalSearchParams().toString();
 
-    writeHistoryState('pushState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay }, url);
+    writeHistoryState('pushState', {
+        id: DE.state.IndicatorID,
+        MeasureID: DE.state.MeasureID,
+        GeoType: DE.state.GeoType,
+        TimePeriodID: DE.state.TimePeriodID,
+        overlay: DE.state.overlay
+    }, url);
 };
 
 
@@ -146,7 +152,13 @@ const normalizeLegacyGeoTypeURL = () => {
 
     nextURL.search = normalizedParts.join('&');
 
-    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType: GeoType || renamedGeoType, TimePeriodID, overlay }, nextURL);
+    writeHistoryState('replaceState', {
+        id: DE.state.IndicatorID,
+        MeasureID: DE.state.MeasureID,
+        GeoType: DE.state.GeoType || renamedGeoType,
+        TimePeriodID: DE.state.TimePeriodID,
+        overlay: DE.state.overlay
+    }, nextURL);
 
 };
 
@@ -163,7 +175,13 @@ const normalizeLegacyOverlayURL = () => {
 
     nextURL.searchParams.set('overlay', 'bar');
 
-    writeHistoryState('replaceState', { id: IndicatorID, MeasureID, GeoType, TimePeriodID, overlay: 'bar' }, nextURL);
+    writeHistoryState('replaceState', {
+        id: DE.state.IndicatorID,
+        MeasureID: DE.state.MeasureID,
+        GeoType: DE.state.GeoType,
+        TimePeriodID: DE.state.TimePeriodID,
+        overlay: 'bar'
+    }, nextURL);
 
 };
 
@@ -268,7 +286,7 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
         .then(() => {
             window.requestAnimationFrame(() => {
                 window.requestAnimationFrame(() => {
-                    if (overlay === 'table' && token === pendingTableOverlayToken) {
+                    if (DE.state.overlay === 'table' && token === pendingTableOverlayToken) {
                         showTable();
                     }
                 });
@@ -282,7 +300,13 @@ const renderCurrentView = (updateMap = false) => {
 
     // ----- kick off map render promise ----- //
 
-    debugLog("* renderCurrentView", { MeasureID, GeoType, TimePeriodID, overlay, updateMap });
+    debugLog("* renderCurrentView", {
+        MeasureID: DE.state.MeasureID,
+        GeoType: DE.state.GeoType,
+        TimePeriodID: DE.state.TimePeriodID,
+        overlay: DE.state.overlay,
+        updateMap
+    });
 
     // Normalize sync and async map work into one promise so overlay timing can treat both the same.
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
@@ -290,7 +314,7 @@ const renderCurrentView = (updateMap = false) => {
     // ----- dispatch on overlay via switch ----- //
 
     // route the current overlay value to the matching show* renderer
-    switch (overlay) {
+    switch (DE.state.overlay) {
 
         case 'none': {
 
@@ -379,12 +403,12 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- restore overlay global ----- //
 
-    if (urlOverlay) overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
+    if (urlOverlay) DE.state.overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
 
     // ----- reload full pipeline on indicator change ----- //
 
     // Reload the full indicator pipeline when history points to a different indicator.
-    if (urlID && urlID !== IndicatorID) {
+    if (urlID && urlID !== DE.state.IndicatorID) {
 
         await loadIndicator(urlID, true);
         printIndicatorInfo(urlID);
@@ -396,13 +420,13 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- sync sub-indicator globals, rebuild menus ----- //
 
-    if (urlMeasureID)    MeasureID    = urlMeasureID;
-    if (urlGeoType)      GeoType      = urlGeoType;
-    if (urlTimePeriodID) TimePeriodID = urlTimePeriodID;
+    if (urlMeasureID)    DE.state.MeasureID    = urlMeasureID;
+    if (urlGeoType)      DE.state.GeoType      = urlGeoType;
+    if (urlTimePeriodID) DE.state.TimePeriodID = urlTimePeriodID;
 
     // sync the dropdown menus to match the restored globals
 
-    const ind = indicators?.find(d => d.IndicatorID === Number(IndicatorID));
+    const ind = indicators?.find(d => d.IndicatorID === Number(DE.state.IndicatorID));
 
     // Rebuild dropdowns only when indicator metadata is already available in memory.
     if (ind) updateAllMenus(ind);
@@ -453,7 +477,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         el.addEventListener('click', () => {
 
-            overlay = value;
+            DE.state.overlay = value;
             pushSelectionToURL();
             // Tab switches reuse the current map state, so they do not request a map redraw.
             renderCurrentView();
