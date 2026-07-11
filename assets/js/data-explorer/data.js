@@ -243,9 +243,9 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     nextURL.searchParams.set('id', parseFloat(IndicatorID));
 
     // Skip history writes during popstate replays so back/forward does not create duplicate entries.
-    if (!dont_add_to_history && (window.history.state === null || state === null || window.history.state.id != IndicatorID)) {
+    if (!dont_add_to_history && (window.history.state === null || historyState === null || window.history.state.id != IndicatorID)) {
 
-        if (window.history.state === null || state === null) {
+        if (window.history.state === null || historyState === null) {
 
             // - - - first load: replace the initial history entry - - - //
 

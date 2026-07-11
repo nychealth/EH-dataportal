@@ -160,8 +160,9 @@ let vizSource;
 let vizSourceSecond;
 let chartType;
 
-// Compared against window.history.state in data.js to detect first-load vs. popstate navigation.
-let state;
+// Compared against window.history.state in data.js to detect first-load vs. popstate
+// navigation. Renamed from `state` so that bare name stays free for DE.state.
+let historyState;
 
 // Core identity globals: which indicator/measure/geography/time is selected. Read across nearly
 // every file and kept in sync with the URL by app.js.
