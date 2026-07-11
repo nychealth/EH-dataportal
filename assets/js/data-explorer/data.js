@@ -216,15 +216,15 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedMapTime = false;
     selectedMapGeo = false;
     selectedTrendMeasure = false;
-    selectedLinksMeasure = false;
+    DE.links.selectedLinksMeasure = false;
     DE.disparities.selectedDisparity = false;
     selectedComparison = false;
     showingBoroughTrend = false;
     showingComparisonTrend = false;
     selectedTrendMeasureId = null;
     selectedComparisonId = null;
-    selectedLinksPrimaryMeasureId = null;
-    selectedLinksSecondaryMeasureId = null;
+    DE.links.selectedLinksPrimaryMeasureId = null;
+    DE.links.selectedLinksSecondaryMeasureId = null;
     DE.disparities.selectedDisparityPrimaryMeasureId = null;
 
     // ----- sync URL/history state ----- //
@@ -582,7 +582,7 @@ const joinData = async () => {
     // console.log(">>> linksData [joinData]");
 
     // Keep only non-citywide, non-borough rows for links and disparities comparisons.
-    linksData = joinedAqData
+    DE.links.linksData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
@@ -676,7 +676,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // - - - primary measure data - - - //
 
-    const filteredPrimaryMeasureData = linksData
+    const filteredPrimaryMeasureData = DE.links.linksData
 
         // keep primary measure
         .filter(d => d.MeasureID === primaryMeasureId)

@@ -119,16 +119,16 @@ const setDefaultLinksMeasure = async (visArray) => {
     const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
 
     // assigning to global object
-    defaultPrimaryLinksMeasureMetadata = defaultArray;
+    DE.links.defaultPrimaryLinksMeasureMetadata = defaultArray;
 
     // using await here because createJoinedLinksData calls fetch, and we need that data
     const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
 
     // extract secondary metadata from data function return, assign to global object
-    defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
-    
+    DE.links.defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+
     // extract data element from data function return, assign to global object
-    joinedLinksDataObjects = defaultLinksDataMetadata.data
+    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data
 }
 
 
@@ -229,7 +229,7 @@ const getDefaultLinksSecondaryMeasureId = (primaryMeasureId) => {
 // Falls back to the active default correlate measure when map MeasureID is not link-capable.
 const getDefaultLinksPrimaryMeasureId = () => {
 
-    const defaultPrimaryMeasureId = defaultPrimaryLinksMeasureMetadata?.[0]?.MeasureID;
+    const defaultPrimaryMeasureId = DE.links.defaultPrimaryLinksMeasureMetadata?.[0]?.MeasureID;
 
     if (defaultPrimaryMeasureId != null) {
         return Number(defaultPrimaryMeasureId);
@@ -323,9 +323,9 @@ const clickLinksToggle = (e) => {
                 return;
             }
 
-            const activePrimaryMeasureId = selectedLinksPrimaryMeasureId == null
+            const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
                 ? Number(MeasureID)
-                : Number(selectedLinksPrimaryMeasureId);
+                : Number(DE.links.selectedLinksPrimaryMeasureId);
 
             const nextPrimaryMeasureId = measureSupportsDisparities(activePrimaryMeasureId)
                 ? activePrimaryMeasureId
@@ -335,10 +335,10 @@ const clickLinksToggle = (e) => {
                 return;
             }
 
-            selectedLinksMeasure = true;
+            DE.links.selectedLinksMeasure = true;
             DE.disparities.selectedDisparity = true;
-            selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
-            selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
+            DE.links.selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+            DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
             trackDataExplorerOption('links_disparities');
 
@@ -353,9 +353,9 @@ const clickLinksToggle = (e) => {
             return;
         }
 
-        const activePrimaryMeasureId = selectedLinksPrimaryMeasureId == null
+        const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
             ? Number(MeasureID)
-            : Number(selectedLinksPrimaryMeasureId);
+            : Number(DE.links.selectedLinksPrimaryMeasureId);
 
         const nextPrimaryMeasureId = measureSupportsLinks(activePrimaryMeasureId)
             ? activePrimaryMeasureId
@@ -367,10 +367,10 @@ const clickLinksToggle = (e) => {
             return;
         }
 
-        selectedLinksMeasure = true;
+        DE.links.selectedLinksMeasure = true;
         DE.disparities.selectedDisparity = false;
-        selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
-        selectedLinksSecondaryMeasureId = nextSecondaryMeasureId;
+        DE.links.selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+        DE.links.selectedLinksSecondaryMeasureId = nextSecondaryMeasureId;
 
         showLinks();
 
@@ -1159,8 +1159,8 @@ const renderMeasures = async () => {
 
         // ----- compute manual-override candidates ----- //
 
-        const manualPrimaryMeasureId = selectedLinksPrimaryMeasureId == null ? null : Number(selectedLinksPrimaryMeasureId);
-        const manualSecondaryMeasureId = selectedLinksSecondaryMeasureId == null ? null : Number(selectedLinksSecondaryMeasureId);
+        const manualPrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null ? null : Number(DE.links.selectedLinksPrimaryMeasureId);
+        const manualSecondaryMeasureId = DE.links.selectedLinksSecondaryMeasureId == null ? null : Number(DE.links.selectedLinksSecondaryMeasureId);
         const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
             && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
 
@@ -1168,7 +1168,7 @@ const renderMeasures = async () => {
 
         // Keep an explicit disparities toggle active even when the synced
         // correlate default points at a different primary measure.
-        const hasManualDisparities = selectedLinksMeasure
+        const hasManualDisparities = DE.links.selectedLinksMeasure
             && DE.disparities.selectedDisparity
             && manualPrimaryMeasureId != null
             && measureSupportsDisparities(manualPrimaryMeasureId);
@@ -1183,7 +1183,7 @@ const renderMeasures = async () => {
 
         // ----- return manual links override when valid ----- //
 
-        const hasManualLinks = selectedLinksMeasure
+        const hasManualLinks = DE.links.selectedLinksMeasure
             && !DE.disparities.selectedDisparity
             && manualMatchesCurrentPrimary
             && syncedLinksState.view === 'links'
@@ -1259,14 +1259,14 @@ const renderMeasures = async () => {
         let didChange = false;
         const syncedLinksState = getSyncedLinksState();
 
-        if (force || !selectedLinksMeasure) {
-            if (selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
-                selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
+        if (force || !DE.links.selectedLinksMeasure) {
+            if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
+                DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
                 didChange = true;
             }
 
-            if (selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
-                selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
+            if (DE.links.selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
+                DE.links.selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
                 didChange = true;
             }
 
@@ -1277,7 +1277,7 @@ const renderMeasures = async () => {
                 didChange = true;
             }
 
-            selectedLinksMeasure = false;
+            DE.links.selectedLinksMeasure = false;
         }
 
         setLinksButtonState();
@@ -1343,10 +1343,10 @@ const renderMeasures = async () => {
                     return;
                 }
 
-                selectedLinksMeasure = true;
+                DE.links.selectedLinksMeasure = true;
                 DE.disparities.selectedDisparity = false;
-                selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
-                selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
+                DE.links.selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
+                DE.links.selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
 
                 trackDataExplorerOption('links_measure');
 
@@ -1381,10 +1381,10 @@ const renderMeasures = async () => {
 
         // ----- reuse cached joined data, or fetch it fresh ----- //
 
-        const canReuseCurrentSelection = Array.isArray(joinedLinksDataObjects)
-            && joinedLinksDataObjects.length > 0
-            && Number(selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
-            && Number(selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
+        const canReuseCurrentSelection = Array.isArray(DE.links.joinedLinksDataObjects)
+            && DE.links.joinedLinksDataObjects.length > 0
+            && Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
+            && Number(DE.links.selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
 
         if (!canReuseCurrentSelection) {
 
@@ -1396,9 +1396,9 @@ const renderMeasures = async () => {
                 return false;
             }
 
-            selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
-            selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
-            joinedLinksDataObjects = selectedLinksDataMetadata.data;
+            DE.links.selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+            DE.links.selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+            DE.links.joinedLinksDataObjects = selectedLinksDataMetadata.data;
 
         }
 
@@ -1406,7 +1406,7 @@ const renderMeasures = async () => {
 
         const linksSecondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
 
-        if (!selectedPrimaryMeasureMetadata?.length || !selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
+        if (!DE.links.selectedPrimaryMeasureMetadata?.length || !DE.links.selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
             return false;
         }
 
@@ -1415,29 +1415,29 @@ const renderMeasures = async () => {
         primaryIndicatorName = indicatorName;
         secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
 
-        const primaryMeasurementType = selectedPrimaryMeasureMetadata[0]?.MeasurementType;
-        const secondaryMeasurementType = selectedSecondaryMeasureMetadata[0]?.MeasurementType;
-        const primaryAbout = selectedPrimaryMeasureMetadata[0]?.how_calculated;
-        const secondaryAbout = selectedSecondaryMeasureMetadata[0]?.how_calculated;
-        const primarySources = selectedPrimaryMeasureMetadata[0]?.Sources;
-        const secondarySources = selectedSecondaryMeasureMetadata[0]?.Sources;
+        const primaryMeasurementType = DE.links.selectedPrimaryMeasureMetadata[0]?.MeasurementType;
+        const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
+        const primaryAbout = DE.links.selectedPrimaryMeasureMetadata[0]?.how_calculated;
+        const secondaryAbout = DE.links.selectedSecondaryMeasureMetadata[0]?.how_calculated;
+        const primarySources = DE.links.selectedPrimaryMeasureMetadata[0]?.Sources;
+        const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
 
-        selectedLinksAbout =
+        DE.links.selectedLinksAbout =
             `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
             <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
 
-        selectedLinksSources =
+        DE.links.selectedLinksSources =
             `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
             <p><strong>${secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
 
         // ----- render ----- //
 
-        renderAboutSources(selectedLinksAbout, selectedLinksSources);
+        renderAboutSources(DE.links.selectedLinksAbout, DE.links.selectedLinksSources);
 
         renderCorrelate(
-            joinedLinksDataObjects,
-            selectedPrimaryMeasureMetadata,
-            selectedSecondaryMeasureMetadata,
+            DE.links.joinedLinksDataObjects,
+            DE.links.selectedPrimaryMeasureMetadata,
+            DE.links.selectedSecondaryMeasureMetadata,
             primaryIndicatorName,
             secondaryIndicatorName
         );
@@ -1456,7 +1456,7 @@ const renderMeasures = async () => {
             return false;
         }
 
-        selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
+        DE.links.selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
 
         await renderDisparitiesChart(primaryMeasureMetadata, DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
 
@@ -1817,8 +1817,8 @@ const renderMeasures = async () => {
 
             if (fallbackPrimaryMeasureId != null) {
                 DE.disparities.selectedDisparity = true;
-                selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
-                selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
+                DE.links.selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
+                DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
                 didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
             }

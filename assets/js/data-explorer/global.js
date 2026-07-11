@@ -36,6 +36,24 @@ const DE = {
         selectedDisparityPrimaryMeasureId: undefined,
         defaultDisparitiesMetadata: undefined,
         disparityData: undefined
+    },
+
+    // Correlate/links-view state: manual selection flag + measure-pair IDs, the
+    // joined scatter rows, per-pair metadata, and the About/Sources text blocks.
+    links: {
+        selectedLinksMeasure: undefined,
+        selectedLinksPrimaryMeasureId: undefined,
+        selectedLinksSecondaryMeasureId: undefined,
+        selectedLinksAbout: undefined,
+        selectedLinksSources: [],
+        defaultLinksAbout: undefined,
+        defaultLinksSources: [],
+        defaultPrimaryLinksMeasureMetadata: undefined,
+        defaultSecondaryMeasureMetadata: undefined,
+        selectedPrimaryMeasureMetadata: undefined,
+        selectedSecondaryMeasureMetadata: undefined,
+        linksData: undefined,
+        joinedLinksDataObjects: undefined
     }
 
 };
@@ -60,9 +78,6 @@ let aqMeasureIdTimes;
 // These plain-object arrays feed the currently active visualizations.
 let mapData;
 let trendData;
-let linksData;
-// joined primary + secondary measure data for the correlate/links chart
-let joinedLinksDataObjects;
 
 // Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
@@ -90,24 +105,17 @@ let defaultTrendSources = [];
 let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
-let defaultPrimaryLinksMeasureMetadata;
-let defaultSecondaryMeasureMetadata;
-let defaultLinksAbout;
-let defaultLinksSources = [];
 
 // Current per-tab selections, set by menu/dropdown handlers and read back by renderers on redraw.
 let selectedMapMeasure;
 let selectedMapTime;
 let selectedMapGeo;
 let selectedTrendMeasure;
-let selectedLinksMeasure;
 let selectedComparison;
 let showingBoroughTrend;
 let showingComparisonTrend;
 let selectedTrendMeasureId;
 let selectedComparisonId;
-let selectedLinksPrimaryMeasureId;
-let selectedLinksSecondaryMeasureId;
 
 // About/sources/metadata for the currently selected measure(s) on each tab, grouped by view.
 let selectedMapAbout;
@@ -121,11 +129,6 @@ let aqSelectedTrendMetadata;
 let selectedComparisonAbout = "";
 let selectedComparisonSources = [];
 let selectedComparisonMetadata;
-
-let selectedLinksAbout;
-let selectedLinksSources = [];
-let selectedPrimaryMeasureMetadata;
-let selectedSecondaryMeasureMetadata;
 
 // Filtered slices let one renderer hand work to the next without refetching.
 let filteredMapData;
