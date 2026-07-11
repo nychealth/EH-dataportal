@@ -44,5 +44,8 @@
     },
     "optionalDependencies": {
         "hugo-extended": "^0.146.3"
+    },
+    "devDependencies": {
+        "playwright": "^1.61.1"
     }
 }

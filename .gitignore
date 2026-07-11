@@ -76,3 +76,6 @@ documents/improvements-gpt-5.4.md
 
 # don't track playwright files
 .playwright-mcp/
+
+# Playwright characterization --check output (baseline IS committed)
+documents/de-characterization-current/
