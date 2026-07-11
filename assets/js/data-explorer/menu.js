@@ -19,7 +19,7 @@ const getDefaultMeasure = (indicator) => pickDefaultMeasureByPriority(indicator.
 
 // Converts a TimePeriodID into its display label for dropdown text.
 const getTimeLabel = (id) => {
-    return timeLookup[id]?.TimePeriod || id;
+    return DE.lookups.timeLookup[id]?.TimePeriod || id;
 };
 
 
@@ -141,7 +141,7 @@ const updateAllMenus = (indicator) => {
 
     const times = (geoObj?.TimePeriodID || [])
         .map(id => {
-            const tp = timeLookup[id];
+            const tp = DE.lookups.timeLookup[id];
             return {
                 label: tp?.TimePeriod || id,
                 value: id,

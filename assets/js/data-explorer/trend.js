@@ -335,7 +335,7 @@ const renderTrendChart = (
 
     const maxDataEndPeriod = Math.max(...new Set(data.array("end_period")));
     const noCompareEndPeriod = compNoCompare
-        ? timeTable.filter(aq.escape(d => d.TimePeriod == compNoCompare)).array("end_period")[0]
+        ? DE.lookups.timeTable.filter(aq.escape(d => d.TimePeriod == compNoCompare)).array("end_period")[0]
         : null;
     const hasGreaterEndPeriod = noCompareEndPeriod != null && maxDataEndPeriod >= noCompareEndPeriod;
 

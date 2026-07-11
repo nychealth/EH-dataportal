@@ -16,14 +16,14 @@ const fetch_comparisons = async () => {
 
     debugLog("* fetch_comparisons.json");
 
-    comparisons = await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
+    DE.lookups.comparisons = await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
         .then(response => response.json())
         .catch(error => {
             console.log(error);
             return [];
         });
 
-    await createComparisonData(comparisons || []);
+    await createComparisonData(DE.lookups.comparisons || []);
 
 };
 
@@ -35,32 +35,32 @@ const createComparisonData = async (comps) => {
 
     // ----- bail if no comparisons selected ----- //
 
-    if (!Array.isArray(indicatorComparisonId) || indicatorComparisonId.length === 0) {
+    if (!Array.isArray(DE.lookups.indicatorComparisonId) || DE.lookups.indicatorComparisonId.length === 0) {
 
-        comparisonMetadata = [];
-        aqComparisonMetadata = undefined;
-        aqComparisonIndicatorsMetadata = undefined;
-        aqCombinedComparisonMetadata = undefined;
-        aqComparisonIndicatorData = undefined;
+        DE.lookups.comparisonMetadata = [];
+        DE.lookups.aqComparisonMetadata = undefined;
+        DE.lookups.aqComparisonIndicatorsMetadata = undefined;
+        DE.lookups.aqCombinedComparisonMetadata = undefined;
+        DE.lookups.aqComparisonIndicatorData = undefined;
         return;
     }
 
     // ----- filter to selected comparisons; bail if none match ----- //
 
-    comparisonMetadata = comps.filter(d => indicatorComparisonId.includes(d.ComparisonID));
+    DE.lookups.comparisonMetadata = comps.filter(d => DE.lookups.indicatorComparisonId.includes(d.ComparisonID));
 
-    if (!comparisonMetadata.length) {
+    if (!DE.lookups.comparisonMetadata.length) {
 
-        aqComparisonMetadata = undefined;
-        aqComparisonIndicatorsMetadata = undefined;
-        aqCombinedComparisonMetadata = undefined;
-        aqComparisonIndicatorData = undefined;
+        DE.lookups.aqComparisonMetadata = undefined;
+        DE.lookups.aqComparisonIndicatorsMetadata = undefined;
+        DE.lookups.aqCombinedComparisonMetadata = undefined;
+        DE.lookups.aqComparisonIndicatorData = undefined;
         return;
     }
 
     // ----- build aqComparisonMetadata ----- //
 
-    aqComparisonMetadata = aq.from(comparisonMetadata)
+    DE.lookups.aqComparisonMetadata = aq.from(DE.lookups.comparisonMetadata)
         .unroll("Indicators")
         .derive({
 
@@ -74,7 +74,7 @@ const createComparisonData = async (comps) => {
 
     // ----- derive unique indicator/measure keys ----- //
 
-    const aqUniqueIndicatorMeasure = aqComparisonMetadata
+    const aqUniqueIndicatorMeasure = DE.lookups.aqComparisonMetadata
         .select("IndicatorID", "MeasureID")
         .dedupe();
 
@@ -82,8 +82,8 @@ const createComparisonData = async (comps) => {
         .groupby("IndicatorID")
         .objects({ grouped: "entries" });
 
-    const comparisonIndicatorIDs = [...new Set(aqComparisonMetadata.array("IndicatorID"))];
-    const comparisonMeasureIDs = [...new Set(aqComparisonMetadata.array("MeasureID"))];
+    const comparisonIndicatorIDs = [...new Set(DE.lookups.aqComparisonMetadata.array("IndicatorID"))];
+    const comparisonMeasureIDs = [...new Set(DE.lookups.aqComparisonMetadata.array("MeasureID"))];
 
     // ----- build aqComparisonIndicatorsMetadata ----- //
 
@@ -91,7 +91,7 @@ const createComparisonData = async (comps) => {
         comparisonIndicatorIDs.includes(ind.IndicatorID)
     );
 
-    aqComparisonIndicatorsMetadata = aq.from(comparisonIndicatorsMetadata)
+    DE.lookups.aqComparisonIndicatorsMetadata = aq.from(comparisonIndicatorsMetadata)
         .select("IndicatorID", "IndicatorName", "IndicatorLabel", "Measures")
         .unroll("Measures")
         .derive({
@@ -111,8 +111,8 @@ const createComparisonData = async (comps) => {
 
     // ----- join into aqCombinedComparisonMetadata ----- //
 
-    aqCombinedComparisonMetadata = aqComparisonMetadata
-        .join(aqComparisonIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]]);
+    DE.lookups.aqCombinedComparisonMetadata = DE.lookups.aqComparisonMetadata
+        .join(DE.lookups.aqComparisonIndicatorsMetadata, [["MeasureID", "IndicatorID"], ["MeasureID", "IndicatorID"]]);
 
     // ----- fetch each comparison indicator's data; semijoin; concat ----- //
 
@@ -125,7 +125,7 @@ const createComparisonData = async (comps) => {
                     return data
                         .derive({ IndicatorID: aq.escape(ind[0]) })
                         .semijoin(
-                            aqCombinedComparisonMetadata,
+                            DE.lookups.aqCombinedComparisonMetadata,
                             (a, b) => (
                                 op.equal(a.MeasureID, b.MeasureID) &&
                                 op.equal(a.GeoType, b.GeoTypeName) &&
@@ -143,7 +143,7 @@ const createComparisonData = async (comps) => {
     // undefined matches the "no comparison data" convention this function already uses above on early bail-out.
     const flatComparisonDataTables = comparisonDataTables.flatMap(d => d);
 
-    aqComparisonIndicatorData = flatComparisonDataTables.length
+    DE.lookups.aqComparisonIndicatorData = flatComparisonDataTables.length
         ? flatComparisonDataTables.reduce((a, b) => a.concat(b))
         : undefined;
 
@@ -197,7 +197,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     indicatorName = indicator?.IndicatorName ? indicator.IndicatorName : '';
     indicatorDesc = indicator?.IndicatorDescription ? indicator.IndicatorDescription : '';
     indicatorShortName = indicator?.IndicatorShortname ? indicator.IndicatorShortname : indicatorName;
-    indicatorComparisonId = Array.isArray(indicator?.Comparisons)
+    DE.lookups.indicatorComparisonId = Array.isArray(indicator?.Comparisons)
         ? indicator.Comparisons
         : (indicator?.Comparisons ? [indicator.Comparisons] : []);
     indicatorMeasures = indicator?.Measures;
@@ -272,11 +272,11 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
     // Clear comparison metadata early so downstream branches can rely on simple length checks.
-    comparisonMetadata = [];
-    
+    DE.lookups.comparisonMetadata = [];
+
     // why are we waiting for this?
 
-    if (indicatorComparisonId.length > 0) {
+    if (DE.lookups.indicatorComparisonId.length > 0) {
         await fetch_comparisons();
     }
 
@@ -303,7 +303,7 @@ const loadData = async (this_IndicatorID) => {
 
             // add GeoRank
 
-            aqIndicatorData = aq.table(data)
+            DE.lookups.aqIndicatorData = aq.table(data)
                 .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
                 .groupby("TimePeriodID", "GeoType", "GeoID")
                 .orderby(aq.desc('TimePeriodID'), 'GeoRank')
@@ -346,7 +346,7 @@ const loadGeo = async () => {
     await aq.loadJSON(geoUrl, {autoType: false})
         .then(async (data) => {
 
-            geoTable = await data;
+            DE.lookups.geoTable = await data;
 
             //  console.log("geoTable [loadGeo]");
             //  geoTable.print()
@@ -368,15 +368,15 @@ const loadTime = async () => {
     await aq.loadJSON(timeUrl, {autoType: false})
         .then(async (data) => {
 
-            timeTable = await data;
+            DE.lookups.timeTable = await data;
 
             // Build a plain JS lookup keyed by TimePeriodID
 
-            timeLookup = {};
+            DE.lookups.timeLookup = {};
 
             // Mirror the Arquero time table into a plain object for fast menu lookups.
-            timeTable.objects().forEach(t => {
-                timeLookup[t.TimePeriodID] = t;
+            DE.lookups.timeTable.objects().forEach(t => {
+                DE.lookups.timeLookup[t.TimePeriodID] = t;
             });
 
             // console.log("timeTable [loadTime]");
@@ -428,7 +428,7 @@ const combineTimesGeos = (perMeasureTables) =>
         ? perMeasureTables.flatMap(d => d).reduce((a, b) => a.concat(b))
         : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
     )
-        .join_left(timeTable, "TimePeriodID")
+        .join_left(DE.lookups.timeTable, "TimePeriodID")
         .orderby(aq.desc('end_period'), "MeasureID");
 
 
@@ -461,7 +461,7 @@ const joinData = async () => {
         }
     )
     
-    aqMeasureDisplay = 
+    DE.lookups.aqMeasureDisplay =
         aq.table({
             MeasureID: MeasureID,
             MeasurementType: MeasurementType,
@@ -501,9 +501,9 @@ const joinData = async () => {
     // ----- combine into aqTableTimesGeos / aqMapTimesGeos / aqTrendTimesGeos ----- //
 
     // Row-bind each per-view accumulator into its global table (see combineTimesGeos above).
-    aqTableTimesGeos = combineTimesGeos(tableTimesGeos);
-    aqMapTimesGeos   = combineTimesGeos(mapTimesGeos);
-    aqTrendTimesGeos = combineTimesGeos(trendTimesGeos);
+    DE.lookups.aqTableTimesGeos = combineTimesGeos(tableTimesGeos);
+    DE.lookups.aqMapTimesGeos   = combineTimesGeos(mapTimesGeos);
+    DE.lookups.aqTrendTimesGeos = combineTimesGeos(trendTimesGeos);
 
 
     // console.log(">> aqTableTimesGeos [joinData]");
@@ -520,12 +520,12 @@ const joinData = async () => {
     // console.log(">>>> joinedAqData [joinData]");
 
     // Build one fully decorated dataset first, then derive view-specific slices from it.
-    joinedAqData = aqIndicatorData
+    DE.lookups.joinedAqData = DE.lookups.aqIndicatorData
         // join the additional geo info
-        .join_left(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+        .join_left(DE.lookups.geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
         .rename({'Name': 'Geography'})
         // join the additional time period info
-        .join(timeTable, "TimePeriodID")
+        .join(DE.lookups.timeTable, "TimePeriodID")
         .select(aq.not("TimeType"))
         .orderby(aq.desc('end_period'), aq.desc('GeoRank'))
         .reify()
@@ -536,10 +536,10 @@ const joinData = async () => {
 
     // ----- derive tableData ----- //
 
-    DE.table.tableData = joinedAqData
-        .join_left(aqMeasureDisplay, "MeasureID")
+    DE.table.tableData = DE.lookups.joinedAqData
+        .join_left(DE.lookups.aqMeasureDisplay, "MeasureID")
         // Semijoin trims the shared dataset down to only the geos and times allowed in the table tab.
-        .semijoin(aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
+        .semijoin(DE.lookups.aqTableTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         // MeasurementDisplay: column header string; DisplayCI: data value joined with confidence interval for each cell
         .derive({
             MeasurementDisplay: d => op.trim(op.join([d.MeasurementType, d.DisplayType], " ")),
@@ -554,10 +554,10 @@ const joinData = async () => {
 
     // ----- derive mapData ----- //
 
-    DE.map.mapData = joinedAqData
+    DE.map.mapData = DE.lookups.joinedAqData
         .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
-        .semijoin(aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
+        .semijoin(DE.lookups.aqMapTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby(aq.desc('end_period'), "MeasureID")
         .reify()
         .objects()
@@ -567,10 +567,10 @@ const joinData = async () => {
 
     // ----- derive trendData ----- //
 
-    DE.trend.trendData = joinedAqData
+    DE.trend.trendData = DE.lookups.joinedAqData
         .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
-        .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
+        .semijoin(DE.lookups.aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])
         .orderby("GeoRank", "GeoID")
         .reify()
         .objects()
@@ -582,7 +582,7 @@ const joinData = async () => {
     // console.log(">>> linksData [joinData]");
 
     // Keep only non-citywide, non-borough rows for links and disparities comparisons.
-    DE.links.linksData = joinedAqData
+    DE.links.linksData = DE.lookups.joinedAqData
         .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
         .objects()
@@ -742,7 +742,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
                 // get secondary measure data
                 .filter(aq.escape(d => d.MeasureID === secondaryMeasureId))
-                .join(geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
+                .join(DE.lookups.geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
 
                 // get same geotypes as most recent primary data
                 .filter(aq.escape(d => mostRecentPrimaryGeos.includes(d.GeoType)))
@@ -751,7 +751,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
                 // get end periods
                 .join_left(
-                    timeTable,
+                    DE.lookups.timeTable,
                     "TimePeriodID"
                 )
             

@@ -76,7 +76,7 @@ const getTableColumnSearchValues = (rows) => {
 const getCurrentMapTableFilters = (rows) => {
 
     const { availableTimes, availableGeos } = getTableFilterOptions(rows);
-    const currentTime = timeLookup[TimePeriodID]?.TimePeriod;
+    const currentTime = DE.lookups.timeLookup[TimePeriodID]?.TimePeriod;
     const currentGeo = GeoType;
 
     // Prefer the current map time when it exists in the table; otherwise fall back to the first table time.

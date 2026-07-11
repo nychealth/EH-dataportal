@@ -110,6 +110,36 @@ const DE = {
         CSVforDownload: undefined,
         downloadedIndicator: undefined,
         downloadedIndicatorMeasurement: undefined
+    },
+
+    // Per-indicator lookup tables, rebuilt on each indicator load: geo/time joins,
+    // per-view times-geos tables, per-tab measure arrays, accumulated About/Sources
+    // text, and the comparison-trend metadata pipeline.
+    lookups: {
+        geoTable: undefined,
+        timeTable: undefined,
+        timeLookup: {},
+        unreliabilityNotes: undefined,
+        aqIndicatorData: undefined,
+        joinedAqData: undefined,
+        aqMeasureIdTimes: undefined,
+        aqMeasureDisplay: undefined,
+        aqTableTimesGeos: undefined,
+        aqMapTimesGeos: undefined,
+        aqTrendTimesGeos: undefined,
+        mapMeasures: [],
+        trendMeasures: [],
+        linksMeasures: [],
+        disparitiesMeasures: [],
+        measureAbout: ``,
+        measureSources: ``,
+        comparisons: undefined,
+        indicatorComparisonId: undefined,
+        comparisonMetadata: undefined,
+        aqComparisonMetadata: undefined,
+        aqComparisonIndicatorsMetadata: undefined,
+        aqComparisonIndicatorData: undefined,
+        aqCombinedComparisonMetadata: undefined
     }
 
 };
@@ -117,19 +147,6 @@ const DE = {
 // Shared content holders are resolved after the page shell exists.
 let aboutMeasures;
 let dataSources;
-
-let measureAbout = ``;
-let measureSources = ``;
-
-// Lookup tables are rebuilt on each indicator load and reused by menus and renderers.
-let geoTable;
-let timeTable;
-// keyed by TimePeriodID; rebuilt on each indicator load for fast label lookup
-let timeLookup = {};
-let unreliabilityNotes;
-let aqIndicatorData;
-let joinedAqData;
-let aqMeasureIdTimes;
 
 // Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
@@ -140,29 +157,6 @@ let indicatorShortName;
 let indicatorMeasures;
 let primaryIndicatorName;
 let secondaryIndicatorName;
-
-// Comparison-trend state tracks the secondary indicator picked for the borough-comparison overlay.
-let indicatorComparisonId;
-let comparisons;
-let comparisonMetadata;
-let aqComparisonMetadata;
-let aqComparisonIndicatorsMetadata;
-let aqComparisonIndicatorData;
-
-// Filtered slices let one renderer hand work to the next without refetching.
-let aqCombinedComparisonMetadata;
-
-// Joined Arquero tables capture which measures, times, and geographies each view supports.
-let aqMeasureDisplay;
-let aqTableTimesGeos;
-let aqMapTimesGeos;
-let aqTrendTimesGeos;
-
-// These arrays describe which measures are valid for each overlay tab.
-let mapMeasures = [];
-let trendMeasures = [];
-let linksMeasures = [];
-let disparitiesMeasures = [];
 
 // Tab refs and render closures are assigned lazily once the current indicator is known.
 let tabBar;

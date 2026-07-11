@@ -212,7 +212,7 @@ const measureSupportsLinks = (measureId) => {
 
 // Whether the active indicator exposes disparities for a measure.
 const measureSupportsDisparities = (measureId) => {
-    return disparitiesMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
+    return DE.lookups.disparitiesMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
 };
 
 
@@ -235,7 +235,7 @@ const getDefaultLinksPrimaryMeasureId = () => {
         return Number(defaultPrimaryMeasureId);
     }
 
-    return linksMeasures[0] ? Number(linksMeasures[0].MeasureID) : null;
+    return DE.lookups.linksMeasures[0] ? Number(DE.lookups.linksMeasures[0].MeasureID) : null;
 
 };
 
@@ -249,7 +249,7 @@ const getDefaultDisparitiesPrimaryMeasureId = () => {
         return Number(defaultPrimaryMeasureId);
     }
 
-    return disparitiesMeasures[0] ? Number(disparitiesMeasures[0].MeasureID) : null;
+    return DE.lookups.disparitiesMeasures[0] ? Number(DE.lookups.disparitiesMeasures[0].MeasureID) : null;
 
 };
 
@@ -319,7 +319,7 @@ const clickLinksToggle = (e) => {
 
         if (button.matches('#show-disparities')) {
 
-            if (!disparitiesMeasures.length) {
+            if (!DE.lookups.disparitiesMeasures.length) {
                 return;
             }
 
@@ -349,7 +349,7 @@ const clickLinksToggle = (e) => {
 
         // - - - links branch - - - //
 
-        if (!button.matches('#show-links, #dropdownLinksMeasures') || !linksMeasures.length) {
+        if (!button.matches('#show-links, #dropdownLinksMeasures') || !DE.lookups.linksMeasures.length) {
             return;
         }
 
@@ -431,24 +431,24 @@ const renderMeasures = async () => {
 
     // clear measure arrays
 
-    mapMeasures = [];
-    trendMeasures = [];
-    linksMeasures = [];
-    disparitiesMeasures = [];
+    DE.lookups.mapMeasures = [];
+    DE.lookups.trendMeasures = [];
+    DE.lookups.linksMeasures = [];
+    DE.lookups.disparitiesMeasures = [];
 
     // clear measure about used by table.js
 
-    measureAbout = "";
-    measureSources = [];
+    DE.lookups.measureAbout = "";
+    DE.lookups.measureSources = [];
 
 
     // ----- table defaults ----- //
 
     // collect unique time period labels available in the data for the table tab
-    const tableTimes = [...new Set(aqTableTimesGeos.array("TimePeriod"))];
+    const tableTimes = [...new Set(DE.lookups.aqTableTimesGeos.array("TimePeriod"))];
 
     // Default the table to the currently selected time period when available.
-    const selectedTableTime = timeLookup[TimePeriodID]?.TimePeriod;
+    const selectedTableTime = DE.lookups.timeLookup[TimePeriodID]?.TimePeriod;
 
     if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
         DE.table.selectedTableTimes = [selectedTableTime];
@@ -463,7 +463,7 @@ const renderMeasures = async () => {
 
     // create geo dropdown for table (using pretty geotypes, keeping georank order)
 
-    const tableGeoTypes = [...new Set(aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))];
+    const tableGeoTypes = [...new Set(DE.lookups.aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))];
     // filtering through geoTypes preserves canonical rank order instead of data insertion order
     const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
 
@@ -498,36 +498,36 @@ const renderMeasures = async () => {
 
         // check which viz types exist for this measure
 
-        const map         = aqMapTimesGeos   && aqMapTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
-        const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
+        const map         = DE.lookups.aqMapTimesGeos   && DE.lookups.aqMapTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
+        const trend       = DE.lookups.aqTrendTimesGeos && DE.lookups.aqTrendTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0]?.MeasureID;
         // Disparities == 1 in metadata signals this measure supports the disparities chart
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1
             && getSharedLinksGeos(measure, disparitiesSecondaryMeasure).length > 0;
 
         // Each tab only gets measures that actually have data for that view.
-        if (map)         mapMeasures.push(measure);
-        if (trend)       trendMeasures.push(measure);
-        if (links)       linksMeasures.push(measure);
-        if (disparities) disparitiesMeasures.push(measure);
+        if (map)         DE.lookups.mapMeasures.push(measure);
+        if (trend)       DE.lookups.trendMeasures.push(measure);
+        if (links)       DE.lookups.linksMeasures.push(measure);
+        if (disparities) DE.lookups.disparitiesMeasures.push(measure);
 
         // accumulate about & sources across all measures
 
-        measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
-        measureSources.push(measure.Sources);
+        DE.lookups.measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
+        DE.lookups.measureSources.push(measure.Sources);
 
     });
 
 
     // ----- set metadata defaults ----- //
 
-    setDefaultMapMeasure(mapMeasures);
-    setDefaultTrendMeasure(trendMeasures);
-    setDefaultDisparitiesMeasure(disparitiesMeasures);
+    setDefaultMapMeasure(DE.lookups.mapMeasures);
+    setDefaultTrendMeasure(DE.lookups.trendMeasures);
+    setDefaultDisparitiesMeasure(DE.lookups.disparitiesMeasures);
 
     // also calls (and waits for) createJoinedLinksData
 
-    await setDefaultLinksMeasure(linksMeasures);
+    await setDefaultLinksMeasure(DE.lookups.linksMeasures);
 
 
     // ----- trend selection controls ----- //
@@ -671,7 +671,7 @@ const renderMeasures = async () => {
     // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getSyncedTrendMeasureId = () => {
 
-        const matchingMapMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(MeasureID));
+        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(MeasureID));
 
         if (matchingMapMeasure) {
             return Number(matchingMapMeasure.MeasureID);
@@ -683,7 +683,7 @@ const renderMeasures = async () => {
             return Number(defaultTrendMeasureId);
         }
 
-        return trendMeasures[0] ? Number(trendMeasures[0].MeasureID) : null;
+        return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
 
     };
 
@@ -691,11 +691,11 @@ const renderMeasures = async () => {
     // Picks comparison that best matches current indicator and active measure.
     const getSyncedComparisonId = () => {
 
-        if (!comparisonMetadata?.length) {
+        if (!DE.lookups.comparisonMetadata?.length) {
             return null;
         }
 
-        const matchingMeasureComparison = comparisonMetadata.find(comp =>
+        const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
             comp.Indicators?.some(ind =>
                 Number(ind.IndicatorID) === Number(IndicatorID) &&
                 Number(ind.MeasureID) === Number(MeasureID)
@@ -706,7 +706,7 @@ const renderMeasures = async () => {
             return Number(matchingMeasureComparison.ComparisonID);
         }
 
-        const matchingIndicatorComparison = comparisonMetadata.find(comp =>
+        const matchingIndicatorComparison = DE.lookups.comparisonMetadata.find(comp =>
             comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(IndicatorID))
         );
 
@@ -714,7 +714,7 @@ const renderMeasures = async () => {
             return Number(matchingIndicatorComparison.ComparisonID);
         }
 
-        return Number(comparisonMetadata[0].ComparisonID);
+        return Number(DE.lookups.comparisonMetadata[0].ComparisonID);
 
     };
 
@@ -722,11 +722,11 @@ const renderMeasures = async () => {
     // Resolves one comparison button back to the comparison rows it owns.
     const getComparisonRowsForLegendTitle = (legendTitle) => {
 
-        if (!legendTitle || !aqCombinedComparisonMetadata) {
+        if (!legendTitle || !DE.lookups.aqCombinedComparisonMetadata) {
             return [];
         }
 
-        return aqCombinedComparisonMetadata
+        return DE.lookups.aqCombinedComparisonMetadata
             .objects()
             .filter(row => row.LegendTitle === legendTitle);
 
@@ -767,11 +767,11 @@ const renderMeasures = async () => {
     // Returns the LegendTitle for a given comparison ID, or null when the ID is null or unmatched.
     const getComparisonLegendTitleById = (comparisonId) => {
 
-        if (comparisonId == null || !aqCombinedComparisonMetadata) {
+        if (comparisonId == null || !DE.lookups.aqCombinedComparisonMetadata) {
             return null;
         }
 
-        return aqCombinedComparisonMetadata
+        return DE.lookups.aqCombinedComparisonMetadata
             .objects()
             .find(row => Number(row.ComparisonID) === Number(comparisonId))
             ?.LegendTitle || null;
@@ -790,7 +790,7 @@ const renderMeasures = async () => {
     // Returns the active trend measure's MeasurementType, or 'No borough trend' when none matches.
     const getActiveTrendMeasureLabel = () => {
 
-        const trendMeasure = trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
+        const trendMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
 
         return trendMeasure?.MeasurementType || 'No borough trend';
 
@@ -848,8 +848,8 @@ const renderMeasures = async () => {
 
         clearTrendButtonState();
 
-        const useComparisonState = (DE.trend.showingComparisonTrend && comparisonMetadata?.length) ||
-            (!trendMeasures.length && comparisonMetadata?.length);
+        const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+            (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
 
         if (useComparisonState) {
 
@@ -878,9 +878,9 @@ const renderMeasures = async () => {
     const updateTrendSelectionSummary = () => {
 
         const trendLabel = getActiveTrendMeasureLabel();
-        const comparisonLabel = comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
-        const useComparisonState = (DE.trend.showingComparisonTrend && comparisonMetadata?.length) ||
-            (!trendMeasures.length && comparisonMetadata?.length);
+        const comparisonLabel = DE.lookups.comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
+        const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+            (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
 
         const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
 
@@ -914,7 +914,7 @@ const renderMeasures = async () => {
 
         if (trendMeasurePills) {
             trendMeasurePills.innerHTML = '';
-            trendMeasurePills.hidden = trendMeasures.length === 0;
+            trendMeasurePills.hidden = DE.lookups.trendMeasures.length === 0;
         }
 
         if (trendComparisonPills) {
@@ -924,7 +924,7 @@ const renderMeasures = async () => {
 
         // ----- build or clear the Geography trend button ----- //
 
-        if (trendMeasures.length > 0 && trendMeasurePills) {
+        if (DE.lookups.trendMeasures.length > 0 && trendMeasurePills) {
 
             const geographyButton = createBadgePillButton({
                 buttonClass: 'trendmode-button',
@@ -959,9 +959,9 @@ const renderMeasures = async () => {
 
         // ----- build or clear comparison pills per legend title ----- //
 
-        if (comparisonMetadata?.length && aqCombinedComparisonMetadata && trendComparisonPills) {
+        if (DE.lookups.comparisonMetadata?.length && DE.lookups.aqCombinedComparisonMetadata && trendComparisonPills) {
 
-            const compLegendTitles = [...new Set(aqCombinedComparisonMetadata.array('LegendTitle'))];
+            const compLegendTitles = [...new Set(DE.lookups.aqCombinedComparisonMetadata.array('LegendTitle'))];
             let comparisonButtonCount = 0;
 
             if (selectedComparisonLegendTitle && !compLegendTitles.includes(selectedComparisonLegendTitle)) {
@@ -1050,7 +1050,7 @@ const renderMeasures = async () => {
         }
 
         const linksOptionCount = getLinksOptionCount();
-        const linksSwitcherDisabled = linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+        const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
         const hasMultipleLinksOptions = !linksSwitcherDisabled && linksOptionCount > 1;
 
         linksToggleLabel.textContent = 'Measures';
@@ -1107,7 +1107,7 @@ const renderMeasures = async () => {
         }
 
         // Tier 3: no map measure but links measures exist — use the default links pair.
-        if (linksMeasures.length) {
+        if (DE.lookups.linksMeasures.length) {
             const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
 
             return {
@@ -1118,7 +1118,7 @@ const renderMeasures = async () => {
         }
 
         // Tier 4: only disparities measures exist — fall back to the disparities view.
-        if (disparitiesMeasures.length) {
+        if (DE.lookups.disparitiesMeasures.length) {
             return {
                 primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
                 secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
@@ -1210,7 +1210,7 @@ const renderMeasures = async () => {
     const setLinksButtonState = () => {
 
         const activeLinksState = getActiveLinksState();
-        const linksSwitcherDisabled = linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+        const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
 
         document.querySelectorAll('.linksbutton').forEach(button => {
             button.classList.remove('active');
@@ -1235,8 +1235,8 @@ const renderMeasures = async () => {
         if (showDisparitiesButton) {
             setBadgePillState(
                 showDisparitiesButton,
-                activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0,
-                disparitiesMeasures.length === 0
+                activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
+                DE.lookups.disparitiesMeasures.length === 0
             );
         }
 
@@ -1558,7 +1558,7 @@ const renderMeasures = async () => {
 
         // ----- resolve metadata for the current MeasureID ----- //
 
-        let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
+        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == MeasureID);
 
         // Fall back to the default map measure when the current MeasureID is unavailable here.
         if (!metadata.length) metadata = DE.map.defaultMapMetadata;
@@ -1590,7 +1590,7 @@ const renderMeasures = async () => {
 
         // ----- resolve metadata for the bar chart ----- //
 
-        let metadata = mapMeasures.filter(m => m.MeasureID == MeasureID);
+        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == MeasureID);
 
         if (!metadata.length) metadata = DE.map.defaultMapMetadata;
 
@@ -1609,9 +1609,9 @@ const renderMeasures = async () => {
         overlay = 'trend';
 
         // Use comparison mode when no borough trend data exists or comparison mode is already active.
-        if ((trendMeasures.length === 0 && comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && comparisonMetadata?.length)) {
+        if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
             showComparisonTrend();
-        } else if (trendMeasures.length > 0) {
+        } else if (DE.lookups.trendMeasures.length > 0) {
             showBoroughTrend();
         }
 
@@ -1633,7 +1633,7 @@ const renderMeasures = async () => {
         // ----- resolve measure: use global if it has trend data, else default ----- //
 
         const trendMeasureId = getActiveTrendMeasureId();
-        const trendMetadataArr = trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
+        const trendMetadataArr = DE.lookups.trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
         const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
         const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
 
@@ -1700,8 +1700,8 @@ const renderMeasures = async () => {
 
         const comparisonId = getActiveComparisonId();
 
-        if (comparisonId == null || !aqComparisonMetadata || !aqComparisonIndicatorData) {
-            if (trendMeasures.length > 0) {
+        if (comparisonId == null || !DE.lookups.aqComparisonMetadata || !DE.lookups.aqComparisonIndicatorData) {
+            if (DE.lookups.trendMeasures.length > 0) {
                 DE.trend.showingComparisonTrend = false;
                 showBoroughTrend();
             }
@@ -1711,7 +1711,7 @@ const renderMeasures = async () => {
 
         // ----- build about and sources text ----- //
 
-        const selectedComparisonRows = aqCombinedComparisonMetadata
+        const selectedComparisonRows = DE.lookups.aqCombinedComparisonMetadata
             .objects()
             .filter(m => Number(m.ComparisonID) === Number(comparisonId));
 
@@ -1729,14 +1729,14 @@ const renderMeasures = async () => {
 
         // ----- build joined comparison metadata and data ----- //
 
-        DE.trend.aqFilteredComparisonMetadata = aqComparisonMetadata
+        DE.trend.aqFilteredComparisonMetadata = DE.lookups.aqComparisonMetadata
             .filter(aq.escape(d => d.ComparisonID == comparisonId))
-            .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
+            .join(DE.lookups.aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
 
         DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonMetadata
             .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-            .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
-            .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
+            .join(DE.lookups.aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+            .join(DE.lookups.timeTable, [["TimePeriodID"], ["TimePeriodID"]])
             .orderby(aq.desc(aq.escape(d => d.IndicatorID == IndicatorID)), d => d.MeasureID);
 
         // - - - restrict quarterly measures to the last 3 years - - - //
@@ -1795,19 +1795,19 @@ const renderMeasures = async () => {
 
         let didRender = false;
 
-        if (activeLinksState.view === 'disparities' && disparitiesMeasures.length > 0) {
+        if (activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0) {
             didRender = await renderSelectedDisparities(activeLinksState.primaryMeasureId);
         }
 
         // ----- otherwise try the links/correlate render ----- //
 
-        if (!didRender && linksMeasures.length > 0) {
+        if (!didRender && DE.lookups.linksMeasures.length > 0) {
             didRender = await renderSelectedCorrelate(activeLinksState.primaryMeasureId, activeLinksState.secondaryMeasureId);
         }
 
         // ----- fall back to disparities if both renders failed ----- //
 
-        if (!didRender && disparitiesMeasures.length > 0) {
+        if (!didRender && DE.lookups.disparitiesMeasures.length > 0) {
 
             const fallbackPrimaryMeasureId = measureSupportsDisparities(activeLinksState.primaryMeasureId)
                 ? activeLinksState.primaryMeasureId
@@ -1837,7 +1837,7 @@ const renderMeasures = async () => {
     // - - - map - - - //
 
     // Disable the bar tab when there is no map-compatible measure metadata.
-    if (mapMeasures.length === 0) {
+    if (DE.lookups.mapMeasures.length === 0) {
         disableTab(tabBar);
     } else {
         enableTab(tabBar);
@@ -1845,10 +1845,10 @@ const renderMeasures = async () => {
 
     // - - - trend — disable if no trend measures (or only 1 time period) and no comparisons - - - //
 
-    const onlyOneTime = trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1);
+    const onlyOneTime = DE.lookups.trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1);
 
     // Disable the trend tab when there is neither a meaningful trend nor a comparison fallback.
-    if ((trendMeasures.length === 0 || onlyOneTime) && (typeof comparisonMetadata === 'undefined' || comparisonMetadata.length === 0)) {
+    if ((DE.lookups.trendMeasures.length === 0 || onlyOneTime) && (typeof DE.lookups.comparisonMetadata === 'undefined' || DE.lookups.comparisonMetadata.length === 0)) {
         disableTab(tabTrends);
     } else {
         enableTab(tabTrends);
@@ -1857,7 +1857,7 @@ const renderMeasures = async () => {
     // - - - links + disparities - - - //
 
     // Disable the correlate tab only when both links and disparities are unavailable.
-    if (linksMeasures.length === 0 && disparitiesMeasures.length === 0) {
+    if (DE.lookups.linksMeasures.length === 0 && DE.lookups.disparitiesMeasures.length === 0) {
         disableTab(tabCorrelate);
     } else {
         enableTab(tabCorrelate);
