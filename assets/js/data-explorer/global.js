@@ -54,6 +54,32 @@ const DE = {
         selectedSecondaryMeasureMetadata: undefined,
         linksData: undefined,
         joinedLinksDataObjects: undefined
+    },
+
+    // Trend-view state: borough vs comparison mode flags, resolved metadata and
+    // About/Sources text for the active mode, and the filtered chart data slices.
+    trend: {
+        selectedTrendMeasure: undefined,
+        selectedTrendMeasureId: undefined,
+        showingBoroughTrend: undefined,
+        showingComparisonTrend: undefined,
+        selectedTrendAbout: undefined,
+        selectedTrendSources: undefined,
+        aqSelectedTrendMetadata: undefined,
+        defaultTrendMetadata: undefined,
+        aqDefaultTrendMetadata: undefined,
+        defaultTrendAbout: undefined,
+        defaultTrendSources: [],
+        trendData: undefined,
+        filteredTrendData: undefined,
+        aqFilteredTrendData: undefined,
+        selectedComparison: undefined,
+        selectedComparisonId: undefined,
+        selectedComparisonAbout: "",
+        selectedComparisonSources: [],
+        selectedComparisonMetadata: undefined,
+        aqFilteredComparisonData: undefined,
+        aqFilteredComparisonMetadata: undefined
     }
 
 };
@@ -77,7 +103,6 @@ let aqMeasureIdTimes;
 
 // These plain-object arrays feed the currently active visualizations.
 let mapData;
-let trendData;
 
 // Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
@@ -98,10 +123,6 @@ let aqComparisonIndicatorsMetadata;
 let aqComparisonIndicatorData;
 
 // Per-view default metadata and about/source text are recomputed per indicator.
-let defaultTrendMetadata;
-let aqDefaultTrendMetadata;
-let defaultTrendAbout;
-let defaultTrendSources = [];
 let defaultMapMetadata;
 let defaultMapAbout;
 let defaultMapSources;
@@ -110,32 +131,14 @@ let defaultMapSources;
 let selectedMapMeasure;
 let selectedMapTime;
 let selectedMapGeo;
-let selectedTrendMeasure;
-let selectedComparison;
-let showingBoroughTrend;
-let showingComparisonTrend;
-let selectedTrendMeasureId;
-let selectedComparisonId;
 
 // About/sources/metadata for the currently selected measure(s) on each tab, grouped by view.
 let selectedMapAbout;
 let selectedMapSources;
 let selectedMapMetadata;
 
-let selectedTrendAbout;
-let selectedTrendSources;
-let aqSelectedTrendMetadata;
-
-let selectedComparisonAbout = "";
-let selectedComparisonSources = [];
-let selectedComparisonMetadata;
-
 // Filtered slices let one renderer hand work to the next without refetching.
 let filteredMapData;
-let filteredTrendData;
-let aqFilteredTrendData;
-let aqFilteredComparisonData;
-let aqFilteredComparisonMetadata;
 let aqCombinedComparisonMetadata;
 
 // Joined Arquero tables capture which measures, times, and geographies each view supports.

@@ -215,14 +215,14 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedMapMeasure = false;
     selectedMapTime = false;
     selectedMapGeo = false;
-    selectedTrendMeasure = false;
+    DE.trend.selectedTrendMeasure = false;
     DE.links.selectedLinksMeasure = false;
     DE.disparities.selectedDisparity = false;
-    selectedComparison = false;
-    showingBoroughTrend = false;
-    showingComparisonTrend = false;
-    selectedTrendMeasureId = null;
-    selectedComparisonId = null;
+    DE.trend.selectedComparison = false;
+    DE.trend.showingBoroughTrend = false;
+    DE.trend.showingComparisonTrend = false;
+    DE.trend.selectedTrendMeasureId = null;
+    DE.trend.selectedComparisonId = null;
     DE.links.selectedLinksPrimaryMeasureId = null;
     DE.links.selectedLinksSecondaryMeasureId = null;
     DE.disparities.selectedDisparityPrimaryMeasureId = null;
@@ -567,7 +567,7 @@ const joinData = async () => {
 
     // ----- derive trendData ----- //
 
-    trendData = joinedAqData
+    DE.trend.trendData = joinedAqData
         .select(aq.not("BoroID", "Borough"))
         // filter to keep only times and geos we want in the table
         .semijoin(aqTrendTimesGeos, [["MeasureID", "TimePeriodID", "GeoType"], ["MeasureID", "TimePeriodID", "GeoType"]])

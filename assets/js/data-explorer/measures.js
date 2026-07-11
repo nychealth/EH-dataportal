@@ -93,7 +93,7 @@ const setDefaultTrendMeasure = (visArray) => {
 
     // console.log("* setDefaultTrendMeasure");
 
-    defaultTrendMetadata = buildDefaultMetadataArray(visArray);
+    DE.trend.defaultTrendMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
 
@@ -677,7 +677,7 @@ const renderMeasures = async () => {
             return Number(matchingMapMeasure.MeasureID);
         }
 
-        const defaultTrendMeasureId = defaultTrendMetadata?.[0]?.MeasureID;
+        const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
 
         if (defaultTrendMeasureId != null) {
             return Number(defaultTrendMeasureId);
@@ -848,7 +848,7 @@ const renderMeasures = async () => {
 
         clearTrendButtonState();
 
-        const useComparisonState = (showingComparisonTrend && comparisonMetadata?.length) ||
+        const useComparisonState = (DE.trend.showingComparisonTrend && comparisonMetadata?.length) ||
             (!trendMeasures.length && comparisonMetadata?.length);
 
         if (useComparisonState) {
@@ -879,7 +879,7 @@ const renderMeasures = async () => {
 
         const trendLabel = getActiveTrendMeasureLabel();
         const comparisonLabel = comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
-        const useComparisonState = (showingComparisonTrend && comparisonMetadata?.length) ||
+        const useComparisonState = (DE.trend.showingComparisonTrend && comparisonMetadata?.length) ||
             (!trendMeasures.length && comparisonMetadata?.length);
 
         const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
@@ -938,8 +938,8 @@ const renderMeasures = async () => {
 
             geographyButton.addEventListener('click', () => {
 
-                showingComparisonTrend = false;
-                showingBoroughTrend = true;
+                DE.trend.showingComparisonTrend = false;
+                DE.trend.showingBoroughTrend = true;
 
                 trackDataExplorerOption('trend_comparison');
 
@@ -989,8 +989,8 @@ const renderMeasures = async () => {
                 comparisonButton.addEventListener('click', () => {
 
                     selectedComparisonLegendTitle = title;
-                    showingComparisonTrend = true;
-                    showingBoroughTrend = false;
+                    DE.trend.showingComparisonTrend = true;
+                    DE.trend.showingBoroughTrend = false;
 
                     trackDataExplorerOption('trend_comparison');
 
@@ -1609,7 +1609,7 @@ const renderMeasures = async () => {
         overlay = 'trend';
 
         // Use comparison mode when no borough trend data exists or comparison mode is already active.
-        if ((trendMeasures.length === 0 && comparisonMetadata?.length) || (showingComparisonTrend && comparisonMetadata?.length)) {
+        if ((trendMeasures.length === 0 && comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && comparisonMetadata?.length)) {
             showComparisonTrend();
         } else if (trendMeasures.length > 0) {
             showBoroughTrend();
@@ -1634,27 +1634,27 @@ const renderMeasures = async () => {
 
         const trendMeasureId = getActiveTrendMeasureId();
         const trendMetadataArr = trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
-        const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : defaultTrendMetadata;
+        const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
         const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
 
         if (resolvedTrendMeasureId == null) {
             return;
         }
 
-        aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
+        DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
             .derive({
                 IndicatorLabel: aq.escape(indicatorName),
                 ComparisonName: aq.escape('Boroughs')
             });
 
-        selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
-        selectedTrendSources = [resolvedTrendMetadata[0].Sources];
+        DE.trend.selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
+        DE.trend.selectedTrendSources = [resolvedTrendMetadata[0].Sources];
 
-        renderAboutSources(selectedTrendAbout, selectedTrendSources);
+        renderAboutSources(DE.trend.selectedTrendAbout, DE.trend.selectedTrendSources);
 
         // ----- filter data by resolved measure ----- //
 
-        filteredTrendData = trendData
+        DE.trend.filteredTrendData = DE.trend.trendData
             .filter(m => Number(m.MeasureID) === Number(resolvedTrendMeasureId));
 
         // ----- handle special time-period subsets ----- //
@@ -1662,28 +1662,28 @@ const renderMeasures = async () => {
         // Restrict special air-quality measures to the season or annual slices they expect.
         if (measureIdsAnnualAvg.includes(resolvedTrendMeasureId)) {
 
-            aqFilteredTrendData = aq.from(
-                filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
+            DE.trend.aqFilteredTrendData = aq.from(
+                DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
             );
 
         } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
 
-            aqFilteredTrendData = aq.from(
-                filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
+            DE.trend.aqFilteredTrendData = aq.from(
+                DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
             );
 
         } else {
 
-            aqFilteredTrendData = aq.from(filteredTrendData);
+            DE.trend.aqFilteredTrendData = aq.from(DE.trend.filteredTrendData);
 
         }
 
         // ----- render ----- //
 
-        renderTrendChart(aqFilteredTrendData, aqSelectedTrendMetadata);
+        renderTrendChart(DE.trend.aqFilteredTrendData, DE.trend.aqSelectedTrendMetadata);
 
-        showingBoroughTrend = true;
-        showingComparisonTrend = false;
+        DE.trend.showingBoroughTrend = true;
+        DE.trend.showingComparisonTrend = false;
 
         setTrendButtonState();
         updateTrendSelectionSummary();
@@ -1702,7 +1702,7 @@ const renderMeasures = async () => {
 
         if (comparisonId == null || !aqComparisonMetadata || !aqComparisonIndicatorData) {
             if (trendMeasures.length > 0) {
-                showingComparisonTrend = false;
+                DE.trend.showingComparisonTrend = false;
                 showBoroughTrend();
             }
 
@@ -1715,25 +1715,25 @@ const renderMeasures = async () => {
             .objects()
             .filter(m => Number(m.ComparisonID) === Number(comparisonId));
 
-        selectedComparisonAbout = '';
-        selectedComparisonSources = [];
+        DE.trend.selectedComparisonAbout = '';
+        DE.trend.selectedComparisonSources = [];
 
         selectedComparisonRows.forEach(m => {
-            selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-            selectedComparisonSources.push(m.Sources);
+            DE.trend.selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+            DE.trend.selectedComparisonSources.push(m.Sources);
         });
 
-        selectedComparisonSources = [...new Set(selectedComparisonSources)];
+        DE.trend.selectedComparisonSources = [...new Set(DE.trend.selectedComparisonSources)];
 
-        renderAboutSources(selectedComparisonAbout, selectedComparisonSources);
+        renderAboutSources(DE.trend.selectedComparisonAbout, DE.trend.selectedComparisonSources);
 
         // ----- build joined comparison metadata and data ----- //
 
-        aqFilteredComparisonMetadata = aqComparisonMetadata
+        DE.trend.aqFilteredComparisonMetadata = aqComparisonMetadata
             .filter(aq.escape(d => d.ComparisonID == comparisonId))
             .join(aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
 
-        aqFilteredComparisonData = aqFilteredComparisonMetadata
+        DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonMetadata
             .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
             .join(aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
             .join(timeTable, [["TimePeriodID"], ["TimePeriodID"]])
@@ -1743,8 +1743,8 @@ const renderMeasures = async () => {
 
         const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
 
-        if (aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
-            aqFilteredComparisonData = aqFilteredComparisonData
+        if (DE.trend.aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+            DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonData
                 .derive({ "year": d => op.year(d.end_period) })
                 .filter(d => d.year > op.max(d.year) - 3)
                 .select(aq.not("TimePeriodID", "year"))
@@ -1754,12 +1754,12 @@ const renderMeasures = async () => {
         // ----- render and update selection state ----- //
 
         renderTrendChart(
-            aqFilteredComparisonData,
-            aqFilteredComparisonMetadata
+            DE.trend.aqFilteredComparisonData,
+            DE.trend.aqFilteredComparisonMetadata
         );
 
-        showingBoroughTrend = false;
-        showingComparisonTrend = true;
+        DE.trend.showingBoroughTrend = false;
+        DE.trend.showingComparisonTrend = true;
 
         setTrendButtonState();
         updateTrendSelectionSummary();
