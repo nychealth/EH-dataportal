@@ -27,6 +27,15 @@ const DE = {
         tableGeoFilterIsManual: false,
         tableNeedsRender: false,
         tableData: undefined
+    },
+
+    // Disparities-view state: the toggle flag, the primary measure the joined
+    // poverty-comparison rows were built for, and the cached rows themselves.
+    disparities: {
+        selectedDisparity: undefined,
+        selectedDisparityPrimaryMeasureId: undefined,
+        defaultDisparitiesMetadata: undefined,
+        disparityData: undefined
     }
 
 };
@@ -54,7 +63,6 @@ let trendData;
 let linksData;
 // joined primary + secondary measure data for the correlate/links chart
 let joinedLinksDataObjects;
-let disparityData; // used by disparities.js
 
 // Active indicator metadata is promoted to globals so every view can read it.
 let indicator;
@@ -84,7 +92,6 @@ let defaultMapAbout;
 let defaultMapSources;
 let defaultPrimaryLinksMeasureMetadata;
 let defaultSecondaryMeasureMetadata;
-let defaultDisparitiesMetadata;
 let defaultLinksAbout;
 let defaultLinksSources = [];
 
@@ -94,7 +101,6 @@ let selectedMapTime;
 let selectedMapGeo;
 let selectedTrendMeasure;
 let selectedLinksMeasure;
-let selectedDisparity;
 let selectedComparison;
 let showingBoroughTrend;
 let showingComparisonTrend;
@@ -102,7 +108,6 @@ let selectedTrendMeasureId;
 let selectedComparisonId;
 let selectedLinksPrimaryMeasureId;
 let selectedLinksSecondaryMeasureId;
-let selectedDisparityPrimaryMeasureId;
 
 // About/sources/metadata for the currently selected measure(s) on each tab, grouped by view.
 let selectedMapAbout;

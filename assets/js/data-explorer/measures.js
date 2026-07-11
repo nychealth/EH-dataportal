@@ -141,7 +141,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
 
     debugLog("* setDefaultDisparitiesMeasure");
 
-    defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
+    DE.disparities.defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
 
     // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
     
@@ -243,7 +243,7 @@ const getDefaultLinksPrimaryMeasureId = () => {
 // Falls back to the active default disparities measure when map MeasureID is not disparities-capable.
 const getDefaultDisparitiesPrimaryMeasureId = () => {
 
-    const defaultPrimaryMeasureId = defaultDisparitiesMetadata?.[0]?.MeasureID;
+    const defaultPrimaryMeasureId = DE.disparities.defaultDisparitiesMetadata?.[0]?.MeasureID;
 
     if (defaultPrimaryMeasureId != null) {
         return Number(defaultPrimaryMeasureId);
@@ -336,7 +336,7 @@ const clickLinksToggle = (e) => {
             }
 
             selectedLinksMeasure = true;
-            selectedDisparity = true;
+            DE.disparities.selectedDisparity = true;
             selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
             selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 
@@ -368,7 +368,7 @@ const clickLinksToggle = (e) => {
         }
 
         selectedLinksMeasure = true;
-        selectedDisparity = false;
+        DE.disparities.selectedDisparity = false;
         selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
         selectedLinksSecondaryMeasureId = nextSecondaryMeasureId;
 
@@ -1169,7 +1169,7 @@ const renderMeasures = async () => {
         // Keep an explicit disparities toggle active even when the synced
         // correlate default points at a different primary measure.
         const hasManualDisparities = selectedLinksMeasure
-            && selectedDisparity
+            && DE.disparities.selectedDisparity
             && manualPrimaryMeasureId != null
             && measureSupportsDisparities(manualPrimaryMeasureId);
 
@@ -1184,7 +1184,7 @@ const renderMeasures = async () => {
         // ----- return manual links override when valid ----- //
 
         const hasManualLinks = selectedLinksMeasure
-            && !selectedDisparity
+            && !DE.disparities.selectedDisparity
             && manualMatchesCurrentPrimary
             && syncedLinksState.view === 'links'
             && manualSecondaryMeasureId != null
@@ -1272,8 +1272,8 @@ const renderMeasures = async () => {
 
             const nextDisparityState = syncedLinksState.view === 'disparities';
 
-            if (selectedDisparity !== nextDisparityState) {
-                selectedDisparity = nextDisparityState;
+            if (DE.disparities.selectedDisparity !== nextDisparityState) {
+                DE.disparities.selectedDisparity = nextDisparityState;
                 didChange = true;
             }
 
@@ -1344,7 +1344,7 @@ const renderMeasures = async () => {
                 }
 
                 selectedLinksMeasure = true;
-                selectedDisparity = false;
+                DE.disparities.selectedDisparity = false;
                 selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
                 selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
 
@@ -1816,7 +1816,7 @@ const renderMeasures = async () => {
             // - - - commit the fallback selection before rendering - - - //
 
             if (fallbackPrimaryMeasureId != null) {
-                selectedDisparity = true;
+                DE.disparities.selectedDisparity = true;
                 selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
                 selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
 

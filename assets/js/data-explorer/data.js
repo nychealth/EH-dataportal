@@ -217,7 +217,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedMapGeo = false;
     selectedTrendMeasure = false;
     selectedLinksMeasure = false;
-    selectedDisparity = false;
+    DE.disparities.selectedDisparity = false;
     selectedComparison = false;
     showingBoroughTrend = false;
     showingComparisonTrend = false;
@@ -225,7 +225,7 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     selectedComparisonId = null;
     selectedLinksPrimaryMeasureId = null;
     selectedLinksSecondaryMeasureId = null;
-    selectedDisparityPrimaryMeasureId = null;
+    DE.disparities.selectedDisparityPrimaryMeasureId = null;
 
     // ----- sync URL/history state ----- //
 

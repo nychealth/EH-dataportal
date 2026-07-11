@@ -116,9 +116,9 @@ const renderDisparitiesChart = async (
 
     // ----- rebuild joined disparity data when stale or the primary measure changed ----- //
 
-    const needsFreshDisparityData = !Array.isArray(disparityData)
-        || !disparityData.length
-        || Number(selectedDisparityPrimaryMeasureId) !== Number(primaryMeasureId);
+    const needsFreshDisparityData = !Array.isArray(DE.disparities.disparityData)
+        || !DE.disparities.disparityData.length
+        || Number(DE.disparities.selectedDisparityPrimaryMeasureId) !== Number(primaryMeasureId);
 
     if (needsFreshDisparityData) {
 
@@ -140,22 +140,22 @@ const renderDisparitiesChart = async (
                     .derive({ randomOffsetX: aq.escape(d => d.PovRank + (seededRandom() * 2 - 1)) });
             });
 
-        disparityData = aqDisparityData.objects();
-        selectedDisparityPrimaryMeasureId = Number(primaryMeasureId);
+        DE.disparities.disparityData = aqDisparityData.objects();
+        DE.disparities.selectedDisparityPrimaryMeasureId = Number(primaryMeasureId);
 
     }
 
-    debugLog("disparityData [renderDisparitiesChart]", disparityData);
+    debugLog("disparityData [renderDisparitiesChart]", DE.disparities.disparityData);
 
     // ----- derive display fields, render unreliability notes, build about/sources ----- //
 
-    selectedDisparity = true;
+    DE.disparities.selectedDisparity = true;
 
-    const primaryTime = disparityData[0]?.TimePeriod_1;
-    const disparityTime = disparityData[0]?.TimePeriod_2;
-    const geoTypeShortDesc = disparityData[0]?.GeoTypeShortDesc_1;
+    const primaryTime = DE.disparities.disparityData[0]?.TimePeriod_1;
+    const disparityTime = DE.disparities.disparityData[0]?.TimePeriod_2;
+    const geoTypeShortDesc = DE.disparities.disparityData[0]?.GeoTypeShortDesc_1;
 
-    const combinedUnreliability = disparityData.map(d => d.Note_1).concat(disparityData.map(d => d.Note_2));
+    const combinedUnreliability = DE.disparities.disparityData.map(d => d.Note_1).concat(DE.disparities.disparityData.map(d => d.Note_2));
     const disparityUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
     if (unreliabilityHolder) {
@@ -241,7 +241,7 @@ const renderDisparitiesChart = async (
         // - - - data and transform - - - //
 
         "data": {
-            "values": disparityData
+            "values": DE.disparities.disparityData
         },
         "transform": [
             {
