@@ -51,19 +51,26 @@ const KNOWN_NOISE = /pagefind|favicon|Failed to load resource|net::ERR/i;
 // capture helpers
 // ----------------------------------------------------------------------- //
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// vega view capture (canvas-renderer workaround)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 // This app's vegaEmbed() calls never set a `renderer` option, so vega-embed's
-// default applies (node_modules/vega-embed: `const renderer = opts.renderer ??
-// 'canvas'`) — every chart paints to a <canvas>, not an <svg>, so there is no
-// DOM mark tree to query. Vega still writes role/aria-label onto the CONTAINER
-// element regardless of renderer (vega's initializeAria calls
-// `view.container().setAttribute(...)` unconditionally), so presence/ariaLabel
-// below read the container directly. Mark counts need the live Vega View's own
-// toSVG() export (a standard, renderer-independent Vega API) — but only bar.js
-// and correlate.js happen to stash their view on `window` for their own resize
-// interop, and trend.js/disparities.js discard theirs. Rather than leave two of
-// five views permanently unmeasurable (or edit those app files just for this
-// harness), installVegaViewCapture wraps the global vegaEmbed once per page so
-// every embed's view is captured uniformly, regardless of which file calls it.
+// canvas default applies everywhere (node_modules/vega-embed: `const renderer
+// = opts.renderer ?? 'canvas'`) — every chart paints to a <canvas>, not an
+// <svg>, so there is no DOM mark tree to query the way the design doc assumed.
+// Vega still writes role/aria-label onto the CONTAINER element regardless of
+// renderer (vega's initializeAria calls `view.container().setAttribute(...)`
+// unconditionally), so presence/ariaLabel below read the container directly.
+// Mark counts need the live Vega View's own toSVG() export (a standard,
+// renderer-independent Vega API) — but only bar.js and correlate.js happen to
+// stash their view on `window` for their own resize interop, and
+// trend.js/disparities.js discard theirs. Rather than leave two of five views
+// permanently unmeasurable (or edit those app files just for this harness),
+// installVegaViewCapture wraps the global vegaEmbed once per page so every
+// embed's view is captured uniformly, regardless of which file calls it.
+
+// Installs a page-load hook that transparently records every vegaEmbed() view.
 const installVegaViewCapture = (page) => page.addInitScript(() => {
 
     window.__deVegaViews = {};
@@ -94,9 +101,7 @@ const installVegaViewCapture = (page) => page.addInitScript(() => {
 });
 
 
-// Captures a Vega chart's accessible description and mark count. markCount is
-// null (never 0) when no view was captured for this container, so a genuinely
-// blank chart is never confused with an unmeasured one.
+// Captures a Vega chart's accessible description and mark count.
 const captureVega = async (page, containerSelector) => {
 
     const containerId = containerSelector.replace('#', '');
