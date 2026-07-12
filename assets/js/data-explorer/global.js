@@ -95,7 +95,13 @@ const DE = {
         selectedMapSources: undefined,
         defaultMapMetadata: undefined,
         defaultMapAbout: undefined,
-        defaultMapSources: undefined
+        defaultMapSources: undefined,
+
+        // One-shot flag: true only when loadIndicator() found no explicit/restored overlay to
+        // respect, so renderMap()'s citywide-only branch may apply its trend-tab smart default.
+        // Consumed (set false) the first time it fires so later re-renders triggered by
+        // measure/geo/time changes don't repeatedly override the user's own tab choice.
+        citywideTrendDefaultPending: false
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart

@@ -501,13 +501,19 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     .setLatLng([40.711409, -74.016813])
                     .setContent(citywidePopupContent)
                     .openOn(map);
-                
-                // Switch to trend tab
-                const element = document.getElementById('v-pills-trends-tab');
-                if (element) {
-                    element.click();
-                } else {
-                    console.warn("Trend tab element not found for citywide map click-through.");
+
+                // Nudge to the trend tab only once per indicator load — otherwise every
+                // measure/geo/time change re-renders the map and re-fires this, overriding
+                // whatever tab the user actually picked. See citywideTrendDefaultPending in global.js.
+                if (DE.map.citywideTrendDefaultPending) {
+                    DE.map.citywideTrendDefaultPending = false;
+
+                    const element = document.getElementById('v-pills-trends-tab');
+                    if (element) {
+                        element.click();
+                    } else {
+                        console.warn("Trend tab element not found for citywide map click-through.");
+                    }
                 }
             }
 
@@ -722,13 +728,19 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     .setLatLng([40.711409, -74.016813])
                     .setContent(citywidePopupContent)
                     .openOn(map);
-                
-                // Switch to trend tab
-                const element = document.getElementById('v-pills-trends-tab');
-                if (element) {
-                    element.click();
-                } else {
-                    console.warn("Trend tab element not found for citywide map click-through.");
+
+                // Nudge to the trend tab only once per indicator load — otherwise every
+                // measure/geo/time change re-renders the map and re-fires this, overriding
+                // whatever tab the user actually picked. See citywideTrendDefaultPending in global.js.
+                if (DE.map.citywideTrendDefaultPending) {
+                    DE.map.citywideTrendDefaultPending = false;
+
+                    const element = document.getElementById('v-pills-trends-tab');
+                    if (element) {
+                        element.click();
+                    } else {
+                        console.warn("Trend tab element not found for citywide map click-through.");
+                    }
                 }
             }
 

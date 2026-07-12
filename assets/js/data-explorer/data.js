@@ -164,6 +164,11 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // preserve current tab; default to none (no overlay open) on first load
 
+    // Only allow renderMap()'s citywide-only smart default (auto-jump to trend) when nothing
+    // has already resolved an overlay — an explicit URL param or a carried-over tab choice
+    // must always win over that nudge.
+    DE.map.citywideTrendDefaultPending = !DE.state.overlay;
+
     // Default to no overlay until a tab is explicitly chosen or restored.
     if (!DE.state.overlay) DE.state.overlay = 'none';
 
