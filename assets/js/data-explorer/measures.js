@@ -436,11 +436,6 @@ const renderMeasures = async () => {
     DE.lookups.linksMeasures = [];
     DE.lookups.disparitiesMeasures = [];
 
-    // clear measure about used by table.js
-
-    DE.lookups.measureAbout = "";
-    DE.lookups.measureSources = [];
-
 
     // ----- table defaults ----- //
 
@@ -510,11 +505,6 @@ const renderMeasures = async () => {
         if (trend)       DE.lookups.trendMeasures.push(measure);
         if (links)       DE.lookups.linksMeasures.push(measure);
         if (disparities) DE.lookups.disparitiesMeasures.push(measure);
-
-        // accumulate about & sources across all measures
-
-        DE.lookups.measureAbout   += `<p><strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}</p>`;
-        DE.lookups.measureSources.push(measure.Sources);
 
     });
 

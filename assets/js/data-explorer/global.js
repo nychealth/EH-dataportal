@@ -119,8 +119,8 @@ const DE = {
     },
 
     // Per-indicator lookup tables, rebuilt on each indicator load: geo/time joins,
-    // per-view times-geos tables, per-tab measure arrays, accumulated About/Sources
-    // text, and the comparison-trend metadata pipeline.
+    // per-view times-geos tables, per-tab measure arrays, and the comparison-trend
+    // metadata pipeline.
     lookups: {
         geoTable: undefined,
         timeTable: undefined,
@@ -137,8 +137,6 @@ const DE = {
         trendMeasures: [],
         linksMeasures: [],
         disparitiesMeasures: [],
-        measureAbout: ``,
-        measureSources: ``,
         comparisons: undefined,
         indicatorComparisonId: undefined,
         comparisonMetadata: undefined,
