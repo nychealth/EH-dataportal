@@ -605,7 +605,16 @@ const downloadData = (
 
         debugLog('Downloading data')
 
-        // else, for chart view downloads: 
+        // Guard against a never-set or stale CSVforDownload (e.g. the download button is
+        // clicked before any tab has rendered) so a blank/leftover CSV can't go out under
+        // a confident but wrong filename. Mirrors the early-return guard-clause pattern
+        // used throughout the renderers (e.g. renderTrendChart, renderCorrelate) rather
+        // than introducing a new disable/hide mechanism.
+        if (!DE.print.CSVforDownload) {
+            return;
+        }
+
+        // else, for chart view downloads:
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(DE.print.CSVforDownload);
         let hiddenElement = document.createElement('a');
 
