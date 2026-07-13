@@ -251,23 +251,14 @@ const copyCitation = (button = null) => {
     }
 
     const citeText = citationTextElement.innerText;
-    
-    // Create temporary textarea
-    const temp = document.createElement('textarea');
-    temp.value = citeText;
-    document.body.appendChild(temp);
-    temp.select();
-    temp.setSelectionRange(0, 99999);
-    
-    navigator.clipboard.writeText(temp.value).then(() => {
+
+    navigator.clipboard.writeText(citeText).then(() => {
         const feedbackButton = button || document.querySelector(`.de-copy-citation-button[data-citation-target="${citationTargetId}"]`);
 
         if (feedbackButton) {
             feedbackButton.innerHTML = `<i class="fas fa-copy mr-1" aria-hidden="true"></i>Copied!`;
         }
     });
-    
-    document.body.removeChild(temp); // clean up
 }
 
 
@@ -298,19 +289,6 @@ if (document.readyState === 'loading') {
 // ----------------------------------------------------------------------- //
 // measure info functions
 // ----------------------------------------------------------------------- //
-
-// Renders the Indicator Title and Description
-
-// const renderTitleDescription = (title, desc) => {
-
-//     const indicatorTitle = document.getElementById('indicatorTitle');
-//     const indicatorDescription = document.querySelectorAll('.indicator-description');
-//     indicatorTitle.innerHTML = title;
-
-//     indicatorDescription.forEach((element) => {
-//         element.innerHTML = `${desc}`;
-//     });    
-// }
 
 // Writes About and Sources content while de-duplicating repeated source text.
 const renderAboutSources = (about, sources) => {
@@ -416,22 +394,10 @@ const GEO_RANK_BY_PRETTY_TYPE = {
 // Assigns a sortable rank so geographies can be ordered from broad to fine.
 const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoType)];
 
-// array of (pretty) geotypes in georank order
+// array of (pretty) geotypes in georank order — derived from GEO_RANK_BY_PRETTY_TYPE so the
+// two lists can't drift apart (JS guarantees string-key insertion order)
 
-const geoTypes = [
-    "Citywide",
-    "Borough",
-    "NYCKIDS",
-    "UHF34",
-    "UHF42",
-    "Subboro",
-    "CD",
-    "CDTA",
-    "PUMA",
-    "NTA",
-    "NYHarbor",
-    "RMZ"
-]
+const geoTypes = Object.keys(GEO_RANK_BY_PRETTY_TYPE);
 
 // Shared-geo helpers keep links and disparities limited to measures that can join.
 const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filter(g => !/Citywide|Borough/.test(g));
@@ -648,7 +614,7 @@ const downloadData = (
 
         hiddenElement.href = csvData;
         hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - '  + DE.indicator.indicatorName + ` (${view} view)` + '.csv',
+        hiddenElement.download = 'NYC EH Data Portal - '  + DE.indicator.indicatorName + ` (${view} view)` + '.csv';
         hiddenElement.click();
 
         trackDataExplorerFileDownload({

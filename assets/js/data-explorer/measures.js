@@ -658,26 +658,6 @@ const renderMeasures = async () => {
     };
 
 
-    // Mirrors map measure when possible, otherwise falls back to trend defaults.
-    const getSyncedTrendMeasureId = () => {
-
-        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
-
-        if (matchingMapMeasure) {
-            return Number(matchingMapMeasure.MeasureID);
-        }
-
-        const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
-
-        if (defaultTrendMeasureId != null) {
-            return Number(defaultTrendMeasureId);
-        }
-
-        return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
-
-    };
-
-
     // Picks comparison that best matches current indicator and active measure.
     const getSyncedComparisonId = () => {
 
@@ -769,10 +749,22 @@ const renderMeasures = async () => {
     };
 
 
-    // Returns the trend measure ID to render, aliasing getSyncedTrendMeasureId().
+    // Mirrors map measure when possible, otherwise falls back to trend defaults.
     const getActiveTrendMeasureId = () => {
 
-        return getSyncedTrendMeasureId();
+        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
+
+        if (matchingMapMeasure) {
+            return Number(matchingMapMeasure.MeasureID);
+        }
+
+        const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
+
+        if (defaultTrendMeasureId != null) {
+            return Number(defaultTrendMeasureId);
+        }
+
+        return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
 
     };
 
@@ -1032,8 +1024,8 @@ const renderMeasures = async () => {
     };
 
 
-    // Refreshes the links dropdown toggle's label and ARIA wiring, enabling dropdown behavior only when more than one option exists.
-    const updateLinksDropdownToggle = () => {
+    // Refreshes the links selection summary: the dropdown toggle's label and ARIA wiring, enabling dropdown behavior only when more than one option exists.
+    const updateLinksSelectionSummary = () => {
 
         if (!linksDropdownToggle || !linksToggleLabel) {
             return;
@@ -1230,15 +1222,7 @@ const renderMeasures = async () => {
             );
         }
 
-        updateLinksDropdownToggle();
-
-    };
-
-
-    // Refreshes the links selection summary by updating the dropdown toggle.
-    const updateLinksSelectionSummary = () => {
-
-        updateLinksDropdownToggle();
+        updateLinksSelectionSummary();
 
     };
 
