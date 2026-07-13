@@ -304,9 +304,12 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
    cleanest of the three.
 2. **`trackDataExplorerEvent`** family — guarded wrappers in the SPA
    ([global.js:500-565](../assets/js/data-explorer/global.js)). This is the
-   consolidated docs' "#30 guard analytics" recommendation, done — and after the
-   2026-06-27 cutover this **is now the live explorer**, so production DE
-   analytics finally runs through a guarded wrapper.
+   consolidated docs' "#30 guard analytics" recommendation, done. **Correction
+   2026-07-12:** this wrapper only runs on the new SPA, which lives on the
+   `feature-de-state-namespace-refactor` branch lineage — verified against
+   `origin/production` directly, that branch has never merged. Today's actual
+   production DE analytics still goes through the **old** explorer's raw,
+   unguarded `gtag` calls (#3 below), not this wrapper.
 3. **Raw `gtag('event', …)`** — scattered and unguarded: [main.js:14](../assets/js/main.js);
    the **now-retired old explorer** (still reachable at `/data-explorer-old/`)
    ([data-explorer-old/app.js:106-302](../assets/js/data-explorer-old/app.js),
@@ -317,13 +320,14 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
    [search-modal.html:33](../themes/dohmh/layouts/partials/search-modal.html),
    [nr-output/single.html:533](../themes/dohmh/layouts/nr-output/single.html)).
 
-> Net effect after the cutover: production DE analytics now flows through the
-> SPA's guarded wrapper, but the picture is still fragmented — `main.js`, the
-> retired old explorer, and four inline templates call `gtag` raw, and there are
-> two separate guarded wrappers (`sendAnalyticsEvent` and
-> `trackDataExplorerEvent`). **Recommend one shared `track(name, params)` helper**
-> (promote `sendAnalyticsEvent` to a tiny module) used everywhere, and delete the
-> per-area variants — including the old explorer's raw calls when its tree is
+> Net effect: on the new SPA's branch, DE analytics flows through the guarded
+> wrapper; on actual `production`, it still doesn't (see correction above). The
+> picture is fragmented either way — `main.js`, the currently-live old explorer,
+> and four inline templates call `gtag` raw, and there are two separate guarded
+> wrappers (`sendAnalyticsEvent` and `trackDataExplorerEvent`). **Recommend one
+> shared `track(name, params)` helper** (promote `sendAnalyticsEvent` to a tiny
+> module) used everywhere, and delete the per-area variants — including the old
+> explorer's raw calls when its tree is
 > removed (§1).
 
 ### Event-taxonomy problems

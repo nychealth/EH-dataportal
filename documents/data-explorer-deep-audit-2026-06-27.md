@@ -149,7 +149,7 @@ references load-ordering `utilities.js` is out of date.
 
 | # (04-17) | Topic | Status today | Evidence |
 |---|---|---|---|
-| 9 | Consolidate default-measure priority | **Partial** | Done in measures.js via `pickDefaultMeasureByPriority` ([measures.js:24](../assets/js/data-explorer/measures.js)); but menu.js still has its own `getDefaultMeasure` ([menu.js:14](../assets/js/data-explorer/menu.js)) with *different* rules. Two sources of truth. |
+| 9 | Consolidate default-measure priority | **Done** | `pickDefaultMeasureByPriority` in measures.js ([measures.js:24](../assets/js/data-explorer/measures.js)) is the single source of truth; menu.js's `getDefaultMeasure` ([menu.js:17](../assets/js/data-explorer/menu.js)) now delegates to it. Fixed 2026-07-03 — see update note above (this row was out of sync with that note). |
 | 10 | Geo lookups → table | **Done** | `getGeoFile` uses `GEO_FILE_BY_TYPE` ([global.js:307](../assets/js/data-explorer/global.js)); `assignGeoRank` now derives from `prettifyGeoType` via one `GEO_RANK_BY_PRETTY_TYPE` lookup instead of its own parallel `switch` (global.js). Fixed 2026-07-03. |
 | 14 | DataTables destroy before re-init | **Done** | Destroy is done ([table.js:496](../assets/js/data-explorer/table.js)); `handleToggle()` now binds its body-delegated click handler once at table init instead of `off/on`-rebinding on every `drawCallback` (table.js) — delegation already covers rows the callback recreates. Fixed 2026-07-03. |
 | 30 | Guard analytics | **Done** | `trackDataExplorerEvent` wraps `gtag` ([global.js:503](../assets/js/data-explorer/global.js)). |
@@ -464,3 +464,13 @@ change silently alters behavior with no error:
 URL module, define renderers once, fetch/layer/Vega reuse, hover-reset fix,
 event-bus for map↔bar. These remain the right long-term direction; the items
 above make the codebase safer to refactor first.
+
+> **Updated 2026-07-11 (state-object half done, on branch).** The ~100 bare
+> `let` globals in global.js were consolidated into a single `const DE = {...}`
+> namespace (`DE.table`, `DE.map`, `DE.trend`, `DE.print`, `DE.lookups`,
+> `DE.indicator`, `DE.state`, etc.) — see
+> `documents/data-explorer-state-namespace-plan-2026-07-10.md`. This is the
+> "single state object" half of this recommendation; the dispatcher, URL
+> module, renderer registry, fetch/layer/Vega reuse, hover-reset fix, and
+> event-bus are still open. Done on `feature-de-state-namespace-refactor`, which
+> has **not** merged to `production`.
