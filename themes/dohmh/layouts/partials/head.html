@@ -305,11 +305,9 @@
         ? DE_DEBUG_OVERRIDE === '1'
         : !['production', 'prod_prod'].includes(hugoEnv);
 
-    const debugLog = (...args) => {
-        if (DE_DEBUG) {
-            console.log(...args);
-        }
-    };
+    // Bound (not wrapped) so DevTools attributes the log line to the caller, not to here —
+    // a bound native console method adds no extra stack frame, unlike a plain wrapper function.
+    const debugLog = DE_DEBUG ? console.log.bind(console) : () => {};
 
 </script>
 
