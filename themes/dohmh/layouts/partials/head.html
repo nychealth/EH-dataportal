@@ -217,15 +217,6 @@
 
     <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
 
-    <!--Geocoder -->
-    {{- $geocoder := resources.Get "node_modules/leaflet-control-geocoder/dist/Control.Geocoder.js" | partial "short-fingerprint.html" }}
-    <script src="{{ $geocoder.RelPermalink}}" integrity="{{ $geocoder.Data.Integrity }}"></script>
-
-    <!-- point in polygon -->
-    <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
-
-
-
     <!-- leaflet marker icons -->
 
     {{- $leaflet_marker_icon := resources.Get "node_modules/leaflet/dist/images/marker-icon.png" }}
