@@ -522,6 +522,17 @@ const renderBar = (
     DE.print.vizSource = metadata[0]?.Sources;
     DE.print.chartType = 'bar';
 
+    // ----- download-CSV table (mirrors trend.js's downloadTable pattern) ----- //
+
+    // Label rows with the indicator/measure, then drop the join/helper columns
+    // (raw GeoType code, GeoRank, numeric period bounds, etc.) that are meaningless
+    // outside the app and shouldn't appear in a user-facing export.
+    const downloadTable = aq.from(barData)
+        .derive({ Indicator: aq.escape(`${DE.indicator.indicatorName}: ${metadata[0].MeasureName}`) })
+        .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
+
+    DE.print.CSVforDownload = downloadTable.toCSV();
+
     // ----- render & map-hover interop ----- //
 
     return vegaEmbed("#barHolder", vegaSpec, {

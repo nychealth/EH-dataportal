@@ -21,11 +21,6 @@ const draw311Buttons = (indicator_id) => {
     // ----- fetch crosswalk CSV ----- //
 
     d3.csv(`${baseURL}311/311-crosswalk.csv`)
-        .then(async data => {
-
-            // console.log(">>> 311-crosswalk");
-            return data;
-        })
         .then((crosswalk) => {
 
             // console.log('crosswalk')

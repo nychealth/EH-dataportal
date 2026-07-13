@@ -362,11 +362,6 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         }
     };
 
-    // Unused — superseded by the inline resetHighlight defined on the exposed mapInterop object below.
-    const resetHighlight = (layer, e) => {
-        layer.resetStyle(e.target);
-    };
-
     // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
     const createPopupContent = (properties) => {
         // Use citywide-specific popup if this is citywide-only data
@@ -382,8 +377,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     const {
         updateHoverUI,
-        clearHoverUI,
-        calculatePercent
+        clearHoverUI
     } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
@@ -455,8 +449,6 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         }
                     });
 
-                    let currentlyHighlighted = null;
-                    
                     layer.on('mouseover', (e) => {
                         const props = feature.properties;
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
@@ -585,8 +577,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
     const {
         updateHoverUI,
-        clearHoverUI,
-        calculatePercent
+        clearHoverUI
     } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
 
     const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
