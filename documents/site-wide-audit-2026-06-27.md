@@ -173,10 +173,91 @@ every page. Current issues, roughly in impact order:
   pages — [head.html:195](../themes/dohmh/layouts/partials/head.html)). These are
   *data*; move them to `data/` (Hugo `site.Data`) or fetch as JSON so they're not
   parsed as JS on every page load. (Same anti-pattern as the dead
-  `geography.js`.)
+  `geography.js`.) **Followed up in §5a below — the sprawl is worse than this
+  bullet implies, and one of the copies is stale.**
 - **Legacy `assets/js/data-explorer-old/`** (~6,560 lines) — the cutover retired
   it but it is still built and reachable at `/data-explorer-old/`. Dead weight;
   delete with the rest of the old tree (§1).
+
+### 5a. UHF neighborhood files — one list, two vintages, five copies (added 2026-07-14)
+
+Full audit of every UHF artifact in the repo, prompted by the `uhflist` bullet
+above. The 42-neighborhood list, the UHF42 boundary, and the CD→UHF crosswalks
+are each stored more than once, in more than one format. **The headline is not
+the duplication — it's that the two copies of the neighborhood list disagree on
+the numbers, and the site displays the stale one.**
+
+| Thing | Copies | Consumers |
+|---|---|---|
+| 42-row neighborhood list | [`uhflist.js`](../assets/js/uhflist.js) (20 KB, `var neighborhoods`) **and** [`uhflist.json`](../assets/js/uhflist.json) (20 KB) | `.js` at runtime (`nr-output/single.html`, `nr-leaflet`, `neighborhood-reports/section`, `topiclanding`); `.json` at build time only (`nr-insert-zips.html` via `transform.Unmarshal`) |
+| CD/CCD → UHF crosswalk | `ccd-to-uhf42.js` (40 KB), `cd-to-uhf42.js` (32 KB), `ccd-to-uhf42.json` (33 KB) | the two `.js` by `overlap-tool.html` + `overlap-tool-with-map.html`; **the `.json` by nothing** |
+| UHF42 boundary | `static/geojson/UHF42.geojson` (95 KB), the remote `EHDP-data/…/geography/UHF42.geojson`, and `UHF42.topo.json` | local → `nr-leaflet.html`; remote → `overlap-tool-with-map.html` (2×); topojson → the data explorer |
+| UHF42 attribute table | `static/UHF42.csv` (3.5 KB) | only `nr-clickable-uhf.html` + `nr-map-highlight.html` — **both dead** |
+
+**1. `uhflist.js` and `uhflist.json` are different vintages of the same table
+(P1 — correctness, not cleanup).** All 42 rows differ on at least one shared
+key. UHF 101, for example: poverty `16.53` vs `16.1624`, HS-grad `87.51` vs
+`84.98`, limited-English `16.54` vs `17.01`, rent-burdened `49.5` vs `50.89`.
+One field is even named differently (`PercentOwnerOccupied` vs
+`OwnerOccupiedPercent`). The demographics **rendered on neighborhood reports**
+([nr-output/single.html:853](../themes/dohmh/layouts/nr-output/single.html))
+come from the `.js`; the `.json`'s more precise values are read for `Zipcodes`
+only and are never displayed. This has the shape of a regenerated update that
+landed in the JSON and never made it back into the JS. **Someone has to decide
+which vintage is authoritative before anything here is deleted or unified.**
+
+**2. `uhflist.js` is render-blocking on pages that never use it (P2).**
+[head.html:195](../themes/dohmh/layouts/partials/head.html) sits inside
+`{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer") }}`,
+so 20 KB of `var neighborhoods` blocks parsing on every data-explorer page,
+data-feature, data-story and key-topic page. Only neighborhood-reports read the
+global. (This is the same gating problem as easybutton / colorIcon / leaflet-pip
+in §2 — note the earlier claim that these are "only used by data-features" is
+wrong for `uhflist`, which is a neighborhood-reports dependency.)
+
+**3. `topiclanding.html` loads it twice (P3).** Its section is
+`neighborhood-reports`, so head.html has already emitted the script;
+[topiclanding.html:146-147](../themes/dohmh/layouts/neighborhood-reports/topiclanding.html)
+emits a second tag that re-executes the 20 KB and re-declares `var
+neighborhoods`. `index.html:320` also loads it explicitly, but *that* one is
+legitimate — home is `Kind: home`, which head's condition doesn't cover.
+
+**4. Three dead partials, plus the files only they use (P3).**
+`nr-clickable-uhf.html`, `nr-map-highlight.html` and `nr-chooser.html` have
+**zero invocations** in any form (`partial`/`partialCached`, with or without the
+`.html` suffix). The `nr-clickable-uhf` string that survives in `docs/` is the
+vestigial CSS class on
+[section.html:86](../themes/dohmh/layouts/neighborhood-reports/section.html) —
+the partial's own `id="vis1"` never renders; `nr-leaflet` fills that div now.
+Deleting the three strands `static/UHF42.csv`, which nothing else references.
+`ccd-to-uhf42.json` is likewise unreferenced, and has no `cd-to-uhf42.json`
+partner — so it isn't even a consistent two-format convention, just a leftover.
+
+**5. The UHF42 boundary is served from two origins (P3).** A 95 KB local
+`static/` copy for `nr-leaflet`, and the EHDP-data repo's copy for
+`overlap-tool-with-map`. They can drift independently, and no page benefits from
+having both.
+
+**Suggested order** — deletions first; they're provable and reversible:
+
+1. Delete `nr-clickable-uhf.html`, `nr-map-highlight.html`, `nr-chooser.html`,
+   `ccd-to-uhf42.json`, `static/UHF42.csv`. Verify with a clean `hugo` build and
+   a `git diff` of `docs/` — expect **no** rendered-output change.
+2. Drop the duplicate `uhflist.js` tag from `topiclanding.html`.
+3. Gate `uhflist.js` in head.html to `neighborhood-reports` (keep `index.html`'s
+   explicit load). Removes a render-blocking 20 KB from every DE page.
+4. **Blocked on #1's decision:** collapse `uhflist.js` + `uhflist.json` into one
+   source of truth. The clean shape is JSON-only — keep the build-time
+   `transform.Unmarshal` for zips and emit the runtime copy *from the same JSON*
+   (`{{ $l := resources.Get "js/uhflist.json" | transform.Unmarshal }}<script>var neighborhoods = {{ $l | jsonify }}</script>`),
+   on the pages that need it, so the two can't drift again. This changes the
+   numbers shown on neighborhood reports: it is a **content change** and wants
+   its own commit with sign-off, not a ride-along in a perf PR.
+5. *Optional:* point `nr-leaflet` at the EHDP-data UHF42 geometry the overlap
+   tool already fetches and delete the local copy — one origin, one cache entry,
+   but neighborhood reports then depend on the data repo at runtime. Same idea
+   for the 72 KB of crosswalk `.js`, though those load on only two pages, so the
+   win is small.
 
 ---
 
