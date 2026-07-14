@@ -554,6 +554,58 @@ const resolveMeasureDisplay = (measurementType, displayTypeFallback = '') => {
 };
 
 // ----------------------------------------------------------------------- //
+// chart sizing
+// ----------------------------------------------------------------------- //
+
+// Measures a chart container, even when its tab pane hasn't been revealed yet.
+//
+// The overlay renders are kicked off from the tab button's click handler, which finishes
+// before Bootstrap reveals the pane. A `"width": "container"` spec therefore measures a
+// display:none container, pins the Vega view to 0px, and paints a blank chart that nothing
+// recovers — view.resize() re-runs layout but never re-measures the DOM. (Whether a render
+// lost that race used to come down to how long its data fetch took, which is what kept the
+// bug hidden.) Waiting for the reveal would fix it but leaves the pane visibly empty for
+// the length of the fade, so measure the hidden pane instead and hand Vega a real number:
+// the chart then renders while the pane is still fading in.
+//
+// Returns 0 if the width can't be resolved, so callers can fall back to "container".
+const getChartContainerWidth = (selector) => {
+
+    const container = document.querySelector(selector);
+
+    if (!container) {
+        return 0;
+    }
+
+    if (container.offsetWidth > 0) {
+        return container.offsetWidth;
+    }
+
+    const pane = container.closest('.tab-pane');
+
+    if (!pane) {
+        return 0;
+    }
+
+    // Lay the pane out without showing it. Kept in normal flow (no position change) so the
+    // container resolves against the same parent width it will have once revealed, and
+    // restored in the same task, so the browser never paints this state.
+    const priorDisplay = pane.style.display;
+    const priorVisibility = pane.style.visibility;
+
+    pane.style.display = 'block';
+    pane.style.visibility = 'hidden';
+
+    const width = container.offsetWidth;
+
+    pane.style.display = priorDisplay;
+    pane.style.visibility = priorVisibility;
+
+    return width;
+
+};
+
+// ----------------------------------------------------------------------- //
 // chart resize
 // ----------------------------------------------------------------------- //
 
