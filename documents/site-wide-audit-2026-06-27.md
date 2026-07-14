@@ -86,7 +86,40 @@ every page. Current issues, roughly in impact order:
   unconditionally* ([:129-131](../themes/dohmh/layouts/partials/head.html)) — so
   every page pulls two external nyc.gov stylesheets whether it has a map or not.
 - **Dead Hugo loop:** [head.html:121-127](../themes/dohmh/layouts/partials/head.html)
-  ranges FA webfonts into `$woff_got` and never uses it.
+  ranges FA webfonts into `$woff_got` and never uses it. **Correction, 2026-07-14:
+  not actually dead** — evaluating `$woff.RelPermalink` as the inner `resources.Get`'s
+  argument triggers Hugo's lazy-publish-on-access side effect for the *original*
+  matched resource, which is what puts the raw `.woff2` files at the
+  node_modules-relative path the fingerprinted FA CSS's `@font-face` rules
+  (`url(../webfonts/...)`) actually resolve against. Confirmed by inspecting the
+  built `docs/` output. Deleting it (rather than replacing the pointless double-`Get`
+  with the `.Publish` idiom already used for the Leaflet marker icons two blocks
+  later in the same file) would have broken every Font Awesome icon on the site
+  the moment the JS injector below is also dropped.
+- **The conditional-gating pattern itself is becoming a second problem, layered
+  on top of what's gated (new 2026-07-14).** Every section-specific exception —
+  easybutton/colorIcon excluded for `data-explorer`, `uhflist` restricted to
+  `neighborhood-reports` (§5a), and whatever gets added next — is implemented as
+  another branch inside the same one big
+  `{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer") }}`
+  block ([head.html:143](../themes/dohmh/layouts/partials/head.html)). A page's
+  actual dependencies end up living somewhere other than its own template — you
+  have to read head.html to know what `data-explorer/single.html` loads, not the
+  template itself — and two templates can collide on the same resource path with
+  no build error: `data-explorer-old/single.html` builds its own DataTables
+  bundle at the literal same `resources.Concat` target name
+  (`js/dataTableBundle.js`) as head.html's, and Hugo silently serves whichever
+  one it cached first (harmless today only because neither template's JS calls
+  the plugin APIs the two versions differ on). **Recommend per-template
+  inclusion** for anything that isn't truly universal — each template
+  `{{ partial }}`s in only the libraries it needs — reserving head.html
+  conditionals for what every page genuinely needs (charset, viewport, favicon,
+  GA). This project's own CLAUDE.md already endorses the equivalent pattern one
+  level down, for page-specific inline JS ("externalize to
+  `assets/js/<page-name>/*.js`... see `data-explorer/single.html`"); this is the
+  same idea one level up, applied to which libraries a template pulls in. A
+  Tier-4-sized restructure, not a quick fix — cross-referenced in the DE
+  fresh-audit's Tier 4.6.
 - **Inline JS in 66 of 136 layouts.** Behavioral JavaScript lives inside
   templates (e.g. ~240 lines in `de-tab-content.html`, plus the data-features
   pages). It can't be linted, fingerprinted/cached, unit-tested, or covered by a
@@ -98,7 +131,9 @@ every page. Current issues, roughly in impact order:
 > `defer`; (2) only load Leaflet/Vega/DataTables on pages that use them (most are
 > already gated, but jQuery/FA are global); (3) minify CSS; (4) de-dupe favicon +
 > nyc-lib; (5) move inline `<script>` blocks into fingerprinted files under
-> `assets/js/`.
+> `assets/js/`; (6) longer-term, replace head.html's growing per-section
+> conditional nest with per-template inclusion — each template loads only what
+> it needs, instead of head.html trying to know every template's needs.
 
 ---
 
