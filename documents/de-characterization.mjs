@@ -30,7 +30,10 @@ import { execSync } from 'node:child_process';
 
 // Match the address `hugo server` prints ("Web Server is available at ...").
 // dev_stage keeps the /dev-stage/ path segment from its configured baseURL.
-const BASE_URL = 'http://localhost:8080/dev-stage/';
+// Override with DE_BASE_URL when a server is already on 8080 under a different
+// environment — a local_stage server serves /local-stage/, and pointing the
+// harness at the wrong prefix just times out waiting for a page that isn't there.
+const BASE_URL = process.env.DE_BASE_URL ?? 'http://localhost:8080/dev-stage/';
 
 // Indicators chosen to exercise every view: 2380 (asthma ED visits — map, bar,
 // trend, links, AND disparities via the poverty-221 comparator), 2414 (asthma
