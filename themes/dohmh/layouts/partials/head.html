@@ -46,7 +46,7 @@
 <!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
 <!-- https://lucianojung.de/ -->
 
-<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }}>
+<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} type="image/x-icon">
 
 
 <!-- Required meta tags -->
@@ -99,11 +99,6 @@
 {{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | partial "short-fingerprint.html" }}
 <script src="{{ $jquery.RelPermalink }}" integrity="{{ $jquery.Data.Integrity }}" crossorigin="anonymous"></script>
 
-<!-- favicon -->
-<!-- https://www.iconfinder.com/icons/7618350/heatmap_business_analytics_statistics_icon -->
-<!-- https://lucianojung.de/ -->
-<link rel="icon" href={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} type="image/x-icon">
-
 {{- /*  Font Awesome  */}}
 
 {{- /*  CSS  */}}
@@ -122,12 +117,6 @@
     {{- $woff.Publish -}}
 
 {{- end }}
-
-<!-- nyc-lib css -->
-<link href="https://maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css" rel="stylesheet">
-    <link href={{ relURL "css/nyc-basic-lib-v1.2.79.css" }} rel="stylesheet">
-
-
 
 {{- /*  main CSS  */}}
 
