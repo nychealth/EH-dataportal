@@ -328,6 +328,39 @@ const renderAboutSources = (about, sources) => {
 
 };
 
+
+// ----------------------------------------------------------------------- //
+// reliability notes
+// ----------------------------------------------------------------------- //
+
+// Shared "Notes:" block renderer for table/bar/trend/correlate/disparities: clears
+// the holder, then re-reveals it only if there are notes to show. Callers pass an
+// already-deduped `notes` array — each site's dedupe source differs enough (table
+// rows vs. joined Note_1/Note_2 pairs) that the dedupe/filter step stays inline at
+// the call site rather than folding into this helper.
+// `wrapNote` lets bar.js keep its `<p>` markup while the other four keep
+// `<div class='fs-xs'>` — a real markup divergence between sites, not an oversight
+// to silently unify. Builds the joined markup once and assigns it, instead of the
+// `innerHTML +=` per-note pattern the old sites used, which re-parses the whole
+// accumulated string on every iteration.
+const renderUnreliabilityNotes = (holderEl, notes, wrapNote = (note) => `<div class='fs-xs'>${note}</div>`) => {
+
+    if (!holderEl) {
+        return;
+    }
+
+    holderEl.innerHTML = '';
+    holderEl.classList.add('hide');
+
+    if (!notes.length) {
+        return;
+    }
+
+    holderEl.innerHTML = notes.map(wrapNote).join('');
+    holderEl.classList.remove('hide');
+
+};
+
 // ======================================================================= //
 // utilities.js
 // ======================================================================= //

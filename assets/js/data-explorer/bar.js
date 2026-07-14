@@ -72,15 +72,9 @@ const renderBar = (
     const barUnreliability = document.getElementById('bar-unreliability');
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
 
-    if (barUnreliability) {
-
-        barUnreliability.innerHTML = '';
-        barUnreliability.classList.toggle('hide', uniqueNotes.length === 0);
-
-        if (uniqueNotes.length > 0) {
-            barUnreliability.innerHTML = uniqueNotes.map(note => `<p>${note}</p>`).join('');
-        }
-    }
+    // bar.js wraps each note in <p>, not the <div class='fs-xs'> the other four
+    // sites use — a real markup divergence, so pass the override explicitly.
+    renderUnreliabilityNotes(barUnreliability, uniqueNotes, note => `<p>${note}</p>`);
 
 
     // Accept either a raw backend geotype or the prettified UI label.

@@ -146,19 +146,11 @@ const renderDisparitiesChart = async (
     const disparityTime = DE.disparities.disparityData[0]?.TimePeriod_2;
     const geoTypeShortDesc = DE.disparities.disparityData[0]?.GeoTypeShortDesc_1;
 
+    // Show each note once even when both joined measures carry the same warning.
     const combinedUnreliability = DE.disparities.disparityData.map(d => d.Note_1).concat(DE.disparities.disparityData.map(d => d.Note_2));
     const disparityUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
-    if (unreliabilityHolder) {
-        // Show each note once even when both joined measures carry the same warning.
-        unreliabilityHolder.innerHTML = "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
-        unreliabilityHolder.classList.add('hide');
-
-        disparityUnreliability.forEach(note => {
-            unreliabilityHolder.innerHTML += `<div class='fs-xs'>${note}</div>`;
-            unreliabilityHolder.classList.remove('hide');
-        });
-    }
+    renderUnreliabilityNotes(unreliabilityHolder, disparityUnreliability);
 
     const combinedAbout =
         `<p><strong>${primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>

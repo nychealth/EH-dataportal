@@ -114,18 +114,12 @@ const buildLabelCollisionTransforms = (passCount) => {
 // ----------------------------------------------------------------------- //
 
 // Resets the note area before populating the current trend-specific notes.
+// Unlike the other 4 reliability-notes sites, `notes` arrives already deduped/filtered
+// by the caller, so this just delegates to the shared renderer with its default
+// `<div class='fs-xs'>` markup (matching appendTrendNote's own wrapper below).
 const renderTrendNotes = (trendUnreliability, notes) => {
 
-    if (!trendUnreliability) {
-        return;
-    }
-
-    trendUnreliability.innerHTML = "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
-    trendUnreliability.classList.add('hide');
-
-    notes.forEach(note => {
-        appendTrendNote(trendUnreliability, note);
-    });
+    renderUnreliabilityNotes(trendUnreliability, notes);
 
 };
 

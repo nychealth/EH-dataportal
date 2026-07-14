@@ -342,17 +342,11 @@ const renderCorrelate = (
     const columns = window.innerWidth < 576 ? 3 : 6;
     const height = window.innerWidth < 576 ? 350 : 400;
 
+    // Show each distinct note once even if both joined measures repeat it.
     const combinedUnreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2));
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
-    // Show each distinct note once even if both joined measures repeat it.
-    unreliabilityHolder.innerHTML =  "" // "<span class='fs-xs'><strong>Notes:</strong></span> ";
-    unreliabilityHolder.classList.add('hide');
-
-    linksUnreliability.forEach(note => {
-    unreliabilityHolder.innerHTML += `<div class='fs-xs'>${note}</div>`;
-        unreliabilityHolder.classList.remove('hide');
-    });
+    renderUnreliabilityNotes(unreliabilityHolder, linksUnreliability);
 
     // ----- Vega-Lite spec assembly (correlateSpec) ----- //
 
