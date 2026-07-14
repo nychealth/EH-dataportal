@@ -175,9 +175,12 @@
     {{- $topojson_js := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
     <script type="text/javascript" src="{{ $topojson_js.RelPermalink }}" integrity="{{ $topojson_js.Data.Integrity }}"></script>
 
-    <!-- UHF42 neighborhood list javascript -->
-    {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-    <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
+    {{- /*  UHF42 neighborhood list javascript — only neighborhood-reports reads it; the
+          data explorer never touches it and shouldn't pay for a render-blocking 20 KB load  */}}
+    {{- if eq .Section "neighborhood-reports" }}
+        {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+        <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
+    {{- end }}
 
     <!-- leaflet CSS -->
 
@@ -189,22 +192,28 @@
     {{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | partial "short-fingerprint.html" }}
     <script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
 
-    <!-- leaflet easybutton CSS -->
+    {{- /*  easybutton/colorIcon are unused by the data explorer (its map.js never
+          references either) — real consumer is data-features/neighborhood-overlap.html  */}}
+    {{- if ne .Section "data-explorer" }}
 
-    {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" | partial "short-fingerprint.html" }}
-    <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" integrity="{{ $easybutton_CSS.Data.Integrity }}" />
+        <!-- leaflet easybutton CSS -->
 
-    <!-- leaflet easybutton source -->
+        {{- $easybutton_CSS := resources.Get "node_modules/leaflet-easybutton/src/easy-button.css" | partial "short-fingerprint.html" }}
+        <link rel="stylesheet" href="{{ $easybutton_CSS.RelPermalink }}" integrity="{{ $easybutton_CSS.Data.Integrity }}" />
 
-    {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | partial "short-fingerprint.html" }}
-    <script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
+        <!-- leaflet easybutton source -->
 
-    <!-- Leaflet.colorIcon -->
-    <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
+        {{- $easybutton := resources.Get "node_modules/leaflet-easybutton/src/easy-button.js" | partial "short-fingerprint.html" }}
+        <script src="{{ $easybutton.RelPermalink }}" integrity="{{ $easybutton.Data.Integrity }}"></script>
 
-    {{- $colorIcon := resources.Get "js/L.colorIcon.js" | partial "short-fingerprint.html" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+        <!-- Leaflet.colorIcon -->
+        <!-- https://github.com/shevekk/Leaflet.ColorIcon -->
 
-    <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
+        {{- $colorIcon := resources.Get "js/L.colorIcon.js" | partial "short-fingerprint.html" }} <!-- need to use Hugo Pipes to get file from assets dir -->
+
+        <script src="{{ $colorIcon.RelPermalink }}" integrity="{{ $colorIcon.Data.Integrity }}"></script>
+
+    {{- end }}
 
     <!-- leaflet marker icons -->
 
