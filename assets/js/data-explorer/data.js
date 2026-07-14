@@ -313,37 +313,41 @@ const loadData = async (this_IndicatorID) => {
 
     debugLog("* loadData");
 
-    await fetch(`${data_repo}${data_branch}/indicators/data/${this_IndicatorID}.json`)
-        .then(response => response.json())
-        .then(async data => {
+    try {
 
-            // console.log("data [loadData]", data);
+        // ----- fetch indicator rows, time, and geography together ----- //
 
-            // add GeoRank
+        // None of the three depends on the others — only the join below needs all of them.
+        // The time and geography lookups used to start only after the indicator rows had
+        // already arrived, which cost an extra round-trip on the first load of the session.
+        // (After that they come straight from the loadOnce cache.)
 
-            DE.lookups.aqIndicatorData = aq.table(data)
-                .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
-                .groupby("TimePeriodID", "GeoType", "GeoID")
-                .orderby(aq.desc('TimePeriodID'), 'GeoRank')
+        const [data] = await Promise.all([
 
-            // call the geo file and time file loading functions
-            
-            // Load time and geography metadata in parallel before joining anything.
-            // Both lookup tables are required before any joins can produce renderable view data.
-            await Promise.all([
-                loadTime(),
-                loadGeo()
-            ])
+            fetch(`${data_repo}${data_branch}/indicators/data/${this_IndicatorID}.json`)
+                .then(response => response.json()),
 
-            // call the data-to-geo joining function
+            loadTime(),
+            loadGeo()
 
-            await joinData();
+        ]);
 
+        // console.log("data [loadData]", data);
 
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        // ----- add GeoRank ----- //
+
+        DE.lookups.aqIndicatorData = aq.table(data)
+            .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
+            .groupby("TimePeriodID", "GeoType", "GeoID")
+            .orderby(aq.desc('TimePeriodID'), 'GeoRank')
+
+        // call the data-to-geo joining function
+
+        await joinData();
+
+    } catch (error) {
+        console.log(error);
+    }
 
     // trigger 311 button render after all data fetches and joins have resolved
     draw311Buttons(this_IndicatorID)
