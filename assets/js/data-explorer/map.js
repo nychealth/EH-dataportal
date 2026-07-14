@@ -319,15 +319,7 @@ const renderMap = (
 const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
 
     // Percent measures show percent-formatted legends; everything else stays unitless here.
-    if ((metadata[0].MeasurementType.includes('Percent') || metadata[0].MeasurementType.includes('percent')) && !metadata[0].MeasurementType.includes('percentile')) {
-
-        isPercent = true;
-        displayType = '%';
-        
-    } else {
-        isPercent = false;
-        displayType = '';
-    }
+    ({ isPercent, displayUnit: displayType } = resolveMeasureDisplay(metadata[0].MeasurementType));
 
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();

@@ -462,6 +462,29 @@ const prettifyGeoType = (GeoType) => {
 }
 
 // ----------------------------------------------------------------------- //
+// measure display resolution
+// ----------------------------------------------------------------------- //
+
+// Shared by map/bar/trend/correlate/disparities: decides whether a measure's values
+// are percent-formatted (unit "%") or fall back to the site's own DisplayType, and
+// builds the "MeasurementType (DisplayType)" string used in subtitles/axis labels.
+// "percentile" is excluded even though it contains "percent" as a substring.
+const resolveMeasureDisplay = (measurementType, displayTypeFallback = '') => {
+
+    const isPercent = (measurementType.includes('Percent') || measurementType.includes('percent'))
+        && !measurementType.includes('percentile');
+
+    const displayUnit = isPercent ? '%' : displayTypeFallback;
+
+    const measurementDisplay = isPercent
+        ? measurementType
+        : `${measurementType}${displayUnit ? ` (${displayUnit})` : ''}`;
+
+    return { isPercent, displayUnit, measurementDisplay };
+
+};
+
+// ----------------------------------------------------------------------- //
 // chart resize
 // ----------------------------------------------------------------------- //
 

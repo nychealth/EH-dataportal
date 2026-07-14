@@ -241,16 +241,8 @@ const renderCorrelate = (
     const primaryMeasurementType = primaryMetadata[0]?.MeasurementType;
     const primaryMeasureName = primaryMetadata[0]?.MeasureName;
 
-    let primaryDisplay;
-    let primaryMeasurementDisplay;
-
-    if ((primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent')) && !primaryMeasurementType.includes('percentile')) {
-        primaryDisplay = '%';
-        primaryMeasurementDisplay = primaryMeasurementType;
-    } else {
-        primaryDisplay = `${primaryMetadata[0]?.DisplayType || ''}`;
-        primaryMeasurementDisplay = `${primaryMeasurementType}${primaryDisplay ? ` (${primaryDisplay})` : ''}`;
-    }
+    const { displayUnit: primaryDisplay, measurementDisplay: primaryMeasurementDisplay } =
+        resolveMeasureDisplay(primaryMeasurementType, primaryMetadata[0]?.DisplayType);
 
     const primaryTimePeriod = data[0]?.TimePeriod_1;
     const geoTypeShortDesc = data[0]?.GeoTypeShortDesc_1;
@@ -261,16 +253,8 @@ const renderCorrelate = (
     const secondaryMeasureName = secondaryMetadata[0]?.MeasureName;
     const secondaryMeasureId = secondaryMetadata[0]?.MeasureID;
 
-    let secondaryDisplay;
-    let secondaryMeasurementDisplay;
-
-    if ((secondaryMeasurementType.includes('Percent') || secondaryMeasurementType.includes('percent')) && !secondaryMeasurementType.includes('percentile')) {
-        secondaryDisplay = '%';
-        secondaryMeasurementDisplay = secondaryMeasurementType;
-    } else {
-        secondaryDisplay = `${secondaryMetadata[0]?.DisplayType || ''}`;
-        secondaryMeasurementDisplay = `${secondaryMeasurementType}${secondaryDisplay ? ` (${secondaryDisplay})` : ''}`;
-    }
+    const { displayUnit: secondaryDisplay, measurementDisplay: secondaryMeasurementDisplay } =
+        resolveMeasureDisplay(secondaryMeasurementType, secondaryMetadata[0]?.DisplayType);
 
     const secondaryTimePeriod = data[0]?.TimePeriod_2;
 

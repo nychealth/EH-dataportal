@@ -84,19 +84,10 @@ const renderDisparitiesChart = async (
     const primaryAbout = primaryMetadata[0]?.how_calculated;
     const primarySources = primaryMetadata[0]?.Sources;
 
-    let subtitle;
-    let primaryDisplay;
-
     // - - - percent-type measures display as "%"; others use their configured display type - - - //
 
-    if ((primaryMeasurementType.includes('Percent') || primaryMeasurementType.includes('percent')) && !primaryMeasurementType.includes('percentile')) {
-        primaryDisplay = '%';
-        subtitle = primaryMeasurementType;
-    } else {
-        primaryDisplay = primaryMetadata[0]?.DisplayType;
-        subtitle = `${primaryMeasurementType}${primaryMetadata[0]?.DisplayType ? ` (${primaryDisplay})` : ''}`;
-
-    }
+    const { displayUnit: primaryDisplay, measurementDisplay: subtitle } =
+        resolveMeasureDisplay(primaryMeasurementType, primaryMetadata[0]?.DisplayType);
 
     // ----- resolve secondary (disparity/poverty) measure metadata ----- //
 

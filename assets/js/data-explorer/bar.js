@@ -114,22 +114,10 @@ const renderBar = (
     // ----- display-rule resolution (CI detection, percent formatting) ----- //
 
     const hasCI = barData.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
-    debugLog('has CI [bar.js]', hasCI)
+    debugLog('has CI [bar.js]', hasCI);
 
     // Switch units and subtitle formatting when the measure is percentage-based.
-    if ((barMeasurementType.includes('Percent') || barMeasurementType.includes('percent')) && !barMeasurementType.includes('percentile')) {
-
-        isPercent = true;
-        displayType = '%';
-        subtitle = barMeasurementType;
-        
-    } else {
-
-        isPercent = false;
-        displayType = metadata[0]?.DisplayType;
-        subtitle = barMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
-
-    }
+    ({ isPercent, displayUnit: displayType, measurementDisplay: subtitle } = resolveMeasureDisplay(barMeasurementType, metadata[0]?.DisplayType));
 
     debugLog('is percent? [bar.js]', isPercent)
 

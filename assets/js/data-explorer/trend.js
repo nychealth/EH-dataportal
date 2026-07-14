@@ -218,8 +218,10 @@ const renderTrendChart = (
         plotTitle = DE.indicator.indicatorName;
         plotSubtitle = compMeasurementType + (compDisplayTypes.length > 0 ? ` (${compDisplayTypes})` : "") + (hasBoros ? "" : "");
 
-        if ((compMeasurementType[0].includes('Percent') || compMeasurementType[0].includes('percent')) && !compMeasurementType[0].includes('percentile')) {
-            compDisplayTypes = '%';
+        const { isPercent, displayUnit } = resolveMeasureDisplay(compMeasurementType[0]);
+
+        if (isPercent) {
+            compDisplayTypes = displayUnit;
         }
 
         comp_group_col = "GeographyShort"; // point to calculated field to create abbreviated borough labels
