@@ -602,14 +602,41 @@ const renderTable = (tableData) => {
     const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
         .filter(x => ![0, 1, 8].includes(x));
 
-    // Sort by the geoid so that the table is initially ordered by geographic identifier, providing a consistent and logical initial view for the user.
-    // also has the benefit of grouping by boro
+    // default sort: when grouped by borough, GeoID keeps boroughs in a sensible
+    //  order; when ungrouped, sort areas alphabetically so the flat list is useful
+    //  (the user can still re-sort any column by clicking its header)
+    const sortBy = DE.table.groupByBorough ? 3 : 8;  // 3 = GeoID, 8 = Area
+    const sortName = dataColumnNames[sortBy];
 
-    const sortBy = 2 // geoID
-    const sortName = dataColumnNames[sortBy]
-
+    // group/borough label columns (indexes into the pivoted, relocated table)
     const groupColumnTime = 0;
-    const groupColumnGeo = 2;
+    const groupColumnGeo = 2;  // GeoTypeDesc
+    const groupColumnBoro = 6; // Borough
+
+    // ----- hierarchical group keys ----- //
+
+    // Keys are fully-qualified (they include their parents) so that, e.g., the
+    //  same borough appearing under different geo types / time periods stays a
+    //  distinct group. They're used both to insert group header rows and to let
+    //  the collapse/expand handler find a header's descendant rows.
+
+    // Borough is only a meaningful sub-group for the smaller geo types: not
+    //  Citywide (no borough) and not Borough itself (the borough *is* the row).
+    //  Null boroughs render as "-", so guard against that too. Mirrors the
+    //  condition used to build the "Area" column above.
+    const hasBorough = (geoTypeDesc, borough) =>
+        Boolean(borough) && borough !== '-' && geoTypeDesc !== 'Borough';
+
+    const timeKey = (time) => `${time}`;
+    const geoKey  = (time, geoTypeDesc) => `${time}||${geoTypeDesc}`;
+    const boroKey = (time, geoTypeDesc, borough) => `${time}||${geoTypeDesc}||${borough}`;
+
+    // Borough grouping is optional. When on, BoroID joins the fixed order so
+    //  boroughs stay contiguous (required for grouping). When off we drop it so
+    //  the user can sort columns freely across boroughs within a geo type.
+    const tableOrderFixed = DE.table.groupByBorough
+        ? [[0, 'desc'], [4, 'asc'], [5, 'asc']]  // TimePeriod, GeoRank, BoroID
+        : [[0, 'desc'], [4, 'asc']];             // TimePeriod, GeoRank
 
     // - - - initialize the table - - - //
 
@@ -633,7 +660,6 @@ const renderTable = (tableData) => {
         ],
         searching: true,
         paging: false,
-        select: true,
         buttons: [
             {
                 extend: 'csvHtml5',
@@ -642,9 +668,10 @@ const renderTable = (tableData) => {
             }
         ],
         bInfo: false,
-        // Keep time groups together, then sort rows within each group by geography rank.
-        order: [[sortBy, 'desc']],
-        orderFixed: [[0, 'desc'], [4, 'asc']],
+        // Keep time groups together, then sort rows within each group by geography rank
+        //  (+ BoroID when grouping by borough); sortBy is the initial user-sortable column.
+        order: [[sortBy, 'asc']],
+        orderFixed: tableOrderFixed,
         columnDefs: [
             // Hide helper columns that power filtering, grouping, and sort order.
             { visible: false, targets: [0, 1, 2, 3, 4, 5, 6, 7] },
@@ -681,14 +708,20 @@ const renderTable = (tableData) => {
         },
         // The table body and filter input are the only visible chrome we need here.
         dom: 'rt<"bottom"flp>',
-        // Stamps data-group/data-time attributes on each row at build time so drawCallback can detect group boundaries later.
+        // Stamps ancestry data-* attributes on each row at build time so drawCallback
+        //  can detect group boundaries and the toggle handler can find descendants later.
         createdRow: function (row, data) {
             const time = data[0];
             const GeoTypeDesc = data[2];
-            // Store grouping metadata on each row so drawCallback can rebuild collapsible headers.
+            const borough = data[6];
+            // Ancestry attributes let a group header find (and toggle) all of its
+            //  descendant rows: nested group headers + data rows.
             if (time && GeoTypeDesc) {
-                row.setAttribute(`data-group`, `${time}-${GeoTypeDesc}`);
-                row.setAttribute(`data-time`, `${time}`);
+                row.setAttribute(`data-time`, timeKey(time));
+                row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
+                if (hasBorough(GeoTypeDesc, borough)) {
+                    row.setAttribute(`data-boro`, boroKey(time, GeoTypeDesc, borough));
+                }
             }
         },
         // Rebuilds the collapsible group-header rows and resyncs the search box after each draw, since DataTables replaces the row DOM every time.
@@ -701,39 +734,63 @@ const renderTable = (tableData) => {
             const rows = api.rows({page:'current'}).nodes();
             const visibleColumnsCount = dataColumnsCount - 8;
 
-            let last = null;
-            let lastTime = null;
+            // Insert a group header row for one level of the hierarchy.
+            //  - keyFn:   builds the fully-qualified key for a row at this level
+            //  - attrsFn: builds the ancestry data-* attributes for the header,
+            //             matching those put on descendant rows in createdRow
+            //  - skipFn:  (optional) true for rows that get no header at this level
+            //             (e.g. boroughs for Citywide / Borough geo types)
+            const createGroupRow = (groupColumn, lvl, keyFn, attrsFn, skipFn) => {
 
-            // Build headers in two passes: first time buckets, then geography subgroup labels.
-            // Inserts one synthetic group header row whenever the grouping value changes.
-            const createGroupRow = (groupColumn, lvl) => {
+                let last = null;
 
                 api.column(groupColumn, {page:'current'}).data().each(function (group, i) {
 
-                    const time = data[i][0];
+                    const time        = data[i][0];
+                    const geoTypeDesc = data[i][2];
+                    const borough     = data[i][6];
 
-                    // Start a new group header each time the group label or time bucket changes.
-                    if (last !== group || lastTime !== time) {
+                    if (skipFn && skipFn(geoTypeDesc, borough)) {
+                        return;
+                    }
+
+                    const key = keyFn(time, geoTypeDesc, borough);
+
+                    // Start a new group header each time the fully-qualified key changes.
+                    if (last !== key) {
 
                         $(rows).eq(i).before(
-                            `<tr class="group">
-                                <td colspan="${visibleColumnsCount}" 
-                                    data-time="${time}" 
-                                    data-group="${group}" 
-                                    data-group-level="${lvl}">
-                                    ${group}
-                                </td>
-                            </tr>`
+                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
                         );
 
-                        last = group;
-                        lastTime = time;
+                        last = key;
                     }
                 });
             };
 
-            createGroupRow(groupColumnTime, 0);
-            createGroupRow(groupColumnGeo, 1);
+            // level 0: time period
+            createGroupRow(
+                groupColumnTime, 0,
+                (time) => timeKey(time),
+                (time) => `data-time="${time}"`
+            );
+
+            // level 1: geo type
+            createGroupRow(
+                groupColumnGeo, 1,
+                (time, geoTypeDesc) => geoKey(time, geoTypeDesc),
+                (time, geoTypeDesc) => `data-time="${time}" data-geo="${geoKey(time, geoTypeDesc)}"`
+            );
+
+            // level 2: borough (only for the smaller geo types, and only when the toggle is on)
+            if (DE.table.groupByBorough) {
+                createGroupRow(
+                    groupColumnBoro, 2,
+                    (time, geoTypeDesc, borough) => boroKey(time, geoTypeDesc, borough),
+                    (time, geoTypeDesc, borough) => `data-time="${time}" data-geo="${geoKey(time, geoTypeDesc)}" data-boro="${boroKey(time, geoTypeDesc, borough)}"`,
+                    (geoTypeDesc, borough) => !hasBorough(geoTypeDesc, borough)
+                );
+            }
 
             // Group rows are rebuilt every draw, so the search-box text needs to be resynced here.
             syncTableAreaSearchInput();
@@ -786,61 +843,44 @@ const handleToggle = () => {
 
     $('body').on('click', '#summary-table tr.group td', (e) => {
 
-        // - - - resolve clicked cell/row/group context - - - //
+        // - - - resolve clicked header + its level - - - //
 
-        const td = $(e.target);
-        const tr = td.parent();
-        const group = td.data('group');
-        const groupLevel = td.data('group-level');
+        const td    = $(e.currentTarget);
+        const tr    = td.closest('tr.group');
+        const level = parseInt(tr.attr('data-group-level'), 10);
 
-        // Toggles an entire top-level time group and all of its subgroup rows.
-        const handleGroupToggle = () => {
+        // Descendants share this header's value on one attribute:
+        //  level 0 (time) -> data-time, level 1 (geo) -> data-geo, level 2 (boro) -> data-boro
+        const descendantAttr = level === 0 ? 'data-time'
+                             : level === 1 ? 'data-geo'
+                             : 'data-boro';
 
-            const subGroupToggle = $(`td[data-time="${group}"][data-group-level="1"]`);
-            const subGroupRow = $(`tr[data-time="${group}"]`);
+        const key = tr.attr(descendantAttr);
 
-            // Show or hide every subgroup row that belongs to the clicked time header.
-            if (subGroupToggle.css('display') === 'none') {
+        // - - - collect this header's descendants - - - //
 
-                subGroupToggle.show().removeClass('hidden');
-                subGroupRow.show().removeClass('hidden');
-                td.removeClass('hidden');
+        // Every row carrying this key (data rows + nested group headers),
+        //  excluding the clicked header itself.
+        const descendants = $('#summary-table tr[' + descendantAttr + ']')
+            .filter(function () {
+                return this.getAttribute(descendantAttr) === key && this !== tr[0];
+            });
 
-            } else {
+        // - - - expand / collapse - - - //
 
-                subGroupToggle.hide().addClass('hidden');
-                subGroupRow.hide().addClass('hidden');
-                td.addClass('hidden');
-            }
-        };
+        if (td.hasClass('hidden')) {
 
-        // Toggles the data rows that sit under one geography subgroup header.
-        const handleSubGroupToggle = () => {
+            // expand: reveal everything beneath, and reset nested headers to expanded (− icon)
+            td.removeClass('hidden');
+            descendants.show();
+            descendants.find('td').removeClass('hidden');
 
-            // The first data row after a subgroup header carries the shared data-group marker for that block.
-            const subDataGroup = tr.next('tr').data('group');
-            const subGroupRow = $(`tr[data-group="${subDataGroup}"]`);
-
-            // Show or hide only the rows nested under the clicked subgroup header.
-            if (subGroupRow.css('display') === 'none') {
-
-                subGroupRow.show().removeClass('hidden');
-                td.removeClass('hidden');
-
-            } else {
-
-                subGroupRow.hide().addClass('hidden');
-                td.addClass('hidden');
-            }
-        };
-
-        // - - - dispatch based on group level - - - //
-
-        // Route clicks to either the time-level or subgroup-level toggle behavior.
-        if (groupLevel === 0) {
-            handleGroupToggle();
         } else {
-            handleSubGroupToggle();
+
+            // collapse: hide everything beneath
+            td.addClass('hidden');
+            descendants.hide();
+
         }
 
     });

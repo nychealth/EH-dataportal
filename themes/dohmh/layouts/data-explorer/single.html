@@ -55,6 +55,16 @@
 
 <script type="text/javascript" src="{{ $seedrandom_secure.RelPermalink }}" integrity="{{ $seedrandom_secure.Data.Integrity }}"></script>
 
+{{- /*  naturalSort DataTables plugin (https://datatables.net/plug-ins/sorting/natural) —
+        registers a 'natural' sort type used by table.js's summary table. Must load before
+        the SPA bundle (table.js) so the type is registered when a DataTable is first built.
+        Kept here (not head.html) for parity with the old explorer, which loads it the same way.  */}}
+
+{{- $naturalSort := resources.Get "js/naturalSort.js" }}
+{{- $naturalSort_secure := $naturalSort | partial "short-fingerprint.html" }}
+
+<script type="text/javascript" src="{{ $naturalSort_secure.RelPermalink }}" integrity="{{ $naturalSort_secure.Data.Integrity }}"></script>
+
 
 <!-- JAVASCRIPT FILES -->
 

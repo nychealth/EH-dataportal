@@ -26,6 +26,8 @@ const DE = {
         tableTimeFilterIsManual: false,
         tableGeoFilterIsManual: false,
         tableNeedsRender: false,
+        // sub-group smaller geo types by borough (Time > GeoType > Borough); toggleable in the UI
+        groupByBorough: true,
         tableData: undefined
     },
 

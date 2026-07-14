@@ -489,6 +489,27 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ----------------------------------------------------------------------- //
+// table view options
+// ----------------------------------------------------------------------- //
+
+// Toggle borough sub-grouping in the summary table. When off, areas are ungrouped
+//  between boroughs so columns can be sorted freely (by value, alphabetically, etc.)
+$("#groupByBoroughToggle").on("change", (e) => {
+
+    DE.table.groupByBorough = e.target.checked;
+
+    // Re-render now if the table already exists; otherwise defer to the lazy
+    //  first-render path so we never build into a still-hidden pane.
+    if (DE.table.tableData && $.fn.dataTable.isDataTable('#tableID')) {
+        renderTable(DE.table.tableData);
+    } else {
+        DE.table.tableNeedsRender = true;
+    }
+
+});
+
+
+// ----------------------------------------------------------------------- //
 // content truncation
 // ----------------------------------------------------------------------- //
 

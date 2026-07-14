@@ -174,6 +174,14 @@
                             </div>
                         </div>
 
+                        <div class="col-12 mt-2">
+                            <p class="fs-xs mb-1">Display</p>
+                            <label class="fs-sm mb-0 d-inline-flex align-items-center" for="groupByBoroughToggle" style="cursor:pointer;">
+                                <input class="largerCheckbox mr-1" type="checkbox" id="groupByBoroughToggle" checked />
+                                <span>Group neighborhoods by borough</span>
+                            </label>
+                        </div>
+
                         <div class="col-12">
                             <div class="chart-note mt-1">
                                 <p class="fs-sm mt-1 text-muted">Table filters follow the map until changed. <a href="#" id="tableFilterSyncButton">Sync to map</a>.</p>
@@ -343,6 +351,17 @@
         background-color: #F0F0F0;
         color: green;
         font-weight: bold;
+        }
+    /* nested grouping levels (Time > GeoType > Borough): progressively indented and lighter so the hierarchy reads visually */
+    table .group td[data-group-level="1"] {
+        padding-left: 1.75rem;
+        background-color: #F5F5F5;
+        }
+    table .group td[data-group-level="2"] {
+        padding-left: 3.25rem;
+        background-color: #FAFAFA;
+        font-weight: 600;
+        font-size: .9em;
         }
     .de-tab {
         font-size: 16px;
