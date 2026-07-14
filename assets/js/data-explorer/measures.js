@@ -413,6 +413,145 @@ const enableTab = (el) => {
 
 
 // ----------------------------------------------------------------------- //
+// badge-pill / dropdown DOM builders
+// ----------------------------------------------------------------------- //
+
+// Pure DOM factories used by renderMeasures(); hoisted to module scope so
+// they're defined once per page load instead of once per indicator.
+
+// Normalizes active and disabled styles so the new visible pills stay in sync.
+const setBadgePillState = (button, isActive, isDisabled = false) => {
+
+    if (!button) {
+        return;
+    }
+
+    button.classList.toggle('active', isActive && !isDisabled);
+    button.classList.remove('badge-primary', 'badge-light', 'text-white');
+    button.classList.add(isActive && !isDisabled ? 'badge-primary' : 'badge-light');
+    button.classList.toggle('text-white', isActive && !isDisabled);
+    button.classList.toggle('disabled', isDisabled);
+    button.disabled = isDisabled;
+    button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+    button.setAttribute('aria-pressed', isActive && !isDisabled ? 'true' : 'false');
+    button.setAttribute('aria-selected', isActive && !isDisabled ? 'true' : 'false');
+
+};
+
+
+// Creates a badge-pill button element with the given class, label, optional tooltip, and data-* attributes.
+const createBadgePillButton = ({
+    buttonClass,
+    label,
+    title,
+    dataAttributes = {}
+}) => {
+
+    const button = document.createElement('button');
+
+    button.type = 'button';
+    button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+    button.textContent = label;
+
+    if (title) {
+        button.title = title;
+    }
+
+    Object.entries(dataAttributes).forEach(([key, value]) => {
+        button.dataset[key] = value;
+    });
+
+    return button;
+
+};
+
+
+// Creates a pill-label span wrapping the given text.
+const createBadgePillLabel = (label) => {
+
+    const span = document.createElement('span');
+
+    span.className = 'de-viz-pill-label';
+    span.textContent = label;
+
+    return span;
+
+};
+
+
+// Slugifies a label into a lowercase, hyphen-separated, ID-safe fragment, defaulting to 'option' when empty.
+const createDropdownIdFragment = (label) => {
+
+    const nextIdFragment = String(label || 'option')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+    return nextIdFragment || 'option';
+
+};
+
+
+// Builds a Bootstrap dropdown fragment (wrapper, toggle button with chevron and label, empty menu) and returns its parts.
+const createBadgePillDropdown = ({
+    buttonClass,
+    label,
+    menuId
+}) => {
+
+    const dropdown = document.createElement('div');
+    const button = document.createElement('button');
+    const icon = document.createElement('i');
+    const labelSpan = document.createElement('span');
+    const menu = document.createElement('div');
+
+    dropdown.className = 'dropdown d-inline-block';
+
+    button.type = 'button';
+    button.id = `${menuId}Toggle`;
+    button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+    button.dataset.baseLabel = label;
+    button.setAttribute('data-toggle', 'dropdown');
+    button.setAttribute('aria-haspopup', 'true');
+    button.setAttribute('aria-expanded', 'false');
+
+    icon.className = 'fas fa-chevron-circle-down mr-1';
+    icon.setAttribute('aria-hidden', 'true');
+
+    labelSpan.className = 'de-viz-pill-toggle-label';
+    labelSpan.textContent = label;
+
+    button.append(icon, labelSpan);
+
+    menu.id = menuId;
+    menu.className = 'dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu';
+    menu.setAttribute('aria-labelledby', button.id);
+
+    dropdown.append(button, menu);
+
+    return {
+        dropdown,
+        button,
+        menu
+    };
+
+};
+
+
+// Toggles the active class and aria-selected on one dropdown menu item.
+const setDropdownMenuItemState = (button, isActive) => {
+
+    if (!button) {
+        return;
+    }
+
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
@@ -525,138 +664,6 @@ const renderMeasures = async () => {
     const trendMeasurePills = document.getElementById('trendMeasurePills');
     const trendComparisonPills = document.getElementById('trendComparisonPills');
     let selectedComparisonLegendTitle = null;
-
-    // Normalizes active and disabled styles so the new visible pills stay in sync.
-    const setBadgePillState = (button, isActive, isDisabled = false) => {
-
-        if (!button) {
-            return;
-        }
-
-        button.classList.toggle('active', isActive && !isDisabled);
-        button.classList.remove('badge-primary', 'badge-light', 'text-white');
-        button.classList.add(isActive && !isDisabled ? 'badge-primary' : 'badge-light');
-        button.classList.toggle('text-white', isActive && !isDisabled);
-        button.classList.toggle('disabled', isDisabled);
-        button.disabled = isDisabled;
-        button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
-        button.setAttribute('aria-pressed', isActive && !isDisabled ? 'true' : 'false');
-        button.setAttribute('aria-selected', isActive && !isDisabled ? 'true' : 'false');
-
-    };
-
-
-    // Creates a badge-pill button element with the given class, label, optional tooltip, and data-* attributes.
-    const createBadgePillButton = ({
-        buttonClass,
-        label,
-        title,
-        dataAttributes = {}
-    }) => {
-
-        const button = document.createElement('button');
-
-        button.type = 'button';
-        button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
-        button.textContent = label;
-
-        if (title) {
-            button.title = title;
-        }
-
-        Object.entries(dataAttributes).forEach(([key, value]) => {
-            button.dataset[key] = value;
-        });
-
-        return button;
-
-    };
-
-
-    // Creates a pill-label span wrapping the given text.
-    const createBadgePillLabel = (label) => {
-
-        const span = document.createElement('span');
-
-        span.className = 'de-viz-pill-label';
-        span.textContent = label;
-
-        return span;
-
-    };
-
-
-    // Slugifies a label into a lowercase, hyphen-separated, ID-safe fragment, defaulting to 'option' when empty.
-    const createDropdownIdFragment = (label) => {
-
-        const nextIdFragment = String(label || 'option')
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)/g, '');
-
-        return nextIdFragment || 'option';
-
-    };
-
-
-    // Builds a Bootstrap dropdown fragment (wrapper, toggle button with chevron and label, empty menu) and returns its parts.
-    const createBadgePillDropdown = ({
-        buttonClass,
-        label,
-        menuId
-    }) => {
-
-        const dropdown = document.createElement('div');
-        const button = document.createElement('button');
-        const icon = document.createElement('i');
-        const labelSpan = document.createElement('span');
-        const menu = document.createElement('div');
-
-        dropdown.className = 'dropdown d-inline-block';
-
-        button.type = 'button';
-        button.id = `${menuId}Toggle`;
-        button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
-        button.dataset.baseLabel = label;
-        button.setAttribute('data-toggle', 'dropdown');
-        button.setAttribute('aria-haspopup', 'true');
-        button.setAttribute('aria-expanded', 'false');
-
-        icon.className = 'fas fa-chevron-circle-down mr-1';
-        icon.setAttribute('aria-hidden', 'true');
-
-        labelSpan.className = 'de-viz-pill-toggle-label';
-        labelSpan.textContent = label;
-
-        button.append(icon, labelSpan);
-
-        menu.id = menuId;
-        menu.className = 'dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu';
-        menu.setAttribute('aria-labelledby', button.id);
-
-        dropdown.append(button, menu);
-
-        return {
-            dropdown,
-            button,
-            menu
-        };
-
-    };
-
-
-    // Toggles the active class and aria-selected on one dropdown menu item.
-    const setDropdownMenuItemState = (button, isActive) => {
-
-        if (!button) {
-            return;
-        }
-
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-
-    };
-
 
     // Picks comparison that best matches current indicator and active measure.
     const getSyncedComparisonId = () => {
