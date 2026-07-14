@@ -284,15 +284,23 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     // Clear comparison metadata early so downstream branches can rely on simple length checks.
     DE.lookups.comparisonMetadata = [];
 
-    // why are we waiting for this?
+    // ----- kick off the comparison and data pipelines together ----- //
 
-    if (DE.lookups.indicatorComparisonId.length > 0) {
-        await fetch_comparisons();
-    }
+    // These two share no state: the comparison pipeline reads only `indicators` and
+    // indicatorComparisonId (both resolved above) and writes DE.lookups.comparison*, while
+    // loadData writes the indicator/geo/time tables. Nothing reads the comparison tables until
+    // renderMeasures runs, after both have resolved — so the comparison fetch no longer blocks
+    // the data fetch, saving a full round-trip on every comparison-bearing indicator.
 
-    // ----- kick off loadData ----- //
+    await Promise.all([
 
-    await loadData(DE.state.IndicatorID);
+        DE.lookups.indicatorComparisonId.length > 0
+            ? fetch_comparisons()
+            : Promise.resolve(),
+
+        loadData(DE.state.IndicatorID)
+
+    ]);
 
 }
 
