@@ -235,27 +235,30 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
 };
 
 // Copies filtered indicator rows onto matching geometry features before rendering.
+// Both branches build a new properties object rather than writing into the existing one:
+// topojson.feature() hands back the *cached* topology's own properties objects (by
+// reference), so an in-place write would leak this render's data into every later render
+// of the same geotype. See loadMapGeojson below.
 const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
     geojson.features.forEach((feature) => {
         const geoID = feature.properties.GEOCODE;
         const matchedData = dataLookup[geoID];
 
-        if (matchedData) {
-            feature.properties = {
-                ...feature.properties,
-                ...matchedData
-            };
-        } else {
-            feature.properties.dataValue = null;
-        }
+        feature.properties = matchedData
+            ? { ...feature.properties, ...matchedData }
+            : { ...feature.properties, dataValue: null };
     });
     return geojson;
 };
 
 // Fetches the geotype's TopoJSON, converts it to GeoJSON, and joins the filtered rows onto its features.
+// The fetch + JSON parse is cached per geotype for the session — the geometry never changes, while
+// this ran on every measure, time-period, and geography change. topojson.feature() still runs per
+// render, rebuilding the GeoJSON wrapper so each render gets its own features to attach data to.
 const loadMapGeojson = (topoFile, dataLookup) => {
-    return fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
-        .then(response => response.json())
+    return loadOnce(topoFile, () =>
+        fetch(`${data_repo}${data_branch}/geography/${topoFile}`).then(response => response.json())
+    )
         .then(topology => {
             const geojson = topojson.feature(topology, topology.objects.collection);
             return attachDataToGeojsonFeatures(geojson, dataLookup);

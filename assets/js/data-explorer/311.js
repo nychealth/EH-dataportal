@@ -20,7 +20,10 @@ const draw311Buttons = (indicator_id) => {
 
     // ----- fetch crosswalk CSV ----- //
 
-    d3.csv(`${baseURL}311/311-crosswalk.csv`)
+    const crosswalkUrl = `${baseURL}311/311-crosswalk.csv`;
+
+    // One crosswalk serves every indicator, so parse it once and re-filter the cached rows.
+    loadOnce(crosswalkUrl, () => d3.csv(crosswalkUrl))
         .then((crosswalk) => {
 
             // console.log('crosswalk')

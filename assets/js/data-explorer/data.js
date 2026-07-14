@@ -16,8 +16,13 @@ const fetch_comparisons = async () => {
 
     debugLog("* fetch_comparisons.json");
 
-    DE.lookups.comparisons = await fetch(`${data_repo}${data_branch}/indicators/metadata/comparisons.json`)
-        .then(response => response.json())
+    const comparisonsUrl = `${data_repo}${data_branch}/indicators/metadata/comparisons.json`;
+
+    // Cache the fetch, not the filtered result — createComparisonData narrows the same
+    // full list differently for each indicator.
+    DE.lookups.comparisons = await loadOnce(comparisonsUrl, () =>
+        fetch(comparisonsUrl).then(response => response.json())
+    )
         .catch(error => {
             console.log(error);
             return [];
@@ -348,15 +353,12 @@ const loadGeo = async () => {
 
     const geoUrl = `${data_repo}${data_branch}/geography/GeoLookup.json`; // col named "GeoType"
 
-    await aq.loadJSON(geoUrl, {autoType: false})
-        .then(async (data) => {
+    // Safe to share one table across indicators: arquero tables are immutable, and every
+    // consumer joins against this one rather than modifying it.
+    DE.lookups.geoTable = await loadOnce(geoUrl, () => aq.loadJSON(geoUrl, {autoType: false}));
 
-            DE.lookups.geoTable = await data;
-
-            //  console.log("geoTable [loadGeo]");
-            //  geoTable.print()
-
-    });
+    //  console.log("geoTable [loadGeo]");
+    //  geoTable.print()
 }
 
 // ----------------------------------------------------------------------- //
@@ -370,24 +372,28 @@ const loadTime = async () => {
 
     const timeUrl = `${data_repo}${data_branch}/indicators/metadata/TimePeriods.json`;
 
-    await aq.loadJSON(timeUrl, {autoType: false})
-        .then(async (data) => {
+    // The table and the lookup derived from it are both static per session, so cache the
+    // pair together and skip rebuilding the lookup on every indicator switch.
+    const { table, lookup } = await loadOnce(timeUrl, async () => {
 
-            DE.lookups.timeTable = await data;
+        const table = await aq.loadJSON(timeUrl, {autoType: false});
 
-            // Build a plain JS lookup keyed by TimePeriodID
+        // Mirror the Arquero time table into a plain object for fast menu lookups.
+        const lookup = {};
 
-            DE.lookups.timeLookup = {};
+        table.objects().forEach(t => {
+            lookup[t.TimePeriodID] = t;
+        });
 
-            // Mirror the Arquero time table into a plain object for fast menu lookups.
-            DE.lookups.timeTable.objects().forEach(t => {
-                DE.lookups.timeLookup[t.TimePeriodID] = t;
-            });
-
-            // console.log("timeTable [loadTime]");
-            // timeTable.print()
+        return { table, lookup };
 
     });
+
+    DE.lookups.timeTable = table;
+    DE.lookups.timeLookup = lookup;
+
+    // console.log("timeTable [loadTime]");
+    // timeTable.print()
 }
 
 

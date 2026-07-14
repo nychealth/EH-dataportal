@@ -237,6 +237,42 @@ const DE_MEASURE_RULES = {
 
 
 // ----------------------------------------------------------------------- //
+// session fetch cache
+// ----------------------------------------------------------------------- //
+
+// Promise cache for files that are static for the life of the page (geography lookup,
+// time periods, comparison metadata, per-geotype TopoJSON, the 311 crosswalk). Without
+// it every indicator switch re-fetched and re-parsed all of them, and the TopoJSON was
+// re-fetched even on a time-period-only change.
+//
+// It stores the *promise*, not the resolved value, so callers that arrive while a load
+// is still in flight share that one request instead of starting a second. A rejected
+// load is evicted so the next caller can retry rather than inheriting the failure for
+// the rest of the session.
+const sessionFetchCache = new Map();
+
+// Runs `loader` the first time `key` is requested and replays its result thereafter.
+const loadOnce = (key, loader) => {
+
+    if (!sessionFetchCache.has(key)) {
+
+        const pending = Promise.resolve()
+            .then(loader)
+            .catch(error => {
+                sessionFetchCache.delete(key);
+                throw error;
+            });
+
+        sessionFetchCache.set(key, pending);
+
+    }
+
+    return sessionFetchCache.get(key);
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // copy citation
 // ----------------------------------------------------------------------- //
 
