@@ -252,6 +252,56 @@ const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
     return geojson;
 };
 
+// Fetches the geotype's TopoJSON, converts it to GeoJSON, and joins the filtered rows onto its features.
+const loadMapGeojson = (topoFile, dataLookup) => {
+    return fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
+        .then(response => response.json())
+        .then(topology => {
+            const geojson = topojson.feature(topology, topology.objects.collection);
+            return attachDataToGeojsonFeatures(geojson, dataLookup);
+        });
+};
+
+// ----------------------------------------------------------------------- //
+// citywide-only handling
+// ----------------------------------------------------------------------- //
+
+// Roughly lower Manhattan — anchors the citywide popup over the middle of the city.
+const CITYWIDE_POPUP_LATLNG = [40.711409, -74.016813];
+
+// Sends the user to the trend tab, consuming the one-shot per-indicator-load flag.
+// A citywide-only indicator has nothing to show per neighborhood, so the map nudges the
+// user to the trend view — but only once per indicator load. Otherwise every measure/geo/
+// time re-render, and every re-click on the popup, would keep overriding whatever tab the
+// user actually picked. See citywideTrendDefaultPending in global.js.
+const switchToTrendTabOnce = () => {
+
+    if (!DE.map.citywideTrendDefaultPending) return;
+
+    DE.map.citywideTrendDefaultPending = false;
+
+    const element = document.getElementById('v-pills-trends-tab');
+
+    if (element) {
+        element.click();
+    } else {
+        console.warn("Trend tab element not found for citywide map click-through.");
+    }
+
+};
+
+// Opens the citywide popup at the city center and nudges the user to the trend tab.
+const handleCitywideOnly = (map, data, metadata) => {
+
+    L.popup()
+        .setLatLng(CITYWIDE_POPUP_LATLNG)
+        .setContent(createCitywidePopupContent(data[0], metadata))
+        .openOn(map);
+
+    switchToTrendTabOnce();
+
+};
+
 // Fire immediately
 
 initBaseMap();
@@ -372,24 +422,9 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         clearHoverUI
     } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
 
-    const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
-        .then(response => response.json())
-        .then(topology => {
-            
-            // Convert TopoJSON once, then enrich each feature with filtered indicator data.
-            // ----- Convert TopoJSON to GeoJSON ----- //
-
-            let geojson = topojson.feature(topology, topology.objects.collection);
-
-            // ----- Attach data to each feature ----- //
-
-            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
-
-            return geojson;
-            
-        })
+    const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
-            
+
             // - - - lookup to match GeoID → Leaflet layer - - - //
 
             const geoIDtoLayer = {};
@@ -423,18 +458,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
-                        // For citywide-only data, switch to trend tab — but only once per indicator
-                        // load (same gate as the auto-open nudge below), so dismissing the popup and
-                        // clicking again doesn't keep hijacking the tab.
-                        if (isCitywideOnly && DE.map.citywideTrendDefaultPending) {
-                            DE.map.citywideTrendDefaultPending = false;
-
-                            const element = document.getElementById('v-pills-trends-tab');
-                            if (element) {
-                                element.click();
-                            } else {
-                                console.warn("Trend tab element not found for citywide map click-through.");
-                            }
+                        if (isCitywideOnly) {
+                            switchToTrendTabOnce();
                         }
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
@@ -482,27 +507,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
             currentGeojsonLayer = geojsonLayer;
 
-            // For citywide-only data, open the popup immediately at map center
             if (isCitywideOnly) {
-                const citywidePopupContent = createCitywidePopupContent(data[0], metadata);
-                L.popup()
-                    .setLatLng([40.711409, -74.016813])
-                    .setContent(citywidePopupContent)
-                    .openOn(map);
-
-                // Nudge to the trend tab only once per indicator load — otherwise every
-                // measure/geo/time change re-renders the map and re-fires this, overriding
-                // whatever tab the user actually picked. See citywideTrendDefaultPending in global.js.
-                if (DE.map.citywideTrendDefaultPending) {
-                    DE.map.citywideTrendDefaultPending = false;
-
-                    const element = document.getElementById('v-pills-trends-tab');
-                    if (element) {
-                        element.click();
-                    } else {
-                        console.warn("Trend tab element not found for citywide map click-through.");
-                    }
-                }
+                handleCitywideOnly(map, data, metadata);
             }
 
             // exposes map functions globally for chart-to-map hover cross-linking
@@ -576,23 +582,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         clearHoverUI
     } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
 
-    const mapRenderPromise = fetch(`${data_repo}${data_branch}/geography/${topoFile}`)
-        .then(response => response.json())
-        .then(topology => {
-            
-            // ----- Convert TopoJSON to GeoJSON ----- //
-
-            let geojson = topojson.feature(topology, topology.objects.collection);
-
-            // ----- Attach data to each feature ----- //
-
-            geojson = attachDataToGeojsonFeatures(geojson, dataLookup);
-
-            return geojson;
-            
-        })
+    const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
-            
+
             // - - - lookup to match GeoID → Leaflet layer (for chart interop) - - - //
 
             const geoIDtoLayer = {};
@@ -609,21 +601,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     }
                     
                     layer.bindPopup(createPopupContent(feature.properties));
-                    
-                    // For citywide-only data, add click handler to switch to trend tab — only
-                    // once per indicator load (see citywideTrendDefaultPending gate below).
-                    if (isCitywideOnly) {
-                        layer.on('click', () => {
-                            if (!DE.map.citywideTrendDefaultPending) return;
-                            DE.map.citywideTrendDefaultPending = false;
 
-                            const element = document.getElementById('v-pills-trends-tab');
-                            if (element) {
-                                element.click();
-                            } else {
-                                console.warn("Trend tab element not found for citywide map click-through.");
-                            }
-                        });
+                    if (isCitywideOnly) {
+                        layer.on('click', switchToTrendTabOnce);
                     }
                 }
             }).addTo(map);
@@ -668,18 +648,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     circle.on('click', (e) => {
                         debugLog("** click", item);
 
-                        // For citywide-only data, switch to trend tab — but only once per indicator
-                        // load (same gate as the auto-open nudge below), so dismissing the popup and
-                        // clicking again doesn't keep hijacking the tab.
-                        if (isCitywideOnly && DE.map.citywideTrendDefaultPending) {
-                            DE.map.citywideTrendDefaultPending = false;
-
-                            const element = document.getElementById('v-pills-trends-tab');
-                            if (element) {
-                                element.click();
-                            } else {
-                                console.warn("Trend tab element not found for citywide map click-through.");
-                            }
+                        if (isCitywideOnly) {
+                            switchToTrendTabOnce();
                         }
 
                         if (window.myVegaView) {
@@ -716,27 +686,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 }
             });
 
-            // For citywide-only data, open the popup immediately at map center
             if (isCitywideOnly) {
-                const citywidePopupContent = createCitywidePopupContent(data[0], metadata);
-                L.popup()
-                    .setLatLng([40.711409, -74.016813])
-                    .setContent(citywidePopupContent)
-                    .openOn(map);
-
-                // Nudge to the trend tab only once per indicator load — otherwise every
-                // measure/geo/time change re-renders the map and re-fires this, overriding
-                // whatever tab the user actually picked. See citywideTrendDefaultPending in global.js.
-                if (DE.map.citywideTrendDefaultPending) {
-                    DE.map.citywideTrendDefaultPending = false;
-
-                    const element = document.getElementById('v-pills-trends-tab');
-                    if (element) {
-                        element.click();
-                    } else {
-                        console.warn("Trend tab element not found for citywide map click-through.");
-                    }
-                }
+                handleCitywideOnly(map, data, metadata);
             }
 
             // ----- Expose map functions globally for chart-to-map hover cross-linking ----- //
