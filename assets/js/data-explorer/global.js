@@ -558,6 +558,48 @@ window.addEventListener('load', () => {
 // Download data
 // ----------------------------------------------------------------------- //
 
+// Columns dropped from both correlate.js's and disparities.js's download CSVs: internal
+// join/plotting-only fields (raw geo ranks, duplicate display values, per-side measure IDs,
+// etc.) that aren't meant for analyst-facing export.
+const LINKS_DOWNLOAD_DROP_COLUMNS = [
+    'GeoType',
+    'GeoTypeShortDesc_1',
+    'GeoTypeShortDesc_2',
+    'GeoRank_1',
+    'GeoRank_2',
+    'start_period_1',
+    'end_period_1',
+    'ban_summary_flag_1',
+    'ban_summary_flag_2',
+    'BoroID',
+    'DisplayValue_1',
+    'DisplayValue_2',
+    'GeoTypeDesc_2',
+    'Geography_2',
+    'start_period_2',
+    'end_period_2',
+    'MeasureID_1',
+    'MeasureID_2'
+];
+
+// Shared by correlate.js/disparities.js: drops the internal-only columns above from the
+// joined rows, then appends the two human-readable label columns each site's chart already
+// builds for its subtitle/legend. `extraDrops` appends to the shared base list instead of
+// duplicating it — disparities.js passes ['randomOffsetX'] for its jitter-only field, which
+// has no counterpart in correlate.js's data shape. `labels.value1Indicator`/
+// `value2Indicator` are the final strings each caller wants written into
+// Value_1_Indicator/Value_2_Indicator; the two sites build those strings differently
+// (interpolated template literal vs. pre-built variable), so that step stays at the call site.
+const buildLinksDownloadTable = (rows, extraDrops, labels) => {
+
+    return aq.from(rows)
+        .select(aq.not(LINKS_DOWNLOAD_DROP_COLUMNS, extraDrops))
+        .derive({ Value_1_Indicator: aq.escape(labels.value1Indicator) })
+        .derive({ Value_2_Indicator: aq.escape(labels.value2Indicator) });
+
+};
+
+
 // Centralizes GA calls so new explorer interactions stay aligned with the
 // legacy explorer event names and payload shapes.
 const trackDataExplorerEvent = (eventName, eventParams = null) => {

@@ -352,30 +352,10 @@ const renderDisparitiesChart = async (
     // Export raw joined rows without internal plotting-only helper columns.
     const dataForDownload = [...disparitiesSpec.data.values];
 
-    const downloadTable = aq.from(dataForDownload)
-        .select(aq.not(
-            'GeoType',
-            'GeoTypeShortDesc_1',
-            'GeoTypeShortDesc_2',
-            'GeoRank_1',
-            'GeoRank_2',
-            'start_period_1',
-            'end_period_1',
-            'ban_summary_flag_1',
-            'ban_summary_flag_2',
-            'BoroID',
-            'DisplayValue_1',
-            'DisplayValue_2',
-            'GeoTypeDesc_2',
-            'Geography_2',
-            'start_period_2',
-            'end_period_2',
-            'MeasureID_1',
-            'MeasureID_2',
-            'randomOffsetX'
-        ))
-        .derive({ Value_1_Indicator: aq.escape(primaryIndicatorName) })
-        .derive({ Value_2_Indicator: aq.escape(disparityIndicatorName) });
+    const downloadTable = buildLinksDownloadTable(dataForDownload, ['randomOffsetX'], {
+        value1Indicator: primaryIndicatorName,
+        value2Indicator: disparityIndicatorName
+    });
 
     DE.print.CSVforDownload = downloadTable.toCSV();
 
