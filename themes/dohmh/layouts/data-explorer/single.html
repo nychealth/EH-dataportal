@@ -83,6 +83,7 @@
 {{- $trend     := resources.Get "js/data-explorer/trend.js" -}}
 {{- $correlate := resources.Get "js/data-explorer/correlate.js" -}}
 {{- $disparities := resources.Get "js/data-explorer/disparities.js" -}}
+{{- $printMap  := resources.Get "js/data-explorer/print-map.js" -}}
 {{- $print     := resources.Get "js/data-explorer/print.js" -}}
 
 
@@ -99,6 +100,7 @@
 {{- $trend_secure     := $trend | partial "short-fingerprint.html" -}}
 {{- $correlate_secure := $correlate | partial "short-fingerprint.html" -}}
 {{- $disparities_secure := $disparities | partial "short-fingerprint.html" -}}
+{{- $printMap_secure  := $printMap | partial "short-fingerprint.html" -}}
 {{- $print_secure     := $print | partial "short-fingerprint.html" -}}
 
 
@@ -115,6 +117,11 @@
 <script type="text/javascript" src="{{ $trend_secure.RelPermalink }}" integrity="{{ $trend_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $correlate_secure.RelPermalink }}" integrity="{{ $correlate_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $disparities_secure.RelPermalink }}" integrity="{{ $disparities_secure.Data.Integrity }}"></script>
+
+{{- /*  print-map.js holds the off-screen Leaflet map-export helpers that print.js's
+        bindPrintControls() calls at click time. Must load immediately before print.js.  */}}
+
+<script type="text/javascript" src="{{ $printMap_secure.RelPermalink }}" integrity="{{ $printMap_secure.Data.Integrity }}"></script>
 <script type="text/javascript" src="{{ $print_secure.RelPermalink }}" integrity="{{ $print_secure.Data.Integrity }}"></script>
 
 
