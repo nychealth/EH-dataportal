@@ -7,6 +7,27 @@
 // console.log(">> data.js");
 
 // ----------------------------------------------------------------------- //
+// indicator data files
+// ----------------------------------------------------------------------- //
+
+// Fetches one indicator's rows as an arquero table, reusing the cached table on later requests.
+//
+// The same file is asked for up to three times per load: as the primary indicator, as one of
+// its own comparison series (every comparison-bearing indicator lists itself), and as a
+// correlate's secondary series. Routing all three through loadOnce collapses that to a single
+// fetch and a single parse; arquero tables are immutable, so the callers below can share one.
+//
+// autoType: false matches loadGeo, and keeps the primary and comparison tables identically
+// typed — trend.js concatenates them, so they must not disagree about column types.
+const loadIndicatorData = (indicator_id) => {
+
+    const dataUrl = `${data_repo}${data_branch}/indicators/data/${indicator_id}.json`;
+
+    return loadOnce(dataUrl, () => aq.loadJSON(dataUrl, { autoType: false }));
+
+};
+
+// ----------------------------------------------------------------------- //
 // comparison metadata and data
 // ----------------------------------------------------------------------- //
 
@@ -124,7 +145,7 @@ const createComparisonData = async (comps) => {
     const comparisonDataTables = await Promise.all(
         uniqueIndicatorMeasure.map(async ind => {
 
-            return aq.loadJSON(`${data_repo}${data_branch}/indicators/data/${ind[0]}.json`)
+            return loadIndicatorData(ind[0])
                 .then(data => {
 
                     return data
@@ -324,8 +345,7 @@ const loadData = async (this_IndicatorID) => {
 
         const [data] = await Promise.all([
 
-            fetch(`${data_repo}${data_branch}/indicators/data/${this_IndicatorID}.json`)
-                .then(response => response.json()),
+            loadIndicatorData(this_IndicatorID),
 
             loadTime(),
             loadGeo()
@@ -336,7 +356,7 @@ const loadData = async (this_IndicatorID) => {
 
         // ----- add GeoRank ----- //
 
-        DE.lookups.aqIndicatorData = aq.table(data)
+        DE.lookups.aqIndicatorData = data
             .derive({ "GeoRank": aq.escape( d => assignGeoRank(d.GeoType))})
             .groupby("TimePeriodID", "GeoType", "GeoID")
             .orderby(aq.desc('TimePeriodID'), 'GeoRank')
@@ -755,13 +775,12 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     //  `await` the result before continuing)
 
     // Load the secondary indicator data only after the shared-geo primary slice is known.
-    await fetch(`${data_repo}${data_branch}/indicators/data/${secondaryIndicatorId}.json`)
-        .then(response => response.json())
+    await loadIndicatorData(secondaryIndicatorId)
         .then(async data => {
 
             // join with geotable and times, keep only geos in primary data
 
-            const aqFilteredSecondaryMeasureData = aq.table(data)
+            const aqFilteredSecondaryMeasureData = data
 
                 // get secondary measure data
                 .filter(aq.escape(d => d.MeasureID === secondaryMeasureId))
