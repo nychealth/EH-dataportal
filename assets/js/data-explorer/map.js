@@ -423,8 +423,12 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const props = feature.properties;
                         debugLog("** click", feature.properties);
 
-                        // For citywide-only data, switch to trend tab
-                        if (isCitywideOnly) {
+                        // For citywide-only data, switch to trend tab — but only once per indicator
+                        // load (same gate as the auto-open nudge below), so dismissing the popup and
+                        // clicking again doesn't keep hijacking the tab.
+                        if (isCitywideOnly && DE.map.citywideTrendDefaultPending) {
+                            DE.map.citywideTrendDefaultPending = false;
+
                             const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
@@ -606,9 +610,13 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     
                     layer.bindPopup(createPopupContent(feature.properties));
                     
-                    // For citywide-only data, add click handler to switch to trend tab
+                    // For citywide-only data, add click handler to switch to trend tab — only
+                    // once per indicator load (see citywideTrendDefaultPending gate below).
                     if (isCitywideOnly) {
                         layer.on('click', () => {
+                            if (!DE.map.citywideTrendDefaultPending) return;
+                            DE.map.citywideTrendDefaultPending = false;
+
                             const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
@@ -660,8 +668,12 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     circle.on('click', (e) => {
                         debugLog("** click", item);
 
-                        // For citywide-only data, switch to trend tab
-                        if (isCitywideOnly) {
+                        // For citywide-only data, switch to trend tab — but only once per indicator
+                        // load (same gate as the auto-open nudge below), so dismissing the popup and
+                        // clicking again doesn't keep hijacking the tab.
+                        if (isCitywideOnly && DE.map.citywideTrendDefaultPending) {
+                            DE.map.citywideTrendDefaultPending = false;
+
                             const element = document.getElementById('v-pills-trends-tab');
                             if (element) {
                                 element.click();
