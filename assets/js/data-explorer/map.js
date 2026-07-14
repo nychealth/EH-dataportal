@@ -390,9 +390,24 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         };
     };
 
-    // Applies the hover-highlight outline and brings the feature to the front of the layer stack.
+    // Assigned once the GeoJSON layer is built inside the fetch chain below. The hover helpers
+    // are defined before that resolves, so they close over this binding and read it at hover time.
+    let geojsonLayer = null;
+
+    // Only one polygon is ever highlighted at a time, so tracking it lets a hover reset restyle
+    // that single layer instead of sweeping every layer in the collection (~195 on NTA) on each
+    // mousemove. Bar-chart hovers highlight through these same helpers via window.mapInterop,
+    // so a highlight from either source lands in this tracker and gets cleared correctly.
+    let highlightedLayer = null;
+
+    // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
     const highlightFeature = (e) => {
         const layer = e.target;
+
+        if (highlightedLayer && highlightedLayer !== layer) {
+            geojsonLayer.resetStyle(highlightedLayer);
+        }
+
         layer.setStyle({
             weight: 3,
             color: '#000',
@@ -401,6 +416,22 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
+        }
+
+        highlightedLayer = layer;
+    };
+
+    // Restores a layer's base style. Falls back to the tracked layer so callers that don't hold a
+    // reference (or pass a stale one) still clear the highlight that is actually on screen.
+    const resetHighlight = (layer) => {
+        const target = layer ?? highlightedLayer;
+
+        if (!target || !geojsonLayer) return;
+
+        geojsonLayer.resetStyle(target);
+
+        if (target === highlightedLayer) {
+            highlightedLayer = null;
         }
     };
 
@@ -431,7 +462,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
             // ----- Add the GeoJSON to the map ----- //
 
-            const geojsonLayer = L.geoJson(geojson, {
+            geojsonLayer = L.geoJson(geojson, {
 
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
@@ -475,12 +506,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
                         const hasMappedValue = props.Value != null;
 
-                        // Clear any previous highlight before applying the current hover state.
-                        geojsonLayer.eachLayer((l) => {
-                            geojsonLayer.resetStyle(l);
-                        });
-
-                        // Apply highlight to current
+                        // highlightFeature clears the previously highlighted polygon itself.
                         highlightFeature(e);
 
                         updateHoverUI(props);
@@ -494,7 +520,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                     });
                     
                     layer.on('mouseout', (e) => {
-                        geojsonLayer.resetStyle(e.target);
+                        resetHighlight(e.target);
                         clearHoverUI();
 
                         if (window.myVegaView) {
@@ -516,7 +542,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                 geoIDtoLayer,
                 geojsonLayer,
                 highlightFeature,
-                resetHighlight: (layer) => geojsonLayer.resetStyle(layer),
+                resetHighlight,
                 updateHoverUI,
                 clearHoverUI
             };
