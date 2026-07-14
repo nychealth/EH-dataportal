@@ -77,8 +77,12 @@ every page. Current issues, roughly in impact order:
   icons used).
 - **No CSS minification.** [head.html:137-139](../themes/dohmh/layouts/partials/head.html)
   does `toCSS | resources.Fingerprint` with no `minify`. The ~14K-line SCSS
-  compiles to unminified CSS in production. Add `| minify` (or
-  `toCSS (dict "outputStyle" "compressed")`).
+  compiles to unminified CSS in production. **Proposed and implemented
+  2026-07-14 as part of Tier 3.3, then explicitly rejected by the user before
+  commit ("don't want the minify change") with no reason given.** Left out of
+  the 3.3 commits. Don't re-add `| minify` without checking in first — there
+  may be a reason (debuggability, an existing minify step elsewhere,
+  something environment-specific) that didn't surface in that exchange.
 - **Duplicate resources:** the favicon `<link>` is emitted twice
   ([:49](../themes/dohmh/layouts/partials/head.html), [:105](../themes/dohmh/layouts/partials/head.html));
   the nyc-lib CSS is loaded conditionally behind `.Params.mapLib`
@@ -129,11 +133,13 @@ every page. Current issues, roughly in impact order:
 > **Refactor:** (1) bundle the data-viz libraries with `resources.Concat` (the
 > file already does this for Vega/DataTables — extend it) and load the bundle
 > `defer`; (2) only load Leaflet/Vega/DataTables on pages that use them (most are
-> already gated, but jQuery/FA are global); (3) minify CSS; (4) de-dupe favicon +
-> nyc-lib; (5) move inline `<script>` blocks into fingerprinted files under
-> `assets/js/`; (6) longer-term, replace head.html's growing per-section
-> conditional nest with per-template inclusion — each template loads only what
-> it needs, instead of head.html trying to know every template's needs.
+> already gated, but jQuery/FA are global); (3) ~~minify CSS~~ proposed and
+> rejected by the user 2026-07-14, don't re-add without checking in; (4) de-dupe
+> favicon + nyc-lib — **done**; (5) move inline `<script>` blocks into
+> fingerprinted files under `assets/js/`; (6) longer-term, replace head.html's
+> growing per-section conditional nest with per-template inclusion — each
+> template loads only what it needs, instead of head.html trying to know every
+> template's needs.
 
 ---
 
@@ -506,7 +512,7 @@ In addition to the map/chart gaps in the DE audit:
 | 2 | P1 | CI workflows | Unpinned actions + no `permissions:` block (your own CLAUDE.md rules) |
 | 3 | P2 | [main.js:110](../assets/js/main.js) + [site.js:94](../assets/js/site.js) | `click_subscribe` analytics fires twice |
 | 4 | P2 | [head.html:116](../themes/dohmh/layouts/partials/head.html) | Font Awesome shipped as render-blocking JS *and* CSS; drop the JS |
-| 5 | P2 | [head.html:137](../themes/dohmh/layouts/partials/head.html) | Production CSS not minified |
+| 5 | P2 | [head.html:137](../themes/dohmh/layouts/partials/head.html) | Production CSS not minified — proposed + rejected by user 2026-07-14, don't re-add without checking in |
 | 6 | P2 | [head.html:90-131](../themes/dohmh/layouts/partials/head.html) | nyc-lib CSS loaded twice on every page; favicon `<link>` duplicated |
 | 7 | P3 | [header.html:188,244,347](../themes/dohmh/layouts/partials/header.html) | Duplicate `data-toggle` attribute (second ignored) |
 | 8 | P3 | [header.html:77-80](../themes/dohmh/layouts/partials/header.html) | Overlapping `<a>`/`<span>` nesting in site title |
@@ -528,9 +534,10 @@ In addition to the map/chart gaps in the DE audit:
 4. Decide a testing strategy (ad-hoc `node:test` scripts vs. adopting a
    framework like Vitest) — unresolved as of 2026-07-02, see §7.
 
-**Phase 1 — quick wins (the §11 table).** rawgit → local PIP; drop FA JS; minify
-CSS; de-dupe favicon/nyc-lib; fix the header markup bugs; gate GA out of
-dev/local and fix the double-fire + `click_how_caclulated` typo (§9).
+**Phase 1 — quick wins (the §11 table).** rawgit → local PIP; drop FA JS; ~~minify
+CSS~~ proposed + rejected by the user, see §2; de-dupe favicon/nyc-lib; fix the
+header markup bugs; gate GA out of dev/local and fix the double-fire +
+`click_how_caclulated` typo (§9).
 
 **Phase 2 — delete forks (cutover done 2026-06-27; deletion pending).** The
 endpoint cutover landed. Remaining: delete the three `data-explorer-old` trees
