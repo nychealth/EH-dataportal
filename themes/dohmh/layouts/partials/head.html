@@ -112,18 +112,15 @@
 {{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" | partial "short-fingerprint.html" }}
 <link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome_CSS.Data.Integrity }}" crossorigin="anonymous"/>
 
-{{- /*  JS  */}}
-
-{{- $fontawesome := resources.Get "node_modules/@fortawesome/fontawesome-free/js/all.min.js" | partial "short-fingerprint.html" }}
-<script src="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" crossorigin="anonymous"></script>
-
-{{- /*  webfonts  */}}
+{{- /*  webfonts — published (not printed) so the CSS's relative url(../webfonts/...)
+      references resolve; the JS SVG-injector is dropped since every icon in this repo
+      is the class="fa..." CSS form, never the JS API  */}}
 
 {{- $fa_woff := resources.Match "node_modules/@fortawesome/fontawesome-free/webfonts/**.woff2" -}}
 
 {{- range $woff := $fa_woff}}
 
-    {{- $woff_got := resources.Get $woff.RelPermalink -}}
+    {{- $woff.Publish -}}
 
 {{- end }}
 
