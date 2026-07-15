@@ -76,7 +76,8 @@ Key gotchas:
 
 Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell:
 
-- `documents/data-explorer-deep-audit-2026-06-27.md`
+- `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; all §0–§6 findings shipped by 2026-07-04. Superseded by the fresh audit below.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). Tiers 1–3 are done across `feature-de-tier1-audit-fixes` (merged), `feature-de-tier2-consolidation` and `feature-de-tier3-perf` (both unmerged, kept on their own branches per user choice); Tier 4 (structural) is not started. Log new findings and fix status here, not in the deep-audit doc.
 - `documents/site-wide-audit-2026-06-27.md`
 
 ## Team context
