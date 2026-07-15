@@ -54,6 +54,13 @@
 </style>
 
 
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-arquero.html" . }}
+{{- partial "lib-uhflist.html" . }}
+
+
 {{- /* ==== qrcode ==== */}}
 
 {{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" }}
