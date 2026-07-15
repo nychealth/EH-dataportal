@@ -314,6 +314,9 @@
     </div>
   </div>
 
+  {{- partial "lib-vega.html" . }}
+  {{- partial "lib-d3.html" . }}
+
   <div class="sr-only" id="accessibleTables">
     <h2>Chart data</h2>
     {{ partial "render-accessible-table.html" (dict "csvPath" "data/chart-data.csv" "containerId" "csv-table-container-1") }}

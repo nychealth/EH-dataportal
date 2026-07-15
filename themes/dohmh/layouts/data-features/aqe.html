@@ -239,6 +239,9 @@
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-vega.html" . }}
+
 <!--This code uses the JS file specified in the page's frontmatter-->
 
 <script type="text/javascript" src="{{ .Params.customJS }}"></script>

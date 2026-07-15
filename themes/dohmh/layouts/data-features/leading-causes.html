@@ -223,6 +223,9 @@
     </div>
   </div>
 
+  {{- partial "lib-vega.html" . }}
+  {{- partial "lib-d3.html" . }}
+
   <div class="sr-only" id="accessibleTables">
     <h2>Accessible data table</h2>
     {{ partial "render-accessible-table.html" (dict "csvPath"
