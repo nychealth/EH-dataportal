@@ -70,6 +70,8 @@ $color-data-explorer: #0A408A;
  }
 
 .data-stories {
+  color: $color-data-stories;
+
   svg path {
     fill: $color-data-stories;
    }
@@ -80,6 +82,8 @@ $color-data-explorer: #0A408A;
 }
 
 .n-reports {
+  color: $color-n-reports;
+
   svg path {
     fill: $color-n-reports;
    }
@@ -90,6 +94,8 @@ $color-data-explorer: #0A408A;
 }
 
 .data-explorer {
+  color: $color-data-explorer;
+
   svg path {
     fill: $color-data-explorer;
    }

@@ -801,6 +801,8 @@ span.th-sub {
 }
 
 .kt-accent {
+    color: $primary;
+
     svg path {
         fill: $primary;
     }
@@ -811,6 +813,8 @@ span.th-sub {
 }
 
 .df-accent {
+    color: $color-data-features;
+
     svg path {
         fill: $color-data-features;
     }
