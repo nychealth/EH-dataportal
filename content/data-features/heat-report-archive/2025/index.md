@@ -3,7 +3,10 @@ _schema: default
 title: 2025 NYC Heat-Related Mortality Report
 draft: false
 date: 2025-06-16T10:14:56-04:00
-categories: [climatehealth, inequality,healthoutcomes]
+categories:
+  - climatehealth
+  - inequality
+  - outcomes
 keywords:
   - heat
   - report
@@ -27,6 +30,7 @@ related:
     url: "data-features/heat-story/"
 weight: 25
 blurb: Annual analysis of heat related deaths, contributing factors,  and neighborhood impacts.
+hide: true
 ---
 
 Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.
