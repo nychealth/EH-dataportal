@@ -1,0 +1,4 @@
+{{- /*  UHF42 neighborhood list javascript (defines the global `neighborhoods` var)  */}}
+
+{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
