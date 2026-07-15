@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // close buttons and Escape-to-close
 // ----------------------------------------------------------------------- //
 
-// Close buttons carry their target pane in markup so the script can
-// bind once here without relying on inline handlers.
 const closeExplorerTabPane = (paneId) => {
     const targetPane = document.querySelector('#' + paneId);
     const targetTab = document.querySelector('[href="#' + paneId + '"]');
@@ -101,17 +99,20 @@ const closeExplorerTabPane = (paneId) => {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-    const closeTabPaneButtons = document.querySelectorAll('.de-close-tab-button[data-pane-id]');
+    // One shared button (outside every .tab-pane.fade, see de-tab-content.html)
+    // closes whichever pane is currently active — same lookup the Escape
+    // handler below uses.
+    const closeTabPaneButton = document.querySelector('.de-close-tab-button');
 
-    closeTabPaneButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const paneId = this.dataset.paneId;
+    if (closeTabPaneButton) {
+        closeTabPaneButton.addEventListener('click', function() {
+            const openPane = document.querySelector('#v-pills-tabContent .tab-pane.show.active');
 
-            if (paneId) {
-                closeExplorerTabPane(paneId);
+            if (openPane?.id) {
+                closeExplorerTabPane(openPane.id);
             }
         });
-    });
+    }
 
     // close tab pane with Escape key
 

@@ -105,15 +105,23 @@
 </style>
 
 <!-- Tab content -->
-<div class="tab-content bg-white pt-0" id="v-pills-tabContent">
+<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent">
+
+    {{- /*  One shared close button, outside every .tab-pane.fade, so tab switches
+            don't fade a duplicate copy of it out and back in — CSS opacity on
+            an ancestor composites its whole subtree, so a per-pane button can
+            never opt out of its own pane's fade. It closes whichever pane is
+            currently active, mirroring the Escape-key handler in
+            de-tab-content.js. Hides along with the rest of #v-pills-tabContent
+            when no pane is open (app.js sets display:none on the container).  */ -}}
+    <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
+        <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
+            <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
+        </button>
+    </div>
 
     <!-- Bar -->
     <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
-        <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-bar">
-                <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
-            </button>
-        </div>
         <div class="p-2 pt-md-0">
             <div id="barHolder" style="width:100%;height:500px;">
                 Bar chart to go here
@@ -137,11 +145,6 @@
 
     <!-- Table -->
     <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
-        <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-table">
-                <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
-            </button>
-        </div>
         <div class="pt-md-0">
 
             <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
@@ -211,11 +214,6 @@
 
     <!-- Trends -->
     <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
-        <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-trends">
-                <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
-            </button>
-        </div>
         <div class="p-2 pt-md-0">
             <div id="trendPillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-row">
@@ -244,11 +242,6 @@
 
     <!-- Correlate -->
     <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
-        <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-correlate">
-                <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
-            </button>
-        </div>
         <div class="p-2 pt-md-0">
             <div id="correlatePillControls" class="de-viz-pill-controls pt-1">
                 <div class="de-viz-pill-group">
@@ -293,11 +286,6 @@
 
     <!-- Data Source -->
     <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
-        <div class="bg-white d-none d-md-block bl50" style="margin-left: -32px;">
-            <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close" data-pane-id="v-pills-ds">
-                <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
-            </button>
-        </div>
         <div class="p-2 pt-md-0">
             <p class="h5 pt-1">About the data</p>
 
