@@ -428,7 +428,12 @@ const renderTrendChart = (
                 }
             }
         },
-        "width": "container",
+        // A measured width, so the chart still sizes correctly when this render beats
+        // Bootstrap's reveal of the pane and "container" would resolve to 0px. fit-x is
+        // what Vega-Lite applies implicitly for "container" — declared here so a numeric
+        // width lays out identically.
+        "width": getChartContainerWidth('#trend') || "container",
+        "autosize": { "type": "fit-x", "contains": "padding" },
         "height": 400,
         "title": {
             "text": plotTitle,

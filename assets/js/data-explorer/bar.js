@@ -461,7 +461,7 @@ const renderBar = (
             "legend": {"disable": true},
             "scale": {"invalid": {"color": {"value": "#808080"}}}
         },
-        "autosize": {"type": "fit", "contains": "padding"},
+        "autosize": {"type": "fit-x", "contains": "padding"},
         "transform": [
             // Precompute display strings once so tooltips and CI marks can reuse them across layers.
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
@@ -479,7 +479,11 @@ const renderBar = (
             }
         ],
         "height": setHeight,
-        "width": "container",
+        // A measured width, so the chart still sizes correctly when this render beats
+        // Bootstrap's reveal of the pane and "container" would resolve to 0px. The explicit
+        // autosize above already matches what "container" applies implicitly, so a numeric
+        // width lays out identically.
+        "width": getChartContainerWidth('#barHolder') || "container",
         "layer": barDisplay
     }
 
