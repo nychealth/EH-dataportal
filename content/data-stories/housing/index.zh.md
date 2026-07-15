@@ -3,6 +3,7 @@ title: "健康、住房和历史。"
 date: 2021-01-06T08:07:31-04:00
 vega: true
 draft: false
+vega: true
 seo_title: "健康、住房和历史。"
 seo_description: "为了健康，地点很重要。"
 tags:

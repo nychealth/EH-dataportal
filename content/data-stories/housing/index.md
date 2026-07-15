@@ -3,6 +3,7 @@ title: "Health, housing, and history"
 date: 2021-01-06T08:07:31-04:00
 vega: true
 draft: false
+vega: true
 seo_title: "Health, housing, and history"
 seo_description: "A data story on how racist housing practices harm health."
 tags:
