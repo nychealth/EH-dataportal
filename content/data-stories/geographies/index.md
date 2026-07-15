@@ -3,6 +3,7 @@ title: "Neighborhood boundaries on the EH Data Portal"
 shortTitle: "Neighborhood boundaries"
 date: 2020-08-01T08:33:22-04:00
 draft: false
+vega: true
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags:
