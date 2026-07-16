@@ -9823,17 +9823,29 @@ table .group td {
 .key-topics svg path {
   fill: #008939; }
 
+.key-topics i {
+  color: #008939; }
+
 .data-features svg path {
   fill: #800080; }
 
 .data-stories svg path {
   fill: #D75047; }
 
+.data-stories i {
+  color: #D75047; }
+
 .n-reports svg path {
   fill: #197BBD; }
 
+.n-reports i {
+  color: #197BBD; }
+
 .data-explorer svg path {
   fill: #0A408A; }
+
+.data-explorer i {
+  color: #0A408A; }
 
 .link-w-underline {
   border-bottom: 1px solid #dee2e6;
@@ -10253,7 +10265,9 @@ h1 {
     color: #008939;
     text-decoration: underline; }
   .content-card a.resource-card svg,
-  .content-card button.resource-card svg {
+  .content-card a.resource-card i,
+  .content-card button.resource-card svg,
+  .content-card button.resource-card i {
     color: #008939; }
 
 .content-card .card-content {
@@ -10579,17 +10593,32 @@ span.th-sub {
 .ds-accent svg path {
   fill: #D75047; }
 
+.ds-accent i {
+  color: #D75047; }
+
 .kt-accent svg path {
   fill: #008939; }
+
+.kt-accent i {
+  color: #008939; }
 
 .df-accent svg path {
   fill: #800080; }
 
+.df-accent i {
+  color: #800080; }
+
 .nr-accent svg path {
   fill: #197BBD; }
 
+.nr-accent i {
+  color: #197BBD; }
+
 .de-accent svg path {
   fill: #0A408A; }
+
+.de-accent i {
+  color: #0A408A; }
 
 /* Set font-size for table headers */
 #summary-table table thead tr th {
