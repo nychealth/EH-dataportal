@@ -1120,6 +1120,9 @@
 
     <script type="text/javascript" src="{{ $d3_secureJS.RelPermalink }}" integrity="{{ $d3_secureJS.Data.Integrity }}"></script>
 
+    {{- partial "lib-leaflet.html" . }}
+    {{- partial "lib-topojson.html" . }}
+
     {{- /*  naturalSort - from https://datatables.net/plug-ins/sorting/natural  */}}
 
     {{- $naturalSort := resources.Get "js/naturalSort.js" }}

@@ -320,6 +320,11 @@
 </script>
 
 
+{{- /*  georaster-layer-for-leaflet and leaflet-pip below extend the global L object,
+      so core Leaflet has to load first  */}}
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-arquero.html" . }}
+
 <!-- chroma-js -->
 
 {{- $chroma := resources.Get "node_modules/chroma-js/chroma.min.js" }}

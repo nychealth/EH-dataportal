@@ -1,5 +1,13 @@
 {{- define "main" -}}
 
+{{- /*  Most data-stories pages are plain text/images; only a handful embed a Vega chart
+      or a D3-driven CSV table directly in their markdown. Those set `vega: true` in
+      front matter so this shared template doesn't load both libraries for every story.  */}}
+{{- if .Params.vega }}
+    {{- partial "lib-vega.html" . }}
+    {{- partial "lib-d3.html" . }}
+{{- end }}
+
 <article class="container-fluid" id="skip-header-target">
 
     <div class="row">
