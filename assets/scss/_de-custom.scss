@@ -57,6 +57,10 @@ $color-data-explorer: #0A408A;
  svg path {
   fill: $primary;
  }
+
+ i {
+  color: $primary;
+ }
 }
 
 .data-features {
@@ -69,18 +73,30 @@ $color-data-explorer: #0A408A;
   svg path {
     fill: $color-data-stories;
    }
+
+  i {
+    color: $color-data-stories;
+  }
 }
 
 .n-reports {
   svg path {
     fill: $color-n-reports;
    }
+
+  i {
+    color: $color-n-reports;
+  }
 }
 
 .data-explorer {
   svg path {
     fill: $color-data-explorer;
    }
+
+  i {
+    color: $color-data-explorer;
+  }
 }
 
 .link-w-underline {
