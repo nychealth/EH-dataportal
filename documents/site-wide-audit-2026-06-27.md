@@ -124,6 +124,10 @@ every page. Current issues, roughly in impact order:
   same idea one level up, applied to which libraries a template pulls in. A
   Tier-4-sized restructure, not a quick fix — cross-referenced in the DE
   fresh-audit's Tier 4.6.
+  **Update (2026-07-16): implemented** — see Tier 4.6's execution-status note
+  in `documents/data-explorer-fresh-audit-2026-07-13.md` for what shipped,
+  what was found and fixed during verification, and one separate newly-surfaced
+  issue (4.7) tracked there.
 - **Inline JS in 66 of 136 layouts.** Behavioral JavaScript lives inside
   templates (e.g. ~240 lines in `de-tab-content.html`, plus the data-features
   pages). It can't be linted, fingerprinted/cached, unit-tested, or covered by a

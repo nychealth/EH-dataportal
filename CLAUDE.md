@@ -16,6 +16,8 @@ hugo server --environment dev_stage --cleanDestinationDir --logLevel debug -p 80
 
 Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild.
 
+**Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly (grep/read the output) instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
+
 ## Repo structure
 
 ```
