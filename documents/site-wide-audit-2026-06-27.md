@@ -304,6 +304,42 @@ having both.
    for the 72 KB of crosswalk `.js`, though those load on only two pages, so the
    win is small.
 
+### 5b. Datawrapper embeds inside hidden Bootstrap tabs throw SVG-sizing console errors (added 2026-07-16)
+
+Found while investigating a DE-fresh-audit item (§4.7 there) that had misattributed
+this to Vega — it isn't; Vega/D3 aren't involved. **Any Datawrapper chart placed in
+a Bootstrap `tab-pane` that isn't the initially-active one renders once, immediately,
+while its ancestor is `display:none`.** The pane's layout box is 0×0, so Datawrapper's
+own d3 code computes `NaN`/negative pixel values and every SVG attribute it sets
+(`width`, `height`, `transform`, …) throws a browser console error — dozens to ~190
+per page load, confirmed live (Playwright, `local-stage`) on:
+
+| Page | Hidden-tab charts | Embed style |
+|---|---|---|
+| `data-stories/housing/` (+ `.es`, `.zh`) | 1 (Scatterplot tab) | raw `<iframe src="datawrapper.dwcdn.net/…">` |
+| `data-stories/redlining/` (+ `.es`, `.zh`) | 5 of 6 borough tabs | raw `<iframe src="datawrapper.dwcdn.net/…">` |
+| `data-stories/air-quality-snapshots/` | 6 of 8 tabs across two tab groups | raw `<iframe>` |
+| `data-stories/vectorborne-diseases-and-health/` | 2 of 3 tabs | Datawrapper's newer `embed.js` (`<div id="datawrapper-vis-…">` + `<script defer src=".../embed.js">`) loader |
+
+**Not a visible bug** — every chart self-heals the moment its tab is actually
+clicked (Datawrapper's own code re-renders correctly once the pane's box has a
+real size; confirmed by clicking the housing Scatterplot tab and screenshotting
+the result). The cost is purely: console pollution, wasted work loading/rendering
+a chart the visitor may never look at, and it's exactly the kind of thing that
+fails an automated console-error smoke test (see §4.5/4.6/4.7 note in the DE
+fresh-audit doc — this is what a Playwright pass there actually caught).
+
+**Root cause is generic, not per-chart** — it's the combination of Bootstrap's
+`display:none`-on-inactive-`tab-pane` pattern with an iframe/script embed that
+renders eagerly on load instead of on first reveal. **Recommended fix:** don't let
+the embed request/render until its tab is shown. Concretely, swap `src="…"` (or
+the `embed.js` `<script>` tag) for a `data-src`/inert placeholder in the markdown,
+and add one small shared script — loaded wherever these pages load — that listens
+for Bootstrap's `show.bs.tab` on each `.nav-link` and promotes the placeholder to
+a live embed the first time its pane is about to be shown. One script covers both
+embed styles and every page in the table above; no per-page JS needed beyond the
+markdown attribute swap.
+
 ---
 
 ## 6. CSS / SCSS (P2/P3)
@@ -524,6 +560,7 @@ In addition to the map/chart gaps in the DE audit:
 | 10 | P3 | [head.html:121-127](../themes/dohmh/layouts/partials/head.html) | Dead webfont `range` loop |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
 | 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
+| 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load (see §5b) |
 
 ---
 
