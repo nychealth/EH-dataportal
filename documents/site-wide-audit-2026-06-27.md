@@ -318,7 +318,7 @@ per page load, confirmed live (Playwright, `local-stage`) on:
 |---|---|---|
 | `data-stories/housing/` (+ `.es`, `.zh`) | 1 (Scatterplot tab) | raw `<iframe src="datawrapper.dwcdn.net/…">` |
 | `data-stories/redlining/` (+ `.es`, `.zh`) | 5 of 6 borough tabs | raw `<iframe src="datawrapper.dwcdn.net/…">` |
-| `data-stories/air-quality-snapshots/` | 6 of 8 tabs across two tab groups | raw `<iframe>` |
+| `data-stories/air-quality-snapshots/` | 5 of 7 tabs across two tab groups | raw `<iframe>` |
 | `data-stories/vectorborne-diseases-and-health/` | 2 of 3 tabs | Datawrapper's newer `embed.js` (`<div id="datawrapper-vis-…">` + `<script defer src=".../embed.js">`) loader |
 
 **Not a visible bug** — every chart self-heals the moment its tab is actually
@@ -333,12 +333,45 @@ fresh-audit doc — this is what a Playwright pass there actually caught).
 `display:none`-on-inactive-`tab-pane` pattern with an iframe/script embed that
 renders eagerly on load instead of on first reveal. **Recommended fix:** don't let
 the embed request/render until its tab is shown. Concretely, swap `src="…"` (or
-the `embed.js` `<script>` tag) for a `data-src`/inert placeholder in the markdown,
-and add one small shared script — loaded wherever these pages load — that listens
-for Bootstrap's `show.bs.tab` on each `.nav-link` and promotes the placeholder to
-a live embed the first time its pane is about to be shown. One script covers both
-embed styles and every page in the table above; no per-page JS needed beyond the
-markdown attribute swap.
+the `embed.js` `<script>` tag) for a `data-lazy-src`/`data-lazy-embed-src`
+placeholder in the markdown, and add one small shared script — loaded wherever
+these pages load — that promotes the placeholder to a live embed the first time
+its pane is shown. One script covers both embed styles and every page in the
+table above; no per-page JS needed beyond the markdown attribute swap.
+
+**Fixed 2026-07-16** on `fix-datastories-hidden-tab-charts` (branched off
+`production`, independent of the DE work — these pages aren't part of the SPA
+and the bug exists identically on production). Implemented as
+`assets/js/data-stories/lazy-tab-embeds.js` + a `themes/dohmh/layouts/data-stories/single.html`
+wire-up, loaded unconditionally (small, first-party, no library cost, so no
+front-matter gate needed) plus the attribute swap across all 8 files in the
+table above. **One correction to the recommendation above:** the shared script
+must bind on `shown.bs.tab`, not `show.bs.tab` or a plain `click` listener —
+both of the latter fire *before* Bootstrap's own handler makes the pane
+visible, so activating the embed there just reproduces the exact bug at
+click-time instead of load-time (caught live: the first click-based version of
+the script threw all ~96 of housing's original errors, one click later).
+Verified live: console errors zero on fresh load across all 4 pages (was
+~96/9/191/27), each embed style renders correctly on first click, re-clicking
+doesn't double-inject, sibling tabs target correctly, active tabs unaffected.
+
+**New, separate finding surfaced during verification (not fixed, not in
+scope):** `data-stories/housing/index.es.md` (and likely the same pattern
+elsewhere) also hides some Datawrapper charts via a *different* mechanism —
+plain radio-button `onclick` handlers toggling inline `style="display:none"`
+on `<div id="ifElow">`/`ifVlow`/`ifLow`/`ifMod"` (an "income level" selector),
+not Bootstrap tabs. The Spanish version's hidden divs throw `"Aborting chart
+rendering due to invalid container dimensions"` **warnings** (not errors —
+this is Datawrapper's own newer vendor bundle, `dw-2.0.min.js`, which guards
+against the crash the older `d3-*.js` bundle doesn't). Confirmed pre-existing
+and unrelated to the tab fix above: the identical radio-toggle block exists on
+the English page, untouched by this fix, and doesn't warn there (different
+Datawrapper chart IDs apparently serve different vendor-bundle generations).
+Same root cause family (render into a `display:none` box), different trigger
+mechanism (radio buttons, not tabs) and different severity (soft warning, not
+a thrown error) — worth its own fix using the same lazy-activation idea,
+keyed off the radio inputs' `onclick` instead of `shown.bs.tab`, but not
+bundled into this one since it wasn't part of what was audited or approved.
 
 ---
 
@@ -560,7 +593,8 @@ In addition to the map/chart gaps in the DE audit:
 | 10 | P3 | [head.html:121-127](../themes/dohmh/layouts/partials/head.html) | Dead webfont `range` loop |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
 | 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
-| 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load (see §5b) |
+| 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
+| 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
 
 ---
 
