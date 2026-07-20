@@ -253,7 +253,7 @@ async function handleTODSiteChange(site) {
 
     todCurrentSite = site;
     const todSiteTitleEl = document.getElementById("tod-site-name");
-    if (todSiteTitleEl) todSiteTitleEl.textContent = site;
+    if (todSiteTitleEl) todSiteTitleEl.textContent = getSiteDisplayName(site);
     await renderTODChart(site);
     
 }

@@ -14,6 +14,7 @@
 
 const CP_SITES = {
     "Deegan": {
+        displayName: "Major Deegan",
         preposition: "near the", hasTOD: true, badgeKey: "deegan",
         mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
         badgeInfo: "The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).",
@@ -67,6 +68,10 @@ const CP_SITES = {
 
 // Derived once from CP_SITES (replace the former scattered literals)
 
+function getSiteDisplayName(site) {
+    return CP_SITES[site]?.displayName || site;
+}
+
 const site_names = Object.keys(CP_SITES);
 const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
 const CP_BADGE_TO_SITE = {};
@@ -98,7 +103,7 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
 
             const opt = document.createElement("option");
             opt.value = site;
-            opt.textContent = site;
+            opt.textContent = getSiteDisplayName(site);
 
             if (site === current) opt.selected = true;
             sel.appendChild(opt);
@@ -116,7 +121,7 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
             btn.type = "button";
             btn.id = idPrefix + site.replaceAll(" ", "-");
             btn.className = "btn btn-sm btn-outline-dark fs-xs";
-            btn.textContent = site;
+            btn.textContent = getSiteDisplayName(site);
 
             if (site === current) btn.classList.add("active");
 

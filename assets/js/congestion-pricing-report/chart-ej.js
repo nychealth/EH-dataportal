@@ -22,7 +22,7 @@ function updateSiteHeading(site) {
     if (prepEl) prepEl.textContent = CP_SITES[site].preposition;
 
     const nameEl = document.getElementById("site-name");
-    if (nameEl) nameEl.textContent = site;
+    if (nameEl) nameEl.textContent = getSiteDisplayName(site);
 }
 
 // Default selection
@@ -654,7 +654,7 @@ async function draw(site) {
 
         try {
             await vegaEmbed(aqEl, spec2, {
-                actions: true,
+                actions: false,
                 renderer: "canvas",
             });
             aqEl.style.minHeight = "";
