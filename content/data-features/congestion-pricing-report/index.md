@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: Air Quality Impacts of Congestion Relief Tolling​
+title: Air Quality Impacts of Congestion Relief Zone Tolling​
 draft: false
 date: 2026-02-08T11:14:56-04:00
 categories:
@@ -50,11 +50,11 @@ blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
 
 <div id="Introduction">
 
-In January 2025, Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s most gridlocked areas. Congestion tolling, or congestion pricing was introduced to New York City to reduce traffic in the Congestion Relief Zone (CRZ) while raising money for public transit improvements.
+In January 2025, the Metropolitan Transportation Authority (MTA) started charging a toll for vehicles entering the Congestion Relief Zone (CRZ), defined as Manhattan below 60th Street. The Congestion Relief Zone Tolling Program, commonly referred to as congestion pricing, was introduced to reduce traffic while raising money for public transit improvements.
 
-Modeling from the mandatory environmental review process did not identify air pollution as a concern to be tracked. However, due to community concerns, government agencies (including the Health Department, MTABT, the NYC Department of Transportation, and the New York State Department of Transportation), committed to monitor and report on air quality. The NYC Health Department expanded their existing air quality monitoring network, the New York City Community Air Survey (NYCCAS), to evaluate the impact of congestion tolling on NYC’s air quality, especially on Environmental Justice (EJ) communities identified in the environmental assessment.
+Modeling and analysis from the mandatory federal environmental review for congestion pricing did not predict harmful changes in air quality resulting from congestion pricing. Recognizing community concerns, the program sponsors (including the MTA, the New York City Department of Transportation, and the New York State Department of Transportation) committed to monitor and report on air quality. These agencies partnered with the New York City Health Department (the Health Department) to conduct this work. The Health Department expanded their existing air quality monitoring network, the New York City Community Air Survey (NYCCAS), to evaluate the impact of congestion pricing on NYC’s air quality, especially in environmental justice (EJ) communities identified by stakeholders in the Environmental Assessment as potentially having increases in truck traffic.
 
-With a full year of data since CRZ tolling began, we can now accurately evaluate any effect of CRZ tolling on air quality. A full year of data means we can isolate any impact from the CRZ tolling program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that air pollution either did not change or slightly decreased both within and outside the zone.
+With a full year of data since congestion pricing began, we can now accurately evaluate its effects on air quality. A full year of data means we can isolate any impact from the program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, Initial data from Congestion Relief Tolling and the Congestion Relief Zone Tolling First Evaluation Report, noted that the preliminary data suggested air pollution either did not change or continued to decrease as in previous years both within and outside the zone.
 
 **Key Takeaways**
 
