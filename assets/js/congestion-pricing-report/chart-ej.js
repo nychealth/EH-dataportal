@@ -26,7 +26,7 @@ function updateSiteHeading(site) {
 }
 
 // Default selection
-let currentSite = "Deegan";
+let currentSite = "CRZ";
 
 // ----------------------------------------------------------------------- //
 // base Vega-Lite specs
@@ -186,8 +186,7 @@ const secondSpec = {
       "Difference between Projected and Observed air quality measurements after implementation"
     ],
     "subtitle": [
-      "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't",
-      "cause air quality changes.",
+      "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.",
       ""
     ],
     "fontSize": 14,
