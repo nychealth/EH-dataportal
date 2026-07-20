@@ -308,6 +308,9 @@ function drawExplainChart() {
     "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
     "axisY": {"domain": false, "orient": "left", "title": null}
   },
+  "resolve": {
+    "scale": {"x": "shared"}
+  },
     "data": {
         "url": "data/AQ_Post.csv"
     },
@@ -375,7 +378,7 @@ function drawExplainChart() {
             "x": {
               "field": "estimate",
               "type": "quantitative",
-              "scale": {"nice": false}
+              "scale": {"nice": true}
             },
             "tooltip": [
               {"field": "Site", "title": "Site", "type": "nominal"},
