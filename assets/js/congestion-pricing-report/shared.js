@@ -53,7 +53,7 @@ const CP_SITES = {
     "Van Wyck": {
         preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
         mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
-        badgeInfo: "The Van Wyck Expressway (Van Wyck) connects Queens to Jamaica and serves the airport area, handling significant traffic volumes that are not expected to be affected by congestion pricing. <strong>This is our control site.</strong>",
+        badgeInfo: "The Van Wyck Expressway (Van Wyck) connects Queens to Jamaica and serves the airport area, handling significant traffic volumes that are not expected to be affected by congestion pricing. This is our control site.",
         text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value because the measured values are used to make the hypothetical values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects a general trend of increasing traffic volume throughout New York State. <li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p> "
     },
     "CRZ": {
