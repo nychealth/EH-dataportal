@@ -58,22 +58,22 @@ With a full year of data since congestion pricing began, we can now accurately e
 
 **Key Takeaways**
 
-This is the most complete evaluation of air quality to date, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had both inside the CRZ and in EJ neighborhoods. 
+This is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report. 
 
 <div class="row mb-4">
   <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>Air quality improved slightly or stayed the same in 2025 compared to 2024</strong>. It's not clear that congestion pricing caused this - rather, it is consistent with long-term trends in the city. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
+      <p><strong>Inside the CRZ, pollution decreased slightly or stayed the same in 2025 compared to 2024</strong>. Measured pollution levels were not significantly different than they would have been without congestion pricing. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
     </div>
   </div>
     <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>At EJ sites, congestion pricing didn't increase the measured pollution</strong>. This is good news for those concerned that tolling would make air quality worse at boundary neighborhoods. Pollution levels aren't higher than what they would have been if the program never happened.</p>
+      <p><strong>At EJ neighborhood sites, congestion pricing didn't increase the measured pollution</strong>. This is good news. Congestion pricing did not make air quality worse in neighborhoods near major routes around the CRZ. Pollution levels are the same as what they would have been if the program never happened.</p>
     </div>
   </div>
   <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>Pollution at all locations held steady, or improved slightly</strong> - though most changes aren't statistically significant. At one location, levels of one pollutant didn't improve as much as expected.</p>
+      <p><strong>Pollution at all locations held steady or improved slightly</strong> This continues the trend of improving air quality in NYC over the past 20 years. At one location (BQE), levels of one pollutant didn't improve as much as expected.</p>
     </div>
   </div>
 </div>
