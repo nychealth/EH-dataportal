@@ -186,13 +186,13 @@
                     <h3 class="h5 mt-1">EJ-Designated Community Site Analysis</h3>
                     <p>In areas that the Environmental Assessment designated as Environmental Justice communities, the
                         Health Department increased monitoring. These areas are:
-                        <span class="badge badge-light site-badge" data-site="deegan">Deegan</span>
+                        <span class="badge badge-light site-badge" data-site="deegan">Major Deegan</span>
                         <span class="badge badge-light site-badge" data-site="cross-bronx">Cross Bronx</span>
                         <span class="badge badge-light site-badge" data-site="bqe">BQE</span>
                         <span class="badge badge-light site-badge" data-site="si-exwy">SI Expwy</span>
                         <span class="badge badge-light site-badge" data-site="fdr">FDR</span>
                         <span class="badge badge-light site-badge" data-site="trans-manhattan">Trans-Manhattan</span>
-                        <span class="badge badge-light site-badge" data-site="van-wyck">Van Wyck</span>
+                        <span class="badge badge-light site-badge" data-site="van-wyck">Van Wyck (control)</span>
                     </p>
                     <div class="card card-header mb-1 fs-sm border">
                         <p id="site-info-box">Click on a site above to learn more about that community.</p>
@@ -228,17 +228,15 @@
 
                     <div class="asidebox border">
                         <p class="fs-sm">
-                            The vertical bars show the Standard Error. Think of them as a reality check on the data: a shorter bar means we are more confident in our calculated average.</p>
+                            The blue dot is our estimate, and the gray bar is the Standard Error. The shorter the gray bar, the greater the confidence in the estimate - the more precise we know our estimate to be.</p>
                     </div>
 
                     <div class="w-100 mt-4 mb-1" id="explainChart2"></div>
                     <div class="asidebox border">
-                        <p class="fs-sm">This shows the difference between the <span
+                        <p class="fs-sm">The purple dot shows the difference between the <span
                                   style="color:blue;font-weight:bold">observed</span> and <span
-                                  style="color:darkorange;font-weight:bold">hypothetical</span> values after congestion
-                            pricing. The bar is the 95% confidence interval. If the bar crosses 0, it means that the
-                            difference between Observed and Hypothetical is not statistically significant: congestion
-                            pricing didn't cause an observable change in pollution levels.</p>
+                                  style="color:darkorange;font-weight:bold">projected</span> values after congestion
+                            pricing, along with 95% confidence intervals (the purple bar), a statistical measure that shows the range of values that difference could be and still be true.  If the confidence interval stretches from negative numbers to positive numbers, then the difference is not significant, meaning there is no change in pollution due to congestion pricing. If the purple bar and dot are entirely on the right or left side of zero (dotted line), then the difference is significantly different from zero and may be due to congestion pricing. </p>
                     </div>
                 </div>
 

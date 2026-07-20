@@ -28,7 +28,6 @@ function updateSiteHeading(site) {
 // Default selection
 let currentSite = "Deegan";
 
-
 // ----------------------------------------------------------------------- //
 // base Vega-Lite specs
 // ----------------------------------------------------------------------- //
@@ -42,7 +41,7 @@ const baseSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": "Change in air quality after congestion pricing",
-        "subtitle": ["Comparing observed values to hypothetical values, which estimate air quality if congestion pricing didn't happen.", ""],
+        "subtitle": ["Comparing observed values to projected values, which estimate air quality if congestion pricing didn't happen.", ""],
         "fontWeight": "bold",
         "anchor": "start",
         "fontSize": 14,
@@ -89,7 +88,7 @@ const baseSpec = {
     "resolve": { "scale": { "y": "independent" } },
     "transform": [
         { "filter": "datum.Site === 'Mott Haven'" },
-        { "calculate": "datum.pred_type === 'predicted' ? 'Observed' : 'Hypothetical'", "as": "language" },
+        { "calculate": "datum.pred_type === 'predicted' ? 'Observed' : 'Projected'", "as": "language" },
         {
             "calculate": "replace(replace(datum.Unit, '3', '³'), 'mc', 'µ')",
             "as": "UnitFmt"
@@ -125,7 +124,7 @@ const baseSpec = {
             "color": {
                 "field": "language",
                 "scale": {
-                    "domain": ["Observed", "Hypothetical"],
+                    "domain": ["Observed", "Projected"],
                     "range": ["blue", "darkorange"]
                 }
             }
@@ -181,102 +180,304 @@ const baseSpec = {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 const secondSpec = {
-
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": {
-        "text": "Difference between Hypothetical and Observed air quality measurements, after implementation (Post)",
-        "subtitle": ["If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.", ""],
-        "fontSize": 14,
-        "baseline": "top",
-        "subtitlePadding": 10,
-        "subtitleLineHeight": 14,
-        "subtitleFontSize": 12,
-        "font": "Helvetica",
-        "subtitleFont": "Helvetica",
-        "subtitleColor": "#585858"
-    },
-    "config": {
-        "header": {
-            "labelAlign": "left",
-            "labelAnchor": "start",
-            "labelFont": "Helvetica",
-            "labelFontWeight": "bold",
-            "labelFontSize": 12
-        },
-        "view": { "stroke": null },
-        "axisX": {
-            "labelAngle": 0,
-            "domain": false,
-            "ticks": false,
-            "tickCount": 3
-
-        },
-        "axisY": {
-            "domain": false,
-            "orient": "left",
-            "title": null
-        }
-    },
-    "data": {
-        "url": "data/AQ_Post.csv"
-    },
-    "resolve": { "scale": { "x": "independent" } },
-    "transform": [
-        { "filter": "datum.Site === 'Deegan'" },
-        { "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : 'Not significant'", "as": "Significance" }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Difference between Projected and Observed air quality measurements after implementation"
     ],
-    "facet": { "field": "pollutant", "title": null },
-    "spec": {
+    "subtitle": [
+      "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't",
+      "cause air quality changes.",
+      ""
+    ],
+    "fontSize": 14,
+    "baseline": "top",
+    "subtitlePadding": 10,
+    "subtitleLineHeight": 14,
+    "subtitleFontSize": 12,
+    "font": "Helvetica",
+    "subtitleFont": "Helvetica",
+    "subtitleColor": "#585858"
+  },
+  "config": {
+    "header": {
+      "labelAlign": "left",
+      "labelAnchor": "start",
+      "labelFont": "Helvetica",
+      "labelFontWeight": "bold",
+      "labelFontSize": 12
+    },
+    "view": {"stroke": null},
+    "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
+    "axisY": {"domain": false, "orient": "left", "title": null}
+  },
+  "data": {"url": "data/AQ_Post.csv"},
+  "spacing": 35,
+  "hconcat": [
+    {
+      "transform": [
+        {"filter": "datum.Site === 'BQE'"},
+        {"filter": "datum.pollutant === 'BC'"},
+        {
+          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
+          "as": "Significance"
+        },
+        {
+          "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
+          "as": "longTitle"
+        }
+      ],
+      "facet": {"field": "longTitle", "title": null},
+      "spec": {
         "width": 125,
         "height": 35,
         "encoding": {
-            "x": { "field": "estimate", "type": "quantitative", "title": null },
-            "color": { "value": "purple" }
+          "x": {"field": "estimate", "type": "quantitative", "title": null}
         },
         "layer": [
-            {
-                "mark": {
-                    "type": "rule",
-                    "strokeWidth": 6,
-                    "opacity": 0.3,
-                    "strokeCap": "round"
-                },
-                "encoding": {
-                    "x": { "field": "lower", "type": "quantitative" },
-                    "x2": { "field": "upper", "type": "quantitative" }
-                }
+          {
+            "mark": {
+              "type": "rule",
+              "strokeWidth": 6,
+              "opacity": 0.3,
+              "strokeCap": "round",
+              "color": "purple"
             },
-            {
-                "mark": { "type": "rule", "color": "#888", "strokeWidth": 2, "strokeDash": [2, 2] },
-                "encoding": {
-                    "x": { "datum": 0, "type": "quantitative" }
-                }
-            },
-            {
-                "mark": { "type": "circle", "size": 150, "opacity": 1 },
-                "encoding": {
-                    "x": {
-                        "field": "estimate",
-                        "type": "quantitative",
-                        "scale": { "nice": false }
-                    },
-                    "tooltip": [
-                        { "field": "Site", "title": "Site", "type": "nominal" },
-                        { "field": "pollutant", "title": "Pollutant", "type": "nominal" },
-                        {
-                            "field": "Estimate (95% CI)",
-                            "title": "Difference",
-                            "type": "nominal"
-                        },
-                        { "field": "Significance", "title": "Significance", "type": "nominal" }
-                    ]
-                }
+            "encoding": {
+              "x": {"field": "lower", "type": "quantitative"},
+              "x2": {"field": "upper", "type": "quantitative"}
             }
+          },
+          {
+            "mark": {
+              "type": "rule",
+              "color": "#888",
+              "strokeWidth": 2,
+              "strokeDash": [2, 2]
+            },
+            "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+          },
+          {
+            "mark": {"type": "circle", "size": 150, "opacity": 1, "color": "purple"},
+            "encoding": {
+              "x": {
+                "field": "estimate",
+                "type": "quantitative",
+                "scale": {"nice": false}
+              },
+              "tooltip": [
+                {"field": "Site", "title": "Site", "type": "nominal"},
+                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
+                {"field": "Significance", "title": "Significance", "type": "nominal"}
+              ]
+            }
+          }
         ]
+      }
     },
-    "columns": 4,
-    "spacing": 55
-
+    {
+      "transform": [
+        {"filter": "datum.Site === 'BQE'"},
+        {"filter": "datum.pollutant === 'NO'"},
+        {
+          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
+          "as": "Significance"
+        },
+        {
+          "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
+          "as": "longTitle"
+        }
+      ],
+      "facet": {"field": "longTitle", "title": null},
+      "spec": {
+        "width": 125,
+        "height": 35,
+        "encoding": {
+          "x": {
+            "field": "estimate",
+            "type": "quantitative",
+            "title": null,
+            "scale": {"domain": [-5.25, 8.25]}
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "rule",
+              "strokeWidth": 6,
+              "opacity": 0.3,
+              "strokeCap": "round",
+              "color": "purple"
+            },
+            "encoding": {
+              "x": {"field": "lower", "type": "quantitative"},
+              "x2": {"field": "upper", "type": "quantitative"}
+            }
+          },
+          {
+            "mark": {
+              "type": "rule",
+              "color": "#888",
+              "strokeWidth": 2,
+              "strokeDash": [2, 2]
+            },
+            "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+          },
+          {
+            "mark": {"type": "circle", "size": 150, "opacity": 1, "color": "purple"},
+            "encoding": {
+              "x": {
+                "field": "estimate",
+                "type": "quantitative",
+                "scale": {"domain": [-5.25, 8.25], "nice": false}
+              },
+              "tooltip": [
+                {"field": "Site", "title": "Site", "type": "nominal"},
+                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
+                {"field": "Significance", "title": "Significance", "type": "nominal"}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Site === 'BQE'"},
+        {"filter": "datum.pollutant === 'NO2'"},
+        {
+          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
+          "as": "Significance"
+        },
+        {
+          "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
+          "as": "longTitle"
+        }
+      ],
+      "facet": {"field": "longTitle", "title": null},
+      "spec": {
+        "width": 125,
+        "height": 35,
+        "encoding": {
+          "x": {
+            "field": "estimate",
+            "type": "quantitative",
+            "title": null,
+            "scale": {"domain": [-5.25, 8.25]}
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "rule",
+              "strokeWidth": 6,
+              "opacity": 0.3,
+              "strokeCap": "round",
+              "color": "purple"
+            },
+            "encoding": {
+              "x": {"field": "lower", "type": "quantitative"},
+              "x2": {"field": "upper", "type": "quantitative"}
+            }
+          },
+          {
+            "mark": {
+              "type": "rule",
+              "color": "#888",
+              "strokeWidth": 2,
+              "strokeDash": [2, 2]
+            },
+            "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+          },
+          {
+            "mark": {"type": "circle", "size": 150, "opacity": 1, "color": "purple"},
+            "encoding": {
+              "x": {
+                "field": "estimate",
+                "type": "quantitative",
+                "scale": {"domain": [-5.25, 8.25], "nice": false}
+              },
+              "tooltip": [
+                {"field": "Site", "title": "Site", "type": "nominal"},
+                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
+                {"field": "Significance", "title": "Significance", "type": "nominal"}
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Site === 'BQE'"},
+        {"filter": "datum.pollutant === 'PM25'"},
+        {
+          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
+          "as": "Significance"
+        },
+        {
+          "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
+          "as": "longTitle"
+        }
+      ],
+      "facet": {"field": "longTitle", "title": null},
+      "spec": {
+        "width": 125,
+        "height": 35,
+        "encoding": {
+          "x": {
+            "field": "estimate",
+            "type": "quantitative",
+            "title": null,
+            "scale": {"domain": [-5.25, 8.25]}
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "rule",
+              "strokeWidth": 6,
+              "opacity": 0.3,
+              "strokeCap": "round",
+              "color": "purple"
+            },
+            "encoding": {
+              "x": {"field": "lower", "type": "quantitative"},
+              "x2": {"field": "upper", "type": "quantitative"}
+            }
+          },
+          {
+            "mark": {
+              "type": "rule",
+              "color": "#888",
+              "strokeWidth": 2,
+              "strokeDash": [2, 2]
+            },
+            "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+          },
+          {
+            "mark": {"type": "circle", "size": 150, "opacity": 1, "color": "purple"},
+            "encoding": {
+              "x": {
+                "field": "estimate",
+                "type": "quantitative",
+                "scale": {"domain": [-5.25, 8.25], "nice": false}
+              },
+              "tooltip": [
+                {"field": "Site", "title": "Site", "type": "nominal"},
+                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
+                {"field": "Significance", "title": "Significance", "type": "nominal"}
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
 }
 
 
@@ -290,9 +491,15 @@ function specForSite(site) {
 
     const spec = cloneSpec(baseSpec);
     const spec2 = cloneSpec(secondSpec);
+    const isVanWyck = (site || currentSite) === "Van Wyck";
 
     spec.transform[0].filter = `datum.Site === '${site}'`;
-    spec2.transform[0].filter = `datum.Site === '${site}'`;
+    spec2.hconcat?.forEach((chartSpec) => {
+        if (Array.isArray(chartSpec.transform) && chartSpec.transform[0]) {
+            chartSpec.transform[0].filter = `datum.Site === '${site}'`;
+        }
+    });
+    spec.spec.encoding.color.legend = !isVanWyck;
 
     return { spec, spec2 };
 }
@@ -356,18 +563,38 @@ function wrapTitle(spec, avail) {
 // 4 columns to 2 below Bootstrap's sm breakpoint (576px) — so wide/desktop
 // layouts are unchanged while narrow screens reflow to a 2-column grid.
 
-function fitFacet(spec, el) {
+// Approximate width (px) of the y-axis label gutter in baseSpec's facets.
+// Tune this by comparing rendered widths in devtools — start around 26–30.
+const AXIS_LABEL_RESERVE = 28;
+
+function fitFacet(spec, el, widthOverride, axisReserve = 0) {
 
     const avail = (el && el.clientWidth) || 600;
     const cols = avail < 576 ? 2 : 4;
     const spacing = spec.spacing || 0;
     const w = Math.floor((avail - spacing * (cols - 1)) / cols);
+    const panelWidth = widthOverride ?? Math.max(60, Math.min(w, 125));
 
-    spec.columns = cols;
-    spec.spec.width = Math.max(60, Math.min(w, 125));
+    if (spec) spec.columns = cols;
+
+    if (spec?.spec?.width != null) {
+        // shrink the plot area to make room for the y-axis gutter,
+        // so total column width (axis + plot) == panelWidth
+        spec.spec.width = Math.max(30, panelWidth - axisReserve);
+    }
+
+    if (Array.isArray(spec?.hconcat)) {
+        spec.hconcat.forEach((chartSpec) => {
+            if (chartSpec?.spec?.width != null) {
+                // no axis here, so plot width == full panelWidth
+                chartSpec.spec.width = panelWidth;
+            }
+        });
+    }
 
     wrapTitle(spec, avail);
 
+    return panelWidth; // raw pane width, pre-axis-reserve — pass to the paired chart
 }
 
 
@@ -396,8 +623,8 @@ async function draw(site) {
     const { spec, spec2 } = specForSite(site);
 
     // Size both faceted charts to their containers before embedding
-    fitFacet(spec, cpEl);
-    fitFacet(spec2, aqEl);
+    const panelWidth = fitFacet(spec, cpEl, undefined, AXIS_LABEL_RESERVE);
+    fitFacet(spec2, aqEl, panelWidth);
 
     try {
 
