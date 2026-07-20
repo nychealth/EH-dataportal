@@ -17,51 +17,51 @@ const CP_SITES = {
         preposition: "near the", hasTOD: true, badgeKey: "deegan",
         mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
         badgeInfo: "The Major Deegan Expressway and connecting links in the South Bronx – Mott Haven (Hunts Point-Mott Haven community).",
-        text: "<p>In Mott Haven, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly, while NO2 and PM2.5 remained unchanged</li></ul>"
+        text: "<p>No. In Mott Haven, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same.</p>"
     },
     "Cross Bronx": {
         preposition: "near the", hasTOD: true, badgeKey: "cross-bronx",
         mapCoords: { lat: 40.844967, lng: -73.906263, zoom: 16 },
         badgeInfo: "The Cross-Bronx Expressway in the Highbridge-Tremont neighborhood (High Bridge – Morrisania and Crotona Tremont communities).",
-        text: "<p>In neighborhoods along the Cross Bronx, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%</li><li>BC and NO decreased slightly and NO2 and PM2.5 increased slightly</li></ul>"
+        text: "<p>No. In neighborhoods along the Cross Bronx, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%. </p>"
     },
     "BQE": {
         preposition: "near the", hasTOD: true, badgeKey: "bqe",
         mapCoords: { lat: 40.705511, lng: -73.958846, zoom: 16 },
         badgeInfo: "The Brooklyn-Queens Expressway between Metropolitan Ave. and DUMBO (BQE) in the South Williamsburg neighborhood (Greenpoint community).",
-        text: "<p>In South Williamsburg near the BQE, congestion pricing did not cause the measured PM2.5, NO2, or BC levels to be significantly different than they would have been if the program had never happened.</p><p><strong>NO levels decreased, but were significantly higher than they would have been without congestion pricing</strong>. However, total traffic decreased by 2%, and truck traffic decreased by 3%. If we only looked at the statistics, we'd say congestion pricing caused higher NO here. But the lower traffic volume makes this is a logically uncertain finding.</p>"
+        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been if the program had never happened. From the traffic count analysis total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3%. </p><p>Nitric Oxide (NO) levels decreased but were significantly higher than we would have expected. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have without the tolling program, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing.  We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
     },
     "SI Expwy": {
         preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
         mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
         badgeInfo: "The Staten Island Expressway and connections to the Bayonne Bridge (SI Expwy) in the Port Richmond and Bulls Head neighborhoods (Port Richmond and Willowbrook communities).",
-        text: "<p>In Port Richmond, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%</li><li>BC, NO, and NO2 decreased slightly and PM2.5 increased slightly</li></ul>"
+        text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%. </p>"
     },
     "FDR": {
         preposition: "near the", hasTOD: true, badgeKey: "fdr",
         mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
         badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) on the Lower East Side (Union Square -Lower East Side community).",
-        text: "<p>In the Lower East Side, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 9% from 2024 to 2025</li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged</li></ul>"
+        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025.  For more information see Appendix A. </p>"
     },
     "Trans-Manhattan": {
         preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
         mapCoords: { lat: 40.847353, lng: -73.934027, zoom: 16 },
         badgeInfo: "The Trans-Manhattan Expressway between the George Washington Bridge and the Alexander Hamilton Bridge (Hamilton Bridge) in the Washington Heights neighborhood (Washington Heights – Inwood community).",
-        text: "<p>In Washington Heights near the Trans-Manhattan Expressway, congestion pricing did not cause the measured pollution levels to be significantly different than they would have been if the program had never happened. After controlling for seasonality:</p><ul><li>Total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same</li><li>BC and NO decreased slightly and NO2 and PM2.5 remained unchanged</li></ul>"
+        text: "<p>No.  In Washington Heights near the Trans-Manhattan Expressway, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same. </p>"
     },
     "Van Wyck": {
         preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
         mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
         badgeInfo: "The Van Wyck Expressway connects Queens to Jamaica and serves the airport area, handling significant traffic volumes. This is our control site.",
-        text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value. The traffic modeling in the Environmental Assessment predicted little change along this highway caused by tolling. After controlling for seasonality:</p><ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects general trends in traffic volumes throughout NY State.</li><li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting general trends in improving air quality.</li></ul>"
+        text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value because the measured values are used to make the hypothetical values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects a general trend of increasing traffic volume throughout New York State. <li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p> "
     },
     "CRZ": {
         preposition: "in the", hasTOD: false,
-        text: "<p>Inside the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.</p><ul><li>BC and NO decreased</li><li>NO2 and PM2.5 remained the same</li></ul>"
+        text: "<p>No.  When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been if the program had never happened.</p>"
     },
     "Rest of the City": {
         preposition: "in the", hasTOD: false,
-        text: "<p>In NYC neighborhoods outside of the CRZ, congestion pricing did not cause the measured air pollution levels to be significantly different than they would have been if the program had never happened.</p><ul><li>BC and NO decreased</li><li>NO2 and PM2.5 remained the same.</li></ul>"
+        text: "<p>No.  When we look at the 73 NYCCAS sites outside of the CRZ and analyze them as a group, we see that  the measured pollution levels were not significantly different than they would have been if the program had never happened. </p>"
     }
 };
 
