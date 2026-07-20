@@ -213,6 +213,12 @@ const secondSpec = {
   },
   "data": {"url": "data/AQ_Post.csv"},
   "spacing": 35,
+    "transform": [
+    {
+      "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",
+      "as": "pollutant"
+    }
+  ],
   "hconcat": [
     {
       "transform": [
@@ -413,7 +419,7 @@ const secondSpec = {
     {
       "transform": [
         {"filter": "datum.Site === 'BQE'"},
-        {"filter": "datum.pollutant === 'PM25'"},
+        {"filter": "datum.pollutant === 'PM2.5'"},
         {
           "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
           "as": "Significance"
@@ -648,7 +654,7 @@ async function draw(site) {
 
         try {
             await vegaEmbed(aqEl, spec2, {
-                actions: false,
+                actions: true,
                 renderer: "canvas",
             });
             aqEl.style.minHeight = "";
