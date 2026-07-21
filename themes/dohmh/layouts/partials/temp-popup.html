@@ -1,21 +1,33 @@
-  <!-- Invisible button to trigger modal -->
-  <button id="openModalBtn" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wxModal">Open Modal</button>
+  <!-- Invisible button to trigger combined heat/air quality modal -->
+  <button id="openModalBtnWeather" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#weatherModal">Open Modal</button>
 
-    <div class="modal" tabindex="-1" role="dialog" id="wxModal">
+    <div class="modal" tabindex="-1" role="dialog" id="weatherModal">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's hot!</h5>
+            <h5 class="modal-title" id="weatherModalTitle"></h5>
         </div>
         <div class="modal-body">
-            <p><span class="font-weight-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
-                <ul>
-                    <li><a href={{ relURL "data-features/cooling-info" }}>Stay safe from heat and air pollution</a></li>
-                    <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
-                    <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
-                    <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
-                </ul>
-                </p>
+            <div id="heatModalContent">
+                <p><span class="font-weight-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+                    <ul>
+                        <li><a href={{ relURL "data-features/cooling-info" }}>Stay safe from heat and air pollution</a></li>
+                        <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
+                        <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
+                        <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
+                    </ul>
+                    </p>
+            </div>
+            <div id="aqiModalContent">
+                <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
+                    <ul>
+                      <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
+                      <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
+                      <li><a href="google.com">All Air Quality data and resources</a></li>
+                      <!-- add additional resources -->
+                    </ul>
+                  </p>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
@@ -24,7 +36,7 @@
     </div>
     </div>
 
-  <!-- Invisible button to trigger cold modal --> 
+  <!-- Invisible button to trigger cold modal -->
 
   <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
 
@@ -51,42 +63,16 @@
     </div>
     </div>
 
-  <!-- Invisible button to trigger modal -->
-  <button id="openModalBtn2" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#aqiModal">Open Modal</button>
-
-    <div class="modal" tabindex="-1" role="dialog" id="aqiModal">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-smog mr-1" aria-hidden="true"></i></h5>
-        </div>
-        <div class="modal-body">
-              <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
-                <ul>
-                  <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
-                  <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
-                  <li><a href="google.com">All Air Quality data and resources</a></li>
-                  <!-- add additional resources -->
-                </ul>
-              </p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
 <script>
 
 async  function initialize() {
     // get NWS data to retrieve forecast high
       const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
-    
+
       // Step 1: Get forecast URL
       const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
       const pointsData = await pointsRes.json();
-      
+
       // Step 2: Fetch forecast data
       const forecastUrl = pointsData.properties.forecast;
       const forecastRes = await fetch(forecastUrl, userAgent);
@@ -100,42 +86,31 @@ async  function initialize() {
       const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
       console.log(`NYC Low Temp: ${low}°F`);
 
-      if (high > 85) {
-        fireHeatModal(high)
-        document.getElementById('forecasthigh').textContent = high + '°F'
-       } else if (low < 32) {
+      const isHot = high > 85;
+      const isCold = !isHot && low < 32;
+
+      if (isCold) {
         fireColdModal(low)
         document.getElementById('forecastlow').textContent = low + '°F'
-      } else {}
+      }
 
     // get AQI API to retrieve forecast AQI
-    fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
-    .then(response => {return response.json()})
-    .then(data => {
-      // console.log(data) 
-      var aqi1 = data[0].Category.Number
-      var aqi2 = data[1].Category.Number
-      var aqi
+    const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+    const aqiData = await aqiRes.json();
 
-      aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
+    var aqi1 = aqiData[0].Category.Number
+    var aqi2 = aqiData[1].Category.Number
+    var aqi
 
-      // console.log('aqi: ' + aqi)
+    aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
 
-      aqi > 2 ? fireAQmodal(aqi) : {}
+    const isBadAQ = aqi > 2;
 
-    });
+    if (isHot || isBadAQ) {
+      fireWeatherModal({ isHot, isBadAQ, high, aqi })
+    }
 
   };
-
-  function fireHeatModal(x) {
-      var button = document.getElementById('openModalBtn');
-      button.addEventListener('click', function() {
-          console.log('heat modal fired.');
-      });
-  
-      button.click();
-
-  }
 
   function fireColdModal(x) {
     var button = document.getElementById('openModalBtnC');
@@ -147,38 +122,49 @@ async  function initialize() {
 
 }
 
-  function fireAQmodal(aqi) {
-    var button = document.getElementById('openModalBtn2')
-    button.addEventListener('click', function() {
-      console.log('aq modal fired.')
-    });
-
-    // style the AQI modal
-    var aqiMeaning = document.getElementById('aqimeaning')
-    var aqiInterpretation; 
-    if (aqi == '1') {
-      aqiInterpretation = 'Good'
-      aqiMeaning.style['background-color'] = '#00E400'
-    } else if (aqi == '2') {
-      aqiInterpretation = 'Moderate'
-      aqiMeaning.style['background-color'] = '#FFFF00'
-    } else if (aqi == '3') {
-      aqiInterpretation = 'Unhealthy for sensitive groups'
-      aqiMeaning.style['background-color'] = '#FF7E00'
-    } else if (aqi == '4') {
-      aqiInterpretation = 'Unhealthy'
-      aqiMeaning.style['background-color'] = '#FF0000'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '5') {
-      aqiInterpretation = 'Very unhealthy'
-      aqiMeaning.style['background-color'] = '#993399'
-      aqiMeaning.style.color = 'white'
-    } else if (aqi == '6') {
-      aqiInterpretation = 'Hazardous'
-      aqiMeaning.style['background-color'] = '#7E0023'
-      aqiMeaning.style.color = 'white'
+  function getAqiInterpretation(aqi) {
+    switch (String(aqi)) {
+      case '1': return { text: 'Good', bgColor: '#00E400' };
+      case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
+      case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
+      case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
+      case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
+      case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
     }
-    aqiMeaning.textContent = aqiInterpretation
+  }
+
+  function fireWeatherModal({ isHot, isBadAQ, high, aqi }) {
+    var title = document.getElementById('weatherModalTitle');
+    var heatContent = document.getElementById('heatModalContent');
+    var aqiContent = document.getElementById('aqiModalContent');
+
+    heatContent.classList.toggle('hide', !isHot);
+    aqiContent.classList.toggle('hide', !isBadAQ);
+
+    if (isHot) {
+      document.getElementById('forecasthigh').textContent = high + '°F';
+    }
+
+    if (isBadAQ) {
+      var aqiMeaning = document.getElementById('aqimeaning');
+      var interpretation = getAqiInterpretation(aqi);
+      aqiMeaning.style['background-color'] = interpretation.bgColor;
+      aqiMeaning.style.color = interpretation.color || '';
+      aqiMeaning.textContent = interpretation.text;
+    }
+
+    if (isHot && isBadAQ) {
+      title.innerHTML = '<i class="fas fa-temperature-high mr-1" aria-hidden="true"></i><i class="fas fa-smog mr-1" aria-hidden="true"></i>Heat and air quality alert!';
+    } else if (isHot) {
+      title.innerHTML = '<i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It\'s hot!';
+    } else if (isBadAQ) {
+      title.innerHTML = '<i class="fas fa-smog mr-1" aria-hidden="true"></i>Air quality alert!';
+    }
+
+    var button = document.getElementById('openModalBtnWeather')
+    button.addEventListener('click', function() {
+      console.log('weather modal fired.')
+    });
 
     button.click();
   }
