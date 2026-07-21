@@ -48,111 +48,129 @@
 
 <script>
 
-async  function initialize() {
-    // get NWS data to retrieve forecast high
-      const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
+    // Shows a combined weather/air-quality modal when today's NWS forecast or
+    // current AirNow AQI crosses one of the alert thresholds below.
 
-      // Step 1: Get forecast URL
-      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
-      const pointsData = await pointsRes.json();
+    // ----------------------------------------------------------------------- //
+    // fetch forecast + AQI, decide which alerts are active
+    // ----------------------------------------------------------------------- //
 
-      // Step 2: Fetch forecast data
-      const forecastUrl = pointsData.properties.forecast;
-      const forecastRes = await fetch(forecastUrl, userAgent);
-      const forecastData = await forecastRes.json();
+    // Fetches the NWS forecast and AirNow AQI, then shows the weather modal
+    // with whichever heat/cold/air-quality sections apply.
+    const initialize = async () => {
 
-      // Step 3: Extract the high temp from the first daytime period
-      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
-      console.log(`NYC High Temp: ${high}°F`);
+        // ----- forecast high/low ----- //
 
-      // Step 4: Extract the low temp from the first daytime period
-      const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
-      console.log(`NYC Low Temp: ${low}°F`);
+        const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
-      const isHot = high > 85;
-      const isCold = !isHot && low < 32;
+        const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+        const pointsData = await pointsRes.json();
 
-    // get AQI API to retrieve forecast AQI
-    const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-    const aqiData = await aqiRes.json();
+        const forecastRes = await fetch(pointsData.properties.forecast, userAgent);
+        const forecastData = await forecastRes.json();
 
-    var aqi1 = aqiData[0].Category.Number
-    var aqi2 = aqiData[1].Category.Number
-    var aqi
+        const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+        const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
 
-    aqi1 >= aqi2 ? (aqi = aqi1) : (aqi = aqi2)
+        console.log(`NYC High Temp: ${high}°F`);
+        console.log(`NYC Low Temp: ${low}°F`);
 
-    const isBadAQ = aqi > 2;
+        const isHot = high > 85;
+        const isCold = !isHot && low < 32;
 
-    if (isHot || isCold || isBadAQ) {
-      fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi })
-    }
+        // ----- current AQI ----- //
 
-  };
+        const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+        const aqiData = await aqiRes.json();
 
-  function getAqiInterpretation(aqi) {
-    switch (String(aqi)) {
-      case '1': return { text: 'Good', bgColor: '#00E400' };
-      case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
-      case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
-      case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
-      case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
-      case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
-    }
-  }
+        const aqi = Math.max(aqiData[0].Category.Number, aqiData[1].Category.Number);
+        const isBadAQ = aqi > 2;
 
-  function fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi }) {
-    var title = document.getElementById('weatherModalTitle');
-    var heatContent = document.getElementById('heatModalContent');
-    var coldContent = document.getElementById('coldModalContent');
-    var aqiContent = document.getElementById('aqiModalContent');
+        // ----- show the modal if any alert applies ----- //
 
-    heatContent.classList.toggle('hide', !isHot);
-    coldContent.classList.toggle('hide', !isCold);
-    aqiContent.classList.toggle('hide', !isBadAQ);
+        if (isHot || isCold || isBadAQ) {
+            fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi });
+        }
 
-    if (isHot) {
-      document.getElementById('forecasthigh').textContent = high + '°F';
-    }
+    };
 
-    if (isCold) {
-      document.getElementById('forecastlow').textContent = low + '°F';
-    }
 
-    if (isBadAQ) {
-      var aqiMeaning = document.getElementById('aqimeaning');
-      var interpretation = getAqiInterpretation(aqi);
-      aqiMeaning.style['background-color'] = interpretation.bgColor;
-      aqiMeaning.style.color = interpretation.color || '';
-      aqiMeaning.textContent = interpretation.text;
-    }
+    // ----------------------------------------------------------------------- //
+    // AQI category display
+    // ----------------------------------------------------------------------- //
 
-    // build the title/icons from whichever event(s) are active, so any
-    // combination (including ones that can't happen today, like hot + cold)
-    // is handled the same way
-    var activeEvents = [];
-    if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
-    if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
-    if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+    // Maps an AirNow AQI category number to its display text and colors.
+    const getAqiInterpretation = (aqi) => {
+        switch (String(aqi)) {
+            case '1': return { text: 'Good', bgColor: '#00E400' };
+            case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
+            case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
+            case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
+            case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
+            case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
+        }
+    };
 
-    var icons = activeEvents.map(function(event) {
-      return '<i class="fas ' + event.icon + ' mr-1" aria-hidden="true"></i>';
-    }).join('');
 
-    var label = activeEvents.length > 1 ? 'Weather and air quality alert!' : activeEvents[0].label;
+    // ----------------------------------------------------------------------- //
+    // modal display
+    // ----------------------------------------------------------------------- //
 
-    title.innerHTML = icons + label;
+    // Shows whichever heat/cold/air-quality sections are active in the shared
+    // weather modal and builds its title from that same set of active events.
+    const fireWeatherModal = ({ isHot, isCold, isBadAQ, high, low, aqi }) => {
 
-    var button = document.getElementById('openModalBtnWeather')
-    button.addEventListener('click', function() {
-      console.log('weather modal fired.')
-    });
+        const heatContent = document.getElementById('heatModalContent');
+        const coldContent = document.getElementById('coldModalContent');
+        const aqiContent = document.getElementById('aqiModalContent');
 
-    button.click();
-  }
+        heatContent.classList.toggle('hide', !isHot);
+        coldContent.classList.toggle('hide', !isCold);
+        aqiContent.classList.toggle('hide', !isBadAQ);
 
-  // send it
-  initialize();
+        if (isHot) {
+            document.getElementById('forecasthigh').textContent = `${high}°F`;
+        }
 
+        if (isCold) {
+            document.getElementById('forecastlow').textContent = `${low}°F`;
+        }
+
+        if (isBadAQ) {
+            const aqiMeaning = document.getElementById('aqimeaning');
+            const interpretation = getAqiInterpretation(aqi);
+
+            aqiMeaning.style['background-color'] = interpretation.bgColor;
+            aqiMeaning.style.color = interpretation.color || '';
+            aqiMeaning.textContent = interpretation.text;
+        }
+
+        // ----- title reflects whichever event(s) are active ----- //
+
+        const activeEvents = [];
+
+        if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+        if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+        if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+
+        const icons = activeEvents
+            .map(event => `<i class="fas ${event.icon} mr-1" aria-hidden="true"></i>`)
+            .join('');
+
+        const label = activeEvents.length > 1
+            ? 'Weather and air quality alert!'
+            : activeEvents[0].label;
+
+        document.getElementById('weatherModalTitle').innerHTML = icons + label;
+
+        const button = document.getElementById('openModalBtnWeather');
+
+        button.addEventListener('click', () => console.log('weather modal fired.'));
+        button.click();
+
+    };
+
+
+    initialize();
 
 </script>
