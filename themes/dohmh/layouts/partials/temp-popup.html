@@ -1,4 +1,4 @@
-  <!-- Invisible button to trigger combined heat/air quality modal -->
+  <!-- Invisible button to trigger combined weather/air quality modal -->
   <button id="openModalBtnWeather" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#weatherModal">Open Modal</button>
 
     <div class="modal" tabindex="-1" role="dialog" id="weatherModal">
@@ -18,6 +18,16 @@
                     </ul>
                     </p>
             </div>
+            <div id="coldModalContent">
+                <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+                    <ul>
+                        <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
+                        <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
+                        <li><a href="https://www.nyc.gov/site/hpd/services-and-information/heat-and-hot-water-information.page">Heat and hot water info</a></li>
+                        <li><a href="https://portal.311.nyc.gov/article/?kanumber=KA-03702">Warming centers</a></li>
+                    </ul>
+                    </p>
+            </div>
             <div id="aqiModalContent">
                 <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
                     <ul>
@@ -29,33 +39,6 @@
                   </p>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        </div>
-        </div>
-    </div>
-    </div>
-
-  <!-- Invisible button to trigger cold modal -->
-
-  <button id="openModalBtnC" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#wzModal">Open Modal</button>
-
-    <div class="modal" tabindex="-1" role="dialog" id="wzModal">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title"><i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It's cold!</h5>
-        </div>
-        <div class="modal-body">
-          <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
-              <ul>
-                  <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
-                  <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
-                  <li><a href="https://www.nyc.gov/site/hpd/services-and-information/heat-and-hot-water-information.page">Heat and hot water info</a></li>
-                  <li><a href="https://portal.311.nyc.gov/article/?kanumber=KA-03702">Warming centers</a></li>
-              </ul>
-              </p>
-      </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
         </div>
@@ -89,11 +72,6 @@ async  function initialize() {
       const isHot = high > 85;
       const isCold = !isHot && low < 32;
 
-      if (isCold) {
-        fireColdModal(low)
-        document.getElementById('forecastlow').textContent = low + '°F'
-      }
-
     // get AQI API to retrieve forecast AQI
     const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
     const aqiData = await aqiRes.json();
@@ -106,21 +84,11 @@ async  function initialize() {
 
     const isBadAQ = aqi > 2;
 
-    if (isHot || isBadAQ) {
-      fireWeatherModal({ isHot, isBadAQ, high, aqi })
+    if (isHot || isCold || isBadAQ) {
+      fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi })
     }
 
   };
-
-  function fireColdModal(x) {
-    var button = document.getElementById('openModalBtnC');
-    button.addEventListener('click', function() {
-        console.log('cold modal fired.');
-    });
-
-    button.click();
-
-}
 
   function getAqiInterpretation(aqi) {
     switch (String(aqi)) {
@@ -133,16 +101,22 @@ async  function initialize() {
     }
   }
 
-  function fireWeatherModal({ isHot, isBadAQ, high, aqi }) {
+  function fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi }) {
     var title = document.getElementById('weatherModalTitle');
     var heatContent = document.getElementById('heatModalContent');
+    var coldContent = document.getElementById('coldModalContent');
     var aqiContent = document.getElementById('aqiModalContent');
 
     heatContent.classList.toggle('hide', !isHot);
+    coldContent.classList.toggle('hide', !isCold);
     aqiContent.classList.toggle('hide', !isBadAQ);
 
     if (isHot) {
       document.getElementById('forecasthigh').textContent = high + '°F';
+    }
+
+    if (isCold) {
+      document.getElementById('forecastlow').textContent = low + '°F';
     }
 
     if (isBadAQ) {
@@ -153,13 +127,21 @@ async  function initialize() {
       aqiMeaning.textContent = interpretation.text;
     }
 
-    if (isHot && isBadAQ) {
-      title.innerHTML = '<i class="fas fa-temperature-high mr-1" aria-hidden="true"></i><i class="fas fa-smog mr-1" aria-hidden="true"></i>Heat and air quality alert!';
-    } else if (isHot) {
-      title.innerHTML = '<i class="fas fa-temperature-high mr-1" aria-hidden="true"></i>It\'s hot!';
-    } else if (isBadAQ) {
-      title.innerHTML = '<i class="fas fa-smog mr-1" aria-hidden="true"></i>Air quality alert!';
-    }
+    // build the title/icons from whichever event(s) are active, so any
+    // combination (including ones that can't happen today, like hot + cold)
+    // is handled the same way
+    var activeEvents = [];
+    if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+    if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+    if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+
+    var icons = activeEvents.map(function(event) {
+      return '<i class="fas ' + event.icon + ' mr-1" aria-hidden="true"></i>';
+    }).join('');
+
+    var label = activeEvents.length > 1 ? 'Weather and air quality alert!' : activeEvents[0].label;
+
+    title.innerHTML = icons + label;
 
     var button = document.getElementById('openModalBtnWeather')
     button.addEventListener('click', function() {
