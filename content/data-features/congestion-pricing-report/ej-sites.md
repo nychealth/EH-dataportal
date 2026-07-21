@@ -38,7 +38,7 @@ hide: true
 
   <div class="col-md-4 mb-3">
     <div class="card card-header  h-100 mb-0 fs-sm border">
-      <p><strong>The Staten Island Expressway (SI Expy)</strong> and connections to the Bayonne Bridge in the Port Richmond and Bulls Head neighborhoods.</p>
+      <p><strong>The Staten Island Expressway (SI Expwy)</strong> and connections to the Bayonne Bridge in the Port Richmond and Bulls Head neighborhoods.</p>
     </div>
   </div>
 </div>
