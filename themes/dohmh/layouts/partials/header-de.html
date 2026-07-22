@@ -272,191 +272,191 @@
 
 
 <div class="row bg-black de-nav-bar">
-  <div class="h-100 hide d-flex align-items-center justify-content-center py-1 px-2" style="background-color: #3B3B3B;">
-      <button type="button" class="btn btn-link p-0 border-0" data-toggle="collapse" data-target="#global-header" aria-controls="global-header" aria-expanded="false" aria-label="Toggle Main Header">
-          <img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 52px; width: 52px;" alt="Toggle Header">
-      </button>
-  </div>
-  <div class="h4 font-weight-bold d-flex align-items-center mb-0">
-      <div class="position-relative d-flex align-items-center topic-selector-trigger-wrap">
-          <button id="topicSelectorButton" type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
-              <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
-          </button>
-          <span id="topicSelectorPrompt" class="topic-selector-prompt d-none" aria-hidden="true" role="status">Choose topic</span>
-      </div>
-      <span class="ml-1 text-white">{{ .Title }}</span>
-  </div>
-
-  <!-- Topic Selector Modal -->
-  <div class="modal fade" id="topicSelector" tabindex="-1" role="dialog" aria-labelledby="topicSelectorLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-              <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
-                  <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
-                      <span class="h3" aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body p-3 pb-3">
-                  <h4 class="modal-title mb-1">Choose topic  >  <span class="font-weight-normal text-dark">Select dataset</span></h4>
-                  <div class="border-gray-300 mt-3 pb-1">
-                      <p>Browse datasets about:</p>
-                  </div>
-                  <div class="row mt-1">
+    <div class="h-100 hide d-flex align-items-center justify-content-center py-1 px-2" style="background-color: #3B3B3B;">
+        <button type="button" class="btn btn-link p-0 border-0" data-toggle="collapse" data-target="#global-header" aria-controls="global-header" aria-expanded="false" aria-label="Toggle Main Header">
+            <img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 52px; width: 52px;" alt="Toggle Header">
+        </button>
+    </div>
+    <div class="h4 font-weight-bold d-flex align-items-center mb-0">
+        <div class="position-relative d-flex align-items-center topic-selector-trigger-wrap">
+            <button id="topicSelectorButton" type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
+                <img src={{ relURL "images/indicator-menu-icon.svg" }} alt="">
+            </button>
+            <span id="topicSelectorPrompt" class="topic-selector-prompt d-none" aria-hidden="true" role="status">Choose topic</span>
+        </div>
+        <span class="ml-1 text-white">{{ .Title }}</span>
+    </div>
+    
+    <!-- Topic Selector Modal -->
+    <div class="modal fade" id="topicSelector" tabindex="-1" role="dialog" aria-labelledby="topicSelectorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                    <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                        <span class="h3" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-3 pb-3">
+                    <h4 class="modal-title mb-1">Choose topic  >  <span class="font-weight-normal text-dark">Select dataset</span></h4>
+                    <div class="border-gray-300 mt-3 pb-1">
+                        <p>Browse datasets about:</p>
+                    </div>
+                    <div class="row mt-1">
+                        
+                        {{ partial "de-chooser-modal" . }}
+                        
+                        
+                        <!-- Original topic list, hardcoded
+                            <div class="col-12 col-lg-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-1">
+                                        <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Active design</button>
+                                        <p><em>Here is a little something about active design</em></p>
+                                    </li>
+                                    <li class="mb-1">
+                                        <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Air quality</button>
+                                    </li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Alcohol access and use</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma triggers at home</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Bed bugs</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth defects</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth outcomes</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancer</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancers in children</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Carbon monoxide</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cigarette smoke</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Climate</button></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="col-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Mortality</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Overweight</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Pesticides</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Physical activity</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Restaurant food safety</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Social conditions</button></li>
+                                    <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Transportation-related injuries</button></li>
+                                    <li class="mb-1">
+                                        <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Vector-borne disease</button>
+                                        <p><em>Here is a little something about vector-borne disease</em></p>
+                                    </li>
+                                    <li><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Violence</button></li>
+                                </ul>
+                            </div>
+                        -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Indicator Selector Modal -->
+    <div class="modal fade" id="indicatorSelector" tabindex="-1" role="dialog" aria-labelledby="indicatorSelectorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                    <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                        <span class="h3" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-3 pb-3">
+                    <h4 class="modal-title mb-1">
+                        <button type="button" id="indicatorModalTopicTrigger" class="indicator-modal-topic-trigger font-weight-normal border-0 text-primary bg-transparent hover-underline p-0" data-topic-selector-action="relaunch">Choose topic</button>
+                        <span aria-hidden="true" class="text-dark">  >  </span>
+                        Select dataset
+                    </h4>
+                    <div class="border-gray-300 mt-3 pb-1">
+                        <p>Datasets available about <span id="printTopic" class="font-weight-bold">{{ lower .Title }}</span>:</p>
+                    </div>
                     
-                    {{ partial "de-chooser-modal" . }}
-
-
-                    <!-- Original topic list, hardcoded
-                      <div class="col-12 col-lg-6">
-                          <ul class="list-unstyled">
-                              <li class="mb-1">
-                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Active design</button>
-                                  <p><em>Here is a little something about active design</em></p>
-                              </li>
-                              <li class="mb-1">
-                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Air quality</button>
-                              </li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Alcohol access and use</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Asthma triggers at home</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Bed bugs</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth defects</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Birth outcomes</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancer</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cancers in children</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Carbon monoxide</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Cigarette smoke</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Climate</button></li>
-                          </ul>
-                      </div>
-
-                      <div class="col-6">
-                          <ul class="list-unstyled">
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Mortality</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Overweight</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Pesticides</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Physical activity</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Restaurant food safety</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Social conditions</button></li>
-                              <li class="mb-1"><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0 text-left" data-toggle="modal" data-target="#indicatorSelector">Transportation-related injuries</button></li>
-                              <li class="mb-1">
-                                  <button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Vector-borne disease</button>
-                                  <p><em>Here is a little something about vector-borne disease</em></p>
-                              </li>
-                              <li><button type="button" class="border-0 text-primary bg-transparent hover-underline p-0" data-toggle="modal" data-target="#indicatorSelector">Violence</button></li>
-                          </ul>
-                      </div>
-                    -->
-
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
-  <!-- Indicator Selector Modal -->
-  <div class="modal fade" id="indicatorSelector" tabindex="-1" role="dialog" aria-labelledby="indicatorSelectorLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-              <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
-                  <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
-                      <span class="h3" aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body p-3 pb-3">
-                  <h4 class="modal-title mb-1">
-                      <button type="button" id="indicatorModalTopicTrigger" class="indicator-modal-topic-trigger font-weight-normal border-0 text-primary bg-transparent hover-underline p-0" data-topic-selector-action="relaunch">Choose topic</button>
-                      <span aria-hidden="true" class="text-dark">  >  </span>
-                      Select dataset
-                  </h4>
-                  <div class="border-gray-300 mt-3 pb-1">
-                      <p>Datasets available about <span id="printTopic" class="font-weight-bold">{{ lower .Title }}</span>:</p>
-                  </div>
-
-                  <div class="mt-1" id="indicatorDestination">
-                    Indicators get printed here
-                  </div>
-
-                  <div class="mt-3 pt-2">
+                    <div class="mt-1" id="indicatorDestination">
+                        Indicators get printed here
+                    </div>
+                    
+                    <div class="mt-3 pt-2">
                         {{- if .Params.relatedData -}}
                         <h4 class="fs-md"><i class="fas fa-chart-line mr-1 data-explorer" aria-hidden="true"></i>Related data on:</h5>
-                        {{ range .Params.relatedData }}
-
-                        <a href="../{{ .url }}" class="text-black fs-sm">{{ .title }}</a> 
-                        <hr class="my-1">
-
-                        {{ end }}
-                        {{- end -}}
-
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="flex-grow-1 pr-2 pr-md-0">
-      <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
-          <!-- Modal Trigger -->
-          <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore">
-              <div class="font-weight-bold mr-1 text-white fs-md d-none d-md-block">Learn More</div>
-              <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
-          </button>
-          <!-- Learn More Modal -->
-          <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="learnMoreLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-              <div class="modal-content">
-                  <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
-                      <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
-                          <span class="h3" aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body p-3">
-                      <div class="d-flex border-top border-bottom my-2 py-1">
-                          <a class="mr-5" href="#about">About</a>
-                          <a href="#relatedResources">Related Resources</a>
-                      </div>
-                      <h4 class="modal-title" id="about">About {{ .Title }}</h4>
-                      <div class="pb-2 mb-2">
-                            {{ .Content }}
-
-                        <ul>
-                          <li><a href="{{ .Params.azlink }}">More info about {{ .Title }}</a></li>
-                        </ul>
+                            {{ range .Params.relatedData }}
+                            
+                            <a href="../{{ .url }}" class="text-black fs-sm">{{ .title }}</a> 
+                            <hr class="my-1">
+                            
+                            {{ end }}
+                            {{- end -}}
+                            
                         </div>
-
-                      <h4 class="modal-title sr-only" id="relatedResources">Related Resources</h4>
-
-                        {{ partial "related-footer-de" . }}
-
-                    <!--
-                      <p class="font-weight-bold">Data</p>
-
-                      <div class="d-flex align-items-center pt-2">
-                          <a class="btn btn-light-green-bg-outline" href="#">Save Info</a>
-                          <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
-                      </div>
-                    -->
-
-                  </div>
-              </div>
-              </div>
-          </div>
-          <div class="align-items-center d-none d-md-flex dropdown">
-              <button class="d-flex align-items-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
-                  <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
-                  <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
-              </button>
-              <div class="dropdown-menu dropdown-menu-right p-2 text-right take-action-dropdown" aria-labelledby="dropdownMenuButton">
-                  <div class="font-weight-bold border-bottom border-gray-300 text-primary pb-2 mb-1">Concerned about this?</div>
-                  <ul class="list-unstyled fs-sm">
-                      <li class="mb-1 border-bottom border-gray-300 pb-1"><a href="#">Email your elected officials</a></li>
-                      <li class="mb-1 border-gray-300 pb-1">
-                        <span class="d-block" id="311label">Contact 311 about:</span>
-                        <span id="311" class="destination311"><a href="#">Dynamic option</a></span>
-                    </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<!-- #global-header -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-grow-1 pr-2 pr-md-0">
+            <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
+                <!-- Modal Trigger -->
+                <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore">
+                    <div class="font-weight-bold mr-1 text-white fs-md d-none d-md-block">Learn More</div>
+                    <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
+                </button>
+                <!-- Learn More Modal -->
+                <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="learnMoreLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="bg-primary modal-top-bg position-relative d-flex justify-content-end align-items-center">
+                                <button type="button" class="bg-transparent border-0 py-1" data-dismiss="modal" aria-label="Close" style="top: 10px; right: 15px; color: white; opacity: 1;">
+                                    <span class="h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body p-3">
+                                <div class="d-flex border-top border-bottom my-2 py-1">
+                                    <a class="mr-5" href="#about">About</a>
+                                    <a href="#relatedResources">Related Resources</a>
+                                </div>
+                                <h4 class="modal-title" id="about">About {{ .Title }}</h4>
+                                <div class="pb-2 mb-2" id="aboutContent">
+                                    {{ .Content }}
+                                    
+                                    <ul>
+                                        <li><a href="{{ .Params.azlink }}" data-pagefind-ignore="all">More info about {{ .Title }}</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <h4 class="modal-title sr-only" id="relatedResources" data-pagefind-ignore="all">Related Resources</h4>
+                                
+                                {{ partial "related-footer-de" . }}
+                                
+                                <!--
+                                    <p class="font-weight-bold">Data</p>
+                                    
+                                    <div class="d-flex align-items-center pt-2">
+                                        <a class="btn btn-light-green-bg-outline" href="#">Save Info</a>
+                                        <a href="#" class="h6 ml-2 font-weight-normal">Data Source and Details</a>
+                                    </div>
+                                -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="align-items-center d-none d-md-flex dropdown">
+                    <button class="d-flex align-items-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
+                        <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
+                        <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right p-2 text-right take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                        <div class="font-weight-bold border-bottom border-gray-300 text-primary pb-2 mb-1">Concerned about this?</div>
+                        <ul class="list-unstyled fs-sm">
+                            <li class="mb-1 border-bottom border-gray-300 pb-1"><a href="#">Email your elected officials</a></li>
+                            <li class="mb-1 border-gray-300 pb-1">
+                                <span class="d-block" id="311label">Contact 311 about:</span>
+                                <span id="311" class="destination311"><a href="#">Dynamic option</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #global-header -->

@@ -27,23 +27,23 @@
 
 
 <script>
-
-// ===== load flexdatalist ================================================== //
-
-const load_flexdatalist = async () => {
-
-    // ----- get Indicators.json -------------------------------------------------- //
     
-    await fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
+    // ===== load flexdatalist ================================================== //
+    
+    const load_flexdatalist = async () => {
+        
+        // ----- get Indicators.json -------------------------------------------------- //
+        
+        await fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
         .then(response => response.json())
         .then(data => {
-
+            
             let indicatorJSON = data;
             // console.log("indicator JSON:", indicatorJSON);
             // console.log(indicatorJSON[0])
             
             // ----- init flexdatalist -------------------------------------------------- //
-
+            
             let $input = $('.flexdatalist').flexdatalist({
                 minLength: 0,
                 valueProperty: ["IndicatorID", "IndicatorName"],
@@ -59,7 +59,7 @@ const load_flexdatalist = async () => {
                 cache: false,
                 data: indicatorJSON
             });
-
+            
             
             // ----- add flexdatalist select handler -------------------------------------------------- //
             $input.on('select:flexdatalist', (e, set) => {
@@ -72,33 +72,33 @@ const load_flexdatalist = async () => {
                 }
                 
             })
-
-
+            
+            
             // ----- add clear button handler -------------------------------------------------- //
             $("#clear").on("click", (e) => {
-
+                
                 // console.log("e [clear click]", e);
-
+                
                 $($input).find("~input").val("").trigger( "focus" )
                 
             })
-
+            
         })
-
-}
-
-// ----- call loader function -------------------------------------------------- //
-
-load_flexdatalist()
-
-// ----- send to DE output page ----------------------------------------- //
-
-function sendToIndicator(x) {
-
-    var id = x.IndicatorID
-
-    const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-    window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
-}
-
+        
+    }
+    
+    // ----- call loader function -------------------------------------------------- //
+    
+    load_flexdatalist()
+    
+    // ----- send to DE output page ----------------------------------------- //
+    
+    function sendToIndicator(x) {
+        
+        var id = x.IndicatorID
+        
+        const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
+        window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
+    }
+    
 </script>
