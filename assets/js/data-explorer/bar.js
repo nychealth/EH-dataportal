@@ -136,7 +136,8 @@ const renderBar = (
                             "tooltip": [
                                 {"field": "Geography", "title": "Neighborhood"},
                                 {"field": "valueLabel", "title": metadata[0].MeasureName},
-                                {"field": "TimePeriod", "title": 'Time period'}
+                                {"field": "TimePeriod", "title": 'Time period'},
+                                {"field": "Note", "title": "Note"}
                             ],
                             "y": {"field": "GeoID", "sort": "-x", "axis": null},
                             "color": {"value": "#f1f1f1"}
@@ -165,7 +166,9 @@ const renderBar = (
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
                             {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriod", "title": 'Time period'}
+                            {"field": "TimePeriod", "title": 'Time period'},
+                            {"field": "Note", "title": "Note"}
+
                         ],
                         "y": {"field": "GeoID", "sort": "-x", "axis": null},
                         "color": {
@@ -264,7 +267,9 @@ const renderBar = (
                             {
                                 "field": "TimePeriod",
                                 "title": "Time period"
-                            }
+                            },
+                                                        {"field": "Note", "title": "Note"}
+
                         ],
                         "y": {"field": "GeoID", "sort": "Value", "axis": null},
                         "color": {"value": "#f1f1f1ff"},
@@ -323,7 +328,9 @@ const renderBar = (
                             {
                                 "field": "TimePeriod",
                                 "title": "Time period"
-                            }
+                            },
+                                                        {"field": "Note", "title": "Note"}
+
                         ],
                         "y": {"field": "GeoID", "sort": "x", "axis": null},
                         "color": {
@@ -378,7 +385,9 @@ const renderBar = (
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
                             {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriod", "title": 'Time period'}
+                            {"field": "TimePeriod", "title": 'Time period'},
+                                                        {"field": "Note", "title": "Note"}
+
                         ],
                         "y": {"field": "GeoID", "sort": "x", "axis": null},
                         "color": {
@@ -523,7 +532,7 @@ const renderBar = (
 
     return vegaEmbed("#barHolder", vegaSpec, {
 
-        actions: false
+        actions: true
 
         // {
         //     export: { png: false, svg: false },
