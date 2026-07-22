@@ -51,6 +51,19 @@
        so the chart containers size to their canvas content instead of a fixed height. */
     #cpVis, #aqChangeVis, #cpVisTOD, #explainChart, #explainChart2 { height: auto; }
 
+    /* Evaluation Analysis: float the explainer charts so the analysis.md prose wraps
+       around them. 768px = Bootstrap's md breakpoint, matching where the old two-column
+       layout used to split. Below it the float is off and the charts stack full-width. */
+    @media (min-width: 768px) {
+        .cp-explain-aside {
+            float: right;
+            width: 45%;
+            max-width: 480px;
+            margin-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
 
 </style>
 
@@ -175,14 +188,14 @@
         <div class="col-md-8 col-sm-12 mx-auto my-1">
             <h2 class="h3 cp-sticky-header">Air pollution monitoring</h2>
             <div class="row">
-                <div class="col-md-6 mt-1">
+                <div class="col-md-6 mt-1 mb-2">
                     {{- with .Resources.GetMatch "monitors.md" -}}
-                    {{ .Content }}
+                        {{ .Content }}
                     {{- end -}}
                 </div>
 
                 <div class="col-md-6">
-                    <div id="cpReportMap" class="cp-inline-map"></div>
+                    <div id="cpReportMap" class="cp-inline-map mb-2"></div>
                     <h3 class="h5 mt-1">EJ-Designated Community Site Analysis</h3>
                     <p>In consultation with stakeholders, the Health Department increased monitoring in several communities that the Environmental Assessment identified as environmental justice communities with the potential for increases in truck traffic. These areas are:
                         <span class="badge badge-light site-badge" data-site="deegan">Major Deegan</span>
@@ -215,31 +228,30 @@
             <div class="row mt-4">
                 <div class="col-12">
                     <h3>Evaluation Analysis</h3>
-                </div>
-                <div class="col-md-6 mt-1">
+
+                    <!-- Charts float right at md+ so the analysis.md prose wraps around
+                         them. This block must precede the .Content output below, because a
+                         float only reflows content that follows it in source order. On
+                         mobile the float is disabled, so the charts stack above the text. -->
+                    <div class="cp-explain-aside">
+                        <div style="width:100%;" id="explainChart" class="mt-2"></div>
+
+                        <div class="asidebox border">
+                            <p class="fs-sm">
+                                The blue dot is our estimate, and the gray bar is the Standard Error. The shorter the gray bar, the greater the confidence in the estimate - the more precise we know our estimate to be.</p>
+                        </div>
+
+                        <div class="w-100 mt-4 mb-1" id="explainChart2"></div>
+                            <div class="asidebox border mb-2">
+                                <p class="fs-sm">
+                                    The purple dot shows the difference between the <span style="color:blue;font-weight:bold">observed</span> and <span style="color:darkorange;font-weight:bold">projected</span> values after congestion pricing, along with 95% confidence intervals (the purple bar), a statistical measure that shows the range of values that difference could be and still be true. If the confidence interval stretches from negative numbers to positive numbers, then the difference is not significant, meaning there is no change in pollution due to congestion pricing. If the purple bar and dot are entirely on the right or left side of zero (dotted line), then the difference is significantly different from zero and may be due to congestion pricing. </p>
+                            </div>
+                        </div>
+
                     {{- with .Resources.GetMatch "analysis.md" -}}
-                    {{ .Content }}
+                        {{ .Content }}
                     {{- end -}}
                 </div>
-
-                <div class="col-md-6">
-                    <div style="width:100%;" id="explainChart" class="mt-2"></div>
-
-                    <div class="asidebox border">
-                        <p class="fs-sm">
-                            The blue dot is our estimate, and the gray bar is the Standard Error. The shorter the gray bar, the greater the confidence in the estimate - the more precise we know our estimate to be.</p>
-                    </div>
-
-                    <div class="w-100 mt-4 mb-1" id="explainChart2"></div>
-                    <div class="asidebox border">
-                        <p class="fs-sm">The purple dot shows the difference between the <span
-                                  style="color:blue;font-weight:bold">observed</span> and <span
-                                  style="color:darkorange;font-weight:bold">projected</span> values after congestion
-                            pricing, along with 95% confidence intervals (the purple bar), a statistical measure that shows the range of values that difference could be and still be true.  If the confidence interval stretches from negative numbers to positive numbers, then the difference is not significant, meaning there is no change in pollution due to congestion pricing. If the purple bar and dot are entirely on the right or left side of zero (dotted line), then the difference is significantly different from zero and may be due to congestion pricing. </p>
-                    </div>
-                </div>
-
-
             </div>
 
 
@@ -326,9 +338,9 @@
                     <div class="col-12">
                         <h3 class="cp-sticky-header">Pollution outside of NYC </h3>
                     </div>
-                    <div class="col-md-6 fs-rg mt-1">
+                    <div class="col-md-6 fs-rg mt-1 mb-2">
                         {{- with .Resources.GetMatch "aq-outside-crz.md" -}}
-                        {{ .Content }}
+                            {{ .Content }}
                         {{- end -}}
                     </div>
                     <div class="col-md-6">
