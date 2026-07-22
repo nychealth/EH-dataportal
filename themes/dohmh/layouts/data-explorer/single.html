@@ -7,9 +7,13 @@
 {{- partial "lib-vega.html" . }}
 {{- partial "lib-leaflet.html" . }}
 
-<article class="container-fluid de-wrapper" id="skip-header-target" data-pagefind-ignore="all">
+<article class="container-fluid de-wrapper" id="skip-header-target">
 
-    <section>
+    {{/*  Pagefind ignore is scoped here (not on the whole <article>) so the hidden
+          search-only topic block below stays indexable. This <section> holds only the
+          JS-populated SPA shell — de-indicator-info, de-tabs, and the #map canvas render
+          placeholder text ("Loading indicator...", "Measure:") that must not be indexed.  */}}
+    <section data-pagefind-ignore="all">
 
         <div class="row position-relative" style="z-index: 2;">
 
@@ -51,6 +55,18 @@
 {{/*  call partial to insert indicator names and descriptions for pagefind  */}}
 
 {{ partial "de-indicator-names-pf" . }}
+
+
+{{/*  Hidden, search-only topic content. The visible topic title/about-prose/take-action
+      live inside the JS shell that is pagefind-ignored above, so mirror them here in a
+      d-none block (real DOM, visually hidden) to keep topic-level content searchable —
+      matching data-explorer-old/single.html, whose equivalent article is not blanket-ignored.  */}}
+
+<div class="d-none">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    {{- partial "takeaction" . -}}
+</div>
 
 
 {{- /*  seedrandom - seeds the disparities scatter jitter so it's stable across
