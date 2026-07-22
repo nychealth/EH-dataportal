@@ -9,7 +9,7 @@ We found that at EJ neighborhood sites that we monitored - where there were conc
 
 Similarly, within the CRZ, neighborhood pollution levels were not significantly different than they would have been if congestion pricing had not been implemented.
 
-Minimal to no impact on air quality from congestion pricing is not an unexpected finding: traffic makes up only about 10% of PM2.5 emissions and 20% of NOx emissions. This means, for example, that a roughly 10% reduction in traffic volume in the CRZ would not substantially change air pollution compared to other sources of emissions.
+That congestion pricing would only have a small impact on air quality is not unexpected: traffic makes up only about 10% of PM2.5 emissions and 20% of NOx emissions. This means, for example, that a roughly 10% reduction in traffic volume in the CRZ would not substantially change air pollution compared to other sources of emissions.
 
 However, the documented benefits of congestion pricing – [reduced congestion, transit system improvements](https://www.mta.info/document/195631) and [investments through the committed mitigation](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about) – clearly demonstrate the overall benefit of the program.
 
