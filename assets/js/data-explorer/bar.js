@@ -71,11 +71,11 @@ const renderBar = (
     // Render notes
     const barUnreliability = document.getElementById('bar-unreliability');
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
+    const displayNotes = getDisplayNotes(uniqueNotes);
 
     // bar.js wraps each note in <p>, not the <div class='fs-xs'> the other four
     // sites use — a real markup divergence, so pass the override explicitly.
-    renderUnreliabilityNotes(barUnreliability, uniqueNotes, note => `<p>${note}</p>`);
-
+    renderUnreliabilityNotes(barUnreliability, displayNotes, note => `<p>${note}</p>`);
 
     // Accept either a raw backend geotype or the prettified UI label.
     const barData = data.filter(item => {
@@ -135,9 +135,8 @@ const renderBar = (
                             },
                             "tooltip": [
                                 {"field": "Geography", "title": "Neighborhood"},
-                                {"field": "valueLabel", "title": metadata[0].MeasureName},
-                                {"field": "TimePeriod", "title": 'Time period'},
-                                {"field": "Note", "title": "Note"}
+                                {"field": "valueLabelWithNote", "title": metadata[0].MeasureName},
+                                {"field": "TimePeriod", "title": 'Time period'}
                             ],
                             "y": {"field": "GeoID", "sort": "-x", "axis": null},
                             "color": {"value": "#f1f1f1"}
@@ -165,9 +164,8 @@ const renderBar = (
                         },
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
-                            {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriod", "title": 'Time period'},
-                            {"field": "Note", "title": "Note"}
+                            {"field": "valueLabelWithNote", "title": metadata[0].MeasureName},
+                            {"field": "TimePeriod", "title": 'Time period'}
 
                         ],
                         "y": {"field": "GeoID", "sort": "-x", "axis": null},
@@ -257,7 +255,7 @@ const renderBar = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "valueLabel",
+                                "field": "valueLabelWithNote",
                                 "title": `${barMeasurementType}`
                             },
                             {
@@ -267,8 +265,7 @@ const renderBar = (
                             {
                                 "field": "TimePeriod",
                                 "title": "Time period"
-                            },
-                                                        {"field": "Note", "title": "Note"}
+                            }
 
                         ],
                         "y": {"field": "GeoID", "sort": "Value", "axis": null},
@@ -318,7 +315,7 @@ const renderBar = (
                                 "title": "Neighborhood"
                             },
                             {
-                                "field": "valueLabel",
+                                "field": "valueLabelWithNote",
                                 "title": `${barMeasurementType}`
                             },
                             {
@@ -328,8 +325,7 @@ const renderBar = (
                             {
                                 "field": "TimePeriod",
                                 "title": "Time period"
-                            },
-                                                        {"field": "Note", "title": "Note"}
+                            }
 
                         ],
                         "y": {"field": "GeoID", "sort": "x", "axis": null},
@@ -384,9 +380,8 @@ const renderBar = (
                         },
                         "tooltip": [
                             {"field": "Geography", "title": "Neighborhood"},
-                            {"field": "valueLabel", "title": metadata[0].MeasureName},
-                            {"field": "TimePeriod", "title": 'Time period'},
-                                                        {"field": "Note", "title": "Note"}
+                            {"field": "valueLabelWithNote", "title": metadata[0].MeasureName},
+                            {"field": "TimePeriod", "title": 'Time period'}
 
                         ],
                         "y": {"field": "GeoID", "sort": "x", "axis": null},
@@ -472,8 +467,14 @@ const renderBar = (
         },
         "autosize": {"type": "fit-x", "contains": "padding"},
         "transform": [
+            // add value and note field
+
             // Precompute display strings once so tooltips and CI marks can reuse them across layers.
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
+            {
+                "calculate": "datum.valueLabel + (datum.Note ? ' — ' + datum.Note : '')",
+                "as": "valueLabelWithNote"
+            },
             {
                 "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
                 "as": "ciLow"

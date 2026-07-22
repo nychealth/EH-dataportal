@@ -114,9 +114,9 @@ const buildLabelCollisionTransforms = (passCount) => {
 // ----------------------------------------------------------------------- //
 
 // Resets the note area before populating the current trend-specific notes.
-// Unlike the other 4 reliability-notes sites, `notes` arrives already deduped/filtered
-// by the caller, so this just delegates to the shared renderer with its default
-// `<div class='fs-xs'>` markup (matching appendTrendNote's own wrapper below).
+// The trend view uses the same shared note renderer as the other chart sites,
+// but still passes through the display-note helper so chart-level notes can be
+// filtered consistently before they reach the page.
 const renderTrendNotes = (trendUnreliability, notes) => {
 
     renderUnreliabilityNotes(trendUnreliability, notes);
@@ -170,8 +170,9 @@ const renderTrendChart = (
     // `.filter(Boolean)` drops blank/null/undefined notes; equivalent to the prior
     // `!d == ""` coercion (kept working by accident, but unreadable) — see deep-audit §6.
     const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(Boolean);
+    const displayNotes = getDisplayNotes(compUnreliability);
 
-    renderTrendNotes(trendUnreliability, compUnreliability);
+    renderTrendNotes(trendUnreliability, displayNotes);
 
     let {
         columns,
@@ -462,6 +463,10 @@ const renderTrendChart = (
                 "as": "valueWithDisplay"
             },
             {
+                "calculate": "datum.valueWithDisplay + (datum.Note ? ' — ' + datum.Note : '')",
+                "as": "valueWithDisplayWithNote"
+            },
+            {
                 "window": [
                     {
                         "op": "row_number",
@@ -560,8 +565,8 @@ const renderTrendChart = (
                                     "field": "TimePeriod",
                                     "type": "nominal"
                                 },
-                                { "title": "Group", "field": comp_group_col },
-                                { "title": comparisonToolTipLabel, "field": "valueWithDisplay" }
+                                { "title": "Group", "field": comp_group_col === "GeographyShort" ? "Geography" : comp_group_col },
+                                { "title": comparisonToolTipLabel, "field": "valueWithDisplayWithNote" }
                             ]
                         }
                     },
