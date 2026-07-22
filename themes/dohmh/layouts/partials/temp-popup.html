@@ -33,7 +33,7 @@
                     <ul>
                       <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
                       <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
-                      <li><a href="google.com">All Air Quality data and resources</a></li>
+                      <li><a href="https://www.airnow.gov/" target="_blank">AirNow.gov</a></li>
                       <!-- add additional resources -->
                     </ul>
                   </p>
@@ -80,7 +80,7 @@
 
         // ----- current AQI ----- //
 
-        const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+        const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
         const aqiData = await aqiRes.json();
 
         const aqi = Math.max(aqiData[0].Category.Number, aqiData[1].Category.Number);
