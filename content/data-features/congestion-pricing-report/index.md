@@ -63,7 +63,7 @@ This is the most complete evaluation to date, using deeply detailed models and m
 <div class="row mb-4">
   <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>Generally, pollution at all locations held steady or improved slightly</strong> This continues the trend of improving air quality in NYC over the past 20 years. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
+      <p><strong>Generally, pollution at all locations held steady or improved slightly</strong>. This continues the trend of improving air quality in NYC over the past 20 years. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
     </div>
   </div>
   <div class="col-md-4 card content-card">
