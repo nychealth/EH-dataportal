@@ -661,18 +661,30 @@ HTML response — it's less than it looks:
   `assets/js/data-explorer/menu.js` and friends only after `metadata.json` loads client-side. The
   map, legend, table, and every chart are the same story: empty containers populated by
   Leaflet/DataTables/Vega after JS runs.
-- The one static text that *does* exist is in
+- The static text that *does* exist is in
   [de-indicator-names-pf.html](../themes/dohmh/layouts/partials/de-indicator-names-pf.html): for
   every indicator bundled on a data-explorer page, it emits a hidden
   `<h1 id="IndicatorID-{id}" class="d-none">{name}</h1>` + `<h2 class="d-none">{description}</h2>`.
-  This exists **only to work around Pagefind** —
-  [single.html:10](../themes/dohmh/layouts/data-explorer/single.html) sets
-  `data-pagefind-ignore="all"` on the real interactive markup, so the site's *own* search index
-  would otherwise see nothing on these pages either.
+  This exists **only to work around Pagefind** — the app's real interactive markup
+  (`de-indicator-info.html`, the map, the tabs) sits inside a scoped
+  `data-pagefind-ignore="all"`, so the site's *own* search index would otherwise see nothing on
+  these pages either.
+  **Updated 2026-07-22:** a second, separate `d-none` block was added to
+  [single.html](../themes/dohmh/layouts/data-explorer/single.html) and
+  [section.html](../themes/dohmh/layouts/data-explorer/section.html) carrying each topic's real
+  `.Title`/`.Content`/take-action text (see the DE fresh-audit doc's §4.8) — the ignore that used
+  to sit on the whole outer `<article>` ([single.html:10](../themes/dohmh/layouts/data-explorer/single.html)
+  pre-fix) is now scoped down to just the JS shell, the same narrow-not-blanket shape as the
+  indicator-name dump. This is a second instance of the identical hidden-text pattern, not a fix to
+  it — the multi-`<h1>`/hidden-text issues below now apply to two partials instead of one, and any
+  non-JS crawler reading raw HTML picks up topic-level "about" prose in addition to the indicator
+  name/description dump.
 - **Net effect:** any crawler that doesn't execute JavaScript — essentially the entire non-Google
-  AI-crawler ecosystem — can only read a flat, undifferentiated bag of every bundled indicator's
-  name and one-line description on a given topic page, with **zero actual data**: no numbers, no
-  map, no table row, nothing distinguishing one measure/geography/time period from another.
+  AI-crawler ecosystem — can now also read each topic's real "about" text and take-action link, but
+  still gets **zero actual data**: no numbers, no map, no table row, nothing distinguishing one
+  measure/geography/time period from another. The indicator-level content remains a flat,
+  undifferentiated bag of every bundled indicator's name and one-line description on a given topic
+  page — unchanged by the 2026-07-22 update, which only added topic-level text.
 - Two secondary defects ride along with the workaround: (1) **multiple `<h1>` elements per page**
   — one per bundled indicator, so a topic page with a dozen indicators ships a dozen `<h1>`s,
   invalid outline structure regardless of visibility; (2) those `<h1>`/`<h2>` are `display:none`
