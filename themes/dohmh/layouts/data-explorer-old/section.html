@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
+<article class="container-fluid" id="skip-header-target">
 
     <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">
@@ -32,7 +32,10 @@
                     <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
                 {{ end }}
 
+                {{- /* de-topic-indicators.html only emits dev-facing debug text (sr-only <p>s) and a data <script>; ignore its whole output rather than real content */ -}}
+                <div data-pagefind-ignore="all">
                 {{- partial "de-topic-indicators.html" . -}}
+                </div>
 
                 <p class="h4 mb-3 font-weight-bold">Find Datasets by Topic</p>
                 <div class="mb-3">
