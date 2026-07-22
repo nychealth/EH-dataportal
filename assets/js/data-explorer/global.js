@@ -824,14 +824,15 @@ const downloadData = (
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
 function getDisplayNotes(notes) {
   return notes
-    .map(note =>
-      note.includes('based on small numbers')
-        ? '* Some estimates are based on small numbers and should be interpreted with caution.'
-        : note
-    )
-    .map(note =>
-      note.includes('suppressed due to insufficient data')
-        ? '** Some estimates are suppressed due to insufficient data.'
-        : note
-    );
+    .map(note => {
+      if (note.includes('based on small numbers')) {
+        return 'Some estimates are based on small numbers and should be interpreted with caution.';
+      }
+
+      if (note.includes('suppressed due to insufficient data')) {
+        return 'Some estimates are suppressed due to insufficient data.';
+      }
+
+      return note;
+    });
 }

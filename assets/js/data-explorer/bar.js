@@ -73,9 +73,7 @@ const renderBar = (
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
     const displayNotes = getDisplayNotes(uniqueNotes);
 
-    // bar.js wraps each note in <p>, not the <div class='fs-xs'> the other four
-    // sites use — a real markup divergence, so pass the override explicitly.
-    renderUnreliabilityNotes(barUnreliability, displayNotes, note => `<p>${note}</p>`);
+    renderUnreliabilityNotes(barUnreliability, displayNotes);
 
     // Accept either a raw backend geotype or the prettified UI label.
     const barData = data.filter(item => {
@@ -533,7 +531,7 @@ const renderBar = (
 
     return vegaEmbed("#barHolder", vegaSpec, {
 
-        actions: true
+        actions: false
 
         // {
         //     export: { png: false, svg: false },

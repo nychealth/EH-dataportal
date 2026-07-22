@@ -280,6 +280,8 @@ const renderCorrelate = (
     let yAxisLabel;
     let xValue;
     let yValue;
+    let xNoteField;
+    let yNoteField;
 
     switch (secondaryAxis) {
 
@@ -293,6 +295,8 @@ const renderCorrelate = (
             yMeasureName = primaryMeasureName;
             xValue = 'Value_2';
             yValue = 'Value_1';
+            xNoteField = 'Note_2';
+            yNoteField = 'Note_1';
             xMin = Math.min.apply(null, value2);
             xDisplay = secondaryDisplay || '';
             yDisplay = primaryDisplay || '';
@@ -319,6 +323,8 @@ const renderCorrelate = (
             yMeasureName = secondaryMeasureName;
             xValue = 'Value_1';
             yValue = 'Value_2';
+            xNoteField = 'Note_1';
+            yNoteField = 'Note_2';
             xMin = Math.min.apply(null, value1);
             xDisplay = primaryDisplay || '';
             yDisplay = secondaryDisplay || '';
@@ -345,8 +351,16 @@ const renderCorrelate = (
     // Show each distinct note once even if both joined measures repeat it.
     const combinedUnreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2));
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
+    const displayNotes = getDisplayNotes(linksUnreliability);
 
-    renderUnreliabilityNotes(unreliabilityHolder, linksUnreliability);
+    renderUnreliabilityNotes(unreliabilityHolder, displayNotes);
+
+    const xLabelWithNoteExpression = xNoteField
+        ? `datum.xLabel + (datum.${xNoteField} ? ' — ' + datum.${xNoteField} : '')`
+        : 'datum.xLabel';
+    const yLabelWithNoteExpression = yNoteField
+        ? `datum.yLabel + (datum.${yNoteField} ? ' — ' + datum.${yNoteField} : '')`
+        : 'datum.yLabel';
 
     // ----- Vega-Lite spec assembly (correlateSpec) ----- //
 
@@ -433,6 +447,14 @@ const renderCorrelate = (
             {
                 "calculate": `format(datum.${yValue}, '.1f') + ' ${yDisplay}'`,
                 "as": "yLabel"
+            },
+            {
+                "calculate": xLabelWithNoteExpression,
+                "as": "xLabelWithNote"
+            },
+            {
+                "calculate": yLabelWithNoteExpression,
+                "as": "yLabelWithNote"
             }
         ],
         "layer": [
@@ -487,12 +509,12 @@ const renderCorrelate = (
                         },
                         {
                             "title": yMeasureName,
-                            "field": "yLabel",
+                            "field": "yLabelWithNote",
                             "type": "nominal"
                         },
                         {
                             "title": xMeasureName,
-                            "field": "xLabel",
+                            "field": "xLabelWithNote",
                             "type": "nominal"
                         }
                     ],
