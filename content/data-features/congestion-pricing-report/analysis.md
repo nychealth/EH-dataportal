@@ -3,7 +3,7 @@ _schema: default
 draft: false
 hide: true
 ---
-This study was designed to isolate the effect of congestion pricing on air quality. Vehicle traffic contributes roughly 10% of PM2.5 and 20% of NOx emissions in New York City. If congestion pricing changed traffic volumes in the CRZ, adjacent neighborhoods, or neighborhoods near major route around the CRZ, it could therefore change the level of air pollution in those communities.
+This study was designed to isolate the effect of congestion pricing on air quality. Vehicle traffic contributes roughly 10% of PM2.5 and 20% of NOx emissions in New York City. If congestion pricing changed traffic volumes in the CRZ, adjacent neighborhoods, or neighborhoods near major routes around the CRZ, it could therefore change the level of air pollution in those communities.
 
 Determining the extent that air quality changes due to any policy is challenging, since many things impact air quality from year to year, such as average temperatures, rainfall, the presence of wildfires - both here and in other parts of the U.S. and Canada, the electrification of buildings and vehicles, the price of gasoline, and changes in regulations here and in other states. A simple before-and-after comparison would not tell us how much of the change is due to congestion pricing. So instead, we studied the difference between the air quality levels we measured after congestion pricing and what the air quality *would have been if there were no congestion pricing.* We did this at each of the EJ neighborhood sites, for the CRZ as a whole and the rest of NYC.
 
