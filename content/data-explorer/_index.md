@@ -15,3 +15,5 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 ---
+
+Our site's data explorer contains hundreds of environmental health datasets. Get tables, maps, trends, and more to view neighborhood-level data on ways that environments affect health in NYC.

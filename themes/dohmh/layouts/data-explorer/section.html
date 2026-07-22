@@ -2,9 +2,13 @@
 
 {{- partial "lib-leaflet.html" . }}
 
-<article class="container-fluid de-wrapper" id="skip-header-target" data-pagefind-ignore="all">
+<article class="container-fluid de-wrapper" id="skip-header-target">
 
-    <section>
+    {{/*  Pagefind ignore is scoped here (not on the whole <article>) so the hidden
+          search-only topic block below stays indexable. This <section> holds only the
+          JS shell — the tab-button chrome and the empty #map canvas — with no
+          topic-level content that should be indexed.  */}}
+    <section data-pagefind-ignore="all">
 
         <!-- Section.html doesn't have the left-side indicator box and legend overlays-->
 
@@ -29,6 +33,17 @@
     </section>
 
 </article>
+
+
+{{/*  Hidden, search-only topic content. This chooser page's <section> above is only the
+      JS map shell — its real topic-level prose lives in the page bundle's Markdown body, so
+      mirror the title and body here in a d-none block (real DOM, visually hidden) to keep it
+      searchable — matching the d-none pattern on data-explorer/single.html.  */}}
+
+<div class="d-none">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+</div>
 
 {{- $selector            := resources.Get "js/data-explorer/topic-indicator-selector.js" -}}
 {{- $selector_secure     := $selector | partial "short-fingerprint.html" -}}
