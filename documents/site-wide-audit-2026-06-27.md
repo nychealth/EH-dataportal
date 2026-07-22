@@ -595,10 +595,165 @@ In addition to the map/chart gaps in the DE audit:
 | 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
+| 15 | P3 | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` has no body — missing a `Sitemap:` directive |
+| 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
+| 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
 
 ---
 
-## 12. Suggested roadmap
+## 12. SEO & AI-search readiness (added 2026-07-22)
+
+Method: read `seo.html`/`head.html`/`robots.txt`/`sitemap.xml` line-by-line, confirmed what
+each Hugo environment actually *emits* (not just what the template intends), and traced what a
+**non-JS-executing crawler** — how nearly every AI/LLM crawler operates today (GPTBot, ClaudeBot,
+PerplexityBot, CCBot, Google-Extended, Bytespider, Applebot-Extended, etc. — Googlebot is the
+outlier that renders JS) — actually receives from the Data Explorer, since that's the site's
+flagship feature.
+
+### Crawl directives
+
+- **The alarming `docs/robots.txt` in this working tree is not a live bug.** [robots.txt](../themes/dohmh/layouts/robots.txt)
+  only emits a body when `hugo.Environment` is *not* `production`/`prod_prod`, in which case it
+  blanket-`Disallow`s every page — by design, so preview builds never get indexed. The copy
+  currently sitting in `docs/` (hundreds of `Disallow: /local-stage/...` lines) is a leftover
+  local `local_stage` build artifact: `docs/` is `.gitignore`d ([.gitignore:19](../.gitignore)),
+  and the real production file is generated fresh by CI (`hugo --environment prod_prod`) and
+  published straight to the `builds/prod-prod` branch
+  ([hugo-build-to-prod-prod.yml](../.github/workflows/hugo-build-to-prod-prod.yml)) — it never
+  passes through this working tree. Confirmed correct; flagged only because it looks alarming on
+  sight.
+- **Production `robots.txt` has no body at all, and no `Sitemap:` line (P3).** When the
+  environment *is* `production`/`prod_prod`, the template's `{{ if }}` never fires, so the live
+  file is empty. That's a reasonable default (open to every crawler), but it also means there's no
+  `Sitemap: https://.../sitemap.xml` line, which every major crawler — search and AI alike — uses
+  to discover the sitemap without separate registration. One-line fix, unconditional on
+  environment.
+- **No explicit stance on AI-training crawlers (P3 — a policy decision, not a defect).** Zero
+  mentions anywhere in the repo of `GPTBot`, `ClaudeBot`, `CCBot`, `Google-Extended`,
+  `PerplexityBot`, `Applebot-Extended`, `Bytespider`, etc. The effective policy today is "allow
+  everyone, by omission" — for a city agency publishing public health data, maximum reach plausibly
+  *is* the right call, but it's worth an affirmative decision (and a comment recording it) rather
+  than an accidental default. No `llms.txt` either; that convention is still informal and
+  unstandardized industry-wide, so treat it as optional, not a gap.
+
+### Structured data — none (P2)
+
+- **Zero JSON-LD or Microdata anywhere in the theme** (confirmed: no `ld+json`, `schema.org`, or
+  `itemscope`/`itemtype` across all 136 layouts / 63 partials). For a government **data portal**,
+  the highest-value miss is `Dataset` schema.org markup — the exact vocabulary Google Dataset
+  Search and Data Commons rely on to surface open datasets, and one of the clearer signals AI
+  answer engines use to extract entity-level facts instead of guessing from prose.
+  `Organization`/`GovernmentOrganization` (for DOHMH), `WebSite` with a `SearchAction`
+  (sitelinks searchbox), and `BreadcrumbList` (the nav already has the hierarchy — key-topic →
+  indicator → neighborhood) are the other three that would cost little relative to payoff, since
+  the underlying data (indicator names/descriptions from `metadata.json`, org name, page
+  hierarchy) already exists in Hugo `.Params`/menu structure.
+
+### The Data Explorer's real content is invisible to every non-JS crawler (P1)
+
+This is the site's flagship feature, so it's worth tracing precisely what ships in the *initial*
+HTML response — it's less than it looks:
+
+- [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) — the
+  indicator name/description/measure/geo/time UI — server-renders only placeholder text:
+  `"Loading indicator..."`, `"Loading indicator description..."`, and empty
+  `.measure-name`/`.geo-name`/`.time-name` holders. Every real value is written in by
+  `assets/js/data-explorer/menu.js` and friends only after `metadata.json` loads client-side. The
+  map, legend, table, and every chart are the same story: empty containers populated by
+  Leaflet/DataTables/Vega after JS runs.
+- The one static text that *does* exist is in
+  [de-indicator-names-pf.html](../themes/dohmh/layouts/partials/de-indicator-names-pf.html): for
+  every indicator bundled on a data-explorer page, it emits a hidden
+  `<h1 id="IndicatorID-{id}" class="d-none">{name}</h1>` + `<h2 class="d-none">{description}</h2>`.
+  This exists **only to work around Pagefind** —
+  [single.html:10](../themes/dohmh/layouts/data-explorer/single.html) sets
+  `data-pagefind-ignore="all"` on the real interactive markup, so the site's *own* search index
+  would otherwise see nothing on these pages either.
+- **Net effect:** any crawler that doesn't execute JavaScript — essentially the entire non-Google
+  AI-crawler ecosystem — can only read a flat, undifferentiated bag of every bundled indicator's
+  name and one-line description on a given topic page, with **zero actual data**: no numbers, no
+  map, no table row, nothing distinguishing one measure/geography/time period from another.
+- Two secondary defects ride along with the workaround: (1) **multiple `<h1>` elements per page**
+  — one per bundled indicator, so a topic page with a dozen indicators ships a dozen `<h1>`s,
+  invalid outline structure regardless of visibility; (2) those `<h1>`/`<h2>` are `display:none`
+  (`.d-none`) on *every* load for *every* visitor — the same shape of thing Google's spam guidance
+  calls out as "hidden text." Not deceptive here (the identical name/description becomes visible
+  once JS populates the real UI), but worth fixing on the underlying technical-SEO merits alone.
+- **The addressability already exists — this is fixable incrementally, not a rebuild.** The app
+  already deep-links each indicator via a real query string, `?id=<IndicatorID>`, read with
+  `URLSearchParams` and pushed with `history.pushState`/`replaceState`
+  ([app.js:68](../assets/js/data-explorer/app.js),
+  [data.js:283-289](../assets/js/data-explorer/data.js),
+  [topic-indicator-selector.js:99,636](../assets/js/data-explorer/topic-indicator-selector.js)).
+  Hugo just never varies the *server-rendered* response by that param — every `?id=` on a given
+  topic page returns byte-identical HTML. The lowest-cost fix isn't a JS rewrite: make the existing
+  hidden-h1/h2 pattern *visible* and specific to the `id` in the URL when present (one real,
+  visible `<h1>` instead of a hidden dump of every bundled indicator) — which also resolves the
+  multi-`<h1>` and hidden-text issues above in the same change. Full pre-rendering (SSR/static
+  snapshot per indicator) is the complete fix but a much bigger lift — worth its own Tier-4-sized
+  proposal if this becomes a priority, cross-referencing the DE fresh-audit doc's Tier 4.
+
+### Meta-tag correctness (P2/P3)
+
+- **`<html lang="en" dir="ltr">` is hardcoded** in both
+  [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) and
+  [list.html:2](../themes/dohmh/layouts/_default/list.html) — every one of the 14 translated pages
+  that actually exist (7 `.es.md` + 7 `.zh.md`, confirmed under `content/data-stories/*` plus the
+  homepage) ships with the wrong document language. This directly contradicts the `hreflang`
+  alternate-links code a few lines below in the same file
+  ([head.html:82-86](../themes/dohmh/layouts/partials/head.html)), which correctly reflects each
+  translation's real language — the two signals disagree on the same page. Also affects screen
+  readers (wrong pronunciation/voice). Fix: `<html lang="{{ .Language.Lang }}" dir="ltr">`.
+- **Three `<meta name="robots">` tags can stack on one response**
+  ([head.html:17,26,41](../themes/dohmh/layouts/partials/head.html)): the prod/dev branch, plus an
+  unconditional second tag for `.Section == "resources"`. Functionally fine — Google documents that
+  the most restrictive directive wins when multiple robots meta tags conflict — but fragile and
+  non-obvious; collapse to one computed value.
+- **`content/resources/` is `noindex`ed in every environment, including production**
+  ([head.html:39-42](../themes/dohmh/layouts/partials/head.html)). The section holds
+  `health-code-reference` and `sugar-lookup` — both look like real, standalone public tools, not
+  admin/internal content — and both are still listed in `sitemap.xml` despite being noindexed (the
+  sitemap template doesn't check the same condition), a signal-hygiene mismatch worth resolving
+  either way. Confirm this is deliberate before treating it as correct.
+- **`<title>` never includes the site name**, while `og:title`/`twitter:title` both append
+  `" – {{ .Site.Title }}"` ([seo.html:12,20](../themes/dohmh/layouts/partials/seo.html) vs.
+  [head.html:62-64](../themes/dohmh/layouts/partials/head.html)) — the tag that actually becomes
+  the browser-tab text and (usually) the search-result blue link carries no branding, while social
+  shares do. Minor, one-line fix for consistency.
+- **Vestigial meta tags:** `geo.region` ships with an empty `content=""`
+  ([seo.html:4](../themes/dohmh/layouts/partials/seo.html)) and `fb:profile_id` is hardcoded to
+  `"0"` ([seo.html:8](../themes/dohmh/layouts/partials/seo.html)) — both look like placeholders
+  nobody filled in or removed. `geo.*` meta tags haven't influenced Google ranking in well over a
+  decade regardless; safe to delete both rather than fix.
+- **~18% of content pages (111 of 624 `.md` files) have no `seo_description` override**, falling
+  back to one site-wide sentence ([globals/seo_defaults.yml](../data/globals/seo_defaults.yml)).
+  Spot-checked: most of the 111 are non-rendered leaf-bundle fragments (e.g.
+  `data-features/heat-report/*-fig-*.md` are `.Content`-included pieces of a longer report, not
+  standalone pages), so the real gap is smaller than the raw count suggests — but worth a pass to
+  confirm none of the 111 are actually indexable pages sharing the boilerplate description.
+
+### One thing that looks like a bug but isn't
+
+- [sitemap.xml:9-19](../themes/dohmh/layouts/_default/sitemap.xml) emits what looks like a
+  duplicated `<xhtml:link rel="alternate">` block. It isn't: the first block (inside
+  `range .Translations`) lists every *other* language version; the second, identical-looking block
+  sits after the range closes, back in the current page's own context, and emits the page's
+  *self-referential* hreflang entry — which Google's hreflang guidelines require in every
+  alternate-link set. Confirmed correct on a close read; would benefit from a one-line comment
+  explaining why, since it reads as copy-paste residue at a glance.
+
+> **Refactor summary:** (1) add `Sitemap:` to `robots.txt`, fix the hardcoded `lang="en"`, add the
+> `<title>` brand suffix, delete the two vestigial meta tags — all trivial, bundle into the
+> existing Phase 1 quick-win pass (§13); (2) decide and document an explicit AI-crawler policy
+> instead of an implicit one; (3) add `Dataset`/`Organization`/`WebSite`/`BreadcrumbList` JSON-LD —
+> the single highest-leverage structured-data addition for a government open-data site; (4) the
+> Data Explorer JS-only-content gap is the biggest item here — start by making the existing
+> hidden-indicator-name pattern visible and `id`-specific instead of a hidden bag of everything,
+> which also resolves the multi-`<h1>` and hidden-text issues in the same pass.
+
+---
+
+## 13. Suggested roadmap
 
 **Phase 0 — guardrails (do first; cheap, prevents regressions).**
 1. Add `package.json` scripts: `lint` (ESLint), `format` (Prettier), `build`/`dev`
@@ -612,7 +767,17 @@ In addition to the map/chart gaps in the DE audit:
 **Phase 1 — quick wins (the §11 table).** rawgit → local PIP; drop FA JS; ~~minify
 CSS~~ proposed + rejected by the user, see §2; de-dupe favicon/nyc-lib; fix the
 header markup bugs; gate GA out of dev/local and fix the double-fire +
-`click_how_caclulated` typo (§9).
+`click_how_caclulated` typo (§9); add `Sitemap:` to `robots.txt`, fix the
+hardcoded `lang="en"` on translated pages, add the `<title>` brand suffix, and
+delete the vestigial `geo.region`/`fb:profile_id` tags (§12).
+
+**Phase 1.5 — SEO/AI discoverability (§12).** Decide and document an explicit
+AI-crawler policy instead of an implicit one; add `Dataset`/`Organization`/
+`WebSite`/`BreadcrumbList` JSON-LD (highest-leverage structured-data gap for a
+government open-data site); make the Data Explorer's hidden per-topic
+indicator name/description block visible and `id`-specific instead of a
+hidden bag of everything — the biggest item in §12, since it's the only thing
+a non-JS crawler can currently read on the site's flagship pages.
 
 **Phase 2 — delete forks (cutover done 2026-06-27; deletion pending).** The
 endpoint cutover landed. Remaining: delete the three `data-explorer-old` trees
