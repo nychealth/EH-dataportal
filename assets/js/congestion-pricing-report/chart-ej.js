@@ -186,7 +186,7 @@ const secondSpec = {
       "Difference between Projected and Observed air quality measurements after implementation"
     ],
     "subtitle": [
-      "If the confidence interval crosses zero, the difference is not statistically significant and congestion pricing didn't cause air quality changes.",
+      "If the confidence interval crosses the zero line, the difference is not statistically significant and the levels of pollution were not different than they would have been if the program never happened.",
       ""
     ],
     "fontSize": 14,
