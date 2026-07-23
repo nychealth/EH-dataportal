@@ -65,10 +65,10 @@ documents/      Internal audits and technical write-ups
 
 ## Data explorer architecture
 
-The data explorer (`assets/js/data-explorer/`) is a vanilla-JS SPA with a global-variable state model:
+The data explorer (`assets/js/data-explorer/`) is a vanilla-JS SPA whose shared state lives in one global namespace object:
 
-- **`global.js`** — declares all shared state (50+ globals: `IndicatorID`, `MeasureID`, `GeoType`, `TimePeriodID`, etc.)
-- **Script load order is critical** (14 files, synchronous): `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print`. Note: `utilities.js` is not a separate file — its code is concatenated into `global.js` (see `// utilities.js` banner at ~line 294).
+- **`global.js`** — declares all shared state as `const DE = { ... }` (global.js:18), with sub-objects `DE.table`, `DE.disparities`, `DE.links`, `DE.trend`, `DE.map`, `DE.print`, `DE.lookups`, `DE.indicator`, `DE.state`. Don't reintroduce bare top-level globals for state that already has a `DE.*` home.
+- **Script load order is critical** (15 files, synchronous): `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`. Note: `utilities.js` is not a separate file — its code is concatenated into `global.js` (see `// utilities.js` banner at ~line 294).
 - **Data flow:** `metadata.json` → Arquero table → `joinData()` → `renderMeasures()` → `show*()` closures
 - **`renderCurrentView(updateMap)`** is the central dispatch function
 
@@ -78,7 +78,7 @@ Key gotchas:
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`); data rows may carry versioned values (`NTA2020`). Normalize before comparing.
 - `#searchModal` must be in `baseof.html`, not `footer.html`, to avoid Pagefind double-initialization on footerless pages
 - `showTable()` must not run in the same turn as `showMap()` — DataTables init (~50-90 ms) blocks Leaflet's first paint. Schedule it with a double `requestAnimationFrame` after `showMap()`'s promise resolves.
-- DataTables: omit `fixedHeader`, `Buttons`, and `Select` extensions (they add 15-20 ms startup cost each with no benefit here); skip `columns.adjust()` on first render (~25 ms). Lock `.dataTables_scrollBody` to `height/min-height/max-height: 500px; overflow-y: scroll` to prevent width drift as row counts change.
+- DataTables: omit `fixedHeader` and `Select` (they add 15-20 ms startup cost each with no benefit here — `select: true` was inert anyway and has been deleted). `Buttons` is kept, but only for the table tab's `csvHtml5` CSV export (table.js:656-658). Skip `columns.adjust()` on first render (~25 ms). Lock `.dataTables_scrollBody` to `height/min-height/max-height: 500px; overflow-y: scroll` to prevent width drift as row counts change.
 - Map export (`print-map.js`): uses an off-screen Leaflet map with `L.canvas({ padding: 0 })` as the renderer. Call `setView()` before adding vector layers — adding layers first causes number-measure exports to silently fail.
 - Default-measure priority lives in one place: `pickDefaultMeasureByPriority` in `measures.js`. `menu.js`'s `getDefaultMeasure` delegates to it (passing `indicator.Measures`) so the dropdown highlight and the rendered default can't diverge — don't reintroduce a parallel priority list.
 - Magic MeasureIDs / ComparisonIDs that render logic branches on (poverty comparator, air-quality trend slices, quarterly measures, etc.) live in `DE_MEASURE_RULES` in `global.js`. Add new data-coupled IDs there with a comment, not as inline literals in `measures.js` / `trend.js`.
@@ -90,7 +90,7 @@ Key gotchas:
 Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell:
 
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; all §0–§6 findings shipped by 2026-07-04. Superseded by the fresh audit below.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). Tiers 1–3 are done across `feature-de-tier1-audit-fixes` (merged), `feature-de-tier2-consolidation` and `feature-de-tier3-perf` (both unmerged, kept on their own branches per user choice); Tier 4 (structural) is not started. Log new findings and fix status here, not in the deep-audit doc.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). **Tiers 1, 2 and 3 are complete and all merged into `feature-new-data-explorer`** (as of 2026-07-23), along with Tier 4.6 (head.html gating), 4.7, 4.8 (Pagefind) and 4.9. **Still open: 4.1** (dismantle `renderMeasures()`), **4.2** (one indicator-load pipeline + URL module), **4.3** (`window.mapInterop` contract), **4.5** (ESLint/npm scripts/smoke test — cheapest, and meant to land before 4.1), and **4.4** (retire the old explorer, parked until comparative user testing ends). Log new findings and fix status here, not in the deep-audit doc.
 - `documents/site-wide-audit-2026-06-27.md`
 
 ## Team context

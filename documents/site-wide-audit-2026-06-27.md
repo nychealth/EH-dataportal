@@ -149,13 +149,13 @@ every page. Current issues, roughly in impact order:
 
 ## 3. Dependency & supply-chain hygiene (P1/P2)
 
-- **Dead CDN dependency — rawgit.** [head.html:230](../themes/dohmh/layouts/partials/head.html)
-  loads Leaflet point-in-polygon from `https://cdn.rawgit.com/...`. **RawGit was
-  shut down in October 2019**; this request almost certainly fails. The same
-  capability is already a local dependency (`@mapbox/leaflet-pip` in
-  package.json). **Replace with the node_modules copy** (and add SRI). *(P1 —
-  verify in the network tab; if a feature relies on PIP it's silently broken.)*
-- **External scripts without SRI.** rawgit (above) and Google Translate
+- **Dead CDN dependency — rawgit.** `head.html` loaded Leaflet point-in-polygon
+  from `https://cdn.rawgit.com/...`. **RawGit was shut down in October 2019**, so
+  that request always failed. **FIXED 2026-07-14** — the tag was deleted during the
+  DE audit's Tier 1.6 dependency cleanup. It did rely on PIP, and removing the tag
+  exposed the resulting breakage: see **§5c** below, along with three *other*
+  RawGit tags (OpenLayers) that are still live in the templates.
+- **External scripts without SRI.** the surviving rawgit OpenLayers tags (§5c) and Google Translate
   (`translate.google.com/...`, [js_bottom.html:40](../themes/dohmh/layouts/partials/js_bottom.html))
   load without `integrity`. Everything served from `node_modules` is correctly
   fingerprinted with SRI — good — so these two stand out.
@@ -375,6 +375,51 @@ bundled into this one since it wasn't part of what was audited or approved.
 
 ---
 
+### 5c. RawGit fallout — a broken point-in-polygon call and three dead OpenLayers tags (moved here 2026-07-23)
+
+*Surfaced during Tier 1.6 of `documents/data-explorer-fresh-audit-2026-07-13.md` and originally
+logged there; moved here because none of it is data-explorer work. The DE audit now just points
+at this section.*
+
+**Context.** `cdn.rawgit.com` shut down in **October 2019**. §3 above flagged one RawGit tag —
+head.html's Leaflet PointInPolygon — and that one is now **fixed** (the tag was deleted during
+the DE audit's Tier 1.6 dependency cleanup). Removing it exposed, but did not cause, the two
+items below. Everything here was already broken; the cleanup only made it visible.
+
+- **P1 — `rats-in-your-neighborhood` calls a method that hasn't existed since 2019.**
+  [neighborhood-rats.js:230,250](../content/data-features/rats-in-your-neighborhood/neighborhood-rats.js)
+  calls `area.contains(location.getLatLng())` on an `L.polygon(...)` for its rat-mitigation-zone
+  check. **Native Leaflet has no `.contains()` on a polygon** — that method came only from the
+  RawGit-hosted `Leaflet.PointInPolygon` plugin. So this has been throwing
+  `TypeError: area.contains is not a function` on every RMZ check for years.
+  **Fix:** use the already-installed `@mapbox/leaflet-pip` —
+  `leafletPip.pointInLayer({ lat, lng }, layer)`, exactly the call
+  [heat-story-leaflet.js:1728](../content/data-features/heat-story/embed/heat-story-leaflet.js)
+  already makes — or Turf / manual ray-casting. Note the package is in `package.json` but is
+  **not** loaded by any template today (§3's "audit for actual use" bullet), so a script tag
+  or `lib-*.html` partial has to be added alongside the code change.
+
+- **P2 — three templates still load OpenLayers from RawGit.** Same dead host, a different
+  library, and the *core* map dependency for the pages that load it —
+  [rats-in-your-neighborhood.html:219](../themes/dohmh/layouts/data-features/rats-in-your-neighborhood.html),
+  [rats-in-your-neighborhood-nyc-lib.html:99](../themes/dohmh/layouts/data-features/rats-in-your-neighborhood-nyc-lib.html),
+  and [email-electeds.html:132](../themes/dohmh/layouts/take-action/email-electeds.html) (a
+  take-action page — this third site wasn't in the original DE write-up). All three go on to
+  construct `new nyc.ol.FrameworkMap({...})`, which is nyc-lib's OpenLayers wrapper.
+  **HYPOTHESIS (unverified): these maps are broken in production.** Per this repo's root-cause
+  rule that is a guess until someone loads the pages and checks the console — it hinges on
+  whether `nyc-ol-lib.js` (loaded from `maps.nyc.gov`, two lines later) supplies its own `ol`
+  global or expects the dead CDN to have provided it. **Check that first**, then either point
+  the tag at a live OpenLayers build or delete it as redundant. Cheap to settle and it decides
+  whether this is a P1 outage or a P3 dead tag.
+
+- **Aside — `rats-in-your-neighborhood-nyc-lib.html` is referenced by nothing.** A repo-wide
+  grep finds no `layout:` front matter and no template pointing at it; the live page uses
+  `rats-in-your-neighborhood.html`. Likely a dead duplicate to delete rather than fix, in the
+  same family as §1's duplicate-and-version cruft.
+
+---
+
 ## 6. CSS / SCSS (P2/P3)
 
 - Organization is actually reasonable: ordered `a-…h-` partials behind one
@@ -581,16 +626,16 @@ In addition to the map/chart gaps in the DE audit:
 
 | # | Severity | Where | Issue |
 |---|---|---|---|
-| 1 | P1 | [head.html:230](../themes/dohmh/layouts/partials/head.html) | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; use local `@mapbox/leaflet-pip` + SRI |
+| 1 | ~~P1~~ **FIXED 2026-07-14** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
 | 2 | P1 | CI workflows | Unpinned actions + no `permissions:` block (your own CLAUDE.md rules) |
 | 3 | P2 | [main.js:110](../assets/js/main.js) + [site.js:94](../assets/js/site.js) | `click_subscribe` analytics fires twice |
-| 4 | P2 | [head.html:116](../themes/dohmh/layouts/partials/head.html) | Font Awesome shipped as render-blocking JS *and* CSS; drop the JS |
+| 4 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | Font Awesome shipped as render-blocking JS *and* CSS — the `all.min.js` SVG-injector was dropped (CSS + webfonts kept). Caused one regression: per-section accent icon coloring had silently depended on the injector rewriting `<i class="fa…">` into `<svg><path>`; fixed separately on `hotfix-color-styles` |
 | 5 | P2 | [head.html:137](../themes/dohmh/layouts/partials/head.html) | Production CSS not minified — proposed + rejected by user 2026-07-14, don't re-add without checking in |
-| 6 | P2 | [head.html:90-131](../themes/dohmh/layouts/partials/head.html) | nyc-lib CSS loaded twice on every page; favicon `<link>` duplicated |
+| 6 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | nyc-lib CSS loaded twice on every page; favicon `<link>` duplicated. Both de-duped — nyc-lib CSS is now behind `.Params.mapLib` only (set on the 3 `take-action/` pages), so every other page stopped paying for it |
 | 7 | P3 | [header.html:188,244,347](../themes/dohmh/layouts/partials/header.html) | Duplicate `data-toggle` attribute (second ignored) |
 | 8 | P3 | [header.html:77-80](../themes/dohmh/layouts/partials/header.html) | Overlapping `<a>`/`<span>` nesting in site title |
 | 9 | P3 | [header.html:107…](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup |
-| 10 | P3 | [head.html:121-127](../themes/dohmh/layouts/partials/head.html) | Dead webfont `range` loop |
+| 10 | ~~P3~~ **NOT A DEFECT — corrected + rewritten 2026-07-14** | [head.html:112-117](../themes/dohmh/layouts/partials/head.html) | The webfont `range` loop was called dead here and in the DE audit. It wasn't: evaluating `$woff.RelPermalink` as an argument triggered Hugo's lazy publish-on-access for the matched resource, which is exactly what the fingerprinted FA CSS's relative `url(../webfonts/…)` `@font-face` rules need. Deleting it would have broken every FA icon site-wide once the JS injector was also dropped (row 4). Rewritten to use the explicit `.Publish` idiom instead of relying on an accidental read |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
 | 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
@@ -776,7 +821,8 @@ HTML response — it's less than it looks:
 4. Decide a testing strategy (ad-hoc `node:test` scripts vs. adopting a
    framework like Vitest) — unresolved as of 2026-07-02, see §7.
 
-**Phase 1 — quick wins (the §11 table).** rawgit → local PIP; drop FA JS; ~~minify
+**Phase 1 — quick wins (the §11 table).** ~~rawgit → local PIP~~ head.html tag done
+2026-07-14, but the follow-on work is still open — see §5c; drop FA JS; ~~minify
 CSS~~ proposed + rejected by the user, see §2; de-dupe favicon/nyc-lib; fix the
 header markup bugs; gate GA out of dev/local and fix the double-fire +
 `click_how_caclulated` typo (§9); add `Sitemap:` to `robots.txt`, fix the
