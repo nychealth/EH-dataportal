@@ -443,11 +443,6 @@ $color-data-explorer: #0A408A;
     width: 90px;
   }
 
-  .modal-top-bg {
-    background-color: #008939;
-    height: 39px;
-  }
-
   .de-tabs {
     position: absolute;
     left: 0;
@@ -873,6 +868,62 @@ $color-data-explorer: #0A408A;
     .bl50 {
         border-top-left-radius: 50%;
         border-bottom-left-radius: 50%;
+    }
+
+    .br50 {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+
+    // Modal close button: a tab protruding off the modal-dialog's right edge,
+    // mirroring the close-tab-pane button's left-edge tab (.bl50 above).
+    // Lives on .modal-dialog, not .modal-content, because modal-dialog-scrollable
+    // modals need modal-content's overflow: hidden to keep the scrollable body.
+    // position: absolute also lifts it out of modal-dialog's flex layout, so it
+    // doesn't stretch to the dialog's full height via align-items: stretch.
+    .modal-close-tab {
+        position: absolute;
+        top: 0;
+        right: -33px;
+        width: 33px;
+        height: 38.5px;
+        color: white;
+        z-index: 10;
+        // .modal-dialog has pointer-events: none (Bootstrap lets backdrop clicks
+        // pass through its margin); re-enable it here like .modal-content does.
+        pointer-events: auto;
+        // Centre the X icon. The icon is an inline <svg> with explicit width and
+        // height rather than a text &times; glyph, which is what makes plain
+        // flex centring exact here: an SVG's box is its ink, so centring the box
+        // centres what you see. A text glyph's ink sits wherever the font's
+        // baseline puts it (the × rides entirely above the baseline, ~3px below
+        // its line box's centre), and its line box can also overflow this
+        // button's content box — which deforms Chrome's `outline: auto` focus
+        // ring, since that ring is drawn around the union of the element and its
+        // descendants' visual rects, not its border box. The <svg> avoids both
+        // problems outright and matches the .bl50 close-tab-pane button, which
+        // has always used an <img> child for the same reason.
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // These 3 modals no longer have a header bar to visually separate them
+    // from the page, so Bootstrap's default 1px border reads as a stray line
+    // around the box. Scoped by ID rather than globally, since theme.scss is
+    // compiled once site-wide and other pages' modals should keep the border.
+    #topicSelector .modal-content,
+    #indicatorSelector .modal-content,
+    #learnMore .modal-content {
+        border: none;
+    }
+
+    // Bootstrap's default modal-dialog margin (0.5rem) is narrower than the
+    // tab's protrusion, so it would run off-screen on small viewports.
+    @media (max-width: 575.98px) {
+        .modal-close-tab {
+            right: -8px;
+        }
     }
 
     .viridis-wrapper {
