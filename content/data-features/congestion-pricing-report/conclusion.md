@@ -20,5 +20,6 @@ However, the documented benefits of congestion pricing – [reduced congestion, 
 * [Appendix​](embeds/CRZ_Report_Appendix.pdf)
 * [New York State DOT Traffic Dataviewer​](https://nysdottrafficdata.drakewell.com/publicmultinodemap.asp)
 * [US EPA Air Quality System](https://www.epa.gov/aqs)
+* [CBDTP Air Quality Evaluation Methods](https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf)
 
-All air quality data used in this analysis are available by contacting <a href="mailto:nyccas@health.nyc.gov">NYCCAS</a>.
+All air quality data used in this analysis are available by contacting [NYCCAS](mailto:nyccas@health.nyc.gov).
