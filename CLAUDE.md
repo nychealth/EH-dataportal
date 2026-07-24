@@ -18,6 +18,18 @@ Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundle
 
 **Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly (grep/read the output) instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
 
+### Guardrails (Tier 4.5)
+
+Three npm scripts, run from the repo root (the repo's first `package.json` `scripts` block):
+
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. The 15 SPA files share one global scope, so the flat config (`eslint.config.mjs`) derives their shared globals at config-load time; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern.
+- `npm run characterize -- --check` — Playwright characterization harness (`scripts/de-characterization.mjs`); diffs 3 indicators across the map/bar/table/trend views against a committed baseline (`scripts/de-characterization-baseline/`). `-- --baseline` re-captures.
+- `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`.
+
+`characterize` and `smoke` **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). Set `DE_BASE_URL` to point them at a server on a non-default port/environment (e.g. `DE_BASE_URL="http://localhost:8080/local-stage/"`). If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache (`d5fb2ea700`).
+
+Run `characterize -- --check` and `smoke` before any Tier 2–4 merge.
+
 ## Root-cause claims
 
 A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at **any change size**: a one-property CSS fix needs it as much as a template-wide refactor. Plausibility is not evidence, and a well-written explanation is not a verified one.

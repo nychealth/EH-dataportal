@@ -420,6 +420,31 @@ items below. Everything here was already broken; the cleanup only made it visibl
 
 ---
 
+### 5d. Console errors surfaced by the Tier 4.5 smoke test (added 2026-07-23)
+
+The new `npm run smoke` guardrail (fresh-audit §4.5), on its first run, flagged two
+console-error findings beyond the already-tracked §5b/§5c noise:
+
+- **`data-features/realtime-air-quality/` — AirNow widget CORS (allowlisted, third-party).**
+  The embedded AirNow widget (`widget.airnow.gov`) makes a cross-origin `XMLHttpRequest`
+  to `airnowgovapi.com` that the browser blocks (no `Access-Control-Allow-Origin` header).
+  It's the vendor's own iframe, not our code, and the widget renders regardless — allowlisted
+  in the smoke test (scoped to that page) as documented noise. Nothing to fix on our side;
+  revisit only if the widget is replaced or self-hosted.
+- **`neighborhood-reports/` — duplicate-declaration SyntaxError (FIXED 2026-07-23, commit
+  `103c8197bd`).** The landing page (`neighborhood-reports/section.html`) declared
+  `var intendedDestinationName` in its inline script while the `nr-leaflet` partial it
+  includes declared `let intendedDestinationName`; two top-level declarations of the same
+  name in shared global scope throw `Identifier ... has already been declared`, aborting the
+  page's scripts. The variable is intentionally shared (topic buttons set it; both the
+  search-box handler in `section.html` and the map-click handler in `nr-leaflet` read it to
+  route to the chosen topic), so the partial's `let` became `var` — two `var`s of the same
+  name don't collide — rather than renaming one. Previously observed but untracked here; the
+  smoke test turned it into a hard failure. This is exactly the "clean build + grep miss real
+  console errors" class the smoke test was built for (fresh-audit §4.5).
+
+---
+
 ## 6. CSS / SCSS (P2/P3)
 
 - Organization is actually reasonable: ordered `a-…h-` partials behind one
@@ -440,12 +465,18 @@ items below. Everything here was already broken; the cleanup only made it visibl
 
 ## 7. Build & CI (P1/P2 — several map directly to your CLAUDE.md rules)
 
-`package.json` has **no `scripts` block at all** — no `build`, `dev`, `lint`,
-`format`, or `test`. There is no linting (ESLint/Stylelint), no formatting
-(Prettier), and no tests anywhere in the repo. For ~25K lines of JS this is the
-highest-leverage gap: a single `eslint` pass would have caught most of the
-concrete bugs in the DE audit (the `ReferenceError`, the dead `v-pills-trend`
-id, the operator-precedence percentile bug, duplicate object keys).
+`package.json` **had no `scripts` block at all** — no `build`, `dev`, `lint`,
+`format`, or `test` — and no linting, formatting, or tests anywhere in the repo.
+For ~25K lines of JS this was the highest-leverage gap: a single `eslint` pass
+would have caught most of the concrete bugs in the DE audit (the `ReferenceError`,
+the dead `v-pills-trend` id, the operator-precedence percentile bug, duplicate
+object keys).
+
+**Update 2026-07-23 (DE Tier 4.5):** a `scripts` block now exists — `lint`,
+`characterize`, `smoke` — and ESLint (`no-undef`) runs over `assets/js/data-explorer/`
+(see the fresh-audit §4.5 status). This closes the gap for the SPA tree only.
+Still open: no formatter, no tests, ESLint doesn't cover the ~60 inline-JS layouts
+or the theme partials, and **lint is not yet enforced in CI** (deferred, below).
 
 **Testing strategy is an open decision, not yet made.** Raised 2026-07-02
 while triaging DE audit items 9-10 against the TDD skill's require-a-test
@@ -460,6 +491,21 @@ options to decide between when this becomes a priority:
 
   Until one is chosen, bugfixes are verified manually (Hugo rebuild + browser
   check), consistent with how the repo has always operated.
+
+**Deferred out of Tier 4.5 scope (2026-07-23), each considered and parked with reason:**
+  - **Run `npm run lint` as a CI job** in the build workflows — the guardrail
+    exists locally but isn't enforced on push; the highest-value next step once
+    the team wants enforcement (pin the action to a SHA and add a `permissions:`
+    block per the workflow notes above).
+  - **A git pre-commit hook running `lint`** — catches undefined-name typos
+    before they land, but adds local-setup friction; parked pending team appetite.
+  - **A full classification sweep of all ~40 DE-tree `innerHTML` sinks** for
+    sanitization — 4.5 wrapped only the metadata-derived sinks (fresh-audit §4.5);
+    a complete pass would classify every sink (static/trusted vs. data-derived)
+    and is a larger, lower-urgency effort on DOHMH-controlled data.
+  - **The three dead `nr-*` DOMPurify-consuming partials** (cross-reference §5a's
+    dead-partial list) — deletion candidates, but out of scope for a guardrails
+    PR; fold into the §5a UHF-file cleanup.
 
 The production workflow
 ([hugo-build-to-prod-prod.yml](../.github/workflows/hugo-build-to-prod-prod.yml))
@@ -813,8 +859,10 @@ HTML response — it's less than it looks:
 ## 13. Suggested roadmap
 
 **Phase 0 — guardrails (do first; cheap, prevents regressions).**
-1. Add `package.json` scripts: `lint` (ESLint), `format` (Prettier), `build`/`dev`
-   (Hugo). Wire ESLint + a Hugo build into a PR check workflow.
+1. ~~Add `package.json` scripts: `lint` (ESLint)~~ **partly done 2026-07-23 (DE Tier 4.5):**
+   a `scripts` block with `lint`/`characterize`/`smoke` and ESLint `no-undef` over the
+   SPA tree now exist (see §7). Still to do: `format` (Prettier), `build`/`dev` (Hugo),
+   and wiring ESLint + a Hugo build into a PR check workflow (lint-in-CI is deferred, §7).
 2. Add `.gitattributes` LF rules; delete the `dos2unix` build step.
 3. Pin CI actions to SHAs; add `permissions:` blocks; switch to `npm ci` + cache;
    add Dependabot.
