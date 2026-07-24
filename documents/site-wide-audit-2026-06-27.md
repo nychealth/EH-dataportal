@@ -468,8 +468,12 @@ out of Tier 4.5's scope, and on shared production-bound templates.
 `neighborhood-reports/section.html`, and `neighborhood-reports/topiclanding.html`
 are card-grid/landing pages with no `aq.` usage and needed no change), placed after
 the existing `lib-vega.html`/`lib-d3.html` includes to match the working
-`data-features/realtime.html` idiom. Confirmed live: the page now serves the
-Arquero `<script>` tag and `neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+`data-features/realtime.html` idiom. Confirmed live (Playwright, `dev-stage`):
+`aq` is now defined (no `ReferenceError`), the 23 build-time indicator rows
+render, and **expanding an indicator accordion now builds its Arquero+Vega
+trend chart** (`#collapse-Asth1199` → a `.vega-embed` with a rendered canvas;
+the client-side chart build was what the missing library aborted). The only
+remaining console errors are the allowlisted Pagefind dev-noise. The page also
 passes the Tier 4.5 smoke test (13/13 green). No longer blocks adding an
 `nr-output` page to the smoke list — it has been added.
 
