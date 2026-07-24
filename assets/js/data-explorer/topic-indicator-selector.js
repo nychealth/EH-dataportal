@@ -539,7 +539,7 @@ const printIndicatorInfo = async (IndicatorID) => {
     indicator.Measures.forEach(measure => {
 
         const p = document.createElement('p');
-        p.innerHTML = `<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`;
+        p.innerHTML = DOMPurify.sanitize(`<strong>${measure.MeasurementType}:</strong> ${measure.how_calculated}`);
         howCalculatedEl.appendChild(p);
 
         if (measure.Sources) {

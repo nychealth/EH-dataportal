@@ -355,12 +355,12 @@ const renderAboutSources = (about, sources) => {
     if (type === 'object') {
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);
-        singleSource === true ? dataSources.innerHTML = sources[0] : dataSources.innerHTML = sources;
+        singleSource === true ? dataSources.innerHTML = DOMPurify.sanitize(sources[0]) : dataSources.innerHTML = DOMPurify.sanitize(sources);
     } else {
-        dataSources.innerHTML = sources;
+        dataSources.innerHTML = DOMPurify.sanitize(sources);
     }
 
-    aboutMeasures.innerHTML = about;
+    aboutMeasures.innerHTML = DOMPurify.sanitize(about);
 
 };
 

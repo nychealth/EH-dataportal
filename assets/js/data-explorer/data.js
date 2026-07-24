@@ -294,10 +294,6 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
 
     // call data loading function
 
-    // const indicatorTitle = document.getElementById('indicatorNameMobile')
-
-    // indicatorTitle.innerHTML = DOMPurify.sanitize(indicatorName)
-
     // ----- reset comparison metadata; conditionally fetch ----- //
 
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
