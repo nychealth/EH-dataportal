@@ -552,6 +552,376 @@ const setDropdownMenuItemState = (button, isActive) => {
 
 
 // ----------------------------------------------------------------------- //
+// pill / dropdown DOM references
+// ----------------------------------------------------------------------- //
+
+// Resolved lazily (like resolveTabReferences) because the trend/links control
+// clusters are defined at module scope but the elements only exist once the
+// SPA shell markup has parsed. measures.js loads only on data-explorer/single.html.
+let trendMeasurePills;
+let trendComparisonPills;
+
+const resolveMeasuresPillRefs = () => {
+    trendMeasurePills    ??= document.getElementById('trendMeasurePills');
+    trendComparisonPills ??= document.getElementById('trendComparisonPills');
+};
+
+
+// ----------------------------------------------------------------------- //
+// trend-pill control cluster
+// ----------------------------------------------------------------------- //
+
+// The trend measure/comparison pill closures used by renderMeasures(); hoisted
+// to module scope so they're defined once per page load instead of once per
+// indicator. They close over only DE.* plus the two module-scope pill refs above.
+
+// Picks comparison that best matches current indicator and active measure.
+const getSyncedComparisonId = () => {
+
+    if (!DE.lookups.comparisonMetadata?.length) {
+        return null;
+    }
+
+    const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
+        comp.Indicators?.some(ind =>
+            Number(ind.IndicatorID) === Number(DE.state.IndicatorID) &&
+            Number(ind.MeasureID) === Number(DE.state.MeasureID)
+        )
+    );
+
+    if (matchingMeasureComparison) {
+        return Number(matchingMeasureComparison.ComparisonID);
+    }
+
+    const matchingIndicatorComparison = DE.lookups.comparisonMetadata.find(comp =>
+        comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(DE.state.IndicatorID))
+    );
+
+    if (matchingIndicatorComparison) {
+        return Number(matchingIndicatorComparison.ComparisonID);
+    }
+
+    return Number(DE.lookups.comparisonMetadata[0].ComparisonID);
+
+};
+
+
+// Resolves one comparison button back to the comparison rows it owns.
+const getComparisonRowsForLegendTitle = (legendTitle) => {
+
+    if (!legendTitle || !DE.lookups.aqCombinedComparisonMetadata) {
+        return [];
+    }
+
+    return DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .filter(row => row.LegendTitle === legendTitle);
+
+};
+
+
+// Keeps comparison buttons synced to the current MBT measure when possible.
+const getComparisonIdForLegendTitle = (legendTitle) => {
+
+    const comparisonRows = getComparisonRowsForLegendTitle(legendTitle);
+
+    if (!comparisonRows.length) {
+        return null;
+    }
+
+    const matchingMeasureRow = comparisonRows.find(row =>
+        Number(row.IndicatorID) === Number(DE.state.IndicatorID) &&
+        Number(row.MeasureID) === Number(DE.state.MeasureID)
+    );
+
+    if (matchingMeasureRow) {
+        return Number(matchingMeasureRow.ComparisonID);
+    }
+
+    const matchingIndicatorRow = comparisonRows.find(row =>
+        Number(row.IndicatorID) === Number(DE.state.IndicatorID)
+    );
+
+    if (matchingIndicatorRow) {
+        return Number(matchingIndicatorRow.ComparisonID);
+    }
+
+    return Number(comparisonRows[0].ComparisonID);
+
+};
+
+
+// Returns the LegendTitle for a given comparison ID, or null when the ID is null or unmatched.
+const getComparisonLegendTitleById = (comparisonId) => {
+
+    if (comparisonId == null || !DE.lookups.aqCombinedComparisonMetadata) {
+        return null;
+    }
+
+    return DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .find(row => Number(row.ComparisonID) === Number(comparisonId))
+        ?.LegendTitle || null;
+
+};
+
+
+// Mirrors map measure when possible, otherwise falls back to trend defaults.
+const getActiveTrendMeasureId = () => {
+
+    const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
+
+    if (matchingMapMeasure) {
+        return Number(matchingMapMeasure.MeasureID);
+    }
+
+    const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
+
+    if (defaultTrendMeasureId != null) {
+        return Number(defaultTrendMeasureId);
+    }
+
+    return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
+
+};
+
+
+// Returns the active trend measure's MeasurementType, or 'No borough trend' when none matches.
+const getActiveTrendMeasureLabel = () => {
+
+    const trendMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
+
+    return trendMeasure?.MeasurementType || 'No borough trend';
+
+};
+
+
+// Returns the comparison ID to render, preferring a still-valid manual legend-title selection over the map-synced default.
+const getActiveComparisonId = () => {
+
+    if (DE.trend.selectedComparisonLegendTitle) {
+
+        const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(DE.trend.selectedComparisonLegendTitle);
+
+        if (comparisonIdForLegendTitle != null) {
+            return comparisonIdForLegendTitle;
+        }
+
+        DE.trend.selectedComparisonLegendTitle = null;
+
+    }
+
+    return getSyncedComparisonId();
+
+};
+
+
+// Returns the manually selected legend title, else the active comparison's title, defaulting to 'Comparison'.
+const getActiveComparisonLegendTitle = () => {
+
+    if (DE.trend.selectedComparisonLegendTitle) {
+        return DE.trend.selectedComparisonLegendTitle;
+    }
+
+    return getComparisonLegendTitleById(getActiveComparisonId()) || 'Comparison';
+
+};
+
+
+// Clears active styling before one trend or comparison button is reselected.
+const clearTrendButtonState = () => {
+
+    trendMeasurePills?.querySelectorAll('.trendmode-button').forEach(button => {
+        setBadgePillState(button, false);
+    });
+
+    trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
+        setBadgePillState(button, false);
+    });
+
+};
+
+
+// Highlights whichever control currently owns trend rendering state.
+const setTrendButtonState = () => {
+
+    clearTrendButtonState();
+
+    const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+        (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
+
+    if (useComparisonState) {
+
+        const activeLegendTitle = getActiveComparisonLegendTitle();
+        const comparisonButton = Array.from(trendComparisonPills?.querySelectorAll('.trendmode-button') || [])
+            .find(button => button.dataset.legendTitle === activeLegendTitle);
+
+        if (comparisonButton) {
+            setBadgePillState(comparisonButton, true);
+        }
+
+        return;
+
+    }
+
+    const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
+
+    if (trendButton) {
+        setBadgePillState(trendButton, true);
+    }
+
+};
+
+
+// Rebuilds compact summary line from current trend/comparison selection state.
+const updateTrendSelectionSummary = () => {
+
+    const trendLabel = getActiveTrendMeasureLabel();
+    const comparisonLabel = DE.lookups.comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
+    const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+        (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
+
+    const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
+
+    if (geographyButton) {
+        geographyButton.title = `Geography. Current selection: ${trendLabel}.`;
+        geographyButton.setAttribute('aria-label', `Geography trend button. Current selection: ${trendLabel}.`);
+    }
+
+    trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
+
+        const legendTitle = button.dataset.legendTitle || button.textContent.trim() || 'Comparison';
+        const isActive = legendTitle === comparisonLabel && useComparisonState;
+
+        button.title = `${legendTitle}.`;
+        button.setAttribute(
+            'aria-label',
+            isActive
+                ? `${legendTitle} comparison button. Current selection.`
+                : `${legendTitle} comparison button.`
+        );
+
+    });
+
+};
+
+
+// Rebuilds visible trend measure and comparison pills for current indicator context.
+const buildTrendSelectionControls = () => {
+
+    // ----- reset and hide pill containers ----- //
+
+    if (trendMeasurePills) {
+        trendMeasurePills.innerHTML = '';
+        trendMeasurePills.hidden = DE.lookups.trendMeasures.length === 0;
+    }
+
+    if (trendComparisonPills) {
+        trendComparisonPills.innerHTML = '';
+        trendComparisonPills.hidden = true;
+    }
+
+    // ----- build or clear the Geography trend button ----- //
+
+    if (DE.lookups.trendMeasures.length > 0 && trendMeasurePills) {
+
+        const geographyButton = createBadgePillButton({
+            buttonClass: 'trendmode-button',
+            label: 'Geography',
+            title: 'Geography'
+        });
+
+        geographyButton.dataset.trendMode = 'geography';
+
+        // - - - drive borough trend when clicked - - - //
+
+        geographyButton.addEventListener('click', () => {
+
+            DE.trend.showingComparisonTrend = false;
+            DE.trend.showingBoroughTrend = true;
+
+            trackDataExplorerOption('trend_comparison');
+
+            setTrendButtonState();
+            updateTrendSelectionSummary();
+            showBoroughTrend();
+
+        });
+
+        trendMeasurePills.appendChild(geographyButton);
+
+    } else if (trendMeasurePills) {
+
+        trendMeasurePills.onclick = null;
+
+    }
+
+    // ----- build or clear comparison pills per legend title ----- //
+
+    if (DE.lookups.comparisonMetadata?.length && DE.lookups.aqCombinedComparisonMetadata && trendComparisonPills) {
+
+        const compLegendTitles = [...new Set(DE.lookups.aqCombinedComparisonMetadata.array('LegendTitle'))];
+        let comparisonButtonCount = 0;
+
+        if (DE.trend.selectedComparisonLegendTitle && !compLegendTitles.includes(DE.trend.selectedComparisonLegendTitle)) {
+            DE.trend.selectedComparisonLegendTitle = null;
+        }
+
+        // - - - one pill per comparison legend title - - - //
+
+        compLegendTitles.forEach(title => {
+
+            const comparisonId = getComparisonIdForLegendTitle(title);
+
+            if (comparisonId == null) {
+                return;
+            }
+
+            const comparisonButton = createBadgePillButton({
+                buttonClass: 'trendmode-button',
+                label: title,
+                title
+            });
+
+            comparisonButton.dataset.legendTitle = title;
+
+            comparisonButton.addEventListener('click', () => {
+
+                DE.trend.selectedComparisonLegendTitle = title;
+                DE.trend.showingComparisonTrend = true;
+                DE.trend.showingBoroughTrend = false;
+
+                trackDataExplorerOption('trend_comparison');
+
+                setTrendButtonState();
+                updateTrendSelectionSummary();
+                showComparisonTrend();
+
+            });
+
+            trendComparisonPills.appendChild(comparisonButton);
+            comparisonButtonCount += 1;
+
+        });
+
+        trendComparisonPills.hidden = comparisonButtonCount === 0;
+
+    } else if (trendComparisonPills) {
+
+        trendComparisonPills.onclick = null;
+        DE.trend.selectedComparisonLegendTitle = null;
+
+    }
+
+    // ----- sync visual state ----- //
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
@@ -563,6 +933,7 @@ const renderMeasures = async () => {
     debugLog("* renderMeasures");
 
     resolveTabReferences();
+    resolveMeasuresPillRefs();
 
     // Throw away any sticky table selection state before deriving new defaults for this indicator.
     DE.table.selectedTableTimes = [];
@@ -661,357 +1032,9 @@ const renderMeasures = async () => {
 
     // ----- trend selection controls ----- //
 
-    const trendMeasurePills = document.getElementById('trendMeasurePills');
-    const trendComparisonPills = document.getElementById('trendComparisonPills');
     // Reset the comparison-pill selection for each indicator load (was a per-call `let`
     // re-initialization before selectedComparisonLegendTitle moved onto DE.trend).
     DE.trend.selectedComparisonLegendTitle = null;
-
-    // Picks comparison that best matches current indicator and active measure.
-    const getSyncedComparisonId = () => {
-
-        if (!DE.lookups.comparisonMetadata?.length) {
-            return null;
-        }
-
-        const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
-            comp.Indicators?.some(ind =>
-                Number(ind.IndicatorID) === Number(DE.state.IndicatorID) &&
-                Number(ind.MeasureID) === Number(DE.state.MeasureID)
-            )
-        );
-
-        if (matchingMeasureComparison) {
-            return Number(matchingMeasureComparison.ComparisonID);
-        }
-
-        const matchingIndicatorComparison = DE.lookups.comparisonMetadata.find(comp =>
-            comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(DE.state.IndicatorID))
-        );
-
-        if (matchingIndicatorComparison) {
-            return Number(matchingIndicatorComparison.ComparisonID);
-        }
-
-        return Number(DE.lookups.comparisonMetadata[0].ComparisonID);
-
-    };
-
-
-    // Resolves one comparison button back to the comparison rows it owns.
-    const getComparisonRowsForLegendTitle = (legendTitle) => {
-
-        if (!legendTitle || !DE.lookups.aqCombinedComparisonMetadata) {
-            return [];
-        }
-
-        return DE.lookups.aqCombinedComparisonMetadata
-            .objects()
-            .filter(row => row.LegendTitle === legendTitle);
-
-    };
-
-
-    // Keeps comparison buttons synced to the current MBT measure when possible.
-    const getComparisonIdForLegendTitle = (legendTitle) => {
-
-        const comparisonRows = getComparisonRowsForLegendTitle(legendTitle);
-
-        if (!comparisonRows.length) {
-            return null;
-        }
-
-        const matchingMeasureRow = comparisonRows.find(row =>
-            Number(row.IndicatorID) === Number(DE.state.IndicatorID) &&
-            Number(row.MeasureID) === Number(DE.state.MeasureID)
-        );
-
-        if (matchingMeasureRow) {
-            return Number(matchingMeasureRow.ComparisonID);
-        }
-
-        const matchingIndicatorRow = comparisonRows.find(row =>
-            Number(row.IndicatorID) === Number(DE.state.IndicatorID)
-        );
-
-        if (matchingIndicatorRow) {
-            return Number(matchingIndicatorRow.ComparisonID);
-        }
-
-        return Number(comparisonRows[0].ComparisonID);
-
-    };
-
-
-    // Returns the LegendTitle for a given comparison ID, or null when the ID is null or unmatched.
-    const getComparisonLegendTitleById = (comparisonId) => {
-
-        if (comparisonId == null || !DE.lookups.aqCombinedComparisonMetadata) {
-            return null;
-        }
-
-        return DE.lookups.aqCombinedComparisonMetadata
-            .objects()
-            .find(row => Number(row.ComparisonID) === Number(comparisonId))
-            ?.LegendTitle || null;
-
-    };
-
-
-    // Mirrors map measure when possible, otherwise falls back to trend defaults.
-    const getActiveTrendMeasureId = () => {
-
-        const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
-
-        if (matchingMapMeasure) {
-            return Number(matchingMapMeasure.MeasureID);
-        }
-
-        const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
-
-        if (defaultTrendMeasureId != null) {
-            return Number(defaultTrendMeasureId);
-        }
-
-        return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
-
-    };
-
-
-    // Returns the active trend measure's MeasurementType, or 'No borough trend' when none matches.
-    const getActiveTrendMeasureLabel = () => {
-
-        const trendMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
-
-        return trendMeasure?.MeasurementType || 'No borough trend';
-
-    };
-
-
-    // Returns the comparison ID to render, preferring a still-valid manual legend-title selection over the map-synced default.
-    const getActiveComparisonId = () => {
-
-        if (DE.trend.selectedComparisonLegendTitle) {
-
-            const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(DE.trend.selectedComparisonLegendTitle);
-
-            if (comparisonIdForLegendTitle != null) {
-                return comparisonIdForLegendTitle;
-            }
-
-            DE.trend.selectedComparisonLegendTitle = null;
-
-        }
-
-        return getSyncedComparisonId();
-
-    };
-
-
-    // Returns the manually selected legend title, else the active comparison's title, defaulting to 'Comparison'.
-    const getActiveComparisonLegendTitle = () => {
-
-        if (DE.trend.selectedComparisonLegendTitle) {
-            return DE.trend.selectedComparisonLegendTitle;
-        }
-
-        return getComparisonLegendTitleById(getActiveComparisonId()) || 'Comparison';
-
-    };
-
-
-    // Clears active styling before one trend or comparison button is reselected.
-    const clearTrendButtonState = () => {
-
-        trendMeasurePills?.querySelectorAll('.trendmode-button').forEach(button => {
-            setBadgePillState(button, false);
-        });
-
-        trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
-            setBadgePillState(button, false);
-        });
-
-    };
-
-
-    // Highlights whichever control currently owns trend rendering state.
-    const setTrendButtonState = () => {
-
-        clearTrendButtonState();
-
-        const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
-            (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
-
-        if (useComparisonState) {
-
-            const activeLegendTitle = getActiveComparisonLegendTitle();
-            const comparisonButton = Array.from(trendComparisonPills?.querySelectorAll('.trendmode-button') || [])
-                .find(button => button.dataset.legendTitle === activeLegendTitle);
-
-            if (comparisonButton) {
-                setBadgePillState(comparisonButton, true);
-            }
-
-            return;
-
-        }
-
-        const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
-
-        if (trendButton) {
-            setBadgePillState(trendButton, true);
-        }
-
-    };
-
-
-    // Rebuilds compact summary line from current trend/comparison selection state.
-    const updateTrendSelectionSummary = () => {
-
-        const trendLabel = getActiveTrendMeasureLabel();
-        const comparisonLabel = DE.lookups.comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
-        const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
-            (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
-
-        const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
-
-        if (geographyButton) {
-            geographyButton.title = `Geography. Current selection: ${trendLabel}.`;
-            geographyButton.setAttribute('aria-label', `Geography trend button. Current selection: ${trendLabel}.`);
-        }
-
-        trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
-
-            const legendTitle = button.dataset.legendTitle || button.textContent.trim() || 'Comparison';
-            const isActive = legendTitle === comparisonLabel && useComparisonState;
-
-            button.title = `${legendTitle}.`;
-            button.setAttribute(
-                'aria-label',
-                isActive
-                    ? `${legendTitle} comparison button. Current selection.`
-                    : `${legendTitle} comparison button.`
-            );
-
-        });
-
-    };
-
-
-    // Rebuilds visible trend measure and comparison pills for current indicator context.
-    const buildTrendSelectionControls = () => {
-
-        // ----- reset and hide pill containers ----- //
-
-        if (trendMeasurePills) {
-            trendMeasurePills.innerHTML = '';
-            trendMeasurePills.hidden = DE.lookups.trendMeasures.length === 0;
-        }
-
-        if (trendComparisonPills) {
-            trendComparisonPills.innerHTML = '';
-            trendComparisonPills.hidden = true;
-        }
-
-        // ----- build or clear the Geography trend button ----- //
-
-        if (DE.lookups.trendMeasures.length > 0 && trendMeasurePills) {
-
-            const geographyButton = createBadgePillButton({
-                buttonClass: 'trendmode-button',
-                label: 'Geography',
-                title: 'Geography'
-            });
-
-            geographyButton.dataset.trendMode = 'geography';
-
-            // - - - drive borough trend when clicked - - - //
-
-            geographyButton.addEventListener('click', () => {
-
-                DE.trend.showingComparisonTrend = false;
-                DE.trend.showingBoroughTrend = true;
-
-                trackDataExplorerOption('trend_comparison');
-
-                setTrendButtonState();
-                updateTrendSelectionSummary();
-                showBoroughTrend();
-
-            });
-
-            trendMeasurePills.appendChild(geographyButton);
-
-        } else if (trendMeasurePills) {
-
-            trendMeasurePills.onclick = null;
-
-        }
-
-        // ----- build or clear comparison pills per legend title ----- //
-
-        if (DE.lookups.comparisonMetadata?.length && DE.lookups.aqCombinedComparisonMetadata && trendComparisonPills) {
-
-            const compLegendTitles = [...new Set(DE.lookups.aqCombinedComparisonMetadata.array('LegendTitle'))];
-            let comparisonButtonCount = 0;
-
-            if (DE.trend.selectedComparisonLegendTitle && !compLegendTitles.includes(DE.trend.selectedComparisonLegendTitle)) {
-                DE.trend.selectedComparisonLegendTitle = null;
-            }
-
-            // - - - one pill per comparison legend title - - - //
-
-            compLegendTitles.forEach(title => {
-
-                const comparisonId = getComparisonIdForLegendTitle(title);
-
-                if (comparisonId == null) {
-                    return;
-                }
-
-                const comparisonButton = createBadgePillButton({
-                    buttonClass: 'trendmode-button',
-                    label: title,
-                    title
-                });
-
-                comparisonButton.dataset.legendTitle = title;
-
-                comparisonButton.addEventListener('click', () => {
-
-                    DE.trend.selectedComparisonLegendTitle = title;
-                    DE.trend.showingComparisonTrend = true;
-                    DE.trend.showingBoroughTrend = false;
-
-                    trackDataExplorerOption('trend_comparison');
-
-                    setTrendButtonState();
-                    updateTrendSelectionSummary();
-                    showComparisonTrend();
-
-                });
-
-                trendComparisonPills.appendChild(comparisonButton);
-                comparisonButtonCount += 1;
-
-            });
-
-            trendComparisonPills.hidden = comparisonButtonCount === 0;
-
-        } else if (trendComparisonPills) {
-
-            trendComparisonPills.onclick = null;
-            DE.trend.selectedComparisonLegendTitle = null;
-
-        }
-
-        // ----- sync visual state ----- //
-
-        setTrendButtonState();
-        updateTrendSelectionSummary();
-
-    };
-
 
     buildTrendSelectionControls();
 
