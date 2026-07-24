@@ -28,6 +28,11 @@ const EXTERNAL_GLOBALS = [
 // Extract top-level `function`/`const`/`let`/`var` names from the DE files.
 // Anchored to column 0 so only module-scope declarations match, not indented
 // (nested) ones — indented names are locals ESLint already sees in-file.
+// KNOWN LIMITATION: only the first identifier of a simple declaration is
+// captured — top-level destructuring (`const { a, b } = …`) and multi-declarator
+// (`const a = 1, b = 2`) names are missed. None exist in the DE tree today; if a
+// future one is used cross-file it would surface as a spurious `no-undef` (add
+// the name here or broaden this regex), not a silently-wrong lint pass.
 const declaredGlobals = {};
 for (const file of readdirSync(DE_DIR)) {
     if (!file.endsWith(".js")) continue;

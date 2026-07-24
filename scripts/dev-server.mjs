@@ -76,8 +76,10 @@ function makeStop(child) {
 export async function ensureDevServer() {
 
     // Path 1: explicit override — trust it, probe nothing, own nothing.
+    // Force a trailing slash so consumers can join `baseURL + path` safely; the
+    // probe/spawn paths already return slash-terminated prefixes.
     if (process.env.DE_BASE_URL) {
-        return { baseURL: process.env.DE_BASE_URL, stop: async () => {} };
+        return { baseURL: process.env.DE_BASE_URL.replace(/\/?$/, '/'), stop: async () => {} };
     }
 
     // Path 2: reuse a server that's already answering.

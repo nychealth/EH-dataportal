@@ -443,6 +443,32 @@ console-error findings beyond the already-tracked §5b/§5c noise:
   smoke test turned it into a hard failure. This is exactly the "clean build + grep miss real
   console errors" class the smoke test was built for (fresh-audit §4.5).
 
+### 5e. `nr-output` report pages use Arquero but never load it — charts broken (P1, added 2026-07-23)
+
+Surfaced while extending the Tier 4.5 smoke test to cover the `nr-output` template
+(a whole-branch-review recommendation): **individual neighborhood-report pages
+(`nr-output/single.html`, e.g. `neighborhood-reports/<neighborhood>/<report>/`)
+reference Arquero (`aq.`) 48× via their `nr-indicator-new.html` / `nr-indicator-old.html`
+partials, but no template in the `nr-output` chain includes `lib-arquero.html`.**
+Confirmed live (Playwright, `local-stage`): `typeof aq === 'undefined'`, the first
+`aq.` call throws `Uncaught ReferenceError: aq is not defined`, and **0 chart
+elements render** — the page shows its header, map, and ZIP list but none of the
+Arquero-built indicator data/charts.
+
+`lib-arquero.html` is currently included only by `data-explorer/{data-index,indicator-catalog,single}.html`
+and `data-features/{heatstory,realtime}.html`. **Likely a Tier 4.6 lib-gating regression** —
+4.6 moved shared libraries from site-wide loads to per-template `partial "lib-*.html"`
+includes and appears to have missed the `nr-output` chain (which the DE audit already
+flags as wanting its own staged effort, fresh-audit §4.6). Not investigated further here —
+out of Tier 4.5's scope, and on shared production-bound templates.
+
+**Fix direction (unverified):** add `{{- partial "lib-arquero.html" . }}` to the
+`nr-output` template(s) that render `nr-indicator-*`, then confirm charts render and
+`aq` is defined. Check the other per-template library gates at the same time — if
+Arquero was missed on `nr-output`, another library/template pair may be too (exactly
+the per-template coverage gap the smoke test exists to catch). **Blocks adding an
+`nr-output` page to the Tier 4.5 smoke list** (deferred there with a pointer here).
+
 ---
 
 ## 6. CSS / SCSS (P2/P3)
