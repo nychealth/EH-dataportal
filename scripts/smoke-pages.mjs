@@ -28,27 +28,36 @@ const PAGES = [
 // Pre-existing, documented console noise that is NOT a regression. Each entry
 // names the page it excuses and the audit section that tracks the real fix, so
 // resolving that bug is what removes the entry — the allowlist trends to zero.
+//
+// `page` scopes the exemption to the known-red page(s): a bug-specific signature
+// must NOT be excused site-wide, or a genuine regression producing the same
+// error text on another page would be silently swallowed. The negative-SVG
+// signature especially — the DE chart pages render Vega-Lite, which throws the
+// identical "negative value" text on a real sizing bug. `page: null` is reserved
+// for generic dev-only noise that is benign on every page.
 const KNOWN_NOISE = [
     // Datawrapper iframe computing NaN/negative size in a hidden Bootstrap tab
-    // (data-stories/housing, redlining/, air-quality-snapshots/, vectorborne-
-    // diseases/). The browser's SVG validator reports generic "negative value"
-    // attribute errors with no CDN string, so match the signature, not the host.
-    // site-wide audit §5b.
-    /attribute (?:width|height): A negative value is not valid/i,
-    // Also catch any Datawrapper resource-load noise that DOES name the host.
-    /dwcdn\.net|datawrapper/i,
+    // (data-stories/housing, and off-list redlining/, air-quality-snapshots/,
+    // vectorborne-diseases/). The browser's SVG validator reports generic
+    // "negative value" attribute errors with no CDN string, so match the
+    // signature, not the host — hence the page scope. site-wide audit §5b.
+    { page: /data-stories\/housing\//, error: /attribute (?:width|height): A negative value is not valid/i },
+    // Any Datawrapper resource-load noise that DOES name the host, same page.
+    { page: /data-stories\/housing\//, error: /dwcdn\.net|datawrapper/i },
     // rats-in-your-neighborhood: area.contains() has thrown since 2019 (RawGit
     // fallout). site-wide audit §5c. Remove when that template is fixed.
-    /area\.contains|is not a function.*contains/i,
+    { page: /rats-in-your-neighborhood/, error: /area\.contains|is not a function.*contains/i },
     // realtime-air-quality: the embedded AirNow widget (widget.airnow.gov) makes
     // a cross-origin XHR to airnowgovapi.com that is blocked by CORS — a third-
     // party embed we don't control. site-wide audit §5d.
-    /airnowgovapi\.com|widget\.airnow\.gov/i,
-    // Generic dev-only resource noise, same set the harness ignores.
-    /pagefind|favicon|Failed to load resource|net::ERR/i,
+    { page: /realtime-air-quality/, error: /airnowgovapi\.com|widget\.airnow\.gov/i },
+    // Generic dev-only resource noise, benign on any page (same set the harness
+    // ignores).
+    { page: null, error: /pagefind|favicon|Failed to load resource|net::ERR/i },
 ];
 
-const isKnownNoise = (text) => KNOWN_NOISE.some((re) => re.test(text));
+const isKnownNoise = (text, path) =>
+    KNOWN_NOISE.some(({ page, error }) => error.test(text) && (page === null || page.test(path)));
 
 const main = async () => {
 
@@ -63,10 +72,10 @@ const main = async () => {
             const errors = [];
 
             page.on("console", (msg) => {
-                if (msg.type() === "error" && !isKnownNoise(msg.text())) errors.push(msg.text());
+                if (msg.type() === "error" && !isKnownNoise(msg.text(), path)) errors.push(msg.text());
             });
             page.on("pageerror", (err) => {
-                if (!isKnownNoise(err.message)) errors.push(err.message);
+                if (!isKnownNoise(err.message, path)) errors.push(err.message);
             });
 
             try {
