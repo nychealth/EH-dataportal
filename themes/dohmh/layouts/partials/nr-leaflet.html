@@ -193,7 +193,13 @@
     // ---------- this powers report and neighborhood identification, and subsequent navigation ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    let intendedDestinationName // this needs to be declared even if it's not defined (it's used on the home page)
+    // Declared with `var`, not `let`: the neighborhood-reports landing page also
+    // declares `var intendedDestinationName` in its own inline script, and a
+    // top-level `let` here collides with that `var` in shared global scope
+    // ("Identifier ... has already been declared"). Two `var`s of the same name
+    // don't collide, and the variable stays defined on report pages that load
+    // only this partial. (used on the home page)
+    var intendedDestinationName
     
     // console.log('*** GETTING TOPIC AND NEIGHBORHOOD TO POWER NAVIGATION')
     
