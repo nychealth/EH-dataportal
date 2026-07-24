@@ -29,13 +29,21 @@ const PAGES = [
 // names the page it excuses and the audit section that tracks the real fix, so
 // resolving that bug is what removes the entry — the allowlist trends to zero.
 const KNOWN_NOISE = [
-    // Datawrapper iframe computing NaN/negative size in a hidden Bootstrap tab.
-    // Reproduces on redlining/, air-quality-snapshots/, vectorborne-diseases/.
-    // site-wide audit §5b. Match on the CDN host so only Datawrapper noise passes.
+    // Datawrapper iframe computing NaN/negative size in a hidden Bootstrap tab
+    // (data-stories/housing, redlining/, air-quality-snapshots/, vectorborne-
+    // diseases/). The browser's SVG validator reports generic "negative value"
+    // attribute errors with no CDN string, so match the signature, not the host.
+    // site-wide audit §5b.
+    /attribute (?:width|height): A negative value is not valid/i,
+    // Also catch any Datawrapper resource-load noise that DOES name the host.
     /dwcdn\.net|datawrapper/i,
     // rats-in-your-neighborhood: area.contains() has thrown since 2019 (RawGit
     // fallout). site-wide audit §5c. Remove when that template is fixed.
     /area\.contains|is not a function.*contains/i,
+    // realtime-air-quality: the embedded AirNow widget (widget.airnow.gov) makes
+    // a cross-origin XHR to airnowgovapi.com that is blocked by CORS — a third-
+    // party embed we don't control. site-wide audit §5d.
+    /airnowgovapi\.com|widget\.airnow\.gov/i,
     // Generic dev-only resource noise, same set the harness ignores.
     /pagefind|favicon|Failed to load resource|net::ERR/i,
 ];
@@ -62,7 +70,13 @@ const main = async () => {
             });
 
             try {
-                await page.goto(url, { waitUntil: "networkidle", timeout: 30000 });
+                // "load" rather than "networkidle": pages embedding third-party
+                // iframes that poll continuously (e.g. Datawrapper on
+                // data-stories/housing, §5b) never reach networkidle and would
+                // time out. The settle delay lets deferred scripts surface any
+                // console errors that fire after load.
+                await page.goto(url, { waitUntil: "load", timeout: 30000 });
+                await page.waitForTimeout(2000);
             } catch (e) {
                 errors.push(`navigation failed: ${e.message}`);
             }
