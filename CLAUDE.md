@@ -42,6 +42,7 @@ data/           JSON/YAML used by Hugo at build time
 static/         Files copied verbatim to docs/
 docs/           Generated output — never edit directly
 documents/      Internal audits and technical write-ups
+scripts/        Node dev tooling (characterization harness, smoke test, dev-server helper)
 ```
 
 ## Coding conventions

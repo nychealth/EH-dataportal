@@ -17,8 +17,8 @@
 //
 // Usage (dev server must already be running in another terminal):
 //   hugo server --environment dev_stage --cleanDestinationDir --logLevel debug -p 8080
-//   node documents/de-characterization.mjs --baseline
-//   node documents/de-characterization.mjs --check
+//   node scripts/de-characterization.mjs --baseline
+//   node scripts/de-characterization.mjs --check
 
 import { chromium } from 'playwright';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
@@ -45,8 +45,8 @@ const TARGETS = [
     { id: 2023, topic: 'air-quality' }
 ];
 
-const BASELINE_DIR = 'documents/de-characterization-baseline';
-const CURRENT_DIR = 'documents/de-characterization-current';
+const BASELINE_DIR = 'scripts/de-characterization-baseline';
+const CURRENT_DIR = 'scripts/de-characterization-current';
 
 // Console noise that predates this refactor and is not a regression signal
 // (Pagefind dev-asset 404s, resource-load failures from the dev basemap/CDN).

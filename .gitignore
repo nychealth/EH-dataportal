@@ -78,4 +78,4 @@ documents/improvements-gpt-5.4.md
 .playwright-mcp/
 
 # Playwright characterization --check output (baseline IS committed)
-documents/de-characterization-current/
+scripts/de-characterization-current/
