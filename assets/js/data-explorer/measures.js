@@ -1366,6 +1366,370 @@ const renderSelectedDisparities = async (primaryMeasureId) => {
 };
 
 
+// ----- functions to show to tabs ----- //
+
+// Re-runs DataTables' column adjust and re-locks scroll-body height, skipping when the table pane is hidden or uninitialized.
+const adjustVisibleSummaryTable = () => {
+
+    const tablePane = document.querySelector('#v-pills-table');
+
+    // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
+    if (!tablePane || DE.state.overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
+        return;
+    }
+
+    // On first page load the lazy table may not exist yet, so skip until it does.
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    $('#tableID').DataTable().columns.adjust();
+
+    // Reapply the fixed scroll-body height after width math changes so redraws stay stable.
+    if (typeof lockSummaryTableScrollBodyHeight === 'function') {
+        lockSummaryTableScrollBodyHeight();
+    }
+
+};
+
+
+// Schedules adjustVisibleSummaryTable after a double rAF and a 180ms timeout so layout can settle.
+const scheduleVisibleSummaryTableAdjust = () => {
+
+    // Closing the pane hides the whole tab container, so one immediate adjust often runs too early.
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            adjustVisibleSummaryTable();
+        });
+    });
+
+    // Follow up once more after Bootstrap/layout changes settle on slower redraw paths.
+    window.setTimeout(() => {
+        adjustVisibleSummaryTable();
+    }, 180);
+
+};
+
+// Refreshes the summary table layout after it becomes the active overlay.
+showTable = (e) => {
+
+    debugLog("* showTable");
+
+    DE.state.overlay = 'table';
+    let didRenderTable = false;
+
+    // Render the table on first access (lazy initialization for performance).
+    // The placeholder text node in the template should not block first render.
+    const tableContainer = document.getElementById('summary-table');
+    if (DE.table.tableData && (!tableContainer.querySelector('table') || DE.table.tableNeedsRender)) {
+        renderTable(DE.table.tableData);
+        didRenderTable = true;
+    } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+        // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
+        renderTableFilterControls(DE.table.tableData);
+        applyTableFilters(DE.table.tableData);
+    }
+
+    // updateChartPlotSize();
+
+    const dataTables = $.fn.dataTable.tables(false);
+    if (didRenderTable && dataTables.length) {
+        // First-open path still initializes while pane is hidden, so headers need one
+        // follow-up width pass after Bootstrap finishes showing the panel.
+        scheduleVisibleSummaryTableAdjust();
+    } else if (!didRenderTable && dataTables.length) {
+        $(dataTables)
+            .DataTable()
+            .columns.adjust();
+
+        // Reopen width fixes belong only to existing tables; first render sizes itself during init.
+        scheduleVisibleSummaryTableAdjust();
+    }
+
+};
+
+
+// Redraws the Leaflet map (always visible on the left) with the current selection.
+showMap = () => {
+
+    debugLog("* showMap");
+
+    // ----- resolve metadata for the current MeasureID ----- //
+
+    let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
+
+    // Fall back to the default map measure when the current MeasureID is unavailable here.
+    if (!metadata.length) metadata = DE.map.defaultMapMetadata;
+
+    // ----- filter data by current globals ----- //
+
+    DE.map.filteredMapData = DE.map.mapData.filter(obj =>
+        obj.MeasureID == DE.state.MeasureID &&
+        obj.TimePeriodID == DE.state.TimePeriodID &&
+        prettifyGeoType(obj.GeoType) == DE.state.GeoType
+    );
+
+    debugLog("filteredMapData:", DE.map.filteredMapData.length, "rows",
+        { MeasureID: DE.state.MeasureID, GeoType: DE.state.GeoType, TimePeriodID: DE.state.TimePeriodID });
+
+    // ----- render the Leaflet map only ----- //
+
+    return renderMap(DE.map.filteredMapData, metadata);
+
+};
+
+
+// Renders the right-side bar overlay from the filtered map rows.
+showBar = (e) => {
+
+    debugLog("* showBar");
+
+    DE.state.overlay = 'bar';
+
+    // ----- resolve metadata for the bar chart ----- //
+
+    let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
+
+    if (!metadata.length) metadata = DE.map.defaultMapMetadata;
+
+    // ----- render the bar chart using the already-filtered map data ----- //
+
+    renderBar(DE.map.filteredMapData, metadata, DE.state.GeoType);
+
+};
+
+
+// Chooses between borough trend mode and comparison trend mode.
+showTrend = (e) => {
+
+    debugLog("* showTrend");
+
+    DE.state.overlay = 'trend';
+
+    // Use comparison mode when no borough trend data exists or comparison mode is already active.
+    if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
+        showComparisonTrend();
+    } else if (DE.lookups.trendMeasures.length > 0) {
+        showBoroughTrend();
+    }
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+}
+
+// Renders the standard borough trend chart for the selected measure.
+showBoroughTrend = (e) => {
+
+    debugLog("** showBoroughTrend");
+
+    // special time-period filtering for certain air quality measures
+
+    const measureIdsAnnualAvg = DE_MEASURE_RULES.trendAnnualAverageMeasureIds;
+    const measureIdsSummer = DE_MEASURE_RULES.trendSummerMeasureIds;
+
+    // ----- resolve measure: use global if it has trend data, else default ----- //
+
+    const trendMeasureId = getActiveTrendMeasureId();
+    const trendMetadataArr = DE.lookups.trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
+    const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
+    const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
+
+    if (resolvedTrendMeasureId == null) {
+        return;
+    }
+
+    DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
+        .derive({
+            IndicatorLabel: aq.escape(DE.indicator.indicatorName),
+            ComparisonName: aq.escape('Boroughs')
+        });
+
+    DE.trend.selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
+    DE.trend.selectedTrendSources = [resolvedTrendMetadata[0].Sources];
+
+    renderAboutSources(DE.trend.selectedTrendAbout, DE.trend.selectedTrendSources);
+
+    // ----- filter data by resolved measure ----- //
+
+    DE.trend.filteredTrendData = DE.trend.trendData
+        .filter(m => Number(m.MeasureID) === Number(resolvedTrendMeasureId));
+
+    // ----- handle special time-period subsets ----- //
+
+    // Restrict special air-quality measures to the season or annual slices they expect.
+    if (measureIdsAnnualAvg.includes(resolvedTrendMeasureId)) {
+
+        DE.trend.aqFilteredTrendData = aq.from(
+            DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
+        );
+
+    } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
+
+        DE.trend.aqFilteredTrendData = aq.from(
+            DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
+        );
+
+    } else {
+
+        DE.trend.aqFilteredTrendData = aq.from(DE.trend.filteredTrendData);
+
+    }
+
+    // ----- render ----- //
+
+    renderTrendChart(DE.trend.aqFilteredTrendData, DE.trend.aqSelectedTrendMetadata);
+
+    DE.trend.showingBoroughTrend = true;
+    DE.trend.showingComparisonTrend = false;
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+};
+
+
+// Renders the multi-indicator comparison trend chart when comparison metadata exists.
+showComparisonTrend = (e) => {
+
+    debugLog("** showComparisonTrend");
+
+    // ----- resolve comparison ID, falling back to borough trend ----- //
+
+    const comparisonId = getActiveComparisonId();
+
+    if (comparisonId == null || !DE.lookups.aqComparisonMetadata || !DE.lookups.aqComparisonIndicatorData) {
+        if (DE.lookups.trendMeasures.length > 0) {
+            DE.trend.showingComparisonTrend = false;
+            showBoroughTrend();
+        }
+
+        return;
+    }
+
+    // ----- build about and sources text ----- //
+
+    const selectedComparisonRows = DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .filter(m => Number(m.ComparisonID) === Number(comparisonId));
+
+    DE.trend.selectedComparisonAbout = '';
+    DE.trend.selectedComparisonSources = [];
+
+    selectedComparisonRows.forEach(m => {
+        DE.trend.selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+        DE.trend.selectedComparisonSources.push(m.Sources);
+    });
+
+    DE.trend.selectedComparisonSources = [...new Set(DE.trend.selectedComparisonSources)];
+
+    renderAboutSources(DE.trend.selectedComparisonAbout, DE.trend.selectedComparisonSources);
+
+    // ----- build joined comparison metadata and data ----- //
+
+    DE.trend.aqFilteredComparisonMetadata = DE.lookups.aqComparisonMetadata
+        .filter(aq.escape(d => d.ComparisonID == comparisonId))
+        .join(DE.lookups.aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
+
+    DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonMetadata
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(DE.lookups.aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .join(DE.lookups.timeTable, [["TimePeriodID"], ["TimePeriodID"]])
+        .orderby(aq.desc(aq.escape(d => d.IndicatorID == DE.state.IndicatorID)), d => d.MeasureID);
+
+    // - - - restrict quarterly measures to the last 3 years - - - //
+
+    const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
+
+    if (DE.trend.aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+        DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonData
+            .derive({ "year": d => op.year(d.end_period) })
+            .filter(d => d.year > op.max(d.year) - 3)
+            .select(aq.not("TimePeriodID", "year"))
+            .reify();
+    }
+
+    // ----- render and update selection state ----- //
+
+    renderTrendChart(
+        DE.trend.aqFilteredComparisonData,
+        DE.trend.aqFilteredComparisonMetadata
+    );
+
+    DE.trend.showingBoroughTrend = false;
+    DE.trend.showingComparisonTrend = true;
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+}
+
+
+// Renders the links view, or shows a metadata-driven empty state when no correlates exist.
+showLinks = async (e) => {
+
+    debugLog("* showLinks");
+
+    DE.state.overlay = 'links';
+
+    // ----- rebuild selection controls and sync to the map selection ----- //
+
+    buildLinksSelectionControls();
+
+    syncLinksSelectionsToMapSelection();
+
+    // ----- resolve active links state, guard the "no correlates" case ----- //
+
+    const activeLinksState = getActiveLinksState();
+
+    if (activeLinksState.view === 'links' && !activeMapMeasureSupportsLinks()) {
+        renderNoCorrelatesMessage(getActiveMapMeasureLabel());
+        setLinksButtonState();
+        updateLinksSelectionSummary();
+        return;
+    }
+
+    // ----- try the disparities render first ----- //
+
+    let didRender = false;
+
+    if (activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0) {
+        didRender = await renderSelectedDisparities(activeLinksState.primaryMeasureId);
+    }
+
+    // ----- otherwise try the links/correlate render ----- //
+
+    if (!didRender && DE.lookups.linksMeasures.length > 0) {
+        didRender = await renderSelectedCorrelate(activeLinksState.primaryMeasureId, activeLinksState.secondaryMeasureId);
+    }
+
+    // ----- fall back to disparities if both renders failed ----- //
+
+    if (!didRender && DE.lookups.disparitiesMeasures.length > 0) {
+
+        const fallbackPrimaryMeasureId = measureSupportsDisparities(activeLinksState.primaryMeasureId)
+            ? activeLinksState.primaryMeasureId
+            : getDefaultDisparitiesPrimaryMeasureId();
+
+        // - - - commit the fallback selection before rendering - - - //
+
+        if (fallbackPrimaryMeasureId != null) {
+            DE.disparities.selectedDisparity = true;
+            DE.links.selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
+            DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
+
+            didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
+        }
+    }
+
+    // ----- sync button state ----- //
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+};
+
+
 // ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
@@ -1487,370 +1851,6 @@ const renderMeasures = async () => {
     // ----- correlate / disparities selection controls ----- //
 
     buildLinksSelectionControls();
-
-
-    // ----- functions to show to tabs ----- //
-
-    // Re-runs DataTables' column adjust and re-locks scroll-body height, skipping when the table pane is hidden or uninitialized.
-    const adjustVisibleSummaryTable = () => {
-
-        const tablePane = document.querySelector('#v-pills-table');
-
-        // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
-        if (!tablePane || DE.state.overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
-            return;
-        }
-
-        // On first page load the lazy table may not exist yet, so skip until it does.
-        if (!$.fn.dataTable.isDataTable('#tableID')) {
-            return;
-        }
-
-        $('#tableID').DataTable().columns.adjust();
-
-        // Reapply the fixed scroll-body height after width math changes so redraws stay stable.
-        if (typeof lockSummaryTableScrollBodyHeight === 'function') {
-            lockSummaryTableScrollBodyHeight();
-        }
-
-    };
-
-
-    // Schedules adjustVisibleSummaryTable after a double rAF and a 180ms timeout so layout can settle.
-    const scheduleVisibleSummaryTableAdjust = () => {
-
-        // Closing the pane hides the whole tab container, so one immediate adjust often runs too early.
-        window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => {
-                adjustVisibleSummaryTable();
-            });
-        });
-
-        // Follow up once more after Bootstrap/layout changes settle on slower redraw paths.
-        window.setTimeout(() => {
-            adjustVisibleSummaryTable();
-        }, 180);
-
-    };
-
-    // Refreshes the summary table layout after it becomes the active overlay.
-    showTable = (e) => {
-
-        debugLog("* showTable");
-
-        DE.state.overlay = 'table';
-        let didRenderTable = false;
-
-        // Render the table on first access (lazy initialization for performance).
-        // The placeholder text node in the template should not block first render.
-        const tableContainer = document.getElementById('summary-table');
-        if (DE.table.tableData && (!tableContainer.querySelector('table') || DE.table.tableNeedsRender)) {
-            renderTable(DE.table.tableData);
-            didRenderTable = true;
-        } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
-            // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
-            renderTableFilterControls(DE.table.tableData);
-            applyTableFilters(DE.table.tableData);
-        }
-
-        // updateChartPlotSize();
-
-        const dataTables = $.fn.dataTable.tables(false);
-        if (didRenderTable && dataTables.length) {
-            // First-open path still initializes while pane is hidden, so headers need one
-            // follow-up width pass after Bootstrap finishes showing the panel.
-            scheduleVisibleSummaryTableAdjust();
-        } else if (!didRenderTable && dataTables.length) {
-            $(dataTables)
-                .DataTable()
-                .columns.adjust();
-
-            // Reopen width fixes belong only to existing tables; first render sizes itself during init.
-            scheduleVisibleSummaryTableAdjust();
-        }
-
-    };
-
-
-    // Redraws the Leaflet map (always visible on the left) with the current selection.
-    showMap = () => {
-
-        debugLog("* showMap");
-
-        // ----- resolve metadata for the current MeasureID ----- //
-
-        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
-
-        // Fall back to the default map measure when the current MeasureID is unavailable here.
-        if (!metadata.length) metadata = DE.map.defaultMapMetadata;
-
-        // ----- filter data by current globals ----- //
-
-        DE.map.filteredMapData = DE.map.mapData.filter(obj =>
-            obj.MeasureID == DE.state.MeasureID &&
-            obj.TimePeriodID == DE.state.TimePeriodID &&
-            prettifyGeoType(obj.GeoType) == DE.state.GeoType
-        );
-
-        debugLog("filteredMapData:", DE.map.filteredMapData.length, "rows",
-            { MeasureID: DE.state.MeasureID, GeoType: DE.state.GeoType, TimePeriodID: DE.state.TimePeriodID });
-
-        // ----- render the Leaflet map only ----- //
-
-        return renderMap(DE.map.filteredMapData, metadata);
-
-    };
-
-
-    // Renders the right-side bar overlay from the filtered map rows.
-    showBar = (e) => {
-
-        debugLog("* showBar");
-
-        DE.state.overlay = 'bar';
-
-        // ----- resolve metadata for the bar chart ----- //
-
-        let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
-
-        if (!metadata.length) metadata = DE.map.defaultMapMetadata;
-
-        // ----- render the bar chart using the already-filtered map data ----- //
-
-        renderBar(DE.map.filteredMapData, metadata, DE.state.GeoType);
-
-    };
-
-
-    // Chooses between borough trend mode and comparison trend mode.
-    showTrend = (e) => {
-
-        debugLog("* showTrend");
-
-        DE.state.overlay = 'trend';
-
-        // Use comparison mode when no borough trend data exists or comparison mode is already active.
-        if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
-            showComparisonTrend();
-        } else if (DE.lookups.trendMeasures.length > 0) {
-            showBoroughTrend();
-        }
-
-        setTrendButtonState();
-        updateTrendSelectionSummary();
-
-    }
-
-    // Renders the standard borough trend chart for the selected measure.
-    showBoroughTrend = (e) => {
-
-        debugLog("** showBoroughTrend");
-
-        // special time-period filtering for certain air quality measures
-
-        const measureIdsAnnualAvg = DE_MEASURE_RULES.trendAnnualAverageMeasureIds;
-        const measureIdsSummer = DE_MEASURE_RULES.trendSummerMeasureIds;
-
-        // ----- resolve measure: use global if it has trend data, else default ----- //
-
-        const trendMeasureId = getActiveTrendMeasureId();
-        const trendMetadataArr = DE.lookups.trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
-        const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
-        const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
-
-        if (resolvedTrendMeasureId == null) {
-            return;
-        }
-
-        DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
-            .derive({
-                IndicatorLabel: aq.escape(DE.indicator.indicatorName),
-                ComparisonName: aq.escape('Boroughs')
-            });
-
-        DE.trend.selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
-        DE.trend.selectedTrendSources = [resolvedTrendMetadata[0].Sources];
-
-        renderAboutSources(DE.trend.selectedTrendAbout, DE.trend.selectedTrendSources);
-
-        // ----- filter data by resolved measure ----- //
-
-        DE.trend.filteredTrendData = DE.trend.trendData
-            .filter(m => Number(m.MeasureID) === Number(resolvedTrendMeasureId));
-
-        // ----- handle special time-period subsets ----- //
-
-        // Restrict special air-quality measures to the season or annual slices they expect.
-        if (measureIdsAnnualAvg.includes(resolvedTrendMeasureId)) {
-
-            DE.trend.aqFilteredTrendData = aq.from(
-                DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
-            );
-
-        } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
-
-            DE.trend.aqFilteredTrendData = aq.from(
-                DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
-            );
-
-        } else {
-
-            DE.trend.aqFilteredTrendData = aq.from(DE.trend.filteredTrendData);
-
-        }
-
-        // ----- render ----- //
-
-        renderTrendChart(DE.trend.aqFilteredTrendData, DE.trend.aqSelectedTrendMetadata);
-
-        DE.trend.showingBoroughTrend = true;
-        DE.trend.showingComparisonTrend = false;
-
-        setTrendButtonState();
-        updateTrendSelectionSummary();
-
-    };
-    
-
-    // Renders the multi-indicator comparison trend chart when comparison metadata exists.
-    showComparisonTrend = (e) => {
-
-        debugLog("** showComparisonTrend");
-
-        // ----- resolve comparison ID, falling back to borough trend ----- //
-
-        const comparisonId = getActiveComparisonId();
-
-        if (comparisonId == null || !DE.lookups.aqComparisonMetadata || !DE.lookups.aqComparisonIndicatorData) {
-            if (DE.lookups.trendMeasures.length > 0) {
-                DE.trend.showingComparisonTrend = false;
-                showBoroughTrend();
-            }
-
-            return;
-        }
-
-        // ----- build about and sources text ----- //
-
-        const selectedComparisonRows = DE.lookups.aqCombinedComparisonMetadata
-            .objects()
-            .filter(m => Number(m.ComparisonID) === Number(comparisonId));
-
-        DE.trend.selectedComparisonAbout = '';
-        DE.trend.selectedComparisonSources = [];
-
-        selectedComparisonRows.forEach(m => {
-            DE.trend.selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
-            DE.trend.selectedComparisonSources.push(m.Sources);
-        });
-
-        DE.trend.selectedComparisonSources = [...new Set(DE.trend.selectedComparisonSources)];
-
-        renderAboutSources(DE.trend.selectedComparisonAbout, DE.trend.selectedComparisonSources);
-
-        // ----- build joined comparison metadata and data ----- //
-
-        DE.trend.aqFilteredComparisonMetadata = DE.lookups.aqComparisonMetadata
-            .filter(aq.escape(d => d.ComparisonID == comparisonId))
-            .join(DE.lookups.aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
-
-        DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonMetadata
-            .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
-            .join(DE.lookups.aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
-            .join(DE.lookups.timeTable, [["TimePeriodID"], ["TimePeriodID"]])
-            .orderby(aq.desc(aq.escape(d => d.IndicatorID == DE.state.IndicatorID)), d => d.MeasureID);
-
-        // - - - restrict quarterly measures to the last 3 years - - - //
-
-        const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
-
-        if (DE.trend.aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
-            DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonData
-                .derive({ "year": d => op.year(d.end_period) })
-                .filter(d => d.year > op.max(d.year) - 3)
-                .select(aq.not("TimePeriodID", "year"))
-                .reify();
-        }
-
-        // ----- render and update selection state ----- //
-
-        renderTrendChart(
-            DE.trend.aqFilteredComparisonData,
-            DE.trend.aqFilteredComparisonMetadata
-        );
-
-        DE.trend.showingBoroughTrend = false;
-        DE.trend.showingComparisonTrend = true;
-
-        setTrendButtonState();
-        updateTrendSelectionSummary();
-
-    }
-
-
-    // Renders the links view, or shows a metadata-driven empty state when no correlates exist.
-    showLinks = async (e) => {
-
-        debugLog("* showLinks");
-
-        DE.state.overlay = 'links';
-
-        // ----- rebuild selection controls and sync to the map selection ----- //
-
-        buildLinksSelectionControls();
-
-        syncLinksSelectionsToMapSelection();
-
-        // ----- resolve active links state, guard the "no correlates" case ----- //
-
-        const activeLinksState = getActiveLinksState();
-
-        if (activeLinksState.view === 'links' && !activeMapMeasureSupportsLinks()) {
-            renderNoCorrelatesMessage(getActiveMapMeasureLabel());
-            setLinksButtonState();
-            updateLinksSelectionSummary();
-            return;
-        }
-
-        // ----- try the disparities render first ----- //
-
-        let didRender = false;
-
-        if (activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0) {
-            didRender = await renderSelectedDisparities(activeLinksState.primaryMeasureId);
-        }
-
-        // ----- otherwise try the links/correlate render ----- //
-
-        if (!didRender && DE.lookups.linksMeasures.length > 0) {
-            didRender = await renderSelectedCorrelate(activeLinksState.primaryMeasureId, activeLinksState.secondaryMeasureId);
-        }
-
-        // ----- fall back to disparities if both renders failed ----- //
-
-        if (!didRender && DE.lookups.disparitiesMeasures.length > 0) {
-
-            const fallbackPrimaryMeasureId = measureSupportsDisparities(activeLinksState.primaryMeasureId)
-                ? activeLinksState.primaryMeasureId
-                : getDefaultDisparitiesPrimaryMeasureId();
-
-            // - - - commit the fallback selection before rendering - - - //
-
-            if (fallbackPrimaryMeasureId != null) {
-                DE.disparities.selectedDisparity = true;
-                DE.links.selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
-                DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
-
-                didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
-            }
-        }
-
-        // ----- sync button state ----- //
-
-        setLinksButtonState();
-        updateLinksSelectionSummary();
-
-    };
 
 
     // ----- disable tabs when no data is available ----- //
