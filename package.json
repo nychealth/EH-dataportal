@@ -12,7 +12,8 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "scripts": {
-        "lint": "eslint assets/js/data-explorer"
+        "lint": "eslint assets/js/data-explorer",
+        "characterize": "node scripts/de-characterization.mjs"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",

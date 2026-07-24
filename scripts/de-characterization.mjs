@@ -15,25 +15,21 @@
 // read the bare `let` globals it characterizes — their names change between
 // stages, and the harness has to stay valid across the whole migration.
 //
-// Usage (dev server must already be running in another terminal):
-//   hugo server --environment dev_stage --cleanDestinationDir --logLevel debug -p 8080
-//   node scripts/de-characterization.mjs --baseline
-//   node scripts/de-characterization.mjs --check
+// Usage (reuses a running dev server, or starts one — see dev-server.mjs):
+//   npm run characterize -- --baseline
+//   npm run characterize -- --check
 
 import { chromium } from 'playwright';
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
+import { ensureDevServer } from './dev-server.mjs';
 
 // ----------------------------------------------------------------------- //
 // configuration
 // ----------------------------------------------------------------------- //
 
-// Match the address `hugo server` prints ("Web Server is available at ...").
-// dev_stage keeps the /dev-stage/ path segment from its configured baseURL.
-// Override with DE_BASE_URL when a server is already on 8080 under a different
-// environment — a local_stage server serves /local-stage/, and pointing the
-// harness at the wrong prefix just times out waiting for a page that isn't there.
-const BASE_URL = process.env.DE_BASE_URL ?? 'http://localhost:8080/dev-stage/';
+// BASE_URL is resolved at runtime by ensureDevServer() in main() — reuses a
+// running server, starts one if none, honors DE_BASE_URL. (was hardcoded here)
 
 // Indicators chosen to exercise every view: 2380 (asthma ED visits — map, bar,
 // trend, links, AND disparities via the poverty-221 comparator), 2414 (asthma
@@ -178,7 +174,7 @@ const clickTabAndWait = async (page, tabSelector, readyPredicate) => {
 // Loads one indicator page and walks map → bar → trend → links/disparities → table,
 // capturing rendered output at each step. Table goes last on purpose: it is the
 // heaviest init and mirrors the app's own map-before-table scheduling.
-const captureIndicator = async (browser, target) => {
+const captureIndicator = async (browser, target, baseURL) => {
 
     const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
     const consoleErrors = [];
@@ -193,7 +189,7 @@ const captureIndicator = async (browser, target) => {
     // Must be installed before goto() — see captureVega's comment above.
     await installVegaViewCapture(page);
 
-    const url = `${BASE_URL}data-explorer/${target.topic}/?id=${target.id}`;
+    const url = `${baseURL}data-explorer/${target.topic}/?id=${target.id}`;
 
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
@@ -352,6 +348,8 @@ const captureIndicator = async (browser, target) => {
 // against the committed baseline and fails the process on any difference.
 const main = async () => {
 
+    const { baseURL, stop } = await ensureDevServer();
+
     const mode = process.argv.includes('--baseline') ? 'baseline' : 'check';
     const outDir = mode === 'baseline' ? BASELINE_DIR : CURRENT_DIR;
 
@@ -360,13 +358,16 @@ const main = async () => {
 
     const browser = await chromium.launch({ headless: true });
 
-    for (const target of TARGETS) {
-        console.log(`Capturing indicator ${target.id} (${target.topic}) ...`);
-        const result = await captureIndicator(browser, target);
-        writeFileSync(`${outDir}/${target.id}.json`, JSON.stringify(result, null, 4) + '\n');
+    try {
+        for (const target of TARGETS) {
+            console.log(`Capturing indicator ${target.id} (${target.topic}) ...`);
+            const result = await captureIndicator(browser, target, baseURL);
+            writeFileSync(`${outDir}/${target.id}.json`, JSON.stringify(result, null, 4) + '\n');
+        }
+    } finally {
+        await browser.close();
+        await stop();
     }
-
-    await browser.close();
 
     if (mode === 'check') {
         try {
