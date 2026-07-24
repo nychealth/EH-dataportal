@@ -101,7 +101,15 @@ export async function ensureDevServer() {
     }
 
     // Path 4: nothing running — spawn one, wait for it, own its teardown.
-    const child = spawn(SPAWN_CMD, SPAWN_ARGS, { stdio: "ignore", shell: process.platform === "win32" });
+    // On Windows, `hugo` only resolves through a shell (PATHEXT), so use shell
+    // mode there — but pass the command as one pre-joined string rather than an
+    // args array, which is how Node wants shell invocations (an args array with
+    // shell:true triggers the DEP0190 arg-escaping warning). The args are fixed
+    // constants, so there's no injection surface. Off-Windows keeps the clean
+    // array form with no shell.
+    const child = process.platform === "win32"
+        ? spawn(`${SPAWN_CMD} ${SPAWN_ARGS.join(" ")}`, { stdio: "ignore", shell: true })
+        : spawn(SPAWN_CMD, SPAWN_ARGS, { stdio: "ignore" });
     const stop = makeStop(child);
 
     // Tear down on our own exit so Ctrl-C / normal exit doesn't orphan it.
