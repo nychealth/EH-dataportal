@@ -212,9 +212,9 @@ $("#chartView").on("click", (e) => {
         });
     
         e.stopPropagation();
-    
+
     } else {
-        // else, for chart view downloads: 
+        // else, for chart view downloads:
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
         let hiddenElement = document.createElement('a');
 
@@ -244,6 +244,26 @@ $("#chartView").on("click", (e) => {
     }
 
 });
+
+// ----------------------------------------------------------------------- //
+// table view options
+// ----------------------------------------------------------------------- //
+
+// toggle borough sub-grouping in the summary table. When off, areas are ungrouped
+//  between boroughs so columns can be sorted freely (by value, alphabetically, etc.)
+
+$("#groupByBoroughToggle").on("change", (e) => {
+
+    groupTableByBorough = e.target.checked;
+
+    renderTable();
+
+});
+
+
+// ----------------------------------------------------------------------- //
+// export functions (table downloads)
+// ----------------------------------------------------------------------- //
 
 // export full table data (i.e., original view)
 
