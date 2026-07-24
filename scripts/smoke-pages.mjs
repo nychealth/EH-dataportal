@@ -21,13 +21,7 @@ const PAGES = [
     "data-features/realtime-air-quality/",           // realtime layout — easyButton/colorIcon
     "data-features/find-your-uhf/",                  // renders neighborhood-overlap.html — sole real easyButton/colorIcon consumer
     "neighborhood-reports/",                         // NR section
-    // DEFERRED — an nr-output single-report page (nr-leaflet standalone, the
-    // report-only intendedDestinationName path) belongs here for per-template
-    // coverage, but nr-output currently loads no Arquero while its
-    // nr-indicator-* partials use aq. 48×, so every such page throws
-    // "aq is not defined" and its charts don't render (site-wide audit §5e,
-    // likely a 4.6 lib-gating regression). Add this page once §5e is fixed:
-    //   "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/",
+    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-output single report — nr-leaflet standalone + Arquero-built charts
     "data-stories/housing/",                         // KNOWN-RED (see allowlist)
     "take-action/",                                  // take-action
 ];

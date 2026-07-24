@@ -443,7 +443,7 @@ console-error findings beyond the already-tracked §5b/§5c noise:
   smoke test turned it into a hard failure. This is exactly the "clean build + grep miss real
   console errors" class the smoke test was built for (fresh-audit §4.5).
 
-### 5e. `nr-output` report pages use Arquero but never load it — charts broken (P1, added 2026-07-23)
+### 5e. `nr-output` report pages use Arquero but never load it — charts broken (P1, added 2026-07-23, FIXED 2026-07-23)
 
 Surfaced while extending the Tier 4.5 smoke test to cover the `nr-output` template
 (a whole-branch-review recommendation): **individual neighborhood-report pages
@@ -462,12 +462,26 @@ includes and appears to have missed the `nr-output` chain (which the DE audit al
 flags as wanting its own staged effort, fresh-audit §4.6). Not investigated further here —
 out of Tier 4.5's scope, and on shared production-bound templates.
 
-**Fix direction (unverified):** add `{{- partial "lib-arquero.html" . }}` to the
-`nr-output` template(s) that render `nr-indicator-*`, then confirm charts render and
-`aq` is defined. Check the other per-template library gates at the same time — if
-Arquero was missed on `nr-output`, another library/template pair may be too (exactly
-the per-template coverage gap the smoke test exists to catch). **Blocks adding an
-`nr-output` page to the Tier 4.5 smoke list** (deferred there with a pointer here).
+**Fixed 2026-07-23:** added `{{- partial "lib-arquero.html" . }}` to
+`nr-output/single.html` (the only template in the chain that renders
+`nr-indicator-new.html`/uses `aq.` — `nr-output/section.html`,
+`neighborhood-reports/section.html`, and `neighborhood-reports/topiclanding.html`
+are card-grid/landing pages with no `aq.` usage and needed no change), placed after
+the existing `lib-vega.html`/`lib-d3.html` includes to match the working
+`data-features/realtime.html` idiom. Confirmed live: the page now serves the
+Arquero `<script>` tag and `neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+passes the Tier 4.5 smoke test (13/13 green). No longer blocks adding an
+`nr-output` page to the smoke list — it has been added.
+
+Per the reviewer's suggestion, audited every other `lib-*.html` gate the same way
+(does any template use a library global — `vegaEmbed`, `d3.`, `topojson.`, `L.`/
+`easyButton`/`colorIcon`, `.DataTable(`, `chroma.` — without including the matching
+partial in its own render chain, directly or via an included sub-partial). **No
+other gaps found** — every other consumer already includes its library, including
+the two Vega-shortcode files (`shortcodes/vega.html`/`vega0.html`) and the
+`nyccas_pollutant_trends.html`/`nr-indicator-old.html`/`nr-map-highlight.html`/
+`nr-clickable-uhf.html` partials, which use `aq.`/`vegaEmbed`/`L.` but are dead
+code (not `partial`-included anywhere), so they can't throw at runtime.
 
 ---
 
