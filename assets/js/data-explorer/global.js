@@ -77,6 +77,7 @@ const DE = {
         aqFilteredTrendData: undefined,
         selectedComparison: undefined,
         selectedComparisonId: undefined,
+        selectedComparisonLegendTitle: null,
         selectedComparisonAbout: "",
         selectedComparisonSources: [],
         selectedComparisonMetadata: undefined,
@@ -191,7 +192,6 @@ let showTrend;
 let showBoroughTrend;
 let showComparisonTrend;
 let showLinks;
-let syncTrendSelectionsToMapSelection;
 let syncLinksSelectionsToMapSelection;
 
 // Compared against window.history.state in data.js to detect first-load vs. popstate

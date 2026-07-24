@@ -663,7 +663,9 @@ const renderMeasures = async () => {
 
     const trendMeasurePills = document.getElementById('trendMeasurePills');
     const trendComparisonPills = document.getElementById('trendComparisonPills');
-    let selectedComparisonLegendTitle = null;
+    // Reset the comparison-pill selection for each indicator load (was a per-call `let`
+    // re-initialization before selectedComparisonLegendTitle moved onto DE.trend).
+    DE.trend.selectedComparisonLegendTitle = null;
 
     // Picks comparison that best matches current indicator and active measure.
     const getSyncedComparisonId = () => {
@@ -789,15 +791,15 @@ const renderMeasures = async () => {
     // Returns the comparison ID to render, preferring a still-valid manual legend-title selection over the map-synced default.
     const getActiveComparisonId = () => {
 
-        if (selectedComparisonLegendTitle) {
+        if (DE.trend.selectedComparisonLegendTitle) {
 
-            const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(selectedComparisonLegendTitle);
+            const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(DE.trend.selectedComparisonLegendTitle);
 
             if (comparisonIdForLegendTitle != null) {
                 return comparisonIdForLegendTitle;
             }
 
-            selectedComparisonLegendTitle = null;
+            DE.trend.selectedComparisonLegendTitle = null;
 
         }
 
@@ -809,8 +811,8 @@ const renderMeasures = async () => {
     // Returns the manually selected legend title, else the active comparison's title, defaulting to 'Comparison'.
     const getActiveComparisonLegendTitle = () => {
 
-        if (selectedComparisonLegendTitle) {
-            return selectedComparisonLegendTitle;
+        if (DE.trend.selectedComparisonLegendTitle) {
+            return DE.trend.selectedComparisonLegendTitle;
         }
 
         return getComparisonLegendTitleById(getActiveComparisonId()) || 'Comparison';
@@ -953,8 +955,8 @@ const renderMeasures = async () => {
             const compLegendTitles = [...new Set(DE.lookups.aqCombinedComparisonMetadata.array('LegendTitle'))];
             let comparisonButtonCount = 0;
 
-            if (selectedComparisonLegendTitle && !compLegendTitles.includes(selectedComparisonLegendTitle)) {
-                selectedComparisonLegendTitle = null;
+            if (DE.trend.selectedComparisonLegendTitle && !compLegendTitles.includes(DE.trend.selectedComparisonLegendTitle)) {
+                DE.trend.selectedComparisonLegendTitle = null;
             }
 
             // - - - one pill per comparison legend title - - - //
@@ -977,7 +979,7 @@ const renderMeasures = async () => {
 
                 comparisonButton.addEventListener('click', () => {
 
-                    selectedComparisonLegendTitle = title;
+                    DE.trend.selectedComparisonLegendTitle = title;
                     DE.trend.showingComparisonTrend = true;
                     DE.trend.showingBoroughTrend = false;
 
@@ -999,7 +1001,7 @@ const renderMeasures = async () => {
         } else if (trendComparisonPills) {
 
             trendComparisonPills.onclick = null;
-            selectedComparisonLegendTitle = null;
+            DE.trend.selectedComparisonLegendTitle = null;
 
         }
 
