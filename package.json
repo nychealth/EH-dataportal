@@ -13,7 +13,8 @@
     },
     "scripts": {
         "lint": "eslint assets/js/data-explorer",
-        "characterize": "node scripts/de-characterization.mjs"
+        "characterize": "node scripts/de-characterization.mjs",
+        "smoke": "node scripts/smoke-pages.mjs"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
