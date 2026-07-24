@@ -560,10 +560,21 @@ const setDropdownMenuItemState = (button, isActive) => {
 // SPA shell markup has parsed. measures.js loads only on data-explorer/single.html.
 let trendMeasurePills;
 let trendComparisonPills;
+let linksDropdownMenu;
+let linksDropdownToggle;
+let linksToggleLabel;
+let showDisparitiesButton;
 
 const resolveMeasuresPillRefs = () => {
     trendMeasurePills    ??= document.getElementById('trendMeasurePills');
     trendComparisonPills ??= document.getElementById('trendComparisonPills');
+    linksDropdownMenu    ??= document.getElementById('linksDropdownMenu');
+    // NB: the toggle button's element id is the oddly-named `dropdownLinksMeasures`
+    // (id is load-bearing in de-tab-content.html + clickLinksToggle's selector, so it
+    // stays); the variable `linksDropdownToggle` is the clear name to rely on.
+    linksDropdownToggle  ??= document.getElementById('dropdownLinksMeasures');
+    linksToggleLabel     ??= document.getElementById('linksToggleLabel');
+    showDisparitiesButton ??= document.getElementById('show-disparities');
 };
 
 
@@ -922,6 +933,440 @@ const buildTrendSelectionControls = () => {
 
 
 // ----------------------------------------------------------------------- //
+// links/disparities control cluster
+// ----------------------------------------------------------------------- //
+
+// The links/disparities dropdown and summary closures used by renderMeasures();
+// hoisted to module scope so they're defined once per page load instead of once
+// per indicator. They close over DE.links/DE.disparities state plus the four
+// module-scope dropdown refs above.
+
+// Sums the secondary link options across all currently visible links measures.
+const getLinksOptionCount = () => {
+
+    return getVisibleLinksMeasures().reduce((count, measure) => {
+        return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
+    }, 0);
+
+};
+
+
+// Refreshes the links selection summary: the dropdown toggle's label and ARIA wiring, enabling dropdown behavior only when more than one option exists.
+const updateLinksSelectionSummary = () => {
+
+    if (!linksDropdownToggle || !linksToggleLabel) {
+        return;
+    }
+
+    const linksOptionCount = getLinksOptionCount();
+    const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+    const hasMultipleLinksOptions = !linksSwitcherDisabled && linksOptionCount > 1;
+
+    linksToggleLabel.textContent = 'Measures';
+    linksDropdownToggle.setAttribute('aria-disabled', String(linksSwitcherDisabled));
+
+    if (hasMultipleLinksOptions) {
+        linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
+        linksDropdownToggle.setAttribute('aria-haspopup', 'true');
+    } else {
+        linksDropdownToggle.removeAttribute('data-toggle');
+        linksDropdownToggle.removeAttribute('aria-haspopup');
+        linksDropdownToggle.setAttribute('aria-expanded', 'false');
+    }
+
+};
+
+
+// Resolves a display label for a secondary linked measure, preferring its MeasureName, then its IndicatorName, then 'Linked measure'.
+const getLinksButtonLabel = (secondaryMeasureId) => {
+
+    const secondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+    const secondaryMetadata = secondaryIndicator[0]?.Measures?.filter(measure =>
+        Number(measure.MeasureID) === Number(secondaryMeasureId)
+    );
+
+    return secondaryMetadata?.[0]?.MeasureName || secondaryIndicator[0]?.IndicatorName || 'Linked measure';
+
+};
+
+
+// Computes the default links/disparities state from the current map measure via a 5-tier priority waterfall.
+const getSyncedLinksState = () => {
+
+    const syncedMapMeasureId = DE.state.MeasureID == null ? null : Number(DE.state.MeasureID);
+
+    // Tier 1: map measure supports links — sync links to it.
+    if (measureSupportsLinks(syncedMapMeasureId)) {
+        const syncedPrimaryMeasureId = syncedMapMeasureId;
+
+        return {
+            primaryMeasureId: syncedPrimaryMeasureId,
+            secondaryMeasureId: getDefaultLinksSecondaryMeasureId(syncedPrimaryMeasureId),
+            view: 'links'
+        };
+    }
+
+    // Tier 2: map measure exists but has no links — links view with no secondary.
+    if (syncedMapMeasureId != null) {
+        return {
+            primaryMeasureId: syncedMapMeasureId,
+            secondaryMeasureId: null,
+            view: 'links'
+        };
+    }
+
+    // Tier 3: no map measure but links measures exist — use the default links pair.
+    if (DE.lookups.linksMeasures.length) {
+        const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
+
+        return {
+            primaryMeasureId: defaultPrimaryMeasureId,
+            secondaryMeasureId: getDefaultLinksSecondaryMeasureId(defaultPrimaryMeasureId),
+            view: 'links'
+        };
+    }
+
+    // Tier 4: only disparities measures exist — fall back to the disparities view.
+    if (DE.lookups.disparitiesMeasures.length) {
+        return {
+            primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
+            secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+            view: 'disparities'
+        };
+    }
+
+    // Tier 5: nothing available — empty links state.
+    return {
+        primaryMeasureId: null,
+        secondaryMeasureId: null,
+        view: 'links'
+    };
+
+};
+
+
+// Returns the measures whose correlate links should currently show.
+const getVisibleLinksMeasures = () => {
+
+    const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
+
+    if (!activeMapMeasureSupportsLinks() || !activeMapMeasureMetadata) {
+        return [];
+    }
+
+    return [activeMapMeasureMetadata];
+
+};
+
+
+// Determines the links/disparities state actually driving the UI, preferring a still-valid manual override over the synced default.
+const getActiveLinksState = () => {
+
+    // ----- compute the synced default state ----- //
+
+    const syncedLinksState = getSyncedLinksState();
+
+    // ----- compute manual-override candidates ----- //
+
+    const manualPrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null ? null : Number(DE.links.selectedLinksPrimaryMeasureId);
+    const manualSecondaryMeasureId = DE.links.selectedLinksSecondaryMeasureId == null ? null : Number(DE.links.selectedLinksSecondaryMeasureId);
+    const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
+        && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
+
+    // ----- return manual disparities override when valid ----- //
+
+    // Keep an explicit disparities toggle active even when the synced
+    // correlate default points at a different primary measure.
+    const hasManualDisparities = DE.links.selectedLinksMeasure
+        && DE.disparities.selectedDisparity
+        && manualPrimaryMeasureId != null
+        && measureSupportsDisparities(manualPrimaryMeasureId);
+
+    if (hasManualDisparities) {
+        return {
+            primaryMeasureId: manualPrimaryMeasureId,
+            secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+            view: 'disparities'
+        };
+    }
+
+    // ----- return manual links override when valid ----- //
+
+    const hasManualLinks = DE.links.selectedLinksMeasure
+        && !DE.disparities.selectedDisparity
+        && manualMatchesCurrentPrimary
+        && syncedLinksState.view === 'links'
+        && manualSecondaryMeasureId != null
+        && measureSupportsLinks(manualPrimaryMeasureId)
+        && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
+
+    if (hasManualLinks) {
+        return {
+            primaryMeasureId: manualPrimaryMeasureId,
+            secondaryMeasureId: manualSecondaryMeasureId,
+            view: 'links'
+        };
+    }
+
+    // ----- fall back to the synced default ----- //
+
+    return syncedLinksState;
+
+};
+
+
+// Applies active and disabled visual state to every links-related control.
+const setLinksButtonState = () => {
+
+    const activeLinksState = getActiveLinksState();
+    const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+
+    document.querySelectorAll('.linksbutton').forEach(button => {
+        button.classList.remove('active');
+        button.setAttribute('aria-selected', 'false');
+    });
+
+    if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
+        const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
+
+        if (activeLinksButton) {
+            activeLinksButton.classList.add('active');
+            activeLinksButton.setAttribute('aria-selected', 'true');
+        }
+    }
+
+    setBadgePillState(
+        linksDropdownToggle,
+        activeLinksState.view === 'links' && !linksSwitcherDisabled,
+        linksSwitcherDisabled
+    );
+
+    if (showDisparitiesButton) {
+        setBadgePillState(
+            showDisparitiesButton,
+            activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
+            DE.lookups.disparitiesMeasures.length === 0
+        );
+    }
+
+    updateLinksSelectionSummary();
+
+};
+
+
+// Reconciles selected links/disparities state with the current map measure unless a manual selection is active.
+syncLinksSelectionsToMapSelection = (force = false) => {
+
+    let didChange = false;
+    const syncedLinksState = getSyncedLinksState();
+
+    if (force || !DE.links.selectedLinksMeasure) {
+        if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
+            DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
+            didChange = true;
+        }
+
+        if (DE.links.selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
+            DE.links.selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
+            didChange = true;
+        }
+
+        const nextDisparityState = syncedLinksState.view === 'disparities';
+
+        if (DE.disparities.selectedDisparity !== nextDisparityState) {
+            DE.disparities.selectedDisparity = nextDisparityState;
+            didChange = true;
+        }
+
+        DE.links.selectedLinksMeasure = false;
+    }
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+    return didChange;
+
+};
+
+
+// Rebuilds the links dropdown DOM, wires its handlers, and refreshes button visuals.
+const buildLinksSelectionControls = () => {
+
+    // ----- clear existing dropdown contents ----- //
+
+    if (linksDropdownMenu) {
+        linksDropdownMenu.innerHTML = '';
+    }
+
+    // ----- build header and link buttons per visible measure ----- //
+
+    const visibleLinksMeasures = getVisibleLinksMeasures();
+
+    if (visibleLinksMeasures.length > 0 && linksDropdownMenu) {
+
+        // - - - one header plus a button per linked measure - - - //
+
+        visibleLinksMeasures.forEach(measure => {
+
+            const heading = document.createElement('h6');
+
+            heading.className = 'dropdown-header';
+            heading.textContent = measure.MeasurementType;
+
+            linksDropdownMenu.appendChild(heading);
+
+            measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.forEach(link => {
+
+                const secondaryLabel = getLinksButtonLabel(link.MeasureID);
+
+                const button = document.createElement('button');
+
+                button.type = 'button';
+                button.className = 'dropdown-item linksbutton';
+                button.dataset.primaryMeasureId = String(measure.MeasureID);
+                button.dataset.secondaryMeasureId = String(link.MeasureID);
+                button.title = secondaryLabel;
+                button.textContent = secondaryLabel;
+
+                linksDropdownMenu.appendChild(button);
+
+            });
+
+        });
+
+        // - - - wire the dropdown click handler - - - //
+
+        linksDropdownMenu.onclick = event => {
+
+            const button = event.target.closest('.linksbutton');
+
+            if (!button) {
+                return;
+            }
+
+            DE.links.selectedLinksMeasure = true;
+            DE.disparities.selectedDisparity = false;
+            DE.links.selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
+            DE.links.selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
+
+            trackDataExplorerOption('links_measure');
+
+            showLinks();
+
+        };
+
+    } else if (linksDropdownMenu) {
+
+        linksDropdownMenu.onclick = null;
+
+    }
+
+    // ----- wire toggle and refresh visuals ----- //
+
+    clickLinksToggle();
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+};
+
+
+// Renders the correlate chart for a measure pair, reusing cached joined data when still valid.
+const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => {
+
+    // ----- guard: bail if either measure ID is missing ----- //
+
+    if (primaryMeasureId == null || secondaryMeasureId == null) {
+        return false;
+    }
+
+    // ----- reuse cached joined data, or fetch it fresh ----- //
+
+    const canReuseCurrentSelection = Array.isArray(DE.links.joinedLinksDataObjects)
+        && DE.links.joinedLinksDataObjects.length > 0
+        && Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
+        && Number(DE.links.selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
+
+    if (!canReuseCurrentSelection) {
+
+        // - - - fetch and cache, bailing when no rows come back - - - //
+
+        const selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId);
+
+        if (!selectedLinksDataMetadata?.data?.length) {
+            return false;
+        }
+
+        DE.links.selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+        DE.links.selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+        DE.links.joinedLinksDataObjects = selectedLinksDataMetadata.data;
+
+    }
+
+    // ----- resolve secondary indicator, guard incomplete metadata ----- //
+
+    const linksSecondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+
+    if (!DE.links.selectedPrimaryMeasureMetadata?.length || !DE.links.selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
+        return false;
+    }
+
+    // ----- build about and sources HTML ----- //
+
+    DE.indicator.primaryIndicatorName = DE.indicator.indicatorName;
+    DE.indicator.secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
+
+    const primaryMeasurementType = DE.links.selectedPrimaryMeasureMetadata[0]?.MeasurementType;
+    const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
+    const primaryAbout = DE.links.selectedPrimaryMeasureMetadata[0]?.how_calculated;
+    const secondaryAbout = DE.links.selectedSecondaryMeasureMetadata[0]?.how_calculated;
+    const primarySources = DE.links.selectedPrimaryMeasureMetadata[0]?.Sources;
+    const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
+
+    DE.links.selectedLinksAbout =
+        `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
+
+    DE.links.selectedLinksSources =
+        `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
+
+    // ----- render ----- //
+
+    renderAboutSources(DE.links.selectedLinksAbout, DE.links.selectedLinksSources);
+
+    renderCorrelate(
+        DE.links.joinedLinksDataObjects,
+        DE.links.selectedPrimaryMeasureMetadata,
+        DE.links.selectedSecondaryMeasureMetadata,
+        DE.indicator.primaryIndicatorName,
+        DE.indicator.secondaryIndicatorName
+    );
+
+    return true;
+
+};
+
+
+// Renders the disparities chart for a primary measure against the fixed poverty comparator measure.
+const renderSelectedDisparities = async (primaryMeasureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
+
+    if (!primaryMeasureMetadata.length) {
+        return false;
+    }
+
+    DE.links.selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
+
+    await renderDisparitiesChart(primaryMeasureMetadata, DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
+
+    return true;
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // function to render the measures
 // ----------------------------------------------------------------------- //
 
@@ -1040,436 +1485,6 @@ const renderMeasures = async () => {
 
 
     // ----- correlate / disparities selection controls ----- //
-
-    const dropdownLinksMeasures = document.getElementById('linksDropdownMenu');
-    const linksDropdownToggle = document.getElementById('dropdownLinksMeasures');
-    const linksToggleLabel = document.getElementById('linksToggleLabel');
-    const showDisparitiesButton = document.getElementById('show-disparities');
-
-    // Sums the secondary link options across all currently visible links measures.
-    const getLinksOptionCount = () => {
-
-        return getVisibleLinksMeasures().reduce((count, measure) => {
-            return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
-        }, 0);
-
-    };
-
-
-    // Refreshes the links selection summary: the dropdown toggle's label and ARIA wiring, enabling dropdown behavior only when more than one option exists.
-    const updateLinksSelectionSummary = () => {
-
-        if (!linksDropdownToggle || !linksToggleLabel) {
-            return;
-        }
-
-        const linksOptionCount = getLinksOptionCount();
-        const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
-        const hasMultipleLinksOptions = !linksSwitcherDisabled && linksOptionCount > 1;
-
-        linksToggleLabel.textContent = 'Measures';
-        linksDropdownToggle.setAttribute('aria-disabled', String(linksSwitcherDisabled));
-
-        if (hasMultipleLinksOptions) {
-            linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
-            linksDropdownToggle.setAttribute('aria-haspopup', 'true');
-        } else {
-            linksDropdownToggle.removeAttribute('data-toggle');
-            linksDropdownToggle.removeAttribute('aria-haspopup');
-            linksDropdownToggle.setAttribute('aria-expanded', 'false');
-        }
-
-    };
-
-
-    // Resolves a display label for a secondary linked measure, preferring its MeasureName, then its IndicatorName, then 'Linked measure'.
-    const getLinksButtonLabel = (secondaryMeasureId) => {
-
-        const secondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
-        const secondaryMetadata = secondaryIndicator[0]?.Measures?.filter(measure =>
-            Number(measure.MeasureID) === Number(secondaryMeasureId)
-        );
-
-        return secondaryMetadata?.[0]?.MeasureName || secondaryIndicator[0]?.IndicatorName || 'Linked measure';
-
-    };
-
-
-    // Computes the default links/disparities state from the current map measure via a 5-tier priority waterfall.
-    const getSyncedLinksState = () => {
-
-        const syncedMapMeasureId = DE.state.MeasureID == null ? null : Number(DE.state.MeasureID);
-
-        // Tier 1: map measure supports links — sync links to it.
-        if (measureSupportsLinks(syncedMapMeasureId)) {
-            const syncedPrimaryMeasureId = syncedMapMeasureId;
-
-            return {
-                primaryMeasureId: syncedPrimaryMeasureId,
-                secondaryMeasureId: getDefaultLinksSecondaryMeasureId(syncedPrimaryMeasureId),
-                view: 'links'
-            };
-        }
-
-        // Tier 2: map measure exists but has no links — links view with no secondary.
-        if (syncedMapMeasureId != null) {
-            return {
-                primaryMeasureId: syncedMapMeasureId,
-                secondaryMeasureId: null,
-                view: 'links'
-            };
-        }
-
-        // Tier 3: no map measure but links measures exist — use the default links pair.
-        if (DE.lookups.linksMeasures.length) {
-            const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
-
-            return {
-                primaryMeasureId: defaultPrimaryMeasureId,
-                secondaryMeasureId: getDefaultLinksSecondaryMeasureId(defaultPrimaryMeasureId),
-                view: 'links'
-            };
-        }
-
-        // Tier 4: only disparities measures exist — fall back to the disparities view.
-        if (DE.lookups.disparitiesMeasures.length) {
-            return {
-                primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
-                secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
-                view: 'disparities'
-            };
-        }
-
-        // Tier 5: nothing available — empty links state.
-        return {
-            primaryMeasureId: null,
-            secondaryMeasureId: null,
-            view: 'links'
-        };
-
-    };
-
-
-    // Returns the measures whose correlate links should currently show.
-    const getVisibleLinksMeasures = () => {
-
-        const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
-
-        if (!activeMapMeasureSupportsLinks() || !activeMapMeasureMetadata) {
-            return [];
-        }
-
-        return [activeMapMeasureMetadata];
-
-    };
-
-
-    // Determines the links/disparities state actually driving the UI, preferring a still-valid manual override over the synced default.
-    const getActiveLinksState = () => {
-
-        // ----- compute the synced default state ----- //
-
-        const syncedLinksState = getSyncedLinksState();
-
-        // ----- compute manual-override candidates ----- //
-
-        const manualPrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null ? null : Number(DE.links.selectedLinksPrimaryMeasureId);
-        const manualSecondaryMeasureId = DE.links.selectedLinksSecondaryMeasureId == null ? null : Number(DE.links.selectedLinksSecondaryMeasureId);
-        const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
-            && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
-
-        // ----- return manual disparities override when valid ----- //
-
-        // Keep an explicit disparities toggle active even when the synced
-        // correlate default points at a different primary measure.
-        const hasManualDisparities = DE.links.selectedLinksMeasure
-            && DE.disparities.selectedDisparity
-            && manualPrimaryMeasureId != null
-            && measureSupportsDisparities(manualPrimaryMeasureId);
-
-        if (hasManualDisparities) {
-            return {
-                primaryMeasureId: manualPrimaryMeasureId,
-                secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
-                view: 'disparities'
-            };
-        }
-
-        // ----- return manual links override when valid ----- //
-
-        const hasManualLinks = DE.links.selectedLinksMeasure
-            && !DE.disparities.selectedDisparity
-            && manualMatchesCurrentPrimary
-            && syncedLinksState.view === 'links'
-            && manualSecondaryMeasureId != null
-            && measureSupportsLinks(manualPrimaryMeasureId)
-            && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
-
-        if (hasManualLinks) {
-            return {
-                primaryMeasureId: manualPrimaryMeasureId,
-                secondaryMeasureId: manualSecondaryMeasureId,
-                view: 'links'
-            };
-        }
-
-        // ----- fall back to the synced default ----- //
-
-        return syncedLinksState;
-
-    };
-
-
-    // Applies active and disabled visual state to every links-related control.
-    const setLinksButtonState = () => {
-
-        const activeLinksState = getActiveLinksState();
-        const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
-
-        document.querySelectorAll('.linksbutton').forEach(button => {
-            button.classList.remove('active');
-            button.setAttribute('aria-selected', 'false');
-        });
-
-        if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
-            const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
-
-            if (activeLinksButton) {
-                activeLinksButton.classList.add('active');
-                activeLinksButton.setAttribute('aria-selected', 'true');
-            }
-        }
-
-        setBadgePillState(
-            linksDropdownToggle,
-            activeLinksState.view === 'links' && !linksSwitcherDisabled,
-            linksSwitcherDisabled
-        );
-
-        if (showDisparitiesButton) {
-            setBadgePillState(
-                showDisparitiesButton,
-                activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
-                DE.lookups.disparitiesMeasures.length === 0
-            );
-        }
-
-        updateLinksSelectionSummary();
-
-    };
-
-
-    // Reconciles selected links/disparities state with the current map measure unless a manual selection is active.
-    syncLinksSelectionsToMapSelection = (force = false) => {
-
-        let didChange = false;
-        const syncedLinksState = getSyncedLinksState();
-
-        if (force || !DE.links.selectedLinksMeasure) {
-            if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
-                DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
-                didChange = true;
-            }
-
-            if (DE.links.selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
-                DE.links.selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
-                didChange = true;
-            }
-
-            const nextDisparityState = syncedLinksState.view === 'disparities';
-
-            if (DE.disparities.selectedDisparity !== nextDisparityState) {
-                DE.disparities.selectedDisparity = nextDisparityState;
-                didChange = true;
-            }
-
-            DE.links.selectedLinksMeasure = false;
-        }
-
-        setLinksButtonState();
-        updateLinksSelectionSummary();
-
-        return didChange;
-
-    };
-
-
-    // Rebuilds the links dropdown DOM, wires its handlers, and refreshes button visuals.
-    const buildLinksSelectionControls = () => {
-
-        // ----- clear existing dropdown contents ----- //
-
-        if (dropdownLinksMeasures) {
-            dropdownLinksMeasures.innerHTML = '';
-        }
-
-        // ----- build header and link buttons per visible measure ----- //
-
-        const visibleLinksMeasures = getVisibleLinksMeasures();
-
-        if (visibleLinksMeasures.length > 0 && dropdownLinksMeasures) {
-
-            // - - - one header plus a button per linked measure - - - //
-
-            visibleLinksMeasures.forEach(measure => {
-
-                const heading = document.createElement('h6');
-
-                heading.className = 'dropdown-header';
-                heading.textContent = measure.MeasurementType;
-
-                dropdownLinksMeasures.appendChild(heading);
-
-                measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.forEach(link => {
-
-                    const secondaryLabel = getLinksButtonLabel(link.MeasureID);
-
-                    const button = document.createElement('button');
-
-                    button.type = 'button';
-                    button.className = 'dropdown-item linksbutton';
-                    button.dataset.primaryMeasureId = String(measure.MeasureID);
-                    button.dataset.secondaryMeasureId = String(link.MeasureID);
-                    button.title = secondaryLabel;
-                    button.textContent = secondaryLabel;
-
-                    dropdownLinksMeasures.appendChild(button);
-
-                });
-
-            });
-
-            // - - - wire the dropdown click handler - - - //
-
-            dropdownLinksMeasures.onclick = event => {
-
-                const button = event.target.closest('.linksbutton');
-
-                if (!button) {
-                    return;
-                }
-
-                DE.links.selectedLinksMeasure = true;
-                DE.disparities.selectedDisparity = false;
-                DE.links.selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
-                DE.links.selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
-
-                trackDataExplorerOption('links_measure');
-
-                showLinks();
-
-            };
-
-        } else if (dropdownLinksMeasures) {
-
-            dropdownLinksMeasures.onclick = null;
-
-        }
-
-        // ----- wire toggle and refresh visuals ----- //
-
-        clickLinksToggle();
-
-        setLinksButtonState();
-        updateLinksSelectionSummary();
-
-    };
-
-
-    // Renders the correlate chart for a measure pair, reusing cached joined data when still valid.
-    const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => {
-
-        // ----- guard: bail if either measure ID is missing ----- //
-
-        if (primaryMeasureId == null || secondaryMeasureId == null) {
-            return false;
-        }
-
-        // ----- reuse cached joined data, or fetch it fresh ----- //
-
-        const canReuseCurrentSelection = Array.isArray(DE.links.joinedLinksDataObjects)
-            && DE.links.joinedLinksDataObjects.length > 0
-            && Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
-            && Number(DE.links.selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
-
-        if (!canReuseCurrentSelection) {
-
-            // - - - fetch and cache, bailing when no rows come back - - - //
-
-            const selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId);
-
-            if (!selectedLinksDataMetadata?.data?.length) {
-                return false;
-            }
-
-            DE.links.selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
-            DE.links.selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
-            DE.links.joinedLinksDataObjects = selectedLinksDataMetadata.data;
-
-        }
-
-        // ----- resolve secondary indicator, guard incomplete metadata ----- //
-
-        const linksSecondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
-
-        if (!DE.links.selectedPrimaryMeasureMetadata?.length || !DE.links.selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
-            return false;
-        }
-
-        // ----- build about and sources HTML ----- //
-
-        DE.indicator.primaryIndicatorName = DE.indicator.indicatorName;
-        DE.indicator.secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
-
-        const primaryMeasurementType = DE.links.selectedPrimaryMeasureMetadata[0]?.MeasurementType;
-        const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
-        const primaryAbout = DE.links.selectedPrimaryMeasureMetadata[0]?.how_calculated;
-        const secondaryAbout = DE.links.selectedSecondaryMeasureMetadata[0]?.how_calculated;
-        const primarySources = DE.links.selectedPrimaryMeasureMetadata[0]?.Sources;
-        const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
-
-        DE.links.selectedLinksAbout =
-            `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
-            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
-
-        DE.links.selectedLinksSources =
-            `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
-            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
-
-        // ----- render ----- //
-
-        renderAboutSources(DE.links.selectedLinksAbout, DE.links.selectedLinksSources);
-
-        renderCorrelate(
-            DE.links.joinedLinksDataObjects,
-            DE.links.selectedPrimaryMeasureMetadata,
-            DE.links.selectedSecondaryMeasureMetadata,
-            DE.indicator.primaryIndicatorName,
-            DE.indicator.secondaryIndicatorName
-        );
-
-        return true;
-
-    };
-
-
-    // Renders the disparities chart for a primary measure against the fixed poverty comparator measure.
-    const renderSelectedDisparities = async (primaryMeasureId) => {
-
-        const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
-
-        if (!primaryMeasureMetadata.length) {
-            return false;
-        }
-
-        DE.links.selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
-
-        await renderDisparitiesChart(primaryMeasureMetadata, DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
-
-        return true;
-
-    };
-
 
     buildLinksSelectionControls();
 
