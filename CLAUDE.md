@@ -25,6 +25,7 @@ Three npm scripts, run from the repo root (the repo's first `package.json` `scri
 - `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. The 15 SPA files share one global scope, so the flat config (`eslint.config.mjs`) derives their shared globals at config-load time; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern.
 - `npm run characterize -- --check` — Playwright characterization harness (`scripts/de-characterization.mjs`); diffs 3 indicators across the map/bar/table/trend views against a committed baseline (`scripts/de-characterization-baseline/`). `-- --baseline` re-captures.
 - `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it.
 
 `characterize` and `smoke` **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). Set `DE_BASE_URL` to point them at a server on a non-default port/environment (e.g. `DE_BASE_URL="http://localhost:8080/local-stage/"`). If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache (`d5fb2ea700`).
 
@@ -69,6 +70,12 @@ scripts/        Node dev tooling (characterization harness, smoke test, dev-serv
 
 **Orientation comments before code blocks:** Add a brief comment before each meaningful code block (function, object, initialization section, etc.) explaining what it does at a high level — even if the name alone makes it obvious. The user wants to know what's coming before reading the code, not just after.
 
+## Refactors and renames
+
+- **Clarity renames are pre-authorized.** The codebase mixes hand-written names with AI-generated ones from earlier refactors, so a name that actively *misleads* — describing something other than what the thing is — may be renamed as part of any refactor touching it. Rename what misleads, not every name you'd have chosen differently. Every rename must be *proven* complete, not assumed: `npm run lint` (`no-undef`) proves a JS identifier rename, since the old name ceases to exist; a scoped grep proves a template/SCSS/string rename.
+- **Element-id renames get their own commit**, separate from any JS change, and scoped to the new explorer. Ids are referenced from templates, JS string literals, SCSS, and `aria-labelledby` — grep all four. Never touch `data-explorer-old/`; it keeps its own independent copies of these ids and its own JS. See the Tier 4.1 Stage 4 commit (`f5867cacf3`) for the pattern.
+- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a 700-line diff only invites eyeballing. Tier 4.1 Stage 3 moved ~360 lines this way.
+
 ## Hugo-specific rules
 
 - Edit source files (`content/`, `layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
@@ -97,11 +104,13 @@ Key gotchas:
 - Magic MeasureIDs / ComparisonIDs that render logic branches on (poverty comparator, air-quality trend slices, quarterly measures, etc.) live in `DE_MEASURE_RULES` in `global.js`. Add new data-coupled IDs there with a comment, not as inline literals in `measures.js` / `trend.js`.
 - Verbose tracing goes through `debugLog()`, not raw `console.log`. It's defined in `head.html` (site-wide, next to `hugoEnv`/`baseURL`/`data_repo`/`data_branch`) rather than `global.js`, because `topic-indicator-selector.js` also runs on `data-explorer/section.html`, which loads it without the rest of the SPA bundle — a `global.js`-only helper would throw `ReferenceError` there. It defaults on for every Hugo environment except `production`/`prod_prod` (reads `hugoEnv`), so local/dev/staging need no setup; `localStorage.setItem('de_debug', '1' | '0')` overrides it either direction per browser. Use it for new trace/dump statements; leave genuine error-path logging (`.catch(error => console.log(error))`) as plain `console.log`/`console.error` so failures stay visible regardless of environment or flag.
 - `assignGeoRank` derives its ranking from `prettifyGeoType` (`GEO_RANK_BY_PRETTY_TYPE` in `global.js`) instead of its own `switch`. A new versioned geotype variant (e.g. a future `NTA2030`) only needs adding to `prettifyGeoType` — don't reintroduce a parallel version list in `assignGeoRank`.
+- The seven `show*` renderers and `syncLinksSelectionsToMapSelection` are declared `let` in `global.js` and **assigned** (not declared) in `measures.js`, now at module scope. Writing `const showMap = …` redeclares the `global.js` `let` in the shared top-level scope → load-time `SyntaxError` on *every* page. Keep them assignments. `npm run smoke` is the runtime catch for this.
 
 ## Audit documents
 
 Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell:
 
+- `documents/data-explorer-architecture.md` — the SPA's **current-state** narrative: load pipeline, per-interaction flow, URL sync, ordering constraints. Deliberately holds no file/function inventory (that content rotted through five refactors; `grep` answers it better). Guarded by `npm run docs-check` and carries a `docs-check verified: <commit>` stamp — if you change behaviour it describes, update the prose and re-stamp.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; all §0–§6 findings shipped by 2026-07-04. Superseded by the fresh audit below.
 - `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). **Tiers 1, 2 and 3 are complete and all merged into `feature-new-data-explorer`** (as of 2026-07-23), along with Tier 4.6 (head.html gating), 4.7, 4.8 (Pagefind) and 4.9. **Still open: 4.1** (dismantle `renderMeasures()`), **4.2** (one indicator-load pipeline + URL module), **4.3** (`window.mapInterop` contract), **4.5** (ESLint/npm scripts/smoke test — cheapest, and meant to land before 4.1), and **4.4** (retire the old explorer, parked until comparative user testing ends). Log new findings and fix status here, not in the deep-audit doc.
 - `documents/site-wide-audit-2026-06-27.md`

@@ -48,8 +48,6 @@ const DE = {
         selectedLinksSecondaryMeasureId: undefined,
         selectedLinksAbout: undefined,
         selectedLinksSources: [],
-        defaultLinksAbout: undefined,
-        defaultLinksSources: [],
         defaultPrimaryLinksMeasureMetadata: undefined,
         defaultSecondaryMeasureMetadata: undefined,
         selectedPrimaryMeasureMetadata: undefined,
@@ -198,8 +196,9 @@ let syncLinksSelectionsToMapSelection;
 // navigation. Renamed from `state` so that bare name stays free for DE.state.
 let historyState;
 
-// DOM ref for the disparities-toggle button, resolved once the page shell exists.
-let btnToggleDisparities;
+// DOM ref for the Correlate tab's pill row — the container that delegates clicks for
+// both the Measures dropdown and the Disparities button. Resolved once the page shell exists.
+let correlatePillRow;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
 

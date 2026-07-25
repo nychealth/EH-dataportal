@@ -797,7 +797,7 @@ const renderTable = (tableData) => {
     // Bind the delegated group-toggle handler once per table init, not once per draw: it's
     // delegated from `body`, so it already covers the group rows drawCallback recreates on
     // every redraw without needing to be rebound.
-    handleToggle();
+    bindTableGroupToggles();
 
     // Rebind the search box after init because DataTables has now created its wrapper DOM.
     bindAreaOnlySearch(dataTable);
@@ -825,7 +825,7 @@ const downloadTableData = () => {
 // ----------------------------------------------------------------------- //
 
 // Binds click handlers that expand and collapse grouped summary-table rows.
-const handleToggle = () => {
+const bindTableGroupToggles = () => {
 
     // ----- unbind stale delegated handler ----- //
 

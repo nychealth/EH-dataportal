@@ -165,10 +165,72 @@ every page. Current issues, roughly in impact order:
   target; at minimum bump 4.3.1 → latest 4.6.x for the security patches.
 - **Suspicious/again-check deps:** `ci` (`^2.3.0`) looks like an accidental
   install (a small CLI lib, unlikely to be intentional). Audit
-  `@mapbox/leaflet-pip`, `geoblaze`, `georaster*`, `qrcode-generator`,
-  `jquery-flexdatalist` for actual use and drop the unused ones.
-- **No `npm audit` / Dependabot.** There is a CodeQL workflow but no dependency
-  scanning. Add Dependabot (npm + github-actions ecosystems).
+  `@mapbox/leaflet-pip`, `qrcode-generator`, `jquery-flexdatalist` for actual use
+  and drop the unused ones. **`georaster` / `georaster-layer-for-leaflet` /
+  `geoblaze` are confirmed IN USE (2026-07-25)** — `data-features/heatstory.html`
+  loads all three from `node_modules` into the browser; don't drop them. (Note
+  `@mapbox/leaflet-pip` is installed but loaded by no template — see §5c.)
+- ~~**No `npm audit` / Dependabot.**~~ **CORRECTED 2026-07-25: Dependabot IS
+  enabled and reporting.** It surfaces 8 open alerts on the default branch, which
+  is why every `git push` prints a vulnerability banner. Triage in **§3a** below.
+  The gap is not scanning — it's that nobody had read the results.
+
+### 3a. Dependabot alert triage (added 2026-07-25)
+
+**Status: all 8 open alerts assessed, none fixed.** Nothing here is an emergency,
+but the banner on every push had never been read, and one item is a real project
+that should be scheduled rather than rushed.
+
+Two numbers that do **not** reconcile, so don't try: Dependabot reports **8**;
+`npm audit` reports far more (`chokidar`, `cacache`, `glob`, `brace-expansion`,
+`rimraf`…). The extras are dev-tree transitives Dependabot's default config
+doesn't alert on. Use the 8 as the work list.
+
+**Group 1 — `decompress` (CRITICAL). Not in the production path at all.**
+Transitive under `hugo-extended@0.146.7`, a local dev convenience. All four
+workflows pin `hugo-version: "0.147.3"` through the Hugo setup action instead, so
+this package never participates in a build that produces production output. The
+vulnerability is archive-extraction path traversal and the archive is the Hugo
+release itself. Fix: `hugo-extended@0.164.0` (semver-major). **Also ask whether it
+belongs in `package.json` at all**, since CI ignores it. Good candidate to dismiss
+with a reason in the Dependabot UI so it stops padding the count.
+
+**Group 2 — vega / vega-functions / vega-expression (3 × HIGH). These ship, but
+the exploitation paths are not present.** `lib-vega.html` bundles vega 5.33.1 +
+vega-lite 5.23.0 + vega-embed 6.29.0 from `node_modules` and serves them with SRI
+on every explorer page, plus data-features and data-stories. Each advisory's
+precondition was checked rather than assumed:
+
+- The `VEGA_DEBUG` advisories require that global. `VEGA_DEBUG` appears in neither
+  shipped bundle nor any first-party code.
+- The expression-abuse XSS requires untrusted input reaching a Vega expression.
+  The codebase contains exactly two `"expr"` fields — `correlate.js:425` and
+  `trend.js:60` — both static literals with no interpolation. Metadata-derived
+  strings reach specs as **data values**, never as expressions.
+- `setdata` is not called anywhere.
+
+Fix is vega 6.3.1 / vega-lite 6.4.3 / vega-embed 7.1.0 — **all semver-major**,
+across four chart modules (bar, trend, correlate, disparities) plus the print
+path. Schedule as its own PR with `npm run characterize -- --check` as the safety
+net; that harness exists for exactly this kind of change. **Do not rush it** — no
+reachable CVE is forcing the timeline, and a botched vega-lite 5→6 spec migration
+would break every chart on the site.
+**Re-check if this ever changes:** the "not exploitable" finding rests on specs
+being code-built from trusted metadata. If a spec, expression, or signal ever
+becomes assembled from fetched or user-supplied strings, this group jumps to P1.
+
+**Group 3 — `serialize-javascript` (high), `micromatch` (moderate), `elliptic`
+and `braces` (low). One root cause: all four are transitive under
+`georaster@1.6.0`**, which is genuinely used (see §3 — heatstory loads it into the
+browser). npm reports non-major fixes available, unconfirmed by an actual run.
+**Cheapest real win of the three groups** — four alerts for one small change,
+verifiable by loading `data-features/heat-story/` and confirming the raster layer
+renders.
+
+**Recommended order:** group 3 → `hugo-extended` bump (or removal) → vega as a
+scheduled project. Then dismiss anything left that is genuinely unreachable, with
+a written reason, so a future alert that *is* reachable stands out instead of
+being lost in a count of eight.
 
 ---
 
@@ -197,6 +259,60 @@ every page. Current issues, roughly in impact order:
 - **`console-log.html` / `warn_counter.html` / `temp-popup.html` partials** and
   `g-dev-tools.scss` suggest debug scaffolding lives in the theme. Confirm none
   ship to production.
+
+### 4a. Element-id hygiene, and one shared partial that constrains it (added 2026-07-25)
+
+Found while sweeping the Data Explorer for misleading names (DE audit §4.1
+follow-up). The DE-scoped instances are fixed; these are the parts that are
+site-wide or blocked.
+
+- **`#skip-header-target` is duplicated on most pages (P2, a11y).**
+  [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) puts it on
+  `<main>`, and ~20 templates *also* put it on their own `<article>` — both
+  explorers, every `data-features/*`, and others. The "Skip Header" link resolves
+  to the first match, so the second is inert, but duplicate ids are invalid and
+  this one is the keyboard-skip target on a NYC.gov property. Fix by dropping the
+  id from the templates and keeping the `baseof.html` one, after checking nothing
+  scrolls to the article copy.
+- **Leading-digit ids are a live trap.** `id="311"` / `id="311label"` are valid
+  HTML5 but **invalid CSS selectors** — `querySelector('#311')` throws
+  `SyntaxError`, so only `getElementById` can reach them. The DE copies were
+  renamed to `#contact311Label` / `#contact311Links*`; grep for other numeric-
+  leading ids before writing any new `querySelector`.
+- **`takeaction.html` is shared, so its ids can't move.** It is included by both
+  [data-explorer/single.html:68](../themes/dohmh/layouts/data-explorer/single.html)
+  and [data-explorer-old/single.html:455](../themes/dohmh/layouts/data-explorer-old/single.html),
+  and the old explorer's `data.js` still resolves `#311`/`#311label` by name. It
+  therefore keeps the old ids while the DE-only partials moved off them. **This
+  unblocks itself when the old tree is deleted (§1)** — fold it into that pass.
+- **Its hidden copy contributes nothing to search.** On the new explorer the
+  partial renders inside a `d-none` block that exists specifically to keep
+  topic-level content Pagefind-indexable (the visible equivalent lives in a
+  `data-pagefind-ignore`d JS shell). But both of its 311 elements are populated
+  **client-side only**, so at build time — which is when Pagefind reads the DOM —
+  they are empty. They are dead weight inside a block whose entire purpose is
+  indexing. Same shape as the §12 finding about the explorer's client-rendered
+  content being invisible to crawlers.
+
+### 4b. Deferred: the SPA says `links`, the UI says "Correlate" (added 2026-07-25)
+
+The user-facing vocabulary is **Correlate** / **Correlations**; the code calls the
+same feature `links` in **454 places across 11 files** (222 in `measures.js`
+alone). Deferred by decision — recorded here so the cost is known rather than
+rediscovered. Three external contracts make it more than a rename:
+
+- the canonical `?overlay=links` query param (live, shareable URLs);
+- the legacy `#display=links` / `#tab-links` hashes that `normalizeLegacyHashOverlayURL` still honours;
+- the `links_disparities` GA value, which would break series continuity.
+
+Options, cheapest first: **(1) leave it** — the current state, consistent within
+itself and only confusing at the UI boundary; **(2) rename internals only**,
+keeping `links` as the wire format at the three contract points, with one
+documented translation layer — most of the benefit, but introduces a
+vocabulary seam someone must maintain; **(3) rename everything including the URL
+param**, adding `links` → `correlate` to the existing legacy-URL normalizer so old
+bookmarks keep working, and accepting a GA discontinuity. Do (2) or (3) only as
+its own PR, never folded into other work.
 
 ---
 
@@ -669,10 +785,19 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
   ([search-modal.html:33](../themes/dohmh/layouts/partials/search-modal.html)),
   `search_click` and `click_search_open` (both in [site.js](../assets/js/site.js)).
   Decide one search vocabulary.
-- **Inherited typo `click_how_caclulated`** ("caclulated") exists in **both**
-  explorers — [old app.js:152](../assets/js/data-explorer-old/app.js) and the
-  live [app.js:446](../assets/js/data-explorer/app.js) — so it has been
-  miscounting in GA for a long time and was faithfully copied into the rewrite.
+- **Inherited typo `click_how_caclulated`** ("caclulated") — **resolved in the new
+  explorer 2026-07-25**, still present in [old app.js:152](../assets/js/data-explorer-old/app.js).
+  The new explorer's handler was bound to `#howCalcButton`, an element that exists
+  in no new-explorer template, so the event had in fact **never fired** from the
+  rewrite; the dead handler was deleted (`71d321226e`). The new explorer has no
+  separate "how calculated" affordance at all — that text and the data sources
+  share one pane behind a single `#v-pills-ds-tab` click that already fires
+  `click_about` — so a second event there would double-count one action. The
+  coverage is carried as a parameter instead (`94a0ac1fcf`):
+  `trackDataExplorerEvent('click_about', { section: 'how_calculated_and_sources' })`.
+  **Reporting consequence:** the new explorer's figures for this dimension are
+  *not* continuous with the historical series, which lives under the misspelled
+  name. Anyone comparing across the cutover needs to know that.
 - **Param-name casing is inconsistent:** `IndicatorID` (PascalCase) in
   `click_indicator` vs snake_case everywhere else (`file_name`, `chart_type`,
   `page_viewed`, `click_url`). GA4's convention is snake_case; mixed casing makes
@@ -701,6 +826,16 @@ In addition to the map/chart gaps in the DE audit:
 
 - Nav list markup (`<a><li></li></a>`) and the title nesting error (§4) are
   validity/SR issues on every page.
+- **Dangling `aria-labelledby` leaves a dialog with no accessible name.** Three DE
+  modals pointed at ids that existed nowhere (`#topicSelectorLabel`,
+  `#indicatorSelectorLabel`, `#learnMoreLabel` — Bootstrap boilerplate whose title
+  element had been replaced), so all three announced as bare "dialog". **Fixed
+  2026-07-25** (`574e856432`); see DE audit §4.1-follow-up Finding C. Worth a
+  site-wide sweep for the same pattern: a dangling reference fails **silently**,
+  which is exactly why it survived. One line in a browser console finds them all —
+  `[...document.querySelectorAll('[aria-labelledby]')].filter(el => el.getAttribute('aria-labelledby').split(/\s+/).some(id => !document.getElementById(id)))`.
+- **Duplicate ids break `aria-labelledby` and `for` silently too** — a reference
+  resolves to the first match, so the second element is orphaned. See §4a.
 - `href="#"` action links (search/dropdown toggles) throughout the header —
   prefer `<button>` for actions.
 - Google-Translate-as-i18n is itself a known a11y/SEO weakness (translated DOM
@@ -727,12 +862,18 @@ In addition to the map/chart gaps in the DE audit:
 | 9 | P3 | [header.html:107…](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup |
 | 10 | ~~P3~~ **NOT A DEFECT — corrected + rewritten 2026-07-14** | [head.html:112-117](../themes/dohmh/layouts/partials/head.html) | The webfont `range` loop was called dead here and in the DE audit. It wasn't: evaluating `$woff.RelPermalink` as an argument triggered Hugo's lazy publish-on-access for the matched resource, which is exactly what the fingerprinted FA CSS's relative `url(../webfonts/…)` `@font-face` rules need. Deleting it would have broken every FA icon site-wide once the JS injector was also dropped (row 4). Rewritten to use the explicit `.Publish` idiom instead of relying on an accidental read |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
-| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
+| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) | Misspelled GA event `click_how_caclulated` — **new explorer resolved 2026-07-25**; its handler was bound to a non-existent element and had never fired, and the coverage is now a `click_about` parameter. Old explorer still has it (see §9) |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
 | 15 | P3 | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` has no body — missing a `Sitemap:` directive |
 | 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
+| 18 | P2 | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + ~20 templates | `#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant. See §4a |
+| 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
+| 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
+| 21 | P2 | `package.json` (`georaster@1.6.0` subtree) | 4 of the 8 open Dependabot alerts share one root — cheapest fix of the three groups in §3a |
+| 22 | P3 | `package.json` (`hugo-extended`) | Critical-rated `decompress` alert, but CI pins Hugo via the setup action and never uses this package — dismiss with a reason, or drop the dep. See §3a |
+| 23 | P2 (scheduled, not urgent) | [lib-vega.html](../themes/dohmh/layouts/partials/lib-vega.html) | 3 high Vega XSS alerts ship to browsers, but no exploitation path exists in this codebase. Fix needs semver-major bumps across 4 chart modules — own PR, characterization-gated. See §3a |
 
 ---
 
@@ -909,7 +1050,8 @@ HTML response — it's less than it looks:
    and wiring ESLint + a Hugo build into a PR check workflow (lint-in-CI is deferred, §7).
 2. Add `.gitattributes` LF rules; delete the `dos2unix` build step.
 3. Pin CI actions to SHAs; add `permissions:` blocks; switch to `npm ci` + cache;
-   add Dependabot.
+   ~~add Dependabot~~ **Dependabot is already enabled** — 8 open alerts, triaged in
+   §3a (2026-07-25). The remaining work is acting on them, not enabling scanning.
 4. Decide a testing strategy (ad-hoc `node:test` scripts vs. adopting a
    framework like Vitest) — unresolved as of 2026-07-02, see §7.
 

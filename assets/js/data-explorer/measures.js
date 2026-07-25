@@ -289,23 +289,24 @@ const getSecondaryMeasureIndicator = (secondaryMeasureId) => {
 
 
 // ----------------------------------------------------------------------- //
-// function to toggle links / disparities
+// correlate control bindings
 // ----------------------------------------------------------------------- //
 
-// Binds the Links versus Disparities toggle without stacking duplicate handlers.
-const clickLinksToggle = (e) => {
+// Binds the Correlate pill row's delegated click handler — the Measures dropdown
+// toggle and the Disparities button — without stacking duplicate handlers.
+const bindCorrelateControls = () => {
 
     // ----- guard: no-op if disparities toggle missing ----- //
 
-    if (!btnToggleDisparities) {
+    if (!correlatePillRow) {
         return;
     }
 
     // ----- rebind: unbind stale handler, bind fresh click handler ----- //
 
-    $(btnToggleDisparities).off('.toggle');
+    $(correlatePillRow).off('.toggle');
 
-    $(btnToggleDisparities).on('click.toggle', event => {
+    $(correlatePillRow).on('click.toggle', event => {
 
         // - - - resolve clicked button, ignore missing/active/disabled - - - //
 
@@ -349,7 +350,7 @@ const clickLinksToggle = (e) => {
 
         // - - - links branch - - - //
 
-        if (!button.matches('#show-links, #linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
+        if (!button.matches('#linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
             return;
         }
 
@@ -1260,7 +1261,7 @@ const buildLinksSelectionControls = () => {
 
     // ----- wire toggle and refresh visuals ----- //
 
-    clickLinksToggle();
+    bindCorrelateControls();
 
     setLinksButtonState();
     updateLinksSelectionSummary();

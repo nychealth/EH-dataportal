@@ -411,8 +411,8 @@ window.addEventListener('popstate', async (event) => {
     if (urlID && urlID !== DE.state.IndicatorID) {
 
         await loadIndicator(urlID, true);
-        printIndicatorInfo(urlID);
-        printMenus(urlID);
+        renderIndicatorInfo(urlID);
+        renderMenus(urlID);
         await renderMeasures();
         renderCurrentView(true);
         return;
@@ -455,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // grab DOM nodes for the measure-info and source sections
     aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
     dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
-    btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+    correlatePillRow = document.querySelector('.de-correlate-pill-row');
 
     // ----- define tab-to-overlay map ----- //
 
@@ -510,33 +510,19 @@ $("#groupByBoroughToggle").on("change", (e) => {
 
 
 // ----------------------------------------------------------------------- //
-// content truncation
-// ----------------------------------------------------------------------- //
-
-// Expands the full metadata description after the user clicks Show more.
-function reveal() {
-
-    // toggle the truncated / full description blocks
-    document.getElementById('truncate').classList.toggle('hide');
-    document.getElementById('full').classList.toggle('show');
-    document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
-}
-
-
-// ----------------------------------------------------------------------- //
 // add listeners to metadata buttons
 // ----------------------------------------------------------------------- //
-
-$('#howCalcButton').on('click', e => {
-    trackDataExplorerEvent('click_how_calculated');
-});
 
 $('.de-copy-citation-button[data-citation-target]').on('click', e => {
     trackDataExplorerEvent('click_citation');
 });
 
+// The old explorer tracked "how calculated" separately, because it was its own button
+// opening its own modal. The new explorer shows that text and the data sources in one
+// pane behind this single tab click, so a second event here would double-count one
+// action. Carry the coverage as a parameter instead.
 $('#v-pills-ds-tab').on('click', e => {
-    trackDataExplorerEvent('click_about');
+    trackDataExplorerEvent('click_about', { section: 'how_calculated_and_sources' });
 });
 
 

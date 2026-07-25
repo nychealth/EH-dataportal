@@ -297,7 +297,7 @@
             </button>
             <div class="modal-content">
                 <div class="modal-body p-3 pb-3">
-                    <h4 class="modal-title mb-1">Choose topic  >  <span class="font-weight-normal text-dark">Select dataset</span></h4>
+                    <h4 class="modal-title mb-1"><span id="topicSelectorLabel">Choose topic</span><span aria-hidden="true">  >  </span><span class="font-weight-normal text-dark">Select dataset</span></h4>
                     <div class="border-gray-300 mt-2 pb-1">
                         <p>Browse datasets about:</p>
                     </div>
@@ -367,10 +367,10 @@
                     <h4 class="modal-title mb-1">
                         <button type="button" id="indicatorModalTopicTrigger" class="indicator-modal-topic-trigger font-weight-normal border-0 text-primary bg-transparent hover-underline p-0" data-topic-selector-action="relaunch">Choose topic</button>
                         <span aria-hidden="true" class="text-dark">  >  </span>
-                        Select dataset
+                        <span id="indicatorSelectorLabel">Select dataset</span>
                     </h4>
                     <div class="border-gray-300 mt-2 pb-0">
-                        <p>Choose dataset about <span id="printTopic" class="font-weight-bold">{{ lower .Title }}</span>:</p>
+                        <p>Choose dataset about <span id="selectedTopicName" class="font-weight-bold">{{ lower .Title }}</span>:</p>
                     </div>
                     
                     <div class="mt-1" id="indicatorDestination">
@@ -399,7 +399,9 @@
                     <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
                 </button>
                 <!-- Learn More Modal -->
-                <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="learnMoreLabel" aria-hidden="true">
+                <!-- Labelled by the existing #about heading rather than a new id: that h4 is
+                     already the modal's title and is an in-modal anchor target. -->
+                <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="about" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                         <button type="button" class="bg-primary border-0 br50 modal-close-tab" data-dismiss="modal" aria-label="Close">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
@@ -439,17 +441,17 @@
                     </div>
                 </div>
                 <div class="align-items-center d-none d-md-flex dropdown">
-                    <button class="d-flex align-items-center" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
+                    <button class="d-flex align-items-center" type="button" id="takeActionToggleDesktop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: none; border: none; color: inherit; padding: 0;">
                         <div class="font-weight-bold mr-1 text-white fs-md">Take Action</div>
                         <img src={{ relURL "images/icon-green-arrow.svg" }} style="height: 21px" alt="">
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right p-2 text-right take-action-dropdown" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu dropdown-menu-right p-2 text-right take-action-dropdown" aria-labelledby="takeActionToggleDesktop">
                         <div class="font-weight-bold border-bottom border-gray-300 text-primary pb-2 mb-1">Concerned about this?</div>
                         <ul class="list-unstyled fs-sm">
                             <li class="mb-1 border-bottom border-gray-300 pb-1"><a href="#">Email your elected officials</a></li>
                             <li class="mb-1 border-gray-300 pb-1">
-                                <span class="d-block" id="311label">Contact 311 about:</span>
-                                <span id="311" class="destination311"><a href="#">Dynamic option</a></span>
+                                <span class="d-block" id="contact311Label">Contact 311 about:</span>
+                                <span id="contact311LinksDesktop" class="destination311"><a href="#">Dynamic option</a></span>
                             </li>
                         </ul>
                     </div>
