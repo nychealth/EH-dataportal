@@ -3,7 +3,7 @@
 **Date:** 2026-07-24
 **Branch (planned):** `feature-de-tier4.1-render-measures` off `feature-new-data-explorer`
 **Source item:** `documents/data-explorer-fresh-audit-2026-07-13.md` §4.1
-**Status:** design approved; implementation plan pending
+**Status:** implemented 2026-07-24 on `feature-de-tier4.1-render-measures` (5 commits `7c0b3c7c3d`..`f5867cacf3`; `renderMeasures` 1,338 → 199 lines), verified per-stage (lint / characterize / smoke + Playwright on 2380 & 2023). Fast-forward merged into `feature-new-data-explorer` at `62f9bc8798`. See fresh-audit §4.1 execution-status block.
 
 ## Problem
 
@@ -42,13 +42,13 @@ Define D, E, and F **once at module scope** reading `DE.*`, so `renderMeasures` 
 All definitions remain in measures.js, hoisted from inside `renderMeasures` to module scope, landing after the existing badge-pill DOM factories (the Tier 2.6 block ending ~line 552) and before `renderMeasures` itself. Relative order among the hoisted clusters: **D, then E, then F**, so a reader meets the control builders before the renderers that call them.
 
 ### DOM-reference resolution
-The six pill/dropdown DOM refs become module-scope `let`s, resolved lazily by a new `resolveMeasuresPillRefs()` helper that mirrors the existing `resolveTabReferences()` pattern ([measures.js:387](../assets/js/data-explorer/measures.js#L387)):
+The six pill/dropdown DOM refs become module-scope `let`s, resolved lazily by a new `resolveMeasuresPillRefs()` helper that mirrors the existing `resolveTabReferences()` pattern ([measures.js:387](../assets/js/data-explorer/measures.js#L387)). One genuinely misleading name is fixed as part of the move (understandability is the goal of this refactor): the *menu* element (id `linksDropdownMenu`) was held by a variable named `dropdownLinksMeasures`, which reads like the *toggle* — rename that variable to `linksDropdownMenu` (8 use sites), proven complete by `no-undef` + grep. The element **ids** are load-bearing (templates + other JS), so they aren't changed *during* the hoist; the one genuinely confusing id — the toggle's `dropdownLinksMeasures`, whose variable is already the clear `linksDropdownToggle` — is renamed to match in the separate Stage 4 below. The other four ref names carry over unchanged:
 
 ```js
 let trendMeasurePills;
 let trendComparisonPills;
-let linksDropdownMenu;
-let linksDropdownToggle;
+let linksDropdownMenu;       // renamed from dropdownLinksMeasures; holds the #linksDropdownMenu element
+let linksDropdownToggle;     // holds the #dropdownLinksMeasures element (id kept; oddly named)
 let linksToggleLabel;
 let showDisparitiesButton;
 
@@ -89,7 +89,7 @@ activate the tab matching DE.state.overlay (block H)
 
 ## Staging
 
-Four commits, each independently verified (see below) before the next. Staged by provability: the isolated state move first, then one cluster per stage, hardest last.
+Five commits, each independently verified (see below) before the next. Staged by provability: the isolated state move first, then one cluster per stage, the `show*` renderers hardest-last, and finally the template id-clarity rename as its own isolated commit.
 
 ### Stage 0 — state move + dead-code delete
 - Add `DE.trend.selectedComparisonLegendTitle`; migrate the 8 references.
@@ -110,6 +110,10 @@ Four commits, each independently verified (see below) before the next. Staged by
 ### Stage 3 — hoist the seven `show*` renderers F
 - Move lines 1455-1813 (the 2 table helpers `adjustVisibleSummaryTable` / `scheduleVisibleSummaryTableAdjust` + the 7 `show*` assignments) to module scope, preserving the assignment pattern (§ above).
 - `renderMeasures` shrinks to the ~250-line skeleton above.
+
+### Stage 4 — rename the confusing toggle element id (template + JS clarity)
+- Separate, isolated commit after the JS hoist is fully verified. Rename the correlate-tab toggle button's element id `dropdownLinksMeasures` → `linksDropdownToggle` so it matches the JS variable that holds it (already `linksDropdownToggle` after Stage 2) and no longer reads like the measures menu. Four sites, all new-explorer-only: the `id` and the menu's `aria-labelledby` in `de-tab-content.html`, plus the `clickLinksToggle` selector and the resolver's `getElementById` argument in measures.js.
+- `de-tab-content.html` renders only on `data-explorer/single.html` (via `de-tabs.html`); the retired `data-explorer-old` tree keeps its own independent copy of this id and is not touched. Verified by a new-explorer-scoped grep (zero remaining) plus a Playwright check that the dropdown still opens and the `aria-labelledby` link stays valid.
 
 ## Verification (per stage, before each commit)
 
