@@ -297,7 +297,7 @@
             </button>
             <div class="modal-content">
                 <div class="modal-body p-3 pb-3">
-                    <h4 class="modal-title mb-1">Choose topic  >  <span class="font-weight-normal text-dark">Select dataset</span></h4>
+                    <h4 class="modal-title mb-1"><span id="topicSelectorLabel">Choose topic</span><span aria-hidden="true">  >  </span><span class="font-weight-normal text-dark">Select dataset</span></h4>
                     <div class="border-gray-300 mt-2 pb-1">
                         <p>Browse datasets about:</p>
                     </div>
@@ -367,7 +367,7 @@
                     <h4 class="modal-title mb-1">
                         <button type="button" id="indicatorModalTopicTrigger" class="indicator-modal-topic-trigger font-weight-normal border-0 text-primary bg-transparent hover-underline p-0" data-topic-selector-action="relaunch">Choose topic</button>
                         <span aria-hidden="true" class="text-dark">  >  </span>
-                        Select dataset
+                        <span id="indicatorSelectorLabel">Select dataset</span>
                     </h4>
                     <div class="border-gray-300 mt-2 pb-0">
                         <p>Choose dataset about <span id="selectedTopicName" class="font-weight-bold">{{ lower .Title }}</span>:</p>
@@ -399,7 +399,9 @@
                     <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
                 </button>
                 <!-- Learn More Modal -->
-                <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="learnMoreLabel" aria-hidden="true">
+                <!-- Labelled by the existing #about heading rather than a new id: that h4 is
+                     already the modal's title and is an in-modal anchor target. -->
+                <div class="modal fade" id="learnMore" tabindex="-1" role="dialog" aria-labelledby="about" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                         <button type="button" class="bg-primary border-0 br50 modal-close-tab" data-dismiss="modal" aria-label="Close">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
