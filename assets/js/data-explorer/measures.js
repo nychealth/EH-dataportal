@@ -349,7 +349,7 @@ const clickLinksToggle = (e) => {
 
         // - - - links branch - - - //
 
-        if (!button.matches('#show-links, #dropdownLinksMeasures') || !DE.lookups.linksMeasures.length) {
+        if (!button.matches('#show-links, #linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
             return;
         }
 
@@ -569,10 +569,7 @@ const resolveMeasuresPillRefs = () => {
     trendMeasurePills    ??= document.getElementById('trendMeasurePills');
     trendComparisonPills ??= document.getElementById('trendComparisonPills');
     linksDropdownMenu    ??= document.getElementById('linksDropdownMenu');
-    // NB: the toggle button's element id is the oddly-named `dropdownLinksMeasures`
-    // (id is load-bearing in de-tab-content.html + clickLinksToggle's selector, so it
-    // stays); the variable `linksDropdownToggle` is the clear name to rely on.
-    linksDropdownToggle  ??= document.getElementById('dropdownLinksMeasures');
+    linksDropdownToggle  ??= document.getElementById('linksDropdownToggle');
     linksToggleLabel     ??= document.getElementById('linksToggleLabel');
     showDisparitiesButton ??= document.getElementById('show-disparities');
 };
