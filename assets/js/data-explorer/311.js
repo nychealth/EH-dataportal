@@ -10,10 +10,10 @@
 // 311 action links
 // ----------------------------------------------------------------------- //
 
-// Loads 311 crosswalk links and prints the matching action buttons for one indicator.
-const draw311Buttons = (indicator_id) => {
+// Loads the 311 crosswalk and renders the matching "Contact 311" action links for one indicator.
+const render311Links = (indicator_id) => {
 
-    debugLog("* draw311Buttons");
+    debugLog("* render311Links");
 
     // Holds the crosswalk rows matched to the current indicator, populated once the CSV loads.
     let filteredCrosswalk = [];

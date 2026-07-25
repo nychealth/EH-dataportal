@@ -44,10 +44,10 @@ Scripts are loaded in this order by `themes/dohmh/layouts/data-explorer-new/sing
 | 2 | **utilities.js** | Pure helper functions with no side effects: `getGeoFile()` (geography → TopoJSON filename), `assignGeoRank()` (geography → numeric rank for sorting), `prettifyGeoType()` (versioned geo → generic label, e.g. NTA2020 → NTA), `updateChartPlotSize()` (fires a resize event on a delay). |
 | 3 | **app.js** | URL helpers (`buildCanonicalSearchParams`, `pushSelectionToURL`, `resetSelectionForNewIndicator`, `normalizeLegacyGeoTypeURL`, `normalizeLegacyOverlayURL`), the central `renderCurrentView(updateMap)` dispatcher, the `popstate` handler, and `DOMContentLoaded` tab-click listeners. |
 | 4 | **data.js** | `loadIndicator()` — sets `IndicatorID`, manages history state, resets per-indicator flags, calls `loadData()`. `loadData()` — fetches indicator JSON, creates Arquero table with GeoRank, calls `loadGeo()` + `loadTime()` in parallel, then `joinData()`. `joinData()` — builds `aqMeasureDisplay`, `aqTableTimesGeos`, `aqMapTimesGeos`, `aqTrendTimesGeos`. |
-| 5 | **measures.js** | `renderMeasures()` — populates per-tab measure arrays (`mapMeasures`, `trendMeasures`, `linksMeasures`, `disparitiesMeasures`), sets metadata defaults, **defines the show\* function closures** (`showMap`, `showBar`, `showTable`, `showTrend`, `showLinks`, `showBoroughTrend`, `showComparisonTrend`), enables/disables tabs, activates the Bootstrap pill matching `overlay`. Also contains `setDefaultMapMeasure`, `setDefaultTrendMeasure`, `setDefaultLinksMeasure`, `setDefaultDisparitiesMeasure`, and `clickLinksToggle`. |
+| 5 | **measures.js** | `renderMeasures()` — populates per-tab measure arrays (`mapMeasures`, `trendMeasures`, `linksMeasures`, `disparitiesMeasures`), sets metadata defaults, **defines the show\* function closures** (`showMap`, `showBar`, `showTable`, `showTrend`, `showLinks`, `showBoroughTrend`, `showComparisonTrend`), enables/disables tabs, activates the Bootstrap pill matching `overlay`. Also contains `setDefaultMapMeasure`, `setDefaultTrendMeasure`, `setDefaultLinksMeasure`, `setDefaultDisparitiesMeasure`, and `bindCorrelateControls`. |
 | 6 | **table.js** | `renderTable(tableData)` — pivots Arquero data, builds an HTML table, initializes DataTables with grouping, sorting, and row-toggle behavior. |
 | 7 | **map.js** | `initBaseMap()` (runs immediately on script load — sets up the Leaflet tile layer), `renderMap(data, metadata)` — fetches TopoJSON, attaches data, renders a GeoJSON layer with Viridis color scale, sets up hover/click interop with the bar chart via `window.mapInterop` and `window.myVegaView`. |
-| 8 | **311.js** | `draw311Buttons(indicator_id)` — fetches 311-crosswalk.csv and renders "Contact 311" links for the current indicator. |
+| 8 | **311.js** | `render311Links(indicator_id)` — fetches 311-crosswalk.csv and renders "Contact 311" links for the current indicator. |
 | 9 | **topic-indicator-selector.js** | `indicators` global + `indicatorsPromise` (metadata.json fetch starts immediately), `ensureIndicatorsLoaded()`, `printIndicators()` (populate the indicator modal), `selectIndicator()` (SPA-style indicator switch), `checkURL()` (reads URL params on page load, seeds globals, triggers the full load pipeline), `printIndicatorInfo()` (writes indicator name/description to the DOM). |
 | 10 | **menu.js** | `getDefaultMeasure()` (priority-based measure selection), `printMenus()` (initializes dropdowns), `updateAllMenus()` (rebuilds all three dropdowns from current globals, auto-corrects invalid GeoType/TimePeriodID), `styleAndPrintMenu()` (renders dropdown items with click handlers), `handleSelection()` (sets one global, calls `updateAllMenus` → `pushSelectionToURL` → `renderCurrentView(true)`). |
 | 11 | **bar.js** | `renderBar(data, metadata, geography, timePeriod)` — builds a Vega-Lite spec (bar, dot+CI, or dot+gray-bar for means), compiles to Vega, embeds via `vegaEmbed`, stores `window.myVegaView`, and sets up bar → map hover interop via `window.mapInterop`. |
@@ -108,7 +108,7 @@ checkURL()
 ├── read URL params → seed IndicatorID, MeasureID, GeoType, TimePeriodID, overlay
 ├── normalizeLegacyGeoTypeURL()       // GeoTypeID → GeoType via replaceState
 ├── printIndicatorInfo(id)            // write name/description to DOM
-├── draw311Buttons(id)                // fetch + render 311 links
+├── render311Links(id)                // fetch + render 311 links
 ├── ensureIndicatorsLoaded()          // await metadata.json if not ready
 ├── loadIndicator(id)
 │   ├── set overlay = 'none' if not already set
@@ -229,7 +229,7 @@ checkURL()
 2. `dismissIndicatorModal()` → hides the Bootstrap modal.
 3. `resetSelectionForNewIndicator(id)` → nulls `MeasureID`, `GeoType`, `TimePeriodID` (`overlay` is preserved), does `replaceState` with just `?id=N`.
 4. `printIndicatorInfo(id)` → updates name/description.
-5. `draw311Buttons(id)` → fetches 311 links.
+5. `render311Links(id)` → fetches 311 links.
 6. `ensureIndicatorsLoaded()` → waits for metadata if needed.
 7. `loadIndicator(id)` → full data pipeline (see §3.3).
 8. `printMenus(id)` → sets default MeasureID, builds menus.

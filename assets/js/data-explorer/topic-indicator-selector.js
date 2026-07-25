@@ -613,7 +613,7 @@ const selectIndicator = async (id) => {
     // ----- run the full load pipeline ----- //
 
     printIndicatorInfo(id);
-    draw311Buttons(id);
+    render311Links(id);
 
     await ensureIndicatorsLoaded('selectIndicator');
     await loadIndicator(id);
@@ -680,7 +680,7 @@ const checkURL = async () => {
     // ----- kick off indicator-info and 311-button rendering early ----- //
 
     printIndicatorInfo(chosenIndicator);
-    draw311Buttons(chosenIndicator);
+    render311Links(chosenIndicator);
 
     // ----- load metadata, indicator, menus, and measures in sequence ----- //
 

@@ -93,7 +93,7 @@ Removing the dead RawGit PointInPolygon `<script>` tag from `head.html` (item 1.
 **Porting notes:**
 - State goes to `DE.table.groupByBorough` (not a bare global); toggle handler re-renders via `renderTable(DE.table.tableData)` and must respect the current lazy-render/`tableNeedsRender` flow (a toggle flip while the table pane is closed should mark `tableNeedsRender`, not render into a hidden pane).
 - Shift all column indexes +1 for the current pivot shape; re-check `searchCols`, `columnDefs.visible`, `notSearchCols`, and the group column constants against the live column list.
-- The ported `handleToggle` replaces the current one — **keep the single-bind-at-init fix** (current code deliberately binds once per table init, not per draw; see table.js:746-750).
+- The ported `handleToggle` replaces the current one — **keep the single-bind-at-init fix** (current code deliberately binds once per table init, not per draw; see table.js:746-750). Note the current one has since been renamed `bindTableGroupToggles`; the hotfix branch still calls it `handleToggle`.
 - Do not carry over anything else from the old base (no `fixedHeader`, no old sort direction) — port the *feature*, not the file.
 - The hotfix's default-sort change interacts with 1.1 (natural sort) — decide 1.1 in the same PR.
 

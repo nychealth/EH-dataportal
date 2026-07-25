@@ -289,11 +289,12 @@ const getSecondaryMeasureIndicator = (secondaryMeasureId) => {
 
 
 // ----------------------------------------------------------------------- //
-// function to toggle links / disparities
+// correlate control bindings
 // ----------------------------------------------------------------------- //
 
-// Binds the Links versus Disparities toggle without stacking duplicate handlers.
-const clickLinksToggle = (e) => {
+// Binds the Correlate pill row's delegated click handler — the Measures dropdown
+// toggle and the Disparities button — without stacking duplicate handlers.
+const bindCorrelateControls = () => {
 
     // ----- guard: no-op if disparities toggle missing ----- //
 
@@ -1260,7 +1261,7 @@ const buildLinksSelectionControls = () => {
 
     // ----- wire toggle and refresh visuals ----- //
 
-    clickLinksToggle();
+    bindCorrelateControls();
 
     setLinksButtonState();
     updateLinksSelectionSummary();

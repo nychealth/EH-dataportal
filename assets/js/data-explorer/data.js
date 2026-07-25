@@ -366,7 +366,7 @@ const loadData = async (this_IndicatorID) => {
     }
 
     // trigger 311 button render after all data fetches and joins have resolved
-    draw311Buttons(this_IndicatorID)
+    render311Links(this_IndicatorID)
 
 }
 
