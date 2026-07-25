@@ -266,7 +266,8 @@ Found while sweeping the Data Explorer for misleading names (DE audit §4.1
 follow-up). The DE-scoped instances are fixed; these are the parts that are
 site-wide or blocked.
 
-- **`#skip-header-target` is duplicated on most pages (P2, a11y).**
+- ~~**`#skip-header-target` is duplicated on most pages (P2, a11y).**~~
+  **FIXED 2026-07-25.**
   [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) puts it on
   `<main>`, and ~20 templates *also* put it on their own `<article>` — both
   explorers, every `data-features/*`, and others. The "Skip Header" link resolves
@@ -274,6 +275,21 @@ site-wide or blocked.
   this one is the keyboard-skip target on a NYC.gov property. Fix by dropping the
   id from the templates and keeping the `baseof.html` one, after checking nothing
   scrolls to the article copy.
+  **Resolution:** the id was dropped from **44 templates** — the `~20` estimate
+  above was low; 44 is the count on `feature-new-data-explorer` once
+  `data-explorer-old/` is excluded. The "checking nothing scrolls to the article
+  copy" step came back clean: nothing in `assets/`, `static/`, `content/` or
+  `config/` referenced the id, and the only references anywhere are the `href`
+  in `header.html` / `header-ds.html` / `header-de.html`. A `dev_stage` build
+  went from 367 pages carrying two targets to 42, and all 42 are
+  `data-explorer-old/` pages, which keep their copies until the old tree is
+  deleted (§1) — CLAUDE.md forbids modifying that tree.
+  Fixed alongside it: the `<main>` was not focusable, so the skip link could
+  scroll without moving keyboard focus. `tabindex="-1"` was added to the
+  `<main>` in `baseof.html` and `list.html`, covering 994 of 994 pages that
+  have a target. That focus behavior is standard a11y guidance but was not
+  reproduced in a browser (Playwright could not launch in the sandbox), so it
+  is marked `HYPOTHESIS (unverified)` in `baseof.html` per CLAUDE.md.
 - **Leading-digit ids are a live trap.** `id="311"` / `id="311label"` are valid
   HTML5 but **invalid CSS selectors** — `querySelector('#311')` throws
   `SyntaxError`, so only `getElementById` can reach them. The DE copies were
@@ -868,7 +884,7 @@ In addition to the map/chart gaps in the DE audit:
 | 15 | P3 | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` has no body — missing a `Sitemap:` directive |
 | 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
-| 18 | P2 | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + ~20 templates | `#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant. See §4a |
+| 18 | ~~P2~~ **FIXED 2026-07-25** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + 44 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — id dropped from 44 templates (not ~20), and `tabindex="-1"` added to the `<main>` in `baseof.html`/`list.html` so the skip link actually moves focus. `data-explorer-old/` keeps its copies until §1. See §4a |
 | 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
 | 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
 | 21 | P2 | `package.json` (`georaster@1.6.0` subtree) | 4 of the 8 open Dependabot alerts share one root — cheapest fix of the three groups in §3a |
