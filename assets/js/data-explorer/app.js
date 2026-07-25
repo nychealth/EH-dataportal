@@ -411,8 +411,8 @@ window.addEventListener('popstate', async (event) => {
     if (urlID && urlID !== DE.state.IndicatorID) {
 
         await loadIndicator(urlID, true);
-        printIndicatorInfo(urlID);
-        printMenus(urlID);
+        renderIndicatorInfo(urlID);
+        renderMenus(urlID);
         await renderMeasures();
         renderCurrentView(true);
         return;

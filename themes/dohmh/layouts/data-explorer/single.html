@@ -153,7 +153,7 @@
     const these_indicators = {{ $json | safeJS }};
 
     // Immediately call your function
-    printIndicators(these_indicators, "{{ .RelPermalink }}");
+    renderIndicatorList(these_indicators, "{{ .RelPermalink }}");
 
     checkURL()
     

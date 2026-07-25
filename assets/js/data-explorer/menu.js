@@ -39,16 +39,16 @@ const setDropdownLabel = (type, value) => {
 // ----------------------------------------------------------------------- //
 
 // Ensures one valid measure is selected before any menu rendering begins.
-const printMenus = async (indicatorID) => {
+const renderMenus = async (indicatorID) => {
 
-    debugLog('* printMenus');
+    debugLog('* renderMenus');
 
-    await ensureIndicatorsLoaded('printing menus');
+    await ensureIndicatorsLoaded('rendering menus');
 
     const indicator = indicators.find(d => d.IndicatorID === Number(indicatorID));
 
     if (!indicator || !indicator.Measures?.length) {
-        console.warn('printMenus: no indicator or measures found for', indicatorID);
+        console.warn('renderMenus: no indicator or measures found for', indicatorID);
         return;
     }
 
@@ -96,7 +96,7 @@ const updateAllMenus = (indicator) => {
         value: m.MeasureID
     }));
 
-    styleAndPrintMenu(measures, '.measures-holder', 'measure');
+    renderMenuSection(measures, '.measures-holder', 'measure');
 
     setDropdownLabel('measure', measure.MeasurementType);
 
@@ -127,7 +127,7 @@ const updateAllMenus = (indicator) => {
         });
     }
 
-    styleAndPrintMenu(geos, '.geo-holder', 'geo');
+    renderMenuSection(geos, '.geo-holder', 'geo');
 
     setDropdownLabel('geo', DE.state.GeoType);
 
@@ -155,7 +155,7 @@ const updateAllMenus = (indicator) => {
         DE.state.TimePeriodID = times.length ? times[0].value : null;
     }
 
-    styleAndPrintMenu(times, '.time-holder', 'time');
+    renderMenuSection(times, '.time-holder', 'time');
 
     setDropdownLabel('time', getTimeLabel(DE.state.TimePeriodID));
 };
@@ -166,9 +166,9 @@ const updateAllMenus = (indicator) => {
 // ----------------------------------------------------------------------- //
 
 // Renders a dropdown menu and binds its click behavior.
-const styleAndPrintMenu = (items, destination, type) => {
+const renderMenuSection = (items, destination, type) => {
 
-    debugLog("* styleAndPrintMenu:", type);
+    debugLog("* renderMenuSection:", type);
 
     const containers = document.querySelectorAll(destination);
 

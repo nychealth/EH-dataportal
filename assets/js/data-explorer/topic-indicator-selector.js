@@ -15,7 +15,7 @@
 // null until then, so callers must go through ensureIndicatorsLoaded.
 let indicators = null;
 
-// Destination URL set by printIndicators; used by selectIndicator on pages
+// Destination URL set by renderIndicatorList; used by selectIndicator on pages
 // that don't load app.js (e.g. section.html) to navigate instead of SPA-load.
 let indicatorSelectDestination = null;
 
@@ -168,7 +168,7 @@ const showTopicSelectorPrompt = () => {
 
 
 // ----------------------------------------------------------------------- //
-// When a topic is selected, show indicator menu modal, and print indicators
+// When a topic is selected, show indicator menu modal, and render its indicator list
 // ----------------------------------------------------------------------- //
 
 // Opens the indicator modal for the selected topic and remembers its state.
@@ -198,7 +198,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     $('#topicSelector').modal('hide');
 
-    printIndicators(indicators, dest);
+    renderIndicatorList(indicators, dest);
 
 }
 
@@ -309,13 +309,13 @@ const bindTopicSelectorControls = () => {
 
 
 // ----------------------------------------------------------------------- //
-// Print chosen topic's indicators to indicator selection modal 
+// Render chosen topic's indicators into the indicator selection modal
 // ----------------------------------------------------------------------- //
 
 // Rebuilds the indicator-selector modal's HTML for a topic, badging recently-updated indicators.
-const printIndicators = async (indList, destination) => {
+const renderIndicatorList = async (indList, destination) => {
 
-    debugLog("* printIndicators");
+    debugLog("* renderIndicatorList");
 
     // ----- resolve destination + DOM target, guard ----- //
 
@@ -455,13 +455,13 @@ if (document.readyState === 'loading') {
 
 
 // ----------------------------------------------------------------------- //
-// Print basic indicator info from metadata to page 
+// Render basic indicator info from metadata onto the page
 // ----------------------------------------------------------------------- //
 
 // Fills all on-page indicator name/description/methodology/source placeholders from metadata.
-const printIndicatorInfo = async (IndicatorID) => {
+const renderIndicatorInfo = async (IndicatorID) => {
 
-    debugLog("* printIndicatorInfo");
+    debugLog("* renderIndicatorInfo");
 
     // ----- resolve indicator record ----- //
 
@@ -469,7 +469,7 @@ const printIndicatorInfo = async (IndicatorID) => {
     // Normalize once so metadata lookups stay in sync with the load pipeline.
     const normalizedIndicatorId = Number(IndicatorID);
 
-    const data = await ensureIndicatorsLoaded('printing to page');
+    const data = await ensureIndicatorsLoaded('rendering indicator info');
     // console.log("Indicators ready to print to page!");
 
     const indicator = data.find(d => Number(d.IndicatorID) === normalizedIndicatorId);
@@ -612,12 +612,12 @@ const selectIndicator = async (id) => {
 
     // ----- run the full load pipeline ----- //
 
-    printIndicatorInfo(id);
+    renderIndicatorInfo(id);
     render311Links(id);
 
     await ensureIndicatorsLoaded('selectIndicator');
     await loadIndicator(id);
-    await printMenus(id);
+    await renderMenus(id);
     await renderMeasures();
 
     // ----- sync URL + render ----- //
@@ -679,17 +679,17 @@ const checkURL = async () => {
 
     // ----- kick off indicator-info and 311-button rendering early ----- //
 
-    printIndicatorInfo(chosenIndicator);
+    renderIndicatorInfo(chosenIndicator);
     render311Links(chosenIndicator);
 
     // ----- load metadata, indicator, menus, and measures in sequence ----- //
 
     // Load data first so timeLookup is populated before menus build.
-    const _indicators = await ensureIndicatorsLoaded('printing measure menu');
+    const _indicators = await ensureIndicatorsLoaded('rendering measure menu');
 
     await loadIndicator(chosenIndicator);
 
-    await printMenus(chosenIndicator);
+    await renderMenus(chosenIndicator);
 
     await renderMeasures();
 
