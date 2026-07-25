@@ -177,7 +177,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
     debugLog("* getIndicatorsForTopic");
     debugLog("Title:", title);
 
-    document.getElementById('printTopic').textContent = title.toLowerCase();
+    document.getElementById('selectedTopicName').textContent = title.toLowerCase();
 
     const indicators = JSON.parse(indicatorsJSON);
 
