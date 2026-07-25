@@ -21,7 +21,16 @@
         {{- partial "header.html" . -}}
     {{- end -}}
     
-    <main id="skip-header-target" role="main" data-pagefind-body>
+    <!--
+        tabindex="-1" makes <main> focusable so the header partials' "Skip Header"
+        link can move focus here, not just scroll.
+        HYPOTHESIS (unverified): browsers differ in whether a fragment jump to a
+        non-focusable element moves real focus or only the sequential-navigation
+        starting point, leaving focus on the link. This is standard a11y guidance
+        but was not reproduced in a browser for this repo.
+    -->
+
+    <main id="skip-header-target" role="main" tabindex="-1" data-pagefind-body>
         {{- block "main" . -}}{{- end -}}
         <ul id="results"></ul>
     </main>
