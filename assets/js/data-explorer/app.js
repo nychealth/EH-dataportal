@@ -517,8 +517,12 @@ $('.de-copy-citation-button[data-citation-target]').on('click', e => {
     trackDataExplorerEvent('click_citation');
 });
 
+// The old explorer tracked "how calculated" separately, because it was its own button
+// opening its own modal. The new explorer shows that text and the data sources in one
+// pane behind this single tab click, so a second event here would double-count one
+// action. Carry the coverage as a parameter instead.
 $('#v-pills-ds-tab').on('click', e => {
-    trackDataExplorerEvent('click_about');
+    trackDataExplorerEvent('click_about', { section: 'how_calculated_and_sources' });
 });
 
 
