@@ -31,9 +31,8 @@ const render311Links = (indicator_id) => {
 
             // ----- clear previous 311 UI state ----- //
 
-            document.getElementById('311').innerHTML = ''
-
-            // The take-action partial renders twice on the explorer, so update both destinations.
+            // Three destinations render on an explorer page: the desktop header dropdown, the
+            // mobile tab-bar dropdown, and the take-action partial. Drive them all off the class.
             let dest = document.querySelectorAll('.destination311')
 
             dest.forEach(element => element.innerHTML = '')
@@ -50,12 +49,12 @@ const render311Links = (indicator_id) => {
             // Show or hide the 311 heading and containers based on whether links exist.
             if (filteredCrosswalk.length > 0) {
 
-                document.getElementById('311label').innerHTML = 'Contact 311 about:'
+                document.getElementById('contact311Label').innerHTML = 'Contact 311 about:'
                 dest.forEach(element => element.classList.remove('hide'))
 
             } else {
 
-                document.getElementById('311label').innerHTML = ''
+                document.getElementById('contact311Label').innerHTML = ''
                 dest.forEach(element => element.classList.add('hide'))
 
             };
