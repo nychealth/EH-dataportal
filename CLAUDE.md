@@ -69,6 +69,12 @@ scripts/        Node dev tooling (characterization harness, smoke test, dev-serv
 
 **Orientation comments before code blocks:** Add a brief comment before each meaningful code block (function, object, initialization section, etc.) explaining what it does at a high level — even if the name alone makes it obvious. The user wants to know what's coming before reading the code, not just after.
 
+## Refactors and renames
+
+- **Clarity renames are pre-authorized.** The codebase mixes hand-written names with AI-generated ones from earlier refactors, so a name that actively *misleads* — describing something other than what the thing is — may be renamed as part of any refactor touching it. Rename what misleads, not every name you'd have chosen differently. Every rename must be *proven* complete, not assumed: `npm run lint` (`no-undef`) proves a JS identifier rename, since the old name ceases to exist; a scoped grep proves a template/SCSS/string rename.
+- **Element-id renames get their own commit**, separate from any JS change, and scoped to the new explorer. Ids are referenced from templates, JS string literals, SCSS, and `aria-labelledby` — grep all four. Never touch `data-explorer-old/`; it keeps its own independent copies of these ids and its own JS. See the Tier 4.1 Stage 4 commit (`f5867cacf3`) for the pattern.
+- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a 700-line diff only invites eyeballing. Tier 4.1 Stage 3 moved ~360 lines this way.
+
 ## Hugo-specific rules
 
 - Edit source files (`content/`, `layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
@@ -97,6 +103,7 @@ Key gotchas:
 - Magic MeasureIDs / ComparisonIDs that render logic branches on (poverty comparator, air-quality trend slices, quarterly measures, etc.) live in `DE_MEASURE_RULES` in `global.js`. Add new data-coupled IDs there with a comment, not as inline literals in `measures.js` / `trend.js`.
 - Verbose tracing goes through `debugLog()`, not raw `console.log`. It's defined in `head.html` (site-wide, next to `hugoEnv`/`baseURL`/`data_repo`/`data_branch`) rather than `global.js`, because `topic-indicator-selector.js` also runs on `data-explorer/section.html`, which loads it without the rest of the SPA bundle — a `global.js`-only helper would throw `ReferenceError` there. It defaults on for every Hugo environment except `production`/`prod_prod` (reads `hugoEnv`), so local/dev/staging need no setup; `localStorage.setItem('de_debug', '1' | '0')` overrides it either direction per browser. Use it for new trace/dump statements; leave genuine error-path logging (`.catch(error => console.log(error))`) as plain `console.log`/`console.error` so failures stay visible regardless of environment or flag.
 - `assignGeoRank` derives its ranking from `prettifyGeoType` (`GEO_RANK_BY_PRETTY_TYPE` in `global.js`) instead of its own `switch`. A new versioned geotype variant (e.g. a future `NTA2030`) only needs adding to `prettifyGeoType` — don't reintroduce a parallel version list in `assignGeoRank`.
+- The seven `show*` renderers and `syncLinksSelectionsToMapSelection` are declared `let` in `global.js` and **assigned** (not declared) in `measures.js`, now at module scope. Writing `const showMap = …` redeclares the `global.js` `let` in the shared top-level scope → load-time `SyntaxError` on *every* page. Keep them assignments. `npm run smoke` is the runtime catch for this.
 
 ## Audit documents
 
