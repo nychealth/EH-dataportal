@@ -48,8 +48,6 @@ const DE = {
         selectedLinksSecondaryMeasureId: undefined,
         selectedLinksAbout: undefined,
         selectedLinksSources: [],
-        defaultLinksAbout: undefined,
-        defaultLinksSources: [],
         defaultPrimaryLinksMeasureMetadata: undefined,
         defaultSecondaryMeasureMetadata: undefined,
         selectedPrimaryMeasureMetadata: undefined,

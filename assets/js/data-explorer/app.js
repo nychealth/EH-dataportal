@@ -510,26 +510,8 @@ $("#groupByBoroughToggle").on("change", (e) => {
 
 
 // ----------------------------------------------------------------------- //
-// content truncation
-// ----------------------------------------------------------------------- //
-
-// Expands the full metadata description after the user clicks Show more.
-function reveal() {
-
-    // toggle the truncated / full description blocks
-    document.getElementById('truncate').classList.toggle('hide');
-    document.getElementById('full').classList.toggle('show');
-    document.getElementById('contenttoggle').innerHTML = `Show less... <i class="fas fa-caret-square-up" aria-hidden="true"></i>`;
-}
-
-
-// ----------------------------------------------------------------------- //
 // add listeners to metadata buttons
 // ----------------------------------------------------------------------- //
-
-$('#howCalcButton').on('click', e => {
-    trackDataExplorerEvent('click_how_calculated');
-});
 
 $('.de-copy-citation-button[data-citation-target]').on('click', e => {
     trackDataExplorerEvent('click_citation');

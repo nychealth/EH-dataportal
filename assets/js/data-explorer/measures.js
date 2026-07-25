@@ -349,7 +349,7 @@ const clickLinksToggle = (e) => {
 
         // - - - links branch - - - //
 
-        if (!button.matches('#show-links, #linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
+        if (!button.matches('#linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
             return;
         }
 
