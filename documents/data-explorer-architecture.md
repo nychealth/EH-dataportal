@@ -139,7 +139,7 @@ checkURL()
 
 ### 3.4 DOMContentLoaded (fires after inline block)
 
-- Caches DOM references: `tabBar`, `tabTrends`, `tabCorrelate`, `tabTable`, `aboutMeasures`, `dataSources`, `btnToggleDisparities`.
+- Caches DOM references: `tabBar`, `tabTrends`, `tabCorrelate`, `tabTable`, `aboutMeasures`, `dataSources`, `correlatePillRow`.
 - Registers tab click handlers (§4.2).
 - `de-tab-content.html` inline scripts: toggle-off handler (§4.3), `closeTabPane` (§4.4), mobile accordion, `updateHasOpenPanelClass()` with MutationObserver.
 - Calls `updateHasOpenPanelClass()` immediately to set the initial panel-expanded state.

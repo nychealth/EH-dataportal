@@ -455,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // grab DOM nodes for the measure-info and source sections
     aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
     dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
-    btnToggleDisparities = document.querySelector('.btn-toggle-disparities');
+    correlatePillRow = document.querySelector('.de-correlate-pill-row');
 
     // ----- define tab-to-overlay map ----- //
 

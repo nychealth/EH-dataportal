@@ -297,15 +297,15 @@ const clickLinksToggle = (e) => {
 
     // ----- guard: no-op if disparities toggle missing ----- //
 
-    if (!btnToggleDisparities) {
+    if (!correlatePillRow) {
         return;
     }
 
     // ----- rebind: unbind stale handler, bind fresh click handler ----- //
 
-    $(btnToggleDisparities).off('.toggle');
+    $(correlatePillRow).off('.toggle');
 
-    $(btnToggleDisparities).on('click.toggle', event => {
+    $(correlatePillRow).on('click.toggle', event => {
 
         // - - - resolve clicked button, ignore missing/active/disabled - - - //
 
