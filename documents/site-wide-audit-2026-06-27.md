@@ -165,10 +165,72 @@ every page. Current issues, roughly in impact order:
   target; at minimum bump 4.3.1 → latest 4.6.x for the security patches.
 - **Suspicious/again-check deps:** `ci` (`^2.3.0`) looks like an accidental
   install (a small CLI lib, unlikely to be intentional). Audit
-  `@mapbox/leaflet-pip`, `geoblaze`, `georaster*`, `qrcode-generator`,
-  `jquery-flexdatalist` for actual use and drop the unused ones.
-- **No `npm audit` / Dependabot.** There is a CodeQL workflow but no dependency
-  scanning. Add Dependabot (npm + github-actions ecosystems).
+  `@mapbox/leaflet-pip`, `qrcode-generator`, `jquery-flexdatalist` for actual use
+  and drop the unused ones. **`georaster` / `georaster-layer-for-leaflet` /
+  `geoblaze` are confirmed IN USE (2026-07-25)** — `data-features/heatstory.html`
+  loads all three from `node_modules` into the browser; don't drop them. (Note
+  `@mapbox/leaflet-pip` is installed but loaded by no template — see §5c.)
+- ~~**No `npm audit` / Dependabot.**~~ **CORRECTED 2026-07-25: Dependabot IS
+  enabled and reporting.** It surfaces 8 open alerts on the default branch, which
+  is why every `git push` prints a vulnerability banner. Triage in **§3a** below.
+  The gap is not scanning — it's that nobody had read the results.
+
+### 3a. Dependabot alert triage (added 2026-07-25)
+
+**Status: all 8 open alerts assessed, none fixed.** Nothing here is an emergency,
+but the banner on every push had never been read, and one item is a real project
+that should be scheduled rather than rushed.
+
+Two numbers that do **not** reconcile, so don't try: Dependabot reports **8**;
+`npm audit` reports far more (`chokidar`, `cacache`, `glob`, `brace-expansion`,
+`rimraf`…). The extras are dev-tree transitives Dependabot's default config
+doesn't alert on. Use the 8 as the work list.
+
+**Group 1 — `decompress` (CRITICAL). Not in the production path at all.**
+Transitive under `hugo-extended@0.146.7`, a local dev convenience. All four
+workflows pin `hugo-version: "0.147.3"` through the Hugo setup action instead, so
+this package never participates in a build that produces production output. The
+vulnerability is archive-extraction path traversal and the archive is the Hugo
+release itself. Fix: `hugo-extended@0.164.0` (semver-major). **Also ask whether it
+belongs in `package.json` at all**, since CI ignores it. Good candidate to dismiss
+with a reason in the Dependabot UI so it stops padding the count.
+
+**Group 2 — vega / vega-functions / vega-expression (3 × HIGH). These ship, but
+the exploitation paths are not present.** `lib-vega.html` bundles vega 5.33.1 +
+vega-lite 5.23.0 + vega-embed 6.29.0 from `node_modules` and serves them with SRI
+on every explorer page, plus data-features and data-stories. Each advisory's
+precondition was checked rather than assumed:
+
+- The `VEGA_DEBUG` advisories require that global. `VEGA_DEBUG` appears in neither
+  shipped bundle nor any first-party code.
+- The expression-abuse XSS requires untrusted input reaching a Vega expression.
+  The codebase contains exactly two `"expr"` fields — `correlate.js:425` and
+  `trend.js:60` — both static literals with no interpolation. Metadata-derived
+  strings reach specs as **data values**, never as expressions.
+- `setdata` is not called anywhere.
+
+Fix is vega 6.3.1 / vega-lite 6.4.3 / vega-embed 7.1.0 — **all semver-major**,
+across four chart modules (bar, trend, correlate, disparities) plus the print
+path. Schedule as its own PR with `npm run characterize -- --check` as the safety
+net; that harness exists for exactly this kind of change. **Do not rush it** — no
+reachable CVE is forcing the timeline, and a botched vega-lite 5→6 spec migration
+would break every chart on the site.
+**Re-check if this ever changes:** the "not exploitable" finding rests on specs
+being code-built from trusted metadata. If a spec, expression, or signal ever
+becomes assembled from fetched or user-supplied strings, this group jumps to P1.
+
+**Group 3 — `serialize-javascript` (high), `micromatch` (moderate), `elliptic`
+and `braces` (low). One root cause: all four are transitive under
+`georaster@1.6.0`**, which is genuinely used (see §3 — heatstory loads it into the
+browser). npm reports non-major fixes available, unconfirmed by an actual run.
+**Cheapest real win of the three groups** — four alerts for one small change,
+verifiable by loading `data-features/heat-story/` and confirming the raster layer
+renders.
+
+**Recommended order:** group 3 → `hugo-extended` bump (or removal) → vega as a
+scheduled project. Then dismiss anything left that is genuinely unreachable, with
+a written reason, so a future alert that *is* reachable stands out instead of
+being lost in a count of eight.
 
 ---
 
@@ -809,6 +871,9 @@ In addition to the map/chart gaps in the DE audit:
 | 18 | P2 | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + ~20 templates | `#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant. See §4a |
 | 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
 | 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
+| 21 | P2 | `package.json` (`georaster@1.6.0` subtree) | 4 of the 8 open Dependabot alerts share one root — cheapest fix of the three groups in §3a |
+| 22 | P3 | `package.json` (`hugo-extended`) | Critical-rated `decompress` alert, but CI pins Hugo via the setup action and never uses this package — dismiss with a reason, or drop the dep. See §3a |
+| 23 | P2 (scheduled, not urgent) | [lib-vega.html](../themes/dohmh/layouts/partials/lib-vega.html) | 3 high Vega XSS alerts ship to browsers, but no exploitation path exists in this codebase. Fix needs semver-major bumps across 4 chart modules — own PR, characterization-gated. See §3a |
 
 ---
 
@@ -985,7 +1050,8 @@ HTML response — it's less than it looks:
    and wiring ESLint + a Hugo build into a PR check workflow (lint-in-CI is deferred, §7).
 2. Add `.gitattributes` LF rules; delete the `dos2unix` build step.
 3. Pin CI actions to SHAs; add `permissions:` blocks; switch to `npm ci` + cache;
-   add Dependabot.
+   ~~add Dependabot~~ **Dependabot is already enabled** — 8 open alerts, triaged in
+   §3a (2026-07-25). The remaining work is acting on them, not enabling scanning.
 4. Decide a testing strategy (ad-hoc `node:test` scripts vs. adopting a
    framework like Vitest) — unresolved as of 2026-07-02, see §7.
 
