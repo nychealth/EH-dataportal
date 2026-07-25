@@ -198,6 +198,60 @@ every page. Current issues, roughly in impact order:
   `g-dev-tools.scss` suggest debug scaffolding lives in the theme. Confirm none
   ship to production.
 
+### 4a. Element-id hygiene, and one shared partial that constrains it (added 2026-07-25)
+
+Found while sweeping the Data Explorer for misleading names (DE audit §4.1
+follow-up). The DE-scoped instances are fixed; these are the parts that are
+site-wide or blocked.
+
+- **`#skip-header-target` is duplicated on most pages (P2, a11y).**
+  [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) puts it on
+  `<main>`, and ~20 templates *also* put it on their own `<article>` — both
+  explorers, every `data-features/*`, and others. The "Skip Header" link resolves
+  to the first match, so the second is inert, but duplicate ids are invalid and
+  this one is the keyboard-skip target on a NYC.gov property. Fix by dropping the
+  id from the templates and keeping the `baseof.html` one, after checking nothing
+  scrolls to the article copy.
+- **Leading-digit ids are a live trap.** `id="311"` / `id="311label"` are valid
+  HTML5 but **invalid CSS selectors** — `querySelector('#311')` throws
+  `SyntaxError`, so only `getElementById` can reach them. The DE copies were
+  renamed to `#contact311Label` / `#contact311Links*`; grep for other numeric-
+  leading ids before writing any new `querySelector`.
+- **`takeaction.html` is shared, so its ids can't move.** It is included by both
+  [data-explorer/single.html:68](../themes/dohmh/layouts/data-explorer/single.html)
+  and [data-explorer-old/single.html:455](../themes/dohmh/layouts/data-explorer-old/single.html),
+  and the old explorer's `data.js` still resolves `#311`/`#311label` by name. It
+  therefore keeps the old ids while the DE-only partials moved off them. **This
+  unblocks itself when the old tree is deleted (§1)** — fold it into that pass.
+- **Its hidden copy contributes nothing to search.** On the new explorer the
+  partial renders inside a `d-none` block that exists specifically to keep
+  topic-level content Pagefind-indexable (the visible equivalent lives in a
+  `data-pagefind-ignore`d JS shell). But both of its 311 elements are populated
+  **client-side only**, so at build time — which is when Pagefind reads the DOM —
+  they are empty. They are dead weight inside a block whose entire purpose is
+  indexing. Same shape as the §12 finding about the explorer's client-rendered
+  content being invisible to crawlers.
+
+### 4b. Deferred: the SPA says `links`, the UI says "Correlate" (added 2026-07-25)
+
+The user-facing vocabulary is **Correlate** / **Correlations**; the code calls the
+same feature `links` in **454 places across 11 files** (222 in `measures.js`
+alone). Deferred by decision — recorded here so the cost is known rather than
+rediscovered. Three external contracts make it more than a rename:
+
+- the canonical `?overlay=links` query param (live, shareable URLs);
+- the legacy `#display=links` / `#tab-links` hashes that `normalizeLegacyHashOverlayURL` still honours;
+- the `links_disparities` GA value, which would break series continuity.
+
+Options, cheapest first: **(1) leave it** — the current state, consistent within
+itself and only confusing at the UI boundary; **(2) rename internals only**,
+keeping `links` as the wire format at the three contract points, with one
+documented translation layer — most of the benefit, but introduces a
+vocabulary seam someone must maintain; **(3) rename everything including the URL
+param**, adding `links` → `correlate` to the existing legacy-URL normalizer so old
+bookmarks keep working, and accepting a GA discontinuity. Do (2) or (3) only as
+its own PR, never folded into other work.
+
 ---
 
 ## 5. JavaScript outside the SPA (P2/P3)
@@ -669,10 +723,19 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
   ([search-modal.html:33](../themes/dohmh/layouts/partials/search-modal.html)),
   `search_click` and `click_search_open` (both in [site.js](../assets/js/site.js)).
   Decide one search vocabulary.
-- **Inherited typo `click_how_caclulated`** ("caclulated") exists in **both**
-  explorers — [old app.js:152](../assets/js/data-explorer-old/app.js) and the
-  live [app.js:446](../assets/js/data-explorer/app.js) — so it has been
-  miscounting in GA for a long time and was faithfully copied into the rewrite.
+- **Inherited typo `click_how_caclulated`** ("caclulated") — **resolved in the new
+  explorer 2026-07-25**, still present in [old app.js:152](../assets/js/data-explorer-old/app.js).
+  The new explorer's handler was bound to `#howCalcButton`, an element that exists
+  in no new-explorer template, so the event had in fact **never fired** from the
+  rewrite; the dead handler was deleted (`71d321226e`). The new explorer has no
+  separate "how calculated" affordance at all — that text and the data sources
+  share one pane behind a single `#v-pills-ds-tab` click that already fires
+  `click_about` — so a second event there would double-count one action. The
+  coverage is carried as a parameter instead (`94a0ac1fcf`):
+  `trackDataExplorerEvent('click_about', { section: 'how_calculated_and_sources' })`.
+  **Reporting consequence:** the new explorer's figures for this dimension are
+  *not* continuous with the historical series, which lives under the misspelled
+  name. Anyone comparing across the cutover needs to know that.
 - **Param-name casing is inconsistent:** `IndicatorID` (PascalCase) in
   `click_indicator` vs snake_case everywhere else (`file_name`, `chart_type`,
   `page_viewed`, `click_url`). GA4's convention is snake_case; mixed casing makes
@@ -701,6 +764,16 @@ In addition to the map/chart gaps in the DE audit:
 
 - Nav list markup (`<a><li></li></a>`) and the title nesting error (§4) are
   validity/SR issues on every page.
+- **Dangling `aria-labelledby` leaves a dialog with no accessible name.** Three DE
+  modals pointed at ids that existed nowhere (`#topicSelectorLabel`,
+  `#indicatorSelectorLabel`, `#learnMoreLabel` — Bootstrap boilerplate whose title
+  element had been replaced), so all three announced as bare "dialog". **Fixed
+  2026-07-25** (`574e856432`); see DE audit §4.1-follow-up Finding C. Worth a
+  site-wide sweep for the same pattern: a dangling reference fails **silently**,
+  which is exactly why it survived. One line in a browser console finds them all —
+  `[...document.querySelectorAll('[aria-labelledby]')].filter(el => el.getAttribute('aria-labelledby').split(/\s+/).some(id => !document.getElementById(id)))`.
+- **Duplicate ids break `aria-labelledby` and `for` silently too** — a reference
+  resolves to the first match, so the second element is orphaned. See §4a.
 - `href="#"` action links (search/dropdown toggles) throughout the header —
   prefer `<button>` for actions.
 - Google-Translate-as-i18n is itself a known a11y/SEO weakness (translated DOM
@@ -727,12 +800,15 @@ In addition to the map/chart gaps in the DE audit:
 | 9 | P3 | [header.html:107…](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup |
 | 10 | ~~P3~~ **NOT A DEFECT — corrected + rewritten 2026-07-14** | [head.html:112-117](../themes/dohmh/layouts/partials/head.html) | The webfont `range` loop was called dead here and in the DE audit. It wasn't: evaluating `$woff.RelPermalink` as an argument triggered Hugo's lazy publish-on-access for the matched resource, which is exactly what the fingerprinted FA CSS's relative `url(../webfonts/…)` `@font-face` rules need. Deleting it would have broken every FA icon site-wide once the JS injector was also dropped (row 4). Rewritten to use the explicit `.Publish` idiom instead of relying on an accidental read |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
-| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) + live [data-explorer/app.js:446](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated` in both explorers, incl. the live one (see §9) |
+| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) | Misspelled GA event `click_how_caclulated` — **new explorer resolved 2026-07-25**; its handler was bound to a non-existent element and had never fired, and the coverage is now a `click_about` parameter. Old explorer still has it (see §9) |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
 | 15 | P3 | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` has no body — missing a `Sitemap:` directive |
 | 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
+| 18 | P2 | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + ~20 templates | `#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant. See §4a |
+| 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
+| 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
 
 ---
 

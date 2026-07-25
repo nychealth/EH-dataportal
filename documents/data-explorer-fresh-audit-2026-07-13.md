@@ -10,7 +10,7 @@ This builds on (and does not re-report) the prior audits: every finding in `docu
 
 **Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.6, 4.7, 4.8, 4.9. Every one of these is **merged into `feature-new-data-explorer` and pushed** — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
 
-**Open:** Tier 4.2, 4.3, and 4.4 (parked until comparative user testing ends). One deliberate won't-do inside 3.3: CSS `| minify`, rejected by the user — verified absent from `head.html`; don't re-propose without asking. **Tier 4.5 (guardrails) is done** — complete on `feature-de-tier4.5-guardrails` (2026-07-23, 9 commits), fast-forward merged into `feature-new-data-explorer` at `a904b3efab`; see its §4.5 status entry below. **Tier 4.1 is done** — see its §4.1 status entry.
+**Open:** Tier 4.2, 4.3, and 4.4 (parked until comparative user testing ends). One deliberate won't-do inside 3.3: CSS `| minify`, rejected by the user — verified absent from `head.html`; don't re-propose without asking. **Tier 4.5 (guardrails) is done** — complete on `feature-de-tier4.5-guardrails` (2026-07-23, 9 commits), fast-forward merged into `feature-new-data-explorer` at `a904b3efab`; see its §4.5 status entry below. **Tier 4.1 is done** — see its §4.1 status entry, and the **4.1 follow-up naming sweep** (2026-07-25, branch `feature-de-naming-cleanup`) immediately after it, which also fixed a duplicate-id collision and three modals that had no accessible name.
 
 ## Decisions (2026-07-13, from review)
 
@@ -210,6 +210,37 @@ It currently: resets per-indicator state, computes table defaults, sorts measure
 - **Stage 4 / Task 5** (`f5867cacf3`): toggle element id `dropdownLinksMeasures` → `linksDropdownToggle` (new explorer only) so each element's id matches its JS variable.
 
 Pure relocation throughout — no behavioral change, and no load-order, `single.html`, `section.html`, `eslint.config.mjs`, or CLAUDE.md-architecture change. **Incidental finding (separate, pre-existing — not part of this tier):** `DE_MEASURE_RULES.trendAnnualAverageMeasureIds [365,370,375,391]` and `trendSummerMeasureIds [386]` match **zero** measures across all 282 current indicators (current PM2.5 = 1425/1426/1427), so `showBoroughTrend`'s annual-average/summer slice branches are dead code against the live data. Worth a follow-up prune; tracked here as a `DE_MEASURE_RULES` staleness item.
+
+### 4.1 follow-up — naming sweep (added + executed 2026-07-25)
+
+4.1's Stage 4 renamed one element id whose name described something other than what the element was. The question that opened this sweep was whether that was a one-off; it was not. Branch `feature-de-naming-cleanup` off `feature-new-data-explorer`, executed inline (no subagents — every item is grep- or `no-undef`-provable, so the controller did the work directly).
+
+**Finding A — names describing the wrong thing.** Shipped in three commits:
+
+| Old | New | Why it misled |
+|---|---|---|
+| `.btn-toggle-disparities` / `btnToggleDisparities` | `.de-correlate-pill-row` / `correlatePillRow` | A *container* named as a button; it delegates clicks for both the Measures dropdown and the Disparities button (`befc1b2218`) |
+| `clickLinksToggle` | `bindCorrelateControls` | Doesn't click; not limited to Links (`7858735931`) |
+| `handleToggle` | `bindTableGroupToggles` | Names no particular toggle |
+| `draw311Buttons` | `render311Links` | Renders `<a>` links, not buttons |
+| `#tableCopy` | `#tableViewNote` | Reads as the copy-to-clipboard affordance the table also has |
+| `printMenus` / `styleAndPrintMenu` / `printIndicators` / `printIndicatorInfo` | `renderMenus` / `renderMenuSection` / `renderIndicatorList` / `renderIndicatorInfo` | `print` meant both "render into the DOM" and "export/print-to-image" (`d3ed6ed93f`) |
+
+The `print*` set was widened past the original plan on purpose: renaming only two of the four would have left `print` meaning "render" in one file, "export" in another and "render" again in a third — worse than a uniformly wrong vocabulary. Export-side `print*` (`print.js`, `DE.print`, `#printVis`, `printSpec`) is untouched and now unambiguous.
+
+**Finding B — duplicate and invalid element ids** (`f963da0612`, `f0a4f06611`; ids kept to their own commits per CLAUDE.md):
+- `#dropdownMenuButton` rendered **twice** on every explorer page — the desktop Take Action toggle (`header-de.html`) and the mobile one (`de-tab-button.html`), both in the DOM though only one is ever visible. Now `takeActionToggleDesktop` / `takeActionToggleMobile`.
+- `#311` / `#311label` also rendered twice, and are **invalid CSS selectors** — a leading digit means `querySelector('#311')` throws `SyntaxError`, so only `getElementById` could ever reach them. `de-tab-button.html` had worked around the collision with `id="311-2"`, a suffix that names nothing. The two DE-only partials now use `#contact311Label` / `#contact311LinksDesktop` / `#contact311LinksMobile`. `takeaction.html` deliberately keeps the old names — it is **shared with `data-explorer-old/single.html`**, whose `data.js` still resolves both by those names. Renaming only the DE-only copies still cleared the duplication, since takeaction then holds the sole copy of each.
+- `#printTopic` → `#selectedTopicName`, the last render-side `print`.
+- A page-wide duplicate-id sweep in-browser went from `{skip-header-target, 311, 311label}` to `{skip-header-target}` alone. That remaining one is site-wide and out of DE scope — see site-wide audit §11.
+
+**Finding C — three modals with no accessible name** (`574e856432`). Surfaced by Finding B's sweep, unrelated to the renames and pre-existing: `#topicSelector`, `#indicatorSelector` and `#learnMore` each pointed `aria-labelledby` at an id that exists nowhere in the repo (Bootstrap boilerplate whose title element was replaced at some point). All three announced as bare "dialog", including the dataset picker that is the main way into the explorer. Note the first fix attempt was itself inadequate — labelling each modal with its whole breadcrumb `h4` gave the two picker dialogs the *same* name ("Choose topic > Select dataset"), so each now points at a span around only its own active step. Computed names are now "Choose topic", "Select dataset", "About <indicator>", confirmed against Playwright's accessibility tree.
+
+**Deferred, with cost known:** `links` → `correlate`. The user-facing vocabulary is "Correlate"/"Correlations"; the code says `links` in 454 places across 11 files (222 in `measures.js` alone), plus three external contracts — the `?overlay=links` query param, the legacy `#display=links` / `#tab-links` hashes, and the `links_disparities` GA value. Left alone by decision; options costed in site-wide audit §4.
+
+**Incidental, not acted on:** `documents/data-explorer-architecture.md` is broadly stale beyond the renames applied to it here — it still describes the tree as `data-explorer-new/` and calls `trend.js`, `correlate.js` and `disparities.js` console-logging stubs. Worth a refresh independent of this branch.
+
+**Verification approach.** Deliberately not uniform, per CLAUDE.md's cheapest-sufficient-rung rule: JS identifier renames are proven outright by `npm run lint` (`no-undef`) — the old name ceases to exist — and needed no browser. Class, id and template-string renames are strings on *both* sides, which no static rule here can prove, so each got a targeted in-browser check (delegated click still bound and firing; `getElementById` still resolving; duplicate-id and `aria-labelledby` sweeps; all three 311 destinations still populating). Every commit also passed `characterize --check` and `smoke` 13/13.
 
 ### 4.2 One indicator-load pipeline + URL module (consolidated #7/#12, new pin)
 The sequence `loadIndicator → printIndicatorInfo → printMenus → renderMeasures → renderCurrentView` is duplicated three times with small drift: `checkURL` (topic-indicator-selector.js:636-705), `popstate` (app.js:374-438), and `selectIndicator` (topic-indicator-selector.js:570-628). URL parsing/coercion is likewise duplicated between `checkURL` and `popstate`, and history writes happen at 5 sites. Extract `loadAndRenderIndicator(id, { pushHistory })` plus `parseSelectionFromURL()`/`serializeSelection()`. Add the stale-response token (consolidated #6) inside the one pipeline while you're there — rapid back/forward or double-clicked indicators can currently interleave fetches.
