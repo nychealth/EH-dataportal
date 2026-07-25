@@ -14,7 +14,8 @@
     "scripts": {
         "lint": "eslint assets/js/data-explorer",
         "characterize": "node scripts/de-characterization.mjs",
-        "smoke": "node scripts/smoke-pages.mjs"
+        "smoke": "node scripts/smoke-pages.mjs",
+        "docs-check": "node scripts/docs-check.mjs"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
