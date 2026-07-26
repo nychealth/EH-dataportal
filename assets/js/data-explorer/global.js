@@ -192,10 +192,6 @@ let showComparisonTrend;
 let showLinks;
 let syncLinksSelectionsToMapSelection;
 
-// Compared against window.history.state in data.js to detect first-load vs. popstate
-// navigation. Renamed from `state` so that bare name stays free for DE.state.
-let historyState;
-
 // DOM ref for the Correlate tab's pill row — the container that delegates clicks for
 // both the Measures dropdown and the Disparities button. Resolved once the page shell exists.
 let correlatePillRow;
