@@ -42,6 +42,55 @@ const buildCanonicalSearchParams = () => {
 
 
 // ----------------------------------------------------------------------- //
+// read current selection from the URL
+// ----------------------------------------------------------------------- //
+
+// The read counterpart to buildCanonicalSearchParams(). Every entry point that
+// boots or restores a view (initial load, back/forward) parses through this one
+// function, so they cannot drift in how they coerce or alias params again.
+const parseSelectionFromURL = () => {
+
+    const params = new URLSearchParams(window.location.search);
+
+    // parseFloat, not Number: it was already the convention for MeasureID and
+    // TimePeriodID, and unifying on it only changes malformed input like
+    // "2380abc", which was never a supported URL.
+    const toNumber = (value) => (value ? parseFloat(value) : null);
+
+    const rawOverlay = params.get('overlay');
+
+    return {
+
+        id:           toNumber(params.get('id')),
+        MeasureID:    toNumber(params.get('MeasureID')),
+
+        // GeoTypeID is the legacy alias. normalizeLegacyURL() rewrites it out of the
+        // URL, but read it too so a hand-typed link still parses.
+        GeoType:      params.get('GeoType') || params.get('GeoTypeID') || null,
+
+        TimePeriodID: toNumber(params.get('TimePeriodID')),
+
+        // 'map' is the legacy spelling of the bar overlay.
+        overlay:      rawOverlay === 'map' ? 'bar' : (rawOverlay || null)
+
+    };
+
+};
+
+
+// Copies a parsed selection onto the shared state, skipping absent fields so
+// anything the URL omits is left for the defaults to fill in.
+const applySelectionToState = (selection) => {
+
+    if (selection.MeasureID)    DE.state.MeasureID    = selection.MeasureID;
+    if (selection.GeoType)      DE.state.GeoType      = selection.GeoType;
+    if (selection.TimePeriodID) DE.state.TimePeriodID = selection.TimePeriodID;
+    if (selection.overlay)      DE.state.overlay      = selection.overlay;
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // history state helpers
 // ----------------------------------------------------------------------- //
 
@@ -240,12 +289,25 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // This is a normalization pass, not a user navigation event, so replaceState keeps history
     // clean while still making the URL canonical for refreshes and copied links.
-    window.history.replaceState(window.history.state, '', nextURL);
-    debugLog('replaceState →', nextURL.search);
+    writeHistoryState('replaceState', window.history.state, nextURL);
 
 };
 
-normalizeLegacyHashOverlayURL();
+
+// Rewrites every legacy URL form in one pass. Each normalizer self-guards and is a
+// no-op on an already-canonical URL, so callers don't pre-check which form they have.
+// Hash first: it can add an overlay param that the query-param passes then canonicalize.
+const normalizeLegacyURL = () => {
+
+    normalizeLegacyHashOverlayURL();
+    normalizeLegacyGeoTypeURL();
+    normalizeLegacyOverlayURL();
+
+};
+
+// Runs at parse time, before checkURL() boots the app from the template, so every
+// later reader sees canonical params.
+normalizeLegacyURL();
 
 
 // ----------------------------------------------------------------------- //
@@ -373,46 +435,26 @@ const renderCurrentView = (updateMap = false) => {
 // Restores explorer state when the user navigates browser history.
 window.addEventListener('popstate', async (event) => {
 
-    // ----- normalize incoming URL ----- //
+    // ----- normalize incoming URL, then read the canonical selection ----- //
 
     debugLog("popstate →", window.location.search, window.location.hash);
 
-    normalizeLegacyHashOverlayURL();
+    normalizeLegacyURL();
 
-    // ----- parse URL params ----- //
-
-    const params = new URLSearchParams(window.location.search);
-
-    // parse each URL param, coercing numeric fields to floats
-    const urlID           = params.get('id')          ? parseFloat(params.get('id'))          : null;
-    const urlMeasureID    = params.get('MeasureID')   ? parseFloat(params.get('MeasureID'))   : null;
-    const urlGeoType      = params.get('GeoType') || params.get('GeoTypeID') || null;
-    const urlTimePeriodID = params.get('TimePeriodID') ? parseFloat(params.get('TimePeriodID')) : null;
-    const urlOverlay      = params.get('overlay')     || null;
-
-    // ----- rewrite legacy param aliases ----- //
-
-    if (params.get('GeoTypeID') && !params.get('GeoType')) {
-        // rewrite GeoTypeID alias before reading it into globals
-        normalizeLegacyGeoTypeURL();
-    }
-
-    if (urlOverlay === 'map') {
-        normalizeLegacyOverlayURL();
-    }
+    const selection = parseSelectionFromURL();
 
     // ----- restore overlay global ----- //
 
-    if (urlOverlay) DE.state.overlay = urlOverlay === 'map' ? 'bar' : urlOverlay;
+    if (selection.overlay) DE.state.overlay = selection.overlay;
 
     // ----- reload full pipeline on indicator change ----- //
 
     // Reload the full indicator pipeline when history points to a different indicator.
-    if (urlID && urlID !== DE.state.IndicatorID) {
+    if (selection.id && selection.id !== DE.state.IndicatorID) {
 
-        await loadIndicator(urlID, true);
-        renderIndicatorInfo(urlID);
-        renderMenus(urlID);
+        await loadIndicator(selection.id, true);
+        renderIndicatorInfo(selection.id);
+        renderMenus(selection.id);
         await renderMeasures();
         renderCurrentView(true);
         return;
@@ -420,9 +462,7 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- sync sub-indicator globals, rebuild menus ----- //
 
-    if (urlMeasureID)    DE.state.MeasureID    = urlMeasureID;
-    if (urlGeoType)      DE.state.GeoType      = urlGeoType;
-    if (urlTimePeriodID) DE.state.TimePeriodID = urlTimePeriodID;
+    applySelectionToState(selection);
 
     // sync the dropdown menus to match the restored globals
 

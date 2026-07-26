@@ -637,30 +637,24 @@ const checkURL = async () => {
 
     debugLog("* checkURL");
 
-    // ----- parse URL params, normalize legacy GeoTypeID alias ----- //
-
-    const urlParams = new URLSearchParams(window.location.search);
+    // ----- read the canonical selection from the URL ----- //
 
     // URL Format: .../TOPIC/?id=2133&MeasureID=239&GeoType=CDTA&TimePeriodID=123
-    // Compatibility/confusion alias: GeoTypeID also accepted on read
+    // Legacy forms (the GeoTypeID alias, overlay=map, #display=… hashes) were already
+    // rewritten by normalizeLegacyURL() when app.js parsed, so only canonical params
+    // reach here.
 
-    const paramsObj = Object.fromEntries(urlParams.entries());
+    const selection = parseSelectionFromURL();
 
-    debugLog('URL Parameters:');
-    debugLog(paramsObj);
+    debugLog('URL selection:');
+    debugLog(selection);
 
-    if (paramsObj.GeoTypeID && !paramsObj.GeoType) {
-        // Normalize the URL before menus read it so every downstream branch sees one GeoType key.
-        normalizeLegacyGeoTypeURL();
-        paramsObj.GeoType = paramsObj.GeoTypeID;
-    }
-
-    const chosenIndicator = Number(paramsObj.id);
+    const chosenIndicator = selection.id;
 
     // ----- guard: open chooser if URL has no valid indicator ID ----- //
 
     // Wait for the window load event so Bootstrap has initialized before showing the modal.
-    if (!paramsObj.id || isNaN(chosenIndicator)) {
+    if (chosenIndicator === null || Number.isNaN(chosenIndicator)) {
         debugLog("No indicator ID in URL, opening indicator selector.");
         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
         return;
@@ -668,14 +662,8 @@ const checkURL = async () => {
 
     // ----- seed shared globals from URL params ----- //
 
-    if (paramsObj.MeasureID)    DE.state.MeasureID    = parseFloat(paramsObj.MeasureID);
-    if (paramsObj.GeoType || paramsObj.GeoTypeID) {
-
-        // Seed the pretty geography label before menus build their available options.
-        DE.state.GeoType = paramsObj.GeoType || paramsObj.GeoTypeID;
-    }
-    if (paramsObj.TimePeriodID) DE.state.TimePeriodID = parseFloat(paramsObj.TimePeriodID);
-    if (paramsObj.overlay)      DE.state.overlay      = paramsObj.overlay;
+    // Seeds the pretty geography label before menus build their available options.
+    applySelectionToState(selection);
 
     // ----- kick off indicator-info and 311-button rendering early ----- //
 
