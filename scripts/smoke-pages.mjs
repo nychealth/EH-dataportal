@@ -12,8 +12,12 @@ import { ensureDevServer } from "./dev-server.mjs";
 // Prefix-relative — joined onto whatever baseURL ensureDevServer() returns.
 const PAGES = [
     "",                                              // home
-    "data-explorer/asthma/?id=2380",                 // DE single
-    "data-explorer/asthma/",                         // DE section
+    "data-explorer/asthma/?id=2380",                 // DE single, indicator loaded from the URL
+    "data-explorer/asthma/",                         // DE single, no ?id= — boots the indicator chooser
+    "data-explorer/",                                // DE section (topic chooser) — the ONE page that
+                                                     // loads topic-indicator-selector.js WITHOUT the rest
+                                                     // of the SPA bundle, so it's the only place the
+                                                     // `typeof loadAndRenderIndicator` guards are exercised
     "data-explorer-old/asthma/?id=2380",             // old explorer single
     "data-features/flood-vulnerability-index/",      // fvi layout — easyButton/colorIcon
     "data-features/rats-in-your-neighborhood/",      // KNOWN-RED (see allowlist)

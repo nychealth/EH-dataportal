@@ -180,7 +180,8 @@ const createComparisonData = async (comps) => {
 // ----------------------------------------------------------------------- //
 
 // Loads one indicator's metadata state and starts the downstream data pipeline.
-const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
+// Writes no history: loadAndRenderIndicator owns the URL for the whole pipeline.
+const loadIndicator = async (this_IndicatorID) => {
 
     debugLog("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
 
@@ -257,42 +258,6 @@ const loadIndicator = async (this_IndicatorID, dont_add_to_history) => {
     DE.links.selectedLinksPrimaryMeasureId = null;
     DE.links.selectedLinksSecondaryMeasureId = null;
     DE.disparities.selectedDisparityPrimaryMeasureId = null;
-
-    // ----- sync URL/history state ----- //
-
-    // if dont_add_to_history is true, then don't push the state
-    // if dont_add_to_history is false, or not set, push the state
-    // this prevents loadIndicator from setting new history entries when it's called
-    //  on a popstate event, i.e. when the user is traversing the history stack
-
-    // dont_add_to_history catches the pop state case, state.id != IndicatorID catches the location change case
-    // we don't want to add to the history stack if we've landed on this page by way of the history stack
-
-    // Use a fresh URL snapshot so we don't accidentally restore stale params.
-
-    const nextURL = new URL(window.location);
-    nextURL.searchParams.set('id', parseFloat(DE.state.IndicatorID));
-
-    // Skip history writes during popstate replays so back/forward does not create duplicate entries.
-    if (!dont_add_to_history && (window.history.state === null || historyState === null || window.history.state.id != DE.state.IndicatorID)) {
-
-        if (window.history.state === null || historyState === null) {
-
-            // - - - first load: replace the initial history entry - - - //
-
-            window.history.replaceState({ id: DE.state.IndicatorID }, '', nextURL);
-
-        } else {
-
-            // - - - indicator changed: push new history entry - - - //
-
-            window.history.pushState({ id: DE.state.IndicatorID }, '', nextURL);
-
-        }
-
-    }
-
-    // call data loading function
 
     // ----- reset comparison metadata; conditionally fetch ----- //
 

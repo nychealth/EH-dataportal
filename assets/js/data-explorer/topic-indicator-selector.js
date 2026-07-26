@@ -92,7 +92,7 @@ const clearTopicSelectorPrompt = () => {
 // Single-topic pages without ?id= should nudge users back to dataset selection.
 const isTopicLandingPageWithoutIndicator = () => {
 
-    if (typeof resetSelectionForNewIndicator !== 'function') {
+    if (typeof loadAndRenderIndicator !== 'function') {
         return false;
     }
 
@@ -227,9 +227,9 @@ const bindTopicSelectorControls = () => {
                 return;
             }
 
-            // - - - skip prompt: SPA reset hook isn't loaded on this page - - - //
+            // - - - skip prompt: the SPA isn't loaded on this page - - - //
 
-            if (typeof resetSelectionForNewIndicator === 'function') {
+            if (typeof loadAndRenderIndicator === 'function') {
                 return;
             }
 
@@ -431,7 +431,7 @@ const relaunchTopicSelector = (event) => {
 
     // Section pages use hash-based modal history, so go back there instead
     // of forcing a second manual modal transition.
-    if (typeof resetSelectionForNewIndicator !== 'function' && window.location.hash === '#indicators') {
+    if (typeof loadAndRenderIndicator !== 'function' && window.location.hash === '#indicators') {
         window.history.back();
         return false;
     }
@@ -584,7 +584,7 @@ const selectIndicator = async (id) => {
 
     // On pages without the full app (e.g. section.html), navigate directly.
     // Skip dismissing the modal so the back-to-topics handler doesn't fire.
-    if (typeof resetSelectionForNewIndicator !== 'function') {
+    if (typeof loadAndRenderIndicator !== 'function') {
         window.location.href = indicatorSelectDestination + '?id=' + Number(id);
         return;
     }
@@ -608,22 +608,11 @@ const selectIndicator = async (id) => {
 
     dismissIndicatorModal();
 
-    resetSelectionForNewIndicator(id);
-
     // ----- run the full load pipeline ----- //
 
-    renderIndicatorInfo(id);
-    render311Links(id);
-
-    await ensureIndicatorsLoaded('selectIndicator');
-    await loadIndicator(id);
-    await renderMenus(id);
-    await renderMeasures();
-
-    // ----- sync URL + render ----- //
-
-    pushSelectionToURL();
-    renderCurrentView(true);
+    // No selection: a freshly picked indicator starts from its own defaults.
+    // 'push' so the indicator being left behind stays on the history stack.
+    await loadAndRenderIndicator(id, { selection: null, history: 'push' });
 
 };
 
@@ -660,35 +649,12 @@ const checkURL = async () => {
         return;
     }
 
-    // ----- seed shared globals from URL params ----- //
+    // ----- run the full load pipeline ----- //
 
-    // Seeds the pretty geography label before menus build their available options.
-    applySelectionToState(selection);
-
-    // ----- kick off indicator-info and 311-button rendering early ----- //
-
-    renderIndicatorInfo(chosenIndicator);
-    render311Links(chosenIndicator);
-
-    // ----- load metadata, indicator, menus, and measures in sequence ----- //
-
-    // Load data first so timeLookup is populated before menus build.
-    const _indicators = await ensureIndicatorsLoaded('rendering measure menu');
-
-    await loadIndicator(chosenIndicator);
-
-    await renderMenus(chosenIndicator);
-
-    await renderMeasures();
-
-    // ----- sync full state to URL ----- //
-
-    // Fills in defaults the user didn't specify.
-    pushSelectionToURL();
-
-    // ----- render active overlay pane and update the Leaflet map ----- //
-
-    renderCurrentView(true);
+    // 'replace': the browser already created this history entry when it navigated
+    // here. Overwrite it with the resolved defaults rather than pushing a second
+    // entry for the same view, which would trap Back on the page.
+    await loadAndRenderIndicator(chosenIndicator, { selection, history: 'replace' });
 
 }
 

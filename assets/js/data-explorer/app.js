@@ -103,32 +103,28 @@ const writeHistoryState = (historyMethod, nextState, nextURL) => {
 };
 
 
-// Resets sub-selections before loading a different indicator.
-const resetSelectionForNewIndicator = (nextIndicatorID) => {
+// Resets sub-selections so the indicator about to load starts from its own defaults.
+// Writes no history — loadAndRenderIndicator owns that for the whole pipeline.
+const resetSelectionForNewIndicator = () => {
 
-    // drop sub-selections so the new indicator starts with a clean slate
     DE.state.MeasureID = null;
     DE.state.GeoType = null;
     DE.state.TimePeriodID = null;
 
     // overlay is intentionally preserved across indicator selection
 
-    const nextURL = new URL(window.location);
-    nextURL.search = new URLSearchParams({ id: Number(nextIndicatorID) }).toString();
-
-    writeHistoryState('replaceState', { id: Number(nextIndicatorID) }, nextURL);
-
 };
 
-// Pushes the current explorer state into the URL and history stack.
-const pushSelectionToURL = () => {
+// Writes the current explorer state into the URL, either as a new history entry
+// or over the current one.
+const writeSelectionToURL = (historyMethod = 'pushState') => {
 
     const url = new URL(window.location);
 
     // Rebuild the explorer params in a stable order and drop legacy aliases.
     url.search = buildCanonicalSearchParams().toString();
 
-    writeHistoryState('pushState', {
+    writeHistoryState(historyMethod, {
         id: DE.state.IndicatorID,
         MeasureID: DE.state.MeasureID,
         GeoType: DE.state.GeoType,
@@ -136,6 +132,9 @@ const pushSelectionToURL = () => {
         overlay: DE.state.overlay
     }, url);
 };
+
+// Adds a history entry — what every user-initiated change (dropdown, tab, close) does.
+const pushSelectionToURL = () => writeSelectionToURL('pushState');
 
 
 // ----------------------------------------------------------------------- //
@@ -429,6 +428,85 @@ const renderCurrentView = (updateMap = false) => {
 
 
 // ----------------------------------------------------------------------- //
+// the one indicator-load pipeline
+// ----------------------------------------------------------------------- //
+
+// Bumped on every indicator load so a superseded one can tell it lost the race.
+// Without this, two loads started close together (a double-clicked indicator, a
+// held-down back button) interleave their awaits and the slower one finishes last,
+// writing its state over the newer one's — observed as a fetch of
+// `geography/undefined` when a stale render resolves a GeoType the current
+// indicator doesn't have.
+let indicatorLoadToken = 0;
+
+// The single path from "an indicator ID" to "a rendered view". Every entry point
+// goes through here: initial load (checkURL), modal selection (selectIndicator),
+// and back/forward (popstate). They differ only in the two options below.
+//
+//   selection — parsed URL selection to restore, or null to take the indicator's
+//               own defaults.
+//   history   — 'push'    a new entry (the user chose this view)
+//               'replace' overwrite the current entry (initial load: the entry
+//                         already exists, it just lacks the resolved defaults)
+//               'none'    write nothing (popstate: the URL is already the entry
+//                         being navigated to)
+const loadAndRenderIndicator = async (id, { selection = null, history = 'push' } = {}) => {
+
+    const indicatorID = Number(id);
+
+    debugLog("* loadAndRenderIndicator:", indicatorID, { selection, history });
+
+    indicatorLoadToken += 1;
+    const token = indicatorLoadToken;
+
+    // False once a newer load has started; a stale load then stops before it can
+    // write shared state, the URL, or the DOM.
+    const isCurrent = () => token === indicatorLoadToken;
+
+    // ----- reset sub-selections, then layer the URL's back on top ----- //
+
+    // Reset unconditionally: without it, a sub-selection belonging to the
+    // previously viewed indicator leaks into one whose URL doesn't name it.
+    resetSelectionForNewIndicator();
+
+    if (selection) {
+        applySelectionToState(selection);
+    }
+
+    // ----- paint what metadata alone can render ----- //
+
+    // Neither waits on the data fetch, so both can start before it.
+    renderIndicatorInfo(indicatorID);
+    render311Links(indicatorID);
+
+    // ----- load metadata, indicator, menus, and measures in sequence ----- //
+
+    // Metadata first so timeLookup is populated before menus build.
+    await ensureIndicatorsLoaded('loadAndRenderIndicator');
+    if (!isCurrent()) return;
+
+    await loadIndicator(indicatorID);
+    if (!isCurrent()) return;
+
+    await renderMenus(indicatorID);
+    if (!isCurrent()) return;
+
+    await renderMeasures();
+    if (!isCurrent()) return;
+
+    // ----- sync URL + render ----- //
+
+    // Runs after renderMeasures so the URL carries the defaults it just resolved.
+    if (history !== 'none') {
+        writeSelectionToURL(history === 'replace' ? 'replaceState' : 'pushState');
+    }
+
+    renderCurrentView(true);
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // popstate — browser back / forward
 // ----------------------------------------------------------------------- //
 
@@ -443,20 +521,13 @@ window.addEventListener('popstate', async (event) => {
 
     const selection = parseSelectionFromURL();
 
-    // ----- restore overlay global ----- //
-
-    if (selection.overlay) DE.state.overlay = selection.overlay;
-
     // ----- reload full pipeline on indicator change ----- //
 
-    // Reload the full indicator pipeline when history points to a different indicator.
+    // history: 'none' — this URL *is* the history entry being navigated to, so
+    // writing it again would stack a duplicate on top of it.
     if (selection.id && selection.id !== DE.state.IndicatorID) {
 
-        await loadIndicator(selection.id, true);
-        renderIndicatorInfo(selection.id);
-        renderMenus(selection.id);
-        await renderMeasures();
-        renderCurrentView(true);
+        await loadAndRenderIndicator(selection.id, { selection, history: 'none' });
         return;
     }
 
