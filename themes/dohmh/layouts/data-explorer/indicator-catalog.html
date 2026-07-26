@@ -1,5 +1,10 @@
 {{- define "main" -}}
 
+{{- /*  Arquero  */}}
+
+{{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+
 <article class="container" id="skip-header-target">
     <div class="col-md-11 col-sm-12 mx-auto mb-4">
 
