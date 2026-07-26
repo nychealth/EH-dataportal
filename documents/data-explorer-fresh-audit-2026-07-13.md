@@ -266,9 +266,39 @@ The sequence `loadIndicator → printIndicatorInfo → printMenus → renderMeas
 
 **Method note worth keeping.** The first attempt at the (c) test used `MeasureID=1298&GeoType=UHF34` as the "explicit" sub-selections — which are *exactly* 2414's defaults, so "restored from URL" and "fell back to defaults" produce identical output and the test passed while the bug was present. Any URL-restore test has to pick values the defaults would not produce.
 
-**Deliberate trade-off:** with one history write per navigation instead of an eager replace plus a later push, the address bar now updates when the pipeline finishes (~1–2 s on a cold indicator) rather than at click time. Nothing reads the URL mid-load, and the page content still paints progressively (`renderIndicatorInfo`/`render311Links` fire before the first `await`). Restoring instant feedback would mean setting `DE.state.IndicatorID` before the data loads so `buildCanonicalSearchParams` could serialize it — rejected as a bigger contract change than the symptom warrants.
+**Deliberate trade-off:** with one history write per navigation instead of an eager replace plus a later push, the address bar now updates when the pipeline reaches its write rather than at click time. Measured at **29–151 ms** — see the 4.2 follow-up below, which corrects a much larger figure this paragraph originally carried.
 
 **Incidental fix — a real gap in the 4.5 guardrails.** The four `typeof resetSelectionForNewIndicator === 'function'` guards that mean "is the full SPA loaded" now test `loadAndRenderIndicator`, the capability actually being asked about. Only `/data-explorer/` (`section.html`) exercises them, since it's the one page that loads `topic-indicator-selector.js` without the rest of the bundle — and **that page had no smoke coverage**: the `smoke-pages.mjs` entry commented `// DE section` is `/data-explorer/asthma/`, which is `single.html` (`content/data-explorer/asthma.md` is a page, not a section). Added `/data-explorer/` and corrected the comment; smoke is now **14 pages**.
+
+### 4.2 follow-up — the address bar updates when the pipeline writes, not when the user clicks (added 2026-07-26, not started, low priority)
+
+**What changed and why.** Before 4.2, picking an indicator updated the URL twice: `resetSelectionForNewIndicator` did an immediate `replaceState` to `?id=<new>`, then `pushSelectionToURL` pushed the resolved params once the load finished. The immediate write was what made the address bar respond at click time — but it was also defect **(b)** above, because replacing the *current* entry destroyed the outgoing indicator's history entry. Removing it fixed (b) and left one write per navigation, made after `renderMeasures()` so the URL carries the defaults it just resolved. The cost is that the URL is momentarily stale during a load.
+
+**Measured, not estimated — and smaller than first reported.** Click-to-URL-change on `data-explorer/asthma/`, dev server, data fetched from the live GitHub host:
+
+| Indicator | ms | |
+|---|---|---|
+| 2429 | 123 | previously fetched this browser instance |
+| 2380 | 86 | previously fetched |
+| 2392 | 67 | previously fetched |
+| 18 | 151 | **never** fetched in this browser instance |
+| 2339 | 29 | never fetched |
+| 2431 | 96 | never fetched |
+
+**This section originally claimed "~1–2 s on a cold indicator". That was wrong** — it was inferred from the `setTimeout` durations used to let the verification tests settle, which measure *full render completion*, not the URL write. The write happens after `renderMeasures()` but before `renderCurrentView(true)`, so it lands well ahead of the map and chart paint that dominates the visible wait. Corrected here rather than left standing, since a wrong number is what would drive someone to spend effort on this.
+
+At 29–151 ms this is below the threshold where a URL change reads as laggy, so **the recommendation is to leave it alone** unless someone reports it. Logged because the bound is the indicator's data fetch, not rendering: on a throttled connection or if the data host slows down, this scales with it, and then it would be worth fixing.
+
+**If it does need fixing, the cheap option is not the one first considered.** The original note said restoring instant feedback would mean setting `DE.state.IndicatorID` before the data loads so `buildCanonicalSearchParams()` could serialize it — a real contract change, since plenty of code reads that field to mean "the indicator whose data is loaded". But that isn't required. At the point an early write would happen, `resetSelectionForNewIndicator()` has just nulled `MeasureID`/`GeoType`/`TimePeriodID`, so the only params that exist are `id` and the carried-over `overlay` — both available as locals inside `loadAndRenderIndicator`. So:
+
+- for `history: 'push'` only, write `?id=<indicatorID>&overlay=<current>` as a `pushState` immediately after the reset, building the URL from the local `indicatorID` rather than from `DE.state`;
+- change that path's final write from `pushState` to `replaceState`, refining the entry it just created.
+
+Net history entries stay at exactly one per navigation, so fixes (a), (b) and (c) all hold — (b) was caused by a *replace* over the outgoing entry, and this is a *push* of a new one, leaving the outgoing entry intact. `'replace'` (initial load) and `'none'` (popstate) are untouched.
+
+**Known wrinkle if implemented:** the early write happens before the first `await`, so it is not token-guarded. Two rapid selections would push two entries, and only the newer one gets refined by the final replace — leaving one bare `?id=…&overlay=…` entry in the stack. Harmless and arguably an accurate record of two navigations, but worth deciding on deliberately rather than discovering later.
+
+**How to verify:** re-run the timing measurement above, then the 4.2 browser matrix in full — one entry per load, Back returns to the previous indicator *with its sub-selections*, the discriminating popstate restore (non-default values, per the method note above), and one entry per tab/dropdown/close.
 
 ### 4.3 Stable `window.mapInterop` contract (consolidated #13)
 bar.js currently branch-sniffs which map type built the interop object (`if (mapAPI.circleMarkers) … else if (mapAPI.geoIDtoLayer)`, bar.js:558-590) because choropleth and bubble publish different shapes. Define one interface (`highlight(geoID)`, `reset(geoID|handle)`, `updateHoverUI`, `clearHoverUI`, `ready`) created once at load; renderers attach implementations. Kills the shape-sniffing and the not-ready `if (!mapAPI) return` scattering.
