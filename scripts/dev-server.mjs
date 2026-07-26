@@ -20,7 +20,7 @@ const PREFIXES = ["/dev-stage/", "/local-stage/", "/dev-prod/", "/local-prod/", 
 const SPAWN_PORT = 8080;
 const SPAWN_PREFIX = "/dev-stage/";
 const SPAWN_CMD = "hugo";
-const SPAWN_ARGS = ["server", "--environment", "dev_stage", "--cleanDestinationDir", "--logLevel", "debug", "-p", String(SPAWN_PORT)];
+const SPAWN_ARGS = ["server", "--environment", "dev_stage", "--cleanDestinationDir", "--disableFastRender", "--logLevel", "debug", "-p", String(SPAWN_PORT)];
 
 // True if a URL returns HTTP 200 within a short timeout.
 async function responds(url) {

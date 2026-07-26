@@ -11,8 +11,10 @@ Hugo-based static site for NYC DOHMH's Environment & Health Data Portal. Outputs
 hugo --environment dev_stage --cleanDestinationDir --logLevel debug
 
 # Local dev server
-hugo server --environment dev_stage --cleanDestinationDir --logLevel debug -p 8080
+hugo server --environment dev_stage --cleanDestinationDir --disableFastRender --logLevel debug -p 8080
 ```
+
+`--disableFastRender` is how the team actually starts the server by hand, so it belongs in the documented command. `scripts/dev-server.mjs` spawns this exact command — keep the two in sync when either changes.
 
 Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild.
 
