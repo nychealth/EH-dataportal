@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts -->
-<!-- docs-check verified: cef5aa1572 2026-07-25 -->
+<!-- docs-check verified: 3dbc31151d 2026-07-26 -->
 
 # Data Explorer — Interaction & Data Flow
 
@@ -58,7 +58,8 @@ that changes what the user sees ends by calling it.
    parse time**, before any user interaction, and parks the promise. Everything
    that needs metadata goes through `ensureIndicatorsLoaded()`, which reuses the
    in-flight request rather than starting a second one.
-2. `checkURL()` reads query params, seeds `DE.state`, and triggers the pipeline.
+2. `checkURL()` reads the query params via `parseSelectionFromURL()` and hands the
+   result to `loadAndRenderIndicator()`, which is the pipeline.
 3. `loadIndicator()` → `loadData()` fetches the indicator JSON, builds an Arquero
    table, fetches geography and time lookups in parallel, then `joinData()`
    produces the per-view tables.
@@ -68,7 +69,8 @@ that changes what the user sees ends by calling it.
    names.
 
 `renderIndicatorInfo()` and `render311Links()` write the indicator name,
-description, and 311 action links independently of that chain.
+description, and 311 action links independently of that chain — the pipeline
+fires both before its first `await`, since neither waits on the data fetch.
 
 ---
 
@@ -89,13 +91,14 @@ pill and hides the tab-content container. `closeExplorerTabPane()` in
 `de-tab-content.js` handles the button.
 
 **Indicator selection** (`selectIndicator`) — on a page that is not the target
-indicator's own page, it simply navigates. Otherwise it runs the full pipeline
-in-place: reset sub-selections → `renderIndicatorInfo` → `render311Links` →
-`loadIndicator` → `renderMenus` → `renderMeasures` → push URL → render.
+indicator's own page, it simply navigates. Otherwise it runs the pipeline
+in-place with `history: 'push'`, so the indicator being left behind keeps its
+history entry.
 
-**Back / forward** (`popstate`) — normalizes any legacy URL form first, restores
-overlay, then branches: if the indicator changed, re-run the whole pipeline; if
-only sub-selections changed, sync `DE.state`, rebuild the menus from metadata
+**Back / forward** (`popstate`) — normalizes any legacy URL form, parses the
+selection, then branches: if the indicator changed, run the pipeline with
+`history: 'none'` (this URL *is* the entry being navigated to); if only
+sub-selections changed, apply them to `DE.state`, rebuild the menus from metadata
 already in memory, and re-render. Both paths end in `renderCurrentView(true)`.
 
 ---
@@ -105,12 +108,29 @@ already in memory, and re-render. Both paths end in `renderCurrentView(true)`.
 The URL is the canonical record of a view. `buildCanonicalSearchParams()` writes
 params in a stable order — `id`, `MeasureID`, `GeoType`, `TimePeriodID`,
 `overlay` — omitting null values, so a fresh indicator can repopulate defaults.
+`parseSelectionFromURL()` is its read counterpart, and `applySelectionToState()`
+copies a parsed selection onto `DE.state`. Every entry point uses that pair, so
+none of them can drift in how it coerces or aliases a param.
 
-Three legacy forms are rewritten on arrival, each by its own normalizer, so the
-rest of the app only ever sees canonical params: the `GeoTypeID` alias, the
-`overlay=map` value (now `bar`), and hash-based state (`#display=…`, `#tab-…`).
-All history writes funnel through `writeHistoryState()` so push and replace stay
-consistent.
+Three legacy forms are rewritten on arrival so the rest of the app only ever sees
+canonical params: the `GeoTypeID` alias, the `overlay=map` value (now `bar`), and
+hash-based state (`#display=…`, `#tab-…`). Each has its own normalizer, but
+callers invoke them only through `normalizeLegacyURL()`, which runs all three —
+they self-guard, so there is nothing to pre-check. It runs once at `app.js` parse
+time (before `checkURL()` boots the app) and again on every `popstate`.
+
+**One history write per navigation.** `loadAndRenderIndicator()` owns the URL for
+the whole load; `loadIndicator()` and `resetSelectionForNewIndicator()` write no
+history of their own. Its `history` option says which write to make — `'push'`
+for a user-chosen view, `'replace'` for the initial load (the browser already
+made that entry; it just lacks the resolved defaults), `'none'` for `popstate`.
+The write happens *after* `renderMeasures()` so the URL carries the defaults it
+just resolved. All history writes funnel through `writeHistoryState()`.
+
+**Stale-load guard.** `loadAndRenderIndicator()` takes a token at entry and
+re-checks it after each `await`; a load that has been superseded returns before
+touching state, the URL, or the DOM. Without it, two loads started close together
+interleave and the slower one finishes last, writing over the newer one.
 
 **Naming seam:** the correlate view is called `links` throughout the code and in
 the `?overlay=links` param, while the UI says "Correlate". Deliberate, deferred,

@@ -93,6 +93,7 @@ The data explorer (`assets/js/data-explorer/`) is a vanilla-JS SPA whose shared 
 - **Script load order is critical** (15 files, synchronous): `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`. Note: `utilities.js` is not a separate file — its code is concatenated into `global.js` (see `// utilities.js` banner at ~line 294).
 - **Data flow:** `metadata.json` → Arquero table → `joinData()` → `renderMeasures()` → `show*()` closures
 - **`renderCurrentView(updateMap)`** is the central dispatch function
+- **`loadAndRenderIndicator(id, { selection, history })`** (app.js) is the *only* path from an indicator ID to a rendered view — `checkURL`, `selectIndicator` and `popstate` all go through it. It also owns the URL: exactly one history write per navigation, made after `renderMeasures()` so the URL carries the resolved defaults. Don't add a `pushState`/`replaceState` to `loadIndicator` or anything else in the load path; pass `history: 'push' | 'replace' | 'none'` instead. Reads go through `parseSelectionFromURL()`, writes through `buildCanonicalSearchParams()`, legacy forms through `normalizeLegacyURL()`.
 
 Key gotchas:
 - `showBar()` depends on `filteredMapData` set by `showMap()` — bar must not render before map
@@ -114,7 +115,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 
 - `documents/data-explorer-architecture.md` — the SPA's **current-state** narrative: load pipeline, per-interaction flow, URL sync, ordering constraints. Deliberately holds no file/function inventory (that content rotted through five refactors; `grep` answers it better). Guarded by `npm run docs-check` and carries a `docs-check verified: <commit>` stamp — if you change behaviour it describes, update the prose and re-stamp.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; all §0–§6 findings shipped by 2026-07-04. Superseded by the fresh audit below.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). **Tiers 1, 2 and 3 are complete and all merged into `feature-new-data-explorer`** (as of 2026-07-23), along with Tier 4.6 (head.html gating), 4.7, 4.8 (Pagefind) and 4.9. **Still open: 4.1** (dismantle `renderMeasures()`), **4.2** (one indicator-load pipeline + URL module), **4.3** (`window.mapInterop` contract), **4.5** (ESLint/npm scripts/smoke test — cheapest, and meant to land before 4.1), and **4.4** (retire the old explorer, parked until comparative user testing ends). Log new findings and fix status here, not in the deep-audit doc.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). **Tiers 1, 2 and 3 are complete and all merged into `feature-new-data-explorer`** (as of 2026-07-23), along with Tier 4.5 (guardrails), 4.6 (head.html gating), 4.7, 4.8 (Pagefind), 4.9, 4.1 (dismantle `renderMeasures()`) and its naming sweep, and 4.2 (one indicator-load pipeline + URL module, 2026-07-26). **Still open: 4.3** (`window.mapInterop` contract) and **4.4** (retire the old explorer, parked until comparative user testing ends). Log new findings and fix status here, not in the deep-audit doc.
 - `documents/site-wide-audit-2026-06-27.md`
 
 ## Team context

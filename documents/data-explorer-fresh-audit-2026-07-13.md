@@ -246,6 +246,30 @@ The `print*` set was widened past the original plan on purpose: renaming only tw
 The sequence `loadIndicator → printIndicatorInfo → printMenus → renderMeasures → renderCurrentView` is duplicated three times with small drift: `checkURL` (topic-indicator-selector.js:636-705), `popstate` (app.js:374-438), and `selectIndicator` (topic-indicator-selector.js:570-628). URL parsing/coercion is likewise duplicated between `checkURL` and `popstate`, and history writes happen at 5 sites. Extract `loadAndRenderIndicator(id, { pushHistory })` plus `parseSelectionFromURL()`/`serializeSelection()`. Add the stale-response token (consolidated #6) inside the one pipeline while you're there — rapid back/forward or double-clicked indicators can currently interleave fetches.
 **Consider:** popstate has subtle extra behavior (menu resync without reload when the indicator is unchanged) — the unified function needs an explicit `sameIndicator` branch, not a force-reload.
 
+**Execution status (2026-07-26, branch `feature-de-tier4.2-load-pipeline` off `feature-new-data-explorer`, 4 commits `a411b1692f`..`3dbc31151d`).** Done, and wider than the entry above anticipated: reading the three call sites turned up **three history-semantics defects plus one missing normalizer call**, none of which this section had recorded. A no-code Stage 0 reproduced all four in a browser *before* any fix, per CLAUDE.md's root-cause rule; each was re-checked after.
+
+- **Stage 1** (`a411b1692f`): `parseSelectionFromURL()` / `applySelectionToState()` added to `app.js` as the read counterparts to the existing `buildCanonicalSearchParams()` — which already *was* the `serializeSelection()` this section proposed adding, so it was reused rather than duplicated. The three legacy normalizers went behind one `normalizeLegacyURL()`, and `normalizeLegacyHashOverlayURL`'s raw `replaceState` now goes through `writeHistoryState`.
+- **Stage 2** (`a18a66852e`): `loadAndRenderIndicator(id, { selection, history })` replaces all three copies of the sequence; history writes moved out of `loadIndicator` and `resetSelectionForNewIndicator`; stale-response token added.
+- **Stage 3** (`3dbc31151d`): deleted the dead `historyState` global.
+- **Stage 4** (this commit): architecture doc §2/§3/§4 rewritten and re-stamped; this entry.
+
+**The four defects, with the browser evidence that established each:**
+
+| | Symptom before | After |
+|---|---|---|
+| **(a)** `loadIndicator`'s own `replaceState`/`pushState` plus the caller's `pushSelectionToURL` made **two** history entries per load | Load `?id=2380`, press Back → **stays on the page** at bare `?id=2380` | Exactly 1 entry added, carrying the resolved defaults; Back leaves the page |
+| **(b)** `resetSelectionForNewIndicator` **replaced** the current entry before the new one was pushed, destroying the outgoing indicator's entry | From 2380, pick 2414, Back → lands on bare `?id=2414` | Back returns to 2380 with its sub-selections and matching URL |
+| **(c)** popstate's indicator-change branch returned *before* restoring `MeasureID`/`GeoType`/`TimePeriodID` | popstate into `?id=2414&MeasureID=1299&GeoType=Borough` → state came back `1298`/`UHF34` (2414's **defaults**) while the URL still read 1299/Borough | Restores 1299/Borough; URL and view agree |
+| **(d)** `normalizeLegacyOverlayURL` had **no initial-load caller** — it ran only from popstate, unlike the other two normalizers | `?id=2380&overlay=map` kept `overlay=map` in the address bar forever, and every later push re-serialized the stale spelling | Canonicalizes to `overlay=bar` on load |
+
+**The stale-response race is real, not hypothetical.** Firing `selectIndicator(2414)` and `selectIndicator(2392)` back to back produced a 404 on `…/EHDP-data/<branch>/geography/undefined` — a stale render resolving a GeoType the current indicator doesn't have. That error never appears on a single load, and does not appear after the token.
+
+**Method note worth keeping.** The first attempt at the (c) test used `MeasureID=1298&GeoType=UHF34` as the "explicit" sub-selections — which are *exactly* 2414's defaults, so "restored from URL" and "fell back to defaults" produce identical output and the test passed while the bug was present. Any URL-restore test has to pick values the defaults would not produce.
+
+**Deliberate trade-off:** with one history write per navigation instead of an eager replace plus a later push, the address bar now updates when the pipeline finishes (~1–2 s on a cold indicator) rather than at click time. Nothing reads the URL mid-load, and the page content still paints progressively (`renderIndicatorInfo`/`render311Links` fire before the first `await`). Restoring instant feedback would mean setting `DE.state.IndicatorID` before the data loads so `buildCanonicalSearchParams` could serialize it — rejected as a bigger contract change than the symptom warrants.
+
+**Incidental fix — a real gap in the 4.5 guardrails.** The four `typeof resetSelectionForNewIndicator === 'function'` guards that mean "is the full SPA loaded" now test `loadAndRenderIndicator`, the capability actually being asked about. Only `/data-explorer/` (`section.html`) exercises them, since it's the one page that loads `topic-indicator-selector.js` without the rest of the bundle — and **that page had no smoke coverage**: the `smoke-pages.mjs` entry commented `// DE section` is `/data-explorer/asthma/`, which is `single.html` (`content/data-explorer/asthma.md` is a page, not a section). Added `/data-explorer/` and corrected the comment; smoke is now **14 pages**.
+
 ### 4.3 Stable `window.mapInterop` contract (consolidated #13)
 bar.js currently branch-sniffs which map type built the interop object (`if (mapAPI.circleMarkers) … else if (mapAPI.geoIDtoLayer)`, bar.js:558-590) because choropleth and bubble publish different shapes. Define one interface (`highlight(geoID)`, `reset(geoID|handle)`, `updateHoverUI`, `clearHoverUI`, `ready`) created once at load; renderers attach implementations. Kills the shape-sniffing and the not-ready `if (!mapAPI) return` scattering.
 
