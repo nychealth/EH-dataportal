@@ -41,7 +41,8 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 - **If a nearby working example contradicts your theory, the theory is wrong.** Do not add a secondary explanation for why the working case is exempt — that is how a wrong diagnosis survives review.
 - **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. A confident wrong comment misleads every later attempt; the next person re-tests a hypothesis but trusts an explanation.
 - **After one failed fix attempt, stop and gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
-- **If a refactor is justified partly by bug claims, prove them in a no-code stage first.** Reproduce each in the browser before touching anything, and drop any that doesn't reproduce rather than fixing a phantom. It costs one browser session and makes every later commit cite real before/after evidence instead of a hypothesis — Tier 4.2 found a fourth defect nobody had recorded this way.
+- **If a refactor is justified partly by bug claims, prove them in a no-code stage first.** Reproduce each in the browser before touching anything, and drop any that doesn't reproduce rather than fixing a phantom. It costs one browser session and makes every later commit cite real before/after evidence instead of a hypothesis. It cuts both ways: 4.2 found a fourth defect nobody had recorded, and 4.3 falsified two of the three it set out to fix.
+- **Two methods that make that evidence cheap here:** delay a fetch with Playwright's `page.route` to hold a load-window open and inspect state mid-flight; drive canvas charts by sweeping the real mouse and letting the chart report its own hits, not by computing scenegraph coordinates. Details and gotchas: `project-browser-verification-methods` in memory.
 
 Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a focus-ring bug that survived two fixes because the diagnosis was plausible, confidently written, and false; the actual cause took one browser experiment to find.
 
@@ -72,6 +73,10 @@ scripts/        Node dev tooling (characterization harness, smoke test, dev-serv
 - Preserve accessibility: labels, keyboard support, sensible fallbacks on all interactive elements.
 
 **Orientation comments before code blocks:** Add a brief comment before each meaningful code block (function, object, initialization section, etc.) explaining what it does at a high level — even if the name alone makes it obvious. The user wants to know what's coming before reading the code, not just after.
+
+## Branching
+
+Each audit tier's work goes on its own `feature-de-tier<N>-<slug>` branch cut from `feature-new-data-explorer`, never committed directly to it — see `feature-de-tier2-consolidation` through `feature-de-tier4.5-guardrails`. Merge back only when the tier is verified and documented.
 
 ## Refactors and renames
 
