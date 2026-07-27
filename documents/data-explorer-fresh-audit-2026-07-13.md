@@ -10,9 +10,9 @@ This builds on (and does not re-report) the prior audits: every finding in `docu
 
 Every findings section below opens with its own **Status:** line and date; this block is the summary of those.
 
-**Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.5, 4.6, 4.7, 4.8 and 4.9. Every one of these is **merged into `feature-new-data-explorer` and pushed** — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
+**Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8 and 4.9. All but 4.3 are **merged into `feature-new-data-explorer` and pushed** — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`) are labels lagging behind on the same linear history, not divergent branches. 4.3 is on `feature-de-tier4.3-mapinterop`, unmerged as of 2026-07-27. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
 
-**Open:** **4.3** (`window.mapInterop` contract — the only unstarted Tier 4 item) and **4.4** (parked until comparative user testing ends), plus the low-priority **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone).
+**Open:** **4.4** only (parked until comparative user testing ends), plus the low-priority **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone).
 
 **Standing won't-dos** — don't re-propose without asking: CSS `| minify` inside 3.3 (rejected by the user, verified absent from `head.html`), script bundling (2026-07-13 decision), and the `links` → `correlate` rename (deferred with its cost measured; options in site-wide audit §4).
 
@@ -129,7 +129,7 @@ Removing the dead RawGit PointInPolygon `<script>` tag from `head.html` (item 1.
 
 ## Tier 2 — Consolidation within the SPA (days; mechanical, characterization-checkable)
 
-**Status: closed 2026-07-14.** All seven items shipped — 2.1, 2.2, 2.5, 2.6, 2.7 via SDD on `feature-de-tier2-consolidation`; 2.3 and 2.4 inline on the same branch. The one carve-out is the `window.mapInterop` dedup listed under 2.3, deliberately left to 4.3.
+**Status: closed 2026-07-14.** All seven items shipped — 2.1, 2.2, 2.5, 2.6, 2.7 via SDD on `feature-de-tier2-consolidation`; 2.3 and 2.4 inline on the same branch. The one carve-out was the `window.mapInterop` dedup listed under 2.3, deliberately left to 4.3 — since closed there (2026-07-27).
 
 ### 2.1 One `resolveMeasureDisplay()` helper for the percent/display rule (6 sites)
 **Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`.
@@ -143,7 +143,7 @@ map.js:322, bar.js:120, trend.js:221, correlate.js:247 + 267, disparities.js:92 
 `updateTableReliabilityNotes` (table.js:187), the bar-notes block (bar.js:72-83), `renderTrendNotes` (trend.js:117), and the inline copies in correlate.js:361-371 / disparities.js:158-170 all do: dedupe `Note` values, `filter(Boolean)`, hide/show a holder, append `<div class='fs-xs'>` per note. Extract `renderUnreliabilityNotes(holderEl, rows→notes)`. Also fixes the `innerHTML +=` reparse loop (consolidated #18) in one place.
 
 ### 2.3 map.js internal deduplication
-**Status: closed 2026-07-14** (`5b789f1788`), with one deliberate exception — the `window.mapInterop` dedup below was **not** done and remains 4.3's work.
+**Status: closed 2026-07-14** (`5b789f1788`), with one deliberate exception — the `window.mapInterop` dedup below was **not** done here; it shipped later as 4.3 (2026-07-27).
 
 The choropleth and bubble renderers duplicate, nearly verbatim:
 - the **citywide popup + one-shot trend-tab nudge** block (4 copies: map.js:497-518, 628-636, 677-693, 724-745);
@@ -182,7 +182,7 @@ Load `print-map.js` immediately before `print.js` in single.html (15th script ta
 
 Two things this surfaced, worth carrying forward:
 - **The `eachLayer` sweep was load-bearing.** It was the only thing clearing a highlight applied by **bar.js** through `window.mapInterop`. A track-previous fix confined to map.js would leave *two* polygons highlighted after hovering the bar chart and then the map. The fix therefore routes bar-driven highlights through the same tracker (`highlightFeature`/`resetHighlight` on the interop), with `resetHighlight` falling back to the tracked layer when a caller passes a stale one. Verified in-browser across map-hover, bar-driven, and mixed sequences.
-- **The `window.mapInterop` dedup listed under 2.3 was deliberately *not* done** — the two shapes differ and collapsing them means touching bar.js's shape-sniffing. That is Tier 4.3, and it stays there.
+- **The `window.mapInterop` dedup listed under 2.3 was deliberately *not* done** — the two shapes differ and collapsing them means touching bar.js's shape-sniffing. That was Tier 4.3's work, done 2026-07-27; the tracked-highlight design described above survived it, with `reset()` now calling `resetHighlight()` with no argument so the fallback is the only path.
 - Perf, measured (not estimated): the removed sweep cost ~0.09 ms/hover at 34 polygons and ~0.14–0.20 ms at 59, scaling linearly — so NTA's ~195 extrapolates to ~0.5 ms per mousemove — against a 0.03 ms new hover path. Note neither harness indicator (2380: Borough/CD/UHF42; 2414: UHF34) actually offers NTA, so the headline NTA number is extrapolated, not directly measured.
 
 ---
@@ -240,7 +240,7 @@ Directly measurable on the explorer's LCP; all previously flagged site-wide, sti
 
 ## Tier 4 — Structural (weeks; the remaining consolidated-doc backbone)
 
-**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.5, 4.6, 4.7, 4.8, 4.9. **Open: 4.3** — the only unstarted item — and the low-priority 4.2 follow-up. **Deferred by decision: 4.4**, until comparative user testing ends.
+**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9. **Open:** the low-priority 4.2 follow-up. **Deferred by decision: 4.4**, until comparative user testing ends.
 
 These are the right long-term moves; each is a mini-project. Ordered by value-per-risk.
 
@@ -359,9 +359,22 @@ Net history entries stay at exactly one per navigation, so fixes (a), (b) and (c
 **How to verify:** re-run the timing measurement above, then the 4.2 browser matrix in full — one entry per load, Back returns to the previous indicator *with its sub-selections*, the discriminating popstate restore (non-default values, per the method note above), and one entry per tab/dropdown/close.
 
 ### 4.3 Stable `window.mapInterop` contract (consolidated #13)
-**Status: open, not started (raised 2026-07-13).** The only unstarted Tier 4 item. 2.3 deliberately left the two interop shapes alone because collapsing them means touching bar.js's shape-sniffing — that is this item.
+**Status: closed 2026-07-27** — two commits on `feature-de-tier4.3-mapinterop` (`f1d0150ca3` contract, `a5bba916ca` the `setBarSelection` mirror), unmerged as of that date. 2.3 deliberately left the two interop shapes alone because collapsing them means touching bar.js's shape-sniffing — that was this item.
 
-bar.js currently branch-sniffs which map type built the interop object (`if (mapAPI.circleMarkers) … else if (mapAPI.geoIDtoLayer)`, bar.js:558-590) because choropleth and bubble publish different shapes. Define one interface (`highlight(geoID)`, `reset(geoID|handle)`, `updateHoverUI`, `clearHoverUI`, `ready`) created once at load; renderers attach implementations. Kills the shape-sniffing and the not-ready `if (!mapAPI) return` scattering.
+bar.js branch-sniffed which map type built the interop object (`if (mapAPI.circleMarkers) … else if (mapAPI.geoIDtoLayer)`, bar.js:558-590) because choropleth and bubble published different shapes. Define one interface created once at load; renderers attach implementations. Kills the shape-sniffing and the not-ready `if (!mapAPI) return` scattering.
+
+**What shipped.** The contract is three members, not the five sketched above: `ready`, `highlight(geoID)`, `reset()`. `updateHoverUI`/`clearHoverUI` folded into those two — both call sites already invoked them as a pair, and map.js's own handlers use the local closures, never the interop — so the published surface is the smallest thing bar.js actually needs. `geoIDtoLayer`, `geojsonLayer` and `circleMarkers` are gone from it entirely; each renderer keeps its own highlight tracker, so bar.js holds no state at all and its `lastHighlighted` (a Leaflet layer in one mode, a geoID in the other) is deleted. The bubble renderer's `geoIDtoLayer` was deleted outright — bubble highlighting works on the markers, not the gray base polygons, so it had no remaining consumer.
+
+**The lifecycle half was a real, silent defect — proven before the refactor, not after.** With the `*.topo.json` fetch delayed 4 s and geography switched CD→Borough through the real dropdown, `window.mapInterop` was still the *previous* object one second later, advertising 59 CD layers that had already been removed from the map (`layer._map === null`). A bar hover against it **did not throw** — Leaflet silently ignores a detached layer, which is why neither smoke nor grep could ever have caught this — but it still wrote the previous geography's name and value into the legend panel mid-switch. `resetMapForRender()` now calls `detachMapInterop()`, so `ready` is false for exactly that window. Detaching also means no mouseout can clear leftover panel text, so `clearHoverUI` — which depends on nothing a render supplies — moved to module scope and runs at the render boundary too.
+
+**Two of the three claimed defects did not survive testing**, and were dropped rather than "fixed" (they disappear with the rewrite regardless):
+- The bubble guard's `markerObj !== lastHighlighted` really does compare an object to a number, but it is **inert**: Vega fires `mouseover` only on item transitions, so four separate mouse moves inside one bar produced exactly one highlight call, and an A→B→A round trip one per bar.
+- `resetBubble` was **unreachable**. Every reset in bubble mode went through `resetHighlight` instead, because `lastHighlighted` held a number — so bar.js's `typeof lastHighlighted === 'string'` branch and its "Bubble map: lastHighlighted is geoID" comment never executed. It worked only because map.js had added a geoID-accepting `resetHighlight` alias "to keep interop API shape consistent".
+- Confirmed and removed: bar.js's `item.datum.GEOCODE` fallback lookups were dead — a bar datum has no `GEOCODE` key (it exists only on geojson feature properties).
+
+**Mirror-image cleanup (same branch).** `if (window.myVegaView) window.myVegaView.signal("selectedGeo", x).run();` appeared six times in map.js; one `setBarSelection(geoID)` helper now owns the guard. Behavior preserved exactly, including the click handlers' skip-on-null and the choropleth mouseover's clear-for-no-data branch.
+
+**Verification.** lint clean, `characterize -- --check` PASSED, smoke 14/14, plus a browser matrix reproducing pre-change legend text, value, units, tick position and highlighted geography **exactly** on both map types (choropleth `MeasureID=1199`, bubble `1197`) — the characterization baseline captures rendered views, not hover, so the browser was the only thing that could prove this. Also covered: map→bar signalling both ways, bar-then-map mixed sequences leaving exactly one highlight, the mid-load window, and the no-data branch (exercised by nulling one feature's `Value` in the page, since none of the three characterization indicators has a suppressed geography).
 
 ### 4.4 Retire the old explorer trees — deferred by decision
 **Status: deferred by decision 2026-07-13.** Trigger: the end of comparative user testing. The "Data Explorer (Old)" Pagefind filter chip (§4.8) retires with it.

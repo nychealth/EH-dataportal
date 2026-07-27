@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts -->
-<!-- docs-check verified: 3dbc31151d 2026-07-26 -->
+<!-- docs-check verified: a5bba916ca 2026-07-27 -->
 
 # Data Explorer — Interaction & Data Flow
 
@@ -143,8 +143,29 @@ and costed in site-wide audit §4b — don't half-rename it.
 The map exposes `window.mapInterop`; the bar chart exposes its Vega view as
 `window.myVegaView`. Hovering either highlights the matching geography in the
 other. This is a genuine global contract between two files with no other
-coupling, which is why it is on `window` rather than in `DE` — and why the audit
-tracks hardening it as Tier 4.3.
+coupling, which is why it lives on `window` rather than in `DE`: it is behavior
+handed across a seam, not app state.
+
+**The contract is fixed and tiny.** `window.mapInterop` is created once, at
+load, with `ready: false` and no-op members, and it has exactly three:
+`ready`, `highlight(geoID)` and `reset()`. Callers gate on `ready` — never on
+the object existing, and never on which map type is behind it. Both renderers
+attach the same two functions once their geometry is on the map, so the bar
+chart carries no choropleth-vs-bubble knowledge and no highlight state of its
+own; each renderer tracks its own highlighted layer or marker, which is what
+lets a map hover and a bar hover clear each other.
+
+**`resetMapForRender()` detaches it.** Every render starts by pointing the
+contract back at the no-ops, because the outgoing map's layers are removed
+before the incoming geometry has been fetched. Without that, a hover landing in
+the gap reached discarded layers — silently, since Leaflet ignores a detached
+layer — while still writing the previous geography into the legend panel. The
+same boundary clears the hover panel, which is why `clearHoverUI` sits at module
+scope instead of inside `createHoverUIHelpers` with its per-render siblings.
+
+The reverse direction goes through `setBarSelection(geoID)` in map.js — one
+guard over `window.myVegaView`, called unconditionally by every map handler,
+with `null` meaning "clear the linked highlight".
 
 ---
 
