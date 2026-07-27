@@ -12,7 +12,7 @@ Every findings section below opens with its own **Status:** line and date; this 
 
 **Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8 and 4.9. All of them are **merged into `feature-new-data-explorer` and pushed** (4.3 merged 2026-07-27) — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`, `feature-de-tier4.3-mapinterop`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
 
-**Open:** **4.4** only (parked until comparative user testing ends), plus the low-priority **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone).
+**Open:** **4.4** only (parked until comparative user testing ends), plus three logged-not-scheduled items: the **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone), **4.10** (menu rebuild binds two click listeners per button — unmeasured), and **4.11** (`DE.state` written from 23 sites across 5 files; the namespace refactor fixed naming, not ownership).
 
 **Standing won't-dos** — don't re-propose without asking: CSS `| minify` inside 3.3 (rejected by the user, verified absent from `head.html`), script bundling (2026-07-13 decision), and the `links` → `correlate` rename (deferred with its cost measured; options in site-wide audit §4).
 
@@ -240,7 +240,7 @@ Directly measurable on the explorer's LCP; all previously flagged site-wide, sti
 
 ## Tier 4 — Structural (weeks; the remaining consolidated-doc backbone)
 
-**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9. **Open:** the low-priority 4.2 follow-up. **Deferred by decision: 4.4**, until comparative user testing ends.
+**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9. **Open:** the low-priority 4.2 follow-up, 4.10 and 4.11. **Deferred by decision: 4.4**, until comparative user testing ends.
 
 These are the right long-term moves; each is a mini-project. Ordered by value-per-risk.
 
@@ -483,6 +483,47 @@ Applied at all three `.modal-close-tab` sites — `#topicSelector` ([header-de.h
 **Verified (2026-07-23)** against the running dev server after SCSS recompile (new fingerprint confirmed served — the first check read a stale build and had to be re-run with a cache-buster), no DOM overrides in play: SVG box offset from the button's centre **0.00 / 0.00**, drawn path offset **0.00 / 0.00**, icon inset on all four sides (−11.25 / −11.25 / −8.5 / −8.5) so the ring stays clean, all three modals confirmed carrying the SVG with a white stroke, button's accessible name still `Close` with `aria-hidden="true"`/`focusable="false"` on the icon. Rendered ink is 13.5px across (11px geometry + 2.5px stroke) versus the old glyph's 15w × 13h.
 
 **Generalizable trap worth naming:** any child that overflows a focused element's box will distort Chrome's focus ring, and any *text* child will sit wherever the font's baseline puts it rather than where its box is. Bootstrap 4's heading classes all carry `margin-bottom`, so reusing `.h1`–`.h6` as a glyph wrapper inside a fixed-size control hits both problems at once. **Prefer an SVG or image child for icon-only controls** — its box is its ink, which makes centring exact and overflow impossible, and it sidesteps per-platform font-metric drift. Related to 4.5's guardrails theme: both defects here were missed repeatedly by reading source and by eyeballing screenshots, and both were settled in seconds by measuring in the browser — a concrete argument for the visual-regression piece.
+
+### 4.10 `renderMenuSection` binds two click listeners per button, on every menu rebuild
+
+**Status: open, not started (raised 2026-07-27).** Low priority, and **unmeasured** — logged for the record, not on evidence that it costs anything perceptible. Do not act on it without measuring first.
+
+`renderMenuSection` (menu.js:169) clears each container with `innerHTML = ''` and rebuilds one `<button>` per option, binding **two separate `click` listeners to the same button** (menu.js:201, 203) — one calls `updateDropdownText(button)`, the other `handleSelection(type, item.value)`. The containers come from `querySelectorAll`, so the work is (options × desktop-and-mobile containers) per section, and all three sections are rebuilt together by `updateAllMenus`.
+
+That runs on every indicator load (`renderMenus`, app.js:491) *and* on every dropdown change, since `handleSelection` cascade-rebuilds all three menus to fill in defaults for a sibling selection that no longer applies (menu.js:238).
+
+**This is not a leak.** `innerHTML = ''` discards the old buttons and their listeners with them — worth stating, because "listeners bound in a loop with no cleanup" reads like one at a glance.
+
+Two independent fixes, cheapest first:
+
+- **Merge the two handlers into one.** They fire on the same event on the same element; there is no ordering subtlety to preserve beyond calling them in the existing sequence. Halves the bindings for a few lines of change.
+- **Delegate.** One listener per container, reading the option value from a `data-` attribute, instead of one per button. Bindings become constant per rebuild rather than proportional to option count.
+
+**Provenance:** carried over from the pre-cutover Copilot analysis, where it sat in a memory note alongside a dozen claims that Tiers 2–4 have since falsified. Re-verified against current `menu.js` on 2026-07-27 before being recorded here; the rest of that note was not salvaged.
+
+**How to verify a fix:** `npm run characterize -- --check` covers menu contents; the behaviours to click through are dropdown selection on all three menus at both desktop and mobile widths (both containers are populated), plus the cascade case — pick a measure whose current GeoType or TimePeriodID is invalid and confirm the dependent menus still auto-correct.
+
+### 4.11 `DE.state` is still written from anywhere — 23 sites across 5 files
+
+**Status: open, not started (raised 2026-07-27).** No priority assigned; recorded because it is the one structural smell from the pre-cutover analysis that Tiers 2–4 did *not* close, and it is easy to assume the state-namespace refactor already handled it.
+
+The state-namespace refactor (merged 2026-07-11, `documents/data-explorer-state-namespace-design-2026-07-10.md`) replaced ~100 bare globals with `DE.*` sub-objects. That fixed *naming*, not *ownership*: any file may still assign any field. Counted 2026-07-27 —
+
+| File | Sites | What writes |
+|---|---|---|
+| `menu.js` | 7 | cascade defaults (`:60`, `:89`, `:125`, `:155`) and `handleSelection` (`:227`, `:231`, `:235`) |
+| `app.js` | 8 | `applySelectionToState` (`:85`–`:88`), the new-indicator reset (`:110`–`:112`), tab click (`:591`) |
+| `measures.js` | 4 | `overlay`, set inside four `show*` renderers (`:1416`, `:1485`, `:1505`, `:1671`) |
+| `de-tab-content.js` | 2 | `overlay = 'none'` on close (`:48`, `:96`) |
+| `data.js` | 2 | `overlay` default and `IndicatorID` (`:200`, `:208`) |
+
+**The sharpest version: `overlay` is assigned at 9 sites across 4 files** — app.js, data.js, de-tab-content.js and measures.js — so "what is the current overlay, and who last set it" has no single answer. (bar.js and global.js reference `DE.state.overlay` but only read it.)
+
+4.2 built the one piece of this that exists: `applySelectionToState()` (app.js:83) is the single writer for URL-derived selections, with two callers. Nothing equivalent governs the other 19 sites.
+
+**Why this is not simply "do the same for the rest".** A renderer setting `DE.state.overlay = 'bar'` is recording which view it just drew, not requesting a navigation — routing those through a dispatcher that also writes history would be wrong. Any fix needs to separate "the user asked for X" from "X is now what's on screen" first; that distinction is the actual work, and it is why this is logged rather than scheduled.
+
+**Provenance:** carried over from the pre-cutover Copilot analysis and re-verified against current source on 2026-07-27 before being recorded here. A sibling claim from the same note — that `topic-indicator-selector.js` is a heavy-async hot spot — was checked at the same time and **did not survive**: at 660 lines with 5 `await`, 1 `fetch` and 2 `.then`, it is unremarkable next to data.js (11 awaits/850 lines) or app.js (5/639). It is not recorded, deliberately.
 
 ---
 
