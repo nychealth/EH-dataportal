@@ -40,6 +40,15 @@ const attachMapInterop = ({ highlight, reset }) => {
     Object.assign(window.mapInterop, { ready: true, highlight, reset });
 };
 
+// The reverse direction: pushes a geography into the bar chart's linked-highlight signal, or
+// null to clear it. No-op until the bar chart has published its Vega view, which is why every
+// map handler can call it unconditionally.
+const setBarSelection = (geoID) => {
+    if (!window.myVegaView) return;
+
+    window.myVegaView.signal("selectedGeo", geoID).run();
+};
+
 // Points the contract back at the no-ops. Called synchronously at the start of every render so
 // that a bar hover during the geometry fetch can't reach the outgoing map's discarded layers —
 // that used to silently no-op the highlight while still writing the previous geography's name
@@ -532,9 +541,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
                         const linkedGeoID = props.GeoID ?? props.GEOCODE;
 
-                        if (window.myVegaView && linkedGeoID !== undefined && linkedGeoID !== null) {
-                            // Forward map clicks into the bar chart only when the Vega view has finished loading.
-                            window.myVegaView.signal("selectedGeo", linkedGeoID).run();
+                        if (linkedGeoID != null) {
+                            setBarSelection(linkedGeoID);
                         }
                     });
 
@@ -549,20 +557,14 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                         updateHoverUI(props);
 
                         // Do not push no-data geographies into the linked bar highlight.
-                        if (window.myVegaView && hasMappedValue && linkedGeoID !== undefined && linkedGeoID !== null) {
-                            window.myVegaView.signal("selectedGeo", linkedGeoID).run();
-                        } else if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", null).run();
-                        }
+                        setBarSelection(hasMappedValue && linkedGeoID != null ? linkedGeoID : null);
                     });
                     
                     layer.on('mouseout', (e) => {
                         resetHighlight(e.target);
                         clearHoverUI();
 
-                        if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", null).run();
-                        }
+                        setBarSelection(null);
                     });
                     
                 }
@@ -756,9 +758,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                             switchToTrendTabOnce();
                         }
 
-                        if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", item.GeoID).run();
-                        }
+                        setBarSelection(item.GeoID);
                     });
 
                     circle.on('mouseover', (e) => {
@@ -766,9 +766,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         updateHoverUI(item);
 
-                        if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", item.GeoID).run();
-                        }
+                        setBarSelection(item.GeoID);
                     });
 
                     circle.on('mouseout', (e) => {
@@ -776,9 +774,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                         clearHoverUI();
 
-                        if (window.myVegaView) {
-                            window.myVegaView.signal("selectedGeo", null).run();
-                        }
+                        setBarSelection(null);
                     });
                 }
             });
