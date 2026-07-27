@@ -2,7 +2,6 @@
 title: "Rat Mitigation Zone Report: January 2025 to June 2025"
 date: 2025-12-01T11:14:56-04:00
 draft: false
-draft: false
 seo_title: "Rat Mitigation Zone Report"
 seo_description: "Reporting on rat inspection and mitigation work."
 tags: 
@@ -51,9 +50,9 @@ The Department’s rat control program takes a multi-pronged, evidence-based app
   - Case management for properties failing to remediate rats or conditions attracting rats.
   - Information at health fairs and community events and community walkthroughs.
   - Sharing data on the Rat Information Portal and Environment and Health Data Portal.
-    - [Rat Inspection Mapping Tool](https://a816-dohbesp.nyc.gov/IndicatorPublic/Rats)
-    - [Environment and Health Data Portal](../rat-mitigation-zones)
-    - [Inspection data at the borough and community district level](../../data-explorer/mice-and-rats/?id=2434#display=summary)
+   - [Rat Inspection Mapping Tool]({{< relURL >}}Rats/)
+   - [Environment and Health Data Portal]({{< relURL >}}data-features/rat-mitigation-zones/)
+   - [Inspection data at the borough and community district level]({{< relURL >}}data-explorer/mice-and-rats/?id=2434#display=summary)
 - Collaboration with other city agencies and City Hall to coordinate IPM efforts across neighborhoods and in the public realm by:
   - Surveying public schools, parks, and NYCHA developments for rat activity
   - Offering training and technical assistance to agencies

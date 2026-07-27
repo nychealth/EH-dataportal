@@ -222,11 +222,6 @@
         cursor: pointer;
     }
 
-    .visFooterBox {
-        max-height: 250px;
-        overflow-y: scroll;
-    }
-
     .nav-pills .nav-link.active {
         border: 0px!important;
     }
@@ -333,6 +328,18 @@
         background-color: #F0F0F0;
         color: green;
         font-weight: bold;
+        }
+
+    /* nested grouping levels (Time > GeoType > Borough): progressively indented and lighter so the hierarchy reads visually */
+    table .group td[data-group-level="1"] {
+        padding-left: 1.75rem;
+        background-color: #F5F5F5;
+        }
+    table .group td[data-group-level="2"] {
+        padding-left: 3.25rem;
+        background-color: #FAFAFA;
+        font-weight: 600;
+        font-size: .9em;
         }
     .de-tab {
         font-size: 16px;
@@ -547,7 +554,7 @@
                     </div>
                 </a>
 
-                <a class="ml-auto mt-auto p-1 fs-sm float-right d-none d-xl-block" id="viewDescription">
+                <a class="ml-auto mt-auto p-1 fs-xs float-right d-none d-xl-block" id="viewDescription">
                     Click tabs for more data views.
                 </a>
         
@@ -565,25 +572,33 @@
                         <div class="col-md-2 pl-2 pr-0">
 
                                 <div class="d-block clearfix">
-                                <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
+                                    <a href="#" class="badge badge-pill badge-light d-md-none mb-1 float-right" data-toggle="collapse" data-target="#tableSidebar" aria-expanded="false" aria-controls="tableSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
                                 </div>
 
                                 <div id="tableSidebar" class="collapse dont-collapse-sm">
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
-                                <div class="border py-1 mb-2 optionbox">
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#geoModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i></button>Boundaries:</p>
+                                    <div class="border py-1 mb-2 optionbox">
 
-                                    <div class="" aria-labelledby="dropdownTableGeos">
-                                        <!-- INSERT MENU ITEMS HERE -->
-                                    </div>
-                                </div>
-
-                                <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
-                                <div class="border py-1 mb-2 optionbox">
-                                    <div class="" aria-labelledby="dropdownTableTimes">
-                                        <!-- INSERT MENU ITEMS HERE -->
+                                        <div class="" aria-labelledby="dropdownTableGeos">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
                                     </div>
 
-                                </div>
+                                    <p class="fs-xs mb-0"><i data-toggle="modal" data-target="#timeModal" class="fas fa-question-circle float-right helper text-primary fs-sm"></i>Available times:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <div class="" aria-labelledby="dropdownTableTimes">
+                                            <!-- INSERT MENU ITEMS HERE -->
+                                        </div>
+
+                                    </div>
+
+                                    <p class="fs-xs mb-0">Display:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <label class="fs-xs mb-0 px-2 d-flex align-items-center" for="groupByBoroughToggle" style="cursor:pointer;">
+                                            <input class="largerCheckbox mr-1" type="checkbox" id="groupByBoroughToggle" checked />
+                                            <span>Group neighborhoods by borough</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -660,10 +675,9 @@
 
                             <div class="d-block clearfix">
                                 <a href="#" class="badge badge-pill badge-light float-right d-md-none mb-1" data-toggle="collapse" data-target="#trendSidebar" aria-expanded="false" aria-controls="trendSidebar"><i class="fas fa-cog mr-1" aria-hidden="true"></i>Options</a>
-
                             </div>
 
-                            <div id="trendSidebar" class="collapse dont-collapse-sm d-flex flex-column">
+                            <div id="trendSidebar" class="collapse dont-collapse-sm">
 
                                 <div id="trendMenuHolder" class="d-none">
                                     <p class="fs-xs mb-0">
@@ -785,7 +799,7 @@
                             <!-- Data sources -->
                             <div class="col-md-10 col-sm-12">
                                     <div class="visFooterBox">
-                                        <span class="fs-xs font-weight-bold">Source:</span> <p class="fs-xs indicator-sources"></p>
+                                        <span class="fs-xs font-weight-bold">Source: <a href={{ relURL "about/data-sources" }}><i class="fa-solid fa-circle-question"></i></a></span> <p class="fs-xs indicator-sources"></p>
                                     </div>
                             </div>
                         </div>
@@ -912,7 +926,7 @@
                             <li>Neighborhood Tabulation Areas (NTA)</li>
                         </ul>
                     </p> 
-                    <p>We try to make data available at as fine a geographic resolution as we can. <a href="../../data-stories/geographies/">Read more about different geographies at this data story</a>.</p>
+                    <p>We try to make data available at as fine a geographic resolution as we can. <a href={{ relURL "data-stories/geographies" }}>Read more about different geographies at this data story</a>.</p>
                     <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
 
                 </div>
@@ -1003,7 +1017,7 @@
                 <div class="modal-body">
                     <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
                     <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
-                    <p><a href="../../data-stories/povasthma">Read more about correlation here</a>.</p>
+                    <p><a href={{ relURL "data-stories/povasthma" }}>Read more about correlation here</a>.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1036,13 +1050,11 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="printModalTitle">Save this visualization</h5>
                 </div>
-                <div class="modal-body">
-                    Use this view to screenshot or print this visualization. You can also click the three dots in the
-                    upper-right-hand corner of the chart and choose "save as PNG" or "save as SVG" to download the chart.
-                    This function works best on a desktop computer.
-                    <hr class="my-1">
+                <div class="modal-body" style="min-height: 800px">
+                    Use this view to screenshot or print this visualization. <strong>Resize the visualization</strong> using the grab in the bottom-right. Click the <strong>three dots in the
+                    upper-right-hand corner</strong> of the chart and choose "save as PNG" or "save as SVG" to download the chart. <em>This  works best on a desktop computer.</em>
     
-                    <div id="printVis" style="height: 400px; width:100%;" class="vis-print-modal">
+                    <div id="printVis" style="min-height: 600px; width:100%;resize:both; overflow: auto;" class="vis-print-modal border d-block">
                         Vis container
                     </div>
     

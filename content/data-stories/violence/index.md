@@ -5,8 +5,27 @@ date: 2021-02-08T08:07:31-04:00
 draft: false
 seo_title: "Why violence is a public health issue"
 seo_description: "A data story on violence, disparities, and real public health justice in NYC."
-categories: ["housing","inequality","childhealth","healthoutcomes","neighborhoods","injuryandviolence"]
-keywords: ["violence","assaults","injustice","poverty","social determinants","redlining","disinvestment","racism","neighborhoods"]
+categories:
+  [
+    "housing",
+    "inequality",
+    "childhealth",
+    "healthoutcomes",
+    "neighborhoods",
+    "injuryandviolence",
+  ]
+keywords:
+  [
+    "violence",
+    "assaults",
+    "injustice",
+    "poverty",
+    "social determinants",
+    "redlining",
+    "disinvestment",
+    "racism",
+    "neighborhoods",
+  ]
 image: ds-violence.jpg
 
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"
@@ -18,6 +37,11 @@ related:
   - title: "Violence-related emergency department visits (all ages)"
     url: "data-explorer/violence/?id=2400#display=summary"
 ---
+
+{{< updateflag data=`[
+  {"src": "data-explorer/violence/?id=2400", "text": "Violence"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Economic conditions"}
+]` >}}
 
 ## Using public health to prevent violence
 
@@ -103,7 +127,7 @@ included the race of people who lived in those neighborhoods.</p>
 to back loans so that people could buy homes. Through this system, people of color were
 denied the opportunity to buy homes, and white people had their home purchases federally
 subsidized. </p>
-<p>Redlining drove segregation and economic inequality - along racial lines. <a href="{{< baseurl >}}data-stories/housing/">Its effects persist today</a>. According to the <a
+<p>Redlining drove segregation and economic inequality - along racial lines. <a href="{{< relURL >}}data-stories/housing/">Its effects persist today</a>. According to the <a
     href="https://ncrc.org/holc/">National Community Reinvestment Coalition</a>, 3 out
 of every 4 neighborhoods in the USA that were redlined in the 1930s are still
 low-to-moderate income today - and 2 out of every 3 are predominantly populated by
@@ -117,7 +141,7 @@ A map of recent shootings lines up with the heavily <span style="font-weight: bo
 
 <div aria-hidden="true">
 <div class="my-3">
-<iframe src="../../maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
+<iframe src="{{< relURL >}}maps/HOLC-shootings/map.html" scrolling="no" frameborder="0" style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
 {{< /rawhtml >}}
@@ -395,11 +419,11 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
             <div class="modal-body">
                 <p><strong>Poverty:</strong> the percent of people whose annual income is below 100% of
                     the Federal Poverty Level, 2013-2017 American Community Survey. <a
-                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=103#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/economic-conditions/?id=103#display=summary">Explore
                         the data</a>.</p>
                 <p><strong>Child poverty:</strong> children under 5 years old living in poverty,
                     2013-2017 American Community Survey. <a
-                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2176#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/economic-conditions/?id=2176#display=summary">Explore
                         the data</a>.</p>
                 <p><strong>Child homelessness:</strong> homeless children age 0 to 17, per 1,000, 2015
                     Department of Homeless Services. <a
@@ -407,7 +431,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
                         the data</a>.</p>
                 <p><strong>High school incompletion:</strong> estimated percent of people age 25+ who
                     did not graduate from high school, 2013-2017 American Community Survey. <a
-                        href="{{< baseurl >}}data-explorer/social-conditions/?id=2334#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/social-conditions/?id=2334#display=summary">Explore
                         the data</a>.</p>
                 <p><strong>Disconnected youth:</strong> percent of people age 16 to 24 who did not
                     graduate high school and are unemployed, 2015-2017 American Community Survey. <a
@@ -415,10 +439,10 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
                         the data</a>.</p>
                 <p><strong>Unemployment:</strong> estimated percent of people age 16+ in the civilian
                     labor force who are unemployed, 2013-2017 American Community Survey. <a
-                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2337#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/economic-conditions/?id=2337#display=summary">Explore
                         the data</a>.</p>
                 <p><strong>Evictions:</strong> court-ordered evictions, 2017. <a
-                        href="{{< baseurl >}}data-explorer/economic-conditions/?id=2365#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/economic-conditions/?id=2365#display=summary">Explore
                         the data</a>.</p>
                 <p><strong>Foreclosures</strong>: rate of foreclosures per 1,000 1- to 4-family
                     properties, 2018. <a
@@ -426,7 +450,7 @@ line for New York City residents, or <a href="https://www1.nyc.gov/site/ocdv/get
                         the data</a>. </p>
                 <p><strong>Assault hospitalizations:</strong> age-adjusted rate of non-fatal assault
                     hospitalizations, per 100,000 people, 2016. <a
-                        href="{{< baseurl >}}data-explorer/violence/?id=2375#display=summary">Explore
+                        href="{{< relURL >}}data-explorer/violence/?id=2375#display=summary">Explore
                         the data</a>. </p>
                 <p><strong>Shootings</strong>: number of shootings from 2008 - 2018. <a
                         href="https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8">Explore

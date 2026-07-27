@@ -344,7 +344,8 @@ h1 {
             color: $primary;
             text-decoration: underline;
         }
-        svg {
+        svg,
+        i {
             color: $primary;
         }
     }
@@ -793,11 +794,19 @@ span.th-sub {
     svg path {
         fill: $color-data-stories;
     }
+
+    i {
+        color: $color-data-stories;
+    }
 }
 
 .kt-accent {
     svg path {
         fill: $primary;
+    }
+
+    i {
+        color: $primary;
     }
 }
 
@@ -805,17 +814,29 @@ span.th-sub {
     svg path {
         fill: $color-data-features;
     }
+
+    i {
+        color: $color-data-features;
+    }
 }
 
 .nr-accent {
     svg path {
         fill: $color-n-reports;
     }
+
+    i {
+        color: $color-n-reports;
+    }
 }
 
 .de-accent {
     svg path {
         fill: $color-data-explorer;
+    }
+
+    i {
+        color: $color-data-explorer;
     }
 }
 

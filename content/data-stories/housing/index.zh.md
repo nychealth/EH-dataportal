@@ -92,7 +92,7 @@ image: ds-housing.jpeg
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -398,7 +398,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
     </div>
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
-            <iframe title=" Scatterplot - Chinese" aria-label="Scatter Plot" id="datawrapper-chart-S5cP3" src="https://datawrapper.dwcdn.net/S5cP3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title=" Scatterplot - Chinese" aria-label="Scatter Plot" id="datawrapper-chart-S5cP3" data-lazy-src="https://datawrapper.dwcdn.net/S5cP3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>           
     </div>
 </div>
@@ -449,5 +449,5 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
 
 #### 获取数据 
 - 有关住房维护状况的数据来自 [年住房和空置调查（Housing and Vancancy Survey）](https://www.census.gov/programs-surveys/nychvs.html)。
-- [有关儿童哮喘急诊科就诊的数据]({{< baseurl >}}data-explorer/asthma/?id=2383) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
-- [有关依社区划分的人口种族/族裔数据]({{< baseurl >}}data-explorer/social-conditions/?id=2325) 来自美国社区调查（American Community Survey）。
+- [有关儿童哮喘急诊科就诊的数据]({{< relURL >}}data-explorer/asthma/?id=2383) 来自纽约全州计划和研究合作系统（New York State Statewide Planning and Research Cooperative System，SPARCS）去身份化的出院数据。
+- [有关依社区划分的人口种族/族裔数据]({{< relURL >}}data-explorer/social-conditions/?id=2325) 来自美国社区调查（American Community Survey）。

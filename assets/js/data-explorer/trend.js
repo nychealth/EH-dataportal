@@ -10,7 +10,7 @@ const renderTrendChart = (
     console.log("*** renderTrendChart");
 
     let mdo = metadata.objects()
-    mdo[0].ComparisonName === 'Boroughs' ? document.getElementById('viewDescription').innerHTML = 'Trends are shown by borough for stable rates.' : document.getElementById('viewDescription').innerHTML = ''
+    mdo[0].ComparisonName === 'Boroughs' ? document.getElementById('viewDescription').innerHTML = 'Hover on lines for more information.' : document.getElementById('viewDescription').innerHTML = 'Hover on lines for more information'
 
     // console.log("metadata [renderTrendChart]");
     // metadata.print()
@@ -58,16 +58,24 @@ const renderTrendChart = (
         xAxisLabelField = 'TimePeriodSplit'
     }
 
-    let mobileLegend;
+    let mobileLegend = null
+    let endLabelFontSize = 10
+
     if (window.innerWidth < 720) {
         mobileLegend =  {
-            "orient": "bottom",
-            "columns": 3,
-            "title": ''
-        }
+                "columns": 3, 
+                "title": "", 
+                "labelFontWeight": "bold",
+                "labelColor": {
+                "expr": "scale('color', datum.label)"
+                }
+            }
+        endLabelFontSize = 0
     } else {
         mobileLegend = null
+        endLabelFontSize = 10
     }
+
     
     
     // ticks
@@ -432,13 +440,18 @@ const renderTrendChart = (
                 "titlePadding": 10
             },
             "axisY": {"labelAngle": 0, "labelFontSize": 11, "tickMinStep": tickMinStep},
-            "legend": {"columns": 3,"labelFontSize": 12,
-                "symbolSize": 140,
-                "offset": 45},
-                "view": {"stroke": "transparent"},
-                "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
-                "point": {"filled": true},
-                "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
+            "legend": {
+                "columns": 3,
+                "labelFontSize": 10,
+                "symbolSize": 50,
+                "offset": 45,
+                "symbolType": "stroke",
+                "orient": "top"
+            },
+            "view": {"stroke": "transparent"},
+            "line": {"color": "#1696d2", "stroke": "#1696d2", "strokeWidth": 2.5},
+            "point": {"filled": true},
+            "text": {"color": "#1696d2", "fontSize": 11, "fontWeight": 400, "size": 11}
             },
             "data": {
                 "values": data.objects(),
@@ -449,20 +462,26 @@ const renderTrendChart = (
                 }
             },
             "width": "container",
-            "height": 500,
+            "height": 400,
             "title": {
                 "text": plotTitle,
-                "subtitlePadding": 10,
+                "subtitlePadding": 5,
                 "fontWeight": "normal",
                 "anchor": "start",
                 "fontSize": 18,
                 "font": "sans-serif",
                 "baseline": "top",
                 "subtitle": plotSubtitle,
-                "dy": -10,
+                "dy": -5,
                 "subtitleFontSize": 13
             },
             "transform": [
+                // Adds space to line name
+                {
+                    "calculate": `replace(datum.${comp_group_col}, /(.{1,15})(\\s+|$)/g, '$1\\n')`,
+                    "as": "textLabel"
+                },
+
                 // adds display to value
                 {
                     "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
@@ -501,6 +520,11 @@ const renderTrendChart = (
                 {
                     "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
                     "as": "fallbackYear"
+                },
+                {
+                    "joinaggregate": [
+                    {"op": "max", "field": "Value", "as": "maxVal"}
+                    ]
                 }
             ],
             "encoding": {
@@ -545,16 +569,7 @@ const renderTrendChart = (
                             "title": null,
                             "axis": {"tickCount": 4},
                             "scale": {"domainMin": 0, "nice": true}
-                        },
-                        "tooltip": [
-                            {
-                                "title": "Time",
-                                "field": "TimePeriod",
-                                "type": "nominal"
-                            },
-                            {"title": "Group", "field": comp_group_col},
-                            {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
-                        ]
+                        }
                     },
                     "layer": [
                         {
@@ -569,36 +584,116 @@ const renderTrendChart = (
                                     "strokeWidth": 2.5,
                                     "tooltip": true
                                 }
+                            },
+                            "encoding": {
+                                "tooltip": [
+                                    {
+                                        "title": "Time",
+                                        "field": "TimePeriod",
+                                        "type": "nominal"
+                                    },
+                                    {"title": "Group", "field": comp_group_col},
+                                    {"title": comparisonToolTipLabel, "field": "valueWithDisplay"}
+                                     ]
                             }
                         },
                         {
-                            "description": "Hover text",
-                            "transform": [
-                                {
-                                    "aggregate": [
-                                        {"op": "argmin", "field": "end_period", "as": "Value"},
-                                        {"op": "min", "field": "end_period", "as": "end_period"}
-                                    ],
-                                    "groupby": [comp_group_col]
-                                }
+                        "description": "Hover text",
+                        "transform": [
+                            // get dataset max, and endate Median
+                            {
+                            "joinaggregate": [
+                                {"op": "max", "field": "Value", "as": "maxVal"}
+                            ]
+                            },
+                            // Get max date
+                            {
+                            "aggregate": [
+                                {"op": "argmax", "field": "end_period", "as": "endDate"},
+                                {"op": "max", "field": "end_period", "as": "end_period"}
                             ],
-                            "encoding": {
-                                "y": {"field": "Value['Value']"},
-                                "text": {
-                                    "condition": {
-                                        "param": "hover",
-                                        "field": comp_group_col,
-                                        "empty": false
-                                    },
-                                    "value": ""
+                            "groupby": [`${comp_group_col}`]
+                            },
+
+                            // re-store endDateValue
+                            {
+                            "calculate": "datum.endDate ? datum.endDate.Value : null",
+                            "as": "endDateValue"
+                            },
+                                        {
+                            "calculate": "datum.endDate.maxVal",
+                            "as": "maxChartVal"
+                            },
+
+                                // initial labelValue == endDateValue
+                                {
+                                    "calculate": "datum.endDateValue",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 1: compare against previous labelValue (which currently equals endDateValue)
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel === null ? (datum.labelValue - 0.025 * datum.maxChartVal) : (datum.labelValue - datum.prevLabel < 0.05 * datum.maxChartVal ? datum.prevLabel + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 2: re-check using the updated labelValue
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel2"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel2 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel2 < 0.05 * datum.maxChartVal ? datum.prevLabel2 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+
+                                // PASS 3: 
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel3"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel3 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel3 < 0.05 * datum.maxChartVal ? datum.prevLabel3 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+                                  // PASS 4:
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel4"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel4 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel4 < 0.05 * datum.maxChartVal ? datum.prevLabel4 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
+                                },
+                                    // PASS 5:
+                                {
+                                    "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel5"}],
+                                    "sort": [{"field": "endDateValue", "order": "ascending"}]
+                                },
+                                {
+                                    "calculate": "datum.prevLabel5 === null ? datum.labelValue : (datum.labelValue - datum.prevLabel5 < 0.05 * datum.maxChartVal ? datum.prevLabel5 + 0.05 * datum.maxChartVal : datum.labelValue)",
+                                    "as": "labelValue"
                                 }
+                        ],
+                            "encoding": {
+                                "y": {"field": "labelValue"},
+                                "text": {
+                                        "field": "endDate.textLabel",
+                                },
+                                "tooltip": [
+                                 ]
                             },
                             "mark": {
                                 "type": "text",
+                                "lineBreak": "\n",
                                 "align": "left",
-                                "dx": -6,
-                                "dy": -14,
-                                "fontSize": 14,
+                                "dx": 8,
+                                "dy": 5,
+                                "fontSize": endLabelFontSize, // hides on mobile, in favor of legend. 
                                 "fontWeight": "bold"
                             }
                         }
@@ -615,7 +710,7 @@ const renderTrendChart = (
                             "axis": {"labels": false, "grid": false, "ticks": true},
                             "scale": {"padding": 20}
                         },
-                        "y": {"value": 500},
+                        "y": {"value": 400},
                         "color": {"value": "black"}
                     }
                 },
@@ -633,7 +728,7 @@ const renderTrendChart = (
                             "type": "temporal",
                             "axis": {"labels": false, "grid": false, "ticks": false}
                         },
-                        "y": {"value": 515},
+                        "y": {"value": 415},
                         "text": {"field": xAxisLabelField, "type": "nominal"},
                         "color": {"value": "black"}
                     }

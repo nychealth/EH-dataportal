@@ -2,48 +2,54 @@
 
 <!-- need to include popper first; umd is non-module version -->
 
-{{- $popper_secure := resources.Get "node_modules/popper.js/dist/umd/popper.min.js" | partial "short-fingerprint.html" }}
-<script src="{{ $popper_secure.RelPermalink }}" integrity="{{ $popper_secure.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- $popper_secure := resources.Get
+"node_modules/popper.js/dist/umd/popper.min.js" | partial
+"short-fingerprint.html" }}
+<script
+  src="{{ $popper_secure.RelPermalink }}"
+  integrity="{{ $popper_secure.Data.Integrity }}"
+  crossorigin="anonymous"
+></script>
 
-{{- $bootstrap_secure := resources.Get "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | partial "short-fingerprint.html" }}
-<script src="{{ $bootstrap_secure.RelPermalink }}" integrity="{{ $bootstrap_secure.Data.Integrity }}" crossorigin="anonymous"></script>
-
+{{- $bootstrap_secure := resources.Get
+"node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" | partial
+"short-fingerprint.html" }}
+<script
+  src="{{ $bootstrap_secure.RelPermalink }}"
+  integrity="{{ $bootstrap_secure.Data.Integrity }}"
+  crossorigin="anonymous"
+></script>
 
 <!-- Google Translate -->
 <script>
   function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-          pageLanguage: 'en'
-      }, 'google_translate_element');
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+      },
+      "google_translate_element"
+    );
 
-      // obliterate all google translate SVGs, which are constantly recalulating styles but are never shown
-      document.querySelectorAll("div[class^=VI] svg").forEach(e => e.outerHTML = "");
+    // obliterate all google translate SVGs, which are constantly recalulating styles but are never shown
+    document
+      .querySelectorAll("div[class^=VI] svg")
+      .forEach((e) => (e.outerHTML = ""));
   }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+{{- /* NYC template JS (RTL, search and language toggle, back to top) */}} {{-
+$main := resources.Get "js/main.js" | partial "short-fingerprint.html" }}
+<script
+  type="text/javascript"
+  src="{{ $main.RelPermalink }}"
+  integrity="{{ $main.Data.Integrity }}"
+></script>
 
-{{- /*  subscribe button event listener  */}}
-
-<script>
-
-    document.querySelectorAll("[data-target='#subscribeModal']").forEach(el => {
-
-        el.addEventListener("click", e => {
-
-            gtag('event', 'click_subscribe', {
-                page: window.location.pathname,
-                place: e.target.dataset.subscribeClick
-            });
-
-        });
-    });
-
-</script>
-
-
-{{- /*  NYC template JS (RTL, search and language toggle, back to top)  */}}
-
-{{- $main := resources.Get "js/main.js" | partial "short-fingerprint.html" }}
-<script type="text/javascript" src="{{ $main.RelPermalink }}" integrity="{{ $main.Data.Integrity }}"></script>
+{{- $site := resources.Get "js/site.js" | partial "short-fingerprint.html" }}
+<script
+  type="text/javascript"
+  src="{{ $site.RelPermalink }}"
+  integrity="{{ $site.Data.Integrity }}"
+></script>

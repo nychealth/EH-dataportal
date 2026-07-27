@@ -1,18 +1,20 @@
 ---
 featured:
-- copy: Premature mortality
-  link: data-explorer/mortality/?id=2322
-- copy: Death (infants)
-  link: data-explorer/birth-outcomes/?id=5
-- copy: Preterm births
-  link: data-explorer/birth-outcomes/?id=1
-- copy: Elevated blood lead levels (under age 6)
-  link: data-explorer/lead/?id=2184
-- copy: Bicycle injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2092
-- copy: Pedestrian injury emergency department visits
-  link: data-explorer/transportation-related-injuries/?id=2094
-- copy: Fall-related emergency department visits (age 65+) 
-  link: data-explorer/falls-among-older-adults/?id=2135
-- copy: Home fall-related emergency department visits (age 65+)
-  link: data-explorer/falls-among-older-adults/?id=2408
+- copy: Rat inspections
+  link: mice-and-rats/?id=2434
+- copy: Rat indexing in Rat Mitigation Zones (RMZs)
+  link: mice-and-rats/?id=2433
+- copy: Foreign-born population
+  link: social-conditions/?id=14
+- copy: Adults with diabetes
+  link: chronic-disease/?id=2465
+- copy: Adults with very high blood sugar levels (A1C > 9%)
+  link: chronic-disease/?id=2466
+- copy: Lower extremity amputations (diabetes-related)
+  link: chronic-disease/?id=2467
+- copy: Dialysis patients (diabetes-related)
+  link: chronic-disease/?id=2468
+- copy: Residents living in a hurricane evacuation zone
+  link: climate/?id=2140
+- copy: Walking distance to an accessible subway station
+  link: accessibility/?id=2458

@@ -4,6 +4,16 @@
 
 // console.log('print vis js running')
 
+const el = document.getElementById("printVis");
+
+const ro = new ResizeObserver(() => {
+  updateChartPlotSize();
+});
+
+ro.observe(el);
+
+let view;
+
 // ----------------------------------------------------------------------- //
 // Fire print modal and draw chart on delay
 // ----------------------------------------------------------------------- //
@@ -35,6 +45,7 @@ function printViz() {
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
 
 
+
     vegaEmbed("#printVis", printSpec, {
         actions: {
           export: { png: true, svg: true },
@@ -42,7 +53,7 @@ function printViz() {
           compiled: false, 
           editor: true 
         }
-      });
+      })
     
     updateChartPlotSize();
 
@@ -58,6 +69,8 @@ function printViz() {
 
 function changeTrendSpec() {
 
+    printSpec.height = 400
+
     checkSourceLength()
 
     let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
@@ -72,9 +85,13 @@ function changeTrendSpec() {
     wrapLegend === true ? columns = 3 : columns = 6;
 
     printSpec.layer[1].encoding.color.legend = {
-        "orient": "bottom",
+        "orient": "top",
         "title": null,
-        "columns": columns
+        "columns": columns,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
       }
 
     let sourceLayer = {
@@ -86,7 +103,7 @@ function changeTrendSpec() {
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
-          "dy": 175
+          "dy": 75
         },
         "data": {
             "values": [{}]  // Use an empty object as a dummy value
@@ -198,6 +215,18 @@ function changeLinksSpec() {
     }
 
     sourceArray.push(vizSourceSecond)
+
+
+    printSpec.config.legend = {
+        "orient": "top",
+        "title": null,
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
+      }
+
 
     let sourceLayer = {
         "mark": {
