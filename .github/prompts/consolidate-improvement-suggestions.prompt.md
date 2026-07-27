@@ -1,6 +1,6 @@
 name: consolidate-improvement-suggestions
 description: "Run a code review across multiple models, then consolidate the results into one prioritized improvements document."
-argument-hint: "Optionally specify a folder or component to review, e.g. 'assets/js/data-explorer-new/'"
+argument-hint: "Optionally specify a folder or component to review, e.g. 'assets/js/data-explorer/'"
 agent: "agent"
 ---
 
@@ -40,7 +40,7 @@ If a model is unavailable, skip it and proceed with the others.
 > Do not suggest adding frameworks, build systems, or major new dependencies.
 > Stay within the project's existing tooling.
 
-Replace `{target}` with the user's argument. If no argument was provided, default to `assets/js/data-explorer-new/`.
+Replace `{target}` with the user's argument. If no argument was provided, default to `assets/js/data-explorer/`.
 
 Save each model's output as `improvements-{model-slug}.md` in the documents folder, where `{model-slug}` is a lowercase kebab-case version of the model name (e.g., `improvements-gemini-3.1-pro.md`).
 

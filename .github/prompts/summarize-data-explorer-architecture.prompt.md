@@ -6,7 +6,7 @@ agent: "agent"
 
 <!-- Tip: Use /create-prompt in chat to generate content with agent assistance -->
 
-Analyze the data explorer implementation described in `assets\js\data-explorer-new\` and the related Hugo partials and templates that render its UI.
+Analyze the data explorer implementation described in `assets\js\data-explorer\` and the related Hugo partials and templates that render its UI. Ignore `assets\js\data-explorer-old\`, which is retired.
 
 Produce a markdown document at the top level of the repository. Use `documents\data-explorer-architecture.md` unless the user requests a different filename. Make sure you follow the Markdown guidelines in `.github\instructions\markdown.instructions.md`
 
