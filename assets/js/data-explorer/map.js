@@ -19,6 +19,36 @@ let isPercent;
 let displayType;
 
 // ----------------------------------------------------------------------- //
+// bar-chart interop contract
+// ----------------------------------------------------------------------- //
+
+// bar.js drives map highlighting through this object; the reverse direction goes through
+// window.myVegaView. It is created once, here, and always exists — callers gate on `ready`,
+// never on the object itself, and never on which map type is behind it. Both renderers
+// attach the same two functions, so the bar chart holds no choropleth-vs-bubble knowledge.
+
+const NO_MAP_INTEROP = {
+    ready: false,
+    highlight: () => {},    // highlight the geography for this GeoID + fill the legend hover panel
+    reset: () => {}         // clear the tracked highlight + reset the legend hover panel
+};
+
+window.mapInterop = { ...NO_MAP_INTEROP };
+
+// Publishes a renderer's implementations, once its geometry is on the map.
+const attachMapInterop = ({ highlight, reset }) => {
+    Object.assign(window.mapInterop, { ready: true, highlight, reset });
+};
+
+// Points the contract back at the no-ops. Called synchronously at the start of every render so
+// that a bar hover during the geometry fetch can't reach the outgoing map's discarded layers —
+// that used to silently no-op the highlight while still writing the previous geography's name
+// and value into the legend panel.
+const detachMapInterop = () => {
+    Object.assign(window.mapInterop, NO_MAP_INTEROP);
+};
+
+// ----------------------------------------------------------------------- //
 // base map initialization (fires immediately on script load)
 // ----------------------------------------------------------------------- //
 
@@ -73,6 +103,12 @@ const createDataLookup = (data) => {
 
 // Reuses the base map instance while clearing old geometry overlays between renders.
 const resetMapForRender = () => {
+    detachMapInterop();
+
+    // The outgoing render's hover text describes geography that is about to disappear, and with
+    // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
+    clearHoverUI();
+
     clearBubbles();
     initBaseMap();
     if (currentGeojsonLayer) {
@@ -190,6 +226,16 @@ const createCitywidePopupContent = (citywideData, metadata) => {
     `;
 };
 
+// Resets the legend hover panel to its idle, no-selection state. Module-level rather than
+// per-render because it depends on nothing a render supplies, and resetMapForRender() needs
+// it before the incoming render's helpers exist.
+const clearHoverUI = () => {
+    document.getElementById('hoveredGeo').textContent = 'Hover for details';
+    document.getElementById('hoveredValue').textContent = '';
+    document.getElementById('hoveredUnits').textContent = '';
+    document.getElementById('legend-tick').style.display = 'none';
+};
+
 // Coordinates legend hover text and tick placement with hovered map features.
 const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
     // Converts a value into a 0-100 percent position along the legend's color range.
@@ -219,17 +265,8 @@ const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
         document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
     };
 
-    // Resets the legend hover panel to its idle, no-selection state.
-    const clearHoverUI = () => {
-        document.getElementById('hoveredGeo').textContent = 'Hover for details';
-        document.getElementById('hoveredValue').textContent = '';
-        document.getElementById('hoveredUnits').textContent = '';
-        document.getElementById('legend-tick').style.display = 'none';
-    };
-
     return {
         updateHoverUI,
-        clearHoverUI,
         calculatePercent
     };
 };
@@ -451,10 +488,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
         });
     };
 
-    const {
-        updateHoverUI,
-        clearHoverUI
-    } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
+    const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
@@ -540,15 +574,29 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
                 handleCitywideOnly(map, data, metadata);
             }
 
-            // exposes map functions globally for chart-to-map hover cross-linking
-            window.mapInterop = {
-                geoIDtoLayer,
-                geojsonLayer,
-                highlightFeature,
-                resetHighlight,
-                updateHoverUI,
-                clearHoverUI
-            };
+            // ----- publish the hover contract for bar.js ----- //
+
+            attachMapInterop({
+
+                highlight: (geoID) => {
+                    // The lookup registers both GeoID and GEOCODE, raw and stringified, so a
+                    // single fallback covers the number-vs-string mismatch between the two sources.
+                    const layer = geoIDtoLayer[geoID] ?? geoIDtoLayer[String(geoID)];
+
+                    if (!layer) return;
+
+                    highlightFeature({ target: layer });
+                    updateHoverUI(layer.feature.properties);
+                },
+
+                reset: () => {
+                    // No argument: resetHighlight falls back to whichever layer is tracked, so a
+                    // highlight from either source (map hover or bar chart) clears correctly.
+                    resetHighlight();
+                    clearHoverUI();
+                }
+
+            });
 
         })
         .catch(error => {
@@ -606,29 +654,52 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
         });
     };
 
-    const {
-        updateHoverUI,
-        clearHoverUI
-    } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
+    const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
 
-            // - - - lookup to match GeoID → Leaflet layer (for chart interop) - - - //
+            // - - - bubble lookup for chart interop - - - //
 
-            const geoIDtoLayer = {};
-            const circleMarkers = [];  // Store all circle markers for interop
+            // Bubble-map highlighting works on the circle markers, not the gray base polygons,
+            // so this map needs no GeoID → polygon-layer lookup of its own.
+            const circleMarkers = [];
+
+            // Only one bubble is highlighted at a time. Tracking it here — rather than in each
+            // handler — means a map hover and a bar-chart hover clear each other correctly,
+            // the same way highlightedLayer works for the choropleth.
+            let highlightedMarker = null;
+
+            // Applies the hover-highlight style to a marker entry, clearing any previous one.
+            const highlightMarker = (markerEntry) => {
+                if (!markerEntry || markerEntry === highlightedMarker) return;
+
+                if (highlightedMarker) {
+                    highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                }
+
+                markerEntry.marker.setStyle({
+                    weight: 3,
+                    color: '#000',
+                    fillOpacity: 1
+                });
+
+                highlightedMarker = markerEntry;
+            };
+
+            // Restores whichever marker is currently highlighted, whoever highlighted it.
+            const resetMarkerHighlight = () => {
+                if (!highlightedMarker) return;
+
+                highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                highlightedMarker = null;
+            };
 
             // ----- Add the GeoJSON overlay (light gray polygons) ----- //
 
             const geojsonLayer = L.geoJson(geojson, {
                 style: styleFeature,
                 onEachFeature: (feature, layer) => {
-                    const geoID = feature.properties.GeoID || feature.properties.GEOCODE;
-                    if (geoID) {
-                        geoIDtoLayer[geoID] = layer;
-                    }
-                    
                     layer.bindPopup(createPopupContent(feature.properties));
 
                     if (isCitywideOnly) {
@@ -658,10 +729,12 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
                     circle.bindPopup(createPopupContent(item));
 
-                    // Store reference for chart interop
-                    circleMarkers.push({
+                    // Store reference for chart interop. `row` is kept so a bar-driven highlight
+                    // can fill the legend panel from the same source the map's own hover uses.
+                    const markerEntry = {
                         geoID: item.GeoID,
                         marker: circle,
+                        row: item,
                         originalStyle: {
                             radius: radiusScale(item.Value),
                             fillColor: colorScale(item.Value),
@@ -670,7 +743,9 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                             opacity: 1,
                             fillOpacity: 0.9
                         }
-                    });
+                    };
+
+                    circleMarkers.push(markerEntry);
 
                     // - - - Add hover and click interactions to bubbles - - - //
 
@@ -687,12 +762,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     });
 
                     circle.on('mouseover', (e) => {
-                        // Highlight the bubble
-                        circle.setStyle({
-                            weight: 3,
-                            color: '#000',
-                            fillOpacity: 1
-                        });
+                        highlightMarker(markerEntry);
 
                         updateHoverUI(item);
 
@@ -702,9 +772,7 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                     });
 
                     circle.on('mouseout', (e) => {
-                        // Reset the bubble style
-                        const original = circleMarkers.find(c => c.marker === circle).originalStyle;
-                        circle.setStyle(original);
+                        resetMarkerHighlight();
 
                         clearHoverUI();
 
@@ -719,38 +787,25 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
                 handleCitywideOnly(map, data, metadata);
             }
 
-            // ----- Expose map functions globally for chart-to-map hover cross-linking ----- //
+            // ----- publish the hover contract for bar.js ----- //
 
-            window.mapInterop = {
-                geoIDtoLayer,
-                geojsonLayer,
-                circleMarkers,
-                highlightBubble: (geoID) => {
-                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
-                    if (markerObj) {
-                        markerObj.marker.setStyle({
-                            weight: 3,
-                            color: '#000',
-                            fillOpacity: 1
-                        });
-                    }
+            attachMapInterop({
+
+                highlight: (geoID) => {
+                    const markerEntry = circleMarkers.find(c => c.geoID === geoID);
+
+                    if (!markerEntry) return;
+
+                    highlightMarker(markerEntry);
+                    updateHoverUI(markerEntry.row);
                 },
-                resetBubble: (geoID) => {
-                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
-                    if (markerObj) {
-                        markerObj.marker.setStyle(markerObj.originalStyle);
-                    }
-                },
-                // Keep interop API shape consistent with choropleth mode.
-                resetHighlight: (geoID) => {
-                    const markerObj = circleMarkers.find(c => c.geoID === geoID);
-                    if (markerObj) {
-                        markerObj.marker.setStyle(markerObj.originalStyle);
-                    }
-                },
-                updateHoverUI,
-                clearHoverUI
-            };
+
+                reset: () => {
+                    resetMarkerHighlight();
+                    clearHoverUI();
+                }
+
+            });
 
         })
         .catch(error => {

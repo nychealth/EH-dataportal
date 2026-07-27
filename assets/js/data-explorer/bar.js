@@ -546,75 +546,25 @@ const renderBar = (
         registerBarTabResizeHandler();
         scheduleBarViewResize();
 
-        let lastHighlighted = null; // can be a Leaflet layer (choropleth) or geoID (bubble)
-
-        // Mirror bar hover into the map by looking up the matching Leaflet layer by GeoID.
+        // Mirror bar hover into the map. Which map type is behind the contract, and which
+        // geography is currently highlighted, are both the map's business — see map.js's
+        // interop section. Vega fires mouseover only when the hovered item changes.
         result.view.addEventListener('mouseover', (event, item) => {
 
             // Ignore Vega events that do not map to a concrete geography row.
-            if (item && item.datum && item.datum.GeoID) {
+            const geoID = item?.datum?.GeoID;
 
-                const geoID = item.datum.GeoID;
-                const mapAPI = window.mapInterop;
+            if (geoID == null || !window.mapInterop.ready) return;
 
-                if (!mapAPI) return; // map not ready yet
-
-                // Check if it's a bubble map (has circleMarkers) or choropleth (has geoIDtoLayer)
-                if (mapAPI.circleMarkers) {
-                    // - - - Bubble map - - - //
-                    const markerObj = mapAPI.circleMarkers.find(c => c.geoID === geoID);
-                    if (markerObj && markerObj !== lastHighlighted) {
-                        // Reset previous highlight
-                        if (lastHighlighted) {
-                            mapAPI.resetBubble(lastHighlighted);
-                        }
-                        // Highlight new bubble
-                        mapAPI.highlightBubble(geoID);
-                        lastHighlighted = geoID;
-                        // Update UI with bar data properties
-                        mapAPI.updateHoverUI(item.datum);
-                    }
-                } else if (mapAPI.geoIDtoLayer) {
-                    // - - - Choropleth map - - - //
-                    const layer =
-                        mapAPI.geoIDtoLayer[geoID] ||
-                        mapAPI.geoIDtoLayer[String(geoID)] ||
-                        mapAPI.geoIDtoLayer[item.datum.GEOCODE] ||
-                        mapAPI.geoIDtoLayer[String(item.datum.GEOCODE)];
-                        
-                    if (layer && layer !== lastHighlighted) {
-                        // Reset previous
-                        if (lastHighlighted) {
-                            mapAPI.resetHighlight(lastHighlighted);
-                        }
-                        // Highlight new
-                        mapAPI.highlightFeature({ target: layer });
-                        lastHighlighted = layer;
-                        mapAPI.updateHoverUI(layer.feature.properties);
-                    }
-                }
-            }
+            window.mapInterop.highlight(geoID);
         });
 
-        // Clear the linked map highlight when the cursor leaves the chart.
+        // Clear the linked map highlight when the cursor leaves a bar or the chart.
         result.view.addEventListener('mouseout', () => {
 
-            const mapAPI = window.mapInterop;
+            if (!window.mapInterop.ready) return;
 
-            if (!mapAPI) return;
-
-            if (lastHighlighted) {
-                if (typeof lastHighlighted === 'string') {
-                    // Bubble map: lastHighlighted is geoID
-                    mapAPI.resetBubble(lastHighlighted);
-                } else {
-                    // Choropleth: lastHighlighted is layer
-                    mapAPI.resetHighlight(lastHighlighted);
-                }
-                lastHighlighted = null;
-            }
-
-            mapAPI.clearHoverUI();
+            window.mapInterop.reset();
         });
 
     });
