@@ -6,11 +6,15 @@ Fresh line-by-line audit of the active data explorer SPA (`assets/js/data-explor
 
 This builds on (and does not re-report) the prior audits: every finding in `documents/data-explorer-deep-audit-2026-06-27.md` §0–§6 is closed as of 2026-07-04, and the state-namespace refactor (`const DE = {...}`) landed 2026-07-11 on this branch. What remains open from the consolidated 04-19 doc is the structural tier: renderer registry (#3), selectors (#4), stale-fetch guard (#6), URL module (#7), boot sequence (#12), mapInterop lifecycle (#13), fetch cache (#15), hover reset (#17), and the copy-citation cleanup (#26). This audit confirms those are all still live in current code, pins them to exact sites, and adds **new findings** the earlier passes missed.
 
-## Status at a glance (updated 2026-07-23)
+## Status at a glance (updated 2026-07-27)
 
-**Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.6, 4.7, 4.8, 4.9. Every one of these is **merged into `feature-new-data-explorer` and pushed** — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
+Every findings section below opens with its own **Status:** line and date; this block is the summary of those.
 
-**Open:** Tier 4.2, 4.3, and 4.4 (parked until comparative user testing ends). One deliberate won't-do inside 3.3: CSS `| minify`, rejected by the user — verified absent from `head.html`; don't re-propose without asking. **Tier 4.5 (guardrails) is done** — complete on `feature-de-tier4.5-guardrails` (2026-07-23, 9 commits), fast-forward merged into `feature-new-data-explorer` at `a904b3efab`; see its §4.5 status entry below. **Tier 4.1 is done** — see its §4.1 status entry, and the **4.1 follow-up naming sweep** (2026-07-25, branch `feature-de-naming-cleanup`) immediately after it, which also fixed a duplicate-id collision and three modals that had no accessible name.
+**Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.5, 4.6, 4.7, 4.8 and 4.9. Every one of these is **merged into `feature-new-data-explorer` and pushed** — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
+
+**Open:** **4.3** (`window.mapInterop` contract — the only unstarted Tier 4 item) and **4.4** (parked until comparative user testing ends), plus the low-priority **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone).
+
+**Standing won't-dos** — don't re-propose without asking: CSS `| minify` inside 3.3 (rejected by the user, verified absent from `head.html`), script bundling (2026-07-13 decision), and the `links` → `correlate` rename (deferred with its cost measured; options in site-wide audit §4).
 
 ## Decisions (2026-07-13, from review)
 
@@ -29,22 +33,34 @@ This builds on (and does not re-report) the prior audits: every finding in `docu
 
 ## Tier 1 — Small correctness fixes and dead weight (hours; near-zero risk)
 
+**Status: closed 2026-07-13.** 1.3–1.7 shipped as Tasks 1–5 on `feature-de-tier1-audit-fixes` (merged at `55e59da7dc`); 1.1 and 1.2 shipped the same day inside the `hotfix-table-sorting-by-geo` port.
+
 New findings from this pass. Each is independently shippable.
 
 ### 1.1 `type: 'natural'` sorting silently downgraded — real behavior gap
+**Status: closed 2026-07-13** — resolved in the borough-grouping port by loading `naturalSort.js` on the new `single.html` (parity with the old explorer).
+
 [table.js:652](../assets/js/data-explorer/table.js#L652) declares `{ type: 'natural', targets: ['_all'] }`, but the naturalSort plugin (`assets/js/naturalSort.js`) is loaded **only by the old explorer's** `single.html:1123-1128` — never by the new one. DataTables falls back to plain string detection, so the new explorer's table sorts differently than the old one for mixed alphanumeric columns.
 **Decide:** load `naturalSort.js` on the new `single.html` (parity with old), or delete the columnDef (accept string sort). Column 9 already has its own numeric sort renderer, so check which hidden/visible columns actually change order before choosing. **Fold into the borough-grouping port PR** (see Pending integration): the port changes default sort behavior (Area-alphabetical when ungrouped), which is exactly where natural-vs-string sorting is most visible.
 
 ### 1.2 `select: true` is inert
+**Status: closed 2026-07-13** — deleted as part of the borough-grouping port.
+
 [table.js:636](../assets/js/data-explorer/table.js#L636) — the DataTables Select extension is not installed (`datatables.net-select` absent from package.json and head.html). The option does nothing. Delete it (also removes confusion with the CLAUDE.md "omit Select" gotcha). Fold into the borough-grouping port PR alongside 1.1.
 
 ### 1.3 Case-inconsistent percentile guard (6th copy disagrees with the other 5)
+**Status: closed 2026-07-13** — Tier 1 SDD run.
+
 The percent-display rule appears 6×; five use `!…includes('percentile')` but [trend.js:221](../assets/js/data-explorer/trend.js#L221) uses `!…includes('Percentile')` (capital P). A measure named "…percentile…" vs "…Percentile…" formats differently on the trend tab than everywhere else. Fixed for free by Tier 2.1's shared helper; or as a one-character fix now.
 
 ### 1.4 Write-only dead state: `DE.lookups.measureAbout` / `measureSources`
+**Status: closed 2026-07-13** — Tier 1 SDD run.
+
 Written at [measures.js:441-442, 516-517](../assets/js/data-explorer/measures.js#L516) and initialized in global.js, but **no reader exists anywhere** (the "used by table.js" comment is stale). Delete the fields, the accumulation loop lines, and the global.js entries.
 
 ### 1.5 Dead/vestigial code, one commit
+**Status: closed 2026-07-13** — Tier 1 SDD run.
+
 - [map.js:365-368](../assets/js/data-explorer/map.js#L365) unused `resetHighlight` (its own comment says so) and [map.js:458](../assets/js/data-explorer/map.js#L458) unused per-feature `let currentlyHighlighted` (an abandoned start on Tier 2.4's hover fix); `calculatePercent` destructured but unused at both renderer call sites.
 - [global.js:306-315](../assets/js/data-explorer/global.js#L306) commented-out `renderTitleDescription`.
 - [global.js:257-272](../assets/js/data-explorer/global.js#L257) `copyCitation` still builds/selects/removes a throwaway `<textarea>` that `navigator.clipboard.writeText` never uses (consolidated #26 — the last uncosed quick item).
@@ -54,11 +70,15 @@ Written at [measures.js:441-442, 516-517](../assets/js/data-explorer/measures.js
 - [global.js:423-436](../assets/js/data-explorer/global.js#L423) `geoTypes` array duplicates `GEO_RANK_BY_PRETTY_TYPE`'s keys in the same order → `const geoTypes = Object.keys(GEO_RANK_BY_PRETTY_TYPE);` (string-key insertion order is guaranteed).
 
 ### 1.6 Unused dependencies (package.json + head.html)
+**Status: closed 2026-07-13** — Tier 1 SDD run; its RawGit fallout moved to the site-wide audit on 2026-07-23 (see immediately below).
+
 - **`ci` (^2.3.0)** — referenced nowhere; almost certainly an accidental `npm i ci`. Remove.
 - **`leaflet-control-geocoder`** — loaded in head.html:226-227 on every data-library page; its only reference in the entire repo is a *commented-out* line in `content/data-features/flood-vulnerability-index/fvi.js:70`. **Per decision: keep the npm package, delete only the head.html script tag** (stops shipping ~150 KB of unused JS to every data-library page while keeping the package available if the fvi geocoder idea is revived).
 - **rawgit PointInPolygon CDN** ([head.html:230](../themes/dohmh/layouts/partials/head.html#L230)) — RawGit shut down in 2019; `@mapbox/leaflet-pip` is already in package.json as the replacement. (Known from the site-wide audit; the DE page eats this dead request on every load. **Fixed** — the `<script>` tag was removed as part of 1.6's execution.)
 
 ### 1.7 Make "Download data" work sensibly on every tab (user-requested; confirmed defect)
+**Status: closed 2026-07-13** — Tier 1 SDD run.
+
 The bar tab's Download link (de-tab-content.html:132) calls `downloadData()`, which serializes `DE.print.CSVforDownload` — but **only trend.js:679, correlate.js:612, and disparities.js:397 ever set it**. Neither `renderBar` nor the map path does. Consequences, verified in code:
 - Fresh load → open bar tab → Download: `CSVforDownload` is `undefined`, so the file contains the literal string `undefined`.
 - Visit trend, return to bar, Download: you get the **trend** CSV, but `getCurrentDataDownloadView()` names the file "(bar view)" because `showBar` sets `chartType = 'bar'` — wrong data under a confident filename.
@@ -72,7 +92,9 @@ Fix per tab:
 
 **Tier 1 execution status (2026-07-13, SDD run):** items 1.3–1.7 shipped as Tasks 1–5 on `feature-de-tier1-audit-fixes`, merged into `feature-new-data-explorer` at `55e59da7dc`. 1.1/1.2 remain deferred to the `hotfix-table-sorting-by-geo` port PR per the decision above.
 
-### New follow-up surfaced during 1.6's execution — moved out of this doc (2026-07-23)
+### New follow-up surfaced during 1.6's execution — moved out of this doc
+
+**Status: moved out 2026-07-23** — tracked in §5c of `documents/site-wide-audit-2026-06-27.md`, not here.
 
 Removing the dead RawGit PointInPolygon `<script>` tag from `head.html` (item 1.6) exposed — but did not cause — a pre-existing broken `area.contains(...)` call in the unrelated `rats-in-your-neighborhood` data feature, plus dead RawGit OpenLayers tags on three templates. None of it is data-explorer work.
 
@@ -81,6 +103,8 @@ Removing the dead RawGit PointInPolygon `<script>` tag from `head.html` (item 1.
 ---
 
 ## Pending integration — port `hotfix-table-sorting-by-geo` (before any other table work)
+
+**Status: closed 2026-07-13.** Ported (not merged) onto `feature-new-data-explorer`, with 1.1 and 1.2 folded in; live-browser verified. Details in the execution-status block at the end of this section.
 
 **What the branch adds** (2 commits, `3eec76d023` + `4c06062296`; touches table.js ±201, single.html +20, app.js +24, global.js +1):
 - A **"Group neighborhoods by borough" checkbox** (default on) in the table options panel, with a `groupTableByBorough` flag.
@@ -105,14 +129,22 @@ Removing the dead RawGit PointInPolygon `<script>` tag from `head.html` (item 1.
 
 ## Tier 2 — Consolidation within the SPA (days; mechanical, characterization-checkable)
 
+**Status: closed 2026-07-14.** All seven items shipped — 2.1, 2.2, 2.5, 2.6, 2.7 via SDD on `feature-de-tier2-consolidation`; 2.3 and 2.4 inline on the same branch. The one carve-out is the `window.mapInterop` dedup listed under 2.3, deliberately left to 4.3.
+
 ### 2.1 One `resolveMeasureDisplay()` helper for the percent/display rule (6 sites)
+**Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`.
+
 map.js:322, bar.js:120, trend.js:221, correlate.js:247 + 267, disparities.js:92 all reimplement: *percent-ish and not percentile → `%` with bare subtitle; else DisplayType with parenthesized subtitle*. Extract one helper in global.js returning `{ isPercent, displayUnit, measurementDisplay }`. Fixes 1.3 as a side effect and makes the five tabs provably agree.
 **Consider:** the sites differ slightly in what they build (subtitle vs. displayType only) — design the return shape off the union, don't force-fit; verify with the harness plus one percent, one rate, and one number measure.
 
 ### 2.2 One notes renderer (5 sites)
+**Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`.
+
 `updateTableReliabilityNotes` (table.js:187), the bar-notes block (bar.js:72-83), `renderTrendNotes` (trend.js:117), and the inline copies in correlate.js:361-371 / disparities.js:158-170 all do: dedupe `Note` values, `filter(Boolean)`, hide/show a holder, append `<div class='fs-xs'>` per note. Extract `renderUnreliabilityNotes(holderEl, rows→notes)`. Also fixes the `innerHTML +=` reparse loop (consolidated #18) in one place.
 
 ### 2.3 map.js internal deduplication
+**Status: closed 2026-07-14** (`5b789f1788`), with one deliberate exception — the `window.mapInterop` dedup below was **not** done and remains 4.3's work.
+
 The choropleth and bubble renderers duplicate, nearly verbatim:
 - the **citywide popup + one-shot trend-tab nudge** block (4 copies: map.js:497-518, 628-636, 677-693, 724-745);
 - the **click-to-trend-tab** handler (5 copies);
@@ -121,15 +153,23 @@ The choropleth and bubble renderers duplicate, nearly verbatim:
 Extract `handleCitywideOnly(map, data, metadata)` and `switchToTrendTab()`; share the topo-load pipeline. ~150 lines removed, and the "consume the one-shot flag" logic exists once instead of twice.
 
 ### 2.4 O(n) hover reset → track-previous (also a perf fix)
+**Status: closed 2026-07-14** (`3cddd6e4d2`) — and wider than planned: the sweep turned out to be load-bearing for bar.js-driven highlights, so those route through the same tracker.
+
 [map.js:466-468](../assets/js/data-explorer/map.js#L466): every polygon `mouseover` runs `geojsonLayer.eachLayer(l => geojsonLayer.resetStyle(l))` — ~195 restyles per mousemove on NTA. Track the previously highlighted layer and reset only it (the pattern bar.js already uses for its side of the interop, bar.js:544-588). This is consolidated #17, the oldest still-open perf item; the abandoned `currentlyHighlighted` from 1.5 shows it was started once.
 
 ### 2.5 Shared CSV-download builder for correlate/disparities
+**Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`.
+
 correlate.js:588-612 and disparities.js:372-397 build the same `aq.select(aq.not(<17 identical columns>))` + two `derive`s. Extract one `buildLinksDownloadTable(rows, extraDrops, labels)`.
 
 ### 2.6 Hoist the static DOM-builder helpers out of `renderMeasures()`
+**Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`; it was the first slice of 4.1.
+
 Within Tier 2 scope (no behavior redesign): `setBadgePillState`, `createBadgePillButton`, `createBadgePillLabel`, `createDropdownIdFragment`, `createBadgePillDropdown`, `setDropdownMenuItemState` (measures.js:540-668) capture **nothing** per-indicator — they're pure DOM factories redefined on every indicator load. Move them to module scope above `renderMeasures`. This is the safe first slice of Tier 4.1 and shrinks `renderMeasures` by ~130 lines on its own.
 
 ### 2.7 Split map print out of print.js (user-requested)
+**Status: closed 2026-07-14** — shipped via SDD on `feature-de-tier2-consolidation`.
+
 print.js is 1,376 lines; roughly 1,000 of them are the off-screen Leaflet map-export machinery (constants at :20-32, everything from `buildMapExportFilename` through `exportLeafletMap`/`renderMapPreview`, :335-1301), while the chart path is a ~30-line vegaEmbed re-render. Split into:
 - **`print.js`** — modal shell (`setPrintModalState`, loading/error states), shared text-wrapping helpers, chart preview, `bindPrintControls`;
 - **`print-map.js`** — the map-export constants, off-screen Leaflet build, tile-coverage machinery, canvas compositing, and `renderMapPreview`.
@@ -149,15 +189,23 @@ Two things this surfaced, worth carrying forward:
 
 ## Tier 3 — Performance (days; measurable wins, medium risk)
 
+**Status: closed 2026-07-14.** 3.1, 3.1b, 3.2, 3.2b and 3.3 all shipped on `feature-de-tier3-perf`, verified in-browser. One standing won't-do inside 3.3: CSS `| minify`, rejected by the user.
+
 ### 3.1 Cache static fetches across indicator switches (consolidated #15 — biggest network win)
+**Status: closed 2026-07-14** — `loadOnce()` cache (`0ddf4248bb`), extended by the 3.1b indicator-data cache (`9b758fe47c`).
+
 Every indicator switch re-fetches: `GeoLookup.json`, `TimePeriods.json` (data.js:345-391), `comparisons.json` (data.js:19), the TopoJSON for the current geotype (map.js:389, 592 — re-fetched even on a **time-period-only** change), and the 311 crosswalk CSV (311.js:23). All five are static per session. A ~10-line `loadOnce(key, loader)` promise-cache eliminates 3–5 requests per indicator switch and the TopoJSON re-parse on every dropdown change.
 **Consider:** TopoJSON per-geotype cache holds ~1-3 MB parsed per geography visited — bound it or accept it (fine for a session). `comparisons.json` is already fetched conditionally; cache the promise, not the filtered result.
 
 ### 3.2 Parallelize the comparison fetch with the data fetch
+**Status: closed 2026-07-14** (`afc7f7893c`), extended by 3.2b's cold-load parallelization (`0b1130b8b3`).
+
 `loadIndicator` awaits `fetch_comparisons()` **before** starting `loadData()` (data.js:284-290 — the code itself asks "why are we waiting for this?"). `createComparisonData` needs nothing from `loadData`; run them under `Promise.all`. Saves one full round-trip on every comparison-bearing indicator load.
 **Consider:** `createComparisonData` reads `indicators` (already loaded) and `DE.lookups.indicatorComparisonId` (set before the await) — verify no hidden ordering dependency on `timeTable` (it joins `timeTable` only later, in showComparisonTrend — safe).
 
 ### 3.3 DE-page dependency slimming in head.html (shared with site shell)
+**Status: closed 2026-07-14** — every bullet shipped except CSS `| minify`, which the user rejected during the commit split; don't re-propose without asking. Several bullets landed differently than first planned (the FA-woff loop is not dead; `leaflet-pip` was never in head.html) — the corrections are inline below.
+
 Directly measurable on the explorer's LCP; all previously flagged site-wide, still unfixed, listed here because the DE page pays for them:
 - **Font Awesome shipped twice** — CSS+webfonts *and* the big `all.min.js` SVG-injector (head.html:111-117). Drop the JS.
 - **No CSS minification** (head.html:137-139) — add `| minify`. **Proposed and implemented 2026-07-14, then rejected by the user during the per-bullet commit split ("don't want the minify change") — reason not given.** Left out of the 3.3 commits; don't re-propose without checking in first.
@@ -192,9 +240,13 @@ Directly measurable on the explorer's LCP; all previously flagged site-wide, sti
 
 ## Tier 4 — Structural (weeks; the remaining consolidated-doc backbone)
 
+**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.5, 4.6, 4.7, 4.8, 4.9. **Open: 4.3** — the only unstarted item — and the low-priority 4.2 follow-up. **Deferred by decision: 4.4**, until comparative user testing ends.
+
 These are the right long-term moves; each is a mini-project. Ordered by value-per-risk.
 
 ### 4.1 Dismantle `renderMeasures()` (measures.js:420-1915 — the 1,500-line function)
+**Status: closed 2026-07-24** — 5 staged commits on `feature-de-tier4.1-render-measures`, merged at `62f9bc8798`; `renderMeasures` went from ~1,338 lines to 199. One incidental finding left open: the dead `DE_MEASURE_RULES` trend id lists noted at the end of this section.
+
 It currently: resets per-indicator state, computes table defaults, sorts measures into per-tab arrays, defines ~35 closures (trend pills, links controls, and **all seven `show*` renderers**), and toggles tabs. The renderers are re-created per indicator purely so they can close over… almost nothing (`selectedComparisonLegendTitle` and four DOM refs). Staged plan:
 1. Tier 2.6 (pure DOM factories) — done above.
 2. Hoist the trend-pill control cluster to module scope; move `selectedComparisonLegendTitle` into `DE.trend`.
@@ -211,7 +263,9 @@ It currently: resets per-indicator state, computes table defaults, sorts measure
 
 Pure relocation throughout — no behavioral change, and no load-order, `single.html`, `section.html`, `eslint.config.mjs`, or CLAUDE.md-architecture change. **Incidental finding (separate, pre-existing — not part of this tier):** `DE_MEASURE_RULES.trendAnnualAverageMeasureIds [365,370,375,391]` and `trendSummerMeasureIds [386]` match **zero** measures across all 282 current indicators (current PM2.5 = 1425/1426/1427), so `showBoroughTrend`'s annual-average/summer slice branches are dead code against the live data. Worth a follow-up prune; tracked here as a `DE_MEASURE_RULES` staleness item.
 
-### 4.1 follow-up — naming sweep (added + executed 2026-07-25)
+### 4.1 follow-up — naming sweep
+
+**Status: closed 2026-07-25** (raised the same day) — 7 commits on `feature-de-naming-cleanup`, zero subagents. One item deliberately deferred with its cost measured: `links` → `correlate`.
 
 4.1's Stage 4 renamed one element id whose name described something other than what the element was. The question that opened this sweep was whether that was a one-off; it was not. Branch `feature-de-naming-cleanup` off `feature-new-data-explorer`, executed inline (no subagents — every item is grep- or `no-undef`-provable, so the controller did the work directly).
 
@@ -243,6 +297,8 @@ The `print*` set was widened past the original plan on purpose: renaming only tw
 **Verification approach.** Deliberately not uniform, per CLAUDE.md's cheapest-sufficient-rung rule: JS identifier renames are proven outright by `npm run lint` (`no-undef`) — the old name ceases to exist — and needed no browser. Class, id and template-string renames are strings on *both* sides, which no static rule here can prove, so each got a targeted in-browser check (delegated click still bound and firing; `getElementById` still resolving; duplicate-id and `aria-labelledby` sweeps; all three 311 destinations still populating). Every commit also passed `characterize --check` and `smoke` 13/13.
 
 ### 4.2 One indicator-load pipeline + URL module (consolidated #7/#12, new pin)
+**Status: closed 2026-07-26** — 4 commits on `feature-de-tier4.2-load-pipeline`; it also fixed four history defects this entry hadn't recorded. One follow-up left open, immediately below.
+
 The sequence `loadIndicator → printIndicatorInfo → printMenus → renderMeasures → renderCurrentView` is duplicated three times with small drift: `checkURL` (topic-indicator-selector.js:636-705), `popstate` (app.js:374-438), and `selectIndicator` (topic-indicator-selector.js:570-628). URL parsing/coercion is likewise duplicated between `checkURL` and `popstate`, and history writes happen at 5 sites. Extract `loadAndRenderIndicator(id, { pushHistory })` plus `parseSelectionFromURL()`/`serializeSelection()`. Add the stale-response token (consolidated #6) inside the one pipeline while you're there — rapid back/forward or double-clicked indicators can currently interleave fetches.
 **Consider:** popstate has subtle extra behavior (menu resync without reload when the indicator is unchanged) — the unified function needs an explicit `sameIndicator` branch, not a force-reload.
 
@@ -270,7 +326,9 @@ The sequence `loadIndicator → printIndicatorInfo → printMenus → renderMeas
 
 **Incidental fix — a real gap in the 4.5 guardrails.** The four `typeof resetSelectionForNewIndicator === 'function'` guards that mean "is the full SPA loaded" now test `loadAndRenderIndicator`, the capability actually being asked about. Only `/data-explorer/` (`section.html`) exercises them, since it's the one page that loads `topic-indicator-selector.js` without the rest of the bundle — and **that page had no smoke coverage**: the `smoke-pages.mjs` entry commented `// DE section` is `/data-explorer/asthma/`, which is `single.html` (`content/data-explorer/asthma.md` is a page, not a section). Added `/data-explorer/` and corrected the comment; smoke is now **14 pages**.
 
-### 4.2 follow-up — the address bar updates when the pipeline writes, not when the user clicks (added 2026-07-26, not started, low priority)
+### 4.2 follow-up — the address bar updates when the pipeline writes, not when the user clicks
+
+**Status: open, not started (raised 2026-07-26).** Low priority — measured at 29–151 ms, below where a URL change reads as laggy, so the recommendation is to leave it alone unless someone reports it or the data host slows down.
 
 **What changed and why.** Before 4.2, picking an indicator updated the URL twice: `resetSelectionForNewIndicator` did an immediate `replaceState` to `?id=<new>`, then `pushSelectionToURL` pushed the resolved params once the load finished. The immediate write was what made the address bar respond at click time — but it was also defect **(b)** above, because replacing the *current* entry destroyed the outgoing indicator's history entry. Removing it fixed (b) and left one write per navigation, made after `renderMeasures()` so the URL carries the defaults it just resolved. The cost is that the URL is momentarily stale during a load.
 
@@ -301,12 +359,18 @@ Net history entries stay at exactly one per navigation, so fixes (a), (b) and (c
 **How to verify:** re-run the timing measurement above, then the 4.2 browser matrix in full — one entry per load, Back returns to the previous indicator *with its sub-selections*, the discriminating popstate restore (non-default values, per the method note above), and one entry per tab/dropdown/close.
 
 ### 4.3 Stable `window.mapInterop` contract (consolidated #13)
+**Status: open, not started (raised 2026-07-13).** The only unstarted Tier 4 item. 2.3 deliberately left the two interop shapes alone because collapsing them means touching bar.js's shape-sniffing — that is this item.
+
 bar.js currently branch-sniffs which map type built the interop object (`if (mapAPI.circleMarkers) … else if (mapAPI.geoIDtoLayer)`, bar.js:558-590) because choropleth and bubble publish different shapes. Define one interface (`highlight(geoID)`, `reset(geoID|handle)`, `updateHoverUI`, `clearHoverUI`, `ready`) created once at load; renderers attach implementations. Kills the shape-sniffing and the not-ready `if (!mapAPI) return` scattering.
 
 ### 4.4 Retire the old explorer trees — deferred by decision
+**Status: deferred by decision 2026-07-13.** Trigger: the end of comparative user testing. The "Data Explorer (Old)" Pagefind filter chip (§4.8) retires with it.
+
 The old explorer (`assets/js/data-explorer-old/` + layouts + content, ~6,500 JS lines) **stays for comparative user testing** (2026-07-13 decision), so this is a future item, not current work. Park it with a trigger: *when user testing concludes*, deleting the three `-old` trees unlocks dropping `buttons.print` + `rowgroup` from the shared DataTables bundle, settles the `naturalSort` question (1.1) permanently, removes `responsive-table.js` (dead now regardless — no template loads it; deletable today), and ends the old explorer's GA event-name skew.
 
 ### 4.5 Guardrails worth adding while the code is hot (professionalization)
+**Status: closed 2026-07-23** — 9 commits on `feature-de-tier4.5-guardrails`, merged at `a904b3efab`. `no-unused-vars` was measured and dropped; smoke has since grown to 14 pages (4.2 added `/data-explorer/`). The visual-regression piece 4.9 argues for is **not** part of this and remains unbuilt.
+
 - **ESLint (flat config, `no-undef` + `no-unused-vars` only)** over `assets/js/data-explorer/` — with 15 files sharing one global scope, undefined-name typos are this codebase's most likely regression class, and `no-undef` with a shared-globals list catches them at commit time. Playwright is already a devDependency; there are currently **zero** npm scripts — add `lint` and `characterize` scripts as the first two.
 - **Promote the characterization harness to a routine check** (`npm run characterize -- --check`), documented in CLAUDE.md, run before any Tier 2–4 merge.
 - Optional, cheap: use the already-site-wide-loaded DOMPurify on the fetched-metadata `innerHTML` sinks (`how_calculated`, `Sources`, `IndicatorDescription` in topic-indicator-selector.js/measures.js) — the old explorer sanitized these, the new one doesn't. Low actual risk (DOHMH-controlled data repo) but the library is already paid for.
@@ -324,18 +388,24 @@ The old explorer (`assets/js/data-explorer-old/` + layouts + content, ~6,500 JS 
 
 **Whole-branch review (post-Task-6).** A final review recommended adding an `nr-output` single-report page to the smoke list for full per-template coverage — trialing it immediately surfaced a **P1 pre-existing bug: `nr-output` report pages load no Arquero yet use `aq.` 48×, so their charts are broken** (`aq is not defined`; likely a 4.6 lib-gating regression — site-wide audit **§5e**). Per the maintainer, that fix was out of 4.5's scope at the time, so the `nr-output` smoke entry was deferred (left as a commented pointer in `smoke-pages.mjs`). **Update 2026-07-23: §5e is fixed** — `nr-output/single.html` now includes `lib-arquero.html` — and the `nr-output` page has been added to `PAGES`; smoke is green at **13 pages**. Two minor robustness fixes from the same review were applied: `DE_BASE_URL` now gets a forced trailing slash in `dev-server.mjs`, and `eslint.config.mjs`'s globals-derivation regex carries a caveat comment about top-level destructuring/multi-declarator names it doesn't capture (none exist today).
 
-### 4.6 head.html's conditional-gating pattern needs a structural rethink (site-wide, not DE-specific — added 2026-07-14)
+### 4.6 head.html's conditional-gating pattern needs a structural rethink (site-wide, not DE-specific)
+**Status: closed 2026-07-16** (raised 2026-07-14) — implemented on `feature-data-explorer-new-headhtml-gating`, two commits, merged and pushed. Re-verification of the ported state caught nine real gaps, including four templates missing libraries they call.
+
 Full write-up in **§2 of `documents/site-wide-audit-2026-06-27.md`** (added the same day, prompted by a question about 3.3's own approach). Flagged here because 3.3's fixes are more of the pattern this criticizes: every section-specific exception (easybutton/colorIcon excluded for `data-explorer`, `uhflist` restricted to `neighborhood-reports`, and everything already gated before them) is another branch in head.html's one big `{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer") }}` block. A page's actual dependencies end up living somewhere other than its own template — reading `data-explorer/single.html` doesn't tell you what it loads, head.html does — and two templates can collide silently: `data-explorer-old/single.html` builds its own DataTables bundle at the literal same `resources.Concat` target path (`js/dataTableBundle.js`) as head.html's, and Hugo serves whichever one it cached first with no build error (harmless today only because neither template's JS calls the plugins the two versions differ on — see 3.3's write-up above).
 **Recommend:** per-template inclusion for anything that isn't truly universal — each template `{{ partial }}`s in only the libraries it needs (one line per library if each is its own tiny partial) — reserving head.html conditionals for what every page genuinely needs (charset, viewport, favicon, GA). This project's CLAUDE.md already endorses the equivalent pattern one level down, for page-specific JS ("externalize to `assets/js/<page-name>/*.js`... see `data-explorer/single.html`"); this is the same idea applied to which libraries a template pulls in.
 **Consider:** Tier-4-sized, not a quick fix — head.html is shared with production's lineage, so this wants its own staged effort with the characterization harness plus manual checks across every page kind (DE, old explorer, data-features, neighborhood-reports, take-action), not a ride-along in a smaller PR. Natural trigger: whenever 4.4 (old explorer retirement) next requires touching this file anyway.
 
 **Execution status (2026-07-16):** Implemented on `feature-data-explorer-new-headhtml-gating` — all Stages 0-6 from the standalone execution plan, plus data-stories Vega/D3 gated behind a per-page `vega: true` front-matter flag (a consumer the plan hadn't anticipated). The work was ported from prior unpushed effort on other local branches, then independently re-verified against actual JS/template usage rather than trusted as-is. That re-verification caught real gaps in the ported state: `data-explorer/single.html` had the unused `lib-uhflist.html` instead of the actually-needed `lib-vega.html`; `nr-output/single.html` carried an unused `lib-arquero.html`; `minimum-wage-with-maps.html` was missing `lib-topojson.html`; six data-stories pages (housing/geographies × 3 languages) needed the new `vega: true` flag. A further pass — prompted by a live bug report against a running dev server, since static analysis alone had missed it — found `data-explorer-old/single.html` had no Leaflet/TopoJSON of its own at all (it was relying entirely on the now-removed head.html blanket block), and that `fvi.html`/`rats-in-your-neighborhood.html`/`rmz.html`/`realtime.html` were each missing `lib-easybutton-coloricon.html` despite calling `L.easyButton`/`L.colorIcon`. All fixed and confirmed via a clean `hugo --cleanDestinationDir` build plus a Playwright pass against a live dev server (console-error-free on every checked page except one newly-surfaced, pre-existing issue — see 4.7 below). Landed as two commits (`47ffb33fde` functional, `dee3d1f892` documentation), now merged into `feature-new-data-explorer` and pushed.
 
-### 4.7 `data-stories/housing` console errors — investigated 2026-07-16, NOT a Vega/4.6 bug
+### 4.7 `data-stories/housing` console errors — NOT a Vega/4.6 bug
+**Status: closed here 2026-07-16, moved out** — misattributed at first; it's a Datawrapper-in-a-hidden-tab pattern affecting four data-stories pages. Tracked in §5b of `documents/site-wide-audit-2026-06-27.md`, not here.
+
 Follow-up investigation (Playwright against `local-stage`) found the console errors seen during 4.6's verification are **not caused by the Vega-Lite chart at all** — `#housingmap`'s SVG rendered correctly (640×550, no errors) every time. The actual source is the page's separate "Scatterplot" Datawrapper iframe, which sits in a Bootstrap tab that isn't the active one on load; the errors come entirely from `datawrapper.dwcdn.net`'s own script computing `NaN`/negative sizes while its ancestor is `display:none`. This is a generic, pre-existing pattern that also reproduces on `redlining/`, `air-quality-snapshots/`, and `vectorborne-diseases-and-health/` — none of which load Vega or touch anything 4.6 changed. Confirmed harmless-but-noisy: the chart self-heals visually the moment its tab is clicked.
 **Full write-up, affected-page table, and recommended fix moved to §5b of `documents/site-wide-audit-2026-06-27.md`** (site-wide, not DE-specific — the DE audit surfaced it, but it belongs in the site-wide backlog since data-stories pages aren't part of the SPA). Track status there, not here.
 
-### 4.8 Pagefind / search audit (added 2026-07-22)
+### 4.8 Pagefind / search audit
+
+**Status: closed 2026-07-22** (raised the same day) — audited, then implemented and live-verified on `feature-new-data-explorer-pagefind-audit`, 8 commits. Two rounds of self-correction: both trees' "genuinely indexed" claims were initially wrong (nested inside blanket-ignored ancestors). The one remaining item, the "Data Explorer (Old)" filter chip, rides along with 4.4.
 
 Two questions: how is Pagefind actually configured across the site (context for the rest), and — since the user specifically asked — what's the real difference in what's *searchable* between `data-explorer` and `data-explorer-old`, given the two trees' UI looks almost identical.
 
@@ -371,7 +441,9 @@ Both trees' `single.html` call the *identical* `de-indicator-names-pf.html` part
 
 **A fourth, currently non-functional search surface: `/search-results/`.** [search-results/single.html](../themes/dohmh/layouts/search-results/single.html) is a full template with six category buckets (`data-stories`, `neighborhood-reports`, `key-topics`, `data-explorer-new`, `data-explorer`, `other`), each `hidden` with an empty `.search-results-title`/`.search-results-info` waiting to be filled in — and **nothing in the current JS codebase ever fills them in or un-hides them.** Confirmed by git history, not just a missing-reference grep: commit `bad2246281` ("delete old search", 2024-07-18) removed `assets/js/search-results.js` (434 lines), `assets/js/search.js` (20 lines), and their `js_bottom.html` script tags in one pass, with no replacement. Every commit to this template since has been cosmetic ("swap titles for Data Explorer and Data Explorer New sections", "add data-explorer-new to search results") — edits to a page whose driving logic has been gone for two years. It's reachable (`content/search-results/index.md` is a real 3-line stub, and it appears in the sitemap/robots outputs), but **nothing in the theme links to it** (repo-wide grep for the string finds only the template itself), and it isn't referenced from the working search-modal's `PagefindUI` config either. Anyone who does land on `/search-results/` — an old bookmark, a stale external link from before mid-2024 — sees a page title and six empty hidden headers: functionally a blank page. **Decide:** delete the orphaned template + stub content page (the modal-based search is the one actually-working experience today), or rebuild its JS against Pagefind's low-level API if a dedicated full-page results view is still wanted. Either is cheap; leaving it is the only bad option.
 
-### 4.9 Modal close button: deformed focus ring + off-centre glyph, both from using a text `&times;` as an icon (added 2026-07-22, fixed 2026-07-23)
+### 4.9 Modal close button: deformed focus ring + off-centre glyph, both from using a text `&times;` as an icon
+
+**Status: closed 2026-07-23** (raised 2026-07-22) — both defects fixed on `feature-new-data-explorer` by replacing the text glyph with an inline SVG; measured in-browser. No follow-on work.
 
 **Reported symptom:** the focus ring on the viz-pane close button (`.bl50`, [de-tab-content.html:118](../themes/dohmh/layouts/partials/de-tab-content.html)) is a clean arc, but the one on the modal close button (`.br50`, [header-de.html:400](../themes/dohmh/layouts/partials/header-de.html)) is "very oddly shaped" — despite the two buttons being the same shape, only mirrored. Two prior attempts had failed to fix it.
 
@@ -402,6 +474,8 @@ Applied at all three `.modal-close-tab` sites — `#topicSelector` ([header-de.h
 ---
 
 ## What I recommend, concretely
+
+**Status: superseded as of 2026-07-26**, when the last of it shipped. This is the original 2026-07-13 sequencing, kept as the record of what order the work was planned in; items 1–4 and 6–7 are all done, and the only live pieces left are 4.3 and 4.4 in item 5. The current to-do list is the at-a-glance block at the top.
 
 1. **Port `hotfix-table-sorting-by-geo` first** (one PR, folding in 1.1 + 1.2) — it's wanted feature work, it rewrites `handleToggle` and the sort defaults, and every table-touching audit item is cheaper after it than under it.
 2. **Rest of Tier 1** in parallel or right after (one short PR; 1.7 is the one user-facing defect in the set).
