@@ -12,7 +12,7 @@ Every findings section below opens with its own **Status:** line and date; this 
 
 **Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8 and 4.9. All of them are **merged into `feature-new-data-explorer` and pushed** (4.3 merged 2026-07-27) — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`, `feature-de-tier4.3-mapinterop`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
 
-**Open:** **4.4** only (parked until comparative user testing ends), plus three logged-not-scheduled items: the **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone), **4.10** (menu rebuild binds two click listeners per button — unmeasured), and **4.11** (`DE.state` written from 23 sites across 5 files; the namespace refactor fixed naming, not ownership).
+**Open:** **4.12** is the one to act on — `GeoType: null` means "not mappable", the new explorer reads it as a geography, and the map hard-fails on **40 of 282 indicators** (found 2026-07-27; blocks 4.4). Then **4.4** itself (parked until comparative user testing ends), plus two logged-not-scheduled items: the **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone) and **4.11** (`DE.state` written from 23 sites across 5 files; the namespace refactor fixed naming, not ownership). **4.10** closed 2026-07-27 — measured first, and the perf case died; shipped as a clarity change.
 
 **Standing won't-dos** — don't re-propose without asking: CSS `| minify` inside 3.3 (rejected by the user, verified absent from `head.html`), script bundling (2026-07-13 decision), and the `links` → `correlate` rename (deferred with its cost measured; options in site-wide audit §4).
 
@@ -240,7 +240,7 @@ Directly measurable on the explorer's LCP; all previously flagged site-wide, sti
 
 ## Tier 4 — Structural (weeks; the remaining consolidated-doc backbone)
 
-**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9. **Open:** the low-priority 4.2 follow-up, 4.10 and 4.11. **Deferred by decision: 4.4**, until comparative user testing ends.
+**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10. **Open: 4.12** (map hard-fails on 40 indicators — the severe one, and a gate on 4.4), plus the low-priority 4.2 follow-up and 4.11. **Deferred by decision: 4.4**, until comparative user testing ends.
 
 These are the right long-term moves; each is a mini-project. Ordered by value-per-risk.
 
@@ -486,22 +486,47 @@ Applied at all three `.modal-close-tab` sites — `#topicSelector` ([header-de.h
 
 ### 4.10 `renderMenuSection` binds two click listeners per button, on every menu rebuild
 
-**Status: open, not started (raised 2026-07-27).** Low priority, and **unmeasured** — logged for the record, not on evidence that it costs anything perceptible. Do not act on it without measuring first.
+**Status: closed 2026-07-27** on `feature-de-tier4.10-menu-listeners`. Measured first, as the original entry demanded — **the performance case did not survive**, and the change shipped as a clarity cleanup on that basis, not as an optimization.
 
-`renderMenuSection` (menu.js:169) clears each container with `innerHTML = ''` and rebuilds one `<button>` per option, binding **two separate `click` listeners to the same button** (menu.js:201, 203) — one calls `updateDropdownText(button)`, the other `handleSelection(type, item.value)`. The containers come from `querySelectorAll`, so the work is (options × desktop-and-mobile containers) per section, and all three sections are rebuilt together by `updateAllMenus`.
+The original finding was accurate. `renderMenuSection` (menu.js:169) cleared each container with `innerHTML = ''` and rebuilt one `<button>` per option, binding **two separate `click` listeners to the same button** — one calling `updateDropdownText(button)`, the other `handleSelection(type, item.value)`. Containers come from `querySelectorAll` (2 per section: the mobile `#detailsContent` block and the desktop block in `themes/dohmh/layouts/partials/de-indicator-info.html`), so the work was options × 2 containers × 2 listeners, for all three sections at once, on every indicator load (`renderMenus`, app.js) *and* every dropdown change (`handleSelection` cascade-rebuilds all three menus).
 
-That runs on every indicator load (`renderMenus`, app.js:491) *and* on every dropdown change, since `handleSelection` cascade-rebuilds all three menus to fill in defaults for a sibling selection that no longer applies (menu.js:238).
+**It was never a leak.** `innerHTML = ''` discards the old buttons and their listeners with them.
 
-**This is not a leak.** `innerHTML = ''` discards the old buttons and their listeners with them — worth stating, because "listeners bound in a loop with no cleanup" reads like one at a glance.
+### What the measurement showed
 
-Two independent fixes, cheapest first:
+Measured in Chrome against a `dev_stage` server, 25 timed `updateAllMenus()` calls per condition, A/B'd by patching `EventTarget.prototype.addEventListener` to a no-op for condition B (an upper bound on what delegation can recover, since it removes *all* per-button binding):
 
-- **Merge the two handlers into one.** They fire on the same event on the same element; there is no ordering subtlety to preserve beyond calling them in the existing sequence. Halves the bindings for a few lines of change.
-- **Delegate.** One listener per container, reading the option value from a `data-` attribute, instead of one per button. Bindings become constant per rebuild rather than proportional to option count.
+| Case | Options | Buttons built | Listeners bound | Rebuild, median | Attributable to binding |
+|---|---|---|---|---|---|
+| **Worst in the catalog** — Disinfection by-products (TTHM), id 2207 | 109 (8 measures + 100 time periods) | 218 | **436** | 1.3 ms (max 2.4) | **0.2 ms** |
+| **Median indicator** — 11 options | 11 | 14 | 28 | 0.4 ms | **not measurable** (A/B delta came out −0.2 ms, i.e. noise below `performance.now()`'s coarsening) |
 
-**Provenance:** carried over from the pre-cutover Copilot analysis, where it sat in a memory note alongside a dozen claims that Tiers 2–4 have since falsified. Re-verified against current `menu.js` on 2026-07-27 before being recorded here; the rest of that note was not salvaged.
+The 436 bindings were confirmed by counting, not inferred — they match the arithmetic exactly. Option counts were derived across all 282 indicators in the live `feature-new-data-explorer` `metadata.json`, so the TTHM case really is the ceiling.
 
-**How to verify a fix:** `npm run characterize -- --check` covers menu contents; the behaviours to click through are dropdown selection on all three menus at both desktop and mobile widths (both containers are populated), plus the cascade case — pick a measure whose current GeoType or TimePeriodID is invalid and confirm the dependent menus still auto-correct.
+**Conclusion: the doubling costs 0.2 ms on the single worst indicator in the portal, and nothing measurable on a typical one.** Nobody should have shipped this as a perf fix, and the original entry was right to forbid acting before measuring.
+
+### What shipped, and why
+
+One delegated `container.onclick` per container, replacing both per-button listeners — the same shape as the links dropdown in `measures.js` (`event.target.closest('.linksbutton')` + `data-` attributes), which was already in the codebase. `onclick =` assignment is idempotent across rebuilds, so handlers can't stack.
+
+`updateDropdownText` was **deleted outright**, not merged in. Both of its jobs were already done elsewhere:
+
+- Its text write was redundant with `setDropdownLabel`, called for all three menus by `updateAllMenus` immediately afterwards — and `setDropdownLabel` is strictly *better*, because it repaints **both** the desktop and mobile triggers where `updateDropdownText` only repainted the clicked one.
+- Its `dropdownMenu.classList.remove('show')` was redundant with Bootstrap's own `_clearMenus`, which guards on the **parent** `.dropdown` carrying `.show` (`node_modules/bootstrap/js/dist/dropdown.js:406`) — a class `updateDropdownText` never touched, so BS ran its whole close path regardless.
+
+**Proven in the browser before deleting anything**, not argued from source: a probe button bound to `handleSelection` *alone* was appended to an open measure dropdown and clicked with a real mouse. Result — menu closed (`.show` gone from both parent and menu, `display: none`), `aria-expanded` back to `"false"`, and *both* trigger labels updated. That is the post-fix behaviour, observed before the code changed.
+
+### The trap that the obvious implementation would have hit
+
+The natural delegated form is `button.dataset.value = item.value`, read back in the handler. **That would have been a real regression:** `dataset` stringifies, and **97 `Map` entries across the catalog carry `GeoType: null`** — so `prettifyGeoType` returns `null`, and `DE.state.GeoType` would have been set to the string `"null"` for those indicators. The shipped version stores a positional `data-option-index` and looks the option back up in the `items` array, which preserves each value's original type exactly. Verified post-change: `MeasureID`/`TimePeriodID` still land as `number`, `GeoType` as `string`.
+
+Those null `GeoType`s turned out to be far more than a coercion hazard — chasing them produced **§4.12** below, a live map-breaking regression in 40 of 282 indicators.
+
+### Verification
+
+`npm run lint` (proves no dangling `updateDropdownText` — the identifier ceases to exist), `npm run characterize -- --check` **PASSED**, `npm run smoke` **PASSED** (14 pages). Browser click-through on the running server: measure and time selection at desktop width on the 2207 worst case — including the cascade, where switching measure moved `TimePeriodID` 346 → 298 and shrank the time menu from 200 buttons to 50 — and boundary selection at 414 px mobile width (`#detailsContent` expanded first; the mobile dropdowns are inside a collapsed panel and have zero width until it is). Every case: correct state, both labels repainted, menu closed, `aria-expanded="false"`, and **exactly one** history entry per selection (no double-fire).
+
+**Provenance:** carried over from the pre-cutover Copilot analysis, where it sat in a memory note alongside a dozen claims that Tiers 2–4 have since falsified. Re-verified against current `menu.js` on 2026-07-27; the rest of that note was not salvaged.
 
 ### 4.11 `DE.state` is still written from anywhere — 23 sites across 5 files
 
@@ -524,6 +549,52 @@ The state-namespace refactor (merged 2026-07-11, `documents/data-explorer-state-
 **Why this is not simply "do the same for the rest".** A renderer setting `DE.state.overlay = 'bar'` is recording which view it just drew, not requesting a navigation — routing those through a dispatcher that also writes history would be wrong. Any fix needs to separate "the user asked for X" from "X is now what's on screen" first; that distinction is the actual work, and it is why this is logged rather than scheduled.
 
 **Provenance:** carried over from the pre-cutover Copilot analysis and re-verified against current source on 2026-07-27 before being recorded here. A sibling claim from the same note — that `topic-indicator-selector.js` is a heavy-async hot spot — was checked at the same time and **did not survive**: at 660 lines with 5 `await`, 1 `fetch` and 2 `.then`, it is unremarkable next to data.js (11 awaits/850 lines) or app.js (5/639). It is not recorded, deliberately.
+
+### 4.12 `GeoType: null` means "not mappable" — the new explorer reads it as a geography, and breaks the map on 40 of 282 indicators
+
+**Status: open, not started (raised 2026-07-27).** **The most severe open item in this document**, and a **gate on 4.4** — the old explorer cannot be retired while these indicators render worse on the new one than on the old.
+
+Found while implementing 4.10, as a side-effect of asking what types the dropdown values can actually hold.
+
+**The metadata is not malformed.** `GeoType: null` inside a `VisOptions[0].<VisType>` array is the catalog's way of encoding *"this visualization type is unavailable for this measure."* Anencephaly (id 26), measure "Number":
+
+```
+Table: [ { GeoType: "Borough" }, { GeoType: "Citywide" } ]     <- real geographies
+Map:   [ { GeoType: null, TimePeriodID: [], RankReverse: null } ]   <- "no map for this measure"
+Trend: [ null ]
+Links: [ null ]
+```
+
+The old explorer reads that correctly: it greys out the Map, Trend and Correlate tabs, defaults to **Table**, and renders Boundaries (Citywide, Borough), a full time list and a populated data table. Verified in the browser at `/data-explorer-old/birth-defects/?id=26`.
+
+**The new explorer builds its Boundary dropdown exclusively from `VisOptions[0].Map`** (menu.js, the `measure.VisOptions[0].Map.forEach` that feeds `prettifyGeoType`). For these indicators that array's only entry is the null placeholder, so:
+
+- `prettifyGeoType(null)` returns `null`, and the geo dropdown gets **one blank option** — an empty `<button>` with no label.
+- `DE.state.GeoType` is set to `null` (`assignGeoRank(null)` returns `undefined`, so the "finest available geography" reduce has nothing to rank).
+- `DE.state.TimePeriodID` is `null` too, since the time list is derived from the same null `Map` entry — the Time dropdown is also blank.
+- `renderMap` then throws: **`TypeError: Cannot read properties of undefined (reading 'AvailableGeoTypes')`** (map.js). The user gets a bare basemap with no data drawn, and empty Boundary and Time dropdowns.
+
+**Scale — measured across all 282 indicators in the live `feature-new-data-explorer` catalog:**
+
+| | Indicators |
+|---|---|
+| Have at least one null `GeoType` in a `Map` array | **40** |
+| …of which **every** `Map` entry is null (no mappable measure at all) | **20** |
+| …of which some measures map and some don't | **20** |
+
+The 20 fully-null ones are largely the birth-defects family (ids 26–37 and neighbours). The partial ones are worse in a subtler way — Leukemia (id 73) has 3 null entries out of 12, so the indicator works until you pick one of the affected measures. Others: Carbon monoxide incidents (38), Restaurants with A grades (2065), and a run of cancer indicators (2077, 2088, 2090, 2091).
+
+**Not caused by 4.10.** The failure happens on initial page load with no click involved, and `map.js` was not touched. Confirmed present with the delegation change in place and attributable entirely to the metadata read.
+
+**What a fix has to do** (not attempted here — it is a design question, not a patch):
+
+1. Treat a null `GeoType` as *absence*, not as an option — filter it out of the geo list rather than prettifying it. That alone stops the blank dropdown entry and the `null` state write.
+2. Decide what the SPA does when a measure has **no** mappable geography. The old explorer's answer — disable the Map/Trend/Correlate tabs and default the overlay to `table` — is the known-good behaviour and the one users of these 40 indicators currently get. The new explorer has no equivalent concept of a disabled vis tab.
+3. The same null-as-placeholder convention appears in `Trend` and `Links` too, so whatever handles it should be shared, not written three times.
+
+Worth noting the new explorer is not *totally* broken on these: switching to the Table tab manually does render (3 rows for id 26, against a fuller table on the old explorer). But the landing view is a broken map, and nothing tells the user why.
+
+**How to verify a fix:** `/data-explorer/birth-defects/?id=26` (fully null) and `/data-explorer/cancer/?id=73` (partial — needs a per-measure sweep, not just the default). Compare against `/data-explorer-old/` for the same ids. The console must be free of the `AvailableGeoTypes` TypeError, and no dropdown may contain a blank option. `npm run smoke` will **not** catch this today — no affected indicator is in its `PAGES` list, which is worth fixing at the same time.
 
 ---
 

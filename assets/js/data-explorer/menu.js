@@ -178,11 +178,17 @@ const renderMenuSection = (items, destination, type) => {
         container.innerHTML = '';
 
         // Build one button per available option in the current menu.
-        items.forEach(item => {
+        items.forEach((item, index) => {
 
             const button = document.createElement('button');
             button.className = 'dropdown-item';
             button.type = 'button';
+
+            // The delegated handler below looks the option back up by position rather than
+            // reading its value off the button: dataset stringifies everything, and 97 Map
+            // entries in the catalog carry GeoType: null, which would reach handleSelection
+            // as the string "null".
+            button.dataset.optionIndex = index;
 
             // Subtly highlight the currently selected value in each dropdown.
             // Number() coercion on both sides: MeasureID and TimePeriodID may be string or float depending on source
@@ -197,17 +203,26 @@ const renderMenuSection = (items, destination, type) => {
                 button.setAttribute('aria-current', 'true');
             }
 
-            // keep existing dropdown-close behavior
-            button.addEventListener('click', () => updateDropdownText(button));
-
-            button.addEventListener('click', () => {
-                handleSelection(type, item.value);
-            });
-
             button.textContent = item.label;
 
             container.appendChild(button);
         });
+
+        // One delegated listener per container rather than one per button, matching the
+        // links dropdown in measures.js. Assigning `onclick` (rather than addEventListener)
+        // is idempotent, so repeated rebuilds can't stack handlers.
+        // Bootstrap closes the menu itself on any click inside it, and updateAllMenus
+        // repaints both trigger labels via setDropdownLabel — so nothing else is needed here.
+        container.onclick = event => {
+
+            const button = event.target.closest('.dropdown-item');
+
+            if (!button) {
+                return;
+            }
+
+            handleSelection(type, items[Number(button.dataset.optionIndex)].value);
+        };
     });
 };
 
@@ -276,30 +291,4 @@ const handleSelection = (type, value) => {
     // ----- re-render the active view and update the map ----- //
 
     renderCurrentView(true);
-};
-
-
-// ----------------------------------------------------------------------- //
-// dropdown ui
-// ----------------------------------------------------------------------- //
-
-// Reflects the clicked option text back into the visible dropdown trigger.
-const updateDropdownText = (clickedItem) => {
-
-    debugLog("* updateDropdownText");
-
-    const dropdown = clickedItem.closest('.dropdown');
-    // Resolve the trigger by role, not by id suffix, so mobile/desktop variants
-    // (which now carry unique ids) both match.
-    const button = dropdown.querySelector('button[data-toggle="dropdown"]');
-    const span = button?.querySelector('span');
-
-    if (!span) {
-        return;
-    }
-
-    span.textContent = clickedItem.textContent;
-
-    const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-    dropdownMenu.classList.remove('show');
 };
