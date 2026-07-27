@@ -11,6 +11,11 @@
 // Opt-in: a doc is only checked if it declares source roots in its first lines.
 // Audits and dated findings deliberately reference old names and must NOT opt in.
 //
+// Candidates are every `.md` in documents/ plus the root docs listed in ROOT_DOCS.
+// CLAUDE.md is in that list because it makes more path and identifier claims than any
+// single audit doc, and a path in it that had never existed (a root `layouts/`) survived
+// for months precisely because it sat outside this scan.
+//
 //   <!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts -->
 //   <!-- docs-check verified: <commit> <YYYY-MM-DD> -->
 //   <!-- docs-check ignore: someOldName anotherOldName -->
@@ -23,6 +28,10 @@ import { fileURLToPath } from "node:url";
 
 const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DOCS_DIR = join(REPO_ROOT, "documents");
+
+// Root-level docs that describe current code. Add sparingly — a doc only belongs here
+// if it is meant to stay true, not if it is a dated record.
+const ROOT_DOCS = ["CLAUDE.md"];
 
 // Source extensions worth scanning for identifiers.
 const SOURCE_EXTENSIONS = new Set([".js", ".mjs", ".html", ".scss", ".css", ".json"]);
@@ -94,7 +103,18 @@ const collectPathClaims = (text, docPath) => {
     // paths matter as much as files: the pre-cutover `data-explorer-new/` tree was
     // cited five times and every mention was wrong.
     for (const [, token] of text.matchAll(/`([^`\s]+(?:\.[a-z]{2,5}|\/))`/g)) {
-        if (token.includes("/") && !token.startsWith("http")) {
+        // A leading slash means a site URL (`/data-explorer/`), not a repo path. Those are
+        // routes served by Hugo and have no file at that location to check.
+        if (token.startsWith("/") || token.startsWith("http")) {
+            continue;
+        }
+
+        // Globs and angle-bracket placeholders are patterns, not claims about one file.
+        if (token.includes("*") || token.includes("<")) {
+            continue;
+        }
+
+        if (token.includes("/")) {
             claims.push({ raw: token, abs: join(REPO_ROOT, token) });
         }
     }
@@ -131,12 +151,15 @@ const collectIdentifierClaims = (text) => {
 
 // ----- run -----
 
-const docs = readdirSync(DOCS_DIR).filter(name => name.endsWith(".md"));
+const docPaths = [
+    ...readdirSync(DOCS_DIR).filter(name => name.endsWith(".md")).map(name => join(DOCS_DIR, name)),
+    ...ROOT_DOCS.map(name => join(REPO_ROOT, name)).filter(existsSync),
+];
+
 const failures = [];
 let checkedCount = 0;
 
-for (const name of docs) {
-    const docPath = join(DOCS_DIR, name);
+for (const docPath of docPaths) {
     const original = readFileSync(docPath, "utf8");
     const directives = readDirectives(original);
 
