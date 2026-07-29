@@ -1,9 +1,17 @@
 ---
 name: js-development
-description: Vanilla JavaScript conventions for this project — module scope, const/let, arrow functions, 4-space indentation, vertical whitespace, and comment style. Use when writing or editing any .js file.
+description: Vanilla JavaScript conventions for this project — module scope, const/let, arrow functions, 4-space indentation, vertical whitespace, and comment style. Use when writing or editing any .js file EXCEPT those under assets/js/data-explorer/, which follow documents/js-conventions.md instead.
 ---
 
 # Vanilla JavaScript conventions
+
+**Scope: all browser-side JS except `assets/js/data-explorer/`.** That directory
+follows `documents/js-conventions.md`, which contradicts this file on two points
+(`console.log` format, and whether comments end in a period). Applying the rules
+below inside the data-explorer tree would fight the code already there.
+
+The split is a stopgap; the goal is one unified convention site-wide. See §5h of
+`documents/site-wide-audit-2026-06-27.md`.
 
 ## Scope — no IIFEs
 
