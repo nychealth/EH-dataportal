@@ -21,7 +21,7 @@ NO2: >-
 
     - The persistence of building density as the most important indicator of NO<sub>2</sub> reflects the continued use of fossil fuel combustion for heat and hot water, even as fuels become cleaner and equipment more efficient. 
 
-    - In 2023, seasonal average NO<sub>2</sub> concentrations across NYCCAS monitoring sites ranged from 6.5 to 37 ppb.    
+    - In 2023, seasonal average NO<sub>2</sub> concentrations across NYCCAS monitoring sites ranged from 6.5 to 37 ppb.
 PM: >-
     - Citywide, annual average levels of fine particulate matter declined by 29% between 2009 and 2023, an average of 0.3 micrograms per cubic meter per year.
 
