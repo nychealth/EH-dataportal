@@ -9,7 +9,7 @@ We found that at EJ neighborhood sites that we monitored - where there were conc
 
 Similarly, within the CRZ, neighborhood pollution levels were not significantly different than they would have been if congestion pricing had not been implemented.
 
-That congestion pricing would only have a small impact on air quality is not unexpected: traffic makes up only about 10% of PM2.5 emissions and 20% of NOx emissions. This means, for example, that a roughly 10% reduction in traffic volume in the CRZ would not substantially change air pollution compared to other sources of emissions.
+That congestion pricing would only have a small impact on air quality is not unexpected: Traffic makes up only about 10% of PM2.5 emissions and 20% of NOx emissions. This means, for example, that a roughly 10% reduction in traffic volume in the CRZ would not substantially change air pollution compared to other sources of emissions.
 
 However, the documented benefits of congestion pricing – [reduced congestion, transit system improvements](https://www.mta.info/document/195631) and [investments through the committed mitigation](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about) – clearly demonstrate the overall benefit of the program.
 
@@ -17,9 +17,9 @@ However, the documented benefits of congestion pricing – [reduced congestion, 
 
 * [MTA CRZ documentation](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone)
 * [MTA Open Datasets](https://metrics.mta.info/%20)
-* [Appendix​](embeds/CRZ_Report_Appendix.pdf)
+* [Appendix (PDF)​](embeds/CRZ_Report_Appendix.pdf)
 * [New York State DOT Traffic Dataviewer​](https://nysdottrafficdata.drakewell.com/publicmultinodemap.asp)
 * [US EPA Air Quality System](https://www.epa.gov/aqs)
-* [CBDTP Air Quality Evaluation Methods](https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf)
+* [CBDTP Air Quality Evaluation Methods (PDF)](https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf)
 
 All air quality data used in this analysis are available by contacting [NYCCAS](mailto:nyccas@health.nyc.gov).
