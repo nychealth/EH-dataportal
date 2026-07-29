@@ -166,8 +166,18 @@
 
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ with $src -}}
-                <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="">
+                <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="{{ .Params.image_alt }}" />
                 {{ end }}
+                <div class="fs-sm">
+                    {{- if .Params.photocredit -}}
+                        <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
+                        {{- .Params.photocredit -}}
+                        <hr class="my-2">
+                    {{- end }}
+                    
+                    <strong class="keywords">Published on:</strong><br>
+                    {{- .Date.Format "January 2, 2006" -}}
+                </div>
             </div>
 
             <div data-pagefind-weight="7.0">
@@ -197,7 +207,7 @@
                 <div class="col-md-6">
                     <div id="cpReportMap" class="cp-inline-map mb-2"></div>
                     <h3 class="h5 mt-1">EJ-Designated Community Site Analysis</h3>
-                    <p>In consultation with stakeholders, the Health Department increased monitoring in several communities that the Environmental Assessment identified as environmental justice communities with the potential for increases in truck traffic. These areas are:
+                    <p>In consultation with stakeholders, the Health Department increased monitoring in several communities that the environmental assessment identified as environmental justice communities with the potential for increases in truck traffic. These areas are:
                         <span class="badge badge-light site-badge" data-site="deegan">Major Deegan</span>
                         <span class="badge badge-light site-badge" data-site="cross-bronx">Cross Bronx</span>
                         <span class="badge badge-light site-badge" data-site="bqe">BQE</span>
@@ -227,7 +237,7 @@
 
             <div class="row mt-4">
                 <div class="col-12">
-                    <h3>Evaluation Analysis</h3>
+                    <h3>Evaluation analysis</h3>
 
                     <!-- Charts float right at md+ so the analysis.md prose wraps around
                          them. This block must precede the .Content output below, because a
@@ -238,7 +248,7 @@
 
                         <div class="asidebox border">
                             <p class="fs-sm">
-                                The blue dot is our estimate, and the gray bar is the Standard Error. The shorter the gray bar, the greater the confidence in the estimate - the more precise we know our estimate to be.</p>
+                                The blue dot is our estimate, and the gray bar is the standard error. The shorter the gray bar, the greater the confidence in the estimate - the more precise we know our estimate to be.</p>
                         </div>
 
                         <div class="w-100 mt-4 mb-1" id="explainChart2"></div>
@@ -310,7 +320,7 @@
         <div class="col-md-8 col-sm-12 mx-auto my-1">
             <h3 class="cp-sticky-header">Air quality changes throughout the day</h3>
             <p class="mt-1">
-                We used real-time monitors to get a detailed picture of how PM2.5 levels throughout the day, capturing rush-hour and overnight patterns  with hourly measurements. These data let us examine correlations with traffic volumes. Notice that the time of day when the traffic is highest (such as morning and evening rush hour) is not always the time of day that PM2.5 is highest.  This is because other sources of PM2.5, like building heating and restaurant cooking, contribute to the levels of PM2.5 in the air.  The same is true for the other pollutants that we measured and helps explain why we saw no change in air pollution levels at some sites even though traffic went down. 
+                We used real-time monitors to get a detailed picture of PM2.5 levels throughout the day, capturing rush-hour and overnight patterns with hourly measurements. These data let us examine correlations with traffic volumes. Notice that the time of day when the traffic is highest (such as morning and evening rush hour) is not always the time of day that PM2.5 is highest. This is because other sources of PM2.5, like building heating and restaurant cooking, contribute to the levels of PM2.5 in the air. The same is true for the other pollutants that we measured, and this helps explain why we saw no change in air pollution levels at some sites, even though traffic went down. 
             </p>
 
             {{/* #tod-site-name is updated dynamically by renderTODButtons() below */}}

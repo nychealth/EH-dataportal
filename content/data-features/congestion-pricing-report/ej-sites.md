@@ -32,7 +32,7 @@ hide: true
 
   <div class="col-md-4 mb-3">
     <div class="card card-header  h-100 mb-0 fs-sm border">
-      <p><strong>The Brooklyn-Queens Expressway (BQE)</strong> between Metropolitan Ave. and DUMBO in the South Williamsburg neighborhood.</p>
+      <p><strong>The Brooklyn-Queens Expressway (BQE)</strong> between Metropolitan Aveenue and DUMBO in the South Williamsburg neighborhood.</p>
     </div>
   </div>
 

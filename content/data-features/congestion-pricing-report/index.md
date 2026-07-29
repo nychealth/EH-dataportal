@@ -20,6 +20,9 @@ aliases:
   - /key-topics/airquality/nyccas/
 
 image: images/GettyImages-resize-1.png
+image_alt: View of W 40th St in Manhattan. Pedestrians cross the street with cars waiting at the light.
+# photocredit: '<a href="https://commons.wikimedia.org/wiki/File:Sixth_Avenue_and_Central_Park_South_(Unsplash).jpg">Frank Köhntopp </a>, CC0, via Wikimedia Commons'
+photocredit: "Frank Köhntopp, CC0, via Wikimedia Commons"
 layout: congestion-pricing-report
 report: true
 mapLib: true
@@ -56,7 +59,7 @@ Modeling and analysis from the mandatory federal environmental review for conges
 
 With a full year of data since congestion pricing began, we can now accurately evaluate its effects on air quality. A full year of data means we can isolate any impact from the program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, [Initial data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/) and the [Congestion Relief Zone Tolling First Evaluation Report](https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions), noted that the preliminary data suggested air pollution either did not change or continued to decrease as in previous years both within and outside the zone.
 
-**Key Takeaways**
+## Key Takeaways
 
 This is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report. 
 

@@ -14,35 +14,39 @@
 
 const CP_SITES = {
     "Deegan": {
-        displayName: "Major Deegan",
+        displayName: "Major Deegan Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "deegan",
         mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
         badgeInfo: "The Major Deegan Expressway (Major Deegan) and connecting links in the Mott Haven neighborhood.",
         text: "<p>No. In Mott Haven, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same.</p>"
     },
     "Cross Bronx": {
+        displayName: "Cross-Bronx Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "cross-bronx",
         mapCoords: { lat: 40.844967, lng: -73.906263, zoom: 16 },
         badgeInfo: "The Cross-Bronx Expressway (Cross Bronx) in the Highbridge-Tremont neighborhood.",
         text: "<p>No. In neighborhoods along the Cross Bronx, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%. </p>"
     },
     "BQE": {
+        displayName: "Brooklyn-Queens Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "bqe",
         mapCoords: { lat: 40.705511, lng: -73.958846, zoom: 16 },
-        badgeInfo: "The Brooklyn-Queens Expressway (BQE) between Metropolitan Ave and DUMBO in the South Williamsburg neighborhood.",
-        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been if the program had never happened. From the traffic count analysis total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3%. </p><p>Nitric Oxide (NO) levels decreased but were significantly higher than we would have expected. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have without the tolling program, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing.  We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
+        badgeInfo: "The Brooklyn-Queens Expressway (BQE) between Metropolitan Avenue and DUMBO in the South Williamsburg neighborhood.",
+        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been if the program had never happened. From the traffic count analysis total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3%. </p><p>Nitric oxide (NO) levels decreased but were significantly higher than we would have expected. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing.  We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
     },
     "SI Expwy": {
+        displayName: "Staten Island Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
         mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
         badgeInfo: "The Staten Island Expressway (SI Expwy) and connections to the Bayonne Bridge in the Port Richmond and Bulls Head neighborhoods.",
         text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%. </p>"
     },
     "FDR": {
+        displayName: "FDR Drive",
         preposition: "near the", hasTOD: true, badgeKey: "fdr",
         mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
         badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) in the Lower East Side neighborhood.",
-        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025.  For more information see the <a href=\"embeds/CRZ_Report_Appendix.pdf\"> Appendix. </a></p>"
+        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025.  For more information see the <a href=\"embeds/CRZ_Report_Appendix.pdf\"> Appendix (PDF)</a>.</p>"
     },
     "Trans-Manhattan": {
         preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
@@ -60,7 +64,7 @@ const CP_SITES = {
         preposition: "in the", hasTOD: false,
         text: "<p>No.  When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been if the program had never happened.</p>"
     },
-    "Rest of the City": {
+    "Rest of the city": {
         preposition: "in the", hasTOD: false,
         text: "<p>No.  When we look at the 73 NYCCAS sites outside of the CRZ and analyze them as a group, we see that  the measured pollution levels were not significantly different than they would have been if the program had never happened. </p>"
     }

@@ -38,7 +38,7 @@
         div.innerHTML = [
             '<div class="legend-item"><div class="legend-color traffic"></div><span>Traffic Counter</span></div>',
             '<div class="legend-item"><div class="legend-color integrated-monitor"></div><span>Integrated Monitor</span></div>',
-            '<div class="legend-item"><div class="legend-color pm-monitor"></div><span>PM2.5 Real Time Monitor</span></div>',
+            '<div class="legend-item"><div class="legend-color pm-monitor"></div><span>PM2.5 Real-Time Monitor</span></div>',
             '<div class="legend-item"><div class="legend-color crz"></div><span>CRZ</span></div>'
         ].join('');
 
@@ -170,7 +170,7 @@
                 site._icon.classList.add('traffic');
             } else if (siteData.SiteType === 'Integrated Monitor') {
                 site._icon.classList.add('integrated-monitor');
-            } else if (siteData.SiteType === 'PM2.5 Real Time Monitor') {
+            } else if (siteData.SiteType === 'PM2.5 Real-Time Monitor') {
                 site._icon.classList.add('PM-monitor');
             }
         });
