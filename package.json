@@ -11,6 +11,13 @@
     "bugs": {
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
+    "scripts": {
+        "lint": "eslint assets/js/data-explorer",
+        "characterize:de": "node scripts/de-characterization.mjs",
+        "characterize:nr": "node scripts/nr-characterization.mjs",
+        "smoke": "node scripts/smoke-pages.mjs",
+        "docs-check": "node scripts/docs-check.mjs"
+    },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
         "@mapbox/leaflet-pip": "^1.1.0",
@@ -44,5 +51,10 @@
     },
     "optionalDependencies": {
         "hugo-extended": "^0.146.3"
+    },
+    "devDependencies": {
+        "eslint": "^10.7.0",
+        "globals": "^17.7.0",
+        "playwright": "^1.61.1"
     }
 }
