@@ -46,25 +46,29 @@ const CP_SITES = {
         preposition: "near the", hasTOD: true, badgeKey: "fdr",
         mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
         badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) in the Lower East Side neighborhood.",
-        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025.  For more information see the <a href=\"embeds/CRZ_Report_Appendix.pdf\"> Appendix (PDF)</a>.</p>"
+        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025.  For more information see the <a href=\"embeds/CRZ_Report_Appendix.pdf\" target=\"_blank\"> appendix (PDF)</a>.</p>"
     },
     "Trans-Manhattan": {
+        displayName: "Trans-Manhattan Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
         mapCoords: { lat: 40.847353, lng: -73.934027, zoom: 16 },
         badgeInfo: "The Trans-Manhattan Expressway (Trans-Manhattan) between the George Washington Bridge and the Alexander Hamilton Bridge in the Washington Heights neighborhood.",
         text: "<p>No.  In Washington Heights near the Trans-Manhattan Expressway, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same. </p>"
     },
     "Van Wyck": {
+        displayName: "Van Wyck Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
         mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
         badgeInfo: "The Van Wyck Expressway (Van Wyck) connects Queens to Jamaica and serves the airport area, handling significant traffic volumes that are not expected to be affected by congestion pricing. This is our control site.",
         text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value because the measured values are used to make the hypothetical values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects a general trend of increasing traffic volume throughout New York State. <li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p> "
     },
     "CRZ": {
+        displayName: "congestion relief zone",
         preposition: "in the", hasTOD: false,
         text: "<p>No.  When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been if the program had never happened.</p>"
     },
     "Rest of the city": {
+        displayName: "rest of the city",
         preposition: "in the", hasTOD: false,
         text: "<p>No.  When we look at the 73 NYCCAS sites outside of the CRZ and analyze them as a group, we see that  the measured pollution levels were not significantly different than they would have been if the program had never happened. </p>"
     }
@@ -109,7 +113,7 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
 
             const opt = document.createElement("option");
             opt.value = site;
-            opt.textContent = getSiteDisplayName(site);
+            opt.textContent = site; // Use the site name directly for the select options
 
             if (site === current) opt.selected = true;
             sel.appendChild(opt);
@@ -127,7 +131,7 @@ function createSiteSelector({ wrapId, sites, idPrefix, getCurrent, onChange }) {
             btn.type = "button";
             btn.id = idPrefix + site.replaceAll(" ", "-");
             btn.className = "btn btn-sm btn-outline-dark fs-xs";
-            btn.textContent = getSiteDisplayName(site);
+            btn.textContent = site; // Use the site name directly for the button text
 
             if (site === current) btn.classList.add("active");
 
