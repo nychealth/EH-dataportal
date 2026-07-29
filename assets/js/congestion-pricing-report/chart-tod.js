@@ -15,7 +15,7 @@ const TOD_CONTAINER_ID = "cpVisTOD";
 // tod_site_names is derived from CP_SITES (hasTOD), defined in shared.js
 // Tracks the currently selected site; updated on each button click
 
-let todCurrentSite = "Deegan";
+let todCurrentSite = "Major Deegan";
 
 
 // ----------------------------------------------------------------------- //

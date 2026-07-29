@@ -31,14 +31,14 @@ Pre,Trans-Manhattan,Evening rush,PM2.5,6.938365385,µg/m³
 Post,Trans-Manhattan,Evening rush,PM2.5,9.484252336,µg/m³
 Pre,Trans-Manhattan,Overnight,PM2.5,6.598184,µg/m³
 Post,Trans-Manhattan,Overnight,PM2.5,8.971806854,µg/m³
-Pre,Deegan,Evening rush,PM2.5,6.921450617,µg/m³
-Post,Deegan,Evening rush,PM2.5,6.821073446,µg/m³
-Pre,Deegan,Midday,PM2.5,8.264049844,µg/m³
-Post,Deegan,Midday,PM2.5,7.582846045,µg/m³
-Pre,Deegan,Evening rush,PM2.5,8.287125,µg/m³
-Post,Deegan,Evening rush,PM2.5,7.945480226,µg/m³
-Pre,Deegan,Overnight,PM2.5,7.333234837,µg/m³
-Post,Deegan,Overnight,PM2.5,7.212048023,µg/m³
+Pre,Major Deegan,Evening rush,PM2.5,6.921450617,µg/m³
+Post,Major Deegan,Evening rush,PM2.5,6.821073446,µg/m³
+Pre,Major Deegan,Midday,PM2.5,8.264049844,µg/m³
+Post,Major Deegan,Midday,PM2.5,7.582846045,µg/m³
+Pre,Major Deegan,Evening rush,PM2.5,8.287125,µg/m³
+Post,Major Deegan,Evening rush,PM2.5,7.945480226,µg/m³
+Pre,Major Deegan,Overnight,PM2.5,7.333234837,µg/m³
+Post,Major Deegan,Overnight,PM2.5,7.212048023,µg/m³
 Pre,SI Expwy,Evening rush,PM2.5,6.294538462,µg/m³
 Post,SI Expwy,Evening rush,PM2.5,6.132868852,µg/m³
 Pre,SI Expwy,Midday,PM2.5,6.076531008,µg/m³

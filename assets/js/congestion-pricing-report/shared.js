@@ -13,7 +13,7 @@
 // the EJ, TOD, and CRZ chart blocks — one entry per site, keyed by name.
 
 const CP_SITES = {
-    "Deegan": {
+    "Major Deegan": {
         displayName: "Major Deegan Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "deegan",
         mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },

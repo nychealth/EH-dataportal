@@ -1,8 +1,8 @@
 pred_type,time,pollutant,UC,LC,average,Site,Unit
-counterfactual,Pre,BC,,,0.66,Deegan,mcg/m3
-counterfactual,Post,BC,,,0.54,Deegan,mcg/m3
-predicted,Pre,BC,0.71,0.61,0.66,Deegan,mcg/m3
-predicted,Post,BC,0.6,0.51,0.56,Deegan,mcg/m3
+counterfactual,Pre,BC,,,0.66,Major Deegan,mcg/m3
+counterfactual,Post,BC,,,0.54,Major Deegan,mcg/m3
+predicted,Pre,BC,0.71,0.61,0.66,Major Deegan,mcg/m3
+predicted,Post,BC,0.6,0.51,0.56,Major Deegan,mcg/m3
 counterfactual,Pre,BC,,,0.82,Trans-Manhattan,mcg/m3
 counterfactual,Post,BC,,,0.69,Trans-Manhattan,mcg/m3
 predicted,Pre,BC,0.87,0.78,0.82,Trans-Manhattan,mcg/m3
@@ -23,10 +23,10 @@ counterfactual,Pre,BC,,,0.55,FDR,mcg/m3
 counterfactual,Post,BC,,,0.46,FDR,mcg/m3
 predicted,Pre,BC,0.59,0.51,0.55,FDR,mcg/m3
 predicted,Post,BC,0.47,0.4,0.44,FDR,mcg/m3
-counterfactual,Pre,NO2,,,20.94,Deegan,ppb
-counterfactual,Post,NO2,,,22.19,Deegan,ppb
-predicted,Pre,NO2,21.96,19.91,20.94,Deegan,ppb
-predicted,Post,NO2,22.09,20.22,21.15,Deegan,ppb
+counterfactual,Pre,NO2,,,20.94,Major Deegan,ppb
+counterfactual,Post,NO2,,,22.19,Major Deegan,ppb
+predicted,Pre,NO2,21.96,19.91,20.94,Major Deegan,ppb
+predicted,Post,NO2,22.09,20.22,21.15,Major Deegan,ppb
 counterfactual,Pre,NO2,,,25.24,Trans-Manhattan,ppb
 counterfactual,Post,NO2,,,24.68,Trans-Manhattan,ppb
 predicted,Pre,NO2,26.25,24.23,25.24,Trans-Manhattan,ppb
@@ -47,10 +47,10 @@ counterfactual,Pre,NO2,,,17.62,FDR,ppb
 counterfactual,Post,NO2,,,18.11,FDR,ppb
 predicted,Pre,NO2,18.54,16.7,17.62,FDR,ppb
 predicted,Post,NO2,19.02,17.35,18.18,FDR,ppb
-counterfactual,Pre,NO,,,15.8,Deegan,ppb
-counterfactual,Post,NO,,,10.24,Deegan,ppb
-predicted,Pre,NO,16.84,14.77,15.8,Deegan,ppb
-predicted,Post,NO,14.66,12.79,13.72,Deegan,ppb
+counterfactual,Pre,NO,,,15.8,Major Deegan,ppb
+counterfactual,Post,NO,,,10.24,Major Deegan,ppb
+predicted,Pre,NO,16.84,14.77,15.8,Major Deegan,ppb
+predicted,Post,NO,14.66,12.79,13.72,Major Deegan,ppb
 counterfactual,Pre,NO,,,28.72,Trans-Manhattan,ppb
 counterfactual,Post,NO,,,23.03,Trans-Manhattan,ppb
 predicted,Pre,NO,30.07,27.38,28.72,Trans-Manhattan,ppb
@@ -71,10 +71,10 @@ counterfactual,Pre,NO,,,9.96,FDR,ppb
 counterfactual,Post,NO,,,7.08,FDR,ppb
 predicted,Pre,NO,10.86,9.05,9.96,FDR,ppb
 predicted,Post,NO,10.03,8.4,9.21,FDR,ppb
-counterfactual,Pre,PM2.5,,,7.97,Deegan,mcg/m3
-counterfactual,Post,PM2.5,,,7.27,Deegan,mcg/m3
-predicted,Pre,PM2.5,8.66,7.27,7.97,Deegan,mcg/m3
-predicted,Post,PM2.5,8.49,7.24,7.86,Deegan,mcg/m3
+counterfactual,Pre,PM2.5,,,7.97,Major Deegan,mcg/m3
+counterfactual,Post,PM2.5,,,7.27,Major Deegan,mcg/m3
+predicted,Pre,PM2.5,8.66,7.27,7.97,Major Deegan,mcg/m3
+predicted,Post,PM2.5,8.49,7.24,7.86,Major Deegan,mcg/m3
 counterfactual,Pre,PM2.5,,,8.2,Trans-Manhattan,mcg/m3
 counterfactual,Post,PM2.5,,,9.13,Trans-Manhattan,mcg/m3
 predicted,Pre,PM2.5,8.9,7.5,8.2,Trans-Manhattan,mcg/m3

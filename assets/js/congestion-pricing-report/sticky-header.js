@@ -317,7 +317,7 @@ function drawExplainChart() {
   "vconcat": [
     {
       "transform": [
-        {"filter": "datum.Site === 'Deegan'"},
+        {"filter": "datum.Site === 'Major Deegan'"},
         {"filter": "datum.pollutant === 'PM25'"},
         {
           "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",

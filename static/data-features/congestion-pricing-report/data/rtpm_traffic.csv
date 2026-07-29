@@ -15,14 +15,14 @@ Pre,Cross Bronx,Evening rush,Traffic,6715.982,vehicles per hour
 Pre,Cross Bronx,Midday,Traffic,6597.085,vehicles per hour
 Pre,Cross Bronx,Morning rush,Traffic,7902.238,vehicles per hour
 Pre,Cross Bronx,Overnight,Traffic,5334.75,vehicles per hour
-Pre,Deegan,Evening rush,PM2.5,6.921450617,µg/m³
-Pre,Deegan,Midday,PM2.5,8.264049844,µg/m³
-Pre,Deegan,Morning rush,PM2.5,8.287125,µg/m³
-Pre,Deegan,Overnight,PM2.5,7.333234837,µg/m³
-Pre,Deegan,Evening rush,Traffic,7185.875,vehicles per hour
-Pre,Deegan,Midday,Traffic,7121.188,vehicles per hour
-Pre,Deegan,Morning rush,Traffic,7784.5,vehicles per hour
-Pre,Deegan,Overnight,Traffic,3958.5,vehicles per hour
+Pre,Major Deegan,Evening rush,PM2.5,6.921450617,µg/m³
+Pre,Major Deegan,Midday,PM2.5,8.264049844,µg/m³
+Pre,Major Deegan,Morning rush,PM2.5,8.287125,µg/m³
+Pre,Major Deegan,Overnight,PM2.5,7.333234837,µg/m³
+Pre,Major Deegan,Evening rush,Traffic,7185.875,vehicles per hour
+Pre,Major Deegan,Midday,Traffic,7121.188,vehicles per hour
+Pre,Major Deegan,Morning rush,Traffic,7784.5,vehicles per hour
+Pre,Major Deegan,Overnight,Traffic,3958.5,vehicles per hour
 Pre,FDR,Evening rush,PM2.5,6.938606061,µg/m³
 Pre,FDR,Midday,PM2.5,8.052361427,µg/m³
 Pre,FDR,Morning rush,PM2.5,8.73429878,µg/m³
@@ -71,14 +71,14 @@ Post,Cross Bronx,Evening rush,Traffic,6306.771,vehicles per hour
 Post,Cross Bronx,Midday,Traffic,6131.822,vehicles per hour
 Post,Cross Bronx,Morning rush,Traffic,7547.356,vehicles per hour
 Post,Cross Bronx,Overnight,Traffic,5091.69,vehicles per hour
-Post,Deegan,Evening rush,PM2.5,6.821073446,µg/m³
-Post,Deegan,Morning rush,PM2.5,7.945480226,µg/m³
-Post,Deegan,Midday,PM2.5,7.582846045,µg/m³
-Post,Deegan,Overnight,PM2.5,7.212048023,µg/m³
-Post,Deegan,Evening rush,Traffic,6898.478,vehicles per hour
-Post,Deegan,Midday,Traffic,6764.288,vehicles per hour
-Post,Deegan,Morning rush,Traffic,7385.217,vehicles per hour
-Post,Deegan,Overnight,Traffic,3758.78,vehicles per hour
+Post,Major Deegan,Evening rush,PM2.5,6.821073446,µg/m³
+Post,Major Deegan,Morning rush,PM2.5,7.945480226,µg/m³
+Post,Major Deegan,Midday,PM2.5,7.582846045,µg/m³
+Post,Major Deegan,Overnight,PM2.5,7.212048023,µg/m³
+Post,Major Deegan,Evening rush,Traffic,6898.478,vehicles per hour
+Post,Major Deegan,Midday,Traffic,6764.288,vehicles per hour
+Post,Major Deegan,Morning rush,Traffic,7385.217,vehicles per hour
+Post,Major Deegan,Overnight,Traffic,3758.78,vehicles per hour
 Post,FDR,Evening rush,PM2.5,5.336627219,µg/m³
 Post,FDR,Morning rush,PM2.5,8.775828402,µg/m³
 Post,FDR,Midday,PM2.5,7.158343195,µg/m³
