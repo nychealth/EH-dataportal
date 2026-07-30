@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts -->
-<!-- docs-check verified: a5bba916ca 2026-07-27 -->
+<!-- docs-check verified: a598e8b892 2026-07-30 -->
 
 # Data Explorer — Interaction & Data Flow
 
