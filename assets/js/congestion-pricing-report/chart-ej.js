@@ -78,7 +78,7 @@ const baseSpec = {
             "labelFontSize": 14,
             "labelFontWeight": "bold",
             "labelColor": {
-                "expr": "datum.value === 'Observed' ? 'blue' : 'darkorange'"
+                "expr": "datum.value === 'Observed' ? 'blue' : '#DB7900'"
             }
         }
     },
@@ -125,7 +125,7 @@ const baseSpec = {
                 "field": "language",
                 "scale": {
                     "domain": ["Observed", "Projected"],
-                    "range": ["blue", "darkorange"]
+                    "range": ["blue", "#DB7900"]
                 }
             }
         },

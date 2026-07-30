@@ -263,12 +263,12 @@ function drawExplainChart() {
                             "labelFontSize": 14,
                             "labelFontWeight": "bold",
                             "labelColor": {
-                                "expr": "datum.value === 'Observed' ? 'blue' : 'darkorange'"
+                                "expr": "datum.value === 'Observed' ? 'blue' : '#DB7900'"
                             }
                         },
                         "scale": {
                             "domain": ["Observed", "Projected"],
-                            "range": ["blue", "darkorange"]
+                            "range": ["blue", "#DB7900"]
                         }
                     }
                 }
@@ -293,191 +293,189 @@ function drawExplainChart() {
             }
         ]
     };
-    vegaEmbed('#explainChart', spec, { actions: false, renderer: 'canvas' });
+    vegaEmbed('#explainChart', spec, { actions: false, renderer: "svg" });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // spec2: the confidence-interval explainer chart (#explainChart2) 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    const spec2 = 
     
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "config": {
-    "view": {"stroke": null},
-    "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
-    "axisY": {"domain": false, "orient": "left", "title": null}
-  },
-  "resolve": {
-    "scale": {"x": "shared"}
-  },
-    "data": {
-        "url": "data/AQ_Post.csv"
-    },
-  "vconcat": [
-    {
-      "transform": [
-        {"filter": "datum.Site === 'Major Deegan'"},
-        {"filter": "datum.pollutant === 'PM25'"},
-        {
-          "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",
-          "as": "pollutant"
+    const spec2 = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "config": {
+            "view": {"stroke": null},
+            "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
+            "axisY": {"domain": false, "orient": "left", "title": null}
         },
-        {
-          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not significant: no change'",
-          "as": "Significance"
-        }
-      ],
-      "width": "container",
-      "height": 35,
-      "encoding": {
-        "x": {"field": "estimate", "type": "quantitative", "title": null},
-        "color": {"value": "purple"}
-      },
-      "layer": [
-                {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "bottom",
-            "dy": -6,
-            "fontSize": 11,
-            "fontWeight": "bold",
-            "color": "#333"
-          },
-          "encoding": {
-            "x": {"value": 5},
-            "y": {"value": 10},
-            "text": {"field": "Significance", "type": "nominal"}
-          }
+        "resolve": {
+            "scale": {"x": "shared"}
         },
-        {
-          "mark": {
-            "type": "rule",
-            "strokeWidth": 6,
-            "opacity": 0.3,
-            "strokeCap": "round"
-          },
-          "encoding": {
-            "x": {"field": "lower", "type": "quantitative"},
-            "x2": {"field": "upper", "type": "quantitative"}
-          }
+        "data": {
+            "url": "data/AQ_Post.csv"
         },
-        {
-          "mark": {
-            "type": "rule",
-            "color": "#888",
-            "strokeWidth": 2,
-            "strokeDash": [2, 2]
-          },
-          "encoding": {"x": {"datum": 0, "type": "quantitative"}}
-        },
-        {
-          "mark": {"type": "circle", "size": 150, "opacity": 1},
-          "encoding": {
-            "x": {
-              "field": "estimate",
-              "type": "quantitative",
-              "scale": {"nice": true}
+        "vconcat": [
+            {
+                "transform": [
+                    {"filter": "datum.Site === 'Major Deegan'"},
+                    {"filter": "datum.pollutant === 'PM25'"},
+                    {
+                        "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",
+                        "as": "pollutant"
+                    },
+                    {
+                        "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not significant: no change'",
+                        "as": "Significance"
+                    }
+                ],
+                "width": "container",
+                "height": 35,
+                "encoding": {
+                    "x": {"field": "estimate", "type": "quantitative", "title": null},
+                    "color": {"value": "purple"}
+                },
+                "layer": [
+                    {
+                        "mark": {
+                            "type": "text",
+                            "align": "left",
+                            "baseline": "bottom",
+                            "dy": -6,
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "color": "#333"
+                        },
+                        "encoding": {
+                            "x": {"value": 5},
+                            "y": {"value": 10},
+                            "text": {"field": "Significance", "type": "nominal"}
+                        }
+                    },
+                    {
+                        "mark": {
+                            "type": "rule",
+                            "strokeWidth": 6,
+                            "opacity": 0.3,
+                            "strokeCap": "round"
+                        },
+                        "encoding": {
+                            "x": {"field": "lower", "type": "quantitative"},
+                            "x2": {"field": "upper", "type": "quantitative"}
+                        }
+                    },
+                    {
+                        "mark": {
+                            "type": "rule",
+                            "color": "#888",
+                            "strokeWidth": 2,
+                            "strokeDash": [2, 2]
+                        },
+                        "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+                    },
+                    {
+                        "mark": {"type": "circle", "size": 150, "opacity": 1},
+                        "encoding": {
+                            "x": {
+                                "field": "estimate",
+                                "type": "quantitative",
+                                "scale": {"nice": true}
+                            },
+                            "tooltip": [
+                                {"field": "Site", "title": "Site", "type": "nominal"},
+                                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                                {
+                                    "field": "Estimate (95% CI)",
+                                    "title": "Difference",
+                                    "type": "nominal"
+                                },
+                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                            ]
+                        }
+                    }
+                ]
             },
-            "tooltip": [
-              {"field": "Site", "title": "Site", "type": "nominal"},
-              {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
-              {
-                "field": "Estimate (95% CI)",
-                "title": "Difference",
-                "type": "nominal"
-              },
-              {"field": "Significance", "title": "Significance", "type": "nominal"}
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "transform": [
-        {"filter": "datum.Site === 'BQE'"},
-        {"filter": "datum.pollutant === 'NO'"},
-        {
-          "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",
-          "as": "pollutant"
-        },
-        {
-          "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not significant: no change'",
-          "as": "Significance"
-        }
-      ],
-      "width": "container",
-      "height": 35,
-      "encoding": {
-        "x": {"field": "estimate", "type": "quantitative", "title": null},
-        "color": {"value": "purple"}
-      },
-      "layer": [
-        {
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "bottom",
-            "dy": -6,
-            "fontSize": 11,
-            "fontWeight": "bold",
-            "color": "#333"
-          },
-          "encoding": {
-            "x": {"value": 5},
-            "y": {"value": 10},
-            "text": {"field": "Significance", "type": "nominal"}
-          }
-        },
-        {
-          "mark": {
-            "type": "rule",
-            "strokeWidth": 6,
-            "opacity": 0.3,
-            "strokeCap": "round"
-          },
-          "encoding": {
-            "x": {"field": "lower", "type": "quantitative"},
-            "x2": {"field": "upper", "type": "quantitative"}
-          }
-        },
-        {
-          "mark": {
-            "type": "rule",
-            "color": "#888",
-            "strokeWidth": 2,
-            "strokeDash": [2, 2]
-          },
-          "encoding": {"x": {"datum": 0, "type": "quantitative"}}
-        },
-        {
-          "mark": {"type": "circle", "size": 150, "opacity": 1},
-          "encoding": {
-            "x": {
-              "field": "estimate",
-              "type": "quantitative",
-              "scale": {"nice": false}
-            },
-            "tooltip": [
-              {"field": "Site", "title": "Site", "type": "nominal"},
-              {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
-              {
-                "field": "Estimate (95% CI)",
-                "title": "Difference",
-                "type": "nominal"
-              },
-              {"field": "Significance", "title": "Significance", "type": "nominal"}
-            ]
-          }
-        }
-      ]
+            {
+                "transform": [
+                    {"filter": "datum.Site === 'BQE'"},
+                    {"filter": "datum.pollutant === 'NO'"},
+                    {
+                        "calculate": "datum.pollutant === 'PM25' ? 'PM2.5' : datum.pollutant",
+                        "as": "pollutant"
+                    },
+                    {
+                        "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not significant: no change'",
+                        "as": "Significance"
+                    }
+                ],
+                "width": "container",
+                "height": 35,
+                "encoding": {
+                    "x": {"field": "estimate", "type": "quantitative", "title": null},
+                    "color": {"value": "purple"}
+                },
+                "layer": [
+                    {
+                        "mark": {
+                            "type": "text",
+                            "align": "left",
+                            "baseline": "bottom",
+                            "dy": -6,
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "color": "#333"
+                        },
+                        "encoding": {
+                            "x": {"value": 5},
+                            "y": {"value": 10},
+                            "text": {"field": "Significance", "type": "nominal"}
+                        }
+                    },
+                    {
+                        "mark": {
+                            "type": "rule",
+                            "strokeWidth": 6,
+                            "opacity": 0.3,
+                            "strokeCap": "round"
+                        },
+                        "encoding": {
+                            "x": {"field": "lower", "type": "quantitative"},
+                            "x2": {"field": "upper", "type": "quantitative"}
+                        }
+                    },
+                    {
+                        "mark": {
+                            "type": "rule",
+                            "color": "#888",
+                            "strokeWidth": 2,
+                            "strokeDash": [2, 2]
+                        },
+                        "encoding": {"x": {"datum": 0, "type": "quantitative"}}
+                    },
+                    {
+                        "mark": {"type": "circle", "size": 150, "opacity": 1},
+                        "encoding": {
+                            "x": {
+                                "field": "estimate",
+                                "type": "quantitative",
+                                "scale": {"nice": false}
+                            },
+                            "tooltip": [
+                                {"field": "Site", "title": "Site", "type": "nominal"},
+                                {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
+                                {
+                                    "field": "Estimate (95% CI)",
+                                    "title": "Difference",
+                                    "type": "nominal"
+                                },
+                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
     }
-  ]
-}
-
-    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: 'canvas' });
-
+    
+    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "svg" });
+    
 }
 
 
@@ -490,6 +488,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("vegaEmbed not available. Are the Vega scripts loaded above this script?");
         return;
     }
-
+    
     drawExplainChart();
 });
