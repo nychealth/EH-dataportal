@@ -164,11 +164,7 @@ Key per-environment variables: `baseURL` and `data_branch`.
 - Match existing file style before applying any general rule. Don't refactor untouched code.
 - Preserve accessibility: labels, keyboard support, sensible fallbacks on all interactive elements.
 
-**JS formatting and comment conventions live in two scoped documents.** They contradict each other on two points, so the scope matters:
-- `assets/js/data-explorer/` → `documents/js-conventions.md`
-- all other browser-side JS → `.claude/commands/js-development.md`
-
-Unifying them is tracked as §5h of `documents/site-wide-audit-2026-06-27.md`.
+**JS formatting and comment conventions live in `documents/js-conventions.md`**, which covers all authored browser-side JS — `assets/js/` and inline `<script>` blocks in layouts alike. `.claude/commands/js-development.md` is a stub pointing there.
 
 ## Refactors and renames
 
@@ -219,7 +215,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/data-explorer-architecture.md` — the other branch's explorer narrative. Not applicable here; carries a banner saying so.
 - `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit for that branch.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; superseded by the fresh audit.
-- `documents/js-conventions.md` — JS conventions for `assets/js/data-explorer/` (see Coding conventions above).
+- `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 
 ## Common gotchas
 

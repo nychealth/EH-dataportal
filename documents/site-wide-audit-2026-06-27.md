@@ -671,6 +671,11 @@ generic, unlike §5f.
 
 ### 5h. Two JS convention files, two contradictions (added 2026-07-29)
 
+> **RESOLVED 2026-07-29 — the documents are now one.** Everything from here to
+> "Resolved 2026-07-29 — unified, doc-only" below is the historical record of why
+> the split existed, written in the present tense of that day. The stopgap it
+> describes is no longer in force.
+
 **The goal is one unified set of JS conventions covering all browser-side code in
 this repo.** The directory split described below is an explicit stopgap that
 preserves that goal — it is not the destination, and should not be read as a
@@ -709,6 +714,63 @@ follows the loser. The `console.log` decision is the expensive one — whichever
 format loses has call sites to rewrite across whichever tree adopts it. Cheapest
 done **after** `feature-new-data-explorer` merges; doing it on one branch
 guarantees re-litigating it on the other.
+
+#### Resolved 2026-07-29 — unified, doc-only
+
+The two documents are now one. `documents/js-conventions.md` holds the merged
+conventions and is scoped to all authored browser-side JS;
+`.claude/commands/js-development.md` is a stub that points at it and keeps the
+frontmatter that surfaces the conventions when a `.js` file is edited. No code was
+changed.
+
+How each conflict resolved:
+
+- **`console.log` format** — neither format lost, so the rewrite the paragraph
+  above priced never happened. The formats are scoped by file: call-depth markers
+  everywhere, structured `'scope: event: value'` in `assets/js/nr-topic-spa.js`,
+  where traces track a state machine rather than a call tree. Both route through
+  the `debugLog` wrapper.
+- **Trailing periods** — dropped as a rule. Neither required nor forbidden.
+
+Two rules were promoted site-wide from `js-development.md`: no IIFEs /
+`const`-by-default / never `var` / named arrow functions, and DOM-mirroring
+indentation for HTML built in strings (extended to template literals). The file
+banner and 4-level comment hierarchy were promoted from `js-conventions.md`, gated
+at ~100 lines. The data explorer's shared-scope rule is documented descriptively,
+quoting the framing `global.js` already carries for itself.
+
+Unified ahead of this section's own advice about waiting for the DE merge, because
+a doc-only merge re-applies cheaply and the expensive decision turned out not to be
+expensive. Accepted cost: the merged doc describes the `feature-new-data-explorer`
+explorer, not the retiring tree present on the branch it landed on.
+
+##### Open question — comment voice
+
+`js-conventions.md` required a complete third-person sentence ("Assigns a sortable
+rank…"); `js-development.md`'s examples were imperative fragments ("Normalize rank
+values…"). This is independent of the punctuation question and is **deliberately
+unresolved** — the merged doc accepts both and says so. Worth revisiting; not
+urgent.
+
+##### Pending — `debugLog` is not on every branch
+
+`debugLog` is defined at `themes/dohmh/layouts/partials/head.html:190` on
+`feature-new-data-explorer`: `console.log` bound (not wrapped, so DevTools
+attributes lines to the caller) in every environment except `production` and
+`prod_prod`, with a `localStorage.de_debug` override. Its own comment states it is
+site-wide by design rather than DE-specific. Branches without it — including
+`feature-claude-tooling-migration`, which has `hugoEnv` at `head.html:278` and no
+wrapper — leave raw `console.log` acceptable in the interim. The merged doc marks
+the rule PENDING; drop that marker once the DE branch merges.
+
+##### Known non-conformance (the merge was forward-only)
+
+- `assets/js/nr-topic-spa.js` (945 lines) has no file-header banner and no comment
+  hierarchy, and its 46 `console.log` calls are unconditional — they ship to
+  production. Recorded as a known gap, not scheduled.
+- `global.js` on `feature-new-data-explorer` uses two `function` declarations where
+  the merged doc prefers named arrow functions.
+- `assets/js/site.js` is empty (0 lines).
 
 ---
 
