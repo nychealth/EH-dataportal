@@ -198,7 +198,7 @@ const loadIndicator = async (this_IndicatorID) => {
 
     // Unlike the trend-tab default, this is unconditional: the unmapped-measure hint points at the
     // tab bar instead of moving the user, so it is worth showing whichever tab they arrived on.
-    DE.map.visBarHintPending = true;
+    DE.map.unmappedHintPending = true;
 
     // Default to no overlay until a tab is explicitly chosen or restored.
     if (!DE.state.overlay) DE.state.overlay = 'none';

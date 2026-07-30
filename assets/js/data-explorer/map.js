@@ -421,16 +421,32 @@ const createUnmappedPopupContent = () => `
     </div>
 `;
 
-// Outlines the visualization bar the popup text points at, consuming the one-shot flag.
-// Without the flag, every measure/geo/time re-render would re-apply an outline the user has
-// already dismissed — the same failure mode switchToTrendTabOnce guards against, and for the same
-// reason. See visBarHintPending in global.js.
+// Shows the unmapped hint — the message popup and the outline on the bar it refers to — consuming
+// the one-shot flag so both halves appear and disappear together.
+//
+// Both are gated, not just the outline. Without the flag, every measure/geo/time re-render would
+// re-apply an outline the user had already dismissed, which is the failure switchToTrendTabOnce
+// guards against for the same reason. But gating only the outline splits the hint in two: the popup
+// reopened on every re-render while the outline did not, so after a Time change the message read
+// "click the visualization bar" with nothing highlighted. A re-render now leaves the gray polygon
+// speaking for itself, which it can. See unmappedHintPending in global.js.
 
-const highlightVisBarOnce = () => {
+const showUnmappedHintOnce = (map) => {
 
-    if (!DE.map.visBarHintPending) return;
+    if (!DE.map.unmappedHintPending) return;
 
-    DE.map.visBarHintPending = false;
+    DE.map.unmappedHintPending = false;
+
+    L.popup()
+        // Anchored to the map's own view centre, not the shared CITYWIDE_POPUP_LATLNG (lower
+        // Manhattan, which sits on the West Side shoreline and put the popup over the Hudson with
+        // its body across New Jersey) and not the polygon's bounding-box centre either — Staten
+        // Island drags that south-west onto the harbour. This message is about the view rather than
+        // about a place, so the centre of the view is where it belongs, and it stays centred in
+        // both the desktop and mobile layouts.
+        .setLatLng(map.getCenter())
+        .setContent(createUnmappedPopupContent())
+        .openOn(map);
 
     document.getElementById('v-pills-tab')?.classList.add('vis-bar-required');
 
@@ -482,18 +498,7 @@ const renderUnmappedCitywide = (metadata) => {
 
             // ----- state the situation, then point at the tabs that have data ----- //
 
-            // Anchored to the map's own view centre, not the shared CITYWIDE_POPUP_LATLNG (lower
-            // Manhattan, which sits on the West Side shoreline and put the popup over the Hudson
-            // with its body across New Jersey) and not the polygon's bounding-box centre either —
-            // Staten Island drags that south-west onto the harbour. This message is about the view
-            // rather than about a place, so the centre of the view is where it belongs, and it
-            // stays centred in both the desktop and mobile layouts.
-            L.popup()
-                .setLatLng(map.getCenter())
-                .setContent(createUnmappedPopupContent())
-                .openOn(map);
-
-            highlightVisBarOnce();
+            showUnmappedHintOnce(map);
 
         })
         .catch(error => {

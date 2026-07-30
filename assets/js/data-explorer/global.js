@@ -105,9 +105,10 @@ const DE = {
         citywideTrendDefaultPending: false,
 
         // One-shot flag: armed once per indicator load, consumed the first time the map draws its
-        // unmapped state. Without it, every measure/geo/time re-render would re-outline the
-        // visualization bar after the user had already dismissed the hint by clicking it.
-        visBarHintPending: false
+        // unmapped state. Gates both halves of that hint — the message popup and the outline on the
+        // visualization bar — so they share one lifetime. Without it, every measure/geo/time
+        // re-render would re-apply a hint the user had already dismissed by clicking the bar.
+        unmappedHintPending: false
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart
@@ -500,10 +501,19 @@ const measureHasMappableGeo = (measure) =>
 // Substitutes the Table VisOption's Citywide entry for an unpopulated Map array, and marks the
 // measure so renderMap can draw its unmapped state instead of a choropleth.
 //
-// The substituted entry exists for the Boundary and Time dropdowns, not for the map: renderMap
-// branches on MapUnavailable and always draws citywide geometry, reading no GeoType from here.
+// renderMap itself reads no GeoType from the substituted entry — it branches on MapUnavailable and
+// always draws citywide geometry. But the entry is NOT inert elsewhere: it flows through
+// expandMeasureTimesGeos (data.js) into DE.lookups.aqMapTimesGeos, which is what measures.js tests
+// to decide whether a measure enters DE.lookups.mapMeasures. So it also (a) populates the Boundary
+// and Time dropdowns, and (b) leaves mapMeasures non-empty, which **enables the Bar tab** on these
+// indicators where the unpopulated Map array had left it disabled. The Bar chart then plots the one
+// citywide row. That is intended — the popup tells users to try the other views — but it is a real
+// behaviour change, not a menus-only tweak.
+//
 // Where Table has no Citywide entry either (the NYHarbor measures), Map is left as-is — the flag
-// is what carries the meaning, and those measures simply get no dropdown to populate.
+// is what carries the meaning, those measures never reach mapMeasures, and the Bar tab stays
+// disabled. showBar guards for that case; renderCurrentView can still dispatch to it from a
+// carried-over overlay.
 //
 // Returns new objects at every level it writes to. `indicators` is the session-cached catalog and
 // is reused across every indicator load, so an in-place write would leak one load's fallback into
@@ -520,20 +530,32 @@ const withCitywideMapFallback = (indicator) => {
 
         if (measureHasMappableGeo(measure)) return measure;
 
+        // A measure with no VisOptions at all reaches here (measureHasMappableGeo optional-chains
+        // its way to false), and there is nothing to rebuild — return it untouched rather than
+        // dereferencing VisOptions[0] below. renderMap's empty-metadata branch still covers it.
+        const visOption = measure?.VisOptions?.[0];
+
+        if (!visOption) return measure;
+
         // ----- find a Citywide entry in the Table VisOption to copy ----- //
 
-        const citywideTableEntry = (measure?.VisOptions?.[0]?.Table || [])
+        const citywideTableEntry = (visOption.Table || [])
             .find(entry => prettifyGeoType(entry?.GeoType) === 'Citywide');
 
-        // Copy the time-period list rather than aliasing Table's array, so a downstream
-        // consumer of either view can never write through into the other.
+        // Copy the entry's own raw GeoType rather than writing the prettified 'Citywide': every
+        // other Map/Table entry holds a backend value that consumers prettify themselves, and
+        // data.js's semijoin matches on the raw one. They coincide for citywide today, but a
+        // versioned variant would silently join zero rows. Same raw-vs-pretty trap CLAUDE.md lists.
+        //
+        // The time-period list is copied, not aliased, so no consumer of either view can write
+        // through into the other.
         const substitutedMap = citywideTableEntry
             ? [{
-                GeoType: 'Citywide',
+                GeoType: citywideTableEntry.GeoType,
                 TimePeriodID: [...(citywideTableEntry.TimePeriodID || [])],
                 RankReverse: null
             }]
-            : measure.VisOptions[0].Map;
+            : visOption.Map;
 
         // ----- rebuild every level down to the replaced array ----- //
 
@@ -541,7 +563,7 @@ const withCitywideMapFallback = (indicator) => {
             ...measure,
             MapUnavailable: true,
             VisOptions: [
-                { ...measure.VisOptions[0], Map: substitutedMap },
+                { ...visOption, Map: substitutedMap },
                 ...measure.VisOptions.slice(1)
             ]
         };
@@ -557,8 +579,10 @@ const withCitywideMapFallback = (indicator) => {
 // unmapped-measure fallback with its own find — three of the four former find sites fed the
 // Boundary dropdown, and one of them (menu.js) fires on every dropdown change.
 //
-// The loose compare is deliberate: IndicatorID reaches loadIndicator as a string, and `==` is a
-// superset of the Number()-wrapping callers, so none of them change behaviour.
+// The loose compare preserves the pre-existing behaviour of the data.js site it replaced. Every
+// current caller in fact passes a number (DE.state.IndicatorID is only ever written from
+// parseFloat), so `==` is not load-bearing today; it is kept because it is the weaker requirement,
+// and a caller that starts passing a string id therefore can't break silently.
 const getIndicatorById = (indicatorID) =>
     withCitywideMapFallback(indicators?.find(indicator => indicator.IndicatorID == indicatorID));
 

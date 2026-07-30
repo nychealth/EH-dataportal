@@ -1490,6 +1490,20 @@ showBar = (e) => {
 
     if (!metadata.length) metadata = DE.map.defaultMapMetadata;
 
+    // ----- bail when there is no measure to chart ----- //
+
+    // The bar chart is built from the map's rows, so a measure the catalog holds no map for has
+    // nothing to plot: it never enters DE.lookups.mapMeasures and defaultMapMetadata is empty too,
+    // leaving metadata[0] undefined and renderBar dereferencing MeasurementType on it.
+    // renderCurrentView dispatches on DE.state.overlay whether or not the tab is disabled, so a
+    // carried-over or URL-supplied `overlay=bar` reaches here even on those indicators — the
+    // disabled tab blocks the click, not the overlay. Observed as a TypeError in
+    // resolveMeasureDisplay on /data-explorer/waterways/?id=2427&overlay=bar (audit §4.13).
+    if (!metadata?.[0]?.MeasurementType) {
+        debugLog("* showBar: no mappable measure metadata, nothing to chart");
+        return;
+    }
+
     // ----- render the bar chart using the already-filtered map data ----- //
 
     renderBar(DE.map.filteredMapData, metadata, DE.state.GeoType);

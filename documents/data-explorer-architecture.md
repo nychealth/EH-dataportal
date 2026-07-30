@@ -188,11 +188,27 @@ of its tests matters:
 for this measure", while the same measure's `Table` and `Trend` views hold real
 data at real geographies. `withCitywideMapFallback` (global.js) marks those
 measures with `MapUnavailable` and substitutes the `Table` VisOption's `Citywide`
-entry so the Boundary and Time dropdowns stay coherent — the substituted geotype
-is for the menus only; the renderer draws citywide geometry unconditionally. The
-result is a flat gray citywide polygon, no legend, no Save map control, an
-automatic message popup, and a highlight on `#v-pills-tab` pointing at the views
-that do have data.
+entry. The result is a flat gray citywide polygon, no legend, no Save map
+control, and — once per indicator load — a message popup plus a highlight on
+`#v-pills-tab` pointing at the views that do have data. Both halves of that hint
+share the one-shot `DE.map.unmappedHintPending`, so they appear and vanish
+together; a later re-render leaves the gray polygon speaking for itself.
+
+**The substituted entry is not inert.** `renderUnmappedCitywide` reads no
+`GeoType` from it — it draws citywide geometry unconditionally — but the entry
+still flows through `expandMeasureTimesGeos` into `DE.lookups.aqMapTimesGeos`,
+which is what `measures.js` tests to decide whether a measure enters
+`DE.lookups.mapMeasures`. So it populates the Boundary and Time dropdowns *and*
+leaves `mapMeasures` non-empty, which **enables the Bar tab** where the
+unpopulated `Map` array had left it disabled; the Bar chart then plots the single
+citywide row. Intended — the popup sends users to the other views — but a real
+behaviour change, so don't describe it as a menus-only substitution.
+
+Measures with no `Citywide` row in `Table` get no substitution, never reach
+`mapMeasures`, and keep a disabled Bar tab. `showBar` guards for them anyway,
+because `renderCurrentView` dispatches on `DE.state.overlay` whether or not the
+tab is disabled — a disabled tab blocks the click, not a carried-over or
+URL-supplied `overlay=bar`.
 
 **It is a different state from citywide-only data**, which is mode 3 with
 `isCitywideOnly` set: there the catalog has a citywide *value*, so the polygon is
