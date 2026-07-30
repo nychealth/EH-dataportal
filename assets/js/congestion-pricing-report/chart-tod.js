@@ -230,7 +230,7 @@ async function renderTODChart(site) {
     fitTODFacet(spec, el);
 
     try {
-        await vegaEmbed(el, spec, { actions: false, renderer: "svg" });
+        await vegaEmbed(el, spec, { actions: false, renderer: "canvas" });
         // Release the lock now that the new chart is in place
         el.style.minHeight = "";
     } catch (err) {

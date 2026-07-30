@@ -263,12 +263,12 @@ function drawExplainChart() {
                             "labelFontSize": 14,
                             "labelFontWeight": "bold",
                             "labelColor": {
-                                "expr": "datum.value === 'Observed' ? 'blue' : '#DB7900'"
+                                "expr": "datum.value === 'Observed' ? 'blue' : '#DF7B00'"
                             }
                         },
                         "scale": {
                             "domain": ["Observed", "Projected"],
-                            "range": ["blue", "#DB7900"]
+                            "range": ["blue", "#DF7B00"]
                         }
                     }
                 }
@@ -293,7 +293,7 @@ function drawExplainChart() {
             }
         ]
     };
-    vegaEmbed('#explainChart', spec, { actions: false, renderer: "svg" });
+    vegaEmbed('#explainChart', spec, { actions: false, renderer: "canvas" });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // spec2: the confidence-interval explainer chart (#explainChart2) 
@@ -474,7 +474,7 @@ function drawExplainChart() {
         ]
     }
     
-    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "svg" });
+    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "canvas" });
     
 }
 
