@@ -45,7 +45,7 @@ const renderMenus = async (indicatorID) => {
 
     await ensureIndicatorsLoaded('rendering menus');
 
-    const indicator = indicators.find(d => d.IndicatorID === Number(indicatorID));
+    const indicator = getIndicatorById(indicatorID);
 
     if (!indicator || !indicator.Measures?.length) {
         console.warn('renderMenus: no indicator or measures found for', indicatorID);
@@ -108,9 +108,12 @@ const updateAllMenus = (indicator) => {
     const geos = [];
 
     // Collapse versioned backend geotypes into one prettified dropdown option per geography.
-    measure.VisOptions[0].Map.forEach(d => {
+    // A measure whose Map VisOption carries a null GeoType prettifies to nothing, and an option
+    // with no label is unusable and unreadable — the Boundary dropdown must never contain one,
+    // whatever the catalog says. See withCitywideMapFallback in global.js for the metadata side.
+    (measure.VisOptions[0].Map || []).forEach(d => {
         const pretty = prettifyGeoType(d.GeoType);
-        if (!seenGeos.has(pretty)) {
+        if (typeof pretty === 'string' && pretty && !seenGeos.has(pretty)) {
             seenGeos.add(pretty);
             geos.push({ label: pretty, value: pretty });
         }
@@ -122,9 +125,12 @@ const updateAllMenus = (indicator) => {
     if (!DE.state.GeoType || !availableGeoValues.includes(DE.state.GeoType)) {
 
         // Favor the most detailed geography so the map opens at the richest available level.
-        DE.state.GeoType = availableGeoValues.reduce((best, current) => {
-            return assignGeoRank(current) > assignGeoRank(best) ? current : best;
-        });
+        // Seeded, because a measure with no mappable geography at all leaves this list empty and
+        // an unseeded reduce throws on it.
+        DE.state.GeoType = availableGeoValues.reduce(
+            (best, current) => (assignGeoRank(current) > assignGeoRank(best) ? current : best),
+            availableGeoValues[0] ?? null
+        );
     }
 
     renderMenuSection(geos, '.geo-holder', 'geo');
@@ -135,7 +141,7 @@ const updateAllMenus = (indicator) => {
 
     // Find the metadata entry whose raw GeoType prettifies to our selected GeoType
 
-    const geoObj = measure.VisOptions[0].Map.find(d => prettifyGeoType(d.GeoType) === DE.state.GeoType);
+    const geoObj = (measure.VisOptions[0].Map || []).find(d => prettifyGeoType(d.GeoType) === DE.state.GeoType);
 
     // Look up labels and sort by end_period descending (most recent first)
 
@@ -253,7 +259,7 @@ const handleSelection = (type, value) => {
     // ----- cascade-rebuild dependent menus ----- //
 
     // updateAllMenus fills in cascaded defaults for any sibling selection that no longer applies
-    const ind = indicators.find(d => d.IndicatorID === Number(DE.state.IndicatorID));
+    const ind = getIndicatorById(DE.state.IndicatorID);
 
     updateAllMenus(ind);
 

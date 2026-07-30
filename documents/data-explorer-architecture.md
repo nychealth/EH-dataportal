@@ -169,7 +169,52 @@ with `null` meaning "clear the linked highlight".
 
 ---
 
-## 6. Ordering constraints
+## 6. Map render modes
+
+`renderMap(data, metadata)` dispatches to one of three renderers, and the order
+of its tests matters:
+
+1. **No map for this measure** → `renderUnmappedCitywide`. Taken when `metadata`
+   is empty *or* its measure carries `MapUnavailable`. This is tested **first**,
+   before any measure field is read, because both `metadata[0].AvailableGeoTypes`
+   and `metadata[0].MeasurementType` are dereferenced below it and either will
+   throw on a measure the catalog holds no map for.
+2. **Number/Total measure** → `renderBubbleMap` (gray base polygons, circle
+   markers sized and coloured by value).
+3. **Everything else** → `renderChoroplethMap`.
+
+**Mode 1 is a statement, not a failure.** A null `GeoType` inside
+`VisOptions[0].Map` is the catalog's encoding for "this vis type is unavailable
+for this measure", while the same measure's `Table` and `Trend` views hold real
+data at real geographies. `withCitywideMapFallback` (global.js) marks those
+measures with `MapUnavailable` and substitutes the `Table` VisOption's `Citywide`
+entry so the Boundary and Time dropdowns stay coherent — the substituted geotype
+is for the menus only; the renderer draws citywide geometry unconditionally. The
+result is a flat gray citywide polygon, no legend, no Save map control, an
+automatic message popup, and a highlight on `#v-pills-tab` pointing at the views
+that do have data.
+
+**It is a different state from citywide-only data**, which is mode 3 with
+`isCitywideOnly` set: there the catalog has a citywide *value*, so the polygon is
+coloured, the popup shows the number, and `switchToTrendTabOnce` moves the user
+to Trends. Mode 1 has no value to show and deliberately does not move them.
+
+**Every mode resolves through one resolver.** `getIndicatorById` (global.js) is
+the only place an indicator is looked up in the cached catalog, because the
+normalisation above has to reach all of its callers — `data.js` on load,
+`menu.js` on *every dropdown change*, and `app.js` on `popstate`. It returns new
+objects for affected indicators and the original object otherwise, so the cached
+catalog is never mutated.
+
+Two things `resetMapForRender()` restores, both because only mode 1 changes them:
+the legend overlay and the Save map control. It also calls
+`currentMap.closePopup()` — a popup opened with `L.popup().openOn(map)` belongs
+to no layer, so removing the geometry does not take it down, and without this the
+outgoing render's message stayed open on top of the incoming one.
+
+---
+
+## 7. Ordering constraints
 
 These are the failure modes that are invisible in the source and expensive to
 rediscover. `CLAUDE.md` carries the full list; the ones that shape the flows

@@ -12,7 +12,7 @@ Every findings section below opens with its own **Status:** line and date; this 
 
 **Closed:** all of Tier 1, the `hotfix-table-sorting-by-geo` port, all of Tier 2 (2.1–2.7), all of Tier 3 (3.1, 3.1b, 3.2, 3.2b, 3.3), and Tier 4.1 (plus its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8 and 4.9. All of them are **merged into `feature-new-data-explorer` and pushed** (4.3 merged 2026-07-27) — the per-tier branch names below (`feature-de-tier2-consolidation`, `feature-de-tier3-perf`, `feature-data-explorer-new-headhtml-gating`, `feature-new-data-explorer-pagefind-audit`, `feature-de-tier4.5-guardrails`, `feature-de-tier4.1-render-measures`, `feature-de-naming-cleanup`, `feature-de-tier4.2-load-pipeline`, `feature-de-tier4.3-mapinterop`) are labels lagging behind on the same linear history, not divergent branches. The older "kept unmerged per user choice" notes in the per-tier status blocks are superseded. No PR into `production` has been opened for any of it.
 
-**Open:** **4.12** is the one to act on — `GeoType: null` means "not mappable", the new explorer reads it as a geography, and the map hard-fails on **40 of 282 indicators** (found 2026-07-27; blocks 4.4). Then **4.4** itself (parked until comparative user testing ends), plus two logged-not-scheduled items: the **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone) and **4.11** (`DE.state` written from 23 sites across 5 files; the namespace refactor fixed naming, not ownership). **4.10** closed 2026-07-27 — measured first, and the perf case died; shipped as a clarity change.
+**Open:** **4.4** (parked until comparative user testing ends) is now the only substantial item. **4.12 is fixed** as of 2026-07-30 on `feature-de-tier4.12-null-geotype` — the map drew nothing and threw on 40 of 282 indicators; it now draws an explicit gray "not mapped" state with a message and a highlight on the visualization bar. That **unblocks 4.4**, whose gate was that these indicators rendered worse on the new explorer than the old. New from that work: **§4.13**, an upstream metadata question (10 measures have no `Citywide` row to fall back on, 9 of them `NYHarbor`-only despite the geometry file existing) — no crash, not urgent. Still logged-not-scheduled: the **4.2 follow-up** (URL updates 29–151 ms after the click; the recommendation is to leave it alone) and **4.11** (`DE.state` written from 23 sites across 5 files; the namespace refactor fixed naming, not ownership). **4.10** closed 2026-07-27 — measured first, and the perf case died; shipped as a clarity change.
 
 **Standing won't-dos** — don't re-propose without asking: CSS `| minify` inside 3.3 (rejected by the user, verified absent from `head.html`), script bundling (2026-07-13 decision), and the `links` → `correlate` rename (deferred with its cost measured; options in site-wide audit §4).
 
@@ -240,7 +240,7 @@ Directly measurable on the explorer's LCP; all previously flagged site-wide, sti
 
 ## Tier 4 — Structural (weeks; the remaining consolidated-doc backbone)
 
-**Status: mixed, as of 2026-07-27.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10. **Open: 4.12** (map hard-fails on 40 indicators — the severe one, and a gate on 4.4), plus the low-priority 4.2 follow-up and 4.11. **Deferred by decision: 4.4**, until comparative user testing ends.
+**Status: mixed, as of 2026-07-30.** Closed: 4.1 (+ its naming sweep), 4.2, 4.3, 4.5, 4.6, 4.7, 4.8, 4.9, 4.10, 4.12. **Open: §4.13** (upstream metadata question, no crash), plus the low-priority 4.2 follow-up and 4.11. **Deferred by decision: 4.4**, until comparative user testing ends — 4.12 was its gate and is now cleared.
 
 These are the right long-term moves; each is a mini-project. Ordered by value-per-risk.
 
@@ -552,7 +552,7 @@ The state-namespace refactor (merged 2026-07-11, `documents/data-explorer-state-
 
 ### 4.12 `GeoType: null` means "not mappable" — the new explorer reads it as a geography, and breaks the map on 40 of 282 indicators
 
-**Status: open, not started (raised 2026-07-27).** **The most severe open item in this document**, and a **gate on 4.4** — the old explorer cannot be retired while these indicators render worse on the new one than on the old.
+**Status: fixed 2026-07-30 on `feature-de-tier4.12-null-geotype`** (raised 2026-07-27, was the most severe open item and a gate on 4.4). The map no longer throws on any of these indicators; it draws an explicit "not mapped" state instead. The resolution is at the end of this section, and it is **not** the fix this section originally proposed — see the correction there.
 
 Found while implementing 4.10, as a side-effect of asking what types the dropdown values can actually hold.
 
@@ -582,19 +582,63 @@ The old explorer reads that correctly: it greys out the Map, Trend and Correlate
 | …of which **every** `Map` entry is null (no mappable measure at all) | **20** |
 | …of which some measures map and some don't | **20** |
 
-The 20 fully-null ones are largely the birth-defects family (ids 26–37 and neighbours). The partial ones are worse in a subtler way — Leukemia (id 73) has 3 null entries out of 12, so the indicator works until you pick one of the affected measures. Others: Carbon monoxide incidents (38), Restaurants with A grades (2065), and a run of cancer indicators (2077, 2088, 2090, 2091).
+The 20 fully-null ones are largely the birth-defects family (ids 26–37 and neighbours). The partial ones are worse in a subtler way — Leukemia (id 73) has 3 unmapped measures of 6, so the indicator works until you pick one of the affected measures. Others: Carbon monoxide incidents (38), Restaurants with A grades (2065), and a run of cancer indicators (2077, 2088, 2090, 2091).
+
+> **Correction (2026-07-30):** this paragraph read "3 null entries out of 12" for id 73. Re-measured in the browser during the fix: `DE.indicator.indicatorMeasures.length` is **6**, of which 3 are unmapped (MeasureIDs 136, 137, 139) and 3 map at Borough/PUMA/Subboro (138, 326, 327). The indicator-level counts in the table above were not re-derived; they date from 2026-07-27.
 
 **Not caused by 4.10.** The failure happens on initial page load with no click involved, and `map.js` was not touched. Confirmed present with the delegation change in place and attributable entirely to the metadata read.
 
-**What a fix has to do** (not attempted here — it is a design question, not a patch):
+**What a fix has to do** — as written 2026-07-27, and item 2 was superseded:
 
-1. Treat a null `GeoType` as *absence*, not as an option — filter it out of the geo list rather than prettifying it. That alone stops the blank dropdown entry and the `null` state write.
-2. Decide what the SPA does when a measure has **no** mappable geography. The old explorer's answer — disable the Map/Trend/Correlate tabs and default the overlay to `table` — is the known-good behaviour and the one users of these 40 indicators currently get. The new explorer has no equivalent concept of a disabled vis tab.
-3. The same null-as-placeholder convention appears in `Trend` and `Links` too, so whatever handles it should be shared, not written three times.
+1. Treat a null `GeoType` as *absence*, not as an option — filter it out of the geo list rather than prettifying it. That alone stops the blank dropdown entry and the `null` state write. **Done, and it is now an invariant rather than a patch:** the Boundary dropdown must never contain an unlabelled option, whatever the metadata says (menu.js).
+2. ~~Decide what the SPA does when a measure has no mappable geography. The old explorer's answer — disable the Map/Trend/Correlate tabs and default the overlay to `table` — is the known-good behaviour.~~ **Superseded 2026-07-30.** The decision taken was to keep the map present and have it *state its own absence*: a gray citywide polygon with an automatic message, plus a highlight on the visualization bar. Copying the old explorer's tab-disabling would have meant inventing a disabled-vis-tab concept the SPA does not have, and it hides the fact that the data exists at other geographies — the Table and Trend views do hold real Borough/PUMA rows for these measures.
+3. The same null-as-placeholder convention appears in `Trend` and `Links` too, so whatever handles it should be shared, not written three times. **Still true, still not done** — the fix normalises `Map` only. `Trend` and `Links` reach their consumers by other routes and did not throw, so widening the normaliser was left out rather than done speculatively. If a null `Trend`/`Links` defect surfaces, extend `withCitywideMapFallback` rather than writing a second handler.
 
 Worth noting the new explorer is not *totally* broken on these: switching to the Table tab manually does render (3 rows for id 26, against a fuller table on the old explorer). But the landing view is a broken map, and nothing tells the user why.
 
-**How to verify a fix:** `/data-explorer/birth-defects/?id=26` (fully null) and `/data-explorer/cancer/?id=73` (partial — needs a per-measure sweep, not just the default). Compare against `/data-explorer-old/` for the same ids. The console must be free of the `AvailableGeoTypes` TypeError, and no dropdown may contain a blank option. `npm run smoke` will **not** catch this today — no affected indicator is in its `PAGES` list, which is worth fixing at the same time.
+#### Resolution (2026-07-30)
+
+A third map render mode, beside choropleth and bubble. `withCitywideMapFallback` (global.js) marks any measure whose `Map` array holds no real geography with `MapUnavailable: true`, and substitutes the `Table` VisOption's `Citywide` entry so the Boundary and Time dropdowns still have something coherent to show. `renderMap` bails to `renderUnmappedCitywide` before reading any measure field, and that draws a flat gray citywide polygon, hides the legend and the Save map control, opens a message popup, and outlines `#v-pills-tab`.
+
+The message, verbatim: *"Data not mapped for this indicator. Click or tap on the visualization bar for other data views."*
+
+Five things the fix had to get right that were not obvious from reading the source, each found during the work:
+
+- **There were four `indicators.find` sites, not one.** The plan assumed `data.js:235` was the single place measures enter the SPA. `menu.js` has two of its own and `app.js` one, and `menu.js:256` fires on **every dropdown change** — so normalising `indicatorMeasures` alone would have fixed first load and handed a raw null-`Map` measure straight back on the first geography change. All four now resolve through `getIndicatorById`.
+- **Two crash sites, not one.** Guarding `metadata[0].AvailableGeoTypes` is insufficient: `mapMeasurementType.includes(...)` dereferences the same missing object one line later and throws regardless. The bail-out therefore sits at the top of `renderMap`.
+- **A third crash, in `menu.js`:** the "finest available geography" `reduce` had no seed, so a measure with no mappable geography threw *Reduce of empty array with no initial value* once the null option was filtered out. Seeded.
+- **`metadata[0]` is `undefined`, not merely flagged, for measures with no `Citywide` fallback in `Table`.** `measures.js` only pushes a measure into `DE.lookups.mapMeasures` when `aqMapTimesGeos` has rows for it, so those measures never arrive and `showMap`'s fallback hands `renderMap` an empty array. A `MapUnavailable` test alone can never fire for them — the `!metadata?.[0]` half of the branch is what reaches them, and it is why §4.13's measures get the same message rather than a blank basemap.
+- **A popup opened with `L.popup().openOn(map)` is bound to no layer**, so `resetMapForRender` removing the geometry did not take it down. Switching from an unmapped measure to a mapped one left "Data not mapped for this indicator" sitting on top of a working choropleth (observed on id 73, measures 138/326/327). Fixed with `currentMap.closePopup()` at the render boundary, which also fixes the same latent bug for the pre-existing citywide-only popup.
+
+Two things deliberately **not** changed. The citywide-only path (`isCitywideOnly` → `handleCitywideOnly`, 94 measures) keeps its coloured polygon, its value popup and its auto-switch to Trends — verified unchanged on `?id=55`, and it must stay a distinct state. And `CITYWIDE_POPUP_LATLNG` is untouched: it is "roughly lower Manhattan", which sits on the West Side shoreline, so the unmapped popup rendered over the Hudson with its body across New Jersey. The unmapped popup anchors to `map.getCenter()` instead. The polygon's own `getBounds().getCenter()` was tried first and is also too far west — Staten Island drags the bounding box south-west onto the harbour.
+
+One inconsistency was found and closed by withholding a control rather than by fixing it: `print-map.js` builds its export from `DE.map.filteredMapData`, so on an unmapped measure it produced a **teal bubble with a viridis legend** — mapped-looking output for data the screen had just said is not mapped. Rather than teach the off-screen export path a third render mode (it is order-sensitive: `setView` before vector layers), the Save map control is hidden in this state. If someone later wants the export, that is the work, and this is the reason it was skipped.
+
+**How this was verified:** runtime only — the failure was a render-time throw, the fix is a render, and the outline is a CSS box on a flex container that changes direction at 768px. `?id=26` (fully null), a per-measure sweep of all 6 measures on `?id=73` (both directions across the mapped/unmapped boundary), `?id=55` (must be unchanged), `?id=2427` (§4.13's bucket), the highlight's full dismiss-and-don't-re-arm lifecycle, and the outline at 390px and 1456px. `npm run lint`, `smoke`, `characterize -- --check` and `docs-check` all pass.
+
+`npm run smoke` caught **none** of this before, because no affected indicator was in its `PAGES` list. Two are now: `data-explorer/birth-defects/?id=26` and `data-explorer/waterways/?id=2427`, one per branch of the bail-out.
+
+One method note worth keeping: the first per-measure sweep of id 73 **reported success while proving nothing.** It collected the dropdown buttons once and clicked them in a loop, but `updateAllMenus` rebuilds those buttons on every change, so every click after the first landed on a detached node — `MeasureID` stayed at 136 for all 12 iterations while the output looked like a clean 12-row pass. It also matched `.measures-holder` twice, since the desktop and mobile menus are separate holders. Re-query per iteration, and scope to one holder.
+
+### 4.13 Measures with no `Citywide` row to fall back on — an upstream metadata question, not a front-end bug
+
+**Status: open (raised 2026-07-30). Not a crash, and not urgent** — these render §4.12's unmapped state correctly. What is open is a question for the data side.
+
+§4.12's fallback substitutes the `Table` VisOption's `Citywide` entry for an unpopulated `Map` array. Two groups have no `Citywide` entry in `Table` either, so there is nothing to copy:
+
+| Bucket | Measures | What the user gets |
+|---|---|---|
+| `AvailableGeoTypes` is `["NYHarbor"]` only — e.g. id 2427 (Enterococci bacteria), 5 measures | **9** | The unmapped polygon and message, correctly. Boundary and Time dropdowns are **empty** — no options at all, rather than blank ones |
+| Neighborhood geographies but no `Citywide` — one measure of id 2176 | **1** | Same |
+
+The measure counts are as gathered 2026-07-27 and were not re-derived; the id-2427 measure count (5, all `NYHarbor`) was confirmed in the browser on 2026-07-30.
+
+Empty dropdowns are an improvement on the blank-option state they replace and on the throw before that, but they are still a dead end: the controls are present and offer nothing. Two things would resolve it properly, and both belong upstream rather than in the SPA:
+
+1. **`NYHarbor` has geometry** — `ny_harbor.topo.json`, already in `GEO_FILE_BY_TYPE`. If these measures are genuinely mappable at harbour sites, the fix is to populate `VisOptions[0].Map` with a `NYHarbor` entry, and the SPA will map them with no code change. Worth asking before building anything: the front end already supports the geotype.
+2. **Ask whether `Map: null` is deliberate suppression or an omission.** This is the question that decides whether §4.12's citywide fallback is permanent or a stopgap. For the 87 measures it covers, `AvailableGeoTypes`, `Table` and the data files all carry mappable geographies while `Map` alone is unpopulated — which reads more like an omission than a decision, but the catalog is the wrong place to guess from.
+
+**Report upstream (EHDP-data):** `VisOptions[0].Map` is unpopulated for 40 of 282 indicators whose other views carry real geographies; separately, 10 measures have no `Citywide` row anywhere to fall back on, 9 of them `NYHarbor`-only despite `ny_harbor.topo.json` existing.
 
 ---
 

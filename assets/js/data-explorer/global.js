@@ -102,7 +102,12 @@ const DE = {
         // respect, so renderMap()'s citywide-only branch may apply its trend-tab smart default.
         // Consumed (set false) the first time it fires so later re-renders triggered by
         // measure/geo/time changes don't repeatedly override the user's own tab choice.
-        citywideTrendDefaultPending: false
+        citywideTrendDefaultPending: false,
+
+        // One-shot flag: armed once per indicator load, consumed the first time the map draws its
+        // unmapped state. Without it, every measure/geo/time re-render would re-outline the
+        // visualization bar after the user had already dismissed the hint by clicking it.
+        visBarHintPending: false
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart
@@ -477,6 +482,86 @@ const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
     return secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
 
 }
+
+// ----------------------------------------------------------------------- //
+// unmapped measures
+// ----------------------------------------------------------------------- //
+
+// A null GeoType inside VisOptions[0].Map is the catalog's encoding for "no map exists for this
+// measure" — it is not a geography. The SPA builds its Boundary dropdown exclusively from that
+// array, so untreated it produces one blank option, a null GeoType and TimePeriodID, and a throw
+// inside renderMap. Affects 97 measures across 40 indicators; see fresh audit §4.12.
+
+// True when the measure names at least one real geography the map could draw.
+const measureHasMappableGeo = (measure) =>
+    (measure?.VisOptions?.[0]?.Map || []).some(entry => typeof entry?.GeoType === 'string' && entry.GeoType);
+
+
+// Substitutes the Table VisOption's Citywide entry for an unpopulated Map array, and marks the
+// measure so renderMap can draw its unmapped state instead of a choropleth.
+//
+// The substituted entry exists for the Boundary and Time dropdowns, not for the map: renderMap
+// branches on MapUnavailable and always draws citywide geometry, reading no GeoType from here.
+// Where Table has no Citywide entry either (the NYHarbor measures), Map is left as-is — the flag
+// is what carries the meaning, and those measures simply get no dropdown to populate.
+//
+// Returns new objects at every level it writes to. `indicators` is the session-cached catalog and
+// is reused across every indicator load, so an in-place write would leak one load's fallback into
+// every later render of the same measure — the by-reference trap already recorded for topojson and
+// arquero in this SPA.
+const withCitywideMapFallback = (indicator) => {
+
+    // Leave the catalog object untouched — including its identity — unless something needs fixing.
+    if (!indicator?.Measures || indicator.Measures.every(measureHasMappableGeo)) {
+        return indicator;
+    }
+
+    const Measures = indicator.Measures.map(measure => {
+
+        if (measureHasMappableGeo(measure)) return measure;
+
+        // ----- find a Citywide entry in the Table VisOption to copy ----- //
+
+        const citywideTableEntry = (measure?.VisOptions?.[0]?.Table || [])
+            .find(entry => prettifyGeoType(entry?.GeoType) === 'Citywide');
+
+        // Copy the time-period list rather than aliasing Table's array, so a downstream
+        // consumer of either view can never write through into the other.
+        const substitutedMap = citywideTableEntry
+            ? [{
+                GeoType: 'Citywide',
+                TimePeriodID: [...(citywideTableEntry.TimePeriodID || [])],
+                RankReverse: null
+            }]
+            : measure.VisOptions[0].Map;
+
+        // ----- rebuild every level down to the replaced array ----- //
+
+        return {
+            ...measure,
+            MapUnavailable: true,
+            VisOptions: [
+                { ...measure.VisOptions[0], Map: substitutedMap },
+                ...measure.VisOptions.slice(1)
+            ]
+        };
+
+    });
+
+    return { ...indicator, Measures };
+
+};
+
+
+// The one place an indicator is resolved out of the cached catalog, so no caller can bypass the
+// unmapped-measure fallback with its own find — three of the four former find sites fed the
+// Boundary dropdown, and one of them (menu.js) fires on every dropdown change.
+//
+// The loose compare is deliberate: IndicatorID reaches loadIndicator as a string, and `==` is a
+// superset of the Number()-wrapping callers, so none of them change behaviour.
+const getIndicatorById = (indicatorID) =>
+    withCitywideMapFallback(indicators?.find(indicator => indicator.IndicatorID == indicatorID));
+
 
 // ----------------------------------------------------------------------- //
 // pretty generic geotypes

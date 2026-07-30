@@ -14,6 +14,13 @@ const PAGES = [
     "",                                              // home
     "data-explorer/asthma/?id=2380",                 // DE single, indicator loaded from the URL
     "data-explorer/asthma/",                         // DE single, no ?id= — boots the indicator chooser
+    "data-explorer/birth-defects/?id=26",            // DE single, unmapped measure (VisOptions[0].Map
+                                                     // carries a null GeoType) — renderMap's unmapped
+                                                     // branch. Threw a TypeError on 40 indicators and
+                                                     // no smoke page covered it; see audit §4.12
+    "data-explorer/waterways/?id=2427",              // DE single, unmapped with NO Citywide fallback in
+                                                     // Table either, so showMap hands renderMap an empty
+                                                     // metadata array — the other unmapped branch
     "data-explorer/",                                // DE section (topic chooser) — the ONE page that
                                                      // loads topic-indicator-selector.js WITHOUT the rest
                                                      // of the SPA bundle, so it's the only place the

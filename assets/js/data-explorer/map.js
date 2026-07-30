@@ -118,8 +118,25 @@ const resetMapForRender = () => {
     // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
     clearHoverUI();
 
+    // Likewise the unmapped-measure hint: it points at the tab bar on behalf of the outgoing
+    // render, so a move to a mapped measure must not leave it pointing at nothing.
+    clearVisBarHighlight();
+
+    // Restore the legend and the export control by default; only the unmapped renderer hides them,
+    // and it does so after calling this, so a mapped measure always gets them back.
+    setMapLegendVisible(true);
+    setSaveMapVisible(true);
+
     clearBubbles();
     initBaseMap();
+
+    // Popups opened with L.popup().openOn(map) — the citywide-only and unmapped messages — belong
+    // to no layer, so removing the geometry below does not take them with it. Without this, the
+    // outgoing render's message stays open on top of the incoming one: switching from an unmapped
+    // measure to a mapped one left "Data not mapped for this indicator" sitting over a working
+    // choropleth (observed on ?id=73, measures 138/326/327).
+    currentMap.closePopup();
+
     if (currentGeojsonLayer) {
         currentMap.removeLayer(currentGeojsonLayer);
         currentGeojsonLayer = null;
@@ -211,6 +228,26 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     `;
 };
 
+
+// Shows or hides the whole legend overlay — gradient, endpoints, tick and hover readout together.
+// The unmapped state has no values, no range and nothing to hover, and a gradient bar left on
+// screen with blank endpoints still implies a scale that doesn't exist.
+const setMapLegendVisible = (visible) => {
+
+    document.querySelector('.de-legend')?.classList.toggle('d-none', !visible);
+
+};
+
+// Shows or hides the Save map control. The export path (print-map.js) builds its own off-screen
+// Leaflet map from DE.map.filteredMapData, so on an unmapped measure it renders the citywide value
+// as a bubble with a viridis legend — mapped-looking output for data the screen has just said is
+// not mapped. Rather than teach that path a third render mode, withhold the control that can only
+// produce a misleading artifact. d-none, so it leaves the tab order too.
+const setSaveMapVisible = (visible) => {
+
+    document.getElementById('deSaveMapButton')?.classList.toggle('d-none', !visible);
+
+};
 
 // Resets the legend hover panel to its idle, no-selection state. Module-level rather than
 // per-render because it depends on nothing a render supplies, and resetMapForRender() needs
@@ -355,9 +392,134 @@ const handleCitywideOnly = (map, data, metadata) => {
 
 };
 
+// ----------------------------------------------------------------------- //
+// unmapped-measure handling
+// ----------------------------------------------------------------------- //
+
+// Distinct from the citywide-only case above, and deliberately so. There, the catalog holds a
+// citywide value and the map draws it. Here the catalog says the measure has no map at all — a null
+// GeoType in VisOptions[0].Map — while its Table and Trend views hold real data at real
+// geographies. So the map says that plainly and points at the tabs that do have something, rather
+// than colouring a one-number citywide choropleth that would read as the mapped answer.
+// See withCitywideMapFallback in global.js and fresh audit §4.12.
+
+const UNMAPPED_MAP_MESSAGE = 'Data not mapped for this indicator. Click or tap on the visualization bar for other data views.';
+
+// Flat gray, based on the bubble map's base-polygon fill but opaque enough to read as a deliberate
+// shape rather than a failed render.
+const UNMAPPED_POLYGON_STYLE = {
+    fillColor: '#d9d9d9',
+    weight: 1,
+    color: '#999',
+    fillOpacity: 0.6
+};
+
+// Message-only popup: no header, no value row, nothing that implies a measurement.
+const createUnmappedPopupContent = () => `
+    <div class="popup-content">
+        <div class="popup-note">${UNMAPPED_MAP_MESSAGE}</div>
+    </div>
+`;
+
+// Outlines the visualization bar the popup text points at, consuming the one-shot flag.
+// Without the flag, every measure/geo/time re-render would re-apply an outline the user has
+// already dismissed — the same failure mode switchToTrendTabOnce guards against, and for the same
+// reason. See visBarHintPending in global.js.
+
+const highlightVisBarOnce = () => {
+
+    if (!DE.map.visBarHintPending) return;
+
+    DE.map.visBarHintPending = false;
+
+    document.getElementById('v-pills-tab')?.classList.add('vis-bar-required');
+
+};
+
+// Drops the outline. Called both by the bar's own click handler and from every render boundary, so
+// moving to a measure that *is* mapped can't leave a hint pointing at nothing.
+const clearVisBarHighlight = () => {
+
+    document.getElementById('v-pills-tab')?.classList.remove('vis-bar-required');
+
+};
+
+// Bound once, on the bar container rather than its five links, so any click inside the bar
+// dismisses the hint — including the Data Sources link and the mobile Take Action button.
+const bindVisBarHighlightDismissal = () => {
+
+    document.getElementById('v-pills-tab')?.addEventListener('click', clearVisBarHighlight);
+
+};
+
+// Draws the citywide outline in gray with no value, no legend range, and an automatic message.
+// Tolerates a missing `metadata` entirely: measures whose catalog entry has no mappable geography
+// at all never reach DE.lookups.mapMeasures, so showMap hands this an empty array.
+
+const renderUnmappedCitywide = (metadata) => {
+
+    debugLog("** renderMap: no map available for this measure, rendering unmapped citywide");
+
+    const map = resetMapForRender();
+
+    // ----- hide the legend ----- //
+
+    // Blanking the endpoints alone left a viridis gradient on screen with no numbers against it,
+    // which reads as a scale whose labels failed to load. There is no range here, so the whole
+    // overlay goes — and with it the export control, which would contradict the message.
+    setMapLegendVisible(false);
+    setSaveMapVisible(false);
+
+    const mapRenderPromise = loadMapGeojson(getGeoFile('Citywide'), {})
+        .then(geojson => {
+
+            // ----- add the gray citywide outline ----- //
+
+            // No bindPopup here on purpose: a click must not reopen a message the user dismissed.
+            currentGeojsonLayer = L.geoJson(geojson, {
+                style: () => UNMAPPED_POLYGON_STYLE
+            }).addTo(map);
+
+            // ----- state the situation, then point at the tabs that have data ----- //
+
+            // Anchored to the map's own view centre, not the shared CITYWIDE_POPUP_LATLNG (lower
+            // Manhattan, which sits on the West Side shoreline and put the popup over the Hudson
+            // with its body across New Jersey) and not the polygon's bounding-box centre either —
+            // Staten Island drags that south-west onto the harbour. This message is about the view
+            // rather than about a place, so the centre of the view is where it belongs, and it
+            // stays centred in both the desktop and mobile layouts.
+            L.popup()
+                .setLatLng(map.getCenter())
+                .setContent(createUnmappedPopupContent())
+                .openOn(map);
+
+            highlightVisBarOnce();
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    // send info for printing
+    DE.print.vizYear = undefined;
+    DE.print.vizGeography = 'Citywide';
+    DE.map.selectedMapMetadata = metadata?.[0] || null;
+    DE.print.vizSource = metadata?.[0]?.Sources;
+    DE.print.chartType = 'map';
+
+    return mapRenderPromise;
+
+};
+
 // Fire immediately
 
 initBaseMap();
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindVisBarHighlightDismissal);
+} else {
+    bindVisBarHighlightDismissal();
+}
 
 // Derives shared time/geo/measurement metadata from the filtered data, then dispatches to renderBubbleMap or renderChoroplethMap.
 const renderMap = (
@@ -367,6 +529,17 @@ const renderMap = (
 
     debugLog("** renderMap");
     debugLog("** renderMap: metadata", metadata);
+
+    // ----- bail out to the unmapped state before reading any measure fields ----- //
+
+    // Two ways to get here with no map to draw, and both must be caught before the reads below:
+    // the catalog marked this measure unmappable (MapUnavailable, set by withCitywideMapFallback),
+    // or it had no mappable geography at all, so it never entered DE.lookups.mapMeasures and
+    // showMap's fallback left `metadata` empty. The second case is why this tests both — a
+    // MapUnavailable test alone can never fire for it.
+    if (!metadata?.[0] || metadata[0].MapUnavailable) {
+        return renderUnmappedCitywide(metadata);
+    }
 
     // ----- get unique time in data ----- //
 
@@ -385,8 +558,12 @@ const renderMap = (
 
     // ----- check if the data are citywide only ----- //
 
-    const isCitywideOnly = metadata[0].AvailableGeoTypes.length === 1 &&
-                           metadata[0].AvailableGeoTypes[0] === 'Citywide';
+    // Guarded independently of the bail-out above: a measure can reach here with metadata present
+    // but AvailableGeoTypes absent, which is a different catalog shape from an unmappable measure.
+    const availableGeoTypes = metadata[0].AvailableGeoTypes || [];
+
+    const isCitywideOnly = availableGeoTypes.length === 1 &&
+                           availableGeoTypes[0] === 'Citywide';
 
     if (isCitywideOnly) {
         debugLog("** renderMap: citywide only");

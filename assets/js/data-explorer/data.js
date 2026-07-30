@@ -196,6 +196,10 @@ const loadIndicator = async (this_IndicatorID) => {
     // must always win over that nudge.
     DE.map.citywideTrendDefaultPending = !DE.state.overlay;
 
+    // Unlike the trend-tab default, this is unconditional: the unmapped-measure hint points at the
+    // tab bar instead of moving the user, so it is worth showing whichever tab they arrived on.
+    DE.map.visBarHintPending = true;
+
     // Default to no overlay until a tab is explicitly chosen or restored.
     if (!DE.state.overlay) DE.state.overlay = 'none';
 
@@ -225,7 +229,7 @@ const loadIndicator = async (this_IndicatorID) => {
 
     // IndicatorID comes in as  a string, so "find" uses '==' instead of '==='
 
-    DE.indicator.indicator = indicators.find(indicator => indicator.IndicatorID == DE.state.IndicatorID);
+    DE.indicator.indicator = getIndicatorById(DE.state.IndicatorID);
     DE.indicator.indicatorName = DE.indicator.indicator?.IndicatorName ? DE.indicator.indicator.IndicatorName : '';
     DE.indicator.indicatorDesc = DE.indicator.indicator?.IndicatorDescription ? DE.indicator.indicator.IndicatorDescription : '';
     DE.indicator.indicatorShortName = DE.indicator.indicator?.IndicatorShortname ? DE.indicator.indicator.IndicatorShortname : DE.indicator.indicatorName;

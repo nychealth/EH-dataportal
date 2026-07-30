@@ -537,7 +537,7 @@ window.addEventListener('popstate', async (event) => {
 
     // sync the dropdown menus to match the restored globals
 
-    const ind = indicators?.find(d => d.IndicatorID === Number(DE.state.IndicatorID));
+    const ind = getIndicatorById(DE.state.IndicatorID);
 
     // Rebuild dropdowns only when indicator metadata is already available in memory.
     if (ind) updateAllMenus(ind);

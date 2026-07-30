@@ -354,6 +354,20 @@ $color-data-explorer: #0A408A;
   pointer-events: none;
 }
 
+/* Same "you need to act here" outline as the two selector prompts above, on the tab bar. Inset
+   positive rather than negative because this bar sits flush inside .de-tabs-nav, so a -4px box
+   would be drawn outside its own container. */
+#v-pills-tab.vis-bar-required::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 2px solid #F7D54A;
+  border-radius: 8px;
+  box-shadow: 0 0 0 3px rgba(247, 213, 74, 0.35);
+  pointer-events: none;
+  z-index: 3;
+}
+
 .de-nav-bar .topic-selector-prompt,
 .de-wrapper .indicator-selector-prompt {
   position: absolute;
