@@ -211,29 +211,6 @@ const createMapPopupContent = (properties, metadata, options = {}) => {
     `;
 };
 
-// Builds popup markup specifically for citywide-only data
-const createCitywidePopupContent = (citywideData, metadata) => {
-    return `
-        <div class="popup-content">
-            <div class="popup-header">
-                <strong>NYC</strong>
-            </div>
-            <div class="popup-body">
-                <div class="popup-row">
-                    <div class="popup-indicator">
-                        ${DE.indicator.indicator.IndicatorName}
-                        <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
-                    </div>
-                    <div class="popup-value">
-                        <span class="value-number">${citywideData.Value}</span>
-                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
-        </div>
-    `;
-};
 
 // Resets the legend hover panel to its idle, no-selection state. Module-level rather than
 // per-render because it depends on nothing a render supplies, and resetMapForRender() needs
@@ -315,6 +292,31 @@ const loadMapGeojson = (topoFile, dataLookup) => {
 // citywide-only handling
 // ----------------------------------------------------------------------- //
 
+// Builds popup markup specifically for citywide-only data
+
+const createCitywidePopupContent = (citywideData, metadata) => {
+    return `
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>NYC</strong>
+            </div>
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${DE.indicator.indicator.IndicatorName}
+                        <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${citywideData.Value}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
+        </div>
+    `;
+};
+
 // Roughly lower Manhattan — anchors the citywide popup over the middle of the city.
 const CITYWIDE_POPUP_LATLNG = [40.711409, -74.016813];
 
@@ -323,6 +325,7 @@ const CITYWIDE_POPUP_LATLNG = [40.711409, -74.016813];
 // user to the trend view — but only once per indicator load. Otherwise every measure/geo/
 // time re-render, and every re-click on the popup, would keep overriding whatever tab the
 // user actually picked. See citywideTrendDefaultPending in global.js.
+
 const switchToTrendTabOnce = () => {
 
     if (!DE.map.citywideTrendDefaultPending) return;
@@ -340,6 +343,7 @@ const switchToTrendTabOnce = () => {
 };
 
 // Opens the citywide popup at the city center and nudges the user to the trend tab.
+
 const handleCitywideOnly = (map, data, metadata) => {
 
     L.popup()
