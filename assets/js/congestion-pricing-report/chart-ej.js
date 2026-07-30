@@ -635,7 +635,7 @@ async function draw(site) {
         
         await vegaEmbed(cpEl, spec, {
             actions: false,
-            renderer: "canvas",
+            renderer: "svg",
         });
         
         cpEl.style.minHeight = "";
@@ -654,7 +654,7 @@ async function draw(site) {
         try {
             await vegaEmbed(aqEl, spec2, {
                 actions: false,
-                renderer: "canvas",
+                renderer: "svg",
             });
             aqEl.style.minHeight = "";
         } catch (err) {

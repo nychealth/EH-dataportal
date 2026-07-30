@@ -557,7 +557,7 @@ async function draw_crz() {
 
         await vegaEmbed(el, spec, {
             actions: false,
-            renderer: "canvas",
+            renderer: "svg",
         });
 
     } catch (err) {

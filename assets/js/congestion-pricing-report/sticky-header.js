@@ -293,7 +293,7 @@ function drawExplainChart() {
             }
         ]
     };
-    vegaEmbed('#explainChart', spec, { actions: false, renderer: "canvas" });
+    vegaEmbed('#explainChart', spec, { actions: false, renderer: "svg" });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // spec2: the confidence-interval explainer chart (#explainChart2) 
@@ -474,7 +474,7 @@ function drawExplainChart() {
         ]
     }
     
-    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "canvas" });
+    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "svg" });
     
 }
 
