@@ -348,9 +348,9 @@ $color-data-explorer: #0A408A;
   content: '';
   position: absolute;
   inset: -4px;
-  border: 2px solid #F7D54A;
+  border: 2px solid rgb(255, 204, 1);
   border-radius: 8px;
-  box-shadow: 0 0 0 3px rgba(247, 213, 74, 0.35);
+  box-shadow: 0 0 0 3px rgba(255, 204, 1, 0.35);
   pointer-events: none;
 }
 
@@ -360,10 +360,10 @@ $color-data-explorer: #0A408A;
 #v-pills-tab.vis-bar-required::after {
   content: '';
   position: absolute;
-  inset: 2px;
-  border: 2px solid #F7D54A;
+  inset: -10px;
+  border: 8px solid rgb(255, 204, 1);
   border-radius: 8px;
-  box-shadow: 0 0 0 3px rgba(247, 213, 74, 0.35);
+  // box-shadow: 0 0 0 4px rgba(255, 204, 1, 0.35);
   pointer-events: none;
   z-index: 3;
 }
@@ -371,7 +371,7 @@ $color-data-explorer: #0A408A;
 .de-nav-bar .topic-selector-prompt,
 .de-wrapper .indicator-selector-prompt {
   position: absolute;
-  background-color: #F7D54A;
+  background-color: rgb(255, 204, 1);
   color: #111111;
   font-weight: 700;
   line-height: 1;
