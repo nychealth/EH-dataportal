@@ -3,7 +3,7 @@ _schema: default
 draft: false
 hide: true
 ---
-This analysis evaluated whether congestion pricing affected air pollution levels in neighborhoods that have been monitored for years through the New York City Community Air Survey. Additional monitoring supported by the MTA allowed us to determine whether levels of PM2.5, NO2, NO, and BC were different than they would have been if tolling had never been implemented.
+This analysis evaluated whether congestion pricing affected air pollution levels in neighborhoods that have been monitored for years through the New York City Community Air Survey. Additional monitoring supported by MTABT allowed us to determine whether levels of PM2.5, NO2, NO, and BC were different than they would have been if tolling had never been implemented.
 
 We found that at EJ neighborhood sites that we monitored — where there were concerns about increased traffic and its effect on air quality — the measured pollution levels were not significantly different because of congestion pricing. The changes in pollution levels from 2024 to 2025 (before and after congestion pricing) continue [the gradual decline in air pollution that we’ve been tracking throughout the city over the past 18 years](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-explorer/air-quality/?id=2023#display=trend).
 
