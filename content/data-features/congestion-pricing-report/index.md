@@ -53,15 +53,15 @@ blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
 
 <div id="Introduction">
 
-In January 2025, the Metropolitan Transportation Authority (MTA) started charging a toll for vehicles entering the Congestion Relief Zone (CRZ), defined as Manhattan below 60th Street. The Congestion Relief Zone Tolling Program, commonly referred to as congestion pricing, was introduced to reduce traffic while raising money for public transit improvements.
+In January 2025, MTA Bridges and Tunnels (MTABT) started charging a toll for vehicles entering the Congestion Relief Zone (CRZ), or Manhattan at, and south, of 60th Street, excluding the Franklin D. Roosevelt (FDR) Drive, the West Side Highway/Route 9A, and the surface roadway portion of the Hugh L. Carey Tunnel connecting to West Street.. Congestion Relief Zone tolling, commonly referred to as congestion pricing, was introduced to reduce traffic while raising a reliable source of funding for public transit improvements.
 
-Modeling and analysis from the mandatory federal environmental review for congestion pricing did not predict harmful changes in air quality resulting from congestion pricing. Recognizing community concerns, the program sponsors (including the MTA, the New York City Department of Transportation, and the New York State Department of Transportation) committed to monitor and report on air quality. These agencies partnered with the New York City Health Department and Mental Hygiene (the Health Department) to conduct this work. The Health Department expanded their existing air quality monitoring network, the New York City Community Air Survey ([NYCCAS](https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/)), to evaluate the impact of congestion pricing on NYC’s air quality, especially in environmental justice (EJ) communities identified by stakeholders in the [environmental assessment](https://www.mta.info/document/110886) as potentially having increases in truck traffic.
+Modeling and analysis from the mandatory federal environmental review for congestion pricing did not predict significant changes in air quality resulting from congestion pricing. Recognizing community concerns, the program sponsors (including MTABT, the New York City Department of Transportation, and the New York State Department of Transportation) committed to monitor and report on air quality. These agencies partnered with the New York City Health Department and Mental Hygiene (the Health Department) to conduct this work. The Health Department expanded its existing air quality monitoring network, the New York City Community Air Survey ([NYCCAS](https://a816-dohbesp.nyc.gov/IndicatorPublic/key-topics/airquality/)), to evaluate the impact of congestion pricing on NYC’s air quality, especially in environmental justice (EJ) communities identified by stakeholders in the [Final Environmental Assessment](https://www.mta.info/document/110886) as potentially having increases in truck traffic.
 
-With a full year of data since congestion pricing began, we can now accurately evaluate its effects on air quality. A full year of data means we can isolate any impact from the program from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, [Initial data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/) and the [Congestion Relief Zone Tolling First Evaluation Report](https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions), noted that the preliminary data suggested air pollution either did not change or continued to decrease as in previous years both within and outside the zone.
+With a full year of data since congestion pricing began, we can now accurately evaluate its effects on air quality. A full year of data means we can better differentiate any impact from other factors that affect air pollution, like changes in wind, temperature, building heating, commercial cooking, construction and industrial activities. Two interim reports, [Initial data from Congestion Relief Tolling](https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/congestion-tolling-update/) and the [Congestion Relief Zone Tolling First Evaluation Report](https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions), noted that the preliminary data suggested air pollution either did not change or continued to decrease as in previous years both within and outside the zone.
 
 ## Key Takeaways
 
-This is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors, to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report. 
+This is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors in an effort to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report. 
 
 <div class="row mb-4">
   <div class="col-md-4 card content-card">
@@ -71,12 +71,12 @@ This is the most complete evaluation to date, using deeply detailed models and m
   </div>
   <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>Inside the CRZ, pollution decreased slightly or stayed the same in 2025 compared to 2024</strong>. Measured pollution levels were not significantly different than they would have been without congestion pricing. </p>
+      <p><strong>Inside the CRZ, pollution decreased slightly or stayed the same in 2025 compared to 2024</strong>. Measured pollution levels were not significantly different because of congestion pricing. </p>
     </div>
   </div>
     <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE), levels of one pollutant didn't improve as much as expected.</p>
+      <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE), levels of one pollutant didn't improve as much as would be expected.</p>
     </div>
   </div>
 </div>
