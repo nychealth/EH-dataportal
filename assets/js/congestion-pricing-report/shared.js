@@ -18,42 +18,42 @@ const CP_SITES = {
         preposition: "near the", hasTOD: true, badgeKey: "deegan",
         mapCoords: { lat: 40.80911, lng: -73.928824, zoom: 16 },
         badgeInfo: "The Major Deegan Expressway (Major Deegan) and connecting links in the Mott Haven neighborhood.",
-        text: "<p>No. In Mott Haven, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same.</p>"
+        text: "<p>No. In Mott Haven, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic decreased by 4% from 2024 to 2025 and truck traffic remained the same.</p>"
     },
     "Cross Bronx": {
         displayName: "Cross-Bronx Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "cross-bronx",
         mapCoords: { lat: 40.844967, lng: -73.906263, zoom: 16 },
         badgeInfo: "The Cross-Bronx Expressway (Cross Bronx) in the Highbridge-Tremont neighborhood.",
-        text: "<p>No. In neighborhoods along the Cross Bronx, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%.</p>"
+        text: "<p>No. In neighborhoods along the Cross Bronx, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic decreased by 6% from 2024 to 2025 and truck traffic decreased by 2%.</p>"
     },
     "BQE": {
         displayName: "Brooklyn-Queens Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "bqe",
         mapCoords: { lat: 40.705511, lng: -73.958846, zoom: 16 },
         badgeInfo: "The Brooklyn-Queens Expressway (BQE) between Metropolitan Avenue and DUMBO in the South Williamsburg neighborhood.",
-        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been if the program had never happened. From the traffic count analysis total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3%. </p><p>Nitric oxide (NO) levels decreased but were significantly higher than we would have expected. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing.  We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
+        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been without the program. From the traffic count analysis, total traffic decreased by 2% from 2024 to 2025, and truck traffic decreased by 3%. Nitric Oxide (NO) levels decreased, but were significantly higher than we would have expected based on greater reductions at the control site. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing. We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
     },
     "SI Expwy": {
         displayName: "Staten Island Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
         mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
         badgeInfo: "The Staten Island Expressway (SI Expwy) and connections to the Bayonne Bridge in the Port Richmond and Bulls Head neighborhoods.",
-        text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%.</p>"
+        text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%. At a nearby location on the Staten Island Expressway, total traffic increased by 5% while truck traffic decreased by 2% in the same time period.</p>"
     },
     "FDR": {
         displayName: "FDR Drive",
         preposition: "near the", hasTOD: true, badgeKey: "fdr",
         mapCoords: { lat: 40.722282, lng: -73.974417, zoom: 14 },
         badgeInfo: "The FDR Drive between E. 10 St. and the Manhattan Bridge (FDR) in the Lower East Side neighborhood.",
-        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025. For more information, see the <a href=\"embeds/CRZ_Report_Appendix.pdf\" target=\"_blank\"> appendix (PDF)</a>.</p>"
+        text: "<p>No. On the Lower East Side, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis at the three sites along the FDR, total traffic increased by 0.2%, 4% and 9% from 2024 to 2025. For more information, see the <a href=\"embeds/CRZ_Report_Appendix.pdf\" target=\"_blank\"> appendix (PDF)</a>.</p>"
     },
     "Trans-Manhattan": {
         displayName: "Trans-Manhattan Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "trans-manhattan",
         mapCoords: { lat: 40.847353, lng: -73.934027, zoom: 16 },
         badgeInfo: "The Trans-Manhattan Expressway (Trans-Manhattan) between the George Washington Bridge and the Alexander Hamilton Bridge in the Washington Heights neighborhood.",
-        text: "<p>No.  In Washington Heights near the Trans-Manhattan Expressway, the measured pollution levels were not significantly different than they would have been if the program had never happened. From the traffic count analysis, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same.</p>"
+        text: "<p>No. In Washington Heights near the Trans-Manhattan Expressway, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same.</p>"
     },
     "Van Wyck": {
         displayName: "Van Wyck Expressway",
@@ -65,12 +65,12 @@ const CP_SITES = {
     "CRZ": {
         displayName: "congestion relief zone",
         preposition: "in the", hasTOD: false,
-        text: "<p>No.  When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been if the program had never happened.</p>"
+        text: "<p>No. When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been without the program.</p>"
     },
     "Rest of the city": {
         displayName: "rest of the city",
         preposition: "in the", hasTOD: false,
-        text: "<p>No.  When we look at the 73 NYCCAS sites outside of the CRZ and analyze them as a group, we see that  the measured pollution levels were not significantly different than they would have been if the program had never happened.</p>"
+        text: "<p>No. When we look at the 73 NYCCAS sites outside of the CRZ and analyze them as a group, we see that the measured pollution levels were not significantly different than they would have been without the program.</p>"
     }
 };
 
