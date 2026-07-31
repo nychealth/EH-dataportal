@@ -20,7 +20,9 @@ const CP_CONTAINER2_ID = "cpVis2";
 
 // hconcat holds one panel per pollutant (PM2.5, NO2, Ozone) — see the
 // sub-group markers below. State color scales reference CP_STATE_DOMAIN/
-// RANGE from shared.js.
+// RANGE from shared.js. All six color encodings share one State scale, and
+// resolve.legend hoists them into a single chart-level legend rather than
+// one per panel — so none of them may set "legend": null.
 
 const baseSpec_1 = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -38,6 +40,14 @@ const baseSpec_1 = {
     },
     "config": {
         "view": { "stroke": null },
+        "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            // The shared legend inherits the range rule's 0.5 opacity, which
+            // washes out the swatches; pin them to match the solid dot marks.
+            "symbolOpacity": 1,
+            "symbolType": "circle"
+        },
         "axisX": {
             "labelAngle": 0,
             "domain": true,
@@ -101,7 +111,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE
@@ -145,7 +154,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE
@@ -238,7 +246,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE
@@ -282,7 +289,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE
@@ -378,7 +384,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE
@@ -422,7 +427,6 @@ const baseSpec_1 = {
                         "color": {
                             "field": "State",
                             "type": "nominal",
-                            "legend": null,
                             "scale": {
                                 "domain": CP_STATE_DOMAIN,
                                 "range": CP_STATE_RANGE

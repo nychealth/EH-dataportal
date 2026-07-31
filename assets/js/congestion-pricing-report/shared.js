@@ -207,10 +207,16 @@ function cloneSpec(spec) {
 // NY/NJ/CT colors for the regional comparison — single source for the
 // regional Leaflet map and the CRZ chart's six color scales. The derived
 // domain/range arrays keep the Vega scale order aligned to this map.
+// map-regional.js looks colors up by name, so it is unaffected by the order.
 
 const CP_STATE_COLORS = { "New York": "#2b6cb0", "New Jersey": "#276749", "Connecticut": "#9b2c2c" };
-const CP_STATE_DOMAIN = Object.keys(CP_STATE_COLORS);
-const CP_STATE_RANGE = Object.values(CP_STATE_COLORS);
+
+// Sorted so the chart legend reads alphabetically; the range is derived from
+// the sorted domain rather than from CP_STATE_COLORS directly, so each state
+// keeps its own color no matter what order the object above is written in.
+
+const CP_STATE_DOMAIN = Object.keys(CP_STATE_COLORS).sort();
+const CP_STATE_RANGE = CP_STATE_DOMAIN.map(state => CP_STATE_COLORS[state]);
 
 // Create a Leaflet map with the shared CARTO Voyager basemap. Called only
 // from the map blocks (after Leaflet's L is loaded); markers, legends, and
