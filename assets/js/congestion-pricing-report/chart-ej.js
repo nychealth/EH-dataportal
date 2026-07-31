@@ -183,7 +183,7 @@ const secondSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
         "text": [
-            "Difference between Projected and Observed", "air quality measurements after implementation"
+            "Difference between Projected and Observed air quality measurements after implementation"
         ],
         "subtitle": [
             "If the confidence interval crosses the zero line, the difference is not statistically significant and the levels of pollution were not different than they would have been if the program never happened.",
@@ -226,6 +226,10 @@ const secondSpec = {
                 {
                     "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant' : ''",
                     "as": "Significance"
+                },
+                {
+                    "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not Significant: no change'",
+                    "as": "TooltipSignificance"
                 },
                 {
                     "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
@@ -274,7 +278,7 @@ const secondSpec = {
                                 {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
-                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                                {"field": "TooltipSignificance", "title": "Significance", "type": "nominal"}
                             ]
                         }
                     }
@@ -290,6 +294,10 @@ const secondSpec = {
                     "as": "Significance"
                 },
                 {
+                    "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not Significant: no change'",
+                    "as": "TooltipSignificance"
+                },
+                {
                     "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
                     "as": "longTitle"
                 }
@@ -341,7 +349,7 @@ const secondSpec = {
                                 {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
-                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                                {"field": "TooltipSignificance", "title": "Significance", "type": "nominal"}
                             ]
                         }
                     }
@@ -357,6 +365,10 @@ const secondSpec = {
                     "as": "Significance"
                 },
                 {
+                    "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not Significant: no change'",
+                    "as": "TooltipSignificance"
+                },
+                {
                     "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
                     "as": "longTitle"
                 }
@@ -408,7 +420,7 @@ const secondSpec = {
                                 {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
-                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                                {"field": "TooltipSignificance", "title": "Significance", "type": "nominal"}
                             ]
                         }
                     }
@@ -424,6 +436,10 @@ const secondSpec = {
                     "as": "Significance"
                 },
                 {
+                    "calculate": "datum.lower > 0 || datum.upper < 0 ? 'Significant: change is greater than 0' : 'Not Significant: no change'",
+                    "as": "TooltipSignificance"
+                },
+                {
                     "calculate": "datum.pollutant + (datum.Significance ? ' (' + datum.Significance + ')' : '')",
                     "as": "longTitle"
                 }
@@ -475,7 +491,7 @@ const secondSpec = {
                                 {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {"field": "Estimate (95% CI)", "title": "Difference", "type": "nominal"},
-                                {"field": "Significance", "title": "Significance", "type": "nominal"}
+                                {"field": "TooltipSignificance", "title": "Significance", "type": "nominal"}
                             ]
                         }
                     }
