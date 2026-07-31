@@ -21,8 +21,7 @@ aliases:
 
 image: images/GettyImages-resize-1.png
 image_alt: View of W 40th St in Manhattan. Pedestrians cross the street with cars waiting at the light.
-# photocredit: '<a href="https://commons.wikimedia.org/wiki/File:Sixth_Avenue_and_Central_Park_South_(Unsplash).jpg">Frank Köhntopp </a>, CC0, via Wikimedia Commons'
-photocredit: "Frank Köhntopp, CC0, via Wikimedia Commons"
+photocredit: "Alexander Spatari/Moment via Getty Images"
 layout: congestion-pricing-report
 report: true
 mapLib: true
