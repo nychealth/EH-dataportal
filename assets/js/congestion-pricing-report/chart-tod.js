@@ -12,6 +12,15 @@
 
 const TOD_CONTAINER_ID = "cpVisTOD";
 
+// Traffic monitor labels differ from the broader site names used elsewhere in the report.
+const trafficMonitoringLocations = {
+    "FDR": "FDR at Houston St",
+    "SI Expwy": "I-278 Staten Island Expressway",
+};
+
+// The traffic facet header is the anchor for its monitor-specific footnote.
+const TRAFFIC_PANEL_TITLE = "Traffic (vehicles per hour)";
+
 // tod_site_names is derived from CP_SITES (hasTOD), defined in shared.js
 // Tracks the currently selected site; updated on each button click
 
@@ -88,7 +97,7 @@ const todBaseSpec = {
         field: "ParamWithUnit",
         title: null,
         // Put traffic volume first; remaining panels sort alphabetically
-        sort: ["Traffic (vehicles per hour)"],
+        sort: [TRAFFIC_PANEL_TITLE],
     },
 
     // The repeated chart spec applied to each facet panel
@@ -182,6 +191,19 @@ function specForTODSite(site) {
     const spec = cloneSpec(todBaseSpec);
     spec.transform[0].filter = `datum.Site === '${site}'`;
 
+    // Only the sites in trafficMonitoringLocations get a footnote, so the "*"
+    // marker is added to the facet header here rather than baked into the
+    // ParamWithUnit transform — otherwise unlisted sites show a marker
+    // pointing at a footnote that never renders.
+
+    if (trafficMonitoringLocations[site]) {
+
+        spec.facet.header = {
+            labelExpr: `datum.value === '${TRAFFIC_PANEL_TITLE}' ? datum.value + '*' : datum.value`,
+        };
+
+    }
+
     return spec;
 
 }
@@ -225,6 +247,18 @@ async function renderTODChart(site) {
 
     el.style.minHeight = el.offsetHeight + "px";
     el.innerHTML = "";
+
+    // Sites without a listed monitor get an empty footnote, which also clears
+    // the previous site's note when switching between them.
+
+    const footnoteEl = document.getElementById("todTrafficFootnote");
+    const trafficMonitor = trafficMonitoringLocations[site];
+
+    if (footnoteEl) {
+        footnoteEl.textContent = trafficMonitor
+            ? `*Traffic data comes from ${trafficMonitor}`
+            : "";
+    }
 
     const spec = specForTODSite(site);
     fitTODFacet(spec, el);
