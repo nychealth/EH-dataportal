@@ -338,15 +338,17 @@ function drawExplainChart() {
                             "type": "text",
                             "align": "left",
                             "baseline": "bottom",
-                            "dy": -6,
-                            "fontSize": 11,
-                            "fontWeight": "bold",
-                            "color": "#333"
+                            // Lifts the label clear of the confidence-interval rule below it
+                            "dy": -15,
+                            "fontSize": 12,
+                            "fontWeight": "600"
                         },
                         "encoding": {
                             "x": {"value": 5},
                             "y": {"value": 10},
-                            "text": {"field": "Significance", "type": "nominal"}
+                            "text": {"field": "Significance", "type": "nominal"},
+                            // Overrides the unit-level purple, which otherwise wins over the mark's own color
+                            "color": {"value": "#333333"}
                         }
                     },
                     {
@@ -379,7 +381,6 @@ function drawExplainChart() {
                                 "scale": {"nice": true}
                             },
                             "tooltip": [
-                                {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {
                                     "field": "Estimate (95% CI)",
@@ -417,15 +418,17 @@ function drawExplainChart() {
                             "type": "text",
                             "align": "left",
                             "baseline": "bottom",
-                            "dy": -6,
-                            "fontSize": 11,
-                            "fontWeight": "bold",
-                            "color": "#333"
+                            // Lifts the label clear of the confidence-interval rule below it
+                            "dy": -15,
+                            "fontSize": 12,
+                            "fontWeight": "600"
                         },
                         "encoding": {
                             "x": {"value": 5},
                             "y": {"value": 10},
-                            "text": {"field": "Significance", "type": "nominal"}
+                            "text": {"field": "Significance", "type": "nominal"},
+                            // Overrides the unit-level purple, which otherwise wins over the mark's own color
+                            "color": {"value": "#333333"}
                         }
                     },
                     {
@@ -458,7 +461,6 @@ function drawExplainChart() {
                                 "scale": {"nice": false}
                             },
                             "tooltip": [
-                                {"field": "Site", "title": "Site", "type": "nominal"},
                                 {"field": "pollutant", "title": "Pollutant", "type": "nominal"},
                                 {
                                     "field": "Estimate (95% CI)",
