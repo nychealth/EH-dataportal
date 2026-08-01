@@ -28,6 +28,20 @@ function updateSiteHeading(site) {
 // Default selection
 let currentSite = "CRZ";
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// chart title line sets
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Title arrays keep the desktop heading unchanged while forcing a predictable
+// break after "Observed" on mobile, where the full sentence is too wide.
+const AQ_CHANGE_TITLE_DESKTOP = [
+    "Difference between Projected and Observed air quality measurements after implementation"
+];
+const AQ_CHANGE_TITLE_MOBILE = [
+    "Difference between Projected and Observed",
+    "air quality measurements after implementation"
+];
+
 // ----------------------------------------------------------------------- //
 // base Vega-Lite specs
 // ----------------------------------------------------------------------- //
@@ -182,9 +196,7 @@ const baseSpec = {
 const secondSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": [
-            "Difference between Projected and Observed air quality measurements after implementation"
-        ],
+        "text": AQ_CHANGE_TITLE_DESKTOP,
         "subtitle": [
             "If the confidence interval crosses the zero line, the difference is not statistically significant and the levels of pollution were not different than they would have been if the program never happened.",
             ""
@@ -515,6 +527,7 @@ function specForSite(site) {
     const isVanWyck = (site || currentSite) === "Van Wyck";
     
     spec.transform[0].filter = `datum.Site === '${site}'`;
+    spec2.title.text = getAqChangeTitleText();
     spec2.hconcat?.forEach((chartSpec) => {
         if (Array.isArray(chartSpec.transform) && chartSpec.transform[0]) {
             chartSpec.transform[0].filter = `datum.Site === '${site}'`;
@@ -525,6 +538,19 @@ function specForSite(site) {
     return { spec, spec2 };
 }
 
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// title helpers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Returns the AQ change chart title lines for the current breakpoint.
+function getAqChangeTitleText() {
+
+    return window.innerWidth < 768
+        ? [...AQ_CHANGE_TITLE_MOBILE]
+        : [...AQ_CHANGE_TITLE_DESKTOP];
+
+}
 
 // Word-wrap a string to fit `maxPx` at the given font size, returning an array
 // of lines (Vega-Lite renders each array element as its own title line). A long
