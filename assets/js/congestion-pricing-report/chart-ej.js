@@ -2,8 +2,8 @@
 // chart-ej.js
 // ======================================================================= //
 
-// Renders the EJ air-quality chart (#cpVis, #aqChangeVis). Panel sizing and
-// title wrapping come from shared.js.
+// Renders the EJ air-quality chart (#cpVis, #aqChangeVis). Panel sizing, title
+// wrapping, and the shared post-period CSV all come from shared.js.
 
 // ----------------------------------------------------------------------- //
 // top scope variables
@@ -208,7 +208,7 @@ const secondSpec = {
         "axisX": {"labelAngle": 0, "domain": false, "ticks": false, "tickCount": 3},
         "axisY": {"domain": false, "orient": "left", "title": null}
     },
-    "data": {"url": "data/AQ_Post.csv"},
+    "data": {"values": []},
     "spacing": 35,
     "transform": [
         {
@@ -521,9 +521,14 @@ function buildCpSpec(site) {
     return spec;
 }
 
-function buildAqSpec(site) {
+// The rows are attached after cloning, so the deep clone never copies the
+// dataset — only the authored placeholder.
+
+function buildAqSpec(site, rows) {
 
     const spec = cloneSpec(secondSpec);
+
+    spec.data = { values: csvRows(rows) };
 
     spec.hconcat?.forEach((chartSpec) => {
         if (Array.isArray(chartSpec.transform) && chartSpec.transform[0]) {
@@ -624,7 +629,8 @@ async function draw(site) {
         const aligned = aqAvail >= 576 ? cpLayout?.pane : undefined;
 
         try {
-            await embedFitted(aqEl, () => buildAqSpec(site), CP_FIT.aq, applyHconcatFacet, aligned);
+            const rows = await loadCsv(CP_AQ_POST_URL);
+            await embedFitted(aqEl, () => buildAqSpec(site, rows), CP_FIT.aq, applyHconcatFacet, aligned);
             aqEl.style.minHeight = "";
         } catch (err) {
             console.error("AQ change Vega render failed:", err);

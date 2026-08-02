@@ -311,7 +311,7 @@ function drawExplainChart() {
     // A factory rather than an object: embedFitted may draw twice while it
     // measures, and vegaEmbed mutates whatever spec it is handed.
 
-    const buildSpec2 = () => ({
+    const buildSpec2 = (rows) => ({
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
             "view": {"stroke": null},
@@ -322,7 +322,7 @@ function drawExplainChart() {
             "scale": {"x": "shared"}
         },
         "data": {
-            "url": "data/AQ_Post.csv"
+            "values": csvRows(rows)
         },
         "vconcat": [
             {
@@ -501,7 +501,8 @@ function drawExplainChart() {
 
     if (ciEl) {
 
-        const drawCI = () => embedFitted(ciEl, buildSpec2, CP_FIT.explain, applyExplainWidth);
+        const drawCI = () => loadCsv(CP_AQ_POST_URL).then(
+            (rows) => embedFitted(ciEl, () => buildSpec2(rows), CP_FIT.explain, applyExplainWidth));
 
         drawCI();
 

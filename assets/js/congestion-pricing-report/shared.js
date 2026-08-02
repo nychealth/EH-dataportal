@@ -213,6 +213,48 @@ function cloneSpec(spec) {
 
 
 // ----------------------------------------------------------------------- //
+// shared chart data
+// ----------------------------------------------------------------------- //
+
+// A spec that names a URL is fetched again on every embed — Vega caches nothing
+// between views. Two charts on this page read the same file, and embedFitted
+// draws a second time whenever it has to re-fit, so the post-period air-quality
+// data was being downloaded three times on load. Fetch and parse it once here
+// and hand the specs values instead.
+
+const CP_AQ_POST_URL = "data/AQ_Post.csv";
+
+const CP_CSV_CACHE = new Map();
+
+// parse: "auto" reproduces what Vega's own url loader does with a bare csv —
+// without it every field arrives as a string and the CI arithmetic silently
+// compares numbers as text.
+
+function loadCsv(url) {
+
+    if (!CP_CSV_CACHE.has(url)) {
+        CP_CSV_CACHE.set(
+            url,
+            vega.loader().load(url).then((raw) => vega.read(raw, { type: "csv", parse: "auto" }))
+        );
+    }
+
+    return CP_CSV_CACHE.get(url);
+}
+
+// Vega tags ingested row objects with its own tuple id, so two views sharing
+// one array would overwrite each other's bookkeeping. Hand out a fresh shallow
+// copy per embed instead; the file is 32 rows, so the copy is not worth
+// optimizing away.
+
+function csvRows(rows) {
+
+    return rows.map((row) => ({ ...row }));
+
+}
+
+
+// ----------------------------------------------------------------------- //
 // chart title wrapping
 // ----------------------------------------------------------------------- //
 
