@@ -8,6 +8,9 @@
     },
     "author": "",
     "license": "ISC",
+    "scripts": {
+        "characterize:cp": "node scripts/cp-characterization.mjs"
+    },
     "bugs": {
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },

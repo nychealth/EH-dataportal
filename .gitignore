@@ -74,3 +74,6 @@ scripts/de-characterization-current/
 
 # NR characterization --check output (baseline IS committed)
 scripts/nr-characterization-current/
+
+# CP report characterization --check output (baseline IS committed)
+scripts/cp-characterization-current/
