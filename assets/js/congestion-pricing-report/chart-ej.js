@@ -582,24 +582,42 @@ function wrapTitle(spec, avail) {
 }
 
 // Vega-Lite's width:"container" doesn't work on faceted charts, so size the
-// panels ourselves. Only ever shrinks below the authored width (125) and drops
-// 4 columns to 2 below Bootstrap's sm breakpoint (576px) — so wide/desktop
-// layouts are unchanged while narrow screens reflow to a 2-column grid.
+// panels ourselves. Drops 4 columns to 2 below Bootstrap's sm breakpoint
+// (576px), where panels are also allowed to grow past the authored 125 to
+// fill the row — desktop keeps 125 as a cap so wide layouts are unchanged.
 
 // Approximate width (px) of the y-axis label gutter in baseSpec's facets.
 // Tune this by comparing rendered widths in devtools — start around 26–30.
 const AXIS_LABEL_RESERVE = 28;
 
+// Fixed chrome (px) the AQ change chart adds around its two hconcat panes —
+// axis labels plus the inter-pane gutter. Measured in-browser by rendering the
+// spec at panes of 137/145/150/155/160/165: svg width tracks 2 * pane + 46.
+// The tick labels differ per site (widest measured: Trans-Manhattan, 5px over
+// the CRZ baseline), so carry a few px of slack or the widest sites overflow.
+const AQ_ROW_CHROME = 46 + 8;
+
+// The authored spacing is a 4-column desktop gutter; at 2 columns it becomes a
+// single wide gap that strands most of the unused width in the middle of the row.
+const NARROW_FACET_SPACING = 20;
+
 function fitFacet(spec, el, widthOverride, axisReserve = 0) {
-    
+
     const avail = (el && el.clientWidth) || 600;
     const cols = avail < 576 ? 2 : 4;
-    const spacing = spec.spacing || 0;
+    const spacing = cols === 2 ? NARROW_FACET_SPACING : (spec.spacing || 0);
     const w = Math.floor((avail - spacing * (cols - 1)) / cols);
-    const panelWidth = widthOverride ?? Math.max(60, Math.min(w, 125));
-    
-    if (spec) spec.columns = cols;
-    
+
+    // Capping at the authored 125 keeps desktop identical, but on a narrow
+    // screen it leaves the row half empty — so only cap when not reflowed.
+    const maxPanel = cols === 2 ? Infinity : 125;
+    const panelWidth = widthOverride ?? Math.max(60, Math.min(w, maxPanel));
+
+    if (spec) {
+        spec.columns = cols;
+        if (spec.spacing != null) spec.spacing = spacing;
+    }
+
     if (spec?.spec?.width != null) {
         // shrink the plot area to make room for the y-axis gutter,
         // so total column width (axis + plot) == panelWidth
@@ -653,9 +671,19 @@ async function draw(site) {
 
     if (showCI) aqEl.style.display = "";
 
-    // Size both faceted charts to their containers before embedding
+    // Size both faceted charts to their containers before embedding. Once
+    // reflowed to 2 columns the AQ panes are derived from its own container
+    // rather than reusing the CP pane width, so the row fills the width instead
+    // of inheriting a gap; at desktop width the shared pane width already fits.
     const panelWidth = fitFacet(spec, cpEl, undefined, AXIS_LABEL_RESERVE);
-    fitFacet(spec2, aqEl, panelWidth);
+
+    const aqAvail = aqEl.clientWidth || cpEl.clientWidth;
+
+    const aqPanelWidth = aqAvail < 576
+        ? Math.max(30, Math.floor((aqAvail - AQ_ROW_CHROME) / 2))
+        : panelWidth;
+
+    fitFacet(spec2, aqEl, aqPanelWidth);
     
     try {
         
