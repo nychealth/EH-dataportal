@@ -141,6 +141,15 @@ $(function () {
 // hypothetical methodology; spec is a fixed, illustrative dataset (not
 // live site data).
 
+// The CI explainer stacks its two views vertically, so there is a single
+// column and both children take the full computed width.
+
+function applyExplainWidth(spec, { pane }) {
+
+    spec.vconcat.forEach((view) => { view.width = pane; });
+
+}
+
 function drawExplainChart() {
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -296,10 +305,13 @@ function drawExplainChart() {
     vegaEmbed('#explainChart', spec, { actions: false, renderer: "svg" });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // spec2: the confidence-interval explainer chart (#explainChart2) 
+    // spec2: the confidence-interval explainer chart (#explainChart2)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    const spec2 = {
+
+    // A factory rather than an object: embedFitted may draw twice while it
+    // measures, and vegaEmbed mutates whatever spec it is handed.
+
+    const buildSpec2 = () => ({
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "config": {
             "view": {"stroke": null},
@@ -474,10 +486,32 @@ function drawExplainChart() {
                 ]
             }
         ]
+    });
+
+    // Unlike #explainChart — a layered view, which Vega-Lite compiles
+    // with autosize fit-x so it tracks its container on its own — this one is
+    // a vconcat. Concat specs are not fit-compatible, so autosize falls back to
+    // "pad" and Vega adds padding and axis chrome *outside* a child sized to
+    // "container", landing the chart ~15px wider than the box it sits in. No
+    // warning is raised, because the offending width sits on the children.
+    // Giving the children an explicit width lets embedFitted measure that
+    // overhang once and subtract it.
+
+    const ciEl = document.getElementById("explainChart2");
+
+    if (ciEl) {
+
+        const drawCI = () => embedFitted(ciEl, buildSpec2, CP_FIT.explain, applyExplainWidth);
+
+        drawCI();
+
+        // Trading "container" for a fixed width also gives up Vega's own
+        // container tracking, so the redraw has to be wired up by hand.
+
+        addResizeHandler(ciEl, drawCI);
+
     }
-    
-    vegaEmbed('#explainChart2', spec2, { actions: false, renderer: "svg" });
-    
+
 }
 
 

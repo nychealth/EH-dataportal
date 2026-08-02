@@ -2,8 +2,8 @@
 // chart-crz.js
 // ======================================================================= //
 
-// Renders the CRZ chart (#cpVis2); consumes CP_STATE_DOMAIN/RANGE from
-// shared.js and wrapTitle from chart-ej.js (guarded, must load after both).
+// Renders the CRZ chart (#cpVis2); consumes CP_STATE_DOMAIN/RANGE and the
+// panel-sizing helpers from shared.js.
 
 // ----------------------------------------------------------------------- //
 // top scope variables
@@ -508,35 +508,25 @@ const baseSpec_1 = {
 // spec sizing
 // ----------------------------------------------------------------------- //
 
-// Size the three hconcat panels to the container on mobile only. The first
-// panel carries a wide site-label axis; subtract an allowance for it, divide
-// the rest among the panels, shrink the label limit, and wrap the long title
-// (a long single-line title otherwise stretches the canvas). On desktop the
-// authored spec is left untouched.
+// Write the computed geometry into the three hconcat panels. These are plain
+// specs rather than facets, so the width goes directly on each entry.
 
-function fitCRZ(spec, el) {
+// The panels always sit in one row, so the authored 200 acts purely as a cap:
+// it holds wide layouts at the size they were drawn, and gives way once the
+// container is narrower than the row needs. There is deliberately no
+// "desktop, leave it alone" branch — the authored row renders 835px wide, so
+// every container between 576px and 835px used to overflow.
 
-    const avail = (el && el.clientWidth) || 700;
-    if (avail >= 576) return; // desktop: leave the authored spec unchanged
+function applyCRZ(spec, { pane }) {
 
-    const spacing = spec.spacing || 40;
-    const labelAllow = 100; // y-label column on the first panel
-    const margin = 24;      // slack for per-panel x-axis label overhang
-    const panels = spec.hconcat.length;
-    const w = Math.floor((avail - labelAllow - spacing * (panels - 1) - margin) / panels);
-    const panelW = Math.max(40, Math.min(w, 200));
+    spec.hconcat.forEach((p) => { p.width = pane; });
 
-    spec.hconcat.forEach((p) => { p.width = panelW; });
+    // The first panel carries the site-label axis; cap it so one long
+    // neighborhood name can't push the row past its container.
 
     const firstAxis = spec.hconcat[0].encoding?.y?.axis;
 
     if (firstAxis) firstAxis.labelLimit = 80;
-
-    // wrapTitle is defined in chart-ej.js, which must load before this file
-    // (see the file-header note above); the typeof guard is only a fallback
-    // in case that load-order requirement is ever broken.
-
-    if (typeof wrapTitle === "function") wrapTitle(spec, avail);
 
 }
 
@@ -553,16 +543,12 @@ async function draw_crz() {
 
     el.innerHTML = "";
 
-    // Clone so the base spec stays pristine across resize re-renders
-    const spec = cloneSpec(baseSpec_1);
-    fitCRZ(spec, el);
-
     try {
 
-        await vegaEmbed(el, spec, {
-            actions: false,
-            renderer: "svg",
-        });
+        // Cloning per render keeps the base spec pristine across resizes, and
+        // gives embedFitted a fresh spec if it has to re-fit.
+
+        await embedFitted(el, () => cloneSpec(baseSpec_1), CP_FIT.crz, applyCRZ);
 
     } catch (err) {
 

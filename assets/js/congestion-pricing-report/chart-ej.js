@@ -2,8 +2,8 @@
 // chart-ej.js
 // ======================================================================= //
 
-// Renders the EJ air-quality chart (#cpVis, #aqChangeVis); also defines
-// wrapText/wrapTitle, used by chart-crz.js.
+// Renders the EJ air-quality chart (#cpVis, #aqChangeVis). Panel sizing and
+// title wrapping come from shared.js.
 
 // ----------------------------------------------------------------------- //
 // top scope variables
@@ -504,138 +504,67 @@ const secondSpec = {
 // spec derivation + sizing
 // ----------------------------------------------------------------------- //
 
-// Clones both base specs and patches in the Site filter for the given site
+// Clone a base spec and patch in the Site filter. Two factories rather than one
+// call returning both, because a chart that overflows and has to be re-fitted
+// needs a fresh spec of its own — vegaEmbed mutates whatever it is handed.
 
-function specForSite(site) {
-    
+function buildCpSpec(site) {
+
     const spec = cloneSpec(baseSpec);
-    const spec2 = cloneSpec(secondSpec);
-    const isVanWyck = (site || currentSite) === "Van Wyck";
-    
+
     spec.transform[0].filter = `datum.Site === '${site}'`;
-    spec2.hconcat?.forEach((chartSpec) => {
+
+    // The control site is the baseline the others are projected from, so there
+    // is no Observed/Projected distinction to label.
+    spec.spec.encoding.color.legend = (site || currentSite) !== "Van Wyck";
+
+    return spec;
+}
+
+function buildAqSpec(site) {
+
+    const spec = cloneSpec(secondSpec);
+
+    spec.hconcat?.forEach((chartSpec) => {
         if (Array.isArray(chartSpec.transform) && chartSpec.transform[0]) {
             chartSpec.transform[0].filter = `datum.Site === '${site}'`;
         }
     });
-    spec.spec.encoding.color.legend = !isVanWyck;
-    
-    return { spec, spec2 };
+
+    return spec;
 }
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-// title helpers
+// panel geometry
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// Word-wrap a string to fit `maxPx` at the given font size, returning an array
-// of lines (Vega-Lite renders each array element as its own title line). A long
-// single-line title/subtitle otherwise stretches the whole canvas wider than
-// its container, regardless of how narrow the plotting panels are. The 0.6
-// factor is a conservative average glyph width (em) for sans-serif.
+// #cpVis is a plain facet — the width goes on the repeated panel spec.
 
-function wrapText(text, maxPx, fontSize) {
-    
-    const charsPerLine = Math.max(8, Math.floor(maxPx / (fontSize * 0.6)));
-    const lines = [];
-    
-    let line = "";
-    
-    for (const word of text.split(" ")) {
-        
-        const candidate = line ? line + " " + word : word;
-        
-        if (candidate.length > charsPerLine && line) {
-            lines.push(line);
-            line = word;
-        } else {
-            line = candidate;
-        }
-    }
-    
-    if (line) lines.push(line);
-    
-    return lines;
+function applyFacet(spec, { cols, spacing, pane }) {
+
+    spec.columns = cols;
+
+    if (spec.spacing != null) spec.spacing = spacing;
+    if (spec.spec?.width != null) spec.spec.width = pane;
+
 }
 
-// Wrap a spec's title + subtitle text to the container width. On a wide
-// (desktop) container the text fits on one line, so the spec is unchanged.
+// #aqChangeVis is an hconcat of four single-pollutant facets. `columns` is not
+// in the JSON schema for hconcat, but the compiler passes it straight through
+// to the Vega layout, so the four panes do reflow to a 2x2 grid — checked
+// against the compiled output. Don't "fix" this into a concat.
 
-function wrapTitle(spec, avail) {
-    
-    if (!spec.title) return;
-    
-    const tw = avail - 10;
-    
-    if (typeof spec.title.text === "string") {
-        spec.title.text = wrapText(spec.title.text, tw, spec.title.fontSize || 14);
-    }
-    
-    if (spec.title.subtitle != null) {
-        
-        const sub = Array.isArray(spec.title.subtitle) ? spec.title.subtitle : [spec.title.subtitle];
-        const out = [];
-        sub.forEach((s) => s ? out.push(...wrapText(s, tw, spec.title.subtitleFontSize || 12)) : out.push(""));
-        spec.title.subtitle = out;
-        
-    }
-}
+function applyHconcatFacet(spec, { cols, spacing, pane }) {
 
-// Vega-Lite's width:"container" doesn't work on faceted charts, so size the
-// panels ourselves. Drops 4 columns to 2 below Bootstrap's sm breakpoint
-// (576px), where panels are also allowed to grow past the authored 125 to
-// fill the row — desktop keeps 125 as a cap so wide layouts are unchanged.
+    spec.columns = cols;
 
-// Approximate width (px) of the y-axis label gutter in baseSpec's facets.
-// Tune this by comparing rendered widths in devtools — start around 26–30.
-const AXIS_LABEL_RESERVE = 28;
+    if (spec.spacing != null) spec.spacing = spacing;
 
-// Fixed chrome (px) the AQ change chart adds around its two hconcat panes —
-// axis labels plus the inter-pane gutter. Measured in-browser by rendering the
-// spec at panes of 137/145/150/155/160/165: svg width tracks 2 * pane + 46.
-// The tick labels differ per site (widest measured: Trans-Manhattan, 5px over
-// the CRZ baseline), so carry a few px of slack or the widest sites overflow.
-const AQ_ROW_CHROME = 46 + 8;
+    spec.hconcat?.forEach((chartSpec) => {
+        if (chartSpec?.spec?.width != null) chartSpec.spec.width = pane;
+    });
 
-// The authored spacing is a 4-column desktop gutter; at 2 columns it becomes a
-// single wide gap that strands most of the unused width in the middle of the row.
-const NARROW_FACET_SPACING = 20;
-
-function fitFacet(spec, el, widthOverride, axisReserve = 0) {
-
-    const avail = (el && el.clientWidth) || 600;
-    const cols = avail < 576 ? 2 : 4;
-    const spacing = cols === 2 ? NARROW_FACET_SPACING : (spec.spacing || 0);
-    const w = Math.floor((avail - spacing * (cols - 1)) / cols);
-
-    // Capping at the authored 125 keeps desktop identical, but on a narrow
-    // screen it leaves the row half empty — so only cap when not reflowed.
-    const maxPanel = cols === 2 ? Infinity : 125;
-    const panelWidth = widthOverride ?? Math.max(60, Math.min(w, maxPanel));
-
-    if (spec) {
-        spec.columns = cols;
-        if (spec.spacing != null) spec.spacing = spacing;
-    }
-
-    if (spec?.spec?.width != null) {
-        // shrink the plot area to make room for the y-axis gutter,
-        // so total column width (axis + plot) == panelWidth
-        spec.spec.width = Math.max(30, panelWidth - axisReserve);
-    }
-    
-    if (Array.isArray(spec?.hconcat)) {
-        spec.hconcat.forEach((chartSpec) => {
-            if (chartSpec?.spec?.width != null) {
-                // no axis here, so plot width == full panelWidth
-                chartSpec.spec.width = panelWidth;
-            }
-        });
-    }
-    
-    wrapTitle(spec, avail);
-    
-    return panelWidth; // raw pane width, pre-axis-reserve — pass to the paired chart
 }
 
 
@@ -661,64 +590,52 @@ async function draw(site) {
     cpEl.innerHTML = "";
     aqEl.innerHTML = "";
     
-    const { spec, spec2 } = specForSite(site);
-
     // Unhide before measuring: a container left display:none by a previous
-    // no-CI site reports clientWidth 0, so fitFacet would fall back to its
-    // 600px default and size panels and title wrapping for the wrong width.
+    // no-CI site reports clientWidth 0, so the panels and the wrapped title
+    // would be sized against fitChart's fallback width instead of the real one.
 
     const showCI = CP_SITES[site].showCI !== false;
 
     if (showCI) aqEl.style.display = "";
 
-    // Size both faceted charts to their containers before embedding. Once
-    // reflowed to 2 columns the AQ panes are derived from its own container
-    // rather than reusing the CP pane width, so the row fills the width instead
-    // of inheriting a gap; at desktop width the shared pane width already fits.
-    const panelWidth = fitFacet(spec, cpEl, undefined, AXIS_LABEL_RESERVE);
+    let cpLayout;
 
-    const aqAvail = aqEl.clientWidth || cpEl.clientWidth;
-
-    const aqPanelWidth = aqAvail < 576
-        ? Math.max(30, Math.floor((aqAvail - AQ_ROW_CHROME) / 2))
-        : panelWidth;
-
-    fitFacet(spec2, aqEl, aqPanelWidth);
-    
     try {
-        
-        await vegaEmbed(cpEl, spec, {
-            actions: false,
-            renderer: "svg",
-        });
-        
+
+        cpLayout = await embedFitted(cpEl, () => buildCpSpec(site), CP_FIT.ej, applyFacet);
+
         cpEl.style.minHeight = "";
-        
+
     } catch (err) {
-        
+
         console.error("CP Vega render failed:", err);
         cpEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
-        
+
     }
-    
+
     if (showCI) {
 
+        // Side by side on desktop the two charts share a panel width so their
+        // columns line up. Once reflowed, the AQ chart sizes from its own
+        // container instead, so the narrow row fills rather than inheriting
+        // a gap sized for a different grid.
+
+        const aqAvail = aqEl.clientWidth || cpEl.clientWidth;
+        const aligned = aqAvail >= 576 ? cpLayout?.pane : undefined;
+
         try {
-            await vegaEmbed(aqEl, spec2, {
-                actions: false,
-                renderer: "svg",
-            });
+            await embedFitted(aqEl, () => buildAqSpec(site), CP_FIT.aq, applyHconcatFacet, aligned);
             aqEl.style.minHeight = "";
         } catch (err) {
             console.error("AQ change Vega render failed:", err);
             aqEl.innerHTML = "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
         }
-        
+
     } else {
-        
+
         aqEl.style.display = "none";
         aqEl.style.minHeight = "";
-        
+
     }
 }
 
