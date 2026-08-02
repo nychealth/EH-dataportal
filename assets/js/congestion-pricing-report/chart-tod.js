@@ -210,9 +210,16 @@ function specForTODSite(site) {
 
 
 // Size the faceted panels to the container (Vega's width:"container" doesn't
-// work on facets). Only shrinks below the authored width (300); stacks the
-// panels into a single column and moves the right-side legend below the chart
-// below Bootstrap's sm breakpoint (576px), since the legend adds width.
+// work on facets). Stacks the panels into a single column and moves the
+// right-side legend below the chart below Bootstrap's sm breakpoint (576px),
+// since the legend adds width.
+
+// Chrome (px per column) that sits outside spec.spec.width — y-axis labels, and
+// in the 2-column layout the right-hand legend. Measured in-browser by rendering
+// the spec at several panel widths: svg width runs panelWidth + 38 stacked, and
+// 2 * panelWidth + spacing + 139 side-by-side.
+const TOD_AXIS_RESERVE_STACKED = 38;
+const TOD_AXIS_RESERVE_SIDE_BY_SIDE = 70;
 
 function fitTODFacet(spec, el) {
 
@@ -220,10 +227,16 @@ function fitTODFacet(spec, el) {
     const mobile = avail < 576;
     const cols = mobile ? 1 : 2;
     const spacing = 20; // Vega-Lite default facet spacing
-    const w = Math.floor((avail - spacing * (cols - 1)) / cols);
+    const reserve = cols === 1 ? TOD_AXIS_RESERVE_STACKED : TOD_AXIS_RESERVE_SIDE_BY_SIDE;
+    const w = Math.floor((avail - spacing * (cols - 1)) / cols) - reserve;
+
+    // Stacked into one column there is no reason to stop at the authored 300 —
+    // capping there strands the rest of the row (215px unused at a 553px
+    // container). Side-by-side keeps the cap so wide layouts are unchanged.
+    const maxPanel = cols === 1 ? Infinity : 300;
 
     spec.columns = cols;
-    spec.spec.width = Math.max(120, Math.min(w, 300));
+    spec.spec.width = Math.max(120, Math.min(w, maxPanel));
 
     if (mobile && spec.config && spec.config.legend) {
         spec.config.legend.orient = "bottom";
