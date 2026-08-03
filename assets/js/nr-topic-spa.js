@@ -182,20 +182,6 @@ const init = () => {
 
     };
 
-    // Returns the -sm variant class for inline comparison indicators
-    const getTertileSmClass = (rank, rankReverse) => {
-
-        const r = String(rank);
-        const reverse = rankReverse === true || rankReverse === 'true';
-
-        if (r === '1') return reverse ? 'better-sm' : 'worse-sm';
-        if (r === '3') return reverse ? 'worse-sm' : 'better-sm';
-        if (r === '2') return 'middle-sm';
-
-        return '';
-
-    };
-
     const getTertileInlineLabel = (rank, rankReverse) => {
 
         const r = String(rank);
@@ -364,7 +350,7 @@ const init = () => {
 
     // --- rendering ---
 
-    const buildIndicatorCard = (row, sectionId, neighborhoodName, accordionParentId) => {
+    const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
 
         const accId = nextAccordionId();
         const headingId = accId + '-h';
@@ -530,7 +516,7 @@ const init = () => {
         rows.forEach(row => {
 
             const card = document.createElement('div');
-            card.innerHTML = buildIndicatorCard(row, section.id, neighborhoodName, accordionParentId);
+            card.innerHTML = buildIndicatorCard(row, neighborhoodName, accordionParentId);
             container.appendChild(card);
 
         });
