@@ -320,6 +320,7 @@ const init = () => {
     // demographics sidebar
     // ----------------------------------------------------------------------- //
 
+    // Blanks every sidebar metric and hides both panels, for when no neighborhood resolves
     const clearDemographicsSidebar = () => {
 
         const metricIds = [
@@ -351,6 +352,7 @@ const init = () => {
     };
 
 
+    // Fills the sidebar from the uhflist row matching geocode, clearing it if there is none
     const renderDemographics = geocode => {
 
         debugLog('renderDemographics: enter:', geocode);
@@ -689,6 +691,7 @@ const init = () => {
     // CSV download
     // ----------------------------------------------------------------------- //
 
+    // Exports the active neighborhood's rows from the viz table as a CSV download
     const downloadCSV = () => {
 
         debugLog('downloadCSV: enter:', { hasVizTable: !!vizTable, currentNeighborhood });
@@ -729,6 +732,7 @@ const init = () => {
     // Vega map and bar chart
     // ----------------------------------------------------------------------- //
 
+    // Draws one indicator across all neighborhoods, with geocode's own value highlighted
     const renderNRMap = (data, destination, legendLabel, geocode) => {
 
         debugLog('renderNRMap: enter:', {
@@ -738,9 +742,13 @@ const init = () => {
             geocode
         });
 
-        // Build external geography URLs from the configured EHDP-data branch
+        // ----- build geography URLs ----- //
+
+        // Topojson is fetched by Vega at render time from the configured EHDP-data branch
         const boroTopoUrl = config.dataRepo + config.dataBranch + '/geography/borough.topo.json';
         const uhfTopoUrl = config.dataRepo + config.dataBranch + '/geography/UHF42.topo.json';
+
+        // ----- chart spec ----- //
 
         // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
         const spec = {
@@ -760,6 +768,9 @@ const init = () => {
             "vconcat": [
                 {
                     "layer": [
+
+                        // - - - borough fill, drawn first so it backs gaps in UHF coverage - - - //
+
                         {
                             "height": 300,
                             "width": "container",
@@ -769,6 +780,9 @@ const init = () => {
                             },
                             "mark": { "type": "geoshape", "stroke": "#fafafa", "fill": "#C5C5C5", "strokeWidth": 0.5 }
                         },
+
+                        // - - - UHF42 outlines, drawn under the data layer - - - //
+
                         {
                             "height": 300,
                             "width": "container",
@@ -778,6 +792,9 @@ const init = () => {
                             },
                             "mark": { "type": "geoshape", "stroke": "#a2a2a2", "fill": "#e7e7e7", "strokeWidth": 0.5 }
                         },
+
+                        // - - - indicator values, with the selected neighborhood outlined - - - //
+
                         {
                             "height": 300,
                             "width": "container",
@@ -831,6 +848,9 @@ const init = () => {
                         }
                     ]
                 },
+
+                // - - - bar strip, one bar per neighborhood sorted by value - - - //
+
                 {
                     "height": 80,
                     "width": "container",
@@ -870,12 +890,15 @@ const init = () => {
             ]
         };
 
-        // Embed into the target container and keep action menu enabled for debugging/export
+        // ----- embed ----- //
+
+        // Action menu stays enabled so readers can export the chart as PNG/SVG
         vegaEmbed(destination, spec, { actions: true });
 
     };
 
 
+    // Draws a panel's chart the first time it opens, so closed panels cost nothing
     const onAccordionExpand = event => {
 
         const panel = event.target;
@@ -883,13 +906,16 @@ const init = () => {
 
         debugLog('onAccordionExpand: enter:', panelId);
 
-        // Skip panels that have already been rendered
+        // ----- guard already-rendered ----- //
+
         if (renderedPanels[panelId]) {
             debugLog('onAccordionExpand: branch-already-rendered:', panelId);
             return;
         }
 
-        // Pull rendering inputs from data-* attributes stored on the collapse node
+        // ----- read rendering inputs ----- //
+
+        // buildIndicatorCard stashed these on the collapse node as data-* attributes
         const indicatorName = panel.getAttribute('data-indicator-name');
         const geocode = panel.getAttribute('data-geocode') || currentGeocode;
         const mapEl = panel.querySelector('.nr-map-container');
@@ -902,7 +928,8 @@ const init = () => {
 
         try {
 
-            // Collapse the dataset to the latest value per neighborhood before drawing
+            // ----- summarize to the latest value per neighborhood ----- //
+
             const summaryData = vizTable
                 .filter(aq.escape(d => d.indicator_data_name === indicatorName))
                 .select('geo_join_id', 'neighborhood', 'unmodified_data_value_geo_entity', 'end_date')
@@ -916,7 +943,8 @@ const init = () => {
                 .select(aq.not('end_date'))
                 .objects();
 
-            // Draw map and bar chart once summary data is available
+            // ----- render ----- //
+
             if (summaryData.length) {
 
                 debugLog('onAccordionExpand: branch-render-map:', { panelId, indicatorName, summaryRows: summaryData.length });
