@@ -63,7 +63,7 @@ related:
         <div class="narrow">
             <p>{{< updateflag data=`[
   {"src": "data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
-  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},
   {"src": "data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
   {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
   
@@ -205,19 +205,19 @@ related:
             <div class="tab-content mb-2" id="tabs-02-content">
                 <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
                     role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="High poverty neighborhoods" aria-label="choropleth map" id="datawrapper-chart-Ji3w3" src="//datawrapper.dwcdn.net/Ji3w3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" data-lazy-src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
                         <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" data-lazy-src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>

@@ -65,7 +65,7 @@ The following may increase the likelihood of a healthy pregnancy outcome:
 
 - Pregnant women should seek prenatal care in the first trimester of pregnancy, eat a nutritious and balanced diet and take folic acid beginning before conception, avoid being over or underweight and work with their doctors to control diabetes, high-blood pressure and sexually transmitted infections.
 - Health care providers should advise their patients about factors that affect birth outcomes, such as maternal smoking, drug and alcohol abuse, poor nutrition, stress, insufficient prenatal care, chronic illness or other medical problems.
-- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy.  Pregnant women and small children should stay out of the home until lead-paint projects are completed.
+- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy. Pregnant women and small children should stay out of the home until lead-paint projects are completed.
 - Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employers for the Material Safety Data Sheets for the products used.
 
 ### Key Messages

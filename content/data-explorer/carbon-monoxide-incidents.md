@@ -42,11 +42,11 @@ relatedData:
     url: "housing-safety"
 ---
 
-Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned.  It is invisible and has no odor.
+Carbon monoxide (CO) is a poisonous gas that forms when fuel or other materials are burned. It is invisible and has no odor.
 
-Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body.  Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.
+Even short-term exposure to high levels of carbon monoxide can be fatal. Carbon monoxide blocks oxygen transport in the body. Symptoms of mild carbon monoxide poisoning include headache, nausea, fatigue, dizziness and disorientation. Breathing high concentrations of carbon monoxide can cause somebody to lose consciousness and have permanent neurological injury - or even death.
 
-Rates of unintentional carbon monoxide poisoning have declined over the past three decades.  However, carbon monoxide remains a common cause of life-threatening and fatal poisonings.
+Rates of unintentional carbon monoxide poisoning have declined over the past three decades. However, carbon monoxide remains a common cause of life-threatening and fatal poisonings.
 
 ### About the data
 
@@ -68,5 +68,5 @@ Residents:
 
 - Call 311 if your landlord doesn't fix heating problems.
 - Test your detectors and replace batteries twice a year.
-- Never use a gas stove, oven or other cooking appliance to heat your home.  And never use unvented gas space heaters - they're illegal.
+- Never use a gas stove, oven or other cooking appliance to heat your home. And never use unvented gas space heaters - they're illegal.
 - Never run an emergency generator indoors or near any enclosed space, even if your power goes out. Keep it outside, far away from doors and windows.
