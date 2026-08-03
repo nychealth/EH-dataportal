@@ -56,8 +56,8 @@ const CP_SITES = {
         text: "<p>No. In Washington Heights near the Trans-Manhattan Expressway, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic increased by 3% from 2024 to 2025 and truck traffic remained the same.</p>"
     },
     "Van Wyck": {
-        displayName: "Van Wyck Expressway",
-        preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
+        displayName: "Control Site: Van Wyck Expressway",
+        preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false, isControlSite: true,
         mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
         badgeInfo: "The Van Wyck Expressway (Van Wyck) connects Queens to Jamaica and serves the airport area, handling significant traffic volumes that are not expected to be affected by congestion pricing. This is our control site.",
         text: "<p>This site is our control site. Here, there is no projected value because the values measured at this location are used to make the projected values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change is consistent with increasing traffic volumes throughout New York State.<li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p>"

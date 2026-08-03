@@ -16,13 +16,26 @@ const cp_container_id = "cpVis";
 const aq_container_id = "aqChangeVis";
 const text_container_id = "EJ_text"
 
-// Updates both the preposition span and the site name span in the heading
+// Updates the preposition and site name spans in the heading. The control
+// site (Van Wyck) isn't asking "did congestion pricing affect air quality"
+// of itself, so its heading collapses to just the site name.
 function updateSiteHeading(site) {
+    const isControl = CP_SITES[site].isControlSite === true;
+
+    const prefixEl = document.getElementById("site-question-prefix");
+    if (prefixEl) prefixEl.style.display = isControl ? "none" : "";
+
+    const prepWrapEl = document.getElementById("site-prep-wrap");
+    if (prepWrapEl) prepWrapEl.style.display = isControl ? "none" : "";
+
     const prepEl = document.getElementById("site-prep");
     if (prepEl) prepEl.textContent = CP_SITES[site].preposition;
-    
+
     const nameEl = document.getElementById("site-name");
     if (nameEl) nameEl.textContent = getSiteDisplayName(site);
+
+    const suffixEl = document.getElementById("site-question-suffix");
+    if (suffixEl) suffixEl.style.display = isControl ? "none" : "";
 }
 
 // Default selection
