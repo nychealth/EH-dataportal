@@ -400,7 +400,10 @@ const init = () => {
     // indicator card rendering
     // ----------------------------------------------------------------------- //
 
+    // Returns one indicator's accordion HTML — header button plus its collapse panel
     const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
+
+        // ----- resolve ids, value, and units ----- //
 
         const accId = nextAccordionId();
         const headingId = accId + '-h';
@@ -418,6 +421,8 @@ const init = () => {
         if (row.units) unitParts.push(row.units);
         const units = unitParts.join(' ').trim();
 
+        // ----- tertile pill ----- //
+
         // Tertile pill for the header row (production uses .worse/.better/.middle classes)
         const pillLabel = getTertileLabel(row.data_value_rank, row.rankReverse);
         const pillClass = getTertilePillClass(row.data_value_rank, row.rankReverse);
@@ -427,28 +432,32 @@ const init = () => {
             pillHTML = '<span class="' + pillClass + '">' + pillLabel + '</span>';
         }
 
+        // ----- header HTML ----- //
+
         const headerHTML =
             '<div class="card-header border-top" id="' + headingId + '">' +
                 '<h2 class="mb-0">' +
-                '<button class="btn btn-block btn-sm text-left" type="button" ' +
-                    'data-toggle="collapse" data-target="#' + collapseId + '" ' +
-                    'aria-expanded="false" aria-controls="' + collapseId + '">' +
-                    '<div class="row no-gutters d-print-none" style="width:100%">' +
-                        '<div class="col-7">' +
-                            '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
-                            '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
+                    '<button class="btn btn-block btn-sm text-left" type="button" ' +
+                        'data-toggle="collapse" data-target="#' + collapseId + '" ' +
+                        'aria-expanded="false" aria-controls="' + collapseId + '">' +
+                        '<div class="row no-gutters d-print-none" style="width:100%">' +
+                            '<div class="col-7">' +
+                                '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
+                                '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
+                            '</div>' +
+                            '<div class="col-3 pl-1">' +
+                                '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
+                                '<span class="fs-xs font-weight-normal">' + units + '</span>' +
+                            '</div>' +
+                            '<div class="col-2">' +
+                                '<div class="float-right mt-1">' + pillHTML + '</div>' +
+                            '</div>' +
                         '</div>' +
-                        '<div class="col-3 pl-1">' +
-                            '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
-                            '<span class="fs-xs font-weight-normal">' + units + '</span>' +
-                        '</div>' +
-                        '<div class="col-2">' +
-                            '<div class="float-right mt-1">' + pillHTML + '</div>' +
-                        '</div>' +
-                    '</div>' +
-                '</button>' +
+                    '</button>' +
                 '</h2>' +
             '</div>';
+
+        // ----- comparison blocks ----- //
 
         // Some indicators do not have comparative rank metadata
         const hasRank = row.data_value_rank != null;
@@ -502,6 +511,8 @@ const init = () => {
                 '</div>' +
             '</div>';
 
+        // ----- detail panel HTML ----- //
+
         // Keep data-* attributes on the collapse panel for lazy chart rendering
         const detailHTML =
             '<div id="' + collapseId + '" class="collapse border-bottom" ' +
@@ -535,6 +546,7 @@ const init = () => {
     };
 
 
+    // Fills one section's container with that neighborhood's cards, or a no-data message
     const renderSection = (section, neighborhoodName) => {
 
         debugLog('renderSection: enter:', { sectionId: section.id, neighborhoodName });
@@ -575,19 +587,25 @@ const init = () => {
     };
 
 
+    // Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL
     const renderAll = (neighborhoodName, mapGeocode) => {
 
         debugLog('renderAll: enter:', { neighborhoodName, mapGeocode });
+
+        // ----- reset per-render state ----- //
 
         // Record the active neighborhood used by downloads and rerenders
         currentNeighborhood = neighborhoodName;
         renderedPanels = {};
         accordionCounter = 0;
 
-        // Start empty and resolve from rows first, then map click, then name lookup
+        // ----- resolve geocode ----- //
+
+        // Ordered fallback: rows already loaded, then the map click, then a name lookup
         currentGeocode = null;
 
-        // Prefer geocodes found directly in loaded rows before fallback lookups
+        // - - - from rows already loaded - - - //
+
         for (const sid in sectionData) {
 
             const nb = sectionData[sid][neighborhoodName];
@@ -610,7 +628,8 @@ const init = () => {
 
         }
 
-        // Map click geocode is used when no geocode is discoverable in report rows
+        // - - - from the map click - - - //
+
         if (
             (currentGeocode == null || currentGeocode === '') &&
             mapGeocode != null &&
@@ -620,17 +639,22 @@ const init = () => {
             currentGeocode = mapGeocode;
         }
 
-        // Last fallback: resolve geocode by matching display name in neighborhood metadata
+        // - - - from display-name lookup - - - //
+
         if (currentGeocode == null || currentGeocode === '') {
             debugLog('renderAll: branch-fallback-display-name-lookup:', neighborhoodName);
             currentGeocode = getUhfIdForDisplayName(neighborhoodName);
         }
 
+        // ----- render sections ----- //
+
         config.sections.forEach(section => {
             renderSection(section, neighborhoodName);
         });
 
-        // Show the report header and fill in the neighborhood name
+        // ----- fill headers ----- //
+
+        // Both header blocks are display:none in the layout until a neighborhood is picked
         const reportHeader = document.getElementById('nr-report-header');
         const headerNeighborhood = document.getElementById('nr-header-neighborhood');
 
@@ -642,14 +666,16 @@ const init = () => {
             headerNeighborhood.textContent = neighborhoodName;
         }
 
-        // Mobile title
+        // The narrow layout carries its own copy of the title
         const mobileTitle = document.getElementById('nr-mobile-title');
         const mobileNeighborhood = document.getElementById('nr-mobile-neighborhood');
 
         if (mobileTitle) mobileTitle.style.display = '';
         if (mobileNeighborhood) mobileNeighborhood.textContent = neighborhoodName;
 
-        // Refresh demographics after geocode resolution is complete
+        // ----- demographics and deep-link state ----- //
+
+        // Sidebar metrics are keyed by geocode, so this has to follow the resolution above
         renderDemographics(currentGeocode);
 
         // Synchronize deep-link state after the page content has been refreshed
