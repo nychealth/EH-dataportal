@@ -18,18 +18,18 @@
 // Named init function used in place of an IIFE so early returns remain available
 const init = () => {
 
-    console.log('bootstrap: start');
+    debugLog('bootstrap: start');
 
     // Read server-injected SPA configuration from the global scope
     const config = window.NR_TOPIC_SPA_CONFIG;
 
     if (!config || !config.sections || !config.sections.length) {
-        console.log('bootstrap: missing-config:', config);
+        debugLog('bootstrap: missing-config:', config);
         return;
     }
 
     if (!document.getElementById('nr-map')) {
-        console.log('bootstrap: missing-map-container');
+        debugLog('bootstrap: missing-map-container');
         return;
     }
 
@@ -69,7 +69,7 @@ const init = () => {
         const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
         const slug = pathParts[pathParts.length - 1];
 
-        console.log('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
+        debugLog('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
 
         if (config.neighborhoodMap[slug]) {
             return config.neighborhoodMap[slug];
@@ -92,7 +92,7 @@ const init = () => {
 
     const setNeighborhoodInURL = name => {
 
-        console.log('setNeighborhoodInURL: enter:', name);
+        debugLog('setNeighborhoodInURL: enter:', name);
 
         // Update the browser's address bar to show the neighborhood in the path, e.g.
         //   /neighborhood-reports/asthma_and_the_environment/east_new_york
@@ -120,7 +120,7 @@ const init = () => {
 
     const updateTopicLinks = neighborhoodName => {
 
-        console.log('updateTopicLinks: enter:', neighborhoodName);
+        debugLog('updateTopicLinks: enter:', neighborhoodName);
 
         // When the user clicks a topic tab (e.g. switching from Asthma to Housing),
         // we need the new topic page to open with the same neighborhood pre-selected.
@@ -320,10 +320,10 @@ const init = () => {
 
     const renderDemographics = geocode => {
 
-        console.log('renderDemographics: enter:', geocode);
+        debugLog('renderDemographics: enter:', geocode);
 
         if (typeof neighborhoods === 'undefined' || geocode == null || geocode === '') {
-            console.log('renderDemographics: branch-clear-missing-neighborhoods-or-geocode');
+            debugLog('renderDemographics: branch-clear-missing-neighborhoods-or-geocode');
             clearDemographicsSidebar();
             return;
         }
@@ -331,7 +331,7 @@ const init = () => {
         const here = neighborhoods.filter(n => n.UHF_id == geocode);
 
         if (!here.length) {
-            console.log('renderDemographics: branch-clear-no-match:', geocode);
+            debugLog('renderDemographics: branch-clear-no-match:', geocode);
             clearDemographicsSidebar();
             return;
         }
@@ -500,13 +500,13 @@ const init = () => {
 
     const renderSection = (section, neighborhoodName) => {
 
-        console.log('renderSection: enter:', { sectionId: section.id, neighborhoodName });
+        debugLog('renderSection: enter:', { sectionId: section.id, neighborhoodName });
 
         // Section containers are layout-driven and may be absent in some templates
         const container = document.getElementById(section.containerId);
 
         if (!container) {
-            console.log('renderSection: branch-missing-container:', section.containerId);
+            debugLog('renderSection: branch-missing-container:', section.containerId);
             return;
         }
 
@@ -518,7 +518,7 @@ const init = () => {
         container.innerHTML = '';
 
         if (!rows.length) {
-            console.log('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
+            debugLog('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
             container.innerHTML =
                 '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
             return;
@@ -539,7 +539,7 @@ const init = () => {
 
     const renderAll = (neighborhoodName, mapGeocode) => {
 
-        console.log('renderAll: enter:', { neighborhoodName, mapGeocode });
+        debugLog('renderAll: enter:', { neighborhoodName, mapGeocode });
 
         // Record the active neighborhood used by downloads and rerenders
         currentNeighborhood = neighborhoodName;
@@ -563,7 +563,7 @@ const init = () => {
                         : row0.geo_entity_id;
 
                 if (gj != null && gj !== '') {
-                    console.log('renderAll: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
+                    debugLog('renderAll: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
                     currentGeocode = gj;
                     break;
                 }
@@ -578,13 +578,13 @@ const init = () => {
             mapGeocode != null &&
             mapGeocode !== ''
         ) {
-            console.log('renderAll: branch-fallback-map-geocode:', mapGeocode);
+            debugLog('renderAll: branch-fallback-map-geocode:', mapGeocode);
             currentGeocode = mapGeocode;
         }
 
         // Last fallback: resolve geocode by matching display name in neighborhood metadata
         if (currentGeocode == null || currentGeocode === '') {
-            console.log('renderAll: branch-fallback-display-name-lookup:', neighborhoodName);
+            debugLog('renderAll: branch-fallback-display-name-lookup:', neighborhoodName);
             currentGeocode = getUhfIdForDisplayName(neighborhoodName);
         }
 
@@ -624,11 +624,11 @@ const init = () => {
 
     const downloadCSV = () => {
 
-        console.log('downloadCSV: enter:', { hasVizTable: !!vizTable, currentNeighborhood });
+        debugLog('downloadCSV: enter:', { hasVizTable: !!vizTable, currentNeighborhood });
 
         // Export only if both the viz table and active neighborhood are available
         if (!vizTable || !currentNeighborhood) {
-            console.log('downloadCSV: branch-missing-prereqs');
+            debugLog('downloadCSV: branch-missing-prereqs');
             return;
         }
 
@@ -660,7 +660,7 @@ const init = () => {
 
     const renderNRMap = (data, destination, legendLabel, geocode) => {
 
-        console.log('renderNRMap: enter:', {
+        debugLog('renderNRMap: enter:', {
             rowCount: data && data.length,
             destination,
             legendLabel,
@@ -809,11 +809,11 @@ const init = () => {
         const panel = event.target;
         const panelId = panel.id;
 
-        console.log('onAccordionExpand: enter:', panelId);
+        debugLog('onAccordionExpand: enter:', panelId);
 
         // Skip panels that have already been rendered
         if (renderedPanels[panelId]) {
-            console.log('onAccordionExpand: branch-already-rendered:', panelId);
+            debugLog('onAccordionExpand: branch-already-rendered:', panelId);
             return;
         }
 
@@ -824,7 +824,7 @@ const init = () => {
 
         // If required inputs are missing, keep the panel open but do not attempt render
         if (!indicatorName || !mapEl || !vizTable) {
-            console.log('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl, hasVizTable: !!vizTable });
+            debugLog('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl, hasVizTable: !!vizTable });
             return;
         }
 
@@ -847,7 +847,7 @@ const init = () => {
             // Draw map and bar chart once summary data is available
             if (summaryData.length) {
 
-                console.log('onAccordionExpand: branch-render-map:', { panelId, indicatorName, summaryRows: summaryData.length });
+                debugLog('onAccordionExpand: branch-render-map:', { panelId, indicatorName, summaryRows: summaryData.length });
 
                 mapEl.innerHTML = '';
 
@@ -855,14 +855,14 @@ const init = () => {
 
                 // Fall back to a generic legend title when no unit text is available
                 if (!legendLabel || !String(legendLabel).trim()) {
-                    console.log('onAccordionExpand: branch-default-legend-label');
+                    debugLog('onAccordionExpand: branch-default-legend-label');
                     legendLabel = 'Value';
                 }
 
                 renderNRMap(summaryData, '#' + mapEl.id, legendLabel, geocode);
 
             } else {
-                console.log('onAccordionExpand: branch-no-summary-data:', indicatorName);
+                debugLog('onAccordionExpand: branch-no-summary-data:', indicatorName);
                 mapEl.innerHTML = '<p class="text-muted small">No chart data available.</p>';
             }
 
@@ -990,10 +990,10 @@ const init = () => {
 
         // Ignore click-driven render until all report and viz payloads have loaded
         if (dataReady) {
-            console.log('onMapClick: branch-render-all:', { name, geocode });
+            debugLog('onMapClick: branch-render-all:', { name, geocode });
             renderAll(name, geocode);
         } else {
-            console.log('onMapClick: branch-data-not-ready:', { name, geocode });
+            debugLog('onMapClick: branch-data-not-ready:', { name, geocode });
         }
 
     };
@@ -1017,7 +1017,7 @@ const init = () => {
 
     const initLeafletMap = () => {
 
-        console.log('initLeafletMap: enter:', config.geojsonUrl);
+        debugLog('initLeafletMap: enter:', config.geojsonUrl);
 
         // Initialize Leaflet with a neutral NYC-centered default view
         leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
@@ -1038,7 +1038,7 @@ const init = () => {
             .then(res => res.json())
             .then(data => {
 
-                console.log('initLeafletMap: branch-geojson-loaded:', { featureCount: data && data.features && data.features.length });
+                debugLog('initLeafletMap: branch-geojson-loaded:', { featureCount: data && data.features && data.features.length });
 
                 uhfLayer = L.geoJSON(data, {
                     style: styleFeature,
@@ -1053,7 +1053,7 @@ const init = () => {
             .catch(err => {
 
                 console.error('Error loading UHF42 GeoJSON:', err);
-                console.log('initLeafletMap: branch-geojson-load-failed:', err);
+                debugLog('initLeafletMap: branch-geojson-load-failed:', err);
                 mapReady = true;
                 tryInitialRender();
 
@@ -1065,11 +1065,11 @@ const init = () => {
 
     const tryInitialRender = () => {
 
-        console.log('tryInitialRender: enter:', { dataReady, mapReady });
+        debugLog('tryInitialRender: enter:', { dataReady, mapReady });
 
         // Guard initial render until both data payloads and map geometry are ready
         if (!dataReady || !mapReady) {
-            console.log('tryInitialRender: branch-waiting');
+            debugLog('tryInitialRender: branch-waiting');
             return;
         }
 
@@ -1078,11 +1078,11 @@ const init = () => {
 
         if (fromURL) {
 
-            console.log('tryInitialRender: branch-from-url:', fromURL);
+            debugLog('tryInitialRender: branch-from-url:', fromURL);
 
             const layer = findLayerByName(fromURL);
             if (layer) {
-                console.log('tryInitialRender: branch-select-layer-from-url');
+                debugLog('tryInitialRender: branch-select-layer-from-url');
                 selectLayer(layer, true);
             }
 
@@ -1094,13 +1094,13 @@ const init = () => {
 
     const checkAllLoaded = () => {
 
-        console.log('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
+        debugLog('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
 
         fetchesComplete++;
 
         // Trigger initial render once all sections and viz data have loaded
         if (fetchesComplete >= totalFetches) {
-            console.log('checkAllLoaded: branch-ready');
+            debugLog('checkAllLoaded: branch-ready');
             dataReady = true;
             tryInitialRender();
         }
@@ -1111,7 +1111,7 @@ const init = () => {
     // reject them or fail inconsistently. Encode the last path segment if needed
     const normalizeReportUrl = url => {
 
-        console.log('normalizeReportUrl: enter:', url);
+        debugLog('normalizeReportUrl: enter:', url);
 
         // Normalize only when needed so already-safe URLs remain untouched
         if (!url || url.indexOf(' ') === -1) return url;
@@ -1136,11 +1136,11 @@ const init = () => {
             parts[parts.length - 1] = last;
             u.pathname = '/' + parts.join('/');
 
-            console.log('normalizeReportUrl: branch-encoded:', u.href);
+            debugLog('normalizeReportUrl: branch-encoded:', u.href);
             return u.href;
 
         } catch (err) {
-            console.log('normalizeReportUrl: branch-parse-failed:', err);
+            debugLog('normalizeReportUrl: branch-parse-failed:', err);
             return url;
         }
 
@@ -1148,7 +1148,7 @@ const init = () => {
 
     const loadSection = section => {
 
-        console.log('loadSection: enter:', { sectionId: section.id, reportUrl: section.reportUrl });
+        debugLog('loadSection: enter:', { sectionId: section.id, reportUrl: section.reportUrl });
 
         fetch(normalizeReportUrl(section.reportUrl))
             .then(res => {
@@ -1160,7 +1160,7 @@ const init = () => {
                 // Non-array responses are treated as empty to keep rendering resilient
                 const rows = Array.isArray(data) ? data : [];
 
-                console.log('loadSection: branch-data-loaded:', { sectionId: section.id, rowCount: rows.length });
+                debugLog('loadSection: branch-data-loaded:', { sectionId: section.id, rowCount: rows.length });
 
                 // Build neighborhood buckets once during load for faster rerenders
                 const byNeighborhood = {};
@@ -1193,7 +1193,7 @@ const init = () => {
             })
             .catch(error => {
                 console.error('Error loading section "' + section.id + '":', error);
-                console.log('loadSection: branch-load-failed:', { sectionId: section.id, error });
+                debugLog('loadSection: branch-load-failed:', { sectionId: section.id, error });
                 sectionData[section.id] = {};
             })
             .then(checkAllLoaded);
@@ -1202,23 +1202,23 @@ const init = () => {
 
     const loadVizData = () => {
 
-        console.log('loadVizData: enter:', config.vizUrl);
+        debugLog('loadVizData: enter:', config.vizUrl);
 
         // If no viz URL is configured, continue with section-only rendering
         if (!config.vizUrl) {
-            console.log('loadVizData: branch-no-viz-url');
+            debugLog('loadVizData: branch-no-viz-url');
             checkAllLoaded();
             return;
         }
 
         aq.loadJSON(config.vizUrl, { autoMax: 10000, parse: { time: String } })
             .then(table => {
-                console.log('loadVizData: branch-data-loaded:', table && table.numRows && table.numRows());
+                debugLog('loadVizData: branch-data-loaded:', table && table.numRows && table.numRows());
                 vizTable = table;
             })
             .catch(error => {
                 console.error('Error loading viz data:', error);
-                console.log('loadVizData: branch-load-failed:', error);
+                debugLog('loadVizData: branch-load-failed:', error);
                 vizTable = null;
             })
             .then(checkAllLoaded);
