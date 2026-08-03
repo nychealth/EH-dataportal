@@ -75,7 +75,7 @@ This is the most complete evaluation to date, using deeply detailed models and m
   </div>
     <div class="col-md-4 card content-card">
     <div class="card-content primary card-body">
-      <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE), levels of one pollutant didn't improve as much as would be expected.</p>
+      <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE) levels of one pollutant didn't improve as much as would be expected in comparison to changes at the control site.</p>
     </div>
   </div>
 </div>
