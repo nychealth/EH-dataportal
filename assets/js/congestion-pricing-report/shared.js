@@ -32,14 +32,14 @@ const CP_SITES = {
         preposition: "near the", hasTOD: true, badgeKey: "bqe",
         mapCoords: { lat: 40.705511, lng: -73.958846, zoom: 16 },
         badgeInfo: "The Brooklyn-Queens Expressway (BQE) between Metropolitan Avenue and DUMBO in the South Williamsburg neighborhood.",
-        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been without the program. From the traffic count analysis, total traffic decreased by 2% from 2024 to 2025, and truck traffic decreased by 3%. Nitric Oxide (NO) levels decreased, but were significantly higher than we would have expected based on greater reductions at the control site. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing. We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
+        text: "<p>No. In South Williamsburg near the BQE, the measured levels of NO2, PM2.5 and BC were not significantly different than they would have been without the program. From the traffic count analysis, total traffic decreased by 2% from 2024 to 2025 and truck traffic decreased by 3%.</p><p>Nitric Oxide (NO) levels decreased but were higher than we would have expected in comparison to changes at the control site. This result was statistically significant. If we only looked at the statistics, we'd say congestion pricing prevented NO from decreasing as much as it would have without the tolling program, but the decrease in traffic volume suggests there may be some other pollution source that coincided with the start of congestion pricing.</p><p>We are continuing to collect data throughout 2026 and will be able to more closely examine these patterns over time.</p>"
     },
     "SI Expwy": {
         displayName: "Staten Island Expressway",
         preposition: "near the", hasTOD: true, badgeKey: "si-exwy",
         mapCoords: { lat: 40.609209, lng: -74.151182, zoom: 14 },
         badgeInfo: "The Staten Island Expressway (SI Expwy) and connections to the Bayonne Bridge in the Port Richmond and Bulls Head neighborhoods.",
-        text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%. At a nearby location on the Staten Island Expressway, total traffic increased by 5% while truck traffic decreased by 2% in the same time period.</p>"
+        text: "<p>No. In Port Richmond, the measured pollution levels were not significantly different than they would have been without the program. From the traffic count analysis, total traffic increased by 4% from 2024 to 2025 and truck traffic increased by 10%. At a nearby location on the Staten Island Expressway, total traffic increased by 5% while truck traffic decreased by 2% from 2024 to 2025.</p>"
     },
     "FDR": {
         displayName: "FDR Drive",
@@ -60,12 +60,12 @@ const CP_SITES = {
         preposition: "near the", hasTOD: true, badgeKey: "van-wyck", showCI: false,
         mapCoords: { lat: 40.690155, lng: -73.80908, zoom: 16 },
         badgeInfo: "The Van Wyck Expressway (Van Wyck) connects Queens to Jamaica and serves the airport area, handling significant traffic volumes that are not expected to be affected by congestion pricing. This is our control site.",
-        text: "<p>This site is our control site. Here, the observed value is the same as the hypothetical value because the measured values are used to make the hypothetical values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change reflects a general trend of increasing traffic volume throughout New York State. <li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p> "
+        text: "<p>This site is our control site. Here, there is no projected value because the values measured at this location are used to make the projected values at other sites.<ul><li>Total traffic increased 4% from 2024 to 2025 and truck traffic increased 5%. This change is consistent with increasing traffic volumes throughout New York State.<li>In nearby neighborhoods, PM2.5 and NO2 changed very little while NO and BC decreased, reflecting the general trends in air quality throughout NYC and the region.</ul></p>"
     },
     "CRZ": {
         displayName: "congestion relief zone",
         preposition: "in the", hasTOD: false,
-        text: "<p>No. When we look at the 11 NYCCAS sites inside the CRZ as a group, the measured pollution levels were not significantly different than they would have been without the program.</p>"
+        text: "<p>No. When we average the 11 NYCCAS sites inside the CRZ, the measured pollution levels were not significantly different than they would have been without the program. Entries to the CRZ, the FDR Dr, and the West Side Highway were 11% fewer in 2025 than before tolling began, as reported in the CRZ Tolling First Evaluation Report.</p>"
     },
     "Rest of the city": {
         displayName: "rest of the city",
