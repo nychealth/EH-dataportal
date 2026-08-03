@@ -1272,7 +1272,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "page_name": "port_richmond",
         "pop_pct_of_cd": 39.652519,
         "percent": 42.350666

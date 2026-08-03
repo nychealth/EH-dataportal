@@ -1560,7 +1560,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "percent": 45.242868,
         "page_name": "port_richmond",
         "pop_pct_of_ccd": 41.717762
@@ -1607,7 +1607,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "percent": 1.606992,
         "page_name": "port_richmond",
         "pop_pct_of_ccd": 3.046887
