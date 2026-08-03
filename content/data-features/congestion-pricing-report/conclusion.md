@@ -16,7 +16,7 @@ However, the documented benefits of congestion pricing — [reduced congestion, 
 ##### ​Resources​
 
 * [MTABT CRZ Tolling Page](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone)
-* [MTA Open Datasets](https://metrics.mta.info/%20)
+* [MTA Open Datasets](https://metrics.mta.info)
 * [Detailed Traffic Analysis Methodology Appendix (PDF)​](embeds/CRZ_Report_Appendix.pdf)
 * [New York State DOT Traffic Dataviewer​](https://nysdottrafficdata.drakewell.com/publicmultinodemap.asp)
 * [US EPA Air Quality System](https://www.epa.gov/aqs)
