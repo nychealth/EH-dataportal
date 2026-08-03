@@ -272,6 +272,10 @@ const init = () => {
     };
 
 
+    // ----------------------------------------------------------------------- //
+    // id, escaping, and name lookup
+    // ----------------------------------------------------------------------- //
+
     // Cards are numbered in one sequence across all sections, in render order
     let accordionCounter = 0;
 
