@@ -468,11 +468,9 @@ const renderTrendChart = (
             },
             {
                 "window": [
-                    {
-                        "op": "row_number",
-                        "as": "index"
-                    }
-                ]
+                    { "op": "row_number", "as": "index" }
+                ],
+                "sort": [{ "field": "end_period", "order": "ascending" }]
             },
             {
                 "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
@@ -491,7 +489,7 @@ const renderTrendChart = (
                 "as": "year_end_period"
             },
             {
-                "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
+                "calculate": "(datum.TimeType !== 'quarter' && datum.index % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
                 "as": "fallbackYear"
             },
             {
