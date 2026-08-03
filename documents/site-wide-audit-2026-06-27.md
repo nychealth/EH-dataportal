@@ -768,6 +768,13 @@ the rule PENDING; drop that marker once the DE branch merges.
 - `assets/js/nr-topic-spa.js` (945 lines) has no file-header banner and no comment
   hierarchy, and its 46 `console.log` calls are unconditional — they ship to
   production. Recorded as a known gap, not scheduled.
+  **Resolved in part 2026-08-03 on `feature-MOD-Lab-NR-recode-refactor`:** the file
+  gained a header banner and an 11-section comment hierarchy, growing from 945 to
+  1,380 lines through Stage 3d; all 46 traces route through `debugLog` (the 4
+  `console.error` calls are kept, since smoke and the characterization harness key on
+  console errors). Conventions work is complete for persistence, helpers, indicator
+  card rendering, demographics, CSV and the Vega charts; Leaflet, data loading and
+  bootstrap remain. Plan at `~/.claude/plans/nr-spa-js-conventions.md`.
 - `global.js` on `feature-new-data-explorer` uses two `function` declarations where
   the merged doc prefers named arrow functions.
 - `assets/js/site.js` is empty (0 lines).
