@@ -1,4 +1,9 @@
-// Topic-centric Neighborhood Reports viewer
+// ======================================================================= //
+// nr-topic-spa.js
+// ======================================================================= //
+
+// Topic-centric Neighborhood Reports viewer: a Leaflet neighborhood selector
+// driving an accordion of indicator cards with Vega map and bar charts
 //
 // Expects window.NR_TOPIC_SPA_CONFIG set by the Hugo layout with:
 //   - sections: array of { id, containerId, reportUrl } objects, one per report_topic
@@ -33,6 +38,11 @@ const init = () => {
         return;
     }
 
+
+    // ----------------------------------------------------------------------- //
+    // shared state
+    // ----------------------------------------------------------------------- //
+
     // Per-section data store: sectionId -> { neighborhoodName -> rows[] }
     const sectionData = {};
 
@@ -56,7 +66,10 @@ const init = () => {
     let dataReady = false;
     let mapReady = false;
 
-    // --- URL param persistence ---
+
+    // ----------------------------------------------------------------------- //
+    // neighborhood persistence
+    // ----------------------------------------------------------------------- //
 
     const getNeighborhoodFromURL = () => {
 
@@ -90,6 +103,7 @@ const init = () => {
 
     };
 
+
     const setNeighborhoodInURL = name => {
 
         debugLog('setNeighborhoodInURL: enter:', name);
@@ -118,6 +132,7 @@ const init = () => {
 
     };
 
+
     const updateTopicLinks = neighborhoodName => {
 
         debugLog('updateTopicLinks: enter:', neighborhoodName);
@@ -143,7 +158,10 @@ const init = () => {
 
     };
 
-    // --- helpers ---
+
+    // ----------------------------------------------------------------------- //
+    // tertile and comparison helpers
+    // ----------------------------------------------------------------------- //
 
     const getTertileLabel = (rank, rankReverse) => {
 
@@ -168,6 +186,7 @@ const init = () => {
 
     };
 
+
     // Returns the production CSS pill class: worse, better, or middle
     const getTertilePillClass = (rank, rankReverse) => {
 
@@ -181,6 +200,7 @@ const init = () => {
         return '';
 
     };
+
 
     const getTertileInlineLabel = (rank, rankReverse) => {
 
@@ -206,6 +226,7 @@ const init = () => {
         return '';
 
     };
+
 
     const getComparison = (neighVal, refVal, rankReverse) => {
 
@@ -238,10 +259,12 @@ const init = () => {
 
     };
 
+
     let accordionCounter = 0;
 
     // Generate unique IDs so collapse/expand controls are correctly paired
     const nextAccordionId = () => 'nr-acc-' + (++accordionCounter);
+
 
     // Safe for double-quoted HTML attributes (e.g. data-legend-label)
     const escapeAttr = value => {
@@ -251,12 +274,14 @@ const init = () => {
 
     };
 
+
     // uhflist.js has one known typo: "Crotona -Tremont" (missing space after dash)
     // EHDP-data report JSONs use "Crotona - Tremont". This map corrects it so
     // lookups against report data and sidebar demographics stay aligned
     const nameCorrections = {
         'Crotona -Tremont': 'Crotona - Tremont'
     };
+
 
     const getUhfIdForDisplayName = displayName => {
 
@@ -272,7 +297,10 @@ const init = () => {
 
     };
 
-    // --- demographics sidebar ---
+
+    // ----------------------------------------------------------------------- //
+    // demographics sidebar
+    // ----------------------------------------------------------------------- //
 
     const clearDemographicsSidebar = () => {
 
@@ -303,6 +331,7 @@ const init = () => {
         if (zipPanel) zipPanel.style.display = 'none';
 
     };
+
 
     const renderDemographics = geocode => {
 
@@ -348,7 +377,10 @@ const init = () => {
 
     };
 
-    // --- rendering ---
+
+    // ----------------------------------------------------------------------- //
+    // indicator card rendering
+    // ----------------------------------------------------------------------- //
 
     const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
 
@@ -484,6 +516,7 @@ const init = () => {
 
     };
 
+
     const renderSection = (section, neighborhoodName) => {
 
         debugLog('renderSection: enter:', { sectionId: section.id, neighborhoodName });
@@ -522,6 +555,7 @@ const init = () => {
         });
 
     };
+
 
     const renderAll = (neighborhoodName, mapGeocode) => {
 
@@ -606,7 +640,10 @@ const init = () => {
 
     };
 
-    // --- CSV download ---
+
+    // ----------------------------------------------------------------------- //
+    // CSV download
+    // ----------------------------------------------------------------------- //
 
     const downloadCSV = () => {
 
@@ -640,9 +677,13 @@ const init = () => {
 
     };
 
+
     window.nrDownloadCSV = downloadCSV;
 
-    // --- Vega map + bar chart ---
+
+    // ----------------------------------------------------------------------- //
+    // Vega map and bar chart
+    // ----------------------------------------------------------------------- //
 
     const renderNRMap = (data, destination, legendLabel, geocode) => {
 
@@ -790,6 +831,7 @@ const init = () => {
 
     };
 
+
     const onAccordionExpand = event => {
 
         const panel = event.target;
@@ -862,7 +904,14 @@ const init = () => {
 
     };
 
-    // --- Leaflet neighborhood selector map ---
+
+    // ----------------------------------------------------------------------- //
+    // Leaflet selector map
+    // ----------------------------------------------------------------------- //
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // polygon styles
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const defaultStyle = {
         weight: 1.5,
@@ -873,6 +922,7 @@ const init = () => {
         fillColor: '#008939'
     };
 
+
     const highlightStyle = {
         weight: 3,
         color: '#008939',
@@ -880,8 +930,10 @@ const init = () => {
         fillOpacity: 0.5
     };
 
+
     // Base style for all UHF polygons before hover/selection overrides
     const styleFeature = () => defaultStyle;
+
 
     const highlightFeature = e => {
 
@@ -891,6 +943,7 @@ const init = () => {
         layer.bringToFront();
 
     };
+
 
     const resetHighlight = e => {
 
@@ -903,6 +956,7 @@ const init = () => {
         layer.setStyle({ weight: 1.5, color: 'black', dashArray: '1' });
 
     };
+
 
     const selectLayer = (layer, zoom) => {
 
@@ -919,6 +973,11 @@ const init = () => {
 
     };
 
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // layer lookup
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
     const geocodeToName = geocode => {
 
         // Resolve UHF geocode to display name used by report rows
@@ -931,6 +990,7 @@ const init = () => {
         return nameCorrections[name] || name;
 
     };
+
 
     const findLayerByGeocode = geocode => {
 
@@ -949,6 +1009,7 @@ const init = () => {
 
     };
 
+
     const findLayerByName = name => {
 
         // Convert display name -> UHF id -> Leaflet layer
@@ -964,6 +1025,11 @@ const init = () => {
         return findLayerByGeocode(entry.UHF_id);
 
     };
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // event handlers
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
     const onMapClick = e => {
 
@@ -984,6 +1050,7 @@ const init = () => {
 
     };
 
+
     const onEachFeature = (feature, layer) => {
 
         // Attach tooltip and pointer handlers for each UHF polygon
@@ -1000,6 +1067,7 @@ const init = () => {
         });
 
     };
+
 
     const initLeafletMap = () => {
 
@@ -1047,7 +1115,10 @@ const init = () => {
 
     };
 
-    // --- data loading ---
+
+    // ----------------------------------------------------------------------- //
+    // data loading
+    // ----------------------------------------------------------------------- //
 
     const tryInitialRender = () => {
 
@@ -1078,6 +1149,7 @@ const init = () => {
 
     };
 
+
     const checkAllLoaded = () => {
 
         debugLog('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
@@ -1092,6 +1164,7 @@ const init = () => {
         }
 
     };
+
 
     // GitHub raw URLs must not contain literal spaces in the path; some clients
     // reject them or fail inconsistently. Encode the last path segment if needed
@@ -1131,6 +1204,7 @@ const init = () => {
         }
 
     };
+
 
     const loadSection = section => {
 
@@ -1186,6 +1260,7 @@ const init = () => {
 
     };
 
+
     const loadVizData = () => {
 
         debugLog('loadVizData: enter:', config.vizUrl);
@@ -1211,7 +1286,10 @@ const init = () => {
 
     };
 
-    // --- init ---
+
+    // ----------------------------------------------------------------------- //
+    // bootstrap
+    // ----------------------------------------------------------------------- //
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
