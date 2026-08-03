@@ -71,14 +71,15 @@ const init = () => {
     // neighborhood persistence
     // ----------------------------------------------------------------------- //
 
+    // Resolves the neighborhood for this page load, from the path first and the bridge second
     const getNeighborhoodFromURL = () => {
 
-        // Two-step lookup for the active neighborhood on page load.
-        //
-        // Step 1 — path: handles externally shared or bookmarked URLs like
+        // ----- step 1: neighborhood slug in the path ----- //
+
+        // Covers externally shared and bookmarked URLs like
         //   /neighborhood-reports/asthma_and_the_environment/east_new_york
-        // On production, IIS rewrites these to serve the topic page, and the slug
-        // is still visible in the path for us to read here.
+        // On production IIS rewrites those to serve the topic page, leaving the slug
+        // visible in the path for this lookup to read
         const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
         const slug = pathParts[pathParts.length - 1];
 
@@ -88,12 +89,15 @@ const init = () => {
             return config.neighborhoodMap[slug];
         }
 
-        // Step 2 — sessionStorage: handles internal navigation from the landing page,
-        // topic tabs, neighborhood cards, and the 404 fallback. Each of those entry
-        // points stores the neighborhood slug before navigating to the clean topic URL,
-        // so the page load never hits the server with a neighborhood in the path.
-        // The item is consumed immediately so it doesn't bleed into subsequent page loads.
+        // ----- step 2: the sessionStorage bridge ----- //
+
+        // Covers internal navigation from the landing page, topic tabs, neighborhood
+        // cards, and the 404 fallback. Each of those stores the slug before navigating
+        // to the clean topic URL, so the page load never reaches the server with a
+        // neighborhood in the path
         const pending = sessionStorage.getItem('nr_pending_neighborhood');
+
+        // Consumed on read so it cannot bleed into a later page load in the same tab
         if (pending && config.neighborhoodMap[pending]) {
             sessionStorage.removeItem('nr_pending_neighborhood');
             return config.neighborhoodMap[pending];
@@ -104,22 +108,24 @@ const init = () => {
     };
 
 
+    // Rewrites the address bar to carry the neighborhood, making the current view shareable
     const setNeighborhoodInURL = name => {
 
         debugLog('setNeighborhoodInURL: enter:', name);
 
-        // Update the browser's address bar to show the neighborhood in the path, e.g.
-        //   /neighborhood-reports/asthma_and_the_environment/east_new_york
-        // Uses history.replaceState so the page does not reload — this is purely cosmetic,
-        // making the URL shareable and bookmarkable without triggering a new server request.
+        // ----- resolve the slug for this neighborhood ----- //
+
         const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
 
         if (!slug) {
             return;
         }
 
-        // Find the topic slug in the current path and replace everything after it
-        // with the neighborhood slug, preserving any site path prefix (e.g. /dev-prod/)
+        // ----- splice it in after the topic segment ----- //
+
+        // Replacing everything after the topic slug, rather than appending to the current
+        // path, preserves any site path prefix (e.g. /dev-prod/) and is idempotent when a
+        // neighborhood slug is already present
         const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
         const topicIdx = pathParts.findIndex(p => p === config.topicSlug);
 
@@ -128,21 +134,24 @@ const init = () => {
         }
 
         const newPath = '/' + pathParts.slice(0, topicIdx + 1).join('/') + '/' + slug;
+
+        // replaceState rather than a navigation: the SPA has already rendered this
+        // neighborhood, so the path change is cosmetic — it makes the URL shareable and
+        // bookmarkable without a reload or a server request
         history.replaceState(null, '', newPath);
 
     };
 
 
+    // Arms every topic tab to carry the current neighborhood over to the topic it opens
     const updateTopicLinks = neighborhoodName => {
 
         debugLog('updateTopicLinks: enter:', neighborhoodName);
 
-        // When the user clicks a topic tab (e.g. switching from Asthma to Housing),
-        // we need the new topic page to open with the same neighborhood pre-selected.
-        // Rather than embedding the neighborhood in the link href (which would cause a
-        // 404 in dev and requires IIS rewrite in production), we store the slug in
-        // sessionStorage just before the navigation fires. The new topic SPA reads it
-        // on load via getNeighborhoodFromURL above.
+        // The neighborhood travels through sessionStorage rather than the link href: a
+        // href carrying the neighborhood 404s in dev and depends on the IIS rewrite in
+        // production, so the slug is stored as the navigation fires and read back by
+        // getNeighborhoodFromURL on the next page load
         const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === neighborhoodName);
         const links = document.querySelectorAll('.nr-topic-link');
 
@@ -163,6 +172,7 @@ const init = () => {
     // tertile and comparison helpers
     // ----------------------------------------------------------------------- //
 
+    // Reduces a tertile rank to the bare "Higher"/"Lower" word shown on the card pill
     const getTertileLabel = (rank, rankReverse) => {
 
         // Normalize rank values that may arrive as numbers or strings
@@ -187,7 +197,7 @@ const init = () => {
     };
 
 
-    // Returns the production CSS pill class: worse, better, or middle
+    // Returns the pill class the production report styling expects: worse, better, or middle
     const getTertilePillClass = (rank, rankReverse) => {
 
         const r = String(rank);
@@ -202,6 +212,7 @@ const init = () => {
     };
 
 
+    // Expands the same rank into a full sentence fragment with the judgment word colored
     const getTertileInlineLabel = (rank, rankReverse) => {
 
         const r = String(rank);
@@ -228,6 +239,7 @@ const init = () => {
     };
 
 
+    // Compares a neighborhood value against a borough or city value, with the judgment class
     const getComparison = (neighVal, refVal, rankReverse) => {
 
         // Parse defensively because the source payload can contain string numerics
@@ -260,13 +272,14 @@ const init = () => {
     };
 
 
+    // Cards are numbered in one sequence across all sections, in render order
     let accordionCounter = 0;
 
-    // Generate unique IDs so collapse/expand controls are correctly paired
+    // Generates the unique id that pairs a collapse control with its panel
     const nextAccordionId = () => 'nr-acc-' + (++accordionCounter);
 
 
-    // Safe for double-quoted HTML attributes (e.g. data-legend-label)
+    // Escapes a value for interpolation into a double-quoted HTML attribute
     const escapeAttr = value => {
 
         if (value == null) return '';
@@ -283,6 +296,7 @@ const init = () => {
     };
 
 
+    // Looks up a neighborhood's UHF id from the display name shown in the UI
     const getUhfIdForDisplayName = displayName => {
 
         // Neighborhood metadata may not be loaded in every page context
