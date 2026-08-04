@@ -466,12 +466,15 @@ const bootstrap = () => {
 
         // ----- header HTML ----- //
 
+        // Every id and data-* interpolation below goes through escapeAttr. The generated
+        // ids cannot contain a quote, but routing them all one way keeps the rule
+        // checkable by eye rather than per-value
         const headerHTML =
-            '<div class="card-header border-top" id="' + headingId + '">' +
+            '<div class="card-header border-top" id="' + escapeAttr(headingId) + '">' +
                 '<h2 class="mb-0">' +
                     '<button class="btn btn-block btn-sm text-left" type="button" ' +
-                        'data-toggle="collapse" data-target="#' + collapseId + '" ' +
-                        'aria-expanded="false" aria-controls="' + collapseId + '">' +
+                        'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
+                        'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
                         '<div class="row no-gutters d-print-none" style="width:100%">' +
                             '<div class="col-7">' +
                                 '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
@@ -547,19 +550,19 @@ const bootstrap = () => {
 
         // Keep data-* attributes on the collapse panel for lazy chart rendering
         const detailHTML =
-            '<div id="' + collapseId + '" class="collapse border-bottom" ' +
-                'aria-labelledby="' + headingId + '" ' +
-                'data-parent="#' + accordionParentId + '" ' +
-                'data-indicator-name="' + (row.indicator_data_name || '') + '" ' +
+            '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
+                'aria-labelledby="' + escapeAttr(headingId) + '" ' +
+                'data-parent="#' + escapeAttr(accordionParentId) + '" ' +
+                'data-indicator-name="' + escapeAttr(row.indicator_data_name) + '" ' +
                 'data-legend-label="' + escapeAttr(units) + '" ' +
-                'data-geocode="' + (row.geo_join_id || row.geo_entity_id || '') + '">' +
+                'data-geocode="' + escapeAttr(row.geo_join_id || row.geo_entity_id) + '">' +
                 '<div class="card-body card-body-no-top">' +
                     '<div class="row no-gutters fs-sm">' +
                         '<div class="col-12">' +
                             '<p class="fs-md mt-1 mb-2">' + (row.indicator_description || '') + '</p>' +
                         '</div>' +
                         '<div class="col-md-7 border-right h-100">' +
-                            '<div class="nr-map-container" id="map-' + accId + '" style="width:100%;min-height:350px;">' +
+                            '<div class="nr-map-container" id="map-' + escapeAttr(accId) + '" style="width:100%;min-height:350px;">' +
                                 '<p class="text-muted small">Chart loads when expanded...</p>' +
                             '</div>' +
                         '</div>' +
