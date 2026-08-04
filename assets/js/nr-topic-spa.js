@@ -26,10 +26,10 @@ const bootstrap = () => {
     debugLog('bootstrap: start');
 
     // Read server-injected SPA configuration from the global scope
-    const config = window.NR_TOPIC_SPA_CONFIG;
+    const spaConfig = window.NR_TOPIC_SPA_CONFIG;
 
-    if (!config || !config.sections || !config.sections.length) {
-        debugLog('bootstrap: missing-config:', config);
+    if (!spaConfig || !spaConfig.sections || !spaConfig.sections.length) {
+        debugLog('bootstrap: missing-config:', spaConfig);
         return;
     }
 
@@ -53,7 +53,7 @@ const bootstrap = () => {
     let renderedPanels = {};
 
     // Track loading: sections + viz = total fetches needed before first render
-    const totalFetches = config.sections.length + (config.vizUrl ? 1 : 0);
+    const totalFetches = spaConfig.sections.length + (spaConfig.vizUrl ? 1 : 0);
     let fetchesComplete = 0;
 
     // Current neighborhood and geocode, updated on switch
@@ -77,7 +77,7 @@ const bootstrap = () => {
 
 
     // Shorthand for the demographics renderers, which touch many individually optional nodes
-    const el = id => document.getElementById(id);
+    const nrById = id => document.getElementById(id);
 
 
     // ----------------------------------------------------------------------- //
@@ -90,9 +90,9 @@ const bootstrap = () => {
     const PENDING_NEIGHBORHOOD_KEY = 'nr_pending_neighborhood';
 
 
-    // Reverses config.neighborhoodMap, which is keyed slug -> display name
+    // Reverses spaConfig.neighborhoodMap, which is keyed slug -> display name
     const slugForNeighborhood = name =>
-        Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
+        Object.keys(spaConfig.neighborhoodMap).find(k => spaConfig.neighborhoodMap[k] === name);
 
 
     // Resolves the neighborhood for this page load, from the path first and the bridge second
@@ -109,8 +109,8 @@ const bootstrap = () => {
 
         debugLog('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
 
-        if (config.neighborhoodMap[slug]) {
-            return config.neighborhoodMap[slug];
+        if (spaConfig.neighborhoodMap[slug]) {
+            return spaConfig.neighborhoodMap[slug];
         }
 
         // ----- step 2: the sessionStorage bridge ----- //
@@ -122,9 +122,9 @@ const bootstrap = () => {
         const pending = sessionStorage.getItem(PENDING_NEIGHBORHOOD_KEY);
 
         // Consumed on read so it cannot bleed into a later page load in the same tab
-        if (pending && config.neighborhoodMap[pending]) {
+        if (pending && spaConfig.neighborhoodMap[pending]) {
             sessionStorage.removeItem(PENDING_NEIGHBORHOOD_KEY);
-            return config.neighborhoodMap[pending];
+            return spaConfig.neighborhoodMap[pending];
         }
 
         return '';
@@ -151,7 +151,7 @@ const bootstrap = () => {
         // path, preserves any site path prefix (e.g. /dev-prod/) and is idempotent when a
         // neighborhood slug is already present
         const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
-        const topicIdx = pathParts.findIndex(p => p === config.topicSlug);
+        const topicIdx = pathParts.findIndex(p => p === spaConfig.topicSlug);
 
         if (topicIdx === -1) {
             return;
@@ -373,17 +373,17 @@ const bootstrap = () => {
 
         // Clear each field explicitly so stale values do not persist between selections
         DEMOGRAPHIC_FIELDS.forEach(metric => {
-            const node = el(metric.id);
+            const node = nrById(metric.id);
             if (node) node.innerHTML = '';
         });
 
-        const zipList = el('nr-zip-list');
+        const zipList = nrById('nr-zip-list');
         if (zipList) zipList.textContent = '';
 
-        const demoPanel = el('nr-demographics');
+        const demoPanel = nrById('nr-demographics');
         if (demoPanel) demoPanel.style.display = 'none';
 
-        const zipPanel = el('nr-zip-codes');
+        const zipPanel = nrById('nr-zip-codes');
         if (zipPanel) zipPanel.style.display = 'none';
 
     };
@@ -412,17 +412,17 @@ const bootstrap = () => {
 
         // Each target node is optional: the sidebar markup varies by layout width
         DEMOGRAPHIC_FIELDS.forEach(metric => {
-            const node = el(metric.id);
+            const node = nrById(metric.id);
             if (node) node.innerHTML = metric.format(d[metric.field]);
         });
 
-        const demoPanel = el('nr-demographics');
+        const demoPanel = nrById('nr-demographics');
         if (demoPanel) demoPanel.style.display = '';
 
-        const zipList = el('nr-zip-list');
+        const zipList = nrById('nr-zip-list');
         if (zipList) zipList.textContent = d.Zipcodes || '';
 
-        const zipPanel = el('nr-zip-codes');
+        const zipPanel = nrById('nr-zip-codes');
         if (zipPanel && d.Zipcodes) zipPanel.style.display = '';
 
     };
@@ -681,7 +681,7 @@ const bootstrap = () => {
 
         // ----- render sections ----- //
 
-        config.sections.forEach(section => {
+        spaConfig.sections.forEach(section => {
             renderSection(section, neighborhoodName);
         });
 
@@ -740,7 +740,7 @@ const bootstrap = () => {
             .toCSV();
 
         const filename = 'NYC EH Data Portal - Neighborhood Report - ' +
-            (config.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
+            (spaConfig.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
 
         // Use Blob URL download flow for broad browser compatibility
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -776,8 +776,8 @@ const bootstrap = () => {
         // ----- build geography URLs ----- //
 
         // Topojson is fetched by Vega at render time from the configured EHDP-data branch
-        const boroTopoUrl = config.dataRepo + config.dataBranch + '/geography/borough.topo.json';
-        const uhfTopoUrl = config.dataRepo + config.dataBranch + '/geography/UHF42.topo.json';
+        const boroTopoUrl = spaConfig.dataRepo + spaConfig.dataBranch + '/geography/borough.topo.json';
+        const uhfTopoUrl = spaConfig.dataRepo + spaConfig.dataBranch + '/geography/UHF42.topo.json';
 
         // ----- shared spec fragments ----- //
 
@@ -1178,7 +1178,7 @@ const bootstrap = () => {
     // Sets up the Leaflet map and loads UHF polygon geometry onto it
     const initLeafletMap = () => {
 
-        debugLog('initLeafletMap: enter:', config.geojsonUrl);
+        debugLog('initLeafletMap: enter:', spaConfig.geojsonUrl);
 
         // Initialize Leaflet with a neutral NYC-centered default view
         leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
@@ -1195,7 +1195,7 @@ const bootstrap = () => {
         L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
 
         // Load the neighborhood polygons once, then wait for the data pipeline to finish
-        fetch(config.geojsonUrl)
+        fetch(spaConfig.geojsonUrl)
             .then(res => res.json())
             .then(data => {
 
@@ -1380,16 +1380,16 @@ const bootstrap = () => {
     // Loads the shared viz table used by all per-indicator Vega charts
     const loadVizData = () => {
 
-        debugLog('loadVizData: enter:', config.vizUrl);
+        debugLog('loadVizData: enter:', spaConfig.vizUrl);
 
         // If no viz URL is configured, continue with section-only rendering
-        if (!config.vizUrl) {
+        if (!spaConfig.vizUrl) {
             debugLog('loadVizData: branch-no-viz-url');
             checkAllLoaded();
             return;
         }
 
-        aq.loadJSON(config.vizUrl, { autoMax: 10000, parse: { time: String } })
+        aq.loadJSON(spaConfig.vizUrl, { autoMax: 10000, parse: { time: String } })
             .then(table => {
                 debugLog('loadVizData: branch-data-loaded:', table && table.numRows && table.numRows());
                 vizTable = table;
@@ -1414,7 +1414,7 @@ const bootstrap = () => {
     // Start map and data loads in parallel
     initLeafletMap();
 
-    config.sections.forEach(section => {
+    spaConfig.sections.forEach(section => {
         loadSection(section);
     });
 

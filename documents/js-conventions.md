@@ -138,11 +138,11 @@ that proves a rename complete.
 
 ```js
 // good
-const config = window.NR_TOPIC_SPA_CONFIG;
+const spaConfig = window.NR_TOPIC_SPA_CONFIG;
 let currentNeighborhood = '';
 
 // bad
-var config = window.NR_TOPIC_SPA_CONFIG;
+var spaConfig = window.NR_TOPIC_SPA_CONFIG;
 ```
 
 Group related declarations under a short prose comment that explains what the group
@@ -202,7 +202,7 @@ Single-expression bodies can drop braces and `return`:
 
 ```js
 const styleFeature = () => defaultStyle;
-const el = id => document.getElementById(id);
+const nrById = id => document.getElementById(id);
 ```
 
 ### The comment above every function
