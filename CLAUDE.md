@@ -170,7 +170,7 @@ Key per-environment variables: `baseURL` and `data_branch`.
 
 - **Clarity renames are pre-authorized.** The codebase mixes hand-written names with AI-generated ones from earlier refactors, so a name that actively *misleads* — describing something other than what the thing is — may be renamed as part of any refactor touching it. Rename what misleads, not every name you'd have chosen differently. Every rename must be *proven* complete, not assumed: `npm run lint` proves a JS identifier rename, since the old name ceases to exist; a scoped grep proves a template/SCSS/string rename.
 - **Element-id renames get their own commit**, separate from any JS change. Ids are referenced from templates, JS string literals, SCSS, and ARIA attributes — grep all four.
-- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a large diff only invites eyeballing.
+- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a large diff only invites eyeballing. For a comment- or indentation-only pass, `git diff -w` proves the same thing more cheaply: every deletion it still shows must be a line of the category you meant to touch. Invalid in files with template literals — `-w` also hides whitespace edited inside a string.
 
 ## Hugo-specific rules
 
