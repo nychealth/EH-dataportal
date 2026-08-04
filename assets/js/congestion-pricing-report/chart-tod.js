@@ -61,7 +61,7 @@ const todBaseSpec = {
         legend: { orient: "right", title: "" },
 
         range: {
-            category: ["#ffffb2", "#fecc5c", "#fd8d3c", "#e31a1c"],
+            category: ['#35b779','#0096FA','#9c179e','#545454'],
         },
     },
 
@@ -115,7 +115,7 @@ const todBaseSpec = {
         layer: [
             // Layer 1: lines connecting Pre → Post for each TOD period
             {
-                mark: { type: "line", strokeDash: [0, 0] },
+                mark: { type: "line", strokeDash: [0, 0], opacity: 1 },
 
                 encoding: {
                     y: { field: "Value", type: "quantitative" },
@@ -131,7 +131,7 @@ const todBaseSpec = {
                                 "Overnight",
                             ],
 
-                            range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                            range: ['#35b779','#0096FA','#9c179e','#545454'],
                         },
                     },
                 },
@@ -139,7 +139,7 @@ const todBaseSpec = {
 
             // Layer 2: dots at each data point, with tooltip
             {
-                mark: { type: "circle", size: 75 },
+                mark: { type: "circle", size: 150, opacity: 1 },
 
                 encoding: {
                     y: {
@@ -160,7 +160,7 @@ const todBaseSpec = {
                                 "Overnight",
                             ],
 
-                            range: ["#fdd49e", "#fc8d59", "#d7301f", "#7f0000"],
+                            range: ['#35b779','#0096FA','#9c179e','#545454'],
                         },
                     },
 
