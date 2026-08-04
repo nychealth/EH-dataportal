@@ -415,6 +415,32 @@ partner — so it isn't even a consistent two-format convention, just a leftover
 `overlap-tool-with-map`. They can drift independently, and no page benefits from
 having both.
 
+**6. A name-correction map in the topic SPA blames the wrong file, and is inert
+against the one it actually reads (P3, added 2026-08-03).**
+[nr-topic-spa.js:324](../assets/js/nr-topic-spa.js) carries
+`nameCorrections = { 'Crotona -Tremont': 'Crotona - Tremont' }` under a comment
+stating *"uhflist.js has one known typo… (missing space after dash)"*. It does
+not. Grepping every `uhflist*` file in the tree: **both** `assets/js/uhflist.js`
+and `assets/js/uhflist.json` spell it `Crotona - Tremont`, correctly and
+identically — one of the few things the two vintages agree on. The unspaced form
+does exist in the repo, in exactly two places, neither of them read by the SPA:
+`static/UHF42.csv` (already dead per finding 4, and slated for deletion in step 1
+below) and `content/data-features/restaurant-grades/resto-data-full.csv` (10
+rows, a different feature entirely).
+
+So `correctedUhfName` is an identity function on current data. Confirmed at
+runtime 2026-08-03: the SPA's `neighborhoods` global returns
+`Crotona - Tremont` for UHF 105, and the Crotona topic page resolves geocode 105
+and renders its 23 indicator cards and demographics. Both sides of the comparison
+already agree, so nothing is being corrected.
+
+The map is harmless and costs one property lookup. The comment is the actual
+defect: it sends anyone auditing this to `uhflist.js`, where they will find
+nothing and reasonably conclude the note is stale rather than misfiled. Fix the
+comment or drop both — but note that deleting the map is only provably safe for
+data in *this* repo. Report JSONs arrive from EHDP-data at runtime and were not
+surveyed for spelling.
+
 **Suggested order** — deletions first; they're provable and reversible:
 
 1. Delete `nr-clickable-uhf.html`, `nr-map-highlight.html`, `nr-chooser.html`,
