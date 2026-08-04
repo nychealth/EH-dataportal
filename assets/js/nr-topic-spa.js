@@ -20,8 +20,8 @@
 //   - Demographics sidebar populated from uhflist.js
 //   - Neighborhood persistence via path + sessionStorage bridging
 
-// Named init function used in place of an IIFE so early returns remain available
-const init = () => {
+// Named function used in place of an IIFE so early returns remain available
+const bootstrap = () => {
 
     debugLog('bootstrap: start');
 
@@ -68,8 +68,32 @@ const init = () => {
 
 
     // ----------------------------------------------------------------------- //
+    // value helpers
+    // ----------------------------------------------------------------------- //
+
+    // Treats null, undefined, and '' alike, since geocodes arrive from three sources
+    // that disagree about how they spell "absent"
+    const isBlank = value => value == null || value === '';
+
+
+    // Shorthand for the demographics renderers, which touch many individually optional nodes
+    const el = id => document.getElementById(id);
+
+
+    // ----------------------------------------------------------------------- //
     // neighborhood persistence
     // ----------------------------------------------------------------------- //
+
+    // Shared with 404.html, neighborhood-reports/section.html, nr-output/section.html,
+    // partials/nr-leaflet.html, and scripts/nr-characterization.mjs, which each write the
+    // key directly — renaming it here alone breaks the bridge
+    const PENDING_NEIGHBORHOOD_KEY = 'nr_pending_neighborhood';
+
+
+    // Reverses config.neighborhoodMap, which is keyed slug -> display name
+    const slugForNeighborhood = name =>
+        Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
+
 
     // Resolves the neighborhood for this page load, from the path first and the bridge second
     const getNeighborhoodFromURL = () => {
@@ -95,11 +119,11 @@ const init = () => {
         // cards, and the 404 fallback. Each of those stores the slug before navigating
         // to the clean topic URL, so the page load never reaches the server with a
         // neighborhood in the path
-        const pending = sessionStorage.getItem('nr_pending_neighborhood');
+        const pending = sessionStorage.getItem(PENDING_NEIGHBORHOOD_KEY);
 
         // Consumed on read so it cannot bleed into a later page load in the same tab
         if (pending && config.neighborhoodMap[pending]) {
-            sessionStorage.removeItem('nr_pending_neighborhood');
+            sessionStorage.removeItem(PENDING_NEIGHBORHOOD_KEY);
             return config.neighborhoodMap[pending];
         }
 
@@ -115,7 +139,7 @@ const init = () => {
 
         // ----- resolve the slug for this neighborhood ----- //
 
-        const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === name);
+        const slug = slugForNeighborhood(name);
 
         if (!slug) {
             return;
@@ -152,14 +176,14 @@ const init = () => {
         // href carrying the neighborhood 404s in dev and depends on the IIS rewrite in
         // production, so the slug is stored as the navigation fires and read back by
         // getNeighborhoodFromURL on the next page load
-        const slug = Object.keys(config.neighborhoodMap).find(k => config.neighborhoodMap[k] === neighborhoodName);
+        const slug = slugForNeighborhood(neighborhoodName);
         const links = document.querySelectorAll('.nr-topic-link');
 
         links.forEach(a => {
 
             a.onclick = () => {
                 if (slug) {
-                    sessionStorage.setItem('nr_pending_neighborhood', slug);
+                    sessionStorage.setItem(PENDING_NEIGHBORHOOD_KEY, slug);
                 }
             };
 
@@ -172,13 +196,18 @@ const init = () => {
     // tertile and comparison helpers
     // ----------------------------------------------------------------------- //
 
+    // rankReverse marks indicators where lower values are directionally better. It
+    // arrives as a boolean from some report payloads and as the string 'true' from
+    // others, so every consumer has to accept both
+    const isRankReversed = value => value === true || value === 'true';
+
+
     // Reduces a tertile rank to the bare "Higher"/"Lower" word shown on the card pill
     const getTertileLabel = (rank, rankReverse) => {
 
         // Normalize rank values that may arrive as numbers or strings
         const r = String(rank);
-        // rankReverse indicates indicators where lower values are directionally better
-        const reverse = rankReverse === true || rankReverse === 'true';
+        const reverse = isRankReversed(rankReverse);
 
         if (r === '1') {
             return reverse ? 'Lower' : 'Higher';
@@ -201,7 +230,7 @@ const init = () => {
     const getTertilePillClass = (rank, rankReverse) => {
 
         const r = String(rank);
-        const reverse = rankReverse === true || rankReverse === 'true';
+        const reverse = isRankReversed(rankReverse);
 
         if (r === '1') return reverse ? 'better' : 'worse';
         if (r === '3') return reverse ? 'worse' : 'better';
@@ -216,7 +245,7 @@ const init = () => {
     const getTertileInlineLabel = (rank, rankReverse) => {
 
         const r = String(rank);
-        const reverse = rankReverse === true || rankReverse === 'true';
+        const reverse = isRankReversed(rankReverse);
 
         if (r === '1') {
             return reverse
@@ -245,7 +274,7 @@ const init = () => {
         // Parse defensively because the source payload can contain string numerics
         const n = Number(neighVal);
         const r = Number(refVal);
-        const reverse = rankReverse === true || rankReverse === 'true';
+        const reverse = isRankReversed(rankReverse);
 
         // When either side is not numeric, omit comparison messaging
         if (isNaN(n) || isNaN(r)) {
@@ -300,16 +329,17 @@ const init = () => {
     };
 
 
+    // Maps a raw uhflist.js name onto the spelling report data uses
+    const correctedUhfName = name => nameCorrections[name] || name;
+
+
     // Looks up a neighborhood's UHF id from the display name shown in the UI
     const getUhfIdForDisplayName = displayName => {
 
         // Neighborhood metadata may not be loaded in every page context
         if (!displayName || typeof neighborhoods === 'undefined') return null;
 
-        const entry = neighborhoods.find(n => {
-            const corrected = nameCorrections[n.UHF_name] || n.UHF_name;
-            return corrected === displayName;
-        });
+        const entry = neighborhoods.find(n => correctedUhfName(n.UHF_name) === displayName);
 
         return entry ? entry.UHF_id : null;
 
@@ -320,33 +350,40 @@ const init = () => {
     // demographics sidebar
     // ----------------------------------------------------------------------- //
 
+    // Renders a rate the way every sidebar metric except population is presented
+    const percent = value => Number(value).toFixed(1) + '%';
+
+
+    // The sidebar's metrics in display order; `format` receives the raw uhflist value.
+    // One table so the clear pass and the fill pass cannot drift out of agreement
+    const DEMOGRAPHIC_FIELDS = [
+        { id: 'nr-pop',   field: 'TotalPopulation',            format: value => Number(value).toLocaleString() },
+        { id: 'nr-old',   field: 'PercentOver65',              format: percent },
+        { id: 'nr-young', field: 'PercentUnder18',             format: percent },
+        { id: 'nr-pov',   field: 'PovertyPercent',             format: percent },
+        { id: 'nr-grad',  field: 'PercentGraduatedHighSchool', format: percent },
+        { id: 'nr-eng',   field: 'PercentLimitedEnglish',      format: percent },
+        { id: 'nr-own',   field: 'PercentOwnerOccupied',       format: percent },
+        { id: 'nr-rent',  field: 'PercentRentBurdened',        format: percent }
+    ];
+
+
     // Blanks every sidebar metric and hides both panels, for when no neighborhood resolves
     const clearDemographicsSidebar = () => {
 
-        const metricIds = [
-            'nr-pop',
-            'nr-old',
-            'nr-young',
-            'nr-pov',
-            'nr-grad',
-            'nr-eng',
-            'nr-own',
-            'nr-rent'
-        ];
-
         // Clear each field explicitly so stale values do not persist between selections
-        metricIds.forEach(id => {
-            const node = document.getElementById(id);
+        DEMOGRAPHIC_FIELDS.forEach(metric => {
+            const node = el(metric.id);
             if (node) node.innerHTML = '';
         });
 
-        const zipList = document.getElementById('nr-zip-list');
+        const zipList = el('nr-zip-list');
         if (zipList) zipList.textContent = '';
 
-        const demoPanel = document.getElementById('nr-demographics');
+        const demoPanel = el('nr-demographics');
         if (demoPanel) demoPanel.style.display = 'none';
 
-        const zipPanel = document.getElementById('nr-zip-codes');
+        const zipPanel = el('nr-zip-codes');
         if (zipPanel) zipPanel.style.display = 'none';
 
     };
@@ -357,7 +394,7 @@ const init = () => {
 
         debugLog('renderDemographics: enter:', geocode);
 
-        if (typeof neighborhoods === 'undefined' || geocode == null || geocode === '') {
+        if (typeof neighborhoods === 'undefined' || isBlank(geocode)) {
             debugLog('renderDemographics: branch-clear-missing-neighborhoods-or-geocode');
             clearDemographicsSidebar();
             return;
@@ -373,26 +410,19 @@ const init = () => {
 
         const d = here[0];
 
-        // The sidebar has a fixed set of target nodes, so keep the mapping explicit
-        const el = id => document.getElementById(id);
+        // Each target node is optional: the sidebar markup varies by layout width
+        DEMOGRAPHIC_FIELDS.forEach(metric => {
+            const node = el(metric.id);
+            if (node) node.innerHTML = metric.format(d[metric.field]);
+        });
 
-        if (el('nr-pop'))   el('nr-pop').innerHTML   = Number(d.TotalPopulation).toLocaleString();
-        if (el('nr-old'))   el('nr-old').innerHTML   = Number(d.PercentOver65).toFixed(1) + '%';
-        if (el('nr-young')) el('nr-young').innerHTML = Number(d.PercentUnder18).toFixed(1) + '%';
-        if (el('nr-pov'))   el('nr-pov').innerHTML   = Number(d.PovertyPercent).toFixed(1) + '%';
-        if (el('nr-grad'))  el('nr-grad').innerHTML  = Number(d.PercentGraduatedHighSchool).toFixed(1) + '%';
-        if (el('nr-eng'))   el('nr-eng').innerHTML   = Number(d.PercentLimitedEnglish).toFixed(1) + '%';
-        if (el('nr-own'))   el('nr-own').innerHTML   = Number(d.PercentOwnerOccupied).toFixed(1) + '%';
-        if (el('nr-rent'))  el('nr-rent').innerHTML  = Number(d.PercentRentBurdened).toFixed(1) + '%';
-
-        const demoPanel = document.getElementById('nr-demographics');
+        const demoPanel = el('nr-demographics');
         if (demoPanel) demoPanel.style.display = '';
 
-        if (el('nr-zip-list')) {
-            el('nr-zip-list').textContent = d.Zipcodes || '';
-        }
+        const zipList = el('nr-zip-list');
+        if (zipList) zipList.textContent = d.Zipcodes || '';
 
-        const zipPanel = document.getElementById('nr-zip-codes');
+        const zipPanel = el('nr-zip-codes');
         if (zipPanel && d.Zipcodes) zipPanel.style.display = '';
 
     };
@@ -589,6 +619,47 @@ const init = () => {
     };
 
 
+    // Finds the UHF geocode for a neighborhood, preferring the sources most likely to
+    // agree with the report rows: loaded rows first, then the clicked map layer, then a
+    // name lookup against uhflist. Returns null when none of the three resolve
+    const resolveGeocode = (neighborhoodName, mapGeocode) => {
+
+        // ----- from rows already loaded ----- //
+
+        for (const sid in sectionData) {
+
+            const nb = sectionData[sid][neighborhoodName];
+
+            if (nb && nb.length) {
+
+                const row0 = nb[0];
+                const gj = !isBlank(row0.geo_join_id) ? row0.geo_join_id : row0.geo_entity_id;
+
+                if (!isBlank(gj)) {
+                    debugLog('resolveGeocode: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
+                    return gj;
+                }
+
+            }
+
+        }
+
+        // ----- from the map click ----- //
+
+        if (!isBlank(mapGeocode)) {
+            debugLog('resolveGeocode: branch-fallback-map-geocode:', mapGeocode);
+            return mapGeocode;
+        }
+
+        // ----- from display-name lookup ----- //
+
+        debugLog('resolveGeocode: branch-fallback-display-name-lookup:', neighborhoodName);
+
+        return getUhfIdForDisplayName(neighborhoodName);
+
+    };
+
+
     // Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL
     const renderAll = (neighborhoodName, mapGeocode) => {
 
@@ -603,50 +674,7 @@ const init = () => {
 
         // ----- resolve geocode ----- //
 
-        // Ordered fallback: rows already loaded, then the map click, then a name lookup
-        currentGeocode = null;
-
-        // - - - from rows already loaded - - - //
-
-        for (const sid in sectionData) {
-
-            const nb = sectionData[sid][neighborhoodName];
-
-            if (nb && nb.length) {
-
-                const row0 = nb[0];
-                const gj =
-                    row0.geo_join_id != null && row0.geo_join_id !== ''
-                        ? row0.geo_join_id
-                        : row0.geo_entity_id;
-
-                if (gj != null && gj !== '') {
-                    debugLog('renderAll: branch-found-geocode-in-section:', { sectionId: sid, geocode: gj });
-                    currentGeocode = gj;
-                    break;
-                }
-
-            }
-
-        }
-
-        // - - - from the map click - - - //
-
-        if (
-            (currentGeocode == null || currentGeocode === '') &&
-            mapGeocode != null &&
-            mapGeocode !== ''
-        ) {
-            debugLog('renderAll: branch-fallback-map-geocode:', mapGeocode);
-            currentGeocode = mapGeocode;
-        }
-
-        // - - - from display-name lookup - - - //
-
-        if (currentGeocode == null || currentGeocode === '') {
-            debugLog('renderAll: branch-fallback-display-name-lookup:', neighborhoodName);
-            currentGeocode = getUhfIdForDisplayName(neighborhoodName);
-        }
+        currentGeocode = resolveGeocode(neighborhoodName, mapGeocode);
 
         // ----- render sections ----- //
 
@@ -733,9 +761,9 @@ const init = () => {
     // ----------------------------------------------------------------------- //
 
     // Draws one indicator across all neighborhoods, with geocode's own value highlighted
-    const renderNRMap = (data, destination, legendLabel, geocode) => {
+    const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
 
-        debugLog('renderNRMap: enter:', {
+        debugLog('renderIndicatorChart: enter:', {
             rowCount: data && data.length,
             destination,
             legendLabel,
@@ -747,6 +775,21 @@ const init = () => {
         // Topojson is fetched by Vega at render time from the configured EHDP-data branch
         const boroTopoUrl = config.dataRepo + config.dataBranch + '/geography/borough.topo.json';
         const uhfTopoUrl = config.dataRepo + config.dataBranch + '/geography/UHF42.topo.json';
+
+        // ----- shared spec fragments ----- //
+
+        // The choropleth and the bar strip mark the same neighborhood the same way, so
+        // these three are written once and referenced from both halves of the vconcat
+
+        // Vega expression, not JS: evaluated per datum inside the spec
+        const selectedTest = "datum.geo_join_id == " + geocode;
+
+        const valueScale = { "scheme": { "name": "viridis", "extent": [1, 0] } };
+
+        const tooltipFields = [
+            { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
+            { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
+        ];
 
         // ----- chart spec ----- //
 
@@ -817,7 +860,7 @@ const init = () => {
                                 "color": {
                                     "field": "unmodified_data_value_geo_entity",
                                     "type": "quantitative",
-                                    "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
+                                    "scale": valueScale,
                                     "legend": {
                                         "direction": "horizontal",
                                         "orient": "top-left",
@@ -829,21 +872,18 @@ const init = () => {
                                     }
                                 },
                                 "order": {
-                                    "condition": { "test": "datum.geo_join_id == " + geocode, "value": 1 },
+                                    "condition": { "test": selectedTest, "value": 1 },
                                     "value": 0
                                 },
                                 "stroke": {
-                                    "condition": { "test": "datum.geo_join_id == " + geocode, "value": "cyan" },
+                                    "condition": { "test": selectedTest, "value": "cyan" },
                                     "value": "#2d2d2d"
                                 },
                                 "strokeWidth": {
-                                    "condition": { "test": "datum.geo_join_id == " + geocode, "value": 2.5 },
+                                    "condition": { "test": selectedTest, "value": 2.5 },
                                     "value": 0.5
                                 },
-                                "tooltip": [
-                                    { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
-                                    { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
-                                ]
+                                "tooltip": tooltipFields
                             }
                         }
                     ]
@@ -866,25 +906,22 @@ const init = () => {
                         "color": {
                             "field": "unmodified_data_value_geo_entity",
                             "type": "quantitative",
-                            "scale": { "scheme": { "name": "viridis", "extent": [1, 0] } },
+                            "scale": valueScale,
                             "legend": false
                         },
                         "order": {
-                            "condition": { "test": "datum.geo_join_id == " + geocode, "value": 1 },
+                            "condition": { "test": selectedTest, "value": 1 },
                             "value": 0
                         },
                         "stroke": {
-                            "condition": { "test": "datum.geo_join_id == " + geocode, "value": "cyan" },
+                            "condition": { "test": selectedTest, "value": "cyan" },
                             "value": "#2d2d2d"
                         },
                         "strokeWidth": {
-                            "condition": { "test": "datum.geo_join_id == " + geocode, "value": 2.5 },
+                            "condition": { "test": selectedTest, "value": 2.5 },
                             "value": 0
                         },
-                        "tooltip": [
-                            { "field": "neighborhood", "title": "Neighborhood", "type": "nominal" },
-                            { "field": "unmodified_data_value_geo_entity", "title": legendLabel, "type": "quantitative" }
-                        ]
+                        "tooltip": tooltipFields
                     }
                 }
             ]
@@ -959,7 +996,7 @@ const init = () => {
                     legendLabel = 'Value';
                 }
 
-                renderNRMap(summaryData, '#' + mapEl.id, legendLabel, geocode);
+                renderIndicatorChart(summaryData, '#' + mapEl.id, legendLabel, geocode);
 
             } else {
                 debugLog('onAccordionExpand: branch-no-summary-data:', indicatorName);
@@ -1060,8 +1097,7 @@ const init = () => {
         const match = neighborhoods.find(n => n.UHF_id == geocode);
         if (!match) return null;
 
-        const name = match.UHF_name;
-        return nameCorrections[name] || name;
+        return correctedUhfName(match.UHF_name);
 
     };
 
@@ -1087,16 +1123,9 @@ const init = () => {
     // Convert display name -> UHF id -> Leaflet layer
     const findLayerByName = name => {
 
-        if (typeof neighborhoods === 'undefined' || !uhfLayer) return null;
+        const uhfId = getUhfIdForDisplayName(name);
 
-        const entry = neighborhoods.find(n => {
-            const corrected = nameCorrections[n.UHF_name] || n.UHF_name;
-            return corrected === name;
-        });
-
-        if (!entry) return null;
-
-        return findLayerByGeocode(entry.UHF_id);
+        return uhfId == null ? null : findLayerByGeocode(uhfId);
 
     };
 
@@ -1390,4 +1419,4 @@ const init = () => {
 
 };
 
-init();
+bootstrap();

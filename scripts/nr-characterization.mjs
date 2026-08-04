@@ -12,12 +12,12 @@
 // SPA is what actually changes here, and until now had no regression net.
 //
 // IMPORTANT: this reads only DOM output. It must never read nr-topic-spa.js's
-// internal names — almost everything there lives inside one 1200-line `init()`
+// internal names — almost everything there lives inside one 1200-line `bootstrap()`
 // closure and is unreachable anyway, but the rule is what keeps the harness valid
 // across a refactor that renames things.
 //
 // Neighborhood selection goes through the sessionStorage bridge the SPA already
-// supports (`nr_pending_neighborhood`, read in nr-topic-spa.js during init),
+// supports (`nr_pending_neighborhood`, read during the SPA's startup),
 // seeded via addInitScript so it is set before page scripts run. That is
 // deterministic; clicking the Leaflet map is not, and would make the harness a
 // test of map hit-detection rather than of report rendering.
