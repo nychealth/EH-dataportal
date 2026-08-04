@@ -1007,9 +1007,9 @@ const init = () => {
     const styleFeature = () => defaultStyle;
 
 
+    // Temporary hover state for visual affordance
     const highlightFeature = e => {
 
-        // Temporary hover state for visual affordance
         const layer = e.target;
         layer.setStyle({ weight: 5, color: '#444', dashArray: '' });
         layer.bringToFront();
@@ -1017,6 +1017,7 @@ const init = () => {
     };
 
 
+    // Reverts hover style on mouseout, unless this layer is the active selection
     const resetHighlight = e => {
 
         const layer = e.target;
@@ -1030,6 +1031,7 @@ const init = () => {
     };
 
 
+    // Applies the selected style to a layer, optionally flying the map to it
     const selectLayer = (layer, zoom) => {
 
         // Clear previous selection style first
@@ -1050,9 +1052,9 @@ const init = () => {
     // layer lookup
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+    // Resolve UHF geocode to display name used by report rows
     const geocodeToName = geocode => {
 
-        // Resolve UHF geocode to display name used by report rows
         if (typeof neighborhoods === 'undefined') return null;
 
         const match = neighborhoods.find(n => n.UHF_id == geocode);
@@ -1064,9 +1066,9 @@ const init = () => {
     };
 
 
+    // Find the matching rendered Leaflet layer by UHF geocode
     const findLayerByGeocode = geocode => {
 
-        // Find the matching rendered Leaflet layer by UHF geocode
         if (!uhfLayer) return null;
 
         let match = null;
@@ -1082,9 +1084,9 @@ const init = () => {
     };
 
 
+    // Convert display name -> UHF id -> Leaflet layer
     const findLayerByName = name => {
 
-        // Convert display name -> UHF id -> Leaflet layer
         if (typeof neighborhoods === 'undefined' || !uhfLayer) return null;
 
         const entry = neighborhoods.find(n => {
@@ -1103,9 +1105,9 @@ const init = () => {
     // event handlers
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
+    // Map click drives neighborhood selection for the full report UI
     const onMapClick = e => {
 
-        // Map click drives neighborhood selection for the full report UI
         const layer = e.target;
         const geocode = layer.feature.properties.GEOCODE;
         const name = geocodeToName(geocode) || layer.feature.properties.GEONAME;
@@ -1123,9 +1125,9 @@ const init = () => {
     };
 
 
+    // Attach tooltip and pointer handlers for each UHF polygon
     const onEachFeature = (feature, layer) => {
 
-        // Attach tooltip and pointer handlers for each UHF polygon
         layer.bindTooltip(feature.properties.GEONAME, {
             permanent: false,
             opacity: 0.9,
@@ -1141,6 +1143,7 @@ const init = () => {
     };
 
 
+    // Sets up the Leaflet map and loads UHF polygon geometry onto it
     const initLeafletMap = () => {
 
         debugLog('initLeafletMap: enter:', config.geojsonUrl);
@@ -1192,6 +1195,7 @@ const init = () => {
     // data loading
     // ----------------------------------------------------------------------- //
 
+    // Renders the URL-selected neighborhood once both map and data are ready
     const tryInitialRender = () => {
 
         debugLog('tryInitialRender: enter:', { dataReady, mapReady });
@@ -1222,6 +1226,7 @@ const init = () => {
     };
 
 
+    // Counts a completed fetch and triggers the initial render once all are in
     const checkAllLoaded = () => {
 
         debugLog('checkAllLoaded: enter:', { fetchesCompleteBefore: fetchesComplete, totalFetches });
@@ -1238,13 +1243,13 @@ const init = () => {
     };
 
 
-    // GitHub raw URLs must not contain literal spaces in the path; some clients
-    // reject them or fail inconsistently. Encode the last path segment if needed
+    // Encodes the last path segment of a report URL so it is safe to fetch
     const normalizeReportUrl = url => {
 
         debugLog('normalizeReportUrl: enter:', url);
 
-        // Normalize only when needed so already-safe URLs remain untouched
+        // GitHub raw URLs must not contain literal spaces in the path; some
+        // clients reject them or fail inconsistently. Skip already-safe URLs
         if (!url || url.indexOf(' ') === -1) return url;
 
         try {
@@ -1278,9 +1283,12 @@ const init = () => {
     };
 
 
+    // Fetches one report section's rows and buckets/sorts them by neighborhood
     const loadSection = section => {
 
         debugLog('loadSection: enter:', { sectionId: section.id, reportUrl: section.reportUrl });
+
+        // ----- fetch ----- //
 
         fetch(normalizeReportUrl(section.reportUrl))
             .then(res => {
@@ -1294,6 +1302,8 @@ const init = () => {
 
                 debugLog('loadSection: branch-data-loaded:', { sectionId: section.id, rowCount: rows.length });
 
+                // ----- bucket by neighborhood ----- //
+
                 // Build neighborhood buckets once during load for faster rerenders
                 const byNeighborhood = {};
 
@@ -1306,6 +1316,8 @@ const init = () => {
                     byNeighborhood[n].push(row);
 
                 });
+
+                // ----- sort by rank ----- //
 
                 // Sort each neighborhood's rows by rank descending so higher-ranked
                 // indicators appear at the top of the accordion
@@ -1333,6 +1345,7 @@ const init = () => {
     };
 
 
+    // Loads the shared viz table used by all per-indicator Vega charts
     const loadVizData = () => {
 
         debugLog('loadVizData: enter:', config.vizUrl);
