@@ -534,14 +534,18 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
 
     // ----- detail panel HTML ----- //
 
-    // Keep data-* attributes on the collapse panel for lazy chart rendering
+    // Keep data-* attributes on the collapse panel for lazy chart rendering.
+    // The trailing `|| ''` on the two row-derived values is load-bearing: escapeAttr
+    // only blanks null and undefined, so without it a falsy-but-present value would
+    // render as "0" or "false" and defeat onAccordionExpand's `|| currentGeocode`
+    // fallback and its !indicatorName guard
     const detailHTML =
         '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
             'aria-labelledby="' + escapeAttr(headingId) + '" ' +
             'data-parent="#' + escapeAttr(accordionParentId) + '" ' +
-            'data-indicator-name="' + escapeAttr(row.indicator_data_name) + '" ' +
+            'data-indicator-name="' + escapeAttr(row.indicator_data_name || '') + '" ' +
             'data-legend-label="' + escapeAttr(units) + '" ' +
-            'data-geocode="' + escapeAttr(row.geo_join_id || row.geo_entity_id) + '">' +
+            'data-geocode="' + escapeAttr(row.geo_join_id || row.geo_entity_id || '') + '">' +
             '<div class="card-body card-body-no-top">' +
                 '<div class="row no-gutters fs-sm">' +
                     '<div class="col-12">' +
