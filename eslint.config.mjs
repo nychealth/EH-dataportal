@@ -1,4 +1,5 @@
-// ESLint flat config — scoped to the data-explorer SPA only.
+// ESLint flat config — two blocks, both running `no-undef` over classic (non-module)
+// browser scripts: the data-explorer SPA, and the Neighborhood Reports topic SPA.
 //
 // The 10 files in assets/js/data-explorer/ are classic <script> tags sharing
 // one runtime global scope, but ESLint scopes each file separately. So a name
@@ -61,6 +62,31 @@ export default [
             globals: {
                 ...globals.browser,
                 ...declaredGlobals
+            }
+        },
+        rules: {
+            "no-undef": "error"
+        }
+    },
+    {
+        // nr-topic-spa.js is a single self-contained classic script, so ESLint already
+        // sees every one of its module-scope declarations in-file — unlike the DE
+        // directory above, nothing has to be scanned in. Only names injected from
+        // outside the file need listing, and each is annotated with its source so a
+        // dead entry is traceable rather than merely inherited.
+        files: ["assets/js/nr-topic-spa.js"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "script",
+            globals: {
+                ...globals.browser,
+                $: "readonly",              // jquery, loaded in head.html
+                L: "readonly",              // leaflet
+                aq: "readonly",             // arquero
+                op: "readonly",             // arquero's op namespace
+                vegaEmbed: "readonly",      // vega-embed, in the vegaBundle concat
+                neighborhoods: "readonly",  // `var` in assets/js/uhflist.js
+                debugLog: "readonly"        // inline <script> in partials/head.html
             }
         },
         rules: {

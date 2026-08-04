@@ -778,6 +778,12 @@ values…"). This is independent of the punctuation question and is **deliberate
 unresolved** — the merged doc accepts both and says so. Worth revisiting; not
 urgent.
 
+Still unresolved site-wide as of 2026-08-04. `assets/js/nr-topic-spa.js` picked
+third-person for itself during its conventions pass — a within-file consistency
+choice, matching `scripts/nr-characterization.mjs`, not a ruling on the open
+question. All 40 of its function comments are third-person or noun-phrase; none
+are imperative.
+
 ##### Pending — `debugLog` is not on every branch
 
 `debugLog` is defined at `themes/dohmh/layouts/partials/head.html:190` on
@@ -809,10 +815,28 @@ the rule PENDING; drop that marker once the DE branch merges.
   covers every id and `data-*` interpolation in `buildIndicatorCard`, committed
   separately because it is the one Stage 4 item that can change output.
 
-  **Remaining:** everything still lives inside one `bootstrap()` closure rather than
-  at module scope. Unwrapping it is Stage 5, which also extends `eslint.config.mjs`
-  (currently scoped to `assets/js/data-explorer/**`) to cover this file. Plan at
-  `~/.claude/plans/nr-spa-js-conventions.md`.
+  **Stage 5 landed 2026-08-04 — the file is fully conformant.** The `bootstrap()`
+  closure is unwrapped: 58 declarations moved to module scope, leaving a
+  `bootstrap()` at the bottom that holds the two guard returns and the wiring, and
+  is called on the last line. 1,431 lines, 12 level-1 sections, 59 module-scope
+  declarations.
+
+  The collision audit the plan required ran as a browser probe on the loaded topic
+  page — for each of the 59 names, insert a `<script>` declaring it and watch for a
+  duplicate-declaration `SyntaxError`. One hit: `bootstrap`, which is this file's
+  own existing declaration. Zero foreign collisions. (The probe was validated
+  against `hugoEnv`, a name known to be taken, so a null result would have meant
+  something.) `config` → `spaConfig` and `el` → `nrById` were renamed anyway, both
+  being generic enough to be a hazard for whatever script is added to these pages
+  next; `defaultStyle` and `highlightStyle` were candidates on the same reasoning
+  but did not collide and were left alone.
+
+  `eslint.config.mjs` gained a second block for this file, listing only its seven
+  externals — being self-contained, it needs no directory scan. Note that the block
+  alone does not put the file in scope: `package.json`'s `lint` script names its
+  targets explicitly, and it had to be extended too. That was caught by a positive
+  control (a deliberate undefined name), not by the first passing run, which passed
+  precisely because the file was never read.
 
   One conventions gap survives inside the file. The plan picked third-person comment
   voice throughout, but four function comments in the Leaflet selector section are
