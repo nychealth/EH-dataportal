@@ -768,13 +768,43 @@ the rule PENDING; drop that marker once the DE branch merges.
 - `assets/js/nr-topic-spa.js` (945 lines) has no file-header banner and no comment
   hierarchy, and its 46 `console.log` calls are unconditional — they ship to
   production. Recorded as a known gap, not scheduled.
-  **Resolved in part 2026-08-03 on `feature-MOD-Lab-NR-recode-refactor`:** the file
-  gained a header banner and an 11-section comment hierarchy, growing from 945 to
-  1,380 lines through Stage 3d; all 46 traces route through `debugLog` (the 4
-  `console.error` calls are kept, since smoke and the characterization harness key on
-  console errors). Conventions work is complete for persistence, helpers, indicator
-  card rendering, demographics, CSV and the Vega charts; Leaflet, data loading and
-  bootstrap remain. Plan at `~/.claude/plans/nr-spa-js-conventions.md`.
+  **Resolved 2026-08-03 on `feature-MOD-Lab-NR-recode-refactor`, except for module
+  structure.** All three gaps named above are closed. The file has a header banner
+  and a 12-section comment hierarchy, and all 46 traces route through `debugLog` —
+  `console.log` is now zero, with the 4 `console.error` calls kept, since smoke and
+  the characterization harness key on console errors. It grew from 945 to 1,425
+  lines through Stage 4.
+
+  Stages 1–3e brought every region into conventions. Stage 4 consolidated: seven
+  duplicate expressions extracted, `findLayerByName` collapsed onto
+  `getUhfIdForDisplayName`, the demographics sidebar's two parallel 8-item lists
+  replaced by one `DEMOGRAPHIC_FIELDS` table both iterate, and two renames —
+  `renderNRMap` → `renderIndicatorChart` and `init` → `bootstrap`. `escapeAttr` now
+  covers every id and `data-*` interpolation in `buildIndicatorCard`, committed
+  separately because it is the one Stage 4 item that can change output.
+
+  **Remaining:** everything still lives inside one `bootstrap()` closure rather than
+  at module scope. Unwrapping it is Stage 5, which also extends `eslint.config.mjs`
+  (currently scoped to `assets/js/data-explorer/**`) to cover this file. Plan at
+  `~/.claude/plans/nr-spa-js-conventions.md`.
+
+  One conventions gap survives inside the file. The plan picked third-person comment
+  voice throughout, but four function comments in the Leaflet selector section are
+  still imperative fragments — `geocodeToName` ("Resolve UHF geocode to…"),
+  `findLayerByGeocode` ("Find the matching…"), `findLayerByName` ("Convert display
+  name…"), and `onEachFeature` ("Attach tooltip and pointer handlers…"). Four comment
+  lines; no code involved. Note that the merged `js-conventions.md` accepts both
+  voices, so this is a within-file consistency gap against the plan's own choice, not
+  a violation of the site-wide rule — see "Open question — comment voice" above.
+
+  Two notes for whoever picks up Stage 5. `renderNRMap` was not a unique name: a
+  different function of that name is defined in
+  `themes/dohmh/layouts/nr-output/single.html` and called from
+  `themes/dohmh/layouts/partials/nr-indicator-new.html`. No collision today, since
+  those are separate templates, but the closure is what makes that true, and Stage 5
+  removes the closure. Separately, `vegaEmbed` was verified in the browser not to
+  mutate its input spec, which is what makes the shared spec-fragment references
+  Stage 4 introduced safe to alias.
 - `global.js` on `feature-new-data-explorer` uses two `function` declarations where
   the merged doc prefers named arrow functions.
 - `assets/js/site.js` is empty (0 lines).
