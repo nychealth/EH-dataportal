@@ -831,6 +831,20 @@ the rule PENDING; drop that marker once the DE branch merges.
   next; `defaultStyle` and `highlightStyle` were candidates on the same reasoning
   but did not collide and were left alone.
 
+  Read those four as the names that were considered, not as the set that qualifies.
+  The forward-looking argument was never run over all 59 — `percent`, `isBlank`,
+  `escapeAttr`, `styleFeature`, `selectLayer` and `renderAll` are equally generic and
+  went unexamined. `bootstrap` is the concrete case: a top-level `const` creates a
+  global lexical binding, and that binding shadows any same-named `window` property
+  for every script evaluated after it. Nothing is shadowed today — this project is on
+  Bootstrap 4 (`package.json` declares `^4.3.1`; 4.6.2 installed), which attaches only
+  jQuery plugins. Bootstrap 5's compiled bundle does expose a global `bootstrap`
+  namespace: its Programmatic API documentation writes `new bootstrap.Modal(…)` and
+  `bootstrap.Popover.getInstance(…)` as bare globals
+  (getbootstrap.com/docs/5.3/getting-started/javascript/, checked 2026-08-04). So the
+  Bootstrap 4 → 5 migration §3 already tracks would put a `window.bootstrap` on these
+  pages for this file's `bootstrap` to shadow.
+
   `eslint.config.mjs` gained a second block for this file, listing only its seven
   externals — being self-contained, it needs no directory scan. Note that the block
   alone does not put the file in scope: `package.json`'s `lint` script names its
