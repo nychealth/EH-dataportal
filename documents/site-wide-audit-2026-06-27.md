@@ -417,7 +417,7 @@ having both.
 
 **6. A name-correction map in the topic SPA blames the wrong file, and is inert
 against the one it actually reads (P3, added 2026-08-03).**
-[nr-topic-spa.js:324](../assets/js/nr-topic-spa.js) carries
+[nr-topic-spa.js:310](../assets/js/nr-topic-spa.js) carries
 `nameCorrections = { 'Crotona -Tremont': 'Crotona - Tremont' }` under a comment
 stating *"uhflist.js has one known typo… (missing space after dash)"*. It does
 not. Grepping every `uhflist*` file in the tree: **both** `assets/js/uhflist.js`
@@ -781,7 +781,7 @@ urgent.
 Still unresolved site-wide as of 2026-08-04. `assets/js/nr-topic-spa.js` picked
 third-person for itself during its conventions pass — a within-file consistency
 choice, matching `scripts/nr-characterization.mjs`, not a ruling on the open
-question. All 40 of its function comments are third-person or noun-phrase; none
+question. All 41 of its function comments are third-person or noun-phrase; none
 are imperative.
 
 ##### Pending — `debugLog` is not on every branch
@@ -838,23 +838,20 @@ the rule PENDING; drop that marker once the DE branch merges.
   control (a deliberate undefined name), not by the first passing run, which passed
   precisely because the file was never read.
 
-  One conventions gap survives inside the file. The plan picked third-person comment
-  voice throughout, but four function comments in the Leaflet selector section are
-  still imperative fragments — `geocodeToName` ("Resolve UHF geocode to…"),
-  `findLayerByGeocode` ("Find the matching…"), `findLayerByName` ("Convert display
-  name…"), and `onEachFeature` ("Attach tooltip and pointer handlers…"). Four comment
-  lines; no code involved. Note that the merged `js-conventions.md` accepts both
-  voices, so this is a within-file consistency gap against the plan's own choice, not
-  a violation of the site-wide rule — see "Open question — comment voice" above.
-
-  Two notes for whoever picks up Stage 5. `renderNRMap` was not a unique name: a
-  different function of that name is defined in
+  The two notes carried here for Stage 5 are both settled. `renderNRMap` was not a
+  unique name — a different function of that name is defined in
   `themes/dohmh/layouts/nr-output/single.html` and called from
-  `themes/dohmh/layouts/partials/nr-indicator-new.html`. No collision today, since
-  those are separate templates, but the closure is what makes that true, and Stage 5
-  removes the closure. Separately, `vegaEmbed` was verified in the browser not to
-  mutate its input spec, which is what makes the shared spec-fragment references
-  Stage 4 introduced safe to alias.
+  `themes/dohmh/layouts/partials/nr-indicator-new.html`, and the closure was the only
+  reason that was not a collision. Stage 4's rename to `renderIndicatorChart` removed
+  the hazard before Stage 5 removed the closure; both template occurrences are
+  unchanged. Separately, `vegaEmbed` does not mutate its input spec, which is what
+  makes the shared spec-fragment references Stage 4 introduced safe to alias — first
+  observed 2026-08-03, re-confirmed against this branch's HEAD 2026-08-04 by wrapping
+  `vegaEmbed` in the loaded topic page and comparing the serialized spec before the
+  call against after the returned promise resolved. Identical, with the wrapper's own
+  call count as the control proving the probe fired. `valueScale` and `tooltipFields`
+  are in any case rebuilt on every `renderIndicatorChart` call, so cross-call
+  contamination is impossible independently of that result.
 - `global.js` on `feature-new-data-explorer` uses two `function` declarations where
   the merged doc prefers named arrow functions.
 - `assets/js/site.js` is empty (0 lines).
