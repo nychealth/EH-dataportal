@@ -195,7 +195,7 @@ const baseSpec = {
 const secondSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": {
-        "text": "Difference between Projected and Observed air quality measurements after implementation",
+        "text": "Difference between projected and observed air quality measurements after implementation",
         "subtitle": [
             "If the confidence interval crosses the zero line, the difference is not statistically significant and the levels of pollution were not different than they would have been if the program never happened.",
             ""
