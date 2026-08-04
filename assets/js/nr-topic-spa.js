@@ -553,7 +553,7 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
                     '</div>' +
                     '<div class="col-md-7 border-right h-100">' +
                         '<div class="nr-map-container" id="map-' + escapeAttr(accId) + '" style="width:100%;min-height:350px;">' +
-                            '<p class="text-muted small">Chart loads when expanded...</p>' +
+                            '<p class="text-muted small">Loading...</p>' +
                         '</div>' +
                     '</div>' +
                     comparisonsHTML +
