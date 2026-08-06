@@ -59,8 +59,10 @@ let renderedPanels = {};
 let totalFetches = 0;
 let fetchesComplete = 0;
 
-// Current neighborhood and geocode, updated on switch
-// WRITE: report  READ: app, chart, map, report
+// Current neighborhood and geocode, both rewritten on every neighborhood switch.
+// Annotated separately because their readers do not overlap
+// currentNeighborhood — WRITE: report  READ: app
+// currentGeocode      — WRITE: report  READ: chart, map, report
 let currentNeighborhood = '';
 let currentGeocode = null;
 
@@ -73,7 +75,8 @@ let uhfLayer = null;
 
 // The two halves of the initial-render gate: neither render happens until both
 // the data fetches and the map geometry are in. tryInitialRender() checks both
-// WRITE: data (dataReady), map (mapReady)  READ: data, map
+// dataReady — WRITE: data  READ: data, map
+// mapReady  — WRITE: map   READ: data
 let dataReady = false;
 let mapReady = false;
 

@@ -7,11 +7,13 @@
 // ----------------------------------------------------------------------- //
 
 // Cards are numbered in one sequence across all sections, in render order.
-// This is the one binding written from a file that does not declare it:
-// renderAll() in report.js resets it to 0 before rebuilding the page, so ids
-// restart at nr-acc-1 for each neighborhood instead of climbing forever. That
-// cross-file write is deliberate and is what the shared top-level scope buys —
-// moving this into cards.js-only state would silently break id stability.
+// The only cross-file write that does NOT route through global.js: renderAll()
+// in report.js resets this to 0 before rebuilding the page, so ids restart at
+// nr-acc-1 for each neighborhood instead of climbing forever. (Plenty of
+// global.js bindings are written from elsewhere; what is singular here is that
+// the declaration lives outside the shared-state file.) The write is deliberate
+// and is what the shared top-level scope buys — making this cards.js-local
+// would silently break id stability across neighborhood switches.
 // WRITE: cards (increment), report (reset)  READ: cards
 let accordionCounter = 0;
 
