@@ -175,8 +175,13 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
 
     // ----- embed ----- //
 
-    // Action menu stays enabled so readers can export the chart as PNG/SVG
-    vegaEmbed(destination, spec, { actions: true });
+    // Action menu stays enabled so readers can export the chart as PNG/SVG.
+    // SVG renderer rather than vega-embed's canvas default: it matches what the
+    // nr-output system this SPA replaces used for the same charts
+    // (partials/nr-indicator-new.html:326), and it keeps the marks as real DOM
+    // nodes — so axis and legend text stays selectable and reachable by assistive
+    // tech, which a canvas bitmap is not
+    vegaEmbed(destination, spec, { actions: true, renderer: 'svg' });
 
 };
 
