@@ -65,7 +65,7 @@ const CP_SITES = {
     "CRZ": {
         displayName: "congestion relief zone",
         preposition: "in the", hasTOD: false,
-        text: "<p>No. When we average the 11 NYCCAS sites inside the CRZ, the measured pollution levels were not significantly different than they would have been without the program. Entries to the CRZ, the FDR Dr, and the West Side Highway were 11% fewer in 2025 than before tolling began, as reported in the CRZ Tolling First Evaluation Report.</p>"
+        text: "<p>No. When we average the 12 NYCCAS sites inside the CRZ, the measured pollution levels were not significantly different than they would have been without the program. Entries to the CRZ, the FDR Dr, and the West Side Highway were 11% fewer in 2025 than before tolling began, as reported in the CRZ Tolling First Evaluation Report.</p>"
     },
     "Rest of the city": {
         displayName: "rest of the city",
