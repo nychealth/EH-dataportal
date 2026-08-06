@@ -44,8 +44,8 @@ What remains genuinely open is in "Still open" at the end.
 |---|---|---|---|
 | **1** | Delete 5 callerless partials | nothing | ~1 hour |
 | **2** | Split `nr-topic-spa.js` into 10 modules | nothing | ~half a day |
-| **3** | URL scheme | **settled — neighborhood-first** | — |
-| **4** | Retire `nr-output` | **how** the 210 pages get built — see below | ~2–4 days |
+| **3** | URL scheme | **settled — neighborhood-first**, Option D | — |
+| **4** | Retire `nr-output` | nothing — implementation only | ~2–4 days |
 
 Decision 3 used to determine what decision 4 *was*. Now that it is settled, decision 4 is a
 cleanup task in either mechanism: no URL is deleted, no redirect is needed, no product
@@ -168,9 +168,18 @@ redirect as a signal that the redirect target should be canonical." That analysi
 moot in the good direction: **under the settled decision there are no redirects at all**,
 because the URLs do not move. Kept here only so nobody re-derives it.
 
-### The live sub-choice: how the 210 pages get built
+### How the 210 pages get built — DECIDED 2026-08-06: **Option D**
 
-Both paths produce the same URLs. They differ in where the pages come from:
+Generate them from a Hugo content adapter. Rationale: it gets everything, and the
+concessions are to elegance rather than capability — ~250 generated pages instead of five
+clean SPA URLs is clunkier than anyone would draw from scratch, and search indexing is a
+good reason to accept it `[decided 2026-08-06: team]`.
+
+Note what D concedes, accurately: measure **values** leave the static HTML, and only for
+crawlers that don't run JS. Topic prose is already static today (retirement memo §12a), so
+this is not a loss of descriptive content. See that memo's §10.4.
+
+Both paths produce the same URLs. They differed in where the pages come from:
 
 | | **Option B** — re-point the content files | **Option D** — generate from a content adapter |
 |---|---|---|
@@ -236,14 +245,13 @@ pre-capture of the top 20 report pages to diff against — is in the retirement 
 
 1. **Decision 1** — free, independent, removes noise from every later sweep.
 2. **Decision 2** — ready, proven, blocks nothing and unblocks everything.
-3. **Pick Option B or Option D.** ~~Then probe that option's prerequisite.~~ **Both were
-   probed 2026-08-05 and both pass** — see the retirement memo §10.6. The choice is now
-   purely the trade-off in the table above, with no technical unknown behind either column.
+3. ~~Pick Option B or Option D, then probe that option's prerequisite.~~ **Done** — both
+   probed 2026-08-05 and both passed (retirement memo §10.6); **Option D chosen 2026-08-06.**
 4. **Decision 4**, per the staging in the retirement memo §11.
 5. **NR state namespace** — after decision 2's annotations exist.
 
-Steps 1 and 2 are worth doing regardless. Nothing here waits on a person except the B/D
-choice itself: the last such blocker, the `uhflist` vintage, was settled 2026-08-05.
+Steps 1 and 2 are worth doing regardless. **Nothing in this plan now waits on a decision or
+a check** — every open question is closed, and what remains is implementation.
 
 ---
 

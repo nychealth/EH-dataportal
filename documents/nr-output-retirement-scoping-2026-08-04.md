@@ -363,10 +363,9 @@ live. Resolve that separately; it is one file.
 
 ### 10.2 Still open
 
-1. **Option B or Option D?** Both reach neighborhood-first URLs; they differ on where the
-   210 pages come from and what ends up in the HTML. §6 of this memo describes Option D.
-   See §10.4, and the same table under "Decision 3" in the sequencing doc. **This is now the
-   only open item** — both options' prerequisites were probed and both passed (§10.6).
+**Nothing.** The last item, Option B vs Option D, was decided 2026-08-06 — see §10.4.
+Both options' prerequisites had already been probed and passed (§10.6), so implementation
+is not waiting on a check or a decision.
 
 Not blocking, but see §10.5: the five ACS percentages in `uhflist.js` have no established
 vintage, and this work promotes them from JS-rendered to static, indexed HTML.
@@ -400,7 +399,26 @@ items in §10.1.
   in the `robots.txt` template naming the decision and its date is what makes it the
   latter.
 
-### 10.4 Option B or Option D — the remaining mechanism choice
+### 10.4 Option B or Option D — DECIDED 2026-08-06: **Option D**
+
+**Option D — generate the pages from a content adapter.** Rationale, recorded so it is not
+re-litigated: it gets everything, and the concessions are to elegance rather than to
+capability — shipping ~250 generated pages instead of five clean SPA URLs is clunkier than
+the architecture anyone would draw from scratch, and search indexing is a good reason to
+accept that `[decided 2026-08-06: team]`.
+
+**One consequence to hold accurately.** Option D is the *maintenance*-optimal choice, not
+the indexing-optimal one — Option B would have put more in the static HTML, because it keeps
+the build-time fetch that renders measure values. What D concedes is the **numbers**, and
+only to crawlers that don't run JS. After the cold-fetch measurement (§12a) that gap is
+narrower than the table below implies: the topic prose is already static today, so D loses
+values alone, not descriptive content. Concretely, once this ships a non-JS crawler sees
+neighborhood name, ZIP list, demographics, indicator and measure names, and indicator
+descriptions — and not the rates. Googlebot, which renders, sees everything. If anyone later
+asks why an AI assistant knows the Department publishes East Harlem asthma data but not the
+figure, this is the line that answers it.
+
+The comparison that produced the decision:
 
 [`nr-decisions-and-sequencing-2026-08-04.md`](nr-decisions-and-sequencing-2026-08-04.md)
 reached neighborhood-first URLs independently, before the analytics, as its **Option B**.
