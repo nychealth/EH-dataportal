@@ -535,7 +535,10 @@ diff the generated pages against that capture for what must survive — neighbor
 list, indicator names and descriptions, and the EHDP-data URLs fetched. Same technique
 `characterize:nr` already uses for the SPA, pointed at `nr-output` for one run.
 
-**Status as of 2026-08-06:** step 1 done; step 2 on a separate track; steps 3–6 untouched.
+**Status as of 2026-08-06:** steps 1 and 4 done; step 3 done **in the working tree but not
+committed** — `git log` will not show it, so check `git status` before redoing it; step 2 on a
+separate track; steps 5–6 not started, and both have grown — see the new step 4a and the
+Web.config item under step 5.
 
 1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
    held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
@@ -548,17 +551,106 @@ list, indicator names and descriptions, and the EHDP-data URLs fetched. Same tec
 2. **Resolve the uhflist vintage split** (§10.1). **On a separate track** — the team is
    correcting the ACS values independently `[decided 08-05]`. Whichever lands second should
    re-read `uhflist.js` rather than assume its shape.
-3. **Make `getNeighborhoodFromURL` position-independent** (§7). **Not started.** Correct
-   under either scheme, so it is safe ahead of the URL decision. Now at
-   `assets/js/nr-topic-spa/url.js:21` after the module split. Proof: `npm run lint` plus
-   `npm run characterize:nr -- --check` showing zero diffs — note the baseline was
-   re-captured 2026-08-06 and now includes chart fields, so a diff there is meaningful.
-4. **Spike the content adapter** — one page, from `.Site.Data.globals.NR_content` (§10.5).
+3. **Make `getNeighborhoodFromURL` position-independent** (§7). **DONE 2026-08-06 in the
+   working tree, NOT COMMITTED.** The last-segment read in `getNeighborhoodFromURL`
+   (`assets/js/nr-topic-spa/url.js`, step 1 of the function) became
+   `pathParts.find(p => spaConfig.neighborhoodMap[p])`.
+
+   **The proof named here was insufficient, and the reason generalizes.** It prescribed
+   `npm run lint` plus `npm run characterize:nr -- --check`. Both were run and both pass
+   (lint clean; 3/3 targets match) — but **the harness never exercises the code that
+   changed.** It navigates to the clean topic URL and injects the neighborhood through the
+   `sessionStorage` bridge (`scripts/nr-characterization.mjs`, the `addInitScript` that
+   writes `nr_pending_neighborhood`), which is step *2* of the function. A green run here
+   proves step 2 is intact and says nothing about step 1. Treat this as standing: **no
+   change to path-based neighborhood resolution can be proven by `characterize:nr`** until
+   the harness navigates to real `<nbhd>/<topic>/` URLs, which is step 6's job.
+
+   What actually proved it `[verified 2026-08-06: Playwright against a `dev_stage` server]`:
+   with `sessionStorage.clear()` first — so only step 1 could answer — calling
+   `getNeighborhoodFromURL()` after `history.replaceState` to each shape returned
+   `East New York` for neighborhood-first `/…/east_new_york/asthma_and_the_environment/`,
+   `East New York` for topic-first, `Bayside - Little Neck` for a two-word slug, and `''`
+   for both negatives (no neighborhood in path; unknown slug) — the negatives being what
+   shows it does not match indiscriminately or mistake the `/dev-stage/` prefix for a slug.
+   Instrument validated before trusting any of it: `typeof getNeighborhoodFromURL` is
+   `'function'` and `neighborhoodMap` has 42 entries.
+4. **Spike the content adapter** (§10.5). **DONE 2026-08-06 — every question passed.** Run
+   against a `dev_stage` dev server rather than a static build, which also let the emitted
+   `<meta>` tags be read directly; probe files (`content/neighborhood-reports/_content.gotmpl`,
+   `data/globals/probe_uhflist.json`, a throwaway diagnostic layout) deleted, and on a
+   restarted server the probe URLs 404 while the real pages 200, with zero build errors.
+
+   Established: `kind: "section"` yields a real branch page; `layout` is settable in the
+   `.AddPage` map; underscores survive the path transform (`probe_neighborhood` 200s,
+   `probe-neighborhood` 404s); the adapter reads a **top-level JSON array** from
+   `data/globals` (uhflist's shape — `NR_content`'s map-of-maps did not test this); the
+   generated section sees its children in `.Pages`; `.Section` is `neighborhood-reports`, so
+   `head.html`'s Pagefind filter chip fires. **The one that mattered:** the generated report
+   page emitted `data-pagefind-meta="title:Asthma and the Environment | Probe Neighborhood"`,
+   matching the `nr-output` control `"…| East Harlem"` — so `.Parent.Title` resolves and
+   search results keep the neighborhood in the title.
+
+   **Three findings that change step 5**, none of which fail loudly:
+   - **`.Params.title` is empty on adapter pages; `.Title` works.** The page map's top-level
+     `title` sets `.Title` only. `nr-topic-spa.html` reads `.Params.title` for both `<h1>`s,
+     the breadcrumb and `reportName` — all rendered blank (`reportName: ""`). Switch them to
+     `.Title`, which is identical for the five existing topic content files.
+   - **`.File` is not nil on an adapter page — `.File.BaseFileName` is `_content`.** So
+     `topiclanding.html`'s Pagefind block, which filters `where … "title" "eq"
+     .File.BaseFileName`, would match **zero rows silently** rather than error. Key it on
+     `.Params.content_yml`, which is the same string the JSON's `title` field holds.
+   - **JSON numbers arrive as `float64`** (`geocode` → `999 (float64)`). Renders fine; an
+     `eq` against an int literal will not match.
+   **Step 4a — move the neighborhood list to `data/globals/`. Not started.** A new step, kept
+   inside item 4 so the 1–6 numbering this memo and the sequencing doc cross-reference stays
+   put. It must run before step 5 — the adapter
+   needs the 42 rows at build time, but §10.5 retires `assets/js/uhflist.json` with
+   `nr-insert-zips.html`, and `assets/js/uhflist.js` is not build-readable as-is. Derive
+   `data/globals/uhflist.json` mechanically from `uhflist.js` (strip its `var neighborhoods = `
+   prefix; it has no trailing semicolon, so the remainder is valid JSON), emit the browser
+   global as a build resource via `resources.FromString` so SRI is unchanged, and repoint the
+   three loaders — `partials/head.html` site-wide, plus the redundant duplicate tags in
+   `index.html` and `topiclanding.html`. **Touches the same file as step 2's separate track**,
+   so coordinate before running it: whichever lands second re-derives rather than assumes.
+   Proof: the step-1 A/B production build form, normalizing the changed fingerprint, plus a
+   browser check that `neighborhoods.length === 42`, plus `npm run smoke` — `head.html` is on
+   every page.
 5. **The swap**, one commit: the adapter generates 210 report pages, 42 neighborhood
-   indexes, and 5 topic indexes; the 252 content files, 2 layouts, 4 exclusive partials,
-   `data/globals/NR_footer`, and the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs` all go.
-   Diff against the pre-captured sample.
-6. **SPA rewiring** (§7), and re-baseline `characterize:nr`.
+   indexes, and 5 topic indexes; the 252 content files, 2 layouts, 3 exclusive partials,
+   and the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs` all go.
+   Diff against the pre-captured sample. **Not started.** Four amendments since this was written:
+
+   - **`static/Web.config:322-327` must be deleted in this commit.** The `nr-old-to-new-spa`
+     rule is a permanent 301 from `<nbhd>/<topic>/` to `<topic>/<nbhd>` with
+     `stopProcessing="true"`, so it fires before IIS serves a static file and would **301 away
+     every generated page**. `static/Web.config` is published by Hugo (`docs/Web.config`
+     exists), so it is a real deploy artifact. It is **not on `production`** — it arrived with
+     the SPA work in `902bdb98a1` and exists only on the feature-branch lineage
+     `[verified 2026-08-06: git grep against production; git log -S]`. The sibling
+     `nr-spa-neighborhood-path` rewrite (`:304-309`) goes with it; team decision 2026-08-06 is
+     to delete both outright rather than redirect the topic-first shape, which never shipped.
+   - **`data/globals/NR_footer` and `partials/nr-report-footer-sm.html` are KEPT**, reversing
+     this line's original instruction `[decided 2026-08-06: team]`. That footer is real
+     curated content on 210 live pages and the SPA has no equivalent, so deleting it would be
+     content loss rather than cleanup; the partial carries `data-pagefind-ignore="all"`
+     (`:14`), so keeping it adds nothing to the search index. `partials/nr-report-footer.html`
+     — the non-`-sm` one, already callerless — still goes.
+   - **Two new layouts are needed, not just the adapter.** Deleting `nr-output/section.html`
+     leaves `/neighborhood-reports/<nbhd>/` (4,689 sessions/yr) with nothing to render it, and
+     a bare `<topic>/` page under the SPA layout renders empty section divs (§12a). Port
+     `nr-output/section.html` for the neighborhood index, and build a topic index carrying a
+     server-rendered 42-neighborhood link list — the list `topiclanding.html` builds in JS
+     today. That template can then go: it is unselected on this branch but **live on
+     `production`**, where all five topic files carry `layout: topiclanding`
+     `[verified 2026-08-06]`, which corrects §9's "nothing selects it".
+   - **`CLAUDE.md` must be updated and re-stamped in this commit.** It is in `docs-check`'s
+     `ROOT_DOCS` and names both `nr-output` templates by path, so the check fails the moment
+     they are deleted.
+6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Not started.** Also make the
+   harness navigate to real `<nbhd>/<topic>/` URLs instead of writing
+   `nr_pending_neighborhood` — until it does, it cannot prove anything about path-based
+   resolution (see step 3).
 
 Steps 5 and 6 can be one commit or two. Two is better if the generated pages render
 correctly with JS disabled, since that is the state worth verifying on its own.
