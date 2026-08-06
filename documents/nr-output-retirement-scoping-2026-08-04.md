@@ -536,15 +536,47 @@ Verification for the whole run stays unusually cheap for a deletion this size:
 `npm run smoke`, `npm run characterize:nr -- --check`, `npm run docs-check`, and a `docs/`
 diff. The characterization harness is what proves the deletion didn't reach into the SPA.
 
+## 12a. The cold-fetch baseline — measured 2026-08-05
+
+What a crawler gets from `/neighborhood-reports/asthma_and_the_environment/` with no
+neighborhood in the URL and `sessionStorage` empty. Playwright against a `dev_stage` server
+started through `scripts/dev-server.mjs`, fresh browser context `[verified 2026-08-05]`:
+
+| | Raw HTML (non-JS crawlers) | Rendered DOM (Googlebot) |
+|---|---|---|
+| bytes / body text | 58,890 | 2,463 chars of text |
+| `nr-section-N` divs | 8 | 8, **all empty** — `children=0`, `textLen=0` |
+| report-topic names + descriptions | **6 of 6 markers present** | 6 of 6 |
+| links to `<nbhd>/<topic>` | — | **0** |
+| canonical | — | the bare topic URL |
+
+Three things this settles, one of which corrects this memo:
+
+- **The topic scaffolding is already server-rendered.** All eight `report_topic` headings and
+  their prose descriptions are in the raw HTML with no JS — "Adult Asthma", "Child Asthma",
+  "Home Maintenance", "Indoor Air Quality", "PM2.5", "asthma symptoms". §6's claim that
+  generated pages "can carry" those is true but understates the present: they already do, for
+  the five topic pages. What generation adds is the *neighborhood* dimension and the
+  demographics, not the topic prose.
+- **There is no citywide or default fallback.** After a full render with no neighborhood
+  selected, every one of the eight section divs is empty. The grep at §12 was right. So the
+  five SPA topic pages index today as topic descriptions with zero indicator data — that is
+  the baseline §6 improves against, now measured rather than assumed.
+- **Zero crawlable neighborhood links**, confirming §6's first bullet by count rather than by
+  reading the source comment.
+
+Two artifacts of the environment, not findings: `meta robots` reads `noindex, nofollow`
+because `head.html:27` fires outside production, and a `PagefindUI is not defined` page error
+is allowlisted dev-only noise in `scripts/smoke-pages.mjs` (Pagefind's index is a post-build
+step absent under `hugo server`).
+
+One oddity worth a look independently: the page carries **two `<h1>`s, both hidden**, both
+reading `"Asthma and the Environment in"` — built to end in a neighborhood name that a cold
+fetch never supplies, so the only heading on the page is a dangling preposition.
+
 ## 12. What I could not check
 
-- **What Googlebot currently gets from a topic page.** Not verified. The test: load
-  `/neighborhood-reports/asthma_and_the_environment/` in a fresh incognito window with
-  `sessionStorage` empty and read the rendered DOM. No default or citywide fallback appears
-  in `nr-topic-spa.js` `[verified 08-05: grep for DEFAULT/citywide/fallback returns only an
-  unrelated comparison string at :529]`, but a grep miss is not behavior. If the cold render
-  is a map picker with no indicator content, the five SPA topic pages index as near-empty
-  shells today — which is the baseline §6 improves against.
+- ~~What Googlebot currently gets from a topic page.~~ **Measured 2026-08-05 — see §12a.**
 - **EHDP-data's current contents** (§10.3). Separate repo.
 - **Whether `docs/` reflects the current build.** The URL shapes here come partly from a
   `docs/` listing, which is generated output and may predate recent content changes. They

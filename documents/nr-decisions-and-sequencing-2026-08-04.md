@@ -62,7 +62,7 @@ Two systems share the `neighborhood-reports` section `[verified: find, frontmatt
 | Content | 252 `.md` (210 topic + 42 `_index.md`) across 42 neighborhood dirs | 5 topic `.md` + the section `_index.md` |
 | URL | `/neighborhood-reports/<neighborhood>/<topic>/` | `/neighborhood-reports/<topic>/` |
 | How the neighborhood is known | it's in the URL, and in frontmatter | IIS rewrite, `sessionStorage` bridge, or `404.html` |
-| Report content in the HTML | **yes — server-rendered at build time** | **no — built by JS in the browser** |
+| Report content in the HTML | **yes — server-rendered at build time** | **partly** — topic headings and descriptions are static; every indicator *value* is JS-built (measured 2026-08-05, retirement memo §12a) |
 | Layout | `nr-output/single.html` (855 lines, 434 inline `<script>`) | `neighborhood-reports/nr-topic-spa.html` + `assets/js/nr-topic-spa.js` (1,435 lines) |
 | Sessions / yr | **~14,200** | 476 |
 | In site search | no — `data-pagefind-ignore="all"` | yes |
@@ -74,6 +74,12 @@ indicators via `nr-indicator-new.html` — so indicator names, values, geographi
 and tertile ranks are all in the delivered HTML. The SPA's template emits report-topic
 headings and then an empty `<div id="nr-section-N">`; everything inside is client-built
 `[verified: read of both templates]`.
+
+**Measured 2026-08-05 `[verified: Playwright cold fetch, retirement memo §12a]`:** on a
+topic page with no neighborhood selected, all 8 `nr-section-N` divs stay empty through a
+full render — there is no citywide default. But the eight report-topic headings *and their
+prose descriptions* are in the raw HTML with no JS. So the SPA's static floor is higher than
+"empty divs" and its rendered ceiling is lower than a report: topic prose, no data.
 
 **Nothing in this repo links to the 252 old URLs** `[verified: grep across content/,
 themes/, data/, config/]`. That was never the same as unused, and the analytics settled it:
