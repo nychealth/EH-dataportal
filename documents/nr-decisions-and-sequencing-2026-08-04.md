@@ -42,7 +42,7 @@ What remains genuinely open is in "Still open" at the end.
 
 | | What | Blocked on | Cost |
 |---|---|---|---|
-| **1** | Delete 5 callerless partials | nothing | ~1 hour |
+| **1** | Delete 5 callerless partials | **done 2026-08-06** | ~1 hour |
 | **2** | Split `nr-topic-spa.js` into 10 modules | **done 2026-08-06** | ~half a day |
 | **3** | URL scheme | **settled — neighborhood-first**, Option D | — |
 | **4** | Retire `nr-output` | nothing — implementation only | ~2–4 days |
@@ -63,7 +63,7 @@ Two systems share the `neighborhood-reports` section `[verified: find, frontmatt
 | URL | `/neighborhood-reports/<neighborhood>/<topic>/` | `/neighborhood-reports/<topic>/` |
 | How the neighborhood is known | it's in the URL, and in frontmatter | IIS rewrite, `sessionStorage` bridge, or `404.html` |
 | Report content in the HTML | **yes — server-rendered at build time** | **partly** — topic headings and descriptions are static; every indicator *value* is JS-built (measured 2026-08-05, retirement memo §12a) |
-| Layout | `nr-output/single.html` (855 lines, 434 inline `<script>`) | `neighborhood-reports/nr-topic-spa.html` + `assets/js/nr-topic-spa.js` (1,435 lines) |
+| Layout | `nr-output/single.html` (848 lines, 434 inline `<script>`) | `neighborhood-reports/nr-topic-spa.html` + `assets/js/nr-topic-spa/` (ten files, 1,499 lines) |
 | Sessions / yr | **~14,200** | 476 |
 | In site search | no — `data-pagefind-ignore="all"` | yes |
 
@@ -90,19 +90,39 @@ sensitive to deletion.
 
 ## Decision 1 — Delete the five callerless partials
 
-**No decision required.** Provable today, independent of everything else. Not yet done.
+**No decision required.** Provable today, independent of everything else. **Done 2026-08-06.**
 
 `nr-chooser.html`, `nr-clickable-uhf.html`, `nr-map-highlight.html`,
 `nr-indicator-old.html`, `nr-sub_nav.html` have no caller `[verified: usage sweep with
 positive control — `nr-leaflet` returns 4 callers; `partials.Include` confirmed unused]`.
 Site-wide audit §5a names the first three; the last two are new findings.
 
-**Two traps.** `.nr-clickable-uhf` is a live CSS class at
-`neighborhood-reports/section.html:86` even though the partial is dead — a grep-and-delete
-on the bare string breaks the landing page. `nr-sub_nav` survives only in a stale comment
-at `nr-output/single.html:207`.
+**The positive control earned its keep.** The first sweep matched `partial "name.html"` and
+returned zero for all five *and* for `nr-leaflet`. This repo invokes partials without the
+extension, so five zeros from a broken pattern would have read as proof. Also established
+on the corrected run: no partial anywhere is invoked through a variable, so a string-literal
+sweep is exhaustive rather than merely wide, and `themes/dohmh` is the only theme.
 
-**Proof:** clean build, `git diff` of `docs/` shows no rendered-output change.
+**Two traps, both handled.** `.nr-clickable-uhf` is a live CSS class at
+`neighborhood-reports/section.html:86` even though the partial is dead — a grep-and-delete
+on the bare string breaks the landing page; it is untouched, and appears in exactly one
+built file before and after. `nr-sub_nav` survived only in a stale comment at
+`nr-output/single.html:207` — **now settled**: that comment plus `$neighborhood_dir` and
+`$report_filename` were the partial's whole remaining footprint, declared and never
+referenced, and went with it.
+
+**Proof, as run:** an A/B production build into two temp directories, *not* a `git diff` of
+`docs/` — that tree is a stale `local-stage` build and would have confounded the comparison.
+Both builds: 2,766 files, 1,158 pages, and the only differing lines are the three
+`build_datetime` stamps that differ between any two builds. `lint`, `docs-check`,
+`characterize:nr` and `smoke` all pass.
+
+**Deliberately not deleted: `static/UHF42.csv`.** It was read only by two of these partials
+and is now referenced by nothing, and site-wide audit §5a's suggested order lists it for
+deletion. But it sits in `static/`, which Hugo publishes regardless of references — so it is
+a live public URL with unknown external consumers, and "orphaned by our code" is not
+"unused". That is a separate decision needing the same kind of evidence that kept the 252
+report URLs. Same applies to `ccd-to-uhf42.json`, which §5a pairs with it.
 
 ---
 
@@ -249,7 +269,8 @@ pre-capture of the top 20 report pages to diff against — is in the retirement 
 
 **Recommended order**
 
-1. **Decision 1** — free, independent, removes noise from every later sweep. Still to do.
+1. ~~**Decision 1** — free, independent, removes noise from every later sweep.~~ **Done
+   2026-08-06.**
 2. ~~**Decision 2** — ready, proven, blocks nothing and unblocks everything.~~ **Done
    2026-08-06.**
 3. ~~Pick Option B or Option D, then probe that option's prerequisite.~~ **Done** — both
@@ -274,8 +295,10 @@ a check** — every open question is closed, and what remains is implementation.
   `cgettings-EHDP-work` are 2015-19 and match neither file. **Being corrected on a separate
   track** `[decided 08-05]`; not a blocker here. Both tracks edit `uhflist.js`, so whichever
   lands second should re-read it rather than assume its shape.
-- **Site-wide audit §5a still owns five deletions** this document also claims. Hand them
-  over when decision 1 is acted on, or two documents conflict.
+- ~~**Site-wide audit §5a still owns five deletions** this document also claims.~~ **Closed** —
+  §5a already carried its hand-over banner as of 2026-08-05, and the deletions landed here on
+  2026-08-06. What §5a still owns and this document does not is `ccd-to-uhf42.json` and
+  `static/UHF42.csv`; see decision 1 for why those did not go with the partials.
 - **`topiclanding.html`** — nothing selects it via `layout:`, but §5a treats it as live.
   One file; resolve separately. It also holds one of the three build-time
   `resources.GetRemote` call sites.

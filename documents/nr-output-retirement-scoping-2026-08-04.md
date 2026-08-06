@@ -61,6 +61,13 @@ which is why "delete the old JS" isn't separable from deleting the templates. Th
 
 ## 2. Already unreachable — five dead partials, not three
 
+> **DONE 2026-08-06.** All five deleted under decision 1; see
+> [`nr-decisions-and-sequencing-2026-08-04.md`](nr-decisions-and-sequencing-2026-08-04.md).
+> Proof was an A/B production build, byte-identical but for the three home-page
+> `build_datetime` stamps. Both traps below held, and the second is now resolved: the
+> `nr-sub_nav` variables were used by nothing and went with the comment. The section stays
+> as the record of how the five were established.
+
 [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §5a records three
 partials with no caller. There are five `[verified 08-04: usage sweep over themes/,
 positive control — nr-leaflet returns 4 callers; partials.Include confirmed unused, so
@@ -277,14 +284,17 @@ to work, not verified. Spike it before planning around it.
 
 Four edits, one of which is a deletion `[verified 08-05: read at cc61dfd4e4]`:
 
-- **`nr-topic-spa.js:94`** — `getNeighborhoodFromURL` reads the *last* path segment and looks
+*Line references updated 2026-08-06 for the module split: all three functions landed in
+`assets/js/nr-topic-spa/url.js`, so this whole edit set is now one file.*
+
+- **`url.js:21`** — `getNeighborhoodFromURL` reads the *last* path segment and looks
   it up in `neighborhoodMap`. Under `<nbhd>/<topic>` the last segment is the topic. Replace
   with a membership search, `pathParts.find(p => spaConfig.neighborhoodMap[p])`, which is
   position-independent and therefore correct under either scheme — so it can land ahead of
   the rest.
-- **`nr-topic-spa.js:139-151`** — `setNeighborhoodInURL` splices the slug in after
+- **`url.js:58`** — `setNeighborhoodInURL` splices the slug in after
   `spaConfig.topicSlug`. It composes `<nbhd>/<topic>` instead. Same shape, different index.
-- **`nr-topic-spa.js:157` `updateTopicLinks`** — deleted, along with the
+- **`url.js:93` `updateTopicLinks`** — deleted, along with the
   `nr_pending_neighborhood` bridge it feeds. Once the pages exist the tabs become plain
   anchors to real URLs, which is also what gives Googlebot 210 links to follow.
 - **`themes/dohmh/layouts/404.html:60-72`** — the dev bridge becomes unnecessary when every

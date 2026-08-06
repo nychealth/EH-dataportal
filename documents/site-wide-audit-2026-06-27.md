@@ -369,7 +369,7 @@ the numbers for five ACS percentages, and the site displays the `.js`.**
 | 42-row neighborhood list | [`uhflist.js`](../assets/js/uhflist.js) (20 KB, `var neighborhoods`) **and** [`uhflist.json`](../assets/js/uhflist.json) (20 KB) | `.js` at runtime (`nr-output/single.html`, `nr-leaflet`, `neighborhood-reports/section`, `topiclanding`); `.json` at build time only (`nr-insert-zips.html` via `transform.Unmarshal`) |
 | CD/CCD → UHF crosswalk | `ccd-to-uhf42.js` (40 KB), `cd-to-uhf42.js` (32 KB), `ccd-to-uhf42.json` (33 KB) | the two `.js` by `overlap-tool.html` + `overlap-tool-with-map.html`; **the `.json` by nothing** |
 | UHF42 boundary | `static/geojson/UHF42.geojson` (95 KB), the remote `EHDP-data/…/geography/UHF42.geojson`, and `UHF42.topo.json` | local → `nr-leaflet.html`; remote → `overlap-tool-with-map.html` (2×); topojson → the data explorer |
-| UHF42 attribute table | `static/UHF42.csv` (3.5 KB) | only `nr-clickable-uhf.html` + `nr-map-highlight.html` — **both dead** |
+| UHF42 attribute table | `static/UHF42.csv` (3.5 KB) | only `nr-clickable-uhf.html` + `nr-map-highlight.html` — **both dead, and both deleted 2026-08-06; the CSV is retained, see the correction under §5a's suggested order** |
 
 **1. `uhflist.js` and `uhflist.json` are different vintages of the same table
 (P1 — correctness, not cleanup).** All 42 rows differ on at least one shared
@@ -429,6 +429,10 @@ legitimate — home is `Kind: home`, which head's condition doesn't cover.
 > — `nr-indicator-old.html` and `nr-sub_nav.html` are also callerless. Left here
 > because the analysis below is the record of how the first three were established;
 > do not action it from this document.
+>
+> **All five deleted 2026-08-06.** `static/UHF42.csv` and `ccd-to-uhf42.json` were
+> **not** deleted with them, against the suggested order below — see the correction
+> at the end of that list.
 
 `nr-clickable-uhf.html`, `nr-map-highlight.html` and `nr-chooser.html` have
 **zero invocations** in any form (`partial`/`partialCached`, with or without the
@@ -479,6 +483,18 @@ surveyed for spelling.
    *(The three partials are handed over to the NR sequencing doc's decision 1,
    which found five — see #4 above. `ccd-to-uhf42.json` and `static/UHF42.csv`
    stay owned here.)*
+
+   **CORRECTED 2026-08-06.** The five partials are deleted. **The two data files are
+   not, and grouping them with the partials in one step was wrong.** A callerless
+   partial cannot be reached at all; `static/UHF42.csv` and `ccd-to-uhf42.json` are
+   served verbatim from `static/`, which Hugo publishes *regardless of references* —
+   so both remain live public URLs after the last in-repo consumer is gone. "Nothing
+   in this repo references it" is exactly the condition that held for the 252
+   `nr-output` report URLs, which draw ~14,200 sessions a year (§5 of the retirement
+   memo). The build-diff proof this step proposes cannot detect the loss either,
+   since a `static/` file that no page links to leaves no trace in rendered output.
+   Deleting them needs external-traffic evidence, not a build diff, and belongs in
+   its own step.
 2. Drop the duplicate `uhflist.js` tag from `topiclanding.html`.
 3. Gate `uhflist.js` in head.html to `neighborhood-reports` (keep `index.html`'s
    explicit load). Removes a render-blocking 20 KB from every DE page.
