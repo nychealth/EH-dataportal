@@ -38,7 +38,7 @@ What remains genuinely open is in "Still open" at the end.
 
 ## The short version
 
-**Four decisions. Three need no decision at all. The one live choice is a mechanism.**
+**Four decisions, all settled. What remains is implementation.**
 
 | | What | Blocked on | Cost |
 |---|---|---|---|
@@ -48,8 +48,8 @@ What remains genuinely open is in "Still open" at the end.
 | **4** | Retire `nr-output` | nothing — implementation only | ~2–4 days |
 
 Decision 3 used to determine what decision 4 *was*. Now that it is settled, decision 4 is a
-cleanup task in either mechanism: no URL is deleted, no redirect is needed, no product
-sign-off is needed. What is left to choose is where the 210 pages come from.
+cleanup task: no URL is deleted, no redirect is needed, no product sign-off is needed. Where
+the 210 pages come from was the last sub-choice, and it went to Option D on 2026-08-06.
 
 ---
 
@@ -257,7 +257,6 @@ a check** — every open question is closed, and what remains is implementation.
 
 ## Still open
 
-- **Option B or Option D** (decision 3's sub-choice above). The only decision left.
 - **Site-wide audit §5a item 4 needs correcting, not just closing.** It frames
   `uhflist.js` / `uhflist.json` as two vintages where "all 42 rows differ" and demands
   content sign-off. Both are misleading: 8 of 13 fields are byte-identical including
@@ -296,5 +295,7 @@ retirement memo §10.
 | Everything outside the SPA, incl. §5a and §12 | [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) |
 | JS conventions, incl. the namespace rule | [`js-conventions.md`](js-conventions.md) |
 
-Step-by-step execution plans for decisions 2 and 4 exist outside the repo and can be moved
-into `documents/` when either is picked up.
+A step-by-step execution plan for decision 2 exists outside the repo and can be moved into
+`documents/` when it is picked up. **There is none yet for decision 4** — the outside-repo
+plan written for it takes the Option B mechanism, so only its SPA-rewiring stages survive
+the 2026-08-06 choice of Option D.
