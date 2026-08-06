@@ -22,6 +22,16 @@
 // deterministic; clicking the Leaflet map is not, and would make the harness a
 // test of map hit-detection rather than of report rendering.
 //
+// One accordion panel is expanded per target, because charts render lazily and a
+// harness that never expands one leaves the entire Vega path uncovered — which is
+// how a canvas→SVG renderer switch passed a full green run in 2026-08-06. The
+// first panel is chosen rather than a named indicator so the harness stays
+// independent of which indicators EHDP-data currently ships.
+//
+// What is asserted about the chart is deliberately structural — the renderer in
+// use, and whether each mark group painted — not the number of marks, which tracks
+// the row counts in EHDP-data and would churn the baseline on every data refresh.
+//
 // Usage (reuses a running dev server, or starts one — see dev-server.mjs):
 //   npm run characterize:nr -- --baseline
 //   npm run characterize:nr -- --check
@@ -112,7 +122,29 @@ const captureTarget = async (browser, target, baseURL) => {
         }, { timeout: 20000 })
         .catch(() => {});
 
-    // Let any Vega embeds finish painting after the header lands.
+    // ----- expand the first panel so the lazy chart path runs ----- //
+
+    // onAccordionExpand renders on the `shown.bs.collapse` event, so the chart
+    // only exists after a real expand. Failing soft here matches the header wait
+    // above: a panel that never opens is a result worth recording, not a crash.
+    const firstPanel = page.locator('#nr-acc-1-h button');
+
+    if (await firstPanel.count()) {
+        await firstPanel.click().catch(() => {});
+    }
+
+    // Wait for Vega to paint rather than for a fixed delay. The chart fetches two
+    // topojson files from EHDP-data at render time, so this is the slowest step in
+    // the capture — the harness already depends on that host for the report and viz
+    // JSON, so this adds requests, not a new dependency.
+    await page
+        .waitForFunction(() => {
+            const embed = document.querySelector('.vega-embed');
+            return !!embed && (embed.querySelector('svg.marks') || embed.querySelector('canvas'));
+        }, { timeout: 30000 })
+        .catch(() => {});
+
+    // Let any remaining embeds settle after the first one paints.
     await page.waitForTimeout(1500);
 
     const captured = await page.evaluate(() => {
@@ -128,11 +160,31 @@ const captureTarget = async (browser, target, baseURL) => {
 
         // Vega writes role/aria-label onto the container regardless of renderer,
         // so container labels work whether charts paint to canvas or SVG.
-        const charts = [...document.querySelectorAll('.vega-embed')].map((el) => ({
-            ariaLabel: el.getAttribute('aria-label'),
-            hasCanvas: !!el.querySelector('canvas'),
-            hasSvg: !!el.querySelector('svg')
-        }));
+        //
+        // hasCanvas/hasSvg pin the renderer: chart.js passes renderer: 'svg', and a
+        // silent revert to vega-embed's canvas default would otherwise be invisible
+        // here. `svg.marks` is the scenegraph specifically — a bare `svg` also
+        // matches the action menu's own icon, which is present either way.
+        //
+        // markGroups records that each half of the vconcat painted, keyed by Vega's
+        // own group class (mark-shape/mark-rect + concat index). Membership and a
+        // painted flag are stable across EHDP-data refreshes; child counts are not.
+        const charts = [...document.querySelectorAll('.vega-embed')].map((el) => {
+
+            const marks = el.querySelector('svg.marks');
+
+            return {
+                ariaLabel: el.getAttribute('aria-label'),
+                hasCanvas: !!el.querySelector('canvas'),
+                hasSvg: !!marks,
+                markGroups: marks
+                    ? [...marks.querySelectorAll('g[class*="role-mark"]')]
+                        .map((g) => ({ cls: g.getAttribute('class'), painted: g.children.length > 0 }))
+                        .sort((a, b) => a.cls.localeCompare(b.cls))
+                    : []
+            };
+
+        });
 
         return {
             finalURL: window.location.pathname,
@@ -144,6 +196,9 @@ const captureTarget = async (browser, target, baseURL) => {
             zipList: textOf('nr-zip-list'),
             accordionIds: accordions,
             accordionCount: accordions.length,
+            // Distinguishes "the panel opened and drew nothing" from "the click
+            // never landed", which look identical in an empty charts array.
+            expandedPanel: document.querySelector('#nr-acc-1-c.show') ? 'nr-acc-1-c' : null,
             charts,
             chartCount: charts.length,
             topicLinkCount: document.querySelectorAll('.nr-topic-link').length,

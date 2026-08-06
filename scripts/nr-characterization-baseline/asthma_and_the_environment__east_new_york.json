@@ -55,8 +55,33 @@
     "nr-acc-9-h"
   ],
   "accordionCount": 46,
-  "charts": [],
-  "chartCount": 0,
+  "expandedPanel": "nr-acc-1-c",
+  "charts": [
+    {
+      "ariaLabel": "",
+      "hasCanvas": false,
+      "hasSvg": true,
+      "markGroups": [
+        {
+          "cls": "mark-rect role-mark concat_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_0_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_2_marks",
+          "painted": true
+        }
+      ]
+    }
+  ],
+  "chartCount": 1,
   "topicLinkCount": 5,
   "mapPanes": 7,
   "consoleErrors": []
