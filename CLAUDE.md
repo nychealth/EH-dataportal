@@ -216,6 +216,8 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit for that branch.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; superseded by the fresh audit.
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
+- `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
+- `documents/nr-decisions-and-sequencing-2026-08-04.md` — the NR decision record and order of work. Also this branch.
 
 ## Common gotchas
 
