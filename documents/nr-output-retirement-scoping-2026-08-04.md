@@ -535,13 +535,24 @@ diff the generated pages against that capture for what must survive — neighbor
 list, indicator names and descriptions, and the EHDP-data URLs fetched. Same technique
 `characterize:nr` already uses for the SPA, pointed at `nr-output` for one run.
 
-1. **Delete the five callerless partials.** Provable now, independent of every open
-   question. Proof: clean build plus a `git diff` of `docs/` showing no rendered-output
-   change. Mind the two string traps in §2.
-2. **Resolve the uhflist vintage split** (§10.1).
-3. **Make `getNeighborhoodFromURL` position-independent** (§7). Correct under either scheme,
-   so it is safe ahead of the URL decision. Proof: `npm run lint` plus
-   `npm run characterize:nr -- --check` showing zero diffs.
+**Status as of 2026-08-06:** step 1 done; step 2 on a separate track; steps 3–6 untouched.
+
+1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
+   held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
+   work, because that tree is a stale `local-stage` build and the diff would be dominated by
+   the environment difference. What was run instead: two full `--environment production`
+   builds into separate temp directories, before and after, diffed with `diff -r`. Both
+   2,766 files / 1,158 pages; the only differing lines were the three home-page
+   `build_datetime` stamps, which differ between any two builds. **Use that A/B form for
+   step 5's diff too, not a `docs/` diff.**
+2. **Resolve the uhflist vintage split** (§10.1). **On a separate track** — the team is
+   correcting the ACS values independently `[decided 08-05]`. Whichever lands second should
+   re-read `uhflist.js` rather than assume its shape.
+3. **Make `getNeighborhoodFromURL` position-independent** (§7). **Not started.** Correct
+   under either scheme, so it is safe ahead of the URL decision. Now at
+   `assets/js/nr-topic-spa/url.js:21` after the module split. Proof: `npm run lint` plus
+   `npm run characterize:nr -- --check` showing zero diffs — note the baseline was
+   re-captured 2026-08-06 and now includes chart fields, so a diff there is meaningful.
 4. **Spike the content adapter** — one page, from `.Site.Data.globals.NR_content` (§10.5).
 5. **The swap**, one commit: the adapter generates 210 report pages, 42 neighborhood
    indexes, and 5 topic indexes; the 252 content files, 2 layouts, 4 exclusive partials,
