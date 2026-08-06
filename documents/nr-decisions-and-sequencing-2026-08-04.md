@@ -43,7 +43,7 @@ What remains genuinely open is in "Still open" at the end.
 | | What | Blocked on | Cost |
 |---|---|---|---|
 | **1** | Delete 5 callerless partials | nothing | ~1 hour |
-| **2** | Split `nr-topic-spa.js` into 10 modules | nothing | ~half a day |
+| **2** | Split `nr-topic-spa.js` into 10 modules | **done 2026-08-06** | ~half a day |
 | **3** | URL scheme | **settled — neighborhood-first**, Option D | — |
 | **4** | Retire `nr-output` | nothing — implementation only | ~2–4 days |
 
@@ -109,7 +109,13 @@ at `nr-output/single.html:207`.
 ## Decision 2 — Split `nr-topic-spa.js` into a module directory
 
 **No decision required.** A pure refactor with no behavior change, fully specified and
-provable. Not yet done.
+provable. **Done 2026-08-06** — ten files under `assets/js/nr-topic-spa/`, proven by a
+sorted-line diff whose only entries were comment headers, then lint with a cross-file
+positive control, `characterize:nr` 3/3, smoke 15/15, and a browser pass. The sub-item
+below (an `NR = {…}` namespace) is still open; the annotations it was gated on now exist,
+and they **narrow it further** — by reads as well as writes, `leafletMap`, `uhfLayer` and
+`fetchesComplete` never cross a file boundary at all, leaving only `renderedPanels` and
+`accordionCounter` genuinely shared-and-churning.
 
 Ten files under `assets/js/nr-topic-spa/`, mirroring `assets/js/data-explorer/`. The file's
 12 existing level-1 sections are already the seams. Stage 5 of the earlier conventions work
@@ -243,8 +249,9 @@ pre-capture of the top 20 report pages to diff against — is in the retirement 
 
 **Recommended order**
 
-1. **Decision 1** — free, independent, removes noise from every later sweep.
-2. **Decision 2** — ready, proven, blocks nothing and unblocks everything.
+1. **Decision 1** — free, independent, removes noise from every later sweep. Still to do.
+2. ~~**Decision 2** — ready, proven, blocks nothing and unblocks everything.~~ **Done
+   2026-08-06.**
 3. ~~Pick Option B or Option D, then probe that option's prerequisite.~~ **Done** — both
    probed 2026-08-05 and both passed (retirement memo §10.6); **Option D chosen 2026-08-06.**
 4. **Decision 4**, per the staging in the retirement memo §11.

@@ -875,6 +875,11 @@ the rule PENDING; drop that marker once the DE branch merges.
   is called on the last line. 1,431 lines, 12 level-1 sections, 59 module-scope
   declarations.
 
+  **Module structure closed 2026-08-06 — the one gap this entry held open.** The file
+  is now ten under `assets/js/nr-topic-spa/`, loaded in a stated order with `app.js`
+  last, and the 59 declarations are unchanged in count and content. Everything above
+  describes the single file and stays as the record of that state.
+
   The collision audit the plan required ran as a browser probe on the loaded topic
   page — for each of the 59 names, insert a `<script>` declaring it and watch for a
   duplicate-declaration `SyntaxError`. One hit: `bootstrap`, which is this file's

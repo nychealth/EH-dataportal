@@ -27,7 +27,7 @@ const PAGES = [
     "data-features/find-your-uhf/",                  // renders neighborhood-overlap.html — sole real easyButton/colorIcon consumer
     "neighborhood-reports/",                         // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/asthma_and_the_environment/",                     // neighborhood-reports/nr-topic-spa.html — the Phase 2 topic SPA
-                                                     // (nr-topic-spa.js, path-based routing + sessionStorage
+                                                     // (nr-topic-spa/, path-based routing + sessionStorage
                                                      // bridging). This branch's feature; nothing else covers it.
     "neighborhood-reports/bayside_little_neck/",                            // nr-output/section.html — per-neighborhood landing
     "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-output/single.html — individual report

@@ -372,7 +372,7 @@ debugLog("** renderBar");
 debugLog("*** getGeoFile");
 ```
 
-**Structured `'scope: event: value'`** — used by `assets/js/nr-topic-spa.js`, where
+**Structured `'scope: event: value'`** — used by `assets/js/nr-topic-spa/`, where
 the traces track a state machine rather than a call tree, and greppability by event
 matters more than depth.
 

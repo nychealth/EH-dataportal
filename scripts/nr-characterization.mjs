@@ -3,7 +3,7 @@
 // ======================================================================= //
 
 // Characterization harness for the Phase 2 Neighborhood Reports topic SPA
-// (assets/js/nr-topic-spa.js + layouts/neighborhood-reports/nr-topic-spa.html):
+// (assets/js/nr-topic-spa/ + layouts/neighborhood-reports/nr-topic-spa.html):
 // captures the rendered output for a fixed set of topic/neighborhood pairs so a
 // refactor can be diffed against a committed baseline.
 //
@@ -11,10 +11,10 @@
 // the data explorer's tabs and does not work on this branch at all. The NR topic
 // SPA is what actually changes here, and until now had no regression net.
 //
-// IMPORTANT: this reads only DOM output. It must never read nr-topic-spa.js's
-// internal names — almost everything there lives inside one 1200-line `bootstrap()`
-// closure and is unreachable anyway, but the rule is what keeps the harness valid
-// across a refactor that renames things.
+// IMPORTANT: this reads only DOM output. It must never read the SPA's internal
+// names. They are now reachable — the `bootstrap()` closure was unwrapped to module
+// scope, and the file was split into ten — so the rule no longer enforces itself.
+// It is what keeps the harness valid across a refactor that renames things.
 //
 // Neighborhood selection goes through the sessionStorage bridge the SPA already
 // supports (`nr_pending_neighborhood`, read during the SPA's startup),
