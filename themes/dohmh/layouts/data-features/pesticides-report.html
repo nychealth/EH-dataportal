@@ -43,6 +43,9 @@ d3.csv("data/agency-totals.csv").then(function(data) {
 });
 
 function renderAgencyTable(agencyName, targetId, noDataProvided) {
+
+    console.log("* renderAgencyTable");
+    
     // filter
     const filtered = agencyData.filter(d => d.Agency === agencyName);
 
@@ -54,7 +57,11 @@ function renderAgencyTable(agencyName, targetId, noDataProvided) {
 }
 
 function renderIntroTable(tableName, destination, standard, numeric) {
+
+    console.log("* renderIntroTable");
+
     const file = 'data/' + tableName + '.csv';
+
    
     d3.csv(file).then(function(data) {
         console.log('File loaded: ' + tableName);
@@ -87,6 +94,9 @@ function renderIntroTable(tableName, destination, standard, numeric) {
 }
 
 function printTable(data, destination, year, noDataProvided) {
+
+    console.log("** printTable", );
+    
     const container = document.getElementById(destination);
 
     // if agency explicitly provided *no data* at all
