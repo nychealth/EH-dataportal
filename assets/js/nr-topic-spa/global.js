@@ -24,31 +24,56 @@
 // shared state
 // ----------------------------------------------------------------------- //
 
+// These bindings are declared here and reached from the other nine files, which
+// share one top-level scope because the template loads all ten as classic
+// <script> tags. Each is annotated with the file that WRITES it and the files
+// that READ it, because that is the thing a shared-scope split makes invisible:
+// nothing in the language marks who owns a name, so a reader has to grep for it.
+// Derived by sweep, 2026-08-06 — re-run it rather than trusting these if the
+// call graph moves.
+
 // Server-injected SPA configuration, read here so every function below can reach it.
-// Whether it actually arrived is bootstrap()'s guard, not this line's
+// Whether it actually arrived is bootstrap()'s guard, not this line's.
+// WRITE: never after this line  READ: app, chart, data, map, report, url
 const spaConfig = window.NR_TOPIC_SPA_CONFIG;
 
-// Per-section data store: sectionId -> { neighborhoodName -> rows[] }
+// Per-section data store: sectionId -> { neighborhoodName -> rows[] }.
+// The binding is never reassigned; data.js fills it key by key
+// WRITE (keys): data  READ: report
 const sectionData = {};
 
 // Arquero table for the viz dataset (all indicators, all neighborhoods)
+// WRITE: data  READ: app (CSV export), chart (per-indicator summary)
 let vizTable = null;
 
-// Track which accordion panels have already had their chart rendered
+// Track which accordion panels have already had their chart rendered.
+// Two writers of different kinds: report.js replaces the whole object to reset
+// it per render, chart.js sets one key per panel it draws
+// WRITE: report (reset), chart (keys)  READ: chart
 let renderedPanels = {};
 
 // Track loading: sections + viz = total fetches needed before first render.
-// bootstrap() sets the total, since module scope runs before the config guard
+// bootstrap() sets the total, since module scope runs before the config guard.
+// fetchesComplete never leaves data.js; it lives here to stay beside its pair
+// WRITE: app (total), data (complete)  READ: data
 let totalFetches = 0;
 let fetchesComplete = 0;
 
 // Current neighborhood and geocode, updated on switch
+// WRITE: report  READ: app, chart, map, report
 let currentNeighborhood = '';
 let currentGeocode = null;
 
-// Leaflet map and GeoJSON layer references
+// Leaflet map and GeoJSON layer references. Both are written and read only in
+// map.js — they sit here with the rest of the map state rather than because
+// anything outside map.js needs them
+// WRITE: map  READ: map
 let leafletMap = null;
 let uhfLayer = null;
+
+// The two halves of the initial-render gate: neither render happens until both
+// the data fetches and the map geometry are in. tryInitialRender() checks both
+// WRITE: data (dataReady), map (mapReady)  READ: data, map
 let dataReady = false;
 let mapReady = false;
 

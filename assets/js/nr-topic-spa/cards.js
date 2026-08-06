@@ -6,7 +6,13 @@
 // accordion ids and escaping
 // ----------------------------------------------------------------------- //
 
-// Cards are numbered in one sequence across all sections, in render order
+// Cards are numbered in one sequence across all sections, in render order.
+// This is the one binding written from a file that does not declare it:
+// renderAll() in report.js resets it to 0 before rebuilding the page, so ids
+// restart at nr-acc-1 for each neighborhood instead of climbing forever. That
+// cross-file write is deliberate and is what the shared top-level scope buys —
+// moving this into cards.js-only state would silently break id stability.
+// WRITE: cards (increment), report (reset)  READ: cards
 let accordionCounter = 0;
 
 // Generates the unique id that pairs a collapse control with its panel
