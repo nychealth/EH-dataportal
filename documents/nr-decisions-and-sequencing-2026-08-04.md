@@ -241,7 +241,7 @@ Proof is a clean build, a `git diff` of `docs/`, and the characterization harnes
 
 What goes: `nr-output/single.html`, `nr-output/section.html`, `nr-insert-zips.html`,
 `nr-report-footer.html`, `nr-report-footer-sm.html`, `data/globals/NR_footer`, and
-`PAGES[32]`/`[33]` in `scripts/smoke-pages.mjs`. Under Option D the 252 content files go
+the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs`. Under Option D the 252 content files go
 too; under Option B they stay and are re-pointed. `nr-indicator-new.html` survives under
 Option B and goes under Option D.
 

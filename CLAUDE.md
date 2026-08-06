@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 12c21b70b1 2026-07-29 -->
+<!-- docs-check verified: b6035b3068 2026-08-06 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -43,7 +43,7 @@ Five npm scripts, run from the repo root:
 
 - `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-topic-spa/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
 - `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`. Before relying on it as the proof for a change that only executes on one page kind, confirm that page is in `PAGES` — those comments are claims that rot like doc prose. Two caveats: the generic `Failed to load resource` allowlist entry hides the *cause* of blocked-script failures, leaving only a downstream `X is not defined`, so diagnose those with a separate unfiltered probe; and a cache-cold first run has been seen to fail spuriously (site-wide audit §5j).
-- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
 - `npm run characterize:nr` — Playwright characterization harness for the Neighborhood Reports topic SPA (`scripts/nr-characterization.mjs`). Captures rendered output — neighborhood header, demographics, ZIP list, accordion ids, chart count, **and the final URL** — for three topic/neighborhood pairs, and diffs them against `scripts/nr-characterization-baseline/`. `-- --check` to verify, `-- --baseline` to re-capture. Neighborhood selection goes through the SPA's own `sessionStorage` bridge rather than clicking the Leaflet map, so runs are deterministic. The captured final URL is the guard against a silent redirect to the 404 page. Run it before any merge touching the NR templates or `assets/js/nr-topic-spa/`. It expands the first accordion panel per target so the lazy Vega path runs, and records the renderer (`hasCanvas`/`hasSvg`) plus a painted flag per mark group — structural facts only, since mark *counts* track EHDP-data row counts and would churn the baseline on every data refresh.
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
 
@@ -103,9 +103,9 @@ JS files under `assets/js/` are fingerprinted and served with Subresource Integr
 - `renderLinksChart` (`links.js`) and `renderTrendChart` (`trend.js`) are each a single function spanning nearly their whole file.
 
 Key gotchas:
-- `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one.
+- `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one. **Scoped to `feature-new-data-explorer`** — the name appears 6× there and 0× here or on `production`, though DataTables itself is used on this branch `[verified 2026-08-06]`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`); data rows may carry versioned values. Normalize with `prettifyGeoType` before comparing. `assignGeoRank` derives its ranking from the same source, so a new versioned variant only needs adding in one place.
-- The search modal must live in `baseof.html`, not `footer.html`, to avoid Pagefind double-initialization on footerless pages.
+- **The search modal is not where this file used to say it was.** On this branch `#searchModal` is defined inline at `themes/dohmh/layouts/partials/footer.html:189`, reached only because `baseof.html` includes the footer — the arrangement the old wording forbade. `feature-new-data-explorer` solved it differently again, with a dedicated `search-modal.html` under `themes/dohmh/layouts/partials/` included from the header partials, and has it in neither `baseof.html` nor `footer.html`. So there is no branch where it lives in `baseof.html` `[verified 2026-08-06: counts across all three branches]`. Whether the Pagefind double-initialization it guarded against actually occurs here is **untested** — it needs a footerless page to reproduce.
 - `head.html` gates its library block on page kind and section. That condition does **not** cover section pages — which is why the data explorer landing page throws `aq is not defined` (site-wide audit §5f). Check the gate before assuming a library is available on a given template.
 
 ### Neighborhood Reports
@@ -146,14 +146,18 @@ Routing note: production uses an IIS rewrite for topic/neighborhood URLs. `hugo 
 
 Specify with `--environment ENV`. Each environment's own config.toml, under its directory in `config/`, is merged over `config/_default/config.toml`.
 
-| Environment   | Data branch | Purpose                              |
-|---------------|-------------|--------------------------------------|
-| `development` | production  | Preview site changes (default local) |
-| `dev_stage`   | staging     | Preview combined site + data changes |
-| `production`  | production  | Deploy to production servers         |
-| `prod_stage`  | staging     | Preview data changes only            |
-| `local_prod`  | production  | Uses locally hosted data repo        |
-| `local_stage` | staging     | Uses locally hosted data repo        |
+| Environment   | Data branch | Purpose                                                   |
+|---------------|-------------|-----------------------------------------------------------|
+| `development` | production  | Preview site changes (default local)                      |
+| `dev_stage`   | staging     | Preview combined site + data changes; also CI → `builds/dev-stage` |
+| `dev_prod`    | production  | CI → `builds/dev-prod`. Same `baseURL`/`data_branch` as `development` |
+| `production`  | production  | Same config as `prod_prod`, but **no workflow builds with it** |
+| `prod_prod`   | production  | **The live build** — CI → `builds/prod-prod` on merge to `production` |
+| `prod_stage`  | staging     | Preview data changes only                                 |
+| `local_prod`  | production  | Uses locally hosted data repo                             |
+| `local_stage` | staging     | Uses locally hosted data repo                             |
+
+**Eight, not six, and the two pairs matter.** `development`/`dev_prod` and `production`/`prod_prod` are pairwise identical in `baseURL` and `data_branch`; the difference is only which one CI names. The deploy workflow passes `--environment prod_prod`, so a change made under `production` alone does not reach the live build `[verified 2026-08-06: --environment grep across .github/workflows/]`.
 
 Key per-environment variables: `baseURL` and `data_branch`.
 

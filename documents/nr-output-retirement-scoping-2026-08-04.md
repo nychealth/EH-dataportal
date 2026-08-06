@@ -17,11 +17,12 @@ describes would delete, so once any of this lands the checker would fail on name
 are correct for the memo's purpose. Re-derive its paths against the tree rather than
 trusting them after a deletion pass.
 
-**Independent of the in-flight `nr-topic-spa.js` module split.** The two work packages
-intersect in two files at non-overlapping lines: `scripts/smoke-pages.mjs` (the split
-edits the comment at :30; this would remove `PAGES[32]`/`[33]`) and
+**Independent of the `nr-topic-spa.js` module split — which landed 2026-08-06.** The two work
+packages intersected in two files at non-overlapping lines: `scripts/smoke-pages.mjs` — the
+split edited the comment at :30, while this work removes the two `nr-output` entries in
+`PAGES`, at indices 11 and 12, file lines 32-33 — and
 [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) (§5h vs §5a)
-`[verified 08-04: file-set intersection]`. Neither blocks the other.
+`[verified 08-04: file-set intersection]`. Neither blocked the other.
 
 ---
 
@@ -544,7 +545,7 @@ list, indicator names and descriptions, and the EHDP-data URLs fetched. Same tec
 4. **Spike the content adapter** — one page, from `.Site.Data.globals.NR_content` (§10.5).
 5. **The swap**, one commit: the adapter generates 210 report pages, 42 neighborhood
    indexes, and 5 topic indexes; the 252 content files, 2 layouts, 4 exclusive partials,
-   `data/globals/NR_footer`, and `PAGES[32]`/`[33]` in `scripts/smoke-pages.mjs` all go.
+   `data/globals/NR_footer`, and the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs` all go.
    Diff against the pre-captured sample.
 6. **SPA rewiring** (§7), and re-baseline `characterize:nr`.
 
