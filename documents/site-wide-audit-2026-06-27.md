@@ -362,7 +362,7 @@ Full audit of every UHF artifact in the repo, prompted by the `uhflist` bullet
 above. The 42-neighborhood list, the UHF42 boundary, and the CD→UHF crosswalks
 are each stored more than once, in more than one format. **The headline is not
 the duplication — it's that the two copies of the neighborhood list disagree on
-the numbers, and the site displays the stale one.**
+the numbers for five ACS percentages, and the site displays the `.js`.**
 
 | Thing | Copies | Consumers |
 |---|---|---|
@@ -383,8 +383,30 @@ only and are never displayed. This has the shape of a regenerated update that
 landed in the JSON and never made it back into the JS. **Someone has to decide
 which vintage is authoritative before anything here is deleted or unified.**
 
+> **RESOLVED 2026-08-05 — `uhflist.js` is the source of truth; `uhflist.json` is
+> deleted along with its only consumer, `nr-insert-zips.html`.** Two corrections
+> to the framing above, from a field-level comparison (parse both, join on
+> `UHF_id`, count differing rows per field):
+>
+> - **"All 42 rows differ" is true but reads as more than it is.** 8 of the 13
+>   shared fields are byte-identical across every row — `UHF_id`, `UHF_name`,
+>   `page_name`, `Zipcodes`, `namezip`, `TotalPopulation`, `PercentOver65`,
+>   `PercentUnder18`. Only the five ACS socioeconomic percentages diverge.
+>   Because `Zipcodes` is byte-identical, deleting the `.json` loses nothing at
+>   all — a stronger warrant than "its consumer is going away."
+> - **The "different vintages" reading is unconfirmed in both directions.**
+>   Neither file could be dated: the three ACS poverty pulls in
+>   `cgettings-EHDP-work/data/` are all 2015-19 and give UHF 101 poverty as
+>   `15.08`, matching neither `16.53` nor `16.1624`. The decimal-precision
+>   difference hints at different origins but dates nothing. Choosing the `.js`
+>   is a decision to keep displaying what the site already displays, not a
+>   finding that its numbers are current — **the ACS values are being corrected
+>   on a separate track**.
+>
+> Detail in [`nr-output-retirement-scoping-2026-08-04.md`](nr-output-retirement-scoping-2026-08-04.md) §10.5.
+
 **2. `uhflist.js` is render-blocking on pages that never use it (P2).**
-[head.html:195](../themes/dohmh/layouts/partials/head.html) sits inside
+[head.html:185](../themes/dohmh/layouts/partials/head.html) sits inside
 `{{ if or (eq .Kind "page") (eq .Section "neighborhood-reports") (eq .Section "data-explorer") }}`,
 so 20 KB of `var neighborhoods` blocks parsing on every data-explorer page,
 data-feature, data-story and key-topic page. Only neighborhood-reports read the
@@ -400,6 +422,14 @@ neighborhoods`. `index.html:320` also loads it explicitly, but *that* one is
 legitimate — home is `Kind: home`, which head's condition doesn't cover.
 
 **4. Three dead partials, plus the files only they use (P3).**
+
+> **HANDED OVER 2026-08-05 to
+> [`nr-decisions-and-sequencing-2026-08-04.md`](nr-decisions-and-sequencing-2026-08-04.md)
+> decision 1**, which owns the deletion and its proof. It found **five**, not three
+> — `nr-indicator-old.html` and `nr-sub_nav.html` are also callerless. Left here
+> because the analysis below is the record of how the first three were established;
+> do not action it from this document.
+
 `nr-clickable-uhf.html`, `nr-map-highlight.html` and `nr-chooser.html` have
 **zero invocations** in any form (`partial`/`partialCached`, with or without the
 `.html` suffix). The `nr-clickable-uhf` string that survives in `docs/` is the
@@ -446,16 +476,26 @@ surveyed for spelling.
 1. Delete `nr-clickable-uhf.html`, `nr-map-highlight.html`, `nr-chooser.html`,
    `ccd-to-uhf42.json`, `static/UHF42.csv`. Verify with a clean `hugo` build and
    a `git diff` of `docs/` — expect **no** rendered-output change.
+   *(The three partials are handed over to the NR sequencing doc's decision 1,
+   which found five — see #4 above. `ccd-to-uhf42.json` and `static/UHF42.csv`
+   stay owned here.)*
 2. Drop the duplicate `uhflist.js` tag from `topiclanding.html`.
 3. Gate `uhflist.js` in head.html to `neighborhood-reports` (keep `index.html`'s
    explicit load). Removes a render-blocking 20 KB from every DE page.
-4. **Blocked on #1's decision:** collapse `uhflist.js` + `uhflist.json` into one
+4. ~~**Blocked on #1's decision:** collapse `uhflist.js` + `uhflist.json` into one
    source of truth. The clean shape is JSON-only — keep the build-time
-   `transform.Unmarshal` for zips and emit the runtime copy *from the same JSON*
-   (`{{ $l := resources.Get "js/uhflist.json" | transform.Unmarshal }}<script>var neighborhoods = {{ $l | jsonify }}</script>`),
+   `transform.Unmarshal` for zips and emit the runtime copy *from the same JSON*,
    on the pages that need it, so the two can't drift again. This changes the
    numbers shown on neighborhood reports: it is a **content change** and wants
-   its own commit with sign-off, not a ride-along in a perf PR.
+   its own commit with sign-off, not a ride-along in a perf PR.~~
+
+   > **SUPERSEDED 2026-08-05.** The decision went the other way: `.js` is the
+   > source of truth and `.json` is deleted with `nr-insert-zips.html`, the only
+   > thing that reads it. **The sign-off requirement does not apply to that
+   > direction** — it was written for the JSON-only shape recommended here, which
+   > would have changed displayed numbers. Keeping the `.js` changes none, because
+   > the `.json` percentages were never rendered anywhere (see #1 above). The two
+   > can't drift again for the simpler reason that only one will exist.
 5. *Optional:* point `nr-leaflet` at the EHDP-data UHF42 geometry the overlap
    tool already fetches and delete the local copy — one origin, one cache entry,
    but neighborhood reports then depend on the data repo at runtime. Same idea
@@ -553,9 +593,17 @@ items below. Everything here was already broken; the cleanup only made it visibl
   **Fix:** use the already-installed `@mapbox/leaflet-pip` —
   `leafletPip.pointInLayer({ lat, lng }, layer)`, exactly the call
   [heat-story-leaflet.js:1728](../content/data-features/heat-story/embed/heat-story-leaflet.js)
-  already makes — or Turf / manual ray-casting. Note the package is in `package.json` but is
+  already makes — or Turf / manual ray-casting. ~~Note the package is in `package.json` but is
   **not** loaded by any template today (§3's "audit for actual use" bullet), so a script tag
-  or `lib-*.html` partial has to be added alongside the code change.
+  or `lib-*.html` partial has to be added alongside the code change.~~
+
+  > **CORRECTED 2026-08-05 — it *is* loaded.** `data-features/heatstory.html:332` pulls it
+  > via `resources.Get "node_modules/@mapbox/leaflet-pip…"`, on `HEAD`,
+  > `feature-new-data-explorer` and `production` alike `[verified: git grep -l
+  > 'node_modules/@mapbox/leaflet-pip' <branch> -- themes/]`. So the migration target is
+  > already wired into the build on a real page; only `head.html` never followed. That makes
+  > the fix smaller than described — copy heatstory's load, don't invent one. §3's
+  > "installed but loaded by no template" note is wrong for the same reason.
 
 - **P2 — three templates still load OpenLayers from RawGit.** Same dead host, a different
   library, and the *core* map dependency for the pages that load it —
@@ -564,6 +612,12 @@ items below. Everything here was already broken; the cleanup only made it visibl
   and [email-electeds.html:132](../themes/dohmh/layouts/take-action/email-electeds.html) (a
   take-action page — this third site wasn't in the original DE write-up). All three go on to
   construct `new nyc.ol.FrameworkMap({...})`, which is nyc-lib's OpenLayers wrapper.
+
+  > **Branch-scoped, checked 2026-08-05.** Three is correct for
+  > `feature-new-data-explorer` and `production`. On
+  > `feature-MOD-Lab-NR-recode-refactor` it is **five** — `take-action-email.html` and
+  > `take-action/email.html` also carry the tag `[verified: git grep -l
+  > 'rawgit.*openlayers' <branch> -- themes/]`. Count against the branch you are fixing.
   **HYPOTHESIS (unverified): these maps are broken in production.** Per this repo's root-cause
   rule that is a guess until someone loads the pages and checks the console — it hinges on
   whether `nyc-ol-lib.js` (loaded from `maps.nyc.gov`, two lines later) supplies its own `ol`
@@ -1178,9 +1232,18 @@ In addition to the map/chart gaps in the DE audit:
 
 ## 11. Concrete defects found (quick wins)
 
+> **Row 1 is branch-scoped — checked 2026-08-05.** The RawGit point-in-polygon tag is gone
+> on `production` and `feature-new-data-explorer`, and is **still live and unconditional at
+> `head.html:220`** on `feature-MOD-Lab-NR-recode-refactor` and its whole lineage
+> (`…-recode`, `…-phase2`, `…-merge-prod`, `trial-merge-de-into-nr`)
+> `[verified: git show <branch>:themes/dohmh/layouts/partials/head.html | grep
+> 'rawgit.com/hayeswise', across all 44 local branches]`. The fix was real; recording it as
+> "FIXED" without naming the branch made it read as global. Anyone exercising
+> rats-in-your-neighborhood on the NR lineage still hits a CDN that shut down in 2019.
+
 | # | Severity | Where | Issue |
 |---|---|---|---|
-| 1 | ~~P1~~ **FIXED 2026-07-14** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
+| 1 | ~~P1~~ **FIXED 2026-07-14 — but only on some branches; see note below** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
 | 2 | P1 | CI workflows | Unpinned actions + no `permissions:` block (your own CLAUDE.md rules) |
 | 3 | P2 | [main.js:110](../assets/js/main.js) + [site.js:94](../assets/js/site.js) | `click_subscribe` analytics fires twice |
 | 4 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | Font Awesome shipped as render-blocking JS *and* CSS — the `all.min.js` SVG-injector was dropped (CSS + webfonts kept). Caused one regression: per-section accent icon coloring had silently depended on the injector rewriting `<i class="fa…">` into `<svg><path>`; fixed separately on `hotfix-color-styles` |
@@ -1240,6 +1303,16 @@ flagship feature.
   *is* the right call, but it's worth an affirmative decision (and a comment recording it) rather
   than an accidental default. No `llms.txt` either; that convention is still informal and
   unstandardized industry-wide, so treat it as optional, not a gap.
+
+  > **DECIDED 2026-08-05 — allow all crawlers, affirmatively.** Rationale, recorded so it
+  > is not re-litigated: people use chatbots to ask questions the Department has data for,
+  > so being crawled is a public service independent of how anyone feels about the use case.
+  > The decision needs writing into the repo to be worth anything — a comment in
+  > `themes/dohmh/layouts/robots.txt` naming it and its date is what distinguishes "allow
+  > everyone deliberately" from the omission described above. Folded into the NR work's
+  > staging alongside the `Sitemap:` fix, since both edit the same file: see
+  > [`nr-output-retirement-scoping-2026-08-04.md`](nr-output-retirement-scoping-2026-08-04.md)
+  > §10.3 and §11.
 
 ### Structured data — none (P2)
 
