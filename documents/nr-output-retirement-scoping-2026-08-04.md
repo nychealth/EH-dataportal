@@ -535,10 +535,9 @@ diff the generated pages against that capture for what must survive — neighbor
 list, indicator names and descriptions, and the EHDP-data URLs fetched. Same technique
 `characterize:nr` already uses for the SPA, pointed at `nr-output` for one run.
 
-**Status as of 2026-08-06:** steps 1 and 4 done; step 3 done **in the working tree but not
-committed** — `git log` will not show it, so check `git status` before redoing it; step 2 on a
-separate track; steps 5–6 not started, and both have grown — see the new step 4a and the
-Web.config item under step 5.
+**Status as of 2026-08-06:** steps 1, 3 and 4 done and committed; step 2 on a separate track;
+steps 5–6 not started, and both have grown — see the new step 4a and the Web.config item under
+step 5.
 
 1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
    held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
@@ -551,8 +550,8 @@ Web.config item under step 5.
 2. **Resolve the uhflist vintage split** (§10.1). **On a separate track** — the team is
    correcting the ACS values independently `[decided 08-05]`. Whichever lands second should
    re-read `uhflist.js` rather than assume its shape.
-3. **Make `getNeighborhoodFromURL` position-independent** (§7). **DONE 2026-08-06 in the
-   working tree, NOT COMMITTED.** The last-segment read in `getNeighborhoodFromURL`
+3. **Make `getNeighborhoodFromURL` position-independent** (§7). **DONE 2026-08-06**
+   (`d55fb1d936`). The last-segment read in `getNeighborhoodFromURL`
    (`assets/js/nr-topic-spa/url.js`, step 1 of the function) became
    `pathParts.find(p => spaConfig.neighborhoodMap[p])`.
 
