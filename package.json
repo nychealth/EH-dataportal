@@ -12,7 +12,7 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "scripts": {
-        "lint": "eslint assets/js/data-explorer assets/js/nr-topic-spa.js",
+        "lint": "eslint assets/js/data-explorer assets/js/nr-topic-spa",
         "characterize:de": "node scripts/de-characterization.mjs",
         "characterize:nr": "node scripts/nr-characterization.mjs",
         "smoke": "node scripts/smoke-pages.mjs",

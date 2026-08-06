@@ -286,7 +286,16 @@
   - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
   - reportName: page title for CSV download filenames.
 */}}
-{{- $nrTopicJS := resources.Get "js/nr-topic-spa.js" | partial "short-fingerprint.html" -}}
+{{- $nrGlobal       := resources.Get "js/nr-topic-spa/global.js"       | partial "short-fingerprint.html" -}}
+{{- $nrUrl          := resources.Get "js/nr-topic-spa/url.js"          | partial "short-fingerprint.html" -}}
+{{- $nrTertiles     := resources.Get "js/nr-topic-spa/tertiles.js"     | partial "short-fingerprint.html" -}}
+{{- $nrDemographics := resources.Get "js/nr-topic-spa/demographics.js" | partial "short-fingerprint.html" -}}
+{{- $nrCards        := resources.Get "js/nr-topic-spa/cards.js"        | partial "short-fingerprint.html" -}}
+{{- $nrReport       := resources.Get "js/nr-topic-spa/report.js"       | partial "short-fingerprint.html" -}}
+{{- $nrChart        := resources.Get "js/nr-topic-spa/chart.js"        | partial "short-fingerprint.html" -}}
+{{- $nrMap          := resources.Get "js/nr-topic-spa/map.js"          | partial "short-fingerprint.html" -}}
+{{- $nrData         := resources.Get "js/nr-topic-spa/data.js"         | partial "short-fingerprint.html" -}}
+{{- $nrApp          := resources.Get "js/nr-topic-spa/app.js"          | partial "short-fingerprint.html" -}}
 
 {{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
 <script>
@@ -330,6 +339,23 @@
   };
 </script>
 
-<script src="{{ $nrTopicJS.RelPermalink }}" integrity="{{ $nrTopicJS.Data.Integrity }}" crossorigin="anonymous"></script>
+{{/*
+  Ten classic (non-module) scripts sharing one top-level scope, in load order.
+  Nothing enforces that order, so it is stated here rather than inferred:
+  app.js must load last. It holds the only two statements that run at load time
+  (the window.nrDownloadCSV export and the bootstrap() call), and both read names
+  the other nine declare. Everything else runs from bootstrap() or a DOM event,
+  by which point all ten have run.
+*/}}
+<script src="{{ $nrGlobal.RelPermalink }}" integrity="{{ $nrGlobal.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrUrl.RelPermalink }}" integrity="{{ $nrUrl.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrTertiles.RelPermalink }}" integrity="{{ $nrTertiles.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrDemographics.RelPermalink }}" integrity="{{ $nrDemographics.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrCards.RelPermalink }}" integrity="{{ $nrCards.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrReport.RelPermalink }}" integrity="{{ $nrReport.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrChart.RelPermalink }}" integrity="{{ $nrChart.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrMap.RelPermalink }}" integrity="{{ $nrMap.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrData.RelPermalink }}" integrity="{{ $nrData.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrApp.RelPermalink }}" integrity="{{ $nrApp.Data.Integrity }}" crossorigin="anonymous"></script>
 
 {{- end -}}
