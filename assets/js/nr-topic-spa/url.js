@@ -25,13 +25,18 @@ const getNeighborhoodFromURL = () => {
     // Covers externally shared and bookmarked URLs like
     //   /neighborhood-reports/asthma_and_the_environment/east_new_york
     // On production IIS rewrites those to serve the topic page, leaving the slug
-    // visible in the path for this lookup to read
+    // visible in the path for this lookup to read.
+    // The slug is found by membership in neighborhoodMap rather than by position, so this
+    // reads either segment order — the topic-first form above, and the neighborhood-first
+    // /neighborhood-reports/east_new_york/asthma_and_the_environment/ that generated report
+    // pages will serve. Site path prefixes (/dev-stage/) are skipped for the same reason:
+    // they are not neighborhood slugs
     const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
-    const slug = pathParts[pathParts.length - 1];
+    const slug = pathParts.find(p => spaConfig.neighborhoodMap[p]);
 
     debugLog('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
 
-    if (spaConfig.neighborhoodMap[slug]) {
+    if (slug) {
         return spaConfig.neighborhoodMap[slug];
     }
 
