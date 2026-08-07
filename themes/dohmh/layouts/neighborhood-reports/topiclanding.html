@@ -143,8 +143,7 @@
 {{- end -}}
 
 
-{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
+{{- /* The uhflist tag that used to sit here was a duplicate — head.html already loads it. */ -}}
 
 <!-- flexdatalist -->
 

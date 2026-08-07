@@ -182,7 +182,15 @@
     {{- /* LEAFLET */}}
 
     <!-- UHF42 neighborhood list javascript -->
-    {{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
+    {{- /*
+        Generated from data/globals/uhflist.json, which is the single source of truth for the
+        42 UHF rows — the same file the content adapter reads at build time. Emitting the
+        browser copy from it keeps one file to edit instead of a .js and a .json that drifted
+        apart once already. Still fingerprinted and SRI-hashed, exactly as the source file was.
+        The target name differs from the old assets path on purpose: resources/_gen/ caches by
+        path, so reusing that name risks serving a stale entry keyed to the deleted file.
+    */ -}}
+    {{- $uhflist_js := printf "var neighborhoods = %s" (jsonify site.Data.globals.uhflist) | resources.FromString "js/uhflist-data.js" | partial "short-fingerprint.html" -}}
     <script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
 
     <!-- leaflet CSS -->

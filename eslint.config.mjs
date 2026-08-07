@@ -39,7 +39,7 @@ const NR_EXTERNAL_GLOBALS = {
     aq: "readonly",             // arquero
     op: "readonly",             // arquero's op namespace
     vegaEmbed: "readonly",      // vega-embed, in the vegaBundle concat
-    neighborhoods: "readonly",  // `var` in assets/js/uhflist.js
+    neighborhoods: "readonly",  // `var`, generated from data/globals/uhflist.json in head.html
     debugLog: "readonly"        // inline <script> in partials/head.html
 };
 

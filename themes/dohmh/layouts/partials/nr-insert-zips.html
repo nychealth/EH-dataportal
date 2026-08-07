@@ -1,4 +1,4 @@
-{{- $uhflist := ( resources.Get "js/uhflist.json" ) | transform.Unmarshal -}}
+{{- $uhflist := site.Data.globals.uhflist -}}
 
 {{/*  get neighborhood name  */}}
 
