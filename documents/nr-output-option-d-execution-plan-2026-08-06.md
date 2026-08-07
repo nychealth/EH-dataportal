@@ -164,8 +164,8 @@ and deletion and generation cannot be staged apart.
   reads bare "Bayside - Little Neck".
 - **`themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`** — port of
   `nr-output/section.html`, with the five topic cards pointing at real `<nbhd>/<topic>/` hrefs
-  instead of the sessionStorage bridge at `:65-73`. ~~Keep the `.nr-clickable-uhf` class name: the
-  partial is dead, the CSS class is live (memo §2).~~ **Misfiled — no action needed here.** That
+  instead of the sessionStorage bridge at `:65-73`. ~~Keep the `.nr-clickable-uhf` class name: the partial is dead, the CSS class is live (memo §2).~~ 
+  **Misfiled — no action needed here.** That
   class is not in `nr-output/section.html`; it is on a `<div>` at
   `neighborhood-reports/section.html:86`, which this stage does not delete. Memo §2's own wording
   is right and this restatement moved it to the wrong file.
@@ -303,8 +303,8 @@ Done in Stage E:
 - ~~`url.js` — `setNeighborhoodInURL` (`:82`) composes `<nbhd>/<topic>`~~ **done.** It now rewrites
   the segment *before* the topic; the guard is `topicIdx < 2`, index 2 being the shallowest a report
   page can sit at with no site path prefix.
-- ~~`updateTopicLinks` (`:93-114`) deleted along with the `nr_pending_neighborhood` bridge it
-  feeds~~ **kept, and repurposed.** It rewrites each tab's href to the current neighborhood instead
+- ~~`updateTopicLinks` (`:93-114`) deleted along with the `nr_pending_neighborhood` bridge it feeds~~ 
+  **kept, and repurposed.** It rewrites each tab's href to the current neighborhood instead
   of writing sessionStorage. Deleting it outright would have left the five tabs pointing at whatever
   neighborhood the page was *generated* for after an in-place map switch. The tabs are already plain
   anchors to real URLs — server-rendered by `themes/dohmh/layouts/partials/nr-topic-menu.html` — so
@@ -313,8 +313,8 @@ Done in Stage E:
   `<nbhd>/<topic>/` directly. `nr-leaflet`'s `selectNeighborhood` also now falls back to
   `<nbhd>/` when no topic is in play, which is the case on a neighborhood index — previously it
   built `neighborhood-reports///`.
-- ~~`scripts/nr-characterization.mjs` — navigate directly to `<nbhd>/<topic>/`, then
-  re-baseline~~ **done**, and re-baselined against `dev_stage` as this bullet instructed, so the
+- ~~`scripts/nr-characterization.mjs` — navigate directly to `<nbhd>/<topic>/`, then re-baseline~~ 
+  **done**, and re-baselined against `dev_stage` as this bullet instructed, so the
   committed `/dev-stage/` prefix is unchanged. `characterize:nr` now exercises path-based
   resolution for the first time, closing the standing caveat in ledger step 3.
 
