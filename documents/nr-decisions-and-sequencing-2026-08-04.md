@@ -291,10 +291,15 @@ a check** — every open question is closed, and what remains is implementation.
   `Zipcodes`, only the five ACS percentages diverge, and keeping the `.js` — the decision
   taken 2026-08-05 — changes no displayed number, because the `.json` percentages were
   never rendered anywhere. Detail in the retirement memo §10.5.
-- **The five ACS percentages in `uhflist.js` have no established vintage** — the pulls in
-  `cgettings-EHDP-work` are 2015-19 and match neither file. **Being corrected on a separate
-  track** `[decided 08-05]`; not a blocker here. Both tracks edit `uhflist.js`, so whichever
-  lands second should re-read it rather than assume its shape.
+- ~~**The five ACS percentages in `uhflist.js` have no established vintage.**~~ **Corrected
+  2026-08-06 — the vintage is ACS 2019-2023**, set by `45f638562c` (2025-07-18, "updated UHF
+  data to 2019-2023"), which is on this branch and on `production`. That commit is also exactly
+  the transition from `uhflist.json`'s values to `uhflist.js`'s, which makes the `.json` the
+  superseded pre-July-2025 copy rather than a rival vintage. Detail in the retirement memo
+  §10.5. The 2015-19 pulls in `cgettings-EHDP-work` simply predate both. **Still open:** a
+  fresh ACS pull, planned and not started as of 2026-08-06. It no longer collides with this
+  work — step 4a moved the canonical rows to `data/globals/uhflist.json` and deleted
+  `assets/js/uhflist.js`, so the correction edits the data file.
 - ~~**Site-wide audit §5a still owns five deletions** this document also claims.~~ **Closed** —
   §5a already carried its hand-over banner as of 2026-08-05, and the deletions landed here on
   2026-08-06. What §5a still owns and this document does not is `ccd-to-uhf42.json` and

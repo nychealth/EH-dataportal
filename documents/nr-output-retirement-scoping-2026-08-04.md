@@ -378,8 +378,10 @@ live. Resolve that separately; it is one file.
 Both options' prerequisites had already been probed and passed (§10.6), so implementation
 is not waiting on a check or a decision.
 
-Not blocking, but see §10.5: the five ACS percentages in `uhflist.js` have no established
-vintage, and this work promotes them from JS-rendered to static, indexed HTML.
+Not blocking, and narrower than it was: the five ACS percentages **do** have an established
+vintage — ACS 2019-2023, set by `45f638562c` on 2025-07-18 — which §10.5 previously said could
+not be determined. What remains is a planned fresh pull, not started as of 2026-08-06. This
+work still promotes those figures from JS-rendered to static, indexed HTML.
 
 Closed earlier: the retire-or-redirect question (§5); the analytics question (§5); the IIS
 config question (§6 — dissolved); the URL-order rationale (§0.3 — artifact, no defence).
@@ -506,21 +508,34 @@ Two consequences:
   rendered anywhere. Choosing the `.json` would have been the content change.
   **Corrected in place 2026-08-05**, along with §5a finding 1's framing.
 
-What this does **not** establish is that the `.js` figures are current. Choosing it is a
-decision to keep displaying what the site already displays, which is the low-risk call, not
-a finding that its vintage is right. Neither file could be dated from available sources: the
-three ACS poverty files in `cgettings-EHDP-work/data/` are all the same 2015-19 pull, giving
-UHF 101 poverty as 15.08, matching neither `.js` (16.53) nor `.json` (16.1624)
-`[verified 08-05: grep across ACS*Poverty*.csv]`. A formatting signature hints they have
-different origins — `.json` carries 4+ decimals throughout, `.js` two — but that dates
-nothing.
+**The vintage question is answered, and this paragraph used to say the opposite
+`[corrected 2026-08-06]`.** It read that "neither file could be dated from available
+sources", inferring that from the 2015-19 ACS pulls in `cgettings-EHDP-work` — which give UHF
+101 poverty as 15.08, matching neither `.js` (16.53) nor `.json` (16.1624). That inference
+stands; the conclusion drawn from it does not, because it was made without consulting git.
 
-This matters more after this work than before it. The five ACS percentages move from
-JS-rendered to static HTML, on ~250 pages, indexed, under the Department's name.
-**The team is correcting the ACS values on a separate track** `[decided 08-05]`. That work
-and this one touch the same file for different reasons, so whichever lands second should
-re-read `uhflist.js` rather than assume its shape — and if the correction lands first, the
-generated pages simply pick up the corrected figures with no change here.
+`45f638562c` — Jack Goldsmith, 2025-07-18, *"updated UHF data to 2019-2023"* — is on this
+branch and on `production`, and it is exactly the transition between the two files
+`[verified 2026-08-06: git show of the commit and its parent]`. For UHF 101 it moved
+`PovertyPercent` 16.1624 → 16.53, `PercentGraduatedHighSchool` 84.9831 → 87.51,
+`PercentLimitedEnglish` 17.014 → 16.54, `PercentRentBurdened` 50.8905 → 49.5, and renamed
+`OwnerOccupiedPercent` → `PercentOwnerOccupied` (37.7167 → 40.31). The "before" values are
+`uhflist.json`'s. The same commit added the "American Community Survey (2019-2023)" source
+line to `nr-output/single.html`.
+
+So two things this memo treated as unknown are settled. **`uhflist.js` is ACS 2019-2023**,
+dated and attributed. And **`uhflist.json` is not a rival vintage of unknown origin — it is
+the pre-July-2025 copy of `uhflist.js`**, left behind when that commit updated the `.js`.
+That is a stronger warrant for dropping it than either argument given above. The 4-decimal
+versus 2-decimal "formatting signature" is explained by the same commit rather than hinting
+at different origins.
+
+Still true: the five ACS percentages move from JS-rendered to static HTML, on ~250 pages,
+indexed, under the Department's name. **A fresh ACS pull is still planned and had not been
+started as of 2026-08-06** `[confirmed 2026-08-06: the person doing it]` — so the separate
+track remains open, and it is now a new-numbers question rather than an unknown-vintage one.
+Since step 4a moved the canonical rows to `data/globals/uhflist.json`, that correction edits
+the data file; `assets/js/uhflist.js` no longer exists.
 
 ## 11. Staging
 
@@ -535,9 +550,9 @@ diff the generated pages against that capture for what must survive — neighbor
 list, indicator names and descriptions, and the EHDP-data URLs fetched. Same technique
 `characterize:nr` already uses for the SPA, pointed at `nr-output` for one run.
 
-**Status as of 2026-08-06:** steps 1, 3 and 4 done and committed; step 2 on a separate track;
-steps 5–6 not started, and both have grown — see the new step 4a and the Web.config item under
-step 5.
+**Status as of 2026-08-06:** steps 1, 3, 4 and the new 4a done; step 2 on a separate track and
+now narrower (the vintage is established — see §10.5 — leaving only a planned fresh ACS pull,
+not started); steps 5–6 not started, and step 5 has grown — see the Web.config item under it.
 
 1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
    held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
@@ -601,9 +616,36 @@ step 5.
      `.Params.content_yml`, which is the same string the JSON's `title` field holds.
    - **JSON numbers arrive as `float64`** (`geocode` → `999 (float64)`). Renders fine; an
      `eq` against an int literal will not match.
-   **Step 4a — move the neighborhood list to `data/globals/`. Not started.** A new step, kept
-   inside item 4 so the 1–6 numbering this memo and the sequencing doc cross-reference stays
-   put. It must run before step 5 — the adapter
+   **Step 4a — move the neighborhood list to `data/globals/`. DONE 2026-08-06**
+   (`46eecd692b`). A new step,
+   kept inside item 4 so the 1–6 numbering this memo and the sequencing doc cross-reference
+   stays put. `data/globals/uhflist.json` is now the single source of truth; `head.html`
+   generates the browser global from it via `resources.FromString` (target `js/uhflist-data.js`
+   — a fresh name, because `resources/_gen/` caches by path); `nr-insert-zips.html` reads
+   `site.Data.globals.uhflist`; `assets/js/uhflist.js` and `assets/js/uhflist.json` are gone.
+
+   **Proof, as run.** The derivation is byte-mechanical — stripping the 20-byte
+   `var neighborhoods = ` prefix, confirmed by file size (20,022 → 20,002), and git recorded it
+   as a rename. Parsed both ways, 42 rows, 13 keys, deep-equal. A/B `--environment production`
+   builds: 2,766 files each side, only-in-one being exactly the two uhflist assets. Of 398
+   differing files, normalising the uhflist `<script>` tag and `build_datetime` leaves **3**,
+   all home pages, and their entire residual is the removed tag. The generated asset's values,
+   key sets and types are identical to the old file's (`jsonify` sorts keys, which no consumer
+   reads by position; `TotalPopulation` stayed the integer 92773). `smoke` 15/15,
+   `characterize:nr --check` 3/3 — the last is the real end-to-end proof, since its baseline
+   asserts on the rendered demographics text these rows feed.
+
+   **One finding worth keeping.** `head.html`'s uhflist tag is gated on `.Kind "page"` or the
+   neighborhood-reports section, so it never covered the **home page** — the tag in
+   `index.html` was not the duplicate it looked like. Removing it took the home pages from one
+   copy to zero, which the page-coverage count caught (398 → 395 pages carrying the global).
+   That turned out to be correct anyway: nothing on the home page reads `neighborhoods`
+   `[verified 2026-08-06: zero references in the built home pages and in the only two scripts
+   they load]`, so it was fetching 20,022 unused bytes. The `topiclanding.html` tag *was* a
+   genuine duplicate. Do not assume a second `resources.Get` of the same asset is redundant
+   without checking the gate around the first.
+
+   It had to run before step 5 — the adapter
    needs the 42 rows at build time, but §10.5 retires `assets/js/uhflist.json` with
    `nr-insert-zips.html`, and `assets/js/uhflist.js` is not build-readable as-is. Derive
    `data/globals/uhflist.json` mechanically from `uhflist.js` (strip its `var neighborhoods = `
