@@ -546,7 +546,7 @@
     let topicIndicators;
     let sti;
     let thisInd;
-    let NeighborhoodName = "Greenwich Village - Soho"; 
+    let NeighborhoodName = "Greenwich Village - SoHo"; 
 
     
     async function get_topic_indicators() {
@@ -650,7 +650,7 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href=/IndicatorPublic/>Home</a></li>
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/neighborhood-reports>Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="../" id="neighbLink">Greenwich Village - Soho</a></li>
+                    <li class="breadcrumb-item"><a href="../" id="neighbLink">Greenwich Village - SoHo</a></li>
                     <li class="breadcrumb-item active d-none d-sm-block"><a href="/IndicatorPublic/neighborhood-reports/greenwich_village_soho/active_design_physical_activity_and_health/">Active Design, Physical Activity and Health</a></li>
                 </ul>
             </nav>
@@ -659,7 +659,7 @@
             <div class="row d-md-none">
                 <div class="col-12 mb-2">
                     <h1 class="h2">Active Design, Physical Activity and Health <span style="font-weight:normal">in</span></h1>
-                        <span class="h2 sub-title text-primary">Greenwich Village - Soho</span>
+                        <span class="h2 sub-title text-primary">Greenwich Village - SoHo</span>
                 </div>
             </div>
 
@@ -1097,7 +1097,7 @@
 
                     <div class="d-none d-md-block">
                         <h1 class="h2 mt-3">Active Design, Physical Activity and Health <span style="font-weight:normal">in</span></h1>
-                            <span class="h2 sub-title text-primary">Greenwich Village - Soho</span>
+                            <span class="h2 sub-title text-primary">Greenwich Village - SoHo</span>
                     </div>
 
                     <div class="d-md-none my-1">
@@ -1143,7 +1143,1135 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-obesityP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-obesityP"
+        aria-expanded="true"
+        aria-controls="collapse-obesityP"
+        onclick="getURL( 2061 , 'obesityP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Overweight</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Overweight or obesity (adults), 2022</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >46.7</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Overweight
+              </span><br />
+              <span class="fs-sm font-weight-normal">Overweight or obesity (adults), 2022</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                46.7
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-obesityP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-obesityP"
+    data-parent="#accordion-0"
+    data-indicator-name="obesityP"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults reporting a Body Mass Index over 25. People who are overweight or obese are at increased risk for heart disease and diabetes.  Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-obesityP-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Overweight in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-overweight"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-overweight">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-overweight"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-overweight">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-overweight" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2061" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2022-12-31`, `year-overweight`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-overweight').innerHTML = b;
+    document.getElementById('cv-overweight').innerHTML = c;
+
+
+})(
+     46.7 ,
+     50.2 ,
+     59.3 ,
+    'n-overweight',
+    'b-overweight',
+    'c-overweight',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-obesityP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Overweight'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "obesityP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-obesityP-1", "Percent ","Overweight",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-bikeEDAA">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-bikeEDAA"
+        aria-expanded="true"
+        aria-controls="collapse-bikeEDAA"
+        onclick="getURL( 2092 , 'bikeEDAA')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Bicycle injuries</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Bicycle injury emergency department visits, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >68.3</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Rate per 100,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Bicycle injuries
+              </span><br />
+              <span class="fs-sm font-weight-normal">Bicycle injury emergency department visits, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                68.3
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Rate per 100,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-bikeEDAA"
+    class="collapse border-bottom "
+    aria-labelledby="heading-bikeEDAA"
+    data-parent="#accordion-0"
+    data-indicator-name="bikeEDAA"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">ED visits related to bicycle injuries.  Bicycle injury ED visits can indicate the overall safety of cycling in the city.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-bikeEDAA-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Bicycle injuries in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-bicycle-injuries"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-bicycle-injuries">boro val</span> per 100,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-bicycle-injuries"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-bicycle-injuries">city val</span> per 100,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-bicycle-injuries" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York State Department of Health, Statewide Planning and Research Cooperative System (SPARCS) 2018-2021, cut by NYSDOH in November 2023.</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2092" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-bicycle-injuries`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-bicycle-injuries').innerHTML = b;
+    document.getElementById('cv-bicycle-injuries').innerHTML = c;
+
+
+})(
+     68.3 ,
+     88.8 ,
+     96.4 ,
+    'n-bicycle-injuries',
+    'b-bicycle-injuries',
+    'c-bicycle-injuries',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-bikeEDAA" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Bicycle injuries'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "bikeEDAA")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-bikeEDAA-2", "Rate per 100,000","Bicycle injuries",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-pedEDAA">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-pedEDAA"
+        aria-expanded="true"
+        aria-controls="collapse-pedEDAA"
+        onclick="getURL( 2094 , 'pedEDAA')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Pedestrian injuries</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Pedestrian injury emergency department visits, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >53.2</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Rate per 100,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Pedestrian injuries
+              </span><br />
+              <span class="fs-sm font-weight-normal">Pedestrian injury emergency department visits, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                53.2
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Rate per 100,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-pedEDAA"
+    class="collapse border-bottom "
+    aria-labelledby="heading-pedEDAA"
+    data-parent="#accordion-0"
+    data-indicator-name="pedEDAA"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Transportation-related ED visits for pedestrians. Pedestrian injury ED visits can indicate the safety of walking for transportation.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-pedEDAA-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Pedestrian injuries in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pedestrian-injuries"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pedestrian-injuries">boro val</span> per 100,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pedestrian-injuries"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pedestrian-injuries">city val</span> per 100,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pedestrian-injuries" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York State Department of Health, Statewide Planning and Research Cooperative System (SPARCS) 2018-2023, cut by NYSDOH in November 2023 (2018-2021) and October 2024 (2022-2023).</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2094" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-pedestrian-injuries`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pedestrian-injuries').innerHTML = b;
+    document.getElementById('cv-pedestrian-injuries').innerHTML = c;
+
+
+})(
+     53.2 ,
+     78.9 ,
+     103.1 ,
+    'n-pedestrian-injuries',
+    'b-pedestrian-injuries',
+    'c-pedestrian-injuries',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-pedEDAA" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Pedestrian injuries'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "pedEDAA")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-pedEDAA-3", "Rate per 100,000","Pedestrian injuries",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-preMorAA">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-preMorAA"
+        aria-expanded="true"
+        aria-controls="collapse-preMorAA"
+        onclick="getURL( 2322 , 'preMorAA')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Death before 65</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Premature mortality, 2020</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >61.8</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Age-adjusted rate per 100,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Death before 65
+              </span><br />
+              <span class="fs-sm font-weight-normal">Premature mortality, 2020</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                61.8
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Age-adjusted rate per 100,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-preMorAA"
+    class="collapse border-bottom "
+    aria-labelledby="heading-preMorAA"
+    data-parent="#accordion-0"
+    data-indicator-name="preMorAA"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Deaths before age 65. This can indicate the overall health of a population.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-preMorAA-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Death before 65 in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-death-before-65"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-death-before-65">boro val</span> per 100,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-death-before-65"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-death-before-65">city val</span> per 100,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-death-before-65" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Bureau of Vital Statistics; New York City Bureau of Vital Statistics; United States Census </p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2322" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2020-12-31`, `year-death-before-65`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-death-before-65').innerHTML = b;
+    document.getElementById('cv-death-before-65').innerHTML = c;
+
+
+})(
+     61.8 ,
+     253.5 ,
+     244 ,
+    'n-death-before-65',
+    'b-death-before-65',
+    'c-death-before-65',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-preMorAA" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Death before 65'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "preMorAA")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-preMorAA-4", "Age-adjusted rate per 100,000","Death before 65",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-1">
 
@@ -1165,7 +2293,1417 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-sidewalk">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-sidewalk"
+        aria-expanded="true"
+        aria-controls="collapse-sidewalk"
+        onclick="getURL( 2181 , 'sidewalk')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Sidewalk area</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Sidewalk area, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >11.3</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent of land area</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Sidewalk area
+              </span><br />
+              <span class="fs-sm font-weight-normal">Sidewalk area, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                11.3
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent of land area
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-sidewalk"
+    class="collapse border-bottom "
+    aria-labelledby="heading-sidewalk"
+    data-parent="#accordion-1"
+    data-indicator-name="sidewalk"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Sidewalk area percentage. Sidewalks are important for commuting, businesses, and physical activity. More sidewalk area contributes to a safer pedestrian environment, supports vibrant business districts and can foster social interaction.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-sidewalk-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Sidewalk area in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-sidewalk-area"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-sidewalk-area">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-sidewalk-area"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-sidewalk-area">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-sidewalk-area" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> The Built Environment &amp; Health Project (BEH), Columbia University</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2181" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-sidewalk-area`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-sidewalk-area').innerHTML = b;
+    document.getElementById('cv-sidewalk-area').innerHTML = c;
+
+
+})(
+     11.3 ,
+     9.9 ,
+     6.6 ,
+    'n-sidewalk-area',
+    'b-sidewalk-area',
+    'c-sidewalk-area',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-sidewalk" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Sidewalk area'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "sidewalk")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-sidewalk-1", "Percent of land area","Sidewalk area",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-parkDisP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-parkDisP"
+        aria-expanded="true"
+        aria-controls="collapse-parkDisP"
+        onclick="getURL( 2388 , 'parkDisP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Park access</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Walking distance to a park, 2017</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >99.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Park access
+              </span><br />
+              <span class="fs-sm font-weight-normal">Walking distance to a park, 2017</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                99.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-parkDisP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-parkDisP"
+    data-parent="#accordion-1"
+    data-indicator-name="parkDisP"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">The percentage of the population who live within walking distance to a park: a quarter-mile or less to entrances of smaller sites, such as sitting areas and playgrounds, and half-mile or less to entrances of larger parks. Increased access to green space and open space can contribute to increased levels of physical activity.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-parkDisP-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Park access in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-park-access"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-park-access">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-park-access"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-park-access">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-park-access" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Department of Parks and Recreation; New York City DOHMH population estimates, modified from US Census Bureau inter-censal population estimates</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2388" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2017-12-31`, `year-park-access`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-park-access').innerHTML = b;
+    document.getElementById('cv-park-access').innerHTML = c;
+
+
+})(
+     99 ,
+     97 ,
+     81 ,
+    'n-park-access',
+    'b-park-access',
+    'c-park-access',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-parkDisP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Park access'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "parkDisP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-parkDisP-2", "Percent ","Park access",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-bikeLanP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-bikeLanP"
+        aria-expanded="true"
+        aria-controls="collapse-bikeLanP"
+        onclick="getURL( 2390 , 'bikeLanP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Bike lanes</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Bicycle network coverage, 2017</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >29.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Bike lanes
+              </span><br />
+              <span class="fs-sm font-weight-normal">Bicycle network coverage, 2017</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                29.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-bikeLanP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-bikeLanP"
+    data-parent="#accordion-1"
+    data-indicator-name="bikeLanP"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Percent of street milage with bike lanes. Bike lanes can improve bicyclist and pedestrian safety, physical activity, and sustainable transportation use.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-bikeLanP-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Bike lanes in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-bike-lanes"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-bike-lanes">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-bike-lanes"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-bike-lanes">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-bike-lanes" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Department of Transportation </p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2390" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2017-12-31`, `year-bike-lanes`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-bike-lanes').innerHTML = b;
+    document.getElementById('cv-bike-lanes').innerHTML = c;
+
+
+})(
+     29 ,
+     29 ,
+     10 ,
+    'n-bike-lanes',
+    'b-bike-lanes',
+    'c-bike-lanes',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-bikeLanP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Bike lanes'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "bikeLanP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-bikeLanP-3", "Percent ","Bike lanes",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-subDistP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-subDistP"
+        aria-expanded="true"
+        aria-controls="collapse-subDistP"
+        onclick="getURL( 2391 , 'subDistP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Subway access</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Walking distance to a subway station, 2018</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >89.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Subway access
+              </span><br />
+              <span class="fs-sm font-weight-normal">Walking distance to a subway station, 2018</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                89.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-subDistP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-subDistP"
+    data-parent="#accordion-1"
+    data-indicator-name="subDistP"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">The percentage of population within a quarter-mile of a subway station entrance. When more people have convenient access to the transit system, they're more likely to use it. Subway access encourages active transportation, which improves the health of residents.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-subDistP-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Subway access in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-subway-access"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-subway-access">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-subway-access"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-subway-access">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-subway-access" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> United States Census; Metropolitan Transportation Authority </p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2391" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2018-12-31`, `year-subway-access`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-subway-access').innerHTML = b;
+    document.getElementById('cv-subway-access').innerHTML = c;
+
+
+})(
+     89 ,
+     79 ,
+     48 ,
+    'n-subway-access',
+    'b-subway-access',
+    'c-subway-access',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-subDistP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Subway access'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "subDistP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-subDistP-4", "Percent ","Subway access",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-treeCovP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-treeCovP"
+        aria-expanded="true"
+        aria-controls="collapse-treeCovP"
+        onclick="getURL( 2157 , 'treeCovP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Tree shade</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Tree canopy cover, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >9.3</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent of land area</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Tree shade
+              </span><br />
+              <span class="fs-sm font-weight-normal">Tree canopy cover, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                9.3
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent of land area
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-treeCovP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-treeCovP"
+    data-parent="#accordion-1"
+    data-indicator-name="treeCovP"
+    data-count="5"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">The percent of a neighborhood that is shaded by trees. Tree shade can lower a neighborhood's temperature, making it more comfortable for physical activity.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-treeCovP-5">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Tree shade in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-tree-shade"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-tree-shade">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-tree-shade"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-tree-shade">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-tree-shade" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> The Built Environment &amp; Health Project (BEH), Columbia University</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2157" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-tree-shade`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-tree-shade').innerHTML = b;
+    document.getElementById('cv-tree-shade').innerHTML = c;
+
+
+})(
+     9.3 ,
+     17.2 ,
+     21.1 ,
+    'n-tree-shade',
+    'b-tree-shade',
+    'c-tree-shade',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-treeCovP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Tree shade'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "treeCovP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-treeCovP-5", "Percent of land area","Tree shade",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-2">
 
@@ -1187,7 +3725,853 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-poveACSP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-poveACSP"
+        aria-expanded="true"
+        aria-controls="collapse-poveACSP"
+        onclick="getURL( 103 , 'poveACSP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Poverty</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Neighborhood poverty, 2019-23</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >8.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Poverty
+              </span><br />
+              <span class="fs-sm font-weight-normal">Neighborhood poverty, 2019-23</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                8.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-poveACSP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-poveACSP"
+    data-parent="#accordion-2"
+    data-indicator-name="poveACSP"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-poveACSP-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Poverty in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-poverty"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-poverty">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-poverty"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-poverty">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-poverty" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> American Community Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="103" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2023-12-31`, `year-poverty`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-poverty').innerHTML = b;
+    document.getElementById('cv-poverty').innerHTML = c;
+
+
+})(
+     8.9 ,
+     15.8 ,
+     17.4 ,
+    'n-poverty',
+    'b-poverty',
+    'c-poverty',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-poveACSP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Poverty'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "poveACSP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-poveACSP-1", "Percent ","Poverty",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-nabSafeP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-nabSafeP"
+        aria-expanded="true"
+        aria-controls="collapse-nabSafeP"
+        onclick="getURL( 2073 , 'nabSafeP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Neighborhood safety</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Perception of neighborhood safety, 2016</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >98.2</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Neighborhood safety
+              </span><br />
+              <span class="fs-sm font-weight-normal">Perception of neighborhood safety, 2016</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                98.2
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-nabSafeP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-nabSafeP"
+    data-parent="#accordion-2"
+    data-indicator-name="nabSafeP"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults reporting their neighborhood is safe from crime. Whether people perceive their neighborhood as safe can affect whether they will spend time outside, use parks, and use active and sustainable forms of transportation. It can also affect mental well-being.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-nabSafeP-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Neighborhood safety in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-neighborhood-safety"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-neighborhood-safety">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-neighborhood-safety"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-neighborhood-safety">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-neighborhood-safety" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2073" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2016-12-31`, `year-neighborhood-safety`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-neighborhood-safety').innerHTML = b;
+    document.getElementById('cv-neighborhood-safety').innerHTML = c;
+
+
+})(
+     98.2 ,
+     89.8 ,
+     85.5 ,
+    'n-neighborhood-safety',
+    'b-neighborhood-safety',
+    'c-neighborhood-safety',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-nabSafeP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Neighborhood safety'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "nabSafeP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-nabSafeP-2", "Percent ","Neighborhood safety",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-ratRepoP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-ratRepoP"
+        aria-expanded="true"
+        aria-controls="collapse-ratRepoP"
+        onclick="getURL( 24 , 'ratRepoP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Mice or rats (outside)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Adults reporting mice or rats outside, 2020</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >48.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Mice or rats (outside)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Adults reporting mice or rats outside, 2020</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                48.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-ratRepoP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-ratRepoP"
+    data-parent="#accordion-2"
+    data-indicator-name="ratRepoP"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Mice and rats are a source of household allergens connected to developing or worsening asthma.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-ratRepoP-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Mice or rats (outside) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-mice-or-rats-outside"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-mice-or-rats-outside">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-mice-or-rats-outside"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-mice-or-rats-outside">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-mice-or-rats-outside" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="24" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2020-12-31`, `year-mice-or-rats-outside`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-mice-or-rats-outside').innerHTML = b;
+    document.getElementById('cv-mice-or-rats-outside').innerHTML = c;
+
+
+})(
+     48 ,
+     50.8 ,
+     34.2 ,
+    'n-mice-or-rats-outside',
+    'b-mice-or-rats-outside',
+    'c-mice-or-rats-outside',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-ratRepoP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Mice or rats (outside)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "ratRepoP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-ratRepoP-3", "Percent ","Mice or rats (outside)",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-3">
 
@@ -1209,7 +4593,571 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-recBikeP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-recBikeP"
+        aria-expanded="true"
+        aria-controls="collapse-recBikeP"
+        onclick="getURL( 2059 , 'recBikeP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Regular biking</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Monthly bicycle use, 2022</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >23.8</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Regular biking
+              </span><br />
+              <span class="fs-sm font-weight-normal">Monthly bicycle use, 2022</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                23.8
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-recBikeP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-recBikeP"
+    data-parent="#accordion-3"
+    data-indicator-name="recBikeP"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults reporting having ridden a bicycle at least once a month in the past year.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-recBikeP-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Regular biking in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-regular-biking"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-regular-biking">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-regular-biking"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-regular-biking">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-regular-biking" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2059" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2022-12-31`, `year-regular-biking`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-regular-biking').innerHTML = b;
+    document.getElementById('cv-regular-biking').innerHTML = c;
+
+
+})(
+     23.8 ,
+     21.2 ,
+     17.6 ,
+    'n-regular-biking',
+    'b-regular-biking',
+    'c-regular-biking',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-recBikeP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Regular biking'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "recBikeP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-recBikeP-1", "Percent ","Regular biking",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-recExerP">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-recExerP"
+        aria-expanded="true"
+        aria-controls="collapse-recExerP"
+        onclick="getURL( 2060 , 'recExerP')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Exercise</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Recent exercise, 2022</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >88.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Percent </span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Exercise
+              </span><br />
+              <span class="fs-sm font-weight-normal">Recent exercise, 2022</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                88.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Percent 
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-recExerP"
+    class="collapse border-bottom "
+    aria-labelledby="heading-recExerP"
+    data-parent="#accordion-3"
+    data-indicator-name="recExerP"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Adults reporting exercise in the past 30 days (from when they were surveyed). Regular exercise is a key way to stay healthy.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-recExerP-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Exercise in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-exercise"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-exercise">boro val</span>%)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-exercise"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-exercise">city val</span>%)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-exercise" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Health Survey (CHS)</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2060" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2022-12-31`, `year-exercise`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-exercise').innerHTML = b;
+    document.getElementById('cv-exercise').innerHTML = c;
+
+
+})(
+     88.9 ,
+     81.7 ,
+     70.9 ,
+    'n-exercise',
+    'b-exercise',
+    'c-exercise',
+     true 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-recExerP" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Exercise'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "recExerP")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-recExerP-2", "Percent ","Exercise",geocode)
+
+    });
+
+    </script></div>
 
                     <div class="row print-only">
                         <div class="col-12">
@@ -1333,7 +5281,7 @@
 
             download = arqTable
                 .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) 
-                .filter(d => d.neighborhood == 'Greenwich Village - Soho')
+                .filter(d => d.neighborhood == 'Greenwich Village - SoHo')
 
             let downloadTableCSV = download.toCSV(); 
             
@@ -1341,7 +5289,7 @@
             let hiddenElement = document.createElement('a');
             hiddenElement.href = csvData;
             hiddenElement.target = '_blank';
-            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - Greenwich Village - Soho.csv";
+            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - Greenwich Village - SoHo.csv";
             hiddenElement.click();
 
             gtag('event', 'file_download', {

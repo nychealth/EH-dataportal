@@ -546,7 +546,7 @@
     let topicIndicators;
     let sti;
     let thisInd;
-    let NeighborhoodName = "Greenwich Village - Soho"; 
+    let NeighborhoodName = "Greenwich Village - SoHo"; 
 
     
     async function get_topic_indicators() {
@@ -650,7 +650,7 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href=/IndicatorPublic/>Home</a></li>
                     <li class="breadcrumb-item"><a href=/IndicatorPublic/neighborhood-reports>Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="../" id="neighbLink">Greenwich Village - Soho</a></li>
+                    <li class="breadcrumb-item"><a href="../" id="neighbLink">Greenwich Village - SoHo</a></li>
                     <li class="breadcrumb-item active d-none d-sm-block"><a href="/IndicatorPublic/neighborhood-reports/greenwich_village_soho/outdoor_air_and_health/">Outdoor Air and Health</a></li>
                 </ul>
             </nav>
@@ -659,7 +659,7 @@
             <div class="row d-md-none">
                 <div class="col-12 mb-2">
                     <h1 class="h2">Outdoor Air and Health <span style="font-weight:normal">in</span></h1>
-                        <span class="h2 sub-title text-primary">Greenwich Village - Soho</span>
+                        <span class="h2 sub-title text-primary">Greenwich Village - SoHo</span>
                 </div>
             </div>
 
@@ -1097,7 +1097,7 @@
 
                     <div class="d-none d-md-block">
                         <h1 class="h2 mt-3">Outdoor Air and Health <span style="font-weight:normal">in</span></h1>
-                            <span class="h2 sub-title text-primary">Greenwich Village - Soho</span>
+                            <span class="h2 sub-title text-primary">Greenwich Village - SoHo</span>
                     </div>
 
                     <div class="d-md-none my-1">
@@ -1144,7 +1144,1135 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Ozon1435">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Ozon1435"
+        aria-expanded="true"
+        aria-controls="collapse-Ozon1435"
+        onclick="getURL( 2027 , 'Ozon1435')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Ozone</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Ozone (O3), 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >30.1</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Summer mean ppb</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Ozone
+              </span><br />
+              <span class="fs-sm font-weight-normal">Ozone (O3), 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                30.1
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Summer mean ppb
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Ozon1435"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Ozon1435"
+    data-parent="#accordion-0"
+    data-indicator-name="Ozon1435"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Concentration of ozone in the air. Ozone is a common air pollutant that can harm breathing and worsen respiratory conditions.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Ozon1435-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Ozone in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-ozone"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-ozone">boro val</span> ppb)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-ozone"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-ozone">city val</span> ppb)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-ozone" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2027" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-ozone`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-ozone').innerHTML = b;
+    document.getElementById('cv-ozone').innerHTML = c;
+
+
+})(
+     30.1 ,
+     30.5 ,
+     34 ,
+    'n-ozone',
+    'b-ozone',
+    'c-ozone',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Ozon1435" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Ozon1435")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Ozon1435-1", "Summer mean ppb","Ozone",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Fine1425">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Fine1425"
+        aria-expanded="true"
+        aria-controls="collapse-Fine1425"
+        onclick="getURL( 2023 , 'Fine1425')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 (Fine particles)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Fine particles (PM 2.5), 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >8.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual mean mcg/m3</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 (Fine particles)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Fine particles (PM 2.5), 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                8.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual mean mcg/m3
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Fine1425"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Fine1425"
+    data-parent="#accordion-0"
+    data-indicator-name="Fine1425"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Concentration of fine particles in the air. Fine particles are emitted by vehicles, building boilers, and other combustion — and are a major form of air pollution that harms health. Neighborhood sensors measure PM2.5 at the street-level, where people are most active. These sensors are designed to let us measure differences in air pollution over time and locations within New York City.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Fine1425-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 (Fine particles) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-fine-particles"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-fine-particles">boro val</span> mcg/m3)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-fine-particles"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-fine-particles">city val</span> mcg/m3)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-fine-particles" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2023" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-pm2.5-fine-particles`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-fine-particles').innerHTML = b;
+    document.getElementById('cv-pm2.5-fine-particles').innerHTML = c;
+
+
+})(
+     8.9 ,
+     7.7 ,
+     6.3 ,
+    'n-pm2.5-fine-particles',
+    'b-pm2.5-fine-particles',
+    'c-pm2.5-fine-particles',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Fine1425" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 (Fine particles)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Fine1425")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Fine1425-2", "Annual mean mcg\/m3","PM2.5 (Fine particles)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Blac1428">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Blac1428"
+        aria-expanded="true"
+        aria-controls="collapse-Blac1428"
+        onclick="getURL( 2024 , 'Blac1428')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Black carbon</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Black carbon, 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >0.8</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual mean absorbance units</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Black carbon
+              </span><br />
+              <span class="fs-sm font-weight-normal">Black carbon, 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                0.8
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual mean absorbance units
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Blac1428"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Blac1428"
+    data-parent="#accordion-0"
+    data-indicator-name="Blac1428"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Concentration of black carbon in the air. Black carbon is a major component of fine particles, which contribute to both short-term health effects and chronic illness</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Blac1428-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Black carbon in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-black-carbon"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-black-carbon">boro val</span> absorbance units)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-black-carbon"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-black-carbon">city val</span> absorbance units)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-black-carbon" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2024" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-black-carbon`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-black-carbon').innerHTML = b;
+    document.getElementById('cv-black-carbon').innerHTML = c;
+
+
+})(
+     0.8 ,
+     0.7 ,
+     0.5 ,
+    'n-black-carbon',
+    'b-black-carbon',
+    'c-black-carbon',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Blac1428" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Black carbon'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Blac1428")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Blac1428-3", "Annual mean absorbance units","Black carbon",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Nitr1431">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Nitr1431"
+        aria-expanded="true"
+        aria-controls="collapse-Nitr1431"
+        onclick="getURL( 2025 , 'Nitr1431')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Nitrogen dioxide</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Nitrogen dioxide (NO2), 2024</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >19.5</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual mean ppb</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Nitrogen dioxide
+              </span><br />
+              <span class="fs-sm font-weight-normal">Nitrogen dioxide (NO2), 2024</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                19.5
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual mean ppb
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Nitr1431"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Nitr1431"
+    data-parent="#accordion-0"
+    data-indicator-name="Nitr1431"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Concentration of nitrogen dioxide in the air. Nitrogen dioxide is a pollutant formed by combustion. It causes breathing problems and contributes to smog and acid rain.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Nitr1431-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Nitrogen dioxide in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-nitrogen-dioxide"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-nitrogen-dioxide">boro val</span> ppb)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-nitrogen-dioxide"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-nitrogen-dioxide">city val</span> ppb)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-nitrogen-dioxide" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2025" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2024-12-31`, `year-nitrogen-dioxide`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-nitrogen-dioxide').innerHTML = b;
+    document.getElementById('cv-nitrogen-dioxide').innerHTML = c;
+
+
+})(
+     19.5 ,
+     18.6 ,
+     14.1 ,
+    'n-nitrogen-dioxide',
+    'b-nitrogen-dioxide',
+    'c-nitrogen-dioxide',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Nitr1431" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Nitrogen dioxide'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Nitr1431")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Nitr1431-4", "Annual mean ppb","Nitrogen dioxide",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-1">
 
@@ -1166,7 +2294,853 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Boil640">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Boil640"
+        aria-expanded="true"
+        aria-controls="collapse-Boil640"
+        onclick="getURL( 2109 , 'Boil640')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Boiler emissions (SO2)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Boiler emissions (SO2), 2015</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >17.8</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Tons per square kilometer</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Boiler emissions (SO2)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Boiler emissions (SO2), 2015</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                17.8
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Tons per square kilometer
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Boil640"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Boil640"
+    data-parent="#accordion-1"
+    data-indicator-name="Boil640"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Boilers are a common source of SO2, which can worsen lung disease.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Boil640-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Boiler emissions (SO2) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-boiler-emissions-so2"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-boiler-emissions-so2">boro val</span> per square kilometer)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-boiler-emissions-so2"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-boiler-emissions-so2">city val</span> per square kilometer)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-boiler-emissions-so2" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2109" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2015-12-31`, `year-boiler-emissions-so2`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-boiler-emissions-so2').innerHTML = b;
+    document.getElementById('cv-boiler-emissions-so2').innerHTML = c;
+
+
+})(
+     17.8 ,
+     26.8 ,
+     3.5 ,
+    'n-boiler-emissions-so2',
+    'b-boiler-emissions-so2',
+    'c-boiler-emissions-so2',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Boil640" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Boiler emissions (SO2)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Boil640")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Boil640-1", "Tons per square kilometer","Boiler emissions (SO2)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Boil641">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Boil641"
+        aria-expanded="true"
+        aria-controls="collapse-Boil641"
+        onclick="getURL( 2110 , 'Boil641')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Boiler emissions (PM2.5)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Boiler emissions (PM2.5), 2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >6.4</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Tons per square kilometer</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Boiler emissions (PM2.5)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Boiler emissions (PM2.5), 2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                6.4
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Tons per square kilometer
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Boil641"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Boil641"
+    data-parent="#accordion-1"
+    data-indicator-name="Boil641"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Boilers are a common source of PM2.5, which can harm health.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Boil641-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Boiler emissions (PM2.5) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-boiler-emissions-pm2.5"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-boiler-emissions-pm2.5">boro val</span> per square kilometer)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-boiler-emissions-pm2.5"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-boiler-emissions-pm2.5">city val</span> per square kilometer)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-boiler-emissions-pm2.5" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2110" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-boiler-emissions-pm2.5`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-boiler-emissions-pm2.5').innerHTML = b;
+    document.getElementById('cv-boiler-emissions-pm2.5').innerHTML = c;
+
+
+})(
+     6.4 ,
+     6.1 ,
+     1.4 ,
+    'n-boiler-emissions-pm2.5',
+    'b-boiler-emissions-pm2.5',
+    'c-boiler-emissions-pm2.5',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Boil641" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Boiler emissions (PM2.5)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Boil641")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Boil641-2", "Tons per square kilometer","Boiler emissions (PM2.5)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Boil642">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Boil642"
+        aria-expanded="true"
+        aria-controls="collapse-Boil642"
+        onclick="getURL( 2111 , 'Boil642')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Boiler emissions (NOx)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Boiler emissions (NOx), 2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >96.6</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Tons per square kilometer</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Boiler emissions (NOx)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Boiler emissions (NOx), 2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                96.6
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Tons per square kilometer
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Boil642"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Boil642"
+    data-parent="#accordion-1"
+    data-indicator-name="Boil642"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Boilers are a common source of NOx emissions, which can harm health.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Boil642-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Boiler emissions (NOx) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-boiler-emissions-nox"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-boiler-emissions-nox">boro val</span> per square kilometer)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-boiler-emissions-nox"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-boiler-emissions-nox">city val</span> per square kilometer)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-boiler-emissions-nox" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York City Community Air Survey</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2111" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-boiler-emissions-nox`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-boiler-emissions-nox').innerHTML = b;
+    document.getElementById('cv-boiler-emissions-nox').innerHTML = c;
+
+
+})(
+     96.6 ,
+     93.6 ,
+     20.8 ,
+    'n-boiler-emissions-nox',
+    'b-boiler-emissions-nox',
+    'c-boiler-emissions-nox',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Boil642" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Boiler emissions (NOx)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Boil642")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Boil642-3", "Tons per square kilometer","Boiler emissions (NOx)",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-2">
 
@@ -1188,7 +3162,570 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Air646">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Air646"
+        aria-expanded="true"
+        aria-controls="collapse-Air646"
+        onclick="getURL( 2115 , 'Air646')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Benzene</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Outdoor Air Toxics - Benzene, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >0.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual average concentration µg/m3</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Benzene
+              </span><br />
+              <span class="fs-sm font-weight-normal">Outdoor Air Toxics - Benzene, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                0.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual average concentration µg/m3
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Air646"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Air646"
+    data-parent="#accordion-2"
+    data-indicator-name="Air646"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Benzene is an air pollutant resulting from motor vehicle and industrial emissions and tobacco smoke. Benzene is a known carcinogen that can also harm bone marrow and red blood cell function.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Air646-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Benzene in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-benzene"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-benzene">boro val</span> µg/m3)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-benzene"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-benzene">city val</span> µg/m3)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-benzene" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> United States Environmental Protection Agency (EPA) Air Quality System (AQS) Data</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2115" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-benzene`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-benzene').innerHTML = b;
+    document.getElementById('cv-benzene').innerHTML = c;
+
+
+})(
+     0.9 ,
+     0.9 ,
+     0.9 ,
+    'n-benzene',
+    'b-benzene',
+    'c-benzene',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Air646" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Benzene'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Air646")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Air646-1", "Annual average concentration µg\/m3","Benzene",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Air647">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Air647"
+        aria-expanded="true"
+        aria-controls="collapse-Air647"
+        onclick="getURL( 2116 , 'Air647')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Formaldehyde</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Outdoor Air Toxics - Formaldehyde, 2014</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >1.6</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Annual average concentration µg/m3</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span class="middle d-none"></span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Formaldehyde
+              </span><br />
+              <span class="fs-sm font-weight-normal">Outdoor Air Toxics - Formaldehyde, 2014</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                1.6
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Annual average concentration µg/m3
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              In the middle of NYC neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Air647"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Air647"
+    data-parent="#accordion-2"
+    data-indicator-name="Air647"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Formaldehyde is an air pollutant resulting from car exhaust and the manufacture of industrial products. Formaldehyde is a known carcinogen that can also cause irritation to eyes and lungs and increase risk of asthma and trigger asthma symptoms.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Air647-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Formaldehyde in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-formaldehyde"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-formaldehyde">boro val</span> µg/m3)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-formaldehyde"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-formaldehyde">city val</span> µg/m3)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-formaldehyde" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> United States Environmental Protection Agency (EPA) Air Quality System (AQS) Data</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2116" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2014-12-31`, `year-formaldehyde`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-formaldehyde').innerHTML = b;
+    document.getElementById('cv-formaldehyde').innerHTML = c;
+
+
+})(
+     1.6 ,
+     1.5 ,
+     1.5 ,
+    'n-formaldehyde',
+    'b-formaldehyde',
+    'c-formaldehyde',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Air647" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Formaldehyde'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Air647")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Air647-2", "Annual average concentration µg\/m3","Formaldehyde",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-3">
 
@@ -1210,7 +3747,853 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Traf643">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Traf643"
+        aria-expanded="true"
+        aria-controls="collapse-Traf643"
+        onclick="getURL( 2112 , 'Traf643')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Traffic</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Traffic density, 2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >142.9</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Million miles per square mile</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Traffic
+              </span><br />
+              <span class="fs-sm font-weight-normal">Traffic density, 2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                142.9
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Million miles per square mile
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Traf643"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Traf643"
+    data-parent="#accordion-3"
+    data-indicator-name="Traf643"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Annual vehicle miles travelled. Traffic density can influence health as a source of air pollution and traffic-related injuries.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Traf643-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Traffic in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-traffic"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-traffic">boro val</span> per square mile)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-traffic"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-traffic">city val</span> per square mile)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-traffic" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York Metropolitan Transportation Council Best Practice Model</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2112" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-traffic`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-traffic').innerHTML = b;
+    document.getElementById('cv-traffic').innerHTML = c;
+
+
+})(
+     142.9 ,
+     129.5 ,
+     59.6 ,
+    'n-traffic',
+    'b-traffic',
+    'c-traffic',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Traf643" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Traffic'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Traf643")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Traf643-1", "Million miles per square mile","Traffic",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Traf644">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Traf644"
+        aria-expanded="true"
+        aria-controls="collapse-Traf644"
+        onclick="getURL( 2113 , 'Traf644')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Car traffic</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Traffic density (cars), 2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >124.2</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Million miles per square mile</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Car traffic
+              </span><br />
+              <span class="fs-sm font-weight-normal">Traffic density (cars), 2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                124.2
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Million miles per square mile
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Traf644"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Traf644"
+    data-parent="#accordion-3"
+    data-indicator-name="Traf644"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Annual vehicle miles travelled by cars. Traffic density can influence health as a source of air pollution and traffic-related injuries.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Traf644-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Car traffic in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-car-traffic"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-car-traffic">boro val</span> per square mile)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-car-traffic"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-car-traffic">city val</span> per square mile)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-car-traffic" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York Metropolitan Transportation Council Best Practice Model</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2113" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-car-traffic`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-car-traffic').innerHTML = b;
+    document.getElementById('cv-car-traffic').innerHTML = c;
+
+
+})(
+     124.2 ,
+     116.7 ,
+     54.9 ,
+    'n-car-traffic',
+    'b-car-traffic',
+    'c-car-traffic',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Traf644" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Car traffic'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Traf644")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Traf644-2", "Million miles per square mile","Car traffic",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-Traf645">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-Traf645"
+        aria-expanded="true"
+        aria-controls="collapse-Traf645"
+        onclick="getURL( 2114 , 'Traf645')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Truck traffic</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Traffic density (trucks), 2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >10.1</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Million miles per square mile</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="worse">Higher</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Truck traffic
+              </span><br />
+              <span class="fs-sm font-weight-normal">Traffic density (trucks), 2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                10.1
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Million miles per square mile
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Higher than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-Traf645"
+    class="collapse border-bottom "
+    aria-labelledby="heading-Traf645"
+    data-parent="#accordion-3"
+    data-indicator-name="Traf645"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Annual vehicle miles travelled by trucks. Traffic density can influence health as a source of air pollution and traffic-related injuries.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-Traf645-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Truck traffic in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-truck-traffic"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-truck-traffic">boro val</span> per square mile)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-truck-traffic"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-truck-traffic">city val</span> per square mile)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-truck-traffic" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> New York Metropolitan Transportation Council Best Practice Model</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2114" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-truck-traffic`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-truck-traffic').innerHTML = b;
+    document.getElementById('cv-truck-traffic').innerHTML = c;
+
+
+})(
+     10.1 ,
+     7.3 ,
+     3.2 ,
+    'n-truck-traffic',
+    'b-truck-traffic',
+    'c-truck-traffic',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-Traf645" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Truck traffic'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "Traf645")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-Traf645-3", "Million miles per square mile","Truck traffic",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-4">
 
@@ -1232,7 +4615,1417 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-PM2-639">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-PM2-639"
+        aria-expanded="true"
+        aria-controls="collapse-PM2-639"
+        onclick="getURL( 2108 , 'PM2-639')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Deaths from PM2.5</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Deaths due to PM2.5, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >26.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (age 30&#43;) per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Deaths from PM2.5
+              </span><br />
+              <span class="fs-sm font-weight-normal">Deaths due to PM2.5, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                26.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (age 30&#43;) per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-PM2-639"
+    class="collapse border-bottom "
+    aria-labelledby="heading-PM2-639"
+    data-parent="#accordion-4"
+    data-indicator-name="PM2-639"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Estimated annual deaths due to PM2.5 air pollution. Estimating these deaths is a way to understand how air pollution increases mortality.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-PM2-639-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Deaths from PM2.5 in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-deaths-from-pm2.5"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-deaths-from-pm2.5">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-deaths-from-pm2.5"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-deaths-from-pm2.5">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-deaths-from-pm2.5" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Krewski D, et al. (2009) HEI Research Report 140. Health Effects Institute, Boston, MA; New York City Bureau of Vital Statistics; United States Census </p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2108" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-deaths-from-pm2.5`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-deaths-from-pm2.5').innerHTML = b;
+    document.getElementById('cv-deaths-from-pm2.5').innerHTML = c;
+
+
+})(
+     26 ,
+     33 ,
+     33 ,
+    'n-deaths-from-pm2.5',
+    'b-deaths-from-pm2.5',
+    'c-deaths-from-pm2.5',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-PM2-639" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Deaths from PM2.5'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "PM2-639")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-PM2-639-1", "Estimated annual rate (age 30\u002b) per 100,000 adults","Deaths from PM2.5",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-PM2-648">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-PM2-648"
+        aria-expanded="true"
+        aria-controls="collapse-PM2-648"
+        onclick="getURL( 2117 , 'PM2-648')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 asthma ED visits (children)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma emergency department visits due to PM2.5, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >14.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (under age 18) per 100,000 children</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 asthma ED visits (children)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma emergency department visits due to PM2.5, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                14.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (under age 18) per 100,000 children
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-PM2-648"
+    class="collapse border-bottom "
+    aria-labelledby="heading-PM2-648"
+    data-parent="#accordion-4"
+    data-indicator-name="PM2-648"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">ED visits for asthma due to PM2.5 air pollution. These represent part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-PM2-648-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 asthma ED visits (children) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-asthma-ed-visits-children"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-asthma-ed-visits-children">boro val</span> per 100,000 children)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-asthma-ed-visits-children"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-asthma-ed-visits-children">city val</span> per 100,000 children)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-asthma-ed-visits-children" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Ito K et al. (2007) J Expo Sci Environ Epidemiol 17:S45-S60; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2117" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-pm2.5-asthma-ed-visits-children`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-asthma-ed-visits-children').innerHTML = b;
+    document.getElementById('cv-pm2.5-asthma-ed-visits-children').innerHTML = c;
+
+
+})(
+     14 ,
+     71 ,
+     62 ,
+    'n-pm2.5-asthma-ed-visits-children',
+    'b-pm2.5-asthma-ed-visits-children',
+    'c-pm2.5-asthma-ed-visits-children',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-PM2-648" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 asthma ED visits (children)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "PM2-648")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-PM2-648-2", "Estimated annual rate (under age 18) per 100,000 children","PM2.5 asthma ED visits (children)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-PM2-650">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-PM2-650"
+        aria-expanded="true"
+        aria-controls="collapse-PM2-650"
+        onclick="getURL( 2119 , 'PM2-650')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 health burden (lungs)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Respiratory hospitalizations due to PM2.5 (age 20&#43;), 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >3.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 health burden (lungs)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Respiratory hospitalizations due to PM2.5 (age 20&#43;), 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                3.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-PM2-650"
+    class="collapse border-bottom "
+    aria-labelledby="heading-PM2-650"
+    data-parent="#accordion-4"
+    data-indicator-name="PM2-650"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Hospitalizations for respiratory issues due to PM2.5 pollution (among people over age 20). These represent part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-PM2-650-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 health burden (lungs) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-health-burden-lungs"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-health-burden-lungs">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-health-burden-lungs"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-health-burden-lungs">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-health-burden-lungs" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Moolgavkar SH (2000) Inhal Toxicol 12(Supp 4):75-90; Zanobetti etal.(2009) Environ Hlth 8:58. doi:10.1186/1476-069X-8-58; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2119" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-pm2.5-health-burden-lungs`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-health-burden-lungs').innerHTML = b;
+    document.getElementById('cv-pm2.5-health-burden-lungs').innerHTML = c;
+
+
+})(
+     3 ,
+     6 ,
+     7 ,
+    'n-pm2.5-health-burden-lungs',
+    'b-pm2.5-health-burden-lungs',
+    'c-pm2.5-health-burden-lungs',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-PM2-650" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 health burden (lungs)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "PM2-650")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-PM2-650-3", "Estimated annual rate per 100,000 adults","PM2.5 health burden (lungs)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-PM2-651">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-PM2-651"
+        aria-expanded="true"
+        aria-controls="collapse-PM2-651"
+        onclick="getURL( 2120 , 'PM2-651')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 health burden (heart)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Cardiovascular hospitalizations due to PM2.5 (age 40&#43;), 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >5.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 health burden (heart)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Cardiovascular hospitalizations due to PM2.5 (age 40&#43;), 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                5.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-PM2-651"
+    class="collapse border-bottom "
+    aria-labelledby="heading-PM2-651"
+    data-parent="#accordion-4"
+    data-indicator-name="PM2-651"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Hospitalizations for cardiovascular issues due to PM2.5 (among people over age 40). These represent part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-PM2-651-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 health burden (heart) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-health-burden-heart"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-health-burden-heart">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-health-burden-heart"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-health-burden-heart">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-health-burden-heart" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> US EPA Air Quality System; Ito K et al (2011) Environ Hlth Persp, 119(4):467-473; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2120" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-pm2.5-health-burden-heart`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-health-burden-heart').innerHTML = b;
+    document.getElementById('cv-pm2.5-health-burden-heart').innerHTML = c;
+
+
+})(
+     5 ,
+     9 ,
+     10 ,
+    'n-pm2.5-health-burden-heart',
+    'b-pm2.5-health-burden-heart',
+    'c-pm2.5-health-burden-heart',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-PM2-651" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 health burden (heart)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "PM2-651")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-PM2-651-4", "Estimated annual rate per 100,000 adults","PM2.5 health burden (heart)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-PM2-657">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-PM2-657"
+        aria-expanded="true"
+        aria-controls="collapse-PM2-657"
+        onclick="getURL( 2117 , 'PM2-657')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >PM2.5 asthma ED visits (adults)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma emergency department visits due to PM2.5, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >6.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (age 18&#43;) per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                PM2.5 asthma ED visits (adults)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma emergency department visits due to PM2.5, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                6.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (age 18&#43;) per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-PM2-657"
+    class="collapse border-bottom "
+    aria-labelledby="heading-PM2-657"
+    data-parent="#accordion-4"
+    data-indicator-name="PM2-657"
+    data-count="5"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">ED visits for asthma due to PM2.5 air pollution. These represent part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-PM2-657-5">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                PM2.5 asthma ED visits (adults) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-pm2.5-asthma-ed-visits-adults"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-pm2.5-asthma-ed-visits-adults">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-pm2.5-asthma-ed-visits-adults"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-pm2.5-asthma-ed-visits-adults">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-pm2.5-asthma-ed-visits-adults" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Ito K et al. (2007) J Expo Sci Environ Epidemiol 17:S45-S60; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2117" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-pm2.5-asthma-ed-visits-adults`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-pm2.5-asthma-ed-visits-adults').innerHTML = b;
+    document.getElementById('cv-pm2.5-asthma-ed-visits-adults').innerHTML = c;
+
+
+})(
+     6 ,
+     28 ,
+     28 ,
+    'n-pm2.5-asthma-ed-visits-adults',
+    'b-pm2.5-asthma-ed-visits-adults',
+    'c-pm2.5-asthma-ed-visits-adults',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-PM2-657" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'PM2.5 asthma ED visits (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "PM2-657")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-PM2-657-5", "Estimated annual rate (age 18\u002b) per 100,000 adults","PM2.5 asthma ED visits (adults)",geocode)
+
+    });
+
+    </script></div>
                         
                         <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="accordion-5">
 
@@ -1254,7 +6047,1417 @@
                                             
                                         
 
-                                        </div>
+                                        
+
+
+
+
+
+  <div class="card-header border-top" id="heading-O3-A652">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-O3-A652"
+        aria-expanded="true"
+        aria-controls="collapse-O3-A652"
+        onclick="getURL( 2121 , 'O3-A652')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Deaths from ozone</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Cardiac and respiratory deaths due to Ozone, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >3.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate per 100,000</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Deaths from ozone
+              </span><br />
+              <span class="fs-sm font-weight-normal">Cardiac and respiratory deaths due to Ozone, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                3.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate per 100,000
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-O3-A652"
+    class="collapse border-bottom "
+    aria-labelledby="heading-O3-A652"
+    data-parent="#accordion-5"
+    data-indicator-name="O3-A652"
+    data-count="1"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Deaths due to cardiac or respiratory issues linked to ozone. These show how air pollution increases mortality.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-O3-A652-1">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Deaths from ozone in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-deaths-from-ozone"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-deaths-from-ozone">boro val</span> per 100,000)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-deaths-from-ozone"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-deaths-from-ozone">city val</span> per 100,000)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-deaths-from-ozone" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Huang Y et al. (2005) Environmetrics 16:547-562; New York City Bureau of Vital Statistics; United States Census </p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2121" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-deaths-from-ozone`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-deaths-from-ozone').innerHTML = b;
+    document.getElementById('cv-deaths-from-ozone').innerHTML = c;
+
+
+})(
+     3 ,
+     4 ,
+     5 ,
+    'n-deaths-from-ozone',
+    'b-deaths-from-ozone',
+    'c-deaths-from-ozone',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-O3-A652" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Deaths from ozone'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "O3-A652")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-O3-A652-1", "Estimated annual rate per 100,000","Deaths from ozone",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-O3-A653">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-O3-A653"
+        aria-expanded="true"
+        aria-controls="collapse-O3-A653"
+        onclick="getURL( 2122 , 'O3-A653')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Ozone asthma ED visits (children)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma emergency department visits due to Ozone, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >18.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (under age 18) per 100,000 children</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Ozone asthma ED visits (children)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma emergency department visits due to Ozone, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                18.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (under age 18) per 100,000 children
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-O3-A653"
+    class="collapse border-bottom "
+    aria-labelledby="heading-O3-A653"
+    data-parent="#accordion-5"
+    data-indicator-name="O3-A653"
+    data-count="2"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">ED visits for asthma due to ozone. These are part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-O3-A653-2">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Ozone asthma ED visits (children) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-ozone-asthma-ed-visits-children"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-ozone-asthma-ed-visits-children">boro val</span> per 100,000 children)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-ozone-asthma-ed-visits-children"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-ozone-asthma-ed-visits-children">city val</span> per 100,000 children)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-ozone-asthma-ed-visits-children" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Ito K et al. (2007) J Expo Sci Environ Epidemiol 17:S45-S60; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2122" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-ozone-asthma-ed-visits-children`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-ozone-asthma-ed-visits-children').innerHTML = b;
+    document.getElementById('cv-ozone-asthma-ed-visits-children').innerHTML = c;
+
+
+})(
+     18 ,
+     92 ,
+     85 ,
+    'n-ozone-asthma-ed-visits-children',
+    'b-ozone-asthma-ed-visits-children',
+    'c-ozone-asthma-ed-visits-children',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-O3-A653" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone asthma ED visits (children)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "O3-A653")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-O3-A653-2", "Estimated annual rate (under age 18) per 100,000 children","Ozone asthma ED visits (children)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-O3-A655">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-O3-A655"
+        aria-expanded="true"
+        aria-controls="collapse-O3-A655"
+        onclick="getURL( 2124 , 'O3-A655')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Ozone asthma hospitalizations (children)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma hospitalizations due to Ozone, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >2.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (under age 18) per 100,000 children</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Ozone asthma hospitalizations (children)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma hospitalizations due to Ozone, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                2.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (under age 18) per 100,000 children
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-O3-A655"
+    class="collapse border-bottom "
+    aria-labelledby="heading-O3-A655"
+    data-parent="#accordion-5"
+    data-indicator-name="O3-A655"
+    data-count="3"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Hospitalizations for asthma due to ozone. These are part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-O3-A655-3">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Ozone asthma hospitalizations (children) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-ozone-asthma-hospitalizations-children"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-ozone-asthma-hospitalizations-children">boro val</span> per 100,000 children)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-ozone-asthma-hospitalizations-children"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-ozone-asthma-hospitalizations-children">city val</span> per 100,000 children)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-ozone-asthma-hospitalizations-children" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> US EPA Air Quality System; Silverman RA, Ito K (2010) J Allergy Clin Immun 125(2):367-373; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2124" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-ozone-asthma-hospitalizations-children`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-ozone-asthma-hospitalizations-children').innerHTML = b;
+    document.getElementById('cv-ozone-asthma-hospitalizations-children').innerHTML = c;
+
+
+})(
+     2 ,
+     15 ,
+     16 ,
+    'n-ozone-asthma-hospitalizations-children',
+    'b-ozone-asthma-hospitalizations-children',
+    'c-ozone-asthma-hospitalizations-children',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-O3-A655" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone asthma hospitalizations (children)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "O3-A655")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-O3-A655-3", "Estimated annual rate (under age 18) per 100,000 children","Ozone asthma hospitalizations (children)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-O3-A659">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-O3-A659"
+        aria-expanded="true"
+        aria-controls="collapse-O3-A659"
+        onclick="getURL( 2122 , 'O3-A659')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Ozone asthma ED visits (adults)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma emergency department visits due to Ozone, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >7.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (age 18&#43;) per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Ozone asthma ED visits (adults)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma emergency department visits due to Ozone, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                7.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (age 18&#43;) per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-O3-A659"
+    class="collapse border-bottom "
+    aria-labelledby="heading-O3-A659"
+    data-parent="#accordion-5"
+    data-indicator-name="O3-A659"
+    data-count="4"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">ED visits for asthma due to ozone. These are part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-O3-A659-4">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Ozone asthma ED visits (adults) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-ozone-asthma-ed-visits-adults"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-ozone-asthma-ed-visits-adults">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-ozone-asthma-ed-visits-adults"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-ozone-asthma-ed-visits-adults">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-ozone-asthma-ed-visits-adults" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> USEPA Air Quality System; Ito K et al. (2007) J Expo Sci Environ Epidemiol 17:S45-S60; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2122" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-ozone-asthma-ed-visits-adults`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-ozone-asthma-ed-visits-adults').innerHTML = b;
+    document.getElementById('cv-ozone-asthma-ed-visits-adults').innerHTML = c;
+
+
+})(
+     7 ,
+     39 ,
+     41 ,
+    'n-ozone-asthma-ed-visits-adults',
+    'b-ozone-asthma-ed-visits-adults',
+    'c-ozone-asthma-ed-visits-adults',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-O3-A659" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone asthma ED visits (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "O3-A659")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-O3-A659-4", "Estimated annual rate (age 18\u002b) per 100,000 adults","Ozone asthma ED visits (adults)",geocode)
+
+    });
+
+    </script>
+
+
+
+
+
+  <div class="card-header border-top" id="heading-O3-A661">
+    <h2 class="mb-0">
+      <button
+        class="btn btn-block btn-sm text-left"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapse-O3-A661"
+        aria-expanded="true"
+        aria-controls="collapse-O3-A661"
+        onclick="getURL( 2124 , 'O3-A661')"
+      >
+        
+        <div class="row no-gutters" style="width: 100%">
+          <div class="col-7 d-print-none">
+            <span class="font-weight-bold fs-md"
+              >Ozone asthma hospitalizations (adults)</span
+            ><br />
+            <span class="fs-sm font-weight-normal"
+              >Asthma hospitalizations due to Ozone, 2017-2019</span
+            >
+          </div>
+          <div class="col-3 pl-1 d-print-none">
+            <span class="font-weight-bold fs-lg"
+              >0.0</span
+            >
+            <br />
+            <span class="fs-xs font-weight-normal"
+              >Estimated annual rate (age 18&#43;) per 100,000 adults</span
+            >
+          </div>
+
+          
+
+          <div class="col-2 d-print-none">
+              <div class="float-right mt-1">
+              <span
+                    class="better">Lower</span>
+            </div>
+          </div>
+
+          
+          <div class="col-12 print-only" style="flex-direction:row; width:100%;">
+
+            
+            <div style="width:50%;" class="border-right pl-1">
+              <span class="font-weight-bold fs-md">
+                Ozone asthma hospitalizations (adults)
+              </span><br />
+              <span class="fs-sm font-weight-normal">Asthma hospitalizations due to Ozone, 2017-2019</span>
+            </div>
+
+            
+            <div style="width:25%" class="border-right pl-1">
+              <span class="font-weight-bold fs-lg">
+                0.0
+              </span><br />
+              <span class="fs-xs font-weight-normal">
+                Estimated annual rate (age 18&#43;) per 100,000 adults
+              </span>
+            </div>
+
+            
+
+            
+            <div style="width:25%;" class="pl-1">
+
+              Less than most neighborhoods
+
+
+
+            </div>
+
+          </div>
+
+        </div>
+      </button>
+    </h2>
+  </div>
+
+
+  <div
+    id="collapse-O3-A661"
+    class="collapse border-bottom "
+    aria-labelledby="heading-O3-A661"
+    data-parent="#accordion-5"
+    data-indicator-name="O3-A661"
+    data-count="5"
+  >
+    <div class="card-body card-body-no-top">
+
+      <div class="row no-gutters fs-sm">
+        <div class="col-12">
+            
+            <p class="fs-md mt-1 mb-2">Hospitalizations for asthma due to ozone. These are part of the health burden of air pollution.</p>
+        </div>
+
+                <div class="col-md-7 border-right h-100">
+                
+                <div style="width:100%; height:40vmin; z-index:100;" class="" id="map-O3-A661-5">
+                    ...map is loading...
+                </div><div class="data-note mt-1"></div></div>
+        
+        
+        
+        
+
+        
+
+        <div class="col-md-5 h-100 p-1 ">
+
+            <p class="fs-rg">
+                Ozone asthma hospitalizations (adults) in <strong>Greenwich Village - SoHo</strong>:
+                <div class=" fs-md">
+                  <p>
+                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                  </p>
+
+                  <p>
+                    <span id="b-ozone-asthma-hospitalizations-adults"></span> the <strong>Manhattan average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="bv-ozone-asthma-hospitalizations-adults">boro val</span> per 100,000 adults)</span>
+                  </p>
+
+                  <p>
+                    <span id="c-ozone-asthma-hospitalizations-adults"></span> the <strong>Citywide average</strong> 
+                    <br>
+                    <span class="fs-sm pl-3">(<span id="cv-ozone-asthma-hospitalizations-adults">city val</span> per 100,000 adults)</span>
+                  </p>
+
+                    </div>
+                
+            </p>
+
+             
+            <div id="trend" class="hide">
+            <p>In <strong>Manhattan</strong>, it is [TREND]. Citywide, the trend is [TREND].</p>
+            </div>
+
+            
+
+            <span id="year-ozone-asthma-hospitalizations-adults" class="sr-only">YEAR</span>
+
+          
+
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-7">
+            <p class="fs-xs"><strong>Source:</strong> US EPA Air Quality System; Silverman RA, Ito K (2010) J Allergy Clin Immun 125(2):367-373; New York State Statewide Planning and Research Cooperative System (SPARCS); US Census</p>
+
+        </div>
+        <div class="col-5">
+            <p class="float-right"><a id="2124" href="" class="ml-1" style="display:none"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+    
+    (function(x, y) {
+        var endDate = new Date(x);
+        var year = endDate.getFullYear(); 
+        document.getElementById(y).innerHTML = year;
+    })(`2019-12-31`, `year-ozone-asthma-hospitalizations-adults`);
+
+(function(n, b, c, nid, bid, cid, rr) {
+    n = Number(n);
+    b = Number(b);
+    c = Number(c);
+
+    let rankReverse = (rr === true || rr === 'true');
+
+    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
+    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
+
+    let boroJudgement;
+    if (n > b && rankReverse) {
+      boroJudgement = 'comp-good';
+    } else if (n < b && rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n > b && !rankReverse) {
+      boroJudgement = 'comp-bad';
+    } else if (n < b && !rankReverse) {
+      boroJudgement = 'comp-good';
+    } else {
+      boroJudgement = 'comp-null';
+    }
+
+    let cityJudgement;
+    if (n > c && rankReverse) {
+      cityJudgement = 'comp-good';
+    } else if (n < c && rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n > c && !rankReverse) {
+      cityJudgement = 'comp-bad';
+    } else if (n < c && !rankReverse) {
+      cityJudgement = 'comp-good';
+    } else {
+      cityJudgement = 'comp-null';
+    }
+
+    let boroEl = document.getElementById(bid);
+    if (boroEl) {
+        boroEl.innerHTML = boroComp;
+        boroEl.classList.add(boroJudgement);
+    }
+
+    let cityEl = document.getElementById(cid);
+    if (cityEl) {
+        cityEl.innerHTML = cityComp;
+        cityEl.classList.add(cityJudgement);
+    }
+
+    document.getElementById('bv-ozone-asthma-hospitalizations-adults').innerHTML = b;
+    document.getElementById('cv-ozone-asthma-hospitalizations-adults').innerHTML = c;
+
+
+})(
+     0 ,
+     2 ,
+     3 ,
+    'n-ozone-asthma-hospitalizations-adults',
+    'b-ozone-asthma-hospitalizations-adults',
+    'c-ozone-asthma-hospitalizations-adults',
+     false 
+)
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+    $( "#collapse-O3-A661" ).on('shown.bs.collapse', function() {
+
+        
+
+        gtag('event', 'click_modal', {
+                'modal_name': 'Ozone asthma hospitalizations (adults)'
+            });
+
+        var opt = {"renderer": "svg"};
+
+            
+
+            
+
+            var summaryData =
+                arqTable
+                .filter(d => d.indicator_data_name == "O3-A661")
+                .select("geo_join_id", "neighborhood", "unmodified_data_value_geo_entity", "nbr_data_note", "end_date")
+                .dedupe()
+                .groupby("neighborhood")
+                .orderby("neighborhood", aq.desc("end_date"))
+                .slice(0,1) 
+                .ungroup()
+                .derive({unmodified_data_value_geo_entity: d => op.parse_float(d.unmodified_data_value_geo_entity)})
+                .orderby("unmodified_data_value_geo_entity") 
+                .select(aq.not("end_date"))
+                .objects()
+
+
+            
+
+            
+
+            var mapData = summaryData;
+
+            renderNRMap(mapData,  "#map-O3-A661-5", "Estimated annual rate (age 18\u002b) per 100,000 adults","Ozone asthma hospitalizations (adults)",geocode)
+
+    });
+
+    </script></div>
 
                     <div class="row print-only">
                         <div class="col-12">
@@ -1376,7 +7579,7 @@
 
             download = arqTable
                 .select(aq.not('report_id','indicator_id','indicator_data_name','start_date','end_date')) 
-                .filter(d => d.neighborhood == 'Greenwich Village - Soho')
+                .filter(d => d.neighborhood == 'Greenwich Village - SoHo')
 
             let downloadTableCSV = download.toCSV(); 
             
@@ -1384,7 +7587,7 @@
             let hiddenElement = document.createElement('a');
             hiddenElement.href = csvData;
             hiddenElement.target = '_blank';
-            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - Greenwich Village - Soho.csv";
+            hiddenElement.download = 'NYC EH Data Portal - Neighborhood Report - ' + report_name + " - Greenwich Village - SoHo.csv";
             hiddenElement.click();
 
             gtag('event', 'file_download', {
