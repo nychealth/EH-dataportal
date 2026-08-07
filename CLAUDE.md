@@ -33,10 +33,6 @@ hugo new key-topics/TITLE/index.md
 
 Browse locally at http://localhost:1313/EH-dataportal
 
-Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild. Relatedly, a server started *before* a shared-template edit can go on serving stale pages, so a smoke run may pass against output that predates your change.
-
-**Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
-
 ## Guardrails
 
 Five npm scripts, run from the repo root:
@@ -50,6 +46,8 @@ Five npm scripts, run from the repo root:
 `smoke` and the characterization harness **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). Import `ensureDevServer()` directly for one-off browser checks: **starting a server when none is running needs no permission.** The "ask first" caution is about a server *you didn't start*. Set `DE_BASE_URL` to point them at a server on a non-default port/environment. If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache.
 
 - **Stopping a background task may orphan the server** — the wrapper is the tracked process, so `hugo.exe` can keep :8080. Check the port after stopping, and identify a running server by its command line before assuming it isn't yours.
+
+**Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
 
 ## Root-cause claims
 
@@ -230,3 +228,5 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - **Missing images cause build failures.** Hugo resizes images at build time; a missing source image will abort the build.
 - **Build caching.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — so a build records what was cached locally, not what EHDP-data currently serves. `--ignoreCache` forces a cold fetch. The tell is build time: ~4s warm against ~32s cold for a full production build.
 - **SRI + line endings.** Integrity hash mismatches on production usually mean `CRLF` line endings snuck in. GitHub Actions normalizes these on merge.
+
+Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild. Relatedly, a server started *before* a shared-template edit can go on serving stale pages, so a smoke run may pass against output that predates your change.
