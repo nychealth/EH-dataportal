@@ -545,14 +545,66 @@ content files**, so Hugo conflicts. The deletion and the generation must land in
 commit. They cannot be staged, and both cannot run at once for comparison.
 
 That removes the rollback the old §8.1 was built around, so buy it back cheaply: capture the
-rendered output of the top 20 report pages by traffic (39% of sessions) before the swap, and
-diff the generated pages against that capture for what must survive — neighborhood name, ZIP
-list, indicator names and descriptions, and the EHDP-data URLs fetched. Same technique
-`characterize:nr` already uses for the SPA, pointed at `nr-output` for one run.
+rendered output of the report pages before the swap, and diff the generated pages against that
+capture for what must survive — neighborhood name, ZIP list, indicator names and descriptions,
+and the EHDP-data URLs fetched.
 
-**Status as of 2026-08-06:** steps 1, 3, 4 and the new 4a done; step 2 on a separate track and
-now narrower (the vintage is established — see §10.5 — leaving only a planned fresh ACS pull,
-not started); steps 5–6 not started, and step 5 has grown — see the Web.config item under it.
+**DONE 2026-08-06** (`191ffcac8e`) — `scripts/nr-output-precapture.mjs`, output committed at
+`scripts/nr-output-precapture/capture.json` (486 KB). Three deviations from the plan above, all
+deliberate:
+
+- **All 210 report pages and all 42 neighborhood indexes, not the top 20.** The top-20 limit
+  was sized for a browser capture; reading a built site from disk makes the tail free. Traffic
+  rank is recorded per page, so the top 20 are still identifiable — and the GA figures
+  independently reproduce §5's, with `hunts_point_mott_haven/asthma_and_the_environment` top at
+  493 sessions.
+- **Extracted fields, not a browser capture.** `nr-output/single.html:101-104` JS-redirects to
+  the SPA, so a browser lands on the wrong page; reading the built HTML avoids it entirely.
+- **Built with `--ignoreCache`.** `config/_default/config.toml` sets
+  `[caches.getresource] maxAge = -1` — cache forever — so a warm build records what was cached
+  locally, not what EHDP-data serves. Cold build took 32s against a warm 4s, which is the proof
+  the ~1,090 build-time fetches actually went to the network.
+
+Indicator metadata is deduplicated into a library keyed `topic/indicator`, on the assumption
+that names and descriptions are neighborhood-invariant. The script **fails loudly on
+collision** rather than keeping whichever came last; 85 entries, zero collisions
+`[verified 2026-08-06]`.
+
+Final capture: 210 report pages, 42 indexes, every page carrying between 10 and 22 indicators
+and none carrying zero.
+
+### Two bugs the capture surfaced
+
+- **All five Greenwich Village – SoHo report pages rendered zero indicator cards, on the live
+  site** `[verified 2026-08-06: 0 `heading-` anchors on
+  `a816-dohbesp.nyc.gov/.../greenwich_village_soho/asthma_and_the_environment/`, against 22 on
+  East Harlem]`. The five content files carried `neighborhood: "Greenwich Village - Soho"`,
+  while `uhflist` and the EHDP-data report JSON both use `"Greenwich Village - SoHo"`, so
+  `where $topic_data "neighborhood"` at `single.html:423` matched nothing. An exhaustive sweep
+  of all 210 topic files against `uhflist` `UHF_name` found these five and no others. ~61
+  sessions a year.
+
+  **FIXED 2026-08-06** — on this branch at `7565f16cc2`, and on
+  `hotfix-nr-greenwich-village-name` at `4ee582a584`, branched from `production`. Six lines:
+  five `neighborhood:` plus a cosmetic `seo_title:`. The hotfix goes to `production` on its
+  own, since the bug is live there and independent of this work.
+
+  **The capture was then taken again**, so it records the corrected pages: Greenwich Village now
+  has 22 indicators like every other neighborhood, and no page in the artifact has zero. That
+  removes what would otherwise have been a trap for step 5 — a set of legitimately-empty
+  baseline pages that the generated output was supposed to *not* match.
+- **`nameCorrections` in `assets/js/nr-topic-spa/global.js` is dead.** It maps
+  `'Crotona -Tremont'` → `'Crotona - Tremont'`, but `f8759d8d6d` fixed that typo in the source
+  data, so the key no longer occurs and the map never fires `[verified 2026-08-06]`. Its
+  comment describes a state that no longer exists. Harmless, but it is the kind of comment a
+  later reader trusts.
+
+**Status as of 2026-08-06:** steps 1, 3, 4, the new 4a, and the pre-capture done; step 2 on a
+separate track and now narrower (the vintage is established — see §10.5 — leaving only a
+planned fresh ACS pull, not started); steps 5–6 not started, and step 5 has grown — see the
+Web.config item under it. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
+committed and **awaiting a push and a merge to `production`** — a live bug this work surfaced,
+not part of it.
 
 1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
    held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
