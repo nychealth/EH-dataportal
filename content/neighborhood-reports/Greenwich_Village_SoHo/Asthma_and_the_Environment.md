@@ -1,6 +1,6 @@
 ---
 title: "Asthma and the Environment"
-neighborhood: "Greenwich Village - Soho"
+neighborhood: "Greenwich Village - SoHo"
 geocode: 308
 summary: "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse."
 data_json: "Asthma and the Environment in Greenwich Village - SoHo"
