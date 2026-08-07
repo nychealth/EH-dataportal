@@ -864,7 +864,7 @@ not part of it.
    **Stage E landed at `2bce6c6d46`**, with `4eefc98c0b` correcting the `CLAUDE.md`
    `docs-check verified:` hash to it — that hash could not be written before the commit existed.
 
-   **Follow-up: the report heading now contains the neighborhood
+   **Follow-up 1 (`a56a68769e`): the report heading now contains the neighborhood
    `[verified 2026-08-07: measured text positions at 1280px and 480px, before and after]`.**
    It read "Asthma and the Environment in" with the name in a sibling `<span>`, which is the
    retired template's structure and left the heading ending mid-sentence for a crawler, a
@@ -881,8 +881,33 @@ not part of it.
    rendered, just with the name inline. The tell was the mobile block getting *shorter* when
    the change should only ever have made it taller.
 
-   **Next:** Stage F's two remaining items (the `404.html` dev bridge, the dead
-   `nameCorrections` map) and Stage G (`robots.txt`).
+   **Follow-up 2 (`ac929ba9ff`, stamp at `09f678a0f6`): the adapter lesson generalized into
+   `CLAUDE.md`.** The Stage C spike's rule was written as the `title` instance, and in that
+   form it did not prevent the `summary` defect two paragraphs up. The NR section now states
+   it generally — a front matter field with its own Hugo accessor must be a top-level key in
+   the page map — and the `characterize:nr` bullet records that `-- --baseline` has no failure
+   mode, so re-baselining in place of reading a `--check` diff would have written three empty
+   pages over the regression net without complaint. No code changed; `npm run docs-check`
+   green before the stamp landed.
+
+   **Lessons are already harvested — do not re-run the pass for Stage E.** `distill-lessons`
+   ran 2026-08-07 over six candidates and kept three: the two above, plus a global rule that a
+   wrong expected result indicts the plan's premise rather than the step (three of the six
+   rungs here shared one assumption, corrected piecemeal at 810, 856 and rung 5). Its incident
+   is in the `feedback-plan-expectations-share-a-premise` memory. A `refile-rules` pass
+   followed on the global `CLAUDE.md` only — no repo file moved.
+
+   **Next:** Stage F's two remaining items — the `404.html` dev bridge
+   (`themes/dohmh/layouts/404.html`, the `sessionStorage` block reading
+   `nr_pending_neighborhood`) and the `nameCorrections` map in
+   `assets/js/nr-topic-spa/global.js:104`. **"Dead" there means identity-on-current-data, not
+   callerless** — `correctedUhfName` wraps it and has three live call sites (`global.js:110`,
+   `global.js:119`, `map.js:88`) `[verified 2026-08-07: repo-wide grep excluding docs/]`, so
+   removing the map means inlining or removing the wrapper at all three, not deleting a
+   symbol nothing reads. Then Stage G, the unconditional `Sitemap:` line in
+   `themes/dohmh/layouts/robots.txt`. Proof for both: `npm run lint`, `npm run smoke`
+   (15/15 expected), and `npm run characterize:nr -- --check` **against a production-data
+   server** — zero diffs expected; read that diff before ever re-baselining.
 6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Mostly absorbed into step 5 —
    see the execution plan's Stage F section for what landed and what did not.** The two
    navigation writers, `setNeighborhoodInURL`, `updateTopicLinks` and the harness are all done,
