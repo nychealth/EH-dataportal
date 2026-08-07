@@ -89,6 +89,17 @@
   #nr-map:hover {
     cursor: pointer;
   }
+  /* The neighborhood name is inside the <h1> so the heading reads as a whole sentence —
+     to a crawler, a screen reader and Pagefind alike. It was a sibling span, which left
+     the heading text ending on "in". Restored to a block here so the rendering is
+     unchanged: name on its own line, in the accent colour.
+     The margin-top replaces what used to separate the two lines — the heading's own
+     margin-bottom, which stopped applying between them once the name moved inside it.
+     0.5rem is that value ($headings-margin-bottom). */
+  .nr-report-heading .sub-title {
+    display: block;
+    margin-top: 0.5rem;
+  }
   @media print {
     .col-print-12 {
       max-width: 100%;
@@ -119,17 +130,14 @@
            Environment in" with nothing after it (scoping memo §12a). renderAll() still
            writes the same textContent when it switches neighborhood in place. */}}
       <div class="row d-md-none">
-        {{/* The id sits on the wrapper, not the h1. Pagefind emits a sub-result for every
-             heading that HAS an id, and this heading's text ends mid-sentence — the
-             neighborhood is the sibling span below it — so an id here put
-             "Housing and Health in" into search results as a result title
-             `[verified 2026-08-07: queried a built index]`. report.js only ever used this
-             id to unhide the block, which the wrapper does equally well. */}}
+        {{/* The id stays on the wrapper rather than the h1, so Pagefind emits no sub-result
+             for this heading — one would only duplicate the page's own result title.
+             report.js used the id solely to unhide the block, which the wrapper does too. */}}
         <div class="col-12 mb-2" id="nr-mobile-title">
-          <h1 class="h2">
+          <h1 class="h2 nr-report-heading">
             {{ .Title }} <span style="font-weight:normal">in</span>
+            <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
           </h1>
-          <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
         </div>
       </div>
 
@@ -208,8 +216,9 @@
           */}}
           <div id="nr-report-header">
             <div class="d-none d-md-block mb-">
-              <h1 class="h2 mt-3">{{ .Title }} <span style="font-weight:normal">in</span></h1>
-              <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
+              <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
+                <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
+              </h1>
             </div>
 
             <div class="d-md-none my-1">

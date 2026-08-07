@@ -842,10 +842,11 @@ not part of it.
    neighborhood index its `<h1>`, ZIP list and 5 topic links; the topic index its 42
    neighborhood links. **One gap this rung found and closed:** the report page's ZIP list was
    JS-only, so it was empty without JS — `zipcodes` is now a page param and server-rendered.
-   Two things left as they are: the `<h1>` still reads "Asthma and the Environment in" with
-   the neighborhood in the sibling span (the retired template's exact structure — restructuring
-   it changes the visual on 210 trafficked pages for no measured gain), and the topic index
-   carries 20 `d-none` `<h1>`s from the ported Pagefind block.
+   The `<h1>` reading "Asthma and the Environment in" with the neighborhood in a sibling span
+   was flagged here and **fixed in a follow-up commit** — see below. Left as it is: the topic
+   index carries 20 `d-none` `<h1>`s from the ported Pagefind block, which is the structure
+   `topiclanding.html` shipped on production and what Pagefind indexes the indicator
+   vocabulary from.
 
    **Rung 4 — PASS.** `npm run lint` clean; `npm run smoke` 15/15 with the three NR entries now
    naming the templates that actually render them; `npm run docs-check` green after the
@@ -860,10 +861,28 @@ not part of it.
    read "Housing and Health | East Harlem", and a neighborhood+topic query returns that
    neighborhood rather than 42 near-identical pages.
 
-   **Next command:** none — Stage E is written and proven, awaiting commit. After it lands:
-   correct `CLAUDE.md`'s `docs-check verified:` hash to the Stage E commit (it currently names
-   the parent, `b785dcfb05`, because the hash cannot be known before the commit exists), then
-   Stage F's two remaining items and Stage G.
+   **Stage E landed at `2bce6c6d46`**, with `4eefc98c0b` correcting the `CLAUDE.md`
+   `docs-check verified:` hash to it — that hash could not be written before the commit existed.
+
+   **Follow-up: the report heading now contains the neighborhood
+   `[verified 2026-08-07: measured text positions at 1280px and 480px, before and after]`.**
+   It read "Asthma and the Environment in" with the name in a sibling `<span>`, which is the
+   retired template's structure and left the heading ending mid-sentence for a crawler, a
+   screen reader and Pagefind alike. The span moved inside the `<h1>` at both breakpoints, with
+   `.nr-report-heading .sub-title { display: block; margin-top: 0.5rem }` restoring the line
+   break and the gap the heading's own `margin-bottom` used to provide. Measured rather than
+   eyeballed, because "no visual change" was the condition for doing it at all: **desktop is
+   pixel-identical downstream** — the following `<hr>` sits at the same 454px both ways — with
+   the name 3px lower; **mobile gains 7px of block height**, name likewise 3px lower. The id
+   stays on the wrapper `<div>`, so no Pagefind sub-result is emitted for the heading.
+
+   **One thing the measurement caught that reading would not have.** The first attempt left a
+   line of prose outside the CSS comment, which killed the rule silently — the page still
+   rendered, just with the name inline. The tell was the mobile block getting *shorter* when
+   the change should only ever have made it taller.
+
+   **Next:** Stage F's two remaining items (the `404.html` dev bridge, the dead
+   `nameCorrections` map) and Stage G (`robots.txt`).
 6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Mostly absorbed into step 5 —
    see the execution plan's Stage F section for what landed and what did not.** The two
    navigation writers, `setNeighborhoodInURL`, `updateTopicLinks` and the harness are all done,
