@@ -228,5 +228,5 @@ Detailed technical audits live in `documents/`. Check these before making struct
 ## Common gotchas
 
 - **Missing images cause build failures.** Hugo resizes images at build time; a missing source image will abort the build.
-- **Build caching.** Remote EHDP-data resources can be cached. Set `maxAge = 0` in config to disable if updates aren't appearing in a build.
+- **Build caching.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — so a build records what was cached locally, not what EHDP-data currently serves. `--ignoreCache` forces a cold fetch. The tell is build time: ~4s warm against ~32s cold for a full production build.
 - **SRI + line endings.** Integrity hash mismatches on production usually mean `CRLF` line endings snuck in. GitHub Actions normalizes these on merge.
