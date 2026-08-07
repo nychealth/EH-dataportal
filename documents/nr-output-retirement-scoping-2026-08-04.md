@@ -610,8 +610,9 @@ and none carrying zero.
 
 **Status as of 2026-08-06:** steps 1, 3, 4, the new 4a, and the pre-capture done; step 2 on a
 separate track and now narrower (the vintage is established — see §10.5 — leaving only a
-planned fresh ACS pull, not started); steps 5–6 not started, and step 5 has grown — see the
-Web.config item under it. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
+planned fresh ACS pull, not started); **step 5 (Stage E) written and all six verification rungs
+green as of 2026-08-07, awaiting commit — see its sub-ledger below**; step 6 mostly absorbed
+into step 5, with two items left. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
 committed and **awaiting a push and a merge to `production`** — a live bug this work surfaced,
 not part of it.
 
@@ -752,10 +753,125 @@ not part of it.
    - **`CLAUDE.md` must be updated and re-stamped in this commit.** It is in `docs-check`'s
      `ROOT_DOCS` and names both `nr-output` templates by path, so the check fails the moment
      they are deleted.
-6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Not started.** Also make the
-   harness navigate to real `<nbhd>/<topic>/` URLs instead of writing
-   `nr_pending_neighborhood` — until it does, it cannot prove anything about path-based
-   resolution (see step 3).
+
+   **Stage E sub-ledger — started 2026-08-06.** One commit, so nothing here lands
+   independently; the statuses track what is written and proven in the working tree. The
+   file-by-file detail is in the execution plan's "Stage E" section and is not repeated.
+
+   | # | Sub-step | Status |
+   |---|---|---|
+   | E1 | `content/neighborhood-reports/_content.gotmpl` — adapter, 252 pages | Written 2026-08-07 |
+   | E2 | `nr-neighborhood-index.html` — port of `nr-output/section.html` | Written 2026-08-07 |
+   | E3 | `nr-topic-index.html` — new, + Pagefind block port from `topiclanding.html` | Written 2026-08-07 |
+   | E4 | `nr-topic-spa.html` — `.Title`, `neighborhood` param, `neighborhoodMap` rebuild, breadcrumb, server-rendered name | Written 2026-08-07 |
+   | E5 | `url.js` — step 0, and `setNeighborhoodInURL` now composes `<nbhd>/<topic>` | Written 2026-08-07 |
+   | E5b | **Added:** the two neighborhood pickers, pulled forward from Stage F | Written 2026-08-07 |
+   | E6 | `static/Web.config` — delete both NR rules | Written 2026-08-07 |
+   | E7 | `neighborhood-reports/section.html` — drop `data-pagefind-ignore` | Written 2026-08-07 |
+   | E8 | `scripts/smoke-pages.mjs` — repoint the two `nr-output` entries | Written 2026-08-07 |
+   | E9 | Deletions — 252 content files, `nr-output/`, 3 partials, `topiclanding.html` | Written 2026-08-07 |
+   | E5c | **Added:** `scripts/nr-characterization.mjs` repointed at real URLs + re-baselined | Written 2026-08-07 |
+   | E10 | `CLAUDE.md` — prose + re-stamp `docs-check verified:` | Written 2026-08-07 |
+   | E11 | Verification ladder, rungs 1–6 | **All six green 2026-08-07** |
+
+   **Three deviations from the execution plan, all deliberate.**
+
+   - **`data/globals/NR_topics.yml` is new**, and is what the adapter crosses with
+     `uhflist.json`. The plan named `NR_content` as the topic source, but those five files
+     are indicator specs; page metadata was kept out of them. It also drives a new
+     `partials/nr-topic-menu.html`, which replaces the five hardcoded topic buttons that
+     would otherwise have been duplicated into the new topic index.
+   - **E5b was pulled forward from Stage F** `[decided 2026-08-07: team]`. Once
+     `<topic>/` stops being the SPA, the landing page's flexdatalist
+     (`neighborhood-reports/section.html`), the Leaflet map's `selectNeighborhood`
+     (`partials/nr-leaflet.html`) and `setNeighborhoodInURL` all send users to a page that
+     reads no `nr_pending_neighborhood`, silently dropping the neighborhood they picked —
+     and `setNeighborhoodInURL` wrote a three-deep URL that 404s on reload. All three now
+     compose `<nbhd>/<topic>/`. `updateTopicLinks` rewrites hrefs instead of writing
+     sessionStorage. The rest of Stage F is untouched.
+   - **The plan's `.nr-clickable-uhf` instruction was misfiled** and no action was taken.
+     It reads as if the class is in `nr-output/section.html`; it is not. It is at
+     `neighborhood-reports/section.html:86`, which this stage does not delete. §2's
+     original phrasing is right.
+
+   **Rung 1 done `[verified 2026-08-07]`** — the A/B production-build form step 1
+   established, `npx hugo --environment production -d <tmp>` on a stashed `HEAD` and on the
+   working tree, compared file-by-file in Node. Both sides 1,209 EN pages. **File set:** 7
+   only-in-before, 2 only-in-after, every one explained — 5 orphaned `740x400` image
+   variants that no page referenced (a commented-out block at the old
+   `nr-output/section.html:91-93` still ran its `resources.Get` and `Fill`), `qrcode.js`
+   with the template that loaded it, the old `url.js` fingerprint; added,
+   `IndicatorMetadata/nr_indicator_names.json`, which `topiclanding.html` published on
+   `production` but never here, and the new `url.js` fingerprint. **Content:** 263 of 2,759
+   common files differ — 258 under `neighborhood-reports/` by design, `Web.config` by
+   design, `en/sitemap.xml` reordered with a **byte-identical 723-URL set**, and the three
+   home pages differing in `build_datetime` and nothing else.
+
+   **Rung 1's stated expectation in the plan was wrong and is corrected here.** It expected
+   the sitemap to rise from ~723 to ~975. It does not move: the 252 content files this
+   stage deletes were ordinary pages already in the sitemap, and the adapter generates the
+   same 252 URLs. 258 NR `<loc>` entries before and after. A count that *did* rise would
+   have meant duplicate pages.
+
+   **One defect the A/B caught, since fixed.** `summary` was first placed in the adapter's
+   `params`, which left `.Summary` empty and blanked the `<description>` of all 210 report
+   entries in `index.xml` and the 42 per-neighborhood feeds. Moving it to a top-level page
+   map key restored those feeds byte-for-byte. The lesson generalizes past `summary`: the
+   Stage C spike recorded that a top-level `title` sets `.Title` and not `.Params.title`,
+   and the converse holds — a front matter field Hugo has its own accessor for must go top
+   level, or the accessor silently returns empty.
+
+   **Rung 2 — PASS, all 210 report pages `[verified 2026-08-07]`.** New script
+   `scripts/nr-postswap-check.mjs`, the other half of the pre-capture: it drives a browser,
+   because the capture recorded indicator text the retired template rendered server-side and
+   the SPA fetches at runtime. Neighborhood, ZIP list, the eight report-topic headings and
+   their prose, and every indicator's short name, long name and description matched on all
+   210. Counts by topic: 42 pages at 10 indicators, 42 at 14, 42 at 17, 84 at 22 — none zero,
+   which is the Greenwich Village failure mode the capture was taken to catch.
+
+   **The first run of it reported 210 failures that were not failures**, and the cause is
+   worth carrying forward: `ensureDevServer()` spawns `--environment dev_stage`, so the pages
+   under test were reading EHDP-data **staging** while the capture came from **production**,
+   and staging carries an Indoor Air Quality "Mold" row production does not. The script now
+   reads `data_branch` off the page and refuses to run on a mismatch. Run it as
+   `DE_BASE_URL=<production-data server> node scripts/nr-postswap-check.mjs [--all]`.
+
+   **Rung 3 — PASS.** JS disabled, all three page kinds. The report page carries its title,
+   meta description, breadcrumb (Home › Neighborhood Reports › East Harlem › Asthma and the
+   Environment), both neighborhood-name spans, the ZIP list and 6 in-section links; the
+   neighborhood index its `<h1>`, ZIP list and 5 topic links; the topic index its 42
+   neighborhood links. **One gap this rung found and closed:** the report page's ZIP list was
+   JS-only, so it was empty without JS — `zipcodes` is now a page param and server-rendered.
+   Two things left as they are: the `<h1>` still reads "Asthma and the Environment in" with
+   the neighborhood in the sibling span (the retired template's exact structure — restructuring
+   it changes the visual on 210 trafficked pages for no measured gain), and the topic index
+   carries 20 `d-none` `<h1>`s from the ported Pagefind block.
+
+   **Rung 4 — PASS.** `npm run lint` clean; `npm run smoke` 15/15 with the three NR entries now
+   naming the templates that actually render them; `npm run docs-check` green after the
+   CLAUDE.md rewrite. docs-check failed first on exactly the two `nr-output` paths §11 predicted,
+   then twice more on paths written relative to `data/globals/` rather than the repo root.
+
+   **Rung 5 — PASS after repointing the harness.** See the execution plan's rung 5 for why this
+   was not the `finalURL`-only diff the plan expected. Two fields moved and nothing else.
+
+   **Rung 6 — PASS, all four questions answered.** Detail in the execution plan. Headline: 193 →
+   404 indexed pages, the section filter reads exactly 258, `.Parent.Title` resolves so results
+   read "Housing and Health | East Harlem", and a neighborhood+topic query returns that
+   neighborhood rather than 42 near-identical pages.
+
+   **Next command:** none — Stage E is written and proven, awaiting commit. After it lands:
+   correct `CLAUDE.md`'s `docs-check verified:` hash to the Stage E commit (it currently names
+   the parent, `b785dcfb05`, because the hash cannot be known before the commit exists), then
+   Stage F's two remaining items and Stage G.
+6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Mostly absorbed into step 5 —
+   see the execution plan's Stage F section for what landed and what did not.** The two
+   navigation writers, `setNeighborhoodInURL`, `updateTopicLinks` and the harness are all done,
+   and **step 3's standing caveat is now closed**: `characterize:nr` navigates to real
+   `<nbhd>/<topic>/` URLs, so it exercises path-based resolution rather than the
+   `sessionStorage` bridge. Still open: the `404.html` dev bridge (`:60-72`), which is the last
+   reader of `nr_pending_neighborhood`, and the dead `nameCorrections` map in
+   `assets/js/nr-topic-spa/global.js`.
 
 Steps 5 and 6 can be one commit or two. Two is better if the generated pages render
 correctly with JS disabled, since that is the state worth verifying on its own.

@@ -147,8 +147,16 @@ and deletion and generation cannot be staged apart.
 
 ### New
 
+- **`data/globals/NR_topics.yml`** — added during execution, not in the plan as written. The five
+  topics as an array: key, slug, title, menu label, the two SEO names and an image. The adapter
+  needs per-topic page metadata at build time, and `NR_content`'s five files are indicator specs
+  owned by the data team — putting page metadata there invites a merge conflict between two
+  unrelated maintainers. An array rather than a map so menu order is fixed here instead of falling
+  out of Hugo's key sort. It also drives
+  `themes/dohmh/layouts/partials/nr-topic-menu.html`, which replaced the five hardcoded topic
+  buttons rather than have them copied into a second layout.
 - **`content/neighborhood-reports/_content.gotmpl`** — the adapter. Nested loop over
-  `.Site.Data.globals.uhflist` × `.Site.Data.globals.NR_content`, emitting 210 report pages
+  `.Site.Data.globals.uhflist` × `.Site.Data.globals.NR_topics`, emitting 210 report pages
   (`kind: page`, `layout: nr-topic-spa`) and 42 neighborhood indexes (`kind: section`,
   `layout: nr-neighborhood-index`). Per-page params carry `neighborhood`, `geocode` (`UHF_id`),
   `content_yml`, and templated `seo_title`/`seo_description` — which also fixes the inconsistency
@@ -156,8 +164,11 @@ and deletion and generation cannot be staged apart.
   reads bare "Bayside - Little Neck".
 - **`themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`** — port of
   `nr-output/section.html`, with the five topic cards pointing at real `<nbhd>/<topic>/` hrefs
-  instead of the sessionStorage bridge at `:65-73`. Keep the `.nr-clickable-uhf` class name: the
-  partial is dead, the CSS class is live (memo §2).
+  instead of the sessionStorage bridge at `:65-73`. ~~Keep the `.nr-clickable-uhf` class name: the
+  partial is dead, the CSS class is live (memo §2).~~ **Misfiled — no action needed here.** That
+  class is not in `nr-output/section.html`; it is on a `<div>` at
+  `neighborhood-reports/section.html:86`, which this stage does not delete. Memo §2's own wording
+  is right and this restatement moved it to the wrong file.
 - **`themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html`** — the five `<topic>/` pages
   become real index pages: breadcrumb, `<h1>`, `.Content` intro, topic mini-menu, and a
   **server-rendered** 42-neighborhood link list ported from `topiclanding.html:241-246`. Also
@@ -204,16 +215,47 @@ The 252 content files; `themes/dohmh/layouts/nr-output/` (both templates);
 
 ### Verification
 
+**Corrections from the run, 2026-08-07.** Three of the six rungs below stated an expectation that
+turned out to be wrong. They are left in place with the correction attached, because the *reason*
+each was wrong is the same in every case — the plan was written assuming the topic URL would still
+render the SPA and that the retired pages were somehow outside the sitemap and the index, and
+neither was true.
+
 1. `hugo --environment production` completes; sitemap `<loc>` count rises from ~723 to ~975.
+
+   **Wrong: the count does not move.** It is 723 before and after, with 258 `neighborhood-reports`
+   entries on both sides `[verified 2026-08-07: A/B production builds, `<loc>` sets diffed and
+   byte-identical]`. The 252 content files this stage deletes were ordinary pages already in the
+   sitemap, and the adapter regenerates the same 252 URLs — that is what "keep the URLs" means. A
+   count that *rose* would have meant duplicates. Use the A/B build-set diff as the real rung: both
+   sides 1,209 EN pages, and every file-set difference individually explained.
 2. Diff the generated pages against `scripts/nr-output-precapture/capture.json` on neighborhood
    name, ZIP list, indicator names and descriptions, and EHDP-data URLs. Every page in that
    artifact carries 10–22 indicators and none carries zero, so a zero is a regression.
+
+   **This needs a browser, and it needs the right data branch.** `scripts/nr-postswap-check.mjs`
+   is the other half of the pre-capture and does both. The browser is unavoidable: the capture read
+   indicator text that `nr-output/single.html` rendered server-side, and the SPA fetches it at
+   runtime, so none of it is in the file on disk. The data branch is the trap — `ensureDevServer()`
+   spawns `--environment dev_stage`, and staging carries an Indoor Air Quality "Mold" indicator
+   production does not, which reads as a content regression on every page. Run it against a
+   production-data server; the script now refuses a mismatch rather than reporting it as a finding.
 3. **A JS-disabled render** of one generated report page and one neighborhood index — the state
    that decides whether Option D's SEO argument holds, and invisible to every other check.
 4. `npm run smoke`, `npm run lint`, `npm run docs-check`.
 5. `npm run characterize:nr -- --check` **will** diff on `finalURL`, legitimately, for the first
    time. Read the diff rather than re-baselining past it: confirm `finalURL` is the only field
    that moved.
+
+   **Wrong, and worse than wrong: the harness stops working entirely.** It navigated to
+   `neighborhood-reports/<topic>/` and injected the neighborhood through `sessionStorage`. That URL
+   now renders the static topic index, which has no SPA at all, so all three targets came back
+   empty on every field — not a `finalURL` diff, a dead regression net. Stage F's harness bullet
+   therefore has to move into Stage E; a silent net is worse than the broken navigation E5b came in
+   to fix. Once it navigates to `<nbhd>/<topic>/`, exactly two fields move — `finalURL`, and
+   `mobileTitle`, because the id moved off the `<h1>` (see rung 6). Accordion ids, chart count,
+   demographics, ZIP list, both neighborhood headers, report header and map panes all match the
+   baseline captured before this stage `[verified 2026-08-07]`.
 6. **Build the Pagefind index and query it** — `npx -y pagefind --site <build-dir>`, the same
    command the workflows run. Check four things no other rung reaches: a report result's title
    carries the neighborhood (`.Parent.Title` resolved), the "Neighborhood Reports" filter count
@@ -223,27 +265,67 @@ The 252 content files; `themes/dohmh/layouts/nr-output/` (both templates);
    step, which is why `PagefindUI is not defined` is an allowlisted dev-only error in
    `scripts/smoke-pages.mjs`.
 
+   **Run, and all four answered `[verified 2026-08-07: `npx -y pagefind --site` over both A/B
+   builds, then the Pagefind JS API queried in a browser against the built index]`.**
+   - **Indexed pages 193 → 404.** The section itself went 47 → 258, not "5 → ~258" as §10.3's
+     framing implied: the 42 old neighborhood indexes were *already* indexed, because their
+     `data-pagefind-ignore="all"` sat on the `<h1>` and the cards rather than on the article. What
+     was missing was the 210 report pages, whose whole `<section>` was ignored, and the landing page.
+   - **`.Parent.Title` resolves.** Results read "Housing and Health | East Harlem", not "… |
+     Neighborhood Reports" — the failure mode §2 of the Pagefind section warned about.
+   - **The section filter reads exactly 258**, matching the generated page count.
+   - **The hidden indicator headings produce no sub-results, by design.** Pagefind only emits one
+     for a heading that has an `id`, and a sub-result here would link to a `d-none` heading on a
+     page that renders no indicators. So the plan's "add the `id` the comment already claims is
+     there" was not done; the misleading comment was corrected instead. The contrast is visible in
+     the same query output — data-explorer pages *do* emit indicator sub-results, because
+     `footer.html` rewrites their `#IndicatorID-` anchors into a `?id=` the explorer acts on.
+   - **A neighborhood+topic query returns that neighborhood's pages**, not 42 near-identical ones:
+     "east harlem asthma" returns East Harlem's index first and then its topic reports, and the ZIP
+     "11361" returns Bayside - Little Neck's.
+   - **One blemish, found and fixed here.** Report sub-results were titled "Housing and Health in"
+     and anchored to `#nr-mobile-title`, because that id was on an `<h1>` whose text ends
+     mid-sentence. Moving the id to the wrapping `<div>` — which is all `report.js` ever used it
+     for — removes the sub-result and leaves the page result reading correctly.
+
 ---
 
 ## Stage F — SPA rewiring and cleanup
 
-Separable from E, and better as its own commit so Stage E's "do the generated pages render"
-question is answered on its own.
+**Most of this landed in Stage E instead `[2026-08-07]`.** The split assumed the two halves were
+independent. They were not: the moment `<topic>/` stops being the SPA, every navigation path that
+hands a neighborhood over in `sessionStorage` silently drops it, and the characterization harness
+stops testing anything at all. Shipping E without those fixes would have meant a commit whose own
+verification rung could not run.
 
-- `url.js` — `setNeighborhoodInURL` (`:82`) composes `<nbhd>/<topic>` instead of splicing after
-  `topicSlug`; `updateTopicLinks` (`:93-114`) deleted along with the `nr_pending_neighborhood`
-  bridge it feeds. Tabs become plain anchors to real URLs, which is also what gives crawlers 210
-  links to follow.
-- Remove the remaining `nr_pending_neighborhood` writers: `404.html:66` (the whole dev bridge at
-  `:60-72` goes back to being a 404), `neighborhood-reports/section.html:315`,
-  `partials/nr-leaflet.html:324`.
-- `scripts/nr-characterization.mjs` — navigate directly to `<nbhd>/<topic>/` instead of writing
-  the sessionStorage key at `:96`, then re-baseline. **Until this lands, `characterize:nr` cannot
-  prove anything about path-based neighborhood resolution** — it exercises the bridge, not the
-  path (ledger step 3). The committed baselines bake in the `/dev-stage` path prefix, so
-  re-baseline against the same environment they were captured under.
-- Optional cleanup: `nameCorrections` in `assets/js/nr-topic-spa/global.js` is dead — `f8759d8d6d`
-  fixed the `Crotona -Tremont` typo in the source data, so its only key no longer occurs.
+Done in Stage E:
+
+- ~~`url.js` — `setNeighborhoodInURL` (`:82`) composes `<nbhd>/<topic>`~~ **done.** It now rewrites
+  the segment *before* the topic; the guard is `topicIdx < 2`, index 2 being the shallowest a report
+  page can sit at with no site path prefix.
+- ~~`updateTopicLinks` (`:93-114`) deleted along with the `nr_pending_neighborhood` bridge it
+  feeds~~ **kept, and repurposed.** It rewrites each tab's href to the current neighborhood instead
+  of writing sessionStorage. Deleting it outright would have left the five tabs pointing at whatever
+  neighborhood the page was *generated* for after an in-place map switch. The tabs are already plain
+  anchors to real URLs — server-rendered by `themes/dohmh/layouts/partials/nr-topic-menu.html` — so
+  crawlers get their links regardless.
+- ~~`neighborhood-reports/section.html:315`, `partials/nr-leaflet.html:324`~~ **done.** Both compose
+  `<nbhd>/<topic>/` directly. `nr-leaflet`'s `selectNeighborhood` also now falls back to
+  `<nbhd>/` when no topic is in play, which is the case on a neighborhood index — previously it
+  built `neighborhood-reports///`.
+- ~~`scripts/nr-characterization.mjs` — navigate directly to `<nbhd>/<topic>/`, then
+  re-baseline~~ **done**, and re-baselined against `dev_stage` as this bullet instructed, so the
+  committed `/dev-stage/` prefix is unchanged. `characterize:nr` now exercises path-based
+  resolution for the first time, closing the standing caveat in ledger step 3.
+
+Still open:
+
+- `404.html:66` — the whole dev bridge at `:60-72` goes back to being a 404. Left alone because it
+  is the only remaining reader of the `nr_pending_neighborhood` key and removing it is a change to
+  dev-only routing with its own failure mode (site-wide audit §5i). `url.js` steps 1 and 2 stay
+  until it goes.
+- `nameCorrections` in `assets/js/nr-topic-spa/global.js` is dead — `f8759d8d6d` fixed the
+  `Crotona -Tremont` typo in the source data, so its only key no longer occurs.
 
 ---
 
@@ -270,7 +352,10 @@ build-time-fetch table, §10.5's ACS vintage claim, §7's line references, and t
 - **§10.3's framing of NR search indexing as one attribute removal** — "That one attribute comes
   off". True as far as it goes, and it is the whole of what that section says about a change that
   also ports a build-time fetch, re-keys a filter that fails silently, and takes the section from
-  5 indexed pages to ~258. The Pagefind section above is the correction; §10.3 should point at it.
+  **47** indexed pages to 258 `[verified 2026-08-07: pagefind over both A/B builds]` — not from 5,
+  as this document said before the run. The 42 old neighborhood indexes were already indexed; the
+  210 report pages and the landing page were not. The Pagefind section above is the correction;
+  §10.3 should point at it.
 - **§4's reachability claim** is worth re-deriving rather than trusting after Stage E: it lists
   the templates linking to per-neighborhood URLs, and both new layouts add more.
 

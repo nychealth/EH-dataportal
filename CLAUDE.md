@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: b6035b3068 2026-08-06 -->
+<!-- docs-check verified: b785dcfb05 2026-08-07 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -31,7 +31,10 @@ hugo new data-stories/TITLE/index.md
 hugo new key-topics/TITLE/index.md
 ```
 
-Browse locally at http://localhost:1313/EH-dataportal
+A dev server prints its own URL on startup — read it rather than assuming. The path prefix is the
+environment's `baseURL` path, so `development` serves under `/dev-prod/` and `dev_stage` under
+`/dev-stage/`. No environment serves under `/EH-dataportal/`
+`[verified 2026-08-07: baseURL across all eight config/ directories]`.
 
 ## Guardrails
 
@@ -40,10 +43,10 @@ Five npm scripts, run from the repo root:
 - `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-topic-spa/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
 - `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`. Before relying on it as the proof for a change that only executes on one page kind, confirm that page is in `PAGES` — those comments are claims that rot like doc prose. Two caveats: the generic `Failed to load resource` allowlist entry hides the *cause* of blocked-script failures, leaving only a downstream `X is not defined`, so diagnose those with a separate unfiltered probe; and a cache-cold first run has been seen to fail spuriously (site-wide audit §5j).
 - `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
-- `npm run characterize:nr` — Playwright characterization harness for the Neighborhood Reports topic SPA (`scripts/nr-characterization.mjs`). Captures rendered output — neighborhood header, demographics, ZIP list, accordion ids, chart count, **and the final URL** — for three topic/neighborhood pairs, and diffs them against `scripts/nr-characterization-baseline/`. `-- --check` to verify, `-- --baseline` to re-capture. Neighborhood selection goes through the SPA's own `sessionStorage` bridge rather than clicking the Leaflet map, so runs are deterministic. The captured final URL is the guard against a silent redirect to the 404 page. Run it before any merge touching the NR templates or `assets/js/nr-topic-spa/`. It expands the first accordion panel per target so the lazy Vega path runs, and records the renderer (`hasCanvas`/`hasSvg`) plus a painted flag per mark group — structural facts only, since mark *counts* track EHDP-data row counts and would churn the baseline on every data refresh.
+- `npm run characterize:nr` — Playwright characterization harness for the Neighborhood Reports topic SPA (`scripts/nr-characterization.mjs`). Captures rendered output — neighborhood header, demographics, ZIP list, accordion ids, chart count, **and the final URL** — for three topic/neighborhood pairs, and diffs them against `scripts/nr-characterization-baseline/`. `-- --check` to verify, `-- --baseline` to re-capture. It navigates straight to the real `<nbhd>/<topic>/` page, so it exercises the path the site actually serves; the Leaflet map is deliberately not clicked, which would make it a test of map hit-detection. The captured final URL is the guard against a silent redirect to the 404 page. Run it before any merge touching the NR templates or `assets/js/nr-topic-spa/`. It expands the first accordion panel per target so the lazy Vega path runs, and records the renderer (`hasCanvas`/`hasSvg`) plus a painted flag per mark group — structural facts only, since mark *counts* track EHDP-data row counts and would churn the baseline on every data refresh.
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
 
-`smoke` and the characterization harness **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). Import `ensureDevServer()` directly for one-off browser checks: **starting a server when none is running needs no permission.** The "ask first" caution is about a server *you didn't start*. Set `DE_BASE_URL` to point them at a server on a non-default port/environment. If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache.
+`smoke` and the characterization harness **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). **The server it starts is `--environment dev_stage`, i.e. staging data.** That is invisible until a check compares against something captured from `production` — see `nr-postswap-check.mjs` below, where it read as 210 content regressions. Import `ensureDevServer()` directly for one-off browser checks: **starting a server when none is running needs no permission.** The "ask first" caution is about a server *you didn't start*. Set `DE_BASE_URL` to point them at a server on a non-default port/environment. If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache.
 
 - **Stopping a background task may orphan the server** — the wrapper is the tracked process, so `hugo.exe` can keep :8080. Check the port after stopping, and identify a running server by its command line before assuming it isn't yours.
 
@@ -73,9 +76,9 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `themes/dohmh/layouts/shortcodes/` — Shortcodes callable from markdown content
 - `assets/` — SCSS, JS, images (processed by Hugo with SRI fingerprinting)
 - `static/` — Unprocessed files served as-is
-- `data/globals/` — YAML data accessible throughout templates (featured data, NR specs, SEO vars)
+- `data/globals/` — YAML/JSON data accessible throughout templates: featured data, SEO vars, and the three Neighborhood Reports sources — `data/globals/uhflist.json`, `data/globals/NR_topics.yml` and `data/globals/NR_content`
 - `documents/` — Internal audits and technical write-ups
-- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper)
+- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the two characterization harnesses, and the NR pre-capture/post-swap pair)
 - `docs/` — Generated output; never edit directly
 
 ### Layout routing
@@ -83,7 +86,8 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `_index.md` → `section.html` (section landing pages)
 - `index.md` or `name.md` → `single.html`
 - Frontmatter `layout: custom` → `custom.html` in the section's layouts folder
-- Frontmatter `type: X` routes to the `X` layouts folder — this is how neighborhood reports reach `nr-output`
+- Frontmatter `type: X` routes to the `X` layouts folder; `layout: X` selects `X.html` within the section's own layouts folder, which is how all three Neighborhood Reports page kinds are routed
+- A `_content.gotmpl` in a content directory is a **content adapter** — it generates pages at build time. `content/neighborhood-reports/` has one
 
 ### JS architecture
 
@@ -108,12 +112,49 @@ Key gotchas:
 
 ### Neighborhood Reports
 
-Two distinct systems share the `neighborhood-reports` section:
+**There is no `nr-output` any more.** The 252 hand-written content files under
+`content/neighborhood-reports/<Neighborhood>/` and the two `nr-output` layouts were retired in
+favour of generated pages ("Option D"). URLs are unchanged — that was the point — so a path that
+worked before still works, but nothing renders it the way it used to. Three page kinds:
 
-- **Per-neighborhood reports** — content under `content/neighborhood-reports/`, `type: nr-output`, rendered by `themes/dohmh/layouts/nr-output/section.html` and `themes/dohmh/layouts/nr-output/single.html`. JSON spec per neighborhood lives in EHDP-data.
-- **Topic SPA (Phase 2)** — `assets/js/nr-topic-spa/` with `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`. Topic content files set `layout: nr-topic-spa` and an explicit `url`, giving topic-first URLs. Ten classic scripts sharing one global scope, mirroring the data explorer: `global → url → tertiles → demographics → cards → report → chart → map → data → app`. **Load order is set in the template and `app.js` must be last** — it holds the only two statements that run at load time. `global.js` declares the shared state, each binding annotated with the files that read and write it. Unlike the DE charts, `chart.js` passes `renderer: 'svg'` to `vegaEmbed` — so NR chart marks are inspectable DOM nodes, while the canvas-rendered DE charts are not.
+- **Report page** — `/neighborhood-reports/<nbhd>/<topic>/`, 210 of them, `kind: page`, rendered by
+  `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`. This is the topic SPA:
+  `assets/js/nr-topic-spa/`, ten classic scripts sharing one global scope, mirroring the data
+  explorer: `global → url → tertiles → demographics → cards → report → chart → map → data → app`.
+  **Load order is set in the template and `app.js` must be last** — it holds the only two
+  statements that run at load time. `global.js` declares the shared state, each binding annotated
+  with the files that read and write it. Unlike the DE charts, `chart.js` passes `renderer: 'svg'`
+  to `vegaEmbed`, so NR chart marks are inspectable DOM nodes. The neighborhood is **server-side**:
+  the page knows which one it is, `NR_TOPIC_SPA_CONFIG.neighborhood` says so, and the name, ZIP list
+  and headers render without JS.
+- **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
+  `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
+  five topic cards linking to that neighborhood's reports.
+- **Topic index** — `/neighborhood-reports/<topic>/`, the 5 topic markdown files, which set
+  `layout: nr-topic-index` and an explicit `url`. Server-rendered 42-neighborhood link list, plus
+  the hidden indicator-name headings Pagefind indexes.
 
-Routing note: production uses an IIS rewrite for topic/neighborhood URLs. `hugo server` has no equivalent, so `themes/dohmh/layouts/404.html` intercepts those, stores the neighborhood slug in `sessionStorage`, and redirects to the clean topic URL, where the SPA restores it. That bridge is load-bearing in dev — see site-wide audit §5i for a merge scenario where it sends report pages to a 404.
+The generator is `content/neighborhood-reports/_content.gotmpl`, a Hugo **content adapter**. It
+crosses `data/globals/uhflist.json` (42 neighborhoods) with `data/globals/NR_topics.yml` (5 topics)
+and emits 252 pages. Two adapter facts that fail silently rather than loudly: a top-level `title`
+in the page map sets `.Title` and **not** `.Params.title`, and `.File.BaseFileName` is the literal
+string `_content`, so a `where` keyed on it matches zero rows without erroring. `.Site.Pages` and
+`.Site.GetPage` are unavailable inside an adapter — the Site object is not built yet — which is why
+everything it needs comes from `data/`.
+
+`themes/dohmh/layouts/partials/nr-topic-menu.html` renders the five topic buttons for both the
+report page and the topic index, driven by the same topic data.
+
+Routing note: the two NR rules in `static/Web.config` are gone. Every `<nbhd>/<topic>/` URL is now a
+real generated page, so nothing needs rewriting — and the old 301 would have redirected all 210 of
+them away. `themes/dohmh/layouts/404.html` still carries a dev-only `sessionStorage` bridge for
+topic-first URLs; Stage F of the retirement removes it.
+
+`scripts/nr-postswap-check.mjs` diffs the generated pages against
+`scripts/nr-output-precapture/capture.json`, the record of what the retired pages rendered. **It
+must run against a production-data server** — `ensureDevServer()` spawns `dev_stage`, and the
+staging branch's row counts differ, which reads as content regressions. The script refuses to run
+on a branch mismatch.
 
 ### SCSS
 
@@ -125,7 +166,7 @@ Routing note: production uses an IIS rewrite for topic/neighborhood URLs. `hugo 
 |---------|---------------|-------|
 | `data-stories` | `data-stories` | Markdown articles with Vega/Datawrapper shortcode embeds |
 | `data-explorer` | `data-explorer` | Each topic MD lists an indicators array; JS drives all visualization |
-| `neighborhood-reports` | `neighborhood-reports` + `nr-output` | See above |
+| `neighborhood-reports` | `neighborhood-reports` | 252 of its 258 pages are generated by a content adapter — see above |
 | `key-topics` | `key-topics` | Organizing principle; linked via `categories` frontmatter |
 | `data-features` | `data-features` | Feature articles/tools |
 
@@ -222,6 +263,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
 - `documents/nr-decisions-and-sequencing-2026-08-04.md` — the NR decision record and order of work. Also this branch.
+- `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work still to come. §11 of the scoping memo is the ledger; this is the executable half.
 
 ## Common gotchas
 

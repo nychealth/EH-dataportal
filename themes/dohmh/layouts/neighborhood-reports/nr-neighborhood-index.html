@@ -1,0 +1,94 @@
+{{- define "main" -}}
+
+{{/*
+    Per-neighborhood index — /neighborhood-reports/<nbhd>/.
+
+    Port of the retired nr-output/section.html, rendered for the 42 `kind: section` pages
+    the content adapter generates. Two deliberate differences from what it replaces:
+
+      - the topic cards link to the real <nbhd>/<topic>/ URLs (.RelPermalink of the child
+        page) instead of the clean topic URL plus a sessionStorage hand-off, which is the
+        whole point of Option D: 5 crawlable links per neighborhood, 210 in total
+      - the ZIP list comes from .Params.zipcodes rather than the nr-insert-zips partial,
+        which keyed on .Page.File.Dir — a generated page has no meaningful File.Dir
+
+    Nothing here is data-pagefind-ignored. The section-level ignore came off in the same
+    commit, and the neighborhood name and ZIP list are exactly the text that distinguishes
+    one of these 42 pages from the other 41.
+*/}}
+
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 mx-auto col-sm-12">
+
+                <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div style="height: 450px">
+                            {{- partial "nr-leaflet" . -}}
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+
+                        {{/* The neighborhood name is the one string that makes this page
+                             findable as itself, so it carries the search weight rather
+                             than the blanket ignore the old template put here */}}
+                        <h1 class="report-title border-bottom">Neighborhood Reports for
+                            <span class="sub-title" data-pagefind-weight="10">{{ .Title }}</span>
+                        </h1>
+
+                        <div class="fs-md">
+                            <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
+                            <span id="zips">{{ .Params.zipcodes }}.</span>
+                        </div>
+
+                        {{/* One card per topic report for this neighborhood. Sorted
+                             explicitly: the cards have always read Active Design →
+                             Outdoor Air, and .Pages ordering on a generated section is
+                             not something to leave to a default */}}
+                        <div class="row mt-4">
+
+                            {{- range (sort .Pages "Title") -}}
+
+                                <div class="card content-card mb-3 col-md-4 col-sm-6">
+                                    <div class="card-content primary">
+
+                                        {{- with .Params.seo_image -}}
+                                            {{- $src := resources.Get . -}}
+                                            {{- $image := $src.Resize "740x" -}}
+                                            <div style="width: 100%; height: 200px; background-image: url({{ $image.RelPermalink }});background-size:cover"></div>
+                                        {{- end -}}
+
+                                        <div class="card-body p-2">
+                                            <h2 class="card-title fs-md"><a href="{{ .RelPermalink }}" class="text-primary fs-lg">{{ .Title }}</a></h2>
+                                            <p class="card-text fs-sm">{{ .Summary | truncate 150 }}</p>
+                                            <p class="fs-sm text-right"><a href="{{ .RelPermalink }}">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a></p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {{- end -}}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{- end -}}

@@ -16,11 +16,14 @@
 // scope, and the file was split into ten — so the rule no longer enforces itself.
 // It is what keeps the harness valid across a refactor that renames things.
 //
-// Neighborhood selection goes through the sessionStorage bridge the SPA already
-// supports (`nr_pending_neighborhood`, read during the SPA's startup),
-// seeded via addInitScript so it is set before page scripts run. That is
-// deterministic; clicking the Leaflet map is not, and would make the harness a
-// test of map hit-detection rather than of report rendering.
+// It navigates straight to the real <nbhd>/<topic>/ page. Until the Option D swap
+// those pages did not exist, so the harness reached the SPA at the clean topic URL
+// and injected the neighborhood through the `nr_pending_neighborhood`
+// sessionStorage bridge — which meant it exercised the bridge and never the
+// path-based resolution it appeared to cover (scoping memo §11, step 3). Now the
+// server supplies the neighborhood and the harness reads what a real visitor gets.
+// Clicking the Leaflet map is still avoided: it would make this a test of map
+// hit-detection rather than of report rendering.
 //
 // One accordion panel is expanded per target, because charts render lazily and a
 // harness that never expands one leaves the entire Vega path uncovered — which is
@@ -83,23 +86,6 @@ const captureTarget = async (browser, target, baseURL) => {
     const page = await browser.newPage();
     const consoleErrors = [];
 
-    // Seed the bridge before any page script runs, exactly as the landing page
-    // and the 404 interceptor do.
-    //
-    // addInitScript runs in EVERY frame, and the header's Google Forms iframe is
-    // sandboxed without allow-same-origin, so touching sessionStorage there
-    // throws a SecurityError that surfaces as a page-level error and pollutes the
-    // capture. Only the top frame needs the value.
-    await page.addInitScript((slug) => {
-        if (window.top !== window.self) return;
-        try {
-            sessionStorage.setItem('nr_pending_neighborhood', slug);
-        } catch {
-            // Storage unavailable in this context; the SPA falls back to its
-            // path-based selection, which is what we want to characterize anyway.
-        }
-    }, target.neighborhood);
-
     page.on('console', (msg) => {
         if (msg.type() === 'error' && !KNOWN_NOISE.test(msg.text())) consoleErrors.push(msg.text());
     });
@@ -107,7 +93,7 @@ const captureTarget = async (browser, target, baseURL) => {
         if (!KNOWN_NOISE.test(err.message)) consoleErrors.push(`pageerror: ${err.message}`);
     });
 
-    const url = `${baseURL}neighborhood-reports/${target.topic}/`;
+    const url = `${baseURL}neighborhood-reports/${target.neighborhood}/${target.topic}/`;
 
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 

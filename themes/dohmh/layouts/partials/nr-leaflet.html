@@ -307,26 +307,21 @@
         
         if (match && match.page_name) {
 
-            // Get the current URL parts
-            const parts = window.location.pathname.split("/");
-            
-            // Replace the 3rd index (neighborhood slug) with the new one
-            parts[3] = match.page_name;
-            
-            // set report destination
-            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
-            
-            // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
-            
-            const buildURL = {{ relURL "neighborhood-reports/" }} + dest + '/'
+            // Report destination: a topic button's choice on the NR landing page, or the
+            // topic already being read. Null on a neighborhood index, which has neither.
+            const dest = intendedDestinationName || chosenReport;
 
-            // Store neighborhood slug so the SPA can pre-select it without a full-path URL
-            sessionStorage.setItem('nr_pending_neighborhood', match.page_name);
+            // Neighborhood-first URLs. Both shapes are pages the content adapter generates,
+            // so the slug travels in the path — there is no sessionStorage hand-off left to
+            // make, and no clean topic URL that would read one.
+            const buildURL = dest
+                ? {{ relURL "neighborhood-reports/" }} + match.page_name + '/' + dest + '/'
+                : {{ relURL "neighborhood-reports/" }} + match.page_name + '/';
 
             // Redirect - send to new page
             window.location.href = buildURL;
             // console.log(buildURL)
-            
+
         } else {
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
         }

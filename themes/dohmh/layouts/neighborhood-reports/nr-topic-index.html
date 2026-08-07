@@ -1,0 +1,88 @@
+{{- define "main" -}}
+
+{{/*
+    Topic index — /neighborhood-reports/<topic>/.
+
+    Replaces topiclanding.html for the five topic content files. The one thing that had to
+    change: the 42-neighborhood link list is server-rendered here, where topiclanding built
+    it in JS from the `neighborhoods` global. That list is what gives a crawler 42 links per
+    topic — 210 in all — into the generated report pages, which is the argument Option D
+    rests on.
+
+    Deliberately not the SPA. Before this branch the topic URL rendered nr-topic-spa.html
+    with no neighborhood, which produces eight empty section divs and a dangling
+    "Asthma and the Environment in" for anything that does not run JS (scoping memo §12a).
+*/}}
+
+{{- $contentKey := .Params.content_yml -}}
+
+{{/* The URL segment for this topic, read off the page's own permalink rather than looked
+     up, so the links below cannot disagree with where this page actually lives */}}
+{{- $topicSlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+<article class="container-fluid" id="skip-header-target">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
+
+            <h1 class="h2 mt-3">{{ .Title }}</h1>
+            <div class="report-description fs-lg my-2">{{ .Content }}</div>
+
+            {{/* One link per neighborhood, straight from the canonical 42 rows. Ranged over
+                 uhflist rather than .Site.Pages so the list does not depend on the generated
+                 pages having been built in any particular order */}}
+            <h2 class="h4 mt-4">Choose a neighborhood</h2>
+
+            <ul class="list-unstyled row" id="nr-neighborhood-list">
+                {{- range site.Data.globals.uhflist -}}
+                    <li class="col-md-4 col-sm-6 mb-2">
+                        <a href="{{ relURL (printf "neighborhood-reports/%s/%s/" .page_name $topicSlug) }}">{{ .UHF_name }}</a>
+                        <span class="fs-sm text-muted d-block">{{ .Zipcodes }}</span>
+                    </li>
+                {{- end -}}
+            </ul>
+
+        </div>
+    </div>
+</article>
+
+
+{{- /* ====  save indicator names as a resource  ==== */ -}}
+
+{{- /* Ported from topiclanding.html. Publishes the indicator-name metadata as a site
+       resource, and emits each of this topic's indicator names and descriptions as a
+       hidden heading so Pagefind indexes that vocabulary against the topic page. */ -}}
+
+{{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/metadata/nr_indicator_names.json")) | transform.Unmarshal -}}
+
+{{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/nr_indicator_names.json" -}}
+
+{{ $nr_indicator_names_json.Publish }}
+
+{{- /* Keyed on .Params.content_yml, not .File.BaseFileName. The JSON's `title` field holds
+       exactly the content_yml string, and on a generated page .File.BaseFileName is the
+       literal "_content" — a `where` against it matches zero rows with no error at all. */ -}}
+
+{{- range (where $nr_indicator_names "title" "eq" $contentKey) -}}
+
+    {{- /* No id, despite what the copy of this block in topiclanding.html claimed: an id is
+           what makes Pagefind emit a sub-result, and a sub-result here would link to a
+           d-none heading on a page that renders no indicators. The data-explorer copy has an
+           id because footer.html rewrites its #IndicatorID- anchor into a ?id= query the
+           explorer acts on; nothing equivalent exists on this page. */ -}}
+
+    <h1 class="d-none">{{ .indicator_name }}</h1>
+    <h2 class="d-none">{{ .indicator_description }}</h2>
+
+{{- end -}}
+
+{{- end -}}

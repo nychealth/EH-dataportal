@@ -1,0 +1,35 @@
+{{/*
+    The five-topic mini-menu, shared by the generated report pages (nr-topic-spa.html) and
+    the five topic index pages (nr-topic-index.html). Driven by data/globals/NR_topics.yml
+    so the button order and labels have one source rather than a hardcoded block per layout.
+
+    Call with:
+      active            — the content_yml key of the current topic, for the .active class
+      neighborhood_slug — the neighborhood in the path, or "" on a topic index page
+
+    When a neighborhood is known the hrefs are real <nbhd>/<topic>/ pages, so a click keeps
+    the neighborhood without the sessionStorage hand-off. The .nr-topic-link class stays
+    because url.js rewrites these hrefs when the map switches neighborhood in place.
+*/}}
+
+{{- $active := .active -}}
+{{- $slug := .neighborhood_slug -}}
+
+<div class="row no-gutters d-print-none mb-2">
+
+    {{- range site.Data.globals.NR_topics -}}
+
+        {{- $href := cond (eq $slug "")
+            (printf "neighborhood-reports/%s/" .slug)
+            (printf "neighborhood-reports/%s/%s/" $slug .slug) -}}
+
+        <div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq .key $active }} active{{ end }}"
+               href="{{ relURL $href }}">
+                {{ .menu_label }}
+            </a>
+        </div>
+
+    {{- end -}}
+
+</div>

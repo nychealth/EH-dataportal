@@ -1,6 +1,10 @@
 {{- define "main" -}}
 
-<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
+{{/* The data-pagefind-ignore="all" that used to sit on this element kept the section's
+     own landing page — its entry point — out of search results. It comes off with the
+     rest of the NR indexing changes: the 252 generated pages below it are indexed, so a
+     search for "neighborhood reports" should be able to reach the page they hang off. */}}
+<article class="container-fluid overflow-hidden" id="primary-content">
 
   <style>
     .selectedOption {
@@ -308,12 +312,10 @@ function loadList() {
     // console.log('chosen neighb:')
     // console.log(set.page_name);
 
-    // Store the neighborhood slug before navigating to the topic SPA page.
-    // The SPA reads this from sessionStorage on load and pre-selects the neighborhood.
-    // We navigate to the clean topic URL (no neighborhood in the path) so the request
-    // always resolves to a real static file, both in dev and on production.
-    sessionStorage.setItem('nr_pending_neighborhood', set.page_name);
-    window.location.href = {{ relURL "neighborhood-reports/" }} + intendedDestinationName + '/'
+    // Navigate straight to the neighborhood's report for the selected topic. That URL is
+    // a page the content adapter generates, so the neighborhood no longer has to travel
+    // through sessionStorage to a topic page that would have to re-select it.
+    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + intendedDestinationName + '/'
 
 })
 

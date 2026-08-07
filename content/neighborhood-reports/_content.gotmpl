@@ -1,0 +1,70 @@
+{{/*
+  Content adapter for Neighborhood Reports (Option D).
+
+  Generates the 252 pages that used to be hand-written content files under
+  content/neighborhood-reports/<Neighborhood>/:
+
+    - 42 neighborhood indexes at <nbhd>/            (kind section, nr-neighborhood-index.html)
+    - 210 report pages at <nbhd>/<topic>/           (kind page,    nr-topic-spa.html)
+
+  The two sources are crossed: data/globals/uhflist.json supplies the 42 neighborhoods
+  (page_name, UHF_name, UHF_id) and data/globals/NR_topics.yml the 5 topics. Both are
+  plain data files rather than pages, which is required here — the Site object is not
+  fully built while an adapter runs, so Site.Pages and Site.GetPage are unavailable
+  [verified 2026-08-07: Hugo content-adapters docs, "Page collections" warning].
+
+  Two things the Stage C spike established that this depends on, neither of which fails
+  loudly if it stops holding:
+    - a top-level `title` in the page map sets .Title but NOT .Params.title, so the
+      layouts read .Title
+    - .File is not nil on a generated page; .File.BaseFileName is the string "_content",
+      so anything keyed on it silently matches nothing
+*/}}
+
+{{- $neighborhoods := .Site.Data.globals.uhflist -}}
+{{- $topics := .Site.Data.globals.NR_topics -}}
+
+{{- range $nbhd := $neighborhoods -}}
+
+    {{/* The neighborhood index: a real branch page, so its 5 report pages are .Pages
+         and .Parent.Title on each of them is the neighborhood name — which is what
+         keeps "Asthma and the Environment | East Harlem" in the Pagefind result title */}}
+    {{- $.AddPage (dict
+        "path"    $nbhd.page_name
+        "kind"    "section"
+        "title"   $nbhd.UHF_name
+        "layout"  "nr-neighborhood-index"
+        "params"  (dict
+            "geocode"         $nbhd.UHF_id
+            "zipcodes"        $nbhd.Zipcodes
+            "seo_title"       (printf "Neighborhood report - %s | Environment & Health Data Portal" $nbhd.UHF_name)
+            "seo_description" (printf "Environmental Health data profiles for the %s neighborhood of NYC." $nbhd.UHF_name)
+        )
+    ) -}}
+
+    {{- range $topic := $topics -}}
+
+        {{/* `summary` is top level rather than in params because that is what .Summary
+             reads, and .Summary is what the site RSS feed prints as each report's
+             <description> — a generated page has no body for Hugo to summarize from. */}}
+        {{- $.AddPage (dict
+            "path"    (printf "%s/%s" $nbhd.page_name $topic.slug)
+            "kind"    "page"
+            "title"   $topic.title
+            "layout"  "nr-topic-spa"
+            "summary" $topic.summary
+            "params"  (dict
+                "neighborhood"    $nbhd.UHF_name
+                "neighborhood_slug" $nbhd.page_name
+                "geocode"         $nbhd.UHF_id
+                "zipcodes"        $nbhd.Zipcodes
+                "content_yml"     $topic.key
+                "seo_title"       (printf "%s in %s" $topic.seo_short_name $nbhd.UHF_name)
+                "seo_description" (printf "%s data profile for the %s neighborhood of NYC." $topic.seo_long_name $nbhd.UHF_name)
+                "seo_image"       $topic.seo_image
+            )
+        ) -}}
+
+    {{- end -}}
+
+{{- end -}}

@@ -1,14 +1,18 @@
 {{- define "main" -}}
 
 {{/*
-  Topic-centric Neighborhood Reports layout (Phase 2).
-  - Used by the main topic markdown files (Active Design, Asthma, etc.).
+  Per-neighborhood report layout — /neighborhood-reports/<nbhd>/<topic>/.
+  - Rendered for the 210 pages the content adapter generates, one per neighborhood/topic.
+    It no longer serves the five topic markdown files; those render nr-topic-index.html.
   - Reads all report_topics from the NR_content YAML for this topic.
   - Builds an EHDP-data JSON URL per report_topic and passes them to a JS app.
   - Indicator rows are accordion-expandable, showing description, comparisons,
     a Vega choropleth map + bar chart, and data source on expand.
-  - A topic mini-menu lets users switch between topics; the selected
-    neighborhood persists via URL query parameter.
+  - The neighborhood comes from the page itself, not from the URL or sessionStorage. The
+    Leaflet map still switches neighborhood in place; url.js rewrites the address bar.
+
+  Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
+  .Title only, so .Params.title renders blank on all 210 of these pages.
 */}}
 
 {{/* Look up all report_topics for this Neighborhood Report content key */}}
@@ -97,22 +101,35 @@
   <div class="row">
     <div class="col-lg-10 mx-auto col-12">
 
-      {{/* Breadcrumbs */}}
+      {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
+           mirroring the real URL and giving each report page a link back up to its 41
+           siblings' entry point */}}
       <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
         <ul class="breadcrumb">
           <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
           <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
-          <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Params.title }}</li>
+          <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
+          <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
         </ul>
       </nav>
 
-      {{/* Mobile title (visible below md breakpoint) */}}
+      {{/* Mobile title (visible below md breakpoint).
+           Neighborhood name and visibility are server-rendered rather than left to the JS
+           that used to fill them: without JS this page otherwise reads "Asthma and the
+           Environment in" with nothing after it (scoping memo §12a). renderAll() still
+           writes the same textContent when it switches neighborhood in place. */}}
       <div class="row d-md-none">
-        <div class="col-12 mb-2">
-          <h1 class="h2" id="nr-mobile-title" style="display:none;">
-            {{ .Params.title }} <span style="font-weight:normal">in</span>
+        {{/* The id sits on the wrapper, not the h1. Pagefind emits a sub-result for every
+             heading that HAS an id, and this heading's text ends mid-sentence — the
+             neighborhood is the sibling span below it — so an id here put
+             "Housing and Health in" into search results as a result title
+             `[verified 2026-08-07: queried a built index]`. report.js only ever used this
+             id to unhide the block, which the wrapper does equally well. */}}
+        <div class="col-12 mb-2" id="nr-mobile-title">
+          <h1 class="h2">
+            {{ .Title }} <span style="font-weight:normal">in</span>
           </h1>
-          <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood"></span>
+          <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
         </div>
       </div>
 
@@ -128,9 +145,13 @@
           */}}
           <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
 
-          <div class="fs-md my-1" id="nr-zip-codes" style="display:none;">
+          {{/* Server-rendered for the same reason as the neighborhood name: the ZIP list
+               is distinguishing text on a page whose 41 siblings are otherwise near
+               identical, and with JS off it was the empty string. demographics.js
+               rewrites it with the same value on a neighborhood switch. */}}
+          <div class="fs-md my-1" id="nr-zip-codes">
             <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
-            <span id="nr-zip-list"></span>
+            <span id="nr-zip-list">{{ .Params.zipcodes }}</span>
           </div>
 
           {{/* Demographics table — populated by JS from uhflist.js */}}
@@ -175,70 +196,35 @@
         <div class="col-md-8 col-print-12">
 
           {{/*
-            Topic mini-menu: row of buttons for switching between the 5 NR topic pages.
-            The "nr-topic-link" class is used by the JS to attach an onclick handler that
-            stores the active neighborhood slug in sessionStorage before navigating, so the
-            destination topic page can pre-select the same neighborhood on load.
-            Hrefs point to the clean topic URL (no neighborhood in the path) — the
-            neighborhood is carried via sessionStorage, not the URL, to avoid 404s in dev
-            and to keep navigation independent of IIS rewrite rules.
+            Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
+            other four reports. url.js rewrites them if the map switches neighborhood.
           */}}
-          <div class="row no-gutters d-print-none mb-2">
-            <div class="col-sm mb-2 mr-1 mb-lg-0">
-              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Active_Design_Physical_Activity_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/active_design_physical_activity_and_health/" }}"
->
-                Active Design
-              </a>
-            </div>
-            <div class="col-sm mb-2 mr-1 mb-lg-0">
-              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Asthma_and_the_Environment" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/asthma_and_the_environment/" }}"
->
-                Asthma
-              </a>
-            </div>
-            <div class="col-sm mb-2 mr-1 mb-lg-0">
-              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Climate_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/climate_and_health/" }}"
->
-                Climate
-              </a>
-            </div>
-            <div class="col-sm mb-2 mr-1 mb-lg-0">
-              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Housing_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/housing_and_health/" }}"
->
-                Housing
-              </a>
-            </div>
-            <div class="col-sm mb-2 mr-1 mb-lg-0">
-              <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-link{{ if eq $contentKey "Outdoor_Air_and_Health" }} active{{ end }}"
-                 href="{{ relURL "neighborhood-reports/outdoor_air_and_health/" }}"
->
-                Outdoor Air
-              </a>
-            </div>
-          </div>
+          {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
 
           {{/*
             Report header: title + neighborhood name + intro copy + buttons.
-            The neighborhood name span is updated dynamically by the JS.
-            Hidden until a neighborhood is selected.
+            Rendered visible with the neighborhood already in place — see the mobile title
+            above. renderAll() rewrites the name on an in-place neighborhood switch.
           */}}
-          <div id="nr-report-header" style="display:none;">
+          <div id="nr-report-header">
             <div class="d-none d-md-block mb-">
-              <h1 class="h2 mt-3">{{ .Params.title }} <span style="font-weight:normal">in</span></h1>
-              <span class="h2 sub-title text-primary" id="nr-header-neighborhood"></span>
+              <h1 class="h2 mt-3">{{ .Title }} <span style="font-weight:normal">in</span></h1>
+              <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
             </div>
 
             <div class="d-md-none my-1">
-              <strong>{{ .Params.title }}</strong>
+              <strong>{{ .Title }}</strong>
             </div>
 
             <hr class="mb-2 mt-1">
+            {{/* The topic intro copy lives in the topic markdown file's body, which is now
+                 a different page (nr-topic-index.html) — a generated page has no .Content
+                 of its own. Same lookup nr-output/single.html did, keyed instead of a
+                 five-branch if-chain. */}}
             <div class="mb-2">
-              {{ .Content }}
+              {{- with .Site.GetPage (printf "/neighborhood-reports/%s.md" $contentKey) -}}
+                {{ .Content }}
+              {{- end -}}
             </div>
 
             <div class="d-print-none">
@@ -274,6 +260,13 @@
 
         </div>
       </div>
+
+      {{/* Curated per-topic "what the City is doing / what you can do" footer, kept from
+           nr-output/single.html — the SPA has no equivalent, so dropping it with the rest
+           of nr-output would have been content loss. It carries data-pagefind-ignore="all",
+           so it adds nothing to the search index on 210 newly-indexed pages. */}}
+      {{ partial "nr-report-footer-sm" . }}
+
     </div>
   </div>
 </section>
@@ -285,6 +278,7 @@
   - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
   - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
   - reportName: page title for CSV download filenames.
+  - neighborhood: the neighborhood this page was generated for.
 */}}
 {{- $nrGlobal       := resources.Get "js/nr-topic-spa/global.js"       | partial "short-fingerprint.html" -}}
 {{- $nrUrl          := resources.Get "js/nr-topic-spa/url.js"          | partial "short-fingerprint.html" -}}
@@ -300,7 +294,11 @@
 {{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
 <script>
   window.NR_TOPIC_SPA_CONFIG = {
-    reportName: "{{ .Params.title }}",
+    reportName: "{{ .Title }}",
+    // The neighborhood this page was generated for. getNeighborhoodFromURL returns it
+    // directly, so neither the path parse nor the sessionStorage bridge has to answer
+    // on a first load
+    neighborhood: "{{ .Params.neighborhood }}",
     geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
     vizUrl: "{{ $vizUrl }}",
     dataRepo: "{{ $.Site.Params.data_repo }}",
@@ -325,15 +323,16 @@
     // when updating the address bar after a neighborhood is selected.
     topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
     // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
-    // e.g. { "east_new_york": "East New York", ... }. Generated at build time by Hugo
-    // from the neighborhood section content files so it stays in sync automatically.
+    // e.g. { "east_new_york": "East New York", ... }.
     // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
+    // Built from data/globals/uhflist.json — the same rows the content adapter generates
+    // the pages from — rather than by ranging .Sections. Those sections are now themselves
+    // adapter output, so deriving the map from them would make it depend on Hugo's section
+    // machinery agreeing with the adapter instead of on the one source both come from.
     neighborhoodMap: {
-      {{- $nrSections := ($.Site.GetPage "/neighborhood-reports").Sections -}}
-      {{- range $i, $p := $nrSections -}}
-        {{- $slug := $p.RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+      {{- range $i, $n := site.Data.globals.uhflist -}}
         {{- if $i }},{{ end -}}
-        "{{ $slug }}": "{{ $p.Title }}"
+        "{{ $n.page_name }}": "{{ $n.UHF_name }}"
       {{- end -}}
     }
   };
