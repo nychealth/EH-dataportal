@@ -285,17 +285,17 @@ to work, not verified. Spike it before planning around it.
 
 Four edits, one of which is a deletion `[verified 08-05: read at cc61dfd4e4]`:
 
-*Line references updated 2026-08-06 for the module split: all three functions landed in
-`assets/js/nr-topic-spa/url.js`, so this whole edit set is now one file.*
+*All three functions live in `assets/js/nr-topic-spa/url.js` after the module split, so this whole
+edit set is one file. Addressed by name rather than line, because these numbers have now drifted
+twice — once for the split, once for step 3's edit `[re-derived 2026-08-06 after `d55fb1d936`]`.*
 
-- **`url.js:21`** — `getNeighborhoodFromURL` reads the *last* path segment and looks
-  it up in `neighborhoodMap`. Under `<nbhd>/<topic>` the last segment is the topic. Replace
-  with a membership search, `pathParts.find(p => spaConfig.neighborhoodMap[p])`, which is
-  position-independent and therefore correct under either scheme — so it can land ahead of
-  the rest.
-- **`url.js:58`** — `setNeighborhoodInURL` splices the slug in after
+- **`getNeighborhoodFromURL`** (`url.js:21`) — **DONE, step 3.** Read the *last* path segment,
+  which is the topic under `<nbhd>/<topic>`; now a membership search,
+  `pathParts.find(p => spaConfig.neighborhoodMap[p])`, correct under either scheme. Stage E adds a
+  step 0 in front of it: return the server-supplied `spaConfig.neighborhood` when there is one.
+- **`setNeighborhoodInURL`** (`url.js:63`, was 58 before step 3) — splices the slug in after
   `spaConfig.topicSlug`. It composes `<nbhd>/<topic>` instead. Same shape, different index.
-- **`url.js:93` `updateTopicLinks`** — deleted, along with the
+- **`updateTopicLinks`** (`url.js:98`, was 93 before step 3) — deleted, along with the
   `nr_pending_neighborhood` bridge it feeds. Once the pages exist the tabs become plain
   anchors to real URLs, which is also what gives Googlebot 210 links to follow.
 - **`themes/dohmh/layouts/404.html:60-72`** — the dev bridge becomes unnecessary when every
@@ -320,8 +320,17 @@ themes/dohmh/layouts, counted by file]`:
 | File | Fetches | Fate |
 |---|---|---|
 | `nr-output/single.html:420` | per-report JSON, inside a per-report-topic loop | retired |
-| `neighborhood-reports/topiclanding.html:115` | `nr_indicator_names.json` | template is unselected — see §9 |
+| `neighborhood-reports/topiclanding.html:115` | `nr_indicator_names.json` | **survives** — see correction below |
 | `data-explorer/single.html:1063` | `indicators/metadata/metadata.json` | stays |
+
+**The middle row was wrong, twice over `[corrected 2026-08-06]`.** It said the
+`nr_indicator_names.json` fetch goes away because the template is unselected. `topiclanding.html`
+is unselected *on this branch only* — on `production` all five topic files carry
+`layout: topiclanding` `[verified 2026-08-06]`. And the block that fetch feeds is the Pagefind
+hidden-heading block, which
+[`nr-output-option-d-execution-plan-2026-08-06.md`](nr-output-option-d-execution-plan-2026-08-06.md)
+ports into the new topic index rather than deleting. So the fetch survives, and after this work
+there are **two** build-time `GetRemote` call sites, not one.
 
 After this work the site still cannot build with EHDP-data unreachable. What goes away is
 the *report-data* fetch — a `GetRemote` inside a loop across 42 neighborhoods, which is
@@ -709,7 +718,10 @@ not part of it.
    Proof: the step-1 A/B production build form, normalizing the changed fingerprint, plus a
    browser check that `neighborhoods.length === 42`, plus `npm run smoke` — `head.html` is on
    every page.
-5. **The swap**, one commit: the adapter generates 210 report pages, 42 neighborhood
+5. **The swap**, one commit. **Full detail in
+   [`nr-output-option-d-execution-plan-2026-08-06.md`](nr-output-option-d-execution-plan-2026-08-06.md)**,
+   which carries the file-by-file breakdown, the Pagefind port, and the verification ladder;
+   the summary below is the shape only. The adapter generates 210 report pages, 42 neighborhood
    indexes, and 5 topic indexes; the 252 content files, 2 layouts, 3 exclusive partials,
    and the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs` all go.
    Diff against the pre-captured sample. **Not started.** Four amendments since this was written:

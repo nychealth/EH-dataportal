@@ -331,6 +331,13 @@ retirement memo §10.
 | JS conventions, incl. the namespace rule | [`js-conventions.md`](js-conventions.md) |
 
 A step-by-step execution plan for decision 2 exists outside the repo and can be moved into
-`documents/` when it is picked up. **There is none yet for decision 4** — the outside-repo
-plan written for it takes the Option B mechanism, so only its SPA-rewiring stages survive
-the 2026-08-06 choice of Option D.
+`documents/` when it is picked up.
+
+**Decision 4 now has one, in the repo:**
+[`nr-output-option-d-execution-plan-2026-08-06.md`](nr-output-option-d-execution-plan-2026-08-06.md).
+It was written outside the repo and moved in on 2026-08-06, after an audit found that two pieces
+of it — the Pagefind analysis and `nr-topic-spa.html`'s dependency on `.Sections` for
+`neighborhoodMap` — existed nowhere a later session could find them. It holds the executable
+detail for stages E, F and G; the ledger in the retirement memo §11 holds status, and where the
+two disagree the ledger wins. (The earlier outside-repo plan referred to here took the Option B
+mechanism and is superseded.)
