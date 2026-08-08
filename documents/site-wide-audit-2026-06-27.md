@@ -1293,7 +1293,7 @@ In addition to the map/chart gaps in the DE audit:
 | 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) | Misspelled GA event `click_how_caclulated` — **new explorer resolved 2026-07-25**; its handler was bound to a non-existent element and had never fired, and the coverage is now a `click_about` parameter. Old explorer still has it (see §9) |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
-| 15 | P3 | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` has no body — missing a `Sitemap:` directive |
+| 15 | ~~P3~~ **FIXED 2026-08-08** | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` had no body — no `Sitemap:` directive. NR retirement Stage G added it, plus an explicit allow-all and the dated crawler decision. See §12 |
 | 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
 | 18 | ~~P2~~ **FIXED 2026-07-25** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + 44 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — id dropped from 44 templates (not ~20), and `tabindex="-1"` added to the `<main>` in `baseof.html`/`list.html` so the skip link actually moves focus. `data-explorer-old/` keeps its copies until §1. See §4a |
@@ -1332,6 +1332,14 @@ flagship feature.
   `Sitemap: https://.../sitemap.xml` line, which every major crawler — search and AI alike — uses
   to discover the sitemap without separate registration. One-line fix, unconditional on
   environment.
+
+  **FIXED 2026-08-08** (NR retirement Stage G). Production now emits an explicit
+  `User-agent: * / Disallow:` and `Sitemap: https://a816-dohbesp.nyc.gov/IndicatorPublic/sitemap.xml`,
+  which resolves to the `sitemapindex` listing the en/es/zh sitemaps — 723 `<loc>` entries in
+  the English one `[verified 2026-08-08: --environment production build]`. **"Unconditional on
+  environment" was the wrong instruction**: the preview branch `Disallow`s page paths one at a
+  time and `/sitemap.xml` is not among them, so a `Sitemap:` line there would have advertised
+  the URL list that branch exists to withhold. Preview builds carry a comment saying so instead.
 - **No explicit stance on AI-training crawlers (P3 — a policy decision, not a defect).** Zero
   mentions anywhere in the repo of `GPTBot`, `ClaudeBot`, `CCBot`, `Google-Extended`,
   `PerplexityBot`, `Applebot-Extended`, `Bytespider`, etc. The effective policy today is "allow
@@ -1349,6 +1357,12 @@ flagship feature.
   > staging alongside the `Sitemap:` fix, since both edit the same file: see
   > [`nr-output-retirement-scoping-2026-08-04.md`](nr-output-retirement-scoping-2026-08-04.md)
   > §10.3 and §11.
+  >
+  > **WRITTEN IN 2026-08-08** — the comment and the rationale above are now in the production
+  > branch of [robots.txt](../themes/dohmh/layouts/robots.txt), stated in full rather than as a
+  > pointer here, so the file answers the question without the reader finding this document.
+  > Still no stance on individual AI crawlers by name, which the decision makes unnecessary:
+  > allowing everyone needs no per-agent list. No `llms.txt`, as this finding advised.
 
 ### Structured data — none (P2)
 

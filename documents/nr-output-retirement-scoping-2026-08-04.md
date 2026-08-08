@@ -416,6 +416,13 @@ items in §10.1.
   has no content at all, and no `Sitemap:` directive appears anywhere in `themes/` or
   `static/` `[verified 08-05: read + grep]`. Site-wide audit §12 rates this P3. Adding ~250
   URLs is the moment it starts paying, so fold the one-line fix into this work.
+
+  **"Adding ~250 URLs" is wrong, and it is the rung-1 premise again** — the 252 pages Option
+  D replaced were ordinary content files already in the sitemap, so the generated set kept it
+  at 723 `<loc>` entries, 258 of them under `neighborhood-reports/`
+  `[verified 2026-08-08: an --environment production build, en/sitemap.xml]`. Nothing about
+  the timing was special. The line is worth adding on its own terms: production's
+  `robots.txt` was empty, so all 723 URLs had no robots-advertised sitemap at all.
 - **Record the crawler stance in the file itself.** §12's point was that "allow everyone by
   omission" and "allow everyone deliberately" are indistinguishable in the repo. A comment
   in the `robots.txt` template naming the decision and its date is what makes it the
@@ -613,7 +620,8 @@ and none carrying zero.
 separate track and now narrower (the vintage is established — see §10.5 — leaving only a
 planned fresh ACS pull, not started); **step 5 (Stage E) landed at `2bce6c6d46` with two
 follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**, the last two items
-with it. Only Stage G, the `robots.txt` `Sitemap:` line, is left. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
+with it; **Stage G done 2026-08-08** — see §12's `robots.txt` bullet for the one deviation.
+**Decision 4 is complete**, leaving only step 2's ACS pull on its separate track. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
 committed and **awaiting a push and a merge to `production`** — a live bug this work surfaced,
 not part of it.
 
@@ -898,8 +906,8 @@ not part of it.
    is in the `feedback-plan-expectations-share-a-premise` memory. A `refile-rules` pass
    followed on the global `CLAUDE.md` only — no repo file moved.
 
-   **Next:** Stage G, the unconditional `Sitemap:` line in
-   `themes/dohmh/layouts/robots.txt`.
+   **Stage G followed the same day**; see §12's `robots.txt` bullet. **Nothing in decision 4
+   is now outstanding** — this ledger is closed as of 2026-08-08.
 6. ~~**SPA rewiring** (§7), and re-baseline `characterize:nr`.~~ **DONE — most of it in Stage E,
    the last two items 2026-08-08.** See the execution plan's Stage F section for the
    file-by-file account. The two navigation writers, `setNeighborhoodInURL`, `updateTopicLinks`
@@ -966,9 +974,14 @@ neither blocks or is blocked by anything here:
 
 - Remove `data-pagefind-ignore="all"` from `neighborhood-reports/section.html:3`, and
   re-run `npm run smoke`. Best done with step 5 so the newly-indexed pages arrive together.
-- Add an unconditional `Sitemap:` line to `themes/dohmh/layouts/robots.txt`, plus a comment
-  recording the 2026-08-05 decision to allow all crawlers and why. Closes the two `robots`
-  items in site-wide audit §12.
+- ~~Add an unconditional `Sitemap:` line to `themes/dohmh/layouts/robots.txt`, plus a comment
+  recording the 2026-08-05 decision to allow all crawlers and why.~~ **DONE 2026-08-08** —
+  Stage G, closing the two `robots` items in site-wide audit §12. **Not unconditional in the
+  end**, and the reason is a leak this file already had: the preview-environment block
+  `Disallow`s page paths one by one, and `/sitemap.xml` is not among them, so a `Sitemap:`
+  line there would have handed a crawler the very URL list that block exists to withhold. The
+  production branch gained the line, an explicit `User-agent: * / Disallow:`, and the dated
+  comment; the preview branch gained a comment saying why it has no `Sitemap:` line.
 
 Verification for the whole run stays unusually cheap for a deletion this size:
 `npm run smoke`, `npm run characterize:nr -- --check`, `npm run docs-check`, and a `docs/`

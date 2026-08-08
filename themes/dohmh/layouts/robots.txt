@@ -1,7 +1,27 @@
 {{- $envs := (slice "production" "prod_prod") -}}
 
-{{- if ( not ( in $envs hugo.Environment ) ) -}}
+{{- if ( in $envs hugo.Environment ) -}}
 
+# Every crawler is allowed every path, search and AI-training alike. Decided
+# 2026-08-05, and written here because until then the same behaviour was produced
+# by this file having no body at all — which left "allow everyone deliberately"
+# and "nobody ever considered it" indistinguishable. The rationale: people ask
+# chatbots questions the Department has data for, so being crawled is a public
+# service independent of how anyone feels about the use case. An empty Disallow
+# is the directive that grants this.
+User-agent: *
+Disallow:
+
+# The multilingual sitemap index, listing the en/es/zh sitemaps in turn. Crawlers
+# use this to find the sitemap without the site being registered with each of them.
+Sitemap: {{ "sitemap.xml" | absURL }}
+
+{{- else -}}
+
+# Every other environment is a preview build on a publicly reachable host, so it
+# is withheld in full. Deliberately no Sitemap: line — the Disallow directives
+# below are page paths and do not cover /sitemap.xml itself, so advertising it
+# would hand a crawler the URL list this block exists to withhold.
 User-agent: *
 {{- range .Pages }}
 Disallow: {{ .RelPermalink }}

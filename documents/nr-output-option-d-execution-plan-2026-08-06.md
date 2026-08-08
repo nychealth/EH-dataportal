@@ -345,12 +345,30 @@ harness's baseline carries a `/dev-stage/` prefix and diffs on `finalURL` agains
 
 ## Stage G — robots.txt
 
-Independent of everything above; memo §11 wants it folded in.
+Independent of everything above; memo §11 wants it folded in. **Done 2026-08-08.**
 
-- Add an unconditional `Sitemap:` line to `themes/dohmh/layouts/robots.txt`, whose body is
-  currently gated out of production entirely. Adding ~250 URLs is the moment it starts paying.
-- Add a comment naming the 2026-08-05 decision to allow all crawlers and why, so "allow everyone
-  by omission" and "allow everyone deliberately" stop being indistinguishable in the repo.
+- ~~Add an unconditional `Sitemap:` line to `themes/dohmh/layouts/robots.txt`, whose body is
+  currently gated out of production entirely.~~ **Done, but not unconditional.** The preview
+  branch `Disallow`s page paths one at a time and `/sitemap.xml` is not one of them, so a
+  `Sitemap:` line there would advertise exactly the URL list that block withholds. Production
+  gets the line and an explicit `User-agent: * / Disallow:`; preview gets a comment saying why
+  it does not.
+- ~~Add a comment naming the 2026-08-05 decision to allow all crawlers and why~~ **done**, with
+  the rationale from site-wide audit §12 rather than a pointer to it, so the file stands alone.
+- **"Adding ~250 URLs is the moment it starts paying" was wrong**, and it is rung 1's premise a
+  third time: the sitemap did not grow, because the 252 files Option D replaced were already in
+  it. The production build carries 723 `<loc>` entries, 258 of them NR
+  `[verified 2026-08-08]`. The line pays because production's `robots.txt` was empty, not
+  because the URL count moved.
+
+**Verified `[2026-08-08]`** by rendering both branches, since one of them cannot be seen from a
+dev server. Preview: fetched from the running server — comment, `User-agent: *`, 722 `Disallow`
+lines, zero `Sitemap:`. Production: a full `--environment production` build, which emits
+`Sitemap: https://a816-dohbesp.nyc.gov/IndicatorPublic/sitemap.xml` — a real file in that build,
+and a `sitemapindex` listing the en/es/zh sitemaps, which is what the template's comment claims.
+The build ran with `HUGO_RESOURCEDIR` pointed at a temp directory and `-d` to another, so it did
+not touch the `resources/_gen` cache of the `local_stage` server running on :8080; that server
+still served a report page 200 afterwards.
 
 ---
 
