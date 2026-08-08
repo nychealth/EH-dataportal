@@ -45,7 +45,7 @@ What remains genuinely open is in "Still open" at the end.
 | **1** | Delete 5 callerless partials | **done 2026-08-06** | ~1 hour |
 | **2** | Split `nr-topic-spa.js` into 10 modules | **done 2026-08-06** | ~half a day |
 | **3** | URL scheme | **settled — neighborhood-first**, Option D | — |
-| **4** | Retire `nr-output` | nothing — implementation only | ~2–4 days |
+| **4** | Retire `nr-output` | **done 2026-08-08** — Option D swap, then Stages F and G | ~2–4 days |
 
 Decision 3 used to determine what decision 4 *was*. Now that it is settled, decision 4 is a
 cleanup task: no URL is deleted, no redirect is needed, no product sign-off is needed. Where
@@ -54,6 +54,12 @@ the 210 pages come from was the last sub-choice, and it went to Option D on 2026
 ---
 
 ## Current state
+
+> **This describes the pre-swap tree, and is kept as the record of what was replaced.** Only
+> one system holds the section now: `nr-output` was retired at `2bce6c6d46`, and the
+> neighborhood row below is wrong three ways over — the IIS rewrite went with the `Web.config`
+> rules in that commit, and the `sessionStorage` bridge and its `404.html` half at `6cc52de277`.
+> The neighborhood is server-side, on a page generated per neighborhood and topic.
 
 Two systems share the `neighborhood-reports` section `[verified: find, frontmatter read]`.
 

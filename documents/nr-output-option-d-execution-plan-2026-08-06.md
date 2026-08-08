@@ -352,7 +352,13 @@ Independent of everything above; memo §11 wants it folded in. **Done 2026-08-08
   branch `Disallow`s page paths one at a time and `/sitemap.xml` is not one of them, so a
   `Sitemap:` line there would advertise exactly the URL list that block withholds. Production
   gets the line and an explicit `User-agent: * / Disallow:`; preview gets a comment saying why
-  it does not.
+  it does not. **Sourced, since this is a claim about crawlers rather than about the repo:**
+  Google's robots.txt spec states the sitemap field "isn't tied to any specific user agent and
+  may be followed by all crawlers, provided it isn't disallowed for crawling", and requires a
+  fully qualified URL `[fetched 2026-08-08]`. The `provided` clause is the whole argument — the
+  preview branch disallows page paths, not `/sitemap.xml`. The same source corrects a line in
+  the template: an empty `Disallow:` grants nothing, because a rule with no path is ignored;
+  allow-all is simply the default, and the explicit pair is a marker for human readers.
 - ~~Add a comment naming the 2026-08-05 decision to allow all crawlers and why~~ **done**, with
   the rationale from site-wide audit §12 rather than a pointer to it, so the file stands alone.
 - **"Adding ~250 URLs is the moment it starts paying" was wrong**, and it is rung 1's premise a

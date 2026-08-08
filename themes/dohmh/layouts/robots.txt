@@ -7,13 +7,17 @@
 # by this file having no body at all — which left "allow everyone deliberately"
 # and "nobody ever considered it" indistinguishable. The rationale: people ask
 # chatbots questions the Department has data for, so being crawled is a public
-# service independent of how anyone feels about the use case. An empty Disallow
-# is the directive that grants this.
+# service independent of how anyone feels about the use case. Nothing below grants
+# it — allow-all is the default, and Google's parser ignores a Disallow carrying no
+# path [robots.txt spec, fetched 2026-08-08]. The pair is a marker for readers.
 User-agent: *
 Disallow:
 
-# The multilingual sitemap index, listing the en/es/zh sitemaps in turn. Crawlers
-# use this to find the sitemap without the site being registered with each of them.
+# The multilingual sitemap index, listing the en/es/zh sitemaps in turn. The sitemap
+# field is not tied to a user-agent group and is followed by any crawler, so this is
+# how the sitemap is found without registering the site with each of them
+# [Google robots.txt spec, fetched 2026-08-08]. The URL must be fully qualified,
+# which is what absURL gives.
 Sitemap: {{ "sitemap.xml" | absURL }}
 
 {{- else -}}
@@ -21,7 +25,9 @@ Sitemap: {{ "sitemap.xml" | absURL }}
 # Every other environment is a preview build on a publicly reachable host, so it
 # is withheld in full. Deliberately no Sitemap: line — the Disallow directives
 # below are page paths and do not cover /sitemap.xml itself, so advertising it
-# would hand a crawler the URL list this block exists to withhold.
+# would hand a crawler the URL list this block exists to withhold. Google's spec
+# is explicit that the sitemap field is followed by all crawlers "provided it
+# isn't disallowed for crawling" [fetched 2026-08-08], and here it is not.
 User-agent: *
 {{- range .Pages }}
 Disallow: {{ .RelPermalink }}

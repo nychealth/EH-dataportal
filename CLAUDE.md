@@ -52,6 +52,10 @@ Five npm scripts, run from the repo root:
 
 **Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
 
+**The exception:** a build with `HUGO_RESOURCEDIR` and `-d` pointed at temp directories cannot
+reach `resources/_gen` at all, so it is safe beside a running server — the command, the proof and
+the one caveat are in the `project-isolated-hugo-build` memory.
+
 ## Root-cause claims
 
 A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at **any change size**: a one-property CSS fix needs it as much as a template-wide refactor. Plausibility is not evidence, and a well-written explanation is not a verified one.
@@ -270,7 +274,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
 - `documents/nr-decisions-and-sequencing-2026-08-04.md` — the NR decision record and order of work. Also this branch.
-- `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work still to come. §11 of the scoping memo is the ledger; this is the executable half.
+- `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work, all landed 2026-08-08. §11 of the scoping memo is the ledger; this is the executable half.
 
 ## Common gotchas
 

@@ -1340,6 +1340,9 @@ flagship feature.
   environment" was the wrong instruction**: the preview branch `Disallow`s page paths one at a
   time and `/sitemap.xml` is not among them, so a `Sitemap:` line there would have advertised
   the URL list that branch exists to withhold. Preview builds carry a comment saying so instead.
+  Sourced, being a claim about crawlers: Google's robots.txt spec says the sitemap field "isn't
+  tied to any specific user agent and may be followed by all crawlers, provided it isn't
+  disallowed for crawling" `[fetched 2026-08-08]`.
 - **No explicit stance on AI-training crawlers (P3 — a policy decision, not a defect).** Zero
   mentions anywhere in the repo of `GPTBot`, `ClaudeBot`, `CCBot`, `Google-Extended`,
   `PerplexityBot`, `Applebot-Extended`, `Bytespider`, etc. The effective policy today is "allow

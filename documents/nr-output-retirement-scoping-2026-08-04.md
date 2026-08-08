@@ -621,9 +621,18 @@ separate track and now narrower (the vintage is established — see §10.5 — l
 planned fresh ACS pull, not started); **step 5 (Stage E) landed at `2bce6c6d46` with two
 follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**, the last two items
 with it; **Stage G done 2026-08-08** — see §12's `robots.txt` bullet for the one deviation.
-**Decision 4 is complete**, leaving only step 2's ACS pull on its separate track. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
-committed and **awaiting a push and a merge to `production`** — a live bug this work surfaced,
-not part of it.
+**Decision 4 is complete**, leaving only step 2's ACS pull on its separate track.
+
+**The branch itself is not delivered.** As of 2026-08-08 `feature-MOD-Lab-NR-recode-refactor`
+is **11 commits ahead of `origin` and unpushed**, and unmerged to `production`
+`[verified 2026-08-08: git status -sb]`. The merge diff is what CLAUDE.md reserves
+`/code-review ultra` for; it is user-triggered and billed, so it cannot be launched from a
+session.
+
+Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) — a live bug this work surfaced,
+not part of it — is **merged to `production` at `a41bafdb95`, PR #1454**
+`[verified 2026-08-08: git branch --contains]`. This line previously said it was awaiting both
+a push and that merge.
 
 1. ~~**Delete the five callerless partials.**~~ **DONE 2026-08-06.** Both string traps in §2
    held. **The proof named here was wrong and was not used:** a `git diff` of `docs/` cannot
