@@ -85,7 +85,7 @@ const geocodeToName = geocode => {
     const match = neighborhoods.find(n => n.UHF_id == geocode);
     if (!match) return null;
 
-    return correctedUhfName(match.UHF_name);
+    return match.UHF_name;
 
 };
 

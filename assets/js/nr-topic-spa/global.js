@@ -98,17 +98,10 @@ const nrById = id => document.getElementById(id);
 // name lookup
 // ----------------------------------------------------------------------- //
 
-// uhflist.js has one known typo: "Crotona -Tremont" (missing space after dash)
-// EHDP-data report JSONs use "Crotona - Tremont". This map corrects it so
-// lookups against report data and sidebar demographics stay aligned
-const nameCorrections = {
-    'Crotona -Tremont': 'Crotona - Tremont'
-};
-
-
-// Maps a raw uhflist.js name onto the spelling report data uses
-const correctedUhfName = name => nameCorrections[name] || name;
-
+// A nameCorrections map rewriting "Crotona -Tremont" to "Crotona - Tremont" used to wrap
+// every read of UHF_name here and in map.js. Both sides of these comparisons come from
+// data/globals/uhflist.json, which spells it with the space, so the key never matched —
+// and had it matched it would have corrected only one side and broken the lookup
 
 // Looks up a neighborhood's UHF id from the display name shown in the UI
 const getUhfIdForDisplayName = displayName => {
@@ -116,7 +109,7 @@ const getUhfIdForDisplayName = displayName => {
     // Neighborhood metadata may not be loaded in every page context
     if (!displayName || typeof neighborhoods === 'undefined') return null;
 
-    const entry = neighborhoods.find(n => correctedUhfName(n.UHF_name) === displayName);
+    const entry = neighborhoods.find(n => n.UHF_name === displayName);
 
     return entry ? entry.UHF_id : null;
 

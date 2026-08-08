@@ -475,6 +475,15 @@ comment or drop both — but note that deleting the map is only provably safe fo
 data in *this* repo. Report JSONs arrive from EHDP-data at runtime and were not
 surveyed for spelling.
 
+**Closed 2026-08-08** — both dropped, with the `correctedUhfName` wrapper and its
+three call sites, in Stage F of the NR retirement. **The caveat above does not
+apply**: EHDP-data spelling never reaches this comparison. Both sides of it are
+uhflist names — `neighborhoods` is built from `data/globals/uhflist.json` in
+[head.html:193](../themes/dohmh/layouts/partials/head.html), and the display name
+it is matched against is the `neighborhood` param the content adapter takes from
+the same file. Had the key ever matched, correcting one side of a comparison
+between two copies of one string would have broken the lookup, not fixed it.
+
 **Suggested order** — deletions first; they're provable and reversible:
 
 1. Delete `nr-clickable-uhf.html`, `nr-map-highlight.html`, `nr-chooser.html`,
@@ -952,6 +961,12 @@ the rule PENDING; drop that marker once the DE branch merges.
 A throwaway merge of `feature-new-data-explorer` into
 `feature-MOD-Lab-NR-recode-phase2` was built and run to find out what actually
 breaks. Recorded here because the mechanical signals are misleadingly reassuring.
+
+**The NR routing bridge this finding turns on no longer exists on
+`feature-MOD-Lab-NR-recode-refactor`** — Stage F of the retirement removed it from
+`404.html` on 2026-08-08, so `404.html` is no longer a superset there and the
+navigate-to-404 mechanism below is gone with it. The reconnaissance stands as the
+record of that branch on 2026-07-29; re-run it before trusting the conflict list.
 
 **Mechanically clean.** Only two conflicts: `CLAUDE.md` (add/add — two independent
 rewrites) and `themes/dohmh/layouts/404.html`, where the NR side is a strict

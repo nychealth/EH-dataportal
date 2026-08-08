@@ -606,13 +606,14 @@ and none carrying zero.
   `'Crotona -Tremont'` → `'Crotona - Tremont'`, but `f8759d8d6d` fixed that typo in the source
   data, so the key no longer occurs and the map never fires `[verified 2026-08-06]`. Its
   comment describes a state that no longer exists. Harmless, but it is the kind of comment a
-  later reader trusts.
+  later reader trusts. **Removed in Stage F** along with the `correctedUhfName` wrapper and its
+  three call sites.
 
-**Status as of 2026-08-06:** steps 1, 3, 4, the new 4a, and the pre-capture done; step 2 on a
+**Status as of 2026-08-08:** steps 1, 3, 4, the new 4a, and the pre-capture done; step 2 on a
 separate track and now narrower (the vintage is established — see §10.5 — leaving only a
-planned fresh ACS pull, not started); **step 5 (Stage E) written and all six verification rungs
-green as of 2026-08-07, awaiting commit — see its sub-ledger below**; step 6 mostly absorbed
-into step 5, with two items left. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
+planned fresh ACS pull, not started); **step 5 (Stage E) landed at `2bce6c6d46` with two
+follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**, the last two items
+with it. Only Stage G, the `robots.txt` `Sitemap:` line, is left. Separately, `hotfix-nr-greenwich-village-name` (`4ee582a584`) is
 committed and **awaiting a push and a merge to `production`** — a live bug this work surfaced,
 not part of it.
 
@@ -897,25 +898,65 @@ not part of it.
    is in the `feedback-plan-expectations-share-a-premise` memory. A `refile-rules` pass
    followed on the global `CLAUDE.md` only — no repo file moved.
 
-   **Next:** Stage F's two remaining items — the `404.html` dev bridge
-   (`themes/dohmh/layouts/404.html`, the `sessionStorage` block reading
-   `nr_pending_neighborhood`) and the `nameCorrections` map in
-   `assets/js/nr-topic-spa/global.js:104`. **"Dead" there means identity-on-current-data, not
-   callerless** — `correctedUhfName` wraps it and has three live call sites (`global.js:110`,
-   `global.js:119`, `map.js:88`) `[verified 2026-08-07: repo-wide grep excluding docs/]`, so
-   removing the map means inlining or removing the wrapper at all three, not deleting a
-   symbol nothing reads. Then Stage G, the unconditional `Sitemap:` line in
-   `themes/dohmh/layouts/robots.txt`. Proof for both: `npm run lint`, `npm run smoke`
-   (15/15 expected), and `npm run characterize:nr -- --check` **against a production-data
-   server** — zero diffs expected; read that diff before ever re-baselining.
-6. **SPA rewiring** (§7), and re-baseline `characterize:nr`. **Mostly absorbed into step 5 —
-   see the execution plan's Stage F section for what landed and what did not.** The two
-   navigation writers, `setNeighborhoodInURL`, `updateTopicLinks` and the harness are all done,
-   and **step 3's standing caveat is now closed**: `characterize:nr` navigates to real
-   `<nbhd>/<topic>/` URLs, so it exercises path-based resolution rather than the
-   `sessionStorage` bridge. Still open: the `404.html` dev bridge (`:60-72`), which is the last
-   reader of `nr_pending_neighborhood`, and the dead `nameCorrections` map in
-   `assets/js/nr-topic-spa/global.js`.
+   **Next:** Stage G, the unconditional `Sitemap:` line in
+   `themes/dohmh/layouts/robots.txt`.
+6. ~~**SPA rewiring** (§7), and re-baseline `characterize:nr`.~~ **DONE — most of it in Stage E,
+   the last two items 2026-08-08.** See the execution plan's Stage F section for the
+   file-by-file account. The two navigation writers, `setNeighborhoodInURL`, `updateTopicLinks`
+   and the harness landed with Stage E, closing **step 3's standing caveat**: `characterize:nr`
+   navigates to real `<nbhd>/<topic>/` URLs, so it exercises path-based resolution rather than
+   the `sessionStorage` bridge.
+
+   The two that were left both went in Stage F, and each was larger than its one-line
+   description.
+
+   - **The `nr_pending_neighborhood` bridge is gone at both ends.** Deleting the `404.html`
+     block (`:40-72`) removed the last *writer* of the key, which made `url.js`'s step 2 —
+     the bridge read — unreachable, and step 1, the path scan, with it: the only remaining
+     caller of `getNeighborhoodFromURL` is `data.js:21`, and the only template that loads
+     `url.js` is `nr-topic-spa.html`, which sets `neighborhood` on every one of the 210 pages
+     from `$nbhd.UHF_name`. The function is now a return of `spaConfig.neighborhood`. Step 1's
+     comment had also gone false with Stage E — it described IIS rewriting topic-first URLs
+     through a `Web.config` rule that stage deleted.
+   - **`nameCorrections` was identity-on-current-data, not callerless.** `correctedUhfName`
+     wrapped it at three sites (`global.js:110`, `global.js:119`, `map.js:88`), so removal
+     meant inlining `UHF_name` at each, not deleting a symbol nothing reads. The site-wide
+     audit's caveat — that deleting the map is only provably safe for data in *this* repo,
+     since report JSONs arrive from EHDP-data unsurveyed — **does not apply, and the finding
+     is stronger than it recorded.** Both sides of both comparisons are uhflist names:
+     `neighborhoods` is built in `head.html:193` from `data/globals/uhflist.json`, and the
+     display name it is compared against is `.Params.neighborhood`, which the adapter also
+     takes from that file. It spells the name `Crotona - Tremont`, so the key never matched —
+     and had it matched, correcting one side of a comparison between two copies of the same
+     string would have *broken* the lookup rather than fixed it.
+
+   **Proof that ran `[verified 2026-08-08]`.** `npm run lint` clean, with a **positive
+   control**: re-adding a `correctedUhfName` call to `map.js` produced `no-undef`, so the run
+   is evidence the name is gone rather than evidence the directory went unscanned.
+   `npm run smoke` 15/15 and `npm run docs-check` green. `npm run characterize:nr -- --check`
+   diffed on `finalURL` alone, and only in its site-path prefix — see the correction below.
+   The 404 template has **no `smoke` entry**, so it was probed separately in a browser: a plain
+   bad path and a topic-first NR URL both render the `main404` "Oops!" branch and write no
+   `sessionStorage` key, `/beta/` still renders `redirectBeta`, and no `pageerror` fires on any
+   of the three.
+
+   **This step's prescribed proof said "against a production-data server" and that is wrong —
+   it belongs to `nr-postswap-check.mjs`, not to this harness.** `characterize:nr` was
+   re-baselined against `dev_stage` in Stage E, so its baseline carries a `/dev-stage/` site
+   path prefix and a production-data server would diff on `finalURL` for that reason alone.
+   Run it against `dev_stage`. What actually ran here was a `local_stage` server already on
+   :8080, which produced exactly that prefix diff — `/local-stage/` for `/dev-stage/`, on all
+   three targets, no other field — while accordion ids, chart count, demographics, ZIP list,
+   both neighborhood headers and the map panes all matched. Those matches are the real result:
+   an empty header or demographics block is precisely what removing steps 1 and 2 would have
+   produced had `spaConfig.neighborhood` not been answering.
+
+   **One confound ruled out.** The first `smoke` run failed with a 30-second *navigation
+   timeout* on `neighborhood-reports/asthma_and_the_environment/` — no console error. That page
+   is the one template with a build-time `resources.GetRemote`, and the server on :8080 was
+   started with `--environment local_stage --ignoreCache`, so the first render waited on a
+   cold fetch from the local data host. `curl` returned it in 0.21s immediately afterwards and
+   the re-run was 15/15. Nothing in this stage touches that template.
 
 Steps 5 and 6 can be one commit or two. Two is better if the generated pages render
 correctly with JS disabled, since that is the state worth verifying on its own.

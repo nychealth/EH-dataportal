@@ -318,14 +318,28 @@ Done in Stage E:
   committed `/dev-stage/` prefix is unchanged. `characterize:nr` now exercises path-based
   resolution for the first time, closing the standing caveat in ledger step 3.
 
-Still open:
+Done 2026-08-08, closing the stage:
 
-- `404.html:66` — the whole dev bridge at `:60-72` goes back to being a 404. Left alone because it
-  is the only remaining reader of the `nr_pending_neighborhood` key and removing it is a change to
-  dev-only routing with its own failure mode (site-wide audit §5i). `url.js` steps 1 and 2 stay
-  until it goes.
-- `nameCorrections` in `assets/js/nr-topic-spa/global.js` is dead — `f8759d8d6d` fixed the
-  `Crotona -Tremont` typo in the source data, so its only key no longer occurs.
+- ~~`404.html:66` — the whole dev bridge at `:60-72` goes back to being a 404~~ **done.** It was
+  the last *writer* of `nr_pending_neighborhood`, not the last reader as this bullet said — the
+  reader was `url.js` step 2. Removing it therefore stranded both fallbacks: step 2 had nothing
+  left to read, and step 1's path scan was already unreachable, since `nr-topic-spa.html` is the
+  only template that loads `url.js` and it supplies `neighborhood` on all 210 generated pages.
+  `getNeighborhoodFromURL` now returns `spaConfig.neighborhood` and consults nothing else. Step 1's
+  comment had also gone false in Stage E, describing an IIS rewrite whose `Web.config` rule that
+  stage deleted.
+- ~~`nameCorrections` in `assets/js/nr-topic-spa/global.js` is dead~~ **done**, with
+  `correctedUhfName` and its three call sites. Both sides of both comparisons come from
+  `data/globals/uhflist.json` — `neighborhoods` via `head.html:193`, the display name via the
+  adapter's `neighborhood` param — and that file spells it `Crotona - Tremont`, so the key never
+  matched. Had it matched it would have corrected one side of a comparison between two copies of
+  the same string, breaking the lookup.
+
+Proof, and a correction to what this document told the next session to run, are in memo §11 step 6.
+Short form: lint (with a positive control), smoke 15/15, docs-check, a separate browser probe of the
+404 template because `smoke` has no entry for it, and `characterize:nr -- --check` **against
+`dev_stage`** — the "production-data server" instruction belongs to `nr-postswap-check.mjs`; this
+harness's baseline carries a `/dev-stage/` prefix and diffs on `finalURL` against anything else.
 
 ---
 

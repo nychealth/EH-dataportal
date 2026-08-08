@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: ac929ba9ff 2026-08-07 -->
+<!-- docs-check verified: 6cc52de277 2026-08-08 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
