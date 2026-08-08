@@ -150,8 +150,12 @@ report page and the topic index, driven by the same topic data.
 
 Routing note: the two NR rules in `static/Web.config` are gone. Every `<nbhd>/<topic>/` URL is now a
 real generated page, so nothing needs rewriting — and the old 301 would have redirected all 210 of
-them away. `themes/dohmh/layouts/404.html` still carries a dev-only `sessionStorage` bridge for
-topic-first URLs; Stage F of the retirement removes it.
+them away. The `sessionStorage` hand-off that used to carry a neighborhood from a topic-first URL
+into the SPA is gone at both ends — the bridge in `themes/dohmh/layouts/404.html`, which now treats
+those URLs as the genuine 404s they are, and the path-scan and bridge-read fallbacks in
+`assets/js/nr-topic-spa/url.js`. `getNeighborhoodFromURL` reads `NR_TOPIC_SPA_CONFIG.neighborhood`
+and nothing else, so a page reaching that layout without the param renders no neighborhood rather
+than guessing one.
 
 `scripts/nr-postswap-check.mjs` diffs the generated pages against
 `scripts/nr-output-precapture/capture.json`, the record of what the retired pages rendered. **It

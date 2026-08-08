@@ -6,67 +6,23 @@
 // neighborhood persistence
 // ----------------------------------------------------------------------- //
 
-// Shared with 404.html, neighborhood-reports/section.html, nr-output/section.html,
-// partials/nr-leaflet.html, and scripts/nr-characterization.mjs, which each write the
-// key directly — renaming it here alone breaks the bridge
-const PENDING_NEIGHBORHOOD_KEY = 'nr_pending_neighborhood';
-
-
 // Reverses spaConfig.neighborhoodMap, which is keyed slug -> display name
 const slugForNeighborhood = name =>
     Object.keys(spaConfig.neighborhoodMap).find(k => spaConfig.neighborhoodMap[k] === name);
 
 
-// Resolves the neighborhood for this page load: the server's answer first, then the path,
-// then the bridge
+// Resolves the neighborhood for this page load
 const getNeighborhoodFromURL = () => {
 
-    // ----- step 0: the neighborhood the page was generated for ----- //
+    // Every report page is generated for one neighborhood and says so in its config, so
+    // this answers without parsing the path. Two fallbacks used to follow — a path scan
+    // for a neighborhood slug, and a sessionStorage hand-off written by 404.html and the
+    // landing page. Both existed because the SPA lived at <topic>/ and had to be told
+    // which neighborhood to draw; it is now served at <nbhd>/<topic>/, so the server
+    // always knows and neither fallback had a writer left
+    debugLog('getNeighborhoodFromURL: enter:', spaConfig.neighborhood);
 
-    // Every report page is now generated for one neighborhood and says so in its config,
-    // so this answers on a first load without parsing anything. Steps 1 and 2 are kept as
-    // the fallback for a page load that reaches this layout without one — they are what
-    // still reads the sessionStorage hand-offs in 404.html and the landing page
-    if (spaConfig.neighborhood) {
-        debugLog('getNeighborhoodFromURL: branch-server-supplied:', spaConfig.neighborhood);
-        return spaConfig.neighborhood;
-    }
-
-    // ----- step 1: neighborhood slug in the path ----- //
-
-    // Covers externally shared and bookmarked URLs like
-    //   /neighborhood-reports/asthma_and_the_environment/east_new_york
-    // On production IIS rewrites those to serve the topic page, leaving the slug
-    // visible in the path for this lookup to read.
-    // The slug is found by membership in neighborhoodMap rather than by position, so this
-    // reads either segment order — the topic-first form above, and the neighborhood-first
-    // /neighborhood-reports/east_new_york/asthma_and_the_environment/ that generated report
-    // pages will serve. Site path prefixes (/dev-stage/) are skipped for the same reason:
-    // they are not neighborhood slugs
-    const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
-    const slug = pathParts.find(p => spaConfig.neighborhoodMap[p]);
-
-    debugLog('getNeighborhoodFromURL: enter:', { pathname: window.location.pathname, slug });
-
-    if (slug) {
-        return spaConfig.neighborhoodMap[slug];
-    }
-
-    // ----- step 2: the sessionStorage bridge ----- //
-
-    // Covers internal navigation from the landing page, topic tabs, neighborhood
-    // cards, and the 404 fallback. Each of those stores the slug before navigating
-    // to the clean topic URL, so the page load never reaches the server with a
-    // neighborhood in the path
-    const pending = sessionStorage.getItem(PENDING_NEIGHBORHOOD_KEY);
-
-    // Consumed on read so it cannot bleed into a later page load in the same tab
-    if (pending && spaConfig.neighborhoodMap[pending]) {
-        sessionStorage.removeItem(PENDING_NEIGHBORHOOD_KEY);
-        return spaConfig.neighborhoodMap[pending];
-    }
-
-    return '';
+    return spaConfig.neighborhood;
 
 };
 

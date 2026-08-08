@@ -304,9 +304,8 @@
 <script>
   window.NR_TOPIC_SPA_CONFIG = {
     reportName: "{{ .Title }}",
-    // The neighborhood this page was generated for. getNeighborhoodFromURL returns it
-    // directly, so neither the path parse nor the sessionStorage bridge has to answer
-    // on a first load
+    // The neighborhood this page was generated for, and the only thing
+    // getNeighborhoodFromURL consults — nothing parses the path for it
     neighborhood: "{{ .Params.neighborhood }}",
     geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
     vizUrl: "{{ $vizUrl }}",
