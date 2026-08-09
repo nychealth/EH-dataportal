@@ -1,18 +1,18 @@
 {{- define "main" -}}
 
 {{/*
-  Per-neighborhood report layout — /neighborhood-reports/<nbhd>/<topic>/.
-  - Rendered for the 210 pages the content adapter generates, one per neighborhood/topic.
-    It no longer serves the five topic markdown files; those render nr-topic-index.html.
-  - Reads all report_topics from the NR_content YAML for this topic.
-  - Builds an EHDP-data JSON URL per report_topic and passes them to a JS app.
-  - Indicator rows are accordion-expandable, showing description, comparisons,
-    a Vega choropleth map + bar chart, and data source on expand.
-  - The neighborhood comes from the page itself, not from the URL or sessionStorage. The
-    Leaflet map still switches neighborhood in place; url.js rewrites the address bar.
+    Per-neighborhood report layout — /neighborhood-reports/<nbhd>/<topic>/.
+    - Rendered for the 210 pages the content adapter generates, one per neighborhood/topic.
+        It no longer serves the five topic markdown files; those render nr-topic-index.html.
+    - Reads all report_topics from the NR_content YAML for this topic.
+    - Builds an EHDP-data JSON URL per report_topic and passes them to a JS app.
+    - Indicator rows are accordion-expandable, showing description, comparisons,
+        a Vega choropleth map + bar chart, and data source on expand.
+    - The neighborhood comes from the page itself, not from the URL or sessionStorage. The
+        Leaflet map still switches neighborhood in place; url.js rewrites the address bar.
 
-  Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
-  .Title only, so .Params.title renders blank on all 210 of these pages.
+    Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
+    .Title only, so .Params.title renders blank on all 210 of these pages.
 */}}
 
 {{/* Look up all report_topics for this Neighborhood Report content key */}}
@@ -21,273 +21,273 @@
 
 {{/* Styles matching the existing NR accordion in nr-output/single.html */}}
 <style>
-  .card-header {
-    padding: 0.5rem 0.5rem;
-    background: white!important;
-  }
-
-  .card-header a {
-      color: black;
-      text-decoration: none;
-  }
-
-  .report-section {
-      border-top: 5px solid #008939!important;
-  }
-
-  .card-header:hover {
-      background-color: #EFFAF4 !important;
-      text-decoration: none;
-  }
-  .card-header .btn:hover {
-    text-decoration: none;
-  }
-  .nr-card-header {
-    padding: 0.5rem 0.5rem;
-    background: white !important;
-    cursor: pointer;
-  }
-  .nr-card-header:hover {
-    background-color: #EFFAF4 !important;
-  }
-  .nr-card-header a {
-    color: black;
-    text-decoration: none;
-  }
-  .nr-card-header .btn {
-    text-decoration: none;
-  }
-  .nr-card-header .btn:hover {
-    text-decoration: none;
-  }
-  .nr-indicator-card .collapse:not(.show) {
-    display: none;
-  }
-  .nr-indicator-card .collapse.show {
-    display: block;
-  }
-  .comp-good::before {
-    content: "\2705 ";
-  }
-  .comp-bad::before {
-    content: "\203C\FE0F ";
-  }
-  .comp-null::before {
-    content: "\26AA ";
-  }
-  .nr-map-container {
-    min-height: 350px;
-  }
-  .card-body-no-top {
-    padding-top: 0 !important;
-    padding-left: 12px !important;
-  }
-  .leading-sm {
-    line-height: 105%;
-    font-size: small;
-  }
-  #nr-map:hover {
-    cursor: pointer;
-  }
-  /* The neighborhood name is inside the <h1> so the heading reads as a whole sentence —
-     to a crawler, a screen reader and Pagefind alike. It was a sibling span, which left
-     the heading text ending on "in". Restored to a block here so the rendering is
-     unchanged: name on its own line, in the accent colour.
-     The margin-top replaces what used to separate the two lines — the heading's own
-     margin-bottom, which stopped applying between them once the name moved inside it.
-     0.5rem is that value ($headings-margin-bottom). */
-  .nr-report-heading .sub-title {
-    display: block;
-    margin-top: 0.5rem;
-  }
-  @media print {
-    .col-print-12 {
-      max-width: 100%;
-      flex: 0 0 100%;
+    .card-header {
+        padding: 0.5rem 0.5rem;
+        background: white!important;
     }
-  }
+
+    .card-header a {
+            color: black;
+            text-decoration: none;
+    }
+
+    .report-section {
+            border-top: 5px solid #008939!important;
+    }
+
+    .card-header:hover {
+            background-color: #EFFAF4 !important;
+            text-decoration: none;
+    }
+    .card-header .btn:hover {
+        text-decoration: none;
+    }
+    .nr-card-header {
+        padding: 0.5rem 0.5rem;
+        background: white !important;
+        cursor: pointer;
+    }
+    .nr-card-header:hover {
+        background-color: #EFFAF4 !important;
+    }
+    .nr-card-header a {
+        color: black;
+        text-decoration: none;
+    }
+    .nr-card-header .btn {
+        text-decoration: none;
+    }
+    .nr-card-header .btn:hover {
+        text-decoration: none;
+    }
+    .nr-indicator-card .collapse:not(.show) {
+        display: none;
+    }
+    .nr-indicator-card .collapse.show {
+        display: block;
+    }
+    .comp-good::before {
+        content: "\2705 ";
+    }
+    .comp-bad::before {
+        content: "\203C\FE0F ";
+    }
+    .comp-null::before {
+        content: "\26AA ";
+    }
+    .nr-map-container {
+        min-height: 350px;
+    }
+    .card-body-no-top {
+        padding-top: 0 !important;
+        padding-left: 12px !important;
+    }
+    .leading-sm {
+        line-height: 105%;
+        font-size: small;
+    }
+    #nr-map:hover {
+        cursor: pointer;
+    }
+    /* The neighborhood name is inside the <h1> so the heading reads as a whole sentence —
+        to a crawler, a screen reader and Pagefind alike. It was a sibling span, which left
+        the heading text ending on "in". Restored to a block here so the rendering is
+        unchanged: name on its own line, in the accent colour.
+        The margin-top replaces what used to separate the two lines — the heading's own
+        margin-bottom, which stopped applying between them once the name moved inside it.
+        0.5rem is that value ($headings-margin-bottom). */
+    .nr-report-heading .sub-title {
+        display: block;
+        margin-top: 0.5rem;
+    }
+    @media print {
+        .col-print-12 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
 </style>
 
 <section class="container-fluid" id="skip-header-target">
-  <div class="row">
-    <div class="col-lg-10 mx-auto col-12">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
 
-      {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
-           mirroring the real URL and giving each report page a link back up to its 41
-           siblings' entry point */}}
-      <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
-        <ul class="breadcrumb">
-          <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
-          <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
-          <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
-        </ul>
-      </nav>
+            {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
+                mirroring the real URL and giving each report page a link back up to its 41
+                siblings' entry point */}}
+            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
 
-      {{/* Mobile title (visible below md breakpoint).
-           Neighborhood name and visibility are server-rendered rather than left to the JS
-           that used to fill them: without JS this page otherwise reads "Asthma and the
-           Environment in" with nothing after it (scoping memo §12a). renderAll() still
-           writes the same textContent when it switches neighborhood in place. */}}
-      <div class="row d-md-none">
-        {{/* The id stays on the wrapper rather than the h1, so Pagefind emits no sub-result
-             for this heading — one would only duplicate the page's own result title.
-             report.js used the id solely to unhide the block, which the wrapper does too. */}}
-        <div class="col-12 mb-2" id="nr-mobile-title">
-          <h1 class="h2 nr-report-heading">
-            {{ .Title }} <span style="font-weight:normal">in</span>
-            <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
-          </h1>
+            {{/* Mobile title (visible below md breakpoint).
+                Neighborhood name and visibility are server-rendered rather than left to the JS
+                that used to fill them: without JS this page otherwise reads "Asthma and the
+                Environment in" with nothing after it (scoping memo §12a). renderAll() still
+                writes the same textContent when it switches neighborhood in place. */}}
+            <div class="row d-md-none">
+                {{/* The id stays on the wrapper rather than the h1, so Pagefind emits no sub-result
+                    for this heading — one would only duplicate the page's own result title.
+                    report.js used the id solely to unhide the block, which the wrapper does too. */}}
+                <div class="col-12 mb-2" id="nr-mobile-title">
+                    <h1 class="h2 nr-report-heading">
+                        {{ .Title }} <span style="font-weight:normal">in</span>
+                        <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {{/* Left column: map, demographics */}}
+                <div class="col-md-4 mb-4 d-print-none">
+
+                    {{/*
+                        Interactive Leaflet map for neighborhood selection.
+                        Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
+                        updates the SPA data in place (no page navigation).
+                    */}}
+                    <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
+
+                    {{/* Server-rendered for the same reason as the neighborhood name: the ZIP list
+                        is distinguishing text on a page whose 41 siblings are otherwise near
+                        identical, and with JS off it was the empty string. demographics.js
+                        rewrites it with the same value on a neighborhood switch. */}}
+                    <div class="fs-md my-1" id="nr-zip-codes">
+                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
+                        <span id="nr-zip-list">{{ .Params.zipcodes }}</span>
+                    </div>
+
+                    {{/* Demographics table — populated by JS from uhflist.js */}}
+                    <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
+                        <table class="table fs-sm" style="color:darkslategrey">
+                            <thead class="sr-only">
+                                <tr><th>Metric</th><th>Value</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Population</strong></td><td id="nr-pop" class="text-right"></td></tr>
+                                <tr><td><strong>Over age 65</strong></td><td id="nr-old" class="text-right"></td></tr>
+                                <tr><td><strong>Under age 18</strong></td><td id="nr-young" class="text-right"></td></tr>
+                                <tr><td><strong>Poverty</strong></td><td id="nr-pov" class="text-right"></td></tr>
+                                <tr><td><strong>Graduated high school</strong></td><td id="nr-grad" class="text-right"></td></tr>
+                                <tr><td><strong>Limited English</strong></td><td id="nr-eng" class="text-right"></td></tr>
+                                <tr><td><strong>Owner-occupied homes</strong></td><td id="nr-own" class="text-right"></td></tr>
+                                <tr><td><strong>Rent-burdened households</strong></td><td id="nr-rent" class="text-right"></td></tr>
+                            </tbody>
+                        </table>
+                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                    </div>
+
+                    <hr class="my-2">
+                    <div class="asidebox m-2 pxy-2 text-muted">
+                        <strong>Indicator rankings</strong>
+                        <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
+                        <div class="row no-gutters">
+                            <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
+                            </div>
+                            <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods.
+                            </div>
+                        </div>
+                        <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
+                        <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                    </div>
+
+                </div>
+
+                {{/* Right column: topic buttons + report header + sections */}}
+                <div class="col-md-8 col-print-12">
+
+                    {{/*
+                        Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
+                        other four reports. url.js rewrites them if the map switches neighborhood.
+                    */}}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
+
+                    {{/*
+                        Report header: title + neighborhood name + intro copy + buttons.
+                        Rendered visible with the neighborhood already in place — see the mobile title
+                        above. renderAll() rewrites the name on an in-place neighborhood switch.
+                    */}}
+                    <div id="nr-report-header">
+                        <div class="d-none d-md-block mb-">
+                            <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
+                                <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
+                            </h1>
+                        </div>
+
+                        <div class="d-md-none my-1">
+                            <strong>{{ .Title }}</strong>
+                        </div>
+
+                        <hr class="mb-2 mt-1">
+                        {{/* The topic intro copy lives in the topic markdown file's body, which is now
+                            a different page (nr-topic-index.html) — a generated page has no .Content
+                            of its own. Same lookup nr-output/single.html did, keyed instead of a
+                            five-branch if-chain. */}}
+                        <div class="mb-2">
+                            {{- with .Site.GetPage (printf "/neighborhood-reports/%s.md" $contentKey) -}}
+                                {{ .Content }}
+                            {{- end -}}
+                        </div>
+
+                        <div class="d-print-none">
+                            <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1"></i>Print</button>
+                            <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                        </div>
+                    </div>
+
+                    {{/*
+                        Loop over every report_topic from the NR_content YAML.
+                        Each section is wrapped in the production accordion container
+                        with the green top border and border styling.
+                    */}}
+                    {{- range $i, $rt := $reportTopics -}}
+                        {{/*
+                            Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
+                            Topic titles can urlize to strings that are awkward for CSS selectors or can drift
+                            between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
+                        */}}
+                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                            <div class="px-2 pb-2">
+                                <h3 class="h4 fs-rg">
+                                    {{ $rt.report_topic }}
+                                </h3>
+                                <p class="fs-sm">
+                                    {{ $rt.report_topic_description }}
+                                </p>
+                            </div>
+                            <div id="nr-section-{{ $i }}">
+                            </div>
+                        </div>
+                    {{- end -}}
+
+                </div>
+            </div>
+
+            {{/* Curated per-topic "what the City is doing / what you can do" footer, kept from
+                nr-output/single.html — the SPA has no equivalent, so dropping it with the rest
+                of nr-output would have been content loss. It carries data-pagefind-ignore="all",
+                so it adds nothing to the search index on 210 newly-indexed pages. */}}
+            {{ partial "nr-report-footer-sm" . }}
+
         </div>
-      </div>
-
-      <div class="row">
-
-        {{/* Left column: map, demographics */}}
-        <div class="col-md-4 mb-4 d-print-none">
-
-          {{/*
-            Interactive Leaflet map for neighborhood selection.
-            Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
-            updates the SPA data in place (no page navigation).
-          */}}
-          <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
-
-          {{/* Server-rendered for the same reason as the neighborhood name: the ZIP list
-               is distinguishing text on a page whose 41 siblings are otherwise near
-               identical, and with JS off it was the empty string. demographics.js
-               rewrites it with the same value on a neighborhood switch. */}}
-          <div class="fs-md my-1" id="nr-zip-codes">
-            <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
-            <span id="nr-zip-list">{{ .Params.zipcodes }}</span>
-          </div>
-
-          {{/* Demographics table — populated by JS from uhflist.js */}}
-          <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
-            <table class="table fs-sm" style="color:darkslategrey">
-              <thead class="sr-only">
-                <tr><th>Metric</th><th>Value</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>Population</strong></td><td id="nr-pop" class="text-right"></td></tr>
-                <tr><td><strong>Over age 65</strong></td><td id="nr-old" class="text-right"></td></tr>
-                <tr><td><strong>Under age 18</strong></td><td id="nr-young" class="text-right"></td></tr>
-                <tr><td><strong>Poverty</strong></td><td id="nr-pov" class="text-right"></td></tr>
-                <tr><td><strong>Graduated high school</strong></td><td id="nr-grad" class="text-right"></td></tr>
-                <tr><td><strong>Limited English</strong></td><td id="nr-eng" class="text-right"></td></tr>
-                <tr><td><strong>Owner-occupied homes</strong></td><td id="nr-own" class="text-right"></td></tr>
-                <tr><td><strong>Rent-burdened households</strong></td><td id="nr-rent" class="text-right"></td></tr>
-              </tbody>
-            </table>
-            <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
-          </div>
-
-          <hr class="my-2">
-          <div class="asidebox m-2 pxy-2 text-muted">
-            <strong>Indicator rankings</strong>
-            <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
-            <div class="row no-gutters">
-              <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
-                <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
-              </div>
-              <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
-                <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods.
-              </div>
-            </div>
-            <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
-            <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
-          </div>
-
-        </div>
-
-        {{/* Right column: topic buttons + report header + sections */}}
-        <div class="col-md-8 col-print-12">
-
-          {{/*
-            Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
-            other four reports. url.js rewrites them if the map switches neighborhood.
-          */}}
-          {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
-
-          {{/*
-            Report header: title + neighborhood name + intro copy + buttons.
-            Rendered visible with the neighborhood already in place — see the mobile title
-            above. renderAll() rewrites the name on an in-place neighborhood switch.
-          */}}
-          <div id="nr-report-header">
-            <div class="d-none d-md-block mb-">
-              <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
-                <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
-              </h1>
-            </div>
-
-            <div class="d-md-none my-1">
-              <strong>{{ .Title }}</strong>
-            </div>
-
-            <hr class="mb-2 mt-1">
-            {{/* The topic intro copy lives in the topic markdown file's body, which is now
-                 a different page (nr-topic-index.html) — a generated page has no .Content
-                 of its own. Same lookup nr-output/single.html did, keyed instead of a
-                 five-branch if-chain. */}}
-            <div class="mb-2">
-              {{- with .Site.GetPage (printf "/neighborhood-reports/%s.md" $contentKey) -}}
-                {{ .Content }}
-              {{- end -}}
-            </div>
-
-            <div class="d-print-none">
-              <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1"></i>Print</button>
-              <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
-            </div>
-          </div>
-
-          {{/*
-            Loop over every report_topic from the NR_content YAML.
-            Each section is wrapped in the production accordion container
-            with the green top border and border styling.
-          */}}
-          {{- range $i, $rt := $reportTopics -}}
-            {{/*
-              Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
-              Topic titles can urlize to strings that are awkward for CSS selectors or can drift
-              between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
-            */}}
-            <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
-              <div class="px-2 pb-2">
-                <h3 class="h4 fs-rg">
-                  {{ $rt.report_topic }}
-                </h3>
-                <p class="fs-sm">
-                  {{ $rt.report_topic_description }}
-                </p>
-              </div>
-              <div id="nr-section-{{ $i }}">
-              </div>
-            </div>
-          {{- end -}}
-
-        </div>
-      </div>
-
-      {{/* Curated per-topic "what the City is doing / what you can do" footer, kept from
-           nr-output/single.html — the SPA has no equivalent, so dropping it with the rest
-           of nr-output would have been content loss. It carries data-pagefind-ignore="all",
-           so it adds nothing to the search index on 210 newly-indexed pages. */}}
-      {{ partial "nr-report-footer-sm" . }}
-
     </div>
-  </div>
 </section>
 
 {{/*
-  Pass configuration to the JS module.
-  - sections: array of report_topic objects with EHDP-data URLs and container IDs.
-  - vizUrl: combined viz dataset URL for map/chart rendering.
-  - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
-  - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
-  - reportName: page title for CSV download filenames.
-  - neighborhood: the neighborhood this page was generated for.
+    Pass configuration to the JS module.
+    - sections: array of report_topic objects with EHDP-data URLs and container IDs.
+    - vizUrl: combined viz dataset URL for map/chart rendering.
+    - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
+    - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
+    - reportName: page title for CSV download filenames.
+    - neighborhood: the neighborhood this page was generated for.
 */}}
 {{- $nrGlobal       := resources.Get "js/nr-topic-spa/global.js"       | partial "short-fingerprint.html" -}}
 {{- $nrUrl          := resources.Get "js/nr-topic-spa/url.js"          | partial "short-fingerprint.html" -}}
@@ -302,57 +302,57 @@
 
 {{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
 <script>
-  window.NR_TOPIC_SPA_CONFIG = {
-    reportName: "{{ .Title }}",
-    // The neighborhood this page was generated for, and the only thing
-    // getNeighborhoodFromURL consults — nothing parses the path for it
-    neighborhood: "{{ .Params.neighborhood }}",
-    geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
-    vizUrl: "{{ $vizUrl }}",
-    dataRepo: "{{ $.Site.Params.data_repo }}",
-    dataBranch: "{{ $.Site.Params.data_branch }}",
-    sections: [
-      {{- range $i, $rt := $reportTopics -}}
-        {{- $cleanTopic := replace $rt.report_topic ":" "" -}}
-        {{/* Spaces in the filename must be %20 for reliable fetch() (e.g. "...Health Physical Activity.json"). */}}
-        {{- $reportFile := print $contentKey " " $cleanTopic ".json" -}}
-        {{- $reportFileEncoded := replace $reportFile " " "%20" -}}
-        {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $reportFileEncoded -}}
-        {{- if $i }},{{ end -}}
-        {
-          "id": "{{ $i }}",
-          "containerId": "nr-section-{{ $i }}",
-          "reportUrl": "{{ $url }}"
+    window.NR_TOPIC_SPA_CONFIG = {
+        reportName: "{{ .Title }}",
+        // The neighborhood this page was generated for, and the only thing
+        // getNeighborhoodFromURL consults — nothing parses the path for it
+        neighborhood: "{{ .Params.neighborhood }}",
+        geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
+        vizUrl: "{{ $vizUrl }}",
+        dataRepo: "{{ $.Site.Params.data_repo }}",
+        dataBranch: "{{ $.Site.Params.data_branch }}",
+        sections: [
+            {{- range $i, $rt := $reportTopics -}}
+                {{- $cleanTopic := replace $rt.report_topic ":" "" -}}
+                {{/* Spaces in the filename must be %20 for reliable fetch() (e.g. "...Health Physical Activity.json"). */}}
+                {{- $reportFile := print $contentKey " " $cleanTopic ".json" -}}
+                {{- $reportFileEncoded := replace $reportFile " " "%20" -}}
+                {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $reportFileEncoded -}}
+                {{- if $i }},{{ end -}}
+                {
+                    "id": "{{ $i }}",
+                    "containerId": "nr-section-{{ $i }}",
+                    "reportUrl": "{{ $url }}"
+                }
+            {{- end -}}
+        ],
+        // URL slug for this topic page, e.g. "asthma_and_the_environment".
+        // Used by setNeighborhoodInURL to locate the topic segment in the current path
+        // when updating the address bar after a neighborhood is selected.
+        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
+        // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
+        // e.g. { "east_new_york": "East New York", ... }.
+        // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
+        // Built from data/globals/uhflist.json — the same rows the content adapter generates
+        // the pages from — rather than by ranging .Sections. Those sections are now themselves
+        // adapter output, so deriving the map from them would make it depend on Hugo's section
+        // machinery agreeing with the adapter instead of on the one source both come from.
+        neighborhoodMap: {
+            {{- range $i, $n := site.Data.globals.uhflist -}}
+                {{- if $i }},{{ end -}}
+                "{{ $n.page_name }}": "{{ $n.UHF_name }}"
+            {{- end -}}
         }
-      {{- end -}}
-    ],
-    // URL slug for this topic page, e.g. "asthma_and_the_environment".
-    // Used by setNeighborhoodInURL to locate the topic segment in the current path
-    // when updating the address bar after a neighborhood is selected.
-    topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
-    // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
-    // e.g. { "east_new_york": "East New York", ... }.
-    // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
-    // Built from data/globals/uhflist.json — the same rows the content adapter generates
-    // the pages from — rather than by ranging .Sections. Those sections are now themselves
-    // adapter output, so deriving the map from them would make it depend on Hugo's section
-    // machinery agreeing with the adapter instead of on the one source both come from.
-    neighborhoodMap: {
-      {{- range $i, $n := site.Data.globals.uhflist -}}
-        {{- if $i }},{{ end -}}
-        "{{ $n.page_name }}": "{{ $n.UHF_name }}"
-      {{- end -}}
-    }
-  };
+    };
 </script>
 
 {{/*
-  Ten classic (non-module) scripts sharing one top-level scope, in load order.
-  Nothing enforces that order, so it is stated here rather than inferred:
-  app.js must load last. It holds the only two statements that run at load time
-  (the window.nrDownloadCSV export and the bootstrap() call), and both read names
-  the other nine declare. Everything else runs from bootstrap() or a DOM event,
-  by which point all ten have run.
+    Ten classic (non-module) scripts sharing one top-level scope, in load order.
+    Nothing enforces that order, so it is stated here rather than inferred:
+    app.js must load last. It holds the only two statements that run at load time
+    (the window.nrDownloadCSV export and the bootstrap() call), and both read names
+    the other nine declare. Everything else runs from bootstrap() or a DOM event,
+    by which point all ten have run.
 */}}
 <script src="{{ $nrGlobal.RelPermalink }}" integrity="{{ $nrGlobal.Data.Integrity }}" crossorigin="anonymous"></script>
 <script src="{{ $nrUrl.RelPermalink }}" integrity="{{ $nrUrl.Data.Integrity }}" crossorigin="anonymous"></script>
