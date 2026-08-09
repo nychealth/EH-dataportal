@@ -149,8 +149,9 @@ flexdatalist config. Two partials, and both are needed — the markup one alone 
 
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — search box above the map, then the
   map in a `.nr-selector-map` wrapper (height in `assets/scss/_custom.scss`, since `nr-leaflet`'s
-  `#map` is 100%/100% and has no intrinsic size). Takes `page` and `input_class`; the latter exists
-  only to keep the landing page's 64px field while that choice is open.
+  `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else — the search field
+  is the plain `.form-control`, 42px on both pages, since the landing page's 64px override was
+  dropped rather than kept as a parameter.
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html` — called from each page's
   `js_bot`, because flexdatalist is not in `head.html`. **Each caller must define
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
