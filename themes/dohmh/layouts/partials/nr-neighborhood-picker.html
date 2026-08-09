@@ -1,0 +1,42 @@
+{{/*
+    The UHF42 neighborhood picker: a typeahead over the 42 rows, plus the clickable map.
+    Shared by the NR landing page (neighborhood-reports/section.html) and the five topic
+    indexes (nr-topic-index.html), which had drifted to two heights, two placeholder
+    strings and two search positions while running byte-identical flexdatalist config.
+
+    Where the reader lands is the one thing the two callers genuinely disagree on, so it is
+    not here: partials/nr-neighborhood-picker-js.html calls nrPickerDestination(), which
+    each page defines in its own js_bot block. This partial is markup only — pair it with
+    that one or the search does nothing.
+
+    Params:
+      page        the page, passed through to nr-leaflet, which reads .Params.geocode off it
+      input_class extra classes on the search input; "nr-flexdatalist" gives the landing
+                  page's 64px field. Deliberately still a parameter — see §2 of
+                  documents/nr-neighborhood-picker-options-2026-08-09.md
+*/}}
+
+{{- $page := .page -}}
+
+{{/* Search above the map: it is the primary affordance, and below the map means scrolling
+     past 400px of map to reach it on a phone. `name` is the site-wide flexdatalist
+     convention rather than a description of this field; `id` is load-bearing, since
+     flexdatalist derives the .flex_search-flexdatalist wrapper the stylesheet targets
+     from it. */}}
+<div class="btn-group w-100" role="group">
+    <input
+        id="flex_search"
+        type="search"
+        class="flexdatalist form-control {{ .input_class }}"
+        name="indicator_name_suggestion"
+        placeholder="Search name or ZIP code"
+    />
+    <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
+</div>
+
+{{/* aria-hidden because the Leaflet layer holds nothing focusable, and both callers carry a
+     text equivalent — nr-show-zips' sr-only list on the landing page, the server-rendered
+     42-link list on the topic index. */}}
+<div class="nr-selector-map border mt-2" aria-hidden="true">
+    {{- partial "nr-leaflet" $page -}}
+</div>

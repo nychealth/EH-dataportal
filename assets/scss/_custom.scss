@@ -177,6 +177,20 @@ $color-data-explorer: #0A408A;
   height: 64px;
 }
 
+/* The UHF42 neighborhood picker on the NR landing page and the five topic indexes. Height
+   lives here rather than inline on each caller because nr-leaflet's #map is 100%/100% and
+   has no intrinsic size — the wrapper is the only thing that sets it, and two callers each
+   setting their own inline height is how 400px and 450px happened. */
+.nr-selector-map {
+  height: 400px;
+}
+
+@include media-breakpoint-up(md) {
+  .nr-selector-map {
+    height: 550px;
+  }
+}
+
 .breadcrumb-item.active a {
   color: #000;
 }

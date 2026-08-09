@@ -35,45 +35,29 @@
 
             {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
 
+            {{/* Heading above the picker rather than beside it, in the same centred column,
+                 so the two read as one column and the map gets the width it was starved of
+                 in the old col-md-4. */}}
             <div class="row mt-3">
-
-                {{/* Clickable UHF42 map, as topiclanding.html had it. The partial already
-                     handles this page: getReportAndNeighborhood recognises a topic slug in
-                     the first path segment, so a click navigates to <nbhd>/<topic>/ — the
-                     URL shape this branch serves. `geocode` is absent on a topic page, which
-                     is what leaves the map unzoomed and nothing highlighted. */}}
-                <div class="col-md-4 mb-3">
-                    <div class="border" style="height: 450px">
-                        {{- partial "nr-leaflet" . -}}
-                    </div>
-
-                    {{/* Typeahead over the same 42 rows, searching name and ZIP. `name` is
-                         the site-wide flexdatalist convention rather than a description of
-                         this field; `id` is load-bearing, since flexdatalist derives the
-                         .flex_search-flexdatalist wrapper the stylesheet targets from it. */}}
-                    <div class="btn-group w-100" role="group">
-                        <input
-                            id="flex_search"
-                            type="search"
-                            class="flexdatalist form-control"
-                            name="indicator_name_suggestion"
-                            placeholder="Search name or ZIP code"
-                        />
-                        <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
+                <div class="col-md-8 mx-auto">
                     <h1 class="h2">{{ .Title }}</h1>
                     <div class="report-description fs-lg my-2">{{ .Content }}</div>
 
-                    {{/* Arrow only where the map is actually to the left; below md the
-                         columns stack and it points at nothing */}}
                     <p class="font-weight-bold">
-                        <i class="fas fa-arrow-left mr-1 text-primary d-none d-md-inline" aria-hidden="true"></i>Choose a neighborhood from the map or the search box to get a report.
+                        <i class="fas fa-arrow-down mr-1 text-primary" aria-hidden="true"></i>Choose a neighborhood from the map or the search box to get a report.
                     </p>
                 </div>
+            </div>
 
+            {{/* The partial already handles this page: getReportAndNeighborhood recognises a
+                 topic slug in the first path segment, so a map click navigates to
+                 <nbhd>/<topic>/ — the URL shape this branch serves. `geocode` is absent on a
+                 topic page, which is what sends nr-leaflet down its fit-the-whole-city
+                 branch with nothing highlighted. */}}
+            <div class="row mb-3">
+                <div class="col-md-8 mx-auto">
+                    {{ partial "nr-neighborhood-picker" (dict "page" . "input_class" "") }}
+                </div>
             </div>
 
             {{/* One link per neighborhood, straight from the canonical 42 rows. Ranged over
@@ -143,57 +127,21 @@
 {{- /* ====  neighborhood typeahead  ==== */ -}}
 
 {{- /* In js_bot, matching section.html: flexdatalist is the only page here that needs it, so
-       it is not in head.html. No <style> block accompanies it — the five .flexdatalist-*
-       rules section.html still inlines are already in __portal-custom.scss, site-wide. */ -}}
+       it is not in head.html. The init itself lives in nr-neighborhood-picker-js, shared with
+       the landing page; all this block adds is where a selection should land. */ -}}
 
 {{ define "js_bot" }}
 
     {{- $topicSlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
 
-    {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
-    <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
-
-    {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
-    <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
-
     <script type="text/javascript">
 
-        // Search the 42 UHF rows by name or ZIP, then jump to that neighborhood's report for
-        // this topic. `neighborhoods` is the global head.html builds from uhflist.json.
-        function loadNeighborhoodSearch() {
-
-            const $input = $('.flexdatalist').flexdatalist({
-                minLength: 0,
-                valueProperty: ["UHF_id", "UHF_name"],
-                textProperty: "{UHF_name}",
-                selectionRequired: false,
-                focusFirstResult: true,
-                visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
-                searchIn: ["UHF_name", "Zipcodes"],
-                searchContain: true,
-                searchByWord: true,
-                redoSearchOnFocus: true,
-                toggleSelected: true,
-                cache: false,
-                data: neighborhoods
-            });
-
-            // The topic comes from Hugo, not from sniffing the rendered <h1> the way
-            // topiclanding.html did — this page knows its own slug at build time.
-            $input.on('select:flexdatalist', (e, set) => {
-                window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/{{ $topicSlug }}/'
-            })
-
-            // flexdatalist hides the original input and renders its own; "~input" is how the
-            // other copies of this reach that visible one.
-            $("#clear").on("click", () => {
-                $($input).find("~input").val("").trigger("focus")
-            })
-
-        }
-
-        loadNeighborhoodSearch()
+        // The topic comes from Hugo, not from sniffing the rendered <h1> the way
+        // topiclanding.html did — this page knows its own slug at build time.
+        function nrPickerDestination() { return '{{ $topicSlug }}' }
 
     </script>
+
+    {{ partial "nr-neighborhood-picker-js" . }}
 
 {{- end -}}

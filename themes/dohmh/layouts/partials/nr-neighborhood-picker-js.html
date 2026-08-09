@@ -1,0 +1,57 @@
+{{/*
+    Loads flexdatalist and wires the neighborhood picker's search box. Call this from inside
+    a page's {{ define "js_bot" }} block, alongside partials/nr-neighborhood-picker.html in
+    the body — flexdatalist is not in head.html, so the init has to run at the page foot.
+
+    The caller must define nrPickerDestination(), returning the topic slug to append to the
+    chosen neighborhood. Declaration order does not matter: it is called on selection, long
+    after every script on the page has parsed.
+*/}}
+
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
+
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+<script type="text/javascript">
+
+    // Search the 42 UHF rows by name or ZIP, then jump to that neighborhood's report for
+    // whichever topic the page nominates. `neighborhoods` is the global head.html builds
+    // from uhflist.json.
+    function loadNeighborhoodSearch() {
+
+        const $input = $('.flexdatalist').flexdatalist({
+            minLength: 0,
+            valueProperty: ["UHF_id", "UHF_name"],
+            textProperty: "{UHF_name}",
+            selectionRequired: false,
+            focusFirstResult: true,
+            visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
+            searchIn: ["UHF_name", "Zipcodes"],
+            searchContain: true,
+            searchByWord: true,
+            redoSearchOnFocus: true,
+            toggleSelected: true,
+            cache: false,
+            data: neighborhoods
+        });
+
+        // The destination topic is the one thing the two callers disagree on, so each
+        // defines nrPickerDestination() itself — a build-time slug on a topic index, the
+        // active topic button on the landing page.
+        $input.on('select:flexdatalist', (e, set) => {
+            window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + nrPickerDestination() + '/'
+        })
+
+        // flexdatalist hides the original input and renders its own; "~input" is how the
+        // other copies of this reach that visible one.
+        $("#clear").on("click", () => {
+            $($input).find("~input").val("").trigger("focus")
+        })
+
+    }
+
+    loadNeighborhoodSearch()
+
+</script>
