@@ -5,8 +5,9 @@ Branch `feature-MOD-Lab-NR-recode-refactor`. Follow-up to the Option D swap
 replaced `topiclanding.html` with `nr-topic-index.html` and dropped the map and search that
 template had carried.
 
-**Status as of 2026-08-09: implementation done and browser-verified; both outstanding checks now
-run and passing; nothing committed. What remains is the commits and the CLAUDE.md re-stamp.**
+**Done 2026-08-09 — `c4a9780dc0..88e327c8a0`.** Implementation, both harness checks, the commits
+and the CLAUDE.md re-stamp all landed. Nothing outstanding here; the branch itself is unpushed
+and unmerged to `production`.
 
 Scope was set by the user in session: restore the map *and* the flexdatalist, keep the
 42-neighborhood link list but collapse it. "Work exactly like the old version, implementation is
@@ -122,13 +123,11 @@ script runs.
    and produced the `dev_stage` server the baseline was captured under. The `/local-stage/`
    prefix problem this entry previously anticipated never arose, and none of the workarounds
    drafted for it were needed.
-3. **Commit.** Nothing is committed. Suggested split: the template + SCSS as one commit (they
-   are one change — the SCSS only exists to serve the new toggle), CLAUDE.md's prose as its own.
-   **This document is itself untracked** — it is the only record of this work's state and exists
-   nowhere but the working tree, so it should land first.
-4. **Re-stamp CLAUDE.md.** Its `docs-check verified` stamp at line 2 still reads
-   `c6532ea649 2026-08-08` and was deliberately left alone — the stamp asserts a human re-read of
-   the prose. Bump it after reading the rewritten Topic index bullet, not before.
+3. **DONE 2026-08-09 — committed in three.** This document first, at `c4a9780dc0`, because it
+   was untracked and was the only record of the work's state; template + SCSS at `0eb7e79589`;
+   CLAUDE.md's prose at `944e1e8c84`.
+4. **DONE 2026-08-09 at `88e327c8a0`.** The `docs-check verified` stamp now reads
+   `944e1e8c84 2026-08-09`, pointing at the commit whose prose changed.
 
 ## 5. Known noise, so the next session does not chase it
 

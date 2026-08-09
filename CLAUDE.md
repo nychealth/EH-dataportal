@@ -284,7 +284,8 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
 - `documents/nr-decisions-and-sequencing-2026-08-04.md` — the NR decision record and order of work. Also this branch.
-- `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work, all landed 2026-08-08. §11 of the scoping memo is the ledger; this is the executable half.
+- `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work, all landed 2026-08-08. §11 of the scoping memo is the ledger; this is the executable half. Its file-by-file list predates the picker restore below, so read it as the plan, not as the current template.
+- `documents/nr-topic-index-picker-restore-2026-08-09.md` — the follow-up that restored the UHF42 map and the neighborhood typeahead to the topic index, which the Option D swap had dropped. Closed 2026-08-09.
 
 ## Common gotchas
 

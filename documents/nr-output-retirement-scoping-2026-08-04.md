@@ -351,11 +351,14 @@ over** — do that when this memo is acted on, or the conflict is live:
 - Dead `assets/js/ccd-to-uhf42.json` and `static/UHF42.csv`
 - The `uhflist.js` / `uhflist.json` vintage split — P1, a correctness bug, and now a
   blocker: see §10
-- `topiclanding.html`'s duplicate `uhflist.js` tag — moot if the template goes
+- ~~`topiclanding.html`'s duplicate `uhflist.js` tag — moot if the template goes~~ **The
+  template went at `2bce6c6d46`, 2026-08-07. Moot.**
 - Gating `uhflist.js` in `head.html` — independent of this, leave it in §5a
 
-`topiclanding.html` itself is the loose end: nothing selects it, but §5a still treats it as
-live. Resolve that separately; it is one file.
+~~`topiclanding.html` itself is the loose end: nothing selects it, but §5a still treats it as
+live. Resolve that separately; it is one file.~~ **Closed 2026-08-07 — the template was deleted
+in the Option D swap at `2bce6c6d46`, and §5a's action item on it is struck.** Its map and flexdatalist were
+restored into `nr-topic-index.html` on 2026-08-09.
 
 ## 10. Open questions
 
@@ -623,9 +626,11 @@ follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**,
 with it; **Stage G done 2026-08-08** — see §12's `robots.txt` bullet for the one deviation.
 **Decision 4 is complete**, leaving only step 2's ACS pull on its separate track.
 
-**The branch itself is not delivered.** As of 2026-08-08 `feature-MOD-Lab-NR-recode-refactor`
-is **11 commits ahead of `origin` and unpushed**, and unmerged to `production`
-`[verified 2026-08-08: git status -sb]`. The merge diff is what CLAUDE.md reserves
+**The branch itself is not delivered.** As of 2026-08-09 `feature-MOD-Lab-NR-recode-refactor`
+is **19 commits ahead of `origin` and unpushed**, and unmerged to `production`
+`[verified 2026-08-09: git rev-list --count origin/feature-MOD-Lab-NR-recode-refactor..HEAD]`.
+This line previously read 11, which was the count on 2026-08-08 before the topic-index picker
+restore landed. The merge diff is what CLAUDE.md reserves
 `/code-review ultra` for; it is user-triggered and billed, so it cannot be launched from a
 session.
 

@@ -504,7 +504,8 @@ between two copies of one string would have broken the lookup, not fixed it.
    since a `static/` file that no page links to leaves no trace in rendered output.
    Deleting them needs external-traffic evidence, not a build diff, and belongs in
    its own step.
-2. Drop the duplicate `uhflist.js` tag from `topiclanding.html`.
+2. ~~Drop the duplicate `uhflist.js` tag from `topiclanding.html`.~~ **Closed 2026-08-07 — the
+   template was deleted in the Option D swap at `2bce6c6d46`**, so the duplicate tag went with it.
 3. Gate `uhflist.js` in head.html to `neighborhood-reports` (keep `index.html`'s
    explicit load). Removes a render-blocking 20 KB from every DE page.
 4. ~~**Blocked on #1's decision:** collapse `uhflist.js` + `uhflist.json` into one

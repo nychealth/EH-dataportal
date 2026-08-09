@@ -310,9 +310,10 @@ a check** — every open question is closed, and what remains is implementation.
   §5a already carried its hand-over banner as of 2026-08-05, and the deletions landed here on
   2026-08-06. What §5a still owns and this document does not is `ccd-to-uhf42.json` and
   `static/UHF42.csv`; see decision 1 for why those did not go with the partials.
-- **`topiclanding.html`** — nothing selects it via `layout:`, but §5a treats it as live.
+- ~~**`topiclanding.html`** — nothing selects it via `layout:`, but §5a treats it as live.
   One file; resolve separately. It also holds one of the three build-time
-  `resources.GetRemote` call sites.
+  `resources.GetRemote` call sites.~~ **Closed 2026-08-07** — deleted in the Option D swap at `2bce6c6d46`;
+  the `resources.GetRemote` call it held was ported into `nr-topic-index.html`.
 - **`urlExtension` frontmatter** on the 5 topic files is read by nothing `[verified]`.
 - **~75 lines of inline `<style>`** in `nr-topic-spa.html`, some of it dead, most
   duplicating `nr-output/single.html`. Belongs in `assets/scss/`.
