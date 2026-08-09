@@ -9,9 +9,9 @@ sibling column's text above it, and unify the two implementations. The plan live
 `~/.claude/plans/nr-neighborhood-picker-unify.md` — **outside the repo, so this document is the
 one that survives**. Anything a later session must act on belongs here, not there.
 
-**Status as of 2026-08-09: all tasks done, browser-verified, and committed. The one thing left
-open is a decision, not work — the search input height in §2, which is parameterized so both
-pages render as they did.**
+**Status as of 2026-08-09: all tasks done, browser-verified, and committed, including the one
+choice that was left open — the search input height, decided as Option A (42px on both) in §2.
+Nothing here is outstanding.**
 
 | # | Task | Status | Proof that ran |
 |---|---|---|---|
@@ -23,6 +23,7 @@ pages render as they did.**
 | 6 | Landing page layout + `nrPickerDestination` | **DONE 2026-08-09** | `node scripts/smoke-pages.mjs` exit 0. `#Housing` clicked then "Bayside" selected → `bayside_little_neck/housing_and_health/`, i.e. the runtime destination, not a baked default |
 | 7a | CLAUDE.md prose — Topic index bullet rewritten, the two new partials and the `zoomSnap` fact documented, this doc added to the audit list | **DONE 2026-08-09** | `node scripts/docs-check.mjs` exit 0, 1 doc checked, no stale paths or identifiers |
 | 7b | `docs-check verified` stamp at `CLAUDE.md:2` | **DONE 2026-08-09** | Re-stamped in a follow-up commit citing 7a's commit, as `88e327c8a0` did for the picker restore |
+| 8 | Input height decision — Option A, and `.nr-flexdatalist` + the `input_class` parameter deleted | **DONE 2026-08-09** | `[verified 2026-08-09: Playwright against local_stage :8080]` visible alias input 42px on both pages at 1280px and 500px, `#clear` 42px; `nr-flexdatalist` absent from the rendered class list, where it was present before |
 
 `node scripts/nr-characterization.mjs --check` also passed — 3 targets match baseline — which is
 what bounds task 2's blast radius to the two picker pages.
@@ -79,10 +80,15 @@ The last four rows are real duplication. The rest is drift — differences nobod
 appeared because the same block was written twice. Unifying forces a decision on each, and the
 sections below are that decision list.
 
-## 2. The open one: input height
+## 2. Input height — decided: Option A, 42px on both
 
-**Nothing is decided here. It is parameterized, so both pages keep the height they had and the
-choice can be made later by changing one argument per caller.**
+**Decided 2026-08-09 by the user.** `.nr-flexdatalist` is deleted, the partial no longer takes an
+`input_class`, and both pages render the default `.form-control` field.
+`[verified 2026-08-09: getBoundingClientRect on the visible alias input, local_stage server on
+:8080 — 42px on both pages at 1280px and 500px viewports, with #clear 42px beside it. The landing
+page measuring 42 rather than its former 64 is itself the control that the change took effect.]`
+
+The options below are the record of what was weighed, not a live choice.
 
 `assets/scss/_custom.scss`:
 
@@ -121,7 +127,7 @@ hides the authored `<input>` and builds its own, copying `class` and `placeholde
 
 So both the 64px and the placeholder string survive the swap.
 
-### Option A — 42px on both
+### Option A — 42px on both (chosen)
 
 ```
 [ Search name or ZIP code                        ][ Clear ]     42px
@@ -158,13 +164,15 @@ stretches to match or sits short in the group. **Check that pairing in the brows
 choosing** — `.btn-group` stretches children to the group height, so `Clear` becomes a 64px button
 too, which is not what it looks like on the landing page today at `col-md-5` width.
 
-### Option C — parameterized (implemented)
+### Option C — parameterized (shipped first, then superseded by A)
 
 `{{ partial "nr-neighborhood-picker" (dict "page" . "input_class" "nr-flexdatalist") }}` on the
 landing, `"input_class" ""` on the topic index. Code unifies, appearance does not change on either
 page. Flipping to A or B later is a one-line edit per caller plus, for A, deleting the rule.
 
-This is what the plan implements, so that the height decision is not blocked on the layout work.
+This is what the plan implemented, so that the height decision was not blocked on the layout work.
+It shipped in `6e368b6e98` and was replaced by Option A the same day, which is why the parameter
+appears and disappears within two commits.
 
 ## 3. Placeholder — decided
 

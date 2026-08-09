@@ -10,10 +10,7 @@
     that one or the search does nothing.
 
     Params:
-      page        the page, passed through to nr-leaflet, which reads .Params.geocode off it
-      input_class extra classes on the search input; "nr-flexdatalist" gives the landing
-                  page's 64px field. Deliberately still a parameter — see §2 of
-                  documents/nr-neighborhood-picker-options-2026-08-09.md
+      page  the page, passed through to nr-leaflet, which reads .Params.geocode off it
 */}}
 
 {{- $page := .page -}}
@@ -27,7 +24,7 @@
     <input
         id="flex_search"
         type="search"
-        class="flexdatalist form-control {{ .input_class }}"
+        class="flexdatalist form-control"
         name="indicator_name_suggestion"
         placeholder="Search name or ZIP code"
     />
