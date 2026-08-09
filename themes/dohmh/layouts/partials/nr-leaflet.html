@@ -108,9 +108,21 @@
                 }
                 
             } else {
-                
-                console.log("No geocode provided; skipping zoom.");
-                
+
+                // No geocode: the landing page and the five topic indexes, where the map is a
+                // whole-city picker rather than a located report. Fit the UHF42 layer instead
+                // of keeping the fixed zoom-10 view, so the city fills whatever box the caller
+                // gives it — at a fixed zoom a wider container just adds water on both sides.
+
+                // zoomSnap is set here rather than at construction so this stays scoped to the
+                // two picker pages: the geocode branch above keeps Leaflet's whole-number
+                // framing on the 42 neighborhood index pages. It has to be 0 because the
+                // default of 1 makes fitBounds round *down* to a whole zoom level — measured
+                // 2026-08-09, that left the city spanning 59% of a 679px-wide box.
+                map.options.zoomSnap = 0;
+
+                map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10] });
+
             }
             
         })
