@@ -7,7 +7,8 @@
     change: the 42-neighborhood link list is server-rendered here, where topiclanding built
     it in JS from the `neighborhoods` global. That list is what gives a crawler 42 links per
     topic — 210 in all — into the generated report pages, which is the argument Option D
-    rests on.
+    rests on. It stays in the markup when collapsed, so the collapse costs nothing there;
+    it is also the no-JS and screen-reader equivalent of the map beside it.
 
     Deliberately not the SPA. Before this branch the topic URL rendered nr-topic-spa.html
     with no neighborhood, which produces eight empty section divs and a dangling
@@ -34,22 +35,73 @@
 
             {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
 
-            <h1 class="h2 mt-3">{{ .Title }}</h1>
-            <div class="report-description fs-lg my-2">{{ .Content }}</div>
+            <div class="row mt-3">
+
+                {{/* Clickable UHF42 map, as topiclanding.html had it. The partial already
+                     handles this page: getReportAndNeighborhood recognises a topic slug in
+                     the first path segment, so a click navigates to <nbhd>/<topic>/ — the
+                     URL shape this branch serves. `geocode` is absent on a topic page, which
+                     is what leaves the map unzoomed and nothing highlighted. */}}
+                <div class="col-md-4 mb-3">
+                    <div class="border" style="height: 450px">
+                        {{- partial "nr-leaflet" . -}}
+                    </div>
+
+                    {{/* Typeahead over the same 42 rows, searching name and ZIP. `name` is
+                         the site-wide flexdatalist convention rather than a description of
+                         this field; `id` is load-bearing, since flexdatalist derives the
+                         .flex_search-flexdatalist wrapper the stylesheet targets from it. */}}
+                    <div class="btn-group w-100" role="group">
+                        <input
+                            id="flex_search"
+                            type="search"
+                            class="flexdatalist form-control"
+                            name="indicator_name_suggestion"
+                            placeholder="Search name or ZIP code"
+                        />
+                        <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <h1 class="h2">{{ .Title }}</h1>
+                    <div class="report-description fs-lg my-2">{{ .Content }}</div>
+
+                    {{/* Arrow only where the map is actually to the left; below md the
+                         columns stack and it points at nothing */}}
+                    <p class="font-weight-bold">
+                        <i class="fas fa-arrow-left mr-1 text-primary d-none d-md-inline" aria-hidden="true"></i>Choose a neighborhood from the map or the search box to get a report.
+                    </p>
+                </div>
+
+            </div>
 
             {{/* One link per neighborhood, straight from the canonical 42 rows. Ranged over
                  uhflist rather than .Site.Pages so the list does not depend on the generated
-                 pages having been built in any particular order */}}
-            <h2 class="h4 mt-4">Choose a neighborhood</h2>
+                 pages having been built in any particular order. Collapsed behind the same
+                 control the Neighborhood Reports landing page uses, but server-rendered
+                 rather than built in JS the way nr-show-zips builds its copy. */}}
+            <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#nr-neighborhood-list"
+                    aria-expanded="false"
+                    aria-controls="nr-neighborhood-list">
+                <span class="flex-grow-1 text-lg">See neighborhood list</span>
+                <span class="plus">&plus;</span>
+                <span class="minus">&minus;</span>
+            </button>
 
-            <ul class="list-unstyled row" id="nr-neighborhood-list">
-                {{- range site.Data.globals.uhflist -}}
-                    <li class="col-md-4 col-sm-6 mb-2">
-                        <a href="{{ relURL (printf "neighborhood-reports/%s/%s/" .page_name $topicSlug) }}">{{ .UHF_name }}</a>
-                        <span class="fs-sm text-muted d-block">{{ .Zipcodes }}</span>
-                    </li>
-                {{- end -}}
-            </ul>
+            <div class="collapse" id="nr-neighborhood-list">
+                <ul class="list-unstyled row neighborhood-list border border-top-0 border-primary p-3 m-0">
+                    {{- range site.Data.globals.uhflist -}}
+                        <li class="col-md-4 col-sm-6 mb-2">
+                            <a href="{{ relURL (printf "neighborhood-reports/%s/%s/" .page_name $topicSlug) }}">{{ .UHF_name }}</a>
+                            <span class="fs-sm text-muted d-block">{{ .Zipcodes }}</span>
+                        </li>
+                    {{- end -}}
+                </ul>
+            </div>
 
         </div>
     </div>
@@ -84,5 +136,64 @@
     <h2 class="d-none">{{ .indicator_description }}</h2>
 
 {{- end -}}
+
+{{- end -}}
+
+
+{{- /* ====  neighborhood typeahead  ==== */ -}}
+
+{{- /* In js_bot, matching section.html: flexdatalist is the only page here that needs it, so
+       it is not in head.html. No <style> block accompanies it — the five .flexdatalist-*
+       rules section.html still inlines are already in __portal-custom.scss, site-wide. */ -}}
+
+{{ define "js_bot" }}
+
+    {{- $topicSlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+    {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+    <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
+
+    {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+    <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+    <script type="text/javascript">
+
+        // Search the 42 UHF rows by name or ZIP, then jump to that neighborhood's report for
+        // this topic. `neighborhoods` is the global head.html builds from uhflist.json.
+        function loadNeighborhoodSearch() {
+
+            const $input = $('.flexdatalist').flexdatalist({
+                minLength: 0,
+                valueProperty: ["UHF_id", "UHF_name"],
+                textProperty: "{UHF_name}",
+                selectionRequired: false,
+                focusFirstResult: true,
+                visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
+                searchIn: ["UHF_name", "Zipcodes"],
+                searchContain: true,
+                searchByWord: true,
+                redoSearchOnFocus: true,
+                toggleSelected: true,
+                cache: false,
+                data: neighborhoods
+            });
+
+            // The topic comes from Hugo, not from sniffing the rendered <h1> the way
+            // topiclanding.html did — this page knows its own slug at build time.
+            $input.on('select:flexdatalist', (e, set) => {
+                window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/{{ $topicSlug }}/'
+            })
+
+            // flexdatalist hides the original input and renders its own; "~input" is how the
+            // other copies of this reach that visible one.
+            $("#clear").on("click", () => {
+                $($input).find("~input").val("").trigger("focus")
+            })
+
+        }
+
+        loadNeighborhoodSearch()
+
+    </script>
 
 {{- end -}}

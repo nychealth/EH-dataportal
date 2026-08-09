@@ -125,6 +125,23 @@ $color-data-explorer: #0A408A;
   border-bottom: none;
 }
 
+/* Same +/- swap for a trigger driven by Bootstrap collapse, which marks the button
+   .collapsed while shut rather than .active while open. Scoped to .nr-list-toggle because
+   the hand-rolled button in nr-show-zips.html never carries .collapsed, so an unscoped
+   :not(.collapsed) would match it permanently and show both glyphs. */
+
+.nr-list-toggle:not(.collapsed) .plus {
+  display: none;
+}
+
+.nr-list-toggle:not(.collapsed) .minus {
+  display: block;
+}
+
+.nr-list-toggle:not(.collapsed) {
+  border-bottom: none;
+}
+
 .neighborhood-list {
   background-color: #EFFAF4;
   font-size: 18px;
