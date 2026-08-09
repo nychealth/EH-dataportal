@@ -89,17 +89,6 @@
     #nr-map:hover {
         cursor: pointer;
     }
-    /* The neighborhood name is inside the <h1> so the heading reads as a whole sentence —
-        to a crawler, a screen reader and Pagefind alike. It was a sibling span, which left
-        the heading text ending on "in". Restored to a block here so the rendering is
-        unchanged: name on its own line, in the accent colour.
-        The margin-top replaces what used to separate the two lines — the heading's own
-        margin-bottom, which stopped applying between them once the name moved inside it.
-        0.5rem is that value ($headings-margin-bottom). */
-    .nr-report-heading .sub-title {
-        display: block;
-        margin-top: 0.5rem;
-    }
     @media print {
         .col-print-12 {
             max-width: 100%;
@@ -136,7 +125,7 @@
                 <div class="col-12 mb-2" id="nr-mobile-title">
                     <h1 class="h2 nr-report-heading">
                         {{ .Title }} <span style="font-weight:normal">in</span>
-                        <span class="h2 sub-title text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
+                        <span class="h2 text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
                     </h1>
                 </div>
             </div>
@@ -217,7 +206,7 @@
                     <div id="nr-report-header">
                         <div class="d-none d-md-block mb-">
                             <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
-                                <span class="h2 sub-title text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
+                                <span class="h2 text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
                             </h1>
                         </div>
 
