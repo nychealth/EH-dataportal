@@ -60,7 +60,7 @@ the one caveat are in the `project-isolated-hugo-build` memory.
 
 ## Root-cause claims
 
-A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at **any change size**: a one-property CSS fix needs it as much as a template-wide refactor. Plausibility is not evidence, and a well-written explanation is not a verified one.
+A claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at **any change size**: a one-property CSS fix needs it as much as a template-wide refactor, and to **more than diagnosis** — describing what a class does when presenting an option is the same assertion with the same failure mode. `.comp-*` was described as colouring its text, from the class name alone, when its only rules set a `::before` emoji. Plausibility is not evidence, and a well-written explanation is not a verified one.
 
 - **State the disconfirming test you ran and what it showed**, before proposing the fix. "I hid the child element and the ring rendered correctly" is evidence. "Outlines don't follow asymmetric border-radius" is a guess.
 - **If a nearby working example contradicts your theory, the theory is wrong.** Do not add a secondary explanation for why the working case is exempt — that is how a wrong diagnosis survives review.
@@ -350,3 +350,5 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - **SRI + line endings.** Integrity hash mismatches on production usually mean `CRLF` line endings snuck in. GitHub Actions normalizes these on merge.
 
 Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild. Relatedly, a server started *before* a shared-template edit can go on serving stale pages, so a smoke run may pass against output that predates your change.
+
+After a rename or delete, fetch the served asset and assert the **old** identifier is absent — that is what separates a broken change from a stale cache. An unchanged fingerprint alongside unchanged output is the tell.
