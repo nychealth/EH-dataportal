@@ -29,13 +29,10 @@ const renderSection = (section, neighborhoodName) => {
         return;
     }
 
-    // Create a local accordion parent id so each section collapses independently
-    const accordionParentId = 'nr-accordion-' + section.id;
-
     rows.forEach(row => {
 
         const card = document.createElement('div');
-        card.innerHTML = buildIndicatorCard(row, neighborhoodName, accordionParentId);
+        card.innerHTML = buildIndicatorCard(row, neighborhoodName);
         container.appendChild(card);
 
     });

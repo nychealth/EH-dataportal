@@ -35,7 +35,7 @@ const escapeAttr = value => {
 // ----------------------------------------------------------------------- //
 
 // Returns one indicator's accordion HTML — header button plus its collapse panel
-const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
+const buildIndicatorCard = (row, neighborhoodName) => {
 
     // ----- resolve ids, value, and units ----- //
 
@@ -187,7 +187,6 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
     const detailHTML =
         '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
             'aria-labelledby="' + escapeAttr(headingId) + '" ' +
-            'data-parent="#' + escapeAttr(accordionParentId) + '" ' +
             'data-indicator-name="' + escapeAttr(row.indicator_data_name || '') + '" ' +
             'data-legend-label="' + escapeAttr(units) + '" ' +
             'data-geocode="' + escapeAttr(row.geo_join_id || row.geo_entity_id || '') + '">' +
