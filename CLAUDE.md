@@ -145,9 +145,15 @@ worked before still works, but nothing renders it the way it used to. Three page
 a stylesheet over the screen one.** `buildIndicatorCard` in `assets/js/nr-topic-spa/cards.js` emits
 two renditions of every indicator: the screen row, which is `d-print-none`, and a `print-only`
 sibling carrying the same name, value and units at 50/25/25 plus a full-sentence tertile label from
-`getTertilePrintLabel`. Two renditions rather than one, because the content genuinely differs — the
+`getTertileInlineLabel`. Two renditions rather than one, because the content genuinely differs — the
 screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print wants a
-sentence, and the screen labels carry a `.comp-*` class whose `::before` injects an emoji. Both are
+sentence. The sentence is the same function the expanded panel uses, deliberately: a reader who
+opens a row on screen and then prints it would otherwise get the same fact in two vocabularies. It
+carries a `.comp-*` class whose `::before` injects an emoji (`assets/js/nr-topic-spa/tertiles.js`
+sets the class, `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html` the `content`), and
+those three rules are the *only* thing `.comp-*` does — there is no colour rule anywhere, so the
+emoji is the entire visual signal and a mono printer flattens ✅ against ‼️ to two grey glyphs.
+Suppressing them in print is a `content: none` rule away if that ever matters. Both renditions are
 built from the same locals, so they cannot drift. Panels never print: `@media print` in
 `assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
 has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
