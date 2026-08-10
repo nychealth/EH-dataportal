@@ -6,20 +6,21 @@ rows. Seen on Chromium on Windows and on Chrome and Safari on iOS 26; the cause 
 is why it is browser-independent. Second complaint, older and true on production too: a panel the
 reader expanded on screen prints expanded, which is not wanted.
 
-**Closed 2026-08-10. All four tasks done, browser-verified, and committed as
-`8daaf8ed7d..08273ba383`, including the `CLAUDE.md` print contract and its stamp.** A fifth change
-followed the same day — task 5 below, the tertile wording swap.
+**Closed 2026-08-10. All five tasks done, browser-verified, and committed as
+`8daaf8ed7d..cbe04801d5`, including the `CLAUDE.md` print contract and its stamp.** Task 5, the
+tertile wording swap, followed the same day and reversed task 1's wording decision. The last five
+commits of that range were unpushed as of 2026-08-10.
 
 ## Ledger
 
 | # | Task | Status | Proof that ran |
 |---|---|---|---|
-| 1 | `getTertilePrintLabel` in `assets/js/nr-topic-spa/tertiles.js` | **DONE 2026-08-10**, uncommitted | `npm run lint` exit 0. That is also the positive control CLAUDE.md asks for: the name is declared in `tertiles.js` and called from `cards.js`, so a green run proves `scanDeclaredGlobals` loaded the directory rather than silently returning nothing |
-| 2 | Print-only row from `buildIndicatorCard` (`cards.js`) | **DONE 2026-08-10**, uncommitted | `[verified 2026-08-10: Playwright, print media emulated, local_stage :8080]` printed `body.innerText` **1,459 → 4,361 chars**, 23 rows against 0. Diffed line-by-line against the live production capture: the 16 tertile sentences and 16 values before the divergence point match **exactly**; from index 16 dev runs one ahead of prod throughout, a pure insertion, identified as the `Mold in homes, 2019` row that staging carries and production does not. Geometry under print: children 402/201/201 of an 835px row, all at the same `top` — 50/25/25 side by side, not stacked |
-| 3 | `@media print` collapse rule (`assets/scss/theme.scss`) | **DONE 2026-08-10**, uncommitted | `[verified 2026-08-10: Playwright]` with a panel expanded on screen, under print media the open panel computes `display:none`, height **0**, and printed text is **4,361 chars — byte-identical to the collapsed-state capture**. That equality is the real claim: print output is independent of screen state |
-| 4 | Restore the print-only QR code (`nr-topic-spa.html`, `report.js`) | **DONE 2026-08-10**, uncommitted | `[verified 2026-08-10: Playwright]` `#qrcode img` present, `.print-only` wrapper `display:flex` under print media. Staleness fix proven by switching neighborhood via `renderAll()` and hashing the **full** `src`: `1842390694` → `-371523795`. **The prescribed check was wrong and is corrected here** — comparing a 60-char prefix and the length reported *no change*, because a type-10 QR GIF is fixed-size and shares a header. Positive control: the library returns different markup for two different strings. Compare full strings, never a prefix |
+| 1 | `getTertilePrintLabel` in `assets/js/nr-topic-spa/tertiles.js` | **DONE 2026-08-10**, committed `8daaf8ed7d` | `npm run lint` exit 0. That is also the positive control CLAUDE.md asks for: the name is declared in `tertiles.js` and called from `cards.js`, so a green run proves `scanDeclaredGlobals` loaded the directory rather than silently returning nothing |
+| 2 | Print-only row from `buildIndicatorCard` (`cards.js`) | **DONE 2026-08-10**, committed `8daaf8ed7d` | `[verified 2026-08-10: Playwright, print media emulated, local_stage :8080]` printed `body.innerText` **1,459 → 4,361 chars**, 23 rows against 0. Diffed line-by-line against the live production capture: the 16 tertile sentences and 16 values before the divergence point match **exactly**; from index 16 dev runs one ahead of prod throughout, a pure insertion, identified as the `Mold in homes, 2019` row that staging carries and production does not. Geometry under print: children 402/201/201 of an 835px row, all at the same `top` — 50/25/25 side by side, not stacked |
+| 3 | `@media print` collapse rule (`assets/scss/theme.scss`) | **DONE 2026-08-10**, committed `b60830a4b2` | `[verified 2026-08-10: Playwright]` with a panel expanded on screen, under print media the open panel computes `display:none`, height **0**, and printed text is **4,361 chars — byte-identical to the collapsed-state capture**. That equality is the real claim: print output is independent of screen state |
+| 4 | Restore the print-only QR code (`nr-topic-spa.html`, `report.js`) | **DONE 2026-08-10**, committed `df528f920e` | `[verified 2026-08-10: Playwright]` `#qrcode img` present, `.print-only` wrapper `display:flex` under print media. Staleness fix proven by switching neighborhood via `renderAll()` and hashing the **full** `src`: `1842390694` → `-371523795`. **The prescribed check was wrong and is corrected here** — comparing a 60-char prefix and the length reported *no change*, because a type-10 QR GIF is fixed-size and shares a header. Positive control: the library returns different markup for two different strings. Compare full strings, never a prefix |
 
-| 5 | Print row uses `getTertileInlineLabel`; `getTertilePrintLabel` deleted | **DONE 2026-08-10**, uncommitted | `npm run lint` exit 0. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` printed text 4,268 → 4,233 chars (shorter because "In the middle of **NYC** neighborhoods" lost a word, and `::before` emoji never appear in `innerText`), 21 sentences over 22 rows either way — the unranked row correctly carries none. All three marker classes present, `comp-good`/`comp-bad`/`comp-null`, 21 markers, `::before` resolving to the emoji. Screenshotted under print media |
+| 5 | Print row uses `getTertileInlineLabel`; `getTertilePrintLabel` deleted | **DONE 2026-08-10**, committed `3af05d965e` | `npm run lint` exit 0. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` printed text 4,268 → 4,233 chars (shorter because "In the middle of **NYC** neighborhoods" lost a word, and `::before` emoji never appear in `innerText`), 21 sentences over 22 rows either way — the unranked row correctly carries none. All three marker classes present, `comp-good`/`comp-bad`/`comp-null`, 21 markers, `::before` resolving to the emoji. Screenshotted under print media |
 
 **A stale bundle nearly read as a failed change here.** The first post-swap check reported the old
 wording and zero markers, against a `tertiles.d05e114a7ace7785.js` that still contained the deleted
@@ -88,9 +89,10 @@ present on dev. The entire 2,836-character gap is the missing rows.
   `.comp-null` are defined *only* as `::before` rules in
   `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`; computed colour on those spans is
   `rgb(33, 37, 41)`, identical to `body` `[verified 2026-08-10: grep across assets/scss and themes,
-  plus getComputedStyle in the browser]`. So the emoji is the whole visual signal, and a mono
-  printer renders ✅ and ‼️ as two grey glyphs. Accepted knowingly; a `content: none` print rule
-  would suppress them.
+  plus getComputedStyle in the browser]`. So the emoji is the whole visual signal. **Untested on a
+  greyscale printer**, where ✅ and ‼️ would be left differing only in shape — reasoned from the
+  absence of a colour rule, not measured. Accepted knowingly; a `content: none` print rule would
+  suppress them.
 - **The QR code comes back.** Offered as optional; the user asked for it.
 
 ## Task detail

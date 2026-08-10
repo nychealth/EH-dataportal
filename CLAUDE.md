@@ -152,7 +152,8 @@ opens a row on screen and then prints it would otherwise get the same fact in tw
 carries a `.comp-*` class whose `::before` injects an emoji (`assets/js/nr-topic-spa/tertiles.js`
 sets the class, `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html` the `content`), and
 those three rules are the *only* thing `.comp-*` does — there is no colour rule anywhere, so the
-emoji is the entire visual signal and a mono printer flattens ✅ against ‼️ to two grey glyphs.
+emoji is the entire visual signal — untested on a greyscale printer, where ✅ and ‼️ would be left
+differing only in shape.
 Suppressing them in print is a `content: none` rule away if that ever matters. Both renditions are
 built from the same locals, so they cannot drift. Panels never print: `@media print` in
 `assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
