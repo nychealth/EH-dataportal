@@ -78,6 +78,35 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 };
 
 
+// Expands the rank into the plain sentence the printed row carries.
+// Deliberately not getTertileInlineLabel: that one wraps the judgment word in a .comp-*
+// class whose ::before injects an emoji, and it says "In the middle of neighborhoods".
+// These are the strings the retired nr-indicator-new.html printed, kept verbatim so the
+// printed report reads the same as the one people have today
+const getTertilePrintLabel = (rank, rankReverse) => {
+
+    const r = String(rank);
+    const reverse = isRankReversed(rankReverse);
+
+    if (r === '1') {
+        return reverse ? 'Less than most neighborhoods' : 'Higher than most neighborhoods';
+    }
+
+    // Rank 2 prints a sentence although the screen pill is blank for it — the asymmetry
+    // is why a separate print rendition exists at all
+    if (r === '2') {
+        return 'In the middle of NYC neighborhoods';
+    }
+
+    if (r === '3') {
+        return reverse ? 'Higher than most neighborhoods' : 'Less than most neighborhoods';
+    }
+
+    return '';
+
+};
+
+
 // Compares a neighborhood value against a borough or city value, with the judgment class
 const getComparison = (neighVal, refVal, rankReverse) => {
 

@@ -66,6 +66,30 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
         pillHTML = '<span class="' + pillClass + '">' + pillLabel + '</span>';
     }
 
+    // ----- print rendition of the header row ----- //
+
+    // The screen row is d-print-none, so print needs its own copy of the same three
+    // facts. It is a second rendition rather than a print stylesheet over the first
+    // because the content genuinely differs: the pill is blank for rank 2 and shows a
+    // bare "Higher"/"Lower" otherwise, where print carries a full sentence. Both are
+    // built from the locals above, so the two cannot drift the way the retired
+    // nr-indicator-new.html's two copies could — that one recomputed each side from .data.
+    // Plain divs at 50/25/25, not grid columns: .print-only resolves to display:flex
+    const printRowHTML =
+        '<div class="col-12 print-only" style="flex-direction:row; width:100%;">' +
+            '<div style="width:50%;" class="border-right pl-1">' +
+                '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
+                '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
+            '</div>' +
+            '<div style="width:25%;" class="border-right pl-1">' +
+                '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
+                '<span class="fs-xs font-weight-normal">' + units + '</span>' +
+            '</div>' +
+            '<div style="width:25%;" class="pl-1">' +
+                getTertilePrintLabel(row.data_value_rank, row.rankReverse) +
+            '</div>' +
+        '</div>';
+
     // ----- header HTML ----- //
 
     // Every id and data-* interpolation below goes through escapeAttr. The generated
@@ -90,6 +114,7 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
                             '<div class="float-right mt-1">' + pillHTML + '</div>' +
                         '</div>' +
                     '</div>' +
+                    printRowHTML +
                 '</button>' +
             '</h2>' +
         '</div>';
