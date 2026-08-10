@@ -74,6 +74,8 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
     // bare "Higher"/"Lower" otherwise, where print carries a full sentence. Both are
     // built from the locals above, so the two cannot drift the way the retired
     // nr-indicator-new.html's two copies could — that one recomputed each side from .data.
+    // The sentence is getTertileInlineLabel, the same one the expanded panel shows, so a
+    // reader who opens a row and prints it does not get the same fact in two vocabularies.
     // Plain divs at 50/25/25, not grid columns: .print-only resolves to display:flex
     const printRowHTML =
         '<div class="col-12 print-only" style="flex-direction:row; width:100%;">' +
@@ -86,7 +88,7 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
                 '<span class="fs-xs font-weight-normal">' + units + '</span>' +
             '</div>' +
             '<div style="width:25%;" class="pl-1">' +
-                getTertilePrintLabel(row.data_value_rank, row.rankReverse) +
+                getTertileInlineLabel(row.data_value_rank, row.rankReverse) +
             '</div>' +
         '</div>';
 
