@@ -62,15 +62,15 @@ related:
     <div class="my-2">
         <div class="narrow">
             <p>{{< updateflag data=`[
-  {"src": "../../data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
-  {"src": "../../data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
-  {"src": "../../data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
+  {"src": "data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
+  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
   
 ]` >}}</p>
             <p>For 10 years, the New York City Community Air Survey (NYCCAS) has measured air quality at 100 locations around NYC. We’ve combined these measurements with data on things related to air quality - like traffic, building emissions, green space, and much more - to model seasonal air quality in every New York City neighborhood. 
                 </p>
-            <p>Our full findings are available in <a href="{{< baseurl >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
+            <p>Our full findings are available in <a href="{{< relURL >}}key-topics/airquality/nyccas/">our annual report</a> - but here are a few other interesting things we've found along the way.</p>
             </div>
             <div class="my-2 border" style="background:#f2f2f2;">
                 <div class="narrow py-4">
@@ -163,19 +163,19 @@ related:
                     </div>
                     <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" data-lazy-src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" data-lazy-src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" data-lazy-src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
@@ -212,13 +212,13 @@ related:
                 </div>
                 <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel" aria-hidden="true">
                     <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
-                        <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                        <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" data-lazy-src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel" aria-hidden="true">
                     <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
-                        <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                        <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" data-lazy-src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
@@ -262,7 +262,7 @@ related:
 </div>
 <!--end color panel-->
     <div class="narrow">
-        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="{{< baseurl >}}key-topics/airquality/">visit the Air Quality Hub</a>.</p>
+        <p>For more information about NYCCAS and our findings over 10 years of air quality monitoring, <a href="{{< relURL >}}key-topics/airquality/">visit the Air Quality Hub</a>.</p>
         </div>
         <!-- .narrow -->
         <footer class="narrow my-4" id="article-footer">

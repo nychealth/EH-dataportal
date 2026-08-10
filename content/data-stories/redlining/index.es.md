@@ -56,7 +56,7 @@ El mapa a continuación muestra el alcance del redlining en la ciudad de Nueva Y
 
 {{< rawhtml >}}
 <div class="py-0">
-    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 {{< /rawhtml >}}
@@ -130,7 +130,7 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
     </div>
     <div class="tab-pane fade" id="bronx" role="tabpanel" aria-labelledby="bronx-tab">
         <br>
-        <iframe title="Bx - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-P5YVE" src="https://datawrapper.dwcdn.net/P5YVE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="381"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+        <iframe title="Bx - Spanish" aria-label="Stacked Bars" id="datawrapper-chart-P5YVE" data-lazy-src="https://datawrapper.dwcdn.net/P5YVE/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="381"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <!-- <p>As with Manhattan, huge swaths of residential neighborhoods in the Bronx were
             declared "declining" or "hazardous" in HOLC's redlining map. Unlike
@@ -140,27 +140,27 @@ Se discriminaron grandes áreas de la ciudad de Nueva York. Explore el alcance d
     <div class="tab-pane fade" id="brooklyn" role="tabpanel"
         aria-labelledby="brooklyn-tab">
         <br>
-        <iframe title="Bklyn - Sp" aria-label="Stacked Bars" id="datawrapper-chart-YRGLD" src="https://datawrapper.dwcdn.net/YRGLD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="493"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+        <iframe title="Bklyn - Sp" aria-label="Stacked Bars" id="datawrapper-chart-YRGLD" data-lazy-src="https://datawrapper.dwcdn.net/YRGLD/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="493"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <!-- <p>Brooklyn also saw extensive redlining that lead to deep disinvestment and
             generations of poverty.</p> -->
     </div>
     <div class="tab-pane fade" id="queens" role="tabpanel" aria-labelledby="queens-tab">
         <br>
-        <iframe title="Qns - Sp" aria-label="Stacked Bars" id="datawrapper-chart-bq8UR" src="https://datawrapper.dwcdn.net/bq8UR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="397"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+        <iframe title="Qns - Sp" aria-label="Stacked Bars" id="datawrapper-chart-bq8UR" data-lazy-src="https://datawrapper.dwcdn.net/bq8UR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="397"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
         </script>
         <br><br>
         <!-- <p>Queens saw significantly less redlining than other boroughs.</p> -->
     </div>
     <div class="tab-pane fade" id="staten" role="tabpanel" aria-labelledby="staten-tab">
         <br>
-        <iframe title="Si - Sp" aria-label="Stacked Bars" id="datawrapper-chart-f2OOZ" src="https://datawrapper.dwcdn.net/f2OOZ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="133"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+        <iframe title="Si - Sp" aria-label="Stacked Bars" id="datawrapper-chart-f2OOZ" data-lazy-src="https://datawrapper.dwcdn.net/f2OOZ/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="133"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
         <br><br>
         <!-- <p>Like Queens, Staten Island saw much less redlining than other boroughs.</p> -->
     </div>
     <div class="tab-pane fade" id="citywidemap" role="tabpanel"
         aria-labelledby="map-tab">
-        <iframe title="Map - Sp." aria-label="Map" id="datawrapper-chart-NBnYv" src="https://datawrapper.dwcdn.net/NBnYv/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="661"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
+        <iframe title="Map - Sp." aria-label="Map" id="datawrapper-chart-NBnYv" data-lazy-src="https://datawrapper.dwcdn.net/NBnYv/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="661"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();</script>
     </div>
 </div>
 {{< /rawhtml >}}

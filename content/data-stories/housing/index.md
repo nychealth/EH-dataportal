@@ -41,10 +41,10 @@ related:
 ---
 
 {{< updateflag data=`[
-  {"src": "../../data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"},
-  {"src": "../../data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
-  {"src": "../../data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
-  {"src": "../../data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
+  {"src": "data-explorer/housing-maintenance/?id=45", "text": "Housing maintenance"},
+  {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"},
+  {"src": "data-explorer/asthma/?id=2379", "text": "Asthma emergency department visits (ages 5 to 17)"},
+  {"src": "data-explorer/social-conditions/?id=2325", "text": "Race and ethnicity"}
 ]` >}}
 
 ### For health, place matters
@@ -618,7 +618,7 @@ As a result, the highest rates of asthma emergency department visits for childre
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
         <iframe title="" aria-label="chart" id="datawrapper-chart-XBLYk"
-            src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
+            data-lazy-src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
             frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="600"></iframe>
@@ -679,7 +679,7 @@ But a poorly maintained, unhealthy home can’t provide a truly safe haven. Inst
 <strong>Get the data</strong>
 
 - Data on housing maintenance conditions come from the [2017 Housing and Vancancy Survey](https://www.census.gov/programs-surveys/nychvs.html).
-- [Data on childhood asthma emergency department visits]({{< baseurl >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
-- [Data on the race/ethnicity of people by neighborhood]({{< baseurl >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
+- [Data on childhood asthma emergency department visits]({{< relURL >}}data-explorer/asthma/?id=2383) come from the New York State Statewide Planning and Research Cooperative System (SPARCS) Deidentified Hospital Discharge Data.
+- [Data on the race/ethnicity of people by neighborhood]({{< relURL >}}data-explorer/social-conditions/?id=2325) come from the American Community Survey.
 
 </div>

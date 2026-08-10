@@ -83,10 +83,10 @@ People can get West Nile virus when mosquitoes are active, usually between July 
     <div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
     <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
-    <div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+    <div style="min-height:291px" id="datawrapper-vis-TYamB" data-lazy-embed-src="https://datawrapper.dwcdn.net/TYamB/embed.js"><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
     <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel">
-      <div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+      <div style="min-height:334px" id="datawrapper-vis-yRPHe" data-lazy-embed-src="https://datawrapper.dwcdn.net/yRPHe/embed.js"><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
 </div>
 </div>
@@ -112,7 +112,7 @@ Although the increase in Lyme disease cases reported that began in 2022 is due t
 
 ## Climate variables like temperature and rainfall can affect vector-borne diseases
 
-Climate change impacts vector-borne diseases as it does many other health issues. However, the direct impact of the changing climate on vector-borne diseases is more challenging to anticipate than it is for <a href="../../data-features/heat-report">frequent heat waves</a> and <a href="../flooding-and-health/">intense storms.</a> This is because of the complex interactions between climate factors, like heat and rainfall, and the vectors themselves, their ecosystems, and the animals and people they bite.
+Climate change impacts vector-borne diseases as it does many other health issues. However, the direct impact of the changing climate on vector-borne diseases is more challenging to anticipate than it is for <a href="{{< relURL >}}data-features/heat-report/">frequent heat waves</a> and <a href="{{< relURL >}}data-stories/flooding-and-health/">intense storms.</a> This is because of the complex interactions between climate factors, like heat and rainfall, and the vectors themselves, their ecosystems, and the animals and people they bite.
 
 </div>
 <div class="wide my-4">

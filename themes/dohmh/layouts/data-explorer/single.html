@@ -329,6 +329,18 @@
         color: green;
         font-weight: bold;
         }
+
+    /* nested grouping levels (Time > GeoType > Borough): progressively indented and lighter so the hierarchy reads visually */
+    table .group td[data-group-level="1"] {
+        padding-left: 1.75rem;
+        background-color: #F5F5F5;
+        }
+    table .group td[data-group-level="2"] {
+        padding-left: 3.25rem;
+        background-color: #FAFAFA;
+        font-weight: 600;
+        font-size: .9em;
+        }
     .de-tab {
         font-size: 16px;
     }
@@ -579,6 +591,14 @@
                                         </div>
 
                                     </div>
+
+                                    <p class="fs-xs mb-0">Display:</p>
+                                    <div class="border py-1 mb-2 optionbox">
+                                        <label class="fs-xs mb-0 px-2 d-flex align-items-center" for="groupByBoroughToggle" style="cursor:pointer;">
+                                            <input class="largerCheckbox mr-1" type="checkbox" id="groupByBoroughToggle" checked />
+                                            <span>Group neighborhoods by borough</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -779,7 +799,7 @@
                             <!-- Data sources -->
                             <div class="col-md-10 col-sm-12">
                                     <div class="visFooterBox">
-                                        <span class="fs-xs font-weight-bold">Source: <a href="../../about/data-sources"><i class="fa-solid fa-circle-question"></i></a></span> <p class="fs-xs indicator-sources"></p>
+                                        <span class="fs-xs font-weight-bold">Source: <a href={{ relURL "about/data-sources" }}><i class="fa-solid fa-circle-question"></i></a></span> <p class="fs-xs indicator-sources"></p>
                                     </div>
                             </div>
                         </div>
@@ -906,7 +926,7 @@
                             <li>Neighborhood Tabulation Areas (NTA)</li>
                         </ul>
                     </p> 
-                    <p>We try to make data available at as fine a geographic resolution as we can. <a href="../../data-stories/geographies/">Read more about different geographies at this data story</a>.</p>
+                    <p>We try to make data available at as fine a geographic resolution as we can. <a href={{ relURL "data-stories/geographies" }}>Read more about different geographies at this data story</a>.</p>
                     <p>It would be convenient if each dataset could be made available at the same geography, but this is not always possible. The neighborhood boundaries available depend on the specifics of the underlying dataset.</p>
 
                 </div>
@@ -997,7 +1017,7 @@
                 <div class="modal-body">
                     <p>On this site, we try to show how environmental factors might be connected to health outcomes. One way we do this is with <strong>Correlates</strong>. We choose potentially-related datasets and display them on a scatterplot so you can see how these two datasets are correlated.</p>
                     <p>The <strong>Disparities view</strong> displays neighborhoods by poverty category to show underlying disparities in the data.</p>
-                    <p><a href="../../data-stories/povasthma">Read more about correlation here</a>.</p>
+                    <p><a href={{ relURL "data-stories/povasthma" }}>Read more about correlation here</a>.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

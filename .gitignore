@@ -74,3 +74,4 @@ scripts/de-characterization-current/
 
 # NR characterization --check output (baseline IS committed)
 scripts/nr-characterization-current/
+.claude/

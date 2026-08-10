@@ -64,7 +64,7 @@
                     </a>
                     <div class="collapse" id="panel-acc-button-{{ .number }}" role="tabpanel" aria-labelledby="acc-button-{{ .number }}" data-parent="#accordion-01">
                         <div class="bg-white text-black p-2">
-                            {{ .copy | markdownify }}
+                            {{ $.RenderString .copy }}
                         </div>
                     </div>
                 </div>

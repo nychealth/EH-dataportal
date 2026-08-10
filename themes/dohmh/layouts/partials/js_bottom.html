@@ -39,23 +39,17 @@
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-{{- /* subscribe button event listener */}}
-
-<script>
-  document.querySelectorAll(".subscribe-link").forEach((el) => {
-    el.addEventListener("click", (e) => {
-      gtag("event", "click_subscribe", {
-        page: window.location.pathname,
-        place: e.target.dataset.subscribeClick,
-      });
-    });
-  });
-</script>
-
 {{- /* NYC template JS (RTL, search and language toggle, back to top) */}} {{-
 $main := resources.Get "js/main.js" | partial "short-fingerprint.html" }}
 <script
   type="text/javascript"
   src="{{ $main.RelPermalink }}"
   integrity="{{ $main.Data.Integrity }}"
+></script>
+
+{{- $site := resources.Get "js/site.js" | partial "short-fingerprint.html" }}
+<script
+  type="text/javascript"
+  src="{{ $site.RelPermalink }}"
+  integrity="{{ $site.Data.Integrity }}"
 ></script>

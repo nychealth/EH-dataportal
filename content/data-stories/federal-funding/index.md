@@ -15,8 +15,8 @@ related:
     url: "data-stories/restaurants-and-air-quality/"
   - title: "What Hurricane Ida and Superstorm Sandy taught us about flooding and health"
     url: "data-stories/flooding-and-health/"
-  - title: "What hot weather means for food safety"
-    url: "data-stories/food/"
+  - title: "Tracking food poisoning outbreaks in NYC"
+    url: "data-stories/food-safety-101/"
 ---
 
 New Yorkers benefit from one of the largest health departments in the world. And at the NYC Health Department, we have one of the most robust environmental health programs in the country. From investigating foodborne illnesses, to monitoring local air, to creating guidance before deadly storms or extreme heat — and much more — the Health Department's work supports the health of all New Yorkers.
@@ -29,7 +29,7 @@ Whether it’s national weather forecast data that we need to prepare for extrem
 
 Preventing heat-related illness is a collaborative effort because climate and weather conditions do not stop at city, state, or national borders.
 
-Hot weather is becoming more intense due to climate change. <a href="../../data-features/heat-report">More than 500 New Yorkers die prematurely due to hot weather each year</a>, most of them because they didn’t have access to an air conditioner (AC) at home.
+Hot weather is becoming more intense due to climate change. <a href="{{< relURL >}}data-features/heat-report/">More than 500 New Yorkers die prematurely due to hot weather each year</a>, most of them because they didn’t have access to an air conditioner (AC) at home.
 
 <strong>So how do we help New Yorkers stay cool and prevent avoidable heat illness and death?</strong>
 
@@ -46,11 +46,11 @@ Connecting the dots between hot weather and health risks will protect renters in
 ### Preparing for and recovering from extreme storms
 
 <figure class="figure">
-<img src="../federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt="Redhook's waterfront and rocky shore"><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
+<img src="{{< relURL >}}data-stories/federal-funding/waterfront_redhook.jpg" class="figure-img my-1" alt="Redhook's waterfront and rocky shore"><figcaption class="figure-caption">Image credit: Joe Buglewicz</figcaption>
 </figure>
 <br><br>
 
-<a href="../flooding-and-health">Flooding from powerful storms, like Hurricanes Ida and Sandy, can cause injury and death,</a> as well as disrupt access to food, medical care, and reliable power.
+<a href="{{< relURL >}}data-stories/flooding-and-health/">Flooding from powerful storms, like Hurricanes Ida and Sandy, can cause injury and death,</a> as well as disrupt access to food, medical care, and reliable power.
 
 Like with heat events, public weather data helps us prepare, plan, and recover. Emergency preparedness teams use this information to alert New Yorkers who are especially vulnerable to flooding, like those living in basement apartments or low-lying areas of the city.
 
@@ -81,13 +81,13 @@ When our city, state and federal colleagues have access to advanced lab technolo
 ### Tracking pollution helps make our air cleaner
 
 <figure class="figure">
-<img src="../federal-funding/CentralPark_MarleyWhite.jpg" class="figure-img my-1" alt="Central Park with bright purple flowers in bloom"><figcaption class="figure-caption">Image credit: Marley White</figcaption>
+<img src="{{< relURL >}}data-stories/federal-funding/CentralPark_MarleyWhite.jpg" class="figure-img my-1" alt="Central Park with bright purple flowers in bloom"><figcaption class="figure-caption">Image credit: Marley White</figcaption>
 </figure>
 <br><br>
 
 Natural resources — our air, water, forests — don't have boundaries, and pollution from other parts of the world travels to NYC (and vice versa). By having common standards for measuring the cleanliness of our air, water and other natural resources, we can make collective improvements across local, city, state, and national lines.
 
-<a href="../breatheeasy">Over the past 15 years, NYC’s air quality has been improving</a> according to both our local monitoring network and the federal regulatory network. Although New York state and City have set new rules limiting emissions from some pollution sources, the majority of the improvement has come from stricter federal rules and standards for emissions from power plants outside the state and vehicles on the roads throughout the country.
+<a href="{{< relURL >}}data-stories/breatheeasy/">Over the past 15 years, NYC’s air quality has been improving</a> according to both our local monitoring network and the federal regulatory network. Although New York state and City have set new rules limiting emissions from some pollution sources, the majority of the improvement has come from stricter federal rules and standards for emissions from power plants outside the state and vehicles on the roads throughout the country.
 
 Analyses of the federal monitoring network data have established that these national rules and standards have helped reduce negative health outcomes like asthma, related hospital visits, and deaths at the local level.
 

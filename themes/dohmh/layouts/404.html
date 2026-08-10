@@ -1,27 +1,27 @@
 {{- define "main" -}}
 
 <article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
-
+  
   <div class="row">
     <div class="col-md-10 col-sm-12 mx-auto">
-
+      
       <!--start main column-->
-        <div class="chunk row my-4 mb-6" id="main404">
-            <div class="col-9 mx-auto mb-6">
-                <h1>Oops!</h1>
-                <p>This isn't a page on this site. </p>
-                <p>
-                    {{- with .Site.GetPage "_index.md" -}}
-                    You'll be redirected to the <a href="{{ .RelPermalink }}">
-                        Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
+      <div class="chunk row my-4 mb-6" id="main404">
+        <div class="col-9 mx-auto mb-6">
+          <h1>Oops!</h1>
+          <p>This isn't a page on this site. </p>
+          <p>
+            {{- with .Site.GetPage "_index.md" -}}
+            You'll be redirected to the <a href="{{ .RelPermalink }}">
+              Environment and Health Data Portal Home Page</a> in <span id="sec">a few</span> seconds.{{- end -}}</p>
             </div>
-        </div>
-
-        <div class="chunk row my-4 hide mb-6" id="redirectBeta">
+          </div>
+          
+          <div class="chunk row my-4 hide mb-6" id="redirectBeta">
             <div class="col-9 mx-auto mb-6">
               <h1>Time to update your bookmarks!</h1>
               <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
-
+              
             </div>
 
         </div>

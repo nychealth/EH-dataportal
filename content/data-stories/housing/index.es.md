@@ -91,7 +91,7 @@ El mapa a continuación muestra cómo se categorizaban los vecindarios de la ciu
 </div>
 <div class="wide my-4">
 <div class="py-0 mb-4">
-    <iframe src="{{< baseurl >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
+    <iframe src="{{< relURL >}}maps/HOLC_map/HOLC_map.html" scrolling="no" frameborder="0"
         style="position: relative; height: 600px; width: 100%;"></iframe>
 </div>
 </div>
@@ -392,7 +392,7 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
     </div>
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
-            <iframe title=" Scatterplot - spanish" aria-label="Scatter Plot" id="datawrapper-chart-f9rYe" src="https://datawrapper.dwcdn.net/f9rYe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title=" Scatterplot - spanish" aria-label="Scatter Plot" id="datawrapper-chart-f9rYe" data-lazy-src="https://datawrapper.dwcdn.net/f9rYe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
     </div>
 </div>
@@ -443,8 +443,8 @@ Los propietarios y los arrendadores de edificios deben mantener los apartamentos
 
 #### Obtenga los datos 
 - Los datos sobre las condiciones de mantenimiento de viviendas provienen de la [Encuesta de Viviendas y Vacantes (Housing and Vancancy Survey) de 2017.](https://www.census.gov/programs-surveys/nychvs.html).
-- [La información sobre las visitas a la sala de emergencias por asma infantil ]({{< baseurl >}}data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
-- [Los datos sobre la raza/etnia de las personas por vecindario]({{< baseurl >}}data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
+- [La información sobre las visitas a la sala de emergencias por asma infantil ]({{< relURL >}}data-explorer/asthma/?id=2383) provienen de los Datos anonimizados de alta hospitalaria del Sistema Cooperativo de Investigación y Planificación Estatal (Statewide Planning and Research Cooperative System, SPARCS).
+- [Los datos sobre la raza/etnia de las personas por vecindario]({{< relURL >}}data-explorer/social-conditions/?id=2325) provienen de la Encuesta Comunitaria Estadounidense (American Community Survey).
 
 
 
