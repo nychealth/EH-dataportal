@@ -8,8 +8,9 @@ reader expanded on screen prints expanded, which is not wanted.
 
 **Closed 2026-08-10. All five tasks done, browser-verified, and committed as
 `8daaf8ed7d..cbe04801d5`, including the `CLAUDE.md` print contract and its stamp.** Task 5, the
-tertile wording swap, followed the same day and reversed task 1's wording decision. The last five
-commits of that range were unpushed as of 2026-08-10.
+tertile wording swap, followed the same day and reversed task 1's wording decision. The whole range
+is pushed, plus the two records commits that follow it; the branch is still unmerged to
+`production`.
 
 ## Ledger
 
