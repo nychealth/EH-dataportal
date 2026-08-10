@@ -5,28 +5,46 @@ Branch `feature-MOD-Lab-NR-recode-refactor-merge`. Follow-up to
 implementations as deliberately not unified — "converging on the server-rendered one is a separate
 piece of work". This is that work.
 
-**Status as of 2026-08-10: tasks 1 and 3 done; tasks 2, 4, 5 not started.**
+**Status as of 2026-08-10: all five tasks done and browser-verified. Task 1 is committed
+(`0c7f95df78`); tasks 2, 4 and 5 are working-tree changes awaiting three commits. The one thing
+left after those land is the `docs-check` stamp bump — see Next action below.**
+
+## Next action
+
+The `docs-check verified:` stamp at `CLAUDE.md:2` still reads `3a92bc5f19 2026-08-09` and must be
+bumped to the hash of the commit that changes the NR prose (commit 4 below), in a follow-up commit
+of its own — the same shape `88e327c8a0` and `d17786a908` used, because a commit cannot cite its
+own hash. The prose has already been re-read against the tree, so the bump is not a false claim.
+
+```
+git commit -m "CLAUDE.md: point the docs-check stamp at the commit whose prose changed"
+```
 
 ## Ledger
 
 | # | Task | Status | Proof that ran |
 |---|---|---|---|
-| 1 | `partials/nr-neighborhood-list.html` + topic index switched to it | **DONE 2026-08-10** | `[verified 2026-08-10: local_stage :8080, topic index HTML captured before and after, normalized by stripping leading whitespace and the new data-nbhd attribute]` diff is exactly the two task-3 changes and nothing else — all 42 anchors byte-identical, so `path.Join` reproduced the old `printf` hrefs. `data-nbhd` count 0 → 42 is the positive control that the normalization was hiding something real |
-| 2 | Landing page uses the partial; `js_bot` rewrites hrefs to the active topic | Not started | Prescribed: browser, capture one `href` before and after clicking `#Housing`; the before-value must already carry the default topic |
-| 3 | `h3` into the picker partial, prompt paragraph deleted from the topic index | **DONE 2026-08-10** | `[verified 2026-08-10]` topic index: prompt gone, `h3` present, in the same diff as task 1. Landing page: normalized output **byte-identical** to before, i.e. the move is a no-op there. Raw diff showing the tag shift is the control that the server actually rebuilt — an empty normalized diff alone would equally describe a stale page |
-| 4 | Delete `partials/nr-show-zips.html` and its dead SCSS | Not started | Prescribed: `git grep` for its four identifiers returns only docs/comments; `node scripts/smoke-pages.mjs` exit 0 |
-| 5 | `CLAUDE.md` prose + `docs-check` stamp; §8 of the picker-options doc | Not started | Prescribed: `node scripts/docs-check.mjs` exit 0 |
+| 1 | `partials/nr-neighborhood-list.html` + topic index switched to it | **DONE 2026-08-10**, committed `0c7f95df78` | `[verified 2026-08-10: local_stage :8080, topic index HTML captured before and after, normalized by stripping leading whitespace and the new data-nbhd attribute]` diff is exactly the two task-3 changes and nothing else — all 42 anchors byte-identical, so `path.Join` reproduced the old `printf` hrefs. `data-nbhd` count 0 → 42 is the positive control that the normalization was hiding something real |
+| 2 | Landing page uses the partial; `js_bot` rewrites hrefs to the active topic | **DONE 2026-08-10**, uncommitted | `[verified 2026-08-10: Playwright, local_stage :8080]` served HTML has topic-less hrefs (curl); in the DOM **before any click** the East Harlem link already ends `/active_design_physical_activity_and_health/`, which is what proves the load-time call fired rather than only the click handler. After clicking `#Housing` all 42 end `/housing_and_health/` — one distinct final segment across the set. Followed the link: real report page, title "Housing and Health in East Harlem", not the 404 template |
+| 3 | `h3` into the picker partial, prompt paragraph deleted from the topic index | **DONE 2026-08-10**, committed `0c7f95df78` | `[verified 2026-08-10]` topic index: prompt gone, `h3` present, in the same diff as task 1. Landing page: normalized output **byte-identical** to before, i.e. the move is a no-op there. Raw diff showing the tag shift is the control that the server actually rebuilt — an empty normalized diff alone would equally describe a stale page |
+| 4 | Delete `partials/nr-show-zips.html` and its dead SCSS | **DONE 2026-08-10**, uncommitted | `git grep` for its four identifiers left only two comments, both since rewritten. `node scripts/smoke-pages.mjs` exit 0, 15 pages clean. Collapse re-verified in the browser after the SCSS cut: shut → `plus:block/minus:none`, open → `plus:none/minus:block`, 42 items visible, `border-bottom: none`, background still `rgb(239,250,244)` and text `rgb(0,137,57)` — so the base rule covers the open state the deleted `.active` variant used to. `git diff -w` shows only `.active` rules and the rewritten comment |
+| 5 | `CLAUDE.md` prose + §8 of the picker-options doc | **DONE 2026-08-10**, uncommitted; **stamp still pending** | `node scripts/docs-check.mjs` exit 0, 1 doc checked |
 
 Harness notes, carried from the picker-options memo because they cost a session last time. **Call
 the scripts directly** — PowerShell strips the `--` in `npm run smoke -- --flag` and the script
 prints its usage line and exits 1 while looking like a real failure. The harness spawns its own
 `dev_stage` server on :8080 when none is running.
 
-**This session's server is not that one.** A `local_stage` server the user started holds :8080,
-serving under `/local-stage/`. Two consequences. `node scripts/nr-characterization.mjs --check`
-cannot be trusted against it — the committed baseline records `/dev-stage/` pathnames, so every
-target fails on prefix alone, which is a false failure rather than a regression. And nothing here
-may run a static `hugo` build, which would poison that server's `resources/_gen` cache.
+**This session's server was not that one.** A `local_stage` server the user started held :8080,
+serving under `/local-stage/`, and `/local-stage/` is in `dev-server.mjs`'s `PREFIXES`, so the
+harness found and reused it — `smoke` ran against it unmodified. Two consequences. Nothing here
+could run a static `hugo` build, which would poison that server's `resources/_gen` cache. And
+`node scripts/nr-characterization.mjs --check` **was deliberately not run**: its baseline records
+`/dev-stage/` pathnames, so every target would fail on prefix alone, a false failure rather than a
+regression. Skipping it is safe here for a reason independent of the prefix — the two shared
+partials have exactly two callers, `nr-topic-index.html` and `section.html`, and neither is
+`nr-topic-spa.html`, so none of the harness's three report-page targets can see this change
+`[verified 2026-08-10: grep for both partial names across themes/dohmh/layouts/]`.
 
 ## Why
 
@@ -41,8 +59,10 @@ Three defects close with it:
   existing node, so `#neighborhoodList` — the `sr-only` "Select neighborhood" list — ends up empty.
   That list is the text equivalent cited to justify `aria-hidden="true"` on the map
   (`partials/nr-neighborhood-picker.html`, the comment above `.nr-selector-map`).
-  `[claim from code reading — confirm in the browser during task 4 before it goes in a commit
-  message]`
+  `[verified 2026-08-10: Playwright against the pre-change landing page — 0 items in
+  #neighborhoodList against 42 in #neighborhoodList2, with the sr-only "Select neighborhood"
+  heading present above the empty list. Restored the old markup for the check by stashing only
+  section.html, since the working tree had already moved past it]`
 - The landing page's list links go to `<nbhd>/` regardless of which topic button is active.
 - The list exists only after JS runs.
 

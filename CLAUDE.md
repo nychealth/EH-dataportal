@@ -137,21 +137,30 @@ worked before still works, but nothing renders it the way it used to. Three page
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
 - **Topic index** — `/neighborhood-reports/<topic>/`, the 5 topic markdown files, which set
-  `layout: nr-topic-index` and an explicit `url`. Heading and intro sit *above* the picker in the
-  same centred `col-md-8`, not beside it. Then the server-rendered 42-neighborhood link list,
-  collapsed behind a Bootstrap toggle but present in the markup either way, which is what keeps it
-  the crawl path *and* the no-JS equivalent of the map. Plus the hidden indicator-name headings
-  Pagefind indexes.
+  `layout: nr-topic-index` and an explicit `url`. Title and intro sit *above* the picker in the
+  same centred `col-md-8`, not beside it. Then the shared neighborhood list. Plus the hidden
+  indicator-name headings Pagefind indexes.
 
-**The picker is shared by the topic index and the NR landing page** (`section.html`), which had
-drifted to two heights, two placeholders and two search positions while running byte-identical
-flexdatalist config. Two partials, and both are needed — the markup one alone does nothing:
+**The picker and the neighborhood list are both shared by the topic index and the NR landing page**
+(`section.html`), which had drifted to two heights, two placeholders, two search positions and two
+introductions while running byte-identical flexdatalist config. Three partials — and the picker's
+markup one alone does nothing, since the search needs the JS one beside it:
 
-- `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — search box above the map, then the
-  map in a `.nr-selector-map` wrapper (height in `assets/scss/_custom.scss`, since `nr-leaflet`'s
-  `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else — the search field
-  is the plain `.form-control`, 42px on both pages, since the landing page's 64px override was
-  dropped rather than kept as a parameter.
+- `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — a `Choose Neighborhood` heading, the
+  search box, then the map in a `.nr-selector-map` wrapper (height in `assets/scss/_custom.scss`,
+  since `nr-leaflet`'s `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else
+  — the search field is the plain `.form-control`, 42px on both pages, since the landing page's 64px
+  override was dropped rather than kept as a parameter. The heading is in here, not in the callers,
+  for the same reason the rest is.
+- `themes/dohmh/layouts/partials/nr-neighborhood-list.html` — the 42 neighborhood links, collapsed
+  behind a Bootstrap toggle but present in the markup either way, which is what keeps it the crawl
+  path *and* the no-JS equivalent of the map. Takes `topic_slug`: a slug gives `<nbhd>/<topic>/`
+  links, and `""` gives `<nbhd>/` links. Every anchor carries `data-nbhd`. **The landing page passes
+  `""` and rewrites the hrefs at runtime** — `updateNeighborhoodListLinks` in its `js_bot`, called
+  from `setIntendedDestination`, so the list follows the active topic button the way the map and
+  search already do. It runs at load too, so the links carry the default topic on first paint.
+  `path.Join` rather than `printf` builds the href, because an empty slug in a `printf` leaves a
+  doubled separator.
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html` — called from each page's
   `js_bot`, because flexdatalist is not in `head.html`. **Each caller must define
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
@@ -303,7 +312,8 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/nr-decisions-and-sequencing-2026-08-04.md` — the NR decision record and order of work. Also this branch.
 - `documents/nr-output-option-d-execution-plan-2026-08-06.md` — the file-by-file detail for the Option D swap, its Pagefind analysis, and the Stage F/G work, all landed 2026-08-08. §11 of the scoping memo is the ledger; this is the executable half. Its file-by-file list predates the picker restore below, so read it as the plan, not as the current template.
 - `documents/nr-topic-index-picker-restore-2026-08-09.md` — the follow-up that restored the UHF42 map and the neighborhood typeahead to the topic index, which the Option D swap had dropped. Closed 2026-08-09.
-- `documents/nr-neighborhood-picker-options-2026-08-09.md` — enlarging the picker map on the topic index and the NR landing page, and extracting the two duplicated copies into shared partials. Carries the ledger, the decision list for each cosmetic difference the unification forced, and the one still-open choice (search input height). The input-height section is the live one; the rest is a dated record.
+- `documents/nr-neighborhood-picker-options-2026-08-09.md` — enlarging the picker map on the topic index and the NR landing page, and extracting the two duplicated copies into shared partials. Carries the ledger and the decision list for each cosmetic difference the unification forced. Closed 2026-08-09; read it as a dated record.
+- `documents/nr-landing-list-unification-2026-08-09.md` — the follow-up that shared the 42-neighborhood list too, moved the `Choose Neighborhood` heading into the picker partial, and made the landing page's list links follow the active topic button. Carries the ledger.
 
 ## Common gotchas
 
