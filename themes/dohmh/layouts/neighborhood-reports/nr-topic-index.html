@@ -35,17 +35,14 @@
 
             {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
 
-            {{/* Heading above the picker rather than beside it, in the same centred column,
-                 so the two read as one column and the map gets the width it was starved of
-                 in the old col-md-4. */}}
+            {{/* Title above the picker rather than beside it, in the same centred column, so
+                 the two read as one column and the map gets the width it was starved of in
+                 the old col-md-4. The picker partial carries its own "Choose Neighborhood"
+                 heading, so there is nothing to introduce it with here. */}}
             <div class="row mt-3">
                 <div class="col-md-8 mx-auto">
                     <h1 class="h2">{{ .Title }}</h1>
                     <div class="report-description fs-lg my-2">{{ .Content }}</div>
-
-                    <p class="font-weight-bold">
-                        <i class="fas fa-arrow-down mr-1 text-primary" aria-hidden="true"></i>Choose a neighborhood from the map or the search box to get a report.
-                    </p>
                 </div>
             </div>
 
@@ -60,32 +57,7 @@
                 </div>
             </div>
 
-            {{/* One link per neighborhood, straight from the canonical 42 rows. Ranged over
-                 uhflist rather than .Site.Pages so the list does not depend on the generated
-                 pages having been built in any particular order. Collapsed behind the same
-                 control the Neighborhood Reports landing page uses, but server-rendered
-                 rather than built in JS the way nr-show-zips builds its copy. */}}
-            <button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#nr-neighborhood-list"
-                    aria-expanded="false"
-                    aria-controls="nr-neighborhood-list">
-                <span class="flex-grow-1 text-lg">See neighborhood list</span>
-                <span class="plus">&plus;</span>
-                <span class="minus">&minus;</span>
-            </button>
-
-            <div class="collapse" id="nr-neighborhood-list">
-                <ul class="list-unstyled row neighborhood-list border border-top-0 border-primary p-3 m-0">
-                    {{- range site.Data.globals.uhflist -}}
-                        <li class="col-md-4 col-sm-6 mb-2">
-                            <a href="{{ relURL (printf "neighborhood-reports/%s/%s/" .page_name $topicSlug) }}">{{ .UHF_name }}</a>
-                            <span class="fs-sm text-muted d-block">{{ .Zipcodes }}</span>
-                        </li>
-                    {{- end -}}
-                </ul>
-            </div>
+            {{ partial "nr-neighborhood-list" (dict "topic_slug" $topicSlug) }}
 
         </div>
     </div>

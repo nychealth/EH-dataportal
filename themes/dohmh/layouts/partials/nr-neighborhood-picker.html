@@ -1,8 +1,12 @@
 {{/*
-    The UHF42 neighborhood picker: a typeahead over the 42 rows, plus the clickable map.
-    Shared by the NR landing page (neighborhood-reports/section.html) and the five topic
+    The UHF42 neighborhood picker: a heading, a typeahead over the 42 rows, and the clickable
+    map. Shared by the NR landing page (neighborhood-reports/section.html) and the five topic
     indexes (nr-topic-index.html), which had drifted to two heights, two placeholder
     strings and two search positions while running byte-identical flexdatalist config.
+
+    The heading is in here rather than in each caller for the same reason: the two pages had
+    arrived at two different introductions — an <h3> on the landing page, a prompt paragraph
+    on the topic index — and one copy is what stops that happening again.
 
     Where the reader lands is the one thing the two callers genuinely disagree on, so it is
     not here: partials/nr-neighborhood-picker-js.html calls nrPickerDestination(), which
@@ -20,6 +24,8 @@
      convention rather than a description of this field; `id` is load-bearing, since
      flexdatalist derives the .flex_search-flexdatalist wrapper the stylesheet targets
      from it. */}}
+<h3>Choose Neighborhood</h3>
+
 <div class="btn-group w-100" role="group">
     <input
         id="flex_search"
