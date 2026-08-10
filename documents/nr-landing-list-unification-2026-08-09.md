@@ -5,20 +5,13 @@ Branch `feature-MOD-Lab-NR-recode-refactor-merge`. Follow-up to
 implementations as deliberately not unified — "converging on the server-rendered one is a separate
 piece of work". This is that work.
 
-**Status as of 2026-08-10: all five tasks done and browser-verified. Task 1 is committed
-(`0c7f95df78`); tasks 2, 4 and 5 are working-tree changes awaiting three commits. The one thing
-left after those land is the `docs-check` stamp bump — see Next action below.**
+**Closed 2026-08-10. All five tasks done, browser-verified, and committed as
+`0c7f95df78..79d440d899` plus the stamp-bump commit this line lands in.** Nothing outstanding.
 
-## Next action
-
-The `docs-check verified:` stamp at `CLAUDE.md:2` still reads `3a92bc5f19 2026-08-09` and must be
-bumped to the hash of the commit that changes the NR prose (commit 4 below), in a follow-up commit
-of its own — the same shape `88e327c8a0` and `d17786a908` used, because a commit cannot cite its
-own hash. The prose has already been re-read against the tree, so the bump is not a false claim.
-
-```
-git commit -m "CLAUDE.md: point the docs-check stamp at the commit whose prose changed"
-```
+The `docs-check verified:` stamp at `CLAUDE.md:2` now reads `79d440d899 2026-08-10` — the commit
+that changed the NR prose — bumped in a follow-up commit of its own, the same shape `88e327c8a0`
+and `d17786a908` used, because a commit cannot cite its own hash. The prose was re-read against
+the tree before the bump, so it is not a false claim.
 
 ## Ledger
 
