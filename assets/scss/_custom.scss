@@ -111,8 +111,7 @@ $color-data-explorer: #0A408A;
 }
 
 .neighborhood-list-button,
-.neighborhood-list-button:hover,
-.neighborhood-list-button.active {
+.neighborhood-list-button:hover {
   background-color: #EFFAF4 !important;
   color: $primary !important;
 }
@@ -129,22 +128,11 @@ $color-data-explorer: #0A408A;
   display: none;
 }
 
-.neighborhood-list-button.active .minus {
-  display: block;
-}
-
-.neighborhood-list-button.active .plus {
-  display: none;
-}
-
-.neighborhood-list-button.active {
-  border-bottom: none;
-}
-
-/* Same +/- swap for a trigger driven by Bootstrap collapse, which marks the button
-   .collapsed while shut rather than .active while open. Scoped to .nr-list-toggle because
-   the hand-rolled button in nr-show-zips.html never carries .collapsed, so an unscoped
-   :not(.collapsed) would match it permanently and show both glyphs. */
+/* The +/- swap, keyed on Bootstrap collapse: it marks the trigger .collapsed while the
+   panel is shut and drops the class while it is open, so :not(.collapsed) means expanded.
+   Both list triggers are the shared nr-neighborhood-list partial, so .nr-list-toggle and
+   .neighborhood-list-button now always appear together — the narrower selector is kept
+   only because it names the mechanism these three rules depend on. */
 
 .nr-list-toggle:not(.collapsed) .plus {
   display: none;

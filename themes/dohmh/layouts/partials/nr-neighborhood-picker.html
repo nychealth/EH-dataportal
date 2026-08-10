@@ -37,9 +37,12 @@
     <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
 </div>
 
-{{/* aria-hidden because the Leaflet layer holds nothing focusable, and both callers carry a
-     text equivalent — nr-show-zips' sr-only list on the landing page, the server-rendered
-     42-link list on the topic index. */}}
+{{/* aria-hidden because the Leaflet layer holds nothing focusable, and both callers carry the
+     same text equivalent: nr-neighborhood-list's server-rendered 42 links, which stay in the
+     markup while collapsed. The landing page used to rely instead on an sr-only list built in
+     JS, which rendered empty — nr-show-zips appended each <li> to two <ul>s, and appendChild
+     moves a node rather than copying it [verified 2026-08-10: 0 items in #neighborhoodList
+     against 42 in #neighborhoodList2, local_stage :8080]. */}}
 <div class="nr-selector-map border mt-2" aria-hidden="true">
     {{- partial "nr-leaflet" $page -}}
 </div>
