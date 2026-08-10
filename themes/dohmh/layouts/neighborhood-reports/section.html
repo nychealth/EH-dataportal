@@ -68,7 +68,10 @@
         <div class="col-md-8 mx-auto">
               {{ partial "nr-neighborhood-picker" (dict "page" .) }}
 
-              {{ partial "nr-show-zips" . }}
+              {{/* No topic slug: the destination here is whichever topic button is active, which
+                   is a runtime fact. The served hrefs point at the neighborhood index, and
+                   updateNeighborhoodListLinks below rewrites them as the selection changes. */}}
+              {{ partial "nr-neighborhood-list" (dict "topic_slug" "") }}
         </div>
       </div>
 
@@ -211,6 +214,24 @@ function setIntendedDestination(x) {
 
   console.log('intended destination url: ', intendedDestinationName);
 
+  updateNeighborhoodListLinks()
+
+}
+
+
+// The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
+// gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
+// follow it, so clicking one lands where the map and the search box already send you.
+function updateNeighborhoodListLinks() {
+  const base = {{ relURL "neighborhood-reports/" }}
+
+  // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
+  // intendedDestinationName stays null there, and null would otherwise land in the URL.
+  const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
+
+  document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
+    a.href = base + a.dataset.nbhd + '/' + suffix
+  })
 }
 
 // SET DEFAULTS FOR HOME PAGE
