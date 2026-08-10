@@ -40,7 +40,8 @@ const NR_EXTERNAL_GLOBALS = {
     op: "readonly",             // arquero's op namespace
     vegaEmbed: "readonly",      // vega-embed, in the vegaBundle concat
     neighborhoods: "readonly",  // `var`, generated from data/globals/uhflist.json in head.html
-    debugLog: "readonly"        // inline <script> in partials/head.html
+    debugLog: "readonly",       // inline <script> in partials/head.html
+    renderQRCode: "readonly"    // inline <script> in neighborhood-reports/nr-topic-spa.html
 };
 
 // Extract top-level `function`/`const`/`let`/`var` names from one directory's files.

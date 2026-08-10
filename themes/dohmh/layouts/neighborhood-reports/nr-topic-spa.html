@@ -256,6 +256,21 @@
                         </div>
                     {{- end -}}
 
+                    {{/* Print-only QR code back to this report, carried over from
+                        nr-output/single.html. Filled by renderQRCode() below, which runs from
+                        renderAll() rather than at load: the Leaflet map can switch neighborhood in
+                        place, and a code generated once would then point at the wrong report. */}}
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <div id="qrcode" class="text-center"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -333,6 +348,35 @@
             {{- end -}}
         }
     };
+</script>
+
+{{/* QR code generator for the print-only block above — mounted from node_modules, not a CDN */}}
+{{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" -}}
+
+{{/* The QR library and the one function that uses it, ahead of the SPA scripts so the
+    library is parsed before anything can call renderQRCode. It lives in the template rather
+    than in assets/js/nr-topic-spa/ because it is the template that owns the #qrcode element
+    and the library resource — the same reason data-explorer/single.html keeps
+    renderIndicatorDropdown inline. report.js calls it from renderAll(). */}}
+<script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+<script>
+    // Redraws the print-only QR code from the current address, which renderAll() has just
+    // rewritten if the reader switched neighborhood on the map
+    function renderQRCode() {
+
+        const destination = document.getElementById('qrcode');
+
+        if (!destination || typeof qrcode !== 'function') return;
+
+        // Type 10 at error-correction level M: production's settings, comfortably large
+        // enough for the longest neighborhood/topic URL the site generates
+        const code = qrcode(10, 'M');
+        code.addData(location.href);
+        code.make();
+
+        destination.innerHTML = code.createImgTag();
+
+    }
 </script>
 
 {{/*

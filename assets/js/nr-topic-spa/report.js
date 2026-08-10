@@ -136,4 +136,11 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     setNeighborhoodInURL(neighborhoodName);
     updateTopicLinks(neighborhoodName);
 
+    // The printed report carries a QR code back to itself, and the map can switch
+    // neighborhood in place — so it has to be regenerated from the rewritten URL rather
+    // than once at load. Defined in nr-topic-spa.html, which owns the qrcode library
+    if (typeof renderQRCode === 'function') {
+        renderQRCode();
+    }
+
 };
