@@ -141,6 +141,28 @@ worked before still works, but nothing renders it the way it used to. Three page
   same centred `col-md-8`, not beside it. Then the shared neighborhood list. Plus the hidden
   indicator-name headings Pagefind indexes.
 
+**The report page prints a different document than it shows, and the print rendition is markup, not
+a stylesheet over the screen one.** `buildIndicatorCard` in `assets/js/nr-topic-spa/cards.js` emits
+two renditions of every indicator: the screen row, which is `d-print-none`, and a `print-only`
+sibling carrying the same name, value and units at 50/25/25 plus a full-sentence tertile label from
+`getTertilePrintLabel`. Two renditions rather than one, because the content genuinely differs — the
+screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print wants a
+sentence, and the screen labels carry a `.comp-*` class whose `::before` injects an emoji. Both are
+built from the same locals, so they cannot drift. Panels never print: `@media print` in
+`assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
+has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
+`renderQRCode`, defined in the layout because the layout owns both the element and the library
+resource, and called from the *end* of `renderAll` rather than at load — the Leaflet map switches
+neighborhood in place and rewrites the address bar, so a code generated once would point at the
+report the reader navigated away from.
+
+Two traps when working on any of this. `.print-only` is `display:none` normally and `display:flex`
+in print (`assets/scss/_custom.scss`) — a hand-rolled class, because Bootstrap's own `_print.scss`
+is **not** imported; only the `d-print-*` utilities are. And nothing below a browser proves a print
+change: emulate print media and read `document.body.innerText`, which respects `display:none` and is
+therefore what print actually shows. `documents/nr-print-view-fix-2026-08-10.md` has the before/after
+numbers and the instrument that reported a false pass.
+
 **The picker and the neighborhood list are both shared by the topic index and the NR landing page**
 (`section.html`), which had drifted to two heights, two placeholders, two search positions and two
 introductions while running byte-identical flexdatalist config. Three partials — and the picker's
