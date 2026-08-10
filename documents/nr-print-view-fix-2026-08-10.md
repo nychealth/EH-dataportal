@@ -6,11 +6,14 @@ rows. Seen on Chromium on Windows and on Chrome and Safari on iOS 26; the cause 
 is why it is browser-independent. Second complaint, older and true on production too: a panel the
 reader expanded on screen prints expanded, which is not wanted.
 
-**Closed 2026-08-10. All five tasks done, browser-verified, and committed as
-`8daaf8ed7d..cbe04801d5`, including the `CLAUDE.md` print contract and its stamp.** Task 5, the
-tertile wording swap, followed the same day and reversed task 1's wording decision. The whole range
-is pushed, plus the two records commits that follow it; the branch is still unmerged to
-`production`.
+**Tasks 1-5 closed 2026-08-10**, browser-verified and committed as `8daaf8ed7d..cbe04801d5`,
+including the `CLAUDE.md` print contract and its stamp. Task 5, the tertile wording swap, followed
+the same day and reversed task 1's wording decision. That range is pushed, plus the two records
+commits that follow it; the branch is still unmerged to `production`.
+
+**Reopened the same day for task 6**, an appearance follow-up on the comparison markers: Font
+Awesome glyphs in place of the emoji, colour on the comparison word, and a smaller third print
+column. Status as of 2026-08-10: task 6 in progress.
 
 ## Ledger
 
@@ -23,12 +26,60 @@ is pushed, plus the two records commits that follow it; the branch is still unme
 
 | 5 | Print row uses `getTertileInlineLabel`; `getTertilePrintLabel` deleted | **DONE 2026-08-10**, committed `3af05d965e` | `npm run lint` exit 0. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` printed text 4,268 → 4,233 chars (shorter because "In the middle of **NYC** neighborhoods" lost a word, and `::before` emoji never appear in `innerText`), 21 sentences over 22 rows either way — the unranked row correctly carries none. All three marker classes present, `comp-good`/`comp-bad`/`comp-null`, 21 markers, `::before` resolving to the emoji. Screenshotted under print media |
 
+| 6 | Comparison markers: FA glyphs, coloured and bolded word, `fs-sm` third print column (`assets/scss/_custom.scss`, `nr-topic-spa.html`, `cards.js`) | **DONE 2026-08-10** | `npm run lint` exit 0, `npm run smoke` 15/15. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` — served `theme.*.css` fetched and the old codepoints `2705`/`203C`/`26AA` confirmed **absent** from both it and the page HTML; `document.fonts.check('900 1rem "Font Awesome 6 Free"')` **true** as the positive control. Computed `::before` content read as **numeric codepoints** (`f14a`, `f071`, one char each) — necessary, because a PUA glyph serializes to an empty-looking string through a pipe and reads as a missing rule. Colours identical on screen and under print media: word `rgb(33,136,63)` / `rgb(122,92,0)`, `.comp-bad::before` `rgb(255,193,7)`, `.comp-null` `content: none`. Screenshotted under print media: both glyphs render as icons, not tofu. `characterize:nr -- --check` deliberately not run — its baseline's `finalURL` carries `/dev-stage/` and the only server is `local_prod`, so every target would fail on the prefix alone |
+
 **A stale bundle nearly read as a failed change here.** The first post-swap check reported the old
 wording and zero markers, against a `tertiles.d05e114a7ace7785.js` that still contained the deleted
 function. Hugo *had* rebuilt — the page was by then referencing `tertiles.a29897a710fb71a1.js` — and
 the browser was serving both page and bundle from cache. Fetching the served bundle and asserting
 the deleted identifier is **absent** is what separates the two cases; a re-check with the cache
 bypassed then showed the change. An unchanged fingerprint plus unchanged output is the tell.
+
+**Task 6 needed four instruments before one of them measured the thing.** The claim under test was
+"the third print column wraps to fewer lines", and three plausible measurements all reported *no
+change*:
+
+1. **Element height.** The third `div` is a block child of a flex row, so it stretches to the row's
+   height. It read 51px/72px identically with and without `fs-xs` — a number wholly determined by
+   the 50% column beside it.
+2. **`Range.getClientRects().length`.** Returns a rect per *element boundary* as well as per line,
+   so a `<span>` plus trailing text on one line counts as 3. It reported 3 lines both ways.
+3. **Viewport width.** Print emulation does not re-lay-out to page width; at the default 1280px
+   viewport the column was 246px, wide enough that nothing wrapped differently. The column is 184px
+   at a Letter-width 816px viewport.
+
+What worked was the count of **distinct rounded `top` values** among those rects, at 816px. It
+reports 21 labels at **2 lines each** at the inherited 14px, and 11 of 21 down to a single line at
+`fs-xs`. The plan's prediction of "about three lines" was an estimate from column width and was
+wrong; the measured before-state is two.
+
+**`fs-xs` was then reverted to `fs-sm` on request, which is a no-op on size** — `$fs-sm` is
+0.875rem and the accordion button is `.btn-sm`, so the column rendered at 14px either way. The class
+is explicit rather than inherited, and the tally is back to 2 lines for all 21.
+
+**`getComparison` returned the preposition inside the styled word**, so the panel's borough and
+citywide lines read a bold coloured "Higher than" where the tertile line above them styled only
+"Higher". It now returns `word` and `preposition` separately — separately rather than by trimming a
+suffix, because "Equal" takes *to* where the other two take *than*. All five branches exercised
+against the live global `[verified 2026-08-10: getComparison called from the page console — higher,
+lower, equal, rank-reversed, and non-numeric]`. Unchanged and worth knowing: `Number(null)` is `0`,
+not `NaN`, so a null neighborhood value slips past the non-numeric guard and compares as zero. That
+predates this work and was left alone.
+
+**The bold went on the wrong element first.** `font-weight: 700` on `.comp-good`/`.comp-bad`/
+`.comp-null` is right for the expanded panel but changed nothing in the print row, because the
+accordion button is already weight 700 and the column inherits it — the whole label was bold, so
+bolding the word picked out nothing. The print row un-bolds selectively, which is why its other
+spans carry `font-weight-normal`; the third column now does too. Proof is the pair of computed
+weights, parent `400` against span `700` `[verified 2026-08-10: getComputedStyle under print media]`
+— reading the screenshot could not settle it, since bold and normal at 14px are near-identical
+after antialiasing.
+
+`innerText` is the wrong instrument here too, and provably: turning `content` off on both `::before`
+rules leaves the printed character count at **4,254, unchanged**. Pseudo-element text never enters
+`innerText`, so the scalar that proved tasks 2 and 3 is blind to the whole of task 6. The 4,233 →
+4,254 shift against task 5's figure therefore has some other origin, not isolated here — but it
+cannot be this change, since this change cannot move that number at all.
 
 `node scripts/smoke-pages.mjs` — exit 0, 15 pages clean, covering
 `neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`, i.e. this page kind.
@@ -93,7 +144,14 @@ present on dev. The entire 2,836-character gap is the missing rows.
   plus getComputedStyle in the browser]`. So the emoji is the whole visual signal. **Untested on a
   greyscale printer**, where ✅ and ‼️ would be left differing only in shape — reasoned from the
   absence of a colour rule, not measured. Accepted knowingly; a `content: none` print rule would
-  suppress them.
+  suppress them. **Superseded by task 6 the same day** — the rules moved to
+  `assets/scss/_custom.scss`, gained colour, and traded the emoji for Font Awesome glyphs, which
+  retires the greyscale question by making the two differ in shape.
+- **Icon colour and text colour are not the same value in the bad case.** `$warning` (`#ffc107`) is
+  1.6:1 on white `[verified 2026-08-10: computed against $accessible-colors: true, which overrides
+  $green to #21883f but leaves $yellow at the Bootstrap default]`. Fine for a glyph, unreadable as
+  body text, so the word takes `#7a5c00` (6.3:1) instead. The good case needs no split — `$success`
+  is 4.8:1 and does both jobs.
 - **The QR code comes back.** Offered as optional; the user asked for it.
 
 ## Task detail

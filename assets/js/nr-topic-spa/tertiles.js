@@ -64,7 +64,7 @@ const getTertileInlineLabel = (rank, rankReverse) => {
     }
 
     if (r === '2') {
-        return '<span class="comp-null">In the middle of</span> neighborhoods';
+        return '<span class="comp-null">In the middle</span> of neighborhoods';
     }
 
     if (r === '3') {
@@ -78,7 +78,10 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 };
 
 
-// Compares a neighborhood value against a borough or city value, with the judgment class
+// Compares a neighborhood value against a borough or city value, with the judgment class.
+// The judgment word and its preposition are returned separately because only the word is
+// styled — the preposition belongs to the sentence around it, and "Equal" takes "to"
+// where the other two take "than"
 const getComparison = (neighVal, refVal, rankReverse) => {
 
     // Parse defensively because the source payload can contain string numerics
@@ -88,24 +91,28 @@ const getComparison = (neighVal, refVal, rankReverse) => {
 
     // When either side is not numeric, omit comparison messaging
     if (isNaN(n) || isNaN(r)) {
-        return { text: '', cssClass: '' };
+        return { word: '', preposition: '', cssClass: '' };
     }
 
-    let comp;
+    let word;
+    let preposition;
     let cls;
 
     // rankReverse flips "good" vs "bad" judgment for metrics where lower values are better
     if (n > r) {
-        comp = 'Higher than';
+        word = 'Higher';
+        preposition = 'than';
         cls = reverse ? 'comp-good' : 'comp-bad';
     } else if (n < r) {
-        comp = 'Lower than';
+        word = 'Lower';
+        preposition = 'than';
         cls = reverse ? 'comp-bad' : 'comp-good';
     } else {
-        comp = 'Equal to';
+        word = 'Equal';
+        preposition = 'to';
         cls = 'comp-null';
     }
 
-    return { text: comp, cssClass: cls };
+    return { word: word, preposition: preposition, cssClass: cls };
 
 };

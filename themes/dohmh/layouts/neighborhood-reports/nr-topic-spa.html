@@ -66,15 +66,8 @@
     .nr-indicator-card .collapse.show {
         display: block;
     }
-    .comp-good::before {
-        content: "\2705 ";
-    }
-    .comp-bad::before {
-        content: "\203C\FE0F ";
-    }
-    .comp-null::before {
-        content: "\26AA ";
-    }
+    {{/* .comp-* now lives in assets/scss/_custom.scss — it needs $success and $warning,
+        which an inline style block cannot see */}}
     .nr-map-container {
         min-height: 350px;
     }

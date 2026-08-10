@@ -87,7 +87,9 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
                 '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
                 '<span class="fs-xs font-weight-normal">' + units + '</span>' +
             '</div>' +
-            '<div style="width:25%;" class="pl-1">' +
+            // font-weight-normal because the accordion button is bold and the column
+            // inherits it, which would leave nothing for the .comp-* bold to pick out
+            '<div style="width:25%;" class="pl-1 fs-sm font-weight-normal">' +
                 getTertileInlineLabel(row.data_value_rank, row.rankReverse) +
             '</div>' +
         '</div>';
@@ -164,12 +166,12 @@ const buildIndicatorCard = (row, neighborhoodName, accordionParentId) => {
                 (tertileInlineHTML
                     ? '<p>' + tertileInlineHTML + '</p>'
                     : '') +
-                (boroComp.text
-                    ? '<p><span class="' + boroComp.cssClass + '">' + boroComp.text + '</span> the <strong>' + boroName + ' average</strong>' +
+                (boroComp.word
+                    ? '<p><span class="' + boroComp.cssClass + '">' + boroComp.word + '</span> ' + boroComp.preposition + ' the <strong>' + boroName + ' average</strong>' +
                     '<br><span class="fs-sm pl-3">(' + boroVal + unitSuffix + ')</span></p>'
                     : '') +
-                (cityComp.text
-                    ? '<p><span class="' + cityComp.cssClass + '">' + cityComp.text + '</span> the <strong>Citywide average</strong>' +
+                (cityComp.word
+                    ? '<p><span class="' + cityComp.cssClass + '">' + cityComp.word + '</span> ' + cityComp.preposition + ' the <strong>Citywide average</strong>' +
                     '<br><span class="fs-sm pl-3">(' + cityVal + unitSuffix + ')</span></p>'
                     : '') +
             '</div>' +

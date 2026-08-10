@@ -149,12 +149,17 @@ sibling carrying the same name, value and units at 50/25/25 plus a full-sentence
 screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print wants a
 sentence. The sentence is the same function the expanded panel uses, deliberately: a reader who
 opens a row on screen and then prints it would otherwise get the same fact in two vocabularies. It
-carries a `.comp-*` class whose `::before` injects an emoji (`assets/js/nr-topic-spa/tertiles.js`
-sets the class, `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html` the `content`), and
-those three rules are the *only* thing `.comp-*` does — there is no colour rule anywhere, so the
-emoji is the entire visual signal — untested on a greyscale printer, where ✅ and ‼️ would be left
-differing only in shape.
-Suppressing them in print is a `content: none` rule away if that ever matters. Both renditions are
+carries a `.comp-*` class — `assets/js/nr-topic-spa/tertiles.js` sets it, `assets/scss/_custom.scss`
+styles it, and all three classes are bold so the comparison word stands out of its sentence. That
+bold is invisible in the print row unless the column also carries `font-weight-normal`, because the
+accordion button is weight 700 and the column inherits it. Colour and glyph are then split by rank.
+`.comp-good` is
+`$success` throughout, word and square-check `\f14a`. `.comp-bad` pairs a `$warning` triangle-
+exclamation `\f071` with a **darker** amber word, because `$warning` is 1.6:1 on white — legible as
+a glyph, not as text. `.comp-null` has no rule at all, so rank 2 prints unmarked, mirroring the
+blank pill the screen row shows. The glyphs are Font Awesome 6 codepoints rather than emoji, so they
+come from the webfont `head.html` already loads sitewide and are under this repo's control; square
+against triangle also means the two differ in shape and not only in colour. Both renditions are
 built from the same locals, so they cannot drift. Panels never print: `@media print` in
 `assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
 has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
