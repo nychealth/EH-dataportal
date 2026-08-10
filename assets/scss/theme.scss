@@ -702,6 +702,13 @@ h2.report-info {
     .nr-map-container {
         display: none !important;
     }
+    // Print the report in one shape whatever the reader had expanded on screen: the
+    // print-only header row is the printed rendition of an indicator, the panel never is.
+    // .collapsing covers a print fired mid-animation, when Bootstrap has swapped the class
+    .report-section .collapse,
+    .report-section .collapsing {
+        display: none !important;
+    }
 }
 
 // Report Modal
