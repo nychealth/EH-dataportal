@@ -563,7 +563,7 @@
       ],
     };
 
-    vegaEmbed(destination, mapSpec, { actions: false });
+    vegaEmbed(destination, mapSpec, { renderer: "svg", actions: false });
   }
 
   function drawChart(w, s) {
@@ -789,11 +789,11 @@
       },
     };
 
-    vegaEmbed("#chartDest", povertySpec, { actions: false }).then((res) => {
+    vegaEmbed("#chartDest", povertySpec, { renderer: "svg", actions: false }).then((res) => {
       window.addEventListener("resize", () => res.view.resize());
     });
 
-    vegaEmbed("#chartDest2", prematureMortSpec, { actions: false }).then(
+    vegaEmbed("#chartDest2", prematureMortSpec, { renderer: "svg", actions: false }).then(
       (res) => {
         window.addEventListener("resize", () => res.view.resize());
       }

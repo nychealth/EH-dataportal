@@ -241,7 +241,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
                 });

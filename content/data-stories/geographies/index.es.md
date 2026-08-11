@@ -139,7 +139,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
 
