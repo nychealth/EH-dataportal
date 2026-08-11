@@ -55,7 +55,148 @@
         // which vanishes as soon as there is a value in the box. flexdatalist derives the
         // generated id from the authored one, so "#flex_search-flexdatalist" is stable.
         const generated = document.getElementById('flex_search-flexdatalist');
-        if (generated) generated.setAttribute('aria-labelledby', 'nr-search-label');
+
+        if (generated) {
+            generated.setAttribute('aria-labelledby', 'nr-search-label');
+            wireComboboxState(generated);
+        }
+
+    }
+
+
+    // flexdatalist writes aria-autocomplete, aria-owns and a *static* aria-expanded="false"
+    // onto the generated input and never gives it a role (jquery.flexdatalist.js:474-482).
+    // So the attribute is both disallowed — aria-expanded is not valid on a plain textbox,
+    // which is what axe reports — and wrong, still reading "false" with the listbox open and
+    // three options showing. The string aria-expanded appears exactly once in the library:
+    // there is no code path that updates it. This supplies the role and keeps the state true.
+    //
+    // The state is read off the DOM rather than off the library's events, and that is the
+    // load-bearing choice. Only results.remove() fires removed:flexdatalist.results (:1633);
+    // the Escape key (:2046) and the outside-click handler (:2028) each call .remove() on the
+    // container directly and announce nothing. An event-driven sync would have gone stale on
+    // exactly the two paths a reader is most likely to use to dismiss the list — the same
+    // shape of defect as the one being fixed.
+    function wireComboboxState(input) {
+
+        const RESULTS_ID = 'flex_search-flexdatalist-results';
+
+        input.setAttribute('role', 'combobox');
+        input.setAttribute('aria-haspopup', 'listbox');
+        input.setAttribute('aria-expanded', 'false');
+
+        let watched = null;
+
+        // Escape did not dismiss the list, and could not be made to by handling the key.
+        //
+        // Two of the library's own handlers fight over one press. The document-level keydown
+        // removes the results container on key 27 (:2046). The input's keyup then calls
+        // keypressSearch (:174-182), whose guard `key !== 13 && (key < 37 || key > 40)` is
+        // true for 27, so it schedules a fresh search on searchDelay — default 400 (:115,
+        // :251-259) — which re-renders exactly what the keydown removed. Measured before the
+        // fix: gone at +60ms, a *different* <ul> present and 112px tall at +660ms.
+        //
+        // The pending search cannot be cancelled from here: _searchTimeout is a closure
+        // variable with no accessor, and blocking the keyup would not help either, since a
+        // timer scheduled by an *earlier* keystroke is still armed and it is keypressSearch's
+        // own clearTimeout that would have cleared it. So the dismissal is held rather than
+        // the timer cancelled — while this is set, any list that reappears is removed on
+        // arrival. The observer below is already watching for exactly that, so this costs one
+        // branch and works against any path that reopens the list, not just the timer.
+        //
+        // Removal happens in a MutationObserver callback, which runs as a microtask before
+        // paint, so the reopened list is gone in the same frame it was added.
+        let dismissed = false;
+
+        // Any other key, a click into the field, or leaving and coming back all mean the
+        // reader wants results again. Escape's own keydown reaches the input before the
+        // document handler that removes the list, so the flag is set before the removal
+        input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
+        input.addEventListener('mousedown', () => { dismissed = false; });
+        input.addEventListener('blur', () => { dismissed = false; });
+        input.addEventListener('focus', () => { dismissed = false; });
+
+        // Reads the current listbox state and writes it onto the combobox.
+        //
+        // aria-controls and aria-owns are added and removed with the list rather than left
+        // in place, because the list element does not exist while the combobox is closed —
+        // flexdatalist creates and destroys it per search. A permanent aria-controls points
+        // at nothing four-fifths of the time, which axe reports as aria-valid-attr-value:
+        // "Unable to determine if aria-controls referenced ID exists on the page while using
+        // aria-haspopup" [verified 2026-08-11: axe-core 4.13.0 incomplete on the topic index;
+        // removing the attribute in the page cleared it, leaving aria-owns alone did not
+        // re-raise it]. aria-owns is the library's and axe does not flag it, but it dangles
+        // the same way, so it gets the same treatment rather than a different rule
+        const sync = () => {
+
+            let list = document.getElementById(RESULTS_ID);
+
+            // Escape is still in force: take the reopened list back out. Its removal is
+            // itself a mutation, so this re-enters once with nothing left to do
+            if (dismissed && list) {
+                list.remove();
+                list = null;
+            }
+
+            const options = list ? list.querySelectorAll('li') : [];
+
+            input.setAttribute('aria-expanded', options.length ? 'true' : 'false');
+
+            if (!options.length) {
+                input.removeAttribute('aria-activedescendant');
+                input.removeAttribute('aria-controls');
+                input.removeAttribute('aria-owns');
+                return;
+            }
+
+            input.setAttribute('aria-controls', RESULTS_ID);
+            input.setAttribute('aria-owns', RESULTS_ID);
+
+            // The <li>s carry role="option" and aria-posinset but no id (:1551-1560), and
+            // aria-activedescendant can only point at one
+            let active = null;
+
+            options.forEach((li, i) => {
+
+                if (!li.id) li.id = RESULTS_ID + '-option-' + i;
+                if (li.classList.contains('active')) active = li;
+
+            });
+
+            if (active) {
+                input.setAttribute('aria-activedescendant', active.id);
+            } else {
+                input.removeAttribute('aria-activedescendant');
+            }
+
+        };
+
+        // The list is created and destroyed under <body> directly (:1565-1574), so a
+        // childList observer on body — deliberately without subtree, which would fire on
+        // every Leaflet pan and zoom on the same page — sees it arrive and leave.
+        const listObserver = new MutationObserver(sync);
+
+        const bodyObserver = new MutationObserver(() => {
+
+            const list = document.getElementById(RESULTS_ID);
+
+            // Re-target on each new list: arrow-key navigation moves the .active class
+            // between <li>s, and rows are replaced in place as the search term narrows
+            if (list && list !== watched) {
+                watched = list;
+                listObserver.observe(list, {
+                    childList: true,
+                    attributes: true,
+                    subtree: true,
+                    attributeFilter: ['class']
+                });
+            }
+
+            sync();
+
+        });
+
+        bodyObserver.observe(document.body, { childList: true });
 
     }
 
