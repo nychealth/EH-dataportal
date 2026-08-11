@@ -32,7 +32,8 @@
   "expandedPanel": "nr-acc-1-c",
   "charts": [
     {
-      "ariaLabel": "",
+      "chartName": "Coastal flood risk across all NYC neighborhoods",
+      "actionsLabel": "Export or view source for Coastal flood risk across all NYC neighborhoods",
       "hasCanvas": false,
       "hasSvg": true,
       "markGroups": [

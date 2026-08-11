@@ -58,7 +58,8 @@
   "expandedPanel": "nr-acc-1-c",
   "charts": [
     {
-      "ariaLabel": "",
+      "chartName": "Asthma (adults) across all NYC neighborhoods",
+      "actionsLabel": "Export or view source for Asthma (adults) across all NYC neighborhoods",
       "hasCanvas": false,
       "hasSvg": true,
       "markGroups": [

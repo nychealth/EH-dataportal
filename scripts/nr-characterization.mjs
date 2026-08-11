@@ -157,8 +157,20 @@ const captureTarget = async (browser, target, baseURL) => {
         // baseline on unrelated header edits.
         const accordions = [...document.querySelectorAll('[id^="nr-acc-"]')].map((el) => el.id).sort();
 
-        // Vega writes role/aria-label onto the container regardless of renderer,
-        // so container labels work whether charts paint to canvas or SVG.
+        // chartName reads the node that actually carries the name. `.vega-embed`
+        // itself has NO aria-label — it was read here until 2026-08-11 and captured
+        // an empty string in every baseline, so the field proved nothing and the
+        // chart naming added in the a11y Stage B work went uncovered. The spec's
+        // `description` lands on vega-embed's inner .chart-wrapper, which carries
+        // role="graphics-document" [verified 2026-08-11 in Chrome: the wrapper reads
+        // "Asthma ED visits (adults) across all NYC neighborhoods", the embed and
+        // svg.marks read null]. Selected by role rather than by class because the
+        // role is the thing assistive tech navigates by; a class rename in
+        // vega-embed would be cosmetic, a role change would be the regression.
+        //
+        // actionsLabel covers the export menu's <summary>, which is labelled from a
+        // .then() after vegaEmbed resolves — a promise that silently stops running
+        // would otherwise leave no trace here.
         //
         // hasCanvas/hasSvg pin the renderer: chart.js passes renderer: 'svg', and a
         // silent revert to vega-embed's canvas default would otherwise be invisible
@@ -173,7 +185,8 @@ const captureTarget = async (browser, target, baseURL) => {
             const marks = el.querySelector('svg.marks');
 
             return {
-                ariaLabel: el.getAttribute('aria-label'),
+                chartName: el.querySelector('[role="graphics-document"]')?.getAttribute('aria-label') ?? null,
+                actionsLabel: el.querySelector('details > summary')?.getAttribute('aria-label') ?? null,
                 hasCanvas: !!el.querySelector('canvas'),
                 hasSvg: !!marks,
                 markGroups: marks
@@ -216,7 +229,15 @@ const captureTarget = async (browser, target, baseURL) => {
         reportHeader: tidy(captured.reportHeader),
         demographics: tidy(captured.demographics),
         zipList: tidy(captured.zipList),
-        charts: captured.charts.map((c) => ({ ...c, ariaLabel: tidy(c.ariaLabel) })),
+        // Whitespace-normalized like the rest, but null is preserved rather than
+        // collapsed to "": tidy() turning a missing attribute into an empty string is
+        // what made the old .vega-embed read look like a captured value for three
+        // baselines. An absent name must be visibly absent.
+        charts: captured.charts.map((c) => ({
+            ...c,
+            chartName: c.chartName === null ? null : tidy(c.chartName),
+            actionsLabel: c.actionsLabel === null ? null : tidy(c.actionsLabel)
+        })),
         consoleErrors
     };
 

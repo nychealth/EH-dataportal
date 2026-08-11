@@ -372,12 +372,17 @@ landing after the baseline was last written at `2bce6c6d46`. Nothing else moved 
 since `cards.js` rewrote the accordion markup. Re-baselined after reading the diff, and the
 re-capture changed exactly those three lines.
 
-One limit worth knowing before trusting a green run here. The harness's `charts[].ariaLabel` reads
-`.vega-embed`, the outer wrapper, and captured nothing there both before and after B3 — `tidy()`
-turns a missing attribute into `""`, which is what all three baselines hold. So **that field is
-blind to the chart naming B3 added**; the 22 distinct names were established over CDP instead. The
-comment at `scripts/nr-characterization.mjs:147-148` claims container labels make the field work
-whatever the renderer, and the captured value contradicts it.
+**That run also exposed a dead field in the harness, since fixed.** `charts[].ariaLabel` read
+`.vega-embed`, the outer wrapper, which carries no `aria-label` at all — and `tidy()` turned the
+missing attribute into `""`, so the field looked like a captured value while proving nothing. It was
+blind to the chart naming B3 added, and to B4's actions label. A browser probe on 2026-08-11 located
+the name: vega-embed's inner `.chart-wrapper`, carrying `role="graphics-document"`, reading
+`"Asthma ED visits (adults) across all NYC neighborhoods"`, with the embed and `svg.marks` both
+null. The capture now reads that node by role and records `chartName` and `actionsLabel`, preserving
+`null` rather than collapsing it to `""`. Both baselines were re-captured. The field now
+distinguishes the three targets — `Asthma ED visits (adults)`, `Asthma (adults)`, `Coastal flood
+risk` — where it previously held the same empty string for all of them, so B3 and B4 have a
+regression net that CDP alone was providing.
 
 **After Stage B, every remaining axe violation on the four pages is out of NR's scope or
 deliberately parked** — `aria-allowed-attr` (F3, deferred to C4), `color-contrast` (the parked

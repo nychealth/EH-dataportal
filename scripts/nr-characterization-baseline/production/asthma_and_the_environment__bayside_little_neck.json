@@ -56,7 +56,8 @@
   "expandedPanel": "nr-acc-1-c",
   "charts": [
     {
-      "ariaLabel": "",
+      "chartName": "Asthma ED visits (adults) across all NYC neighborhoods",
+      "actionsLabel": "Export or view source for Asthma ED visits (adults) across all NYC neighborhoods",
       "hasCanvas": false,
       "hasSvg": true,
       "markGroups": [
