@@ -70,9 +70,16 @@ user tabs through 46 positions that a screen reader is told do not exist. axe re
 Distinct from F1, and present on the report SPA where the map is *not* `aria-hidden`
 (`nr-topic-spa.html:136`). Each polygon computes to `graphics-symbol` with an empty name. Focusing
 one and pressing Enter left the `<h1>`, the URL and the first card unchanged — the neighborhood did
-not switch. `assets/js/nr-topic-spa/map.js:146-160` binds `click` only, and Leaflet's synthetic
-click does not fire from Enter on a path. So the SPA's only in-place neighborhood switcher is
-mouse-operable, and it costs a keyboard user 42 dead stops to skip.
+not switch. `assets/js/nr-topic-spa/map.js:146-160` registers a `click` handler only. Enter does
+reach the polygon — a DOM listener on a focused path recorded `keydown` and `keypress`
+`[verified 2026-08-10]` — and Leaflet 1.9.4 routes key events to layer targets
+(`leaflet-src.js:4555-4565`), skipping only the coordinate computation. Nothing is listening, so
+nothing runs. The SPA's only in-place neighborhood switcher is therefore mouse-operable, and it
+costs a keyboard user 42 dead stops to skip.
+
+One trap for whoever fixes this: `el.tabIndex` reads `-1` on these paths and none carries a
+`tabindex` attribute, yet walking the tab order lands on all 42. The DOM property is not the test
+here; the sweep is.
 
 **F3 — the neighborhood search emits combobox ARIA without a combobox role, and its state is
 stale.** WCAG 4.1.2. flexdatalist hides the authored `#flex_search` (`tabIndex -1`) and renders
@@ -150,7 +157,8 @@ The neighborhood index is clean: `h1 → h2 ×5`.
 
 **F11 — the print QR code has no `alt` attribute.** WCAG 1.1.1. `renderQRCode` at
 `nr-topic-spa.html:377` calls `createImgTag()` with no arguments, and `qrcode-generator` only
-emits `alt` when passed one. Confirmed under print media: `hasAltAttribute: false`. The image is
+emits `alt` when passed one (`node_modules/qrcode-generator/dist/qrcode.js:595-599` — the
+attribute is written inside an `if (alt)` branch). Confirmed under print media: `hasAltAttribute: false`. The image is
 `display:none` on screen, so it is exposed only in the print rendition — where it is the sole
 route back to the online report.
 
@@ -264,15 +272,20 @@ probe showing a monotonic sequence.
   judgement call, and getting it wrong is its own defect.
 - **C2 (F2) — make the map keyboard-operable, or take it out of the tab order.** Two honest
   options: bind `keydown` Enter/Space alongside `click` in `map.js:146-160` and give each polygon
-  an `aria-label` naming its neighborhood; or set the polygons non-focusable and give the report
+  an `aria-label` naming its neighborhood — the event already arrives (see F2), so this is a
+  handler, not a plumbing change; or set the polygons non-focusable and give the report
   SPA the same 42-link list the other pages use as the map's equivalent. The SPA currently has no
   such list, so option two needs new markup.
 - **C3 (F5) — put the valence in text.** The full sentence already exists in
   `getTertileInlineLabel` and is used in the expanded panel and in print. The collapsed row could
   carry an `.sr-only` span with it, which changes no pixels. The alternative — a glyph in the pill
   — repeats the pattern F9 shows is invisible to the tree unless it is a real element with a name.
-- **C4 (F3) — the typeahead.** flexdatalist 2.3.0 does not implement the combobox pattern and the
-  markup it generates is not ours to fix from the template. Either wrap it so the generated input
+- **C4 (F3) — the typeahead.** flexdatalist 2.3.0's `accessibility` function
+  (`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:474-482`) writes `aria-autocomplete`,
+  `aria-owns` and a **static** `aria-expanded: 'false'` onto the generated input, and never emits
+  `role="combobox"` or `aria-activedescendant`. The string `aria-expanded` appears exactly once in
+  the library, which is why it stays `"false"` with the listbox open: there is no code path that
+  updates it, and no option that makes it emit the role. Either wrap it so the generated input
   gets `role="combobox"` and a synced `aria-expanded`, or replace it with the accessible
   autocomplete already styled in `theme.scss:183-262` and used elsewhere on the site. This is the
   largest item here and the one most likely to need a decision rather than a patch.
