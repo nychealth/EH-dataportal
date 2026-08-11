@@ -1062,10 +1062,28 @@ goes stale on the two most common ways to dismiss the list. And the generated `<
 `role="option"` but no `id` (`:1551-1560`), so `aria-activedescendant` needs ids minted at
 render time.
 
-Not done here because each of the three needs its own browser verification, and one of them
-(`de-text-search.html`) is shared with a branch this tree does not own. Factoring the helper
+Not done here because each of the three needs its own browser verification. Factoring the helper
 into a partial the four callers share is the obvious follow-up; it was left alone so the NR
 fix could be verified in isolation first.
+
+**Corrected 2026-08-11.** This paragraph originally added "and one of them (`de-text-search.html`)
+is shared with a branch this tree does not own." That is wrong. The partial is included by
+`themes/dohmh/layouts/data-explorer/indicator-catalog.html:33`, which
+`content/data-explorer/indicator-catalog.md` routes to via `layout: indicator-catalog`, and
+`/data-explorer/indicator-catalog/` serves 200 in this tree. It is testable here like the other
+two. The claim was asserted from the partial's name without tracing its includes.
+
+**All three were then confirmed by browser probe rather than left as inference**
+`[verified 2026-08-11, local_prod on :8081]`. Each shows the generated input with `role: null`,
+`aria-expanded: "false"`, `aria-owns` set; after one typed character, 100 options visible with
+`aria-expanded` still `"false"`, no `id` on any `<li>` and no `aria-activedescendant`; after
+Escape, the list still present with 100 options. Zero page errors on all three. One thing the
+markup would not have told you: `aqe.html` and `hvi.html` contain **no** `.flexdatalist({…})` call
+— they initialise through the library's auto-discovery at `:2085` — so there is no init function to
+hang the fix on, unlike the other two call sites.
+
+A seed brief for the PR, with the fix's non-obvious properties and the verification each page
+needs, is in `documents/flexdatalist-accessibility-seed-2026-08-11.md`.
 
 **A second defect in the same library, found while verifying the first, and unfixed on all
 four call sites: Escape does not dismiss the list.** Two handlers fight over the key press. The
