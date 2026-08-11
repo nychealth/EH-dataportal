@@ -96,6 +96,26 @@ used by `partials/nr-topic-menu.html:27` and the landing page's topic buttons. F
 per page on the landing page, topic index and report SPA. The neighborhood index has no topic menu
 and is unaffected.
 
+**Corrected 2026-08-10, after A5.** `.btn-light-green-bg` was not the only source of the
+`color-contrast` nodes counted here; the rule id was read as if it were. Two more rules put
+`$primary` on a near-white green, and both survived A5:
+
+| Element | Rule | Was | Now |
+|---|---|---|---|
+| Print / Download / Expand all, `.btn-report` (`assets/scss/theme.scss:480-486`) — NR-only | `$primary` on `$light-green` `#F8FCF7`, 14px bold | 4.37:1 | **5.29:1** — fixed |
+| "See neighborhood list" toggle, `.nr-list-toggle` (`nr-neighborhood-list.html:22`) — `.btn-outline-primary`, a Bootstrap variant used site-wide | `$primary` on `#EFFAF4`, 16px bold | 4.24:1 | 4.24:1 — **left alone by decision**, the class is site-wide |
+
+`[verified 2026-08-11: `getComputedStyle` on the live nodes under Playwright, at rest and after a
+real hover with a 500ms wait for Bootstrap's .15s `background-color` transition — reading
+immediately after `page.hover()` measures the transition, not the hover state, and returned the
+resting colour on all five targets. Ratios recomputed from the sRGB formula. Resting: `.btn-report`
+5.29, `.nr-topic-link` 5.13, toggle 4.24. Hover: `.btn-report` 5.29 (the same pair inverted),
+`.nr-topic-link` 5.49]`
+
+The fix is `$primary-dark: #007A31` in `assets/scss/_a-global-variables.scss`, used by
+`.btn-report` and `.btn-light-green-bg` for text and its inverse only. `$primary` stays the brand
+colour for fills, borders and map geometry.
+
 **F5 — worse and better are distinguished by background colour alone.** WCAG 1.4.1. The collapsed
 indicator row shows a pill reading `Higher` or `Lower`; whether that is good or bad is carried only
 by `.worse` (`#F2CDD7`, pink) versus `.better` (`#D1F0C8`, green) at
@@ -173,6 +193,12 @@ the visible label text.
 id it never defines. NR's `section.html:117` includes the partial; `data-features/neighborhood-overlap.html`
 is the other caller, so a fix there is shared.
 
+**Corrected 2026-08-10, during A3.** There is no other caller. `neighborhood-overlap.html:11`
+includes `overlap-tool-with-map.html`, a *different* partial, and that one contains no tab markup
+at all — zero hits for `tab-btn` or `nav-tabs`. `overlap-tool.html` is included only by NR's
+`section.html:117` `[verified 2026-08-10: grep for `overlap-tool` across `themes/` and `content/`]`.
+So A3 changes nothing outside Neighborhood Reports.
+
 ### 2.3 Minor
 
 **F14 — the "Download" button claims it opens a new tab; it triggers a blob download.**
@@ -243,11 +269,23 @@ Staged by what proves each stage, not by severity, so every stage has one cheap 
 | A3 | Make the second `tab-btn-01-a` unique and fix the `tab-btn-02-a` reference (F13) | `partials/overlap-tool.html:33, 39` |
 | A4 | Replace the "(opens in a new tab)" sr-only text with "(downloads a CSV file)" (F14) | `nr-topic-spa.html:224` |
 | A5 | Darken `.btn-light-green-bg`'s foreground to clear 4.5:1 on `#EFFAF4` (F4) | `_custom.scss:214-219` |
-| A6 | Add `scope="col"` to the sr-only headers and make each row's first cell a `<th scope="row">` (F15) | `nr-topic-spa.html:150-152`, `demographics.js` |
+| A6 | Add `scope="col"` to the sr-only headers and make each row's first cell a `<th scope="row">` (F15) | `nr-topic-spa.html:150-152`, ~~`demographics.js`~~ |
 | A7 | Close the anchors and drop the stray `</li>` — code quality, no a11y change expected | `nr-report-footer-sm.html:25-26, 41-42` |
 
+A6 is template-only. `demographics.js` writes the *value* cells by id (`DEMOGRAPHIC_FIELDS`) and
+never emits the metric cells, so it needed no change.
+
 Proof: `node scripts/nr-a11y-audit.mjs`, then confirm `image-alt` drops to the site-shell instance
-only, `color-contrast` reaches 0 on all four pages, and the broken-reference list is empty.
+only, ~~`color-contrast` reaches 0 on all four pages~~, and the broken-reference list is empty.
+
+**The `color-contrast` half of that proof was wrong when written, and cannot be reached by A5.**
+Two reasons, both worth carrying into Stage B. A5 only ever touched one of the three rules putting
+`$primary` on a light-green background (see F4's correction above). And `color-contrast` appears in
+axe's **`incomplete`** bucket on all four pages of the post-A5 run — axe defers
+nodes whose background it cannot resolve, so its violation count is a floor, not a census. The
+landing page's list toggle measures 4.24:1 and axe reports it on the topic index but not on the
+landing page, from byte-identical partial markup. Use a computed-colour probe to assert a
+contrast zero; the axe count alone cannot.
 
 ### Stage B — semantics, template-local; proof is axe plus a re-run of the keyboard and heading probes
 
@@ -298,11 +336,20 @@ probe showing a monotonic sequence.
 |---|---|---|---|
 | Instrument built | Done 2026-08-10 | Positive control fired; rendered control matched on all 4 pages; tab sweep completed without hitting its limit (96/96/94/128 stops) | — |
 | Audit run and triaged | Done 2026-08-10 | `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080; findings in §2, disconfirmed candidates in §4 | — |
-| Stage A | Not started | — | `node scripts/nr-a11y-audit.mjs` |
+| Stage A | Done 2026-08-10, uncommitted; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed; `.nr-topic-link` measured 5.13:1 | — |
+| Stage A follow-on (F4 remainder) | Done 2026-08-11 for `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.btn-report` measured 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
 | Stage B | Not started | — | `node scripts/nr-a11y-audit.mjs` |
 | Stage C | Not started, needs decisions | — | — |
 
-Nothing in `themes/`, `assets/js/nr-topic-spa/` or `assets/scss/` was modified for this audit.
+Stage A modified seven files: `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`,
+`.../section.html`, `themes/dohmh/layouts/partials/overlap-tool.html`,
+`.../nr-report-footer-sm.html`, `assets/scss/_custom.scss`, `assets/scss/_a-global-variables.scss`,
+`assets/scss/theme.scss`. Nothing under `assets/js/nr-topic-spa/` was touched.
+
+**Two instrument notes for whoever runs Stage B.** Pass `DE_BASE_URL` when a `local_prod` server is
+already up, or `ensureDevServer()` will not reuse it — it spawns `dev_stage`, whose data differs.
+And read `wcag.incompleteIds` in the per-page JSON, not only `wcag.violations`: `color-contrast` is
+deferred on every page, so a violation count of zero for that rule proves nothing on its own.
 
 ## 7. Re-running this
 

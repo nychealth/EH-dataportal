@@ -1265,6 +1265,49 @@ In addition to the map/chart gaps in the DE audit:
   explorer) so regressions are caught automatically — this is a legal-exposure
   area for a city agency (WCAG 2.1 AA / Section 508).
 
+### 10a. The brand green clears AA as text only on pure white, and only just (added 2026-08-11)
+
+`$primary` (`#008939`) is 4.53:1 on white, against the 4.5:1 threshold. That 0.03 is the whole
+margin, and it is spent by any tint of the background at all. Measured against the backgrounds the
+palette itself defines:
+
+| Background | `$primary` #008939 | `$primary-dark` #007A31 |
+|---|---|---|
+| `#FFFFFF` | 4.53 | 5.49 |
+| `$light-green` `#F8FCF7` | **4.37** | 5.29 |
+| `#EFFAF4` (the `.btn-light-green-bg` fill) | **4.24** | 5.13 |
+| `$gray-100` `#F5F5F5` | **4.15** | 5.03 |
+| `$active` `#DCF4E7` | **3.91** | 4.74 |
+
+`[verified 2026-08-11: sRGB relative-luminance formula; the #EFFAF4 and #F8FCF7 rows also
+confirmed against `getComputedStyle` on live nodes under Playwright, which is where the two
+Neighborhood Reports instances were found]`
+
+**The fix is in the tree as of Stage A of the NR audit**: `$primary-dark: #007A31` in
+[`assets/scss/_a-global-variables.scss`](../assets/scss/_a-global-variables.scss), the same green
+darkened until it clears 4.5:1 on every background above except `$active`. It is for **text and
+its inverse only** — `$primary` stays the brand colour for fills, borders and map geometry, so
+nothing about the site's appearance at a glance changes. Two rules use it so far,
+`.btn-report` and `.btn-light-green-bg`.
+
+**What is not established:** which of the remaining rules actually fail. About twenty SCSS rules
+set the green as text (`grep -rn "color: *\$primary\|color: *#008939" assets/scss/`), and their
+backgrounds were **not** checked one by one — the ratios above make them candidates, not findings.
+Two worth looking at first, because their names imply a tinted ground:
+`$accordion-title-color: $primary` ([`_f-layout-elements.scss:774`](../assets/scss/_f-layout-elements.scss))
+and the three hardcoded `#008939` rules in
+[`__portal-custom.scss:201, 204, 1283`](../assets/scss/__portal-custom.scss).
+
+Two cautions for whoever sweeps this, both learned by getting them wrong:
+
+- **axe's violation count is a floor, not a census.** `color-contrast` lands in axe's
+  `incomplete` bucket on every page of the NR audit — it defers nodes whose background it cannot
+  resolve. The same button markup was reported on one page and not on its sibling. Assert a
+  contrast zero from computed colour, not from a rule count.
+- **Reading `getComputedStyle` right after a hover measures the transition, not the hover state.**
+  Bootstrap transitions `background-color` over .15s, so an immediate read returns the *resting*
+  colour and a broken hover state looks fine. Wait ~500ms.
+
 ---
 
 ## 11. Concrete defects found (quick wins)
