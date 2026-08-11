@@ -5,6 +5,16 @@ tree the probes ran against — the Expand all / Collapse all control was presen
 covered here (F12). It cites
 line numbers that will move; it does not opt into `docs-check` for that reason.
 
+**Citation audit, 2026-08-11.** Every `file:line` in this document was resolved — the §2 findings
+against `43e42b666e`, the corrections and the Stage B/C notes against the current tree, whose
+code is unchanged since `c415c83a54` — along with the nine commit hashes, the library versions, and whether each fix the
+document claims landed is present in the code. Four citations were wrong and are corrected in
+place: the `.autocomplete__*` range under C4, the flexdatalist `<li>` and `removed:` event lines
+under C4, and F2's Leaflet line, one off from C2's citation of the same guard. The ledger's Stage
+A row was also crediting A5 to two commits that do not contain it. No finding changed. The
+browser-measured numbers — contrast ratios, tab-stop counts, axe counts, the Escape timings —
+were not re-run; only the code and citations they rest on were checked.
+
 ## 1. Scope and method
 
 The Option D rewrite replaced 252 hand-written pages with four generated page kinds, a ten-file
@@ -27,6 +37,13 @@ first; §4 records the candidates the browser disconfirmed, which is a third of 
 The report SPA was scanned in four states, because they are different documents: at rest, with one
 panel expanded (the only state in which a chart exists), with all 22 expanded, and under
 `emulateMedia({ media: 'print' })`.
+
+**The panel count is data-dependent, which is why later checks say 23.** Every count in §2 is
+from `local_prod`, i.e. production EHDP-data, where this report has 22 indicator cards. Stage C's
+C3 control ran on `dev_stage` and counted 23. Both are right: the characterization baselines
+record 44 accordion ids for this topic/neighborhood pair on production against 46 on staging, two
+ids per card `[verified 2026-08-11: the two committed baselines under
+`scripts/nr-characterization-baseline/`]`. Compare counts across states, not across branches.
 
 **Instrument** — `scripts/nr-a11y-audit.mjs` (`npm run a11y:nr`), axe-core 4.13.0 under
 Playwright 1.62.0, plus probes for what no axe rule implements: a full tab-order sweep recording
@@ -73,7 +90,7 @@ one and pressing Enter left the `<h1>`, the URL and the first card unchanged —
 not switch. `assets/js/nr-topic-spa/map.js:146-160` registers a `click` handler only. Enter does
 reach the polygon — a DOM listener on a focused path recorded `keydown` and `keypress`
 `[verified 2026-08-10]` — and Leaflet 1.9.4 routes key events to layer targets
-(`leaflet-src.js:4555-4565`), skipping only the coordinate computation. Nothing is listening, so
+(`leaflet-src.js:4556-4565`), skipping only the coordinate computation. Nothing is listening, so
 nothing runs. The SPA's only in-place neighborhood switcher is therefore mouse-operable, and it
 costs a keyboard user 42 dead stops to skip.
 
@@ -447,7 +464,10 @@ did not survive a check before implementation; both are corrected in place under
 
   **The library swap is not the low-cost option the proposal implied.** "Replace it with the
   accessible autocomplete already styled in `theme.scss:183-262` and used elsewhere on the site"
-  is right about *styled* — `.autocomplete__*` runs at `assets/scss/theme.scss:175-265` — and right
+  is right about *styled* — the vendor base rules run at `assets/scss/theme.scss:161-280` and a
+  site override block adds more under `.autocomplete-form` at `:301-313`
+  `[corrected 2026-08-11: the earlier "175-265" bounded nothing — 175 and 265 are both selectors
+  inside the base block]` — and right
   that the bundle is loaded, by `themes/dohmh/layouts/index.html:317` and
   `themes/dohmh/layouts/data-explorer/single.html:1155`. It is wrong about *used*:
   `accessibleAutocomplete(` and `enhanceSelectElement` appear in no template and no content file
@@ -458,8 +478,12 @@ did not survive a check before implementation; both are corrected in place under
   match and the Clear button would all be rebuilt against an unexercised API.
 
   Scope is a choice rather than a given: flexdatalist is initialised at four independent call
-  sites — this picker, `partials/de-text-search.html:47`, `data-features/aqe.html` and
-  `data-features/hvi.html`. The other three keep the defect and are logged in
+  sites — this picker, `partials/de-text-search.html:47`, and the two data features, whose
+  layouts carry the markup while the `.flexdatalist({…})` call sits in the page's own script:
+  `content/data-features/neighborhood-air-quality/aqe.js:18` (layout `data-features/aqe.html`)
+  and `content/data-features/hvi/hvi.js:47` (layout `data-features/hvi.html`)
+  `[verified 2026-08-11: grep for `.flexdatalist(` across every .html, .js and .md outside
+  node_modules and docs/ — four hits]`. The other three keep the defect and are logged in
   `documents/site-wide-audit-2026-06-27.md` rather than pulled into an NR stage.
 
   **C4 also absorbed F18**, which its own verification turned up: Escape did not dismiss the
@@ -469,12 +493,13 @@ did not survive a check before implementation; both are corrected in place under
   available.
 
   Two traps found in the library before writing the sync, both about *which* paths close the
-  listbox. `remove()` is the only one that fires `removed:flexdatalist.results` (`:1633`); the
+  listbox. `remove()` is the only one that fires `removed:flexdatalist.results` (`:1635`; `:1633`
+  is the `remove:` pre-event on the same call); the
   Escape key (`:2046`) and the outside-click handler (`:2028`) each call `.remove()` on the
   container directly and fire nothing. Syncing `aria-expanded` off the library's events alone
   would therefore have left it reading `"true"` after Escape — the same class of stale-state
   defect F3 is about. The sync watches the DOM instead. Second: the `<li>`s carry `role="option"`
-  and `tabindex="-1"` but **no `id`** (`:1551-1560`), so `aria-activedescendant` needs ids minted
+  and `tabindex="-1"` but **no `id`** (`:1510-1511`), so `aria-activedescendant` needs ids minted
   at render time.
 
 - **C5 (F16) — dangling tooltip references.** *Chosen: clear the attribute, keep the tooltips.*
@@ -490,8 +515,8 @@ did not survive a check before implementation; both are corrected in place under
 |---|---|---|---|
 | Instrument built | Done 2026-08-10 | Positive control fired; rendered control matched on all 4 pages; tab sweep completed without hitting its limit (96/96/94/128 stops) | — |
 | Audit run and triaged | Done 2026-08-10 | `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080; findings in §2, disconfirmed candidates in §4 | — |
-| Stage A | Done 2026-08-10; committed in `726a6eba4a` and `dfd8430a5e`; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed; `.nr-topic-link` measured 5.13:1 | — |
-| Stage A follow-on (F4 remainder) | Done 2026-08-11, committed in `cc258553c0`, for `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.btn-report` measured 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
+| Stage A | Done 2026-08-10, commits timestamped 2026-08-11 00:16 EDT; A1–A4, A6 and A7 committed in `726a6eba4a` and `dfd8430a5e`; **A5 landed with the F4 remainder in `cc258553c0`**, the row below, since both are the same `$primary-dark` change; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed | — |
+| Stage A follow-on (A5 + F4 remainder) | Done 2026-08-11, committed in `cc258553c0`, for `.btn-light-green-bg` (A5) and `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.nr-topic-link` — the `.btn-light-green-bg` topic link — measured 5.13:1, and `.btn-report` 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
 | Stage B | Done 2026-08-11 | `npm run lint` clean; `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080, both controls passed; `npm run smoke` 15 pages clean. Keyboard stops inside an `aria-hidden` subtree **46 → 0** on both picker pages (total stops 96→50 landing, 94→48 topic index). `summary-name` ×22 and `svg-img-alt` ×44 both **gone** from the all-expanded scan. `heading-order` gone from all four pages; every exposed sequence monotonic. Accessible names read from Chrome over CDP: 22 charts, 22 distinct names, 0 unnamed `graphics-symbol`; expand-all `aria-expanded` flips true/false across two clicks with all 8 `aria-controls` ids resolving; search field keeps its name after typing. `node scripts/nr-characterization.mjs --check` against a spawned `dev_stage` server — see the note below | — |
 | Stage C | Done 2026-08-11, in four commits — C1 `5fecb8cb18`, C2+C5 `ace23eef17`, C3 `9f2ec19a01`, C4+F18 `c415c83a54`. All five items decided — see §5, where each records the option chosen and what it rules out. C4 scoped to the NR picker only; the other three flexdatalist call sites logged in the site-wide audit §5k. One new finding raised during verification and then fixed as part of C4: F18 | Per-item table below. `npm run lint` clean; `npm run docs-check` passed; `node scripts/nr-characterization.mjs --check` **passed**, 3/3 targets matching the staging baseline; `node scripts/nr-a11y-audit.mjs` both controls passed, on `dev_stage` and again on `local_prod` with the same result; `npm run smoke` 15 pages clean on both | — |
 
@@ -521,7 +546,7 @@ it returned:
 |---|---|---|
 | C1 | Across one keyboard-driven switch: `<h1>`, `document.title` and the URL all moved together, and the live region read `"Report updated. Now showing Asthma and the Environment in Kingsbridge - Riverdale."` | Read before *and* after. A probe reading only the after-state passes against a title that never moved — the exact defect F7 recorded |
 | C2 | 42 polygons, 42 with `role="button"`, 42 with a non-empty `aria-label`; the accessibility tree returned 42 button nodes and **0 unnamed** | Enter pressed on the polygon for the neighborhood *already shown*: `<h1>`, title, status and URL byte-identical afterwards. So "it changed" is not the only outcome the probe can produce |
-| C3 | `.worse::before` = U+F071, `.better::before` = U+F14A, both `"Font Awesome 6 Free"`, both inside an `aria-hidden` span; 23 of 23 accordion buttons carry the sentence | Both classes sampled on one page (8 `.worse`, 3 `.better`) and the codepoints compared. A rule matching *neither* looks identical to one matching both if only one class is read. Codepoints, not the raw `content` string: these are private-use characters a terminal prints as nothing, so an empty rule and a working one render the same |
+| C3 | `.worse::before` = U+F071, `.better::before` = U+F14A, both `"Font Awesome 6 Free"`, both inside an `aria-hidden` span; 23 of 23 accordion buttons carry the sentence — 23 rather than §2's 22 because this ran on `dev_stage`, see §1 | Both classes sampled on one page (8 `.worse`, 3 `.better`) and the codepoints compared. A rule matching *neither* looks identical to one matching both if only one class is read. Codepoints, not the raw `content` string: these are private-use characters a terminal prints as nothing, so an empty rule and a working one render the same |
 | C4 | `role="combobox"`; `aria-expanded` `false → true` on typing, `true` on ArrowDown with `aria-activedescendant` following the highlight and resolving, `false` after an outside click. With F18 folded in: `false` at +60ms after Escape and still `false` at +600, +900 and +1800ms, on both picker pages | Escape and outside-click are the two paths the library fires no event for (§5 C4). Sampled **twice** around Escape rather than once — which is what separated a stale attribute from F18's genuine reopen, and a single 500ms sample would have read exactly like the defect being fixed. Four controls on the dismissal itself, since a list that never returns looks the same as a search that broke: typing reopens it, selection navigates from a clean field, selection still navigates with an Escape before it, and ArrowDown+Enter navigates |
 | C5 | Leaflet's own tooltip API driven over all 42 layers: `withAttrAfter: 0`, `danglingAfter: 0` | `peakWithAttrDuringSweep: 1` — the attribute was observed present mid-sweep, so the probe can see it at all. Without that, a selector that never matched and a page with nothing dangling report the same zero. The mouse-driven sweep beside it reached only 2 of 15 attempted polygons, because a UHF shape is concave and its bbox centre lands inside a neighbour; that count is reported rather than the sweep being presented as exhaustive |
 
