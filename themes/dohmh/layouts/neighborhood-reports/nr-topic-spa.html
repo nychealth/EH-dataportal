@@ -147,18 +147,21 @@
                     {{/* Demographics table — populated by JS from uhflist.js */}}
                     <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
                         <table class="table fs-sm" style="color:darkslategrey">
+                            {{/* Row headers, not plain cells: in a two-column table a screen
+                                reader reading cell by cell otherwise announces the value with
+                                no metric name attached. */}}
                             <thead class="sr-only">
-                                <tr><th>Metric</th><th>Value</th></tr>
+                                <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td><strong>Population</strong></td><td id="nr-pop" class="text-right"></td></tr>
-                                <tr><td><strong>Over age 65</strong></td><td id="nr-old" class="text-right"></td></tr>
-                                <tr><td><strong>Under age 18</strong></td><td id="nr-young" class="text-right"></td></tr>
-                                <tr><td><strong>Poverty</strong></td><td id="nr-pov" class="text-right"></td></tr>
-                                <tr><td><strong>Graduated high school</strong></td><td id="nr-grad" class="text-right"></td></tr>
-                                <tr><td><strong>Limited English</strong></td><td id="nr-eng" class="text-right"></td></tr>
-                                <tr><td><strong>Owner-occupied homes</strong></td><td id="nr-own" class="text-right"></td></tr>
-                                <tr><td><strong>Rent-burdened households</strong></td><td id="nr-rent" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
                             </tbody>
                         </table>
                         <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
@@ -221,7 +224,7 @@
                         <div class="row d-print-none">
                             <div class="col-sm-6">
                                 <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
-                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
                             </div>
                             <div class="col-sm-6 text-sm-right">
                                 <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2" disabled>
@@ -374,7 +377,9 @@
         code.addData(location.href);
         code.make();
 
-        destination.innerHTML = code.createImgTag();
+        // (2, 8) are createImgTag's own defaults — passed explicitly only because alt is
+        // its third argument, and the library omits the attribute entirely when it is absent
+        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + location.href);
 
     }
 </script>
