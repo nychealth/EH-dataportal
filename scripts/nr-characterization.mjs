@@ -35,9 +35,16 @@
 // use, and whether each mark group painted — not the number of marks, which tracks
 // the row counts in EHDP-data and would churn the baseline on every data refresh.
 //
+// Baselines are filed per EHDP-data branch, under nr-characterization-baseline/<branch>/,
+// and the branch is read off the running server rather than passed in. A server serving a
+// branch with no baseline is told so; it is never checked against another branch's.
+//
 // Usage (reuses a running dev server, or starts one — see dev-server.mjs):
 //   npm run characterize:nr -- --baseline
 //   npm run characterize:nr -- --check
+//
+// PowerShell eats the `--`, so call node directly there:
+//   node scripts/nr-characterization.mjs --check
 
 import { chromium } from 'playwright';
 import { mkdirSync, rmSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -59,8 +66,14 @@ const TARGETS = [
     { topic: 'climate_and_health',         neighborhood: 'bayside_little_neck' }
 ];
 
-const BASELINE_DIR = 'scripts/nr-characterization-baseline';
-const CURRENT_DIR  = 'scripts/nr-characterization-current';
+// Baselines are filed by EHDP-data branch, not by Hugo environment. The branches differ
+// in row counts — staging carries an Indoor Air topic production does not — so a
+// production-data server checked against a staging baseline reports content regressions
+// that are nothing of the kind (the same confusion read as 210 of them in
+// nr-postswap-check.mjs). Environments sharing a branch share a baseline: dev_stage with
+// local_stage, dev_prod with local_prod and prod_prod.
+const BASELINE_ROOT = 'scripts/nr-characterization-baseline';
+const CURRENT_ROOT  = 'scripts/nr-characterization-current';
 
 // Console noise that predates this harness and is not a regression signal.
 // Pagefind is not built by `hugo server`, so PagefindUI is legitimately absent in
@@ -215,6 +228,28 @@ const captureTarget = async (browser, target, baseURL) => {
 
 const fileFor = (dir, target) => join(dir, `${target.topic}__${target.neighborhood}.json`);
 
+// Which EHDP-data branch the running server is serving, or null if it could not be read.
+//
+// head.html declares `data_branch` as a top-level `let`, so it is reachable from an
+// evaluate() but is NOT a window property — `window.data_branch` reads undefined. Same
+// mechanism and same reason as the gate in nr-postswap-check.mjs; read from the page
+// rather than from a flag because a flag can be wrong and --baseline cannot fail, so a
+// mislabelled capture would install itself silently as the wrong reference.
+const readServedBranch = async (browser, baseURL) => {
+
+    const page = await browser.newPage();
+
+    try {
+        await page.goto(`${baseURL}neighborhood-reports/`, { waitUntil: 'load', timeout: 45000 });
+        return await page.evaluate(() => (typeof data_branch === 'undefined' ? null : data_branch));
+    } catch {
+        return null;
+    } finally {
+        await page.close();
+    }
+
+};
+
 // Reports the field-level differences between two captures.
 const diff = (baseline, current) => {
 
@@ -243,13 +278,49 @@ const main = async () => {
         return;
     }
 
-    const outDir = mode === 'baseline' ? BASELINE_DIR : CURRENT_DIR;
+    const { baseURL, stop } = await ensureDevServer();
+    const browser = await chromium.launch({ headless: true });
 
+    // ----- data-branch gate ----- //
+
+    // Everything below is filed under the served branch, so this has to resolve before a
+    // single target is captured. An unreadable branch aborts rather than defaulting: a
+    // default would file the capture somewhere plausible and wrong.
+    const branch = await readServedBranch(browser, baseURL);
+
+    if (!branch) {
+        await browser.close();
+        await stop();
+        console.error(
+            `\nREFUSING TO RUN — could not read the served EHDP-data branch from ${baseURL}.\n` +
+            `Captures are filed per branch, so there is nowhere correct to put this one. ` +
+            `Check that the server is up and that head.html still declares data_branch.`
+        );
+        process.exitCode = 2;
+        return;
+    }
+
+    const baselineDir = join(BASELINE_ROOT, branch);
+    const outDir = mode === 'baseline' ? baselineDir : join(CURRENT_ROOT, branch);
+
+    // Scoped to this branch's directory: clearing the root would delete the other
+    // branch's baseline as a side effect of re-capturing this one.
     rmSync(outDir, { recursive: true, force: true });
     mkdirSync(outDir, { recursive: true });
 
-    const { baseURL, stop } = await ensureDevServer();
-    const browser = await chromium.launch({ headless: true });
+    if (mode === 'check' && !existsSync(baselineDir)) {
+        await browser.close();
+        await stop();
+        console.error(
+            `\nNO BASELINE for EHDP-data branch "${branch}" (looked in ${baselineDir}/).\n` +
+            `Run --baseline against this server first, or point DE_BASE_URL at a server ` +
+            `serving a branch that has one.`
+        );
+        process.exitCode = 1;
+        return;
+    }
+
+    console.log(`Server: ${baseURL}  EHDP-data branch: ${branch}\n`);
 
     let failures = 0;
 
@@ -271,7 +342,7 @@ const main = async () => {
 
             if (mode === 'check') {
 
-                const baselineFile = fileFor(BASELINE_DIR, target);
+                const baselineFile = fileFor(baselineDir, target);
 
                 if (!existsSync(baselineFile)) {
                     console.error(`  NO BASELINE for ${label} — run --baseline first.`);
@@ -299,7 +370,7 @@ const main = async () => {
     }
 
     if (mode === 'baseline') {
-        console.log(`\nBaseline written to ${BASELINE_DIR}/ (${TARGETS.length} target(s)). Commit it.`);
+        console.log(`\nBaseline written to ${baselineDir}/ (${TARGETS.length} target(s)). Commit it.`);
         return;
     }
 

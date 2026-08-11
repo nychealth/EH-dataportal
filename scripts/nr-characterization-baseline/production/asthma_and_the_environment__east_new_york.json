@@ -1,0 +1,86 @@
+{
+  "finalURL": "/dev-prod/neighborhood-reports/east_new_york/asthma_and_the_environment/",
+  "headerNeighborhood": "East New York",
+  "mobileNeighborhood": "East New York",
+  "mobileTitle": "Asthma and the Environment in East New York",
+  "reportHeader": "Asthma and the Environment in East New York Asthma and the Environment Asthma is a leading cause of hospitalizations for children. It can be made worse by housing and neighborhood characteristics. There are powerful inequities that drive racial disparities in asthma in NYC. Print Download (downloads a CSV file) Expand all",
+  "demographics": "MetricValue Population200,346 Over age 6513.2% Under age 1824.4% Poverty23.4% Graduated high school81.2% Limited English17.9% Owner-occupied homes26.4% Rent-burdened households51.6% Source: American Community Survey (2019-2023)",
+  "zipList": "11207, 11208",
+  "accordionIds": [
+    "nr-acc-1-c",
+    "nr-acc-1-h",
+    "nr-acc-10-c",
+    "nr-acc-10-h",
+    "nr-acc-11-c",
+    "nr-acc-11-h",
+    "nr-acc-12-c",
+    "nr-acc-12-h",
+    "nr-acc-13-c",
+    "nr-acc-13-h",
+    "nr-acc-14-c",
+    "nr-acc-14-h",
+    "nr-acc-15-c",
+    "nr-acc-15-h",
+    "nr-acc-16-c",
+    "nr-acc-16-h",
+    "nr-acc-17-c",
+    "nr-acc-17-h",
+    "nr-acc-18-c",
+    "nr-acc-18-h",
+    "nr-acc-19-c",
+    "nr-acc-19-h",
+    "nr-acc-2-c",
+    "nr-acc-2-h",
+    "nr-acc-20-c",
+    "nr-acc-20-h",
+    "nr-acc-21-c",
+    "nr-acc-21-h",
+    "nr-acc-22-c",
+    "nr-acc-22-h",
+    "nr-acc-3-c",
+    "nr-acc-3-h",
+    "nr-acc-4-c",
+    "nr-acc-4-h",
+    "nr-acc-5-c",
+    "nr-acc-5-h",
+    "nr-acc-6-c",
+    "nr-acc-6-h",
+    "nr-acc-7-c",
+    "nr-acc-7-h",
+    "nr-acc-8-c",
+    "nr-acc-8-h",
+    "nr-acc-9-c",
+    "nr-acc-9-h"
+  ],
+  "accordionCount": 44,
+  "expandedPanel": "nr-acc-1-c",
+  "charts": [
+    {
+      "ariaLabel": "",
+      "hasCanvas": false,
+      "hasSvg": true,
+      "markGroups": [
+        {
+          "cls": "mark-rect role-mark concat_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_0_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_2_marks",
+          "painted": true
+        }
+      ]
+    }
+  ],
+  "chartCount": 1,
+  "topicLinkCount": 5,
+  "mapPanes": 7,
+  "consoleErrors": []
+}

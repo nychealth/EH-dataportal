@@ -1,9 +1,15 @@
 # Running `characterize:nr` against environments other than `dev_stage`
 
-**2026-08-11. Options memo — nothing here is implemented.** Written after asking whether
-`npm run characterize:nr` could run against a `local_stage` server, then extended to `local_prod`.
-It records what the current harness does, the two independent things that block it, and the ways to
-unblock each with what they cost. No option is chosen.
+**2026-08-11. Options memo.** Written after asking whether `npm run characterize:nr` could run
+against a `local_stage` server, then extended to `local_prod`. It records what the harness does, the
+two independent things that block it, and the ways to unblock each with what they cost.
+
+**Status, updated 2026-08-11: Options 3 and 4 were built the same day** — baselines are now filed
+per EHDP-data branch and the harness reads the served branch off the page. `staging` and
+`production` baselines are both committed. **Options 1 and 2 are not built**, so the URL-prefix axis
+is still open: each branch's baseline carries the prefix it was captured on, and a check from a
+different environment on the same branch still fails on `finalURL` alone. Read §§4–5 as live
+proposals and §§6–7 as a record of what was done and why.
 
 The headline: **`local_stage` and `local_prod` are not the same problem.** One is a cosmetic
 mismatch in a single field. The other is a data-branch mismatch that makes every content field
