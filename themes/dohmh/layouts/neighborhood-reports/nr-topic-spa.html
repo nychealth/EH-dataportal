@@ -218,9 +218,16 @@
                             {{- end -}}
                         </div>
 
-                        <div class="d-print-none">
-                            <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1"></i>Print</button>
-                            <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                        <div class="row d-print-none">
+                            <div class="col-sm-6">
+                                <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(opens in a new tab)</span></button>
+                            </div>
+                            <div class="col-sm-6 text-sm-right">
+                                <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2" disabled>
+                                    <i class="fas fa-expand-alt mr-1" aria-hidden="true"></i><span class="nr-accordion-toggle-label">Expand all</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -235,7 +242,7 @@
                             Topic titles can urlize to strings that are awkward for CSS selectors or can drift
                             between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
                         */}}
-                        <div class="accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                        <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
                             <div class="px-2 pb-2">
                                 <h3 class="h4 fs-rg">
                                     {{ $rt.report_topic }}

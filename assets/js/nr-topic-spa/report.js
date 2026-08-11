@@ -103,6 +103,8 @@ const renderAll = (neighborhoodName, mapGeocode) => {
         renderSection(section, neighborhoodName);
     });
 
+    updateAccordionToggle();
+
     // ----- fill headers ----- //
 
     // Both header blocks are display:none in the layout until a neighborhood is picked

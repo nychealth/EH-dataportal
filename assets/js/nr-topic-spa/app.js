@@ -44,6 +44,48 @@ window.nrDownloadCSV = downloadCSV;
 
 
 // ----------------------------------------------------------------------- //
+// accordion controls
+// ----------------------------------------------------------------------- //
+
+// Returns the indicator detail panels within the report's accordion sections
+const getAccordionPanels = () => $('.nr-report-accordion .collapse');
+
+
+// Synchronizes the bulk-control label with the current expansion state
+const updateAccordionToggle = () => {
+
+    const button = document.getElementById('nr-toggle-accordions');
+
+    if (!button) return;
+
+    const panels = getAccordionPanels();
+    const allExpanded = panels.length > 0 && panels.filter('.show').length === panels.length;
+    const icon = button.querySelector('i');
+    const label = button.querySelector('.nr-accordion-toggle-label');
+
+    button.disabled = !panels.length;
+
+    if (icon) {
+        icon.className = 'fas ' + (allExpanded ? 'fa-compress-alt' : 'fa-expand-alt') + ' mr-1';
+    }
+
+    if (label) label.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+
+};
+
+
+// Opens every indicator panel unless they are already all open, then closes them
+const toggleAllAccordions = () => {
+
+    const panels = getAccordionPanels();
+    const allExpanded = panels.length > 0 && panels.filter('.show').length === panels.length;
+
+    panels.collapse(allExpanded ? 'hide' : 'show');
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // bootstrap
 // ----------------------------------------------------------------------- //
 
@@ -68,6 +110,10 @@ const bootstrap = () => {
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
+    $(document).on('shown.bs.collapse hidden.bs.collapse', '.nr-report-accordion .collapse', updateAccordionToggle);
+
+    const accordionToggle = document.getElementById('nr-toggle-accordions');
+    if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
 
     // Start map and data loads in parallel
     initLeafletMap();
