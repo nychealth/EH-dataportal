@@ -60,10 +60,22 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // Tertile pill for the header row (production uses .worse/.better/.middle classes)
     const pillLabel = getTertileLabel(row.data_value_rank, row.rankReverse);
     const pillClass = getTertilePillClass(row.data_value_rank, row.rankReverse);
+    const pillSentence = getTertileSentence(row.data_value_rank, row.rankReverse);
     let pillHTML = '';
 
+    // The pill reads the same two words whichever way the comparison went — only its
+    // background colour separates a good "Higher" from a bad one. So the pixels get a glyph
+    // (theme.scss) and the tree gets the sentence, and the pill itself goes aria-hidden so
+    // the two do not both land in the accordion button's name: appending would have ended it
+    // "... Age-adjusted percent Higher, Higher than most neighborhoods".
+    // Rank 2 emits no pill and still gets the sentence — showing nothing was the third state,
+    // and the print rendition already spells that one out
     if (pillLabel && pillClass) {
-        pillHTML = '<span class="' + pillClass + '">' + pillLabel + '</span>';
+        pillHTML = '<span class="' + pillClass + '" aria-hidden="true">' + pillLabel + '</span>';
+    }
+
+    if (pillSentence) {
+        pillHTML += '<span class="sr-only">' + pillSentence + '</span>';
     }
 
     // ----- print rendition of the header row ----- //

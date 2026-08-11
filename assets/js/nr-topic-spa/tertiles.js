@@ -51,29 +51,57 @@ const getTertilePillClass = (rank, rankReverse) => {
 };
 
 
-// Expands the same rank into a full sentence fragment with the judgment word colored
-const getTertileInlineLabel = (rank, rankReverse) => {
+// The tertile sentence split into its comparison word, the rest of the sentence, and the
+// class the word takes. Split rather than returned whole because the three renditions that
+// use it need it three ways: the expanded panel and the print row want the word wrapped in
+// its .comp-* class, and the collapsed row's screen-reader copy wants plain text. One source
+// so a reader who meets the same fact in two places does not meet it in two vocabularies
+const getTertileSentenceParts = (rank, rankReverse) => {
 
     const r = String(rank);
     const reverse = isRankReversed(rankReverse);
 
     if (r === '1') {
         return reverse
-            ? '<span class="comp-good">Lower</span> than most neighborhoods'
-            : '<span class="comp-bad">Higher</span> than most neighborhoods';
+            ? { word: 'Lower', rest: ' than most neighborhoods', cssClass: 'comp-good' }
+            : { word: 'Higher', rest: ' than most neighborhoods', cssClass: 'comp-bad' };
     }
 
     if (r === '2') {
-        return '<span class="comp-null">In the middle</span> of neighborhoods';
+        return { word: 'In the middle', rest: ' of neighborhoods', cssClass: 'comp-null' };
     }
 
     if (r === '3') {
         return reverse
-            ? '<span class="comp-bad">Higher</span> than most neighborhoods'
-            : '<span class="comp-good">Lower</span> than most neighborhoods';
+            ? { word: 'Higher', rest: ' than most neighborhoods', cssClass: 'comp-bad' }
+            : { word: 'Lower', rest: ' than most neighborhoods', cssClass: 'comp-good' };
     }
 
-    return '';
+    return { word: '', rest: '', cssClass: '' };
+
+};
+
+
+// Expands the same rank into a full sentence fragment with the judgment word colored
+const getTertileInlineLabel = (rank, rankReverse) => {
+
+    const parts = getTertileSentenceParts(rank, rankReverse);
+
+    if (!parts.word) return '';
+
+    return '<span class="' + parts.cssClass + '">' + parts.word + '</span>' + parts.rest;
+
+};
+
+
+// The same sentence as plain text, for the collapsed row's screen-reader copy. That row shows
+// only the bare word, and which way it goes is carried by the pill's background colour — so
+// the tree gets the sentence and the pixels get a glyph (assets/scss/theme.scss)
+const getTertileSentence = (rank, rankReverse) => {
+
+    const parts = getTertileSentenceParts(rank, rankReverse);
+
+    return parts.word ? parts.word + parts.rest : '';
 
 };
 

@@ -666,6 +666,38 @@ h2.report-info {
     background-color: #D1F0C8;
 }
 
+// Background colour was the only thing separating a good "Higher" from a bad one: both pills
+// read the same two words, so a reader with a colour vision deficiency saw no difference at
+// all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
+// triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
+// codepoints .comp-good / .comp-bad already use in the expanded panel and the print row
+// (assets/scss/_custom.scss), so the report makes the comparison the same way in all three
+// places. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
+// resource is involved.
+//
+// No `color` of its own: the glyph inherits the pill's text colour, which already passes
+// against these backgrounds. Colouring it the way .comp-* does would put $warning on #F2CDD7,
+// and the shape carries the distinction regardless — adding a second contrast question to
+// close a contrast-adjacent finding is not a trade worth making.
+//
+// Chrome drops ::before glyphs from the accessibility tree entirely (§4 of the audit), so
+// this is the visual half of the fix only; cards.js carries the .sr-only sentence that is
+// the other half. .middle gets no glyph, matching .comp-null, which gets none either.
+.worse::before,
+.better::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    padding-right: 0.3em;
+}
+
+.worse::before {
+    content: "\f071";
+}
+
+.better::before {
+    content: "\f14a";
+}
+
 
 .comparison {
     font-weight: 600;
