@@ -227,7 +227,16 @@
                                 <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
                             </div>
                             <div class="col-sm-6 text-sm-right">
-                                <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2" disabled>
+                                {{/* aria-controls names the section containers, not the individual
+                                    panels: the panel ids are minted in JS (nr-acc-N-c) and change
+                                    on every neighborhood switch, where these are in the markup and
+                                    stable. app.js keeps aria-expanded in step with the label. */}}
+                                {{- $accordionIds := slice -}}
+                                {{- range $i, $rt := $reportTopics -}}
+                                    {{- $accordionIds = $accordionIds | append (printf "nr-accordion-%d" $i) -}}
+                                {{- end -}}
+                                <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2"
+                                        aria-expanded="false" aria-controls="{{ delimit $accordionIds " " }}" disabled>
                                     <i class="fas fa-expand-alt mr-1" aria-hidden="true"></i><span class="nr-accordion-toggle-label">Expand all</span>
                                 </button>
                             </div>
@@ -247,9 +256,12 @@
                         */}}
                         <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
                             <div class="px-2 pb-2">
-                                <h3 class="h4 fs-rg">
+                                {{/* h2, with .h4 carrying the visual size: these sections sit
+                                    directly under the page h1, and each indicator card inside is
+                                    an h3. The level and the type scale are independent here. */}}
+                                <h2 class="h4 fs-rg">
                                     {{ $rt.report_topic }}
-                                </h3>
+                                </h2>
                                 <p class="fs-sm">
                                     {{ $rt.report_topic_description }}
                                 </p>

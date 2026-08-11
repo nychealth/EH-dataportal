@@ -24,9 +24,18 @@
      convention rather than a description of this field; `id` is load-bearing, since
      flexdatalist derives the .flex_search-flexdatalist wrapper the stylesheet targets
      from it. */}}
-<h3>Choose Neighborhood</h3>
+{{/* h2 with .h3 for size: both callers put this directly under their page h1, so an h3
+     jumped a level on the landing page and on all five topic indexes */}}
+<h2 class="h3">Choose Neighborhood</h2>
 
-<div class="btn-group w-100" role="group">
+{{/* The label is visible, not sr-only, because a placeholder is the *only* name this field
+     had and a placeholder disappears the moment the user types — leaving a filled-in box
+     with nothing saying what it holds (WCAG 3.3.2). It carries `for="flex_search"`, which
+     names the authored input; flexdatalist hides that one and renders its own, so
+     nr-neighborhood-picker-js.html points the generated input at this same label. */}}
+<label id="nr-search-label" for="flex_search" class="fs-sm mb-1">Search for a neighborhood</label>
+
+<div class="btn-group w-100" role="group" aria-labelledby="nr-search-label">
     <input
         id="flex_search"
         type="search"

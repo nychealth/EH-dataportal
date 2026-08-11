@@ -65,6 +65,10 @@ const updateAccordionToggle = () => {
 
     button.disabled = !panels.length;
 
+    // The visible label already flips between "Expand all" and "Collapse all"; without this
+    // the group state it controls reaches the accessibility tree through that text alone
+    button.setAttribute('aria-expanded', allExpanded ? 'true' : 'false');
+
     if (icon) {
         icon.className = 'fas ' + (allExpanded ? 'fa-compress-alt' : 'fa-expand-alt') + ' mr-1';
     }

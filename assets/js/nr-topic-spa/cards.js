@@ -101,7 +101,9 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // checkable by eye rather than per-value
     const headerHTML =
         '<div class="card-header border-top" id="' + escapeAttr(headingId) + '">' +
-            '<h2 class="mb-0">' +
+            // h3: one level below the section h2 in nr-topic-spa.html. As an h2 every
+            // indicator read as closing its section and opening a sibling of the page title
+            '<h3 class="mb-0">' +
                 '<button class="btn btn-block btn-sm text-left" type="button" ' +
                     'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
                     'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
@@ -120,7 +122,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
                     '</div>' +
                     printRowHTML +
                 '</button>' +
-            '</h2>' +
+            '</h3>' +
         '</div>';
 
     // ----- comparison blocks ----- //
@@ -184,10 +186,18 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // only blanks null and undefined, so without it a falsy-but-present value would
     // render as "0" or "false" and defeat onAccordionExpand's `|| currentGeocode`
     // fallback and its !indicatorName guard
+    // role="region" so the panels are reachable by landmark navigation, and aria-label rather
+    // than aria-labelledby because the header it pointed at is the whole row — name, value,
+    // units and pill run together into "Asthma (adults) Adults with a recent asthma attack,
+    // 2022 7.0* Age-adjusted percent Higher". A region wants a name, not a sentence.
+    // data-indicator-label carries the same short name through to the chart, which otherwise
+    // names every one of the 22 charts "Vega visualization" (see chart.js).
     const detailHTML =
         '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
-            'aria-labelledby="' + escapeAttr(headingId) + '" ' +
+            'role="region" ' +
+            'aria-label="' + escapeAttr(row.indicator_short_name || 'Indicator detail') + '" ' +
             'data-indicator-name="' + escapeAttr(row.indicator_data_name || '') + '" ' +
+            'data-indicator-label="' + escapeAttr(row.indicator_short_name || '') + '" ' +
             'data-legend-label="' + escapeAttr(units) + '" ' +
             'data-geocode="' + escapeAttr(row.geo_join_id || row.geo_entity_id || '') + '">' +
             '<div class="card-body card-body-no-top">' +

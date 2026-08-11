@@ -7,14 +7,22 @@
 // ----------------------------------------------------------------------- //
 
 // Draws one indicator across all neighborhoods, with geocode's own value highlighted
-const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
+const renderIndicatorChart = (data, destination, legendLabel, geocode, indicatorLabel) => {
 
     debugLog('renderIndicatorChart: enter:', {
         rowCount: data && data.length,
         destination,
         legendLabel,
-        geocode
+        geocode,
+        indicatorLabel
     });
+
+    // Every chart on the page is otherwise named "Vega visualization" — vega's default, and
+    // identical for all 22, so nothing says which indicator a chart shows. Falls back to the
+    // generic phrasing rather than to vega's default when the card has no short name
+    const chartName = indicatorLabel
+        ? indicatorLabel + ' across all NYC neighborhoods'
+        : 'Indicator values across all NYC neighborhoods';
 
     // ----- build geography URLs ----- //
 
@@ -42,6 +50,9 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
     // Vega-Lite spec combines a choropleth map with a compact sorted bar strip
     const spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        // Becomes the aria-label on the .chart-wrapper vega emits with
+        // role="graphics-document"; without it every chart computes to "Vega visualization"
+        "description": chartName,
         "data": {
             "values": data,
             "format": { "parse": { "Value": "number" } }
@@ -67,7 +78,10 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
                             "url": boroTopoUrl,
                             "format": { "type": "topojson", "feature": "collection" }
                         },
-                        "mark": { "type": "geoshape", "stroke": "#fafafa", "fill": "#C5C5C5", "strokeWidth": 0.5 }
+                        // aria:false — a plain grey backdrop behind gaps in UHF coverage. It
+                        // carries no value a reader needs, and left in the tree it is one more
+                        // unnamed graphics-symbol group per chart
+                        "mark": { "type": "geoshape", "stroke": "#fafafa", "fill": "#C5C5C5", "strokeWidth": 0.5, "aria": false }
                     },
 
                     // - - - UHF42 outlines, drawn under the data layer - - - //
@@ -79,7 +93,8 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
                             "url": uhfTopoUrl,
                             "format": { "type": "topojson", "feature": "collection" }
                         },
-                        "mark": { "type": "geoshape", "stroke": "#a2a2a2", "fill": "#e7e7e7", "strokeWidth": 0.5 }
+                        // aria:false for the same reason: neighborhood outlines under the data
+                        "mark": { "type": "geoshape", "stroke": "#a2a2a2", "fill": "#e7e7e7", "strokeWidth": 0.5, "aria": false }
                     },
 
                     // - - - indicator values, with the selected neighborhood outlined - - - //
@@ -87,7 +102,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
                     {
                         "height": 300,
                         "width": "container",
-                        "mark": { "type": "geoshape", "invalid": null },
+                        "mark": { "type": "geoshape", "invalid": null, "description": "Choropleth map of " + chartName },
                         "transform": [
                             {
                                 "lookup": "geo_join_id",
@@ -140,7 +155,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
             {
                 "height": 80,
                 "width": "container",
-                "mark": { "type": "bar", "tooltip": true, "stroke": "#161616" },
+                "mark": { "type": "bar", "tooltip": true, "stroke": "#161616", "description": "Bar chart of " + chartName + ", sorted by value" },
                 "encoding": {
                     "y": {
                         "field": "unmodified_data_value_geo_entity",
@@ -182,7 +197,15 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode) => {
     // which exists in a canvas bitmap. Verified to survive the accordion's
     // collapse/reopen cycle, which matters because renderedPanels suppresses a
     // re-render — a view that collapsed to zero width on hide would come back blank
-    vegaEmbed(destination, spec, { actions: true, renderer: 'svg' });
+    vegaEmbed(destination, spec, { actions: true, renderer: 'svg' }).then(() => {
+
+        // vega-embed's actions control is a <summary> containing only an SVG, so it computes
+        // to a bare "DisclosureTriangle" with no name while sitting in the tab order. There
+        // is no embed option for its label, so it is set on the rendered node
+        const summary = document.querySelector(destination + ' details > summary');
+        if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
+
+    });
 
 };
 
@@ -248,7 +271,13 @@ const onAccordionExpand = event => {
                 legendLabel = 'Value';
             }
 
-            renderIndicatorChart(summaryData, '#' + mapEl.id, legendLabel, geocode);
+            renderIndicatorChart(
+                summaryData,
+                '#' + mapEl.id,
+                legendLabel,
+                geocode,
+                panel.getAttribute('data-indicator-label')
+            );
 
         } else {
             debugLog('onAccordionExpand: branch-no-summary-data:', indicatorName);

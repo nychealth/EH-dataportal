@@ -124,12 +124,39 @@
                 map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10] });
 
             }
-            
+
+            removeHiddenMapFromTabOrder();
+
         })
         .catch((err) => console.error("Error loading GeoJSON:", err));
 
+    // A caller may wrap this map in aria-hidden="true" — nr-neighborhood-picker.html does,
+    // because the 42-link neighborhood list beside it is the map's text equivalent. A hidden
+    // subtree must hold no keyboard stops, or a keyboard user tabs through positions a screen
+    // reader is told do not exist. Two sources of them here, and neither is an authored
+    // tabindex: Leaflet's `keyboard` option puts tabindex="0" on the container, and the
+    // polygons follow it into the tab order carrying no tabindex attribute of their own
+    // [verified 2026-08-11: 46 stops inside the hidden subtree — container, 42 polygons,
+    // 3 attribution links]. Setting tabindex="-1" explicitly removes an element from the
+    // sequential order whatever put it there. Keyed off the ancestor rather than a parameter
+    // so the report SPA, whose map is NOT hidden and IS the neighborhood switcher, is untouched.
+
+    function removeHiddenMapFromTabOrder() {
+
+        const container = map.getContainer();
+
+        if (!container.closest('[aria-hidden="true"]')) return;
+
+        container.setAttribute("tabindex", "-1");
+
+        container
+            .querySelectorAll("a, path, [tabindex]")
+            .forEach((el) => el.setAttribute("tabindex", "-1"));
+
+    }
+
     // define styl function
-    
+
     function style(feature) {
         return {
             weight: 1.5,
