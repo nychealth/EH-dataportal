@@ -302,6 +302,27 @@ contrast zero; the axe count alone cannot.
 Proof: axe, plus the tab sweep showing 0 stops inside an `aria-hidden` subtree, plus the heading
 probe showing a monotonic sequence.
 
+**Executed 2026-08-11. Three notes for the record:**
+
+- **B1's mechanism, measured rather than assumed.** Two things put keyboard stops in the hidden
+  subtree, and neither is an authored `tabindex`: Leaflet's `keyboard` option sets `tabindex="0"`
+  on `.leaflet-container`, and the 42 polygons follow it into the tab order carrying **no**
+  `tabindex` attribute at all — which is why `el.tabIndex` reading `-1` misleads. The fix sets
+  `tabindex="-1"` explicitly, which removes an element from the sequential order whatever put it
+  there, and is keyed off `closest('[aria-hidden="true"]')` rather than a partial parameter, so
+  the report SPA's map — not hidden, and the only in-place neighborhood switcher — is untouched.
+- **B5 reached further than its file list.** Fixing `cards.js`, the section title and the footer
+  made the *report SPA* monotonic but left `heading-order` on the landing page and the topic
+  indexes, whose `h1 → h3` comes from two headings the row did not name: `Choose report`
+  (`section.html:35`) and `Choose Neighborhood` (`nr-neighborhood-picker.html`). Both are now
+  `<h2>` carrying `.h3` for size. Heading level and type scale are independent here, so no
+  heading in Stage B changed size.
+- **B7 needed a second half the row did not anticipate.** flexdatalist hides the authored input
+  and renders its own, so `<label for="flex_search">` names an element the reader never focuses.
+  `nr-neighborhood-picker-js.html` points the generated input at the same label with
+  `aria-labelledby` after init. Verified over CDP: the field computes to
+  `textbox :: "Search for a neighborhood"` both empty and with `Bay` typed in.
+
 ### Stage C — behaviour and design; propose, do not implement unilaterally
 
 - **C1 (F7) — announce the re-render and fix the title.** Update `document.title` in `renderAll`,
@@ -336,10 +357,33 @@ probe showing a monotonic sequence.
 |---|---|---|---|
 | Instrument built | Done 2026-08-10 | Positive control fired; rendered control matched on all 4 pages; tab sweep completed without hitting its limit (96/96/94/128 stops) | — |
 | Audit run and triaged | Done 2026-08-10 | `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080; findings in §2, disconfirmed candidates in §4 | — |
-| Stage A | Done 2026-08-10, uncommitted; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed; `.nr-topic-link` measured 5.13:1 | — |
-| Stage A follow-on (F4 remainder) | Done 2026-08-11 for `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.btn-report` measured 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
-| Stage B | Not started | — | `node scripts/nr-a11y-audit.mjs` |
+| Stage A | Done 2026-08-10; committed in `726a6eba4a` and `dfd8430a5e`; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed; `.nr-topic-link` measured 5.13:1 | — |
+| Stage A follow-on (F4 remainder) | Done 2026-08-11, committed in `cc258553c0`, for `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.btn-report` measured 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
+| Stage B | Done 2026-08-11 | `npm run lint` clean; `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080, both controls passed; `npm run smoke` 15 pages clean. Keyboard stops inside an `aria-hidden` subtree **46 → 0** on both picker pages (total stops 96→50 landing, 94→48 topic index). `summary-name` ×22 and `svg-img-alt` ×44 both **gone** from the all-expanded scan. `heading-order` gone from all four pages; every exposed sequence monotonic. Accessible names read from Chrome over CDP: 22 charts, 22 distinct names, 0 unnamed `graphics-symbol`; expand-all `aria-expanded` flips true/false across two clicks with all 8 `aria-controls` ids resolving; search field keeps its name after typing. `node scripts/nr-characterization.mjs --check` against a spawned `dev_stage` server — see the note below | — |
 | Stage C | Not started, needs decisions | — | — |
+
+**The characterization harness was re-baselined, and it cannot see the chart naming.** Ran
+2026-08-11 against a `dev_stage` server the harness spawned itself, after killing the `local_prod`
+one — so the baseline's `/dev-stage/` prefix matched and `finalURL` was not a false failure. All
+three targets differed in exactly one field, `reportHeader`, and both changes in it predate Stage B:
+A4's "(downloads a CSV file)" wording (`dfd8430a5e`) and the Expand all control (`43e42b666e`), both
+landing after the baseline was last written at `2bce6c6d46`. Nothing else moved — `accordionIds`,
+`chartCount`, `markGroups`, `demographics` and `zipList` all matched, which is the useful result,
+since `cards.js` rewrote the accordion markup. Re-baselined after reading the diff, and the
+re-capture changed exactly those three lines.
+
+One limit worth knowing before trusting a green run here. The harness's `charts[].ariaLabel` reads
+`.vega-embed`, the outer wrapper, and captured nothing there both before and after B3 — `tidy()`
+turns a missing attribute into `""`, which is what all three baselines hold. So **that field is
+blind to the chart naming B3 added**; the 22 distinct names were established over CDP instead. The
+comment at `scripts/nr-characterization.mjs:147-148` claims container labels make the field work
+whatever the renderer, and the captured value contradicts it.
+
+**After Stage B, every remaining axe violation on the four pages is out of NR's scope or
+deliberately parked** — `aria-allowed-attr` (F3, deferred to C4), `color-contrast` (the parked
+site-wide list toggle), and `image-alt` / `link-name` / `landmark-unique` (the §3 site-shell
+defects). Nothing NR-scoped is left that an axe rule can see; what remains for Stage C is F7 and
+F16, which no rule implements.
 
 Stage A modified seven files: `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`,
 `.../section.html`, `themes/dohmh/layouts/partials/overlap-tool.html`,

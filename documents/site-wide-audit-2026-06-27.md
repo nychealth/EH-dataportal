@@ -1302,8 +1302,12 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 
 - **axe's violation count is a floor, not a census.** `color-contrast` lands in axe's
   `incomplete` bucket on every page of the NR audit — it defers nodes whose background it cannot
-  resolve. The same button markup was reported on one page and not on its sibling. Assert a
-  contrast zero from computed colour, not from a rule count.
+  resolve. The "See neighborhood list" toggle is the worked case: byte-identical markup from one
+  shared partial, and axe reported it on the topic index but not on the landing page. It began
+  reporting on both only after an unrelated Stage B change to the same pages, with the toggle's
+  own colours untouched throughout `[verified 2026-08-11: three runs of
+  `scripts/nr-a11y-audit.mjs`]`. Assert a contrast zero from computed colour, not from a rule
+  count.
 - **Reading `getComputedStyle` right after a hover measures the transition, not the hover state.**
   Bootstrap transitions `background-color` over .15s, so an immediate read returns the *resting*
   colour and a broken hover state looks fine. Wait ~500ms.
