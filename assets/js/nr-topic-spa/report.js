@@ -81,12 +81,51 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
 };
 
 
+// Rewrites <title> and announces the switch, once the rebuilt report is in place.
+//
+// The title is rebuilt from the same two parts head.html composes .Params.seo_title from,
+// rather than patched, so it cannot drift from the string the server sent. seoShortName is
+// carried separately from reportName because the two differ on Active Design.
+//
+// The announcement is suppressed when nothing changed — renderAll also runs at load, and a
+// reader who clicks the neighborhood already shown has moved nowhere. A role="status" region
+// announces on content change, so writing the same string twice would say nothing anyway;
+// returning early keeps that a deliberate contract rather than a coincidence
+const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
+
+    if (spaConfig.seoShortName) {
+        document.title = spaConfig.seoShortName + ' in ' + neighborhoodName;
+    }
+
+    if (!previousNeighborhood || previousNeighborhood === neighborhoodName) {
+        debugLog('announceNeighborhoodChange: branch-nothing-changed:', { neighborhoodName, previousNeighborhood });
+        return;
+    }
+
+    const status = document.getElementById('nr-report-status');
+
+    if (!status) {
+        debugLog('announceNeighborhoodChange: branch-missing-status-region');
+        return;
+    }
+
+    status.textContent = 'Report updated. Now showing ' +
+        (spaConfig.seoShortName || spaConfig.reportName || 'this report') +
+        ' in ' + neighborhoodName + '.';
+
+};
+
+
 // Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL
 const renderAll = (neighborhoodName, mapGeocode) => {
 
     debugLog('renderAll: enter:', { neighborhoodName, mapGeocode });
 
     // ----- reset per-render state ----- //
+
+    // Read before the overwrite below: it is null until the first render finishes, which is
+    // what distinguishes first paint from an in-place switch for the announcement
+    const previousNeighborhood = currentNeighborhood;
 
     // Record the active neighborhood used by downloads and rerenders
     currentNeighborhood = neighborhoodName;
@@ -141,5 +180,10 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     if (typeof renderQRCode === 'function') {
         renderQRCode();
     }
+
+    // ----- announce ----- //
+
+    // Last, so the region's text is written against a report that is already rebuilt
+    announceNeighborhoodChange(neighborhoodName, previousNeighborhood);
 
 };

@@ -46,7 +46,14 @@
 
         {{/* `summary` is top level rather than in params because that is what .Summary
              reads, and .Summary is what the site RSS feed prints as each report's
-             <description> — a generated page has no body for Hugo to summarize from. */}}
+             <description> — a generated page has no body for Hugo to summarize from.
+
+             `seo_short_name` is the uncomposed half of `seo_title`. The SPA switches
+             neighborhood in place and rebuilds document.title from it; .Title is a different
+             string on Active Design, so rebuilding from that would replace the title 42 of
+             these pages shipped with. It is carried here rather than derived in the layout
+             because a template comment cannot sit inside the dict call below — the whole
+             `(dict …)` is one expression, and `{{/* */}}` inside it is a parse error. */}}
         {{- $.AddPage (dict
             "path"    (printf "%s/%s" $nbhd.page_name $topic.slug)
             "kind"    "page"
@@ -60,6 +67,7 @@
                 "zipcodes"        $nbhd.Zipcodes
                 "content_yml"     $topic.key
                 "seo_title"       (printf "%s in %s" $topic.seo_short_name $nbhd.UHF_name)
+                "seo_short_name"  $topic.seo_short_name
                 "seo_description" (printf "%s data profile for the %s neighborhood of NYC." $topic.seo_long_name $nbhd.UHF_name)
                 "seo_image"       $topic.seo_image
             )

@@ -106,6 +106,17 @@
                 </ul>
             </nav>
 
+            {{/* Clicking a map polygon rebuilds the entire report body, swaps both <h1>s and
+                rewrites the address bar, with nothing said about it — report.js writes the
+                new neighborhood here so the change is announced rather than silent.
+
+                It sits outside #nr-report-header and outside every section container, because
+                renderAll() empties those: a live region replaced between the write and the
+                read is not announced. Server-rendered empty and left empty on first paint —
+                renderAll() runs at load too, where nothing has changed and an announcement
+                would be noise. role="status" carries aria-live="polite" and aria-atomic. */}}
+            <div id="nr-report-status" role="status" class="sr-only"></div>
+
             {{/* Mobile title (visible below md breakpoint).
                 Neighborhood name and visibility are server-rendered rather than left to the JS
                 that used to fill them: without JS this page otherwise reads "Asthma and the
@@ -323,6 +334,11 @@
 <script>
     window.NR_TOPIC_SPA_CONFIG = {
         reportName: "{{ .Title }}",
+        // The topic half of <title>, which head.html renders from .Params.seo_title.
+        // Not reportName: that is .Title, and the two differ on Active Design, so an
+        // in-place switch rebuilding the title from reportName would replace the string
+        // 42 of these pages actually shipped with
+        seoShortName: "{{ .Params.seo_short_name }}",
         // The neighborhood this page was generated for, and the only thing
         // getNeighborhoodFromURL consults — nothing parses the path for it
         neighborhood: "{{ .Params.neighborhood }}",
