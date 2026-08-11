@@ -614,6 +614,7 @@ const renderMap = (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#map", mapspec,{
+        renderer: "svg",
         actions: {
             export: { png: false, svg: false },
             source: false,  

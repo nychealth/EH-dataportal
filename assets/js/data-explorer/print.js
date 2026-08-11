@@ -47,6 +47,7 @@ function printViz() {
 
 
     vegaEmbed("#printVis", printSpec, {
+      renderer: "svg",
         actions: {
           export: { png: true, svg: true },
           source: false,  

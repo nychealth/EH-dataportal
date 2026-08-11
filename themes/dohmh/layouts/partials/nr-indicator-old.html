@@ -301,7 +301,7 @@
             vegaEmbed(
                 "#summary-{{ .data.indicator_data_name }}-{{ .count }}",
                 summarySpec,
-                opt
+                { ...opt, renderer: "svg" }
             ).then((res) => {
 
                 res.view.insert("summaryData", summaryData).run()
@@ -319,7 +319,7 @@
             vegaEmbed(
                 "#map-{{ .data.indicator_data_name }}-{{ .count }}",
                 mapSpec,
-                opt
+                { ...opt, renderer: "svg" }
             ).then((res) => {
 
                 res.view.insert("mapData", mapData).run()
@@ -342,7 +342,7 @@
             vegaEmbed(
                 "#trend-{{ .data.indicator_data_name }}-{{ .count }}",
                 trendSpec,
-                opt
+                { ...opt, renderer: "svg" }
             ).then((res) => {
 
                 res.view.insert("trendData", trendData).run()

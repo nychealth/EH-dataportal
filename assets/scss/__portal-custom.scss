@@ -344,10 +344,15 @@
 
 .vega-embed {
     width: 100%;
-    height: 500px;
+    height: auto;
     position: relative;
     display: inline-block;
     padding-right: 38px;
+}
+
+.vega-embed > svg {
+    display: block;
+    max-width: 100%;
 }
 
 .map-srch {

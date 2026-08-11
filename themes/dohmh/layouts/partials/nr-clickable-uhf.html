@@ -85,7 +85,7 @@
       // draw map, with event listener to power clickability
       function drawMap() {
         // console.log('map drawn.')
-        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+        vegaEmbed('#vis1', spec, {renderer: "svg", "actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
              // console.log('CLICK', event, item);
             // console.log(item.datum)

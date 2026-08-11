@@ -735,7 +735,7 @@
     };
 
     // Print chart
-    vegaEmbed("#chart", spec).then((result) => {
+    vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
       const view = result.view;
 
       // Mouse over event - sending to other function
