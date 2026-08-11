@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 7e33b61d51 2026-08-11 -->
+<!-- docs-check verified: 9676367155 2026-08-11 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -53,7 +53,9 @@ Six npm scripts, run from the repo root:
 
 - **Stopping a background task may orphan the server** — the wrapper is the tracked process, so `hugo.exe` can keep :8080. Check the port after stopping, and identify a running server by its command line before assuming it isn't yours.
 
-**Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
+**Never run two Hugo builders against this tree at once** — a static rebuild beside a running server, or two servers on different ports, even against different `--environment`s. All of them share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — one can poison another's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
+
+Two builders is the hazard, not the static build specifically. `scripts/dev-server.mjs` only guards the ports it probes, so a server started outside it slips past. The tell is every fingerprinted asset 404ing under the *other* environment's prefix — the page dies with `$ is not defined` and reads as a broken code change, so check the served asset URLs before suspecting your diff.
 
 **The exception:** a build with `HUGO_RESOURCEDIR` and `-d` pointed at temp directories cannot
 reach `resources/_gen` at all, so it is safe beside a running server — the command, the proof and
