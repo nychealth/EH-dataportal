@@ -1025,6 +1025,70 @@ red.
 
 ---
 
+### 5k. flexdatalist emits combobox ARIA with no combobox role, on three non-NR pages (P2, added 2026-08-11)
+
+Split out of the Neighborhood Reports accessibility audit
+(`documents/nr-accessibility-audit-2026-08-10.md`, F3 / C4), which fixed it on the NR
+neighborhood picker and deliberately left the rest here rather than pull three unrelated
+pages into an NR stage.
+
+The library's `accessibility` function
+(`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:474-482`) puts `aria-autocomplete`,
+`aria-owns` and a **static** `aria-expanded: 'false'` on the input it generates, and never
+gives it `role="combobox"` or emits `aria-activedescendant`. Two consequences, and the second
+is the worse one. axe reports `aria-allowed-attr` as critical, because `aria-expanded` is not
+allowed on a plain textbox. And the attribute is not merely misplaced but false: with the
+listbox open and three options showing, it still reads `"false"`
+`[verified 2026-08-10 on the NR picker: results container visible with 3 options and
+role="listbox", aria-expanded "false", aria-activedescendant absent]`. A screen reader is told
+nothing opened. The string `aria-expanded` appears exactly once in the library — there is no
+code path that updates it, and no option that makes it emit the role.
+
+Three call sites still carry it:
+
+| Page | Init |
+|---|---|
+| Data explorer text search | `themes/dohmh/layouts/partials/de-text-search.html:47` |
+| Air Quality Explorer | `themes/dohmh/layouts/data-features/aqe.html` |
+| Heat Vulnerability Index | `themes/dohmh/layouts/data-features/hvi.html` |
+
+**The fix already exists and is a copy away.** `partials/nr-neighborhood-picker-js.html`'s
+`wireComboboxState()` sets the role and syncs `aria-expanded` / `aria-activedescendant`. Two
+things to carry across rather than rediscover. It reads state from the DOM through a
+`MutationObserver`, not from the library's events, because only `results.remove()` fires
+`removed:flexdatalist.results` (`:1633`) — the Escape key (`:2046`) and the outside-click
+handler (`:2028`) both remove the container directly and fire nothing, so an event-driven sync
+goes stale on the two most common ways to dismiss the list. And the generated `<li>`s carry
+`role="option"` but no `id` (`:1551-1560`), so `aria-activedescendant` needs ids minted at
+render time.
+
+Not done here because each of the three needs its own browser verification, and one of them
+(`de-text-search.html`) is shared with a branch this tree does not own. Factoring the helper
+into a partial the four callers share is the obvious follow-up; it was left alone so the NR
+fix could be verified in isolation first.
+
+**A second defect in the same library, found while verifying the first, and unfixed on all
+four call sites: Escape does not dismiss the list.** Two handlers fight over the key press. The
+document-level `keydown` handler removes the results container on key 27 (`:2046`); the input's
+`keyup` handler then calls `keypressSearch` (`:174-182`), whose guard
+`key !== 13 && (key < 37 || key > 40)` is true for 27, so it schedules a fresh search on
+`searchDelay` — default 400 (`:115, :251-259`) — which re-renders what the keydown removed.
+Measured on the NR topic index before the fix: gone at +60ms, a *different* `<ul>` present and
+112px tall at +660ms `[verified 2026-08-11: dev_stage on :8080 under Playwright, node identity
+compared across the gap]`. Recorded as F18 in the NR audit.
+
+**Fixed on the NR picker, still live here.** The library's search timeout is a closure variable
+with no accessor, so it cannot be cancelled from outside — and blocking the Escape keyup does
+not help either, since a timer armed by an earlier keystroke is still running and it is
+`keypressSearch`'s own `clearTimeout` that would have cleared it. `wireComboboxState` therefore
+holds the dismissal instead: it records the Escape and removes any list that reappears while
+that holds, using the MutationObserver already running for the ARIA sync. The flag clears on the
+next non-Escape keydown, on `mousedown`, `blur` and `focus`. Copy it across with the ARIA work —
+it is a handful of lines in the same function, and it covers any reopen path rather than only
+the 400ms timer.
+
+---
+
 ## 6. CSS / SCSS (P2/P3)
 
 - Organization is actually reasonable: ordered `a-…h-` partials behind one

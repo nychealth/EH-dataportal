@@ -222,6 +222,59 @@ including the value and the pill: `"Asthma (adults) Adults with a recent asthma 
 Age-adjusted percent Higher"`. Navigating by region will not find the panels, and the label is a
 sentence rather than a name.
 
+### 2.4 Found during Stage C, not in the original scan
+
+**F18 — Escape does not dismiss the neighborhood typeahead; the list reopens ~400ms later.**
+WCAG 2.1.1 is arguably met (Tab still leaves the field), but the ARIA combobox pattern expects
+Escape to close the popup, and here it does not stick. Surfaced by C4's own verification, which
+sampled `aria-expanded` twice around the key press specifically to tell a stale attribute from a
+list that genuinely reopened.
+
+Measured on the topic index: at +60ms after Escape the list is gone and `aria-expanded` reads
+`"false"`; at +660ms a **different** `<ul>` node is present, visible, 112px tall, with the same
+three options, and `aria-expanded` reads `"true"`. The body-level `childList` observer recorded
+exactly one `absent` then one `present`
+`[verified 2026-08-11: dev_stage on :8080, Playwright, node identity compared across the gap]`.
+
+Two handlers, both in flexdatalist 2.3.0, fighting over one key press. The document-level
+`keydown` handler removes the container on key 27 (`jquery.flexdatalist.js:2046`). The input's
+own `keyup` handler then calls `keypressSearch` (`:174-182`), whose guard is
+`key !== 13 && (key < 37 || key > 40)` — true for 27 — so it schedules a fresh search on
+`searchDelay`, default 400 (`:115, :251-259`). The search re-renders the list the keydown just
+removed.
+
+**The ARIA sync is not implicated, and that is what the two-sample probe established.** It
+reported `false` while the list was gone and `true` once it was back; both readings were correct
+at the instant taken. A single sample at 500ms would have shown `aria-expanded: "true"` after
+Escape and read exactly like the F3 defect being fixed.
+
+**Fixed 2026-08-11 on the NR picker, by holding the dismissal rather than cancelling the search.**
+The pending search cannot be cancelled from outside the library: `_searchTimeout` is a closure
+variable with no accessor. Blocking the Escape keyup would not have been enough either — a timer
+armed by an *earlier* keystroke is still live, and it is `keypressSearch`'s own `clearTimeout`
+that would have cleared it, so suppressing that call leaves the earlier timer running. Instead
+`wireComboboxState` records that Escape was pressed and removes any list that reappears while
+that flag holds; the MutationObserver it already runs for the ARIA sync is what notices. The flag
+clears on the next non-Escape keydown, on `mousedown`, on `blur` and on `focus`, so the reader
+gets results back the moment they do anything else. Removal happens in a MutationObserver
+callback, which runs as a microtask before paint, so the reopened list never reaches the screen.
+
+This works against any path that reopens the list, not only the 400ms timer — which is the reason
+to prefer it over a handler that has to enumerate them.
+
+Still open at the other three flexdatalist call sites, where the same two handlers ship
+(`documents/site-wide-audit-2026-06-27.md` §5k).
+
+`[verified 2026-08-11 against local_prod on :8081, both picker pages: list dismissed at +60ms and
+still absent at +600, +900 and +1800ms, with aria-expanded "false" and aria-controls removed
+throughout. Four controls, because a list that never comes back is indistinguishable from a
+search that broke — typing again reopens it (3 options → 1 as the term narrows); selection from a
+clean field navigates to bayside_little_neck/asthma_and_the_environment/; selection still
+navigates when the Escape precedes it; ArrowDown+Enter navigates too. A fifth case, blur then
+refocus, does not reopen the list — checked separately with no Escape anywhere in the sequence,
+where blur leaves the list open, so nothing re-runs the search on focus and this is library
+behaviour rather than the flag]`
+
 ## 3. Site-shell defects, reproduced outside Neighborhood Reports
 
 These appear on every NR page and are worth fixing, but they are not NR regressions. Each was
@@ -323,33 +376,113 @@ probe showing a monotonic sequence.
   `aria-labelledby` after init. Verified over CDP: the field computes to
   `textbox :: "Search for a neighborhood"` both empty and with `Bay` typed in.
 
-### Stage C — behaviour and design; propose, do not implement unilaterally
+### Stage C — behaviour and design; proposed 2026-08-10, decided 2026-08-11
 
-- **C1 (F7) — announce the re-render and fix the title.** Update `document.title` in `renderAll`,
-  and add a polite live region that states the new neighborhood and that the report reloaded.
-  Decide separately whether focus should move to the `<h1>`; moving focus on a map click is a
-  judgement call, and getting it wrong is its own defect.
-- **C2 (F2) — make the map keyboard-operable, or take it out of the tab order.** Two honest
-  options: bind `keydown` Enter/Space alongside `click` in `map.js:146-160` and give each polygon
-  an `aria-label` naming its neighborhood — the event already arrives (see F2), so this is a
-  handler, not a plumbing change; or set the polygons non-focusable and give the report
-  SPA the same 42-link list the other pages use as the map's equivalent. The SPA currently has no
-  such list, so option two needs new markup.
-- **C3 (F5) — put the valence in text.** The full sentence already exists in
-  `getTertileInlineLabel` and is used in the expanded panel and in print. The collapsed row could
-  carry an `.sr-only` span with it, which changes no pixels. The alternative — a glyph in the pill
-  — repeats the pattern F9 shows is invisible to the tree unless it is a real element with a name.
-- **C4 (F3) — the typeahead.** flexdatalist 2.3.0's `accessibility` function
+The five items were written as options. The options are now decisions, taken 2026-08-11, and each
+row below records the one chosen and what it rules out. Two things stated in the original proposal
+did not survive a check before implementation; both are corrected in place under C3 and C4.
+
+- **C1 (F7) — announce the re-render and fix the title.** *Chosen: update `document.title`, add a
+  polite live region, do not move focus.* Focus stays where the reader put it — moving it on a
+  pointer click costs a mouse user their place in the map on every comparison, and after C2 a
+  keyboard user is already standing on the polygon they activated, so there is nothing to rescue.
+
+  **`spaConfig.reportName` cannot build the title.** It is `.Title`, and `<title>` is
+  `.Params.seo_title` verbatim (`partials/head.html:64-66`), composed by the content adapter as
+  `seo_short_name + " in " + <neighborhood>`. The two differ on Active Design — `"Active Design,
+  Physical Activity and Health"` against `"Active Design"` (`data/globals/NR_topics.yml:23-25`) —
+  so building from `reportName` would rewrite the shipped title on 42 of the 210 pages. The
+  adapter carries only the composed `seo_title`, so `seo_short_name` has to be added to its params
+  dict and passed through `NR_TOPIC_SPA_CONFIG`.
+
+  The announcement is suppressed on first paint. `renderAll` also runs at load, where nothing has
+  changed and a "report loaded" utterance would be noise; the guard is the previous value of
+  `currentNeighborhood`, which is null until the first render completes.
+
+- **C2 (F2) — make the map keyboard-operable.** *Chosen: bind `keydown` Enter/Space alongside
+  `click`, and name each polygon.* Rules out the alternative — polygons non-focusable plus a
+  42-link list on the SPA — which would have left the report page with no in-place keyboard
+  switcher at all, turning every keyboard comparison into a page load.
+
+  Confirmed against the installed Leaflet 1.9.4 before writing the handler, since the whole case
+  for this option is that the event already arrives. The map container registers
+  `keypress keydown keyup` among its DOM listeners (`leaflet-src.js:4435`); `_findEventTargets`
+  walks up from `e.target`, so a keydown on a focused `<path>` resolves to that path's layer, and
+  only if the layer `listens()` for the type (`:4466-4491`); `_fireDOMEvent` then fires it on the
+  layer, skipping the coordinate computation for key events specifically (`:4556-4565`).
+  `layer.on('keydown', …)` is therefore the whole plumbing. Nothing in Leaflet's own keyboard
+  handler binds Enter or Space, so there is no contention.
+
+- **C3 (F5) — put the valence in text *and* in the pixels.** *Chosen: an `.sr-only` sentence plus
+  a glyph in the pill.*
+
+  **The proposal above closed half of this finding, and the half it closed is not the half F5 is
+  filed under.** F5 is WCAG 1.4.1, *Use of Color*, which is about visual presentation.
+  `.worse` and `.better` differ by `background-color` and by nothing else
+  (`assets/scss/theme.scss:657-667`), and both pills read the same two words — so an `.sr-only`
+  span, being invisible, leaves a sighted reader with a colour vision deficiency exactly where
+  they started. Text for the accessibility tree and a non-colour cue in the pixels are two
+  requirements, not two ways of meeting one.
+
+  The glyph is the vocabulary this report already prints: `\f14a` square-check for the good case,
+  `\f071` triangle-exclamation for the bad, the Font Awesome 6 codepoints `.comp-good` /
+  `.comp-bad` carry at `assets/scss/_custom.scss:56-70`. Square against triangle differ in shape
+  and not only in colour, which is the point. §4 recorded that Chrome drops these `::before`
+  glyphs from the accessibility tree entirely — which is why the glyph cannot be the whole fix,
+  and equally why it costs the tree nothing to add.
+
+  The `.sr-only` sentence *replaces* the pill word rather than appending to it: the pill span goes
+  `aria-hidden`, and the sentence sits beside it. Appending would have made the accordion button's
+  name end `… Age-adjusted percent Higher, Higher than most neighborhoods`.
+
+- **C4 (F3) — the typeahead.** *Chosen: patch the NR picker's own init.* Rules out, for now, both
+  the shared version and the library swap.
+
+  flexdatalist 2.3.0's `accessibility` function
   (`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:474-482`) writes `aria-autocomplete`,
   `aria-owns` and a **static** `aria-expanded: 'false'` onto the generated input, and never emits
   `role="combobox"` or `aria-activedescendant`. The string `aria-expanded` appears exactly once in
   the library, which is why it stays `"false"` with the listbox open: there is no code path that
-  updates it, and no option that makes it emit the role. Either wrap it so the generated input
-  gets `role="combobox"` and a synced `aria-expanded`, or replace it with the accessible
-  autocomplete already styled in `theme.scss:183-262` and used elsewhere on the site. This is the
-  largest item here and the one most likely to need a decision rather than a patch.
-- **C5 (F16) — dangling tooltip references.** Clear `aria-describedby` when Leaflet removes a
-  tooltip, or suppress tooltip ARIA entirely if the polygons get real names under C2.
+  updates it, and no option that makes it emit the role.
+
+  **The library swap is not the low-cost option the proposal implied.** "Replace it with the
+  accessible autocomplete already styled in `theme.scss:183-262` and used elsewhere on the site"
+  is right about *styled* — `.autocomplete__*` runs at `assets/scss/theme.scss:175-265` — and right
+  that the bundle is loaded, by `themes/dohmh/layouts/index.html:317` and
+  `themes/dohmh/layouts/data-explorer/single.html:1155`. It is wrong about *used*:
+  `accessibleAutocomplete(` and `enhanceSelectElement` appear in no template and no content file
+  in the repo, the only other hit being a frontmatter path string at
+  `content/data-features/neighborhood-air-quality/index.md:27`
+  `[verified 2026-08-11: grep for both identifiers across every .html and .md in the tree]`.
+  Adopting it here would be the site's first call site, and the ZIP-code search, the two-property
+  match and the Clear button would all be rebuilt against an unexercised API.
+
+  Scope is a choice rather than a given: flexdatalist is initialised at four independent call
+  sites — this picker, `partials/de-text-search.html:47`, `data-features/aqe.html` and
+  `data-features/hvi.html`. The other three keep the defect and are logged in
+  `documents/site-wide-audit-2026-06-27.md` rather than pulled into an NR stage.
+
+  **C4 also absorbed F18**, which its own verification turned up: Escape did not dismiss the
+  list. That was left out of the original scope as behaviour redesign, then folded in, because
+  the fix turned out to reuse the observer the ARIA sync already runs rather than needing a
+  handler of its own — see F18 for the mechanism and why cancelling the library's timer is not
+  available.
+
+  Two traps found in the library before writing the sync, both about *which* paths close the
+  listbox. `remove()` is the only one that fires `removed:flexdatalist.results` (`:1633`); the
+  Escape key (`:2046`) and the outside-click handler (`:2028`) each call `.remove()` on the
+  container directly and fire nothing. Syncing `aria-expanded` off the library's events alone
+  would therefore have left it reading `"true"` after Escape — the same class of stale-state
+  defect F3 is about. The sync watches the DOM instead. Second: the `<li>`s carry `role="option"`
+  and `tabindex="-1"` but **no `id`** (`:1551-1560`), so `aria-activedescendant` needs ids minted
+  at render time.
+
+- **C5 (F16) — dangling tooltip references.** *Chosen: clear the attribute, keep the tooltips.*
+  Leaflet writes `aria-describedby` in `_setAriaDescribedByOnLayer`, reached from `openTooltip`
+  (`leaflet-src.js:10930-11002`), and removes it nowhere; `tooltipclose` fires on the source layer
+  (`:10710-10712`), so the layer's own event is the hook. Tooltips stay because they are the
+  hover affordance, and after C2 the polygons carry their own `aria-label`, so the description is
+  redundant as well as dangling.
 
 ## 6. Ledger
 
@@ -360,7 +493,58 @@ probe showing a monotonic sequence.
 | Stage A | Done 2026-08-10; committed in `726a6eba4a` and `dfd8430a5e`; one item spun out — see below | A1–A7 all confirmed in served HTML, then `node scripts/nr-a11y-audit.mjs` against the running `local_prod` server on :8080 (`DE_BASE_URL=http://localhost:8080/local-prod/`). Both controls passed. `brokenRefs: []` on all four pages; `duplicateIds` down to the two site-shell ids (`languages`, `skip-header-target`); `image-alt` down to one node per page, `.pr-1` — the site-shell header logo — including under print, so F11 is closed; `.nr-topic-link` measured 5.13:1 | — |
 | Stage A follow-on (F4 remainder) | Done 2026-08-11, committed in `cc258553c0`, for `.btn-report`; `.nr-list-toggle` **parked by decision** | `$primary-dark` added; `.btn-report` measured 5.29:1 at rest and on hover; re-run of `node scripts/nr-a11y-audit.mjs` shows the SPA's two `color-contrast` nodes gone, leaving one site-wide — `.flex-grow-1` on the topic index | Unparks if someone accepts darkening `.btn-outline-primary` site-wide. Nothing to do otherwise |
 | Stage B | Done 2026-08-11 | `npm run lint` clean; `node scripts/nr-a11y-audit.mjs` against `local_prod` on :8080, both controls passed; `npm run smoke` 15 pages clean. Keyboard stops inside an `aria-hidden` subtree **46 → 0** on both picker pages (total stops 96→50 landing, 94→48 topic index). `summary-name` ×22 and `svg-img-alt` ×44 both **gone** from the all-expanded scan. `heading-order` gone from all four pages; every exposed sequence monotonic. Accessible names read from Chrome over CDP: 22 charts, 22 distinct names, 0 unnamed `graphics-symbol`; expand-all `aria-expanded` flips true/false across two clicks with all 8 `aria-controls` ids resolving; search field keeps its name after typing. `node scripts/nr-characterization.mjs --check` against a spawned `dev_stage` server — see the note below | — |
-| Stage C | Not started, needs decisions | — | — |
+| Stage C | Done 2026-08-11, in four commits — C1 `5fecb8cb18`, C2+C5 `ace23eef17`, C3 `9f2ec19a01`, C4+F18 `c415c83a54`. All five items decided — see §5, where each records the option chosen and what it rules out. C4 scoped to the NR picker only; the other three flexdatalist call sites logged in the site-wide audit §5k. One new finding raised during verification and then fixed as part of C4: F18 | Per-item table below. `npm run lint` clean; `npm run docs-check` passed; `node scripts/nr-characterization.mjs --check` **passed**, 3/3 targets matching the staging baseline; `node scripts/nr-a11y-audit.mjs` both controls passed, on `dev_stage` and again on `local_prod` with the same result; `npm run smoke` 15 pages clean on both | — |
+
+**Two servers, and why the runs name which one.** A `local_prod` server on :8081 was started by
+someone else partway through, alongside the `dev_stage` one on :8080 this work began against.
+`resources/_gen` is not environment-namespaced, so the pages served on :8080 began carrying
+`/local-prod/` asset URLs — jQuery 404ed, `$ is not defined`, and the picker never initialised.
+That is the failure `CLAUDE.md` describes for a static rebuild beside a running server; two
+servers do it too. Diagnosed rather than assumed: the served HTML still contained
+`wireComboboxState`, and the same page on :8081 loaded flexdatalist cleanly with zero page
+errors. The `dev_stage` server was stopped — it was the contaminating half and the one this
+session started — and everything after that point was verified on :8081. The earlier `dev_stage`
+numbers predate :8081 and stand; the F18 work is `local_prod` throughout.
+
+`nr-characterization.mjs` was **not** re-run after the F18 fix, deliberately: it captures report
+pages only, and F18 touched `nr-neighborhood-picker-js.html`, which the report SPA does not load.
+Re-running it against `local_prod` would also have failed every target on the `/local-prod/`
+against `/dev-prod/` path prefix alone — a known false failure, not a signal.
+
+**Stage C's proof cannot be an axe count, and knowing that up front is what shaped it.** After
+Stage B nothing NR-scoped was left that an axe rule could see (see the note below this table),
+and four of the five C items are for defects no rule implements. So each carries its own probe,
+and each probe was shown capable of failing before its result was believed. What ran, and what
+it returned:
+
+| # | What was observed | The control, and what it showed |
+|---|---|---|
+| C1 | Across one keyboard-driven switch: `<h1>`, `document.title` and the URL all moved together, and the live region read `"Report updated. Now showing Asthma and the Environment in Kingsbridge - Riverdale."` | Read before *and* after. A probe reading only the after-state passes against a title that never moved — the exact defect F7 recorded |
+| C2 | 42 polygons, 42 with `role="button"`, 42 with a non-empty `aria-label`; the accessibility tree returned 42 button nodes and **0 unnamed** | Enter pressed on the polygon for the neighborhood *already shown*: `<h1>`, title, status and URL byte-identical afterwards. So "it changed" is not the only outcome the probe can produce |
+| C3 | `.worse::before` = U+F071, `.better::before` = U+F14A, both `"Font Awesome 6 Free"`, both inside an `aria-hidden` span; 23 of 23 accordion buttons carry the sentence | Both classes sampled on one page (8 `.worse`, 3 `.better`) and the codepoints compared. A rule matching *neither* looks identical to one matching both if only one class is read. Codepoints, not the raw `content` string: these are private-use characters a terminal prints as nothing, so an empty rule and a working one render the same |
+| C4 | `role="combobox"`; `aria-expanded` `false → true` on typing, `true` on ArrowDown with `aria-activedescendant` following the highlight and resolving, `false` after an outside click. With F18 folded in: `false` at +60ms after Escape and still `false` at +600, +900 and +1800ms, on both picker pages | Escape and outside-click are the two paths the library fires no event for (§5 C4). Sampled **twice** around Escape rather than once — which is what separated a stale attribute from F18's genuine reopen, and a single 500ms sample would have read exactly like the defect being fixed. Four controls on the dismissal itself, since a list that never returns looks the same as a search that broke: typing reopens it, selection navigates from a clean field, selection still navigates with an Escape before it, and ArrowDown+Enter navigates |
+| C5 | Leaflet's own tooltip API driven over all 42 layers: `withAttrAfter: 0`, `danglingAfter: 0` | `peakWithAttrDuringSweep: 1` — the attribute was observed present mid-sweep, so the probe can see it at all. Without that, a selector that never matched and a page with nothing dangling report the same zero. The mouse-driven sweep beside it reached only 2 of 15 attempted polygons, because a UHF shape is concave and its bbox centre lands inside a neighbour; that count is reported rather than the sweep being presented as exhaustive |
+
+**One thing this stage changed that no C item asked for.** C2 needed a name for each polygon, and
+the obvious source — the geojson's `GEONAME` — disagrees with the `UHF_name` the report `<h1>`,
+the breadcrumb and the URL slug all use, on 6 of the 42: `"Fordham - Bronx Park"` against
+`"Fordham - Bronx Pk"`, `"Rockaway"` against `"Rockaways"`, and four more
+`[verified 2026-08-11: static/geojson/UHF42.geojson diffed against data/globals/uhflist.json by
+GEOCODE]`. Naming from `GEONAME` would have made the accessible name differ from the visible
+tooltip on those six, which is WCAG 2.5.3. Both now route through `featureDisplayName`, the same
+resolution `selectNeighborhood` already used to decide what the report renders — so the tooltip
+text changed on those six polygons. That is a visible change, and it is here rather than in a
+C-item row because it was forced by C2 rather than planned.
+
+**`aria-controls` was added, measured, and then made conditional.** The first version set it once
+at init, which axe reported as `aria-valid-attr-value` in **`incomplete`** — "Unable to determine
+if aria-controls referenced ID exists on the page while using aria-haspopup" — on both picker
+pages, because flexdatalist creates and destroys the listbox per search and the id names nothing
+while the field is closed. Isolated by removing the attribute in the page and re-running
+(`incomplete: []`), then removing the library's `aria-owns` as well (still `[]`, so `aria-owns`
+was not a contributor). Both are now added and removed with the list. This is the second time on
+this branch that `incompleteIds` carried something `violations` did not — the reason CLAUDE.md
+says to read it.
 
 **The characterization harness was re-baselined, and it cannot see the chart naming.** Ran
 2026-08-11 against a `dev_stage` server the harness spawned itself, after killing the `local_prod`
@@ -389,6 +573,16 @@ deliberately parked** — `aria-allowed-attr` (F3, deferred to C4), `color-contr
 site-wide list toggle), and `image-alt` / `link-name` / `landmark-unique` (the §3 site-shell
 defects). Nothing NR-scoped is left that an axe rule can see; what remains for Stage C is F7 and
 F16, which no rule implements.
+
+**After Stage C, `aria-allowed-attr` is gone too.** The post-C run against `dev_stage` leaves
+three violation rules and one deferral across the four pages, none of them NR's:
+
+| Rule | Node | Pages | Status |
+|---|---|---|---|
+| `image-alt` | `.pr-1` | all 4 | §3 site-shell — the header logo |
+| `link-name` | the logo's wrapping anchor | all 4 | §3 site-shell, same element |
+| `color-contrast` | `.flex-grow-1` | landing, topic index | The site-wide `.btn-outline-primary` list toggle, parked by decision |
+| `color-contrast` (**incomplete**) | — | all 4 | axe's standing deferral on backgrounds it cannot resolve. A floor, not a census |
 
 Stage A modified seven files: `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`,
 `.../section.html`, `themes/dohmh/layouts/partials/overlap-tool.html`,
