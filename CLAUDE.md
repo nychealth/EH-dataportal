@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 3c7b737057 2026-08-11 -->
+<!-- docs-check verified: 7e33b61d51 2026-08-11 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -134,6 +134,14 @@ worked before still works, but nothing renders it the way it used to. Three page
   to `vegaEmbed`, so NR chart marks are inspectable DOM nodes. The neighborhood is **server-side**:
   the page knows which one it is, `NR_TOPIC_SPA_CONFIG.neighborhood` says so, and the name, ZIP list
   and headers render without JS.
+
+  Its Leaflet map is the only in-place neighborhood switcher, and it answers the keyboard as well
+  as the mouse: `map.js` binds `keydown` beside `click`, both routing through one
+  `selectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
+  polygons were focusable all along, and nothing was listening. Every polygon carries
+  `role="button"` and a name from `featureDisplayName`, **not** from the geojson's `GEONAME`, which
+  disagrees with `uhflist`'s `UHF_name` on 6 of the 42 ("Fordham - Bronx Pk", "Rockaways"); the
+  tooltip resolves the same way, so the visible label matches the accessible name.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
@@ -146,10 +154,13 @@ worked before still works, but nothing renders it the way it used to. Three page
 a stylesheet over the screen one.** `buildIndicatorCard` in `assets/js/nr-topic-spa/cards.js` emits
 two renditions of every indicator: the screen row, which is `d-print-none`, and a `print-only`
 sibling carrying the same name, value and units at 50/25/25 plus a full-sentence tertile label from
-`getTertileInlineLabel`. Two renditions rather than one, because the content genuinely differs — the
-screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print wants a
-sentence. The sentence is the same function the expanded panel uses, deliberately: a reader who
-opens a row on screen and then prints it would otherwise get the same fact in two vocabularies. It
+`getTertileInlineLabel`. Two renditions rather than one, because what each *shows* genuinely differs
+— the screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print
+wants a sentence. What they *announce* is now the same: the screen pill carries `aria-hidden` and an
+`.sr-only` copy of the sentence sits beside it, so the accessibility tree gets one vocabulary
+wherever the reader meets the comparison (a11y audit F5/C3). The sentence is the same function the
+expanded panel uses, deliberately: a reader who opens a row on screen and then prints it would
+otherwise get the same fact in two vocabularies. It
 carries a `.comp-*` class — `assets/js/nr-topic-spa/tertiles.js` sets it, `assets/scss/_custom.scss`
 styles it, and all three classes are bold so the comparison word stands out of its sentence. That
 bold is invisible in the print row unless the column also carries `font-weight-normal`, because the
@@ -158,16 +169,35 @@ accordion button is weight 700 and the column inherits it. Colour and glyph are 
 `$success` throughout, word and square-check `\f14a`. `.comp-bad` pairs a `$warning` triangle-
 exclamation `\f071` with a **darker** amber word, because `$warning` is 1.6:1 on white — legible as
 a glyph, not as text. `.comp-null` has no rule at all, so rank 2 prints unmarked, mirroring the
-blank pill the screen row shows. The glyphs are Font Awesome 6 codepoints rather than emoji, so they
-come from the webfont `head.html` already loads sitewide and are under this repo's control; square
-against triangle also means the two differ in shape and not only in colour. Both renditions are
-built from the same locals, so they cannot drift. Panels never print: `@media print` in
+blank pill the screen row shows — visually. Rank 2 still emits the `.sr-only` sentence, because
+showing nothing was a third state a screen reader could not tell from missing data. The glyphs are
+Font Awesome 6 codepoints rather than emoji, so they come from the webfont `head.html` already loads
+sitewide and are under this repo's control; square against triangle also means the two differ in
+shape and not only in colour. All three renditions resolve through one `getTertileSentenceParts` in
+`tertiles.js`, so they cannot drift: `getTertileInlineLabel` wraps the comparison word in its
+`.comp-*` class for the panel and the print row, `getTertileSentence` returns the same sentence as
+plain text for the collapsed row. Panels never print: `@media print` in
 `assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
 has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
 `renderQRCode`, defined in the layout because the layout owns both the element and the library
-resource, and called from the *end* of `renderAll` rather than at load — the Leaflet map switches
-neighborhood in place and rewrites the address bar, so a code generated once would point at the
-report the reader navigated away from.
+resource, and called from near the *end* of `renderAll` rather than at load — the Leaflet map
+switches neighborhood in place and rewrites the address bar, so a code generated once would point at
+the report the reader navigated away from. One call now follows it:
+`announceNeighborhoodChange` rebuilds `document.title` and writes the `#nr-report-status` live
+region, last so both describe a report that is already built. It reads `spaConfig.seoShortName`, not
+`reportName` — `reportName` is `.Title`, and the two differ on Active Design, so the title would be
+rewritten on 42 of the 210 pages. Both are suppressed on first paint, since `renderAll` runs at load
+too and nothing has changed then.
+
+**The comparison vocabulary is styled in two files, and which one depends on the rendition.** The
+sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_custom.scss`; the
+collapsed row's `.worse` / `.middle` / `.better` pills live in `assets/scss/theme.scss`. Editing one
+set does not touch the other. The pills carried good-vs-bad in `background-color` alone until C3 —
+both read the same two words, so a reader with a colour vision deficiency saw no difference (WCAG
+1.4.1) — and now take the same Font Awesome codepoints the sentence uses, `\f071` on `.worse` and
+`\f14a` on `.better`, with no `color` of their own so the glyph inherits text colour that already
+passes on those backgrounds. `.middle` gets none, matching `.comp-null`. `cards.js` is the only
+thing that emits any of the three pill classes, so their blast radius is the report page.
 
 Two traps when working on any of this. `.print-only` is `display:none` normally and `display:flex`
 in print (`assets/scss/_custom.scss`) — a hand-rolled class, because Bootstrap's own `_print.scss`
@@ -206,6 +236,24 @@ markup one alone does nothing, since the search needs the JS one beside it:
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
   pages genuinely disagree on: a build-time slug on a topic index, the active topic button on the
   landing page. Order does not matter — it is called on selection, after everything has parsed.
+  It also holds `wireComboboxState`, which supplies the `role="combobox"` flexdatalist never emits
+  and keeps `aria-expanded`, `aria-controls`, `aria-owns` and `aria-activedescendant` true. **It
+  reads the DOM through a `MutationObserver`, not the library's events, and that is deliberate** —
+  only `results.remove()` fires `removed:flexdatalist.results`, while Escape and the outside-click
+  handler each remove the list directly and fire nothing. The same observer makes Escape stick: the
+  library's own keyup re-runs the search 400ms later and re-renders what its keydown just removed,
+  and the pending search cannot be cancelled from outside (`_searchTimeout` is a closure variable),
+  so the dismissal is held and any list that reappears is removed on arrival.
+
+**`nr-leaflet.html` and `assets/js/nr-topic-spa/map.js` are two parallel Leaflet implementations
+that share four top-level names, so they must never load on the same page.** `highlightFeature`,
+`onEachFeature`, `resetHighlight` and `selectNeighborhood` are declared in both
+`[verified 2026-08-11: top-level declarations in the two files, intersected]`. They do not collide
+today because `nr-topic-spa.html` includes the SPA modules and not `nr-leaflet`, while the picker
+pages do the reverse — but a `const` and a `function` of the same name in one classic-script scope
+is a `SyntaxError` that kills every script on the page, and `npm run lint` cannot see it, since
+`no-undef` is satisfied by either declaration. Adding `nr-leaflet` to the report page, or the SPA's
+map module to a picker page, needs a rename first.
 
 `nr-leaflet` needs no argument beyond the page: it reads a topic slug out of the first path
 segment itself. Where a page has **no** `geocode` — the landing page and the five topic indexes —
