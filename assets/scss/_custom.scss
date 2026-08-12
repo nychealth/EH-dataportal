@@ -163,11 +163,14 @@ $color-data-explorer: #0A408A;
   padding-right: 20px;
 }
 
+/* $primary is only 4.24:1 on this background and fails WCAG AA for the 14px bold button text.
+   $primary-dark measures 5.13:1 here, and 5.49:1 for the white-on-green hover state — which
+   $primary itself only cleared at 4.53:1. */
 .btn-light-green-bg {
   background-color: #EFFAF4;
-  color: #008939;
+  color: $primary-dark;
   &:hover {
-    background-color: #008939;
+    background-color: $primary-dark;
     color:white;
   }
 }

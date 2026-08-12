@@ -481,9 +481,11 @@ p.report-description {
     background-color: $light-green;
     border: 1px solid $primary;
     border-radius: 2px;
-    color: $primary;
+    // $primary is 4.37:1 on $light-green, under the 4.5:1 AA threshold for this 14px bold
+    // text. The hover state inverts the same pair, so both go to 5.29:1 together.
+    color: $primary-dark;
    &:hover {
-       background-color: $primary;
+       background-color: $primary-dark;
        color: $light-green;
        }
    }

@@ -84,6 +84,13 @@ $accessible-colors: true;
 // Set your theme's color palette here
 
 $primary: #008939;
+
+/* $primary as *text* fails WCAG AA on the near-white greens it is usually set against —
+   4.24:1 on #EFFAF4 and 4.37:1 on $light-green. This is the same green darkened until it
+   clears 4.5:1 on both (5.13:1 and 5.29:1). For text and its inverse only; $primary stays
+   the brand colour for fills, borders and map geometry. */
+$primary-dark: #007a31;
+
 $secondary: #181A7B;
 $light: #D8D8D8;
 $hover: #008939;
