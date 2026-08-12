@@ -695,6 +695,26 @@ h2.report-info {
     }
 }
 
+@media print {
+    .report-section .btn[data-toggle="collapse"] {
+        border: none;
+        background: none;
+        padding: 8px 0;
+    }
+    // Print the report in one shape whatever the reader had expanded on screen: the
+    // print-only header row in nr-indicator-new.html / nr-indicator-old.html is the printed
+    // rendition of an indicator, the panel never is. .collapsing covers a print fired
+    // mid-animation, when Bootstrap has swapped the class.
+    //
+    // The recode branch pairs these with a .nr-map-container rule; that class does not exist
+    // on this branch, where the map is already inside a d-print-none wrapper
+    // (themes/dohmh/layouts/nr-output/single.html, the col-md-4 holding nr-leaflet).
+    .report-section .collapse,
+    .report-section .collapsing {
+        display: none !important;
+    }
+}
+
 // Report Modal
 
 .report-modal {
