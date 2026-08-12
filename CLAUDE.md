@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 9676367155 2026-08-11 -->
+<!-- docs-check verified: 72a6d2a4f8 2026-08-12 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -178,7 +178,12 @@ sitewide and are under this repo's control; square against triangle also means t
 shape and not only in colour. All three renditions resolve through one `getTertileSentenceParts` in
 `tertiles.js`, so they cannot drift: `getTertileInlineLabel` wraps the comparison word in its
 `.comp-*` class for the panel and the print row, `getTertileSentence` returns the same sentence as
-plain text for the collapsed row. Panels never print: `@media print` in
+plain text for the collapsed row. **`rankReverse` marks indicators where *higher* is better, and it
+chooses only the comparison word, never the verdict** — `data_value_rank` carries that, 1 always the
+unfavourable tertile and 3 always the favourable one. Reading the flag as a verdict flip is what
+pilled four Active Design indicators "better" for a neighborhood in the bottom tertile on all four
+(fixed 2026-08-12, a6c494a152); `getComparison` at the foot of `tertiles.js` is the function the
+rest of the file's reading is anchored to. Panels never print: `@media print` in
 `assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
 has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
 `renderQRCode`, defined in the layout because the layout owns both the element and the library
@@ -191,6 +196,21 @@ region, last so both describe a report that is already built. It reads `spaConfi
 rewritten on 42 of the 210 pages. Both are suppressed on first paint, since `renderAll` runs at load
 too and nothing has changed then.
 
+**Each panel's "Full dataset" link needs a map the page does not otherwise fetch.** The report rows
+carry `IndicatorID`, but nothing in them says which data explorer topic that indicator lives under,
+so `loadTopicIndicators` in `data.js` fetches `/IndicatorMetadata/topic_indicators.json` and reverses
+it into `indicatorTopicSlugs`, `IndicatorID` → topic slug; `getDataExplorerUrl` in `cards.js` then
+resolves the href as the card is built. **That JSON is a published Hugo resource, not a static
+file** — `themes/dohmh/layouts/partials/de-topic-indicators.html` builds it by ranging `.Site.Pages`
+and calling `.Publish`, so it exists only because the three data-explorer layouts that include that
+partial are in the build. Its two config keys are `topicIndicatorsUrl` and `dataExplorerUrl`. Three
+things follow from the shape of the data. The lookup takes the first topic an id appears under,
+matching the retired `getURL`, which returned on its first hit — 42 of the 263 ids are in more than
+one topic. An indicator in no topic gets no link at all, the same outcome as the old anchor that
+stayed `display:none`; Neighborhood safety (2073) is the live case, so a page rendering a link on
+every row is the tell that the omission broke rather than the mapping improving. And the fetch is
+counted into `totalFetches`, so a card can never render before the map is in.
+
 **The comparison vocabulary is styled in two files, and which one depends on the rendition.** The
 sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_custom.scss`; the
 collapsed row's `.worse` / `.middle` / `.better` pills live in `assets/scss/theme.scss`. Editing one
@@ -198,7 +218,9 @@ set does not touch the other. The pills carried good-vs-bad in `background-color
 both read the same two words, so a reader with a colour vision deficiency saw no difference (WCAG
 1.4.1) — and now take the same Font Awesome codepoints the sentence uses, `\f071` on `.worse` and
 `\f14a` on `.better`, with no `color` of their own so the glyph inherits text colour that already
-passes on those backgrounds. `.middle` gets none, matching `.comp-null`. `cards.js` is the only
+passes on those backgrounds — `#212529` on `.worse` and `.better` alike, 12.5:1 on both
+`[verified 2026-08-12: computed colour read off a rendered pill, after `.worse` moved from `#F2CDD7`
+to `#FFE69B` in cd19eb2aca]`. `.middle` gets none, matching `.comp-null`. `cards.js` is the only
 thing that emits any of the three pill classes, so their blast radius is the report page.
 
 Two traps when working on any of this. `.print-only` is `display:none` normally and `display:flex`
