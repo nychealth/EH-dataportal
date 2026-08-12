@@ -96,7 +96,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
                 '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
             '</div>' +
             '<div style="width:25%;" class="border-right pl-1">' +
-                '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
+                '<span class="font-weight-bold fs-md">' + value + '</span><br>' +
                 '<span class="fs-xs font-weight-normal">' + units + '</span>' +
             '</div>' +
             // font-weight-normal because the accordion button is bold and the column
@@ -125,8 +125,8 @@ const buildIndicatorCard = (row, neighborhoodName) => {
                             '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
                         '</div>' +
                         '<div class="col-3 pl-1">' +
-                            '<span class="font-weight-bold fs-lg">' + value + '</span><br>' +
-                            '<span class="fs-xs font-weight-normal">' + units + '</span>' +
+                            '<span class="font-weight-bold fs-md">' + value + '</span><br>' +
+                            '<span class="fs-sm font-weight-normal">' + units + '</span>' +
                         '</div>' +
                         '<div class="col-2">' +
                             '<div class="float-right mt-1">' + pillHTML + '</div>' +

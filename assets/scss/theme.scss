@@ -633,9 +633,10 @@ h2.report-info {
     border-radius: 8px;
     display: block;
     text-align: center;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
+    width: 80px;
     @include media-breakpoint-up(md){
-        width: 78px;
+        width: 80px;
         display: inline-block;
     }
 }
@@ -655,7 +656,7 @@ h2.report-info {
 }
 
 .worse {
-    background-color: #F2CDD7;
+    background-color: #FFE69B;
 }
 
 .middle {
