@@ -110,7 +110,9 @@ const bootstrap = () => {
 
     // Deferred to here rather than computed beside fetchesComplete, because the
     // section count is only trustworthy once the guard above has passed
-    totalFetches = spaConfig.sections.length + (spaConfig.vizUrl ? 1 : 0);
+    // The topic-indicator map counts unconditionally: loadTopicIndicators reports a
+    // completed fetch on every path, including the one where it is not configured
+    totalFetches = spaConfig.sections.length + (spaConfig.vizUrl ? 1 : 0) + 1;
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
@@ -126,6 +128,7 @@ const bootstrap = () => {
         loadSection(section);
     });
 
+    loadTopicIndicators();
     loadVizData();
 
 };

@@ -156,6 +156,55 @@ const loadSection = section => {
 };
 
 
+// Loads the topic → IndicatorID map and reverses it into IndicatorID → topic slug
+const loadTopicIndicators = () => {
+
+    debugLog('loadTopicIndicators: enter:', spaConfig.topicIndicatorsUrl);
+
+    // Without the map no card can resolve a topic, so the link is simply omitted
+    if (!spaConfig.topicIndicatorsUrl || !spaConfig.dataExplorerUrl) {
+        debugLog('loadTopicIndicators: branch-not-configured');
+        checkAllLoaded();
+        return;
+    }
+
+    fetch(spaConfig.topicIndicatorsUrl)
+        .then(res => {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+        })
+        .then(data => {
+
+            const slugs = {};
+
+            // First topic wins, matching the retired getURL, which returned on its first
+            // hit: 42 of the 263 ids sit in more than one data-explorer topic
+            Object.keys(data).forEach(slug => {
+
+                const ids = data[slug] && data[slug].IndicatorID;
+                if (!Array.isArray(ids)) return;
+
+                ids.forEach(id => {
+                    if (slugs[id] === undefined) slugs[id] = slug;
+                });
+
+            });
+
+            indicatorTopicSlugs = slugs;
+
+            debugLog('loadTopicIndicators: branch-data-loaded:', Object.keys(slugs).length);
+
+        })
+        .catch(error => {
+            console.error('Error loading topic indicators:', error);
+            debugLog('loadTopicIndicators: branch-load-failed:', error);
+            indicatorTopicSlugs = null;
+        })
+        .then(checkAllLoaded);
+
+};
+
+
 // Loads the shared viz table used by all per-indicator Vega charts
 const loadVizData = () => {
 

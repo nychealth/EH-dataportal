@@ -18,7 +18,6 @@
 //   - Vega choropleth map + bar chart rendered on first accordion expand
 //   - Borough/city comparison logic with judgment styling
 //   - Demographics sidebar populated from uhflist.js
-//   - Neighborhood persistence via path + sessionStorage bridging
 
 // ----------------------------------------------------------------------- //
 // shared state
@@ -45,6 +44,13 @@ const sectionData = {};
 // Arquero table for the viz dataset (all indicators, all neighborhoods)
 // WRITE: data  READ: app (CSV export), chart (per-indicator summary)
 let vizTable = null;
+
+// IndicatorID (as a string key) -> data-explorer topic slug, reversed out of the
+// topic-keyed JSON at load so each card is one lookup rather than a scan of 41 topics.
+// Null until that fetch resolves and null again if it fails, which is what suppresses
+// the "Full dataset" link rather than emitting one with no href
+// WRITE: data  READ: cards
+let indicatorTopicSlugs = null;
 
 // Track which accordion panels have already had their chart rendered.
 // Two writers of different kinds: report.js replaces the whole object to reset

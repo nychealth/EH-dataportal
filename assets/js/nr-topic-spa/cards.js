@@ -31,6 +31,29 @@ const escapeAttr = value => {
 
 
 // ----------------------------------------------------------------------- //
+// data explorer link
+// ----------------------------------------------------------------------- //
+
+// Returns the data-explorer URL for an indicator, or '' when it has no topic there.
+// The retired nr-output/single.html did this on click, writing href and display onto an
+// element whose id was the raw IndicatorID; here the href is resolved as the card is
+// built, so nothing has to survive a neighborhood switch rebuilding every card
+const getDataExplorerUrl = indicatorID => {
+
+    if (!indicatorTopicSlugs || indicatorID == null) return '';
+
+    // Guard the interpolation into ?id=: the ids arrive from EHDP-data report JSON
+    const id = Number(indicatorID);
+    if (!Number.isFinite(id)) return '';
+
+    const slug = indicatorTopicSlugs[id];
+
+    return slug ? spaConfig.dataExplorerUrl + slug + '/?id=' + id : '';
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // indicator card rendering
 // ----------------------------------------------------------------------- //
 
@@ -170,6 +193,27 @@ const buildIndicatorCard = (row, neighborhoodName) => {
 
     const tertileInlineHTML = getTertileInlineLabel(row.data_value_rank, row.rankReverse);
 
+    // ----- data explorer link ----- //
+
+    // Omitted entirely when the indicator is in no data-explorer topic, as in the retired
+    // markup, where the anchor started at display:none and was only revealed on a match.
+    // The visible text stays "Full dataset" on every card, so the destination is carried
+    // by an .sr-only suffix — 20-odd links reading the same two words is 2.4.4, and putting
+    // the name after rather than inside keeps the visible label a prefix of the accessible
+    // one (2.5.3). No d-print-none: @media print hides the panel this sits in
+    const deUrl = getDataExplorerUrl(row.IndicatorID);
+
+    const dataExplorerLinkHTML = deUrl
+        ? '<div class="col-5">' +
+              '<p class="float-right">' +
+                  '<a href="' + escapeAttr(deUrl) + '" class="ml-1">' +
+                      '<i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset' +
+                      '<span class="sr-only"> for ' + (row.indicator_short_name || '') + '</span>' +
+                  '</a>' +
+              '</p>' +
+          '</div>'
+        : '';
+
     // Hide comparison copy when rank-derived context is unavailable
     const hideClass = hasRank ? '' : ' d-none';
 
@@ -228,6 +272,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
                     '<div class="col-7">' +
                         '<p class="fs-xs"><strong>Source:</strong> ' + (row.data_source_list || '') + '</p>' +
                     '</div>' +
+                    dataExplorerLinkHTML +
                 '</div>' +
             '</div>' +
         '</div>';

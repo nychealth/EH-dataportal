@@ -314,6 +314,7 @@
     Pass configuration to the JS module.
     - sections: array of report_topic objects with EHDP-data URLs and container IDs.
     - vizUrl: combined viz dataset URL for map/chart rendering.
+    - topicIndicatorsUrl / dataExplorerUrl: the two halves of each card's "Full dataset" link.
     - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
     - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
     - reportName: page title for CSV download filenames.
@@ -344,6 +345,14 @@
         neighborhood: "{{ .Params.neighborhood }}",
         geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
         vizUrl: "{{ $vizUrl }}",
+        // Topic → IndicatorID[] map, used to build each card's "Full dataset" link back to
+        // the data explorer. Fetched rather than inlined: it is one 7 KB file the browser
+        // caches across all 210 report pages, where inlining would put 6 KB of it in each.
+        // It is a *published Hugo resource*, not a static file — de-topic-indicators.html
+        // builds it by ranging .Site.Pages and calling .Publish, so it exists only because
+        // the three data-explorer layouts that include that partial are in the build
+        topicIndicatorsUrl: "{{ relURL "IndicatorMetadata/topic_indicators.json" }}",
+        dataExplorerUrl: "{{ relURL "data-explorer/" }}",
         dataRepo: "{{ $.Site.Params.data_repo }}",
         dataBranch: "{{ $.Site.Params.data_branch }}",
         sections: [
