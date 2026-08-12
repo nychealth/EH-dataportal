@@ -633,9 +633,10 @@ h2.report-info {
     border-radius: 8px;
     display: block;
     text-align: center;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
+    width: 80px;
     @include media-breakpoint-up(md){
-        width: 78px;
+        width: 80px;
         display: inline-block;
     }
 }
@@ -649,13 +650,8 @@ h2.report-info {
     }
 }
 
-.better-sm, .middle-sm, .worse-sm {
-    display: inline-block;
-    font-size: inherit!important;
-}
-
 .worse {
-    background-color: #F2CDD7;
+    background-color: #FFE69B;
 }
 
 .middle {
@@ -663,7 +659,38 @@ h2.report-info {
 }
 
 .better {
-    background-color: #D1F0C8;
+    background-color: #C4F2CF;
+}
+
+// Background colour was the only thing separating a good "Higher" from a bad one: both pills
+// read the same two words, so a reader with a colour vision deficiency saw no difference at
+// all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
+// triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
+// codepoints .comp-good / .comp-bad use on the sentence renditions
+// (assets/scss/_custom.scss), so the report makes the comparison the same way wherever the
+// reader meets it. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no
+// per-page resource is involved.
+//
+// No `color` of its own: the glyph inherits the pill's text colour, which already passes
+// against these backgrounds. Colouring it the way .comp-bad::before does would put $warning on
+// #FFE69B, and the shape carries the distinction regardless — adding a second contrast question
+// to close a contrast-adjacent finding is not a trade worth making.
+//
+// Chrome drops ::before glyphs from the accessibility tree entirely, so this is the visual
+// half only. .middle gets no glyph, matching .comp-null, which gets none either.
+.worse::before,
+.better::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    padding-right: 0.3em;
+}
+
+.worse::before {
+    content: "\f071";
+}
+
+.better::before {
+    content: "\f14a";
 }
 
 

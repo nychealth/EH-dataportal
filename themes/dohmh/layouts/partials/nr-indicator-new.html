@@ -91,31 +91,7 @@ this partial takes 5 arguments as a dict:
 
             <!-- Column 3: 25% -->
             <div style="width:25%;" class="pl-1">
-
-              {{ if eq $rankReverse false }}
-
-                {{- if eq (string .data.data_value_rank) "1" -}}
-                  Higher than most neighborhoods
-                {{- else if eq (string .data.data_value_rank) "2" -}}
-                  In the middle of NYC neighborhoods
-                {{- else if eq (string .data.data_value_rank) "3" -}}
-                  Less than most neighborhoods
-                {{- end -}}
-
-              {{ else }}
-
-                {{- if eq (string .data.data_value_rank) "1" -}}
-                  Less than most neighborhoods
-                {{- else if eq (string .data.data_value_rank) "2" -}}
-                  In the middle of NYC neighborhoods
-                {{- else if eq (string .data.data_value_rank) "3" -}}
-                  Higher than most neighborhoods
-                {{- end -}}
-
-              {{ end }}
-
-
-
+              {{ partial "nr-tertile-inline-label.html" (dict "rank" .data.data_value_rank "rankReverse" $rankReverse) }}
             </div>
 
           </div>
@@ -168,27 +144,7 @@ this partial takes 5 arguments as a dict:
                 {{ .data.indicator_short_name }} in <strong>{{ .neighborhood }}</strong>:
                 <div class=" fs-md">
                   <p>
-                    {{ if eq $rankReverse false }}
-
-                      {{- if eq (string .data.data_value_rank) "1" -}}
-                        <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
-                      {{- else if eq (string .data.data_value_rank) "2" -}}
-                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                      {{- else if eq (string .data.data_value_rank) "3" -}}
-                        <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
-                      {{- end -}} 
-
-                    {{ else }}
-
-                      {{- if eq (string .data.data_value_rank) "1" -}}
-                        <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
-                      {{- else if eq (string .data.data_value_rank) "2" -}}
-                        <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
-                      {{- else if eq (string .data.data_value_rank) "3" -}}
-                        <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
-                      {{- end -}} 
-
-                    {{ end }}
+                    {{ partial "nr-tertile-inline-label.html" (dict "rank" .data.data_value_rank "rankReverse" $rankReverse) }}
                   </p>
 
                   <p>
