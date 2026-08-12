@@ -6,9 +6,12 @@
 // tertile and comparison helpers
 // ----------------------------------------------------------------------- //
 
-// rankReverse marks indicators where lower values are directionally better. It
-// arrives as a boolean from some report payloads and as the string 'true' from
-// others, so every consumer has to accept both
+// rankReverse marks indicators where HIGHER values are directionally better — park access,
+// bike lanes, subway access, regular exercise. The name reads as though it meant the reverse
+// and this comment used to assert that; getComparison at the foot of this file is what settles
+// it, scoring a neighborhood above its reference value as comp-good exactly when the flag is
+// set. It arrives as a boolean from some report payloads and as the string 'true' from others,
+// so every consumer has to accept both
 const isRankReversed = value => value === true || value === 'true';
 
 
@@ -36,14 +39,18 @@ const getTertileLabel = (rank, rankReverse) => {
 };
 
 
-// Returns the pill class the production report styling expects: worse, better, or middle
-const getTertilePillClass = (rank, rankReverse) => {
+// Returns the pill class the production report styling expects: worse, better, or middle.
+// rankReverse is deliberately not a parameter: the rank already carries the verdict, with 1
+// always the unfavourable tertile and 3 always the favourable one, and the flag's only job is
+// choosing which word describes the value — that is getTertileLabel's. Fixed 2026-08-12; this
+// used to flip on the flag, which pilled Park access, Bike lanes, Subway access and Exercise
+// as "better" on jamaica/active_design while Jamaica sat below most neighborhoods on all four
+const getTertilePillClass = (rank) => {
 
     const r = String(rank);
-    const reverse = isRankReversed(rankReverse);
 
-    if (r === '1') return reverse ? 'better' : 'worse';
-    if (r === '3') return reverse ? 'worse' : 'better';
+    if (r === '1') return 'worse';
+    if (r === '3') return 'better';
     if (r === '2') return 'middle';
 
     return '';
@@ -61,10 +68,18 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     const r = String(rank);
     const reverse = isRankReversed(rankReverse);
 
+    // The rank carries the verdict and rankReverse only chooses the word, exactly as in
+    // getTertilePillClass. Fixed 2026-08-12: cssClass used to flip along with the word, so a
+    // reversed indicator in the bottom tertile was reported as good news. getComparison, at the
+    // foot of this file, has always scored that same situation the other way — a neighborhood
+    // below its reference on a reversed indicator is comp-bad — so the report contradicted
+    // itself within one card, the tertile sentence and the borough sentence disagreeing
     if (r === '1') {
-        return reverse
-            ? { word: 'Lower', rest: ' than most neighborhoods', cssClass: 'comp-good' }
-            : { word: 'Higher', rest: ' than most neighborhoods', cssClass: 'comp-bad' };
+        return {
+            word: reverse ? 'Lower' : 'Higher',
+            rest: ' than most neighborhoods',
+            cssClass: 'comp-bad',
+        };
     }
 
     if (r === '2') {
@@ -72,9 +87,11 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     }
 
     if (r === '3') {
-        return reverse
-            ? { word: 'Higher', rest: ' than most neighborhoods', cssClass: 'comp-bad' }
-            : { word: 'Lower', rest: ' than most neighborhoods', cssClass: 'comp-good' };
+        return {
+            word: reverse ? 'Higher' : 'Lower',
+            rest: ' than most neighborhoods',
+            cssClass: 'comp-good',
+        };
     }
 
     return { word: '', rest: '', cssClass: '' };
@@ -126,7 +143,9 @@ const getComparison = (neighVal, refVal, rankReverse) => {
     let preposition;
     let cls;
 
-    // rankReverse flips "good" vs "bad" judgment for metrics where lower values are better
+    // rankReverse flips "good" vs "bad" for metrics where higher values are better. This is the
+    // function the rest of the file's reading of the flag is anchored to — it was already right
+    // when the two tertile functions above it were not
     if (n > r) {
         word = 'Higher';
         preposition = 'than';

@@ -59,7 +59,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
 
     // Tertile pill for the header row (production uses .worse/.better/.middle classes)
     const pillLabel = getTertileLabel(row.data_value_rank, row.rankReverse);
-    const pillClass = getTertilePillClass(row.data_value_rank, row.rankReverse);
+    const pillClass = getTertilePillClass(row.data_value_rank);
     const pillSentence = getTertileSentence(row.data_value_rank, row.rankReverse);
     let pillHTML = '';
 
