@@ -399,7 +399,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
     </div>
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
-            <iframe title=" Scatterplot - Chinese" aria-label="Scatter Plot" id="datawrapper-chart-S5cP3" src="https://datawrapper.dwcdn.net/S5cP3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title=" Scatterplot - Chinese" aria-label="Scatter Plot" id="datawrapper-chart-S5cP3" data-lazy-src="https://datawrapper.dwcdn.net/S5cP3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>           
     </div>
 </div>

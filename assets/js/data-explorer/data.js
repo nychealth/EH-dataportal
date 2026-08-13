@@ -1031,13 +1031,21 @@ function draw311Buttons(indicator_id) {
                 dest.forEach(element => element.classList.add('hide'))
             };
 
-            // draws 311 buttons
+            // Render one outbound 311 article link per matching crosswalk record.
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
-                let title = filteredCrosswalk[i].topic
-                let destination = filteredCrosswalk[i].kaLink
-                let divider = i < filteredCrosswalk.length - 1 ? '| ' : ''
-                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>${divider}`
-                dest.forEach(element => element.innerHTML += btn)
+
+                // test length to prevent orphaned vertical bar
+                let verticalBar = (i < filteredCrosswalk.length - 1) ? ' | ' : '';
+
+                // Link text and target come from the matching crosswalk row for this iteration.
+                let title = filteredCrosswalk[i].topic;
+                let destination = filteredCrosswalk[i].kaLink;
+
+                // kanumber is the 311 knowledge article ID from the crosswalk CSV
+                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" target="_blank" rel="noopener noreferrer">${title}</a>${verticalBar}`;
+                
+                dest.forEach(element => element.innerHTML += btn);
+
             }
     })
 }

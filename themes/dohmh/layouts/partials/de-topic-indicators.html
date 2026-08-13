@@ -63,7 +63,7 @@
 
 {{-  $all_unique_indicator_ids_json.Publish  -}}
 
-<p class="sr-only">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
+<p class="d-none">This produces a list of topics and IndicatorIDs, stored in the variable <code>$topic_indicators</code>, 
     and printed to the console as a JavaScript variable, and then as an Arquero table.</p>
 
     {{- /*  {{ warnf ( print "~~~~~ topic_indicators_map"  $topic_indicators_map ) }}  */}}
@@ -73,20 +73,20 @@
         var topic_indicators = {{ $topic_indicators_map.Get "topic_indicators" }};
 
         var arqTable = aq.from(topic_indicators)
-        .rename({key: "topic"})
-        .derive({
-            IndicatorID: d => d.value.IndicatorID,
-            topic_name: d => d.value.topic_name
-        })
-        .select(aq.not("value"))
-        .unroll("IndicatorID");
+            .rename({key: "topic"})
+            .derive({
+                IndicatorID: d => d.value.IndicatorID,
+                topic_name: d => d.value.topic_name
+            })
+            .select(aq.not("value"))
+            .unroll("IndicatorID");
         
         var topicIndicatorsTable = arqTable.objects();
         
         
     </script>
     
-    <p class="sr-only">Also outputting a JSON version of the list to <code><a href={{ relURL "IndicatorMetadata/topic_indicators.json" }}>IndicatorMetadata/topic_indicators.json</code></a> 
+    <p class="d-none">Also outputting a JSON version of the list to <code><a href={{ relURL "IndicatorMetadata/topic_indicators.json" }}>IndicatorMetadata/topic_indicators.json</code></a> 
         (which on build will be put into <code>/docs/IndicatorMetadata/</code>)</strong>
         
         {{- $si_json_output_path := "/IndicatorMetadata/topic_indicators.json" -}}
