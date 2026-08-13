@@ -547,7 +547,7 @@ var CDtoUHF = [
     "matchingUHFs": [
       {
         "UHF_id": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "page_name": "downtown_heights_slope",
         "pop_pct_of_cd": 85.183336,
         "percent": 85.711349
@@ -581,7 +581,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "page_name": "downtown_heights_slope",
         "pop_pct_of_cd": 12.924394,
         "percent": 11.180752
@@ -641,7 +641,7 @@ var CDtoUHF = [
     "matchingUHFs": [
       {
         "UHF_id": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "page_name": "downtown_heights_slope",
         "pop_pct_of_cd": 99.915427,
         "percent": 98.112336
@@ -668,7 +668,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "page_name": "downtown_heights_slope",
         "pop_pct_of_cd": 17.418931,
         "percent": 10.965946
@@ -695,7 +695,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 202,
-        "GEONAME": "Downtown  - Heights - Slope",
+        "GEONAME": "Downtown - Heights - Slope",
         "page_name": "downtown_heights_slope",
         "pop_pct_of_cd": 2.354301,
         "percent": 2.515127
