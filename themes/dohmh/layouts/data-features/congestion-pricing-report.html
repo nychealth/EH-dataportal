@@ -168,7 +168,7 @@
                 {{ with $src -}}
                 <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="{{ .Params.image_alt }}" />
                 {{ end }}
-                <div class="fs-sm">
+                <div class="fs-sm mb-3">
                     {{- if .Params.photocredit -}}
                         <i class="fas fa-images mr-1"></i><strong class="keywords">Banner image:</strong><br>
                         {{- .Params.photocredit -}}

@@ -50,37 +50,41 @@ blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
 
 -->
 
-<div id="Introduction">
-
-## Key Takeaways
-
-This report is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors in an effort to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report. 
-
-<div class="row mb-4">
-    <div class="col-md-4 card content-card">
-        <div class="card-content primary card-body">
-            <p><strong>Generally, pollution at all locations held steady or improved slightly</strong>. This continues the trend of improving air quality in NYC over the past 20 years. <a href="../nyccas">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
+<div id="key-takeaways">
+    <h2 class="h3">Key Takeaways</h2>
+    <div>
+        This report is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors in an effort to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report.
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-md-4 card content-card">
+            <div class="card-content primary card-body">
+                <p><strong>Generally, pollution at all locations held steady or improved slightly</strong>. This continues the trend of improving air quality in NYC over the past 20 years. <a href="../nyccas" target="_blank">For more long-term trends, see the NYCCAS Annual Report</a>.</p>
+            </div>
+        </div>
+        <div class="col-md-4 card content-card">
+            <div class="card-content primary card-body">
+                <p><strong>Inside the CRZ, pollution decreased slightly or stayed the same in 2025 compared to 2024</strong>. Measured pollution levels were not significantly different because of congestion pricing.</p>
+            </div>
+        </div>
+        <div class="col-md-4 card content-card">
+            <div class="card-content primary card-body">
+                <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE) levels of one pollutant didn't improve as much as would be expected in comparison to changes at the control site.</p>
+            </div>
         </div>
     </div>
-    <div class="col-md-4 card content-card">
-        <div class="card-content primary card-body">
-            <p><strong>Inside the CRZ, pollution decreased slightly or stayed the same in 2025 compared to 2024</strong>. Measured pollution levels were not significantly different because of congestion pricing. </p>
-        </div>
-    </div>
-    <div class="col-md-4 card content-card">
-        <div class="card-content primary card-body">
-            <p><strong>At EJ neighborhood sites, congestion pricing didn't increase pollution</strong>. This is good news. It didn't worsen air quality near major routes around the CRZ. At one location (BQE) levels of one pollutant didn't improve as much as would be expected in comparison to changes at the control site.</p>
-        </div>
+    <div>
+        The documented benefits of congestion pricing <a href="https://www.mta.info/document/195631" target="_blank">reduced congestion, transit system improvements</a> and <a href="https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about" target="_blank">investments through the committed mitigation</a> clearly demonstrate the overall benefit of the program.
     </div>
 </div>
-
-The documented benefits of congestion pricing—[reduced congestion, transit system improvements](https://www.mta.info/document/195631) and [investments through the committed mitigation](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about)—clearly demonstrate the overall benefit of the program.
 
 <div class="row">
     <div class="col-12 mx-auto">
         <hr class="my-2 px-6">
     </div>
 </div>
+
+<div id="background">
+    <h2 class="h3">Background</h2>
 
 In January 2025, MTA Bridges and Tunnels (MTABT) started charging a toll for vehicles entering the Congestion Relief Zone (CRZ), Manhattan south of and including 60 Street, excluding the Franklin D. Roosevelt (FDR) Drive, the West Side Highway/Route 9A, and the surface roadway portion of the Hugh L. Carey Tunnel connecting to West Street. Congestion Relief Zone tolling, commonly referred to as congestion pricing, was introduced to reduce traffic while raising a reliable source of funding for public transit improvements.
 
