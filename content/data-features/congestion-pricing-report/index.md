@@ -73,7 +73,7 @@ blurb: A complete evaluation of congestion pricing's effects on NYC air quality.
         </div>
     </div>
     <div>
-        The documented benefits of congestion pricing — <a href="https://www.mta.info/document/195631" target="_blank">reduced congestion, transit system improvements</a> and <a href="https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about" target="_blank">investments through the committed mitigation</a> — clearly demonstrate the overall benefit of the program.
+        The documented benefits of congestion pricing, <a href="https://www.mta.info/document/195631" target="_blank">reduced congestion, transit system improvements</a> and <a href="https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about" target="_blank">investments through the committed mitigation</a>, clearly demonstrate the overall benefit of the program.
     </div>
 </div>
 
