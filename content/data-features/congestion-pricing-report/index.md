@@ -1,6 +1,6 @@
 ---
 _schema: default
-title: Air Quality Impacts of Congestion Relief Zone Tolling​
+title: Air Quality Impacts of Congestion Relief Zone Tolling
 draft: false
 date: 2026-08-12T11:14:56-04:00
 categories:

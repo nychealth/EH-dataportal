@@ -13,12 +13,12 @@ That congestion pricing would only have a small impact on air quality is consist
 
 However, the documented benefits of congestion pricing — [reduced congestion, transit system improvements](https://www.mta.info/document/195631) and [investments through the committed mitigation](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone/program/mitigation#about) — clearly demonstrate the overall benefit of the program.
 
-##### ​Resources​
+##### Resources
 
 * [MTABT CRZ Tolling Page](https://www.mta.info/agency/bridges-and-tunnels/congestion-relief-zone)
 * [MTA Open Datasets](https://metrics.mta.info)
-* [Detailed Traffic Analysis Methodology Appendix (PDF)​](embeds/CRZ_Report_Appendix.pdf)
-* [New York State DOT Traffic Dataviewer​](https://nysdottrafficdata.drakewell.com/publicmultinodemap.asp)
+* [Detailed Traffic Analysis Methodology Appendix (PDF)](embeds/CRZ_Report_Appendix.pdf)
+* [New York State DOT Traffic Dataviewer](https://nysdottrafficdata.drakewell.com/publicmultinodemap.asp)
 * [US EPA Air Quality System](https://www.epa.gov/aqs)
 * [CBDTP Air Quality Evaluation Methods (PDF)](https://www.nyc.gov/assets/doh/downloads/pdf/environmental/cbdtp-aq-monitoring-methods.pdf)
 * [Public Transit is Public Health](https://buff-flag.cloudvent.net/data-stories/public-transit-creates-health/)
