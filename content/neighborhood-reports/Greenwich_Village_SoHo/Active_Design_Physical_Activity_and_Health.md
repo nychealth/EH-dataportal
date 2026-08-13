@@ -1,6 +1,6 @@
 ---
 title: "Active Design, Physical Activity and Health"
-neighborhood: "Greenwich Village - Soho"
+neighborhood: "Greenwich Village - SoHo"
 geocode: 308
 summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
 data_json: "Active Design Physical Activity and Health in Greenwich Village - SoHo"
