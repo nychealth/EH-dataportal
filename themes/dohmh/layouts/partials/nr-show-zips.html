@@ -21,10 +21,12 @@
     var ul2 = document.getElementById("neighborhoodList2");
 
     neighborhoods.forEach(function (neighborhood) {
-    var li = document.createElement("li");
-    li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + "/" + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
-    ul.appendChild(li);
-    ul2.appendChild(li)
+        var li = document.createElement("li");
+        li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + {{ .urlSuffix }} + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
+        ul.appendChild(li);
+        // clone for the second list: appendChild MOVES a node, so passing the same
+        // li to both would leave the sr-only list empty
+        ul2.appendChild(li.cloneNode(true));
     });
 
     function showNeighborhoods() {

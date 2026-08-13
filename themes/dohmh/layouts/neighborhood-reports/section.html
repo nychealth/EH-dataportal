@@ -87,7 +87,7 @@
                 {{- partial "nr-leaflet" . -}}
               </div>
 
-                {{ partial "nr-show-zips" . }}
+                {{ partial "nr-show-zips" (dict "urlSuffix" "/") }}
         </div>
 
 

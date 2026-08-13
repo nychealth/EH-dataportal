@@ -30,6 +30,9 @@
                         <button id="clear" class="btn btn-md btn-warning">Clear</button>
 
                     </div>
+
+                    {{/* urlExtension is this topic's report path, e.g. "/climate_and_health/" */}}
+                    {{ partial "nr-show-zips" (dict "urlSuffix" .Params.urlExtension) }}
                 </div>
 
                 <div class="col-md-8">
@@ -143,9 +146,6 @@
 {{- end -}}
 
 
-{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
-
 <!-- flexdatalist -->
 
 {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
@@ -234,23 +234,10 @@
 
     loadList()
 
-    // populate accessible neighborhood-selection
-    var ul = document.getElementById("neighborhoodList");
-    var ul2 = document.getElementById("neighborhoodList2");
-
-    neighborhoods.forEach(function (neighborhood) {
-        var li = document.createElement("li");
-        li.innerHTML = "<a href='" + {{ relURL "neighborhood-reports/" }} + neighborhood.page_name + reportURL + "'>" + neighborhood.UHF_name + "</a>: " + neighborhood.Zipcodes
-        ul.appendChild(li);
-        ul2.appendChild(li)
-    });
-
-    function showNeighborhoods() {
-
-        document.getElementById('showNeighbs').classList.toggle('hide')
-        document.getElementById('showNeighbs').classList.toggle('show')
-
-    }
+    // The neighborhood list and its showNeighborhoods() toggle come from the
+    // nr-show-zips partial, which renders both the markup and the script that
+    // fills it. This template previously carried a copy of that script without
+    // the markup it writes into.
 
 </script>
 
