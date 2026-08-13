@@ -1,7 +1,6 @@
 baseURL = "https://a816-dohbesp.nyc.gov/IndicatorPublic/"
 canonifyURLs = false
 relativeURLs = false
-languageCode = "en-us"
 title = "Environment & Health Data Portal"
 enableRobotsTXT = true
 metaDataFormat = "yaml"
@@ -39,19 +38,22 @@ timeZone = "America/New_York"
   title = true # allow apending attributes to md headings
 
 [languages.en]
-  languageName = "English"
+  label = "English"
+  locale = "en-US"
   weight = 1
   [languages.en.params]
     languageDesc = "English"
 
 [languages.es]
-  languageName = "Español"
+  label = "Español"
+  locale = "es-US"
   weight = 2
   [languages.es.params]
     languageDesc = "Spanish-US"
 
 [languages.zh]
-  languageName = "中文"
+  label = "中文"
+  locale = "zh-Hans"
   weight = 3
   [languages.zh.params]
     languageDesc = "Chinese-Simplified"

@@ -4,7 +4,7 @@
 
 {{- /* Variable to load the the data file from the content_yml frontmatter */}}
 
-{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+{{- $content := index hugo.Data.globals.NR_footer $.Params.content_yml -}}
 
 
 <section class="related-reading d-print-none" data-pagefind-ignore="all">

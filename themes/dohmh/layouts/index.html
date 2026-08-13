@@ -116,7 +116,7 @@
 
           <h2 class="fs-xl data-explorer border-bottom pb-2"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Recently updated data</h2>
 
-          {{- range .Site.Data.recently_updated_data.featured -}}
+          {{- range hugo.Data.recently_updated_data.featured -}}
           <div class="link-w-underline">
             <a href={{ relURL ( path.Join "data-explorer" .link ) }}>{{ .copy }}</a>
           </div>

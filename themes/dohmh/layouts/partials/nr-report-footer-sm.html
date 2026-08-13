@@ -9,7 +9,7 @@
 
 {{- /* Variable to load the the data file from the content_yml frontmatter */}}
 
-{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+{{- $content := index hugo.Data.globals.NR_footer $.Params.content_yml -}}
 
 <section data-pagefind-ignore="all" class="mt-lg-5 d-print-none">
     <div class="container-fluid mb-5">

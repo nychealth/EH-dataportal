@@ -83,7 +83,7 @@
 
 {{- if .IsTranslated -}}
     {{- range .Translations }}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.LanguageName }}">
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .RelPermalink }}" title="{{ .Language.Label }}">
     {{- end -}}
 {{- end }}
 

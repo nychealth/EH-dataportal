@@ -81,7 +81,7 @@
 
 {{- /* ==== get topics and measures for this report ==== */}}
 
-{{- $report_topics := ( index ( index $.Site.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
+{{- $report_topics := ( index ( index hugo.Data.globals.NR_content $.Params.content_yml) "report_topics" ) -}}
 
 
 {{- /*  ==== javascript for producing VL charts ====  */}}

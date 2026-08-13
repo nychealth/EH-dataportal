@@ -4,7 +4,7 @@
 </div>
 
 <div class="row">
-    {{ range .Site.Data.featured_data.featured}}
+    {{ range hugo.Data.featured_data.featured}}
 
     <a href="{{ .link }}" class="btn btn-outline-primary mr-1 mb-1 btn-sm">{{ .copy }}</a>
 

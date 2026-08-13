@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <ul class="nav navbar-nav">
                 {{- range .Translations -}}
-                <li><a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>&nbsp;|&nbsp;</li>
+                <li><a href="{{ .RelPermalink }}">{{ .Language.Label }}</a>&nbsp;|&nbsp;</li>
                 {{- end -}}
             </ul>
         </div>
