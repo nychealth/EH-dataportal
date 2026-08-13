@@ -5,7 +5,7 @@ date: 2025-08-04T08:49:22-04:00
 image: inspector_looks3.jpg
 photocredit: NYC Health Department
 categories: ["pests", "housing"]
-keywords: ["rats", "pests", "Rat Mitigation Zones", "rat inspection"]
+keywords: ["rats", "pests", "rat mitigation zones", "rat inspection"]
 seo_title: Rat inspections in NYC
 seo_description: "Rat inspection data drives NYC's rat control strategy"
 related:

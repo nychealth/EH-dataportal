@@ -11,7 +11,7 @@ keywords:
   [
     "air quality",
     "pollution",
-    "PM2.5",
+    "pm2.5",
     "traffic",
     "breathing",
     "asthma",
