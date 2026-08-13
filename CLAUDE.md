@@ -183,5 +183,5 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 ## Common gotchas
 
 - **Missing images fail the build.** Hugo resizes images at build time; a missing source aborts the build.
-- **Build caching.** Remote EHDP-data resources are cached. If a data update isn't appearing, set `maxAge = 0` for the relevant cache in config.
+- **Build caching.** Remote EHDP-data resources are cached. If a data update isn't appearing, set `maxAge = 0` for the relevant cache in config, or add the `--ignoreCache` switch to the `hugo` call.
 - **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
