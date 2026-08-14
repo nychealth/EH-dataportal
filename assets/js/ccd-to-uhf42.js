@@ -44,7 +44,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "percent": 18.762905,
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_ccd": 22.165338
@@ -91,7 +91,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "percent": 3.318846,
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_ccd": 3.067829
@@ -110,7 +110,7 @@ var CCDtoUHF = [
     "matchingUHFs": [
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "percent": 52.796985,
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_ccd": 61.447349
@@ -164,7 +164,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "percent": 3.287149,
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_ccd": 2.400804
@@ -225,7 +225,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "percent": 0.006443,
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_ccd": 0.0
@@ -1560,7 +1560,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "percent": 45.242868,
         "page_name": "port_richmond",
         "pop_pct_of_ccd": 41.717762
@@ -1607,7 +1607,7 @@ var CCDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "percent": 1.606992,
         "page_name": "port_richmond",
         "pop_pct_of_ccd": 3.046887
