@@ -82,6 +82,7 @@ data/globals/     YAML available to every template (SEO defaults, social, NR con
 config/           Per-environment config, merged over config/_default/config.toml
 archetypes/       Frontmatter templates for `hugo new`
 memories/repo/    Durable repo findings written up for agents (see Hugo rules below)
+documents/        Internal audits and technical write-ups
 docs/             Generated output — never edit
 resources/_gen/   Hugo's fingerprint and image cache — never edit
 .cloudcannon/     CMS prebuild/postbuild hooks and frontmatter schemas
@@ -146,6 +147,7 @@ Per-neighborhood reports are content under `content/neighborhood-reports/` with 
 - 4-space indentation in all files.
 - Browser JS: no new frameworks or build dependencies. Keep it lightweight, readable, explicitly branched.
 - Comments explain *why*, not *what*, and are brief. Bias toward more of them, not fewer.
+- **JS formatting and comment conventions:** [documents/js-conventions.md](documents/js-conventions.md) — file headers, comment hierarchy, variable grouping, function-level comments, internal step comments. Apply when writing or revising any browser JS.
 - **Orientation comment before each meaningful block** — function, object, initialization section — saying at a high level what it does, even when the name makes it obvious. The reader should know what's coming before reading it.
 - Match the surrounding file's style before applying any general rule. Don't refactor untouched code.
 - Preserve accessibility: labels, keyboard support, sensible fallbacks on every interactive element.
@@ -156,7 +158,7 @@ Per-neighborhood reports are content under `content/neighborhood-reports/` with 
 - Frontmatter, slugs, and asset references are load-bearing — a small typo breaks a URL or the build.
 - Environment-specific values belong in `config/<env>/config.toml`, not in hardcoded strings.
 - **A standalone `.html` file that needs its own URL goes in `static/`, not in a page bundle.** Inside a leaf bundle, an extra `.html` behaves as a page resource and is not reliably published, so an iframe pointing at a bundle-relative path 404s. Bundle *resources* that templates and shortcodes read are fine to keep in the bundle (`csvtable` reads bundled CSV via `.Page.Resources.GetMatch`), as are images. The worked case, the fix, and the existing static-published examples are in [memories/repo/page-bundle-publication.md](memories/repo/page-bundle-publication.md).
-- For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load it through `short-fingerprint.html` as a fingerprinted script with an `integrity` attribute. Keep scripts classic (non-module) when they share global scope — load order matters and nothing enforces it, so state the order in a template comment.
+- For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load it through `short-fingerprint.html` as a fingerprinted script with an `integrity` attribute. Keep scripts classic (non-module) when they share global scope — load order matters and nothing enforces it, so state the order in a template comment. Two worked examples: [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and [data-features/congestion-pricing-report.html](themes/dohmh/layouts/data-features/congestion-pricing-report.html).
 
 ## Root-cause claims
 
