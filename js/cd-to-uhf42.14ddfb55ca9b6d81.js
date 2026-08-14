@@ -106,7 +106,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_cd": 35.382044,
         "percent": 35.687106
@@ -126,7 +126,7 @@ var CDtoUHF = [
     "matchingUHFs": [
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_cd": 88.59404,
         "percent": 80.970063
@@ -166,7 +166,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 307,
-        "GEONAME": "Gramercy Park -  Murray Hill",
+        "GEONAME": "Gramercy Park - Murray Hill",
         "page_name": "gramercy_park_murray_hill",
         "pop_pct_of_cd": 0.657952,
         "percent": 2.133688
@@ -1272,7 +1272,7 @@ var CDtoUHF = [
       },
       {
         "UHF_id": 501,
-        "GEONAME": "Port  Richmond",
+        "GEONAME": "Port Richmond",
         "page_name": "port_richmond",
         "pop_pct_of_cd": 39.652519,
         "percent": 42.350666
