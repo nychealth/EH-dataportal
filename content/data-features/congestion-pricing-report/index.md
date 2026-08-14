@@ -19,7 +19,7 @@ seo_description: The most complete evaluation to date of the effects of congesti
 aliases:
   - /key-topics/airquality/nyccas/
 
-image: images/GettyImages-resize-1.png
+image: images/GettyImages.jpg
 image_alt: View of W 40th St in Manhattan. Pedestrians cross the street with cars waiting at the light.
 photocredit: "Alexander Spatari/Moment via Getty Images"
 layout: congestion-pricing-report

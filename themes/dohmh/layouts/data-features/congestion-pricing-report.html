@@ -166,7 +166,8 @@
 
                 {{ $src := .Resources.GetMatch .Params.image }}
                 {{ with $src -}}
-                <img class="block mb-3 img-fluid w-100" src="{{ $src.RelPermalink }}" alt="{{ .Params.image_alt }}" />
+                    {{ $image := .Resize "1300x q90" }}
+                    <img class="block mb-3 img-fluid w-100" src="{{ $image.RelPermalink }}" alt="{{ .Params.image_alt }}" />
                 {{ end }}
                 <div class="fs-sm mb-3">
                     {{- if .Params.photocredit -}}
