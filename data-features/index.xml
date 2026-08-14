@@ -6,7 +6,7 @@
     <description>Recent content in Data Features on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 14 Jun 2026 10:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rats in your neighborhood</title>
@@ -112,6 +112,13 @@
       <pubDate>Sun, 14 Jun 2026 10:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/heat-report/</guid>
       <description>&lt;p&gt;Each summer, on average, more than 500 New Yorkers die prematurely because of hot weather in New York City (NYC). These heat-related deaths account for about 3% of all deaths over the warm season months of May through September.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Air Quality Impacts of Congestion Relief Zone Tolling</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/congestion-pricing-report/</link>
+      <pubDate>Fri, 14 Aug 2026 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/congestion-pricing-report/</guid>
+      <description>&lt;!-- note this text is not final / approved and still needs links! --&gt;&#xA;&lt;!-- &lt;strong&gt;Table of Contents&lt;/strong&gt;&#xA;&#xA;- &lt;a href=&#34;#Introduction&#34;&gt;Introduction&lt;/a&gt;&#xA;- &lt;a href=&#34;#KeySites&#34;&gt;Key sites&lt;/a&gt;&#xA;- &lt;a href=&#34;#EJSites&#34;&gt;Results from Environmental Justice sites&lt;/a&gt;&#xA;- &lt;a href=&#34;#CRZPollution&#34;&gt;Pollution inside the CRZ&lt;/a&gt;&#xA;- &lt;a href=&#34;#OutPollution&#34;&gt;Pollution outside of the CRZ and NYC&lt;/a&gt;&#xA;- &lt;a href=&#34;#Conclusion&#34;&gt;Conclusion&lt;/a&gt;&#xA;&#xA;&lt;hr class=&#34;my-1 px-6&#34;&gt;&lt;/hr&gt;&#xA;&#xA;--&gt;&#xA;&lt;div id=&#34;key-takeaways&#34;&gt;&#xA;    &lt;h2 class=&#34;h3&#34;&gt;Key Takeaways&lt;/h2&gt;&#xA;    &lt;div&gt;&#xA;        This report is the most complete evaluation to date, using deeply detailed models and methods that control for a wide variety of other factors in an effort to understand the effect that congestion pricing had on air quality both inside the CRZ and in EJ neighborhoods analyzed in this report.&#xA;    &lt;/div&gt;&#xA;    &lt;div class=&#34;row mt-3 mb-3&#34;&gt;&#xA;        &lt;div class=&#34;col-md-4 card content-card&#34;&gt;&#xA;            &lt;div class=&#34;card-content primary card-body&#34;&gt;&#xA;                &lt;p&gt;&lt;strong&gt;Generally, pollution at all locations held steady or improved slightly&lt;/strong&gt;. This continues the trend of improving air quality in NYC over the past 20 years. &lt;a href=&#34;../nyccas&#34; target=&#34;_blank&#34;&gt;For more long-term trends, see the NYCCAS Annual Report&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Stay safe from heat and air pollution</title>

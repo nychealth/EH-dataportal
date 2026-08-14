@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    
+    <style>
+        #map {
+            width:100%;
+            height:120vh;
+            max-width: 1000px;
+        }
+        
+        img.traffic { 
+            filter: hue-rotate(0deg); 
+        }
+        img.integrated-monitor{ 
+            filter: hue-rotate(230deg);
+        }
+        img.PM-monitor { 
+            filter: hue-rotate(90deg);
+        }
+        img.regional-site {
+            filter: hue-rotate(200deg) brightness(1.1);
+        }
+ 
+        /* Legend Styles */
+        .legend {
+            background: white;
+            opacity: 0.9;
+            padding: 11px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            font-size: 13px;
+            line-height: 1.6;
+            min-width: 200px;
+        }
+        
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 15px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 6px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .legend-color.traffic {
+            background-color: #ac22ae;
+        }
+        
+        .legend-color.integrated-monitor {
+            background-color: #007153;
+        }
+        
+        .legend-color.pm-monitor {
+            background-color: #ae3400;
+        }
+        
+        .legend-color.regional-site {
+            background-color: #4a90e2;
+        }
+        
+        .legend-color.type-all {
+            background-color: #4a90e2;
+        }
+        .legend-color.type-no2 {
+            background-color: #c0392b;
+        }
+        .legend-color.type-no2-ozone {
+            background-color: #8e44ad;
+        }
+        .legend-color.type-ozone {
+            background-color: #f39c12;
+        }
+        .legend-color.type-pm25 {
+            background-color: #27ae60;
+        }
+        .legend-color.type-pm25-ozone {
+            background-color: #16a085;
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <h1 class="sr-only">Monitoring locations</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="map"></div>
+        </div>
+    </div>
+    
+    
+    <script>
+        
+        var map = L.map('map',{minZoom: 2,
+            maxZoom: 16}).setView([41.118333,-73.336667],8); // [Lat,Long],Zoom
+        
+        L.tileLayer(
+            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', 
+            {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'}
+        ).addTo(map);
+        
+        // Site coordinates for zoom functionality
+        const siteCoordinates = {
+            "Major Deegan": { lat: 40.80911, lng: -73.928824, zoom: 16 },
+            "Cross Bronx": { lat: 40.844967, lng: -73.906263, zoom: 16 },
+            "BQE": { lat: 40.705511, lng: -73.958846, zoom: 16 },
+            "Van Wyck": { lat: 40.690155, lng: -73.80908, zoom: 16 },
+            "SI Expwy": { lat: 40.609209, lng: -74.151182, zoom: 14 },
+            "FDR": { lat: 40.722282, lng: -73.974417, zoom: 14 },
+            "Trans-Manhattan": { lat: 40.847353, lng: -73.934027, zoom: 16 },
+        };
+        
+        // Function to zoom to a specific site
+        window.zoomToSite = function(siteName) {
+            if (siteCoordinates[siteName]) {
+                const coords = siteCoordinates[siteName];
+                map.setView([coords.lat, coords.lng], coords.zoom);
+            }
+        };
+        
+        // Listen for messages from parent page
+        window.addEventListener('message', function(event) {
+            console.log("Map received message:", event.data);
+            if (event.data.action === 'zoomToSite') {
+                console.log("Zooming to site:", event.data.siteName);
+                window.zoomToSite(event.data.siteName);
+            }
+        });
+        
+        var sites;
+        
+        // using d3.csv to import csv - may use a lighter approach...?
+        d3.csv('RegionalSites.csv').then(function(data) {
+
+            sites = data; // Load all regional sites from CSV
+            // console.table(sites)
+            addSitesToMap()
+        })
+
+        const stateColorMap = {
+            'New York': '#2b6cb0',
+            'New Jersey': '#276749',
+            'Connecticut': '#9b2c2c'
+        };
+
+        // loop through RegionalSites.csv, add them to map as points
+        function addSitesToMap() {
+            
+            for (let i = 0; i < sites.length; i++) {
+
+                // console.log(">>> site data", sites[i]);
+                var state = sites[i].State || 'New York';
+                var fillColor = stateColorMap[state] || '#2b6cb0';
+                
+                var site = L.circleMarker([Number(sites[i].Lat), Number(sites[i].Long)], {
+                        radius: 8,
+                        fillColor: fillColor,
+                        color: '#333',
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                    })
+                    .bindPopup("<strong>" + sites[i]['Site Name'] + "</strong><br>" + sites[i].County + " County, " + sites[i].State + "<br><strong>Monitor type:</strong> " + sites[i].Type)
+                    .addTo(map);
+                
+                site.on('click', function (e) {
+                    map.setView(e.latlng, 13);
+                });
+            }
+        }
+        
+    </script>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+</body>
+</html>

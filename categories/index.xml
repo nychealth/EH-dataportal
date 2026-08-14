@@ -6,8 +6,22 @@
     <description>Recent content in Categories on Environment &amp; Health Data Portal</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 14 Jun 2026 10:14:56 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 11:14:56 -0400</lastBuildDate>
     <atom:link href="https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Airquality</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</link>
+      <pubDate>Fri, 14 Aug 2026 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Publicspace</title>
+      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</link>
+      <pubDate>Fri, 14 Aug 2026 11:14:56 -0400</pubDate>
+      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Climatehealth</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/climatehealth/</link>
@@ -58,13 +72,6 @@
       <description></description>
     </item>
     <item>
-      <title>Publicspace</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</link>
-      <pubDate>Wed, 10 Dec 2025 11:51:01 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/publicspace/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Pests</title>
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/pests/</link>
       <pubDate>Mon, 01 Dec 2025 11:14:56 -0400</pubDate>
@@ -76,13 +83,6 @@
       <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/injuryandviolence/</link>
       <pubDate>Sat, 08 Nov 2025 21:14:56 -0400</pubDate>
       <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/injuryandviolence/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Airquality</title>
-      <link>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</link>
-      <pubDate>Tue, 04 Nov 2025 08:49:22 -0400</pubDate>
-      <guid>https://a816-dohbesp.nyc.gov/IndicatorPublic/categories/airquality/</guid>
       <description></description>
     </item>
     <item>
