@@ -33,11 +33,11 @@ this partial takes 5 arguments as a dict:
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >{{ .data.data_value_geo_entity }}</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >{{ .data.measurement_type }} {{ .data.units }}</span
             >
           </div>
@@ -79,7 +79,7 @@ this partial takes 5 arguments as a dict:
 
             <!-- Column 2: 25% -->
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 {{ .data.data_value_geo_entity }}
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -90,7 +90,11 @@ this partial takes 5 arguments as a dict:
             {{/*  neighborhood comparisons for print  */}}
 
             <!-- Column 3: 25% -->
-            <div style="width:25%;" class="pl-1">
+            {{/*  The row sits inside a .btn, which Bootstrap gives $btn-font-weight (bold here),
+                  so without this the whole tertile sentence prints bold. Columns 1 and 2 escape
+                  it only because every span in them names its own weight. Reset the column and
+                  let .comp-* bold the comparison word alone, as the on-screen panel does.  */}}
+            <div style="width:25%;" class="pl-1 font-weight-normal">
               {{ partial "nr-tertile-inline-label.html" (dict "rank" .data.data_value_rank "rankReverse" $rankReverse) }}
             </div>
 
