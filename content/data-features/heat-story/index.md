@@ -28,8 +28,8 @@ image: heatstory.png
 related:
   - title: "NYC Heat-Related Mortality Report"
     url: "data-features/heat-report/"
-  - title: "The urban heat island effect in NYC"
-    url: "data-stories/urban-heat-island/"
+  - title: "Protect yourself from hot weather and poor air quality"
+    url: "data-features/cooling-info/"
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"
 blurb: Read about New Yorkers' experiences with heat in the context of climate and health data.

@@ -10,6 +10,7 @@ let globalID;
 
 let selectedTableTimes = [];
 let selectedTableGeography = [];
+let groupTableByBorough = true; // table view: sub-group smaller geo types by borough (toggleable in the UI)
 let aboutMeasures;
 let dataSources;
 
