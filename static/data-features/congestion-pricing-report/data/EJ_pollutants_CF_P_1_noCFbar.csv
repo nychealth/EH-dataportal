@@ -1,0 +1,137 @@
+pred_type,time,pollutant,UC,LC,average,Site,Unit
+counterfactual,Pre,BC,,,0.66,Major Deegan,mcg/m3
+counterfactual,Post,BC,,,0.54,Major Deegan,mcg/m3
+predicted,Pre,BC,0.71,0.61,0.66,Major Deegan,mcg/m3
+predicted,Post,BC,0.6,0.51,0.56,Major Deegan,mcg/m3
+counterfactual,Pre,BC,,,0.82,Trans-Manhattan,mcg/m3
+counterfactual,Post,BC,,,0.69,Trans-Manhattan,mcg/m3
+predicted,Pre,BC,0.87,0.78,0.82,Trans-Manhattan,mcg/m3
+predicted,Post,BC,0.76,0.68,0.72,Trans-Manhattan,mcg/m3
+counterfactual,Pre,BC,,,0.71,Cross Bronx,mcg/m3
+counterfactual,Post,BC,,,0.64,Cross Bronx,mcg/m3
+predicted,Pre,BC,0.75,0.66,0.71,Cross Bronx,mcg/m3
+predicted,Post,BC,0.67,0.59,0.63,Cross Bronx,mcg/m3
+counterfactual,Pre,BC,,,0.51,SI Expwy,mcg/m3
+counterfactual,Post,BC,,,0.47,SI Expwy,mcg/m3
+predicted,Pre,BC,0.55,0.47,0.51,SI Expwy,mcg/m3
+predicted,Post,BC,0.47,0.4,0.43,SI Expwy,mcg/m3
+counterfactual,Pre,BC,,,0.52,BQE,mcg/m3
+counterfactual,Post,BC,,,0.43,BQE,mcg/m3
+predicted,Pre,BC,0.58,0.47,0.52,BQE,mcg/m3
+predicted,Post,BC,0.49,0.39,0.44,BQE,mcg/m3
+counterfactual,Pre,BC,,,0.55,FDR,mcg/m3
+counterfactual,Post,BC,,,0.46,FDR,mcg/m3
+predicted,Pre,BC,0.59,0.51,0.55,FDR,mcg/m3
+predicted,Post,BC,0.47,0.4,0.44,FDR,mcg/m3
+counterfactual,Pre,NO2,,,20.94,Major Deegan,ppb
+counterfactual,Post,NO2,,,22.19,Major Deegan,ppb
+predicted,Pre,NO2,21.96,19.91,20.94,Major Deegan,ppb
+predicted,Post,NO2,22.09,20.22,21.15,Major Deegan,ppb
+counterfactual,Pre,NO2,,,25.24,Trans-Manhattan,ppb
+counterfactual,Post,NO2,,,24.68,Trans-Manhattan,ppb
+predicted,Pre,NO2,26.25,24.23,25.24,Trans-Manhattan,ppb
+predicted,Post,NO2,26.7,24.87,25.78,Trans-Manhattan,ppb
+counterfactual,Pre,NO2,,,18.59,Cross Bronx,ppb
+counterfactual,Post,NO2,,,19.59,Cross Bronx,ppb
+predicted,Pre,NO2,19.53,17.65,18.59,Cross Bronx,ppb
+predicted,Post,NO2,20.34,18.63,19.49,Cross Bronx,ppb
+counterfactual,Pre,NO2,,,15.54,SI Expwy,ppb
+counterfactual,Post,NO2,,,16.07,SI Expwy,ppb
+predicted,Pre,NO2,16.22,14.85,15.54,SI Expwy,ppb
+predicted,Post,NO2,15.24,14,14.62,SI Expwy,ppb
+counterfactual,Pre,NO2,,,17.58,BQE,ppb
+counterfactual,Post,NO2,,,16.67,BQE,ppb
+predicted,Pre,NO2,18.5,16.65,17.58,BQE,ppb
+predicted,Post,NO2,18.7,17.02,17.86,BQE,ppb
+counterfactual,Pre,NO2,,,17.62,FDR,ppb
+counterfactual,Post,NO2,,,18.11,FDR,ppb
+predicted,Pre,NO2,18.54,16.7,17.62,FDR,ppb
+predicted,Post,NO2,19.02,17.35,18.18,FDR,ppb
+counterfactual,Pre,NO,,,15.8,Major Deegan,ppb
+counterfactual,Post,NO,,,10.24,Major Deegan,ppb
+predicted,Pre,NO,16.84,14.77,15.8,Major Deegan,ppb
+predicted,Post,NO,14.66,12.79,13.72,Major Deegan,ppb
+counterfactual,Pre,NO,,,28.72,Trans-Manhattan,ppb
+counterfactual,Post,NO,,,23.03,Trans-Manhattan,ppb
+predicted,Pre,NO,30.07,27.38,28.72,Trans-Manhattan,ppb
+predicted,Post,NO,26.91,24.47,25.69,Trans-Manhattan,ppb
+counterfactual,Pre,NO,,,14.23,Cross Bronx,ppb
+counterfactual,Post,NO,,,10.53,Cross Bronx,ppb
+predicted,Pre,NO,15.19,13.27,14.23,Cross Bronx,ppb
+predicted,Post,NO,13.74,12,12.87,Cross Bronx,ppb
+counterfactual,Pre,NO,,,10.44,SI Expwy,ppb
+counterfactual,Post,NO,,,10.71,SI Expwy,ppb
+predicted,Pre,NO,11.23,9.65,10.44,SI Expwy,ppb
+predicted,Post,NO,10.26,8.85,9.55,SI Expwy,ppb
+counterfactual,Pre,NO,,,11.62,BQE,ppb
+counterfactual,Post,NO,,,6.15,BQE,ppb
+predicted,Pre,NO,12.56,10.67,11.62,BQE,ppb
+predicted,Post,NO,11.09,9.37,10.23,BQE,ppb
+counterfactual,Pre,NO,,,9.96,FDR,ppb
+counterfactual,Post,NO,,,7.08,FDR,ppb
+predicted,Pre,NO,10.86,9.05,9.96,FDR,ppb
+predicted,Post,NO,10.03,8.4,9.21,FDR,ppb
+counterfactual,Pre,PM2.5,,,7.97,Major Deegan,mcg/m3
+counterfactual,Post,PM2.5,,,7.27,Major Deegan,mcg/m3
+predicted,Pre,PM2.5,8.66,7.27,7.97,Major Deegan,mcg/m3
+predicted,Post,PM2.5,8.49,7.24,7.86,Major Deegan,mcg/m3
+counterfactual,Pre,PM2.5,,,8.2,Trans-Manhattan,mcg/m3
+counterfactual,Post,PM2.5,,,9.13,Trans-Manhattan,mcg/m3
+predicted,Pre,PM2.5,8.9,7.5,8.2,Trans-Manhattan,mcg/m3
+predicted,Post,PM2.5,8.53,7.26,7.89,Trans-Manhattan,mcg/m3
+counterfactual,Pre,PM2.5,,,7.49,Cross Bronx,mcg/m3
+counterfactual,Post,PM2.5,,,7.6,Cross Bronx,mcg/m3
+predicted,Pre,PM2.5,8.17,6.81,7.49,Cross Bronx,mcg/m3
+predicted,Post,PM2.5,8.32,7.09,7.71,Cross Bronx,mcg/m3
+counterfactual,Pre,PM2.5,,,6.25,SI Expwy,mcg/m3
+counterfactual,Post,PM2.5,,,6.2,SI Expwy,mcg/m3
+predicted,Pre,PM2.5,6.94,5.57,6.25,SI Expwy,mcg/m3
+predicted,Post,PM2.5,7.11,5.88,6.5,SI Expwy,mcg/m3
+counterfactual,Pre,PM2.5,,,6.65,BQE,mcg/m3
+counterfactual,Post,PM2.5,,,7.28,BQE,mcg/m3
+predicted,Pre,PM2.5,7.35,5.95,6.65,BQE,mcg/m3
+predicted,Post,PM2.5,7.28,6.02,6.65,BQE,mcg/m3
+counterfactual,Pre,PM2.5,,,6.73,FDR,mcg/m3
+counterfactual,Post,PM2.5,,,6.79,FDR,mcg/m3
+predicted,Pre,PM2.5,7.39,6.07,6.73,FDR,mcg/m3
+predicted,Post,PM2.5,7.44,6.24,6.84,FDR,mcg/m3
+counterfactual,Pre,BC,,,0.54,Rest of the city,mcg/m3
+counterfactual,Post,BC,,,0.46,Rest of the city,mcg/m3
+predicted,Pre,BC,0.58,0.5,0.54,Rest of the city,mcg/m3
+predicted,Post,BC,0.48,0.41,0.44,Rest of the city,mcg/m3
+counterfactual,Pre,NO2,,,16.42,Rest of the city,ppb
+counterfactual,Post,NO2,,,16.82,Rest of the city,ppb
+predicted,Pre,NO2,17.1,15.74,16.42,Rest of the city,ppb
+predicted,Post,NO2,16.91,15.64,16.28,Rest of the city,ppb
+counterfactual,Pre,NO,,,11.73,Rest of the city,ppb
+counterfactual,Post,NO,,,8.66,Rest of the city,ppb
+predicted,Pre,NO,12.41,11.05,11.73,Rest of the city,ppb
+predicted,Post,NO,11.33,10.05,10.69,Rest of the city,ppb
+counterfactual,Pre,PM2.5,,,6.93,Rest of the city,mcg/m3
+counterfactual,Post,PM2.5,,,7.05,Rest of the city,mcg/m3
+predicted,Pre,PM2.5,7.6,6.26,6.93,Rest of the city,mcg/m3
+predicted,Post,PM2.5,7.4,6.19,6.79,Rest of the city,mcg/m3
+counterfactual,Pre,BC,,,0.82,CRZ,mcg/m3
+counterfactual,Post,BC,,,0.72,CRZ,mcg/m3
+predicted,Pre,BC,0.86,0.78,0.82,CRZ,mcg/m3
+predicted,Post,BC,0.72,0.65,0.69,CRZ,mcg/m3
+counterfactual,Pre,NO2,,,23.08,CRZ,ppb
+counterfactual,Post,NO2,,,23.41,CRZ,ppb
+predicted,Pre,NO2,24.11,22.05,23.08,CRZ,ppb
+predicted,Post,NO2,23.69,21.83,22.76,CRZ,ppb
+counterfactual,Pre,NO,,,18.05,CRZ,ppb
+counterfactual,Post,NO,,,16.49,CRZ,ppb
+predicted,Pre,NO,18.87,17.24,18.05,CRZ,ppb
+predicted,Post,NO,17.09,15.56,16.32,CRZ,ppb
+counterfactual,Pre,PM2.5,,,9.55,CRZ,mcg/m3
+counterfactual,Post,PM2.5,,,9.73,CRZ,mcg/m3
+predicted,Pre,PM2.5,10.21,8.88,9.55,CRZ,mcg/m3
+predicted,Post,PM2.5,10.04,8.84,9.44,CRZ,mcg/m3
+predicted,Post,BC,0.4,0.33,0.36,Van Wyck,mcg/m3
+predicted,Post,NO,9.59,8.06,8.83,Van Wyck,ppb
+predicted,Post,NO2,16.87,15.23,16.05,Van Wyck,ppb
+predicted,Post,PM2.5,6.44,5.22,5.83,Van Wyck,mcg/m3
+predicted,Pre,BC,0.49,0.41,0.45,Van Wyck,mcg/m3
+predicted,Pre,NO,10.93,9.24,10.08,Van Wyck,ppb
+predicted,Pre,NO2,16.95,15.14,16.04,Van Wyck,ppb
+predicted,Pre,PM2.5,6.64,5.28,5.96,Van Wyck,mcg/m3

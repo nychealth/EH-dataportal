@@ -48,6 +48,6 @@ To reduce the risk of heart attacks, individuals, health care providers and publ
 
 ### Key Messages
 
-Heart disease is the leading cause of death, regardless of race or ethnicity for both men and women in NYC and nationwide. Heart attacks cause almost 3,000 deaths in NYC each year.  Over 12,000 hospitalizations for heart attacks occurred among NYC residents in 2007.   
+Heart disease is the leading cause of death, regardless of race or ethnicity for both men and women in NYC and nationwide. Heart attacks cause almost 3,000 deaths in NYC each year. Over 12,000 hospitalizations for heart attacks occurred among NYC residents in 2007.   
   
 Of the five boroughs, Staten Island has the highest age-adjusted hospitalization rate for heart attacks.
