@@ -1,29 +1,29 @@
 report_topics:
-  - report_topic: Outdoor Air Pollutants
+  - report_topic: Outdoor air pollutants
     report_topic_description: Common air pollutants that can worsen asthma, and result in illness or death.
     MeasureID:
       - 1425
       - 1431
       - 1428
       - 1435
-  - report_topic: Heating Fuel Emissions
+  - report_topic: Heating fuel emissions
     report_topic_description: Air pollution often rises in the winter because buildings burn oil and gas for heat and hot water.
     MeasureID:
       - 640
       - 641
       - 642
-  - report_topic: Outdoor Air Toxics
+  - report_topic: Outdoor air toxics
     report_topic_description: Pollutants that can cause cancer.
     MeasureID:
       - 646
       - 647
-  - report_topic: Traffic Density
+  - report_topic: Traffic density
     report_topic_description: The amount of cars, trucks, and busses traveling through a neighborhood can affect air pollution.
     MeasureID:
       - 643
       - 644
       - 645
-  - report_topic: "Health Burden: Fine Particles (PM2.5)"
+  - report_topic: "Health burden: fine particles (PM2.5)"
     report_topic_description: PM2.5 air pollution can cause or worsen asthma and other lung and heart conditions, as well as cause death.
     MeasureID:
       - 639
@@ -31,7 +31,7 @@ report_topics:
       - 650
       - 651
       - 657
-  - report_topic: "Health Burden: Ozone (O3)"
+  - report_topic: "Health burden: ozone (O3)"
     report_topic_description: Ozone (O3) air pollution can cause or worsen asthma and other lung and heart conditions, as well as cause death.
     MeasureID:
       - 652
