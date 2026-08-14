@@ -81,7 +81,7 @@ var config = [
     },
     {
         "id": "CDTA",
-        "text": `NTAs then combine to form  Community District Tabulation Areas (CDTAs). CDTAs are a Census-compatible geography that is very similar to NYC's Community Districts. Here we see the percent of each CDTA's population within walking distance. `,
+        "text": `NTAs then combine to form Community District Tabulation Areas (CDTAs). CDTAs are a Census-compatible geography that is very similar to NYC's Community Districts. Here we see the percent of each CDTA's population within walking distance. `,
         "geoFile": `geojson/800m_CDTA2020_pct_walkable_ADA_subway.geojson`,
         "choropleth": true,
         "labelName": "Community District",

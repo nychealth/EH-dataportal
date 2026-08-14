@@ -221,7 +221,7 @@ const renderChart = (
           "strokeWidth": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": 1  
+              "value": 1
             },
             "value": 0
           },
