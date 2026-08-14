@@ -9932,7 +9932,7 @@ table .group td {
   height: 100%; }
 
 .overlay-topics {
-  background-image: url("../images/tab_overlay_key_topics.svg");
+  background-image: url("../images/overlay_topics.png");
   background-size: cover;
   z-index: 100;
   position: absolute;
