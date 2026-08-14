@@ -17,7 +17,7 @@ related:
     url: "data-features/rat-mitigation-zones/"
 ---
 
-Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.
+Rats are one of New York City’s hottest topics. You see them on the news, while scrolling on social media, and you’ve probably spied more than a few on your commute. We all want to know where in the city the rats are worst, and if the rats are multiplying or their numbers are declining.
 
 Each year, the Health Department gets about 40,000 complaints about rat activity through 311 <a href="{{< relURL >}}data-features/rat-mitigation-zones/">(you can explore these data on NYC Open Data)</a>. But complaint data — how many 311 complaints, and what neighborhoods have the most complaints — doesn't give us a full picture of rat activity in NYC. Some neighborhoods with high levels of rat activity don’t always generate a lot of complaints, and some neighborhoods with a lot of complaints don’t always have a high level of rat activity.
 
