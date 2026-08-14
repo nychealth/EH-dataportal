@@ -15,7 +15,7 @@ keywords:
   - pm2.5
   - pollutants
 seo_title: NYC congestion pricing report
-seo_description: TKTK
+seo_description: The most complete evaluation to date of the effects of congestion pricing on air quality in NYC
 aliases:
   - /key-topics/airquality/nyccas/
 
