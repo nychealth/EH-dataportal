@@ -350,6 +350,15 @@
     padding-right: 38px;
 }
 
+// The fixed height above acts as a cap: charts shorter than 500px size to
+// their own SVG, but a taller one overflows a 500px box, and since overflow
+// is visible the spill renders outside the layout — the chart appears to sit
+// in dead space. #cpVis2 (one row per monitoring site, plus a bottom legend)
+// is the one chart that exceeds it, so let it size to its content.
+#cpVis2.vega-embed {
+    height: auto;
+}
+
 .vega-embed > svg {
     display: block;
     max-width: 100%;

@@ -12,7 +12,8 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "scripts": {
-        "smoke": "node scripts/smoke-pages.mjs"
+        "smoke": "node scripts/smoke-pages.mjs",
+        "characterize:cp": "node scripts/cp-characterization.mjs"
     },
     "devDependencies": {
         "playwright": "^1.62.0"
