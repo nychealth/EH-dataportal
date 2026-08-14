@@ -15,11 +15,11 @@ keywords:
   - pm2.5
   - pollutants
 seo_title: NYC congestion pricing report
-seo_description: TKTK
+seo_description: The most complete evaluation to date of the effects of congestion pricing on air quality in NYC
 aliases:
   - /key-topics/airquality/nyccas/
 
-image: images/GettyImages-resize-1.png
+image: images/CP-report-banner.jpg
 image_alt: View of W 40th St in Manhattan. Pedestrians cross the street with cars waiting at the light.
 photocredit: "Alexander Spatari/Moment via Getty Images"
 layout: congestion-pricing-report
