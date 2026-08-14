@@ -42,7 +42,7 @@ relatedData:
 
 Lead is a metal that is toxic to people. There is no safe level of lead in your body. It can cause learning and behavior problems, and delay physical growth and mental development.
 
-In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970's. However, lead can still be found in some products and in our environment. Layers of lead paint may still be present in older buildings and can become dangerous when the paint chips or peels or is abraded, or when renovations or repairs are conducted without properly controlling dust. Families living in older, poorly maintained housing are at higher risk for lead poisoning.
+In the past, it was used in gasoline, paint, ceramics, caulking, pipes and solder. In 1960, NYC banned the use of lead-based paint in homes. A national ban came into effect in 1978. Leaded gasoline was phased out beginning in the 1970's. However, lead can still be found in some products and in our environment. Layers of lead paint may still be present in older buildings and can become dangerous when the paint chips or peels or is abraded, or when renovations or repairs are conducted without properly controlling dust. Families living in older, poorly maintained housing are at higher risk for lead poisoning.
 
 ### Lead Hazards
 
