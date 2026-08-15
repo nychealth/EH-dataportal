@@ -314,9 +314,25 @@ a check** — every open question is closed, and what remains is implementation.
   One file; resolve separately. It also holds one of the three build-time
   `resources.GetRemote` call sites.~~ **Closed 2026-08-07** — deleted in the Option D swap at `2bce6c6d46`;
   the `resources.GetRemote` call it held was ported into `nr-topic-index.html`.
-- **`urlExtension` frontmatter** on the 5 topic files is read by nothing `[verified]`.
-- **~75 lines of inline `<style>`** in `nr-topic-spa.html`, some of it dead, most
-  duplicating `nr-output/single.html`. Belongs in `assets/scss/`.
+- ~~**`urlExtension` frontmatter** on the 5 topic files is read by nothing `[verified]`.~~
+  **Closed 2026-08-15** — the five lines deleted. The original "read by nothing" held up under a
+  case-insensitive repo-wide sweep, which matters because Hugo lowercases param keys, so a
+  template reading `.Params.urlextension` would not have shown in a case-sensitive grep. Routing
+  is unaffected: all five pages carry an explicit `url:`, and all five were re-fetched afterwards
+  `[verified 2026-08-15: 200 and the expected title on each]`.
+- ~~**~75 lines of inline `<style>`** in `nr-topic-spa.html`, some of it dead, most
+  duplicating `nr-output/single.html`. Belongs in `assets/scss/`.~~ **Closed 2026-08-15** — 69
+  lines, 17 rules. Eight were dead and were deleted rather than moved; the other nine are now in
+  `assets/scss/_custom.scss`. **The stated reason was half wrong**: `nr-output/single.html` no
+  longer exists, so nothing was being duplicated — the case for moving is that an inline block
+  cannot see the Sass variables, which is why `.comp-*` had already left it.
+  **And the move is not a relocation.** `.card-header` is a Bootstrap class; the inline block
+  scoped it to this one page for free, and lifting it into a shared stylesheet unscoped repaints
+  card headers site-wide — measured, not predicted: on `/data-features/realtime-air-quality/`,
+  8 headers went `#EFFAF4` → white and 16px → 8px padding with the scope removed, and back again
+  with it restored `[verified 2026-08-15: computed style, three runs]`. Those three rules are
+  scoped to `.nr-report-accordion` in their new home. Detail and the full before/after in
+  [`nr-followups-2026-08-15.md`](nr-followups-2026-08-15.md).
 
 **Closed 2026-08-05:** the URL scheme (above); the analytics; the redirect story; whether
 the SPA is a functional replacement; whether EHDP-data has other consumers of `spec/` and

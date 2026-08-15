@@ -626,12 +626,19 @@ follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**,
 with it; **Stage G done 2026-08-08** — see §12's `robots.txt` bullet for the one deviation.
 **Decision 4 is complete**, leaving only step 2's ACS pull on its separate track.
 
-**The branch itself is not delivered.** As of 2026-08-15 `feature-MOD-Lab-NR-recode-refactor`
-is **5 commits ahead of `origin`** and **172 ahead of `production`**
-`[verified 2026-08-15: git rev-list --count, both counts]`. The five unpushed commits are the
-Pagefind parity work; `origin` last moved 2026-08-12, so most of what this document describes has
-been pushed and none of it is merged. This line has now read 11 (2026-08-08) and 19 (2026-08-09):
-a count against a moving branch goes stale by the next commit, so read the date, or re-derive it.
+**The branch itself is not delivered** — unpushed commits sit on it, and it is unmerged to
+`production` `[verified 2026-08-15]`.
+
+**This line no longer carries a count, deliberately.** It has read 11 (2026-08-08), 19
+(2026-08-09) and 5 (2026-08-15), and the last of those was falsified within the hour by the four
+commits that wrote it — a count against the branch you are committing to is stale before the
+commit carrying it finishes. Re-derive instead:
+
+```
+git rev-list --count origin/feature-MOD-Lab-NR-recode-refactor..HEAD   # unpushed
+git rev-list --count production..HEAD                                  # unmerged
+```
+
 The merge diff is what CLAUDE.md reserves
 `/code-review ultra` for; it is user-triggered and billed, so it cannot be launched from a
 session.

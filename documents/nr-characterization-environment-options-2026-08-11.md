@@ -4,12 +4,24 @@
 against a `local_stage` server, then extended to `local_prod`. It records what the harness does, the
 two independent things that block it, and the ways to unblock each with what they cost.
 
-**Status, updated 2026-08-11: Options 3 and 4 were built the same day** — baselines are now filed
-per EHDP-data branch and the harness reads the served branch off the page. `staging` and
-`production` baselines are both committed. **Options 1 and 2 are not built**, so the URL-prefix axis
-is still open: each branch's baseline carries the prefix it was captured on, and a check from a
-different environment on the same branch still fails on `finalURL` alone. Read §§4–5 as live
-proposals and §§6–7 as a record of what was done and why.
+**Status, updated 2026-08-15: Options 1, 3 and 4 are built; Option 2 is not, by decision.**
+Options 3 and 4 landed 2026-08-11 — baselines filed per EHDP-data branch, and the harness reads
+the served branch off the page. **Option 1 landed 2026-08-15**: `finalURL` is recorded
+prefix-relative, so the URL-prefix axis is closed and one baseline now checks from any environment
+serving its branch. The six committed baselines were rewritten by the same transform rather than
+re-captured, because `--baseline` cannot fail and a re-capture could have installed a different
+tree's output while claiming to fix one field.
+
+**Option 2 (§5) is deliberately left unbuilt**, and this memo is where that decision lives. Its own
+entry says it "does not on its own fix the check" on either axis, and it widens
+`scripts/dev-server.mjs`, which `smoke`, both characterization harnesses and `nr-a11y-audit.mjs`
+all share. Nothing now needs it: with `finalURL` prefix-relative, a server on any known prefix is
+already found and already checkable, and where none is running the `dev_stage` spawn produces a
+server the staging baseline matches. Unpark it if someone needs an environment other than
+`dev_stage` brought up *automatically* — not merely checked against.
+
+Read §4 and §§6–7 as a record of what was done and why, and §5 as the one live proposal.
+[`nr-followups-2026-08-15.md`](nr-followups-2026-08-15.md) carries Option 1's before/after.
 
 The headline: **`local_stage` and `local_prod` are not the same problem.** One is a cosmetic
 mismatch in a single field. The other is a data-branch mismatch that makes every content field
