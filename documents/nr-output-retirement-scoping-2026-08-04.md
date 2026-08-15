@@ -626,11 +626,13 @@ follow-ups — see its sub-ledger below**; **step 6 (Stage F) done 2026-08-08**,
 with it; **Stage G done 2026-08-08** — see §12's `robots.txt` bullet for the one deviation.
 **Decision 4 is complete**, leaving only step 2's ACS pull on its separate track.
 
-**The branch itself is not delivered.** As of 2026-08-09 `feature-MOD-Lab-NR-recode-refactor`
-is **19 commits ahead of `origin` and unpushed**, and unmerged to `production`
-`[verified 2026-08-09: git rev-list --count origin/feature-MOD-Lab-NR-recode-refactor..HEAD]`.
-This line previously read 11, which was the count on 2026-08-08 before the topic-index picker
-restore landed. The merge diff is what CLAUDE.md reserves
+**The branch itself is not delivered.** As of 2026-08-15 `feature-MOD-Lab-NR-recode-refactor`
+is **5 commits ahead of `origin`** and **172 ahead of `production`**
+`[verified 2026-08-15: git rev-list --count, both counts]`. The five unpushed commits are the
+Pagefind parity work; `origin` last moved 2026-08-12, so most of what this document describes has
+been pushed and none of it is merged. This line has now read 11 (2026-08-08) and 19 (2026-08-09):
+a count against a moving branch goes stale by the next commit, so read the date, or re-derive it.
+The merge diff is what CLAUDE.md reserves
 `/code-review ultra` for; it is user-triggered and billed, so it cannot be launched from a
 session.
 
@@ -748,7 +750,10 @@ a push and that merge.
    the summary below is the shape only. The adapter generates 210 report pages, 42 neighborhood
    indexes, and 5 topic indexes; the 252 content files, 2 layouts, 3 exclusive partials,
    and the two `nr-output` entries in `PAGES` (indices 11 and 12, file lines 32-33) in `scripts/smoke-pages.mjs` all go.
-   Diff against the pre-captured sample. **Not started.** Four amendments since this was written:
+   Diff against the pre-captured sample. **DONE 2026-08-07, committed `2bce6c6d46`**
+   `[verified 2026-08-15: git show --stat, which is the commit deleting the 252 content files]`.
+   This line read "Not started" until 2026-08-15, contradicting the status line above it, which
+   had recorded the same commit since 2026-08-08. Four amendments since this was written:
 
    - **`static/Web.config:322-327` must be deleted in this commit.** The `nr-old-to-new-spa`
      rule is a permanent 301 from `<nbhd>/<topic>/` to `<topic>/<nbhd>` with

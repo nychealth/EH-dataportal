@@ -13,7 +13,12 @@ commits that follow it; the branch is still unmerged to `production`.
 
 **Reopened the same day for task 6**, an appearance follow-up on the comparison markers: Font
 Awesome glyphs in place of the emoji, colour on the comparison word, and a smaller third print
-column. Status as of 2026-08-10: task 6 in progress.
+column. **Task 6 closed 2026-08-10, committed `5195e4db8a`** — this line read "task 6 in
+progress" until 2026-08-15, contradicting its own ledger row, which had recorded the task done
+with proof since the day it landed
+`[verified 2026-08-15: git log -S over assets/scss/_custom.scss]`.
+
+**All six tasks are done; this is a dated historical record, not live work.**
 
 ## Ledger
 
@@ -26,7 +31,7 @@ column. Status as of 2026-08-10: task 6 in progress.
 
 | 5 | Print row uses `getTertileInlineLabel`; `getTertilePrintLabel` deleted | **DONE 2026-08-10**, committed `3af05d965e` | `npm run lint` exit 0. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` printed text 4,268 → 4,233 chars (shorter because "In the middle of **NYC** neighborhoods" lost a word, and `::before` emoji never appear in `innerText`), 21 sentences over 22 rows either way — the unranked row correctly carries none. All three marker classes present, `comp-good`/`comp-bad`/`comp-null`, 21 markers, `::before` resolving to the emoji. Screenshotted under print media |
 
-| 6 | Comparison markers: FA glyphs, coloured and bolded word, `fs-sm` third print column (`assets/scss/_custom.scss`, `nr-topic-spa.html`, `cards.js`) | **DONE 2026-08-10** | `npm run lint` exit 0, `npm run smoke` 15/15. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` — served `theme.*.css` fetched and the old codepoints `2705`/`203C`/`26AA` confirmed **absent** from both it and the page HTML; `document.fonts.check('900 1rem "Font Awesome 6 Free"')` **true** as the positive control. Computed `::before` content read as **numeric codepoints** (`f14a`, `f071`, one char each) — necessary, because a PUA glyph serializes to an empty-looking string through a pipe and reads as a missing rule. Colours identical on screen and under print media: word `rgb(33,136,63)` / `rgb(122,92,0)`, `.comp-bad::before` `rgb(255,193,7)`, `.comp-null` `content: none`. Screenshotted under print media: both glyphs render as icons, not tofu. `characterize:nr -- --check` deliberately not run — its baseline's `finalURL` carries `/dev-stage/` and the only server is `local_prod`, so every target would fail on the prefix alone |
+| 6 | Comparison markers: FA glyphs, coloured and bolded word, `fs-sm` third print column (`assets/scss/_custom.scss`, `nr-topic-spa.html`, `cards.js`) | **DONE 2026-08-10**, committed `5195e4db8a` | `npm run lint` exit 0, `npm run smoke` 15/15. `[verified 2026-08-10: Playwright, print media, local_prod :8080]` — served `theme.*.css` fetched and the old codepoints `2705`/`203C`/`26AA` confirmed **absent** from both it and the page HTML; `document.fonts.check('900 1rem "Font Awesome 6 Free"')` **true** as the positive control. Computed `::before` content read as **numeric codepoints** (`f14a`, `f071`, one char each) — necessary, because a PUA glyph serializes to an empty-looking string through a pipe and reads as a missing rule. Colours identical on screen and under print media: word `rgb(33,136,63)` / `rgb(122,92,0)`, `.comp-bad::before` `rgb(255,193,7)`, `.comp-null` `content: none`. Screenshotted under print media: both glyphs render as icons, not tofu. `characterize:nr -- --check` deliberately not run — its baseline's `finalURL` carries `/dev-stage/` and the only server is `local_prod`, so every target would fail on the prefix alone |
 
 **A stale bundle nearly read as a failed change here.** The first post-swap check reported the old
 wording and zero markers, against a `tertiles.d05e114a7ace7785.js` that still contained the deleted
