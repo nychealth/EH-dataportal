@@ -73,9 +73,81 @@ $comp-bad-text: #7a5c00;
   display: none!important;
 }
 
+
+// ===== Neighborhood Reports topic SPA =====
+//
+// Moved here 2026-08-15 from the inline <style> block in
+// themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html. Eight of the seventeen
+// rules there were dead and were dropped rather than moved: five .nr-card-header, two
+// .nr-indicator-card, and .card-header a. All three selectors match zero elements on a
+// rendered report page — the 23 card headers each contain a <button> and no anchor
+// [verified 2026-08-15: querySelectorAll counts in the browser, and a repo-wide grep].
+//
+// Most of what the accordion styles is built in JS (assets/js/nr-topic-spa/cards.js), so
+// grepping the layout for these class names will not find the markup they hit.
+//
+// .card-header is SCOPED, and the scope is load-bearing rather than tidiness: it is a
+// Bootstrap class used across the whole site, and an inline <style> block only ever
+// reached this one page. Unscoped here, `background: white !important` would repaint
+// every card header on the site. .nr-report-accordion is the exact scope — 23 of 23 card
+// headers on the page sit under it [verified 2026-08-15]. The other selectors are left
+// unscoped because each name occurs only in NR files.
+.nr-report-accordion {
+  .card-header {
+    padding: 0.5rem 0.5rem;
+    background: white !important;
+  }
+
+  // #EFFAF4 is deliberately a literal: $light-green is #F8FCF7, a different tint, and
+  // there is no variable for this one.
+  .card-header:hover {
+    background-color: #EFFAF4 !important;
+    text-decoration: none;
+  }
+
+  .card-header .btn:hover {
+    text-decoration: none;
+  }
+}
+
+.report-section {
+  border-top: 5px solid $primary !important;
+}
+
+.nr-map-container {
+  min-height: 350px;
+}
+
+// NOT scoped to .nr-report-accordion, unlike .card-header above: 24 elements carry this
+// class and only 23 are inside the accordion. The 24th is the demographics block in
+// nr-topic-spa.html, and scoping would have silently dropped it [verified 2026-08-15].
+.card-body-no-top {
+  padding-top: 0 !important;
+  padding-left: 12px !important;
+}
+
+.leading-sm {
+  line-height: 105%;
+  font-size: small;
+}
+
+#nr-map:hover {
+  cursor: pointer;
+}
+
+
 @media print {
   .print-only {
     display: flex!important;
+  }
+
+  // Widens the report column for print. Competes with Bootstrap's .col-md-8 at identical
+  // 0-1-0 specificity, and under print both media queries match at once, so source order
+  // decides — this file is imported at theme.scss:26, after b-bootstrap-imports at :18.
+  // That ordering is why the move is safe; inline in the body it had won by being last.
+  .col-print-12 {
+    max-width: 100%;
+    flex: 0 0 100%;
   }
   .reports {
     width: 100% !important;

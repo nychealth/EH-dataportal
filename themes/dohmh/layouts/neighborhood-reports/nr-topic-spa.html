@@ -19,76 +19,10 @@
 {{- $contentKey := .Params.content_yml -}}
 {{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
 
-{{/* Styles matching the existing NR accordion in nr-output/single.html */}}
-<style>
-    .card-header {
-        padding: 0.5rem 0.5rem;
-        background: white!important;
-    }
-
-    .card-header a {
-            color: black;
-            text-decoration: none;
-    }
-
-    .report-section {
-            border-top: 5px solid #008939!important;
-    }
-
-    .card-header:hover {
-            background-color: #EFFAF4 !important;
-            text-decoration: none;
-    }
-    .card-header .btn:hover {
-        text-decoration: none;
-    }
-    .nr-card-header {
-        padding: 0.5rem 0.5rem;
-        background: white !important;
-        cursor: pointer;
-    }
-    .nr-card-header:hover {
-        background-color: #EFFAF4 !important;
-    }
-    .nr-card-header a {
-        color: black;
-        text-decoration: none;
-    }
-    .nr-card-header .btn {
-        text-decoration: none;
-    }
-    .nr-card-header .btn:hover {
-        text-decoration: none;
-    }
-    .nr-indicator-card .collapse:not(.show) {
-        display: none;
-    }
-    .nr-indicator-card .collapse.show {
-        display: block;
-    }
-    {{/* .comp-* now lives in assets/scss/_custom.scss — it needs $success and $warning,
-        which an inline style block cannot see */}}
-    .nr-map-container {
-        min-height: 350px;
-    }
-    .card-body-no-top {
-        padding-top: 0 !important;
-        padding-left: 12px !important;
-    }
-    .leading-sm {
-        line-height: 105%;
-        font-size: small;
-    }
-    #nr-map:hover {
-        cursor: pointer;
-    }
-    @media print {
-        .col-print-12 {
-            max-width: 100%;
-            flex: 0 0 100%;
-        }
-    }
-</style>
+{{/* This page's styles live in assets/scss/_custom.scss, under the "Neighborhood Reports
+     topic SPA" heading — moved out of an inline <style> block here on 2026-08-15. The
+     .card-header rules are scoped to .nr-report-accordion there; they were page-scoped for
+     free while they were inline, and .card-header is a site-wide Bootstrap class. */}}
 
 {{/*
     data-pagefind-ignore="all" on the whole report — these 210 pages contribute nothing to the
