@@ -301,16 +301,20 @@ the no-JS fallback all keep the markup — so none of Option D's gains are spent
 
 | # | Step | Status |
 |---|---|---|
-| 1 | Audit: fragment diff, query probe, source read | **DONE 2026-08-15** — §1–2 above |
-| 2 | This document | **DONE 2026-08-15** |
-| 3 | Ignore the neighborhood list and picker chrome — `partials/nr-neighborhood-list.html`, `partials/nr-neighborhood-picker.html` | **DONE 2026-08-15** |
-| 4 | Ignore the five topic cards on `neighborhood-reports/nr-neighborhood-index.html`, keeping the `<h1>` name and ZIP list | **DONE 2026-08-15** |
-| 5 | Ignore the tertile explainer (`.asidebox`) and the print-only QR caption on `neighborhood-reports/nr-topic-spa.html` | **DONE 2026-08-15** |
-| 6 | `scripts/pagefind-characterization.mjs` + `npm run characterize:pagefind` | **DONE 2026-08-15** |
-| 7 | Ignore the shared topic menu — `partials/nr-topic-menu.html` | **DONE 2026-08-15** — §2f |
-| 8 | Decide the first-page question in §2f | **DONE 2026-08-15 — team chose production's model.** The 210 report pages are un-indexed; §2g has the result and the cost. Reversible, and §5 is the test that would reverse it |
-| 10 | Run the §5 GA test and re-decide step 8 | **Not started.** First action is §5 step 1 — confirm `search_term` is queryable in the GA property at all, since an unregistered parameter and a term nobody searches produce the same empty report |
+| 1 | Audit: fragment diff, query probe, source read | **DONE 2026-08-15** `ac472c592a` — §1–2 above |
+| 2 | This document | **DONE 2026-08-15** `ac472c592a` |
+| 3 | Ignore the neighborhood list and picker chrome — `partials/nr-neighborhood-list.html`, `partials/nr-neighborhood-picker.html` | **DONE 2026-08-15** `ec313adc7b` |
+| 4 | Ignore the five topic cards on `neighborhood-reports/nr-neighborhood-index.html`, keeping the `<h1>` name and ZIP list | **DONE 2026-08-15** `ec313adc7b` |
+| 5 | Ignore the tertile explainer (`.asidebox`) and the print-only QR caption on `neighborhood-reports/nr-topic-spa.html` | **DONE 2026-08-15** `d67d738469` — landed with step 8, which touches the same file and supersedes both while it stands |
+| 6 | `scripts/pagefind-characterization.mjs` + `npm run characterize:pagefind` | **DONE 2026-08-15** `a16012722b` |
+| 7 | Ignore the shared topic menu — `partials/nr-topic-menu.html` | **DONE 2026-08-15** `ec313adc7b` — §2f |
+| 8 | Decide the first-page question in §2f | **DONE 2026-08-15 — team chose production's model.** `d67d738469`, which also carries the failed-weight comment in `nr-topic-index.html`. The 210 report pages are un-indexed; §2g has the result and the cost. Reversible, and §5 is the test that would reverse it |
 | 9 | Second `data-pagefind-filter` dimension separating NR overviews from the 210 reports | **Parked 2026-08-15 — team.** The UI already renders filters (`showEmptyFilters: true`, `footer.html`), but all 258 NR pages share the single "Neighborhood Reports" value, so filtering cannot separate them today. It is an escape hatch, not a fix: it changes nothing about default results, which is where §2f's harm is. Unpark if the step 8 decision does not settle the first page |
+| 10 | Run the §5 GA test and re-decide step 8 | **Not started.** First action is §5 step 1 — confirm `search_term` is queryable in the GA property at all, since an unregistered parameter and a term nobody searches produce the same empty report |
+
+Steps 1–8 landed in four commits on `feature-MOD-Lab-NR-recode-refactor`, `ec313adc7b` through
+`ac472c592a` — as a git range that is `ec313adc7b^..ac472c592a`, since `a..b` excludes `a`. Nothing
+is merged to `production`, so §2g's decision is live on this branch only.
 
 ### Result of steps 3–5
 
