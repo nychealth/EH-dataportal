@@ -15,7 +15,14 @@
 {{- $active := .active -}}
 {{- $slug := .neighborhood_slug -}}
 
-<div class="row no-gutters d-print-none mb-2">
+{{/* data-pagefind-ignore="all": these five labels are the five NR topic words, and this
+     partial puts all of them on all 258 NR pages. Indexing them made every report page a
+     body match for every topic word — "climate" returned 10 per-neighborhood reports on the
+     first page, with the Climate topic overview, the key-topic page and the data explorer's
+     climate page all pushed off it. The active topic is already carried by the page title
+     and the report header, so nothing findable is lost. Same navigation-chrome argument as
+     nr-neighborhood-list and nr-neighborhood-picker. */}}
+<div class="row no-gutters d-print-none mb-2" data-pagefind-ignore="all">
 
     {{- range site.Data.globals.NR_topics -}}
 

@@ -60,7 +60,14 @@
 
                             {{- range (sort .Pages "Title") -}}
 
-                                <div class="card content-card mb-3 col-md-4 col-sm-6">
+                                {{/* data-pagefind-ignore="all", exactly as the retired
+                                     nr-output/section.html:36 had it. The five cards are the
+                                     same title and truncated summary on all 42 of these pages —
+                                     ~144 of ~157 indexed words, which left a neighborhood index
+                                     matching "asthma" as strongly as a report about it. What
+                                     stays indexed is the pair that distinguishes this page from
+                                     the other 41: the <h1> neighborhood name and the ZIP list. */}}
+                                <div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
                                     <div class="card-content primary">
 
                                         {{- with .Params.seo_image -}}
