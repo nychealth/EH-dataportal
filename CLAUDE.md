@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-topic-spa themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 72a6d2a4f8 2026-08-12 -->
+<!-- docs-check verified: a16012722b 2026-08-15 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -38,13 +38,41 @@ environment's `baseURL` path, so `development` serves under `/dev-prod/` and `de
 
 ## Guardrails
 
-Six npm scripts, run from the repo root:
+Seven npm scripts, run from the repo root:
 
 - `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-topic-spa/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
 - `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`. Before relying on it as the proof for a change that only executes on one page kind, confirm that page is in `PAGES` — those comments are claims that rot like doc prose. Two caveats: the generic `Failed to load resource` allowlist entry hides the *cause* of blocked-script failures, leaving only a downstream `X is not defined`, so diagnose those with a separate unfiltered probe; and a cache-cold first run has been seen to fail spuriously (site-wide audit §5j).
 - `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
 - `npm run characterize:nr` — Playwright characterization harness for the Neighborhood Reports topic SPA (`scripts/nr-characterization.mjs`). Captures rendered output — neighborhood header, demographics, ZIP list, accordion ids, chart count, **and the final URL** — for three topic/neighborhood pairs, and diffs them against a baseline. `-- --check` to verify, `-- --baseline` to re-capture. **`--baseline` cannot fail** — it records whatever it finds, including three empty pages if a template change stopped the SPA rendering. Only `--check` can tell you, so read its diff before re-baselining, never instead. It navigates straight to the real `<nbhd>/<topic>/` page, so it exercises the path the site actually serves; the Leaflet map is deliberately not clicked, which would make it a test of map hit-detection. **Baselines are filed per EHDP-data branch** — `scripts/nr-characterization-baseline/staging/` and `scripts/nr-characterization-baseline/production/` — because the branches render different reports: staging carries two accordion ids production does not on the asthma topic, 46 against 44 `[verified 2026-08-11: diff of the two baselines]`. The harness reads the served `data_branch` off the page and files under it, so environments sharing a branch share a baseline (`dev_stage` with `local_stage`; `dev_prod` with `local_prod` and `prod_prod`). An unreadable branch aborts; a branch with no baseline is named in the refusal rather than checked against another's. The captured final URL is the guard against a silent redirect to the 404 page — but it is recorded as `window.location.pathname`, so it still carries the environment's path prefix. Each branch's baseline holds the prefix it was captured on (`/dev-stage/` for staging, `/dev-prod/` for production), so a check from a *different* environment on the same branch — `local_prod` against a `dev_prod` capture — fails every target for that reason alone; that is a false failure, not a regression. `documents/nr-characterization-environment-options-2026-08-11.md` has the options for closing that gap. Run it before any merge touching the NR templates or `assets/js/nr-topic-spa/`. It expands the first accordion panel per target so the lazy Vega path runs, and records the renderer (`hasCanvas`/`hasSvg`) plus a painted flag per mark group — structural facts only, since mark *counts* track EHDP-data row counts and would churn the baseline on every data refresh. It also captures each chart's accessible name and its export-menu label (`chartName`, `actionsLabel`), read off the node carrying `role="graphics-document"` — **not** off `.vega-embed`, which has no `aria-label` and whose empty capture left chart naming uncovered until 2026-08-11.
 - `npm run a11y:nr` — accessibility audit of the four Neighborhood Reports page kinds (`scripts/nr-a11y-audit.mjs`), axe-core under Playwright, plus probes for what no axe rule implements: a full tab-order sweep recording focus indicators and `aria-hidden` ancestors, heading order read from the accessibility tree rather than the DOM, id/ARIA-reference integrity, a before/after capture around a Leaflet re-render, chart naming, and computed colour on the comparison vocabulary. It scans the report SPA in four states — at rest, one panel expanded, all expanded, and print-emulated — because the chart and the print rendition do not exist in the others. **It is an audit instrument, not a gate**: it exits non-zero only when a *control* fails, never on findings. Two controls make its numbers mean anything, and both are the reason a zero here is not self-certifying. The **positive control** injects an `<img>` with no `alt` and asserts `image-alt` fires, because a scan where axe never loaded reports the same zero as a clean page. The **rendered-content control** requires a per-page selector to match first: the SPA's cards come from the data repo, and against an empty one it renders five empty accordion shells that axe will honestly call almost clean. Set `DE_BASE_URL` to choose the server and `A11Y_OUT` to choose where the per-page JSON lands (default is a temp directory). Findings as of 2026-08-10 are triaged in `documents/nr-accessibility-audit-2026-08-10.md`, which also records which source-read candidates the browser disconfirmed. **Read `wcag.incompleteIds` in the per-page JSON, not only `wcag.violations`.** axe defers nodes whose background it cannot resolve, and `color-contrast` sits in that bucket on all four pages — so a zero in the violations list for that rule is a floor, not a census. The worked case: one shared partial's button, reported on the topic index but not the landing page, then on both after an unrelated change with its colours untouched.
+- `npm run characterize:pagefind` — characterization harness for the **search index**
+  (`scripts/pagefind-characterization.mjs`). Nothing else in this repo can see search: Pagefind is
+  a post-build step, so `hugo server` produces no index at all — which is why `PagefindUI is not
+  defined` is allowlisted dev-only noise in `nr-characterization.mjs`. A template change that
+  silently adds or removes indexed text is invisible to `lint`, `smoke` and both other harnesses.
+  It **builds the site itself** into a temp directory with `HUGO_RESOURCEDIR` pointed there too —
+  the one form that cannot reach `resources/_gen`, so it is safe beside a running dev server —
+  then runs Pagefind over that build, records every indexed page (`word_count`, `meta.title`,
+  filters, anchor ids, a content hash and its opening words) plus a fixed query set run through
+  Pagefind's JS API in Chromium, and diffs against a baseline. It reads `docs/` for nothing:
+  `docs/` holds whatever was last built, and a check against a stale index passes for the wrong
+  reason. `--against <built-site-dir>` diffs against another worktree's `docs/` instead of a
+  baseline, which is the cross-branch comparison. **Both the fragment record and the query set are
+  needed, not either alone** — production's fragment for a neighborhood index holds only its ZIP
+  codes, which reads as "not findable by name", but Pagefind searches `meta.title` too and the
+  query returns it first. Baselines are filed per EHDP-data branch, read from the merged Hugo
+  config rather than off a page, and the baseURL path prefix is normalized out of every recorded
+  value — so `local_prod`, `dev_prod` and `prod_prod` all check against `production.json`, which is
+  the environment-prefix gap `characterize:nr` still has. **Unlike `characterize:nr`, `--baseline`
+  here can fail**: it runs both controls first and refuses to write when they fail. The
+  rendered-content control puts a word floor under one page of nine template kinds; the query
+  control asserts a real term returns many results and a nonsense term few. That negative control
+  is a *ceiling*, not `=== 0`, because Pagefind matches fuzzily — `zzqqxxwv` returns `/about/`
+  `[verified 2026-08-15: five nonsense tokens, only one returned 0]`. A control may also be
+  **inverted** (`absent: true`), asserting a page is deliberately *not* indexed; the NR report page
+  is the case, so removing its page-level ignore fails a control instead of reading as a diff to
+  re-baseline. Run it before any merge touching a shared partial, `head.html`, `baseof.html`, or an
+  NR template.
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
 
 `smoke` and the characterization harness **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). **The server it starts is `--environment dev_stage`, i.e. staging data.** That is invisible until a check compares against something captured from `production` — see `nr-postswap-check.mjs` below, where it read as 210 content regressions. Import `ensureDevServer()` directly for one-off browser checks: **starting a server when none is running needs no permission.** The "ask first" caution is about a server *you didn't start*. Set `DE_BASE_URL` to point them at a server on a non-default port/environment; it is checked first and suppresses probing entirely, which is what lets it get past the abort below. If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache.
@@ -87,7 +115,7 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `static/` — Unprocessed files served as-is
 - `data/globals/` — YAML/JSON data accessible throughout templates: featured data, SEO vars, and the three Neighborhood Reports sources — `data/globals/uhflist.json`, `data/globals/NR_topics.yml` and `data/globals/NR_content`
 - `documents/` — Internal audits and technical write-ups
-- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the two characterization harnesses, and the NR pre-capture/post-swap pair)
+- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the three characterization harnesses, the accessibility audit, and the NR pre-capture/post-swap pair)
 - `docs/` — Generated output; never edit directly
 
 ### Layout routing
@@ -127,7 +155,15 @@ favour of generated pages ("Option D"). URLs are unchanged — that was the poin
 worked before still works, but nothing renders it the way it used to. Three page kinds:
 
 - **Report page** — `/neighborhood-reports/<nbhd>/<topic>/`, 210 of them, `kind: page`, rendered by
-  `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`. This is the topic SPA:
+  `themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html`. **None of these 210 are in the
+  Pagefind index**: the layout's `<section id="skip-header-target">` carries
+  `data-pagefind-ignore="all"`, restoring production's model 2026-08-15 after the alternatives were
+  measured and failed. It costs neighborhood+topic search — "asthma East Harlem" no longer finds
+  East Harlem's asthma report — and it is reversible by deleting that one attribute, which
+  `npm run characterize:pagefind` will catch as a control failure rather than a diff.
+  `documents/nr-pagefind-parity-2026-08-15.md` §2g has the numbers, §5 the test that would reverse
+  it. Pagefind only: crawlers, the accessibility tree and the no-JS path are untouched. This is the
+  topic SPA:
   `assets/js/nr-topic-spa/`, ten classic scripts sharing one global scope, mirroring the data
   explorer: `global → url → tertiles → demographics → cards → report → chart → map → data → app`.
   **Load order is set in the template and `app.js` must be last** — it holds the only two
@@ -248,7 +284,18 @@ markup one alone does nothing, since the search needs the JS one beside it:
   flexdatalist's generated one.
 - `themes/dohmh/layouts/partials/nr-neighborhood-list.html` — the 42 neighborhood links, collapsed
   behind a Bootstrap toggle but present in the markup either way, which is what keeps it the crawl
-  path *and* the no-JS equivalent of the map. Takes `topic_slug`: a slug gives `<nbhd>/<topic>/`
+  path *and* the no-JS equivalent of the map. **Both its elements carry
+  `data-pagefind-ignore="all"`, and the server-rendering is why they need it.** The list this
+  replaced was built in JS (`topiclanding.html`, `neighborhoods.forEach` + `appendChild`), so
+  Pagefind — which reads static HTML — never saw it; rendering it server-side put all 42 names and
+  every ZIP code into the index on the landing page and all five topic indexes, ~331 identical
+  words each, taking a search for "Kingsbridge" from 1 match to 12 and its own hub page from first
+  to fourth. `data-pagefind-ignore` is read by Pagefind alone, so the crawl path, the accessibility
+  tree and the JS-off fallback are untouched by it. Same reasoning covers the whole of
+  `nr-neighborhood-picker.html`, which is a control rather than content, and the five topic cards
+  on `nr-neighborhood-index.html`, where the retired `nr-output/section.html:36` had the identical
+  attribute. `documents/nr-pagefind-parity-2026-08-15.md` has the measurements and the queries.
+  Takes `topic_slug`: a slug gives `<nbhd>/<topic>/`
   links, and `""` gives `<nbhd>/` links. Every anchor carries `data-nbhd`. **The landing page passes
   `""` and rewrites the hrefs at runtime** — `updateNeighborhoodListLinks` in its `js_bot`, called
   from `setIntendedDestination`, so the list follows the active topic button the way the map and
@@ -426,6 +473,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/nr-topic-index-picker-restore-2026-08-09.md` — the follow-up that restored the UHF42 map and the neighborhood typeahead to the topic index, which the Option D swap had dropped. Closed 2026-08-09.
 - `documents/nr-neighborhood-picker-options-2026-08-09.md` — enlarging the picker map on the topic index and the NR landing page, and extracting the two duplicated copies into shared partials. Carries the ledger and the decision list for each cosmetic difference the unification forced. Closed 2026-08-09; read it as a dated record.
 - `documents/nr-landing-list-unification-2026-08-09.md` — the follow-up that shared the 42-neighborhood list too, moved the `Choose Neighborhood` heading into the picker partial, and made the landing page's list links follow the active topic button. Carries the ledger.
+- `documents/nr-pagefind-parity-2026-08-15.md` — the search-index audit against `production`: how the two indexes were compared, what the Option D swap and the server-rendered neighborhood list did to search precision, the `data-pagefind-ignore` fix and its measured effect, and the harness that now checks all of it. Carries the ledger. Closed 2026-08-15 by restoring production's model: **the 210 report pages carry a page-level `data-pagefind-ignore="all"` and are not in the search index**, which puts both branches at 201 indexed pages. §5 of that document is the Google Analytics test that would reverse it, and §2f records the two fixes that were tried first and did not work.
 
 ## Common gotchas
 
