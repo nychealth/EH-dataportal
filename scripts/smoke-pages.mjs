@@ -27,9 +27,9 @@ const PAGES = [
     "data-features/find-your-uhf/",                  // renders neighborhood-overlap.html — sole real easyButton/colorIcon consumer
     "neighborhood-reports/",                         // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/asthma_and_the_environment/",                     // nr-topic-index.html — topic index, server-rendered
-                                                     // 42-neighborhood link list. No SPA on this URL any more.
+                                                     // 42-neighborhood link list. No report renderer on this URL any more.
     "neighborhood-reports/bayside_little_neck/",                            // nr-neighborhood-index.html — generated section page
-    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-topic-spa.html — generated report page, the SPA.
+    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-report.html — generated report page, the report page.
                                                      // Same two URLs as the retired nr-output pages: Option D kept
                                                      // the paths and changed what renders them.
     "data-stories/housing/",                         // KNOWN-RED (see allowlist)

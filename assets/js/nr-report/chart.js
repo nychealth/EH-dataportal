@@ -27,8 +27,8 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // ----- build geography URLs ----- //
 
     // Topojson is fetched by Vega at render time from the configured EHDP-data branch
-    const boroTopoUrl = spaConfig.dataRepo + spaConfig.dataBranch + '/geography/borough.topo.json';
-    const uhfTopoUrl = spaConfig.dataRepo + spaConfig.dataBranch + '/geography/UHF42.topo.json';
+    const boroTopoUrl = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/borough.topo.json';
+    const uhfTopoUrl = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/UHF42.topo.json';
 
     // ----- shared spec fragments ----- //
 

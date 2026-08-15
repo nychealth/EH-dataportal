@@ -1,5 +1,5 @@
 // ESLint flat config — two blocks, both running `no-undef` over classic (non-module)
-// browser scripts: the data-explorer SPA, and the Neighborhood Reports topic SPA.
+// browser scripts: the data-explorer SPA, and the Neighborhood Reports report page.
 //
 // Both are directories of classic <script> tags sharing one runtime global scope,
 // but ESLint scopes each file separately. So a name declared in map.js and called
@@ -14,7 +14,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const DE_DIR = "assets/js/data-explorer";
-const NR_DIR = "assets/js/nr-topic-spa";
+const NR_DIR = "assets/js/nr-report";
 
 // Names head.html, the loaded libraries, and the page templates inject into the
 // global scope. These aren't declared in the DE files, so the scan below won't
@@ -41,7 +41,7 @@ const NR_EXTERNAL_GLOBALS = {
     vegaEmbed: "readonly",      // vega-embed, in the vegaBundle concat
     neighborhoods: "readonly",  // `var`, generated from data/globals/uhflist.json in head.html
     debugLog: "readonly",       // inline <script> in partials/head.html
-    renderQRCode: "readonly"    // inline <script> in neighborhood-reports/nr-topic-spa.html
+    renderQRCode: "readonly"    // inline <script> in neighborhood-reports/nr-report.html
 };
 
 // Extract top-level `function`/`const`/`let`/`var` names from one directory's files.
@@ -94,7 +94,7 @@ export default [
         }
     },
     {
-        files: ["assets/js/nr-topic-spa/**/*.js"],
+        files: ["assets/js/nr-report/**/*.js"],
         languageOptions: {
             ecmaVersion: 2022,
             sourceType: "script",

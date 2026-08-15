@@ -20,7 +20,7 @@
 {{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
 
 {{/* This page's styles live in assets/scss/_custom.scss, under the "Neighborhood Reports
-     topic SPA" heading — moved out of an inline <style> block here on 2026-08-15. The
+     report page" heading — moved out of an inline <style> block here on 2026-08-15. The
      .card-header rules are scoped to .nr-report-accordion there; they were page-scoped for
      free while they were inline, and .card-header is a site-wide Bootstrap class. */}}
 
@@ -101,7 +101,7 @@
                     {{/*
                         Interactive Leaflet map for neighborhood selection.
                         Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
-                        updates the SPA data in place (no page navigation).
+                        updates the report data in place (no page navigation).
                     */}}
                     <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
 
@@ -227,7 +227,7 @@
                         {{/*
                             Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
                             Topic titles can urlize to strings that are awkward for CSS selectors or can drift
-                            between Hugo versions; mismatched id vs NR_TOPIC_SPA_CONFIG leaves sections empty.
+                            between Hugo versions; mismatched id vs NR_REPORT_CONFIG leaves sections empty.
                         */}}
                         <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
                             <div class="px-2 pb-2">
@@ -268,7 +268,7 @@
             </div>
 
             {{/* Curated per-topic "what the City is doing / what you can do" footer, kept from
-                nr-output/single.html — the SPA has no equivalent, so dropping it with the rest
+                nr-output/single.html — the report page has no equivalent, so dropping it with the rest
                 of nr-output would have been content loss. It carries data-pagefind-ignore="all",
                 so it adds nothing to the search index on 210 newly-indexed pages. */}}
             {{ partial "nr-report-footer-sm" . }}
@@ -287,20 +287,20 @@
     - reportName: page title for CSV download filenames.
     - neighborhood: the neighborhood this page was generated for.
 */}}
-{{- $nrGlobal       := resources.Get "js/nr-topic-spa/global.js"       | partial "short-fingerprint.html" -}}
-{{- $nrUrl          := resources.Get "js/nr-topic-spa/url.js"          | partial "short-fingerprint.html" -}}
-{{- $nrTertiles     := resources.Get "js/nr-topic-spa/tertiles.js"     | partial "short-fingerprint.html" -}}
-{{- $nrDemographics := resources.Get "js/nr-topic-spa/demographics.js" | partial "short-fingerprint.html" -}}
-{{- $nrCards        := resources.Get "js/nr-topic-spa/cards.js"        | partial "short-fingerprint.html" -}}
-{{- $nrReport       := resources.Get "js/nr-topic-spa/report.js"       | partial "short-fingerprint.html" -}}
-{{- $nrChart        := resources.Get "js/nr-topic-spa/chart.js"        | partial "short-fingerprint.html" -}}
-{{- $nrMap          := resources.Get "js/nr-topic-spa/map.js"          | partial "short-fingerprint.html" -}}
-{{- $nrData         := resources.Get "js/nr-topic-spa/data.js"         | partial "short-fingerprint.html" -}}
-{{- $nrApp          := resources.Get "js/nr-topic-spa/app.js"          | partial "short-fingerprint.html" -}}
+{{- $nrGlobal       := resources.Get "js/nr-report/global.js"       | partial "short-fingerprint.html" -}}
+{{- $nrUrl          := resources.Get "js/nr-report/url.js"          | partial "short-fingerprint.html" -}}
+{{- $nrTertiles     := resources.Get "js/nr-report/tertiles.js"     | partial "short-fingerprint.html" -}}
+{{- $nrDemographics := resources.Get "js/nr-report/demographics.js" | partial "short-fingerprint.html" -}}
+{{- $nrCards        := resources.Get "js/nr-report/cards.js"        | partial "short-fingerprint.html" -}}
+{{- $nrReport       := resources.Get "js/nr-report/report.js"       | partial "short-fingerprint.html" -}}
+{{- $nrChart        := resources.Get "js/nr-report/chart.js"        | partial "short-fingerprint.html" -}}
+{{- $nrMap          := resources.Get "js/nr-report/map.js"          | partial "short-fingerprint.html" -}}
+{{- $nrData         := resources.Get "js/nr-report/data.js"         | partial "short-fingerprint.html" -}}
+{{- $nrApp          := resources.Get "js/nr-report/app.js"          | partial "short-fingerprint.html" -}}
 
 {{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
 <script>
-    window.NR_TOPIC_SPA_CONFIG = {
+    window.NR_REPORT_CONFIG = {
         reportName: "{{ .Title }}",
         // The topic half of <title>, which head.html renders from .Params.seo_title.
         // Not reportName: that is .Title, and the two differ on Active Design, so an
@@ -360,9 +360,9 @@
 {{/* QR code generator for the print-only block above — mounted from node_modules, not a CDN */}}
 {{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" -}}
 
-{{/* The QR library and the one function that uses it, ahead of the SPA scripts so the
+{{/* The QR library and the one function that uses it, ahead of the report scripts so the
     library is parsed before anything can call renderQRCode. It lives in the template rather
-    than in assets/js/nr-topic-spa/ because it is the template that owns the #qrcode element
+    than in assets/js/nr-report/ because it is the template that owns the #qrcode element
     and the library resource — the same reason data-explorer/single.html keeps
     renderIndicatorDropdown inline. report.js calls it from renderAll(). */}}
 <script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>

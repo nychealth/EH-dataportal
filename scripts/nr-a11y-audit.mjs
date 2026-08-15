@@ -3,8 +3,8 @@
 // ======================================================================= //
 
 // Accessibility audit harness for the four Neighborhood Reports page kinds:
-// the NR landing page, a neighborhood index, a topic index, and the report SPA
-// (assets/js/nr-topic-spa/ + layouts/neighborhood-reports/nr-topic-spa.html).
+// the NR landing page, a neighborhood index, a topic index, and the report page
+// (assets/js/nr-report/ + layouts/neighborhood-reports/nr-report.html).
 //
 // This is an audit instrument, not a pass/fail guardrail. It reports what it
 // found and exits 0 unless a *control* failed — see below. Turning a subset of
@@ -21,12 +21,12 @@
 //     fire the whole run is void, and the script says so and exits non-zero.
 //
 //   - The rendered-content control. Each page declares a selector that must
-//     match before it is worth scanning. The SPA fetches its indicator rows from
+//     match before it is worth scanning. The report page fetches its indicator rows from
 //     the data repo; when that is empty it renders five empty accordion shells,
 //     and axe will honestly report almost nothing wrong with a page that has
 //     almost nothing on it. A scan of an empty page is not a clean page.
 //
-// Three states of the report SPA are scanned rather than one, because they are
+// Three states of the report page are scanned rather than one, because they are
 // different documents. The chart, the panel body and the tertile sentences do
 // not exist until a panel is expanded; the print rendition is separate markup
 // (cards.js builds `.print-only` siblings) and the QR image exists only there.
@@ -34,7 +34,7 @@
 // Beyond axe, the probes in `runProbes` cover what no automated rule checks:
 // keyboard reachability and focus visibility, heading order as the accessibility
 // tree sees it rather than as the DOM holds it, whether anything is announced
-// when the SPA re-renders, and how the charts and colour-coded comparisons are
+// when the report page re-renders, and how the charts and colour-coded comparisons are
 // exposed. Each probe exists to confirm or drop a specific candidate finding
 // from the source read — a candidate no probe confirms is not a finding.
 //
@@ -341,7 +341,7 @@ const probeAnnouncements = async (page) => page.evaluate(() => ({
 }));
 
 // ----------------------------------------------------------------------- //
-// probes specific to the report SPA
+// probes specific to the report page
 // ----------------------------------------------------------------------- //
 
 // What the chart mount exposes once a panel is expanded. The renderer is read
@@ -420,7 +420,7 @@ const probeColourMeaning = async (page) => page.evaluate(() => {
 });
 
 // Clicks a Leaflet polygon and records what changed for a non-visual user. The
-// SPA tears down and rebuilds the entire report body on this interaction; the
+// report page tears down and rebuilds the entire report body on this interaction; the
 // question is whether anything says so. Absence of a live region in the source
 // is a grep result — this is the observation.
 const probeReRender = async (page) => {
@@ -475,7 +475,7 @@ const auditPage = async (browser, target, baseURL, controlState) => {
     const url = `${baseURL}${target.path}`;
     await page.goto(url, { waitUntil: 'load', timeout: 40000 });
 
-    // The SPA renders asynchronously. Wait for the rendered-content control
+    // The report page renders asynchronously. Wait for the rendered-content control
     // rather than a fixed delay, but do not throw — "nothing rendered" is a
     // reportable result, and it is the one that invalidates the scan.
     await page.waitForSelector(target.present, { timeout: 25000 }).catch(() => {});
@@ -508,7 +508,7 @@ const auditPage = async (browser, target, baseURL, controlState) => {
         colourMeaning:    await probeColourMeaning(page)
     };
 
-    // ----- the report SPA's other three documents ----- //
+    // ----- the report page's other three documents ----- //
 
     if (target.spa) {
 
@@ -571,7 +571,7 @@ const auditPage = async (browser, target, baseURL, controlState) => {
 
         await page.emulateMedia({ media: 'screen' });
 
-        // 4. The re-render. Done last: it navigates the SPA's state and would
+        // 4. The re-render. Done last: it navigates the report page's state and would
         //    invalidate everything captured above.
         result.spaReRender = await probeReRender(page);
     }

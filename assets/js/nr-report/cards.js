@@ -48,7 +48,7 @@ const getDataExplorerUrl = indicatorID => {
 
     const slug = indicatorTopicSlugs[id];
 
-    return slug ? spaConfig.dataExplorerUrl + slug + '/?id=' + id : '';
+    return slug ? reportConfig.dataExplorerUrl + slug + '/?id=' + id : '';
 
 };
 
@@ -136,7 +136,7 @@ const buildIndicatorCard = (row, neighborhoodName) => {
     // checkable by eye rather than per-value
     const headerHTML =
         '<div class="card-header border-top" id="' + escapeAttr(headingId) + '">' +
-            // h3: one level below the section h2 in nr-topic-spa.html. As an h2 every
+            // h3: one level below the section h2 in nr-report.html. As an h2 every
             // indicator read as closing its section and opening a sibling of the page title
             '<h3 class="mb-0">' +
                 '<button class="btn btn-block btn-sm text-left" type="button" ' +

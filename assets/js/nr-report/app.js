@@ -24,7 +24,7 @@ const downloadCSV = () => {
         .toCSV();
 
     const filename = 'NYC EH Data Portal - Neighborhood Report - ' +
-        (spaConfig.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
+        (reportConfig.reportName || 'Report') + ' - ' + currentNeighborhood + '.csv';
 
     // Use Blob URL download flow for broad browser compatibility
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -98,8 +98,8 @@ const bootstrap = () => {
 
     debugLog('bootstrap: start');
 
-    if (!spaConfig || !spaConfig.sections || !spaConfig.sections.length) {
-        debugLog('bootstrap: missing-config:', spaConfig);
+    if (!reportConfig || !reportConfig.sections || !reportConfig.sections.length) {
+        debugLog('bootstrap: missing-config:', reportConfig);
         return;
     }
 
@@ -112,7 +112,7 @@ const bootstrap = () => {
     // section count is only trustworthy once the guard above has passed
     // The topic-indicator map counts unconditionally: loadTopicIndicators reports a
     // completed fetch on every path, including the one where it is not configured
-    totalFetches = spaConfig.sections.length + (spaConfig.vizUrl ? 1 : 0) + 1;
+    totalFetches = reportConfig.sections.length + (reportConfig.vizUrl ? 1 : 0) + 1;
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
@@ -124,7 +124,7 @@ const bootstrap = () => {
     // Start map and data loads in parallel
     initLeafletMap();
 
-    spaConfig.sections.forEach(section => {
+    reportConfig.sections.forEach(section => {
         loadSection(section);
     });
 

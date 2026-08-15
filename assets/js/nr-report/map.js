@@ -249,7 +249,7 @@ const nameMapPolygons = () => {
 // Sets up the Leaflet map and loads UHF polygon geometry onto it
 const initLeafletMap = () => {
 
-    debugLog('initLeafletMap: enter:', spaConfig.geojsonUrl);
+    debugLog('initLeafletMap: enter:', reportConfig.geojsonUrl);
 
     // Initialize Leaflet with a neutral NYC-centered default view
     leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
@@ -266,7 +266,7 @@ const initLeafletMap = () => {
     L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
 
     // Load the neighborhood polygons once, then wait for the data pipeline to finish
-    fetch(spaConfig.geojsonUrl)
+    fetch(reportConfig.geojsonUrl)
         .then(res => res.json())
         .then(data => {
 

@@ -27,7 +27,7 @@ table {
 }
 
 // Tertile and comparison markers, shared by the expanded panel and the print-only
-// header row (assets/js/nr-topic-spa/tertiles.js sets the class in both). The word
+// header row (assets/js/nr-report/tertiles.js sets the class in both). The word
 // carries the colour and the ::before carries the icon; Font Awesome 6 is loaded
 // site-wide from head.html as a CSS webfont, so the codepoints resolve with no
 // per-page resource. The bad case splits the two colours because $warning is 1.6:1
@@ -74,16 +74,16 @@ $comp-bad-text: #7a5c00;
 }
 
 
-// ===== Neighborhood Reports topic SPA =====
+// ===== Neighborhood Reports report page =====
 //
 // Moved here 2026-08-15 from the inline <style> block in
-// themes/dohmh/layouts/neighborhood-reports/nr-topic-spa.html. Eight of the seventeen
+// themes/dohmh/layouts/neighborhood-reports/nr-report.html. Eight of the seventeen
 // rules there were dead and were dropped rather than moved: five .nr-card-header, two
 // .nr-indicator-card, and .card-header a. All three selectors match zero elements on a
 // rendered report page — the 23 card headers each contain a <button> and no anchor
 // [verified 2026-08-15: querySelectorAll counts in the browser, and a repo-wide grep].
 //
-// Most of what the accordion styles is built in JS (assets/js/nr-topic-spa/cards.js), so
+// Most of what the accordion styles is built in JS (assets/js/nr-report/cards.js), so
 // grepping the layout for these class names will not find the markup they hit.
 //
 // .card-header is SCOPED, and the scope is load-bearing rather than tidiness: it is a
@@ -120,7 +120,7 @@ $comp-bad-text: #7a5c00;
 
 // NOT scoped to .nr-report-accordion, unlike .card-header above: 24 elements carry this
 // class and only 23 are inside the accordion. The 24th is the demographics block in
-// nr-topic-spa.html, and scoping would have silently dropped it [verified 2026-08-15].
+// nr-report.html, and scoping would have silently dropped it [verified 2026-08-15].
 .card-body-no-top {
   padding-top: 0 !important;
   padding-left: 12px !important;

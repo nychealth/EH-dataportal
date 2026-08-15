@@ -5,7 +5,7 @@
 // Topic-centric Neighborhood Reports viewer: a Leaflet neighborhood selector
 // driving an accordion of indicator cards with Vega map and bar charts
 //
-// Expects window.NR_TOPIC_SPA_CONFIG set by the Hugo layout with:
+// Expects window.NR_REPORT_CONFIG set by the Hugo layout with:
 //   - sections: array of { id, containerId, reportUrl } objects, one per report_topic
 //   - geojsonUrl: URL to UHF42 GeoJSON for the Leaflet selector map
 //   - vizUrl: EHDP-data viz JSON URL for map/chart rendering
@@ -31,10 +31,10 @@
 // Derived by sweep, 2026-08-06 — re-run it rather than trusting these if the
 // call graph moves.
 
-// Server-injected SPA configuration, read here so every function below can reach it.
+// Server-injected report configuration, read here so every function below can reach it.
 // Whether it actually arrived is bootstrap()'s guard, not this line's.
 // WRITE: never after this line  READ: app, chart, data, map, report, url
-const spaConfig = window.NR_TOPIC_SPA_CONFIG;
+const reportConfig = window.NR_REPORT_CONFIG;
 
 // Per-section data store: sectionId -> { neighborhoodName -> rows[] }.
 // The binding is never reassigned; data.js fills it key by key

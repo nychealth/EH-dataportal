@@ -93,8 +93,8 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
 // returning early keeps that a deliberate contract rather than a coincidence
 const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
 
-    if (spaConfig.seoShortName) {
-        document.title = spaConfig.seoShortName + ' in ' + neighborhoodName;
+    if (reportConfig.seoShortName) {
+        document.title = reportConfig.seoShortName + ' in ' + neighborhoodName;
     }
 
     if (!previousNeighborhood || previousNeighborhood === neighborhoodName) {
@@ -110,7 +110,7 @@ const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
     }
 
     status.textContent = 'Report updated. Now showing ' +
-        (spaConfig.seoShortName || spaConfig.reportName || 'this report') +
+        (reportConfig.seoShortName || reportConfig.reportName || 'this report') +
         ' in ' + neighborhoodName + '.';
 
 };
@@ -138,7 +138,7 @@ const renderAll = (neighborhoodName, mapGeocode) => {
 
     // ----- render sections ----- //
 
-    spaConfig.sections.forEach(section => {
+    reportConfig.sections.forEach(section => {
         renderSection(section, neighborhoodName);
     });
 
@@ -176,7 +176,7 @@ const renderAll = (neighborhoodName, mapGeocode) => {
 
     // The printed report carries a QR code back to itself, and the map can switch
     // neighborhood in place — so it has to be regenerated from the rewritten URL rather
-    // than once at load. Defined in nr-topic-spa.html, which owns the qrcode library
+    // than once at load. Defined in nr-report.html, which owns the qrcode library
     if (typeof renderQRCode === 'function') {
         renderQRCode();
     }

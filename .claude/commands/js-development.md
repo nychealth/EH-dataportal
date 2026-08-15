@@ -21,5 +21,5 @@ varies by file:
   `feature-new-data-explorer`; raw `console.log` is acceptable on branches that
   lack it.)
 - **Format is call-depth markers** (`"* fn"` / `"** fn"` / `"*** fn"`) everywhere
-  **except `assets/js/nr-topic-spa/`**, which uses structured
+  **except `assets/js/nr-report/`**, which uses structured
   `'scope: event: value'`.

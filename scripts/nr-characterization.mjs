@@ -2,22 +2,22 @@
 // nr-characterization.mjs
 // ======================================================================= //
 
-// Characterization harness for the Phase 2 Neighborhood Reports topic SPA
-// (assets/js/nr-topic-spa/ + layouts/neighborhood-reports/nr-topic-spa.html):
+// Characterization harness for the Phase 2 Neighborhood Reports report page
+// (assets/js/nr-report/ + layouts/neighborhood-reports/nr-report.html):
 // captures the rendered output for a fixed set of topic/neighborhood pairs so a
 // refactor can be diffed against a committed baseline.
 //
 // The DE harness (de-characterization.mjs) does not cover any of this — it drives
-// the data explorer's tabs and does not work on this branch at all. The NR topic
-// SPA is what actually changes here, and until now had no regression net.
+// the data explorer's tabs and does not work on this branch at all. The NR report
+// page is what actually changes here, and until now had no regression net.
 //
-// IMPORTANT: this reads only DOM output. It must never read the SPA's internal
+// IMPORTANT: this reads only DOM output. It must never read the report page's internal
 // names. They are now reachable — the `bootstrap()` closure was unwrapped to module
 // scope, and the file was split into ten — so the rule no longer enforces itself.
 // It is what keeps the harness valid across a refactor that renames things.
 //
 // It navigates straight to the real <nbhd>/<topic>/ page. Until the Option D swap
-// those pages did not exist, so the harness reached the SPA at the clean topic URL
+// those pages did not exist, so the harness reached the report page at the clean topic URL
 // and injected the neighborhood through the `nr_pending_neighborhood`
 // sessionStorage bridge — which meant it exercised the bridge and never the
 // path-based resolution it appeared to cover (scoping memo §11, step 3). Now the
@@ -130,7 +130,7 @@ const captureTarget = async (browser, target, baseURL) => {
 
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 
-    // The SPA fetches its report JSON and renders asynchronously. Wait for the
+    // The report page fetches its report JSON and renders asynchronously. Wait for the
     // neighborhood header to be filled rather than for a fixed delay — but do not
     // throw if it never fills, because "nothing rendered" is itself a result the
     // baseline should record rather than an error that aborts the run.

@@ -5,7 +5,7 @@
   content/neighborhood-reports/<Neighborhood>/:
 
     - 42 neighborhood indexes at <nbhd>/            (kind section, nr-neighborhood-index.html)
-    - 210 report pages at <nbhd>/<topic>/           (kind page,    nr-topic-spa.html)
+    - 210 report pages at <nbhd>/<topic>/           (kind page,    nr-report.html)
 
   The two sources are crossed: data/globals/uhflist.json supplies the 42 neighborhoods
   (page_name, UHF_name, UHF_id) and data/globals/NR_topics.yml the 5 topics. Both are
@@ -48,7 +48,7 @@
              reads, and .Summary is what the site RSS feed prints as each report's
              <description> — a generated page has no body for Hugo to summarize from.
 
-             `seo_short_name` is the uncomposed half of `seo_title`. The SPA switches
+             `seo_short_name` is the uncomposed half of `seo_title`. The report page switches
              neighborhood in place and rebuilds document.title from it; .Title is a different
              string on Active Design, so rebuilding from that would replace the title 42 of
              these pages shipped with. It is carried here rather than derived in the layout
@@ -58,7 +58,7 @@
             "path"    (printf "%s/%s" $nbhd.page_name $topic.slug)
             "kind"    "page"
             "title"   $topic.title
-            "layout"  "nr-topic-spa"
+            "layout"  "nr-report"
             "summary" $topic.summary
             "params"  (dict
                 "neighborhood"    $nbhd.UHF_name

@@ -159,16 +159,16 @@ const loadSection = section => {
 // Loads the topic → IndicatorID map and reverses it into IndicatorID → topic slug
 const loadTopicIndicators = () => {
 
-    debugLog('loadTopicIndicators: enter:', spaConfig.topicIndicatorsUrl);
+    debugLog('loadTopicIndicators: enter:', reportConfig.topicIndicatorsUrl);
 
     // Without the map no card can resolve a topic, so the link is simply omitted
-    if (!spaConfig.topicIndicatorsUrl || !spaConfig.dataExplorerUrl) {
+    if (!reportConfig.topicIndicatorsUrl || !reportConfig.dataExplorerUrl) {
         debugLog('loadTopicIndicators: branch-not-configured');
         checkAllLoaded();
         return;
     }
 
-    fetch(spaConfig.topicIndicatorsUrl)
+    fetch(reportConfig.topicIndicatorsUrl)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
             return res.json();
@@ -208,16 +208,16 @@ const loadTopicIndicators = () => {
 // Loads the shared viz table used by all per-indicator Vega charts
 const loadVizData = () => {
 
-    debugLog('loadVizData: enter:', spaConfig.vizUrl);
+    debugLog('loadVizData: enter:', reportConfig.vizUrl);
 
     // If no viz URL is configured, continue with section-only rendering
-    if (!spaConfig.vizUrl) {
+    if (!reportConfig.vizUrl) {
         debugLog('loadVizData: branch-no-viz-url');
         checkAllLoaded();
         return;
     }
 
-    aq.loadJSON(spaConfig.vizUrl, { autoMax: 10000, parse: { time: String } })
+    aq.loadJSON(reportConfig.vizUrl, { autoMax: 10000, parse: { time: String } })
         .then(table => {
             debugLog('loadVizData: branch-data-loaded:', table && table.numRows && table.numRows());
             vizTable = table;
