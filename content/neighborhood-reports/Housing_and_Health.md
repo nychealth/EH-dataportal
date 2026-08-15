@@ -5,7 +5,6 @@ layout: nr-topic-index
 url: /neighborhood-reports/housing_and_health/
 content_yml: Housing_and_Health
 seo_title: "Housing and Health in NYC"
-urlExtension: "/housing_and_health/"
 
 ---
 

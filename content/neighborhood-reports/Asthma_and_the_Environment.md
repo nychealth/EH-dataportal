@@ -14,7 +14,6 @@ layout: nr-topic-index
 url: /neighborhood-reports/asthma_and_the_environment/
 content_yml: Asthma_and_the_Environment
 seo_title: "Asthma and the Environment in NYC"
-urlExtension: "/asthma_and_the_environment/"
 
 ---
 
