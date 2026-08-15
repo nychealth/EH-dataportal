@@ -90,7 +90,32 @@
     }
 </style>
 
-<section class="container-fluid" id="skip-header-target">
+{{/*
+    data-pagefind-ignore="all" on the whole report — these 210 pages contribute nothing to the
+    search index. This is production's model, restored deliberately: the retired
+    nr-output/single.html carried the identical attribute on the identical element, put there by
+    9b270a71d6 (2023-10-25) as part of a five-commit selective-indexing pass. Search for NR is
+    one indexable page per topic, carrying that topic's whole indicator vocabulary, and 210
+    combinatorial pages carrying none of it.
+
+    Why the page level rather than another targeted ignore: a report page wins the first page of
+    results on its *title*. "Climate and Health | East Harlem" matches a search for "climate",
+    there are 42 per topic, and no body-level lever reaches a title — measured 2026-08-15, a
+    data-pagefind-weight on the topic overview moved nothing at all, and ignoring the shared topic
+    menu cut the result count by two thirds while leaving the first page byte-identical. Only
+    removing the pages from the index changes it.
+
+    THE COST, so a later reader does not have to rediscover it: "asthma East Harlem" no longer
+    finds East Harlem's asthma report, and "Kingsbridge" returns its hub page alone rather than
+    its hub plus its five reports. That is the trade, it is reversible by deleting this one
+    attribute, and documents/nr-pagefind-parity-2026-08-15.md §5 is the Google Analytics test
+    that would reverse it.
+
+    The narrower ignores further down — the tertile explainer, the print-only QR caption — have no
+    effect while this one stands. They are kept because they are separately correct and the §5
+    test may bring them back into play.
+*/}}
+<section class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
     <div class="row">
         <div class="col-lg-10 mx-auto col-12">
 
@@ -179,7 +204,12 @@
                     </div>
 
                     <hr class="my-2">
-                    <div class="asidebox m-2 pxy-2 text-muted">
+                    {{/* Ignored by Pagefind: this explainer is byte-identical on all 210 report
+                         pages — ~75 of ~355 indexed words — so indexing it made every report a
+                         match for "tertile" and "lowest third" without telling those searches
+                         apart. It stays visible, and its alt text stays in the accessibility
+                         tree; only the index skips it. */}}
+                    <div class="asidebox m-2 pxy-2 text-muted" data-pagefind-ignore="all">
                         <strong>Indicator rankings</strong>
                         <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
                         <div class="row no-gutters">
@@ -286,7 +316,10 @@
                         nr-output/single.html. Filled by renderQRCode() below, which runs from
                         renderAll() rather than at load: the Leaflet map can switch neighborhood in
                         place, and a code generated once would then point at the wrong report. */}}
-                    <div class="row print-only">
+                    {{/* Ignored by Pagefind for the same reason as the tertile box: one identical
+                         caption on 210 pages. It is print-only markup, so it was never on screen
+                         for the searcher who landed on it either. */}}
+                    <div class="row print-only" data-pagefind-ignore="all">
                         <div class="col-12">
                             <p class="text-center">View this report online:</p>
                         </div>

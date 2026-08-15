@@ -41,6 +41,14 @@
                  heading, so there is nothing to introduce it with here. */}}
             <div class="row mt-3">
                 <div class="col-md-8 mx-auto">
+                    {{/* No data-pagefind-weight here, deliberately. Weighting this <h1> at 10.0
+                         and the intro at 7.0 was tried on 2026-08-15 to lift the topic overview
+                         above the 42 per-neighborhood reports that share its vocabulary, and it
+                         moved nothing: "climate", "asthma" and "housing" returned identical
+                         counts and an identical top 10 with and without it. The reports win on
+                         their titles — "Climate and Health | East Harlem" — and a body weight
+                         cannot outrank 42 of those. documents/nr-pagefind-parity-2026-08-15.md
+                         §2f has the A/B. */}}
                     <h1 class="h2">{{ .Title }}</h1>
                     <div class="report-description fs-lg my-2">{{ .Content }}</div>
                 </div>
