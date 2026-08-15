@@ -70,8 +70,10 @@ const TARGETS = [
 // in row counts — staging carries an Indoor Air topic production does not — so a
 // production-data server checked against a staging baseline reports content regressions
 // that are nothing of the kind (the same confusion read as 210 of them in
-// nr-postswap-check.mjs). Environments sharing a branch share a baseline: dev_stage with
-// local_stage, dev_prod with local_prod and prod_prod.
+// nr-postswap-check.mjs). Environments sharing a branch share a baseline, and since
+// finalURL is now prefix-relative that is the whole condition: staging covers dev_stage,
+// local_stage and prod_stage; production covers dev_prod, development, local_prod,
+// prod_prod and production.
 const BASELINE_ROOT = 'scripts/nr-characterization-baseline';
 const CURRENT_ROOT  = 'scripts/nr-characterization-current';
 
@@ -87,13 +89,31 @@ const KNOWN_NOISE = /pagefind|PagefindUI|favicon|Failed to load resource|net::ER
 // Collapses runs of whitespace so captures don't churn on template reindentation.
 const tidy = (s) => (s ?? '').replace(/\s+/g, ' ').trim();
 
+// Drops the environment's baseURL path prefix from a captured pathname, so one baseline
+// checks from any environment serving the same data branch. Measured 2026-08-15: a
+// prod_stage server (/IndicatorPublic/) against the dev_stage-captured staging baseline
+// failed all 3 targets, with finalURL the only differing field on any of them — the
+// reports themselves were byte-identical, because the branch is what decides those.
+//
+// Anchored to the start rather than a global replace. This field exists to catch a silent
+// redirect to the 404 page, which is a change AFTER the prefix; stripping every occurrence
+// would also eat a prefix-shaped segment deeper in the path, which is the one way this
+// normalization could hide the thing it is guarding.
+const stripBasePath = (pathname, baseURL) => {
+    const prefix = new URL(baseURL).pathname.replace(/\/$/, '');
+    if (!prefix || !pathname.startsWith(`${prefix}/`)) return pathname;
+    return pathname.slice(prefix.length);
+};
+
 // Reads the rendered state of one topic/neighborhood pair.
 //
 // Everything here is DOM-observable output a user could point at. The final URL
 // is included deliberately: NR routing is path-based with a sessionStorage
 // bridge, and a silent redirect to the 404 page is exactly the failure this
 // branch is prone to (site-wide audit §5i) — capturing the landing URL means a
-// regression shows up as a diff instead of as an empty-looking report.
+// regression shows up as a diff instead of as an empty-looking report. It is
+// recorded prefix-relative (see stripBasePath), so the environment a capture came
+// from no longer decides whether the check passes.
 const captureTarget = async (browser, target, baseURL) => {
 
     const page = await browser.newPage();
@@ -223,6 +243,7 @@ const captureTarget = async (browser, target, baseURL) => {
 
     return {
         ...captured,
+        finalURL: stripBasePath(captured.finalURL, baseURL),
         headerNeighborhood: tidy(captured.headerNeighborhood),
         mobileNeighborhood: tidy(captured.mobileNeighborhood),
         mobileTitle: tidy(captured.mobileTitle),
