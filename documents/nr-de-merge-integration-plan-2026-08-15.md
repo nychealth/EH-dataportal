@@ -124,10 +124,29 @@ These apply to every task below.
   to the npm forwarding form.
 - **Nothing commits without Chris's say-so, and he raises committing.** Each task below ends at a
   verified working tree, not at a commit. Do not draft commit messages until asked.
-- **`rerere` covers exactly one file across these merges** — `scripts/dev-server.mjs`, the only
-  shared-infra file byte-identical between the two branches
-  `[verified 2026-08-15: git rev-parse of all nine shared-infra paths on both branches]`. Do not
-  plan around it replaying anything else.
+- **Run every merge in this plan with `rerere` disabled for that invocation:**
+  `git -c rerere.enabled=false merge --no-commit --no-ff <branch>`. This replaces the 2026-08-15
+  constraint, which read "`rerere` covers exactly one file across these merges —
+  `scripts/dev-server.mjs` … do not plan around it replaying anything else." **Both halves were
+  wrong, and the correction is the reason for the flag.** The shared cache holds **seven** recorded
+  resolutions, none of which is `dev-server.mjs`
+  `[verified 2026-08-17: seven postimages under .git/rr-cache, all mtime 13:55–13:57 that day;
+  preimages identify package.json, package-lock.json, .gitignore, an SCSS file, two
+  `define "main"` templates and realtime.js]`. Three of those files are not in Stage A's conflict
+  set at all, so the cache is carrying resolutions from some other merge.
+
+  **The `package.json` recording is actively wrong for Stage A** and would be applied silently: its
+  postimage keeps only `smoke` and `characterize:cp`, dropping `lint`, `characterize:de`,
+  `characterize:nr`, `characterize:pagefind`, `a11y:nr` and `docs-check`, and it preserves *both*
+  `devDependencies` blocks `[verified 2026-08-17: cat of the postimage]`. Git announces this as one
+  line — "Resolved 'package.json' using previous resolution" — and stages it, so A1 Step 1 would
+  look already-done while six scripts A7 runs had vanished.
+
+  **A related premise was also wrong: an aborted merge records nothing.** `rerere` writes a
+  preimage when the conflict appears but only stores the resolution when the merge is *committed*.
+  The five resolutions made on 2026-08-17 before the abort left preimages and no postimages
+  `[verified 2026-08-17: 21 preimages against 7 postimages, and every postimage predates that
+  merge]`. Restarting a stage therefore replays nothing you resolved in it — budget the redo.
 - **`npm run smoke` does not currently return zero on `merge/production`**, and three later steps
   say it should — A7 Step 3, B2 Step 3, C3 Step 6. One page fails, for a defect that predates every
   merge in this plan: `neighborhood-reports/active_design_physical_activity_and_health/`, two
@@ -582,7 +601,8 @@ one conflicted working tree.
 - Modify: `documents/site-wide-audit-2026-06-27.md` (add/add)
 - Modify: `package.json` (content)
 - Modify: `package-lock.json` (content)
-- Modify: `scripts/dev-server.mjs` (add/add — rerere may replay this one)
+- Modify: `scripts/dev-server.mjs` (add/add — resolve by hand; the cache holds no recording for
+  this file, contrary to the 2026-08-15 note here)
 - Modify: `scripts/smoke-pages.mjs` (add/add)
 
 **Depends on:** nothing.
@@ -591,7 +611,12 @@ script block and `eslint.config.mjs`'s file arguments, so the merged `package.js
 every `scripts` entry from both sides.
 
 > **Progress 2026-08-17: Steps 1, 2, 3 and 5 done and staged; Step 4 (the four prose/config files)
-> not started.** The merge is live in the worktree — 18 conflicts remain, 5 resolved (this document,
+> not started.** The stage was aborted and restarted once, with `rerere` disabled per Global
+> constraints — the restart cost the five resolutions below and bought two things: `MERGE_HEAD` is
+> now `c59d614716`, `merge/production`'s tip, so this document arrives through the merge instead of
+> being hand-copied, and no conflict was pre-answered from the cache
+> `[verified 2026-08-17: zero "previous resolution" lines in the merge output; 23 conflicts, all
+> presented]`. The merge is live in the worktree — 18 conflicts remain, 5 resolved (this document,
 > `package.json`, `package-lock.json`, `documents/site-wide-audit-2026-06-27.md`,
 > `scripts/smoke-pages.mjs`). Two things came up that the step text did not predict:
 >
@@ -1122,8 +1147,10 @@ as A1; thirteen are DE-specific.
 ### Task B1: DE ← `production`
 
 **Files:**
-- The nine shared-infra files from A1 (resolve the same way; only `scripts/dev-server.mjs` will
-  replay from rerere)
+- The nine shared-infra files from A1 (resolve the same way; nothing replays from rerere, and this
+  stage is run with the flag from Global constraints — note the cache's `data-stories/single.html`
+  and `realtime.js` recordings appear to come from a merge in *this* stage's shape, so the risk of
+  a silent auto-resolution is higher here than in Stage A, not lower)
 - Modify: `assets/js/data-explorer/table.js` — 9 hunks, 256 conflicted lines of 1073
 - Modify: `assets/js/data-explorer/global.js` — 1 hunk, 169 of 947
 - Modify: `assets/js/data-explorer/app.js` — 1 hunk, 162 of 801
@@ -1378,7 +1405,10 @@ to inspect the merged content, including conflict markers.
 git merge --abort
 ```
 
-rerere keeps its recordings, so a restart replays what you already resolved in that merge.
+**A restart replays nothing you resolved in the aborted merge** — `rerere` stores a resolution only
+when the merge is committed, so an abort leaves preimages and no postimages. Budget the redo, and
+restart with the `rerere.enabled=false` form from Global constraints so the cache's *older*
+recordings cannot answer a conflict on your behalf.
 
 ---
 
