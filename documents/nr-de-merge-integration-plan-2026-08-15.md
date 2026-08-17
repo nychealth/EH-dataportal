@@ -15,28 +15,69 @@ docs-and-config files with no code in it, and doing both means resolving eight o
 takes `production` first — its `production` merge has twelve real code conflicts worth landing and
 testing before the `head.html` gating refactor arrives on top of them.
 
-**The two findings that drive the plan.** Both merge *clean* — git flags neither:
+**The findings that drive the plan.** Findings 1 and 2 are merge hazards — both merge *clean*, git
+flags neither. Findings 3 and 4 are different in kind: they are already true of `merge/production`
+today, so they ship whether or not these merges ever happen. Stage 0 fixes those two on
+`merge/production` first, so Stages A and C inherit the fixes rather than each re-deriving them on
+a different tree.
+
+**Finding 3 was resolved in EHDP-data on 2026-08-17 — for two of the three data branches this plan
+touches.** Read its entry below before running any build: which `data_branch` an environment points
+at now determines whether that build succeeds, and `dev_stage` is still pointed at one that fails.
 
 1. `merge/production` deletes `head.html`'s blanket library block. The NR branch's four
    `neighborhood-reports/` templates reference no `lib-*` partial, and three of the four don't
    exist on `merge/production`, so they merge with no conflict and load no Leaflet, no Vega and no
-   Arquero.
+   Arquero `[verified 2026-08-16: grep -c 'partial "lib-' returns 0 for all four NR templates on
+   the NR branch; git ls-tree of merge/production's neighborhood-reports/ lists only section.html
+   and topiclanding.html]`.
 2. The NR branch's `head.html` *generates* the `neighborhoods` global from
    `data/globals/uhflist.json` at build time. That generator sits inside the block
    `merge/production` deletes, and `assets/js/uhflist.js` — which `lib-uhflist.html` loads instead
    — does not exist on the NR branch. `demographics.js` guards with
    `typeof neighborhoods === 'undefined'`, so losing it blanks the demographics sidebar silently
-   rather than erroring.
+   rather than erroring `[verified 2026-08-16: git ls-tree -r on the NR branch returns only
+   data/globals/uhflist.json; merge/production's lib-uhflist.html reads resources.Get "js/uhflist.js"]`.
+3. ~~**`merge/production` does not build.**~~ **Resolved 2026-08-17 — every environment this plan
+   uses now builds.** `nr-output/single.html:419` aborts the
+   render with `index of type map[string]interface {} with args [0 zip_code]`. `6fb89c0ffb`
+   sentence-cased `report_topic` across `data/globals/NR_content/*.yml`, and that value is a path
+   segment of the per-topic JSON URL built at `single.html:391`; when the EHDP-data branch being
+   read publishes Title Case names, five `resources.GetRemote` calls miss, `$topic_data` stays the
+   empty `dict` it was initialised as, and line 419 indexes a map with an int key.
+
+   Chris landed a Linux-side data export on 2026-08-17 that carried the case-only renames through
+   (a Windows-side export would not have — git treats a case-only rename as a no-op on a
+   case-insensitive filesystem). All 26 sentence-cased filenames now exist on EHDP-data
+   `production` and `staging`. `hotfix-geo-names` did not get the export and still carries only the
+   26 Title Case names, so it remains a branch that cannot be built against — but
+   `config/dev_stage/config.toml:3`, which used to pin it, was re-pointed at `staging` the same
+   day. Task 0.1, all steps closed except the optional hardening in Step 2.
+4. **The congestion pricing report loads none of the libraries it uses.**
+   `data-features/congestion-pricing-report.html` has never carried a `lib-*` include — on
+   `production` the blanket block supplied Leaflet, easyButton, Vega and D3 to it. Two maps and a
+   Vega chart are dead on `merge/production`, and the page is absent from the smoke list, so
+   nothing reports it. Task 0.2.
+
+Findings 3 and 4 share one mechanism worth naming, because it is the same one Finding 1 describes:
+two branches changed complementary halves of an invariant without ever touching a common file, so
+the merge was clean and no check owned the result. Nothing in this repo enforces "every page loads
+the libraries it calls" or "every `report_topic` resolves to a file that exists."
 
 ---
 
 ## Ledger
 
-**Status as of 2026-08-15: nothing started. All stages not started. `rerere.enabled=true` is set
-(shared repo config, applies in every worktree).**
+**Status as of 2026-08-17: no merge started. Task 0.1 is DONE apart from its optional hardening
+step — the EHDP-data rename landed on `production` and `staging`, `dev_stage` was re-pointed from
+`hotfix-geo-names` to `staging`, and `merge/production` now builds clean under both environments.
+Nothing in this plan is blocked. Task 0.2 is untouched and is the next thing to run.
+`rerere.enabled=true` is set (shared repo config, applies in every worktree).**
 
 | Stage | Task | Status |
 |---|---|---|
+| 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4, 5 DONE 2026-08-17**; Step 2 re-scoped to optional hardening, not started |
+| 0 | 0.2 CP report library includes | Not started — now unblocked (its build dependency was Task 0.1) |
 | A | A1 shared-infra conflicts | Not started |
 | A | A2 retired-file modify/deletes | Not started |
 | A | A3 `head.html` — uhflist generator + gating | Not started |
@@ -76,6 +117,286 @@ These apply to every task below.
   plan around it replaying anything else.
 - Resolve conflicts in a scratch worktree first where a task says so. Nothing lands on
   `feature-MOD-Lab-NR-recode-refactor` or `feature-new-data-explorer` until its stage verifies.
+- **Every build-based proof in this document is only as good as the `data_branch` it read.** `hugo`
+  exits 1 against any `data_branch` lacking the sentence-cased report JSON filenames, and a red
+  build there is not evidence about the merge. As of 2026-08-17 every check reads a branch that has
+  them, so this constraint is satisfied — but it is the thing to re-check first when a build goes
+  red for no reason the diff explains:
+
+  | Check | Environment | `data_branch` | Builds? |
+  |---|---|---|---|
+  | Isolated build (appendix) — A7 Step 2, B2 Step 2, C3 | `production` | `production` | **yes** `[verified 2026-08-17: exit 0, warns=0, errors=0, 1282 EN pages]` |
+  | `npm run smoke` — A7 Step 3, B2 Step 3, C3 Step 6 | `dev_stage` (spawned by `scripts/dev-server.mjs:27`) | `staging` | **yes** `[verified 2026-08-17: exit 0, warns=0, errors=0, 1283 EN pages]` |
+  | `node scripts/nr-characterization.mjs --check` — A7 Step 4 | `dev_stage`, same server | `staging` | **yes**, same build |
+  | `node scripts/pagefind-characterization.mjs --check` — A7 Step 6, B2 Step 4 | `dev_stage`, same server | `staging` | **yes**, same build |
+
+  `hotfix-geo-names` is the branch that fails, and `dev_stage` no longer points at it (Task 0.1
+  Step 5). Anything still reading it — a stale worktree, a config not yet merged forward — will
+  abort with five `Unable to get remote resource` warnings and four `ERROR render` lines citing
+  `nr-output/single.html:419`. That is the signature to recognise, not a merge symptom.
+
+---
+
+## Stage 0 — fix `merge/production` before merging it into anything
+
+Both tasks here are defects already present on `merge/production`, found 2026-08-16. Neither is a
+merge artifact, and neither is visible in any conflict list — Stage A and Stage C would both carry
+them forward silently. Fixing them on `merge/production` means both feature branches inherit the
+fix through the merge they are already doing; fixing them afterwards means doing each twice and
+re-testing on two branches.
+
+### Task 0.1: NR report-topic rename — the build blocker
+
+> **Status 2026-08-17: the blocker is down for `production` and `staging`.** Chris landed the
+> EHDP-data export from a Linux machine, which is what let the case-only renames through. Steps 1,
+> 3 and 4 are done and carry their proofs below. Step 2 no longer unblocks anything and is
+> re-scoped to hardening. Step 5 is new and is the only part still open.
+
+**Files:**
+- Modify: `themes/dohmh/layouts/nr-output/single.html` (delete the `$zip_codes` declaration and its
+  one assignment — Step 2, now optional hardening)
+- ~~Coordinate in the **EHDP-data** repo~~ — **done 2026-08-17**, `production` and `staging` only
+- ~~Decide: `config/dev_stage/config.toml:3` `data_branch`~~ — **done 2026-08-17**, re-pointed
+  from `hotfix-geo-names` to `staging` in `5acffbf727` (Step 5).
+
+**Depends on:** nothing.
+**Leaves for:** A7 Step 2, B2 Step 2, C3 — the isolated builds, which now pass. The `dev_stage`
+checks (A7 Steps 3, 4, 6; B2 Steps 3, 4; C3) still wait on Step 5.
+
+`6fb89c0ffb` sentence-cased `report_topic` across `data/globals/NR_content/*.yml`. That value is
+interpolated into the per-topic JSON URL at `single.html:391`, so the site now requests
+`Asthma_and_the_Environment Adult asthma.json` while EHDP-data still publishes
+`Asthma_and_the_Environment Adult Asthma.json`.
+
+That commit's message predicts a soft failure — "only warnf fires, leaving the accordions empty on
+a build that still succeeds." It does not succeed. `$topic_data` is initialised as an empty `dict`
+at `single.html:393`, so a missed fetch leaves a map behind; `where` over a map returns a map; and
+line 419's `index $neighborhood_topic_data 0 "zip_code"` runs unconditionally, indexing a map with
+an int key and aborting the render.
+
+This is the shape the Verification rules call out: a plan's expected result was wrong, so the
+premise behind it is the suspect. The premise here was that a `GetRemote` miss degrades gracefully.
+It does not, anywhere this pattern is used — worth a look before trusting the same shape elsewhere.
+
+- [x] **Step 1: Reproduce, so a later red build is attributable.** DONE.
+
+Isolated build (Commands appendix). On `merge/production` before the export: exit 1, five
+`Unable to get remote resource` warnings, four `ERROR render` lines, all citing
+`nr-output/single.html:419`
+`[verified 2026-08-16: isolated build, --environment production, exit 1, warns=5, errors=4]`.
+
+The control that makes this a regression rather than an environment fault — same toolchain, same
+machine, same command, `production` instead:
+`[verified 2026-08-16: build in the existing production worktree, exit 0, warns=0, errors=0,
+1286 pages, and both pages that fail above present in the output at 257489 and 188318 bytes]`.
+
+**The failure signature was reproduced once more on 2026-08-17, which is what makes Steps 4 and 5
+readings meaningful rather than merely uneventful.** With `config/dev_stage/config.toml` still
+reading `hotfix-geo-names`, an isolated `dev_stage` build returned the identical shape
+`[verified 2026-08-17: HUGO_RESOURCEDIR="$TEMP/hugo-res-stage" npx hugo --environment dev_stage -d
+"$TEMP/hugo-out-stage" — exit 1, warns=5, errors=4, the warned URLs naming
+raw.githubusercontent.com/nychealth/EHDP-data/hotfix-geo-names/…]`.
+
+**That control is no longer reproducible by running the same command**, because Step 5 re-pointed
+`dev_stage` at `staging` and the identical invocation now exits 0. To re-arm it, set
+`data_branch` to `hotfix-geo-names` in a scratch copy of the config — do not reproduce it by
+editing the tracked file. A green `dev_stage` build today is evidence only in combination with the
+red one recorded above, on the same command, hours apart.
+
+- [ ] **Step 2: Delete the dead assignment.** Re-scoped 2026-08-17: **hardening, not the
+      unblocker.** The content fix in Step 3 is what unblocked the build; this step removes the
+      trap so the *next* `GetRemote` miss degrades instead of aborting. Step 5 is a live instance
+      of exactly that miss, so the case for doing it is stronger now than when it was written, but
+      it no longer gates anything and can be sequenced freely.
+
+`$zip_codes` is declared `""` at `single.html:182`, assigned at line 419, and **never read**.
+`[verified 2026-08-16: grep -rn 'zip_codes' across themes/ and assets/ returns exactly four hits —
+these two, plus two in nr-insert-zips.html.]` The two in `nr-insert-zips.html` are a separate,
+identically-named template-local variable built from `uhflist`'s `Zipcodes` field; that partial is
+what renders the ZIP list on the page. Nothing consumes line 419's value.
+
+So the line that aborts the build computes something no one uses. Delete both lines rather than
+guarding them — it is the smaller change and it removes the trap permanently instead of leaving a
+guarded version of it. `production` carries the same dead pair (lines 194 and 433) and only
+survives because its fetch resolves.
+
+Expected after: no change to the `production` build, which already exits 0. Against `dev_stage` the
+build should go from exit 1 to exit 0 while the five `Unable to get remote resource` warnings
+**remain** — which is precisely the half-fixed state this step produces and Step 5 exists to close.
+It is the reason this step is hardening and not a fix.
+
+- [x] **Step 3: Land the rename in EHDP-data.** DONE 2026-08-17 — `production` and `staging`.
+
+Chris ran the data export from a Linux machine, so the case-only renames survived; a Windows-side
+export would have dropped them, since git records no change for a case-only rename on a
+case-insensitive filesystem.
+
+All 26 sentence-cased filenames are present on both branches, with none missing
+`[verified 2026-08-17: gh api contents listing of neighborhood-reports/data/report --paginate,
+set-differenced against feature-improve-NR-styles — zero names missing from either production or
+staging]`.
+
+**The old Title Case files were not removed.** `production` and `staging` now hold 52 files each —
+26 sentence-cased plus the 26 Title Case originals — against 26 on `feature-improve-NR-styles`
+`[verified 2026-08-17: same listing; comm -13 against the feature branch returns 26 extras]`. Hugo
+requests only the sentence-cased names, so this does not affect any build. It is orphaned content
+in EHDP-data, worth a cleanup pass there, and it is **not** a blocker for anything in this plan.
+
+The rejected alternative stays rejected: reverting `6fb89c0ffb`'s YAML casing would re-introduce
+the acronym mangling that commit fixed ("Health Burden: Fine Particles (PM2.5)" rendering as
+"(pm2.5)").
+
+- [x] **Step 4: Verify content, not just exit code.** DONE 2026-08-17.
+
+`[verified 2026-08-17: HUGO_RESOURCEDIR="$TEMP/hugo-res-prod" npx hugo --environment production -d
+"$TEMP/hugo-out-prod" — exit 0, warns=0, errors=0, 1282 EN pages, 42.7s]`.
+
+Exit code alone would not have settled this, because Step 2 also produces an exit 0 — with empty
+accordions. The content check:
+
+```
+grep -c 'zip_code\|report-section\|accordion' "$TMP/hugo-out-prod/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/index.html"
+```
+
+Returned **33**, identical to the count from the same page built on `production` on 2026-08-16
+`[verified 2026-08-17]`. `warns=0` is the direct evidence that all five `GetRemote` calls resolved;
+the 33 is the corroborating evidence that what they returned actually reached the page.
+
+Note the pattern: the 2026-08-16 draft of this step wrote the command as
+`grep -c 'data_value_rank\|accordion'` while quoting a control measured with
+`zip_code|report-section|accordion`. Those are different patterns and their counts are not
+comparable — the prescribed check could not have been read against the control beside it. Corrected
+above to the pattern the control was actually measured with. (`data_value_rank\|accordion` returns
+31 on the same file, for anyone reconciling against the old text.)
+
+- [x] **Step 5 (added 2026-08-17): decide what `dev_stage` reads.** DONE 2026-08-17 — Chris
+      re-pointed it at `staging`.
+
+`config/dev_stage/config.toml:3` read `data_branch = "hotfix-geo-names"`, an EHDP-data branch that
+did not receive the export: 26 files, all Title Case, none of the sentence-cased names
+`[verified 2026-08-17: gh api contents listing; all 26 feature-branch names absent]`. Since
+`scripts/dev-server.mjs:27` spawns `dev_stage`, that blocked smoke and both characterization
+harnesses. Chris changed the value to `staging`, which carries the sentence-cased files.
+
+Proof, the same command that failed on the old value:
+
+```
+HUGO_RESOURCEDIR="$TEMP/hugo-res-stage2" npx hugo --environment dev_stage -d "$TEMP/hugo-out-stage2"
+```
+
+`[verified 2026-08-17: exit 0, warns=0, errors=0, 1283 EN pages, 34.4s — against exit 1, warns=5,
+errors=4 on the same command two hours earlier with data_branch = "hotfix-geo-names"]`. That
+before/after pair on one unchanged command is what makes this attributable to the config value
+rather than to anything else that moved.
+
+Content check on the same page Step 4 used: **34**
+`[verified 2026-08-17: grep -c 'zip_code\|report-section\|accordion']`. One above the `production`
+build's 33 — a data difference between the `staging` and `production` EHDP-data branches, not a
+fetch failure. `warns=0` is the direct evidence that every `GetRemote` resolved; the count is
+corroboration and is not expected to match across branches carrying different data.
+
+**Two consequences to carry forward:**
+
+- The NR characterization baseline directory follows the `data_branch` value, so it is
+  `scripts/nr-characterization-baseline/staging/` — which is what A7 Step 4 said before the pin was
+  discovered. Confirm from the harness's own path construction anyway; see that step.
+- Whatever `hotfix-geo-names` was pinned for is not recorded anywhere in this repo, so if that pin
+  had a live purpose it is now silently off. `5acffbf727` is the commit that changed it. Raise it
+  before merging any stage — `config/dev_stage/config.toml` is not in any stage's conflict list, so
+  no task in this plan will surface it again.
+
+---
+
+### Task 0.2: Give the congestion pricing report its library includes
+
+**Files:**
+- Modify: `themes/dohmh/layouts/data-features/congestion-pricing-report.html` (`js_bot` block,
+  immediately before the `$cpShared` resource declarations at line 425)
+- Modify: `scripts/smoke-pages.mjs` (`PAGES`)
+
+**Depends on:** nothing, as of 2026-08-17 — it depended on Task 0.1 only because the verification
+build could not run, and the `--environment production` build now exits 0. Step 3's browser check
+needs a served build; take it from the isolated `production` output, not from a `dev_stage` server.
+**Consumes:** `lib-leaflet.html`, `lib-easybutton-coloricon.html`, `lib-vega.html`, `lib-d3.html`
+— all present on `merge/production`.
+
+The page mounts its own seven JS files and no libraries. It has never had a `lib-*` include
+`[verified 2026-08-16: git log -S 'partial "lib-' on that path returns no commits]`; on
+`production` the blanket block covered it, gated `{{ if or (eq .Kind "page") ... }}`, which a leaf
+bundle satisfies. `assets/js/congestion-pricing-report/` did not exist in the tree at
+`fd416aee7f`, so that commit's sweep was correct when it ran — the gap opened when
+`feature-summer-CP-report` and `feature-headhtml-gating` merged without sharing a file.
+
+Note that `mapLib: true` in the page's front matter is a decoy. `head.html:92` uses it only to load
+a maps.nyc.gov stylesheet, identically on both branches; it has never provisioned Leaflet.
+
+Library needs, derived from the globals the page's own JS actually calls
+`[verified 2026-08-16: per-library grep across assets/js/congestion-pricing-report/]`:
+
+| Library | Calls | Files |
+|---|---|---|
+| `lib-leaflet.html` | 9 × `L.<method>(` — `map`, `tileLayer`, `geoJSON`, `marker`, `icon`, `control`, `circleMarker` | `shared.js`, `map-monitoring.js`, `map-regional.js` |
+| `lib-easybutton-coloricon.html` | 2 × `L.easyButton(` | `map-monitoring.js`, `map-regional.js` |
+| `lib-vega.html` | 3 × `vegaEmbed(` | `shared.js` (2), `sticky-header.js` |
+| `lib-d3.html` | 2 × `d3.csv(` | `map-monitoring.js`, `map-regional.js` |
+
+Arquero, DataTables and uhflist are in no row: `aq.`, `.DataTable(` and `neighborhoods` as an
+identifier all return zero across that directory. `production` served all three to this page from
+the blanket block, so they will appear in a before/after diff of the built page — do not read their
+absence as a regression and do not add them back. `L.colorIcon` is also unused, but
+`lib-easybutton-coloricon.html` is the only partial carrying `easyButton` and ships both; take it
+whole rather than splitting it for one page.
+
+- [ ] **Step 1: Add the four includes.**
+
+In the `js_bot` block, **before** the `$cpShared` resource declarations at line 425 — the report
+modules call these libraries at load, and the block's own comment already states the files run in
+declaration order with no `defer`:
+
+```gotemplate
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-d3.html" . }}
+```
+
+`lib-leaflet.html` must precede `lib-easybutton-coloricon.html`: both easyButton and colorIcon
+extend the global `L`, which that partial's own header comment states.
+
+- [ ] **Step 2: Add the page to the smoke list.**
+
+It is absent from `PAGES`, which is why nothing caught this
+`[verified 2026-08-16: 32 entries, no congestion-pricing URL among them]`. Add it with a comment
+naming the template, matching the file's existing convention:
+
+```javascript
+"data-features/congestion-pricing-report/",      // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
+```
+
+The page's JS guards its own library access, so the failure surfaces as `console.error` rather than
+a throw. Those strings match no `KNOWN_NOISE` entry, so smoke fails on them once the page is listed
+— checked against the four allowlist patterns, none of which mention Leaflet, Vega or D3.
+
+- [ ] **Step 3: Verify in a browser — nothing below it proves this.**
+
+Build, serve the output, load `/data-features/congestion-pricing-report/` and read the globals:
+
+```javascript
+({ L: typeof L, vegaEmbed: typeof vegaEmbed, d3: typeof d3,
+   leafletContainers: document.querySelectorAll('.leaflet-container').length })
+```
+
+Expected after the fix: `L` `"object"`, `vegaEmbed` `"function"`, `d3` `"object"`, and **2**
+`.leaflet-container` elements. Those are the `production` values, measured on the built control
+`[verified 2026-08-16: production build served locally — L=object, vegaEmbed=function, d3=object,
+aq=object, neighborhoods=object, 2 leaflet containers]`.
+
+Before the fix the same probe on `merge/production` returns `undefined` for all three and **0**
+containers, with `Leaflet or D3 is not available for cpReportMap.`, `... for cpRegional.` and
+`TOD Traffic Vega render failed: ReferenceError: vegaEmbed is not defined` on the console
+`[verified 2026-08-16: merge/production build served locally]`. That is the positive control for
+this probe — it is known to distinguish the two states, so a clean reading after the fix means
+something.
 
 ---
 
@@ -540,8 +861,16 @@ the npm forwarding form loses the flag under PowerShell.
 **Read the diff before re-baselining, never instead.** `--baseline` cannot fail — it records
 whatever it finds, including three empty pages if the merge broke rendering.
 
-The harness files baselines per EHDP-data branch and the dev server it spawns is `dev_stage`, so
-this checks against `scripts/nr-characterization-baseline/staging/`.
+The harness files baselines per EHDP-data branch and the dev server it spawns is `dev_stage`, which
+reads `data_branch = "staging"` as of 2026-08-17 (Task 0.1 Step 5) — so this checks against
+`scripts/nr-characterization-baseline/staging/`.
+
+**Confirm that directory from the harness's own path construction before trusting a pass.** The
+name is right only because the config value happens to be `staging`; it tracks `data_branch`, and
+that value was something else earlier the same day. The baseline tree is not present on
+`merge/production`, so this could not be checked from here
+`[verified 2026-08-17: scripts/nr-characterization-baseline/ does not exist on merge/production]`.
+Checking against an empty or wrong baseline directory is a pass that means nothing.
 
 - [ ] **Step 5: Demographics sidebar — the specific thing A3 protects.**
 
@@ -594,8 +923,10 @@ Expected: exit 0.
 
 ## Stage B — `feature-new-data-explorer` ← `production`
 
-21 conflicted files `[verified 2026-08-15: git merge-tree --write-tree --name-only]`. Nine are the
-same shared-infra set as A1; twelve are DE-specific.
+22 conflicted files `[verified 2026-08-16: git merge-tree --write-tree --name-only, re-counted.
+The 2026-08-15 header read 21 and the self-review repeated it, but B1's file list below has always
+had 22 entries — the list was right and the integer was wrong.]` Nine are the same shared-infra set
+as A1; thirteen are DE-specific.
 
 ### Task B1: DE ← `production`
 
@@ -710,8 +1041,9 @@ If the DE branch already includes `lib-arquero.html`, record `c03635c51e` as sup
 
 ## Stage C — `feature-new-data-explorer` ← `merge/production`
 
-36 conflicted files `[verified 2026-08-15: git merge-tree --write-tree --name-only]`, of which 21
-are Stage B's set. The +15: `disparities.js`, `map.js`, `print.js`, `trend.js` (one line each),
+36 conflicted files `[verified 2026-08-16: git merge-tree --write-tree --name-only, re-confirmed]`,
+of which 22 are Stage B's set. The +14 (the 2026-08-15 text said +15, but the list it gives holds
+14): `disparities.js`, `map.js`, `print.js`, `trend.js` (one line each),
 `config/dev_stage/config.toml`, five `data-features` templates (`fvi`, `minimum-wage-with-maps`,
 `rats-in-your-neighborhood`, `realtime`, `rmz`), and four `nr-*` partials.
 
@@ -745,9 +1077,23 @@ Expected: no output. Any line printed is a template including the same library t
 
 - [ ] **Step 3: `config/dev_stage/config.toml`.**
 
-A one-line conflict. Confirm `data_branch = "staging"` survives — the characterization harnesses
-read the served branch to pick a baseline directory, and a wrong value files results against the
-wrong baseline.
+A one-line conflict. **The answer is `data_branch = "staging"`, and it is settled — but read why
+before resolving, because the reasoning is what tells you whether it is still right.**
+
+On 2026-08-16 this file read `data_branch = "hotfix-geo-names"`
+`[verified 2026-08-16: config/dev_stage/config.toml:3]`, and the 2026-08-15 draft's instruction to
+confirm `"staging"` survives would have overwritten that pinned value while looking like a
+correctness check. Chris changed it to `staging` on 2026-08-17 as Task 0.1 Step 5, because
+`hotfix-geo-names` lacks the sentence-cased report filenames and no `dev_stage` build against it
+succeeds. So the value the 2026-08-15 draft would have produced by reflex is the value that is now
+correct, for a reason it did not know.
+
+Resolve to `staging`. If you find any other value on either side, stop — it means something changed
+after 2026-08-17, and Task 0.1 Step 5 is the record to re-read, not this line.
+
+Hold the value deliberately whatever it is: the characterization harnesses file baselines per
+EHDP-data branch, so changing this silently refiles every result against a different baseline
+directory.
 
 ### Task C2: DE gating reconciliation
 
@@ -799,7 +1145,12 @@ that would have caught the NR breakage in Stage A.
 HUGO_RESOURCEDIR="$TEMP/hugo-res-$$" npx hugo --environment production -d "$TEMP/hugo-out-$$"
 ```
 
-Expected: exit 0. The isolation is proven by `resources/` being untouched, not by the page count —
+**The `--environment` here is load-bearing, not incidental.** It selects the `data_branch`, and as
+of 2026-08-17 `production` builds while `dev_stage` does not (Task 0.1 Step 5). Swapping the
+environment to match a harness's expectations without reading that step turns a green build red for
+a reason unrelated to whatever you are testing.
+
+Expected: exit 0 `[verified 2026-08-17 on merge/production: warns=0, errors=0, 1282 EN pages]`. The isolation is proven by `resources/` being untouched, not by the page count —
 a full production build processing 172 images left zero files under `resources/` modified, and the
 server on :8080 served a page 200 immediately after
 `[verified 2026-08-09: project-isolated-hugo-build memory, EH-dataportal store]`.
@@ -842,10 +1193,45 @@ rerere keeps its recordings, so a restart replays what you already resolved in t
 
 ## Self-review
 
-**Spec coverage.** Every conflicted file from both dry-runs is assigned to a task: NR's 22 across
-A1 (9), A2 (9), A3 (1), A5 (2), plus `neighborhood-reports/section.html` in A4 — 22. DE's 21 in
-B1, and the +15 in C1/C2. The two clean-merge breakages have dedicated tasks (A3, A4) and dedicated
-proofs (A7 Steps 3, 4, 5).
+**Spec coverage.** Every conflicted file from all three dry-runs is assigned to a task: NR's 22
+across A1 (9), A2 (9), A3 (1), A5 (2), plus `neighborhood-reports/section.html` in A4 — 22. DE's 22
+in B1, and the +14 in C1/C2 `[all three counts re-derived 2026-08-16]`. The two clean-merge
+breakages have dedicated tasks (A3, A4) and dedicated proofs (A7 Steps 3, 4, 5). The two defects
+already on `merge/production` have Stage 0 and proofs that were measured against a working control
+rather than predicted (0.1 Step 4, 0.2 Step 3).
+
+**What the 2026-08-16 draft got wrong, recorded rather than quietly patched (2026-08-17).** Task
+0.1 Step 4's prescribed command grepped `data_value_rank\|accordion` while the control quoted
+beside it had been measured with `zip_code|report-section|accordion` — two different patterns whose
+counts are not comparable, so the step as written could not have been read against its own control.
+This is the shape the Verification rules name directly: the proof was written when the step was
+planned and never run, and a written-but-unexecuted proof is worse than none because the next
+session follows it. Corrected in place to the pattern the control used; it returns 33, matching.
+
+Two premises in that draft also turned out narrower than stated. "`merge/production` does not
+build" was true of the tree only in combination with a `data_branch`, which the sentence never
+named — so the fix landing on two of three data branches left the claim half-true in a way the
+original phrasing had no room to express. And Task 0.1 Step 2 was called "what unblocks the build"
+when the content fix was; the code change is hardening. Per the sibling-premise rule, the thing
+both share is *which data branch a check reads*, which is why that is now a table in Global
+constraints rather than a sentence inside one task.
+
+**What the 2026-08-15 draft got wrong, recorded rather than quietly patched.** Three of its
+integers were off — Stage B's 21, Stage C's +15, and the self-review repeating both — in every case
+because the summary line was written separately from the file list beside it, and only the summary
+drifted. The `config/dev_stage` step asserted a current value instead of reading one, which turned
+a verification step into an instruction to overwrite. None of these were caught by re-reading the
+plan; they were caught by re-running the commands the plan cites, which is the argument for keeping
+the commands in it.
+
+**What this plan still does not check.** It verifies the branches it merges, not the invariants
+those merges depend on. Findings 3 and 4 were both found by asking a question no task in the
+2026-08-15 draft asked — "does `merge/production` itself build and load its libraries?" Stage 0 now
+covers those two instances. The general check does not exist: C2 Step 2's sweep is the closest
+thing, it runs only on the DE branch, and it reads `partial "lib-` counts rather than comparing
+them against what each page's JS calls. A sweep that derives the requirement from the JS and
+resolves partial includes transitively is what would have caught Finding 4 without being told to
+look — worth building, and out of scope here.
 
 **Placeholder scan.** No "TBD", no "handle edge cases", no "similar to Task N". A6 Step 2 and B1
 Step 2 stop and escalate rather than deferring — both are decisions with consequences outside the
