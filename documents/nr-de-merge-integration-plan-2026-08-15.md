@@ -57,9 +57,17 @@ at now determines whether that build succeeds, and `dev_stage` is still pointed 
    `data-features/congestion-pricing-report.html` has never carried a `lib-*` include — on
    `production` the blanket block supplied Leaflet, easyButton, Vega and D3 to it. Two maps and a
    Vega chart are dead on `merge/production`, and the page is absent from the smoke list, so
-   nothing reports it. Task 0.2.
+   nothing reports it. Task 0.2, **done 2026-08-17**.
+5. **`topiclanding.html` is missing `lib-uhflist.html`, and smoke has been failing on it.** Found
+   2026-08-17 by the first smoke run after Task 0.2 added its page. The template includes
+   `lib-leaflet.html` and calls `partial "nr-leaflet"`, whose line 302 reads the `neighborhoods`
+   global; nothing on the page defines it. `ReferenceError: neighborhoods is not defined` fires
+   twice — once at page scope, once inside `loadList` — so the neighborhood list never populates.
+   This is Finding 4's mechanism on a page that *is* in `PAGES`, which means `npm run smoke` was
+   already red on `merge/production` before this plan's Stage 0 began. Task 0.3, **parked
+   2026-08-17 by decision — the FAIL is expected and recorded, not fixed.**
 
-Findings 3 and 4 share one mechanism worth naming, because it is the same one Finding 1 describes:
+Findings 3, 4 and 5 share one mechanism worth naming, because it is the same one Finding 1 describes:
 two branches changed complementary halves of an invariant without ever touching a common file, so
 the merge was clean and no check owned the result. Nothing in this repo enforces "every page loads
 the libraries it calls" or "every `report_topic` resolves to a file that exists."
@@ -71,13 +79,18 @@ the libraries it calls" or "every `report_topic` resolves to a file that exists.
 **Status as of 2026-08-17: no merge started. Task 0.1 is DONE apart from its optional hardening
 step — the EHDP-data rename landed on `production` and `staging`, `dev_stage` was re-pointed from
 `hotfix-geo-names` to `staging`, and `merge/production` now builds clean under both environments.
-Nothing in this plan is blocked. Task 0.2 is untouched and is the next thing to run.
-`rerere.enabled=true` is set (shared repo config, applies in every worktree).**
+Task 0.2 is DONE and verified in a browser. Running its new smoke entry surfaced Finding 5, a
+pre-existing missing include on `topiclanding.html` that has been failing smoke on this branch all
+along — Task 0.3, **parked by decision on 2026-08-17**: the page is retired by Stage A's A2, so the
+FAIL is recorded as expected rather than fixed. **Stage 0 is therefore closed and Stage A is the
+next thing to run.** Nothing in this plan is blocked. `rerere.enabled=true` is set (shared repo
+config, applies in every worktree).**
 
 | Stage | Task | Status |
 |---|---|---|
 | 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4, 5 DONE 2026-08-17**; Step 2 re-scoped to optional hardening, not started |
-| 0 | 0.2 CP report library includes | Not started — now unblocked (its build dependency was Task 0.1) |
+| 0 | 0.2 CP report library includes | **DONE 2026-08-17** — all 3 steps; browser probe matches the `production` control (L/vegaEmbed/d3 defined, 2 maps drawn, 6 Vega views), page passes smoke |
+| 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production |
 | A | A1 shared-infra conflicts | Not started |
 | A | A2 retired-file modify/deletes | Not started |
 | A | A3 `head.html` — uhflist generator + gating | Not started |
@@ -115,6 +128,18 @@ These apply to every task below.
   shared-infra file byte-identical between the two branches
   `[verified 2026-08-15: git rev-parse of all nine shared-infra paths on both branches]`. Do not
   plan around it replaying anything else.
+- **`npm run smoke` does not currently return zero on `merge/production`**, and three later steps
+  say it should — A7 Step 3, B2 Step 3, C3 Step 6. One page fails, for a defect that predates every
+  merge in this plan: `neighborhood-reports/active_design_physical_activity_and_health/`, two
+  `neighborhoods is not defined`, Finding 5 / Task 0.3
+  `[verified 2026-08-17: node scripts/smoke-pages.mjs — 32 ok, 1 FAIL of 33, exit 1; re-run
+  independently the same day, identical result]`. **Task 0.3 is parked, so this is the standing
+  expectation, not a temporary one:** read those three steps as "no failures other than this one,
+  and this one unchanged". A second failing page, or a different signature on this one, is a merge
+  symptom. The signature to match is the page
+  `neighborhood-reports/active_design_physical_activity_and_health/` and exactly two
+  `neighborhoods is not defined` lines — a count of one or three is a different defect wearing the
+  same words.
 - Resolve conflicts in a scratch worktree first where a task says so. Nothing lands on
   `feature-MOD-Lab-NR-recode-refactor` or `feature-new-data-explorer` until its stage verifies.
 - **Every build-based proof in this document is only as good as the `data_branch` it read.** `hugo`
@@ -355,7 +380,14 @@ absence as a regression and do not add them back. `L.colorIcon` is also unused, 
 `lib-easybutton-coloricon.html` is the only partial carrying `easyButton` and ships both; take it
 whole rather than splitting it for one page.
 
-- [ ] **Step 1: Add the four includes.**
+- [x] **Step 1: Add the four includes.** DONE 2026-08-17.
+
+The usage table above was re-derived rather than trusted
+`[verified 2026-08-17: grep -rncE across assets/js/congestion-pricing-report/ — L.<method>( 9
+(map-monitoring 5, map-regional 2, shared 2), L.easyButton( 2, vegaEmbed( 3, d3.<fn>( 2,
+.DataTable( 0, aq. 0]`. The three `neighborhoods` hits in `shared.js` are the English word inside
+report copy strings (lines 28, 41, 63), not the global — so the "no uhflist" row holds, and a
+count-only grep would have read them as a fifth library need.
 
 In the `js_bot` block, **before** the `$cpShared` resource declarations at line 425 — the report
 modules call these libraries at load, and the block's own comment already states the files run in
@@ -371,7 +403,8 @@ declaration order with no `defer`:
 `lib-leaflet.html` must precede `lib-easybutton-coloricon.html`: both easyButton and colorIcon
 extend the global `L`, which that partial's own header comment states.
 
-- [ ] **Step 2: Add the page to the smoke list.**
+- [x] **Step 2: Add the page to the smoke list.** DONE 2026-08-17, at
+      `scripts/smoke-pages.mjs:43`, after the `rats-in-your-neighborhood` entry.
 
 It is absent from `PAGES`, which is why nothing caught this
 `[verified 2026-08-16: 32 entries, no congestion-pricing URL among them]`. Add it with a comment
@@ -385,7 +418,16 @@ The page's JS guards its own library access, so the failure surfaces as `console
 a throw. Those strings match no `KNOWN_NOISE` entry, so smoke fails on them once the page is listed
 — checked against the four allowlist patterns, none of which mention Leaflet, Vega or D3.
 
-- [ ] **Step 3: Verify in a browser — nothing below it proves this.**
+**That prediction was never observed, because Step 1 landed before Step 2.** The entry has only ever
+been run against the fixed page, where it passes
+`[verified 2026-08-17: node scripts/smoke-pages.mjs — "ok  data-features/congestion-pricing-report/"
+at line 19 of the log]`. The instrument is not unvalidated, though: the same run failed a *different*
+page on the same class of defect (Finding 5 below), and the browser probe in Step 3 returned
+`undefined` there for the global that page is missing — so both checks are known to be able to fire
+on this branch, from an instance neither was written against.
+
+- [x] **Step 3: Verify in a browser — nothing below it proves this.** DONE 2026-08-17, all six
+      readings match the `production` control.
 
 Build, serve the output, load `/data-features/congestion-pricing-report/` and read the globals:
 
@@ -405,6 +447,96 @@ containers, with `Leaflet or D3 is not available for cpReportMap.`, `... for cpR
 `[verified 2026-08-16: merge/production build served locally]`. That is the positive control for
 this probe — it is known to distinguish the two states, so a clean reading after the fix means
 something.
+
+**Result 2026-08-17: `L` `"object"`, `vegaEmbed` `"function"`, `d3` `"object"`, 2
+`.leaflet-container`** — the four values the control predicts — plus `L.easyButton` `"function"` and
+`L.ColorIcon` `"function"`, which the probe was extended to read because
+`lib-easybutton-coloricon.html` is the one include whose absence Leaflet itself would not reveal.
+The libraries are not merely parsed but used: both maps drew (`cpReportMap` and `cpRegional`, the
+same two ids the failure messages name, 15 tiles between them), 6 `.vega-embed` nodes each hold a
+rendered `canvas`/`svg`, and 2 `.easy-button-container` elements exist
+`[verified 2026-08-17: Playwright evaluate against the isolated production build served statically]`.
+
+Method, because it differs from the one the Commands appendix describes and the difference matters:
+the build went to `<scratch>/cp-serve/IndicatorPublic` and was served by `python3 -m http.server`
+rather than by Hugo. `baseURL` carries the `/IndicatorPublic/` path prefix and `relativeURLs` is
+`false`, so every asset href is site-absolute — serving the output at a server root would 404 every
+one of them and look exactly like the breakage under test. A plain file server is also not a Hugo
+builder, so it cannot poison `resources/_gen`; nothing was listening on :8080 or :1313 at the time
+`[verified 2026-08-17: netstat before the build]`.
+
+The build behind it: `[verified 2026-08-17: HUGO_RESOURCEDIR=<scratch>/hugo-res-cp npx hugo
+--environment production -d <scratch>/cp-serve/IndicatorPublic — exit 0, 1282 EN pages, 30.3s,
+0 ERROR lines, 1 WARN line]`. That single WARN is `dev environment: production`, present on every
+build of this branch and unrelated to resources — worth naming rather than reporting `warns=0`,
+since the earlier entries in this plan use a warn count as the evidence that `GetRemote` resolved.
+
+Three console errors remain on the page and are not regressions: two 404s for
+`pagefind/pagefind-ui.{css,js}` and the `PagefindUI is not defined` they cause. Pagefind's index is
+a post-build step that neither `hugo` nor `hugo server` runs, so these appear on every page under
+every local check; all three match the site-wide `pagefind` / `Failed to load resource` entries in
+`KNOWN_NOISE`.
+
+---
+
+### Task 0.3: `topiclanding.html` — missing `lib-uhflist.html` (PARKED)
+
+**Files:**
+- Would modify: `themes/dohmh/layouts/neighborhood-reports/topiclanding.html` (one line, beside the
+  existing `lib-leaflet.html` include at line 18)
+
+**Depends on:** nothing.
+**Blocks:** nothing mechanically — but it is why `npm run smoke` does not currently reach zero on
+this branch, so A7 Step 3, B2 Step 3 and C3 Step 6 will each read one pre-existing FAIL unless it is
+resolved first. **Do not read that FAIL as a merge symptom**; it is the same signature-recognition
+point the `data_branch` table makes for red builds.
+
+**PARKED 2026-08-17 — Chris chose option 2 below.** The one-line fix is obvious; whether it should
+be made was not, because Stage A `git rm`s this exact file (A2) — so on the NR branch the fix is
+discarded, while on the DE branch it would be inherited and ship. The call was to spend nothing on
+a page Stage A retires, and to carry the FAIL as a known signature instead.
+
+**What unparks it:** Stage A being abandoned or deferred indefinitely, or `topiclanding.html`
+otherwise surviving into `production`. Either makes a live page's broken neighborhood matching
+permanent rather than temporary, and the one-line fix becomes worth making.
+
+**The cost accepted, stated so it is not rediscovered as a surprise:** `npm run smoke` exits 1 on
+this branch until Stage A lands, so every later smoke step reads a red suite and must distinguish
+this failure from a new one by signature rather than by exit code.
+
+Evidence, gathered 2026-08-17:
+
+- The template carries exactly one `lib-*` include, `lib-leaflet.html` at line 18, and calls
+  `partial "nr-leaflet"` at line 19. `nr-leaflet.html:302` runs `neighborhoods.find(...)`. Its
+  line 301 comment still says the global "is a variable set in uhflist.js" — the file A3 Step 3
+  already flags for a comment fix.
+- Pre-existing, not introduced by Task 0.2: at `HEAD` the template had the same single include
+  `[verified 2026-08-17: git show HEAD:…/topiclanding.html | grep -c 'partial "lib-' returns 1]`,
+  and the built page contains no `uhflist` reference at all
+  `[verified 2026-08-17: grep -c uhflist on the built production page returns 0]`. Task 0.2's diff
+  is two files, neither in this page's render path.
+- Runtime, on the same statically-served production build Task 0.2 Step 3 used, so it is not an
+  artifact of the `dev_stage` server: `L` `"object"`, `neighborhoods` `"undefined"`, 1
+  `.leaflet-container` drawing 6 tiles, and the two `ReferenceError`s above
+  `[verified 2026-08-17: Playwright evaluate + console read]`. The map renders; only the
+  neighborhood-name matching is dead — which is why nothing surfaced this from looking at the page.
+
+Three ways to close it were offered:
+
+1. **Add the include here.** One line, ships the fix to the DE branch through Stage C, discarded by
+   A2 on the NR branch. Would turn smoke green on `merge/production` now.
+2. **Leave it and record the expected FAIL**, on the argument that the page is retired by the NR
+   work anyway. Costs a red guardrail until Stage A reaches production, which is the condition
+   under which a real failure hides in a familiar one. **← chosen 2026-08-17.**
+3. **Remove the entry from `PAGES`** — rejected rather than offered neutrally: it deletes the only
+   thing that reports the defect, on a page that is still live.
+
+- [x] **Step 1: decide.** DONE 2026-08-17 — option 2. No code change; the expectation is recorded
+      in Global constraints and in the ledger row, with the exact signature to match.
+
+**If this is ever unparked, the fix and its proof:** add `{{- partial "lib-uhflist.html" . }}`
+after `topiclanding.html:18`, then `node scripts/smoke-pages.mjs` — expected 33 `ok`, zero `FAIL`,
+exit 0, against the 32/1/exit-1 measured twice on 2026-08-17.
 
 ---
 
@@ -1240,6 +1372,14 @@ thing, it runs only on the DE branch, and it reads `partial "lib-` counts rather
 them against what each page's JS calls. A sweep that derives the requirement from the JS and
 resolves partial includes transitively is what would have caught Finding 4 without being told to
 look — worth building, and out of scope here.
+
+**Finding 5 (2026-08-17) is the second instance and moves that from "worth building" to a known
+count: two pages, found one at a time, each by a check aimed at something else.** It also narrows
+what such a sweep must do. `topiclanding.html` does not call `neighborhoods` itself — a template
+that includes `partial "nr-leaflet"` inherits that requirement from the partial's line 302, so a
+sweep reading only each template's own JS would have passed it. Finding 5 was caught instead by
+running the existing smoke suite, which had been failing on it unnoticed; the cheapest real
+improvement may be reading smoke's exit code rather than its per-page lines, not new tooling.
 
 **Placeholder scan.** No "TBD", no "handle edge cases", no "similar to Task N". A6 Step 2 and B1
 Step 2 stop and escalate rather than deferring — both are decisions with consequences outside the
