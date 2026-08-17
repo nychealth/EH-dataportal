@@ -91,7 +91,7 @@ config, applies in every worktree).**
 | 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4, 5 DONE 2026-08-17**; Step 2 re-scoped to optional hardening, not started |
 | 0 | 0.2 CP report library includes | **DONE 2026-08-17** — all 3 steps; browser probe matches the `production` control (L/vegaEmbed/d3 defined, 2 maps drawn, 6 Vega views), page passes smoke |
 | 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production |
-| A | A1 shared-infra conflicts | Not started |
+| A | A1 shared-infra conflicts | **Steps 1, 2, 3, 5 DONE 2026-08-17** (+ this document, the unlisted 23rd conflict); Step 4 — `CLAUDE.md`, `js-conventions.md`, `.claude/settings.json`, `.gitignore` — not started |
 | A | A2 retired-file modify/deletes | Not started |
 | A | A3 `head.html` — uhflist generator + gating | Not started |
 | A | A4 `lib-*` includes for the four NR templates | Not started |
@@ -542,15 +542,32 @@ exit 0, against the 32/1/exit-1 measured twice on 2026-08-17.
 
 ## Stage A — `feature-MOD-Lab-NR-recode-refactor` ← `merge/production`
 
-22 conflicted files `[verified 2026-08-15: git merge-tree --write-tree --name-only]`. Start the
-merge once, then work the tasks in order against the conflicted tree.
+**23 conflicted files, not the 22 this section carried until 2026-08-17**
+`[verified 2026-08-17: git merge-tree --write-tree --name-only, re-derived against merge/production
+at 7ebd567eb8]`. The extra is **this plan document**, which the NR branch also carries — copied
+there by `fb5b89df64`, and diverged since, because Stage 0's records were written on
+`merge/production` only. It is an add/add conflict and belongs to A1; resolve it first, before
+anything else in the stage, since it is the ledger the rest of the stage writes into. Take
+`merge/production`'s copy whole (`git checkout --theirs`): it is the maintained one, and the NR
+branch's is a snapshot taken before Stage 0 existed.
+
+The other 22 are as the task lists describe them. The count was re-derived rather than trusted
+because `merge/production` has moved three commits since 2026-08-15; none of the three added a
+conflict, and the 23rd was present all along and simply unlisted.
+
+**The `git switch` in the 2026-08-15 draft does not work in this repo and was never run.**
+`feature-MOD-Lab-NR-recode-refactor` is checked out in a linked worktree, so the primary tree
+refuses `[verified 2026-08-17: fatal: 'feature-MOD-Lab-NR-recode-refactor' is already used by
+worktree at …EH-dataportal.worktrees/feature-MOD-Lab-NR-recode-refactor]`. Work in that worktree
+instead — which is better anyway, since it leaves `merge/production` checked out in the primary
+tree for the isolated builds and for reading this document while the merge sits conflicted:
 
 ```
-git switch feature-MOD-Lab-NR-recode-refactor
+cd ../EH-dataportal.worktrees/feature-MOD-Lab-NR-recode-refactor
 git merge --no-commit --no-ff merge/production
 ```
 
-Expect it to stop with 22 conflicts. Do not `git merge --abort` between tasks — the tasks share
+Expect it to stop with 23 conflicts. Do not `git merge --abort` between tasks — the tasks share
 one conflicted working tree.
 
 ### Task A1: Shared-infrastructure conflicts
@@ -560,6 +577,8 @@ one conflicted working tree.
 - Modify: `.gitignore` (content)
 - Modify: `CLAUDE.md` (add/add)
 - Modify: `documents/js-conventions.md` (add/add)
+- Modify: `documents/nr-de-merge-integration-plan-2026-08-15.md` (add/add — this document; take
+  `merge/production`'s copy, resolve first, see the stage header)
 - Modify: `documents/site-wide-audit-2026-06-27.md` (add/add)
 - Modify: `package.json` (content)
 - Modify: `package-lock.json` (content)
@@ -570,6 +589,38 @@ one conflicted working tree.
 **Leaves for:** A7, which runs `npm run smoke` and `npm run lint` — both read `package.json`'s
 script block and `eslint.config.mjs`'s file arguments, so the merged `package.json` must retain
 every `scripts` entry from both sides.
+
+> **Progress 2026-08-17: Steps 1, 2, 3 and 5 done and staged; Step 4 (the four prose/config files)
+> not started.** The merge is live in the worktree — 18 conflicts remain, 5 resolved (this document,
+> `package.json`, `package-lock.json`, `documents/site-wide-audit-2026-06-27.md`,
+> `scripts/smoke-pages.mjs`). Two things came up that the step text did not predict:
+>
+> **`package.json` is not only a `scripts` union — `merge/production` carries two
+> `devDependencies` keys.** One at line 18 holding `playwright ^1.62.0`, one at line 55 holding
+> axe-core, eslint, globals and `playwright ^1.61.1`. JSON keeps the last, so the first has been
+> dead since `e81913e8d9` added it `[verified 2026-08-17: node -e require('./package.json') on
+> merge/production reports only the line-55 block]`. The resolution emits exactly one block, the
+> line-55 one, so nothing about what npm installs changes. **The `^1.62.0` bump has therefore never
+> taken effect on any branch, and reviving it is a decision, not a merge resolution — flagged for
+> Chris rather than taken.** Installed today is playwright 1.62.1, which satisfies either range.
+>
+> **Three of the NR branch's `KNOWN_NOISE` entries were dropped, deliberately.** The merged file is
+> `merge/production`'s copy with only the three NR report URLs relabelled to the Option D templates
+> `[verified 2026-08-17: diff against merge/production's blob shows exactly those lines; 33 PAGES,
+> 4 KNOWN_NOISE, node --check clean]`. The NR branch additionally excused the housing Datawrapper
+> negative-SVG signature, `rats-in-your-neighborhood`'s `area.contains`, and `aq is not defined` on
+> `/data-explorer/` (§5b, §5c, §5f). All three pages are in `merge/production`'s own `PAGES` and all
+> three passed there with no entry excusing them
+> `[verified 2026-08-17: the 32-ok smoke log — "ok data-explorer/", "ok data-stories/housing/",
+> "ok data-features/rats-in-your-neighborhood/"]`, and §5f is what production's `c03635c51e`
+> fixed. Since those pages render from `merge/production`'s templates after this merge, carrying
+> the entries forward would leave three dead exemptions hiding future regressions. **If A7 Step 3
+> fails on any of those three, re-add that one entry — do not re-add all three.**
+>
+> The topic-index row is where Task 0.3 lands: `neighborhood-reports/active_design_physical_
+> activity_and_health/` stays in `PAGES` but is rendered by `nr-topic-index.html` here, since A2
+> retires `topiclanding.html`. That is the URL currently failing smoke on `merge/production`, so on
+> this branch it should go **green** — and if it does not, A4's includes are wrong, not Task 0.3.
 
 - [ ] **Step 1: Union the two `scripts` blocks in `package.json`.**
 
