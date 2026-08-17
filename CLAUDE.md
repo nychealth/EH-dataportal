@@ -53,8 +53,9 @@ Two things to know before trusting a result:
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
-### Two ways a local check silently lies
+### Three ways a local check silently lies
 
+- **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
 - **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages.
 - **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
 
@@ -187,3 +188,4 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 - **Missing images fail the build.** Hugo resizes images at build time; a missing source aborts the build.
 - **Build caching.** Remote EHDP-data resources are cached. If a data update isn't appearing, set `maxAge = 0` for the relevant cache in config, or add the `--ignoreCache` switch to the `hugo` call.
 - **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
+- **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.
