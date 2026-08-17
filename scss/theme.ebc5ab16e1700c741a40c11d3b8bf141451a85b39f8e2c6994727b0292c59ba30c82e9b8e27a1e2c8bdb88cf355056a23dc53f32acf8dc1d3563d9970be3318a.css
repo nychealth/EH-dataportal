@@ -56,6 +56,10 @@ In this file:
 // P. Figures
 
 */
+/* $primary as *text* fails WCAG AA on the near-white greens it is usually set against —
+   4.24:1 on #EFFAF4 and 4.37:1 on $light-green. This is the same green darkened until it
+   clears 4.5:1 on both (5.13:1 and 5.29:1). For text and its inverse only; $primary stays
+   the brand colour for fills, borders and map geometry. */
 /*
 
 In this file:
@@ -9810,6 +9814,30 @@ table .group td {
   table .group td:hover {
     cursor: pointer; }
 
+.comp-good,
+.comp-bad,
+.comp-null {
+  font-weight: 700; }
+
+.comp-good {
+  color: #21883f; }
+
+.comp-bad {
+  color: #7a5c00; }
+
+.comp-good::before,
+.comp-bad::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  padding-right: 0.3em; }
+
+.comp-good::before {
+  content: "\f14a"; }
+
+.comp-bad::before {
+  content: "\f071";
+  color: #ffc107; }
+
 .print-only {
   display: none !important; }
 
@@ -9900,11 +9928,14 @@ table .group td {
   padding-left: 20px;
   padding-right: 20px; }
 
+/* $primary is only 4.24:1 on this background and fails WCAG AA for the 14px bold button text.
+   $primary-dark measures 5.13:1 here, and 5.49:1 for the white-on-green hover state — which
+   $primary itself only cleared at 4.53:1. */
 .btn-light-green-bg {
   background-color: #EFFAF4;
-  color: #008939; }
+  color: #007a31; }
   .btn-light-green-bg:hover {
-    background-color: #008939;
+    background-color: #007a31;
     color: white; }
 
 .nr-flexdatalist {
@@ -10369,9 +10400,9 @@ p.report-description {
   background-color: #F8FCF7;
   border: 1px solid #008939;
   border-radius: 2px;
-  color: #008939; }
+  color: #007a31; }
   .btn-report:hover {
-    background-color: #008939;
+    background-color: #007a31;
     color: #F8FCF7; }
 
 h2.report-info {
@@ -10481,10 +10512,11 @@ h2.report-info {
   border-radius: 8px;
   display: block;
   text-align: center;
-  font-size: 1.125rem; }
+  font-size: 0.9rem;
+  width: 80px; }
   @media (min-width: 720px) {
     .better, .middle, .worse {
-      width: 78px;
+      width: 80px;
       display: inline-block; } }
 @media print {
   .better, .middle, .worse {
@@ -10493,18 +10525,26 @@ h2.report-info {
     text-align: left;
     color: black; } }
 
-.better-sm, .middle-sm, .worse-sm {
-  display: inline-block;
-  font-size: inherit !important; }
-
 .worse {
-  background-color: #F2CDD7; }
+  background-color: #FFE69B; }
 
 .middle {
   background-color: #F2EDDD; }
 
 .better {
-  background-color: #D1F0C8; }
+  background-color: #C4F2CF; }
+
+.worse::before,
+.better::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  padding-right: 0.3em; }
+
+.worse::before {
+  content: "\f071"; }
+
+.better::before {
+  content: "\f14a"; }
 
 .comparison {
   font-weight: 600;
@@ -10526,6 +10566,15 @@ h2.report-info {
       font-size: 12px; }
   .my-5.p-no-margin {
     margin-top: 0 !important; } }
+
+@media print {
+  .report-section .btn[data-toggle="collapse"] {
+    border: none;
+    background: none;
+    padding: 8px 0; }
+  .report-section .collapse,
+  .report-section .collapsing {
+    display: none !important; } }
 
 .report-modal .modal-header {
   background-color: #008939;

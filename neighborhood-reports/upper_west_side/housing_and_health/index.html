@@ -71,7 +71,7 @@
 <meta name="twitter:creator" content="@nycHealthy">
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.cb746d12ff9da35c3a5158130619f7cdb69841ac898305462b1729cf439ced105f17b864a9e8f25bad246a6ad3c9b164ac0cfb31ee03361cd344a494c72b353b.css" integrity="sha512-y3RtEv&#43;do1w6UVgTBhn3zbaYQayJgwVGKxcpz0Oc7RBfF7hkqejyW60kamrTybFkrAz7Me4DNhzTRKSUxys1Ow==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.ebc5ab16e1700c741a40c11d3b8bf141451a85b39f8e2c6994727b0292c59ba30c82e9b8e27a1e2c8bdb88cf355056a23dc53f32acf8dc1d3563d9970be3318a.css" integrity="sha512-68WrFuFwDHQaQMEdO4vxQUUahbOfjixplHJ7ApLFm6MMgum44noeLIvbiM81UFaiPcU/Mqz43B01Y9mXC&#43;Mxig==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.7bffeead9d7ff2c7.js" integrity="sha512-82fs/ltAJzEZhVokTuXByj29e5hwgiHtObtyA9WdVVAW&#43;22LOx4Tnw9r3peJklc&#43;FniFTaG5s5UiSRCXIw/HCQ=="></script>
     <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
@@ -493,29 +493,7 @@
         text-decoration: none;
     }
 
-    .comp-good::before {
-    content: "✅ ";
-    }
-
-    .better-sm::before {
-    content: "✅ ";
-    }
-
-    .comp-bad::before {
-    content: "‼️ ";
-    }
-
-    .worse-sm::before {
-    content: "‼️ ";
-    }
-
-    .comp-null::before {
-    content: "⚪ ";
-    }
-
-    .middle-sm::before {
-    content: "⚪ ";
-    }
+     
 
     .no-bullets li {
         list-style:none;
@@ -1171,11 +1149,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >0.3*</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Age-adjusted rate per 100,000</span
             >
           </div>
@@ -1202,7 +1180,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 0.3*
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1213,12 +1191,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -1263,19 +1238,23 @@
                 Heat hospitalizations in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-heat-hospitalizations"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-heat-hospitalizations">boro val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(0.9 per 100,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-heat-hospitalizations"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-heat-hospitalizations">city val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(1.6 per 100,000)</span>
                   </p>
 
                     </div>
@@ -1315,70 +1294,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2016-12-31`, `year-heat-hospitalizations`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-heat-hospitalizations').innerHTML = b;
-    document.getElementById('cv-heat-hospitalizations').innerHTML = c;
-
-
-})(
-     0.3 ,
-     0.9 ,
-     1.6 ,
-    'n-heat-hospitalizations',
-    'b-heat-hospitalizations',
-    'c-heat-hospitalizations',
-     false 
-)
-
-
 </script>
 
 
@@ -1453,11 +1368,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >6.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Rate (5&#43; mcg/dL) per 1,000 tested</span
             >
           </div>
@@ -1484,7 +1399,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 6.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1495,12 +1410,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -1545,19 +1457,23 @@
                 Child lead poisoning in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-child-lead-poisoning"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-child-lead-poisoning">boro val</span> per 1,000 tested)</span>
+                    <span class="fs-sm pl-3">(9.1 per 1,000 tested)</span>
                   </p>
 
                   <p>
-                    <span id="c-child-lead-poisoning"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-child-lead-poisoning">city val</span> per 1,000 tested)</span>
+                    <span class="fs-sm pl-3">(11.4 per 1,000 tested)</span>
                   </p>
 
                     </div>
@@ -1597,70 +1513,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2024-12-31`, `year-child-lead-poisoning`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-child-lead-poisoning').innerHTML = b;
-    document.getElementById('cv-child-lead-poisoning').innerHTML = c;
-
-
-})(
-     6 ,
-     9.1 ,
-     11.4 ,
-    'n-child-lead-poisoning',
-    'b-child-lead-poisoning',
-    'c-child-lead-poisoning',
-     false 
-)
-
-
 </script>
 
 
@@ -1735,11 +1587,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >8.1</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Estimated annual rate per 10,000</span
             >
           </div>
@@ -1766,7 +1618,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 8.1
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1777,12 +1629,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -1827,19 +1676,23 @@
                 Asthma hospitalizations (age 5 to 17) in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-asthma-hospitalizations-age-5-to-17"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-age-5-to-17">boro val</span> per 10,000)</span>
+                    <span class="fs-sm pl-3">(25.5 per 10,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-asthma-hospitalizations-age-5-to-17"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-age-5-to-17">city val</span> per 10,000)</span>
+                    <span class="fs-sm pl-3">(21.8 per 10,000)</span>
                   </p>
 
                     </div>
@@ -1879,70 +1732,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2023-12-31`, `year-asthma-hospitalizations-age-5-to-17`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-asthma-hospitalizations-age-5-to-17').innerHTML = b;
-    document.getElementById('cv-asthma-hospitalizations-age-5-to-17').innerHTML = c;
-
-
-})(
-     8.1 ,
-     25.5 ,
-     21.8 ,
-    'n-asthma-hospitalizations-age-5-to-17',
-    'b-asthma-hospitalizations-age-5-to-17',
-    'c-asthma-hospitalizations-age-5-to-17',
-     false 
-)
-
-
 </script>
 
 
@@ -2017,11 +1806,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >4.2</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Age-adjusted rate per 10,000</span
             >
           </div>
@@ -2048,7 +1837,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 4.2
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2059,12 +1848,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -2109,19 +1895,23 @@
                 Asthma hospitalizations (adults) in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-asthma-hospitalizations-adults"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-asthma-hospitalizations-adults">boro val</span> per 10,000)</span>
+                    <span class="fs-sm pl-3">(5.4 per 10,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-asthma-hospitalizations-adults"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-asthma-hospitalizations-adults">city val</span> per 10,000)</span>
+                    <span class="fs-sm pl-3">(8 per 10,000)</span>
                   </p>
 
                     </div>
@@ -2161,70 +1951,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2023-12-31`, `year-asthma-hospitalizations-adults`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-asthma-hospitalizations-adults').innerHTML = b;
-    document.getElementById('cv-asthma-hospitalizations-adults').innerHTML = c;
-
-
-})(
-     4.2 ,
-     5.4 ,
-     8 ,
-    'n-asthma-hospitalizations-adults',
-    'b-asthma-hospitalizations-adults',
-    'c-asthma-hospitalizations-adults',
-     false 
-)
-
-
 </script>
 
 
@@ -2321,11 +2047,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >14.1</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -2351,7 +2077,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 14.1
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2362,12 +2088,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2412,19 +2135,23 @@
                 Cracks in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-cracks"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-cracks">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(12.3%)</span>
                   </p>
 
                   <p>
-                    <span id="c-cracks"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-cracks">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(12.3%)</span>
                   </p>
 
                     </div>
@@ -2464,70 +2191,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-cracks`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-cracks').innerHTML = b;
-    document.getElementById('cv-cracks').innerHTML = c;
-
-
-})(
-     14.1 ,
-     12.3 ,
-     12.3 ,
-    'n-cracks',
-    'b-cracks',
-    'c-cracks',
-     false 
-)
-
-
 </script>
 
 
@@ -2602,11 +2265,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >14.9</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -2632,7 +2295,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 14.9
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2643,12 +2306,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2693,19 +2353,23 @@
                 Leaks in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-leaks"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-leaks">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(14.4%)</span>
                   </p>
 
                   <p>
-                    <span id="c-leaks"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-leaks">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(13.4%)</span>
                   </p>
 
                     </div>
@@ -2745,70 +2409,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-leaks`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-leaks').innerHTML = b;
-    document.getElementById('cv-leaks').innerHTML = c;
-
-
-})(
-     14.9 ,
-     14.4 ,
-     13.4 ,
-    'n-leaks',
-    'b-leaks',
-    'c-leaks',
-     false 
-)
-
-
 </script>
 
 
@@ -2883,11 +2483,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >14.3</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -2913,7 +2513,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 14.3
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2924,12 +2524,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2974,19 +2571,23 @@
                 Supplemental heat in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-supplemental-heat"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-supplemental-heat">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(12.8%)</span>
                   </p>
 
                   <p>
-                    <span id="c-supplemental-heat"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-supplemental-heat">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(13.3%)</span>
                   </p>
 
                     </div>
@@ -3026,70 +2627,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-supplemental-heat`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-supplemental-heat').innerHTML = b;
-    document.getElementById('cv-supplemental-heat').innerHTML = c;
-
-
-})(
-     14.3 ,
-     12.8 ,
-     13.3 ,
-    'n-supplemental-heat',
-    'b-supplemental-heat',
-    'c-supplemental-heat',
-     false 
-)
-
-
 </script>
 
 
@@ -3164,11 +2701,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >2.0*</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Average annual rate per 10,000 buildings</span
             >
           </div>
@@ -3194,7 +2731,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 2.0*
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3205,12 +2742,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -3255,19 +2789,23 @@
                 Carbon monoxide in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-carbon-monoxide"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-carbon-monoxide">boro val</span> per 10,000 buildings)</span>
+                    <span class="fs-sm pl-3">(6.4 per 10,000 buildings)</span>
                   </p>
 
                   <p>
-                    <span id="c-carbon-monoxide"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-carbon-monoxide">city val</span> per 10,000 buildings)</span>
+                    <span class="fs-sm pl-3">(0.9 per 10,000 buildings)</span>
                   </p>
 
                     </div>
@@ -3307,70 +2845,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2016-12-31`, `year-carbon-monoxide`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-carbon-monoxide').innerHTML = b;
-    document.getElementById('cv-carbon-monoxide').innerHTML = c;
-
-
-})(
-     2 ,
-     6.4 ,
-     0.9 ,
-    'n-carbon-monoxide',
-    'b-carbon-monoxide',
-    'c-carbon-monoxide',
-     false 
-)
-
-
 </script>
 
 
@@ -3445,11 +2919,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >91.7</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent (with AC) </span
             >
           </div>
@@ -3475,7 +2949,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 91.7
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3486,12 +2960,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -3536,19 +3007,23 @@
                 Households with AC in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-households-with-ac"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-households-with-ac">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(92.6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-households-with-ac"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-households-with-ac">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(91%)</span>
                   </p>
 
                     </div>
@@ -3588,70 +3063,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-households-with-ac`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-households-with-ac').innerHTML = b;
-    document.getElementById('cv-households-with-ac').innerHTML = c;
-
-
-})(
-     91.7 ,
-     92.6 ,
-     91 ,
-    'n-households-with-ac',
-    'b-households-with-ac',
-    'c-households-with-ac',
-     true 
-)
-
-
 </script>
 
 
@@ -3726,11 +3137,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >52.9</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -3756,7 +3167,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 52.9
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3767,12 +3178,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -3817,19 +3225,23 @@
                 Housing problems in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-housing-problems"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-housing-problems">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(56.6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-housing-problems"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-housing-problems">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(61.5%)</span>
                   </p>
 
                     </div>
@@ -3869,70 +3281,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-housing-problems`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-housing-problems').innerHTML = b;
-    document.getElementById('cv-housing-problems').innerHTML = c;
-
-
-})(
-     52.9 ,
-     56.6 ,
-     61.5 ,
-    'n-housing-problems',
-    'b-housing-problems',
-    'c-housing-problems',
-     false 
-)
-
-
 </script>
 
 
@@ -4007,11 +3355,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >5.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4038,7 +3386,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 5.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4049,12 +3397,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Higher than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-bad">Higher</span> than most neighborhoods
             </div>
 
           </div>
@@ -4099,19 +3444,23 @@
                 Peeling paint in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="worse-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                    <span class="comp-bad">Higher</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-peeling-paint"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-peeling-paint">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(4.7%)</span>
                   </p>
 
                   <p>
-                    <span id="c-peeling-paint"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-peeling-paint">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(3.9%)</span>
                   </p>
 
                     </div>
@@ -4151,70 +3500,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-peeling-paint`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-peeling-paint').innerHTML = b;
-    document.getElementById('cv-peeling-paint').innerHTML = c;
-
-
-})(
-     5 ,
-     4.7 ,
-     3.9 ,
-    'n-peeling-paint',
-    'b-peeling-paint',
-    'c-peeling-paint',
-     false 
-)
-
-
 </script>
 
 
@@ -4311,11 +3596,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >15.4</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4341,7 +3626,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 15.4
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4352,12 +3637,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -4402,19 +3684,23 @@
                 Mice or rats (in the building) in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-mice-or-rats-in-the-building"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-mice-or-rats-in-the-building">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(15.7%)</span>
                   </p>
 
                   <p>
-                    <span id="c-mice-or-rats-in-the-building"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-mice-or-rats-in-the-building">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(18.8%)</span>
                   </p>
 
                     </div>
@@ -4454,70 +3740,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-mice-or-rats-in-the-building`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-mice-or-rats-in-the-building').innerHTML = b;
-    document.getElementById('cv-mice-or-rats-in-the-building').innerHTML = c;
-
-
-})(
-     15.4 ,
-     15.7 ,
-     18.8 ,
-    'n-mice-or-rats-in-the-building',
-    'b-mice-or-rats-in-the-building',
-    'c-mice-or-rats-in-the-building',
-     false 
-)
-
-
 </script>
 
 
@@ -4592,11 +3814,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >17.5</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4622,7 +3844,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 17.5
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4633,12 +3855,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -4683,19 +3902,23 @@
                 Cockroaches in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-cockroaches"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-cockroaches">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(20%)</span>
                   </p>
 
                   <p>
-                    <span id="c-cockroaches"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-cockroaches">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(24.1%)</span>
                   </p>
 
                     </div>
@@ -4735,70 +3958,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-cockroaches`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-cockroaches').innerHTML = b;
-    document.getElementById('cv-cockroaches').innerHTML = c;
-
-
-})(
-     17.5 ,
-     20 ,
-     24.1 ,
-    'n-cockroaches',
-    'b-cockroaches',
-    'c-cockroaches',
-     false 
-)
-
-
 </script>
 
 
@@ -4895,11 +4054,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >3.9</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4926,7 +4085,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 3.9
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4937,12 +4096,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -4987,19 +4143,23 @@
                 Crowding in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-crowding"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-crowding">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(5.2%)</span>
                   </p>
 
                   <p>
-                    <span id="c-crowding"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-crowding">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(9.1%)</span>
                   </p>
 
                     </div>
@@ -5039,70 +4199,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2023-12-31`, `year-crowding`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-crowding').innerHTML = b;
-    document.getElementById('cv-crowding').innerHTML = c;
-
-
-})(
-     3.9 ,
-     5.2 ,
-     9.1 ,
-    'n-crowding',
-    'b-crowding',
-    'c-crowding',
-     false 
-)
-
-
 </script>
 
 
@@ -5177,11 +4273,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >10.9</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -5208,7 +4304,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 10.9
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -5219,12 +4315,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -5269,19 +4362,23 @@
                 Child poverty in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-child-poverty"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-child-poverty">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(17.2%)</span>
                   </p>
 
                   <p>
-                    <span id="c-child-poverty"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-child-poverty">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(22.5%)</span>
                   </p>
 
                     </div>
@@ -5321,70 +4418,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2021-12-31`, `year-child-poverty`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-child-poverty').innerHTML = b;
-    document.getElementById('cv-child-poverty').innerHTML = c;
-
-
-})(
-     10.9 ,
-     17.2 ,
-     22.5 ,
-    'n-child-poverty',
-    'b-child-poverty',
-    'c-child-poverty',
-     false 
-)
-
-
 </script>
 
 
@@ -5459,11 +4492,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >39.7</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -5490,7 +4523,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 39.7
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -5501,12 +4534,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -5551,19 +4581,23 @@
                 Rent burden in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-rent-burden"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-rent-burden">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(43.6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-rent-burden"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-rent-burden">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(49.7%)</span>
                   </p>
 
                     </div>
@@ -5603,70 +4637,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2021-12-31`, `year-rent-burden`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-rent-burden').innerHTML = b;
-    document.getElementById('cv-rent-burden').innerHTML = c;
-
-
-})(
-     39.7 ,
-     43.6 ,
-     49.7 ,
-    'n-rent-burden',
-    'b-rent-burden',
-    'c-rent-burden',
-     false 
-)
-
-
 </script>
 
 
@@ -5741,11 +4711,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >4.3</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Estimated annual rate per 10,000 homes</span
             >
           </div>
@@ -5772,7 +4742,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 4.3
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -5783,12 +4753,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -5833,19 +4800,23 @@
                 Evictions in <strong>Upper West Side</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-evictions"></span> the <strong>Manhattan average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Manhattan average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-evictions">boro val</span> per 10,000 homes)</span>
+                    <span class="fs-sm pl-3">(6.7 per 10,000 homes)</span>
                   </p>
 
                   <p>
-                    <span id="c-evictions"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-evictions">city val</span> per 10,000 homes)</span>
+                    <span class="fs-sm pl-3">(11.1 per 10,000 homes)</span>
                   </p>
 
                     </div>
@@ -5885,70 +4856,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2022-12-31`, `year-evictions`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-evictions').innerHTML = b;
-    document.getElementById('cv-evictions').innerHTML = c;
-
-
-})(
-     4.3 ,
-     6.7 ,
-     11.1 ,
-    'n-evictions',
-    'b-evictions',
-    'c-evictions',
-     false 
-)
-
-
 </script>
 
 

@@ -71,7 +71,7 @@
 <meta name="twitter:creator" content="@nycHealthy">
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.cb746d12ff9da35c3a5158130619f7cdb69841ac898305462b1729cf439ced105f17b864a9e8f25bad246a6ad3c9b164ac0cfb31ee03361cd344a494c72b353b.css" integrity="sha512-y3RtEv&#43;do1w6UVgTBhn3zbaYQayJgwVGKxcpz0Oc7RBfF7hkqejyW60kamrTybFkrAz7Me4DNhzTRKSUxys1Ow==" />
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.ebc5ab16e1700c741a40c11d3b8bf141451a85b39f8e2c6994727b0292c59ba30c82e9b8e27a1e2c8bdb88cf355056a23dc53f32acf8dc1d3563d9970be3318a.css" integrity="sha512-68WrFuFwDHQaQMEdO4vxQUUahbOfjixplHJ7ApLFm6MMgum44noeLIvbiM81UFaiPcU/Mqz43B01Y9mXC&#43;Mxig==" />
 
 <script src="/IndicatorPublic/js/vegaBundle.7bffeead9d7ff2c7.js" integrity="sha512-82fs/ltAJzEZhVokTuXByj29e5hwgiHtObtyA9WdVVAW&#43;22LOx4Tnw9r3peJklc&#43;FniFTaG5s5UiSRCXIw/HCQ=="></script>
     <script src="/IndicatorPublic/node_modules/d3/dist/d3.min.e8ba02e52482bcd1.js" integrity="sha512-vc58qvvBdrDR4etbxMdlTt4GBQk1qjvyORR2nrsPsFPyrs&#43;/u5c3&#43;1Ct6upOgdZoIl7eq6k3a1UPDSNAQi/32A=="></script>
@@ -493,29 +493,7 @@
         text-decoration: none;
     }
 
-    .comp-good::before {
-    content: "✅ ";
-    }
-
-    .better-sm::before {
-    content: "✅ ";
-    }
-
-    .comp-bad::before {
-    content: "‼️ ";
-    }
-
-    .worse-sm::before {
-    content: "‼️ ";
-    }
-
-    .comp-null::before {
-    content: "⚪ ";
-    }
-
-    .middle-sm::before {
-    content: "⚪ ";
-    }
+     
 
     .no-bullets li {
         list-style:none;
@@ -1171,11 +1149,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >79.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Rate per 100,000</span
             >
           </div>
@@ -1202,7 +1180,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 79.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1213,12 +1191,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -1263,19 +1238,23 @@
                 Pedestrian injuries in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-pedestrian-injuries"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-pedestrian-injuries">boro val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(92.4 per 100,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-pedestrian-injuries"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-pedestrian-injuries">city val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(103.1 per 100,000)</span>
                   </p>
 
                     </div>
@@ -1315,70 +1294,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2014-12-31`, `year-pedestrian-injuries`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-pedestrian-injuries').innerHTML = b;
-    document.getElementById('cv-pedestrian-injuries').innerHTML = c;
-
-
-})(
-     79 ,
-     92.4 ,
-     103.1 ,
-    'n-pedestrian-injuries',
-    'b-pedestrian-injuries',
-    'c-pedestrian-injuries',
-     false 
-)
-
-
 </script>
 
 
@@ -1453,11 +1368,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >160.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Age-adjusted rate per 100,000</span
             >
           </div>
@@ -1484,7 +1399,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 160.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1495,12 +1410,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -1545,19 +1457,23 @@
                 Death before 65 in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-death-before-65"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-death-before-65">boro val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(216.8 per 100,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-death-before-65"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-death-before-65">city val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(244 per 100,000)</span>
                   </p>
 
                     </div>
@@ -1597,70 +1513,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2020-12-31`, `year-death-before-65`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-death-before-65').innerHTML = b;
-    document.getElementById('cv-death-before-65').innerHTML = c;
-
-
-})(
-     160 ,
-     216.8 ,
-     244 ,
-    'n-death-before-65',
-    'b-death-before-65',
-    'c-death-before-65',
-     false 
-)
-
-
 </script>
 
 
@@ -1735,11 +1587,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >62.3</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -1765,7 +1617,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 62.3
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -1776,12 +1628,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -1826,19 +1675,23 @@
                 Overweight in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-overweight"></span> the <strong>Queens average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-overweight">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(60.3%)</span>
                   </p>
 
                   <p>
-                    <span id="c-overweight"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-overweight">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(59.3%)</span>
                   </p>
 
                     </div>
@@ -1878,70 +1731,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2022-12-31`, `year-overweight`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-overweight').innerHTML = b;
-    document.getElementById('cv-overweight').innerHTML = c;
-
-
-})(
-     62.3 ,
-     60.3 ,
-     59.3 ,
-    'n-overweight',
-    'b-overweight',
-    'c-overweight',
-     false 
-)
-
-
 </script>
 
 
@@ -2016,11 +1805,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >77.9</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Rate per 100,000</span
             >
           </div>
@@ -2046,7 +1835,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 77.9
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2057,12 +1846,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2107,19 +1893,23 @@
                 Bicycle injuries in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-bicycle-injuries"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-bicycle-injuries">boro val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(83.8 per 100,000)</span>
                   </p>
 
                   <p>
-                    <span id="c-bicycle-injuries"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-bicycle-injuries">city val</span> per 100,000)</span>
+                    <span class="fs-sm pl-3">(96.4 per 100,000)</span>
                   </p>
 
                     </div>
@@ -2159,70 +1949,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2014-12-31`, `year-bicycle-injuries`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-bicycle-injuries').innerHTML = b;
-    document.getElementById('cv-bicycle-injuries').innerHTML = c;
-
-
-})(
-     77.9 ,
-     83.8 ,
-     96.4 ,
-    'n-bicycle-injuries',
-    'b-bicycle-injuries',
-    'c-bicycle-injuries',
-     false 
-)
-
-
 </script>
 
 
@@ -2319,11 +2045,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >26.4</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent of land area</span
             >
           </div>
@@ -2350,7 +2076,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 26.4
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2361,12 +2087,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Higher than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Higher</span> than most neighborhoods
             </div>
 
           </div>
@@ -2411,19 +2134,23 @@
                 Tree shade in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Higher</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-tree-shade"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-tree-shade">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(19.8%)</span>
                   </p>
 
                   <p>
-                    <span id="c-tree-shade"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-tree-shade">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(21.1%)</span>
                   </p>
 
                     </div>
@@ -2463,70 +2190,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2014-12-31`, `year-tree-shade`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-tree-shade').innerHTML = b;
-    document.getElementById('cv-tree-shade').innerHTML = c;
-
-
-})(
-     26.4 ,
-     19.8 ,
-     21.1 ,
-    'n-tree-shade',
-    'b-tree-shade',
-    'c-tree-shade',
-     true 
-)
-
-
 </script>
 
 
@@ -2601,11 +2264,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >9.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -2631,7 +2294,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 9.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2642,12 +2305,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2692,19 +2352,23 @@
                 Bike lanes in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-bike-lanes"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-bike-lanes">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-bike-lanes"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-bike-lanes">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(10%)</span>
                   </p>
 
                     </div>
@@ -2744,70 +2408,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-bike-lanes`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-bike-lanes').innerHTML = b;
-    document.getElementById('cv-bike-lanes').innerHTML = c;
-
-
-})(
-     9 ,
-     6 ,
-     10 ,
-    'n-bike-lanes',
-    'b-bike-lanes',
-    'c-bike-lanes',
-     true 
-)
-
-
 </script>
 
 
@@ -2882,11 +2482,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >43.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -2912,7 +2512,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 43.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -2923,12 +2523,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -2973,19 +2570,23 @@
                 Subway access in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-subway-access"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-subway-access">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(29%)</span>
                   </p>
 
                   <p>
-                    <span id="c-subway-access"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-subway-access">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(48%)</span>
                   </p>
 
                     </div>
@@ -3025,70 +2626,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2018-12-31`, `year-subway-access`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-subway-access').innerHTML = b;
-    document.getElementById('cv-subway-access').innerHTML = c;
-
-
-})(
-     43 ,
-     29 ,
-     48 ,
-    'n-subway-access',
-    'b-subway-access',
-    'c-subway-access',
-     true 
-)
-
-
 </script>
 
 
@@ -3163,11 +2700,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >6.6</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent of land area</span
             >
           </div>
@@ -3194,7 +2731,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 6.6
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3205,12 +2742,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-bad">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -3255,19 +2789,23 @@
                 Sidewalk area in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-bad">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-sidewalk-area"></span> the <strong>Queens average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-sidewalk-area">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(7%)</span>
                   </p>
 
                   <p>
-                    <span id="c-sidewalk-area"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-null">Equal</span> to
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-sidewalk-area">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(6.6%)</span>
                   </p>
 
                     </div>
@@ -3307,70 +2845,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2014-12-31`, `year-sidewalk-area`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-sidewalk-area').innerHTML = b;
-    document.getElementById('cv-sidewalk-area').innerHTML = c;
-
-
-})(
-     6.6 ,
-     7 ,
-     6.6 ,
-    'n-sidewalk-area',
-    'b-sidewalk-area',
-    'c-sidewalk-area',
-     true 
-)
-
-
 </script>
 
 
@@ -3445,11 +2919,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >71.0</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -3476,7 +2950,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 71.0
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3487,12 +2961,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-bad">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -3537,19 +3008,23 @@
                 Park access in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-bad">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-park-access"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-park-access">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(69%)</span>
                   </p>
 
                   <p>
-                    <span id="c-park-access"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-park-access">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(81%)</span>
                   </p>
 
                     </div>
@@ -3589,70 +3064,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2017-12-31`, `year-park-access`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-park-access').innerHTML = b;
-    document.getElementById('cv-park-access').innerHTML = c;
-
-
-})(
-     71 ,
-     69 ,
-     81 ,
-    'n-park-access',
-    'b-park-access',
-    'c-park-access',
-     true 
-)
-
-
 </script>
 
 
@@ -3749,11 +3160,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >22.5</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -3780,7 +3191,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 22.5
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -3791,12 +3202,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -3841,19 +3249,23 @@
                 Mice or rats (outside) in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-mice-or-rats-outside"></span> the <strong>Queens average</strong> 
+                    <span class="comp-bad">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-mice-or-rats-outside">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(21.8%)</span>
                   </p>
 
                   <p>
-                    <span id="c-mice-or-rats-outside"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-mice-or-rats-outside">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(34.2%)</span>
                   </p>
 
                     </div>
@@ -3893,70 +3305,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2020-12-31`, `year-mice-or-rats-outside`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-mice-or-rats-outside').innerHTML = b;
-    document.getElementById('cv-mice-or-rats-outside').innerHTML = c;
-
-
-})(
-     22.5 ,
-     21.8 ,
-     34.2 ,
-    'n-mice-or-rats-outside',
-    'b-mice-or-rats-outside',
-    'c-mice-or-rats-outside',
-     false 
-)
-
-
 </script>
 
 
@@ -4031,11 +3379,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >10.3</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4062,7 +3410,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 10.3
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4073,12 +3421,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -4123,19 +3468,23 @@
                 Poverty in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-poverty"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-poverty">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(12.3%)</span>
                   </p>
 
                   <p>
-                    <span id="c-poverty"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-poverty">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(17.4%)</span>
                   </p>
 
                     </div>
@@ -4175,70 +3524,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2023-12-31`, `year-poverty`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-poverty').innerHTML = b;
-    document.getElementById('cv-poverty').innerHTML = c;
-
-
-})(
-     10.3 ,
-     12.3 ,
-     17.4 ,
-    'n-poverty',
-    'b-poverty',
-    'c-poverty',
-     false 
-)
-
-
 </script>
 
 
@@ -4313,11 +3598,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >95.5</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4344,7 +3629,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 95.5
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4355,12 +3640,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Higher than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-good">Higher</span> than most neighborhoods
             </div>
 
           </div>
@@ -4405,19 +3687,23 @@
                 Neighborhood safety in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="better-sm fs-sm mt-1">Higher than most</span>&nbsp;neighborhoods
+                    <span class="comp-good">Higher</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-neighborhood-safety"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-neighborhood-safety">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(88.6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-neighborhood-safety"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-neighborhood-safety">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(85.5%)</span>
                   </p>
 
                     </div>
@@ -4457,70 +3743,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2016-12-31`, `year-neighborhood-safety`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-neighborhood-safety').innerHTML = b;
-    document.getElementById('cv-neighborhood-safety').innerHTML = c;
-
-
-})(
-     95.5 ,
-     88.6 ,
-     85.5 ,
-    'n-neighborhood-safety',
-    'b-neighborhood-safety',
-    'c-neighborhood-safety',
-     true 
-)
-
-
 </script>
 
 
@@ -4617,11 +3839,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >70.6</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4647,7 +3869,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 70.6
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4658,12 +3880,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              In the middle of NYC neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-null">In the middle</span> of neighborhoods
             </div>
 
           </div>
@@ -4708,19 +3927,23 @@
                 Exercise in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="middle-sm fs-sm mt-1">In the middle of</span>&nbsp;neighborhoods
+                    <span class="comp-null">In the middle</span> of neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-exercise"></span> the <strong>Queens average</strong> 
+                    <span class="comp-good">Higher</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-exercise">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(67.4%)</span>
                   </p>
 
                   <p>
-                    <span id="c-exercise"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-exercise">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(70.9%)</span>
                   </p>
 
                     </div>
@@ -4760,70 +3983,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2022-12-31`, `year-exercise`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-exercise').innerHTML = b;
-    document.getElementById('cv-exercise').innerHTML = c;
-
-
-})(
-     70.6 ,
-     67.4 ,
-     70.9 ,
-    'n-exercise',
-    'b-exercise',
-    'c-exercise',
-     true 
-)
-
-
 </script>
 
 
@@ -4898,11 +4057,11 @@
             >
           </div>
           <div class="col-3 pl-1 d-print-none">
-            <span class="font-weight-bold fs-lg"
+            <span class="font-weight-bold fs-md"
               >12.4</span
             >
             <br />
-            <span class="fs-xs font-weight-normal"
+            <span class="fs-sm font-weight-normal"
               >Percent </span
             >
           </div>
@@ -4929,7 +4088,7 @@
 
             
             <div style="width:25%" class="border-right pl-1">
-              <span class="font-weight-bold fs-lg">
+              <span class="font-weight-bold fs-md">
                 12.4
               </span><br />
               <span class="fs-xs font-weight-normal">
@@ -4940,12 +4099,9 @@
             
 
             
-            <div style="width:25%;" class="pl-1">
-
-              Less than most neighborhoods
-
-
-
+            
+            <div style="width:25%;" class="pl-1 font-weight-normal">
+              <span class="comp-bad">Lower</span> than most neighborhoods
             </div>
 
           </div>
@@ -4990,19 +4146,23 @@
                 Regular biking in <strong>Ridgewood - Forest Hills</strong>:
                 <div class=" fs-md">
                   <p>
-                    <span class="worse-sm fs-sm mt-1">Less than most</span>&nbsp;neighborhoods
+                    <span class="comp-bad">Lower</span> than most neighborhoods
                   </p>
 
                   <p>
-                    <span id="b-regular-biking"></span> the <strong>Queens average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Queens average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="bv-regular-biking">boro val</span>%)</span>
+                    <span class="fs-sm pl-3">(15.6%)</span>
                   </p>
 
                   <p>
-                    <span id="c-regular-biking"></span> the <strong>Citywide average</strong> 
+                    <span class="comp-bad">Lower</span> than
+
+                    the <strong>Citywide average</strong>
                     <br>
-                    <span class="fs-sm pl-3">(<span id="cv-regular-biking">city val</span>%)</span>
+                    <span class="fs-sm pl-3">(17.6%)</span>
                   </p>
 
                     </div>
@@ -5042,70 +4202,6 @@
         var year = endDate.getFullYear(); 
         document.getElementById(y).innerHTML = year;
     })(`2022-12-31`, `year-regular-biking`);
-
-(function(n, b, c, nid, bid, cid, rr) {
-    n = Number(n);
-    b = Number(b);
-    c = Number(c);
-
-    let rankReverse = (rr === true || rr === 'true');
-
-    let boroComp = n > b ? "Higher than" : n < b ? "Lower than" : "Equal to";
-    let cityComp = n > c ? "Higher than" : n < c ? "Lower than" : "Equal to";
-
-    let boroJudgement;
-    if (n > b && rankReverse) {
-      boroJudgement = 'comp-good';
-    } else if (n < b && rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n > b && !rankReverse) {
-      boroJudgement = 'comp-bad';
-    } else if (n < b && !rankReverse) {
-      boroJudgement = 'comp-good';
-    } else {
-      boroJudgement = 'comp-null';
-    }
-
-    let cityJudgement;
-    if (n > c && rankReverse) {
-      cityJudgement = 'comp-good';
-    } else if (n < c && rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n > c && !rankReverse) {
-      cityJudgement = 'comp-bad';
-    } else if (n < c && !rankReverse) {
-      cityJudgement = 'comp-good';
-    } else {
-      cityJudgement = 'comp-null';
-    }
-
-    let boroEl = document.getElementById(bid);
-    if (boroEl) {
-        boroEl.innerHTML = boroComp;
-        boroEl.classList.add(boroJudgement);
-    }
-
-    let cityEl = document.getElementById(cid);
-    if (cityEl) {
-        cityEl.innerHTML = cityComp;
-        cityEl.classList.add(cityJudgement);
-    }
-
-    document.getElementById('bv-regular-biking').innerHTML = b;
-    document.getElementById('cv-regular-biking').innerHTML = c;
-
-
-})(
-     12.4 ,
-     15.6 ,
-     17.6 ,
-    'n-regular-biking',
-    'b-regular-biking',
-    'c-regular-biking',
-     true 
-)
-
-
 </script>
 
 
