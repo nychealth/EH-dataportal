@@ -236,11 +236,19 @@ All 26 sentence-cased filenames are present on both branches, with none missing
 set-differenced against feature-improve-NR-styles — zero names missing from either production or
 staging]`.
 
-**The old Title Case files were not removed.** `production` and `staging` now hold 52 files each —
-26 sentence-cased plus the 26 Title Case originals — against 26 on `feature-improve-NR-styles`
-`[verified 2026-08-17: same listing; comm -13 against the feature branch returns 26 extras]`. Hugo
-requests only the sentence-cased names, so this does not affect any build. It is orphaned content
-in EHDP-data, worth a cleanup pass there, and it is **not** a blocker for anything in this plan.
+**The export added the new names without removing the old ones, and that had to be cleaned up
+separately.** For part of 2026-08-17 `production` and `staging` each held 52 files — 26
+sentence-cased plus the 26 Title Case originals `[verified 2026-08-17: contents listing; comm -13
+against feature-improve-NR-styles returned 26 extras]`. EHDP-data `fcb1a540` (production) and
+`b2b63d06` (staging), both "delete upper case NR report files", removed the duplicates; both
+branches now list 26 `[verified 2026-08-17, later the same day: contents listing re-run]`.
+
+**That intermediate state is not a harmless orphan, which is why it was worth deleting rather than
+leaving.** Two filenames differing only in case cannot coexist in a working tree on a
+case-insensitive filesystem, so a Windows clone pulling the 52-file state hits a checkout
+collision — Hugo builds are unaffected, because they fetch by URL and never check the tree out,
+which is exactly what makes the problem invisible from this repo. See the corresponding gotcha in
+`CLAUDE.md`.
 
 The rejected alternative stays rejected: reverting `6fb89c0ffb`'s YAML casing would re-introduce
 the acronym mangling that commit fixed ("Health Burden: Fine Particles (PM2.5)" rendering as
