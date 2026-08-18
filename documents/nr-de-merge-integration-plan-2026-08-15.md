@@ -1544,6 +1544,32 @@ Stage B's resolutions are re-presented.
 
 **Depends on:** B2 verified.
 
+> **Two documents conflict in this merge and neither appears in the steps below. Resolve both
+> before anything else, the way Stage A's header directs for the same reason: one of them is the
+> ledger the rest of the stage writes into.** Stage A had to discover this the hard way — the plan
+> document was its unlisted 23rd conflict.
+>
+> - **This plan document resolves like Stage A's did: take `merge/production`'s copy whole**
+>   (`git checkout --theirs`). The DE branch carries a stale snapshot predating Stage 0
+>   `[verified 2026-08-17: 863 lines on `feature-new-data-explorer` against 1767 on
+>   `merge/production`]`. It is the maintained copy and the DE branch has no records of its own in it.
+> - **`CLAUDE.md` does *not* resolve that way — it needs a hand-merge**, as A1 Step 4 did for the
+>   NR branch. Both sides carry real, divergent content
+>   `[verified 2026-08-17: 139 lines on the DE branch against 192 on `merge/production`]`, and the
+>   DE copy is the *smaller* of the two, so a side-take silently drops whichever half loses.
+>   Re-stamp `docs-check verified:` only once the merge commit exists, or name both parents.
+>
+> **Stage B hits the second of these too**, before ever reaching Stage C: `production`'s
+> `CLAUDE.md` is 189 lines against the DE branch's 139. `production` does **not** carry this plan
+> document, so Stage B leaves it alone.
+>
+> **Do not copy this document into the DE worktree in order to read it while working.** Keep
+> `merge/production` checked out in the primary tree and read it from there — the arrangement the
+> Stage A header prescribes. Copying it in early manufactures the divergence you would then have to
+> resolve. At commit time the Stage A ordering applies again: commit plan updates on
+> `merge/production` first, refresh the merge worktree's staged copy from that commit, then commit
+> the merge.
+
 - [ ] **Step 1: The four `nr-*` partials resolve differently here than in Stage A.**
 
 Unlike the NR branch, the DE branch still *has* `nr-clickable-uhf.html`, `nr-indicator-new.html`,
