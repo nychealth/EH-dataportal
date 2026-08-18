@@ -90,19 +90,21 @@ config, applies in every worktree).**
 |---|---|---|
 | 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4, 5 DONE 2026-08-17**; Step 2 re-scoped to optional hardening, not started |
 | 0 | 0.2 CP report library includes | **DONE 2026-08-17** — all 3 steps; browser probe matches the `production` control (L/vegaEmbed/d3 defined, 2 maps drawn, 6 Vega views), page passes smoke |
-| 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production |
+| 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production. **Stage A outcome 2026-08-17:** smoke is 33/33 on the merged NR branch, because A2 deleted the template — the expected FAIL is gone *there*. `merge/production` still carries it and still fails, so this **unparks for Stage C**, which merges `merge/production` into the DE branch |
 | A | A1 shared-infra conflicts | **DONE 2026-08-17** — all five steps, ten files staged (nine listed + this document, the unlisted 23rd conflict). Leaves A7 Step 9 a writing job, not a re-read: no `lib-*` prose exists in either `CLAUDE.md` |
 | A | A2 retired-file modify/deletes | **DONE 2026-08-17** — nine `git rm`'d, all nine already absent at `HEAD` (the delete declines incoming files, it removes no NR work); `Crotona - Tremont` = 2 in `data/globals/uhflist.json`, old spelling 0 |
-| A | A3 `head.html` — uhflist generator + gating | Not started |
-| A | A4 `lib-*` includes for the four NR templates | Not started |
-| A | A5 SCSS: `theme.scss`, `_custom.scss` | Not started |
-| A | A6 duplicate comparison implementation — decision | Not started |
-| A | A7 NR verification sweep | Not started |
+| A | A3 `head.html` — uhflist generator + gating | **DONE 2026-08-17** — generator relocated into a rewritten `lib-uhflist.html`; the NR `debugLog` block survives (a wholesale `--theirs` would have dropped it, 55 call sites); 4 stale `uhflist.js` comments fixed, not the 1 the step named |
+| A | A4 `lib-*` includes for the four NR templates | **DONE 2026-08-17** — counts 2/4/2/2 as predicted, but **both placement instructions were wrong**: includes belong in `main`, not `js_bot` |
+| A | A5 SCSS: `theme.scss`, `_custom.scss` | **DONE 2026-08-17** — Step 3's predicted collision was real: `.worse/.better::before` defined twice, one per side; `merge/production`'s copy removed |
+| A | A6 duplicate comparison implementation — decision | **DONE 2026-08-17** — no decision needed, both partials orphaned once A2 removed their callers; `git rm -f` |
+| A | A7 NR verification sweep | **DONE 2026-08-17** — 9/9 steps pass; pagefind re-baselined (diff verified item-by-item), `CLAUDE.md` prose rewritten and re-stamped |
 | B | B1 DE ← `production` | Not started |
 | B | B2 DE verification sweep | Not started |
 | C | C1 DE ← `merge/production` | Not started |
 | C | C2 DE gating reconciliation | Not started |
 | C | C3 DE verification sweep | Not started |
+
+**Stage A merged and committed 2026-08-17 at `67b76b49ea`**, parents `fb5b89df64` (NR tip) and `c59d614716` (`merge/production`). Stage B is next.
 
 Update the row **in the commit that finishes the task**, not at the end of a session. Record the
 proof that actually ran in the house form — `[verified <date>: how]` — naming the command, its
@@ -1612,6 +1614,23 @@ done
 
 Read the zero rows and confirm each is a page that genuinely uses no library. This is the sweep
 that would have caught the NR breakage in Stage A.
+
+> **A non-zero count is not enough — check *where* the includes sit. Stage A's A4 got this wrong
+> and would have shipped three broken pages.** `baseof.html` renders `block "main"` before
+> `block "js_bot"`, so a `lib-*` partial included in `js_bot` is parsed *after* any inline
+> `<script>` that `main` emitted. On the NR side `nr-leaflet.html` calls `L.map(...)` at the top
+> level of such a script, so the include had to go in `main`, above the markup that renders it.
+>
+> The DE templates are the likelier place for this to bite again, not the less likely:
+> `data-explorer/single.html` defines `renderIndicatorDropdown` and friends in inline
+> `<script>` blocks precisely because they read markup Hugo has to render first. **For each
+> template the sweep reports, find the earliest thing on the page that touches the library and
+> confirm the include precedes it.** A page whose consumers are all external scripts in `js_bot`
+> is fine either way — that is why the pattern looked general when Task 0.2 established it.
+>
+> Cheapest proof, from the built HTML rather than the template: for each page kind, compare the
+> line number of the library's `<script src>` against the first line calling into it. A4's is
+> recorded above with a worked table.
 
 ### Task C3: DE verification sweep
 
