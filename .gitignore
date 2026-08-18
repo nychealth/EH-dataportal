@@ -79,9 +79,10 @@ documents/improvements-gpt-5.4.md
 
 # Playwright characterization --check output (baseline IS committed)
 documents/de-characterization-current/
-
-# Playwright characterization --check output (baseline IS committed)
 scripts/de-characterization-current/
 
 # NR characterization --check output (baseline IS committed)
 scripts/nr-characterization-current/
+
+# CP report characterization --check output (baseline IS committed)
+scripts/cp-characterization-current/

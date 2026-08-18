@@ -620,7 +620,7 @@ As a result, the highest rates of asthma emergency department visits for childre
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
         <iframe title="" aria-label="chart" id="datawrapper-chart-XBLYk"
-            src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
+            data-lazy-src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
             frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="600"></iframe>

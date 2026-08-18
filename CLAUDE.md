@@ -1,140 +1,201 @@
 <!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 52d5252e1a 2026-07-27 -->
-<!-- docs-check ignore: fixedHeader -->
-# Claude Code Instructions
+<!-- docs-check verified: 59c5d459b8+c0931fbee6 2026-08-18 -->
+# CLAUDE.md
 
-## Project overview
+Guidance for Claude Code (claude.ai/code) when working in this repository.
 
-Hugo-based static site for NYC DOHMH's Environment & Health Data Portal. Outputs to `docs/`. Deployed via GitHub Actions.
+This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here.
 
-## Build and validation
+## What this project is
 
-```powershell
-# Rebuild static output
-hugo --environment dev_stage --cleanDestinationDir --logLevel debug
+NYC Department of Health & Mental Hygiene's [Environment & Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic/) — a Hugo static site publishing environmental and health indicators through data stories, an interactive data explorer, neighborhood reports, and key-topic pages.
 
-# Local dev server
-hugo server --environment dev_stage --cleanDestinationDir --disableFastRender --logLevel debug -p 8080
+Most indicator data lives in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository, not here. Templates and JS reach it through the `data_repo` and `data_branch` config params — at build time via `getresource`, and at runtime via `fetch` from raw GitHub URLs.
+
+## Human-facing docs
+
+These are written for the team and are the authority on their subjects. Read the relevant one before answering a question it covers; don't restate their contents here.
+
+- [readme-development.md](readme-development.md) — getting started, branches, GitHub Actions builds, the full environment table, content creation, SRI, dependency bundling, CloudCannon, build caching.
+- [readme-content.md](readme-content.md) — content-management standards for editors.
+- [readme-components.md](readme-components.md) — the card and callout components available in markdown.
+- [README.md](README.md) — orientation and contact info.
+
+## Commands
+
+```bash
+npm install                              # JS dependencies, including hugo-extended
+
+hugo serve --environment development     # local dev, production data
+hugo serve --environment dev_stage       # local dev, staging data
+
+hugo --environment prod_prod             # build to docs/ the way the deploy workflow does
+
+hugo new data-stories/TITLE/index.md     # scaffold new content
+hugo new key-topics/TITLE/index.md
 ```
 
-`--disableFastRender` is how the team actually starts the server by hand, so it belongs in the documented command. `scripts/dev-server.mjs` spawns this exact command — keep the two in sync when either changes.
+Local site: http://localhost:1313/EH-dataportal
 
-Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild.
+**Use `prod_prod`, not `production`, for a build meant to resemble the live site.** The two configs are byte-identical, but `head.html:3` branches on the environment *name*: only `prod_prod` gets the production analytics property and escapes the `<meta name="robots" content="noindex, nofollow">` that every other environment emits. The deploy workflow uses `prod_prod`. See `documents/site-wide-audit-2026-06-27.md` §14.4.
 
-**Never run a static `hugo` rebuild while a `hugo server` is also running**, even against a different `--environment`. Both share the same on-disk resource-fingerprint cache (`resources/_gen/`), which isn't environment-namespaced — a static rebuild can poison the live server's cache with the wrong environment's asset paths, breaking every page on the live server with MIME-type-refused/404 errors until it's restarted. To verify a static build while someone's dev server is live, inspect the generated `docs/` HTML directly (grep/read the output) instead of hitting the live server; if you need the live server itself to reflect a change, ask before restarting a process you didn't start.
+### Smoke test
 
-### Guardrails (Tier 4.5)
+```bash
+npm run smoke                                          # 34 pages, ~3 min
+DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
+```
 
-Four npm scripts, run from the repo root (the repo's first `package.json` `scripts` block):
+`scripts/smoke-pages.mjs` loads one page per template kind under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
 
-- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. The 15 SPA files share one global scope, so the flat config (`eslint.config.mjs`) derives their shared globals at config-load time; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern.
-- `npm run characterize -- --check` — Playwright characterization harness (`scripts/de-characterization.mjs`); diffs 3 indicators across the map/bar/table/trend views against a committed baseline (`scripts/de-characterization-baseline/`). `-- --baseline` re-captures.
-- `npm run smoke` — loads one page per template kind and fails on any non-allowlisted console `error`/`pageerror` (`scripts/smoke-pages.mjs`). Run before any merge that touches a shared template like `head.html`. Before relying on it as the proof for a change that only executes on one page kind, confirm that page is in `PAGES` — the list's comments are unverified claims that rot like doc prose (one read `// DE section` while pointing at a `single.html` URL, so the real section page had no coverage at all).
-- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier you write here must be real and repo-root-relative. Site URLs (`/data-explorer/`), globs, and `<placeholder>` patterns are skipped; a name deliberately cited as absent (like a DataTables option we don't use) goes in the `docs-check ignore:` header.
+Two things to know before trusting a result:
 
-`characterize` and `smoke` **reuse a running dev server, start one if none is running, and never stop a server they didn't start** (via `scripts/dev-server.mjs`). Set `DE_BASE_URL` to point them at a server on a non-default port/environment (e.g. `DE_BASE_URL="http://localhost:8080/local-stage/"`). If a `hugo` process is running but they can't find it on :8080/:1313, they abort with instructions rather than start a second server — a second server poisons the running one's fingerprint cache (`d5fb2ea700`).
+- **Before citing it as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered.
+- **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere. The allowlist should trend to zero: fixing a bug is what removes its entry.
 
-Run `characterize -- --check` and `smoke` before any Tier 2–4 merge.
+`scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
-## Root-cause claims
+### The other three checks
 
-A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at **any change size**: a one-property CSS fix needs it as much as a template-wide refactor. Plausibility is not evidence, and a well-written explanation is not a verified one.
+The Data Explorer branch adds three more npm scripts, all run from the repo root:
 
-- **State the disconfirming test you ran and what it showed**, before proposing the fix. "I hid the child element and the ring rendered correctly" is evidence. "Outlines don't follow asymmetric border-radius" is a guess.
-- **If a nearby working example contradicts your theory, the theory is wrong.** Do not add a secondary explanation for why the working case is exempt — that is how a wrong diagnosis survives review.
-- **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. A confident wrong comment misleads every later attempt; the next person re-tests a hypothesis but trusts an explanation.
-- **After one failed fix attempt, stop and gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
-- **If a refactor is justified partly by bug claims, prove them in a no-code stage first.** Reproduce each in the browser before touching anything, and drop any that doesn't reproduce rather than fixing a phantom. It costs one browser session and makes every later commit cite real before/after evidence instead of a hypothesis. It cuts both ways: 4.2 found a fourth defect nobody had recorded, and 4.3 falsified two of the three it set out to fix.
-- **Two methods that make that evidence cheap here:** delay a fetch with Playwright's `page.route` to hold a load-window open and inspect state mid-flight; drive canvas charts by sweeping the real mouse and letting the chart report its own hits, not by computing scenegraph coordinates. Details and gotchas: `project-browser-verification-methods` in memory.
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. Those files share one global scope, so `eslint.config.mjs` derives their shared globals at config-load time and `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is deliberately off — it false-positives on the cross-file global pattern.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` near the top. Audits and dated findings must **not** opt in — they cite old names on purpose. It also scans the root docs listed in its `ROOT_DOCS`, **this file among them**, so a path or identifier written here must be real and repo-root-relative.
 
-Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a focus-ring bug that survived two fixes because the diagnosis was plausible, confidently written, and false; the actual cause took one browser experiment to find.
+`smoke` and the characterization harness share `scripts/dev-server.mjs`, so the server rules above apply to both.
+
+### Two ways a local check silently lies
+
+- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages.
+- **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
+
+To build while someone's server is up, redirect both writable outputs to temp directories — the build then cannot reach `resources/_gen/` or `docs/` at all:
+
+```bash
+# TEMP = any directory outside the repo
+HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment development -d "$TEMP/iso-docs"
+```
+
+`[verified 2026-08-12: full site build, exit 0 in 31s; all 197 files under resources/_gen identical in mtime and size afterward, 173 resources written to the temp dir instead, docs/ untouched]`. That establishes the build writes neither shared location, which is what the "safe beside a server" claim rests on; it was not run concurrently with a live server. Inspect the generated HTML in the temp directory rather than hitting the live server.
 
 ## Repo structure
 
 ```
-assets/         Source JS, SCSS, images, map-data
-  js/
-    data-explorer/      Active SPA (canonical /data-explorer/)
-    data-explorer-old/  Retired; do not modify
-content/        Markdown pages and data feature content
-themes/dohmh/layouts/   Hugo templates and partials — there is NO root layouts/
-config/         Per-environment Hugo config (dev_stage, local_stage, prod_prod, …)
-data/           JSON/YAML used by Hugo at build time
-static/         Files copied verbatim to docs/
-docs/           Generated output — never edit directly
-resources/      Hugo's fingerprint cache (_gen/) — generated, never edit
-documents/      Internal audits and technical write-ups
-scripts/        Node dev tooling (characterization harness, smoke test, dev-server helper)
+content/          Markdown with YAML frontmatter; mirrors the layouts structure
+themes/dohmh/layouts/   All Hugo templates — there is NO root layouts/ directory
+  _default/baseof.html    Root template: head, header, main, footer, scripts
+  partials/               Reusable template blocks
+  shortcodes/             Callable from markdown
+assets/           SCSS, JS, images, map-data — processed by Hugo, fingerprinted with SRI
+  bootstrap/        Vendored Bootstrap 4.3.1 SCSS source (see SCSS below)
+static/           Served as-is, unprocessed
+data/globals/     YAML available to every template (SEO defaults, social, NR content/footer)
+config/           Per-environment config, merged over config/_default/config.toml
+archetypes/       Frontmatter templates for `hugo new`
+memories/repo/    Durable repo findings written up for agents (see Hugo rules below)
+documents/        Internal audits and technical write-ups
+docs/             Generated output — never edit
+resources/_gen/   Hugo's fingerprint and image cache — never edit
+.cloudcannon/     CMS prebuild/postbuild hooks and frontmatter schemas
 ```
 
-Templates live under `themes/dohmh/layouts/`. There is no root layouts/ directory — a
-path written that way will not resolve.
+A path written as `layouts/partials/…` will not resolve — that directory does not exist in this repo. Templates are always `themes/dohmh/layouts/…`.
+
+### Layout routing
+
+- `_index.md` → `section.html`; `index.md` or `name.md` → `single.html`
+- Frontmatter `layout: X` → `X.html` in that section's layouts folder
+- Frontmatter `type: X` routes to the `X` layouts folder — this is how neighborhood reports reach `nr-output`
+
+### Content sections
+
+| Section | Layout folder | Notes |
+|---------|---------------|-------|
+| `data-stories` | `data-stories` | Markdown articles with Vega/Datawrapper shortcode embeds |
+| `data-explorer` | `data-explorer` | Each topic's markdown lists its indicators in frontmatter; JS drives the visualizations |
+| `neighborhood-reports` | `neighborhood-reports` + `nr-output` | Landing/topic pages and the per-neighborhood reports |
+| `key-topics` | `key-topics` | Organizing principle; content links to it via `categories` frontmatter |
+| `data-features` | `data-features` | Feature articles and tools |
+
+### Languages
+
+English, Spanish, and Simplified Chinese, configured as `[languages.en|es|zh]` in `config/_default/config.toml`. Translations sit beside their English source as `index.es.md` / `index.zh.md` — seven of each, all under `content/data-stories/` and the home page. `config/_default/config.toml` also sets `ignoreFiles = ['Simplified.Chinese', 'Spanish']`, which currently matches no tracked file `[verified 2026-08-12: zero filenames in the repo contain either string]`; it is not what gates translated content.
+
+### Content relationships
+
+- `categories` links a page to Key Topics
+- `keywords` feeds Pagefind site search
+- `related` and `relatedData` set manual cross-links; the partials fall back to category matches when those fields are absent
+
+## JS architecture
+
+Browser JS under `assets/js/` is fingerprinted and served with Subresource Integrity via the `short-fingerprint.html` partial. Third-party libraries are mounted from `node_modules` into `assets/node_modules` (`[[module.mounts]]` in `config/_default/config.toml`) and bundled locally — nothing loads from a CDN.
+
+`themes/dohmh/layouts/partials/head.html` gates library `<script>` blocks on page kind and section (`.Kind`, `.Section`). Check that gate before assuming a library is available on a given template — a library loaded for `data-explorer` single pages is not necessarily loaded for its section page.
+
+### Data explorer
+
+`assets/js/data-explorer/` is ten vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+
+`global → data → measures → table → map → links → disparities → trend → app → print`
+
+- `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
+- The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
+- Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
+- `single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `data.js` calls them; that works only because classic scripts share one scope.
+- UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
+
+### Neighborhood reports
+
+Per-neighborhood reports are content under `content/neighborhood-reports/` with `type: nr-output`, rendered by `themes/dohmh/layouts/nr-output/`. Their JSON specs, images, and indicator data live in EHDP-data; the YAML that drives shared copy is in `data/globals/NR_content/` and `data/globals/NR_footer/`.
+
+### SCSS
+
+`assets/scss/theme.scss` is the entrypoint, importing lettered partials in order (`a-global-variables` → `b-bootstrap-imports` → …). Bootstrap comes from the **vendored copy at `assets/bootstrap/scss/`** (v4.3.1), not from `node_modules` — `package.json` also lists `bootstrap ^4.3.1`, so a dependency bump does not move the styles and the two can drift.
 
 ## Coding conventions
 
 - 4-space indentation in all files.
-- Browser-side JS: no new frameworks or build dependencies. Keep it lightweight, readable, and explicitly branched.
-- Generous vertical whitespace in `assets/js/data-explorer/` — see `measures.js` for the style reference.
-- **JS formatting and comment conventions:** see `documents/js-conventions.md` — covers file headers, comment hierarchy, variable grouping, function-level comments, and internal step comments. Apply when writing or revising any browser-side JS.
-- Comments should be brief and intent-focused. Explain *why*, not *what*. Bias towards adding more comments, not fewer.
-- Match existing file style before applying any general rule. Don't refactor untouched code.
-- Preserve accessibility: labels, keyboard support, sensible fallbacks on all interactive elements.
-
-**Orientation comments before code blocks:** Add a brief comment before each meaningful code block (function, object, initialization section, etc.) explaining what it does at a high level — even if the name alone makes it obvious. The user wants to know what's coming before reading the code, not just after.
-
-## Branching
-
-Each audit tier's work goes on its own `feature-de-tier<N>-<slug>` branch cut from `feature-new-data-explorer`, never committed directly to it — see `feature-de-tier2-consolidation` through `feature-de-tier4.5-guardrails`. Merge back only when the tier is verified and documented.
-
-## Refactors and renames
-
-- **Clarity renames are pre-authorized.** The codebase mixes hand-written names with AI-generated ones from earlier refactors, so a name that actively *misleads* — describing something other than what the thing is — may be renamed as part of any refactor touching it. Rename what misleads, not every name you'd have chosen differently. Every rename must be *proven* complete, not assumed: `npm run lint` (`no-undef`) proves a JS identifier rename, since the old name ceases to exist; a scoped grep proves a template/SCSS/string rename.
-- **Element-id renames get their own commit**, separate from any JS change, and scoped to the new explorer. Ids are referenced from templates, JS string literals, SCSS, and `aria-labelledby` — grep all four. Never touch `assets/js/data-explorer-old/`; it keeps its own independent copies of these ids and its own JS. See the Tier 4.1 Stage 4 commit (`f5867cacf3`) for the pattern.
-- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a 700-line diff only invites eyeballing. Tier 4.1 Stage 3 moved ~360 lines this way.
+- Browser JS: no new frameworks or build dependencies. Keep it lightweight, readable, explicitly branched.
+- Comments explain *why*, not *what*, and are brief. Bias toward more of them, not fewer.
+- **JS formatting and comment conventions:** [documents/js-conventions.md](documents/js-conventions.md) — file headers, comment hierarchy, variable grouping, function-level comments, internal step comments. Apply when writing or revising any browser JS.
+- **Orientation comment before each meaningful block** — function, object, initialization section — saying at a high level what it does, even when the name makes it obvious. The reader should know what's coming before reading it.
+- Match the surrounding file's style before applying any general rule. Don't refactor untouched code.
+- Preserve accessibility: labels, keyboard support, sensible fallbacks on every interactive element.
 
 ## Hugo-specific rules
 
-- Edit source files (`content/`, `themes/dohmh/layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
-- Front matter, slugs, and asset references are load-bearing — small typos can break URLs or builds.
-- Environment-specific values go in config, not hardcoded strings.
-- For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load via `resources.Get` → `partial "short-fingerprint.html"` → fingerprinted `<script src integrity=...>` — see `themes/dohmh/layouts/data-explorer/single.html` for the working example. It is the only page on this branch using a per-page JS folder. The congestion-pricing report is the second example, but it lives only on the unmerged `feature-summer-CP-report` branch, under assets/js/congestion-pricing-report/ (seven files) — check that branch out before concluding the pattern has one instance. Note that `npm run docs-check` only ever sees the checked-out tree, so a cross-branch path must not be written as a backticked path claim here. Keep scripts as classic (non-module) tags when they share global scope across files — load order matters and isn't enforced by tooling, so state it explicitly in a template comment.
+- Edit source (`content/`, `themes/dohmh/layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
+- Frontmatter, slugs, and asset references are load-bearing — a small typo breaks a URL or the build.
+- Environment-specific values belong in `config/<env>/config.toml`, not in hardcoded strings.
+- **A standalone `.html` file that needs its own URL goes in `static/`, not in a page bundle.** Inside a leaf bundle, an extra `.html` behaves as a page resource and is not reliably published, so an iframe pointing at a bundle-relative path 404s. Bundle *resources* that templates and shortcodes read are fine to keep in the bundle (`csvtable` reads bundled CSV via `.Page.Resources.GetMatch`), as are images. The worked case, the fix, and the existing static-published examples are in [memories/repo/page-bundle-publication.md](memories/repo/page-bundle-publication.md).
+- For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load it through `short-fingerprint.html` as a fingerprinted script with an `integrity` attribute. Keep scripts classic (non-module) when they share global scope — load order matters and nothing enforces it, so state the order in a template comment. Two worked examples: [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and [data-features/congestion-pricing-report.html](themes/dohmh/layouts/data-features/congestion-pricing-report.html).
 
-## Data explorer architecture
+## Root-cause claims
 
-The data explorer (`assets/js/data-explorer/`) is a vanilla-JS SPA whose shared state lives in one global namespace object:
+A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs — must cite an observation from a running browser, not reasoning about the source. This applies at any change size: a one-property CSS fix needs it as much as a template-wide refactor. Plausibility is not evidence, and a well-written explanation is not a verified one.
 
-- **`global.js`** — declares all shared state as `const DE = { ... }` (global.js:18), with sub-objects `DE.table`, `DE.disparities`, `DE.links`, `DE.trend`, `DE.map`, `DE.print`, `DE.lookups`, `DE.indicator`, `DE.state`. Don't reintroduce bare top-level globals for state that already has a `DE.*` home.
-- **Two DE templates, and the URL doesn't hint which is which:** `/data-explorer/` is `themes/dohmh/layouts/data-explorer/section.html` (topic chooser — loads `topic-indicator-selector.js` *alone*, without `app.js` or the rest of the bundle); `/data-explorer/<topic>/` is `themes/dohmh/layouts/data-explorer/single.html` (the full SPA). `content/data-explorer/_index.md` vs `<topic>.md` is what decides. Guards of the form `typeof <spaFunction> === 'function'` exist for the section page, and it is the only page that exercises them.
-- **Script load order is critical** (15 files, synchronous): `global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`. Note: `utilities.js` is not a separate file — its code is concatenated into `global.js` (grep the `// utilities.js` banner). `de-tab-content.js` is a 16th file in the directory but is **not** in this bundle — `themes/dohmh/layouts/partials/de-tab-content.html` loads it itself.
-- **Data flow:** `metadata.json` → Arquero table → `joinData()` → `renderMeasures()` → `show*()` closures
-- **`renderCurrentView(updateMap)`** is the central dispatch function
-- **`loadAndRenderIndicator(id, { selection, history })`** (app.js) is the *only* path from an indicator ID to a rendered view — `checkURL`, `selectIndicator` and `popstate` all go through it. It also owns the URL: exactly one history write per navigation, made after `renderMeasures()` so the URL carries the resolved defaults. Don't add a `pushState`/`replaceState` to `loadIndicator` or anything else in the load path; pass `history: 'push' | 'replace' | 'none'` instead. Reads go through `parseSelectionFromURL()`, writes through `buildCanonicalSearchParams()`, legacy forms through `normalizeLegacyURL()`.
+- **State the disconfirming test you ran and what it showed**, before proposing the fix. "I hid the child element and the ring rendered correctly" is evidence. "Outlines don't follow asymmetric border-radius" is a guess.
+- **If a nearby working example contradicts the theory, the theory is wrong.** Adding a secondary explanation for why the working case is exempt is how a wrong diagnosis survives review.
+- **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. The next person re-tests a hypothesis but trusts an explanation.
+- **After one failed fix attempt, gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
+- **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did.
 
-Key gotchas:
-- `showBar()` depends on `filteredMapData` set by `showMap()` — bar must not render before map
-- `$.fn.dataTable.isDataTable` (lowercase `d`) — not `$.fn.DataTable.isDataTable`
-- UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`); data rows may carry versioned values (`NTA2020`). Normalize before comparing.
-- `#searchModal` must be in `baseof.html`, not `footer.html`, to avoid Pagefind double-initialization on footerless pages
-- `showTable()` must not run in the same turn as `showMap()` — DataTables init (~50-90 ms) blocks Leaflet's first paint. Schedule it with a double `requestAnimationFrame` after `showMap()`'s promise resolves.
-- DataTables: omit `fixedHeader` and `Select` (they add 15-20 ms startup cost each with no benefit here — `select: true` was inert anyway and has been deleted). `Buttons` is kept, but only for the table tab's `csvHtml5` CSV export (the `buttons:` config in `table.js`). Skip `columns.adjust()` on first render (~25 ms). Lock `.dataTables_scrollBody` to `height/min-height/max-height: 500px; overflow-y: scroll` to prevent width drift as row counts change.
-- Map export (`print-map.js`): uses an off-screen Leaflet map with `L.canvas({ padding: 0 })` as the renderer. Call `setView()` before adding vector layers — adding layers first causes number-measure exports to silently fail.
-- Default-measure priority lives in one place: `pickDefaultMeasureByPriority` in `measures.js`. `menu.js`'s `getDefaultMeasure` delegates to it (passing `indicator.Measures`) so the dropdown highlight and the rendered default can't diverge — don't reintroduce a parallel priority list.
-- Magic MeasureIDs / ComparisonIDs that render logic branches on (poverty comparator, air-quality trend slices, quarterly measures, etc.) live in `DE_MEASURE_RULES` in `global.js`. Add new data-coupled IDs there with a comment, not as inline literals in `measures.js` / `trend.js`.
-- Verbose tracing goes through `debugLog()`, not raw `console.log`. It's defined in `head.html` (site-wide, next to `hugoEnv`/`baseURL`/`data_repo`/`data_branch`) rather than `global.js`, because `topic-indicator-selector.js` also runs on `themes/dohmh/layouts/data-explorer/section.html`, which loads it without the rest of the SPA bundle — a `global.js`-only helper would throw `ReferenceError` there. It defaults on for every Hugo environment except `production`/`prod_prod` (reads `hugoEnv`), so local/dev/staging need no setup; `localStorage.setItem('de_debug', '1' | '0')` overrides it either direction per browser. Use it for new trace/dump statements; leave genuine error-path logging (`.catch(error => console.log(error))`) as plain `console.log`/`console.error` so failures stay visible regardless of environment or flag.
-- `assignGeoRank` derives its ranking from `prettifyGeoType` (`GEO_RANK_BY_PRETTY_TYPE` in `global.js`) instead of its own `switch`. A new versioned geotype variant (e.g. a future `NTA2030`) only needs adding to `prettifyGeoType` — don't reintroduce a parallel version list in `assignGeoRank`.
-- `window.mapInterop` is a fixed three-member contract (`ready`, `highlight(geoID)`, `reset()`) created once at load in `map.js` and **attached** by each renderer — don't publish renderer-specific members (`circleMarkers`, `geoIDtoLayer`, …) on it or bar.js will start shape-sniffing again. `resetMapForRender()` detaches it, so `ready` is false while geometry is in flight; that gap is real (a hover landing in it used to write stale text into the legend panel, silently). The reverse direction goes through `setBarSelection()` — the only place map.js may touch `window.myVegaView`.
-- **The old explorer is the oracle for what catalog metadata *means*, not just a retired copy.** A null `GeoType` inside a `VisOptions[0]` vis-type array encodes "this vis type is unavailable for this measure" — the old explorer disables the tab and falls back to Table; the new one reads it as a geography and hard-fails (fresh audit §4.12). Before reporting catalog data as malformed, load the same `?id=` on `/data-explorer-old/`: if it renders there, the defect is ours. Tier 4.4 retires that oracle — mine it before it goes.
-- The seven `show*` renderers and `syncLinksSelectionsToMapSelection` are declared `let` in `global.js` and **assigned** (not declared) in `measures.js`, now at module scope. Writing `const showMap = …` redeclares the `global.js` `let` in the shared top-level scope → load-time `SyntaxError` on *every* page. Keep them assignments. `npm run smoke` is the runtime catch for this.
+## Refactors and renames
 
-## Audit documents
+- **Clarity renames are pre-authorized.** A name that actively *misleads* — describing something other than what the thing is — may be renamed as part of any refactor touching it. Rename what misleads, not every name you'd have chosen differently. Prove each rename complete rather than assuming it: with no linter here, that means a scoped grep for the old name across JS, templates, SCSS, and string literals.
+- **Element-id renames get their own commit**, separate from any JS change. Ids are referenced from templates, JS strings, SCSS, and ARIA attributes — grep all four.
+- **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (re-indent the moved lines, say) and diff against the pre-move state; byte-identity proves "no behavior change" by construction, where a large diff only invites eyeballing.
 
-Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell:
+## Branching and deployment
 
-- `documents/data-explorer-architecture.md` — the SPA's **current-state** narrative: load pipeline, per-interaction flow, URL sync, ordering constraints. Deliberately holds no file/function inventory (that content rotted through five refactors; `grep` answers it better). Guarded by `npm run docs-check` and carries a `docs-check verified: <commit>` stamp — if you change behaviour it describes, update the prose and re-stamp.
-- `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; all §0–§6 findings shipped by 2026-07-04. Superseded by the fresh audit below.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit (Tiers 1–4). **Tiers 1, 2 and 3 are complete and all merged into `feature-new-data-explorer`** (as of 2026-07-23), along with Tier 4.5 (guardrails), 4.6 (head.html gating), 4.7, 4.8 (Pagefind), 4.9, 4.1 (dismantle `renderMeasures()`) and its naming sweep, 4.2 (one indicator-load pipeline + URL module, 2026-07-26), 4.3 (`window.mapInterop` contract, merged and pushed 2026-07-27) and 4.10 (delegated dropdown menus). **4.12 is fixed but not yet merged** (2026-07-30) — a null `GeoType` meant "no map for this measure" and the map threw on 40 of 282 indicators; it now draws an explicit gray "not mapped" state. It sits on `feature-de-tier4.12-null-geotype`. **Open: §4.13** (10 measures have no `Citywide` row to fall back on, so their Boundary/Time dropdowns are empty — an upstream metadata question, no crash) and **§4.14** (none of the three map renderers carries a stale-render token; logged, not reproduced). Then **4.4** (retire the old explorer, parked until comparative user testing ends) — 4.12 cleared its crash, but those indicators still default to a thinner Table than the old explorer's, which is 4.4's remaining gate. Log new findings and fix status here, not in the deep-audit doc.
-- `documents/site-wide-audit-2026-06-27.md`
+Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`. Merge to `development` for testing, then to `production` to deploy. GitHub Actions builds `production` → `builds/prod-prod` (live) and `build-to-dev-stage` → `builds/dev-stage` (staging). Full workflow and environment tables: [readme-development.md](readme-development.md).
 
-## Team context
+A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 
-The team is mostly self-trained, so some things are done deliberately and well, others evolved organically. The team is happy with what works but open to suggestions for more professional or elegant approaches. Proactively flag patterns that have a clearly better industry-standard equivalent, even as asides during unrelated work — but don't assume everything unfamiliar is wrong, and keep suggestions brief.
+## Common gotchas
+
+- **Missing images fail the build.** Hugo resizes images at build time; a missing source aborts the build.
+- **Build caching.** Remote EHDP-data resources are cached. If a data update isn't appearing, set `maxAge = 0` for the relevant cache in config, or add the `--ignoreCache` switch to the `hugo` call.
+- **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.

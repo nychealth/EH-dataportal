@@ -80,7 +80,7 @@ Typically, [about twice as many New Yorkers walk or bike for transportation, com
 <span class="fs-sm mt-0"><em>Joe Buglewicz / Mayoral Photography Office, City of New York</em></span>
 </div>
 
-Because so many New Yorkers are walkers and cyclists, [many are concerned about traffic-related injuries]({{< relURL >}}data-explorer/transportation-related-injuries/?id=2094#display=summary)—a preventable harm that affects too many New Yorkers each year. [The way the streets are designed and used can encourage or inhibit behaviors that keep us healthy]({{< relURL >}}data-stories/streets/)
+Because so many New Yorkers are walkers and cyclists, [many are concerned about traffic-related injuries]({{< relURL >}}data-explorer/transportation-related-injuries/?id=2094#display=summary)—a preventable harm that affects too many New Yorkers each year. [The way the streets are designed and used can encourage or inhibit behaviors that keep us healthy]({{< relURL >}}data-stories/streets/)
 
 Because the streetscape is such a huge part of the fabric of our city, it’s important to build a transportation system for people &mdash; one that accommodates healthy movement, keeps people safe, and helps make our city more resilient in the face of a changing climate. Investing in public transit is a vital piece of a strong city and of the work to improve the health of all New Yorkers.
 

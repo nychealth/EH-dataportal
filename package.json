@@ -14,6 +14,7 @@
     "scripts": {
         "lint": "eslint assets/js/data-explorer",
         "characterize": "node scripts/de-characterization.mjs",
+        "characterize:cp": "node scripts/cp-characterization.mjs",
         "smoke": "node scripts/smoke-pages.mjs",
         "docs-check": "node scripts/docs-check.mjs"
     },
@@ -48,11 +49,11 @@
         "vega-lite": "^5.21.0"
     },
     "optionalDependencies": {
-        "hugo-extended": "^0.146.3"
+        "hugo-extended": "^0.147.3"
     },
     "devDependencies": {
         "eslint": "^10.7.0",
         "globals": "^17.7.0",
-        "playwright": "^1.61.1"
+        "playwright": "^1.62.0"
     }
 }

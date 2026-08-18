@@ -10,9 +10,9 @@ Heat contributes to the deaths of more than 500 New Yorkers, on average, each ye
 To prepare for a hotter future and prevent heat-related deaths, the City needs long-lasting, structural interventions alongside heat emergency preparedness and response. Adapting to a hotter climate means the City must:
 
 - Ensure equitable access to life-saving residential cooling for all New Yorkers
-  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>.
+  - Implement maximum temperature regulations during the summer months for tenants as laid out in 2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>.
   - Consider mandates on property owners to provide tenants with AC without additional surcharges.
-  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s  <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
+  - Help eligible residents apply for a free air conditioner with installation through the Home Energy Assistance Program (HEAP)’s  <a href="https://otda.ny.gov/programs/heap/#cooling-assistance" target="_blank" rel="noreferrer noopener">Cooling Assistance Component</a>.
   - Protect the electrical grid, which can be strained during hot weather, including by discouraging excess cooling in offices and commercial establishments.
 - Work with the State and utilities to make summertime utility costs affordable for low- and middle-income New Yorkers so they can use AC to protect themselves from the heat.
   - Make energy prices affordable for all New Yorkers through affordable energy rates for low- and middle-income customers.
@@ -20,7 +20,7 @@ To prepare for a hotter future and prevent heat-related deaths, the City needs l
   - Prohibit electricity disconnections during hot weather, even if bills are unpaid.
   - Fund energy efficient home improvements to help reduce family energy costs and decrease pressure on the electrical grid.
 - Invest in local resiliency to make all NYC neighborhoods and residents cooler and safer.
-  - Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs. For example, expanding the city’s tree canopy coverage to 30% (2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>).
+  - Implement green infrastructure projects, especially in high HVI neighborhoods, including planting trees and other greenery and expanding cool roofs. For example, expanding the city’s tree canopy coverage to 30% (2023 <a href="https://climate.cityofnewyork.us/initiatives/planyc-getting-sustainability-done/" target="_blank" rel="noreferrer noopener"> PlaNYC: Getting Sustainability Done</a>).
   - Support community-based organizations (CBOs) working to reduce the health impacts of climate change.
   - Include CBOs and residents in decision-making about investments in community infrastructure and public space.
   - Fund and provide technical assistance for programs that support CBOs to build community resilience through social cohesion and access to physical and mental health resources that can help people stay safe in the heat.

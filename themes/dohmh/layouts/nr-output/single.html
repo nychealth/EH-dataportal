@@ -24,29 +24,10 @@
         text-decoration: none;
     }
 
-    .comp-good::before {
-    content: "✅ ";
-    }
-
-    .better-sm::before {
-    content: "✅ ";
-    }
-
-    .comp-bad::before {
-    content: "‼️ ";
-    }
-
-    .worse-sm::before {
-    content: "‼️ ";
-    }
-
-    .comp-null::before {
-    content: "⚪ ";
-    }
-
-    .middle-sm::before {
-    content: "⚪ ";
-    }
+    /* The comparison markers were emoji ::before rules here. They are now Font Awesome 6
+       codepoints in assets/scss/_de-custom.scss (.comp-* on the sentence renditions) and
+       assets/scss/theme.scss (the .worse / .better pills), so all of the report's comparison
+       markers resolve from one place. Rank 2 (.comp-null, .middle) is deliberately unmarked. */
 
     .no-bullets li {
         list-style:none;
@@ -388,12 +369,10 @@
 
                             <div class="px-2 pb-2">
                                 <h3 class="h4 fs-rg">
-                                    <!-- Print report_topic in sentence case --> 
-                                    {{- $lower := lower $rt.report_topic -}}
-                                    {{- $first := upper (substr $lower 0 1) -}}
-                                    {{- $rest := substr $lower 1 -}}
-                                    {{- printf "%s%s" $first $rest -}}
-
+                                    {{/*  Casing comes from the YAML, which is already sentence case. Don't
+                                          re-case it here: lowercasing the whole string destroys acronyms in
+                                          topics like "Health burden: fine particles (PM2.5)".  */}}
+                                    {{- $rt.report_topic -}}
                                 </h3>
                                 <p class="fs-sm">
                                     {{- $rt.report_topic_description -}}

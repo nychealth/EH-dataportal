@@ -63,7 +63,7 @@ related:
         <div class="narrow">
             <p>{{< updateflag data=`[
   {"src": "data-explorer/air-quality/?id=2023", "text": "Seasonal fine particles (PM2.5)"},
-  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},      
+  {"src": "data-explorer/air-quality/?id=2025", "text": "Seasonal Nitrogen dioxide (NO2)"},
   {"src": "data-explorer/health-impacts-of-air-pollution/", "text": "Health impacts of air pollution"},
   {"src": "data-explorer/economic-conditions/?id=103", "text": "Neighborhood poverty"}
   
@@ -96,11 +96,11 @@ related:
         <div class="my-2 mx-2 border" style="background:#EEF4E3">
         <div class="narrow my-4 py-4">
             <h3 id="section2">Noise</h3>
-            <p>City residents  are exposed to significant environmental noise. A Health Department survey showed that one in five adult New Yorkers experience <a href="https://www1.nyc.gov/assets/doh/downloads/pdf/epi/databrief105.pdf">noise that disrupts sleep and other home life three or more times per week</a> - and some high-poverty neighborhoods experience even greater rates of noise disruption. </p>
-            <p>Noise is more than an annoyance - it  can cause stress, increase blood pressure and the risk of heart disease, and interfere with cognitive development in children. </p>
+            <p>City residents are exposed to significant environmental noise. A Health Department survey showed that one in five adult New Yorkers experience <a href="https://www1.nyc.gov/assets/doh/downloads/pdf/epi/databrief105.pdf">noise that disrupts sleep and other home life three or more times per week</a> - and some high-poverty neighborhoods experience even greater rates of noise disruption. </p>
+            <p>Noise is more than an annoyance - it can cause stress, increase blood pressure and the risk of heart disease, and interfere with cognitive development in children. </p>
             <P>To measure noise levels, we collected week-long sound pressure measurements at 56 sites across the city by mounting small sound-level meters on lampposts in 2012.</P>
             <P>We found that for weeklong average values:</P>
-            <ul><li>All sites exceeded noise guidelines set by the EPA  and World Health Organization  to protect health and quality of life (55 dBA).</li>
+            <ul><li>All sites exceeded noise guidelines set by the EPA and World Health Organization to protect health and quality of life (55 dBA).</li>
                 <li>Over half of sites exceeded EPA noise guidelines to prevent hearing loss (70 dBA). </li>
             </ul>
             <p>The highest noise levels were recorded during the daytime hours of weekdays, in areas where there was a lot of traffic within 100 meters. It’s no surprise that where there are high levels of noise, there are also high levels of air pollution from vehicles.</p>
@@ -163,19 +163,19 @@ related:
                     </div>
                     <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Cardiovascular hospitalizations" aria-label="choropleth map" id="datawrapper-chart-mDgo3" data-lazy-src="//datawrapper.dwcdn.net/mDgo3/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Asthma emergency department visits" aria-label="choropleth map" id="datawrapper-chart-XWE9m" data-lazy-src="//datawrapper.dwcdn.net/XWE9m/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel" aria-hidden="true">
                         <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
-                            <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                            <iframe title="Respiratory disease hospitalizations" aria-label="choropleth map" id="datawrapper-chart-8urPc" data-lazy-src="//datawrapper.dwcdn.net/8urPc/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                             </script>
                         </div>
                     </div>
@@ -205,20 +205,20 @@ related:
             <div class="tab-content mb-2" id="tabs-02-content">
                 <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
                     role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
-                        <iframe title="High poverty  neighborhoods" aria-label="choropleth map" id="datawrapper-chart-Ji3w3" src="//datawrapper.dwcdn.net/Ji3w3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <iframe title="High poverty neighborhoods" aria-label="choropleth map" id="datawrapper-chart-Ji3w3" src="//datawrapper.dwcdn.net/Ji3w3/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
-                        <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <iframe title="Neighborhoods with low prior monitoring density" aria-label="choropleth map" id="datawrapper-chart-l7Ouh" data-lazy-src="//datawrapper.dwcdn.net/l7Ouh/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel" aria-hidden="true">
-                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">                               
-                        <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+                    <div style="background: white;" class="py-2 px-2 border-bottom border-right border-left">
+                        <iframe title="Priority neighborhoods for environmental justice monitoring" aria-label="choropleth map" id="datawrapper-chart-v5vt2" data-lazy-src="//datawrapper.dwcdn.net/v5vt2/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="400"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
                         </script>
                     </div>
                 </div>

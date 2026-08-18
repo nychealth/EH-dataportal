@@ -29,7 +29,7 @@ A key part of combating climate change is mitigation, which means **reducing GHG
 
 ### Climate Change and Health
 
-Climate change can affect human health in many ways. For NYC, the two main climate change-related health risks are **heat stress** from increased number and intensity of heat waves, and **health impacts from coastal storms**. These impacts can affect the health of all New Yorkers. 
+Climate change can affect human health in many ways. For NYC, the two main climate change-related health risks are **heat stress** from increased number and intensity of heat waves, and **health impacts from coastal storms**. These impacts can affect the health of all New Yorkers.
 
 ### To Reduce Health Risks
 

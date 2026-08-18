@@ -100,7 +100,7 @@ _Living without heat or being outdoors in cold weather for a prolonged time can 
 
 - Check on neighbors, friends, and relatives.
 
-For more information on preparing for weather hazards– including heat, cold, coastal storms and power outages – visit the [DOHMH extreme weather website](http://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page).
+For more information on preparing for weather hazards – including heat, cold, coastal storms and power outages – visit the [DOHMH extreme weather website](http://www1.nyc.gov/site/doh/health/emergency-preparedness/threats.page).
 
 ### Key Messages
 

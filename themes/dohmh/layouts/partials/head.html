@@ -105,7 +105,7 @@
 {{- $fontawesome_CSS := resources.Get "node_modules/@fortawesome/fontawesome-free/css/all.min.css" | partial "short-fingerprint.html" }}
 <link rel="stylesheet" href="{{ $fontawesome_CSS.RelPermalink }}" integrity="{{ $fontawesome_CSS.Data.Integrity }}" crossorigin="anonymous"/>
 
-{{- /*  webfonts — published (not printed) so the CSS's relative url(../webfonts/...)
+{{- /*  webfonts - published (not printed) so the CSS's relative url(../webfonts/...)
       references resolve; the JS SVG-injector is dropped since every icon in this repo
       is the class="fa..." CSS form, never the JS API  */}}
 

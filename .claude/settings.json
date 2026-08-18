@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "mcp__plugin_playwright_playwright__*",
       "mcp__plugin_context7_context7__*",
@@ -19,7 +20,6 @@
       "PowerShell(npx *)",
       "WebFetch(domain:*)"
     ],
-    "defaultMode": "auto",
     "ask": [
       "Bash(git commit)",
       "Bash(git commit *)",
@@ -54,7 +54,7 @@
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
+    "greptile@claude-plugins-official": false,
     "commit-commands@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,

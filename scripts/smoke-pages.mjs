@@ -1,70 +1,97 @@
 // Console-error smoke test across one page per template kind. Fails on any
-// console `error` or `pageerror`. Exists because Tier 4.6 shipped bugs that a
-// clean `hugo` build and static grep both missed — the old explorer's map was
-// broken and four data-features pages threw on colorIcon/easyButton, visible
-// only by loading real pages. Runs the same way as the characterization
-// check: `npm run smoke` before a merge that touches shared templates.
+// console `error` or `pageerror` that isn't in the allowlist below.
+//
+// It exists to catch what a clean `hugo` build cannot: the site's browser JS is
+// loaded as classic <script> tags sharing one global scope, so a bad edit throws
+// at load time while the build still succeeds. Run it before merging anything
+// that touches a shared template (head.html, baseof.html, the header/footer
+// partials) or any file under assets/js/.
+//
+//   npm run smoke
+//   DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # existing server
 
 import { chromium } from "playwright";
 import { ensureDevServer } from "./dev-server.mjs";
 
-// One page per template kind, weighted toward Tier 4.6's actual casualties.
-// Prefix-relative — joined onto whatever baseURL ensureDevServer() returns.
+// One page per template kind, prefix-relative — joined onto whatever baseURL
+// ensureDevServer() returns.
+//
+// Every comment names the template that renders that URL, taken from the content
+// file's own frontmatter rather than from the URL's shape: a comment claiming the
+// wrong template is how a page ends up with zero coverage while looking covered.
+// The list favours templates that load map/chart libraries, since those are the
+// ones that break when head.html's gating changes.
 const PAGES = [
-    "",                                              // home
-    "data-explorer/asthma/?id=2380",                 // DE single, indicator loaded from the URL
-    "data-explorer/asthma/",                         // DE single, no ?id= — boots the indicator chooser
-    "data-explorer/birth-defects/?id=26",            // DE single, unmapped measure (VisOptions[0].Map
-                                                     // carries a null GeoType) — renderMap's unmapped
-                                                     // branch. Threw a TypeError on 40 indicators and
-                                                     // no smoke page covered it; see audit §4.12
-    "data-explorer/waterways/?id=2427",              // DE single, unmapped with NO Citywide fallback in
-                                                     // Table either, so showMap hands renderMap an empty
-                                                     // metadata array — the other unmapped branch
-    "data-explorer/",                                // DE section (topic chooser) — the ONE page that
-                                                     // loads topic-indicator-selector.js WITHOUT the rest
-                                                     // of the SPA bundle, so it's the only place the
-                                                     // `typeof loadAndRenderIndicator` guards are exercised
-    "data-explorer-old/asthma/?id=2380",             // old explorer single
-    "data-features/flood-vulnerability-index/",      // fvi layout — easyButton/colorIcon
-    "data-features/rats-in-your-neighborhood/",      // KNOWN-RED (see allowlist)
-    "data-features/rat-mitigation-zones/",           // rmz layout — easyButton/colorIcon
-    "data-features/realtime-air-quality/",           // realtime layout — easyButton/colorIcon
-    "data-features/find-your-uhf/",                  // renders neighborhood-overlap.html — sole real easyButton/colorIcon consumer
-    "neighborhood-reports/",                         // NR section
-    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-output single report — nr-leaflet standalone + Arquero-built charts
-    "data-stories/housing/",                         // KNOWN-RED (see allowlist)
-    "take-action/",                                  // take-action
+    "",                                             // index.html — home
+    "data-explorer/",                               // data-explorer/section.html — topic chooser
+    "data-explorer/asthma/",                        // data-explorer/single.html — the SPA, no ?id=
+    "data-explorer/asthma/?id=2380",                // data-explorer/single.html — indicator loaded from the URL
+    "data-explorer/birth-defects/?id=26",           // data-explorer/single.html — unmapped measure (VisOptions[0].Map
+                                                    //   carries a null GeoType), exercising renderMap's unmapped
+                                                    //   branch. Threw a TypeError on 40 indicators; audit §4.12
+    "data-explorer/waterways/?id=2427",             // data-explorer/single.html — unmapped with no Citywide fallback
+                                                    //   in Table either, so showMap hands renderMap an empty
+                                                    //   metadata array: the other unmapped branch
+    "data-explorer-old/asthma/?id=2380",            // data-explorer-old/single.html — the retired explorer, which
+                                                    //   this branch still publishes at its own URL
+    "data-explorer/data-index/",                    // data-index layout — builds topic_indicators.json
+    "data-explorer/indicator-catalog/",             // indicator-catalog layout
+    "data-stories/",                                // data-stories/section.html
+    "data-stories/housing/",                        // data-stories/single.html — Vega + Datawrapper embeds
+    "data-stories/cold/",                           // cold layout — bundled standalone HTML
+    "data-stories/urban-heat-island/",              // uhi layout
+    "data-stories/block-by-block/",                 // bbb layout
+    "data-stories/air-quality-snapshots/",          // flexible layout
+    "data-features/",                               // data-features/section.html
+    "data-features/flood-vulnerability-index/",     // fvi layout — Leaflet, colorIcon/easyButton
+    "data-features/rat-mitigation-zones/",          // rmz layout — Leaflet, colorIcon/easyButton
+    "data-features/realtime-air-quality/",          // realtime layout — third-party AirNow widget
+    "data-features/find-your-uhf/",                 // neighborhood-overlap layout — Leaflet + geocoder
+    "data-features/rats-in-your-neighborhood/",     // rats-in-your-neighborhood layout — Leaflet
+    "data-features/heat-report-archive/2021/",      // report layout
+    "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
+    "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
+    "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
+    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-output/single.html — the report itself
+    "key-topics/",                                  // key-topics/section.html
+    "key-topics/airquality/",                       // key-topics/single.html
+    "about/",                                       // about/section.html
+    "about/publications/",                          // about/single.html
+    "resources/",                                   // resources/section.html
+    "resources/sugar-lookup/",                      // sugar layout
+    "take-action/",                                 // take-action/section.html
+    "take-action/email-electeds/",                  // email-electeds layout
 ];
 
-// Pre-existing, documented console noise that is NOT a regression. Each entry
-// names the page it excuses and the audit section that tracks the real fix, so
-// resolving that bug is what removes the entry — the allowlist trends to zero.
+// Pre-existing console noise that is NOT a regression. Every entry must name the
+// page it excuses and what was observed, so fixing that bug is what removes the
+// entry — the allowlist trends to zero.
 //
-// `page` scopes the exemption to the known-red page(s): a bug-specific signature
-// must NOT be excused site-wide, or a genuine regression producing the same
-// error text on another page would be silently swallowed. The negative-SVG
-// signature especially — the DE chart pages render Vega-Lite, which throws the
-// identical "negative value" text on a real sizing bug. `page: null` is reserved
-// for generic dev-only noise that is benign on every page.
+// `page` scopes an exemption to the page(s) where the cause was actually
+// identified. A bug-specific signature must NOT be excused site-wide, or a real
+// regression producing the same text elsewhere is silently swallowed. Reserve
+// `page: null` for generic dev-server noise that is benign everywhere.
 const KNOWN_NOISE = [
-    // Datawrapper iframe computing NaN/negative size in a hidden Bootstrap tab
-    // (data-stories/housing, and off-list redlining/, air-quality-snapshots/,
-    // vectorborne-diseases/). The browser's SVG validator reports generic
-    // "negative value" attribute errors with no CDN string, so match the
-    // signature, not the host — hence the page scope. site-wide audit §5b.
-    { page: /data-stories\/housing\//, error: /attribute (?:width|height): A negative value is not valid/i },
-    // Any Datawrapper resource-load noise that DOES name the host, same page.
-    { page: /data-stories\/housing\//, error: /dwcdn\.net|datawrapper/i },
-    // rats-in-your-neighborhood: area.contains() has thrown since 2019 (RawGit
-    // fallout). site-wide audit §5c. Remove when that template is fixed.
-    { page: /rats-in-your-neighborhood/, error: /area\.contains|is not a function.*contains/i },
-    // realtime-air-quality: the embedded AirNow widget (widget.airnow.gov) makes
-    // a cross-origin XHR to airnowgovapi.com that is blocked by CORS — a third-
-    // party embed we don't control. site-wide audit §5d.
+    // urban-heat-island embeds two Google Maps Street View iframes
+    // (data-stories/uhi.html:63 and :73). Street View asks for the accelerometer
+    // for device-orientation panning, which the embed doesn't grant via `allow=`,
+    // so Chromium logs one violation per iframe. Two iframes, two errors, and the
+    // maps render regardless — only device-orientation panning is unavailable.
+    { page: /urban-heat-island/, error: /Permissions policy violation: accelerometer/i },
+    // realtime-air-quality embeds the AirNow widget (widget.airnow.gov), which
+    // makes a cross-origin XHR to airnowgovapi.com that the API serves without
+    // an Access-Control-Allow-Origin header. Third-party embed, not our request.
     { page: /realtime-air-quality/, error: /airnowgovapi\.com|widget\.airnow\.gov/i },
-    // Generic dev-only resource noise, benign on any page (same set the harness
-    // ignores).
+    // The signup <iframe> in partials/header.html embeds a Google Form, which
+    // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
+    // the refusal on every page that renders the header. Report-only, so nothing
+    // is blocked — but it does mean the embed itself never renders.
+    { page: null, error: /frame-ancestors|Framing 'https:\/\/docs\.google\.com\//i },
+    // Generic dev-server resource noise: Pagefind's index isn't built by
+    // `hugo server`, and favicons/404s of that kind say nothing about the page.
+    // CAUTION: the broad `Failed to load resource` entry also hides the *cause*
+    // of a blocked script, leaving only a downstream "X is not defined". When
+    // diagnosing one of those, re-run with this entry commented out.
     { page: null, error: /pagefind|favicon|Failed to load resource|net::ERR/i },
 ];
 
@@ -92,10 +119,9 @@ const main = async () => {
 
             try {
                 // "load" rather than "networkidle": pages embedding third-party
-                // iframes that poll continuously (e.g. Datawrapper on
-                // data-stories/housing, §5b) never reach networkidle and would
-                // time out. The settle delay lets deferred scripts surface any
-                // console errors that fire after load.
+                // iframes that poll continuously (Datawrapper, the AirNow widget)
+                // never reach networkidle and would time out. The settle delay
+                // lets deferred scripts surface errors that fire after load.
                 await page.goto(url, { waitUntil: "load", timeout: 30000 });
                 await page.waitForTimeout(2000);
             } catch (e) {
@@ -104,10 +130,10 @@ const main = async () => {
 
             if (errors.length) {
                 failures.push({ path, errors });
-                console.error(`FAIL  ${path}`);
+                console.error(`FAIL  ${path || "(home)"}`);
                 for (const e of errors) console.error(`        ${e}`);
             } else {
-                console.log(`ok    ${path}`);
+                console.log(`ok    ${path || "(home)"}`);
             }
 
             await page.close();
@@ -118,7 +144,7 @@ const main = async () => {
     }
 
     if (failures.length) {
-        console.error(`\nSmoke test FAILED — ${failures.length} page(s) had unexpected console errors.`);
+        console.error(`\nSmoke test FAILED — ${failures.length} of ${PAGES.length} page(s) had unexpected console errors.`);
         process.exitCode = 1;
     } else {
         console.log(`\nSmoke test PASSED — ${PAGES.length} pages clean (known noise allowlisted).`);

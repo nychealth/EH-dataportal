@@ -42,9 +42,9 @@ relatedData:
     url: "housing-safety/"
 ---
 
-Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, **most work-related illnesses and injuries are preventable** –  safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
+Every year in New York City, workers are injured on the job or become ill as a result of exposure to health hazards at work. However, **most work-related illnesses and injuries are preventable** – safer work environments can be achieved when workplace hazards are understood and appropriate prevention measures are put in place.
 
-Data on work-related injuries and illness are used to show how often these preventable events occur and to identify  factors that place workers at risk. These data are also used to design, target and evaluate prevention strategies and regulations that aim to keep workers safe and healthy.
+Data on work-related injuries and illness are used to show how often these preventable events occur and to identify factors that place workers at risk. These data are also used to design, target and evaluate prevention strategies and regulations that aim to keep workers safe and healthy.
 
 ### Work, Workplaces and Health
 
