@@ -3,6 +3,7 @@ title: "Neighborhood boundaries on the EH Data Portal"
 shortTitle: "Neighborhood boundaries"
 date: 2020-08-01T08:33:22-04:00
 draft: false
+vega: true
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags:
@@ -104,7 +105,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
                         spec.layer[0].data.url = topo;
                         spec.layer[1].data.url = topo;
                         d3.csv(csv, d3.autoType).then(csv => {
-                            vegaEmbed(div, spec).then((res) => {
+                            vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
                                 resview = res.view.insert("csv", csv).run();
                             });
                         });
@@ -354,12 +355,12 @@ tr {border-bottom: 1px dashed black;
             <h5 class="card-title">Appendix: common uses for each scheme</h5>
 <table class="table--bordered">
 
-| Boundaries  | Based on              | Number in NYC | Common use                                                                              |
+| Boundaries  | Based on              | Number in NYC | Common use                                                                              |
 | ----------- | --------------------- | ------------- | --------------------------------------------------------------------------------------- |
-| UHF42       | ZIP codes             | 42            | Health surveillance and public health reporting <br>(like the Community Health Survey)  |
-| UHF34       | ZIP codes             | 34            | More statistical power for public health reporting                                      |
-| CD          | Political boundaries  | 59            | Local governance through Community Boards                                               |
-| CDTA        | Census tracts         | 59            | Approximating CDs, for census-compatible <br>statistical analysis                       |
+| UHF42       | ZIP codes             | 42            | Health surveillance and public health reporting <br>(like the Community Health Survey)  |
+| UHF34       | ZIP codes             | 34            | More statistical power for public health reporting                                      |
+| CD          | Political boundaries  | 59            | Local governance through Community Boards                                               |
+| CDTA        | Census tracts         | 59            | Approximating CDs, for census-compatible <br>statistical analysis                       |
 | PUMA        | Census tracts         | 55            | Research, <br>using statistically meaningful areas of ~100,000 people                   |
 | NTA         | Census tracts         | 195           | Neighborhood identity, fine-grained data                                                |
 
@@ -379,17 +380,17 @@ A GeoID (Geographic Identifier) is a unique code used to label a specific area o
 
 <table class="table--bordered">
 
-| Boundary scheme  | GeoID Example  | Format        | Determined by                |
+| Boundary scheme  | GeoID Example  | Format        | Determined by                |
 | ---------------- | -------------- | ------------- | ---------------------------- |
-| State            | 36             | Numeric       | Census FIPS code for NY      |
-| County           | 36061          | Numeric       | State + County               |
-| Census Tract     | 36061000100    | Numeric       | 11-digit Census tract        |
-| Block Group      | 360610001001   | Numeric       | 12-digit Census block group  |
-| NTA              | MN0302         | Alphanumeric  | NYC Planning-defined         |
-| PUMA             | 03714          | Numeric       | Census-defined               |
-| UHF42/UHF34      | 303            | Numeric       | DOHMH-defined                |
-| CD               | 203            | Numeric       | BoroCD (Borough + District)  |
-| ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
+| State            | 36             | Numeric       | Census FIPS code for NY      |
+| County           | 36061          | Numeric       | State + County               |
+| Census Tract     | 36061000100    | Numeric       | 11-digit Census tract        |
+| Block Group      | 360610001001   | Numeric       | 12-digit Census block group  |
+| NTA              | MN0302         | Alphanumeric  | NYC Planning-defined         |
+| PUMA             | 03714          | Numeric       | Census-defined               |
+| UHF42/UHF34      | 303            | Numeric       | DOHMH-defined                |
+| CD               | 203            | Numeric       | BoroCD (Borough + District)  |
+| ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
 
 </table>
 </div>
@@ -410,17 +411,17 @@ A GeoID (Geographic Identifier) is a unique code used to label a specific area o
 
 A GeoID is like a “name tag” for places. Every area, from a small city block to an entire borough, can have a code that identifies it in a dataset.
 
-| Boundary scheme  | GeoID Example  | Format        | Determined by                |
+| Boundary scheme  | GeoID Example  | Format        | Determined by                |
 | ---------------- | -------------- | ------------- | ---------------------------- |
-| State            | 36             | Numeric       | Census FIPS code for NY      |
-| County           | 36061          | Numeric       | State + County               |
-| Census Tract     | 36061000100    | Numeric       | 11-digit Census tract        |
-| Block Group      | 360610001001   | Numeric       | 12-digit Census block group  |
-| NTA              | MN0302         | Alphanumeric  | NYC Planning-defined         |
-| PUMA             | 03714          | Numeric       | Census-defined               |
-| UHF42/UHF34      | 303            | Numeric       | DOHMH-defined                |
-| CD               | 203            | Numeric       | BoroCD (Borough + District)  |
-| ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
+| State            | 36             | Numeric       | Census FIPS code for NY      |
+| County           | 36061          | Numeric       | State + County               |
+| Census Tract     | 36061000100    | Numeric       | 11-digit Census tract        |
+| Block Group      | 360610001001   | Numeric       | 12-digit Census block group  |
+| NTA              | MN0302         | Alphanumeric  | NYC Planning-defined         |
+| PUMA             | 03714          | Numeric       | Census-defined               |
+| UHF42/UHF34      | 303            | Numeric       | DOHMH-defined                |
+| CD               | 203            | Numeric       | BoroCD (Borough + District)  |
+| ZCTA (ZIP)       | 10454          | Numeric       | Census ZIP approximation     |
 
 
 </div>

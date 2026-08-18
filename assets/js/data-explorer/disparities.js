@@ -332,6 +332,7 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#links", disspec,{
+        renderer: "svg",
         actions: {
             export: { png: false, svg: false },
             source: false,  

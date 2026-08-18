@@ -17,6 +17,10 @@ import { setTimeout as sleep } from "node:timers/promises";
 const PROBE_PORTS = [8080, 1313];
 const PREFIXES = ["/dev-stage/", "/local-stage/", "/dev-prod/", "/local-prod/", "/IndicatorPublic/", "/"];
 
+// The server we start when none is running. dev_stage means STAGING data, so a
+// page whose content differs between EHDP-data branches will differ here from
+// production — that matters for anything comparing content, not for the console
+// errors this harness reads.
 const SPAWN_PORT = 8080;
 const SPAWN_PREFIX = "/dev-stage/";
 const SPAWN_CMD = "hugo";
@@ -118,11 +122,11 @@ export async function ensureDevServer() {
     process.once("SIGINT", () => { stop(); process.exit(130); });
 
     const baseURL = `http://localhost:${SPAWN_PORT}${SPAWN_PREFIX}`;
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 90; i++) {
         if (await responds(baseURL)) return { baseURL, stop };
         await sleep(1000);
     }
 
     await stop();
-    throw new Error(`Spawned hugo server did not answer at ${baseURL} within 60s.`);
+    throw new Error(`Spawned hugo server did not answer at ${baseURL} within 90s.`);
 }

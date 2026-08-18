@@ -262,7 +262,7 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         topo_url.url = topo;
         
-        vegaEmbed(div, spec, {actions: false}).then(async res => {
+        vegaEmbed(div, spec, {renderer: "svg", actions: false}).then(async res => {
                 
             let res_view = await res.view
                 .signal("selectedNTA", nbr)

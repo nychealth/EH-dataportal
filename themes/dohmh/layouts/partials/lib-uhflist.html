@@ -1,0 +1,10 @@
+{{- /*  UHF42 neighborhood list (defines the global `neighborhoods`).
+        Generated from data/globals/uhflist.json rather than loaded from assets/js/uhflist.js,
+        which this branch retired — the JSON is the single source of truth for the 42
+        neighborhoods and their names, and the content adapter reads the same file. Still
+        fingerprinted and SRI-hashed, exactly as the source file was.
+        The target name differs from the old assets path on purpose: resources/_gen/ caches by
+        path, so reusing that name risks serving a stale entry keyed to the deleted file.  */}}
+
+{{- $uhflist_js := printf "var neighborhoods = %s" (jsonify site.Data.globals.uhflist) | resources.FromString "js/uhflist-data.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>

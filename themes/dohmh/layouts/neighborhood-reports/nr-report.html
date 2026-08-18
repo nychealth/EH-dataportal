@@ -114,7 +114,8 @@
                         <span id="nr-zip-list">{{ .Params.zipcodes }}</span>
                     </div>
 
-                    {{/* Demographics table — populated by JS from uhflist.js */}}
+                    {{/* Demographics table — populated by JS from the `neighborhoods` global,
+                        emitted by lib-uhflist.html from data/globals/uhflist.json */}}
                     <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
                         <table class="table fs-sm" style="color:darkslategrey">
                             {{/* Row headers, not plain cells: in a two-column table a screen
@@ -387,6 +388,15 @@
 
     }
 </script>
+
+{{/* The libraries the ten report modules call at load, ahead of them for the same reason the
+    QR library sits ahead of renderQRCode. Leaflet for map.js, the neighborhoods global for
+    demographics.js and global.js, Vega for chart.js, Arquero for app.js/chart.js/data.js.
+    No d3 or DataTables: nothing under assets/js/nr-report/ references either. */}}
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-uhflist.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-arquero.html" . }}
 
 {{/*
     Ten classic (non-module) scripts sharing one top-level scope, in load order.

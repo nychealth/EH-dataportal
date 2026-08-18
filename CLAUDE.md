@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-report themes/dohmh/layouts scripts -->
-<!-- docs-check verified: 6d55841a89 2026-08-15 -->
+<!-- docs-check verified: fb5b89df64+c59d614716 2026-08-17 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -10,6 +10,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 NYC Department of Health & Mental Hygiene's [Environment & Health Data Portal](https://a816-dohbesp.nyc.gov/IndicatorPublic/) — a Hugo static site providing public access to environmental and health indicators through data stories, an interactive data explorer, neighborhood reports, and topic pages.
 
 Most indicator data lives in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository (not this repo). Site code fetches it at build time via `data_branch` config variable and at runtime via `data_repo` param in Hugo templates/JS.
+
+## Human-facing docs
+
+These are written for the team and are the authority on their subjects. Read the relevant one before answering a question it covers; don't restate their contents here.
+
+- [readme-development.md](readme-development.md) — getting started, branches, GitHub Actions builds, the full environment table, content creation, SRI, dependency bundling, CloudCannon, build caching.
+- [readme-content.md](readme-content.md) — content-management standards for editors.
+- [readme-components.md](readme-components.md) — the card and callout components available in markdown.
+- [README.md](README.md) — orientation and contact info.
 
 ## Commands
 
@@ -132,6 +141,19 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 
 JS files under `assets/js/` are fingerprinted and served with Subresource Integrity. Dependencies from `node_modules` are mounted into `assets/node_modules` via Hugo module mounts — they are bundled locally, not loaded from CDNs.
 
+#### Library loading
+
+`head.html` loads only what every page needs: jQuery, Font Awesome (CSS webfont), and DOMPurify. Everything else is a **`lib-*` partial that the template including it opts into** — seven of them, each wrapping one library's `resources.Get` calls, fingerprinting and SRI:
+
+`lib-leaflet` · `lib-easybutton-coloricon` · `lib-uhflist` · `lib-vega` · `lib-arquero` · `lib-d3` · `lib-datatables`
+
+- **`lib-easybutton-coloricon` must follow `lib-leaflet`** — both extend the global `L`.
+- **`lib-uhflist` emits the global `neighborhoods`**, generated at build time from `data/globals/uhflist.json` via `resources.FromString` into a fingerprinted `uhflist-data` script. The old hand-maintained `uhflist.js` source under `assets/js/` is gone; a comment naming it is stale.
+- **Placement is not free.** `baseof.html` renders `block "main"` before `block "js_bot"`, so a partial included in `js_bot` is parsed *after* any inline `<script>` in `main`. `nr-leaflet.html` calls `L.map(...)` at the top level of an inline script, so every template rendering it includes `lib-leaflet` in `main`, above that call. Put the include beside the consumer that runs earliest, not at the foot of the page by habit.
+- Not every template uses the partials: `themes/dohmh/layouts/data-explorer/single.html` still declares its libraries inline, and flexdatalist is loaded by the three templates that use it (`themes/dohmh/layouts/partials/de-text-search.html`, `themes/dohmh/layouts/data-features/aqe.html`, `themes/dohmh/layouts/data-features/hvi.html`) rather than by a `lib-*` partial.
+
+Adding a library call to a template's JS means adding its `lib-*` include too — nothing loads it globally any more, and the failure is a runtime `X is not defined` that a green build will not show you.
+
 ### Data explorer
 
 `assets/js/data-explorer/` is a vanilla-JS app of 10 files loaded as classic `<script>` tags sharing one global scope. **Load order is critical** and is set in `themes/dohmh/layouts/data-explorer/single.html`:
@@ -147,7 +169,7 @@ Key gotchas:
 - `isDataTable` is reached via the lowercase-`d` jQuery plugin property, not the capitalised one. **Scoped to `feature-new-data-explorer`** — the name appears 6× there and 0× here or on `production`, though DataTables itself is used on this branch `[verified 2026-08-06]`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`); data rows may carry versioned values. Normalize with `prettifyGeoType` before comparing. `assignGeoRank` derives its ranking from the same source, so a new versioned variant only needs adding in one place.
 - **The search modal is not where this file used to say it was.** On this branch `#searchModal` is defined inline at `themes/dohmh/layouts/partials/footer.html:189`, reached only because `baseof.html` includes the footer — the arrangement the old wording forbade. `feature-new-data-explorer` solved it differently again, with a dedicated `search-modal.html` under `themes/dohmh/layouts/partials/` included from the header partials, and has it in neither `baseof.html` nor `footer.html`. So there is no branch where it lives in `baseof.html` `[verified 2026-08-06: counts across all three branches]`. Whether the Pagefind double-initialization it guarded against actually occurs here is **untested** — it needs a footerless page to reproduce.
-- `head.html` gates its library block on page kind and section. That condition does **not** cover section pages — which is why the data explorer landing page throws `aq is not defined` (site-wide audit §5f). Check the gate before assuming a library is available on a given template.
+- **`head.html` no longer carries a library block at all.** It used to gate one on `.Kind`/`.Section`, and that gate missed section pages — which is what made the data explorer landing page throw `aq is not defined` (site-wide audit §5f). Libraries are now per-template `lib-*` partials, and `themes/dohmh/layouts/data-explorer/section.html:40` includes `lib-arquero.html`, so that particular failure is fixed `[verified 2026-08-17: npm run smoke passes the data explorer landing page, and it fails on any pageerror]`. See "Library loading" below before assuming a library is available on a template.
 
 ### Neighborhood Reports
 
@@ -318,7 +340,8 @@ markup one alone does nothing, since the search needs the JS one beside it:
   `path.Join` rather than `printf` builds the href, because an empty slug in a `printf` leaves a
   doubled separator.
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html` — called from each page's
-  `js_bot`, because flexdatalist is not in `head.html`. **Each caller must define
+  `js_bot`. Safe there because it only binds handlers; the libraries it depends on are pulled in
+  higher up the page (see "Library loading"). **Each caller must define
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
   pages genuinely disagree on: a build-time slug on a topic index, the active topic button on the
   landing page. Order does not matter — it is called on selection, after everything has parsed.
@@ -443,6 +466,7 @@ Key per-environment variables: `baseURL` and `data_branch`.
 - Edit source files (`content/`, `themes/dohmh/layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
 - Front matter, slugs, and asset references are load-bearing — small typos can break URLs or builds.
 - Environment-specific values go in config, not hardcoded strings.
+- **A standalone `.html` file that needs its own URL goes in `static/`, not in a page bundle.** Inside a leaf bundle, an extra `.html` behaves as a page resource and is not reliably published, so an iframe pointing at a bundle-relative path 404s. Bundle *resources* that templates and shortcodes read are fine to keep in the bundle (`csvtable` reads bundled CSV via `.Page.Resources.GetMatch`), as are images. The worked case, the fix, and the existing static-published examples are in [memories/repo/page-bundle-publication.md](memories/repo/page-bundle-publication.md).
 - For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load it through the `short-fingerprint` partial as a fingerprinted script with an integrity attribute. Keep scripts as classic (non-module) tags when they share global scope across files — load order matters and isn't enforced by tooling, so state it explicitly in a template comment.
 
 ### Subresource Integrity (SRI)
@@ -472,6 +496,8 @@ Branches are auto-built by GitHub Actions on merge:
 - `build-to-dev-stage` → builds to `builds/dev-stage` (staging)
 
 Branch naming convention: `hotfix-[NAME]`, `content-[NAME]`, `feature-[NAME]`. Branch from `production`; merge to `development` for testing, then to `production` to deploy.
+
+A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 
 ## Audit documents
 

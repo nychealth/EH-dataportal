@@ -13,7 +13,9 @@ Use this for a specific section's content cards on its home page.
     <div class="card-content data-explorer mb-4">
       <a class="position-relative" href={{ relURL "data-explorer" }}>
         <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
-        <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
+        {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" ) }}
+        {{ $image := $src.Resize "x1200 jpg q75" }}
+        <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
       </a>
       <div class="card-body">
         <h3 class="card-title">Data Explorer</h3>
@@ -39,12 +41,12 @@ An example that includes content-specific top-images, but no overlays:
         </a>
         {{- else -}}
         <a class="" href="{{ .RelPermalink }}">
-        <div style="width:100%; height:250px; background-image: URL('{{ .Site.BaseURL }}/images/home-sample-image-DE-5.png'); background-size: cover"></div></a>
+        <div style="width:100%; height:250px; background-image: URL('{{ relURL "images/home-sample-image-DE-5.png" }}'); background-size: cover"></div></a>
 
         {{- end -}}
 
         <div class="card-body">
-            <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             <div class="mb-2">{{ .Content | truncate 150 }}</div>
             <div class="d-flex justify-content-end link">
                 <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
@@ -72,7 +74,7 @@ This is like the section-specific card, but uses the primary green. Use this for
         </a>
 
         <div class="card-body">
-            <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             <div class="mb-2">{{ .Content | truncate 150 }}</div>
             <div class="d-flex justify-content-end link">
                 <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>
@@ -130,10 +132,10 @@ Use these to organize content visually, or as a rare tertiary card.
     <div class="card-content">
 
         <div class="card-body">
-        <p class="fs-sm card-title fs-sm"><a href="/IndicatorPublic/about/jobs/" class="text-primary">We&#39;re Hiring!</a></p>
+        <p class="fs-sm card-title fs-sm"><a href="{{ relURL "about/jobs" }}" class="text-primary">We&#39;re Hiring!</a></p>
         <p class="fs-sm">Join our team! See below for open positions in our bureau - or, search cityjobs.nyc.gov for …
         </p>
-        <p class="fs-sm text-primary float-right mb-2"><a href="/IndicatorPublic/about/jobs/">Read more <i
+        <p class="fs-sm text-primary float-right mb-2"><a href="{{ relURL "about/jobs" }}">Read more <i
             class="fas fa-arrow-circle-right"></i></a></p>
       </div>
     </div>

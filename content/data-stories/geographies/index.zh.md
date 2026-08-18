@@ -2,6 +2,7 @@
 title: "环境与健康数据门户上的社区边界"
 date: 2020-08-01T08:33:22-04:00
 draft: true
+vega: true
 seo_title: "将健康数据映射到纽约市的社区"
 seo_description: "关于地理的一切：卫生局数据中的社区边界"
 tags: 
@@ -135,7 +136,7 @@ photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
 

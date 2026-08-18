@@ -23,7 +23,7 @@ related:
 
 Bugs play an important role in our ecosystem: They pollinate plants, break down organic matter into soil, and are a source of food for animals. Some also spread diseases. We call bugs that spread disease vectors.
 
-Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.
+Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.
 
 ## Vector surveillance is critical for detecting and controlling vectors and vector-borne disease
 
@@ -141,7 +141,7 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 ## Climate change is making summers hotter and wetter in NYC, and mosquito populations are increasing
 
-The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.
+The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.
 
 </div>
 

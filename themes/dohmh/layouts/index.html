@@ -66,7 +66,18 @@
                 {{ $image := $src.Resize "x1600 jpg q75"}}
                 <div class="position-relative" style='height: 330px; width: 100%; background-image: url({{ relURL $image.RelPermalink }}); background-position: center; background-size: cover;'>
 
-                  <div class="overlay-map">
+                  {{ $overlay := "" }}
+                  {{ if eq .Params.featured_overlay "trends" }}
+                    {{ $overlay = "overlay-trends" }}
+                  {{ else if eq .Params.featured_overlay "map" }}
+                    {{ $overlay = "overlay-map" }}
+                  {{ else if eq .Params.featured_overlay "topics" }}
+                    {{ $overlay = "overlay-topics" }}
+                  {{ else  }}
+                    {{ $overlay = .Params.featured_overlay }}
+                  {{ end }}
+
+                  <div class="{{- $overlay -}}">
                     <!-- Can use overlay-trends, overlay-map or overlay-topics -->
                   </div>
                 </div>
@@ -318,10 +329,10 @@
 <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
 {{- /*
-    A uhflist tag used to sit here. It was not a duplicate of head.html's — that one is gated
-    on `.Kind "page"` or the neighborhood-reports section, and the home page is neither — but
-    nothing on this page reads the `neighborhoods` global it defines, so the home page was
-    fetching 20KB it never used [verified 2026-08-06: zero references in the built home pages
-    or in the only two scripts they load, main.js and accessible-autocomplete].
+    A uhflist tag used to sit here. Nothing on this page reads the `neighborhoods` global it
+    defines, so the home page was fetching 20KB it never used [verified 2026-08-06: zero
+    references in the built home pages or in the only two scripts they load, main.js and
+    accessible-autocomplete]. Under the lib-* gating model the tag is per-template anyway
+    (partial "lib-uhflist.html"), so there is nothing here to opt out of — do not re-add it.
 */ -}}
 {{- end -}}

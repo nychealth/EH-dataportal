@@ -74,11 +74,13 @@ Current environments:
 | `development` | Development | `production` | Preview site changes                 | Identical to `dev_prod`       |
 | `dev_prod`    | Development | `production` | Preview site changes                 |                               |
 | `dev_stage`   | Development | `staging`    | Preview combined site & data changes |                               |
-| `production`  | Production  | `production` | Deploy to production servers         | Identical to `prod_prod`      |
+| `production`  | Production  | `production` | Deploy to production servers         | Config file identical to `prod_prod`, but see the note below |
 | `prod_prod`   | Production  | `production` | Deploy to production servers         |                               |
 | `prod_stage`  | Production  | `staging`    | Preview data changes                 |                               |
 | `local_prod`  | Development | `production` | Preview site changes                 | Uses locally hosted data repo |
 | `local_stage` | Development | `staging`    | Preview combined site & data changes | Uses locally hosted data repo |
+
+**A note on `production` vs `prod_prod`:** the two config files are byte-identical, but the environment *name* is what `partials/head.html` branches on. Only `prod_prod` gets the production Google Analytics property and omits the `<meta name="robots" content="noindex, nofollow">` tag; every other environment — including `production`, and including a bare `hugo` with no `--environment` flag — emits the noindex tag and the development analytics property. The build workflow uses `hugo --environment prod_prod`, so the live site is correct. Build locally with `prod_prod` if you are inspecting anything that depends on those tags.
 
 ### Data repository
 
@@ -88,7 +90,7 @@ Note that any file required to *build* the site should remain with the source co
 
 ---
 ## How to create new content
-Generally, Hugo works by combining content (in markdown, located in `/content`) with templates (located in the `/themes`) - you'll notice that these two directories have identical structures, because Hugo combines content in `/content/data-stories`, for example, with templates in `/themes/layouts/data-stories`. 
+Generally, Hugo works by combining content (in markdown, located in `/content`) with templates (located in the `/themes`) - you'll notice that these two directories have identical structures, because Hugo combines content in `/content/data-stories`, for example, with templates in `/themes/dohmh/layouts/data-stories`. 
 - A file named `_index.md` will get `section.html` layout 
 - A file named `index.md` will, by default, receive the `single.html` layout
 - And, a file with another name, `name.md`, will receive `single.html` layout 
@@ -146,9 +148,11 @@ Templates are stored in `themes/dohmh/layouts`, in the folder for their correspo
 Shortcodes can be called from content files (markdown). Essentially, the shortcode is called and arguments are passed into it and inserted into the corresponding HTML code in `layouts/shortcodes`. There are shortcodes for a few different visualization embeds for Data Stories, and more can be written as needed.
 
 ### Data/Globals
-Data accessible throughout the site can be stored in the `data` folder. This can be referenced by site templates. For example, `featured_data.yml` is referenced by `partials/featured-data.html` and displayed on the Home Page and the Data Explorer landing page. You can update "featured datasets" by updating this file.
+Data accessible throughout the site can be stored in the `data` folder. This can be referenced by site templates. For example, `data/recently_updated_data.yml` supplies the "featured datasets" shown on the Home Page (`themes/dohmh/layouts/index.html`) and the Data Explorer landing page (`themes/dohmh/layouts/data-explorer/section.html`), both of which range over `.Site.Data.recently_updated_data.featured` directly. You can update those datasets by editing that file.
 
-Other content in `data` are SEO variables and Neighborhood Reports specifications.
+Other content in `data/globals` is SEO defaults (`seo_defaults.yml`), social links (`social.yml`), and the Neighborhood Reports copy in `NR_content/` and `NR_footer/`.
+
+*(Note: `partials/featured-data.html` and `partials/featured-data-2.html` still range over a `featured_data` data file that no longer exists, and neither partial is called from any template.)*
 
 ### Subresource Integrity
 We use Hugo's `integrity` function; this calculates a "message digest" value for a resource, allowing us to include it in the `integrity` property of `<script>` and `<link>` tags, which usually load JavaScript and CSS files, respectively. Hugo also adds a hash value to the resource's built filename, and tells the pages to fetch the files with the hashed names. (We use a partial template to modify the way this filename hash is calculated, because Hugo's default is absurdly long.) This is a way of improving security by ensuring the integrity of the JS and CSS files. 

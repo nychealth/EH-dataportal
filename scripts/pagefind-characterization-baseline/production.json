@@ -1,12 +1,12 @@
 {
   "pagefindVersion": "1.5.2",
   "dataBranch": "production",
-  "pageCount": 201,
+  "pageCount": 202,
   "sections": {
     "(root)": 1,
     "about": 10,
     "data-explorer": 43,
-    "data-features": 26,
+    "data-features": 27,
     "data-stories": 42,
     "es": 7,
     "key-topics": 12,
@@ -93,7 +93,7 @@
       ]
     },
     "neighborhood reports": {
-      "total": 109,
+      "total": 110,
       "top": [
         {
           "url": "/neighborhood-reports/active_design_physical_activity_and_health/",
@@ -284,7 +284,7 @@
   },
   "pages": {
     "/": {
-      "words": 424,
+      "words": 420,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -301,7 +301,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "83941bd6cf20c750",
+      "contentHash": "f08f99580fbde88a",
       "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
     },
     "/about/": {
@@ -3125,7 +3125,7 @@
       "contentHead": "Worker health Get maps, charts, tables, and more. Every year in New York City, workers are injured on the job or become "
     },
     "/data-features/": {
-      "words": 677,
+      "words": 714,
       "title": "Data Features | Environment & Health Data Portal",
       "filters": {
         "section": [
@@ -3136,7 +3136,7 @@
         "results",
         "skip-header-target"
       ],
-      "contentHash": "31a2c94b070e591b",
+      "contentHash": "b942bedf3cc09edd",
       "contentHead": "Data Features. Interactive infographics, real-time data feeds, and annual reports on important environmental health topi"
     },
     "/data-features/adg-2/": {
@@ -3168,6 +3168,43 @@
       ],
       "contentHash": "5f48075af25c64c2",
       "contentHead": "Beach Water Quality. One month before New York City’s beaches open to the public, the Health Departments starts sampling"
+    },
+    "/data-features/congestion-pricing-report/": {
+      "words": 1996,
+      "title": "Air Quality Impacts of Congestion Relief Zone Tolling | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "EJ_text",
+        "aqChangeVis",
+        "background",
+        "cpRegional",
+        "cpReportMap",
+        "cpSiteButtons",
+        "cpVis",
+        "cpVis2",
+        "cpVisTOD",
+        "explainChart",
+        "explainChart2",
+        "key-takeaways",
+        "primary-content",
+        "results",
+        "site-info-box",
+        "site-name",
+        "site-prep",
+        "site-prep-wrap",
+        "site-question-prefix",
+        "site-question-suffix",
+        "skip-header-target",
+        "tod-site-name",
+        "todSiteButtons",
+        "todTrafficFootnote"
+      ],
+      "contentHash": "7a645291487fc92f",
+      "contentHead": "Air Quality Impacts of Congestion Relief Zone Tolling. Banner image: Alexander Spatari/Moment via Getty Images Published"
     },
     "/data-features/cooling-info/": {
       "words": 250,
@@ -4193,7 +4230,7 @@
       "contentHead": "A walk through history. A neighborhood is not only shaped by its residents, but also by governmental practices and polic"
     },
     "/data-stories/breatheeasy/": {
-      "words": 680,
+      "words": 674,
       "title": "Breathe easy: NYC's air quality is improving | Data Stories",
       "filters": {
         "section": [
@@ -4212,7 +4249,7 @@
         "results",
         "skip-header-target"
       ],
-      "contentHash": "7f655d9d6d90eebc",
+      "contentHash": "5fcf8adaa5975e73",
       "contentHead": "Breathe easy: NYC's air quality is improving. Since we published this data story, some data in it have been updated. Get"
     },
     "/data-stories/car-free-zones/": {
@@ -4292,7 +4329,7 @@
         "results",
         "skip-header-target"
       ],
-      "contentHash": "8de9f87c5b15a264",
+      "contentHash": "f191b7065c6b24b0",
       "contentHead": "Initial data from Congestion Relief Tolling. Since we published this, an update is available. Read MTA's report on the f"
     },
     "/data-stories/economic-stability/": {
@@ -4344,7 +4381,7 @@
         "results",
         "skip-header-target"
       ],
-      "contentHash": "c161fa970ef4a600",
+      "contentHash": "effc2c7cb9fafb49",
       "contentHead": "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it. Whether it’s el"
     },
     "/data-stories/federal-funding/": {
@@ -4451,7 +4488,7 @@
         "ucd",
         "upuma"
       ],
-      "contentHash": "9ad7197662b29c34",
+      "contentHash": "0fd1de3b1da8b4b8",
       "contentHead": "Neighborhood boundaries on the EH Data Portal. New York City has hundreds of neighborhoods and nearly as many ways of dr"
     },
     "/data-stories/heat/": {
@@ -4930,7 +4967,7 @@
       "contentHead": "The public health impacts of PM2.5 from traffic air pollution. PM2.5—or fine particulate matter—are tiny particles that "
     },
     "/data-stories/urban-heat-island/": {
-      "words": 1477,
+      "words": 1476,
       "title": "The urban heat island effect in NYC | Data Stories",
       "filters": {
         "section": [
@@ -4964,7 +5001,7 @@
         "therm",
         "treeoverlay"
       ],
-      "contentHash": "a0eecdec17e05f4f",
+      "contentHash": "b23d7037f0e693e5",
       "contentHead": "The urban heat island effect in NYC. Since we published this data story, some data in it have been updated. Get updated "
     },
     "/data-stories/vectorborne-diseases-and-health/": {
@@ -5063,7 +5100,7 @@
       "contentHead": "ZAPPA: A tool to understand air quality policies. Since we published this data story, some data in it have been updated."
     },
     "/es/": {
-      "words": 393,
+      "words": 405,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -5080,7 +5117,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "b6b628e0beb0f523",
+      "contentHash": "87083b5572e18b1f",
       "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
     },
     "/es/data-stories/": {
@@ -5307,7 +5344,7 @@
       "contentHead": "Accessibility About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers "
     },
     "/key-topics/airquality/": {
-      "words": 858,
+      "words": 877,
       "title": "Air quality | Key Topics in Environmental Health",
       "filters": {
         "section": [
@@ -5320,7 +5357,7 @@
         "skip-header-target",
         "toggleButton"
       ],
-      "contentHash": "5c054a9a53475bba",
+      "contentHash": "7c11b65aade76d0a",
       "contentHead": "Air quality New York City’s air contains particles, drops of liquid, gasses, and other pollution that can affect health."
     },
     "/key-topics/childhealth/": {
@@ -5459,7 +5496,7 @@
       "contentHead": "Pests and pesticides Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches"
     },
     "/key-topics/public-space/": {
-      "words": 854,
+      "words": 875,
       "title": "Public space, active design, and transportation | Key Topics in Environmental Health",
       "filters": {
         "section": [
@@ -5472,7 +5509,7 @@
         "skip-header-target",
         "toggleButton"
       ],
-      "contentHash": "286067f4f6391a8a",
+      "contentHash": "a7f297030ea54bf6",
       "contentHead": "Public space, active design, and transportation Physical activity and healthy eating rank among the leading ways to get "
     },
     "/neighborhood-reports/": {
@@ -6332,7 +6369,7 @@
       "contentHead": "Contact your elected officials. Are you concerned about environmental health issues in your neighborhood, or in our city"
     },
     "/zh/": {
-      "words": 336,
+      "words": 348,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -6349,7 +6386,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "950c9fc8f72495e1",
+      "contentHash": "bd212cd16d1f683d",
       "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
     },
     "/zh/data-stories/": {

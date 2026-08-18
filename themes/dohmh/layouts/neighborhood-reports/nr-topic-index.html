@@ -59,6 +59,12 @@
                  <nbhd>/<topic>/ — the URL shape this branch serves. `geocode` is absent on a
                  topic page, which is what sends nr-leaflet down its fit-the-whole-city
                  branch with nothing highlighted. */}}
+            {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                 whose inline script calls L.map() as the parser reaches it, and js_bot is
+                 emitted after main. */}}
+            {{- partial "lib-leaflet.html" . }}
+            {{- partial "lib-uhflist.html" . }}
+
             <div class="row mb-3">
                 <div class="col-md-8 mx-auto">
                     {{ partial "nr-neighborhood-picker" (dict "page" .) }}

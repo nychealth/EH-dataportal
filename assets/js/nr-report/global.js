@@ -17,7 +17,7 @@
 //   - Accordion expand/collapse per indicator row with detail panel
 //   - Vega choropleth map + bar chart rendered on first accordion expand
 //   - Borough/city comparison logic with judgment styling
-//   - Demographics sidebar populated from uhflist.js
+//   - Demographics sidebar populated from the `neighborhoods` global (lib-uhflist.html)
 
 // ----------------------------------------------------------------------- //
 // shared state

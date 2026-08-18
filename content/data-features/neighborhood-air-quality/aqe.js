@@ -221,7 +221,7 @@ const renderChart = (
           "strokeWidth": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": 1  
+              "value": 1
             },
             "value": 0
           },
@@ -236,7 +236,7 @@ const renderChart = (
 
   // console.log(barSpec)
 
-  vegaEmbed(destination, barSpec, {actions:false})
+  vegaEmbed(destination, barSpec, {renderer: "svg", actions:false})
 }
 
 
@@ -394,7 +394,7 @@ const renderMap = (
       ]
     }
     
-    vegaEmbed("#mapHolder", mapSpec, {actions:false})
+    vegaEmbed("#mapHolder", mapSpec, {renderer: "svg", actions:false})
 
 
 }

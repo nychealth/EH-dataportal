@@ -650,11 +650,6 @@ h2.report-info {
     }
 }
 
-.better-sm, .middle-sm, .worse-sm {
-    display: inline-block;
-    font-size: inherit!important;
-}
-
 .worse {
     background-color: #FFE69B;
 }
@@ -664,16 +659,17 @@ h2.report-info {
 }
 
 .better {
-    background-color: #D1F0C8;
+    background-color: #C4F2CF;
 }
 
 // Background colour was the only thing separating a good "Higher" from a bad one: both pills
 // read the same two words, so a reader with a colour vision deficiency saw no difference at
 // all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
 // triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
-// codepoints .comp-good / .comp-bad already use in the expanded panel and the print row
-// (assets/scss/_custom.scss), so the report makes the comparison the same way in all three
-// places. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
+// codepoints .comp-good / .comp-bad already use in the expanded panel
+// (assets/scss/_custom.scss), so the report makes the comparison the same way in both places.
+// The print row carries the pill classes, not .comp-*, so it is covered by this rule and not
+// that one. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
 // resource is involved.
 //
 // No `color` of its own: the glyph inherits the pill's text colour, which already passes
@@ -734,6 +730,9 @@ h2.report-info {
         background: none;
         padding: 8px 0;
     }
+    // The map is hidden by this rule rather than by a d-print-none wrapper: the wrapper
+    // production used lived in nr-output/single.html, which the SPA recode retired. The
+    // class is emitted by cards.js and read by chart.js.
     .nr-map-container {
         display: none !important;
     }

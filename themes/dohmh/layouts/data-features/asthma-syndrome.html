@@ -97,6 +97,8 @@
         </div>
     </div>
 
+    {{- partial "lib-vega.html" . }}
+
     <script type="text/javascript">
 
 
@@ -173,7 +175,7 @@
 
 
 
-        vegaEmbed("#vis1", spec);
+        vegaEmbed("#vis1", spec, {renderer: "svg"});
 
         var smoothCount = 0
         function smooth(x) {
@@ -189,13 +191,13 @@
                 document.getElementById('smoothBtn').classList.add('btn-secondary')
                 document.getElementById('smoothBtn').classList.remove('btn-outline-secondary')
             }
-            vegaEmbed("#vis1", changeSpec);
+            vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
         }
 
         function smoothed(x) {
           changeSpec = spec
           changeSpec.encoding.y.field = x
-          vegaEmbed("#vis1", changeSpec);
+          vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (x == 'Count') {
             document.getElementById('countBtn').classList.add('active')
@@ -208,7 +210,7 @@
 
         function time(y) {
           changeSpec.encoding.x.timeUnit = y
-          vegaEmbed("#vis1", changeSpec);
+          vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
           if (y == 'dayofyear') {
             document.getElementById('dayBtn').classList.add('btn-primary')
@@ -246,7 +248,7 @@
             // changeSpec.transform[2].filter = `datum.Date > 1672549200000`
           };
           // console.log(changeSpec)
-          vegaEmbed("#vis1", changeSpec);
+          vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
         }
 
       function changeYear(x) {
@@ -256,7 +258,7 @@
         colors[indexPos] = "#12135b"
         changeSpec.encoding.color.scale.range = colors
         changeSpec.encoding.opacity.condition.test = `datum.year === ${x}`
-        vegaEmbed("#vis1", changeSpec);
+        vegaEmbed("#vis1", changeSpec, {renderer: "svg"});
 
         var yearButtons = document.getElementsByClassName('yearbtn')
         for (var i = 0; i < yearButtons.length; i++) {

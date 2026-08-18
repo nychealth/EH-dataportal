@@ -1,9 +1,8 @@
 {{- define "main" -}}
 
-{{- /*  Arquero  */}}
-
-{{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
-<script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-arquero.html" . }}
+{{- partial "lib-datatables.html" . }}
 
 <article class="container-fluid" id="skip-header-target">
     <div class="col-md-11 col-sm-12 mx-auto mb-4">

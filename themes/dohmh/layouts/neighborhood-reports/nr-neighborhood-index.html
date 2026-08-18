@@ -30,6 +30,12 @@
                     </ul>
                 </nav>
 
+                {{/* Libraries here rather than at the foot of the page: nr-leaflet's inline
+                     script calls L.map() as the parser reaches it, so Leaflet and the
+                     neighborhoods global must already be parsed. */}}
+                {{- partial "lib-leaflet.html" . }}
+                {{- partial "lib-uhflist.html" . }}
+
                 <div class="row">
 
                     <div class="col-md-4">

@@ -20,11 +20,11 @@ Air quality is a **measure of the condition of the air around us**. The less air
 
 Like many cities, New York City's air contains particles, liquid droplets, gases, and other contaminants that could impact health. Two pollutants, fine particles and ozone, are of particular health concern.
 
-Although New York City's air does not current meet federal air quality standards, **it has improved significantly over the past two decades**.
+Although New York City's air does not current meet federal air quality standards, **it has improved significantly over the past two decades**.
 
 ### Air Pollution and Health
 
-Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as: 
+Pollutants may affect human health negatively in a variety of ways. People may experience symptoms and health issues such as:
 
 * Coughing
 * Tightness in the chest

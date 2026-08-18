@@ -337,7 +337,8 @@
         
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
-        // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+        // Find the matching neighborhood - 'neighborhoods' is a global emitted by the
+        // lib-uhflist.html partial from data/globals/uhflist.json
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );

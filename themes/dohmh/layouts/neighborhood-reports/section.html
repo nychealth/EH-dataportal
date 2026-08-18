@@ -68,6 +68,12 @@
            the map gets the width it was starved of in the old col-md-5. */}}
       <div class="row">
         <div class="col-md-8 mx-auto">
+              {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                   whose inline script calls L.map() as the parser reaches it, and js_bot is
+                   emitted after main. */}}
+              {{- partial "lib-leaflet.html" . }}
+              {{- partial "lib-uhflist.html" . }}
+
               {{ partial "nr-neighborhood-picker" (dict "page" .) }}
 
               {{/* No topic slug: the destination here is whichever topic button is active, which

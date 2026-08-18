@@ -13,7 +13,7 @@ indicators:
   - 2006
 ---
 
-[OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.
+[OneNYC](http://www1.nyc.gov/html/onenyc/index.html) is a comprehensive sustainability plan for New York City's future.
 
 Goal: Reduce energy consumption and make our energy systems cleaner and more reliable. To measure progress, we are tracking how our buildings are becoming more energy efficient as well as the extent to which our energy is becoming cleaner and more reliable.
 

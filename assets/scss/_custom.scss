@@ -26,19 +26,19 @@ table {
   }
 }
 
-// Tertile and comparison markers, shared by the expanded panel and the print-only
-// header row (assets/js/nr-report/tertiles.js sets the class in both). The word
-// carries the colour and the ::before carries the icon; Font Awesome 6 is loaded
-// site-wide from head.html as a CSS webfont, so the codepoints resolve with no
-// per-page resource. The bad case splits the two colours because $warning is 1.6:1
-// on white — readable as a glyph, not as text — so the word takes a darkened amber
-// at 6.3:1 instead. Rank 2 gets no rule at all: the screen pill is blank there, and
-// an unmarked sentence is the print equivalent of that.
+// Tertile and comparison markers on the report's full-sentence renditions: tertiles.js
+// returns the class and cards.js applies it, in the comparison sentences inside the detail
+// panel. The word carries the colour and the ::before carries the icon; Font Awesome 6 is
+// loaded site-wide from head.html as a CSS webfont, so the codepoints resolve with no
+// per-page resource. The bad case splits the two colours because $warning is 1.6:1 on white
+// — readable as a glyph, not as text — so the word takes a darkened amber at 6.3:1 instead.
+// Rank 2 gets colour and glyph from neither rule: the .middle pill is unmarked too, and an
+// unmarked sentence is its equivalent.
 $comp-bad-text: #7a5c00;
 
-// Bold picks the comparison word out of the sentence around it. It is on all three
-// classes, .comp-null included: weight marks which word is the comparison, where
-// colour marks which way it went, and rank 2 still gets no colour and no glyph.
+// Bold picks the comparison word out of the sentence around it. It is on all three classes,
+// .comp-null included: weight marks which word is the comparison, where colour marks which
+// way it went, and rank 2 still gets no colour and no glyph.
 .comp-good,
 .comp-bad,
 .comp-null {
@@ -334,7 +334,7 @@ $color-data-explorer: #0A408A;
 }
 
 .overlay-topics {
-  background-image: url('../images/tab_overlay_key_topics.svg');
+  background-image: url('../images/overlay_topics.png');
   background-size: cover;
   z-index: 100;
   position: absolute;

@@ -15,6 +15,7 @@
         "lint": "eslint assets/js/data-explorer assets/js/nr-report",
         "characterize:de": "node scripts/de-characterization.mjs",
         "characterize:nr": "node scripts/nr-characterization.mjs",
+        "characterize:cp": "node scripts/cp-characterization.mjs",
         "characterize:pagefind": "node scripts/pagefind-characterization.mjs",
         "smoke": "node scripts/smoke-pages.mjs",
         "a11y:nr": "node scripts/nr-a11y-audit.mjs",
