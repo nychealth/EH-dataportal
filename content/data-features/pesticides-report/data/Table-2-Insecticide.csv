@@ -1,11 +1,11 @@
-EPA prod name,EPA reg. #,Volume in gallons,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental Toxin,IARC carcinogen
-TREE-AGE R10,74578-12,71.9,7886,"Emamectin, benzoate",2,NO,NO,NO
-VECTOMAX FG,73049-429,0.0,479020,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52",3,NO,NO,NO
-REDZONE BAIT,64405-2,0.0,16991,Boric acid,3,NO,NO,NO
-PRESCRIPTION TREATMENT BRAND ALPINE COCKROACH GEL BAIT PISTON CAN,499-510,0.0,7887,Dinotefuran,3,NO,NO,NO
-ZOECON (S)-HYDROPRENE ROACH CONTROL STATION II,2724-469,0.5,23121,(7S)-Hydroprene,3,NO,NO,NO
-ZOECON RF-259 EMULSIFIABLE CONCENTRATE,2724-351,40.5,47749,(7S)-Hydroprene,3,NO,NO,NO
-VENDETTA PLUS COCKROACH GEL BAIT,1021-2593,0.7,4953,Avermectin; Pyriproxyfen,3,NO,YES,NO
-SUSPEND SC INSECTICIDE,101563-4,27.5,8033,Deltamethrin,3,NO,NO,NO
-DUPONT ADVION COCKROACH GEL BAIT,100-1484,9.0,64371,Indoxacarb,3,NO,NO,NO
-OPTIGARD COCKROACH GEL BAIT,100-1290,0.0,12481,"Emamectin, benzoate",3,NO,NO,NO
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+VECTOMAX FG,73049-429,0.0,12045.9,492355,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52",3,NO,NO,NO
+DUPONT ADVION COCKROACH GEL BAIT,100-1484,2.0,2012.6,57080,Indoxacarb,3,NO,NO,NO
+ZOECON RF-259 EMULSIFIABLE CONCENTRATE,2724-351,45.9,3.5,38992,(7S)-Hydroprene,3,NO,NO,NO
+ZOECON (S)-HYDROPRENE ROACH CONTROL STATION II,2724-469,4.2,22.8,32545,(7S)-Hydroprene,3,NO,NO,NO
+SUSPEND SC INSECTICIDE,101563-4,40.7,4.0,22975,Deltamethrin,3,NO,NO,NO
+OPTIGARD COCKROACH GEL BAIT,100-1290,0.0,545.4,16440,"Emamectin, benzoate",3,NO,NO,NO
+REDZONE BAIT,64405-2,0.0,3278.3,7883,Boric acid,3,NO,NO,NO
+TEMPRID SC INSECTICIDE,101563-134,2.4,0.0,6169,"Cyfluthrin, beta; Imidacloprid",3,NO,NO,NO
+Advion Trio,100-1679,0.0,172.2,4712,Indoxacarb; Pyriproxyfen; Novaluron,3,NO,NO,NO
+VENDETTA PLUS COCKROACH GEL BAIT,1021-2593,0.5,471.2,13394,Avermectin; Pyriproxyfen,3,YES,NO,NO

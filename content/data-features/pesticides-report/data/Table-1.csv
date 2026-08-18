@@ -1,7 +1,7 @@
-Pesticide type,Volume (gallons),Percent of total volume,Weight (pounds),Percent of total weight,Percent without larvicides,Total Applications,Percent of applications
-Rodenticide,13879.3,68.9%,63843.2,32.7%,50.0%,142880,16.9%
-Insecticide,1005.2,5.0%,101097.4,51.8%,30.0%,695719,82.5%
-Herbicide,1318.5,6.6%,21989.4,11.3%,20.0%,3440,0.4%
-Fungicide,3838.1,19.1%,8133,4.2%,10.0%,1289,0.2%
-Other,93.2,0.5%,0.5,0.0%,0.0%,90,0.0%
-Total,20134.2,100.0%,195063.5,100.0%,100.0%,843418,100.0%
+Pesticide type,Volume (gallons),Percent of total volume,Percent without CO2 gas,Weight (pounds),Percent of total weight,Percent without larvicides,Total applications,Percent of applications
+Rodenticide,20461.3,75.1%,7.0%,53303.4,26.2%,37.0%,122648,14.6%
+Insecticide,992.8,3.6%,14.0%,73820.1,36.3%,11.0%,714775,84.8%
+Herbicide,1563,5.7%,21.0%,63149.5,31.1%,43.0%,3680,0.4%
+Fungicide,4133.9,15.2%,57.0%,13052,6.4%,9.0%,1497,0.2%
+Other,79,0.3%,1.0%,0.4,0.0%,0.0%,66,0.0%
+Total,27229.9,100.0%,100.0%,203325.3,100.0%,100.0%,842666,100.0%

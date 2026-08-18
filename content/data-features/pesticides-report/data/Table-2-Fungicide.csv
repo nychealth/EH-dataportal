@@ -1,11 +1,11 @@
-EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
-T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,68539-3,0.0,95.1,119,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
-DACONIL ACTION,100-1364,822.8,6.3,107,Acibenzolar-S-methyl; Chlorothalonil,2,YES,NO,YES
-QUALI-PRO T-NEX,53883-353,43.0,0.0,66,Trinexapac-ethyl,3,NO,NO,NO
-BANOL TURF AND ORNAMENTAL FUNGICIDE,101563-21,136.4,0.0,60,Propamocarb hydrochloride,3,NO,NO,NO
-ArmorTech TMI 2020 FLO,228-630-86064,132.4,0.0,41,Thiophanate-methyl; Iprodione,3,YES,YES,NO
-ArmorTech ZOXY 2F,86064-6,55.7,0.0,34,Azoxystrobin,3,NO,NO,NO
-12ESP705 FUNGICIDE,101563-162,0.0,1056.5,34,Fosetyl-Al,3,NO,NO,NO
-LESCO MANICRUE 6FL,60063-7-10404,297.6,0.0,31,Chlorothalonil,2,YES,NO,YES
-CIVITAS,69526-13,110.0,0.0,29,Mineral oil,3,NO,NO,NO
-TEBUCONAZOLE 3.6 SELECT,89442-1,42.0,0.0,27,Tebuconazole,3,YES,NO,NO
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+RHAPSODY AS0,264-1155,4.9,0.0,142,QST 713 strain of dried Bacillus subtilis,3,NO,NO,NO
+T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,68539-3,0.0,135.0,141,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
+DACONIL ACTION,100-1364,859.0,0.0,103,Acibenzolar-S-methyl; Chlorothalonil,2,NO,YES,YES
+QUALI-PRO T-NEX,53883-353,45.8,0.0,68,Trinexapac-ethyl,3,NO,NO,NO
+BANOL TURF AND ORNAMENTAL FUNGICIDE,101563-21,153.6,0.0,56,Propamocarb hydrochloride,3,NO,NO,NO
+12ESP705 FUNGICIDE,101563-162,0.0,1467.0,45,Fosetyl-Al,3,NO,NO,NO
+LESCO MANICRUE 6FL,60063-7-10404,528.9,0.0,38,Chlorothalonil,2,NO,YES,YES
+ARMOR TECH TEB360 XL,66222-117-86064,50.5,0.0,31,Tebuconazole,3,NO,YES,NO
+TEBUCONAZOLE SC TURF AND ORNAMENTAL FUNGICIDE,101563-152,57.1,0.0,26,Tebuconazole,3,NO,YES,NO
+TARTAN FLO FUNGICIDE,101563-113,104.6,0.0,33,Triadimefon; Trifloxystrobin,3,YES,YES,NO

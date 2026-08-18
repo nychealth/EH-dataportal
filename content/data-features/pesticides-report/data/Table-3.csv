@@ -1,17 +1,16 @@
 Target,Volume (gallons),Weight (pounds),Total applications,Percent of total applications
-Mosquitoes,396.3,59893.4,"480,480",57.0%
-Roaches,86.6,23540.8,"175,750",20.8%
-Rats,13886.2,56012.5,"113,576",13.5%
-Mice,1.1,6668.8,"26,858",3.2%
-Ants,3.8,12215.8,"12,820",1.5%
-Other Pests,199.1,1442.9,"8,111",1.0%
-Emerald Ash Borer,71.9,0.0,"7,886",0.9%
-Missing Target Organism,31.5,1229.2,"6,182",0.7%
-Bedbugs,67.0,780.2,"4,640",0.6%
-"Weeds, vines, or grasses",1318.5,21989.4,"3,440",0.4%
-Flying insects,70.9,696.4,"2,072",0.2%
-Fungal Disease or Infestation,3838.1,8133.0,"1,289",0.2%
-Other Crawling Insects,162.4,2438.6,289,0.0%
-Termites,1.2,15.0,21,0.0%
-Other Rodents,0.0,7.6,4,0.0%
-Totals,20134.2,195063.5,"843,418",
+Mosquitoes,461.1,57350.4,493346,58.6%
+Roaches,130.5,5574.7,199236,23.6%
+Rats,20457.8,46931.7,95080,11.3%
+Mice,3.5,7322.2,29798,3.5%
+Ants,13.6,5539.4,9279,1.1%
+Bedbugs,61.8,531.5,4482,0.5%
+"Weeds, vines, or grasses",1563,63149.5,3680,0.4%
+Flying insects,18,1138.4,3059,0.4%
+Fungal Disease or Infestation,4133.9,13052,1497,0.2%
+Other Pests,162.7,617.7,1007,0.1%
+Missing Target Organism,12.7,713.1,892,0.1%
+Other Crawling Insects,211.4,1376.7,826,0.1%
+Other Rodents,0,17.4,471,0.1%
+Termites,0,10.8,13,0.0%
+Totals,27229.9,203325.3,842666,100.0%

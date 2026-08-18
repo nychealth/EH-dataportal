@@ -1,11 +1,11 @@
-GARLON 4 ULTRA,62719-527,123.6,99.4,431,Triclopyr,2,NO,NO
-MILESTONE,62719-519,22.1,0.0,414,"Aminopyralid, triisopropanolamine salt",3,NO,NO
-PATHFINDER II,62719-176,92.4,225.6,388,"Triclopyr, butoxyethyl ester",3,NO,NO
-DERRINGER HERBICIDE,7969-443,199.4,0.0,359,Glufosinate-ammonium,2,NO,NO
-ESPLANADE 200 SC,101563-144,5.3,0.0,358,Indaziflam,3,NO,NO
-NUFARM POLARIS HERBICIDE,228-534,52.5,0.0,354,"Imazapyr, isopropylamine salt",3,NO,NO
-METHOD 240SL HERBICIDE,101563-177,10.2,0.0,354,Aminocyclopyrachlor potassium salt,3,NO,NO
-PRIMO MAXX,100-937,39.6,0.0,59,Trinexapac-ethyl,3,NO,NO
-NUP-18013,228-743,20.5,0.0,55,Glufosinate-ammonium,3,NO,NO
-DIMENSION 2EW,62719-542,64.6,0.0,50,Dithiopyr,2,NO,NO
-EPA prod name,EPA reg. #,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+GARLON 4 ULTRA,62719-527,139.3,32.1,457,Triclopyr,2,NO,NO,NO
+FINALE XL,7969-464,174.1,0.0,455,Glufosinate-ammonium,2,NO,NO,NO
+MILESTONE,62719-519,11.5,0.0,412,"Aminopyralid, triisopropanolamine salt",3,NO,NO,NO
+METHOD 240SL HERBICIDE,101563-177,13.0,0.0,358,Aminocyclopyrachlor potassium salt,3,NO,NO,NO
+NUFARM POLARIS HERBICIDE,228-534,24.5,0.0,355,"Imazapyr, isopropylamine salt",3,NO,NO,NO
+ESPLANADE 200 SC,101563-144,6.7,0.0,355,Indaziflam,3,NO,NO,NO
+PATHFINDER II,62719-176,82.0,2.9,306,"Triclopyr, butoxyethyl ester",3,NO,NO,NO
+VASTLAN,62719-687,99.3,0.0,109,"Triclopyr, Choline Salt",2,NO,NO,NO
+CLEARCAST HERBICIDE,241-437-67690,84.5,0.0,80,Imazamox,3,NO,NO,NO
+GLYPRO,62719-324,18.3,0.0,71,"Glyphosate, isopropylamine salt",3,NO,NO,YES

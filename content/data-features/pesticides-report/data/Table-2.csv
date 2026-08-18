@@ -1,48 +1,47 @@
-Pesticide type,EPA reg. #,EPA prod name,Volume in gallons,Weight in pounds,Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
-Rodenticide,7173-258,DIFETHIALONE PASTE PLACE PACKS,0.3,24018.7,78501,Difethialone,3,NO,NO,NO
-Rodenticide,12455-69,CONTRAC RODENTICIDE,0.0,16039.9,20833,Bromadiolone,3,NO,NO,NO
-Rodenticide,12455-90,FINAL RODENTICIDE,0.0,8035.2,12955,Brodifacoum,3,NO,NO,NO
-Rodenticide,12455-56,DITRAC TRACKING POWDER,0.0,402.3,10114,Diphacinone,2,NO,NO,NO
-Rodenticide,12455-146,CONTRAC SOFT BAIT,0.0,654.0,3101,Bromadiolone,3,NO,NO,NO
-Rodenticide,7173-310,Bromethalin Soft Bait II,0.0,475.4,2982,Bromethalin,3,NO,NO,NO
-Rodenticide,7173-308,Chlorophacinone Soft Bait,0.0,884.8,2835,Chlorophacinone,3,NO,NO,NO
-Rodenticide,12455-79,CONTRAC ALL-WEATHER BLOX,1.1,2682.8,2794,Bromadiolone,3,NO,NO,NO
-Rodenticide,100-1055,WEATHERBLOK BAIT WITH BITREX,0.0,1323.5,1902,Brodifacoum,3,NO,NO,NO
-Rodenticide,7173-297,BROMADIOLONE PASTE 0901,0.0,372.6,1008,Bromadiolone,3,NO,NO,NO
-Other,59807-4,HORMODIN 1,0.0,0.5,66,IBA,3,NO,NO,NO
-Other,60061-142,PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,17.0,0.0,17,Copper oxide (ous),2,NO,NO,NO
-Other,70299-16-84732,GREEN STOP LIQUID ALGAECIDE,1.0,0.0,2,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
-Other,73049-15,PROGIBB 4% PLANT GROWTH REGULATOR SOLUTION,0.0,0.0,2,Gibberellins,2,NO,NO,NO
-Other,63838-5,BROMMAX 7.1,70.0,0.0,1,Sodium bromide; Sodium hypochlorite,1,NO,NO,NO
-Other,14802-8-74466,MICROBE LIFE ALGAWAY 5.4 ALGAECIDE FOR PONDS,4.3,0.0,1,Poly(oxyethylene) (dimethylimino) ethylene (dimethylimino) ethylene dichloride,3,NO,NO,NO
-Other,70299-19,SANIDATE 5.0,0.9,0.0,1,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
-Insecticide,73049-429,VECTOMAX FG,0.0,12867.5,479020,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52",3,NO,NO,NO
-Insecticide,100-1484,DUPONT ADVION COCKROACH GEL BAIT,9.0,1552.7,64371,Indoxacarb,3,NO,NO,NO
-Insecticide,2724-351,ZOECON RF-259 EMULSIFIABLE CONCENTRATE,40.5,6.2,47749,(7S)-Hydroprene,3,NO,NO,NO
-Insecticide,2724-469,ZOECON (S)-HYDROPRENE ROACH CONTROL STATION II,0.5,16966.8,23121,(7S)-Hydroprene,3,NO,NO,NO
-Insecticide,64405-2,REDZONE BAIT,0.0,10798.1,16991,Boric acid,3,NO,NO,NO
-Insecticide,100-1290,OPTIGARD COCKROACH GEL BAIT,0.0,309.0,12481,"Emamectin, benzoate",3,NO,NO,NO
-Insecticide,101563-4,SUSPEND SC INSECTICIDE,27.5,1.2,8033,Deltamethrin,3,NO,NO,NO
-Insecticide,499-510,PRESCRIPTION TREATMENT BRAND ALPINE COCKROACH GEL BAIT PISTON CAN,0.0,80.7,7887,Dinotefuran,3,NO,NO,NO
-Insecticide,74578-12,TREE-AGE R10,71.9,0.0,7886,"Emamectin, benzoate",2,NO,NO,NO
-Insecticide,1021-2593,VENDETTA PLUS COCKROACH GEL BAIT,0.7,123.0,4953,Avermectin; Pyriproxyfen,3,NO,YES,NO
-Herbicide,62719-527,GARLON 4 ULTRA,123.6,99.4,431,Triclopyr,2,NO,NO,NO
-Herbicide,62719-519,MILESTONE,22.1,0.0,414,"Aminopyralid, triisopropanolamine salt",3,NO,NO,NO
-Herbicide,62719-176,PATHFINDER II,92.4,225.6,388,"Triclopyr, butoxyethyl ester",3,NO,NO,NO
-Herbicide,7969-443,DERRINGER HERBICIDE,199.4,0.0,359,Glufosinate-ammonium,2,NO,NO,NO
-Herbicide,101563-144,ESPLANADE 200 SC,5.3,0.0,358,Indaziflam,3,NO,NO,NO
-Herbicide,228-534,NUFARM POLARIS HERBICIDE,52.5,0.0,354,"Imazapyr, isopropylamine salt",3,NO,NO,NO
-Herbicide,101563-177,METHOD 240SL HERBICIDE,10.2,0.0,354,Aminocyclopyrachlor potassium salt,3,NO,NO,NO
-Herbicide,100-937,PRIMO MAXX,39.6,0.0,59,Trinexapac-ethyl,3,NO,NO,NO
-Herbicide,228-743,NUP-18013,20.5,0.0,55,Glufosinate-ammonium,3,NO,NO,NO
-Herbicide,62719-542,DIMENSION 2EW,64.6,0.0,50,Dithiopyr,2,NO,NO,NO
-Fungicide,68539-3,T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,0.0,95.1,119,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
-Fungicide,100-1364,DACONIL ACTION,822.8,6.3,107,Acibenzolar-S-methyl; Chlorothalonil,2,YES,NO,YES
-Fungicide,53883-353,QUALI-PRO T-NEX,43.0,0.0,66,Trinexapac-ethyl,3,NO,NO,NO
-Fungicide,101563-21,BANOL TURF AND ORNAMENTAL FUNGICIDE,136.4,0.0,60,Propamocarb hydrochloride,3,NO,NO,NO
-Fungicide,228-630-86064,ArmorTech TMI 2020 FLO,132.4,0.0,41,Thiophanate-methyl; Iprodione,3,YES,YES,NO
-Fungicide,86064-6,ArmorTech ZOXY 2F,55.7,0.0,34,Azoxystrobin,3,NO,NO,NO
-Fungicide,101563-162,12ESP705 FUNGICIDE,0.0,1056.5,34,Fosetyl-Al,3,NO,NO,NO
-Fungicide,60063-7-10404,LESCO MANICRUE 6FL,297.6,0.0,31,Chlorothalonil,2,YES,NO,YES
-Fungicide,69526-13,CIVITAS,110.0,0.0,29,Mineral oil,3,NO,NO,NO
-Fungicide,89442-1,TEBUCONAZOLE 3.6 SELECT,42.0,0.0,27,Tebuconazole,3,YES,NO,NO
+Pesticide type,EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+Fungicide,RHAPSODY AS0,264-1155,4.9,0.0,142,QST 713 strain of dried Bacillus subtilis,3,NO,NO,NO
+Fungicide,T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,68539-3,0.0,135.0,141,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
+Fungicide,DACONIL ACTION,100-1364,859.0,0.0,103,Acibenzolar-S-methyl; Chlorothalonil,2,NO,YES,YES
+Fungicide,QUALI-PRO T-NEX,53883-353,45.8,0.0,68,Trinexapac-ethyl,3,NO,NO,NO
+Fungicide,BANOL TURF AND ORNAMENTAL FUNGICIDE,101563-21,153.6,0.0,56,Propamocarb hydrochloride,3,NO,NO,NO
+Fungicide,12ESP705 FUNGICIDE,101563-162,0.0,1467.0,45,Fosetyl-Al,3,NO,NO,NO
+Fungicide,LESCO MANICRUE 6FL,60063-7-10404,528.9,0.0,38,Chlorothalonil,2,NO,YES,YES
+Fungicide,ARMOR TECH TEB360 XL,66222-117-86064,50.5,0.0,31,Tebuconazole,3,NO,YES,NO
+Fungicide,TEBUCONAZOLE SC TURF AND ORNAMENTAL FUNGICIDE,101563-152,57.1,0.0,26,Tebuconazole,3,NO,YES,NO
+Fungicide,TARTAN FLO FUNGICIDE,101563-113,104.6,0.0,33,Triadimefon; Trifloxystrobin,3,YES,YES,NO
+Herbicide,GARLON 4 ULTRA,62719-527,139.3,32.1,457,Triclopyr,2,NO,NO,NO
+Herbicide,FINALE XL,7969-464,174.1,0.0,455,Glufosinate-ammonium,2,NO,NO,NO
+Herbicide,MILESTONE,62719-519,11.5,0.0,412,"Aminopyralid, triisopropanolamine salt",3,NO,NO,NO
+Herbicide,METHOD 240SL HERBICIDE,101563-177,13.0,0.0,358,Aminocyclopyrachlor potassium salt,3,NO,NO,NO
+Herbicide,NUFARM POLARIS HERBICIDE,228-534,24.5,0.0,355,"Imazapyr, isopropylamine salt",3,NO,NO,NO
+Herbicide,ESPLANADE 200 SC,101563-144,6.7,0.0,355,Indaziflam,3,NO,NO,NO
+Herbicide,PATHFINDER II,62719-176,82.0,2.9,306,"Triclopyr, butoxyethyl ester",3,NO,NO,NO
+Herbicide,VASTLAN,62719-687,99.3,0.0,109,"Triclopyr, Choline Salt",2,NO,NO,NO
+Herbicide,CLEARCAST HERBICIDE,241-437-67690,84.5,0.0,80,Imazamox,3,NO,NO,NO
+Herbicide,GLYPRO,62719-324,18.3,0.0,71,"Glyphosate, isopropylamine salt",3,NO,NO,YES
+Insecticide,VECTOMAX FG,73049-429,0.0,12045.9,492355,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52",3,NO,NO,NO
+Insecticide,DUPONT ADVION COCKROACH GEL BAIT,100-1484,2.0,2012.6,57080,Indoxacarb,3,NO,NO,NO
+Insecticide,ZOECON RF-259 EMULSIFIABLE CONCENTRATE,2724-351,45.9,3.5,38992,(7S)-Hydroprene,3,NO,NO,NO
+Insecticide,ZOECON (S)-HYDROPRENE ROACH CONTROL STATION II,2724-469,4.2,22.8,32545,(7S)-Hydroprene,3,NO,NO,NO
+Insecticide,SUSPEND SC INSECTICIDE,101563-4,40.7,4.0,22975,Deltamethrin,3,NO,NO,NO
+Insecticide,OPTIGARD COCKROACH GEL BAIT,100-1290,0.0,545.4,16440,"Emamectin, benzoate",3,NO,NO,NO
+Insecticide,REDZONE BAIT,64405-2,0.0,3278.3,7883,Boric acid,3,NO,NO,NO
+Insecticide,TEMPRID SC INSECTICIDE,101563-134,2.4,0.0,6169,"Cyfluthrin, beta; Imidacloprid",3,NO,NO,NO
+Insecticide,Advion Trio,100-1679,0.0,172.2,4712,Indoxacarb; Pyriproxyfen; Novaluron,3,NO,NO,NO
+Insecticide,VENDETTA PLUS COCKROACH GEL BAIT,1021-2593,0.5,471.2,13394,Avermectin; Pyriproxyfen,3,YES,NO,NO
+Other,HORMODIN 1,59807-4,0.0,0.4,43,IBA,3,NO,NO,NO
+Other,PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,60061-142,15.0,0.0,15,Copper oxide (ous),2,NO,NO,NO
+Other,SANIDATE 5.0,70299-19,2.0,0.0,4,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
+Other,GREEN STOP LIQUID ALGAECIDE,70299-16-84732,0.0,0.0,2,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO
+Other,BROMMAX 7.1,63838-5,60.0,0.0,1,Sodium bromide; Sodium hypochlorite,1,NO,NO,NO
+Other,MICROBE LIFE ALGAWAY 5.4 ALGAECIDE FOR PONDS,14802-8-74466,2.0,0.0,1,Poly(oxyethylene) (dimethylimino) ethylene (dimethylimino) ethylene dichloride,3,NO,NO,NO
+Rodenticide,DIFETHIALONE PASTE PLACE PACKS,7173-258,500.1,8664.5,36846,Difethialone,3,NO,NO,NO
+Rodenticide,Chlorophacinone Soft Bait,7173-308,0.0,11076.2,28517,Chlorophacinone,3,NO,NO,NO
+Rodenticide,CONTRAC RODENTICIDE,12455-69,0.0,18183.7,24247,Bromadiolone,3,NO,NO,NO
+Rodenticide,DITRAC TRACKING POWDER,12455-56,0.0,480.9,8724,Diphacinone,2,NO,NO,NO
+Rodenticide,Bromethalin Soft Bait II,7173-310,0.0,1305.3,7226,Bromethalin,3,NO,NO,NO
+Rodenticide,FINAL RODENTICIDE,12455-90,0.0,2826.8,4826,Brodifacoum,3,NO,NO,NO
+Rodenticide,CONTRAC ALL-WEATHER BLOX,12455-79,5.6,2775.2,2914,Bromadiolone,3,NO,NO,NO
+Rodenticide,BROMADIOLONE PASTE 0901,7173-297,0.0,669.2,1889,Bromadiolone,3,NO,NO,NO
+Rodenticide,WEATHERBLOK BAIT WITH BITREX,61282-110,0.0,954.3,1174,Brodifacoum,3,NO,NO,NO
+Rodenticide,JT EATON NECTUS SOFT BAIT 2G SECOND GENERATION RODENTICIDE,82744-2-56,0.0,750.3,898,Bromadiolone,3,NO,NO,NO
