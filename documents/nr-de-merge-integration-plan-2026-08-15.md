@@ -122,6 +122,26 @@ Task 0.3 stays parked — narrowed 2026-08-18, since the DE branch fails that pa
 reason than Finding 5. `rerere.enabled=true` is set (shared repo config, applies in every
 worktree), and every merge in this plan is run with it disabled per-invocation.**
 
+### Open follow-ups after this plan closed, and the branch each belongs on
+
+Every task in the plan is done. What survives it is listed here so a resuming session does not
+have to reconstruct it from the prose — **the runtime work is all on
+`feature-new-data-explorer`**, in its own worktree, since that is where the merge landed.
+
+| # | Follow-up | Branch | Status |
+|---|---|---|---|
+| 1 | `minimum-wage-with-maps` — was the dropped `lib-topojson` include really dead? | `feature-new-data-explorer` | **DONE 2026-08-19** — yes, proven in a browser; see "What C1 resolved" |
+| 2 | Five `data-features` templates this merge changed have no `PAGES` entry in `scripts/smoke-pages.mjs` | `feature-new-data-explorer` | **DONE 2026-08-19, committed at `95a1a4d60d`** — Chris chose add-after-a-trial-run; the trial passed, so the entries stand. **The gate is now 40 pages, not 35** `[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node scripts/smoke-pages.mjs, exit 0, "40 pages clean", and all five new URLs report ok]`. None of the five needed a `KNOWN_NOISE` entry |
+| 3 | `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero` | `feature-new-data-explorer` | **FIXED 2026-08-19, committed at `2d49d98914`** — Chris chose the three includes over deleting `data-explorer-old`. One `lib-arquero.html` per template, placed before the consuming partial; browser-verified before and after. See "C2 progress" |
+| 4 | `renderer: "svg"` rollout across the five DE Vega call sites | `feature-new-data-explorer` | **Not started** — spun out by Chris's option-1 decision; needs its own browser pass, notably the print/export path. See "The `renderer: \"svg\"` decision" |
+| 5 | Task 0.1 Step 2 — optional hardening | `merge/production` (plus EHDP-data) | **Not started**, re-scoped from blocker to hardening 2026-08-17 |
+| 6 | `npm run characterize` non-functional on this lineage | — | **No action — already recorded** at B2 Step 5, naming correction included. Do not re-raise |
+| 7 | Three Vega warnings per DE trend render (field-parse and axis-property conflicts) | `feature-new-data-explorer` | **Recorded, unfixed** — spec-quality defects, not errors; smoke does not read them. B2 Step 5 and C3 Step 5 both count them |
+
+**These records commit on `merge/production`.** The DE branch carries its own copy of this
+document, frozen at whatever the last merge brought across, so it is behind by every record
+commit made after `4a260ea2a1` — read this copy, not that one.
+
 | Stage | Task | Status |
 |---|---|---|
 | 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4 DONE 2026-08-17; Step 5 DONE 2026-08-18** — the EHDP-data `feature-new-data-explorer` branch was recreated off `production`, re-exported from Linux against the site repo's `production` YAML, and force-pushed; `dev_stage` builds on the DE branch as a result. Step 2 re-scoped to optional hardening, not started |
@@ -137,7 +157,7 @@ worktree), and every merge in this plan is run with it disabled per-invocation.*
 | B | B1 DE ← `production` | **DONE — committed 2026-08-18 at `eda7c256c5`.** 23 conflicts, 0 rerere replays, 272 files staged (271 from the merge plus this document), 0 unmerged, 0 unstaged. Steps 1–6 done. **Step 3's stated expectation was wrong** — following it as written would have dropped three of `production`'s SCSS blocks silently; see the finding below |
 | B | B2 DE verification sweep | **DONE 2026-08-18** — all five steps run, Step 4 struck. Unblocked by `npm install` (exit 0, merge untouched: 272 staged / 0 unstaged / 0 untracked after). Installed versions match B1's regenerated lock — playwright 1.62.1, eslint 10.7.0, hugo-extended 0.147.9 — which confirms the `devDependencies` decision took effect. **Step 1:** 16 files linted, 0 errors; **the control written into this plan was wrong and is corrected below.** **Step 2:** isolated `production` build exit 0, 0 ERROR, 1330 EN pages, `resources/` untouched. **Step 3:** 33 ok / 1 FAIL of 34 — the FAIL is **pre-existing, proven against a pre-merge control worktree**, and is Finding 6, not Finding 5. **Step 3 could not use `scripts/dev-server.mjs`'s own spawn** — see the `data_branch` table. **Step 5:** map, table and trend all render and all re-render on a CD→UHF42 switch. **B2 has no docs-check step and that is a real gap** — running it 2026-08-18 showed B1's `CLAUDE.md` resolution dropped the branch's `docs-check` header, so that file is now silently unchecked. Recorded, not fixed; it is an action for the Stage B commit |
 | C | C1 DE ← `merge/production` | **DONE 2026-08-18 — all conflicts resolved and committed at `3210c5ee87`** (parents `eda7c256c5` + `4a260ea2a1`; 64 staged at commit time, not 63 — the extra path is this document, refreshed from `6757bcd8aa` so the merge carries the Stage C records). 19 conflicts (not 36 — see the Stage C header), 0 rerere replays, 63 staged while the merge was live, 0 unmerged, 0 unstaged, 0 untracked, no markers anywhere. Steps 1 and 2 done. **Step 3 does not fire** — the file does not conflict, and Chris decided to keep both DE pins and fix EHDP-data instead, which was expected to leave `dev_stage` red for C3 — it did not; it went green 2026-08-18 with the pin unchanged, see Task C3. The four `assets/js/data-explorer/` files took the DE side per Chris's `renderer: "svg"` decision (option 1), leaving an SVG rollout as separate work. Proof: isolated `production` build exit 0 / 1326 EN pages / 0 ERROR, `npm run lint` exit 0 over 16 files, `docs-check` 2 docs exit 0 |
-| C | C2 DE gating reconciliation | **DONE 2026-08-18, committed with C1 at `3210c5ee87`.** Step 1 passes with a validated probe — zero library hits in `head.html` (211 lines). **Step 2 was answered against the built site, not the template counts** — the step's own prescribed proof, and the correction is recorded below: a template-level count is blind to relative-`src` and `resources.Get` loading. 1438 pages swept, **zero ordering violations** (probe validated by a synthetic control), 3 missing-library findings, all **pre-existing** and all one defect — `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero`; left unfixed by choice. Found and fixed one real defect: `topiclanding.html` missing `lib-uhflist.html` (Task 0.3 / Finding 5), proven by a pre/post build diff of 8→3 findings. Two probe defects corrected mid-sweep (82 false positives from a bundle-name pattern; 1 from `aq.` matching prose). **Finding 6 is also cleared** — by the merge itself, not by a fix — so **C3's smoke prediction is 35 of 35** — not 34, and not Stage B's 33; the merge added a `PAGES` entry, see C3 Step 6 |
+| C | C2 DE gating reconciliation | **DONE 2026-08-18, committed with C1 at `3210c5ee87`.** Step 1 passes with a validated probe — zero library hits in `head.html` (211 lines). **Step 2 was answered against the built site, not the template counts** — the step's own prescribed proof, and the correction is recorded below: a template-level count is blind to relative-`src` and `resources.Get` loading. 1438 pages swept, **zero ordering violations** (probe validated by a synthetic control), 3 missing-library findings, all **pre-existing** and all one defect — `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero`; left unfixed by choice. **"Pre-existing" narrowed 2026-08-19: it predates this merge but is not live on `production`**, whose `head.html` loads arquero for every page — browser-confirmed on all three pages, see "C2 progress". Found and fixed one real defect: `topiclanding.html` missing `lib-uhflist.html` (Task 0.3 / Finding 5), proven by a pre/post build diff of 8→3 findings. Two probe defects corrected mid-sweep (82 false positives from a bundle-name pattern; 1 from `aq.` matching prose). **Finding 6 is also cleared** — by the merge itself, not by a fix — so **C3's smoke prediction is 35 of 35** — not 34, and not Stage B's 33; the merge added a `PAGES` entry, see C3 Step 6 |
 | C | C3 DE verification sweep | **DONE — Steps 1, 2, 3 and 6 on 2026-08-18, Step 5 on 2026-08-19; Step 4 struck.** **Step 5: map, table and trend all render and all are rebuilt on a CD→UHF42 switch** — map 59→42 shapes, table 66→49 rows, both matching B2 exactly; the trend canvas *element* is replaced while its pixels are unchanged, because the trends view aggregates to Borough by design (`trend.js:206`), proven by a validated hash probe, an element-identity probe with a negative control, and a Vega warning ledger of 18 = 6 renders × 3. Console held exactly 4 errors throughout, all pagefind. **Two method findings: B2's painted-pixel metric is dead here** (it equals w×h at every reading), **and the table reads stale while its pane is hidden.** Step 1: 16 files, 0 errors, 0 warnings. **Step 2: exit 0, 0 ERROR, 1326 EN pages**, run beside a live server as a deliberate test of the isolation claim — `resources/_gen` came through byte-identical and the server was unharmed. **Step 3: 35 of 35, exit 0** — the corrected count, run bare against a reused `dev_stage` server, and the page carrying Findings 5 and 6 passed. Step 6 **found a coverage gap** — 5 of the 8 `data-features` templates this merge changed have no `PAGES` entry. Also recorded there: **`dev_stage` went green on the DE branch**, which retires four warnings elsewhere in this document |
 
 **Stage A merged and committed 2026-08-17 at `67b76b49ea`**, parents `fb5b89df64` (NR tip) and `c59d614716` (`merge/production`). Stage B is next.
@@ -648,6 +668,45 @@ and partials/de-topic-indicators.html is empty]`, and it is identical in the pre
 builds. **Left unfixed deliberately** — the one-line fix is obvious and mirrors the new
 templates, but whether `data-explorer-old` should publish at all is a larger question than this
 merge, and fixing it is wasted work if the answer is that it should not.
+
+**Confirmed in a browser 2026-08-19, and the cause is narrower than "pre-existing" suggests.**
+All three pages throw: `/data-explorer-old/` and `/data-explorer-old/data-index/` log
+`ReferenceError: aq is not defined`, and on `data-index` it cascades into a second throw
+(`TypeError: Cannot read properties of undefined (reading 'filter')` in `loopThroughIndicators`);
+`/data-explorer-old/indicator-catalog/` renders 0 tables and 818 characters of body text
+`[verified 2026-08-19 on b52a15cfe9, Playwright against the `dev_stage` server on :8080;
+`typeof window.aq` is `"undefined"` on all three. Control: `/data-explorer-old/air-quality/`,
+which loads the library through `single.html`, throws only the 4 pagefind errors]`.
+**It is not live on `production`.** There the same three templates also lack the include, but
+`head.html:168` loads arquero for every page, so nothing breaks
+`[verified 2026-08-19: git show production:…/head.html greps 1 arquero block; the DE branch's
+`head.html` greps 0]`. The defect is therefore a product of this lineage's `head.html` gating
+meeting templates that were never given their own includes — `merge/production` gave the
+`data-explorer/` copies theirs (1/1/1) and the `data-explorer-old/` copies never got them
+(0/0/0). **Consequence for the decision:** it is a real break that ships the day
+`data-explorer-old` ships, not a defect the site already carries. The fix stays one include per
+template.
+
+**Fixed 2026-08-19 at `2d49d98914` — one include each, and the before/after is measured, not assumed.**
+`lib-arquero.html` added to all three `data-explorer-old` templates, each placed ahead of the
+partial that consumes it. On the same warm `dev_stage` server, reloading each page after Hugo
+rebuilt `[verified 2026-08-19]`:
+
+| Page | Before | After |
+|---|---|---|
+| `/data-explorer-old/` | 5 console errors, `aq` undefined | 4 errors (all pagefind), `aq` is an object, 1 arquero `<script>` |
+| `/data-explorer-old/data-index/` | 6 errors — the `ReferenceError` plus a cascading `TypeError` in `loopThroughIndicators` — 0 tables | 4 errors, **2 tables and 267 rows** |
+| `/data-explorer-old/indicator-catalog/` | 5 errors, 0 tables, 818 chars of body text | 4 errors, `aq` defined — but still **0 tables and 818 chars** |
+
+**That last row is the one not to over-read.** The library fix removed its error; it did not fill
+the page. The *new* explorer's `/data-explorer/indicator-catalog/`, which has always loaded
+arquero, is empty in exactly the same way — 0 tables, 818 characters, no console errors
+`[verified 2026-08-19: the same probe against both URLs returns identical numbers]`. So that page
+has a second, older problem shared by both copies, and it is out of scope here rather than fixed.
+
+**These three pages are still outside the smoke gate**, so nothing would have caught this defect
+automatically — `PAGES` has no `data-explorer-old` URL. Worth considering as its own decision,
+since the section publishes 76 pages.
 
 **Separately, `CLAUDE.md`'s "nothing loads from a CDN" is false for template-rendered pages.**
 The claim sits under "JS architecture" and describes the bundling pipeline, but four
@@ -2677,6 +2736,16 @@ grep's positive control]`.
 **`minimum-wage-with-maps` is the one that matters most**, because C1 Step 2 deliberately dropped
 a `lib-topojson` include from it. That decision currently rests on a clean build and the C2
 ordering sweep, and on no runtime check at all — smoke never loads the page.
+
+**The runtime check has now run, and the dropped include is confirmed dead** `[verified
+2026-08-19 on b52a15cfe9, Playwright against the reused `dev_stage` server at
+`http://localhost:8080/dev-stage/data-features/minimum-wage/`: `window.topojson` is `undefined`
+and both maps draw anyway — 4 `.vega-embed` containers, the two map views carrying 132 SVG paths
+each, of which 128 have real geometry (longest `d` 9191 chars, median 605; the 4 empty ones are
+Vega's frame). Console held 4 errors, all pagefind, and 0 Vega errors. Probe controlled: a
+deliberately impossible selector against the same SVG returns 0]`. So Vega's loader does resolve
+`format: {type: "topojson"}` without the global, exactly as `lib-topojson.html`'s own header
+claims, and C1 Step 2's resolution is correct on evidence rather than on inference.
 
 **This is the third instance of the pattern the Self-review already names** (Findings 4 and 5): a
 missing-coverage defect found by a check aimed at something else. Closing the gap is five `PAGES`
