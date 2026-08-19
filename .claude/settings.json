@@ -105,7 +105,6 @@
       "PowerShell(git branch -D)",
       "PowerShell(git branch -D *)"
     ],
-    "defaultMode": "default"
   },
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,
