@@ -1,5 +1,35 @@
 # Site-Wide Audit (2026-06-27)
 
+> ## Ported to `production` — read this before acting on anything below
+>
+> **Provenance.** Copied verbatim on 2026-08-12 from `feature-MOD-Lab-NR-recode-refactor`
+> at `5cb650e40c`, where it was last updated 2026-08-11. That is the newest and largest of
+> the 21 branch copies, and it is a superset of the others in substance: of the 12 lines
+> present in the `feature-claude-tooling-migration` copy and absent from this one, 11 are
+> re-wraps and the twelfth survives here in a more specific form
+> `[verified 2026-08-12: line diff of all three copies, then a per-claim grep of each
+> differing line]`.
+>
+> **It was written against a different tree.** Findings describe the branch they were found
+> on unless a line says otherwise. Two mechanical facts about this copy on `production`:
+>
+> - **24 of the 77 repo paths it cites do not exist here** `[verified 2026-08-12: existence
+>   check of every path matching `(themes|assets|scripts|config|content|data|static|documents|.github)/…`]`.
+>   The absent ones cluster in identifiable places: everything under `assets/js/data-explorer-old/`
+>   (§1, §5, §9, §11 row 12) and `assets/js/nr-topic-spa*` (§5a, §5h), the DE-only partials
+>   `header-de.html`, `de-indicator-info.html`, `search-modal.html`, `lib-vega.html`
+>   (§11 rows 17, 19, 20, 23 and §12), and the `scripts/` harnesses (§10a, §5h). A finding
+>   whose evidence is a file this tree does not have is about another branch.
+> - **The sibling documents it cross-references are not in this repo.**
+>   `data-explorer-deep-audit-2026-06-27.md`, `data-explorer-fresh-audit-2026-07-13.md`,
+>   `js-conventions.md`, `nr-accessibility-audit-2026-08-10.md` and
+>   `flexdatalist-accessibility-seed-2026-08-11.md` live only on the branches that own that work.
+>
+> **What was re-checked here.** The §11 quick-wins table, because it is the part meant to be
+> acted on — see the status note directly above that table. Nothing else in this document has
+> been re-verified against `production`; treat the rest as the branch's record until it is.
+> §14 holds findings first observed on this tree.
+
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
 Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
 **everything else**: the Hugo
@@ -725,6 +755,20 @@ the two Vega-shortcode files (`shortcodes/vega.html`/`vega0.html`) and the
 `nr-clickable-uhf.html` partials, which use `aq.`/`vegaEmbed`/`L.` but are dead
 code (not `partial`-included anywhere), so they can't throw at runtime.
 
+**The "no other gaps found" result did not hold, and the dates say those templates were in
+scope (added 2026-08-19).** On 2026-08-19 three templates were found with exactly the gap this
+sweep looked for — `data-explorer-old/{data-index,indicator-catalog,section}.html`, which consume
+`aq.` through the included `de-topic-indicators.html` sub-partial, the sweep's own stated pattern
+(§5f correction above). Both preconditions predate this sweep's 2026-07-23 date on
+`feature-new-data-explorer`: the old explorer was renamed into `data-explorer-old/` by
+`18d94c510f` on 2026-06-27, and arquero left `head.html` in `47ffb33fde` on 2026-07-16
+`[verified 2026-08-19: git log --diff-filter=A on the template, and git log -S"arquero" on
+head.html]`. **What is not established is which tree the sweep ran against** — this section
+records it as Tier 4.5 work without naming the branch — so read this as "the null result does not
+transfer to the merged tree", not as a proven miss. Either way the practical rule is the same: a
+library-gate sweep is only valid for the gating arrangement it ran under, and the 2026-07-16
+change altered that arrangement.
+
 ---
 
 ### 5f. `/data-explorer/` calls Arquero without loading it (P1, added 2026-07-29)
@@ -754,6 +798,31 @@ the library.
 
 Currently allowlisted in `scripts/smoke-pages.mjs`, scoped to that one page.
 Fixing the gate is what removes the entry.
+
+**Corrected 2026-08-19 on `feature-new-data-explorer`. Three of this section's claims no
+longer hold, and the branch note is the one that matters.**
+
+- **The branch prediction is falsified.** This section says the finding "very likely does not
+  apply" to `feature-new-data-explorer`, and asks for a re-check "if the two lines converge".
+  They converged — Stage C of the NR/DE merge — and it **does** apply there, carried in on the
+  copies renamed to `data-explorer-old/` at `18d94c510f`. All three of
+  `data-explorer-old/{data-index,indicator-catalog,section}.html` reached `aq.` with `aq`
+  undefined `[verified 2026-08-19, Playwright against a `dev_stage` server: `ReferenceError: aq
+  is not defined` on the section page and on data-index, where it cascaded into a `TypeError` in
+  `loopThroughIndicators` and left the page with 0 tables]`. **Fixed the same day at
+  `2d49d98914`** — one `lib-arquero.html` include per template; data-index then rendered 2 tables
+  and 267 rows.
+- **The allowlist claim is stale on every branch.** There is no `aq is not defined` entry in
+  `scripts/smoke-pages.mjs` on `production`, `merge/production` or `feature-new-data-explorer`
+  `[verified 2026-08-19: the file is 148 / 149 / 161 lines respectively and the string appears 0
+  times in each — the line counts are recorded so the zero is not read as a missing file]`. So
+  "fixing the gate is what removes the entry" points at an entry that is not there.
+- **The mechanism differs on that branch.** This section blames a `head.html` gate whose
+  condition covers neither arm for a section page. On `feature-new-data-explorer` `head.html`
+  contains **no** arquero reference at all — it was removed by `47ffb33fde` (2026-07-16,
+  the Tier 4.6 gating change) — so there the defect is an absent library, not a gate condition
+  that misses a case. Same symptom, different cause; a fix aimed at the gate would find nothing
+  to edit.
 
 ---
 
@@ -1129,16 +1198,64 @@ the 400ms timer.
 
 `package.json` **had no `scripts` block at all** — no `build`, `dev`, `lint`,
 `format`, or `test` — and no linting, formatting, or tests anywhere in the repo.
-For ~25K lines of JS this was the highest-leverage gap: a single `eslint` pass
-would have caught most of the concrete bugs in the DE audit (the `ReferenceError`,
-the dead `v-pills-trend` id, the operator-precedence percentile bug, duplicate
-object keys).
+For ~25K lines of JS this was a large gap: a single `eslint` pass
+would have caught one of the four concrete bugs named in the DE audit (the
+`ReferenceError`, the dead `v-pills-trend` id, the operator-precedence percentile
+bug, duplicate object keys).
+
+**Corrected 2026-08-19 — this sentence read "would have caught most", and that was
+never run.** It has been now, against the config this repo actually runs. `eslint.config.mjs`
+enables exactly one rule, `no-undef`, so a probe file containing all four bug shapes reports
+**1 problem, not 4** `[verified 2026-08-19: npx eslint on a scratch file in
+assets/js/data-explorer/ with an undeclared-name reference, a getElementById("v-pills-trend")
+call, an `a + b / c * 100` precedence shape, and a `{ key: 1, other: 2, key: 3 }` literal —
+output is a single `no-undef` error on the first; exit 1; file deleted after]`. Which three
+escape, and why:
+
+- **The dead `v-pills-trend` id — no linter can catch this, at any configuration.** It is a
+  string literal that is valid JavaScript and merely names an element that does not exist.
+- **The operator-precedence bug** is valid code with the wrong semantics; no ESLint rule
+  reads intent.
+- **Duplicate object keys** *are* catchable — by `no-dupe-keys`, which ships in
+  `eslint:recommended`. This config does not extend `recommended`, so the rule is off and the
+  probe's duplicate key went unreported.
+
+So the actionable form of the original claim is a config change, not a lint run: extending
+`eslint:recommended` would move this from 1 of 4 to 2 of 4. The other two are out of reach of
+static analysis and need the smoke test or a type checker instead. The superlative
+"highest-leverage" is also left unquantified here — no comparison across the gaps was performed.
 
 **Update 2026-07-23 (DE Tier 4.5):** a `scripts` block now exists — `lint`,
 `characterize`, `smoke` — and ESLint (`no-undef`) runs over `assets/js/data-explorer/`
 (see the fresh-audit §4.5 status). This closes the gap for the SPA tree only.
 Still open: no formatter, no tests, ESLint doesn't cover the ~60 inline-JS layouts
 or the theme partials, and **lint is not yet enforced in CI** (deferred, below).
+
+**Update 2026-08-19: the smoke gate has two coverage holes, one closed and one open.** On
+`feature-new-data-explorer`, five `data-features` templates changed by the NR/DE merge had no
+`PAGES` entry; they were added and the gate went from 35 to **40 pages, exit 0, no new allowlist
+entries** `[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node
+scripts/smoke-pages.mjs]`, committed at `95a1a4d60d`.
+
+**Second correction, same day — the sentence that stood here was wrong.** It said `PAGES` had
+"no `data-explorer-old` URL at all". It had one: `data-explorer-old/asthma/?id=2380`, covering
+`single.html`, which is why that template's pages were fine while the other three threw. I
+asserted the absence without grepping for it. The accurate statement is that **three of the four
+old-explorer template kinds were uncovered** — `section.html`, `data-index.html` and
+`indicator-catalog.html` — which is exactly the set that broke.
+
+**Now covered.** All three added to `PAGES` at `d763b09f57`; the gate reads **43 pages, exit 0**
+`[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node
+scripts/smoke-pages.mjs, with all four `data-explorer-old` URLs reporting ok]`. **The new
+entries were proved to fire, not just to pass**: removing the `lib-arquero.html` include from
+`data-explorer-old/section.html` and reloading that page surfaces `pageerror: aq is not defined`,
+which no `KNOWN_NOISE` entry matches, so the gate fails; restoring the include returns the page
+to 4 pagefind-only errors and the template to byte-identical
+`[verified 2026-08-19: a throwaway one-page probe in the repo tree, run either side of the
+edit — 5 errors with the aq pageerror, then 4 without]`. This still bears on the
+retire-the-old-explorer recommendation in §1 and §5: the tree is not dormant, it publishes
+**76 pages** (`draft: false`, one `.md` per indicator topic), so the choice is cover it or
+delete it — it is now covered.
 
 **Testing strategy is an open decision, not yet made.** Raised 2026-07-02
 while triaging DE audit items 9-10 against the TDD skill's require-a-test
@@ -1407,6 +1524,31 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 > "FIXED" without naming the branch made it read as global. Anyone exercising
 > rats-in-your-neighborhood on the NR lineage still hits a CDN that shut down in 2019.
 
+> **Status of this table on `production`, checked 2026-08-12.** One sweep per row against
+> this tree; each row is *open here* unless listed otherwise. The command run for each is
+> given so it can be re-run.
+>
+> | Row | On `production` | Evidence |
+> |---|---|---|
+> | 1 (RawGit) | **not applicable** | `grep -c rawgit head.html` → 0 |
+> | 2 (CI) | **open** | all 9 `uses:` are tag-pinned, not SHA-pinned; 5 of 6 workflows have no `permissions:` block (only `codeql.yml` does) |
+> | 3 (`click_subscribe` twice) | **both call sites exist** | `main.js:14` (`gtag`) and `site.js:99` (`sendAnalyticsEvent`). Whether both fire on one click was *not* re-verified in a browser here |
+> | 5 (CSS not minified) | **open** | `head.html:125` is `$sass \| toCSS \| resources.Fingerprint`, no `minify`. Note the branch record: minification was proposed and **rejected by the user** on 2026-07-14 |
+> | 7 (duplicate `data-toggle`) | **open** | 3 lines in `header.html` carry the attribute twice |
+> | 8 (title `<a>`/`<span>` overlap) | **open** | `header.html:78-79` — the `<a>` opens inside one `<span>` and closes inside the next |
+> | 9 (`<a><li>`) | **open** | 6 occurrences in `header.html` |
+> | 11 (GA in dev) | **not applicable — inverted here** | `head.html:3` gates GA on `prod_prod` *only*, so no dev environment fires the production property. The inversion this creates is **§14.4** |
+> | 12 (`click_how_caclulated`) | **open** | 2 occurrences in `assets/js/data-explorer/app.js` — this tree's explorer, not `data-explorer-old/` |
+> | 13, 14 (Datawrapper SVG sizing) | **did not reproduce** | `data-stories/housing/` ran clean under `npm run smoke` on 2026-08-12 with no allowlist entry for it |
+> | 15 (robots.txt) | **open** | no `Sitemap:` directive in `themes/dohmh/layouts/robots.txt` |
+> | 16 (`<html lang="en">`) | **open** | hardcoded in `baseof.html:2` and `list.html:2`; this tree has 14 translated pages (7 `.es`, 7 `.zh`) |
+> | 18 (`#skip-header-target`) | **open** | the id appears in 48 layout files |
+> | 21, 22, 23 (Dependabot) | **subjects present** | `georaster ^1.6.0`, `hugo-extended ^0.146.3`, `vega ^5.30.0` in `package.json`. Alert *state* not re-checked |
+> | 17, 19, 20 | **not applicable** | each cites a partial this tree does not have (`de-indicator-info.html`, `header-de.html`) |
+>
+> Also relevant: §5c's `rats-in-your-neighborhood` `area.contains` error **did not reproduce**
+> here — that page ran clean under the same smoke run, with no allowlist entry.
+
 | # | Severity | Where | Issue |
 |---|---|---|---|
 | 1 | ~~P1~~ **FIXED 2026-07-14 — but only on some branches; see note below** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
@@ -1670,3 +1812,86 @@ four build workflows; plan the Bootstrap 4 → 5 / de-jQuery migration.
 
 **Phase 4 — a11y + perf budgets.** axe/Lighthouse in CI on representative pages;
 defer/bundle the data-viz libraries; settle on one i18n strategy.
+
+---
+
+## 14. Findings first observed on `production` (added 2026-08-12)
+
+Everything in this section was checked against this tree, on the branch
+`feature-add-project-claude-md` (identical to `production` at the time). Each entry names
+the command or observation behind it.
+
+### 14.1 The same element carries two `class` attributes; the second is discarded (P3)
+
+`<a class="text-black" href="…" class="text-primary">` appears in 10+ templates —
+`about/section.html:26`, `components.html:43,85`, `data-features/section.html:39,77`,
+`data-stories/section.html:43,106,130,154,178` — and, until 2026-08-12, in two of
+`readme-components.md`'s copy-paste examples.
+
+HTML parsers keep the first occurrence of an attribute and drop the rest, so `text-primary`
+never applies. Confirmed in the browser rather than inferred: on `data-stories/`, the parsed
+anchor's `outerHTML` retains only `class="text-black"` and computes `rgb(0, 0, 0)`, while a
+genuine `.text-primary` anchor on the same page computes `rgb(0, 137, 57)`
+`[verified 2026-08-12: Playwright, `getComputedStyle` on both, the second serving as the
+control that the probe can tell the two apart]`.
+
+Black is presumably what was wanted, so nothing renders wrongly today — the cost is a dead
+attribute that reads as live styling, propagated by copy-paste. Fix: delete whichever of the
+two is not intended. The readme's copies are already fixed.
+
+### 14.2 Card images on the home page have no `alt` attribute (P2, a11y)
+
+The four section cards at `index.html:175, 193, 212, 233` render
+`<img class="card-img-top" src="…">` with no `alt`. Each sits inside an `<a>` whose only
+other child is a positioned overlay `<div>`, so the link has no text node either: the
+accessible name of that link falls back to the image filename or is empty, depending on the
+screen reader. `readme-components.md` documents the same markup, so the pattern reproduces
+whenever someone follows the components guide.
+
+Fix is a judgement call, not a mechanical one: `alt=""` is correct only if the *link* gets
+its name another way, which here it does not. Naming the destination (`alt="Data Explorer"`)
+resolves both at once.
+
+### 14.3 `.card-content.key-topics` and `.tab-key-topics` are defined and unused (P3)
+
+`theme.scss:386` defines `.card-content.key-topics` with `border-bottom: 8px solid $primary`
+— rule-for-rule identical to `.card-content.primary` at `theme.scss:392`. Zero layouts use
+it; Key Topics cards use `.primary` (`index.html:63`). `.tab-key-topics` is likewise defined
+in SCSS and used by no layout, while its four sibling `tab-*` classes have two uses each
+`[verified 2026-08-12: per-class counts across assets/scss, themes/dohmh/layouts, and content]`.
+
+Deleting both is safe. Note that `readme-components.md` omits `.key-topics` from its list of
+section-card classes, which is the correct advice for the current markup.
+
+### 14.4 The documented production build command is not the one that ships (P1)
+
+`readme-development.md` and `CLAUDE.md` both document building with
+`hugo --environment production`. The GitHub Actions workflow that produces the live site runs
+`hugo --environment prod_prod` (`hugo-build-to-prod-prod.yml:112`).
+
+`config/production/config.toml` and `config/prod_prod/config.toml` are byte-identical, so this
+looks harmless. It is not, because `head.html:3` branches on the environment *name*:
+
+```
+{{ if eq hugo.Environment "prod_prod" }}   → production GA property, no robots meta
+{{ else }}                                  → <meta name="robots" content="noindex, nofollow">
+                                              + the dev GA property (G-PB98MPZ31B)
+```
+
+So a build made with the documented command produces a complete site that tells every crawler
+not to index it and reports to the development analytics property. Confirmed on build output
+rather than read off the template: a bare `hugo` — which is what `readme-development.md`'s
+"To build the source code, simply enter the command `hugo`" produces — reports
+`build_environment: production` and emits both `noindex, nofollow` and
+`gtag/js?id=G-PB98MPZ31B` on the home page. A `--environment development` build does the same
+`[verified 2026-08-12: two full builds into temp directories, grep of each generated
+index.html]`.
+
+The live site is unaffected — the workflow uses `prod_prod`. What's affected is anyone
+building locally from the documented instructions and inspecting or deploying that output.
+Two candidate fixes: gate on a config param rather than the environment name, or collapse the
+duplicate environment. Both need a decision about which name is canonical.
+
+Related and lower-value: `partials/conditional-modal.html` branches on
+`hugo.Environment "production"`, `"development"`, and `"data_staging"`. No template includes
+this partial, and `config/` has no `data_staging` directory, so all three branches are dead.
