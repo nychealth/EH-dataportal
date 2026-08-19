@@ -107,10 +107,12 @@ the libraries it calls" or "every `report_topic` resolves to a file that exists.
 **Status as of 2026-08-18: Stage 0 closed, Stage A merged and committed at `67b76b49ea`, Stage B
 merged, verified and committed at `eda7c256c5`, and C1 and C2 both complete and committed at
 `3210c5ee87` — 19 conflicts all resolved, one real gating defect found and fixed, the tree
-builds.** **C3 is the only task left in this plan.** Two decisions were taken on 2026-08-18 and
-both are recorded below: the four DE JS files took the DE side, and the `dev_stage` pins stay
-put, which means **C3 cannot use `npm run smoke`'s own server spawn** and needs a
-`development` server with `DE_BASE_URL`. The
+builds.** **C3 closed 2026-08-19 with its Step 5 browser check, so every task in this plan is now
+done.** Two decisions were taken on 2026-08-18 and both are recorded below: the four DE JS files
+took the DE side, and the `dev_stage` pins stay put. ~~which means **C3 cannot use `npm run
+smoke`'s own server spawn** and needs a `development` server with `DE_BASE_URL`~~ — **that
+prediction was wrong and is retired**: `dev_stage` went green on the DE branch, and C3 Step 3 ran
+`npm run smoke` bare against it, 35 of 35. The
 Stage B merge commit has parents `59c5d459b8` (DE tip) and `c0931fbee6` (`production`'s tip),
 and `production` is now an ancestor of `feature-new-data-explorer`
 `[verified 2026-08-18: git merge-base --is-ancestor exits 0; both worktrees report a clean status]`.
@@ -136,7 +138,7 @@ worktree), and every merge in this plan is run with it disabled per-invocation.*
 | B | B2 DE verification sweep | **DONE 2026-08-18** — all five steps run, Step 4 struck. Unblocked by `npm install` (exit 0, merge untouched: 272 staged / 0 unstaged / 0 untracked after). Installed versions match B1's regenerated lock — playwright 1.62.1, eslint 10.7.0, hugo-extended 0.147.9 — which confirms the `devDependencies` decision took effect. **Step 1:** 16 files linted, 0 errors; **the control written into this plan was wrong and is corrected below.** **Step 2:** isolated `production` build exit 0, 0 ERROR, 1330 EN pages, `resources/` untouched. **Step 3:** 33 ok / 1 FAIL of 34 — the FAIL is **pre-existing, proven against a pre-merge control worktree**, and is Finding 6, not Finding 5. **Step 3 could not use `scripts/dev-server.mjs`'s own spawn** — see the `data_branch` table. **Step 5:** map, table and trend all render and all re-render on a CD→UHF42 switch. **B2 has no docs-check step and that is a real gap** — running it 2026-08-18 showed B1's `CLAUDE.md` resolution dropped the branch's `docs-check` header, so that file is now silently unchecked. Recorded, not fixed; it is an action for the Stage B commit |
 | C | C1 DE ← `merge/production` | **DONE 2026-08-18 — all conflicts resolved and committed at `3210c5ee87`** (parents `eda7c256c5` + `4a260ea2a1`; 64 staged at commit time, not 63 — the extra path is this document, refreshed from `6757bcd8aa` so the merge carries the Stage C records). 19 conflicts (not 36 — see the Stage C header), 0 rerere replays, 63 staged while the merge was live, 0 unmerged, 0 unstaged, 0 untracked, no markers anywhere. Steps 1 and 2 done. **Step 3 does not fire** — the file does not conflict, and Chris decided to keep both DE pins and fix EHDP-data instead, which was expected to leave `dev_stage` red for C3 — it did not; it went green 2026-08-18 with the pin unchanged, see Task C3. The four `assets/js/data-explorer/` files took the DE side per Chris's `renderer: "svg"` decision (option 1), leaving an SVG rollout as separate work. Proof: isolated `production` build exit 0 / 1326 EN pages / 0 ERROR, `npm run lint` exit 0 over 16 files, `docs-check` 2 docs exit 0 |
 | C | C2 DE gating reconciliation | **DONE 2026-08-18, committed with C1 at `3210c5ee87`.** Step 1 passes with a validated probe — zero library hits in `head.html` (211 lines). **Step 2 was answered against the built site, not the template counts** — the step's own prescribed proof, and the correction is recorded below: a template-level count is blind to relative-`src` and `resources.Get` loading. 1438 pages swept, **zero ordering violations** (probe validated by a synthetic control), 3 missing-library findings, all **pre-existing** and all one defect — `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero`; left unfixed by choice. Found and fixed one real defect: `topiclanding.html` missing `lib-uhflist.html` (Task 0.3 / Finding 5), proven by a pre/post build diff of 8→3 findings. Two probe defects corrected mid-sweep (82 false positives from a bundle-name pattern; 1 from `aq.` matching prose). **Finding 6 is also cleared** — by the merge itself, not by a fix — so **C3's smoke prediction is 35 of 35** — not 34, and not Stage B's 33; the merge added a `PAGES` entry, see C3 Step 6 |
-| C | C3 DE verification sweep | **IN PROGRESS 2026-08-18.** Steps 1, 2, 3 and 6 done; Step 4 struck; **only Step 5 remains**. Step 1: 16 files, 0 errors, 0 warnings. **Step 2: exit 0, 0 ERROR, 1326 EN pages**, run beside a live server as a deliberate test of the isolation claim — `resources/_gen` came through byte-identical and the server was unharmed. **Step 3: 35 of 35, exit 0** — the corrected count, run bare against a reused `dev_stage` server, and the page carrying Findings 5 and 6 passed. Step 6 **found a coverage gap** — 5 of the 8 `data-features` templates this merge changed have no `PAGES` entry. Also recorded there: **`dev_stage` went green on the DE branch**, which retires four warnings elsewhere in this document |
+| C | C3 DE verification sweep | **DONE — Steps 1, 2, 3 and 6 on 2026-08-18, Step 5 on 2026-08-19; Step 4 struck.** **Step 5: map, table and trend all render and all are rebuilt on a CD→UHF42 switch** — map 59→42 shapes, table 66→49 rows, both matching B2 exactly; the trend canvas *element* is replaced while its pixels are unchanged, because the trends view aggregates to Borough by design (`trend.js:206`), proven by a validated hash probe, an element-identity probe with a negative control, and a Vega warning ledger of 18 = 6 renders × 3. Console held exactly 4 errors throughout, all pagefind. **Two method findings: B2's painted-pixel metric is dead here** (it equals w×h at every reading), **and the table reads stale while its pane is hidden.** Step 1: 16 files, 0 errors, 0 warnings. **Step 2: exit 0, 0 ERROR, 1326 EN pages**, run beside a live server as a deliberate test of the isolation claim — `resources/_gen` came through byte-identical and the server was unharmed. **Step 3: 35 of 35, exit 0** — the corrected count, run bare against a reused `dev_stage` server, and the page carrying Findings 5 and 6 passed. Step 6 **found a coverage gap** — 5 of the 8 `data-features` templates this merge changed have no `PAGES` entry. Also recorded there: **`dev_stage` went green on the DE branch**, which retires four warnings elsewhere in this document |
 
 **Stage A merged and committed 2026-08-17 at `67b76b49ea`**, parents `fb5b89df64` (NR tip) and `c59d614716` (`merge/production`). Stage B is next.
 
@@ -2555,8 +2557,10 @@ that would have caught the NR breakage in Stage A.
 
 ### Task C3: DE verification sweep
 
-**Depends on:** C2. Same five steps as B2, plus Step 6. **Steps 1 and 6 ran 2026-08-18 against
-the committed merge `3210c5ee87`; Steps 2, 3 and 5 have not.**
+**Depends on:** C2. Same five steps as B2, plus Step 6. **ALL STEPS RUN. Steps 1, 2, 3 and 6 ran
+2026-08-18 against the committed merge `3210c5ee87`; Step 5 ran 2026-08-19 against `5001fed68b`,
+which is that merge plus one settings-only commit. Step 4 is struck. C3 is closed, and with it this
+plan's task list.**
 
 - [x] **Step 1:** `npx eslint assets/js/data-explorer -f json` — **16 files, 0 errors, 0 warnings**
       `[verified 2026-08-18 on 3210c5ee87]`. Use B2's correction, not this plan's original control:
@@ -2576,8 +2580,71 @@ the committed merge `3210c5ee87`; Steps 2, 3 and 5 have not.**
       console errors rather than content (`scripts/dev-server.mjs` header), but name the
       environment in any claim built on it.
 - [x] ~~**Step 4**~~ — STRUCK, as at B2. The script exists on no branch this plan merges.
-- [ ] **Step 5:** browser check — map, table and trend render, and re-render on a CD→UHF42 switch.
-      No renderer check is owed: Chris's option-1 decision spun the SVG rollout out as separate work.
+- [x] **Step 5: DONE — all three render, and all three are rebuilt on a CD→UHF42 switch**
+      `[verified 2026-08-19 at a 1440x900 viewport on data-explorer/asthma/?id=2380, served by
+      Chris's live dev_stage server on :8080 from the DE worktree at 5001fed68b]`. No renderer check
+      is owed: Chris's option-1 decision spun the SVG rollout out as separate work, and the trend
+      does still draw to a **canvas**, as expected.
+
+**The worktree is one commit past the merge, and that commit is site-inert.** Steps 1, 2, 3 and 6
+ran on `3210c5ee87`; the tree Step 5 was served from is `5001fed68b`, whose entire diff is one
+deleted line in `.claude/settings.json` — no content, template, asset or config path
+`[verified 2026-08-19: git show --stat 5001fed68b is 1 file, 1 deletion]`. So the runtime result
+carries back to the merge commit.
+
+| Signal | CD (start) | UHF42 (after switch) | back to CD |
+|---|---|---|---|
+| URL `GeoType=` | `CD` | `UHF42` | `CD` |
+| Map shapes (`.leaflet-overlay-pane path`) | **59** | **42** | **59** |
+| Table `tbody` rows | **66** | **49** | — |
+| Trend canvas | 425x469, hash `3803aa50` | 425x469, hash `3803aa50` | 425x469, hash `3803aa50` |
+| Trend canvas *element* | tagged | — | **replaced** |
+
+Map and table match B2's recorded numbers exactly (59 CD shapes / 66 rows to 42 / 49), and 59 and 42
+are the right counts for community districts and UHF42 neighborhoods. The table's UHF42 rows carry
+UHF names (`Kingsbridge - Riverdale`, `Northeast Bronx`) and the filter chip reads `2023 | UHF42 |
+Synced`, so it is the geography that changed and not just the row count.
+
+**The trend's pixel output does not change on a geotype switch, and that is by design, not a stale
+view.** The pane's own copy says the trends view aggregates neighborhood data to the Borough level,
+and `assets/js/data-explorer/trend.js:206` branches on the trend's **own** comparison control
+(`compName[0] === "Boroughs"`), not on the map's `GeoType`. Three separate checks say the view is
+nonetheless torn down and rebuilt on the switch:
+
+- **Element identity.** The canvas element carrying a tag before the switch is gone after it — Vega
+  built a new one. Negative control: the tag survives a no-op read on the same element, so `false`
+  means replacement and not tag loss.
+- **A validated content probe.** An FNV hash over the canvas pixels moves `3803aa50` -> `8bf7a8a5`
+  when the trend's Age comparison is selected, and returns to `3803aa50` when Geography is restored.
+  So the probe can see a repaint; it reports "unchanged" across the geotype switch because the
+  drawing genuinely is the same.
+- **A warning ledger that agrees.** Vega emits the same three warnings per trend render; the session
+  ended with 18, which is exactly 6 renders x 3, and 6 is the number of times the trend was drawn
+  (first tab open, two geotype switches, one tab re-open, two comparison-pill clicks).
+
+**A metric B2's Step 5 leaned on is dead on this page: non-transparent pixel count.** It read
+199,325 at every single measurement — which is 425 x 469 exactly, the whole canvas, because Vega
+paints an opaque background. It cannot vary, so it can neither confirm nor deny a repaint. The hash
+is what carries the signal. (B2's own numbers came from a differently-defined count and are not
+comparable; what B2 recorded as trend re-render evidence was largely a **size** change, 657x804 to
+425x469, which is pane layout rather than data.)
+
+**The table is lazy and holds the previous geography while its pane is hidden.** Measured at the
+moment of the switch with the trend tab active, the table still read 66 rows; it re-rendered to 49
+on being shown. Not a defect — but a check that samples a hidden pane will read a stale value, so
+show the pane before measuring it.
+
+**Console held exactly 4 errors from first load to last interaction, all four the pagefind
+MIME-type/404 entries** that `hugo serve` always produces because it never builds pagefind. No new
+error appeared at any point in the sequence. The only non-Vega warning was one Canvas2D
+`willReadFrequently` notice raised by the probe itself.
+
+**Unrelated finding, on the DE branch and outside this plan's scope: `.claude/settings.json` is now
+invalid JSON.** `5001fed68b` deleted the `"defaultMode": "default"` line but left the comma on the
+preceding `]`, so the file fails to parse at line 108
+`[verified 2026-08-19: JSON.parse reports "Expected double-quoted property name in JSON at position
+3176 (line 108 column 3)"]`. It is a one-character fix and it is Chris's call whether it rides with
+this branch's work or goes in alone.
 - [x] **Step 6: DONE, and it found a gap.** `npm run smoke` is the gate for the gating refactor
       across every page kind, not just the explorer, so a page kind absent from `PAGES` is not
       covered — and the `PAGES` comments are claims that rot like doc prose.
