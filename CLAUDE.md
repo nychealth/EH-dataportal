@@ -40,7 +40,7 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 32 pages, ~3 min
+npm run smoke                                          # 33 pages
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
