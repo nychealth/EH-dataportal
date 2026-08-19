@@ -67,7 +67,9 @@ To build while someone's server is up, redirect both writable outputs to temp di
 HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment development -d "$TEMP/iso-docs"
 ```
 
-`[verified 2026-08-12: full site build, exit 0 in 31s; all 197 files under resources/_gen identical in mtime and size afterward, 173 resources written to the temp dir instead, docs/ untouched]`. That establishes the build writes neither shared location, which is what the "safe beside a server" claim rests on; it was not run concurrently with a live server. Inspect the generated HTML in the temp directory rather than hitting the live server.
+`[verified 2026-08-12: full site build, exit 0 in 31s; all 197 files under resources/_gen identical in mtime and size afterward, 173 resources written to the temp dir instead, docs/ untouched]`. That establishes the build writes neither shared location, which is what the "safe beside a server" claim rests on.
+
+**The concurrent case is now tested too, and it holds** `[verified 2026-08-18 on feature-new-data-explorer, with a dev_stage server live on :8080 throughout: production build exit 0, 0 ERROR, 1326 EN pages in 31.1s; resources/_gen byte-identical before and after on a manifest of path+size+mtime for all 174 files; 174 resources written to the isolated resourceDir and 3038 files to the temp output dir; the worktree stayed clean and docs/ was untouched. The server was then unharmed — same 200, same page byte-length, an identical list of 36 fingerprinted asset URLs, and the same 34x200 / 2x404 split, the two 404s being pagefind, which hugo serve never builds]`. That is the documented poisoning symptom — fingerprinted assets 404ing — probed directly and absent. Inspect the generated HTML in the temp directory rather than hitting the live server.
 
 ## Repo structure
 
