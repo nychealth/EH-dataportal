@@ -105,12 +105,17 @@ the libraries it calls" or "every `report_topic` resolves to a file that exists.
 ## Ledger
 
 **Status as of 2026-08-18: Stage 0 closed, Stage A merged and committed at `67b76b49ea`, Stage B
-done and verified but UNCOMMITTED, Stage C not started.** The Stage B merge is live in the
-`feature-new-data-explorer` worktree — 272 files staged, 0 unmerged, `MERGE_HEAD`
-`c0931fbee6` — and B2's five checks all pass against it, one of them with a recorded baseline
-FAIL that is proven pre-existing (Finding 6). **Stage C is BLOCKED on Chris committing the Stage B
-merge**, because C1's merge-base only becomes `production`'s tip once that merge is a commit;
-nothing else in this plan is blocked. Task 0.1 Step 2 (optional hardening) remains not started, and
+merged, verified and committed at `eda7c256c5`, and C1 and C2 both complete but UNCOMMITTED in
+the DE worktree — 19 conflicts all resolved, one real gating defect found and fixed, the tree
+builds.** **C3 is the only task left in this plan.** Two decisions were taken on 2026-08-18 and
+both are recorded below: the four DE JS files took the DE side, and the `dev_stage` pins stay
+put, which means **C3 cannot use `npm run smoke`'s own server spawn** and needs a
+`development` server with `DE_BASE_URL`. The
+Stage B merge commit has parents `59c5d459b8` (DE tip) and `c0931fbee6` (`production`'s tip),
+and `production` is now an ancestor of `feature-new-data-explorer`
+`[verified 2026-08-18: git merge-base --is-ancestor exits 0; both worktrees report a clean status]`.
+B2's five checks all passed against it, one with a recorded baseline FAIL that is proven
+pre-existing (Finding 6). **Stage C is the next thing to run.** Task 0.1 Step 2 (optional hardening) remains not started, and
 Task 0.3 stays parked — narrowed 2026-08-18, since the DE branch fails that page for a different
 reason than Finding 5. `rerere.enabled=true` is set (shared repo config, applies in every
 worktree), and every merge in this plan is run with it disabled per-invocation.**
@@ -119,7 +124,7 @@ worktree), and every merge in this plan is run with it disabled per-invocation.*
 |---|---|---|
 | 0 | 0.1 NR report-topic rename — build blocker | **Steps 1, 3, 4, 5 DONE 2026-08-17**; Step 2 re-scoped to optional hardening, not started |
 | 0 | 0.2 CP report library includes | **DONE 2026-08-17** — all 3 steps; browser probe matches the `production` control (L/vegaEmbed/d3 defined, 2 maps drawn, 6 Vega views), page passes smoke |
-| 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production. **Stage A outcome 2026-08-17:** smoke is 33/33 on the merged NR branch, because A2 deleted the template — the expected FAIL is gone *there*. `merge/production` still carries it and still fails, so this **unparks for Stage C**, which merges `merge/production` into the DE branch. **Narrowed 2026-08-18 by B2 Step 3:** the DE branch fails on that same page for a *different* reason (Finding 6 — a missing `<ul>`, not a missing global), and Finding 5's error was masking it. So Stage C inherits **two** defects on one page, and fixing the `neighborhoods` global clears only one of them |
+| 0 | 0.3 `topiclanding.html` missing `lib-uhflist` (Finding 5) | **UNPARKED AND FIXED 2026-08-18, in the C1 working tree** — one include added at `topiclanding.html:19`, proved by before/after built HTML; see "C2 progress". Fixed on the DE branch's merge, **not** on `merge/production`, which still carries the defect. History below. **PARKED 2026-08-17 by decision** — not fixed; the page is deleted by A2, so the one `npm run smoke` FAIL is expected. **Unparks if** Stage A is abandoned or `topiclanding.html` survives into production. **Stage A outcome 2026-08-17:** smoke is 33/33 on the merged NR branch, because A2 deleted the template — the expected FAIL is gone *there*. `merge/production` still carries it and still fails, so this **unparks for Stage C**, which merges `merge/production` into the DE branch. **Narrowed 2026-08-18 by B2 Step 3:** the DE branch fails on that same page for a *different* reason (Finding 6 — a missing `<ul>`, not a missing global), and Finding 5's error was masking it. So Stage C inherits **two** defects on one page, and fixing the `neighborhoods` global clears only one of them |
 | A | A1 shared-infra conflicts | **DONE 2026-08-17** — all five steps, ten files staged (nine listed + this document, the unlisted 23rd conflict). Leaves A7 Step 9 a writing job, not a re-read: no `lib-*` prose exists in either `CLAUDE.md` |
 | A | A2 retired-file modify/deletes | **DONE 2026-08-17** — nine `git rm`'d, all nine already absent at `HEAD` (the delete declines incoming files, it removes no NR work); `Crotona - Tremont` = 2 in `data/globals/uhflist.json`, old spelling 0 |
 | A | A3 `head.html` — uhflist generator + gating | **DONE 2026-08-17** — generator relocated into a rewritten `lib-uhflist.html`; the NR `debugLog` block survives (a wholesale `--theirs` would have dropped it, 55 call sites); 4 stale `uhflist.js` comments fixed, not the 1 the step named |
@@ -127,10 +132,10 @@ worktree), and every merge in this plan is run with it disabled per-invocation.*
 | A | A5 SCSS: `theme.scss`, `_custom.scss` | **DONE 2026-08-17** — Step 3's predicted collision was real: `.worse/.better::before` defined twice, one per side; `merge/production`'s copy removed |
 | A | A6 duplicate comparison implementation — decision | **DONE 2026-08-17** — no decision needed, both partials orphaned once A2 removed their callers; `git rm -f` |
 | A | A7 NR verification sweep | **DONE 2026-08-17** — 9/9 steps pass; pagefind re-baselined (diff verified item-by-item), `CLAUDE.md` prose rewritten and re-stamped |
-| B | B1 DE ← `production` | **All conflicts resolved 2026-08-18; merge is LIVE and UNCOMMITTED in the DE worktree.** 23 conflicts, 0 rerere replays, 272 files staged (271 from the merge plus this document), 0 unmerged, 0 unstaged. Steps 1–6 done. **Step 3's stated expectation was wrong** — following it as written would have dropped three of `production`'s SCSS blocks silently; see the finding below |
+| B | B1 DE ← `production` | **DONE — committed 2026-08-18 at `eda7c256c5`.** 23 conflicts, 0 rerere replays, 272 files staged (271 from the merge plus this document), 0 unmerged, 0 unstaged. Steps 1–6 done. **Step 3's stated expectation was wrong** — following it as written would have dropped three of `production`'s SCSS blocks silently; see the finding below |
 | B | B2 DE verification sweep | **DONE 2026-08-18** — all five steps run, Step 4 struck. Unblocked by `npm install` (exit 0, merge untouched: 272 staged / 0 unstaged / 0 untracked after). Installed versions match B1's regenerated lock — playwright 1.62.1, eslint 10.7.0, hugo-extended 0.147.9 — which confirms the `devDependencies` decision took effect. **Step 1:** 16 files linted, 0 errors; **the control written into this plan was wrong and is corrected below.** **Step 2:** isolated `production` build exit 0, 0 ERROR, 1330 EN pages, `resources/` untouched. **Step 3:** 33 ok / 1 FAIL of 34 — the FAIL is **pre-existing, proven against a pre-merge control worktree**, and is Finding 6, not Finding 5. **Step 3 could not use `scripts/dev-server.mjs`'s own spawn** — see the `data_branch` table. **Step 5:** map, table and trend all render and all re-render on a CD→UHF42 switch. **B2 has no docs-check step and that is a real gap** — running it 2026-08-18 showed B1's `CLAUDE.md` resolution dropped the branch's `docs-check` header, so that file is now silently unchecked. Recorded, not fixed; it is an action for the Stage B commit |
-| C | C1 DE ← `merge/production` | Not started |
-| C | C2 DE gating reconciliation | Not started |
+| C | C1 DE ← `merge/production` | **All conflicts resolved 2026-08-18; merge is LIVE and UNCOMMITTED in the DE worktree.** 19 conflicts (not 36 — see the Stage C header), 0 rerere replays, 63 staged, 0 unmerged, 0 unstaged, 0 untracked, no markers anywhere. Steps 1 and 2 done. **Step 3 does not fire** — the file does not conflict, and Chris decided to keep both DE pins and fix EHDP-data instead, which leaves `dev_stage` red for C3. The four `assets/js/data-explorer/` files took the DE side per Chris's `renderer: "svg"` decision (option 1), leaving an SVG rollout as separate work. Proof: isolated `production` build exit 0 / 1326 EN pages / 0 ERROR, `npm run lint` exit 0 over 16 files, `docs-check` 2 docs exit 0 |
+| C | C2 DE gating reconciliation | **DONE 2026-08-18.** Step 1 passes with a validated probe — zero library hits in `head.html` (211 lines). **Step 2 was answered against the built site, not the template counts** — the step's own prescribed proof, and the correction is recorded below: a template-level count is blind to relative-`src` and `resources.Get` loading. 1438 pages swept, **zero ordering violations** (probe validated by a synthetic control), 3 missing-library findings, all **pre-existing** and all one defect — `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero`; left unfixed by choice. Found and fixed one real defect: `topiclanding.html` missing `lib-uhflist.html` (Task 0.3 / Finding 5), proven by a pre/post build diff of 8→3 findings. Two probe defects corrected mid-sweep (82 false positives from a bundle-name pattern; 1 from `aq.` matching prose). **Finding 6 is also cleared** — by the merge itself, not by a fix — so **C3's smoke prediction is 34 of 34, not Stage B's 33** |
 | C | C3 DE verification sweep | Not started |
 
 **Stage A merged and committed 2026-08-17 at `67b76b49ea`**, parents `fb5b89df64` (NR tip) and `c59d614716` (`merge/production`). Stage B is next.
@@ -162,30 +167,33 @@ file across as part of the merge** so the branch carries a current ledger.
 
 ### Resuming after Stage B in a fresh session — read this first
 
-**Stage B is verified. B1 and B2 are both done, and the merge is still live and uncommitted in the
-DE worktree** — Chris raises committing, so it ends at a verified working tree by design. If that
-state is lost, B1 has to be redone from scratch, because `rerere` stores a resolution only when
-the merge is *committed* — an abort leaves preimages and no postimages (Global constraints).
-`node_modules` now exists in that worktree, so the B2 checks are re-runnable as written.
+**Stage B is done and committed at `eda7c256c5`** (parents `59c5d459b8` and `c0931fbee6`),
+with the plan record committed just before it on `merge/production` at `4a260ea2a1`.
+`node_modules` exists in that worktree, so the B2 checks are re-runnable as written.
+
+**The rr-cache gained nothing from Stage B, so Stage C inherits no replays from it.** It still
+holds 7 postimages against 21 preimages, the same counts recorded on 2026-08-17, because the merge
+ran with `rerere` disabled for the invocation and so wrote no preimage to resolve
+`[verified 2026-08-18: find .git/rr-cache after the merge commit]`. Keep using the
+`-c rerere.enabled=false` form for C1 — the cache's older recordings are still capable of
+answering a conflict on your behalf, and the `package.json` one is still wrong.
+
+The state to expect in that worktree before Stage C starts — no merge in flight, nothing staged:
 
 ```
 cd ../EH-dataportal.worktrees/feature-new-data-explorer
-git status --short | head            # expect staged changes, no "Unmerged paths" section
-git rev-parse MERGE_HEAD             # expect c0931fbee6a1a31672e800cc3613b12640ecf7f5
+git log -1 --format='%H %P'          # eda7c256c5… with parents 59c5d459b8… c0931fbee6…
+git status --short                   # expect no output
+git rev-parse MERGE_HEAD             # expect "fatal: ambiguous argument 'MERGE_HEAD'"
 ```
 
-State recorded 2026-08-18: `HEAD` `59c5d459b8`, `MERGE_HEAD` `c0931fbee6` (`production`'s tip),
-**272 files staged, 0 unmerged, 0 unstaged, 0 untracked, and no conflict markers anywhere in the
-tree** `[verified 2026-08-18: git diff --name-only --diff-filter=U returns nothing; a git grep for
-the marker pattern across the tree returns nothing, and the same pattern against a one-line control
-file returns 1, so the probe fires]`.
+`[verified 2026-08-18: all three, plus git merge-base --is-ancestor production
+feature-new-data-explorer exits 0]`. The pre-commit reading this block used to record — `HEAD`
+`59c5d459b8` with `MERGE_HEAD` `c0931fbee6` and 272 files staged — is now history, not a
+checkable expectation.
 
-**Do not `git merge --abort`.** If the worktree has been disturbed, re-derive from this document
-rather than restarting the merge.
-
-**The next action is Stage C (Task C1), and it is gated on Chris committing the Stage B merge** —
-C1's merge-base is `production`'s tip, which only becomes true of this branch once the Stage B
-merge is a commit. Do not start C1 on top of an uncommitted merge.
+**The next action is Stage C (Task C1).** Its gate is cleared: C1's merge-base is
+`production`'s tip, which is now true of this branch.
 
 ### What B1 resolved, and the proof for each
 
@@ -457,16 +465,316 @@ is exactly that merge:
 `[verified 2026-08-18: node scripts/docs-check.mjs — "2 doc(s) checked", no stale paths or
 identifiers, exit 0; the diff against the pre-stamp copy is 2 insertions and 0 deletions; staged
 count unchanged at 272 with 0 unstaged]`. The `ignore: fixedHeader` line was **not** restored,
-for the reason above. **Optional at commit time:** collapse the two-parent stamp to the merge
-commit's own hash. Nothing requires it — `docs-check` validates the field's presence, not its
-format — so leaving it is also correct.
+for the reason above. **The merge commit now exists (`eda7c256c5`)**, so the two-parent stamp may be
+collapsed to that hash whenever the file is next touched. Nothing requires it — `docs-check`
+validates the field's presence, not its format — and the two-parent form names the same tree, so
+leaving it is also correct.
+
+### What C1 resolved, and the proof for each
+
+Merge started 2026-08-18 with `git -c rerere.enabled=false merge --no-commit --no-ff
+merge/production` in the DE worktree: **19 conflicts, 0 rerere replays, exit 1 as expected.**
+15 are resolved and staged; the four DE JS files are held for a decision (below).
+
+- **Three `nr-*` partials → `merge/production`'s side** (`git checkout --theirs`), per Step 1.
+  Each is byte-identical to `merge/production`'s blob afterwards
+  `[verified 2026-08-18: git hash-object against git rev-parse merge/production:<path>, with a
+  negative control — section.html reports "differs" through the same helper]`. This is not
+  cosmetic: `nr-show-zips.html`'s incoming side carries the `{{ .urlSuffix }}` parameter and the
+  `li.cloneNode(true)` fix for `appendChild` moving the node out of the first list, neither of
+  which the DE side has. **Both callers pass the parameter**
+  `[verified 2026-08-18: neighborhood-reports/section.html:93 passes "/" and topiclanding.html:36
+  passes .Params.urlExtension; those are the only two invocations in the tree]`.
+- **Five `data-features` templates → hand-merged, Step 2 done.** Four of the five were pure
+  formatting: both branches did the same refactor independently and arrived at *identical*
+  include sets, differing only in the `.html` suffix and line order
+  `[verified 2026-08-18: include sets compared across production / merge/production / HEAD —
+  production has none, the other two match on fvi, rats-in-your-neighborhood, realtime, rmz]`.
+  Kept the `.html` form, which is the repo convention `[verified 2026-08-18: 75 suffixed against
+  0 bare outside the conflicts]`, and kept `lib-leaflet.html` ahead of
+  `lib-easybutton-coloricon.html` in all four, since the plugin needs Leaflet first.
+- **`minimum-wage-with-maps.html` → `merge/production`'s side, dropping the DE-side
+  `lib-topojson.html`.** The only genuine set difference of the five, and the include is dead:
+  the page has no direct `topojson.` call, its only external script is a Datawrapper embed, and
+  `lib-topojson.html`'s own header says Vega specs using `format: {type: "topojson"}` do not need
+  it because vega-loader bundles topojson-client `[verified 2026-08-18: grep for `topojson.` in
+  the template returns only the include line and three Vega `format:` strings]`.
+- **Step 2's duplicate sweep passes over all 27 `data-features` templates, with a positive
+  control** `[verified 2026-08-18: zero DUPLICATE lines; a planted second `lib-d3.html` include
+  in a scratch copy makes the probe fire]`. **Correct the pattern in Step 2 above:
+  `lib-[a-z-]*` cannot match a digit, so it reports `lib-d3` as `lib-d`.** It still *detects* a
+  d3 duplicate — no name in the repo collides on that prefix — but the label it prints is wrong,
+  so use `lib-[a-z0-9-]*`.
+- **`data-explorer/section.html` → the DE side.** The incoming block is the pre-rewrite topic
+  content (banner image, `de-topic-indicators`, "Find Datasets by Topic" accordion) that the DE
+  rewrite replaced with a JS map shell, and it carries a second `lib-arquero.html` include —
+  taking it would have produced exactly the duplicate Step 2's sweep exists to catch. The
+  resolved file is byte-identical to the DE blob `[verified 2026-08-18: hash-object against
+  HEAD:<path>; arquero include count is 1]`.
+- **`data-explorer/data-index.html` → `merge/production`'s side.** The whole conflict is
+  `id="skip-header-target"` on the `<article>`. It is site-wide a11y work the DE branch predates
+  `[verified 2026-08-18: 49 templates carry the id on merge/production against 10 on the DE
+  branch, and the DE copy of this file has none]`.
+- **`.gitignore` → `merge/production`'s side** (a second copy of the characterization comment,
+  annotating `scripts/de-characterization-current/` as well as the `documents/` one); the file
+  is now identical to `merge/production`'s. **`.claude/settings.json` → union**, taking the
+  incoming `"defaultMode": "default"` and keeping the DE branch's own permission entries; it
+  parses `[verified 2026-08-18: node JSON.parse, valid]`.
+- **`package.json` → union: `axe-core ^4.13.0` kept, `playwright` at the DE branch's `^1.62.0`.**
+  `axe-core` arrived on `merge/production` in commit `52fde98740` and **has no consumer anywhere
+  in the tree** `[verified 2026-08-18: the only git-grep hits for "axe" outside package-lock.json
+  are JPEG/PNG bytes; there is no a11y script in either side's scripts block]`. Kept anyway,
+  because deleting an incoming dependency is a cleanup decision that belongs on
+  `merge/production`, not something a merge resolution should do silently. The scripts block did
+  not conflict and the DE branch's five scripts win cleanly — `merge/production`'s block is
+  byte-identical to `production`'s two-entry one, so there was nothing to lose there.
+- **`package-lock.json` → regenerated, not hand-merged**, per B1 Step 2's form: `git checkout
+  --ours` then `npm install --package-lock-only` `[verified 2026-08-18: exit 0; root devDeps now
+  match the resolved package.json, axe-core resolves to 4.13.0 and playwright stays at 1.62.1,
+  which is the version B2 recorded as installed]`.
+- **`CLAUDE.md` → hand-merged as a union, and this time nothing was lost.** One hunk: the DE side
+  contributes its whole "The other three checks" section (lint / characterization / docs-check),
+  `merge/production` contributes the heading rename from "Two ways a local check silently lies"
+  to "Three ways", which is the correct one because the third bullet arrived unconflicted. Kept
+  both. **The `docs-check` header survived this time** — it is a clean add relative to the base,
+  since neither `production` nor `merge/production` carries those two lines. Re-stamped
+  `verified:` to name this merge's two parents, `eda7c256c5+4a260ea2a1`, which also collapses the
+  stale Stage B stamp. `[verified 2026-08-18: node scripts/docs-check.mjs — "2 doc(s) checked",
+  exit 0; and a sorted-line diff against `merge/production`'s copy shows only two lines absent,
+  both superseded in place by DE-side edits — the smoke page count 32→34, and the
+  `smoke-pages.mjs` sentence with "the only automated check in the repo" removed, which is
+  correct on a branch that has four]`.
+
+- **The four DE JS files → the DE side**, per Chris's decision of 2026-08-18 (option 1 below).
+  Each is byte-identical to the DE blob and differs from `merge/production`'s, and no
+  `renderer: "svg"` leaked in `[verified 2026-08-18: hash-object against both HEAD:<path> and
+  merge/production:<path> for all four; the only `renderer` hits left in map.js and trend.js are
+  four prose comments]`.
+
+**C1 is fully resolved: 0 unmerged, 63 staged, 0 unstaged, 0 untracked, and no conflict markers
+in any tracked file** `[verified 2026-08-18: git grep -E '^(<{7}|={7}|>{7})( |$)' returns nothing
+outside documents/, and the same pattern against a three-line scratch file matches 3, so the
+probe fires]`.
+
+**The merge builds.** Isolated `production` build in the DE worktree: **exit 0, 1326 EN pages,
+zero ERROR lines** (one `WARN dev environment: production`, which is Hugo's own environment
+note) `[verified 2026-08-18: HUGO_RESOURCEDIR=<scratch> npx hugo --environment production -d
+<scratch>, 32.7s]`. **This run also supplies the concurrency proof the isolated-build note in
+`CLAUDE.md` says it never took**: a `hugo serve` process was live throughout, and all 174 files
+under the worktree's `resources/_gen` are unchanged in path, size and mtime across the build,
+with `docs/` clean `[verified 2026-08-18: find -printf '%p %s %T@' snapshots before and after
+diff to zero lines]`.
+
+**One number I cannot attribute, carried into C3 rather than explained away.** B2 recorded 1330
+EN pages for the same build on the Stage B tree; this is 1326. Three `.html` files under
+`content/` are deleted by this merge, but they do not account for it cleanly — only
+`healthy-homes-info/source/index.html` is a page in Hugo's sense; the two
+`*_differences_leaflet.html` files are non-index resources inside a leaf bundle. No staged
+frontmatter change touches page visibility `[verified 2026-08-18: the staged content/ diff has
+no ±line matching draft|headless|_build|expiryDate|publishDate|aliases|url:]`. **I did not
+re-derive B2's 1330 against the pre-merge tree, and this build fetches EHDP-data at build time,
+so the count can move without any change in this repo.** C3's build should be diffed against
+this one page-for-page rather than compared by count.
+
+**The three deletions are inherited, not introduced here, and one of them is worth a look.** All
+three come from `df7f0fbb6e` on `merge/production` (2026-08-13, non-merge), whose subject is
+"Normalize taxonomy keyword casing to lowercase" — the deletions are 262 of its 272 deleted
+lines and are not mentioned in the message. The two `*_differences_leaflet.html` files have
+`static/data-stories/air-quality-and-covid-part-2/` counterparts on `merge/production`, so those
+are the documented page-bundle-to-`static/` move; `healthy-homes-info/source/index.html` has no
+counterpart `[verified 2026-08-18: git ls-tree of static/ on merge/production]`.
+
+### C2 progress — Step 1 passes, Step 2 swept, and Task 0.3 is now fixed
+
+**Step 1 passes.** No library block remains in `head.html` (211 lines)
+`[verified 2026-08-18: grep -inE 'leaflet|vega|arquero|d3|datatables|uhflist' returns nothing,
+and the same pattern against data-features/realtime.html matches 5, so the probe fires]`.
+
+**Step 2 is done, but not by reading the template sweep's 31 zero rows — that sweep cannot answer
+the question, and this is the correction to make to the step.** A template-level count is blind
+to how most of these pages actually load their JS: `data-features/proximity.html` pulls
+`proximity.js` by relative `src`, `heatstory.html` pulls the Leaflet-ecosystem bundles
+(`leaflet-pip`, `georaster-layer-for-leaflet`, `geoblaze`) through `resources.Get` rather than a
+`lib-*` partial, and the three `take-action` templates load d3 from a CDN. Judged by include
+count all four look like gaps or dead includes, and none of them is either.
+
+**So Step 2 was answered against the built site instead, which is the proof the step's own last
+paragraph prescribes** — and it answers a stronger question than "does the count look right":
+*does any page use a library global that the page never loads, or load it after the code that
+calls into it?* The sweep reads each built page's inline script **and** every same-origin `.js`
+it loads, so a consumer living in an external file still counts. Files copied verbatim from
+`static/` are excluded — no template renders them, so C2's question does not apply; that is 28
+files. **A template that renders no page needs no separate check: there is no page to break.**
+
+**Result on the C1 tree: 1438 pages swept, 366 of them using at least one gated library, zero
+ordering violations, and three missing-library findings — all three pre-existing.**
+
+- **Zero pages load a library after first calling into it.** That is the placement check A4 got
+  wrong in Stage A, answered for every page at once rather than for the 29 templates.
+- **Both halves of the probe are validated on the final configuration.** For "missing": it
+  reports three real findings. For "ordering", which is a null result: appending an arquero
+  `<script>` to the end of a copy of a page that uses `aq.from` at line 494 makes it fire —
+  `script@1432 after use@494` — and the missing-finding for that page correctly disappears at
+  the same time `[verified 2026-08-18: single-page control directory]`.
+- **The uhflist fix is proven by before/after on real data.** The pre-fix build reports 8
+  missing-library findings, five of them `uhflist` on the neighborhood-report topic pages; the
+  post-fix build reports 3, and the delta is exactly those five pages.
+
+**Two probe defects were found and corrected mid-sweep, both worth knowing because they are the
+shapes that manufacture confident wrong answers:**
+
+- **Script-name patterns of the form `/vega[.-]…js/` cannot match this repo's concatenated
+  bundles**, which are named `vegaBundle.<hash>.js` and `dataTableBundle.<hash>.js` — the
+  character after the library name is a capital letter, not punctuation. That single miss
+  produced **82 false "missing library" findings** across the 41 `data-explorer-old` pages before
+  the patterns were widened to match the name anywhere in the filename.
+- **`\baq\.` matches prose.** A `quant-aq.com` link in body copy on
+  `data-features/realtime-air-quality/` read as an arquero call and produced the sweep's only
+  ordering finding, at line 844, against a script at 1295. Requiring a real arquero API name
+  (`aq.from`, `aq.escape`, `aq.op`, …) retires it. **That finding was spurious; there is no
+  ordering defect on that page.**
+
+**The three surviving findings are one defect on three pages, and it predates this merge.**
+`data-explorer-old/`'s `data-index.html`, `section.html` and `indicator-catalog.html` all call
+`partial "de-topic-indicators.html"`, which emits `aq.from(topic_indicators)` at its line 75, and
+**none of the three includes `lib-arquero.html`** — while all three of their `data-explorer/`
+counterparts do `[verified 2026-08-18: grep -c 'lib-arquero' across the six templates returns
+1,1,1 for the new set and 0,0,0 for the old]`. The three pages are published and reach
+`aq.from` with `aq` undefined. **C1 did not cause it and does not touch it**
+`[verified 2026-08-18: git diff --cached --name-only over themes/dohmh/layouts/data-explorer-old/
+and partials/de-topic-indicators.html is empty]`, and it is identical in the pre-fix and post-fix
+builds. **Left unfixed deliberately** — the one-line fix is obvious and mirrors the new
+templates, but whether `data-explorer-old` should publish at all is a larger question than this
+merge, and fixing it is wasted work if the answer is that it should not.
+
+**Separately, `CLAUDE.md`'s "nothing loads from a CDN" is false for template-rendered pages.**
+The claim sits under "JS architecture" and describes the bundling pipeline, but four
+template-rendered pages load third-party script off-site: `take-action/index.html` and
+`take-action/email-electeds/index.html` (d3 from `d3js.org`, plus `cdnjs.cloudflare.com` and
+`cdn.rawgit.com` on the second), `data-features/rats-in-your-neighborhood/index.html`
+(`cdnjs.cloudflare.com`, `cdn.rawgit.com`) and `data-stories/cold/index.html`
+(`code.jquery.com`) `[verified 2026-08-18: every off-site <script src> host across the 1438-page
+build, classified against the list of files copied from static/]`. The remaining off-site loads
+are all in `static/` passthrough files. Out of scope here; recorded because a doc claim that
+reads as a guarantee is what the next gating decision will be made against.
+
+**Task 0.3 / Finding 5 is fixed — one line, and it unparked exactly where this document said it
+would.** `neighborhood-reports/topiclanding.html` included `lib-leaflet.html` and nothing else,
+while consuming the `neighborhoods` global that `lib-uhflist.html` defines. The working sibling
+settles both the diagnosis and the placement: `neighborhood-reports/section.html:86-93` includes
+`lib-leaflet.html` **and** `lib-uhflist.html` before calling the same two partials, `nr-leaflet`
+and `nr-show-zips`, and both of those consume the global
+`[verified 2026-08-18: nr-leaflet.html:308 `neighborhoods.find(`, nr-show-zips.html:23
+`neighborhoods.forEach(`]`. Added the include beside `lib-leaflet.html` at line 19, in `main`,
+per A4's ordering rule.
+
+**Proved from the built HTML with a before/after control, which is the proof Step 2 prescribes.**
+In the post-fix build the `uhflist.js` `<script>` is at line 482 of
+`neighborhood-reports/active_design_physical_activity_and_health/index.html` and its three
+consumers are at 791, 861 and 1109 — all after it. In the pre-fix build of the same merged tree,
+that page contains **zero** occurrences of `uhflist`, which is Finding 5's cause stated as an
+observation `[verified 2026-08-18: two isolated production builds into separate temp
+directories, both exit 0 / 1326 EN pages / 0 ERROR]`. **Runtime confirmation is C3's** — the
+build proves the script is emitted and ordered, not that the console is clean.
+
+**Finding 6 is fixed by this merge, as a side effect rather than by intent — and the ledger row
+above describes it too loosely to see that.** The row calls it "a missing `<ul>`", which sends
+you to `nr-show-zips.html`, where both `<ul>` elements are present on both sides and always were.
+The accurate description is the one in the Stage B commit message: **`topiclanding.html` carried
+its own second copy of the neighborhood-list loop, without the markup that `nr-show-zips` emits**,
+so `getElementById` returned null and `appendChild` threw.
+
+That duplicate existed only on the DE branch, at `topiclanding.html:239-246` of the pre-merge
+copy. `merge/production` has no copy of the loop at all — it delegates to the partial, which
+emits the markup and the loop together — and `topiclanding.html` auto-merged toward that
+structure, so the merged template contains no `neighborhoodList` reference of its own
+`[verified 2026-08-18: grep for neighborhoodList and appendChild across all three versions of the
+template returns lines 239-246 on the DE branch's copy and nothing on either `merge/production`'s
+or the merged one; in the built post-C1 page the only two `appendChild` calls, at 864 and 867,
+target ids defined at 845 and 851, ahead of the script at 858]`.
+
+**So C3 has a real prediction to test, not an expectation to carry forward: smoke should now be
+34 of 34.** Both defects on
+`neighborhood-reports/active_design_physical_activity_and_health/` are addressed — Finding 5 by
+the `lib-uhflist.html` include added above, Finding 6 by this merge. The recorded baseline of
+"33 ok, 1 FAIL" belongs to Stage B and does **not** transfer. A surviving FAIL on that page means
+one of these two conclusions is wrong and should be re-derived from the console output rather
+than explained.
+
+### The `renderer: "svg"` decision — the four DE JS files
+
+**The plan calls these "one line each", and that is true of the incoming change but not of the
+conflict.** What `merge/production` contributes over the base is exactly one line per file —
+`renderer: "svg"`, added to a `vegaEmbed` options object by commit `52fde98740`, "Render Vega
+charts as SVG with responsive sizing" (2026-08-11) `[verified 2026-08-18: git diff production
+merge/production -- assets/js/data-explorer/ is 5 files, 5 insertions, all identical]`. But the
+DE branch rewrote all four files, so the conflict hunks are whole superseded implementations and
+**the options object the incoming line targets no longer exists**: DE's `disparities.js` and
+`trend.js` pass `actions: false` with the old block commented out, and DE's `map.js` has no
+`vegaEmbed` call at all — that page is Leaflet now.
+
+**Taking the DE side is not neutral, because the other half of `52fde98740` lands anyway.** That
+commit also edited `assets/scss/__portal-custom.scss`, which auto-merged into this merge with no
+conflict: `.vega-embed` loses `height: 500px` for `height: auto`, and a new
+`.vega-embed > svg { display: block; max-width: 100% }` rule arrives `[verified 2026-08-18: git
+diff --cached -- assets/scss/__portal-custom.scss, 6 insertions 1 deletion]`. A canvas-rendered
+chart does not match that `> svg` selector. So the DE side alone leaves the commit half-applied
+on this branch.
+
+The options, and what each costs:
+
+1. **Take the DE side, treat the SVG rollout as separate work.** Mechanically the correct merge —
+   the merge does not invent a behavior change. The new explorer keeps Vega's default canvas
+   renderer, which is what it was built and browser-verified against. Cost: `52fde98740`'s
+   renderer decision does not reach the explorer, and the branch carries its SCSS half only.
+2. **Carry `renderer: "svg"` onto the three DE call sites that correspond** —
+   `disparities.js:340`, `trend.js:661`, `print.js:150` (`map.js` has no counterpart). Keeps the
+   commit whole for the files it named. Cost: the new explorer's other two Vega charts,
+   `bar.js:532` and `correlate.js:570`, stay canvas, so the branch is internally inconsistent.
+3. **Carry it onto all five DE Vega call sites**, matching `52fde98740`'s stated scope of "all
+   Vega embed call sites". Cost: the largest untested surface — five charts change renderer on a
+   branch whose print/export path (`print.js`, `print-map.js`) was developed against canvas.
+
+**2 and 3 both need a browser check before C3 signs anything off**, not just a clean build:
+renderer choice is a runtime property. **Recommendation: option 1**, with the SVG rollout raised
+as its own task so it gets the browser pass it needs rather than riding in on a merge resolution.
+
+**Decided 2026-08-18 by Chris: option 1.** The four files took the DE side. **This leaves open
+work that is not part of this plan:** the new explorer's five Vega call sites
+(`disparities.js:340`, `trend.js:661`, `print.js:150`, `bar.js:532`, `correlate.js:570`) still
+use Vega's default canvas renderer while the branch now carries `52fde98740`'s SCSS half, whose
+`.vega-embed > svg` rule matches nothing under canvas. Applying `renderer: "svg"` across those
+five is its own task with its own browser pass — **not** something a later merge should pick up
+by accident.
+
+**One inherited defect, not caused by this merge and not fixed here.** `52fde98740` removed the
+fixed height but left the comment above `#cpVis2.vega-embed` explaining that "the fixed height
+above acts as a cap", and left the `#cpVis2` override that the comment justifies. Both are stale
+on `merge/production` itself `[verified 2026-08-18: the comment and the override are present in
+merge/production:assets/scss/__portal-custom.scss with height: auto above them]`. Fixing it
+belongs on `merge/production`, not in this merge.
 
 ### The exact next commands
 
-**Stage C is gated on the Stage B merge being committed** — C1's merge-base is `production`'s
-tip, which is only true of this branch once the merge is a commit. Chris raises committing.
+**C1 and C2 are both done and sitting uncommitted in the DE worktree. The next and last task is
+C3**, the verification sweep. Do **not** `git merge --abort`: `rerere` was disabled for the
+invocation, so an abort discards all 19 resolutions plus the `topiclanding.html` fix, and they
+would have to be redone from this document.
 
-To re-run any B2 check on the current tree:
+**C3's smoke step needs a decision before it runs.** A `hugo serve` was already running on the
+machine on 2026-08-18 whose working directory could not be read from its command line, and this
+plan forbids a second builder against the same tree. Establish which tree that server belongs to,
+or stop it, before starting one in the DE worktree.
+
+Re-establish where you are:
+
+```
+cd ../EH-dataportal.worktrees/feature-new-data-explorer
+git rev-parse MERGE_HEAD             # expect 4a260ea2a1… (merge/production's tip at merge time)
+git status --short | wc -l           # expect 63, all staged, no "Unmerged paths" section
+```
+
+To re-run any check on the current tree:
 
 ```
 cd ../EH-dataportal.worktrees/feature-new-data-explorer
@@ -477,8 +785,14 @@ hugo server --environment development --disableFastRender -p 1313    # in this w
 DE_BASE_URL="http://localhost:1313/dev-prod/" node scripts/smoke-pages.mjs   # 33 ok, 1 FAIL of 34
 ```
 
+`33 ok, 1 FAIL of 34` is **B2's recorded result. C3's prediction is 34 of 34**, because both
+defects on that page are now addressed — Finding 5 by the `lib-uhflist.html` include and
+Finding 6 by the merge itself. Treat a surviving FAIL there, a second failing page, or a
+different signature as something to re-derive from the console output.
+
 Do **not** run `node scripts/smoke-pages.mjs` bare here — it spawns a `dev_stage` server that
-cannot build on this branch, and fails after 90s with no diagnosis.
+cannot build on this branch, and C1 Step 3's decision keeps it that way until the EHDP-data
+renames land. It fails after 90s with no diagnosis.
 
 Update the row **in the commit that finishes the task**, not at the end of a session. Record the
 proof that actually ran in the house form — `[verified <date>: how]` — naming the command, its
@@ -2015,11 +2329,37 @@ current copies is resolvable; a silent 971-line regression is not.
 
 ## Stage C — `feature-new-data-explorer` ← `merge/production`
 
-36 conflicted files `[verified 2026-08-16: git merge-tree --write-tree --name-only, re-confirmed]`,
-of which 22 are Stage B's set. The +14 (the 2026-08-15 text said +15, but the list it gives holds
-14): `disparities.js`, `map.js`, `print.js`, `trend.js` (one line each),
-`config/dev_stage/config.toml`, five `data-features` templates (`fvi`, `minimum-wage-with-maps`,
-`rats-in-your-neighborhood`, `realtime`, `rmz`), and four `nr-*` partials.
+**Re-derived 2026-08-18 against the committed Stage B merge: 19 conflicted files, not 36.** The
+36 was measured on 2026-08-16, when the merge-base was still the older `production` and Stage B's
+set was re-presented; with `eda7c256c5` in place the base is `c0931fbee6` and most of that set is
+gone `[verified 2026-08-18: git merge-tree --write-tree --name-only merge/production
+feature-new-data-explorer, run in the DE worktree, lists 19 paths]`. The set is:
+
+- **Four DE JS files** — `disparities.js`, `map.js`, `print.js`, `trend.js` (one line each).
+- **Five `data-features` templates** — `fvi`, `minimum-wage-with-maps`,
+  `rats-in-your-neighborhood`, `realtime`, `rmz` (Step 2).
+- **Three `nr-*` partials** — `nr-clickable-uhf.html`, `nr-map-highlight.html`,
+  `nr-show-zips.html` (Step 1).
+- **Seven files Stage B also conflicted on, because `merge/production` changed them too** —
+  `.claude/settings.json`, `.gitignore`, `CLAUDE.md`, `package.json`, `package-lock.json`, and
+  `data-explorer/`'s `data-index.html` and `section.html`. Stage B's resolutions for these are
+  recorded above and are the starting point, not the answer: the incoming side is different.
+
+**Two files the older count named are not in it, and each changes a step:**
+
+- **`nr-indicator-new.html` does not conflict — it is byte-identical on all three branches**
+  `[verified 2026-08-18: git rev-parse on each of production, merge/production and
+  feature-new-data-explorer returns blob 5d87670af3]`. Stage B carried `production`'s rewrite of
+  it onto the DE branch (it was Stage B's 23rd conflict). **Step 1 covers three partials, not
+  four.**
+- **`config/dev_stage/config.toml` does not conflict, and that is the trap.** `production` and
+  `merge/production` both read `data_branch = "staging"`, so the incoming side changed nothing
+  relative to the base and git keeps the DE side — `data_branch = "feature-new-data-explorer"` —
+  with no prompt `[verified 2026-08-18: git show <branch>:config/dev_stage/config.toml on all
+  three; the path is absent from the merge-tree conflict list]`. **Step 3 is therefore an explicit
+  edit after the merge, not a conflict resolution**, and doing nothing leaves the red `dev_stage`
+  environment in place. `config/local_stage/config.toml` has the identical shape and the same
+  DE-side pin, and is likewise untouched by the merge.
 
 **Run Stage C only after Stage B has verified.** Its merge-base is `production`'s tip, so none of
 Stage B's resolutions are re-presented.
@@ -2102,17 +2442,34 @@ it has existed `[verified 2026-08-18: config/dev_stage/config.toml:3 on feature-
 config/local_stage/config.toml carries the same value]`. Stop only if **`merge/production`'s**
 side is something other than `staging`.
 
-**This step is now a fix, not just a reconciliation.** `feature-new-data-explorer` on EHDP-data
-never received the 2026-08-17 sentence-case export, so `dev_stage` on the DE branch is a red
-environment today — which is what blocked B2 Step 3 from using `scripts/dev-server.mjs`'s own
-spawn (see the `data_branch` table in Global constraints). Resolving to `staging` retires that.
-**Re-run a `dev_stage` build after C1 to confirm it goes green**, rather than assuming the config
-edit was sufficient — the same export has to be present on `staging`, which Finding 3 records that
-it is.
+**Superseded 2026-08-18 — this step does not fire, and the decision went the other way.** Two
+things changed at once:
+
+- **There is no conflict to resolve.** `production` and `merge/production` both already read
+  `data_branch = "staging"`, so the incoming side changed nothing relative to the merge-base and
+  git kept the DE branch's own `data_branch = "feature-new-data-explorer"` without prompting.
+  Re-pointing it would have been a deliberate edit to an unconflicted file, not a resolution.
+- **Chris decided 2026-08-18 to leave both pins alone** — `config/dev_stage/config.toml` and
+  `config/local_stage/config.toml` keep `feature-new-data-explorer` — **and to fix the EHDP-data
+  side instead**, by re-exporting those 26 report files from Linux or `git mv`-ing them on that
+  branch so the case-only renames actually land. This keeps the DE branch's per-branch data
+  isolation, which re-pointing at `staging` would have given up.
+
+**Consequences for C3, which are the reason this is recorded rather than struck:**
+
+- **`dev_stage` stays red on the DE branch until that EHDP-data work is done.** The signature is
+  the one in Global constraints — five `Unable to get remote resource` warnings and four
+  `ERROR render` lines at `nr-output/single.html:419`.
+- **So C3 must not use `scripts/dev-server.mjs`'s own spawn**, which starts `dev_stage` with
+  `stdio: "ignore"` and reports only a 90-second timeout. Run smoke the way B2 Step 3 did:
+  start a `development` server in the DE worktree and pass `DE_BASE_URL`. The exact form is in
+  "The exact next commands".
+- **The `dev_stage` build check is a gate on the EHDP-data fix, not on this merge.** Re-run it
+  once the renames land; a red `dev_stage` before then is not a merge symptom.
 
 Hold the value deliberately whatever it is: the characterization harnesses file baselines per
 EHDP-data branch, so changing this silently refiles every result against a different baseline
-directory.
+directory. That is a second reason the pins stayed.
 
 ### Task C2: DE gating reconciliation
 
