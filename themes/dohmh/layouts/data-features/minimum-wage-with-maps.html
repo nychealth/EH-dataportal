@@ -316,7 +316,6 @@
 
   {{- partial "lib-vega.html" . }}
   {{- partial "lib-d3.html" . }}
-  {{- partial "lib-topojson.html" . }}
 
   <div class="sr-only" id="accessibleTables">
     <h2>Chart data</h2>
@@ -567,7 +566,7 @@
       ],
     };
 
-    vegaEmbed(destination, mapSpec, { actions: false });
+    vegaEmbed(destination, mapSpec, { renderer: "svg", actions: false });
   }
 
   function drawChart(w, s) {
@@ -793,11 +792,11 @@
       },
     };
 
-    vegaEmbed("#chartDest", povertySpec, { actions: false }).then((res) => {
+    vegaEmbed("#chartDest", povertySpec, { renderer: "svg", actions: false }).then((res) => {
       window.addEventListener("resize", () => res.view.resize());
     });
 
-    vegaEmbed("#chartDest2", prematureMortSpec, { actions: false }).then(
+    vegaEmbed("#chartDest2", prematureMortSpec, { renderer: "svg", actions: false }).then(
       (res) => {
         window.addEventListener("resize", () => res.view.resize());
       }

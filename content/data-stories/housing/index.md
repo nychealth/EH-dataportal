@@ -411,7 +411,7 @@ function changeMap(x) {
         ]
         }
 
-        vegaEmbed('#housingmap',defaultSpec)
+        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"})
 
 }
 
