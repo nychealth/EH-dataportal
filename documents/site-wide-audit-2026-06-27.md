@@ -755,6 +755,20 @@ the two Vega-shortcode files (`shortcodes/vega.html`/`vega0.html`) and the
 `nr-clickable-uhf.html` partials, which use `aq.`/`vegaEmbed`/`L.` but are dead
 code (not `partial`-included anywhere), so they can't throw at runtime.
 
+**The "no other gaps found" result did not hold, and the dates say those templates were in
+scope (added 2026-08-19).** On 2026-08-19 three templates were found with exactly the gap this
+sweep looked for — `data-explorer-old/{data-index,indicator-catalog,section}.html`, which consume
+`aq.` through the included `de-topic-indicators.html` sub-partial, the sweep's own stated pattern
+(§5f correction above). Both preconditions predate this sweep's 2026-07-23 date on
+`feature-new-data-explorer`: the old explorer was renamed into `data-explorer-old/` by
+`18d94c510f` on 2026-06-27, and arquero left `head.html` in `47ffb33fde` on 2026-07-16
+`[verified 2026-08-19: git log --diff-filter=A on the template, and git log -S"arquero" on
+head.html]`. **What is not established is which tree the sweep ran against** — this section
+records it as Tier 4.5 work without naming the branch — so read this as "the null result does not
+transfer to the merged tree", not as a proven miss. Either way the practical rule is the same: a
+library-gate sweep is only valid for the gating arrangement it ran under, and the 2026-07-16
+change altered that arrangement.
+
 ---
 
 ### 5f. `/data-explorer/` calls Arquero without loading it (P1, added 2026-07-29)
@@ -784,6 +798,31 @@ the library.
 
 Currently allowlisted in `scripts/smoke-pages.mjs`, scoped to that one page.
 Fixing the gate is what removes the entry.
+
+**Corrected 2026-08-19 on `feature-new-data-explorer`. Three of this section's claims no
+longer hold, and the branch note is the one that matters.**
+
+- **The branch prediction is falsified.** This section says the finding "very likely does not
+  apply" to `feature-new-data-explorer`, and asks for a re-check "if the two lines converge".
+  They converged — Stage C of the NR/DE merge — and it **does** apply there, carried in on the
+  copies renamed to `data-explorer-old/` at `18d94c510f`. All three of
+  `data-explorer-old/{data-index,indicator-catalog,section}.html` reached `aq.` with `aq`
+  undefined `[verified 2026-08-19, Playwright against a `dev_stage` server: `ReferenceError: aq
+  is not defined` on the section page and on data-index, where it cascaded into a `TypeError` in
+  `loopThroughIndicators` and left the page with 0 tables]`. **Fixed the same day at
+  `2d49d98914`** — one `lib-arquero.html` include per template; data-index then rendered 2 tables
+  and 267 rows.
+- **The allowlist claim is stale on every branch.** There is no `aq is not defined` entry in
+  `scripts/smoke-pages.mjs` on `production`, `merge/production` or `feature-new-data-explorer`
+  `[verified 2026-08-19: the file is 148 / 149 / 161 lines respectively and the string appears 0
+  times in each — the line counts are recorded so the zero is not read as a missing file]`. So
+  "fixing the gate is what removes the entry" points at an entry that is not there.
+- **The mechanism differs on that branch.** This section blames a `head.html` gate whose
+  condition covers neither arm for a section page. On `feature-new-data-explorer` `head.html`
+  contains **no** arquero reference at all — it was removed by `47ffb33fde` (2026-07-16,
+  the Tier 4.6 gating change) — so there the defect is an absent library, not a gate condition
+  that misses a case. Same symptom, different cause; a fix aimed at the gate would find nothing
+  to edit.
 
 ---
 
@@ -1169,6 +1208,17 @@ object keys).
 (see the fresh-audit §4.5 status). This closes the gap for the SPA tree only.
 Still open: no formatter, no tests, ESLint doesn't cover the ~60 inline-JS layouts
 or the theme partials, and **lint is not yet enforced in CI** (deferred, below).
+
+**Update 2026-08-19: the smoke gate has two coverage holes, one closed and one open.** On
+`feature-new-data-explorer`, five `data-features` templates changed by the NR/DE merge had no
+`PAGES` entry; they were added and the gate went from 35 to **40 pages, exit 0, no new allowlist
+entries** `[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node
+scripts/smoke-pages.mjs]`, committed at `95a1a4d60d`. **Still open: `PAGES` has no
+`data-explorer-old` URL at all**, and that section publishes **76 pages** (`draft: false`, one
+`.md` per indicator topic). That is why the §5f defect above reached a browser rather than a test
+run. This bears directly on the retire-the-old-explorer recommendation in §1 and §5: the tree is
+not dormant, it is published and it shipped broken, so the live choice is **cover it or delete
+it** — leaving it uncovered is what produced this defect.
 
 **Testing strategy is an open decision, not yet made.** Raised 2026-07-02
 while triaging DE audit items 9-10 against the TDD skill's require-a-test

@@ -701,8 +701,19 @@ rebuilt `[verified 2026-08-19]`:
 **That last row is the one not to over-read.** The library fix removed its error; it did not fill
 the page. The *new* explorer's `/data-explorer/indicator-catalog/`, which has always loaded
 arquero, is empty in exactly the same way — 0 tables, 818 characters, no console errors
-`[verified 2026-08-19: the same probe against both URLs returns identical numbers]`. So that page
-has a second, older problem shared by both copies, and it is out of scope here rather than fixed.
+`[verified 2026-08-19: the same probe against both URLs returns identical numbers]`.
+
+**Corrected 2026-08-19, same day: there is no second defect — that page is empty by design.**
+`indicator-catalog.html` is a search-driven lookup. Its `#indName`, `#indDesc` and `#measureList`
+are placeholders the template ships empty (their HTML comments say "indicator name here"), filled
+only once a search selects an indicator. Typing `asthma` into the flexdatalist input returns
+**36 matching indicators** `[verified 2026-08-19 on /data-explorer-old/indicator-catalog/: the
+alias input `#flex_search-flexdatalist` — not the original `#flex_search`, which flexdatalist
+hides and which swallowed the first attempt — then `ul.flexdatalist-results` holds 36 items,
+the first being "Adults with a recent asthma attack"]`. So "0 tables, 818 characters" is the
+page's correct at-rest state on **both** copies, and the inference that it indicated an older
+shared problem was wrong. **The commit messages at `2d49d98914` and `d482c4397c` state that wrong
+inference**; this paragraph is the correction, since the commits are already written.
 
 **These three pages are still outside the smoke gate**, so nothing would have caught this defect
 automatically — `PAGES` has no `data-explorer-old` URL. Worth considering as its own decision,
