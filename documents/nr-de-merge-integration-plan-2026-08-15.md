@@ -133,7 +133,7 @@ have to reconstruct it from the prose — **the runtime work is all on
 | 1 | `minimum-wage-with-maps` — was the dropped `lib-topojson` include really dead? | `feature-new-data-explorer` | **DONE 2026-08-19** — yes, proven in a browser; see "What C1 resolved" |
 | 2 | Five `data-features` templates this merge changed have no `PAGES` entry in `scripts/smoke-pages.mjs` | `feature-new-data-explorer` | **DONE 2026-08-19, committed at `95a1a4d60d`** — Chris chose add-after-a-trial-run; the trial passed, so the entries stand. **The gate is now 40 pages, not 35** `[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node scripts/smoke-pages.mjs, exit 0, "40 pages clean", and all five new URLs report ok]`. None of the five needed a `KNOWN_NOISE` entry |
 | 3 | `data-explorer-old`'s three templates call `de-topic-indicators` without `lib-arquero` | `feature-new-data-explorer` | **FIXED 2026-08-19, committed at `2d49d98914`** — Chris chose the three includes over deleting `data-explorer-old`. One `lib-arquero.html` per template, placed before the consuming partial; browser-verified before and after. See "C2 progress" |
-| 4 | `renderer: "svg"` rollout across the five DE Vega call sites | `feature-new-data-explorer` | **Not started** — spun out by Chris's option-1 decision; needs its own browser pass, notably the print/export path. See "The `renderer: \"svg\"` decision" |
+| 4 | `renderer: "svg"` rollout across the five DE Vega call sites | `feature-new-data-explorer` | **DONE 2026-08-19, committed at `0d288eb428`** — all five carry `renderer: "svg"`, browser-verified including the print/export path. See "The `renderer: \"svg\"` decision" |
 | 5 | Task 0.1 Step 2 — optional hardening | `merge/production` (plus EHDP-data) | **Not started**, re-scoped from blocker to hardening 2026-08-17 |
 | 6 | `npm run characterize` non-functional on this lineage | — | **No action — already recorded** at B2 Step 5, naming correction included. Do not re-raise |
 | 7 | Three Vega warnings per DE trend render (field-parse and axis-property conflicts) | `feature-new-data-explorer` | **Recorded, unfixed** — spec-quality defects, not errors; smoke does not read them. B2 Step 5 and C3 Step 5 both count them |
@@ -715,9 +715,21 @@ page's correct at-rest state on **both** copies, and the inference that it indic
 shared problem was wrong. **The commit messages at `2d49d98914` and `d482c4397c` state that wrong
 inference**; this paragraph is the correction, since the commits are already written.
 
-**These three pages are still outside the smoke gate**, so nothing would have caught this defect
-automatically — `PAGES` has no `data-explorer-old` URL. Worth considering as its own decision,
-since the section publishes 76 pages.
+**These three pages were outside the smoke gate**, which is why nothing caught the defect
+automatically. **Corrected 2026-08-19: the claim first written here — that `PAGES` has no
+`data-explorer-old` URL — was wrong**, and was asserted without a grep. One entry existed,
+`data-explorer-old/asthma/?id=2380`, covering `single.html`; that is why that template's pages
+were healthy while the other three threw. Three of the four old-explorer template kinds were
+uncovered, and that is exactly the set that broke.
+
+**Now covered at `d763b09f57`, and the coverage is proved to fire.** `data-explorer-old/`,
+`data-explorer-old/data-index/` and `data-explorer-old/indicator-catalog/` added to `PAGES`;
+the gate reads **43 pages, exit 0** with all four old-explorer URLs ok. Positive control:
+removing the include from `section.html` again makes that page emit
+`pageerror: aq is not defined`, matched by no `KNOWN_NOISE` entry, so the gate fails; restoring
+it returns the page to 4 pagefind-only errors and the file to byte-identical (it stopped showing
+in `git status`) `[verified 2026-08-19: a one-page probe run either side of the edit — 5 errors
+then 4]`.
 
 **Separately, `CLAUDE.md`'s "nothing loads from a CDN" is false for template-rendered pages.**
 The claim sits under "JS architecture" and describes the bundling pipeline, but four
@@ -811,6 +823,37 @@ The options, and what each costs:
 **2 and 3 both need a browser check before C3 signs anything off**, not just a clean build:
 renderer choice is a runtime property. **Recommendation: option 1**, with the SVG rollout raised
 as its own task so it gets the browser pass it needs rather than riding in on a merge resolution.
+
+**Rolled out 2026-08-19 at `0d288eb428`, and the branch is now internally consistent.** All five call sites
+carry `renderer: "svg"` in the upstream form and position (`renderer: "svg",` ahead of
+`actions`, matching `52fde98740`): `bar.js:532`, `correlate.js:570`, `disparities.js:340`,
+`print.js:150`, `trend.js:661`. `npm run lint` exit 0 over 16 files. Renderer choice is a runtime
+property, so every view was read in a browser rather than inferred
+`[verified 2026-08-19 at a 1440×900 viewport on `data-explorer/asthma/?id=2380`, against the
+`dev_stage` server]`:
+
+| View | Result |
+|---|---|
+| Trends | 0 canvas, 1 SVG, 263 marks — **C3 Step 5 recorded a canvas here**, so this is a measured change of state, not an unchanged reading |
+| Bar | 0 canvas, 1 SVG, 70 marks |
+| Correlate | 0 canvas, 1 SVG, 91 marks |
+| Disparities | 0 canvas, 1 SVG, 62 marks — the mark count changing from Correlate's 91 is what shows the view actually switched |
+| Print preview | 0 canvas, SVG, 65 marks |
+
+**The print/export path was the flagged risk, and it was exercised rather than reasoned about.**
+`print.js` is the one call site that keeps its actions menu (`export: { png: true, svg: true }`),
+and PNG export from an SVG-rendered view is the specific thing that could have broken. Clicking
+"Save as PNG" downloaded `visualization.png` — a valid PNG, 425×512, 31,007 bytes
+`[verified 2026-08-19: PNG magic bytes checked and the IHDR dimensions parsed from the file]`.
+Console held 4 errors throughout, all pagefind, plus the 3 known Vega spec warnings.
+
+One earlier probe on this path returned an inconclusive result and is recorded so it is not
+repeated: intercepting the export click with `preventDefault` to read the generated `href` left
+the href as `"#"`, which cannot distinguish a failed export from the interception blocking
+vega-embed's own handler. The real click is what settled it.
+
+**This closes the half-applied state the merge left**: `52fde98740`'s SCSS half arrived with a
+`.vega-embed > svg` rule that matched nothing under canvas, and now matches.
 
 **Decided 2026-08-18 by Chris: option 1.** The four files took the DE side. **This leaves open
 work that is not part of this plan:** the new explorer's five Vega call sites

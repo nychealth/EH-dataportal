@@ -1198,10 +1198,32 @@ the 400ms timer.
 
 `package.json` **had no `scripts` block at all** — no `build`, `dev`, `lint`,
 `format`, or `test` — and no linting, formatting, or tests anywhere in the repo.
-For ~25K lines of JS this was the highest-leverage gap: a single `eslint` pass
-would have caught most of the concrete bugs in the DE audit (the `ReferenceError`,
-the dead `v-pills-trend` id, the operator-precedence percentile bug, duplicate
-object keys).
+For ~25K lines of JS this was a large gap: a single `eslint` pass
+would have caught one of the four concrete bugs named in the DE audit (the
+`ReferenceError`, the dead `v-pills-trend` id, the operator-precedence percentile
+bug, duplicate object keys).
+
+**Corrected 2026-08-19 — this sentence read "would have caught most", and that was
+never run.** It has been now, against the config this repo actually runs. `eslint.config.mjs`
+enables exactly one rule, `no-undef`, so a probe file containing all four bug shapes reports
+**1 problem, not 4** `[verified 2026-08-19: npx eslint on a scratch file in
+assets/js/data-explorer/ with an undeclared-name reference, a getElementById("v-pills-trend")
+call, an `a + b / c * 100` precedence shape, and a `{ key: 1, other: 2, key: 3 }` literal —
+output is a single `no-undef` error on the first; exit 1; file deleted after]`. Which three
+escape, and why:
+
+- **The dead `v-pills-trend` id — no linter can catch this, at any configuration.** It is a
+  string literal that is valid JavaScript and merely names an element that does not exist.
+- **The operator-precedence bug** is valid code with the wrong semantics; no ESLint rule
+  reads intent.
+- **Duplicate object keys** *are* catchable — by `no-dupe-keys`, which ships in
+  `eslint:recommended`. This config does not extend `recommended`, so the rule is off and the
+  probe's duplicate key went unreported.
+
+So the actionable form of the original claim is a config change, not a lint run: extending
+`eslint:recommended` would move this from 1 of 4 to 2 of 4. The other two are out of reach of
+static analysis and need the smoke test or a type checker instead. The superlative
+"highest-leverage" is also left unquantified here — no comparison across the gaps was performed.
 
 **Update 2026-07-23 (DE Tier 4.5):** a `scripts` block now exists — `lint`,
 `characterize`, `smoke` — and ESLint (`no-undef`) runs over `assets/js/data-explorer/`
@@ -1213,12 +1235,27 @@ or the theme partials, and **lint is not yet enforced in CI** (deferred, below).
 `feature-new-data-explorer`, five `data-features` templates changed by the NR/DE merge had no
 `PAGES` entry; they were added and the gate went from 35 to **40 pages, exit 0, no new allowlist
 entries** `[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node
-scripts/smoke-pages.mjs]`, committed at `95a1a4d60d`. **Still open: `PAGES` has no
-`data-explorer-old` URL at all**, and that section publishes **76 pages** (`draft: false`, one
-`.md` per indicator topic). That is why the §5f defect above reached a browser rather than a test
-run. This bears directly on the retire-the-old-explorer recommendation in §1 and §5: the tree is
-not dormant, it is published and it shipped broken, so the live choice is **cover it or delete
-it** — leaving it uncovered is what produced this defect.
+scripts/smoke-pages.mjs]`, committed at `95a1a4d60d`.
+
+**Second correction, same day — the sentence that stood here was wrong.** It said `PAGES` had
+"no `data-explorer-old` URL at all". It had one: `data-explorer-old/asthma/?id=2380`, covering
+`single.html`, which is why that template's pages were fine while the other three threw. I
+asserted the absence without grepping for it. The accurate statement is that **three of the four
+old-explorer template kinds were uncovered** — `section.html`, `data-index.html` and
+`indicator-catalog.html` — which is exactly the set that broke.
+
+**Now covered.** All three added to `PAGES` at `d763b09f57`; the gate reads **43 pages, exit 0**
+`[verified 2026-08-19: DE_BASE_URL="http://localhost:8080/dev-stage/" node
+scripts/smoke-pages.mjs, with all four `data-explorer-old` URLs reporting ok]`. **The new
+entries were proved to fire, not just to pass**: removing the `lib-arquero.html` include from
+`data-explorer-old/section.html` and reloading that page surfaces `pageerror: aq is not defined`,
+which no `KNOWN_NOISE` entry matches, so the gate fails; restoring the include returns the page
+to 4 pagefind-only errors and the template to byte-identical
+`[verified 2026-08-19: a throwaway one-page probe in the repo tree, run either side of the
+edit — 5 errors with the aq pageerror, then 4 without]`. This still bears on the
+retire-the-old-explorer recommendation in §1 and §5: the tree is not dormant, it publishes
+**76 pages** (`draft: false`, one `.md` per indicator topic), so the choice is cover it or
+delete it — it is now covered.
 
 **Testing strategy is an open decision, not yet made.** Raised 2026-07-02
 while triaging DE audit items 9-10 against the TDD skill's require-a-test
