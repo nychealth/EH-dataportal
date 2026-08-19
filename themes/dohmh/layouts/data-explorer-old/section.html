@@ -32,6 +32,7 @@
                     <img class="block mt-2 mb-3" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="">
                 {{ end }}
 
+                {{- partial "lib-arquero.html" . }}
                 {{- /* de-topic-indicators.html only emits dev-facing debug text (sr-only <p>s) and a data <script>; ignore its whole output rather than real content */ -}}
                 <div data-pagefind-ignore="all">
                 {{- partial "de-topic-indicators.html" . -}}
