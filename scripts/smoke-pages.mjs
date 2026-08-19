@@ -50,6 +50,11 @@ const PAGES = [
     "data-features/rats-in-your-neighborhood/",     // rats-in-your-neighborhood layout — Leaflet
     "data-features/congestion-pricing-report/",     // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
     "data-features/heat-report-archive/2021/",      // report layout
+    "data-features/neighborhood-air-quality/",      // aqe layout
+    "data-features/asthma-syndrome/",               // asthma-syndrome layout
+    "data-features/hvi/",                           // hvi layout
+    "data-features/leading-causes/",                // leading-causes layout
+    "data-features/minimum-wage/",                  // minimum-wage-with-maps layout — Vega, D3
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
     "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
