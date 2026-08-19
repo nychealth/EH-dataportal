@@ -127,7 +127,7 @@ Pesticides were applied 842,666 times by NYC agencies in <span class="reportingY
   fontsize="fs-xs"
 >}}
 
-Table 2 lists the ten most frequently used products by pesticide type, along with total volume, weight, and number of applications (No. Apps); active ingredient(s); EPA toxicity category (EPA Tox Cat); whether the product is considered a known, possible, or suspect carcinogen by EPA (EPA Carcin); whether the product is listed by the State of California as a reproductive or developmental hazard (CA Dev Tox); and whether the product is listed as a carcinogen by IARC (IARC Carcin). For this and subsequent product tables, the toxicity category refers to the EPA warning label indicating the degree of acute toxicity from oral, dermal and inhalation exposures on a scale from 1 to 4:
+Table 2 lists the ten most frequently used products by pesticide type, along with total volume, weight, and number of applications; active ingredient(s); EPA toxicity category (EPA Tox Cat); whether the product is considered a known, possible, or suspect carcinogen by EPA; whether the product is listed by the State of California as a reproductive or developmental hazard; and whether the product is listed as a carcinogen by IARC. For this and subsequent product tables, the toxicity category refers to the EPA warning label indicating the degree of acute toxicity from oral, dermal and inhalation exposures on a scale from 1 to 4:
 
 - Toxicity Category 1 signifies highly toxic products that require the word “Danger” on the label.
 - Toxicity Category 2 signifies moderately toxic products that require the word “Warning” on the label.
