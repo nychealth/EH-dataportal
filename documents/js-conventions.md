@@ -25,8 +25,7 @@ No blank line between the description line and the first section header.
 ## Comment hierarchy
 
 Four levels, each with a distinct marker. Use only the level appropriate to context —
-don't promote a minor step to a section header just to add visual weight. Headings are
-nested, so a lower heading shouldn't appear without an equal or higher heading preceding it.
+don't promote a minor step to a section header just to add visual weight.
 
 ### Level 1 — Major section
 Top-level named divisions within a file (`shared state`, `geo helpers`, `render functions`).
