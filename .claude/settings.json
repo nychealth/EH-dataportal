@@ -104,7 +104,7 @@
       "PowerShell(git checkout -- *)",
       "PowerShell(git branch -D)",
       "PowerShell(git branch -D *)"
-    ],
+    ]
   },
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,
