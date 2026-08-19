@@ -34,6 +34,11 @@ const PAGES = [
                                                     //   metadata array: the other unmapped branch
     "data-explorer-old/asthma/?id=2380",            // data-explorer-old/single.html — the retired explorer, which
                                                     //   this branch still publishes at its own URL
+    "data-explorer-old/",                           // data-explorer-old/section.html — the other three old
+                                                    //   templates that reach aq. through de-topic-indicators;
+                                                    //   all three threw until 2d49d98914
+    "data-explorer-old/data-index/",                // data-explorer-old/data-index layout
+    "data-explorer-old/indicator-catalog/",         // data-explorer-old/indicator-catalog layout
     "data-explorer/data-index/",                    // data-index layout — builds topic_indicators.json
     "data-explorer/indicator-catalog/",             // indicator-catalog layout
     "data-stories/",                                // data-stories/section.html
