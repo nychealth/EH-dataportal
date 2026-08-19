@@ -6,8 +6,16 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/healthy-aging-prevent
 seo_title: "Housing safety data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of housing safety in NYC."
+blurb: "AC and electric medical equipment"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
-categories: ["housing", "inequality", "neighborhoods", "climatehealth","accessibility"]
+categories: ["housing", "inequality", "neighborhoods", "climatehealth"]
 keywords:
   [
     "built environments",
@@ -24,6 +32,7 @@ keywords:
 indicators:
   - header: null
     IndicatorID:
+      - 2188
       - 2104
       - 2185
       - 2377

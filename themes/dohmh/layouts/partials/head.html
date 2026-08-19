@@ -10,7 +10,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-64BWDRHRGB');
     </script>
 
@@ -32,7 +31,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-PB98MPZ31B');
     </script>
 
@@ -55,7 +53,6 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{{/*  <meta data-pagefind-filter="section[content]" content="Data Stories">  */}}
 
 <!-- Corrects IE Compatibility Mode -->
 
@@ -92,6 +89,7 @@
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->
     <link href="https://maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css" rel="stylesheet">
+    <link href={{ relURL "css/nyc-basic-lib-v1.2.79.css" }} rel="stylesheet">
 {{- end }}
 
 
@@ -154,6 +152,10 @@
     <meta data-pagefind-filter="section[content]" content="Data Explorer">
 {{- end }}
 
+{{- if (eq .Section "data-explorer-old") -}}
+    <meta data-pagefind-filter="section[content]" content="Data Explorer (Old)">
+{{- end }}
+
 {{- if (eq .Section "key-topics") -}}
     <meta data-pagefind-filter="section[content]" content="Key Topics">
 {{- end -}}
@@ -168,6 +170,24 @@
     let data_repo = "{{ $.Site.Params.data_repo }}";
     let data_branch = "{{ $.Site.Params.data_branch }}";
     let hugoEnv = "{{ hugo.Environment }}";
+
+</script>
+
+<script>
+
+    // Verbose tracing defaults on for every Hugo environment except the two that serve the
+    // real public site (production, prod_prod), so dev/staging/local work doesn't need a
+    // manual opt-in; localStorage.setItem('de_debug', '1' | '0') overrides either direction
+    // per browser. Site-wide (not data-explorer-specific) since hugoEnv already is — any
+    // page's inline JS or asset scripts can call debugLog() once loaded after this point.
+    const DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+    const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
+        ? DE_DEBUG_OVERRIDE === '1'
+        : !['production', 'prod_prod'].includes(hugoEnv);
+
+    // Bound (not wrapped) so DevTools attributes the log line to the caller, not to here —
+    // a bound native console method adds no extra stack frame, unlike a plain wrapper function.
+    const debugLog = DE_DEBUG ? console.log.bind(console) : () => {};
 
 </script>
 

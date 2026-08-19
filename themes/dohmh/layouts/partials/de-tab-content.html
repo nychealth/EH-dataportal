@@ -1,0 +1,380 @@
+<style>
+    #tableFilterPanel .de-table-optionbox {
+        max-height: 12rem;
+        overflow-y: auto;
+        background: #f6fafb;
+    }
+
+    #tableFilterPanel .checkbox-time,
+    #tableFilterPanel .checkbox-geo {
+        display: block;
+        margin-bottom: 0;
+        color: #1f2328;
+        font-size: 0.875rem;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    #tableFilterPanel .checkbox-time.disabled,
+    #tableFilterPanel .checkbox-geo.disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+
+    #tableFilterPanel .largerCheckbox {
+        margin-right: 0.35rem;
+        vertical-align: middle;
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    #tableFilterToggle {
+        text-decoration: none;
+    }
+
+    .de-viz-pill-controls {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+
+    .de-viz-pill-groups {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.35rem;
+    }
+
+    .de-viz-pill-group,
+    .de-viz-pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .de-viz-pill-label {
+        color: #5c646d;
+        font-size: 0.875rem;
+    }
+
+    .de-viz-pill-button {
+        cursor: pointer;
+        font-size: 0.75rem;
+        line-height: 1.2;
+        padding: 0.4rem 0.75rem;
+        text-align: left;
+        white-space: normal;
+    }
+
+    .de-viz-pill-button.badge-light {
+        color: #1f2328;
+    }
+
+    .de-viz-pill-button.disabled,
+    .de-viz-pill-button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .de-viz-pill-menu {
+        max-height: 12rem;
+        overflow-y: auto;
+    }
+
+    .de-viz-pill-menu .dropdown-item {
+        white-space: normal;
+    }
+
+    .de-viz-pill-menu .dropdown-item.active,
+    .de-viz-pill-menu .dropdown-item:active,
+    .de-viz-pill-menu .dropdown-item.active:focus,
+    .de-viz-pill-menu .dropdown-item.active:hover {
+        background-color: rgba(10, 64, 138, 0.08);
+        color: #0a408a;
+        font-weight: 600;
+    }
+
+    .de-viz-pill-menu .dropdown-header {
+        color: #5c646d;
+        font-size: 0.75rem;
+    }
+</style>
+
+<!-- Tab content -->
+<div class="tab-content bg-white pt-0 relative" id="v-pills-tabContent">
+
+    {{- /*  One shared close button, outside every .tab-pane.fade, so tab switches
+            don't fade a duplicate copy of it out and back in — CSS opacity on
+            an ancestor composites its whole subtree, so a per-pane button can
+            never opt out of its own pane's fade. It closes whichever pane is
+            currently active, mirroring the Escape-key handler in
+            de-tab-content.js. Hides along with the rest of #v-pills-tabContent
+            when no pane is open (app.js sets display:none on the container).  */ -}}
+    <div class="bg-white d-none d-md-block" style="margin-left: -33px;">
+        <button type="button" class="bg-primary border-0 bl50 py-1 close-tab-pane de-close-tab-button" aria-label="Close">
+            <img src={{ relURL "images/arrow-right.svg" }} style="margin-bottom: 2px;" alt="">
+        </button>
+    </div>
+
+    <!-- Bar -->
+    <div class="tab-pane relative fade" id="v-pills-bar" role="tabpanel" aria-labelledby="v-pills-bar-tab">
+        <div class="p-2 pt-md-0">
+            <div id="barHolder" style="width:100%;height:500px;">
+                Bar chart to go here
+            </div>
+            <!--
+            <img src={{ relURL "images/de-bar-chart.png" }} alt="" style="max-width:100%;">
+            -->
+            <div class="chart-note">
+                <p class="fs-sm">This <strong>bar chart</strong> shows the same data on as the map. Hover on one to see the same neighborhood highlighted on the other.</p>
+            </div>
+            <div id="bar-unreliability" class="popup-note pt-1 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
+            </div>
+            <div class="d-flex align-items-center pt-2">
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="bar" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="tab-pane relative fade" id="v-pills-table" role="tabpanel" aria-labelledby="v-pills-table-tab">
+        <div class="pt-md-0">
+
+            <div id="table-filter-controls" class="p-2 pb-1 d-flex justify-content-end sr-only">
+                <button class="badge badge-pill badge-light border-0" type="button" id="tableFilterToggle">
+                    <i class="fas fa-sliders-h mr-1" aria-hidden="true"></i>
+                    Table filters
+                    <span id="tableFilterSummary" class="ml-1 text-muted d-none d-lg-inline">Current selection</span>
+                </button>
+            </div>
+
+
+            <div id="summary-table" style="width:100%;">
+                DE table goes here
+            </div>
+
+            <div id="tableFilterPanel" class="px-2 pb-2">
+                <div class="bg-white">
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0" >
+                            <div>
+                                <p class="fs-xs mb-1">Time periods</p>
+                                <div id="tableTimeCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div>
+                                <p class="fs-xs mb-1">Geographies</p>
+                                <div id="tableGeoCheckboxes" class="border de-table-optionbox" style="height: 10vh; overflow-y:scroll;"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <p class="fs-xs mb-1">Display</p>
+                            <label class="fs-sm mb-0 d-inline-flex align-items-center" for="groupByBoroughToggle" style="cursor:pointer;">
+                                <input class="largerCheckbox mr-1" type="checkbox" id="groupByBoroughToggle" checked />
+                                <span>Group neighborhoods by borough</span>
+                            </label>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="chart-note mt-1">
+                                <p class="fs-sm mt-1 text-muted">Table filters follow the map until changed. <a href="#" id="tableFilterSyncButton">Sync to map</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="table-unreliability" class="popup-note p-2 mx-2">
+                Unreliability flag
+            </div>
+
+            <div id="tableViewNote" class="p-2 mt-2 sr-only">
+            <p>
+                This <strong>table view</strong> shows all data for this indicator, including different geographies, time periods, and measures.
+            </p>
+
+            </div>
+
+            <div class="d-flex align-items-center p-2">
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadTableData()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+         
+            </div>
+        </div>
+    </div>
+
+    <!-- Trends -->
+    <div class="tab-pane relative fade" id="v-pills-trends" role="tabpanel" aria-labelledby="v-pills-trends-tab">
+        <div class="p-2 pt-md-0">
+            <div id="trendPillControls" class="de-viz-pill-controls pt-1">
+                <div class="de-viz-pill-row">
+                    <div id="trendMeasurePills" class="de-viz-pill-group"></div>
+                    <div id="trendComparisonPills" class="de-viz-pill-groups"></div>
+                </div>
+            </div>
+
+            <div id="trend" class="w-100" style="min-height: 400px"></div>
+
+            <div class="chart-note">
+                <p id="trendViewNote" class="fs-sm">The <strong>trends view</strong> usually aggregates neighborhood-level data to the Borough level to show more stable trends. </p>
+            </div>
+
+            <div id="trend-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
+            </div>
+
+            <div class="d-flex align-items-center pt-2">
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="trends" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Correlate -->
+    <div class="tab-pane relative fade" id="v-pills-correlate" role="tabpanel" aria-labelledby="v-pills-correlate-tab">
+        <div class="p-2 pt-md-0">
+            <div id="correlatePillControls" class="de-viz-pill-controls pt-1">
+                <div class="de-viz-pill-group">
+                    <span class="de-viz-pill-label">Show:</span>
+                    <div class="de-correlate-pill-row de-viz-pill-row">
+                        <div class="dropdown d-inline-block">
+                            <button class="badge badge-pill badge-light border-0 de-viz-pill-button" type="button" id="linksDropdownToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chevron-circle-down mr-1" aria-hidden="true"></i>
+                                <span id="linksToggleLabel">Measures</span>
+                            </button>
+                            <div id="linksDropdownMenu" class="dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu" aria-labelledby="linksDropdownToggle">
+                                <!-- INSERT LINKED MEASURE OPTIONS HERE -->
+                            </div>
+                        </div>
+                        <button class="badge badge-pill badge-light border-0 de-viz-pill-button" id="show-disparities" type="button">Disparities</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="correlateHolder" class="w-100">
+                <div id="links" style="width:100%; height: 450px">
+                    <!-- Correlate chart printed here -->
+                </div>
+            </div>
+
+            <div class="chart-note">
+                <p id="linksViewNote" class="fs-sm"><strong>Correlates</strong> shows data at the finest available geography for both indicators. It may be different than what is on the map.</p>
+
+            </div>
+
+            <div id="links-unreliability" class="popup-note pt-2 hide my-1 fs-xs">
+                <!-- INSERT UNRELIABILITY FLAGS HERE -->
+            </div>
+
+            <div class="d-flex align-items-center pt-2">
+                <a class="btn-sm btn-light-green-bg-outline de-save-chart-button" href="#" data-print-target="chart" data-print-context="correlate" aria-haspopup="dialog"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save Chart</a>
+                <a class="btn-sm btn-light-green-bg-outline ml-auto" href="#" onclick="downloadData()"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Source -->
+    <div class="tab-pane relative fade" id="v-pills-ds" role="tabpanel" aria-labelledby="v-pills-ds-tab">
+        <div class="p-2 pt-md-0">
+            <p class="h5 pt-1">About the data</p>
+
+            <p class="h6 border-top pt-1">How the data were calculated</p>
+            <p id="howCalculated"> <!-- How calculated inserted here --> </p>
+
+            <p class="h6 border-top pt-1">Data sources</p>
+            <p id="dataSources"> <!-- Data sources inserted here --> </p>
+
+            <p><a href="../../about/data-sources">About the data sources on this website</a>.</p>
+
+            <p class="h6 border-top pt-1">Cite the data</p>
+            <div id="citation">
+                <p><span id="citeText">
+                    New York City Department of Health, Environment & Health Data Portal. 
+                    {{ .Title }} data: 
+                    <span class="indicator-name"></span>. 
+                    Accessed at {{ .Permalink }} on 
+                    {{ time.Now | time.Format ":date_medium" }}.
+                    </span>
+                    <span class="float-right">
+                    <a href="#" id="citeButton" class="de-copy-citation-button" data-citation-target="citeText"><i class="fas fa-copy mr-1" aria-hidden="true"></i>Copy citation.</a>
+                    </span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{- /*  Tab-pane UI behavior externalized to a fingerprinted asset (see
+        CLAUDE.md inline-JS policy). Classic, non-defer, synchronous in this
+        same document position so timing matches the old inline script: it only
+        registers DOMContentLoaded/ready handlers, and jQuery ($(document).ready)
+        is already loaded by the time the parser reaches this point.  */ -}}
+
+{{- $deTabContent := resources.Get "js/data-explorer/de-tab-content.js" -}}
+{{- $deTabContent_secure := $deTabContent | partial "short-fingerprint.html" -}}
+
+<script type="text/javascript" src="{{ $deTabContent_secure.RelPermalink }}" integrity="{{ $deTabContent_secure.Data.Integrity }}"></script>
+
+<style>
+        /* Customize table css */
+    table.dataTable tbody th,table.dataTable tbody td {
+        padding: 5px!important;
+    }
+
+    table {
+        font-size: .875rem!important; 
+    }
+
+    table .group td {
+        background-color: #F0F0F0;
+        color: green;
+        font-weight: bold;
+        }
+    /* nested grouping levels (Time > GeoType > Borough): progressively indented and lighter so the hierarchy reads visually */
+    table .group td[data-group-level="1"] {
+        padding-left: 1.75rem;
+        background-color: #F5F5F5;
+        }
+    table .group td[data-group-level="2"] {
+        padding-left: 3.25rem;
+        background-color: #FAFAFA;
+        font-weight: 600;
+        font-size: .9em;
+        }
+    .de-tab {
+        font-size: 16px;
+    }
+
+    .dataTables_filter {
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+        }
+    
+        #tableID_filter label {
+            font-size: 12px;
+        }
+
+        td {
+            line-height: 1.35
+        }
+
+        .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
+            float: none;
+            text-align: right!important;
+        }
+
+</style>

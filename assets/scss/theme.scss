@@ -23,7 +23,7 @@ In this file:
 @import "g-dev-tools.scss";
 @import "h-nyc-subway-icons.scss";
 @import "__portal-custom.scss";
-@import "custom.scss";
+@import "de-custom.scss";
 
 ////////////////////////////////////////
 // B. Theme styles
@@ -667,7 +667,7 @@ h2.report-info {
 // all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
 // triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
 // codepoints .comp-good / .comp-bad use on the sentence renditions
-// (assets/scss/_custom.scss), so the report makes the comparison the same way wherever the
+// (assets/scss/_de-custom.scss), so the report makes the comparison the same way wherever the
 // reader meets it. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no
 // per-page resource is involved.
 //
@@ -850,6 +850,8 @@ span.th-sub {
 }
 
 .kt-accent {
+    color: $primary;
+
     svg path {
         fill: $primary;
     }
@@ -860,6 +862,8 @@ span.th-sub {
 }
 
 .df-accent {
+    color: $color-data-features;
+
     svg path {
         fill: $color-data-features;
     }

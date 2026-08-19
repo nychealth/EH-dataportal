@@ -1,0 +1,182 @@
+{{/*  loop through recently updated for decoration  */}}
+
+{{- $recentlyUpdatedIds := slice -}}
+{{- range .Site.Data.recently_updated_data.featured -}}
+    {{- $recentlyUpdatedIds = $recentlyUpdatedIds | append (int .id) -}}
+{{- end -}}
+
+<!-- Upper left indicator detail box -->
+<div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ $recentlyUpdatedIds | jsonify }}'>
+
+    <!-- Mobile Indicator Header -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
+        <div>
+            <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
+                <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
+        </div>
+        <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
+    </div>
+
+    <!-- Desktop Indicator Header (always visible) -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-none d-md-flex">
+        <div class="h6 font-weight-bold mb-0 py-1 indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
+        <div class="ml-2 text-nowrap flex-grow-1 text-right">
+            <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
+                <button type="button" class="badge badge-pill badge-light border-0 de-viz-pill-button text-nowrap indicator-selector-trigger" data-toggle="modal" data-target="#indicatorSelector">Change dataset&nbsp;&nbsp;<i class="fa-solid fa-right-left fs-xs"></i></button>
+                <span id="indicatorSelectorPromptDesktop" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Collapsible Content -->
+    <div id="detailsContent" class="collapse d-md-none">
+        <div class="bg-white p-2 fs-sm">
+            <p class="indicator-description">Loading indicator description...</p>
+        </div>
+
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Measure: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="measureOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 measure-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Boundary: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal" type="button" id="geoOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 geo-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm">
+                        <div class="font-weight-bold mr-2 text-primary fs-sm mb-1">Time: </div>
+                        <button class="btn fs-sm d-flex align-items-center w-100 text-left bg-white font-weight-normal mb-2" type="button" id="timeOptionsDropdownButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 time-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Content (always visible) -->
+    <div class="d-none d-md-block">
+        <div class="bg-white p-2 fs-sm border-left border-right">
+            <p class="indicator-description fs-sm">Loading indicator description... </p>
+        </div>
+
+        <div>
+            <!-- Dropdown 1 -->
+            <div class="card border-left border-right">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm d-flex align-items-center">
+                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Measure:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="measureOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 measure-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button> 
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none measures-holder" aria-labelledby="measureOptionsDropdownButton">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 2 -->
+            <div class="card border-left border-right">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm d-flex align-items-center">
+                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Boundary:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="geoOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 geo-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none geo-holder" aria-labelledby="geoOptionsDropdownButton">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div class="card border-left border-right border-bottom">
+                <div class="card-header pb-0">
+                    <div class="dropdown fs-sm d-flex align-items-center mb-2">
+                        <div class="font-weight-bold text-primary fs-sm mr-2" style="white-space: nowrap; width:22%">Time:</div>
+                        <button class="btn fs-sm d-flex align-items-center text-left bg-white font-weight-normal flex-grow-1" type="button" id="timeOptionsDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-grow-1 time-name"></span>
+                            <i class="fas fa-chevron-down ml-auto text-primary"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-de w-100 border-none time-holder" aria-labelledby="timeOptionsDropdownButton">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-header p-0 bg-transparent d-inline-block printMap border-bottom border-left border-right">
+                <div style="background-color:#DCF4E7" class="py-1 d-inline-block">
+                        <a href="#" id="deSaveMapButton" class="fs-sm mx-1 py-0 de-save-map-button" role="button" aria-label="Save map" aria-haspopup="dialog" data-print-target="map"><i class="fas fa-save mr-1" aria-hidden="true"></i>Save map</a>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Legend overlay -->
+<div class="position-absolute de-legend">
+
+    <!-- Labels -->
+    <div class="d-flex justify-content-between fs-sm mb-1">
+        <div><span id="hoveredGeo">Hover for details</span>:</div> 
+        <div class="font-weight-bold">
+            <span id="hoveredValue">
+                <!-- Value -->
+            </span> 
+            <span id="hoveredUnits">
+                <!-- Units -->
+            </span>
+        </div>
+    </div>
+
+    <!-- Gradient, min/max, and tick -->
+    <div class="viridis-wrapper position-relative">
+        <div class="viridis-rect" id="viridisRect" role="img" aria-label="Legend gradient"></div>
+
+        <!-- Overlayed labels and tick -->
+        <div class="legend-min">
+            <span id="minVal">Min</span>
+        </div>
+        <div class="legend-max">
+            <span id="maxVal">Max</span>
+        </div>
+        <div class="viridis-tick" id="legend-tick"></div>
+    </div>
+
+</div>

@@ -26,6 +26,14 @@ const PAGES = [
     "data-explorer/",                               // data-explorer/section.html — topic chooser
     "data-explorer/asthma/",                        // data-explorer/single.html — the SPA, no ?id=
     "data-explorer/asthma/?id=2380",                // data-explorer/single.html — indicator loaded from the URL
+    "data-explorer/birth-defects/?id=26",           // data-explorer/single.html — unmapped measure (VisOptions[0].Map
+                                                    //   carries a null GeoType), exercising renderMap's unmapped
+                                                    //   branch. Threw a TypeError on 40 indicators; audit §4.12
+    "data-explorer/waterways/?id=2427",             // data-explorer/single.html — unmapped with no Citywide fallback
+                                                    //   in Table either, so showMap hands renderMap an empty
+                                                    //   metadata array: the other unmapped branch
+    "data-explorer-old/asthma/?id=2380",            // data-explorer-old/single.html — the retired explorer, which
+                                                    //   this branch still publishes at its own URL
     "data-explorer/data-index/",                    // data-index layout — builds topic_indicators.json
     "data-explorer/indicator-catalog/",             // indicator-catalog layout
     "data-stories/",                                // data-stories/section.html
@@ -54,7 +62,6 @@ const PAGES = [
     "resources/sugar-lookup/",                      // sugar layout
     "take-action/",                                 // take-action/section.html
     "take-action/email-electeds/",                  // email-electeds layout
-    "search-results/",                              // search-results/single.html — Pagefind
 ];
 
 // Pre-existing console noise that is NOT a regression. Every entry must name the

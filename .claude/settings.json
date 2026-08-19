@@ -1,5 +1,6 @@
 {
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "mcp__plugin_playwright_playwright__*",
       "mcp__plugin_context7_context7__*",
@@ -103,8 +104,7 @@
       "PowerShell(git checkout -- *)",
       "PowerShell(git branch -D)",
       "PowerShell(git branch -D *)"
-    ],
-    "defaultMode": "default"
+    ]
   },
   "enabledPlugins": {
     "playwright@claude-plugins-official": true,

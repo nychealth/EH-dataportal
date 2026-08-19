@@ -2,346 +2,238 @@
 // print.js
 // ======================================================================= //
 
-// console.log('print vis js running')
+// Save-modal rendering for the new explorer.
+// Charts still use Vega's built-in export actions, while maps are exported
+// by compositing the current Leaflet DOM into a PNG preview.
 
-const el = document.getElementById("printVis");
+// console.log(" >> print.js");
 
-const ro = new ResizeObserver(() => {
-  updateChartPlotSize();
-});
-
-ro.observe(el);
-
-let view;
-
-// ----------------------------------------------------------------------- //
-// Fire print modal and draw chart on delay
-// ----------------------------------------------------------------------- //
-
-let visWidth;
-
-let initialSource = ["Chart: NYC Health Department - Environment and Health Data Portal"];
-
-
-function printModal() {
-    $('#printModal').modal('show');
-    setTimeout(printViz,500)
-}
+const printVis = document.getElementById('printVis');
+const printModalInstructions = document.getElementById('printModalInstructions');
+const printModalDownload = document.getElementById('printModalDownload');
+const modalFootnotes = document.getElementById('modalFootnotes');
 
 
 // ----------------------------------------------------------------------- //
-// Draw chart
+// modal helpers
 // ----------------------------------------------------------------------- //
 
-let wrapLegend = false;
+// Keeps modal copy and controls in one place so map and chart exports can
+// share the same shell without duplicating DOM mutations.
+const setPrintModalState = ({
+    instructions = '',
+    contentHTML = '',
+    footnotesHTML = '',
+    showDownload = false,
+    downloadHref = '',
+    downloadName = '',
+    downloadLabel = 'Download PNG'
+}) => {
 
-function printViz() {
-
-    window.innerWidth < 960 ? wrapLegend = true : wrapLegend = false
-
-    chartType === 'trend' ? changeTrendSpec() : {}
-    chartType === 'map' ? changeMapSpec(vizYear,vizGeography) : {}
-    chartType === 'links' ? changeLinksSpec() : {}
-    chartType === 'disparities' ? changeDisparitiesSpec() : {};
-
-
-
-    vegaEmbed("#printVis", printSpec, {
-      renderer: "svg",
-        actions: {
-          export: { png: true, svg: true },
-          source: false,  
-          compiled: false, 
-          editor: true 
-        }
-      })
-    
-    updateChartPlotSize();
-
-    gtag('event', 'print_viz', {
-        chart_type: chartType
-    });
-
-}
-
-// ----------------------------------------------------------------------- //
-// Modify trend spec
-// ----------------------------------------------------------------------- //
-
-function changeTrendSpec() {
-
-    printSpec.height = 400
-
-    checkSourceLength()
-
-    let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
-
-    if (Array.isArray(vizSource)) {
-          sourceArray.push(...vizSource); // Spread to add each item separately
-      } else if (typeof vizSource === "string") {
-          sourceArray.push(vizSource); // Add string directly
-      }
-
-    let columns;
-    wrapLegend === true ? columns = 3 : columns = 6;
-
-    printSpec.layer[1].encoding.color.legend = {
-        "orient": "top",
-        "title": null,
-        "columns": columns,
-        "labelFontWeight": "bold",
-        "labelColor": {
-          "expr": "scale('color', datum.label)"
-          }
-      }
-
-    let sourceLayer = {
-        "description": "layer with source info",
-        "mark": {
-          "type": "text",
-          "fontSize": 11,
-          "fontWeight": "normal",
-          "align": "left",
-          "baseline": "bottom",
-          "dx": 5,
-          "dy": 75
-        },
-        "data": {
-            "values": [{}]  // Use an empty object as a dummy value
-          },
-        "encoding": {
-            "text": {"value": sourceArray},
-            "x": {"value": 0},
-            "y": {"value": 400},
-          "color": {"value": "gray"}
-        }
-      }
-
-    let modalFootnotes = document.getElementById('modalFootnotes')
-
-    modalFootnotes.innerHTML = document.getElementById('trend-unreliability').innerHTML
-
-    modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
-
-    printSpec.layer.push(sourceLayer)
-}
-
-// ----------------------------------------------------------------------- //
-// Modify map spec
-// ----------------------------------------------------------------------- //
-
-function changeMapSpec(x,y) {
-  checkSourceLength();
-
-  let sourceArray = initialSource;
-
-  console.log(y)
-
-  // Safely add sources only once
-  if (Array.isArray(vizSource)) {
-      const allElementsExist = vizSource.every(item => sourceArray.includes(item));
-      console.log('do all elements exist in this array?', allElementsExist);
-
-      if (!allElementsExist) {
-          vizSource.forEach(item => {
-              if (!sourceArray.includes(item)) {
-                  sourceArray.push(item);
-              }
-          });
-      }
-  } else if (typeof vizSource === "string") {
-      if (!sourceArray.includes(vizSource)) {
-          sourceArray.push(vizSource);
-      }
-  }
-
-  // Update the title safely
-  if (!printSpec.title.text.includes(x)) {
-      printSpec.title.text += ` - ${x} (${y})`;
-  }
-
-  // Check if a sourceLayer has already been added
-  const sourceLayerExists = printSpec.vconcat.some(layer => {
-      return layer.mark && layer.mark.type === 'text' && layer.encoding && layer.encoding.text && layer.encoding.text.value === sourceArray;
-  });
-
-  if (!sourceLayerExists) {
-      let sourceLayer = {
-          "mark": {
-              "type": "text",
-              "fontSize": 11,
-              "fontWeight": "normal",
-              "align": "left",
-              "baseline": "bottom",
-              "dx": 5,
-              "dy": 0
-          },
-          "data": {
-              "values": [{}]  // Use an empty object as a dummy value
-          },
-          "encoding": {
-              "text": { "value": sourceArray },
-              "x": { "value": 0 },
-              "y": { "value": 0 },
-              "color": { "value": "gray" }
-          }
-      };
-
-      printSpec.vconcat.push(sourceLayer);
-  }
-
-  // Update modal footnotes
-  let modalFootnotes = document.getElementById('modalFootnotes');
-  modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML;
-
-  if (modalFootnotes.textContent.length < 8) {
-      modalFootnotes.classList.add('hide');
-  }
-}
-
-
-// ----------------------------------------------------------------------- //
-// Modify links spec
-// ----------------------------------------------------------------------- //
-
-function changeLinksSpec() {
-  checkSourceLength()
-
-  let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
-
-      if (Array.isArray(vizSource)) {
-        sourceArray.push(...vizSource); // Spread to add each item separately
-    } else if (typeof vizSource === "string") {
-        sourceArray.push(vizSource); // Add string directly
+    if (printModalInstructions) {
+        printModalInstructions.textContent = instructions;
     }
 
-    sourceArray.push(vizSourceSecond)
+    if (printVis) {
+        printVis.innerHTML = contentHTML;
+        printVis.scrollTop = 0;
+    }
 
+    if (modalFootnotes) {
+        modalFootnotes.innerHTML = footnotesHTML;
+        modalFootnotes.classList.toggle('hide', !modalFootnotes.textContent.trim());
+    }
 
-    printSpec.config.legend = {
-        "orient": "top",
-        "title": null,
-        "labelFontSize": 12,
-        "labelFontWeight": "bold",
-        "labelColor": {
-          "expr": "scale('color', datum.label)"
-          }
-      }
+    if (printModalDownload) {
+        printModalDownload.textContent = downloadLabel;
+        printModalDownload.href = downloadHref || '#';
 
-
-    let sourceLayer = {
-        "mark": {
-          "type": "text",
-          "fontSize": 11,
-          "fontWeight": "normal",
-          "align": "left",
-          "baseline": "bottom",
-          "dx": 5,
-          "dy": 100
-        },
-        "data": {
-            "values": [{}]  // Use an empty object as a dummy value
-          },
-        "encoding": {
-            "text": {"value": sourceArray},
-            "x": {"value": 0},
-            "y": {"value": 525},
-          "color": {"value": "gray"}
+        if (downloadName) {
+            printModalDownload.setAttribute('download', downloadName);
+        } else {
+            printModalDownload.removeAttribute('download');
         }
-      }
 
-      let modalFootnotes = document.getElementById('modalFootnotes')
+        printModalDownload.classList.toggle('d-none', !showDownload);
+    }
 
-      modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
-  
-      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
+};
 
-    printSpec.layer.push(sourceLayer)
-}
+
+// Displays the print/export modal using Bootstrap's jQuery modal API.
+const openPrintModal = () => {
+    $('#printModal').modal('show');
+};
+
+
+// Puts the modal into a "preparing preview" placeholder state while an export renders.
+const showPrintLoadingState = (message) => {
+
+    setPrintModalState({
+        instructions: message,
+        contentHTML: '<div class="d-flex align-items-center justify-content-center h-100 text-muted">Preparing visualization preview...</div>',
+        footnotesHTML: '',
+        showDownload: false
+    });
+
+};
+
+
+// Puts the modal into a warning-styled error state and hides the download control.
+const showPrintErrorState = (message) => {
+
+    setPrintModalState({
+        instructions: 'The current visualization could not be prepared for download.',
+        contentHTML: `<div class="alert alert-warning mb-0" role="alert">${message}</div>`,
+        footnotesHTML: '',
+        showDownload: false
+    });
+
+};
 
 
 // ----------------------------------------------------------------------- //
-// Modify disparities spec
+// shared formatting helpers
 // ----------------------------------------------------------------------- //
 
-function changeDisparitiesSpec() {
-    checkSourceLength()
+// Deep-clones a Vega spec via JSON round-trip so preview rendering can't mutate the shared spec.
+const clonePrintSpec = (spec) => {
 
-    let sourceLayer = {
-        "mark": {
-          "type": "text",
-          "fontSize": 11,
-          "fontWeight": "normal",
-          "align": "left",
-          "baseline": "bottom",
-          "dx": 5,
-          "dy": 100
-        },
-        "data": {
-            "values": [{}]  // Use an empty object as a dummy value
-          },
-        "encoding": {
-            "text": {"value": [
-                `Sources: ${vizSource},`,
-                `${vizSourceSecond}.`,
-                "Chart: NYC Health Department - Environment and Health Data Portal"]},
-            "x": {"value": 0},
-            "y": {"value": 475},
-          "color": {"value": "gray"}
+    if (!spec) {
+        return null;
+    }
+
+    return JSON.parse(JSON.stringify(spec));
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// chart export
+// ----------------------------------------------------------------------- //
+
+// Returns the pre-rendered unreliability-footnote HTML for the current chart type, if any.
+const getChartFootnotesHTML = () => {
+
+    switch (DE.print.chartType) {
+        case 'trend':
+            return document.getElementById('trend-unreliability')?.innerHTML || '';
+
+        case 'links':
+        case 'disparities':
+            return document.getElementById('links-unreliability')?.innerHTML || '';
+
+        default:
+            return '';
+    }
+
+};
+
+
+// Clones the current spec and embeds it via vegaEmbed for the modal preview, showing an error state on failure.
+const renderChartPreview = () => {
+
+    const spec = clonePrintSpec(DE.print.printSpec);
+
+    if (!spec) {
+        showPrintErrorState('Nothing is available to save for this view yet.');
+        return;
+    }
+
+    setPrintModalState({
+        instructions: 'Use the chart menu in the upper-right corner to save as PNG or SVG.',
+        contentHTML: '',
+        footnotesHTML: getChartFootnotesHTML(),
+        showDownload: false
+    });
+
+    vegaEmbed('#printVis', spec, {
+        actions: {
+            export: { png: true, svg: true },
+            source: false,
+            compiled: false,
+            editor: true
         }
-      }
+    }).catch(() => {
+        showPrintErrorState('This chart preview could not be rendered.');
+    });
 
-      let modalFootnotes = document.getElementById('modalFootnotes')
+    setTimeout(updateChartPlotSize, 1000);
 
-      modalFootnotes.innerHTML = document.getElementById('links-unreliability').innerHTML
-  
-      modalFootnotes.textContent.length < 8 ? modalFootnotes.classList.add('hide') : {};
-    printSpec.layer.push(sourceLayer)
-}
-
-// ----------------------------------------------------------------------- //
-// Deactive Save Button for table
-// ----------------------------------------------------------------------- //
-window.addEventListener('hashchange', function() {
-  let chartbtn = document.getElementById('chartSaver')
-  currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')
-});
+};
 
 
 // ----------------------------------------------------------------------- //
-// Text splitter for long source text
+// public modal entrypoint
 // ----------------------------------------------------------------------- //
 
+// Public entry point that tracks the event, opens the modal, and renders the chart preview.
+const openChartSaveModal = () => {
 
-function checkSourceLength() {
-  // console.log('vizSource')
-  // console.log(vizSource.length)
-  // console.log(vizSource)
+    trackDataExplorerPrintView(DE.print.chartType || DE.state.overlay || 'chart');
+    openPrintModal();
+    renderChartPreview();
 
-  if (vizSource.length > 200) {
-    vizSource = splitTextIntoLines(vizSource,200)
-   // console.log('new vizSource array')
-   // console.log(vizSource)
-  } else {}
-}
+};
 
-function splitTextIntoLines(text, maxLength) {
-  let words = text.split(" ");
-  let lines = [];
-  let currentLine = "";
+// Public entry point that tracks the event, opens the modal, and renders the map preview.
+const openMapSaveModal = () => {
 
-  words.forEach(word => {
-      if ((currentLine + word).length > maxLength) {
-          lines.push(currentLine.trim()); // Push the current line
-          currentLine = word + " "; // Start a new line
-      } else {
-          currentLine += word + " ";
-      }
-  });
+    trackDataExplorerPrintView('map');
+    openPrintModal();
+    renderMapPreview();
 
-  if (currentLine.trim()) {
-      lines.push(currentLine.trim()); // Push the last line
-  }
+};
 
-  return lines; // Return an array of split lines
-}
+
+// Wires click handlers for the map-save, chart-save, and download-tracking controls.
+const bindPrintControls = () => {
+
+    // ----- bind the map-save button ----- //
+
+    // These triggers live in server-rendered partials, so keep the modal
+    // entrypoints private here instead of exporting window-level helpers.
+    const mapSaveButton = document.getElementById('deSaveMapButton');
+
+    if (mapSaveButton) {
+        mapSaveButton.addEventListener('click', event => {
+            event.preventDefault();
+            openMapSaveModal();
+        });
+    }
+
+    // ----- bind chart-save buttons ----- //
+
+    const chartSaveButtons = document.querySelectorAll('.de-save-chart-button[data-print-target="chart"]');
+
+    chartSaveButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            openChartSaveModal();
+        });
+    });
+
+    // ----- bind download-link tracking ----- //
+
+    if (printModalDownload) {
+        printModalDownload.addEventListener('click', () => {
+
+            const fileName = printModalDownload.getAttribute('download');
+
+            if (!fileName) {
+                return;
+            }
+
+            trackDataExplorerFileDownload({
+                fileName,
+                fileExtension: '.png',
+                linkText: printModalDownload.textContent.trim() || 'Download PNG'
+            });
+
+        });
+    }
+
+};
+
+
+bindPrintControls();

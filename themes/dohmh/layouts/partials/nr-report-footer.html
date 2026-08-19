@@ -2,63 +2,62 @@
 
 {{- if $.Params.content_yml -}}
 
-{{- /* Variable to load the the data file from the content_yml frontmatter */}}
+    {{- /* Variable to load the the data file from the content_yml frontmatter */}}
 
-{{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
+    {{- $content := index $.Site.Data.globals.NR_footer $.Params.content_yml -}}
 
 
-<section class="related-reading d-print-none" data-pagefind-ignore="all">
-    <div class="container">
-        <div class="row">
+    <section class="related-reading d-print-none" data-pagefind-ignore="all">
+    
+        <div class="container">
+            <div class="row">
 
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What is the City doing?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.city -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                <div class="col-lg">
+                    <div class="card bg-white text-black mb-2">
+                        <div class="card-header">What is the City doing?</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {{- range $content.city -}}
+                                    <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                                 {{- end -}}
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- .col for city -->
+                <!-- .col for city -->
 
-            <div class="col-lg">
-                <div class="card bg-white text-black mb-2">
-                    <div class="card-header">What can you do?</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.you -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                <div class="col-lg">
+                    <div class="card bg-white text-black mb-2">
+                        <div class="card-header">What can you do?</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {{- range $content.you -}}
+                                    <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                                 {{- end -}}
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- .col for you -->
+                <!-- .col for you -->
 
-            <div class="col-lg">
-                <div class="card bg-white text-black">
-                    <div class="card-header">More NYC neighborhood data</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            {{- range $content.data -}}
-                            <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a
-                                href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
+                <div class="col-lg">
+                    <div class="card bg-white text-black">
+                        <div class="card-header">More NYC neighborhood data</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {{- range $content.data -}}
+                                    <li class="list-group-item border-0 py-1 bg-transparent">{{ if .link }}<a href="{{ .link }}">{{- end -}}{{ .copy }}{{ if .link }}</a>{{- end -}}</li>
                                 {{- end -}}
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- .col for data -->
+                <!-- .col for data -->
 
-            <!-- .row -->
+                <!-- .row -->
+            </div>
         </div>
-    </div>
-</section>
+        
+    </section>
 
 {{- end -}}

@@ -6,6 +6,14 @@ azlink: "https://www.nyc.gov/site/doh/health/health-topics/rats.page"
 seo_title: "Mice and rats data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of mice and rat data in NYC."
+blurb: "Inspections and sightings"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
 categories: ["housing", "pests"]
 keywords: ["mice", "rats", "rodents", "pests", "housing"]
@@ -14,12 +22,11 @@ indicators:
     IndicatorID:
       - 2434
       - 2433
-      - 2447
-      - 48
       - 24
       - 2394
+      - 48
       - 2416
-
+      - 2447
 related:
   - title: "Rat Mitigation Zones"
     url: "data-features/rat-mitigation-zones/"

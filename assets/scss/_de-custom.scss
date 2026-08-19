@@ -1,0 +1,1122 @@
+table {
+  .group {
+    td {
+      background-color: #F0F0F0;
+      color: #669DB1;
+      font-weight: bold;
+
+
+      &::before {
+        @extend %fa-icon;
+      }
+
+      &:not(.hidden)::before {
+        content: "\f068";
+      }
+
+      &.hidden::before {
+        content: "\f067";
+        @extend %fa-icon;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// Tertile and comparison markers on the report's full-sentence renditions. The word carries
+// the colour and the ::before carries the icon; Font Awesome 6 is loaded site-wide from
+// head.html as a CSS webfont, so the codepoints resolve with no per-page resource. The bad
+// case splits the two colours because $warning is 1.6:1 on white — readable as a glyph, not
+// as text — so the word takes a darkened amber at 6.3:1 instead. Rank 2 gets colour and glyph
+// from neither rule: the .middle pill is unmarked too, and an unmarked sentence is its
+// equivalent.
+$comp-bad-text: #7a5c00;
+
+// Bold picks the comparison word out of the sentence around it. It is on all three classes,
+// .comp-null included: weight marks which word is the comparison, where colour marks which
+// way it went, and rank 2 still gets no colour and no glyph.
+.comp-good,
+.comp-bad,
+.comp-null {
+  font-weight: 700;
+}
+
+.comp-good {
+  color: $success;
+}
+
+.comp-bad {
+  color: $comp-bad-text;
+}
+
+.comp-good::before,
+.comp-bad::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  padding-right: 0.3em;
+}
+
+.comp-good::before {
+  content: "\f14a";
+}
+
+.comp-bad::before {
+  content: "\f071";
+  color: $warning;
+}
+
+.print-only {
+  display: none!important;
+}
+
+@media print {
+  .print-only {
+    display: flex!important;
+  }
+  .reports {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .p-mt-sm {
+    margin-top: .75rem !important;
+  }
+}
+
+
+// $color-key-topics: #800080;
+$color-data-features: #800080;
+$color-data-stories: #D75047;
+$color-n-reports: #197BBD;
+$color-data-explorer: #0A408A;
+
+
+
+.key-topics {
+ svg path {
+  fill: $primary;
+ }
+
+ i {
+  color: $primary;
+ }
+}
+
+.data-features {
+  svg path {
+   fill: $color-data-features;
+  }
+ }
+
+.data-stories {
+  color: $color-data-stories;
+
+  svg path {
+    fill: $color-data-stories;
+   }
+
+  i {
+    color: $color-data-stories;
+  }
+}
+
+.n-reports {
+  color: $color-n-reports;
+
+  svg path {
+    fill: $color-n-reports;
+   }
+
+  i {
+    color: $color-n-reports;
+  }
+}
+
+.data-explorer {
+  color: $color-data-explorer;
+
+  svg path {
+    fill: $color-data-explorer;
+   }
+
+  i {
+    color: $color-data-explorer;
+  }
+}
+
+.link-w-underline {
+  border-bottom: 1px solid $gray-300;
+  padding: 10px;
+  font-size: 1.1875rem;
+  font-weight: 700;
+}
+
+.card-left-border {
+  border-left: 10px solid #008939;
+}
+
+.neighborhood-list-button,
+.neighborhood-list-button:hover,
+.neighborhood-list-button.active {
+  background-color: #EFFAF4 !important;
+  color: $primary !important;
+}
+
+.neighborhood-list-button .plus,
+.neighborhood-list-button .minus {
+  font-size: 2.5rem;
+  line-height: 1.8rem;
+  margin-bottom: 5px;
+  margin-top: -5px;
+}
+
+.neighborhood-list-button .minus {
+  display: none;
+}
+
+.neighborhood-list-button.active .minus {
+  display: block;
+}
+
+.neighborhood-list-button.active .plus {
+  display: none;
+}
+
+.neighborhood-list-button.active {
+  border-bottom: none;
+}
+
+.neighborhood-list {
+  background-color: #EFFAF4;
+  font-size: 18px;
+}
+
+.neighborhood-list li {
+  margin-bottom: 5px;
+}
+
+
+@include media-breakpoint-up(xl) {
+  .container {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+.px-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* $primary is only 4.24:1 on this background and fails WCAG AA for the 14px bold button text.
+   $primary-dark measures 5.13:1 here, and 5.49:1 for the white-on-green hover state — which
+   $primary itself only cleared at 4.53:1. */
+.btn-light-green-bg {
+  background-color: #EFFAF4;
+  color: $primary-dark;
+  &:hover {
+    background-color: $primary-dark;
+    color:white;
+  }
+}
+
+.btn-light-green-bg-outline {
+  background-color: #EFFAF4;
+  color: #008939;
+  border: 1px solid #008939;
+  &:hover {
+    background-color: #008939;
+    color:white;
+  }
+}
+
+.nr-flexdatalist {
+  height: 64px;
+}
+
+.breadcrumb-item.active a {
+  color: #000;
+}
+
+.overlay-trends {
+  background-image: url('../images/overlay_trend.png');
+  background-size: cover;
+  z-index: 100;
+  position: absolute;
+  background-position: top left;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-map {
+  background-image: url('../images/overlay_map.png');
+  background-size: cover;
+  z-index: 100;
+  position: absolute;
+  background-position: top left;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-topics {
+  background-image: url('../images/overlay_topics.png');
+  background-size: cover;
+  z-index: 100;
+  position: absolute;
+  background-position: top left;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-data-stories {
+  background-image: url('../images/tab_overlay_data stories.svg');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-neighborhood-reports {
+  background-image: url('../images/tab_overlay_neighborhood_reports.svg');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-data-explorer {
+  background-image: url('../images/tab_overlay_data_explorer.svg');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-key-topics {
+  background-image: url('../images/tab_key_topics.png');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.tab-data-features {
+  background-image: url('../images/tab_data_features.png');
+  z-index: 100;
+  background-size: 33%;
+  background-repeat: no-repeat;
+  background-position: 0 20px;
+}
+
+.related-border {
+  border-top: 8px solid #008939;
+}
+
+.related-border-sm {
+  border-top: 4px solid #008939;
+}
+
+.container-to-large {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+// Data Explorer dropdown: subtly indicate the current selection.
+.dropdown-menu .dropdown-item.is-selected {
+  background-color: rgba(10, 64, 138, 0.08);
+  color: #0A408A;
+  font-weight: 600;
+}
+
+.dropdown-menu .dropdown-item.is-selected:hover,
+.dropdown-menu .dropdown-item.is-selected:focus {
+  background-color: rgba(10, 64, 138, 0.12);
+}
+@media (min-width: 480px) {
+  .container-to-large {
+    max-width: 448px; }
+}
+
+@media (min-width: 720px) {
+  .container-to-large {
+    max-width: 688px; }
+}
+
+@media (min-width: 960px) {
+  .container-to-large {
+    max-width: 928px; }
+}
+
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="false"]:after {
+  content: "\002B";
+}
+
+.accordion-group a[data-toggle="collapse"][aria-expanded="true"]:after {
+  content: "\2014";
+}
+
+#primary-content h3 {
+  padding-top: 20px;
+}
+
+#toggleButton[aria-expanded="true"] {
+  display: none;
+}
+
+
+.take-action-dropdown {
+  width: 260px;
+}
+/** NEW DATA EXPLORER STYLES **/
+
+.de-nav-bar {
+  min-height: 46px;
+  margin-left: 0 !important;
+}
+
+.de-nav-bar .nav-topic-selector {
+  background-color: #00923E;
+  height: 100%;
+}
+
+.de-nav-bar .topic-selector-trigger-wrap,
+.de-wrapper .indicator-selector-trigger-wrap {
+  display: inline-flex;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+.de-nav-bar .topic-selector-required::after,
+.de-wrapper .indicator-selector-required::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid rgb(255, 204, 1);
+  border-radius: 8px;
+  box-shadow: 0 0 0 3px rgba(255, 204, 1, 0.35);
+  pointer-events: none;
+}
+
+/* Same "you need to act here" outline as the two selector prompts above, on the tab bar. Inset
+   positive rather than negative because this bar sits flush inside .de-tabs-nav, so a -4px box
+   would be drawn outside its own container. */
+#v-pills-tab.vis-bar-required::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border: 8px solid rgb(255, 204, 1);
+  border-radius: 8px;
+  // box-shadow: 0 0 0 4px rgba(255, 204, 1, 0.35);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.de-nav-bar .topic-selector-prompt,
+.de-wrapper .indicator-selector-prompt {
+  position: absolute;
+  background-color: rgb(255, 204, 1);
+  color: #111111;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.de-nav-bar .topic-selector-prompt {
+  right: 0;
+  bottom: 0;
+  transform: translate(85%, 50%);
+  font-size: 16px;
+  padding: 6px 10px;
+}
+
+@media (min-width: 720px) {
+  .de-nav-bar .nav-topic-selector {
+    background-color: transparent;
+  }
+}
+
+.de-wrapper {
+  .indicator-selector-prompt {
+    right: 0;
+    bottom: 0;
+    transform: translate(45%, 70%);
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  @media (min-width: 720px) {
+    .indicator-selector-prompt {
+      right: 14px;
+      bottom: 14px;
+      transform: translate(100%, 100%);
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  }
+
+  .dropdown-menu-de {
+    border: none;
+    border-bottom: 4px solid #008939;
+    padding: 10px;
+    font-size: 14px;
+
+    button {
+      border-bottom: 1px solid #D8D8D8;
+      padding: 8px 0;
+    }
+    button:hover {
+      background-color: #ffffff;
+    }
+  }
+
+  .de-accordion .card {
+    border-bottom: 1px solid white !important;
+  }
+
+  .de-accordion .card-body {
+    background-color: #DCF4E7;
+    font-size: 16px;
+    padding-top: 0px;
+  }
+
+  @media (min-width: 720px) {
+    .de-accordion .card-body {
+      padding-left: 122px;
+    }
+  }
+
+  .de-accordion button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .de-accordion button:hover {
+    text-decoration: none;
+  }
+
+  .de-accordion-label {
+    width: 90px;
+  }
+
+  .de-tabs {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .de-tabs-layout {
+    width: 100%;
+  }
+
+  .de-tabs-panel-shell {
+    width: 100%;
+  }
+
+  /* Ensure mobile bottom nav sits above iOS Safari toolbar */
+  @media (max-width: 719.98px) {
+    .de-tabs {
+      position: fixed !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: env(safe-area-inset-bottom) !important;
+      bottom: constant(safe-area-inset-bottom) !important; /* iOS 11.0-11.2 fallback */
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    /* Give the page content breathing room equal to nav height + safe-area */
+    .de-wrapper {
+      padding-bottom: calc(56px + env(safe-area-inset-bottom));
+      padding-bottom: calc(56px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
+    }
+
+    .de-tabs-nav {
+      /* Add extra padding for the home indicator area */
+      padding-bottom: calc(8px + env(safe-area-inset-bottom));
+      padding-bottom: calc(8px + constant(safe-area-inset-bottom)); /* iOS 11.0-11.2 fallback */
+    }
+
+    .tab-content {
+      max-height: 50vh;
+      overflow-y: scroll;
+      overflow-x: auto;
+      position: relative;
+      z-index: 10;
+      padding-top: 10px;
+    }
+
+    .closeTabPane {
+      position: absolute;
+      left: -32px;
+    }
+  }
+
+  .de-main-details {
+    top: 2rem;
+    left: 2rem;
+    z-index: 2;
+    width: calc(100% - 4rem);
+    // border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  #v-pills-tabContent {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .de-legend {
+    bottom: 9rem;
+    left: 2rem;
+    z-index: 2;
+    padding: 0.5rem;
+    font-size: 14px;
+    background-color: #DCF4E7 !important;
+    width: calc(100% - 4rem);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  }
+
+  .de-main-details .main-heading {
+    font-size: 18px;
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs {
+      right: 2rem;
+      left: auto;
+      bottom: auto;
+      top: 2rem;
+      width: 38%;
+      max-width: 860px;
+    }
+    .de-tabs:not(.has-open-panel) {
+      width: 72px !important;
+    }
+    .de-main-details {
+      left: 2rem;
+      top: 2rem;
+      width: 380px;
+    }
+
+    // Let the panel shrink within the tab shell so DataTables scrolls horizontally
+    // instead of forcing the whole overlay to resize to the current table content.
+    .de-tabs-panel-shell {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .de-legend {
+      width: 380px;
+      bottom: 2rem;
+    }
+  }
+
+
+  .de-tabs-nav {
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+  }
+
+  // Sticky navigation for About/Related Resources
+  .d-flex.border-bottom.border-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs-nav {
+      height: calc(100vh - 8rem);
+      overflow-y: visible;
+    }
+
+    .tab-content {
+      width: 100%;
+      max-width: 100%;
+      max-height: calc(100vh - 8rem);
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .tab-content .tab-pane {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #v-pills-tabContent > .bg-white.d-none.d-md-block.bl50 {
+      margin-left: -33px !important;
+    }
+    
+    .close-tab-pane {
+      position: absolute;
+    }
+  }
+
+  // Toggle pill buttons on each panel
+  #table-filter-controls,
+  #trendControls,
+  #correlateControls {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #tableFilterToggle,
+  #trendControlsToggle,
+  #correlateControlsToggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dataTables_filter {
+    margin-top: 3px!important;
+    border-bottom: 0px!important;
+  }
+
+  // Menu items inside panels
+  #tableFilterPanel .checkbox-time,
+  #tableFilterPanel .checkbox-geo,
+  #trendMenuHolder .dropdown-item,
+  #compMenu .dropdown-item {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  // Summary spans inside toggle pill buttons — keep small and layout-stable.
+  // d-lg-inline makes them display:inline on large screens; switching to inline-block
+  // lets us cap the width so changing text doesn't resize the button or the panel.
+  #tableFilterSummary,
+  #trendSelectionSummary,
+  #linksSelectionSummary {
+    font-size: 0.75rem;
+
+    @media (min-width: 992px) {
+      display: inline-block !important;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+  }
+
+  .de-tabs-nav .nav-pills .nav-link,
+  .de-tabs-nav .nav-tabs .nav-link {
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 60px;
+  }
+
+  .de-tabs-nav .nav-pills .nav-link-sm,
+  .de-tabs-nav .nav-tabs .nav-link-sm {
+    color: white;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 80px;
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+  }
+
+  @media (min-width: 720px) {
+    .de-tabs-nav .nav-pills .nav-link,
+    .de-tabs-nav .nav-tabs .nav-link {
+      width: auto;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      border-right: none;
+      flex: 0;
+      padding: .5rem;
+      min-height: 89px;
+      max-width: 90px;
+    }
+  }
+
+  /* Active tab pills styling */
+  .de-tabs-nav .nav-pills .nav-link.active {
+    background-color: white;
+    color: #008939 !important;
+  }
+
+  .de-tabs-nav .nav-pills .nav-link.active:hover {
+    background-color: white;
+    color: #008939 !important;
+  }
+
+  .de-tabs-nav .nav-pills .de-nav-action-link:hover,
+  .de-tabs-nav .nav-tabs .de-nav-action-link:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: white;
+  }
+
+  @media (min-width: 720px) {
+    .w-md-40 {
+        width: 40% !important;
+    }
+  }
+
+  .hover-underline:hover {
+    text-decoration: underline;
+  }
+
+  .indicator-modal-topic-trigger {
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    cursor: pointer;
+  }
+
+
+  /* Smooth accordion slide animations - horizontal slide */
+  .de-accordion .collapse {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .de-accordion .collapse.show {
+    max-height: 200px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .de-accordion .collapse.collapsing {
+    max-height: 200px;
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }
+
+  /* Rotate chevron when accordion is open */
+  .collapse.show + .card-header .fas.fa-chevron-down,
+  .card-header .btn[aria-expanded="true"] .fas.fa-chevron-down {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+  }
+
+  .fas.fa-chevron-down {
+      transition: transform 0.3s ease;
+  }
+
+  /* Mobile accordion header plus/minus toggle */
+  .toggle-icon.fa-minus {
+      opacity: 1;
+  }
+
+  .toggle-icon.fa-plus {
+      opacity: 1;
+  }
+
+  /* Ensure mobile accordion header has proper styling */
+  .bg-primary[data-toggle="collapse"] {
+      user-select: none;
+  }
+
+  .bg-primary[data-toggle="collapse"]:hover {
+      opacity: 0.9;
+  }
+
+  /* Active tab pills styling */
+  .nav-pills .nav-link.active {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  .nav-pills .nav-link.active:hover {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  /* Inactive tab pills styling */
+  .nav-pills .nav-link {
+      background-color: transparent !important;
+      color: white !important;
+  }
+
+  .nav-pills .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: white !important;
+  }
+
+  .nav-pills .nav-link.active {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  .nav-pills .nav-link.active:hover {
+      background-color: white !important;
+      color: #007bff !important;
+  }
+
+  #map {
+      height: calc(100vh - 4rem);
+      width: 100%;
+      z-index: 1;
+      position: relative;
+  }
+
+  /* CSS Grid for equal height cards */
+  .indicator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0 2.5rem;
+      margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+      .indicator-grid {
+          grid-template-columns: repeat(2, 1fr);
+      }
+  }
+
+  .indicator-card {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-top: 0.25rem;
+  }
+
+  .indicator-card h6 {
+      font-size: 16px;
+      font-weight: normal;
+  }
+
+
+  .indicator-card a {
+      text-decoration: underline;
+  }
+
+  .indicator-card a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+  }
+
+    .indicator-card:hover {
+      background-color: rgba(220, 244, 231, 0.35);
+  }
+}
+
+    .bl50 {
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+    }
+
+    .br50 {
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+
+    // Modal close button: a tab protruding off the modal-dialog's right edge,
+    // mirroring the close-tab-pane button's left-edge tab (.bl50 above).
+    // Lives on .modal-dialog, not .modal-content, because modal-dialog-scrollable
+    // modals need modal-content's overflow: hidden to keep the scrollable body.
+    // position: absolute also lifts it out of modal-dialog's flex layout, so it
+    // doesn't stretch to the dialog's full height via align-items: stretch.
+    .modal-close-tab {
+        position: absolute;
+        top: 0;
+        right: -33px;
+        width: 33px;
+        height: 38.5px;
+        color: white;
+        z-index: 10;
+        // .modal-dialog has pointer-events: none (Bootstrap lets backdrop clicks
+        // pass through its margin); re-enable it here like .modal-content does.
+        pointer-events: auto;
+        // Centre the X icon. The icon is an inline <svg> with explicit width and
+        // height rather than a text &times; glyph, which is what makes plain
+        // flex centring exact here: an SVG's box is its ink, so centring the box
+        // centres what you see. A text glyph's ink sits wherever the font's
+        // baseline puts it (the × rides entirely above the baseline, ~3px below
+        // its line box's centre), and its line box can also overflow this
+        // button's content box — which deforms Chrome's `outline: auto` focus
+        // ring, since that ring is drawn around the union of the element and its
+        // descendants' visual rects, not its border box. The <svg> avoids both
+        // problems outright and matches the .bl50 close-tab-pane button, which
+        // has always used an <img> child for the same reason.
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // These 3 modals no longer have a header bar to visually separate them
+    // from the page, so Bootstrap's default 1px border reads as a stray line
+    // around the box. Scoped by ID rather than globally, since theme.scss is
+    // compiled once site-wide and other pages' modals should keep the border.
+    #topicSelector .modal-content,
+    #indicatorSelector .modal-content,
+    #learnMore .modal-content {
+        border: none;
+    }
+
+    // Bootstrap's default modal-dialog margin (0.5rem) is narrower than the
+    // tab's protrusion, so it would run off-screen on small viewports.
+    @media (max-width: 575.98px) {
+        .modal-close-tab {
+            right: -8px;
+        }
+    }
+
+    .viridis-wrapper {
+  position: relative;
+  width: 100%;
+  height: 22px; /* slightly taller to fit text */
+}
+
+    .viridis-rect {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      /* Viridis-like gradient (several sampled hex stops) */
+        background: linear-gradient(90deg,
+        #fde725 0%,
+        #5dc863 30%,
+        #21908c 55%,
+        #3b528b 80%,
+        #440154 100%)
+        }
+
+        /* Min and Max labels */
+.legend-min,
+.legend-max {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 0 4px;
+  line-height: 1;
+  text-shadow: 0 0 3px rgba(0,0,0,0.5); /* improves contrast on bright areas */
+}
+
+.legend-min {
+  left: 0;
+  color: black;
+}
+
+.legend-max {
+  right: 0;
+  color: #fff;
+}
+
+/* Tick */
+.viridis-tick {
+  position: absolute;
+  display: none;
+  left: 50%;              /* static for now; change dynamically later */
+  transform: translateX(-50%);
+  width: 2px;
+  height: 26px;           /* extends slightly above and below the bar */
+  background: #000;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-content {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-width: 250px;
+    padding: 0;
+}
+
+.popup-header {
+    background: #f8f9fa;
+    padding: 10px 12px;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.popup-body {
+    padding: 12px;
+}
+
+.popup-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.popup-indicator {
+    flex: 1;
+    color: #40454a;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.popup-period {
+    font-size: 12px;
+    color: #40454a;
+    font-style: normal;
+    margin-top: 2px;
+}
+
+.popup-value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.value-number {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1;
+}
+
+.value-unit {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 2px;
+}
+
+.popup-note {
+    background: #fff3cd50;
+    border-top: 1px solid #ffc107;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #856404;
+    line-height: 1.4;
+}
+
+.chart-note {
+    background: #e8eaf850;
+    border-top: 1px solid #4a4d9f;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #2a2d5f;
+    line-height: 1.4;
+}

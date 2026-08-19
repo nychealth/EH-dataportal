@@ -1,12 +1,12 @@
 baseURL = "https://localhost/local-stage/"
 [params]
     data_repo = "http://localhost/EHDP-data/"
-    data_branch = "staging"
+    data_branch = "feature-new-data-explorer"
 
 [caches]
     [caches.getresource]
         dir = ':cacheDir/:project'
-        maxAge = -1
+        maxAge = 0
 
 # [server.headers]
 #     for = '/**'

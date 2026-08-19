@@ -182,7 +182,7 @@
 
 
                                     <!-- .nav-item -->
-                                    
+
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
                                         <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
@@ -193,9 +193,9 @@
                                     <!-- .nav-item -->
 
                                     <!-- .nav-item -->
-                                    <div class="nav-item bg-none text-white border border-white ml-1">
+                                    <div class="nav-item btn btn-outline-warning btn-sm ml-1 subscribe-button">
 
-                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
+                                        <a class="nav-link" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
                                     </div>
 
                                 </nav>
@@ -239,7 +239,7 @@
                                                 <span class="fas fa-bars fa-lg text-primary" ></span>
                                             </button>
                                         </li>
-        
+
                                         <li>
                                             <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
                                                 <span class="sr-only">Search</span>
@@ -247,17 +247,17 @@
                                             </a>
                                         </li>
                                     </ul>
-        
+
                                     <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
-        
+
                                         <nav class="nav" role="navigation">
-        
+
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Topics
                                                 </a>
-        
+
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                                     <ul class="extensible-list p-0">
                                                         {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
@@ -272,65 +272,65 @@
                                                         {{- end -}}
                                                         {{ end }}
                                                             <a href={{ relURL "key-topics" }}>All topics</a>
-        
+
                                                     </ul>
                                                 </div>
                                             </div>
                                             <!-- .nav-item -->
-        
+
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Explore
                                                 </a>
-        
+
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
                                                     <ul class="extensible-list p-0">
-        
+
                                                         {{/*  get all menus  */ -}}
-        
+
                                                         {{- $all_menus := .Site.Menus.main -}}
-        
+
                                                         {{- /*  set exclusions  */ -}}
-        
+
                                                         {{- $exclude := ( slice "Search" "Key Topics" ) -}}
-        
+
                                                         {{- /*  filter menus  */ -}}
-        
+
                                                         {{- $want_menus := where $all_menus "Name" "not in" $exclude -}}
-        
+
                                                         {{- /*  get filtered count  */ -}}
-        
+
                                                         {{- $count := len $want_menus -}}
-        
+
                                                         {{- /*  range over wanted menus  */ -}}
-        
+
                                                         {{- range $index, $menu := $want_menus -}}
-        
+
                                                             {{- /*  check if last item (adding 1 to index b/c of 0-indexing)  */ -}}
-        
+
                                                             {{- $last := eq ( add $index 1 ) $count -}}
-        
+
                                                             {{- /*  add element  */ -}}
-        
+
                                                             <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
-        
+
                                                             {{- /*  only add the horizontal bar if it's not the last item  */ -}}
-        
+
                                                             {{- if not $last }}
-        
+
                                                                 <hr class="my-1">
-        
+
                                                             {{ end -}}
-        
+
                                                         {{- end -}}
-        
-        
+
+
                                                     </ul>
                                                 </div>
                                             </div>
                                             <!-- .nav-item -->
-        
+
                                             <div class="nav-item bg-white text-primary border">
                                                 {{ with .GetPage "about" -}}
                                                 <a class="nav-link " href="{{ .RelPermalink }}">
@@ -338,11 +338,11 @@
                                                 </a>
                                                 {{- end -}}
                                             </div>
-        
-        
+
+
                                             <!-- .nav-item -->
-                                            
-        
+
+
                                             <div class="nav-item bg-white text-primary border d-none d-lg-block">
                                                 <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
                                                             <span class="sr-only">Search</span>
@@ -350,7 +350,7 @@
                                                         </a>
                                             </div>
                                             <!-- .nav-item -->
-        
+
                                             <!-- .nav-item -->
                                             <div class="nav-item bg-none text-primary border">
 
@@ -358,9 +358,9 @@
                                                     Subscribe
                                                 </a>
                                             </div>
-        
+
                                         </nav>
-        
+
                                     </div>
     </div>
 

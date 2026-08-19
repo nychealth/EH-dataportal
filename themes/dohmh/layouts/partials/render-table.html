@@ -10,68 +10,74 @@
 
 
 <style>
-  .dataTables_paginate {
-    font-size: .875rem
-  }
+    .dataTables_paginate {
+        font-size: .875rem
+    }
 </style>
 
 {{/* Generate a stable table ID using the file name */}}
 {{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
 
 <div class="dt-scroll-x mb-2" style="overflow-x: auto;">
-{{- $file := .file -}}
-{{- $data := $file | transform.Unmarshal (dict "delimiter" ",") -}}
-{{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
+    {{- $file := .file -}}
+    {{- $data := $file | transform.Unmarshal (dict "delimiter" ",") -}}
+    {{- $id := printf "tbl-%s" ($file.Name | anchorize) -}}
 
-<table id="{{ $id }}" class="table table-striped table-bordered fs-sm">
-  {{- range $i, $row := $data }}
-    {{- if eq $i 0 }}
-      <thead>
-        <tr>
-          {{- range $j, $cell := $row }}
-            <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
-          {{- end }}
-          <th class="d-none">_totals_flag</th> {{/* header for hidden flag col */}}
-        </tr>
-      </thead>
-      <tbody>
-    {{- else }}
-      {{- $first := index $row 0 }}
-      {{- $lower := lower $first }}
-      {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
-      <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
-        {{- range $j, $cell := $row }}
-          <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
-        {{- end }}
-        <td class="d-none dt-totals-flag">{{ if $isTotal }}1{{ else }}0{{ end }}</td>
-      </tr>
-    {{- end }}
-  {{- end }}
-  </tbody>
-</table>
-{{ if eq $download "true" }}
-  <div class="float-right fs-sm border p-1">
-      <a href="{{ $file }}"><i class="fa-solid fa-download mr-1"></i>Download data</a>
-  </div>
-{{ end }}
+    <table id="{{ $id }}" class="table table-striped table-bordered fs-sm">
+    {{- range $i, $row := $data }}
+        {{- if eq $i 0 }}
+            <thead>
+                <tr>
+                    {{- range $j, $cell := $row }}
+                        <th class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</th>
+                    {{- end }}
+                    <th class="d-none">_totals_flag</th> {{/* header for hidden flag col */}}
+                </tr>
+            </thead>
+            <tbody>
+                {{- else }}
+                    {{- $first := index $row 0 }}
+                    {{- $lower := lower $first }}
+                    {{- $isTotal := or (in $lower "total") (in $lower "totals") }}
+                    <tr class="{{ if $isTotal }}font-weight-bold{{ end }}">
+                        {{- range $j, $cell := $row }}
+                            <td class="{{ if gt $j 0 }}text-right{{ end }}">{{ $cell }}</td>
+                        {{- end }}
+                        <td class="d-none dt-totals-flag">{{ if $isTotal }}1{{ else }}0{{ end }}</td>
+                    </tr>
+                {{- end }}
+            {{- end }}
+        </tbody>
+    </table>
+
+    {{ if eq $download "true" }}
+
+        <div class="float-right fs-sm border p-1">
+            <a href="{{ $file }}"><i class="fa-solid fa-download mr-1"></i>Download data</a>
+        </div>
+    {{ end }}
+
 </div>
 
 
 
 {{/* If DataTables enabled, output its config in a script tag */}}
+
 {{ if eq $dt "true" }}
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // create table instance
-  const table = new DataTable("#{{ $id }}", {
-    paging: {{ eq $paging "true" }},
-    searching: {{ eq $search "true" }},
-    ordering: {{ eq $ordering "true" }},
-    lengthChange: false,
-    info: false,
-    scrollY: {{ if $max }} "{{ $max }}" {{ else }} null {{ end }},
-    scrollCollapse: true,
-  });
-});
-</script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // create table instance
+            const table = new DataTable("#{{ $id }}", {
+                paging: {{ eq $paging "true" }},
+                searching: {{ eq $search "true" }},
+                ordering: {{ eq $ordering "true" }},
+                lengthChange: false,
+                info: false,
+                scrollY: {{ if $max }} "{{ $max }}" {{ else }} null {{ end }},
+                scrollCollapse: true,
+            });
+        });
+    </script>
+    
 {{ end }}

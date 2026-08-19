@@ -1,50 +1,48 @@
 <div class="row mt-2">
     <div class="col-6">
 
-    <div class="nav nav-tabs device-md fs-sm" role="tablist">
-        <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-toggle="tab"
-            aria-controls="tab-01-a" aria-selected="true" role="tab">
-            CDs
-        </a>
-        <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-toggle="tab"
-            aria-controls="tab-01-b" aria-selected="false" role="tab">
-            Council districts
-        </a>
-    </div>
+        <div class="nav nav-tabs device-md fs-sm" role="tablist">
+            <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-01-a" data-toggle="tab"
+                aria-controls="tab-01-a" aria-selected="true" role="tab">
+                CDs
+            </a>
+            <a class="nav-item nav-link" id="tab-btn-01-b" href="#tab-01-b" data-toggle="tab"
+                aria-controls="tab-01-b" aria-selected="false" role="tab">
+                Council districts
+            </a>
+        </div>
 
-    <div class="tab-content mb-2" id="tabs-01-content">
-                    <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a"
-                        role="tabpanel">
-                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="CDButtons">
-                            <!-- CDs get printed here -->
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
-                        <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="districtButtons">
-                            <!-- Council Districts get printed here -->
-                        </div>
-                    </div>
-
+        <div class="tab-content mb-2" id="tabs-01-content">
+            <div class="tab-pane fade show active" id="tab-01-a" aria-labelledby="tab-btn-01-a" role="tabpanel">
+                <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="CDButtons">
+                    <!-- CDs get printed here -->
                 </div>
+            </div>
+            <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel" aria-hidden="true">
+                <div class="border-left border-bottom border-right fs-sm" style="height: 250px; overflow-y:scroll;" id="districtButtons">
+                    <!-- Council Districts get printed here -->
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="col-6 hide" id="overlapReveal">
         <div class="nav nav-tabs device-md fs-sm" role="tablist">
-            <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-02-a" data-toggle="tab"
-                aria-controls="tab-02-a" aria-selected="true" role="tab">
+            <a class="nav-item nav-link active" id="tab-btn-01-a" href="#tab-02-a" data-toggle="tab" aria-controls="tab-02-a" aria-selected="true" role="tab">
                 Overlapping UHF42 neighborhoods
             </a>
         </div>
         <div class="tab-content mb-2" id="tabs-02-content">
-                <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a"
-                    role="tabpanel">
-                    <div class="border-left border-bottom border-right fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
-                        <!-- Overlapping UHFs get printed here -->
-                    </div>
+            <div class="tab-pane fade show active" id="tab-02-a" aria-labelledby="tab-btn-02-a" role="tabpanel">
+                <div class="border-left border-bottom border-right fs-sm" id="overlaps" style="height: 250px; overflow-y:scroll;">
+                    <!-- Overlapping UHFs get printed here -->
                 </div>
+            </div>
         </div>
         <em class="fs-xs">Not shown: neighborhoods with less than 5% overlap.</em>
     </div>
+
 </div>
 
 <!-- CCD to UHF overlap js -->
@@ -59,7 +57,7 @@
 <script>
 
     // print Community Districts to menu
-    var CDholder = document.getElementById('CDButtons')
+    let CDholder = document.getElementById('CDButtons')
 
     CDtoUHF.forEach(cd => {
         let thisButton = `
@@ -71,7 +69,7 @@
 
 
     // print City Council Districts to menu
-    var holder = document.getElementById('districtButtons')
+    let holder = document.getElementById('districtButtons')
 
     CCDtoUHF.forEach(ccd => {
           let thisButton = `
@@ -81,24 +79,26 @@
     })
 
 
-    var thisOverlap ;
+    let thisOverlap ;
+
     function getUHFs(from, geo) {
+
         document.getElementById('overlapReveal').classList.remove('hide')
 
-        var overlaps = document.getElementById('overlaps')
+        let overlaps = document.getElementById('overlaps')
         overlaps.innerHTML = ''
 
         if (from === 'CCD') {
 
             console.log('Getting UHFs for City Council District ' + geo)
             // Style CCD selections
-            var allButtons = document.querySelectorAll('.ccd-items')
+            let allButtons = document.querySelectorAll('.ccd-items')
             allButtons.forEach(btn => {
                 btn.classList.remove('active')
                 btn.classList.remove('text-white')
             })
 
-            var selected = document.getElementById(`button-${geo}`)
+            let selected = document.getElementById(`button-${geo}`)
             selected.classList.add('active')
             selected.classList.add('text-white')
 
@@ -109,13 +109,13 @@
 
             console.log('Getting UHFs for Community District ' + geo)
             // Style CD selections
-                        var allButtons = document.querySelectorAll('.cd-items')
+            let allButtons = document.querySelectorAll('.cd-items')
             allButtons.forEach(btn => {
                 btn.classList.remove('active')
                 btn.classList.remove('text-white')
             })
 
-            var selected = document.getElementById(`button-${geo}`)
+            let selected = document.getElementById(`button-${geo}`)
             selected.classList.add('active')
             selected.classList.add('text-white')
 
@@ -134,11 +134,11 @@
         // Print matching overlaps to page
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
-            var uhfid = ol.UHF_id
-            var name = ol.GEONAME
-            var overl = ol.percent.toFixed(0)
-            var dest = ol.page_name
-            var popol = (from === 'CCD') 
+            let uhfid = ol.UHF_id
+            let name = ol.GEONAME
+            let overl = ol.percent.toFixed(0)
+            let dest = ol.page_name
+            let popol = (from === 'CCD') 
                 ? ol.pop_pct_of_ccd.toFixed(1) 
                 : (from === 'CD') 
                     ? ol.pop_pct_of_cd.toFixed(1) 
@@ -147,7 +147,7 @@
             // set minimum overlap
             if (overl < 5) {
                 return
-                } else {
+            } else {
                 overlaps.innerHTML += `
                 <a href="{{ .Site.BaseURL }}/neighborhood-reports/${dest}" class="dropdown-item text-primary">
                     <span class="font-weight-bold">
@@ -155,8 +155,7 @@
                     </span> <br>
                     Overlap: ${overl}% area | ${popol}% population
                 </a>`
-                }
             }
-        )
+        })
     }
 </script>

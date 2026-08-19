@@ -2,141 +2,523 @@
 // table.js
 // ======================================================================= //
 
-const renderTable = () => {
+// builds and renders the Arquero-backed summary data table, with filtering, DataTables integration, and grouped-row toggles
 
-    console.log("** renderTable");
+// console.log('>> table.js')
 
-    document.getElementById('viewDescription').innerHTML = 'This table shows all data for this dataset.'
+// ----------------------------------------------------------------------- //
+// filter helpers
+// ----------------------------------------------------------------------- //
 
-    // ----------------------------------------------------------------------- //
-    // prep data
-    // ----------------------------------------------------------------------- //
+// Returns the available time period and geography filter values for the table.
+const getTableFilterOptions = (rows) => {
 
-    // console.log("tableData", tableData);
+    // Time labels come straight from the joined table rows.
+    const availableTimes = [...new Set(rows.map(d => d.TimePeriod))];
 
-    const filteredTableTimeData = tableData.filter(d => selectedTableTimes.includes(d.TimePeriod))
+    // Geography options are normalized to the same pretty labels used in the UI controls.
+    const geoValues = [...new Set(rows.map(d => prettifyGeoType(d.GeoType)))];
+    const availableGeos = geoTypes.filter(geo => geoValues.includes(geo));
 
-    // ----------------------------------------------------------------------- //
-    // format geography dropdown checkboxes
-    // ----------------------------------------------------------------------- //
+    return { availableTimes, availableGeos };
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get (pretty) geoTypes available for this time period
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+};
 
-    const dataGeos = [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))];
 
-    // console.log("dataGeos", dataGeos);
+// Escapes a string so it can be used safely inside a regex search.
+const escapeRegexValue = (value) => {
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // get all geo check boxes
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    const allGeoChecks = document.querySelectorAll('.checkbox-geo');
+};
 
-    // console.log("allGeoChecks", allGeoChecks);
 
-    let geosNotAvailable = [];
+// Returns the raw rows that match the current table filter state.
+const getSelectedTableRows = (rows) => {
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // format
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
-    // remove disabled class from every geo list element
+    const selectedTimes = new Set(DE.table.selectedTableTimes);
+    const selectedGeos = new Set(DE.table.selectedTableGeography);
 
-    $(allGeoChecks).removeClass("disabled");
-    $(allGeoChecks).attr('aria-disabled', false);
-    
-    // now add disabled class for geos not available for this year period
+    return rows.filter(d => {
+        // Compare against prettified geotypes so checkbox labels and row filtering stay aligned.
+        const matchesTime = !selectedTimes.size || selectedTimes.has(d.TimePeriod);
+        const matchesGeo = !selectedGeos.size || selectedGeos.has(prettifyGeoType(d.GeoType));
+        return matchesTime && matchesGeo;
+    });
 
-    for (const checkbox of allGeoChecks) {
+};
 
-        if (!dataGeos.includes(checkbox.children[0].value)) {
-            
-            geosNotAvailable.push(checkbox)
-            
-            // set this element as disabled
-            $(checkbox).addClass("disabled");
-            $(checkbox).attr('aria-disabled', true);
-            
+
+// Builds the regex search values for the current table time and geography filters.
+const getTableColumnSearchValues = (rows) => {
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+
+    return {
+        // '(?!)' is an always-false regex, which intentionally shows zero rows when nothing is selected.
+        timeSearch: !DE.table.selectedTableTimes.length
+            ? '(?!)'
+            // An empty regex means “no restriction” when every time period is selected.
+            : DE.table.selectedTableTimes.length === availableTimes.length
+                ? ''
+                : `^(${DE.table.selectedTableTimes.map(escapeRegexValue).join('|')})$`,
+        geoSearch: !DE.table.selectedTableGeography.length
+            ? '(?!)'
+            : DE.table.selectedTableGeography.length === availableGeos.length
+                ? ''
+                : `^(${DE.table.selectedTableGeography.map(escapeRegexValue).join('|')})$`
+    };
+
+};
+
+
+// Returns the table-filter values implied by the current map dropdown selections.
+const getCurrentMapTableFilters = (rows) => {
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+    const currentTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
+    const currentGeo = DE.state.GeoType;
+
+    // Prefer the current map time when it exists in the table; otherwise fall back to the first table time.
+    const timeSelection = currentTime && availableTimes.includes(currentTime)
+        ? [currentTime]
+        : (availableTimes[0] ? [availableTimes[0]] : []);
+
+    // Geography fallback depends on the chosen time slice so we do not sync to a geo with zero rows.
+    const rowsForSelectedTime = timeSelection.length
+        ? rows.filter(d => timeSelection.includes(d.TimePeriod))
+        : rows;
+
+    const geoValuesForSelectedTime = [...new Set(rowsForSelectedTime.map(d => prettifyGeoType(d.GeoType)))];
+    const availableGeosForSelectedTime = geoTypes.filter(geo => geoValuesForSelectedTime.includes(geo));
+
+    return {
+        timeSelection,
+        geoSelection: currentGeo && availableGeosForSelectedTime.includes(currentGeo)
+            ? [currentGeo]
+            : (availableGeosForSelectedTime[0]
+                ? [availableGeosForSelectedTime[0]]
+                : (availableGeos[0] ? [availableGeos[0]] : []))
+    };
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// table filter sync + summary helpers
+// ----------------------------------------------------------------------- //
+
+// Syncs table filters back to the current map dropdown selections.
+const syncTableFiltersToMapSelection = (force = false) => {
+
+    // Sync requests can arrive before a new indicator has finished building tableData.
+    if (!DE.table.tableData || !DE.table.tableData.length) {
+        return false;
+    }
+
+    const { timeSelection, geoSelection } = getCurrentMapTableFilters(DE.table.tableData);
+    let didChange = false;
+
+    // Respect manual overrides unless the caller explicitly forces a full resync.
+    if (force || !DE.table.tableTimeFilterIsManual) {
+        const sameTimeSelection = DE.table.selectedTableTimes.length === timeSelection.length &&
+            DE.table.selectedTableTimes.every((time, index) => time === timeSelection[index]);
+
+        if (!sameTimeSelection) {
+            DE.table.selectedTableTimes = timeSelection;
+            didChange = true;
+        }
+
+        DE.table.tableTimeFilterIsManual = false;
+    }
+
+    // Geography sync follows the same rule so users can customize one dimension independently.
+    if (force || !DE.table.tableGeoFilterIsManual) {
+        const sameGeoSelection = DE.table.selectedTableGeography.length === geoSelection.length &&
+            DE.table.selectedTableGeography.every((geo, index) => geo === geoSelection[index]);
+
+        if (!sameGeoSelection) {
+            DE.table.selectedTableGeography = geoSelection;
+            didChange = true;
+        }
+
+        DE.table.tableGeoFilterIsManual = false;
+    }
+
+    return didChange;
+
+};
+
+
+// Summarizes the current table filter state in the collapsed toggle button.
+const updateTableFilterSummary = (availableTimes, availableGeos) => {
+
+    const summary = document.getElementById('tableFilterSummary');
+
+    // The collapsed button gets a terse summary instead of listing every checked option.
+    if (!summary) {
+        return;
+    }
+
+    const timeSummary = !DE.table.selectedTableTimes.length
+        ? 'No time periods'
+        : DE.table.selectedTableTimes.length === availableTimes.length
+            ? 'All time periods'
+            : DE.table.selectedTableTimes.length === 1
+                ? DE.table.selectedTableTimes[0]
+                : `${DE.table.selectedTableTimes.length} time periods`;
+
+    const geoSummary = !DE.table.selectedTableGeography.length
+        ? 'No geographies'
+        : DE.table.selectedTableGeography.length === availableGeos.length
+            ? 'All geographies'
+            : DE.table.selectedTableGeography.length === 1
+                ? DE.table.selectedTableGeography[0]
+                : `${DE.table.selectedTableGeography.length} geographies`;
+
+    const syncState = DE.table.tableTimeFilterIsManual || DE.table.tableGeoFilterIsManual ? 'Custom' : 'Synced';
+
+    summary.textContent = `${timeSummary} | ${geoSummary} | ${syncState}`;
+
+};
+
+
+// Updates the notes block to reflect only the currently filtered rows.
+const updateTableReliabilityNotes = (rows) => {
+
+    // `.filter(Boolean)` drops blank/null/undefined notes; equivalent to the prior
+    // `!d == ""` coercion (kept working by accident, but unreadable) — see deep-audit §6.
+    const tableUnreliability = [...new Set(rows.map(d => d.Note))].filter(Boolean);
+
+    const tableUnreliabilityEl = document.getElementById('table-unreliability');
+
+    renderUnreliabilityNotes(tableUnreliabilityEl, tableUnreliability);
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// DataTables search helpers
+// ----------------------------------------------------------------------- //
+
+// Keeps the visible DataTables search box aligned with the Area column-search state.
+const syncTableAreaSearchInput = () => {
+
+    const filterInput = $('#tableID_filter input[type="search"]');
+
+    // DataTables redraws can replace the search box DOM, so always resolve it fresh.
+    if (!filterInput.length) {
+        return;
+    }
+
+    filterInput.val(DE.table.tableAreaSearchValue);
+    filterInput.data('areaOnlySearchValue', DE.table.tableAreaSearchValue);
+
+};
+
+
+// Applies the Area-only search term to DataTables, optionally without drawing immediately.
+const setTableAreaSearch = (dataTable, nextValue, shouldDraw = true) => {
+
+    DE.table.tableAreaSearchValue = nextValue || '';
+
+    // Mirror the shared state back into the visible input before changing DataTables internals.
+    syncTableAreaSearchInput();
+
+    // Clear DataTables' global search so only the Area column-specific search stays active.
+    dataTable.search('');
+    dataTable.column(8).search(DE.table.tableAreaSearchValue);
+
+    // Some callers batch search updates and will trigger the draw themselves.
+    if (shouldDraw) {
+        dataTable.draw();
+    }
+
+};
+
+
+// Clears the Area-only search so dropdown-driven redraws do not keep a stale hidden filter.
+const clearTableAreaSearch = () => {
+
+    DE.table.tableAreaSearchValue = '';
+
+    // Only touch DataTables internals after the lazy table has actually been created.
+    if ($.fn.dataTable.isDataTable('#tableID')) {
+        const dataTable = $('#tableID').DataTable();
+        dataTable.search('');
+        dataTable.column(8).search('');
+    }
+
+    syncTableAreaSearchInput();
+
+};
+
+
+// Locks the scroll body to a consistent height so redraws do not keep widening the wrapper.
+const lockSummaryTableScrollBodyHeight = () => {
+
+    const scrollBody = document.querySelector('#tableID_wrapper .dataTables_scrollBody');
+
+    // Bail out when DataTables has not created its wrapper yet.
+    if (!scrollBody) {
+        return;
+    }
+
+    // A real fixed height keeps the scrollbar footprint stable across redraws and filter changes.
+    scrollBody.style.height = '500px';
+    scrollBody.style.minHeight = '500px';
+    scrollBody.style.maxHeight = '500px';
+    scrollBody.style.overflowY = 'scroll';
+
+};
+
+
+// Rebinds the built-in DataTables search box so it searches only the Area column.
+const bindAreaOnlySearch = (dataTable) => {
+
+    const filterInput = $('#tableID_filter input[type="search"]');
+
+    if (!filterInput.length) {
+        return;
+    }
+
+    // Replace DataTables' default global-search handler with our Area-only behavior.
+    filterInput.off('.DT');
+
+    filterInput.on('input.DT search.DT', function () {
+        const nextValue = this.value || '';
+
+        // Skip redundant redraws when the browser fires multiple search-related events.
+        if ($(this).data('areaOnlySearchValue') === nextValue) {
+            return;
+        }
+
+        // Scope the shared DataTables search box to Area only.
+        setTableAreaSearch(dataTable, nextValue);
+    });
+
+    syncTableAreaSearchInput();
+
+};
+
+
+// Applies the current table filters through DataTables' native search API.
+const applyTableFilters = (rows) => {
+
+    // Checkbox and sync actions can fire before the table tab has been opened for the first time.
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    const dataTable = $('#tableID').DataTable();
+    const filteredRows = getSelectedTableRows(rows);
+    const { timeSearch, geoSearch } = getTableColumnSearchValues(rows);
+
+    updateTableReliabilityNotes(filteredRows);
+
+    // Write filter regexes into the hidden time and geography columns, then let one draw refresh the table.
+    dataTable.column(0).search(timeSearch, true, false);
+    dataTable.column(1).search(geoSearch, true, false);
+    dataTable.draw();
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// filter-control rendering
+// ----------------------------------------------------------------------- //
+
+// Renders table checkbox controls and wires them to re-rendering.
+const renderTableFilterControls = (rows) => {
+
+    // ----- resolve DOM holders, bail if markup absent ----- //
+
+    const timeHolder = document.getElementById('tableTimeCheckboxes');
+    const geoHolder = document.getElementById('tableGeoCheckboxes');
+
+    // The control panel may be absent on partial templates or before the tab markup loads.
+    if (!timeHolder || !geoHolder) {
+        return;
+    }
+
+    // ----- compute available time and geography option sets ----- //
+
+    const { availableTimes, availableGeos } = getTableFilterOptions(rows);
+    const filteredTableTimeData = DE.table.selectedTableTimes.length
+        ? rows.filter(d => DE.table.selectedTableTimes.includes(d.TimePeriod))
+        : [];
+
+    // Geography availability depends on the currently checked time periods.
+    const dataGeos = DE.table.selectedTableTimes.length
+        ? [...new Set(filteredTableTimeData.map(d => prettifyGeoType(d.GeoType)))]
+        : availableGeos;
+
+    // ----- prune stale selections, fall back to a valid geography ----- //
+
+    // Keep only valid selections when indicator data changes.
+    DE.table.selectedTableTimes = DE.table.selectedTableTimes.filter(time => availableTimes.includes(time));
+    DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => availableGeos.includes(geo));
+
+    // Match the old explorer behavior by muting geography options that are unavailable
+    // for the currently selected time period(s).
+    if (DE.table.selectedTableTimes.length) {
+        DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => dataGeos.includes(geo));
+
+        // - - - fall back to a valid geography when the synced value is unavailable - - - //
+
+        // Keep synced table filters on a valid geography when the current map geo
+        // is unavailable for the selected table time period.
+        if (!DE.table.selectedTableGeography.length && dataGeos.length && !DE.table.tableGeoFilterIsManual) {
+            DE.table.selectedTableGeography = [DE.state.GeoType && dataGeos.includes(DE.state.GeoType) ? DE.state.GeoType : dataGeos[0]];
         }
     }
 
+    // Rebuilds a checkbox list for one filter dimension, marking checked/disabled state and wiring change events back to the caller.
+    const renderCheckboxes = (holder, options, selectedValues, checkboxClass, name, onChange, isDisabled = () => false) => {
 
-    // ----------------------------------------------------------------------- //
-    // only render table if a geography is checked
-    // ----------------------------------------------------------------------- //
+        // Rebuild the whole checkbox block so checked and disabled states stay in sync.
+        holder.innerHTML = '';
 
-    let filteredTableData;
+        options.forEach(option => {
+            const label = document.createElement('label');
+            const unavailable = isDisabled(option);
 
-    if (selectedTableGeography.length > 0) {
-        
-        filteredTableData = 
-            filteredTableTimeData
-            .filter(d => selectedTableGeography.includes(prettifyGeoType(d.GeoType)))
+            // Leave unavailable options visible so users can see why a geography disappeared for this time slice.
+            label.className = `btn btn-light dropdown-item text-left ${checkboxClass}`;
+            label.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
 
-    } else {
-        
-        // if no selected geo, then set table to blank and return early
+            if (unavailable) {
+                label.classList.add('disabled');
+            }
 
-        document.getElementById('summary-table').innerHTML = '';
+            const input = document.createElement('input');
+            input.className = 'largerCheckbox';
+            input.type = 'checkbox';
+            input.name = name;
+            input.value = option;
+            input.checked = selectedValues.includes(option);
+            input.disabled = unavailable;
 
-        return;
-    }
-    
-    // if selected geos not in data, then set table to blank and return early
+            input.addEventListener('change', (event) => {
+                // Bubble one normalized value + checked pair back to the caller's filter logic.
+                onChange(event.target.value, event.target.checked);
+            });
 
-    if (filteredTableData.length === 0) {
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(` ${option}`));
+            holder.appendChild(label);
+        });
 
-        document.getElementById('summary-table').innerHTML = '';
-        
-        return;
-    }
+    };
 
-    // console.log("filteredTableData", filteredTableData);
-        
-    // ----------------------------------------------------------------------- //
-    // get unique unreliability notes (dropping empty)
-    // ----------------------------------------------------------------------- //
+    // ----- render time checkboxes ----- //
 
-    const table_unreliability = [...new Set(filteredTableData.map(d => d.Note))].filter(d => !d == "");
+    renderCheckboxes(timeHolder, availableTimes, DE.table.selectedTableTimes, 'checkbox-time', 'table-time', (value, checked) => {
+        const nextTimes = new Set(DE.table.selectedTableTimes);
 
-    document.querySelector("#table-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> " // blank to start
-    document.getElementById("table-unreliability").classList.add('hide') // blank to start
+        if (checked) {
+            nextTimes.add(value);
+        } else {
+            nextTimes.delete(value);
+        }
 
-
-    table_unreliability.forEach(element => {
-        
-        document.querySelector("#table-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
-        document.getElementById('table-unreliability').classList.remove('hide')
-        
+        // Preserve display order from availableTimes instead of checkbox click order.
+        DE.table.selectedTableTimes = availableTimes.filter(time => nextTimes.has(time));
+        DE.table.tableTimeFilterIsManual = true;
+        trackDataExplorerOption('table_time');
+        renderTableFilterControls(rows);
+        applyTableFilters(rows);
     });
-    
-    // ----------------------------------------------------------------------- //
-    // create html table for DataTables
-    // ----------------------------------------------------------------------- //
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // table column alignment
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- render geography checkboxes ----- //
+
+    renderCheckboxes(
+        geoHolder,
+        availableGeos,
+        DE.table.selectedTableGeography,
+        'checkbox-geo',
+        'table-geo',
+        (value, checked) => {
+            if (checked) {
+                if (!DE.table.selectedTableGeography.includes(value)) {
+                    DE.table.selectedTableGeography.push(value);
+                }
+            } else {
+                DE.table.selectedTableGeography = DE.table.selectedTableGeography.filter(geo => geo !== value);
+            }
+
+            // Re-sort to canonical geography order before redrawing controls and rows.
+            DE.table.selectedTableGeography = availableGeos.filter(geo => DE.table.selectedTableGeography.includes(geo));
+            DE.table.tableGeoFilterIsManual = true;
+            trackDataExplorerOption('table_geo');
+            renderTableFilterControls(rows);
+            applyTableFilters(rows);
+        },
+        (option) => DE.table.selectedTableTimes.length > 0 && !dataGeos.includes(option)
+    );
+
+    // ----- wire sync-to-map button, refresh filter summary ----- //
+
+    const syncButton = document.getElementById('tableFilterSyncButton');
+
+    if (syncButton) {
+        syncButton.onclick = () => {
+            // Force both dimensions back into map-following mode in one click.
+            syncTableFiltersToMapSelection(true);
+            trackDataExplorerOption('table_sync');
+            renderTableFilterControls(rows);
+            applyTableFilters(rows);
+        };
+    }
+
+    updateTableFilterSummary(availableTimes, availableGeos);
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// table rendering
+// ----------------------------------------------------------------------- //
+
+// Builds the summary table HTML and activates the DataTables wrapper around it.
+const renderTable = (tableData) => {
+
+    debugLog("** renderTable");
+
+    // ----- destroy existing table instance ----- //
+
+    // Rebuilding the table means throwing away the old DataTable instance and its injected wrapper DOM.
+    if ($.fn.dataTable.isDataTable('#tableID')) {
+        $('#tableID').DataTable().destroy();
+    }
+
+    DE.table.tableNeedsRender = false;
+
+    // ----- prep data (table filters) ----- //
+
+    renderTableFilterControls(tableData);
+
+    updateTableReliabilityNotes(getSelectedTableRows(tableData));
+
+    // ----- table column alignment (unchanged) ----- //
 
     const measureAlignMap = new Map();
-    const measures = [...new Set(filteredTableData.map(d => d.MeasurementDisplay))];
-    
+    const measures = [...new Set(tableData.map(d => d.MeasurementDisplay))];
+
+    // Default all value columns to right alignment after the Arquero pivot creates the final shape.
     measures.forEach(m => measureAlignMap.set(m, "r"));
-
     const measureAlignObj = Object.fromEntries(measureAlignMap);
-    
-    
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // pivot data so measures are columns
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-    const filteredTableAqData = aq.from(filteredTableData)
-        .groupby("TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
+    // ----- pivot data (UNCHANGED) ----- //
+
+    const filteredTableAqData = aq.from(tableData)
+        .derive({ GeoTypePretty: aq.escape(d => prettifyGeoType(d.GeoType)) })
+        .groupby("TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography")
         .pivot("MeasurementDisplay", "DisplayCI", {sort: false})
+        // Build a grouped Area label that optionally appends borough context for nested geographies.
         .derive({
-            Area: aq.escape(d => {  // create Area field: Borough + Neighborhood; xx and yy are used to replace later with HTML
+            Area: aq.escape(d => {
+                // Append borough context only for non-borough rows that have it.
                 if (d.Borough && d.GeoTypeDesc != 'Borough') {
                     return `${d.Geography} xx ${d.Borough} yy`;
                 } else {
@@ -145,118 +527,96 @@ const renderTable = () => {
             })
         })
         .relocate([
-                // these columns always exist, and we always want to hide all except the last one, so let's put them first, respecting the original relative order
-                "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
+            "TimePeriod", "GeoTypePretty", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
-                // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
-                aq.matches(/everyday/i),
-                aq.matches(/sometimes/i),
-                aq.matches(/never/i),
-                aq.matches(/^Average annual number$/),
-                aq.matches(/^Average annual number \(Males\)$/),
-                aq.matches("Average annual number"),
-                aq.matches("Number tested"),
-                aq.matches(/^Number$/),
-                aq.matches("Number (total)"),
-                aq.matches("Number (3.5+"),
-                aq.matches(/number/i),
-                aq.matches("Density"),
-                aq.matches(/total/i),
-                aq.matches(/count/i),
-                aq.matches(/mean/i),
-                aq.matches(/^Rate$/),
-                aq.matches("Estimated annual rate"),
-                aq.matches("Rate per 100,000"),
-                aq.matches(/^Age-adjusted rate per 100,000$/),
-                aq.matches("Age-adjusted rate (Males)"),
-                aq.matches("Age-adjusted rate"),
-                aq.matches("Average annual rate"),
-                aq.matches("Rate (3.5+"),
-                aq.matches(/rate/i),
-                aq.matches(/^Percent$/),
-                aq.matches("Age-adjusted percent"),
-                aq.matches("General"),
-                aq.matches("Sensitive"),
-                aq.matches(/percent/i),
-                aq.matches(/density/i),
-                aq.matches(/average/i),
-                aq.matches("Solid"),
-                aq.matches("Liquid")
-            ], 
-            { before: 0 }
-        )
-    
-    // console.log("filteredTableAqData [renderTable]");
-    // filteredTableAqData.print({limit: 20});
-    
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // export Arquero table to HTML
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    
+            aq.matches(/everyday/i),
+            aq.matches(/sometimes/i),
+            aq.matches(/never/i),
+            aq.matches(/^Average annual number$/),
+            aq.matches(/^Average annual number \(Males\)$/),
+            aq.matches("Average annual number"),
+            aq.matches("Number tested"),
+            aq.matches(/^Number$/),
+            aq.matches("Number (total)"),
+            aq.matches("Number (3.5+"),
+            aq.matches(/number/i),
+            aq.matches("Density"),
+            aq.matches(/total/i),
+            aq.matches(/count/i),
+            aq.matches(/mean/i),
+            aq.matches(/^Rate$/),
+            aq.matches("Estimated annual rate"),
+            aq.matches("Rate per 100,000"),
+            aq.matches(/^Age-adjusted rate per 100,000$/),
+            aq.matches("Age-adjusted rate (Males)"),
+            aq.matches("Age-adjusted rate"),
+            aq.matches("Average annual rate"),
+            aq.matches("Rate (3.5+"),
+            aq.matches(/rate/i),
+            aq.matches(/^Percent$/),
+            aq.matches("Age-adjusted percent"),
+            aq.matches("General"),
+            aq.matches("Sensitive"),
+            aq.matches(/percent/i),
+            aq.matches(/density/i),
+            aq.matches(/average/i),
+            aq.matches("Solid"),
+            aq.matches("Liquid")
+        ], 
+        { before: 0 }
+        );
+
+    // ----- render HTML table (unchanged) ----- //
+
     document.getElementById('summary-table').innerHTML = 
         filteredTableAqData.toHTML({
             limit: Infinity,
-            align: measureAlignObj, 
-            null: () => "-" // use this to replace undefined
+            align: measureAlignObj,
+            null: () => "-"
         });
-    
-    // this gives the table an ID (table code generated by Arquero)
-    
-    document.querySelector('#summary-table table').id = "tableID"
-    
-    // set some display properties 
-    document.querySelector('#summary-table table').className = "cell-border stripe"
-    document.querySelector('#summary-table table').width = "100%"
-    
 
-    // ----------------------------------------------------------------------- //
-    // specify DataTable
-    // ----------------------------------------------------------------------- //
+    // DataTables expects a concrete table element in the DOM before initialization.
+    document.querySelector('#summary-table table').id = "tableID";
+    document.querySelector('#summary-table table').className = "cell-border stripe";
+    document.querySelector('#summary-table table').width = "100%";
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // set some properties
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // ----- DataTables setup ----- //
+
+    // - - - set some properties - - - //
 
     // get the names of columns
 
     const dataColumnNames = filteredTableAqData.columnNames();
 
     // get the number of columns
-
     const dataColumnsCount = filteredTableAqData.numCols();
+    const { timeSearch, geoSearch } = getTableColumnSearchValues(tableData);
 
-    // console.log("dataColumnsCount:", dataColumnsCount);
-
-    // create array with indexes of all columns except the search col, to set as "searchable = false"
-
-    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i).filter(x => x != 7);
+    const notSearchCols = Array.from({length: dataColumnsCount}, (_, i) => i)
+        .filter(x => ![0, 1, 8].includes(x));
 
     // default sort: when grouped by borough, GeoID keeps boroughs in a sensible
     //  order; when ungrouped, sort areas alphabetically so the flat list is useful
     //  (the user can still re-sort any column by clicking its header)
-    const sortBy = groupTableByBorough ? 2 : 7 // 2 = GeoID, 7 = Area
-    const sortName = dataColumnNames[sortBy]
+    const sortBy = DE.table.groupByBorough ? 3 : 8;  // 3 = GeoID, 8 = Area
+    const sortName = dataColumnNames[sortBy];
 
-    // define which column indexes define which groups
+    // group/borough label columns (indexes into the pivoted, relocated table)
+    const groupColumnTime = 0;
+    const groupColumnGeo = 2;  // GeoTypeDesc
+    const groupColumnBoro = 6; // Borough
 
-    const groupColumnTime = 0
-    const groupColumnGeo = 1;
-    const groupColumnBoro = 5;  // Borough
+    // ----- hierarchical group keys ----- //
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // hierarchical group keys
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    // keys are fully-qualified (they include their parents) so that, e.g., the
+    // Keys are fully-qualified (they include their parents) so that, e.g., the
     //  same borough appearing under different geo types / time periods stays a
-    //  distinct group. They're used both to insert group header rows and to
-    //  let the collapse/expand handler find a header's descendant rows.
+    //  distinct group. They're used both to insert group header rows and to let
+    //  the collapse/expand handler find a header's descendant rows.
 
-    // borough is only a meaningful sub-group for the smaller geo types: not
+    // Borough is only a meaningful sub-group for the smaller geo types: not
     //  Citywide (no borough) and not Borough itself (the borough *is* the row).
-    //  Null boroughs render as "-" in the table, so guard against that too.
-    //  This mirrors the condition used to build the "Area" column above.
-
+    //  Null boroughs render as "-", so guard against that too. Mirrors the
+    //  condition used to build the "Area" column above.
     const hasBorough = (geoTypeDesc, borough) =>
         Boolean(borough) && borough !== '-' && geoTypeDesc !== 'Borough';
 
@@ -264,75 +624,92 @@ const renderTable = () => {
     const geoKey  = (time, geoTypeDesc) => `${time}||${geoTypeDesc}`;
     const boroKey = (time, geoTypeDesc, borough) => `${time}||${geoTypeDesc}||${borough}`;
 
-    // borough grouping is optional. When on, BoroID is added to the fixed order so
-    //  boroughs stay contiguous (required for grouping). When off, we drop it so the
-    //  user can sort columns freely across boroughs within a geo type.
+    // Borough grouping is optional. When on, BoroID joins the fixed order so
+    //  boroughs stay contiguous (required for grouping). When off we drop it so
+    //  the user can sort columns freely across boroughs within a geo type.
+    const tableOrderFixed = DE.table.groupByBorough
+        ? [[0, 'desc'], [4, 'asc'], [5, 'asc']]  // TimePeriod, GeoRank, BoroID
+        : [[0, 'desc'], [4, 'asc']];             // TimePeriod, GeoRank
 
-    const tableOrderFixed = groupTableByBorough
-        ? [[ 0, 'desc' ], [ 3, 'asc' ], [ 4, 'asc' ]]  // TimePeriod, GeoRank, BoroID
-        : [[ 0, 'desc' ], [ 3, 'asc' ]];               // TimePeriod, GeoRank
+    // - - - initialize the table - - - //
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // initialize the table
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-
-    $('#tableID').DataTable({
+    const dataTable = $('#tableID').DataTable({
         scrollY: 500,
         scrollX: true,
-        scrollCollapse: true,
+        scrollCollapse: false,
+        autoWidth: false,
+        // Seed the initial filters here so the first draw starts narrowed instead of drawing everything first.
+        searchCols: [
+            { search: timeSearch, regex: true, smart: false },
+            { search: geoSearch, regex: true, smart: false },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        ],
         searching: true,
         paging: false,
-        select: true,
         buttons: [
             {
                 extend: 'csvHtml5',
                 name: "thisView",
-                filename: 'NYC EH Data Portal - ' + indicatorName + " (filtered)"
+                filename: 'NYC EH Data Portal - ' + DE.indicator.indicatorName + " (filtered)"
             }
         ],
         bInfo: false,
-        fixedHeader: true,
-        order: [[sortBy, 'asc']],   // Initial sort by geoID
-        orderFixed: tableOrderFixed, // TimePeriod, GeoRank (+ BoroID when grouping by borough)
+        // Keep time groups together, then sort rows within each group by geography rank
+        //  (+ BoroID when grouping by borough); sortBy is the initial user-sortable column.
+        order: [[sortBy, 'asc']],
+        orderFixed: tableOrderFixed,
         columnDefs: [
-            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6] },
+            // Hide helper columns that power filtering, grouping, and sort order.
+            { visible: false, targets: [0, 1, 2, 3, 4, 5, 6, 7] },
             { searchable: false, targets: [...notSearchCols] },
-            { type: 'natural', targets: ['_all'] }, // enforces natural sorting - which handles number/string combos
+            { type: 'natural', targets: ['_all'] },
             {
-                targets: 8, // replace with correct index
-                render: function (data, type, row) {
+                targets: 9,
+                // Parses the numeric-value column to a sortable float for sort/type requests, leaving the display text untouched.
+                render: function (data, type) {
+                    // Strip formatting so numeric sorts use the raw number rather than display text.
                     if (type === 'sort' || type === 'type') {
-                        // Remove commas and try to parse as float
                         const cleaned = data.replace(/,/g, '');
                         const num = parseFloat(cleaned);
                         return isNaN(num) ? -Infinity : num;
                     }
-                    return data; // For display and filtering, return original
+                    return data;
                 }
             },
             {
-                targets: 7, // Adjust to the column index where you need formatting
-                render: function (data, type, row) {
+                targets: 8,
+                // Replaces the xx/yy placeholder delimiters in the Area column with a styled line break for display only.
+                render: function (data, type) {
+                    // Inject line breaks only for display mode so sorting/searching sees plain text.
                     if (type === 'display') {
                         return data.replace(/xx/g, '<br><span style="font-size:.65rem; color: #434343;">')
                                    .replace(/yy/g, '</span>');
                     }
                     return data;
                 }
-            },
-
+            }
         ],
         language: {
-            search: "Find a neighborhood:"  // Change the search box prompt text
+            search: "Find a neighborhood:"
         },
+        // The table body and filter input are the only visible chrome we need here.
         dom: 'rt<"bottom"flp>',
-        createdRow: function ( row, data, index ) {
-            const time        = data[0];
-            const GeoTypeDesc = data[1];
-            const borough     = data[5];
+        // Stamps ancestry data-* attributes on each row at build time so drawCallback
+        //  can detect group boundaries and the toggle handler can find descendants later.
+        createdRow: function (row, data) {
+            const time = data[0];
+            const GeoTypeDesc = data[2];
+            const borough = data[6];
+            // Ancestry attributes let a group header find (and toggle) all of its
+            //  descendant rows: nested group headers + data rows.
             if (time && GeoTypeDesc) {
-                // ancestry attributes let a group header find (and toggle) all of
-                //  its descendant rows: nested group headers + data rows
                 row.setAttribute(`data-time`, timeKey(time));
                 row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
                 if (hasBorough(GeoTypeDesc, borough)) {
@@ -340,28 +717,31 @@ const renderTable = () => {
                 }
             }
         },
-        drawCallback: function ( settings ) {
-            const api = this.api();
-            const data = api.rows( {page:'current'} ).data()
-            const rows = api.rows( {page:'current'} ).nodes();
-            const visibleColumnsCount =  dataColumnsCount - 7;
+        // Rebuilds the collapsible group-header rows and resyncs the search box after each draw, since DataTables replaces the row DOM every time.
+        drawCallback: function () {
 
-            // insert a group header row for one level of the hierarchy.
+            const api = this.api();
+            // Remove previously injected group rows before rebuilding them for this draw.
+            $(api.table().body()).find('tr.group').remove();
+            const data = api.rows({page:'current'}).data();
+            const rows = api.rows({page:'current'}).nodes();
+            const visibleColumnsCount = dataColumnsCount - 8;
+
+            // Insert a group header row for one level of the hierarchy.
             //  - keyFn:   builds the fully-qualified key for a row at this level
             //  - attrsFn: builds the ancestry data-* attributes for the header,
             //             matching those put on descendant rows in createdRow
-            //  - skipFn:  (optional) true for rows that get no header at this
-            //             level (e.g. boroughs for Citywide / Borough geo types)
-
+            //  - skipFn:  (optional) true for rows that get no header at this level
+            //             (e.g. boroughs for Citywide / Borough geo types)
             const createGroupRow = (groupColumn, lvl, keyFn, attrsFn, skipFn) => {
 
                 let last = null;
 
-                api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                api.column(groupColumn, {page:'current'}).data().each(function (group, i) {
 
                     const time        = data[i][0];
-                    const geoTypeDesc = data[i][1];
-                    const borough     = data[i][5];
+                    const geoTypeDesc = data[i][2];
+                    const borough     = data[i][6];
 
                     if (skipFn && skipFn(geoTypeDesc, borough)) {
                         return;
@@ -369,18 +749,17 @@ const renderTable = () => {
 
                     const key = keyFn(time, geoTypeDesc, borough);
 
-                    if ( last !== key ) {
+                    // Start a new group header each time the fully-qualified key changes.
+                    if (last !== key) {
 
-                        $(rows)
-                            .eq( i )
-                            .before(
-                                `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
-                            );
+                        $(rows).eq(i).before(
+                            `<tr class="group" data-group-level="${lvl}" ${attrsFn(time, geoTypeDesc, borough)}><td colspan="${visibleColumnsCount}" data-group-level="${lvl}"> ${group}</td></tr>`
+                        );
 
                         last = key;
                     }
                 });
-            }
+            };
 
             // level 0: time period
             createGroupRow(
@@ -396,8 +775,8 @@ const renderTable = () => {
                 (time, geoTypeDesc) => `data-time="${time}" data-geo="${geoKey(time, geoTypeDesc)}"`
             );
 
-            // level 2: borough (only for the smaller geo types, and only when the borough grouping toggle is on)
-            if (groupTableByBorough) {
+            // level 2: borough (only for the smaller geo types, and only when the toggle is on)
+            if (DE.table.groupByBorough) {
                 createGroupRow(
                     groupColumnBoro, 2,
                     (time, geoTypeDesc, borough) => boroKey(time, geoTypeDesc, borough),
@@ -406,42 +785,81 @@ const renderTable = () => {
                 );
             }
 
-            handleToggle();
+            // Group rows are rebuilt every draw, so the search-box text needs to be resynced here.
+            syncTableAreaSearchInput();
         }
-    })
+    });
 
-}
+    // ----- lock scroll height + bind group-toggle handler + rebind search ----- //
+
+    lockSummaryTableScrollBodyHeight();
+
+    // Bind the delegated group-toggle handler once per table init, not once per draw: it's
+    // delegated from `body`, so it already covers the group rows drawCallback recreates on
+    // every redraw without needing to be rebound.
+    bindTableGroupToggles();
+
+    // Rebind the search box after init because DataTables has now created its wrapper DOM.
+    bindAreaOnlySearch(dataTable);
+};
 
 
 // ----------------------------------------------------------------------- //
-// handler functions for summary table
+// table data download
 // ----------------------------------------------------------------------- //
 
-const handleToggle = () => {
+// Triggers the table's configured CSV export via the Buttons API, since the CSV button is not present in the table's dom-string chrome.
+const downloadTableData = () => {
 
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    $('#tableID').DataTable().button(0).trigger();
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// grouped-row toggles
+// ----------------------------------------------------------------------- //
+
+// Binds click handlers that expand and collapse grouped summary-table rows.
+const bindTableGroupToggles = () => {
+
+    // ----- unbind stale delegated handler ----- //
+
+    // Delegate from body because drawCallback recreates the synthetic group rows on every redraw.
     $('body').off('click', '#summary-table tr.group td');
+
+    // ----- bind new delegated click handler ----- //
+
     $('body').on('click', '#summary-table tr.group td', (e) => {
+
+        // - - - resolve clicked header + its level - - - //
 
         const td    = $(e.currentTarget);
         const tr    = td.closest('tr.group');
         const level = parseInt(tr.attr('data-group-level'), 10);
 
-        // descendants share this header's value on one attribute:
+        // Descendants share this header's value on one attribute:
         //  level 0 (time) -> data-time, level 1 (geo) -> data-geo, level 2 (boro) -> data-boro
-
         const descendantAttr = level === 0 ? 'data-time'
                              : level === 1 ? 'data-geo'
                              : 'data-boro';
 
         const key = tr.attr(descendantAttr);
 
-        // every row carrying this key (data rows + nested group headers),
-        //  excluding the clicked header itself
+        // - - - collect this header's descendants - - - //
 
+        // Every row carrying this key (data rows + nested group headers),
+        //  excluding the clicked header itself.
         const descendants = $('#summary-table tr[' + descendantAttr + ']')
             .filter(function () {
                 return this.getAttribute(descendantAttr) === key && this !== tr[0];
             });
+
+        // - - - expand / collapse - - - //
 
         if (td.hasClass('hidden')) {
 
@@ -459,4 +877,4 @@ const handleToggle = () => {
         }
 
     });
-}
+};

@@ -1,3 +1,5 @@
+<!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts scripts -->
+<!-- docs-check verified: eda7c256c5+4a260ea2a1 2026-08-18 -->
 # CLAUDE.md
 
 Guidance for Claude Code (claude.ai/code) when working in this repository.
@@ -40,11 +42,11 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 32 pages, ~3 min
+npm run smoke                                          # 34 pages, ~3 min
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
-`scripts/smoke-pages.mjs` loads one page per template kind under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only automated check in the repo, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
+`scripts/smoke-pages.mjs` loads one page per template kind under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
 
 Three things to know before trusting a result:
 
@@ -53,6 +55,16 @@ Three things to know before trusting a result:
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+
+### The other three checks
+
+The Data Explorer branch adds three more npm scripts, all run from the repo root:
+
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. Those files share one global scope, so `eslint.config.mjs` derives their shared globals at config-load time and `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is deliberately off — it false-positives on the cross-file global pattern.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` near the top. Audits and dated findings must **not** opt in — they cite old names on purpose. It also scans the root docs listed in its `ROOT_DOCS`, **this file among them**, so a path or identifier written here must be real and repo-root-relative.
+
+`smoke` and the characterization harness share `scripts/dev-server.mjs`, so the server rules above apply to both.
 
 ### Three ways a local check silently lies
 

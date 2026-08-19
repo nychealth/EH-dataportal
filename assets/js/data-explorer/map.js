@@ -2,649 +2,1004 @@
 // map.js
 // ======================================================================= //
 
+// Leaflet choropleth map: initialization, data join, color scale, and tooltips
+
+// console.log(">> map.js");
+
+// ----------------------------------------------------------------------- //
+// module-level state
+// ----------------------------------------------------------------------- //
+
+let currentMap = null;
+let currentGeojsonLayer = null;
+let currentBubbleMarkers = [];
+
+// Display Parameters
+let isPercent;
+let displayType;
+
+// ----------------------------------------------------------------------- //
+// bar-chart interop contract
+// ----------------------------------------------------------------------- //
+
+// bar.js drives map highlighting through this object; the reverse direction goes through
+// window.myVegaView. It is created once, here, and always exists — callers gate on `ready`,
+// never on the object itself, and never on which map type is behind it. Both renderers
+// attach the same two functions, so the bar chart holds no choropleth-vs-bubble knowledge.
+
+const NO_MAP_INTEROP = {
+    ready: false,
+    highlight: () => {},    // highlight the geography for this GeoID + fill the legend hover panel
+    reset: () => {}         // clear the tracked highlight + reset the legend hover panel
+};
+
+window.mapInterop = { ...NO_MAP_INTEROP };
+
+// Publishes a renderer's implementations, once its geometry is on the map.
+const attachMapInterop = ({ highlight, reset }) => {
+    Object.assign(window.mapInterop, { ready: true, highlight, reset });
+};
+
+// The reverse direction: pushes a geography into the bar chart's linked-highlight signal, or
+// null to clear it. No-op until the bar chart has published its Vega view, which is why every
+// map handler can call it unconditionally.
+const setBarSelection = (geoID) => {
+    if (!window.myVegaView) return;
+
+    window.myVegaView.signal("selectedGeo", geoID).run();
+};
+
+// Points the contract back at the no-ops. Called synchronously at the start of every render so
+// that a bar hover during the geometry fetch can't reach the outgoing map's discarded layers —
+// that used to silently no-op the highlight while still writing the previous geography's name
+// and value into the legend panel.
+const detachMapInterop = () => {
+    Object.assign(window.mapInterop, NO_MAP_INTEROP);
+};
+
+// ----------------------------------------------------------------------- //
+// base map initialization (fires immediately on script load)
+// ----------------------------------------------------------------------- //
+
+// Initialize the base tile layer early so it loads in the background
+
+// Creates the shared Leaflet base map once and reuses it across renders.
+const initBaseMap = () => {
+
+    // Skip re-initialization when the base Leaflet instance already exists.
+    if (currentMap) return; // already initialized
+
+    currentMap = L.map('map', {
+        zoomControl: false
+    }).setView([40.700142, -73.921546], 11);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        crossOrigin: true,
+        subdomains: 'abcd',
+        maxZoom: 11,
+        minZoom: 7
+    }).addTo(currentMap);
+
+    debugLog("* initBaseMap: tile layer ready");
+
+};
+
+// ----------------------------------------------------------------------- //
+// Clear existing bubbles from the map
+// ----------------------------------------------------------------------- //
+
+// Removes any bubble overlays left from number-map rendering.
+const clearBubbles = () => {
+    currentBubbleMarkers.forEach(marker => {
+        currentMap.removeLayer(marker);
+    });
+    currentBubbleMarkers = [];
+};
+
+// ----------------------------------------------------------------------- //
+// shared render helpers
+// ----------------------------------------------------------------------- //
+
+// Builds a plain object mapping each row's GeoID to the row itself, for O(1) lookup when joining data onto GeoJSON features.
+const createDataLookup = (data) => {
+    const dataLookup = {};
+    data.forEach(item => {
+        dataLookup[item.GeoID] = item;
+    });
+    return dataLookup;
+};
+
+// Reuses the base map instance while clearing old geometry overlays between renders.
+const resetMapForRender = () => {
+    detachMapInterop();
+
+    // The outgoing render's hover text describes geography that is about to disappear, and with
+    // the interop detached no mouseout can clear it — so clear it here, at the render boundary.
+    clearHoverUI();
+
+    // Likewise the unmapped-measure hint: it points at the tab bar on behalf of the outgoing
+    // render, so a move to a mapped measure must not leave it pointing at nothing.
+    clearVisBarHighlight();
+
+    // Restore the legend and the export control by default; only the unmapped renderer hides them,
+    // and it does so after calling this, so a mapped measure always gets them back.
+    setMapLegendVisible(true);
+    setSaveMapVisible(true);
+
+    clearBubbles();
+    initBaseMap();
+
+    // Popups opened with L.popup().openOn(map) — the citywide-only and unmapped messages — belong
+    // to no layer, so removing the geometry below does not take them with it. Without this, the
+    // outgoing render's message stays open on top of the incoming one: switching from an unmapped
+    // measure to a mapped one left "Data not mapped for this indicator" sitting over a working
+    // choropleth (observed on ?id=73, measures 138/326/327).
+    currentMap.closePopup();
+
+    if (currentGeojsonLayer) {
+        currentMap.removeLayer(currentGeojsonLayer);
+        currentGeojsonLayer = null;
+    }
+    return currentMap;
+};
+
+// Calculates legend bounds from the currently filtered map rows.
+const getMapStats = (data) => {
+    const values = data.map(d => d.Value).filter(v => v != null);
+    return {
+        values,
+        minValue: values.length ? Math.min(...values) : 0,
+        maxValue: values.length ? Math.max(...values) : 0
+    };
+};
+
+// Prints current legend endpoints using the active display units.
+const setMapLegendValues = (minValue, maxValue, digits) => {
+    const minFormatted = minValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+    const maxFormatted = maxValue.toLocaleString(undefined, {
+        minimumFractionDigits: digits,
+        maximumFractionDigits: digits
+    }) + displayType;
+
+    document.getElementById('minVal').innerHTML = minFormatted;
+    document.getElementById('maxVal').innerHTML = maxFormatted;
+
+    // Screen readers can't infer a data range from a color gradient; describe it in words instead.
+    document.getElementById('viridisRect').setAttribute('aria-label', `Legend: ${minFormatted} (low) to ${maxFormatted} (high)`);
+};
+
+// Uses a reversed Viridis scale so larger values remain visually darker.
+const createColorScale = (minValue, maxValue) => {
+    return d3.scaleSequential()
+        .domain([maxValue, minValue])
+        .interpolator(d3.interpolateViridis);
+};
+
+// Centralizes map value formatting for tooltips, legend hover, and popups.
+const formatMapValue = (value, digits) => {
+    return value != null
+        ? value.toLocaleString(undefined, {
+            minimumFractionDigits: digits,
+            maximumFractionDigits: digits
+        }) + displayType
+        : '—';
+};
+
+// Builds shared popup markup for both choropleth polygons and bubble markers.
+const createMapPopupContent = (properties, metadata, options = {}) => {
+    const requireGeoRank = options.requireGeoRank ?? true;
+    const valueDigits = options.valueDigits ?? 1;
+
+    if (requireGeoRank && !properties.GeoRank) {
+        return;
+    }
+
+    if (!requireGeoRank && properties.Value == null && !properties.GeoRank) {
+        return;
+    }
+
+    const note = properties.Note && properties.Note.length > 1
+        ? `<div class="popup-note">${properties.Note}</div>`
+        : '';
+
+    return `
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>${properties.Geography}</strong>
+            </div>
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${DE.indicator.indicator.IndicatorName}
+                        <div class="popup-period">(${properties.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${formatMapValue(properties.Value, valueDigits)}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            ${note}
+        </div>
+    `;
+};
+
+
+// Shows or hides the whole legend overlay — gradient, endpoints, tick and hover readout together.
+// The unmapped state has no values, no range and nothing to hover, and a gradient bar left on
+// screen with blank endpoints still implies a scale that doesn't exist.
+const setMapLegendVisible = (visible) => {
+
+    document.querySelector('.de-legend')?.classList.toggle('d-none', !visible);
+
+};
+
+// Shows or hides the Save map control. The export path (print-map.js) builds its own off-screen
+// Leaflet map from DE.map.filteredMapData, so on an unmapped measure it renders the citywide value
+// as a bubble with a viridis legend — mapped-looking output for data the screen has just said is
+// not mapped. Rather than teach that path a third render mode, withhold the control that can only
+// produce a misleading artifact. d-none, so it leaves the tab order too.
+const setSaveMapVisible = (visible) => {
+
+    document.getElementById('deSaveMapButton')?.classList.toggle('d-none', !visible);
+
+};
+
+// Resets the legend hover panel to its idle, no-selection state. Module-level rather than
+// per-render because it depends on nothing a render supplies, and resetMapForRender() needs
+// it before the incoming render's helpers exist.
+const clearHoverUI = () => {
+    document.getElementById('hoveredGeo').textContent = 'Hover for details';
+    document.getElementById('hoveredValue').textContent = '';
+    document.getElementById('hoveredUnits').textContent = '';
+    document.getElementById('legend-tick').style.display = 'none';
+};
+
+// Coordinates legend hover text and tick placement with hovered map features.
+const createHoverUIHelpers = (metadata, minValue, maxValue, digits) => {
+    // Converts a value into a 0-100 percent position along the legend's color range.
+    const calculatePercent = (x) => {
+        const range = maxValue - minValue;
+        if (range === 0 || x == null) {
+            return 0;
+        }
+        return 100 * (x - minValue) / range;
+    };
+
+    // Updates the legend hover panel and tick position to reflect the hovered feature.
+    const updateHoverUI = (props) => {
+        document.getElementById('hoveredGeo').textContent = props.Geography || 'Unknown';
+        document.getElementById('hoveredValue').textContent = formatMapValue(props.Value, digits);
+        document.getElementById('hoveredUnits').textContent = metadata[0].DisplayType.toLowerCase();
+
+        const legendTick = document.getElementById('legend-tick');
+
+        // Keep no-data hover text visible without drawing a stray tick on the legend.
+        if (props.Value == null) {
+            legendTick.style.display = 'none';
+            return;
+        }
+
+        legendTick.style.display = 'block';
+        document.querySelector('.viridis-tick').style.left = calculatePercent(props.Value) + '%';
+    };
+
+    return {
+        updateHoverUI,
+        calculatePercent
+    };
+};
+
+// Copies filtered indicator rows onto matching geometry features before rendering.
+// Both branches build a new properties object rather than writing into the existing one:
+// topojson.feature() hands back the *cached* topology's own properties objects (by
+// reference), so an in-place write would leak this render's data into every later render
+// of the same geotype. See loadMapGeojson below.
+const attachDataToGeojsonFeatures = (geojson, dataLookup) => {
+    geojson.features.forEach((feature) => {
+        const geoID = feature.properties.GEOCODE;
+        const matchedData = dataLookup[geoID];
+
+        feature.properties = matchedData
+            ? { ...feature.properties, ...matchedData }
+            : { ...feature.properties, dataValue: null };
+    });
+    return geojson;
+};
+
+// Fetches the geotype's TopoJSON, converts it to GeoJSON, and joins the filtered rows onto its features.
+// The fetch + JSON parse is cached per geotype for the session — the geometry never changes, while
+// this ran on every measure, time-period, and geography change. topojson.feature() still runs per
+// render, rebuilding the GeoJSON wrapper so each render gets its own features to attach data to.
+const loadMapGeojson = (topoFile, dataLookup) => {
+    return loadOnce(topoFile, () =>
+        fetch(`${data_repo}${data_branch}/geography/${topoFile}`).then(response => response.json())
+    )
+        .then(topology => {
+            const geojson = topojson.feature(topology, topology.objects.collection);
+            return attachDataToGeojsonFeatures(geojson, dataLookup);
+        });
+};
+
+// ----------------------------------------------------------------------- //
+// citywide-only handling
+// ----------------------------------------------------------------------- //
+
+// Builds popup markup specifically for citywide-only data
+
+const createCitywidePopupContent = (citywideData, metadata) => {
+    return `
+        <div class="popup-content">
+            <div class="popup-header">
+                <strong>NYC</strong>
+            </div>
+            <div class="popup-body">
+                <div class="popup-row">
+                    <div class="popup-indicator">
+                        ${DE.indicator.indicator.IndicatorName}
+                        <div class="popup-period">(${citywideData.TimePeriod || 'Unknown'})</div>
+                    </div>
+                    <div class="popup-value">
+                        <span class="value-number">${citywideData.Value}</span>
+                        <span class="value-unit">${metadata[0].DisplayType.toLowerCase()}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-note fs-xs">This dataset isn't available broken down by neighborhood.</div>
+        </div>
+    `;
+};
+
+// Roughly lower Manhattan — anchors the citywide popup over the middle of the city.
+const CITYWIDE_POPUP_LATLNG = [40.711409, -74.016813];
+
+// Sends the user to the trend tab, consuming the one-shot per-indicator-load flag.
+// A citywide-only indicator has nothing to show per neighborhood, so the map nudges the
+// user to the trend view — but only once per indicator load. Otherwise every measure/geo/
+// time re-render, and every re-click on the popup, would keep overriding whatever tab the
+// user actually picked. See citywideTrendDefaultPending in global.js.
+
+const switchToTrendTabOnce = () => {
+
+    if (!DE.map.citywideTrendDefaultPending) return;
+
+    DE.map.citywideTrendDefaultPending = false;
+
+    const element = document.getElementById('v-pills-trends-tab');
+
+    if (element) {
+        element.click();
+    } else {
+        console.warn("Trend tab element not found for citywide map click-through.");
+    }
+
+};
+
+// Opens the citywide popup at the city center and nudges the user to the trend tab.
+
+const handleCitywideOnly = (map, data, metadata) => {
+
+    L.popup()
+        .setLatLng(CITYWIDE_POPUP_LATLNG)
+        .setContent(createCitywidePopupContent(data[0], metadata))
+        .openOn(map);
+
+    switchToTrendTabOnce();
+
+};
+
+// ----------------------------------------------------------------------- //
+// unmapped-measure handling
+// ----------------------------------------------------------------------- //
+
+// Distinct from the citywide-only case above, and deliberately so. There, the catalog holds a
+// citywide value and the map draws it. Here the catalog says the measure has no map at all — a null
+// GeoType in VisOptions[0].Map — while its Table and Trend views hold real data at real
+// geographies. So the map says that plainly and points at the tabs that do have something, rather
+// than colouring a one-number citywide choropleth that would read as the mapped answer.
+// See withCitywideMapFallback in global.js and fresh audit §4.12.
+
+const UNMAPPED_MAP_MESSAGE = 'Data not mapped for this indicator. Click or tap on the visualization bar for other data views.';
+
+// Flat gray, based on the bubble map's base-polygon fill but opaque enough to read as a deliberate
+// shape rather than a failed render.
+const UNMAPPED_POLYGON_STYLE = {
+    fillColor: '#d9d9d9',
+    weight: 1,
+    color: '#999',
+    fillOpacity: 0.6
+};
+
+// Message-only popup: no header, no value row, nothing that implies a measurement.
+const createUnmappedPopupContent = () => `
+    <div class="popup-content">
+        <div class="popup-note">${UNMAPPED_MAP_MESSAGE}</div>
+    </div>
+`;
+
+// Shows the unmapped hint — the message popup and the outline on the bar it refers to — consuming
+// the one-shot flag so both halves appear and disappear together.
+//
+// Both are gated, not just the outline. Without the flag, every measure/geo/time re-render would
+// re-apply an outline the user had already dismissed, which is the failure switchToTrendTabOnce
+// guards against for the same reason. But gating only the outline splits the hint in two: the popup
+// reopened on every re-render while the outline did not, so after a Time change the message read
+// "click the visualization bar" with nothing highlighted. A re-render now leaves the gray polygon
+// speaking for itself, which it can. See unmappedHintPending in global.js.
+
+const showUnmappedHintOnce = (map) => {
+
+    if (!DE.map.unmappedHintPending) return;
+
+    DE.map.unmappedHintPending = false;
+
+    L.popup()
+        // Anchored to the map's own view centre, not the shared CITYWIDE_POPUP_LATLNG (lower
+        // Manhattan, which sits on the West Side shoreline and put the popup over the Hudson with
+        // its body across New Jersey) and not the polygon's bounding-box centre either — Staten
+        // Island drags that south-west onto the harbour. This message is about the view rather than
+        // about a place, so the centre of the view is where it belongs, and it stays centred in
+        // both the desktop and mobile layouts.
+        .setLatLng(map.getCenter())
+        .setContent(createUnmappedPopupContent())
+        .openOn(map);
+
+    document.getElementById('v-pills-tab')?.classList.add('vis-bar-required');
+
+};
+
+// Drops the outline. Called both by the bar's own click handler and from every render boundary, so
+// moving to a measure that *is* mapped can't leave a hint pointing at nothing.
+const clearVisBarHighlight = () => {
+
+    document.getElementById('v-pills-tab')?.classList.remove('vis-bar-required');
+
+};
+
+// Bound once, on the bar container rather than its five links, so any click inside the bar
+// dismisses the hint — including the Data Sources link and the mobile Take Action button.
+const bindVisBarHighlightDismissal = () => {
+
+    document.getElementById('v-pills-tab')?.addEventListener('click', clearVisBarHighlight);
+
+};
+
+// Draws the citywide outline in gray with no value, no legend range, and an automatic message.
+// Tolerates a missing `metadata` entirely: measures whose catalog entry has no mappable geography
+// at all never reach DE.lookups.mapMeasures, so showMap hands this an empty array.
+
+const renderUnmappedCitywide = (metadata) => {
+
+    debugLog("** renderMap: no map available for this measure, rendering unmapped citywide");
+
+    const map = resetMapForRender();
+
+    // ----- hide the legend ----- //
+
+    // Blanking the endpoints alone left a viridis gradient on screen with no numbers against it,
+    // which reads as a scale whose labels failed to load. There is no range here, so the whole
+    // overlay goes — and with it the export control, which would contradict the message.
+    setMapLegendVisible(false);
+    setSaveMapVisible(false);
+
+    const mapRenderPromise = loadMapGeojson(getGeoFile('Citywide'), {})
+        .then(geojson => {
+
+            // ----- add the gray citywide outline ----- //
+
+            // No bindPopup here on purpose: a click must not reopen a message the user dismissed.
+            currentGeojsonLayer = L.geoJson(geojson, {
+                style: () => UNMAPPED_POLYGON_STYLE
+            }).addTo(map);
+
+            // ----- state the situation, then point at the tabs that have data ----- //
+
+            showUnmappedHintOnce(map);
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    // send info for printing
+    DE.print.vizYear = undefined;
+    DE.print.vizGeography = 'Citywide';
+    DE.map.selectedMapMetadata = metadata?.[0] || null;
+    DE.print.vizSource = metadata?.[0]?.Sources;
+    DE.print.chartType = 'map';
+
+    return mapRenderPromise;
+
+};
+
+// Fire immediately
+
+initBaseMap();
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindVisBarHighlightDismissal);
+} else {
+    bindVisBarHighlightDismissal();
+}
+
+// Derives shared time/geo/measurement metadata from the filtered data, then dispatches to renderBubbleMap or renderChoroplethMap.
 const renderMap = (
     data, 
     metadata
 ) => {
 
-    console.log("** renderMap");
+    debugLog("** renderMap");
+    debugLog("** renderMap: metadata", metadata);
 
-    document.getElementById('viewDescription').innerHTML = 'Hover over the map or chart for more information.'
+    // ----- bail out to the unmapped state before reading any measure fields ----- //
 
-    // console.log("data [renderMap]", data);
-    // console.log("metadata [renderMap]", metadata);
+    // Two ways to get here with no map to draw, and both must be caught before the reads below:
+    // the catalog marked this measure unmappable (MapUnavailable, set by withCitywideMapFallback),
+    // or it had no mappable geography at all, so it never entered DE.lookups.mapMeasures and
+    // showMap's fallback left `metadata` empty. The second case is why this tests both — a
+    // MapUnavailable test alone can never fire for it.
+    if (!metadata?.[0] || metadata[0].MapUnavailable) {
+        return renderUnmappedCitywide(metadata);
+    }
 
-    // ----------------------------------------------------------------------- //
-    // get unique time in data
-    // ----------------------------------------------------------------------- //
-    
+    // ----- get unique time in data ----- //
+
     const mapTimes =  [...new Set(data.map(item => item.TimePeriod))];
 
-    // console.log("mapTimes [map.js]", mapTimes);
+    // ----- set metadata ----- //
 
-    // ----------------------------------------------------------------------- //
-    // set metadata
-    // ----------------------------------------------------------------------- //
-
-    let mapGeoType            = data[0]?.GeoType;
-    let mapMeasurementType    = metadata[0]?.MeasurementType;
+    let mapGeoType = data[0]?.GeoType;
+    let mapMeasurementType = metadata[0]?.MeasurementType;
     let mapTime = mapTimes[0];
-    let displayType;
-    let subtitle;
-    let isPercent;
     let topoFile = '';
 
-    const hasCI = data.some(d => /\(.*\)/.test(d.CI)); // looks to see if there are parentheses in the CI field, if yes, true
-    // console.log('has CI?', hasCI)
+    // ----- set geo file based on geo type ----- //
 
+    topoFile = getGeoFile(mapGeoType);
 
+    // ----- check if the data are citywide only ----- //
 
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-    // use some conditionals
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+    // Guarded independently of the bail-out above: a measure can reach here with metadata present
+    // but AvailableGeoTypes absent, which is a different catalog shape from an unmappable measure.
+    const availableGeoTypes = metadata[0].AvailableGeoTypes || [];
 
-    if (mapMeasurementType.includes('Percent') || mapMeasurementType.includes('percent') && !mapMeasurementType.includes('percentile')) {
-        isPercent = true;
-        displayType = '%';
-        subtitle = mapMeasurementType;
-        
-    } else {
-        isPercent = false;
-        displayType = metadata[0]?.DisplayType;
-        subtitle = mapMeasurementType + `${displayType ? ` (${displayType})` : ''}`;
+    const isCitywideOnly = availableGeoTypes.length === 1 &&
+                           availableGeoTypes[0] === 'Citywide';
+
+    if (isCitywideOnly) {
+        debugLog("** renderMap: citywide only");
     }
 
+    // ----- determine map type based on measurement type ----- //
 
-    // ----------------------------------------------------------------------- //
-    // bubble map for non-rates (counts/numbers)
-    // ----------------------------------------------------------------------- //
+    const isNumberMap = mapMeasurementType.includes('number') ||
+                        mapMeasurementType.includes('Number') ||
+                        mapMeasurementType.includes('Total');
 
-    let markType = 'geoshape'  
-    let encode = {"shape": {"field": "geo", "type": "geojson"}}
-    let strokeWidth = 1.25
-    let legend;
+    if (isNumberMap) {
 
-    if (mapMeasurementType.includes('Number') ||
-        mapMeasurementType.includes('number') || 
-        mapMeasurementType.includes('Total population')
-    ) {
-        markType = 'circle';
-        encode = {
-            "latitude": {"field": "Lat", "type": "quantitative"},
-            "longitude": {"field": "Long", "type": "quantitative"},
-            "size": {"bin": false, "field": "Value","type": "quantitative","scale": {"range": [0,750]},"legend": {
-                "direction": "horizontal",
-                "title": "",
-                "offset": -25,
-                "orient": "top-left",
-                "tickCount": 4,
-                "fill": "color",
-                "gradientLength": {"signal": "clamp(childHeight, 64, 200)"},
-                "encode": {"gradient": {"update": {"opacity": {"value": 0.7}}}},
-                "symbolType": "circle",
-                "size": "size"
-            }}
+        debugLog("** renderMap: number map, rendering bubble map");
+        return renderBubbleMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
+
+    } else {
+
+        debugLog("** renderMap: choropleth map, rendering choropleth");
+
+        // - - - choropleth map rendering - - - //
+
+        return renderChoroplethMap(data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly);
+    }
+
+};
+
+// ----------------------------------------------------------------------- //
+// Choropleth map rendering function
+// ----------------------------------------------------------------------- //
+
+// Renders the choropleth map variant, joining data to GeoJSON polygons and wiring popup, hover, and click interactions linked to the bar chart.
+const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
+
+    // Percent measures show percent-formatted legends; everything else stays unitless here.
+    ({ isPercent, displayUnit: displayType } = resolveMeasureDisplay(metadata[0].MeasurementType));
+
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
+
+    setMapLegendValues(minValue, maxValue, 1);
+
+    const colorScale = createColorScale(minValue, maxValue);
+
+    // Colors each polygon by its value using the shared color scale, falling back to gray when data is missing.
+    const styleFeature = (feature) => {
+        const value = feature.properties.Value;
+        return {
+            fillColor: value != null ? colorScale(value) : '#ccc',
+            weight: 0.35,
+            color: 'black',
+            fillOpacity: 0.65
         };
-        strokeWidth = 2;
-        legend = {};
-    } else {
-        markType = 'geoshape';
-        encode = {"shape": {"field": "geo", "type": "geojson"}};
-        strokeWidth = 1.25
-        legend = {"legend": {
-            "direction": "horizontal",
-            "orient": "top-left",
-            "title": null,
-            "tickCount": 3,
-            "offset": -25,
-            "gradientLength": 200
-        }}
-    }
+    };
 
-    /* ----------------------------------------------------------------------- //
-    // modify bar spec:
-        - If the measurement Type is a mean, then give it a dot with a gray bar. Dots better represent Means.
-        - if the data has CIs, then, give a gray CI bar
-        - Else, just give a standard bar
-    // -----------------------------------------------------------------------  */
+    // Assigned once the GeoJSON layer is built inside the fetch chain below. The hover helpers
+    // are defined before that resolves, so they close over this binding and read it at hover time.
+    let geojsonLayer = null;
 
-    let barChart
-    
-    if (mapMeasurementType.includes('Mean') || mapMeasurementType.includes('mean')) {
-        barChart = {
-            "layer": [
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                    "encoding": {
-                        "y": {
-                            "field": "Value",
-                            "type": "quantitative",
-                            "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": "Neighborhood"
-                            },
-                            {
-                                "field": "valueLabel",
-                                "title": `${mapMeasurementType}`
-                            },
-                            {
-                                "field": "TimePeriod",
-                                "title": "Time period"
-                            }
-                        ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {"value": "#f9f9f9"},
-                        "stroke": {"value": "white"},
-                        "strokeWidth": {"value": 3}
-                    }
-                },
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
-                    "mark": {
-                        "type": "circle",
-                        "size": 100,
-                        "tooltip": true,
-                        "stroke": "#161616"
-                    },
-                    "params": [
-                        {
-                            "name": "highlight",
-                            "select": {
-                                "type": "point",
-                                "on": "mouseover",
-                                "clear": "mouseout"
-                            }
-                        }
-                    ],
-                    "encoding": {
-                        "y": {
-                            "field": "Value",
-                            "type": "quantitative",
-                            "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": "Neighborhood"
-                            },
-                            {
-                                "field": "valueLabel",
-                                "title": `${mapMeasurementType}`
-                            },
-                            {
-                                "field": "TimePeriod",
-                                "title": "Time period"
-                            }
-                        ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {
-                            "bin": false,
-                            "field": "Value",
-                            "type": "quantitative",
-                            "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                            "legend": false
-                        },
-                        "stroke": {
-                            "condition": [
-                                {"param": "highlight", "empty": false, "value": "cyan"}
-                            ],
-                            "value": "white"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
-                        }
-                    }
-                }
-            ]
+    // Only one polygon is ever highlighted at a time, so tracking it lets a hover reset restyle
+    // that single layer instead of sweeping every layer in the collection (~195 on NTA) on each
+    // mousemove. Bar-chart hovers highlight through these same helpers via window.mapInterop,
+    // so a highlight from either source lands in this tracker and gets cleared correctly.
+    let highlightedLayer = null;
+
+    // Applies the hover-highlight outline, clearing any previous highlight, and brings the feature to the front of the layer stack.
+    const highlightFeature = (e) => {
+        const layer = e.target;
+
+        if (highlightedLayer && highlightedLayer !== layer) {
+            geojsonLayer.resetStyle(highlightedLayer);
         }
-    } else if (hasCI == true) {
-        barChart = {
-            "layer": [
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
-                    "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-                    "params": [
-                        {
-                            "name": "highlight",
-                            "select": {
-                                "type": "point",
-                                "on": "mouseover",
-                                "clear": "mouseout"
-                            }
-                        }
-                    ],
-                    "encoding": {
-                        "y": {
-                        "field": "ciLow",
-                        "type": "quantitative",
-                        "title": null,
-                        "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
-                        },
-                        "y2": {
-                        "field": "ciHigh"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": "Neighborhood"
-                            },
-                            {
-                                "field": "valueLabel",
-                                "title": `${mapMeasurementType}`
-                            },
-                            {
-                                "field": "CInoParens",
-                                "title": "Confidence interval"
-                            },
-                            {
-                                "field": "TimePeriod",
-                                "title": "Time period"
-                            }
-                        ],
-                        "x": {"field": "GeoID", "sort": "Value", "axis": null},
-                        "color": {"value": "#f1f1f1ff"},
-                        "stroke": {
-                            "condition": [
-                                {"param": "highlight", "empty": false, "value": "cyan"}
-                            ],
-                            "value": "white"
-                        },
-                        "strokeWidth": {
-                            "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                            "value": 0
-                        }
-                    }
-                },
-                {
-                    "height": 150,
-                    "width": "container",
-                    "config": {"axisY": {"labelAngle": 0, "labelFontSize": 13}},
-                    "mark": {
-                        "type": "circle",
-                        "size": 100,
-                        "tooltip": true,
-                        "stroke": "#161616"
-                    },
-                    "encoding": {
-                        "y": {
-                            "field": "Value",
-                            "type": "quantitative",
-                            "title": null,
-                            "axis": {"labelAngle": 0, "labelFontSize": 11, "tickCount": 3}
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Geography", 
-                                "title": "Neighborhood"
-                            },
-                            {
-                                "field": "valueLabel",
-                                "title": `${mapMeasurementType}`
-                            },
-                            {
-                                "field": "CInoParens",
-                                "title": "Confidence interval"
-                            },
-                            {
-                                "field": "TimePeriod",
-                                "title": "Time period"
-                            }
-                        ],
-                        "x": {"field": "GeoID", "sort": "y", "axis": null},
-                        "color": {
-                            "bin": false,
-                            "field": "Value",
-                            "type": "quantitative",
-                            "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                            "legend": false
-                        },
-                        "stroke": {
-                            "value": "black"
-                        },
-                        "strokeWidth": {
-                            "value": 0.5
-                        }
-                    }
-                }
-            ]
+
+        layer.setStyle({
+            weight: 3,
+            color: '#000',
+            fillOpacity: 0.9
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
         }
-    }
-    
-    else {
-        barChart = {
-            "height": 150,
-            "width": "container",
-            "config": {
-                "axisY": {
-                    "labelAngle": 0,
-                    "labelFontSize": 13,
+
+        highlightedLayer = layer;
+    };
+
+    // Restores a layer's base style. Falls back to the tracked layer so callers that don't hold a
+    // reference (or pass a stale one) still clear the highlight that is actually on screen.
+    const resetHighlight = (layer) => {
+        const target = layer ?? highlightedLayer;
+
+        if (!target || !geojsonLayer) return;
+
+        geojsonLayer.resetStyle(target);
+
+        if (target === highlightedLayer) {
+            highlightedLayer = null;
+        }
+    };
+
+    // Builds popup markup for a feature, substituting the citywide popup when the data is citywide-only.
+    const createPopupContent = (properties) => {
+        // Use citywide-specific popup if this is citywide-only data
+        if (isCitywideOnly) {
+            return createCitywidePopupContent(data[0], metadata);
+        }
+
+        return createMapPopupContent(properties, metadata, {
+            requireGeoRank: true,
+            valueDigits: 1
+        });
+    };
+
+    const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 1);
+
+    const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
+        .then(geojson => {
+
+            // - - - lookup to match GeoID → Leaflet layer - - - //
+
+            const geoIDtoLayer = {};
+
+            // ----- Add the GeoJSON to the map ----- //
+
+            geojsonLayer = L.geoJson(geojson, {
+
+                style: styleFeature,
+                onEachFeature: (feature, layer) => {
+                    
+                    // Store reference so we can highlight later using GeoID from chart
+                    
+                    const joinedGeoID = feature.properties.GeoID;
+                    const featureGeoCode = feature.properties.GEOCODE;
+
+                    // Keep a direct GeoID-to-layer map for bar-to-map hover interop.
+                    // Register both joined GeoID and source GEOCODE in raw and string form.
+                    [joinedGeoID, featureGeoCode].forEach((candidate) => {
+                        if (candidate !== undefined && candidate !== null && candidate !== '') {
+                            geoIDtoLayer[candidate] = layer;
+                            geoIDtoLayer[String(candidate)] = layer;
+                        }
+                    });
+                    
+                    // - - - bind popup content - - - //
+
+                    layer.bindPopup(createPopupContent(feature.properties));
+                    
+                    layer.on('click', (e) => {
+                        const props = feature.properties;
+                        debugLog("** click", feature.properties);
+
+                        if (isCitywideOnly) {
+                            switchToTrendTabOnce();
+                        }
+
+                        const linkedGeoID = props.GeoID ?? props.GEOCODE;
+
+                        if (linkedGeoID != null) {
+                            setBarSelection(linkedGeoID);
+                        }
+                    });
+
+                    layer.on('mouseover', (e) => {
+                        const props = feature.properties;
+                        const linkedGeoID = props.GeoID ?? props.GEOCODE;
+                        const hasMappedValue = props.Value != null;
+
+                        // highlightFeature clears the previously highlighted polygon itself.
+                        highlightFeature(e);
+
+                        updateHoverUI(props);
+
+                        // Do not push no-data geographies into the linked bar highlight.
+                        setBarSelection(hasMappedValue && linkedGeoID != null ? linkedGeoID : null);
+                    });
+                    
+                    layer.on('mouseout', (e) => {
+                        resetHighlight(e.target);
+                        clearHoverUI();
+
+                        setBarSelection(null);
+                    });
+                    
                 }
-            },
-            "mark": {"type": "bar", "tooltip": true, "stroke": "#161616"},
-            "params": [
-                {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-            ],
-            "encoding": {
-                "y": {
-                    "field": "Value", 
-                    "type": "quantitative", 
-                    "title": null,
-                    "axis": {
-                        "labelAngle": 0,
-                        "labelFontSize": 11,
-                        "tickCount": 3
-                    }
-                },
-                "tooltip": [
-                    {
-                        "field": "Geography", 
-                        "title": "Neighborhood"
-                    },
-                    {
-                        "field": "valueLabel",
-                        "title": `${mapMeasurementType}`
-                    },
-                    {
-                        "field": "TimePeriod",
-                        "title": "Time period"
-                    }
-                ],
-                "x": {"field": "GeoID", "sort": "y", "axis": null},
-                "color": {
-                    "bin": false,
-                    "field": "Value",
-                    "type": "quantitative",
-                    "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                    "legend": false
-                },
-                "stroke": {
-                    "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                    "value": "white"
-                },
-                "strokeWidth": {
-                    "condition": [{"param": "highlight", "empty": false, "value": 3}],
-                    "value": 0
-                }
+            }).addTo(map);
+
+            currentGeojsonLayer = geojsonLayer;
+
+            if (isCitywideOnly) {
+                handleCitywideOnly(map, data, metadata);
             }
-        }
-    }
 
+            // ----- publish the hover contract for bar.js ----- //
 
-    // ----------------------------------------------------------------------- //
-    // get unique unreliability notes (dropping empty)
-    // ----------------------------------------------------------------------- //
+            attachMapInterop({
 
-    const map_unreliability = [...new Set(data.map(d => d.Note))].filter(d => !d == "");
+                highlight: (geoID) => {
+                    // The lookup registers both GeoID and GEOCODE, raw and stringified, so a
+                    // single fallback covers the number-vs-string mismatch between the two sources.
+                    const layer = geoIDtoLayer[geoID] ?? geoIDtoLayer[String(geoID)];
 
-    document.querySelector("#map-unreliability").innerHTML = "<span class='fs-xs'><strong>Notes:</strong></span> "; // blank to start
-    document.getElementById("map-unreliability").classList.add('hide')  // blank to start
+                    if (!layer) return;
 
+                    highlightFeature({ target: layer });
+                    updateHoverUI(layer.feature.properties);
+                },
 
-    map_unreliability.forEach(element => {
-
-        document.querySelector("#map-unreliability").innerHTML += "<div class='fs-xs'>" + element + "</div>" ;
-        document.getElementById('map-unreliability').classList.remove('hide')
-
-    });
-
-    // ----------------------------------------------------------------------- //
-    // set geo file based on geo type
-    // ----------------------------------------------------------------------- //
-
-    // console.log("mapGeoType [renderMap]", mapGeoType);
-
-    if (mapGeoType === "NTA2010") {
-        topoFile = 'NTA_2010.topo.json';
-
-    } else if (mapGeoType === "NTA2020") {
-        topoFile = 'NTA_2020.topo.json';
-
-    } else if (mapGeoType === "NYHarbor") {
-        topoFile = 'ny_harbor.topo.json';
-
-    } else if (mapGeoType === "CD") {
-        topoFile = 'CD.topo.json';
-
-    } else if (mapGeoType === "CDTA2020") {
-        topoFile = 'CDTA_2020.topo.json';
-
-    } else if (mapGeoType === "PUMA2010") {
-        topoFile = 'PUMA2010.topo.json';
-
-    } else if (mapGeoType === "PUMA2020") {
-        topoFile = 'PUMA2020.topo.json';
-
-    } else if (mapGeoType === "Subboro") {
-        topoFile = 'PUMA_or_Subborough.topo.json';
-
-    } else if (mapGeoType === "UHF42") {
-        topoFile = 'UHF42.topo.json';
-
-    } else if (mapGeoType === "UHF34") {
-        topoFile = 'UHF34.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2017") {
-        topoFile = 'NYCKids_2017.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2019") {
-        topoFile = 'NYCKids_2019.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2021") {
-        topoFile = 'NYCKids_2021.topo.json';
-
-    } else if (mapGeoType === "NYCKIDS2023") {
-        topoFile = 'NYCKids_2023.topo.json';
-
-    } else if (mapGeoType === "Borough") {
-        topoFile = 'borough.topo.json';
-
-    } else if (mapGeoType === "RMZ") {
-        topoFile = 'RMZ.topo.json';
-        
-    }
-
-    // ----------------------------------------------------------------------- //
-    // define spec
-    // ----------------------------------------------------------------------- //
-    
-    let mapspec = {
-        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-        "title": {
-            "text": indicatorName,
-            "subtitlePadding": 10,
-            "fontWeight": "normal",
-            "anchor": "start", 
-            "fontSize": 18, 
-            "font": "sans-serif",
-            "baseline": "top",
-            "subtitle": subtitle,
-            "subtitleFontSize": 13
-        },
-        "data": {
-            "values": data,
-            "format": {
-                "parse": {
-                    "Value": "number"
+                reset: () => {
+                    // No argument: resetHighlight falls back to whichever layer is tracked, so a
+                    // highlight from either source (map hover or bar chart) clears correctly.
+                    resetHighlight();
+                    clearHoverUI();
                 }
-            }
-        },
-        "config": {
-            "concat": {"spacing": 20}, 
-            "view": {"stroke": "transparent"},
-            "axisY": {"domain": false,"ticks": false,"labelBaseline": "bottom",},
-            "legend": {"disable": true},
-            "scale": {"invalid": {color: {value: '#808080'}}}
-        },
-        "projection": {"type": "mercator"},
-        "transform": [
-            {
-                "calculate": `datum.DisplayValue + ' ${displayType}'`,
-                "as": "valueLabel"
-            },
-            {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[0] : null",
-                "as": "ciLow"
-            },
-            {
-                "calculate": "datum.CI && datum.CI !== '' ? split(replace(datum.CI, /[()]/g, ''), ', ')[1] : null",
-                "as": "ciHigh"
-            },
-            {
-            "calculate": "datum.CI ? replace(replace(datum.CI, /[()]/g, ''), /, /, ' to ') : null",
-            "as": "CInoParens"
-            }
-        ],
-        "vconcat": [
-            {
-                "layer": [
-                    {
-                        "height": 500,
-                        "width": "container",
-                        "data": {
-                            "url": `${data_repo}${data_branch}/geography/borough.topo.json`,
-                            "format": {
-                                "type": "topojson",
-                                "feature": "collection"
-                            }
-                        },
-                        "mark": {
-                            "type": "geoshape",
-                            "stroke": "#fafafa",
-                            "fill": "#C5C5C5",
-                            "strokeWidth": 0.5
-                        }
-                    }, 
-                    // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
-                    {
-                        "height": 500,
-                        "width": "container",
-                        "data": {
-                            "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                            "format": {
-                                "type": "topojson",
-                                "feature": "collection"
-                            }
-                        },
-                        "mark": {
-                            "type": "geoshape",
-                            "stroke": "#a2a2a2",
-                            "fill": "#e7e7e7",
-                            "strokeWidth": 0.5
-                        }
-                    },
-                    {
-                        "height": 500,
-                        "width": "container",
-                        "mark": {"type": markType, "invalid": null},
-                        "params": [
-                            {"name": "highlight", "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}}
-                        ],
-                        "transform": [
-                            {
-                                "lookup": "GeoID",
-                                "from": {
-                                    "data": {
-                                        "url": `${data_repo}${data_branch}/geography/${topoFile}`,
-                                        "format": {"type": "topojson", "feature": "collection"}
-                                    },
-                                    "key": "properties.GEOCODE"
-                                },
-                                "as": "geo"
-                            }
-                        ],
-                        "encoding": {
-                            ...encode,
-                            "color": {
-                                "bin": false,
-                                "field": "Value",
-                                "type": "quantitative",
-                                "scale": {"scheme": {"name": "viridis", "extent": [1, 0]}},
-                                ...legend    
-                            },
-                            "stroke": {
-                                "condition": [{"param": "highlight", "empty": false, "value": "cyan"}],
-                                "value": "#2d2d2d"
-                            },
-                            "strokeWidth": {
-                                "condition": [{"param": "highlight", "empty": false, "value": strokeWidth}],
-                                "value": 0.5
-                            },
-                            "order": {
-                                "condition": [{"param": "highlight", "empty": false, "value": 1}],
-                                "value": 0
-                            },
-                            "tooltip": [
-                                {
-                                    "field": "Geography", 
-                                    "title": "Neighborhood"
-                                },
-                                {
-                                    "field": "valueLabel",
-                                    "title": `${mapMeasurementType}`
-                                },
-                                {
-                                    "field": "TimePeriod",
-                                    "title": "Time period"
-                                }
-                            ],
-                        },
-                    }
-                ]
-            },
-            barChart
-        ]
-    }
 
-    
-    // ----------------------------------------------------------------------- //
-    // render chart
-    // ----------------------------------------------------------------------- //
+            });
 
-    vegaEmbed("#map", mapspec,{
-        renderer: "svg",
-        actions: {
-            export: { png: false, svg: false },
-            source: false,  
-            compiled: false, 
-            editor: true 
-        }
-    });
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
     // send info for printing
-    vizYear = mapTime;
-    vizGeography = mapGeoType;
-    vizSource = metadata[0].Sources
-    printSpec = mapspec;
-    chartType = 'map'
+    DE.print.vizYear = mapTime;
+    DE.print.vizGeography = mapGeoType;
+    DE.map.selectedMapMetadata = metadata[0] || null;
+    DE.print.vizSource = metadata[0]?.Sources;
+    DE.print.chartType = 'map';
 
-    // console.log(mapspec)
+    return mapRenderPromise;
+};
 
-    // ----------------------------------------------------------------------- //
-    // Send chart data to download
-    // ----------------------------------------------------------------------- //
+// ----------------------------------------------------------------------- //
+// Bubble map rendering function
+// ----------------------------------------------------------------------- //
 
-    let dataForDownload = [...mapspec.data.values] // create a copy
+// Renders the number/total map variant, joining data to circle markers sized and colored by value, with popup, hover, and click interactions mirroring the choropleth map.
+const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
+    const dataLookup = createDataLookup(data);
+    const map = resetMapForRender();
+    const { minValue, maxValue } = getMapStats(data);
+    isPercent = false;
+    displayType = '';
 
-    let downloadTable = aq.from(dataForDownload)
-        .derive({Indicator: `'${indicatorName}: ${mapMeasurementType}${displayType && ` (${displayType})`}'`}) // add indicator name and type column
-        .select(aq.not('GeoRank', "end_period", "start_period", "ban_summary_flag", "GeoTypeShortDesc", "MeasureID", "DisplayValue")) // remove excess columns
-    
-    // console.log("downloadTable [renderMap]");
-    // downloadTable.print()
+    setMapLegendValues(minValue, maxValue, 0);
 
-    CSVforDownload = downloadTable.toCSV()
+    const colorScale = createColorScale(minValue, maxValue);
 
-}
+    const radiusScale = d3.scaleSqrt()
+        .domain([minValue, maxValue])
+        .range([4, 20]);
+
+    // Styles the base polygons as light gray fill so the circle-marker bubbles remain the visual focus.
+    const styleFeature = () => ({
+        fillColor: '#eee',
+        weight: 1,
+        color: '#999',
+        fillOpacity: 0.3
+    });
+
+    // Builds popup markup for a bubble or polygon, substituting the citywide popup when the data is citywide-only.
+    const createPopupContent = (properties) => {
+        // Use citywide-specific popup if this is citywide-only data
+        if (isCitywideOnly) {
+            return createCitywidePopupContent(data[0], metadata);
+        }
+
+        return createMapPopupContent(properties, metadata, {
+            requireGeoRank: false,
+            valueDigits: 0
+        });
+    };
+
+    const { updateHoverUI } = createHoverUIHelpers(metadata, minValue, maxValue, 0);
+
+    const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
+        .then(geojson => {
+
+            // - - - bubble lookup for chart interop - - - //
+
+            // Bubble-map highlighting works on the circle markers, not the gray base polygons,
+            // so this map needs no GeoID → polygon-layer lookup of its own.
+            const circleMarkers = [];
+
+            // Only one bubble is highlighted at a time. Tracking it here — rather than in each
+            // handler — means a map hover and a bar-chart hover clear each other correctly,
+            // the same way highlightedLayer works for the choropleth.
+            let highlightedMarker = null;
+
+            // Applies the hover-highlight style to a marker entry, clearing any previous one.
+            const highlightMarker = (markerEntry) => {
+                if (!markerEntry || markerEntry === highlightedMarker) return;
+
+                if (highlightedMarker) {
+                    highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                }
+
+                markerEntry.marker.setStyle({
+                    weight: 3,
+                    color: '#000',
+                    fillOpacity: 1
+                });
+
+                highlightedMarker = markerEntry;
+            };
+
+            // Restores whichever marker is currently highlighted, whoever highlighted it.
+            const resetMarkerHighlight = () => {
+                if (!highlightedMarker) return;
+
+                highlightedMarker.marker.setStyle(highlightedMarker.originalStyle);
+                highlightedMarker = null;
+            };
+
+            // ----- Add the GeoJSON overlay (light gray polygons) ----- //
+
+            const geojsonLayer = L.geoJson(geojson, {
+                style: styleFeature,
+                onEachFeature: (feature, layer) => {
+                    layer.bindPopup(createPopupContent(feature.properties));
+
+                    if (isCitywideOnly) {
+                        layer.on('click', switchToTrendTabOnce);
+                    }
+                }
+            }).addTo(map);
+
+            currentGeojsonLayer = geojsonLayer;
+
+            // ----- Add bubbles on top ----- //
+
+            data.forEach(item => {
+                if (item.Lat != null && item.Long != null && item.Value != null) {
+                    const latlng = [item.Lat, item.Long];
+                    const circle = L.circleMarker(latlng, {
+                        radius: radiusScale(item.Value),
+                        fillColor: colorScale(item.Value),
+                        color: '#333',  // dark stroke
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                    }).addTo(map);
+
+                    // Track for cleanup
+                    currentBubbleMarkers.push(circle);
+
+                    circle.bindPopup(createPopupContent(item));
+
+                    // Store reference for chart interop. `row` is kept so a bar-driven highlight
+                    // can fill the legend panel from the same source the map's own hover uses.
+                    const markerEntry = {
+                        geoID: item.GeoID,
+                        marker: circle,
+                        row: item,
+                        originalStyle: {
+                            radius: radiusScale(item.Value),
+                            fillColor: colorScale(item.Value),
+                            color: '#333',
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }
+                    };
+
+                    circleMarkers.push(markerEntry);
+
+                    // - - - Add hover and click interactions to bubbles - - - //
+
+                    circle.on('click', (e) => {
+                        debugLog("** click", item);
+
+                        if (isCitywideOnly) {
+                            switchToTrendTabOnce();
+                        }
+
+                        setBarSelection(item.GeoID);
+                    });
+
+                    circle.on('mouseover', (e) => {
+                        highlightMarker(markerEntry);
+
+                        updateHoverUI(item);
+
+                        setBarSelection(item.GeoID);
+                    });
+
+                    circle.on('mouseout', (e) => {
+                        resetMarkerHighlight();
+
+                        clearHoverUI();
+
+                        setBarSelection(null);
+                    });
+                }
+            });
+
+            if (isCitywideOnly) {
+                handleCitywideOnly(map, data, metadata);
+            }
+
+            // ----- publish the hover contract for bar.js ----- //
+
+            attachMapInterop({
+
+                highlight: (geoID) => {
+                    const markerEntry = circleMarkers.find(c => c.geoID === geoID);
+
+                    if (!markerEntry) return;
+
+                    highlightMarker(markerEntry);
+                    updateHoverUI(markerEntry.row);
+                },
+
+                reset: () => {
+                    resetMarkerHighlight();
+                    clearHoverUI();
+                }
+
+            });
+
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    // send info for printing
+    DE.print.vizYear = mapTime;
+    DE.print.vizGeography = mapGeoType;
+    DE.map.selectedMapMetadata = metadata[0] || null;
+    DE.print.vizSource = metadata[0]?.Sources;
+    DE.print.chartType = 'bubble-map';
+
+    return mapRenderPromise;
+};

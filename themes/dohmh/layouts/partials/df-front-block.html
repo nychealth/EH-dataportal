@@ -1,42 +1,41 @@
 <div class="row">
-  <div class="col-md-11 mx-auto mt-2">
-      <nav aria-label="breadcrumb" class="">
-          <ul class="breadcrumb">
-              <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-              <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
-                  <li class="breadcrumb-item active d-none d-md-block" aria-current="page">
+    <div class="col-md-11 mx-auto mt-2">
+        <nav aria-label="breadcrumb" class="">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                <li class="breadcrumb-item"><a href={{ relURL "data-features" }}>Data Features</a></li>
+                <li class="breadcrumb-item active d-none d-md-block" aria-current="page">
                     {{ if .Params.shortTitle }}
-                      {{ .Params.shortTitle }}
+                        {{ .Params.shortTitle }}
                     {{ else }}
-                      {{ .Title }}
+                        {{ .Title }}
                     {{ end }}
-                    </li>
-              </ul>
+                </li>
+            </ul>
         </nav>
-
+        
         <div class="mt-4">
-          <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
-
-          <div class="row">
-            <div class="col-md-8 mb-2">
-              {{ .Content }}
-            </div>
-
-            {{ if .Params.aboutTheData }}
-            <div class="col-md-4">
-                <div class="fs-sm asidebox">
-                  <h2 class="h6">About the data</h2>
-                  {{- $opts := dict "display" "block" -}}
-                  <div class="fs-sm">
-                    {{ .RenderString $opts .Params.aboutTheData }}
-                  </div>
+            <h1 id="top" class="h2" data-pagefind-weight="10.0">{{ .Title }}</h1>
+            
+            <div class="row">
+                <div class="col-md-8 mb-2">
+                    {{ .Content }}
                 </div>
+                
+                {{ if .Params.aboutTheData }}
+                <div class="col-md-4">
+                    <div class="fs-sm asidebox">
+                        <h2 class="h6">About the data</h2>
+                        {{- $opts := dict "display" "block" -}}
+                        <div class="fs-sm">
+                            {{ .RenderString $opts .Params.aboutTheData }}
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+                
             </div>
-            {{ end }}
-
-          </div>
-
+            
         </div>
-  </div>
+    </div>
 </div>
-
