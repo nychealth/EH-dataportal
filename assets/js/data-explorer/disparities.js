@@ -338,6 +338,7 @@ const renderDisparitiesChart = async (
     // ----- embed chart, cache print-export state, build downloadable CSV ----- //
 
     vegaEmbed('#links', disparitiesSpec, {
+        renderer: "svg",
         actions: false
         // {
         //     export: { png: false, svg: false },

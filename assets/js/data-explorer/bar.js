@@ -531,6 +531,8 @@ const renderBar = (
 
     return vegaEmbed("#barHolder", vegaSpec, {
 
+        renderer: "svg",
+
         actions: false
 
         // {

@@ -569,6 +569,8 @@ const renderCorrelate = (
 
     vegaEmbed('#links', correlateSpec, {
 
+        renderer: "svg",
+
         actions: false
         // {
         //     export: { png: false, svg: false },

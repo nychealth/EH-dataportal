@@ -660,6 +660,8 @@ const renderTrendChart = (
 
     vegaEmbed("#trend", compspec2, {
 
+        renderer: "svg",
+
         actions: false
         // {
         //     export: { png: false, svg: false },

@@ -148,6 +148,7 @@ const renderChartPreview = () => {
     });
 
     vegaEmbed('#printVis', spec, {
+        renderer: "svg",
         actions: {
             export: { png: true, svg: true },
             source: false,
