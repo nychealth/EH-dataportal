@@ -16,7 +16,8 @@ seo_description: Data on the use of pesticides by NYC agencies.
 layout: pesticides-report
 hide: false
 report: true
-
+image: TopOfTheRock_JulienneSchaer_038.jpg
+photocredit: "Julienne Schaer/Mayoral Photography Office, City of New York"
 weight: 40
 reportingYear: 2025
 ---
