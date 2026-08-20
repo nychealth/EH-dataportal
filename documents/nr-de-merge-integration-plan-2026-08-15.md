@@ -924,7 +924,7 @@ different signature as something to re-derive from the console output.
 cannot build on this branch.~~ **Retired 2026-08-18: `dev_stage` builds on this branch now.** Bare
 `npm run smoke` is the form that ran for C3 Step 3, and it passed 35 of 35 — see "`dev_stage` went
 green on the DE branch" under Task C3. Two caveats survive the retirement: it reuses a server only
-if one already answers on :8080 or :1313, and it reads **staging** data either way.
+if one already answers on :8080, :8081 or :1313, and it reads **staging** data either way.
 
 Update the row **in the commit that finishes the task**, not at the end of a session. Record the
 proof that actually ran in the house form — `[verified <date>: how]` — naming the command, its

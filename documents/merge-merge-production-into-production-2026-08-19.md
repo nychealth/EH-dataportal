@@ -1,6 +1,6 @@
 # Merging `merge/production` into `production`
 
-**Goal:** land the 40 commits on `merge/production` — the `head.html` library-gating refactor, the
+**Goal:** land the 43 commits on `merge/production` — the `head.html` library-gating refactor, the
 Vega SVG rollout, the UHF42 name fixes and the plan/audit documents — on `production`, without
 shipping the one defect the gating refactor leaves behind.
 
@@ -12,45 +12,50 @@ the merge, is what remains.
 
 ## Ledger
 
-**Status as of 2026-08-20: Tasks 1 and 2 done; Task 3 not started.** The fix landed as
-`ab831a000c`, smoke is green at 33/33, and the merge into `production` is the only thing left.
+**Status as of 2026-08-20: Tasks 1 and 2 done; Task 3 in progress — PR #1473 is open and not
+merged.** The fix landed as `ab831a000c`, smoke is green at 33/33 on the branch tip, and merging
+the PR is the only thing left. Merging it deploys.
 
 | # | Task | Status |
 |---|---|---|
 | 1 | Add `lib-uhflist.html` to `topiclanding.html` | **DONE 2026-08-20** — `ab831a000c`, 1 file, +2/-1 |
 | 2 | Re-run `npm run smoke`, expect 33/33 | **DONE 2026-08-20** |
-| 3 | Merge `merge/production` into `production` | **Not started** |
+| 3 | Merge `merge/production` into `production` | **In progress** — PR [#1473](https://github.com/nychealth/EH-dataportal/pull/1473) opened 2026-08-20, not merged |
 
 **Task 1 proof.** `[verified 2026-08-20: grep -c 'partial "lib-uhflist' across the four NR templates
 returns 1 for each of neighborhood-reports/section.html, neighborhood-reports/topiclanding.html,
 nr-output/section.html, nr-output/single.html]`.
 
-**Task 2 proof.** `[verified 2026-08-20: npm run smoke → exit 0, "Smoke test PASSED — 33 pages
-clean", every one of the 33 lines ok, including
+**Task 2 proof.** `[verified 2026-08-20 on the branch tip 31b08a3aa2: npm run smoke → exit 0,
+"Smoke test PASSED — 33 pages clean", zero FAIL lines, including
 neighborhood-reports/active_design_physical_activity_and_health/ — the topiclanding entry that
-failed with "neighborhoods is not defined" before Task 1]`. No `airnowapi.org` CORS flake on this
-run, so no re-run was needed.
+failed with "neighborhoods is not defined" before Task 1]`. No `airnowapi.org` CORS flake on either
+run. Smoke ran twice: once at `81ad0123e9`, then again after `31b08a3aa2` landed, because a green
+run is a fact about the commit it loaded and `31b08a3aa2` changes a template. **Cite the run that
+covers the tip, and re-run smoke if any further commit lands before the PR merges.**
 
-**One unplanned commit rode along with Task 2.** `81ad0123e9` adds port `8081` to `PROBE_PORTS` in
+**Two unplanned commits rode along.** `81ad0123e9` adds port `8081` to `PROBE_PORTS` in
 `scripts/dev-server.mjs`, so the smoke harness finds a server running there instead of starting a
-second builder. It is a one-line change to test tooling, not to the site, and it merges to
-`production` with everything else.
+second builder. `31b08a3aa2` writes `partial "nr-leaflet.html"` in place of `partial "nr-leaflet"` in
+`topiclanding.html` and carries this memo; the partial resolves either way and
+`themes/dohmh/layouts/partials/nr-leaflet.html` exists. Both merge to `production` with everything
+else. The `8081` change makes three records false — see the reconciliation note at the end.
 
-**Task 3 precheck already run, and it passes** `[verified 2026-08-20: production is unmoved at
-781c15773d — local, origin/production and a fresh FETCH_HEAD all agree;
-git -c rerere.enabled=false merge-tree --write-tree production merge/production → exit 0, single
-tree oid 7214c6e0cf; git diff --stat merge/production 7214c6e0cf → 1 file,
-content/data-stories/congestion-tolling-update/index.md, +2/-1]`. That is the PR #1471 hotfix and
-nothing else, matching the 2026-08-19 finding. Re-run it if more than a day passes before the merge.
+**Task 3 precheck run at the branch tip, and it passes** `[verified 2026-08-20 with
+merge/production at 31b08a3aa2: production is unmoved at 781c15773d — local, origin/production and a
+fresh FETCH_HEAD all agree; git -c rerere.enabled=false merge-tree --write-tree production
+merge/production → exit 0, single tree oid eaa0e77c1f; git diff --stat merge/production eaa0e77c1f →
+1 file, content/data-stories/congestion-tolling-update/index.md, +2/-1]`. That is the PR #1471 hotfix
+and nothing else, matching the 2026-08-19 finding. The branch is 43 commits ahead of `production`
+with zero merge commits. Re-run this if either tip moves before the merge.
 
 **Environment state a cold session needs.** The work happens in the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed. `production`
 is checked out in the **main** repo directory (`Documents/DOHMH/Programming/EH-dataportal`), not in
 `EH-dataportal.worktrees/production` — that one holds `build-to-dev-stage`. **A hugo process is
 running** (PID 19688 as of 2026-08-20 16:22, not started by this session); the smoke run reused it
-rather than starting its own. **This memo is still untracked** — it has never been committed, so it
-does not yet exist on any branch and will not reach `production` with the merge unless committed
-first. The build and sweep outputs cited below were written to session-scoped temp directories that
+rather than starting its own. This memo is committed as of `31b08a3aa2` and pushed, so it
+reaches `production` with the merge. The build and sweep outputs cited below were written to session-scoped temp directories that
 no longer exist; the numbers are the record.
 
 **Decision taken:** fix on `merge/production` before merging, rather than merging and hotfixing
@@ -261,3 +266,19 @@ content hash, which reads as 223 pages "gaining" Vega.
   library sweep is static and covers all 1397.
 - Both builds fetch EHDP-data at build time, so page counts can move without any change in this
   repo. Compare page-for-page rather than by count.
+
+## Records the `8081` commit falsifies
+
+`81ad0123e9` widened `PROBE_PORTS` to `[8080, 8081, 1313]`, which left three present-tense records
+describing a two-port probe. **All three were corrected on 2026-08-20** and now read
+":8080, :8081 or :1313":
+
+- `CLAUDE.md` § Smoke test, the sentence describing what `dev-server.mjs` reuses.
+- `documents/nr-de-merge-integration-plan-2026-08-15.md:927`, the surviving caveat under the retired
+  bare-`smoke-pages.mjs` warning.
+- `scripts/dev-server.mjs:99`, the Path 3 abort message — a runtime string a user reads when the
+  harness refuses to spawn, so it misdirected at exactly the moment someone is debugging port
+  resolution `[verified 2026-08-20: node --check scripts/dev-server.mjs → exit 0]`.
+
+A fourth mention, in the same plan's 2026-08-18 blockquote at `:2166`, is a dated account of a past
+session and stays as written.

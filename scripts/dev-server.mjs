@@ -96,7 +96,7 @@ export async function ensureDevServer() {
     // port or prefix we don't know. Starting another would poison its cache.
     if (hugoProcessExists()) {
         throw new Error(
-            "A hugo process is running but did not answer on :8080 or :1313 " +
+            "A hugo process is running but did not answer on :8080, :8081 or :1313 " +
             "with any known path prefix. Refusing to start a second server " +
             "(two builders share resources/_gen and corrupt each other's asset " +
             "paths). Set DE_BASE_URL to its address, e.g. " +

@@ -52,7 +52,7 @@ Three things to know before trusting a result:
 - **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere. The allowlist should trend to zero: fixing a bug is what removes its entry.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
 
-`scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+`scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
 ### Three ways a local check silently lies
 
