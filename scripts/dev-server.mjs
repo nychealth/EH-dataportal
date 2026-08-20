@@ -14,7 +14,7 @@ import { setTimeout as sleep } from "node:timers/promises";
 // Ports and path prefixes this repo's servers use. Probed in order; the first
 // (port, prefix) pair returning HTTP 200 wins. The prefixes are the paths from
 // each environment's baseURL in config/<env>/config.toml.
-const PROBE_PORTS = [8080, 1313];
+const PROBE_PORTS = [8080, 8081, 1313];
 const PREFIXES = ["/dev-stage/", "/dev-prod/", "/local-stage/", "/local-prod/", "/IndicatorPublic/", "/"];
 
 // The server we start when none is running. dev_stage means STAGING data, so a
