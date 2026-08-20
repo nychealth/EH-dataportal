@@ -380,9 +380,9 @@ function toggleSection(id, btn) {
                 <h2 id="appendices">Appendices</h2>
                 <p>Download data on pesticide use by City agencies:</p>
                 <ul>
-                    <li><a href="data/Appendix-1.csv">Appendix 1: Citywide Product Totals</a></li>
-                    <li><a href="data/Appendix-2.csv">Appendix 2: Agency Product Totals</a></li>
-                    <li><a href="data/Appendix-3.csv">Appendix 3: Best Practice Product Totals</a></li>
+                    <li><a href="data/Appendix_1_{{ .Params.reportingYear }}_Citywide_Product_Totals.csv">Appendix 1: {{ .Params.reportingYear }} Citywide Product Totals</a></li>
+                    <li><a href="data/Appendix_2_{{ .Params.reportingYear }}_Agency_Product_Totals.csv">Appendix 2: {{ .Params.reportingYear }} Agency Product Totals</a></li>
+                    <li><a href="data/Appendix_3_{{ .Params.reportingYear }}_Best_Practice_Product_Totals.csv">Appendix 3: {{ .Params.reportingYear }} Best Practice Product Totals</a></li>
                 </ul>
 
         </div>
