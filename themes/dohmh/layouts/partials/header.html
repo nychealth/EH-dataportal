@@ -75,8 +75,8 @@
                             <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} alt="Environment & Health Data Portal home" style="height: 67px" class="pr-1"></a>
 
                             <p class="text-white title-hover">
-                                <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
-                                <span class="site-title">Data Portal</a></span>
+                                <a href='{{ relURL "" }}' class="link-no-dec"><span class="site-subtitle">Environment & Health</span>
+                                <span class="site-title">Data Portal</span></a>
                             </p>
 
 
@@ -104,10 +104,10 @@
                                                 {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
                                                 {{- if not .Params.hide -}}
                                                     {{- if .Params.shortTitle }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
                                                     <hr class="my-1">
                                                     {{- else }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
                                                     <hr class="my-1">
                                                     {{- end -}}
                                                 {{- end -}}
@@ -154,7 +154,7 @@
 
                                                     {{- /*  add element  */ -}}
 
-                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                    <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
 
                                                     {{- /*  only add the horizontal bar if it's not the last item  */ -}}
 
@@ -263,10 +263,10 @@
                                                         {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
                                                         {{- if not .Params.hide -}}
                                                             {{- if .Params.shortTitle }}
-                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                            <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
                                                             <hr class="my-1">
                                                             {{- else }}
-                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                            <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
                                                             <hr class="my-1">
                                                             {{- end -}}
                                                         {{- end -}}
@@ -313,7 +313,7 @@
         
                                                             {{- /*  add element  */ -}}
         
-                                                            <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                            <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
         
                                                             {{- /*  only add the horizontal bar if it's not the last item  */ -}}
         
