@@ -418,6 +418,15 @@
 
 {{ define "js_bot" }}
 
+{{- /* Libraries this page's JS calls at load, so they must be parsed first.
+       lib-leaflet must precede lib-easybutton-coloricon: both easyButton and
+       colorIcon extend the global L. */}}
+
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-d3.html" . }}
+
 {{- /* Congestion pricing report JS — get, fingerprint, include in execution
        order. Later files depend on earlier ones via shared global scope
        (classic scripts, no modules, no defer/async) — do not reorder. */}}

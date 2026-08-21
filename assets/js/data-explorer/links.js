@@ -343,6 +343,7 @@ const renderLinksChart = (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#links", linkspec,{
+        renderer: "svg",
         actions: {
             export: { png: false, svg: false },
             source: false,  

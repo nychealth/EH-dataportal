@@ -83,11 +83,14 @@
 
               </div>
 
+              {{- partial "lib-leaflet.html" . }}
+              {{- partial "lib-uhflist.html" . }}
+
               <div class="nr-clickable-uhf" style="height:400px" aria-hidden="true">
                 {{- partial "nr-leaflet" . -}}
               </div>
 
-                {{ partial "nr-show-zips" . }}
+                {{ partial "nr-show-zips" (dict "urlSuffix" "/") }}
         </div>
 
 

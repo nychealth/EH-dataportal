@@ -2,7 +2,7 @@
 
 Guidance for Claude Code (claude.ai/code) when working in this repository.
 
-This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here.
+This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here. The same holds for `documents/`: audits and plans exist in divergent per-branch copies, so a finding marked FIXED describes the branch its copy was written on `[verified 2026-08-20: §11 row 15 reads FIXED and robots.txt is bodiless on this tree; §5k scopes flexdatalist at three call sites and this tree has five]`. Enumerate with `git ls-tree -r <branch> -- documents/` before concluding a subject is undocumented, and re-run a finding's own sweep against your tree before acting on its status.
 
 ## What this project is
 
@@ -40,21 +40,23 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 32 pages, ~3 min
+npm run smoke                                          # 33 pages
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
 `scripts/smoke-pages.mjs` loads one page per template kind under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only automated check in the repo, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
 
-Two things to know before trusting a result:
+Three things to know before trusting a result:
 
 - **Before citing it as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered.
 - **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere. The allowlist should trend to zero: fixing a bug is what removes its entry.
+- **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
 
-`scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+`scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
-### Two ways a local check silently lies
+### Three ways a local check silently lies
 
+- **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
 - **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages.
 - **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
 
@@ -65,7 +67,9 @@ To build while someone's server is up, redirect both writable outputs to temp di
 HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment development -d "$TEMP/iso-docs"
 ```
 
-`[verified 2026-08-12: full site build, exit 0 in 31s; all 197 files under resources/_gen identical in mtime and size afterward, 173 resources written to the temp dir instead, docs/ untouched]`. That establishes the build writes neither shared location, which is what the "safe beside a server" claim rests on; it was not run concurrently with a live server. Inspect the generated HTML in the temp directory rather than hitting the live server.
+`[verified 2026-08-12: full site build, exit 0 in 31s; all 197 files under resources/_gen identical in mtime and size afterward, 173 resources written to the temp dir instead, docs/ untouched]`. That establishes the build writes neither shared location, which is what the "safe beside a server" claim rests on.
+
+**The concurrent case is now tested too, and it holds** `[verified 2026-08-18 on feature-new-data-explorer, with a dev_stage server live on :8080 throughout: production build exit 0, 0 ERROR, 1326 EN pages in 31.1s; resources/_gen byte-identical before and after on a manifest of path+size+mtime for all 174 files; 174 resources written to the isolated resourceDir and 3038 files to the temp output dir; the worktree stayed clean and docs/ was untouched. The server was then unharmed — same 200, same page byte-length, an identical list of 36 fingerprinted asset URLs, and the same 34x200 / 2x404 split, the two 404s being pagefind, which hugo serve never builds]`. That is the documented poisoning symptom — fingerprinted assets 404ing — probed directly and absent. Inspect the generated HTML in the temp directory rather than hitting the live server.
 
 ## Repo structure
 
@@ -187,3 +191,4 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 - **Missing images fail the build.** Hugo resizes images at build time; a missing source aborts the build.
 - **Build caching.** Remote EHDP-data resources are cached. If a data update isn't appearing, set `maxAge = 0` for the relevant cache in config, or add the `--ignoreCache` switch to the `hugo` call.
 - **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
+- **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.

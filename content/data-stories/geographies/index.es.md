@@ -2,6 +2,7 @@
 title: "Los límites del vecindario en los datos del Departamento de Salud"
 date: 2020-08-01T08:33:22-04:00
 draft: true
+vega: true
 seo_title: "Los límites del vecindario en los datos del Departamento de Salud"
 seo_description: "Diagramar los datos sanitarios en los vecindarios de la ciudad de Nueva York."
 tags: 
@@ -139,7 +140,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
 

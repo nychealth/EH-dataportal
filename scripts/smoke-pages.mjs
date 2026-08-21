@@ -40,6 +40,7 @@ const PAGES = [
     "data-features/realtime-air-quality/",          // realtime layout — third-party AirNow widget
     "data-features/find-your-uhf/",                 // neighborhood-overlap layout — Leaflet + geocoder
     "data-features/rats-in-your-neighborhood/",     // rats-in-your-neighborhood layout — Leaflet
+    "data-features/congestion-pricing-report/",     // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
     "data-features/heat-report-archive/2021/",      // report layout
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout

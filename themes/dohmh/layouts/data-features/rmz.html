@@ -5,7 +5,6 @@
     {{ partial "df-front-block" . }}
 
 
-
     <div class="row mt-3 mb-4">
         <div class="col-md-5 ml-auto">
             <div id="map" class="border d-sm-none d-md-block">
@@ -27,7 +26,6 @@
                         <p>The Health Department also works to control rats in areas that are not RMZs.  Get <a href="https://www.nyc.gov/rats">information and resources on how to address rats</a> in your neighborhood, or to <a href="https://www.nyc.gov/site/doh/services/rats-control-training.page">sign up for a free Rat Academy training</a>.</p>
 
             </div>
-
 
         </div>
 
@@ -56,7 +54,6 @@
                 </div>
 
 
-
                 <div class="row">  
                     <div class="col-12 mt-2">
                         <em class="fs-sm">Data are for 6-month periods ending June 30th and December 31st of each year.</em>
@@ -65,7 +62,7 @@
                     <div class="col-12 mt-2 border-top pt-1">
                         <h3 class="home-label font-weight-bold">311 complaints</h3>
                         <p class="fs-sm">For <strong style="color: #2b3fde">rat sighting</strong>, <strong style="color: #8670e6">mouse sighting</strong>, <strong style="color: #82ad49">signs of rodents</strong>, or <strong style="color: #1d8f3f">conditions attracting rodents</strong>.</p>
-                        <div style="width:100%; height: 200px;" id="vizOne" class="pl-1">
+                        <div style="width:100%; min-height: 200px;" id="vizOne" class="pl-1">
                             <div style="background-color:#fafafa; height: 100%;">
                             <span class="px-4 mt-4">Choose a zone to see data</span>
                             </div>
@@ -76,7 +73,7 @@
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Initial inspections</h3>
                         <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Initial inspections</span> follow a 311 complaint, or are initiated proactively by the Health Department.  <span style="color: #c73866;font-weight:bold;">Properties that fail</span> may fail for <span style="color:#D77393;font-weight:bold;">active rat signs</span>, garbage, or conditions that harbor rats. When a property fails an initial inspection, the owner receives an abatement order.</p>
-                        <div style="width:100%; height: 200px;" id="vizTwo" class="pl-1">
+                        <div style="width:100%; min-height: 200px;" id="vizTwo" class="pl-1">
                             <div style="background-color:#fafafa; height: 100%;">
                                 <span class="px-4 mt-4">Choose a zone to see data</span>
                             </div>
@@ -89,7 +86,7 @@
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Compliance inspections</h3>
                         <p class="fs-sm"><span style="color: #00008B;font-weight:bold;">Compliance inspections</span>  follow failed initial inspections, 2 to 3 weeks after an abatement order. If a property <span style="color: #c73866;font-weight:bold;">fails a compliance inspection</span>, the owner is issued a summons. A property may fail for <span style="color:#D77393;font-weight:bold;">active rat signs</span>, garbage, or conditions that harbor rats. </p>
-                        <div style="width:100%; height: 200px;" id="vizThree" class="pl-1">
+                        <div style="width:100%; min-height: 200px;" id="vizThree" class="pl-1">
                             <div style="background-color:#fafafa; height: 100%;">
                                 <span class="px-4 mt-4">Choose a zone to see data</span>
                             </div>
@@ -102,7 +99,7 @@
                     <div class="col-12 mt-4 border-top pt-1">
                         <h3 class="home-label font-weight-bold">Exterminator visits</h3>
                         <p class="fs-sm">The Health Department may send <span style="color: #00008B;font-weight:bold;">exterminators to visit a property</span>  when an owner fails a compliance inspection. These may result in <span style="color: #c73866;font-weight:bold;">bait applied</span> (rodenticides), or the exterminator may monitor the property to see if remediation is working. The owner is billed for this work.</span></p>
-                        <div style="width:100%; height: 200px;" id="vizFour" class="pl-1">
+                        <div style="width:100%; min-height: 200px;" id="vizFour" class="pl-1">
                             <div style="background-color:#fafafa; height: 100%;">
                                 <span class="p-4 mt-4">Choose a zone to see data</span>
                                 </div>
@@ -116,9 +113,6 @@
     </div>
 
 
-
-
-
     <div class="row my-4">
         <div class="col-md-11 mx-auto" data-pagefind-weight="7.0">
             <div class="row">
@@ -130,16 +124,11 @@
 
                 <div class="col-md-4">
 
-
-
                 </div>
             </div>
         </div>
 
-
-
     </div>
-
 
 
 <style>
@@ -163,6 +152,11 @@
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
+
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon" . }}
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-vega.html" . }}
 
 <!--bring in rmz JS -->
 <script type="text/javascript" src="rmz.js"></script>

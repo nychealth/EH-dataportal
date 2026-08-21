@@ -2,6 +2,7 @@
 title: "健康、住房和历史。"
 date: 2021-01-06T08:07:31-04:00
 draft: false
+vega: true
 seo_title: "健康、住房和历史。"
 seo_description: "为了健康，地点很重要。"
 tags:
@@ -243,7 +244,7 @@ href="https://www.worstevictorsnyc.org/evictors-list/">纽约市律师权利联�
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
                 });

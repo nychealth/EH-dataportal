@@ -14,7 +14,7 @@ import { setTimeout as sleep } from "node:timers/promises";
 // Ports and path prefixes this repo's servers use. Probed in order; the first
 // (port, prefix) pair returning HTTP 200 wins. The prefixes are the paths from
 // each environment's baseURL in config/<env>/config.toml.
-const PROBE_PORTS = [8080, 1313];
+const PROBE_PORTS = [8080, 8081, 1313];
 const PREFIXES = ["/dev-stage/", "/dev-prod/", "/local-stage/", "/local-prod/", "/IndicatorPublic/", "/"];
 
 // The server we start when none is running. dev_stage means STAGING data, so a
@@ -96,7 +96,7 @@ export async function ensureDevServer() {
     // port or prefix we don't know. Starting another would poison its cache.
     if (hugoProcessExists()) {
         throw new Error(
-            "A hugo process is running but did not answer on :8080 or :1313 " +
+            "A hugo process is running but did not answer on :8080, :8081 or :1313 " +
             "with any known path prefix. Refusing to start a second server " +
             "(two builders share resources/_gen and corrupt each other's asset " +
             "paths). Set DE_BASE_URL to its address, e.g. " +

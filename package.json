@@ -15,9 +15,6 @@
         "smoke": "node scripts/smoke-pages.mjs",
         "characterize:cp": "node scripts/cp-characterization.mjs"
     },
-    "devDependencies": {
-        "playwright": "^1.62.0"
-    },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
         "@mapbox/leaflet-pip": "^1.1.0",
@@ -51,5 +48,11 @@
     },
     "optionalDependencies": {
         "hugo-extended": "^0.147.3"
+    },
+    "devDependencies": {
+        "axe-core": "^4.13.0",
+        "eslint": "^10.7.0",
+        "globals": "^17.7.0",
+        "playwright": "^1.62.0"
     }
 }
