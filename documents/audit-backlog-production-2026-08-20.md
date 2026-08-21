@@ -18,9 +18,9 @@ by decision 2026-08-20, unchanged by anything here.
 ## Ledger
 
 **Status as of 2026-08-21: the blocker is gone, and Branch A is implemented, verified and committed
-as 7 task commits, `3ce4b8f2b3..cad179b26c`, plus this ledger update; not yet pushed.** PR #1473
-merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0 is
-DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
+as 7 task commits, `3ce4b8f2b3..cad179b26c`, plus ledger updates; pushed 2026-08-21.** PR #1473
+merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
+is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
 Tasks 1–9 are implemented and proved, one commit per task except Tasks 4 and 5, which share one.
 Branches B and C are not cut — see the sequencing decision below.
@@ -136,19 +136,23 @@ fix was unaffected in every case, but the reason for it changed:
 
 ### The exact next commands
 
-Branch A is committed and **unpushed**. To resume cold:
+Branch A is committed and pushed. Its seven task commits are `3ce4b8f2b3..cad179b26c`; ledger
+updates sit on top of those and move the tip, so derive the rest rather than trusting this
+paragraph, which is a snapshot:
 
 ```bash
 cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-markup-a11y checked out
-git log --oneline 6a2101c19a..HEAD            # expect 8 commits, Task 2 first
+git log --oneline 6a2101c19a..HEAD            # Task 2's commit is the oldest
 git status --porcelain                        # expect empty
+git rev-list --left-right --count origin/hotfix-audit-markup-a11y...HEAD   # 0 0 = pushed
+gh pr list --head hotfix-audit-markup-a11y    # is a PR open, and against which base?
 ```
 
-Push it and open the PR. **Do not wait for it to merge.** Cut B from A's tip and C from B's tip, and
-work them while A is in review:
+Open the PR if the check above shows none. **Do not wait for it to merge.** Cut B from A's tip and
+C from B's tip, and work them while A is in review:
 
 ```bash
-git push -u origin hotfix-audit-markup-a11y     # A
+git push -u origin hotfix-audit-markup-a11y     # A — done 2026-08-21
 git checkout -b hotfix-audit-seo-meta           # B, from A's tip
 #   …Branch B tasks; commit, push, open its PR against hotfix-audit-markup-a11y
 git checkout -b feature-audit-moderate          # C, from B's tip
