@@ -34,14 +34,16 @@ run. Smoke has run three times: at `81ad0123e9`, again after `31b08a3aa2` landed
 changes a template, and again at `adafc076e1` — a green run is a fact about the commit it loaded, and
 `a67f957ba7` had moved `scripts/dev-server.mjs`, which is the harness the run itself uses. **Cite the run that
 covers the tip, and re-run smoke if any further commit lands before the PR merges.** One exception,
-and it is narrow: a commit confined to `documents/` cannot reach the build. That directory is not a
-Hugo mount — `config/_default/config.toml` mounts `node_modules`, `content`, `static`, `layouts` and
-`data`, and nothing else — and the only two templates naming it do so in source comments citing an
-audit `[verified 2026-08-20: grep for "documents" across config/, and for "documents/" across
-themes/, assets/ and content/ — two hits, both source comments]`. So the run at `31b08a3aa2` still
-covers the rendered output
-after a docs-only commit. Any commit touching a template, `assets/`, `content/`, `data/` or `config/`
-re-arms the rule.
+and it is narrow: a commit confined to `documents/` or to the root `.md` files — `CLAUDE.md`,
+`README.md`, `readme-*.md` — cannot reach the build. Neither location is a Hugo mount:
+`config/_default/config.toml` mounts `node_modules`, `content`, `static`, `layouts` and `data`, and
+nothing else, so a root-level `.md` is not content. Nor is either read at build time: the only two
+templates naming `documents/` do so in source comments citing an audit, and no template, config or
+data file mentions `CLAUDE` at all `[verified 2026-08-20: grep for "documents" across config/, for
+"documents/" across themes/, assets/ and content/ — two hits, both source comments; and for "CLAUDE"
+across themes/, assets/, config/, data/ and content/ — zero hits]`. So the smoke run at
+`adafc076e1` still covers the rendered output after a commit confined to those paths. Any commit
+touching a template, `assets/`, `content/`, `data/` or `config/` re-arms the rule.
 
 **Two unplanned commits rode along.** `81ad0123e9` adds port `8081` to `PROBE_PORTS` in
 `scripts/dev-server.mjs`, so the smoke harness finds a server running there instead of starting a

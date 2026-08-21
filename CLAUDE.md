@@ -2,7 +2,7 @@
 
 Guidance for Claude Code (claude.ai/code) when working in this repository.
 
-This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here.
+This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here. The same holds for `documents/`: audits and plans exist in divergent per-branch copies, so a finding marked FIXED describes the branch its copy was written on `[verified 2026-08-20: §11 row 15 reads FIXED and robots.txt is bodiless on this tree; §5k scopes flexdatalist at three call sites and this tree has five]`. Enumerate with `git ls-tree -r <branch> -- documents/` before concluding a subject is undocumented, and re-run a finding's own sweep against your tree before acting on its status.
 
 ## What this project is
 
