@@ -1,4 +1,4 @@
-EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,EPA toxicity category,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
 HORMODIN 1,59807-4,0.0,0.4,43,IBA,3,NO,NO,NO
 PETTIT NEPTUNE 5 HARD HYBRID ABLATIVE ANTIFOULING PAINT,60061-142,15.0,0.0,15,Copper oxide (ous),2,NO,NO,NO
 SANIDATE 5.0,70299-19,2.0,0.0,4,"Hydrogen peroxide, Peroxyacetic acid",1,NO,NO,NO

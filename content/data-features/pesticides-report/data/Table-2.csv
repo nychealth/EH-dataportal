@@ -1,4 +1,4 @@
-Pesticide type,EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+Pesticide type,EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,EPA toxicity category,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
 Fungicide,RHAPSODY AS0,264-1155,4.9,0.0,142,QST 713 strain of dried Bacillus subtilis,3,NO,NO,NO
 Fungicide,T-22G BIOLOGICAL PLANT PROTECTANT GRANULES,68539-3,0.0,135.0,141,Trichoderma harzianum rifai strain KRL-AG2,3,NO,NO,NO
 Fungicide,DACONIL ACTION,100-1364,859.0,0.0,103,Acibenzolar-S-methyl; Chlorothalonil,2,NO,YES,YES

@@ -1,4 +1,4 @@
-EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,EPA toxicity category,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
 VECTOMAX FG,73049-429,0.0,12045.9,492355,"Bacillus sphaericus; Bacillus thuringiensis, subsp. Israelensis, strain AM 65-52",3,NO,NO,NO
 DUPONT ADVION COCKROACH GEL BAIT,100-1484,2.0,2012.6,57080,Indoxacarb,3,NO,NO,NO
 ZOECON RF-259 EMULSIFIABLE CONCENTRATE,2724-351,45.9,3.5,38992,(7S)-Hydroprene,3,NO,NO,NO

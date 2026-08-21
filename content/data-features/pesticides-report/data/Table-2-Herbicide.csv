@@ -1,4 +1,4 @@
-EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
+EPA product name,EPA reg. #,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,EPA toxicity category,Prop65 developmental toxin,EPA carcinogen,IARC carcinogen
 GARLON 4 ULTRA,62719-527,139.3,32.1,457,Triclopyr,2,NO,NO,NO
 FINALE XL,7969-464,174.1,0.0,455,Glufosinate-ammonium,2,NO,NO,NO
 MILESTONE,62719-519,11.5,0.0,412,"Aminopyralid, triisopropanolamine salt",3,NO,NO,NO

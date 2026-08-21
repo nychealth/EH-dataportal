@@ -1,4 +1,4 @@
-Pesticide Type,EPA reg. #,EPA product name,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,tox_cd,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
+Pesticide Type,EPA reg. #,EPA product name,Volume (gallons),Weight (pounds),Total applications,Active ingredient data,EPA toxicity category,EPA carcinogen,Prop65 developmental toxin,IARC carcinogen
 Rodenticide,7173-258,DIFETHIALONE PASTE PLACE PACKS,500.1,8664.5,36846,Difethialone,3,NO,NO,NO
 Rodenticide,7173-308,Chlorophacinone Soft Bait,0.0,11076.2,28517,Chlorophacinone,3,NO,NO,NO
 Rodenticide,12455-69,CONTRAC RODENTICIDE,0.0,18183.7,24247,Bromadiolone,3,NO,NO,NO
