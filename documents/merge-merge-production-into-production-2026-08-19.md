@@ -1,6 +1,6 @@
 # Merging `merge/production` into `production`
 
-**Goal:** land the 43 commits on `merge/production` — the `head.html` library-gating refactor, the
+**Goal:** land the commits on `merge/production` — the `head.html` library-gating refactor, the
 Vega SVG rollout, the UHF42 name fixes and the plan/audit documents — on `production`, without
 shipping the one defect the gating refactor leaves behind.
 
@@ -26,12 +26,13 @@ the PR is the only thing left. Merging it deploys.
 returns 1 for each of neighborhood-reports/section.html, neighborhood-reports/topiclanding.html,
 nr-output/section.html, nr-output/single.html]`.
 
-**Task 2 proof.** `[verified 2026-08-20 on the branch tip 31b08a3aa2: npm run smoke → exit 0,
-"Smoke test PASSED — 33 pages clean", zero FAIL lines, including
+**Task 2 proof.** `[verified 2026-08-20 on the branch tip adafc076e1: npm run smoke → exit 0,
+"Smoke test PASSED — 33 pages clean (known noise allowlisted)", zero FAIL lines, including
 neighborhood-reports/active_design_physical_activity_and_health/ — the topiclanding entry that
-failed with "neighborhoods is not defined" before Task 1]`. No `airnowapi.org` CORS flake on either
-run. Smoke ran twice: once at `81ad0123e9`, then again after `31b08a3aa2` landed, because a green
-run is a fact about the commit it loaded and `31b08a3aa2` changes a template. **Cite the run that
+failed with "neighborhoods is not defined" before Task 1]`. No `airnowapi.org` CORS flake on any
+run. Smoke has run three times: at `81ad0123e9`, again after `31b08a3aa2` landed because that commit
+changes a template, and again at `adafc076e1` — a green run is a fact about the commit it loaded, and
+`a67f957ba7` had moved `scripts/dev-server.mjs`, which is the harness the run itself uses. **Cite the run that
 covers the tip, and re-run smoke if any further commit lands before the PR merges.** One exception,
 and it is narrow: a commit confined to `documents/` cannot reach the build. That directory is not a
 Hugo mount — `config/_default/config.toml` mounts `node_modules`, `content`, `static`, `layouts` and
@@ -55,13 +56,18 @@ the branches that will execute it, so that it reaches `production` with this mer
 before those branches are cut off the merge commit. It changes no build input; see the exception
 above.
 
-**Task 3 precheck run at the branch tip, and it passes** `[verified 2026-08-20 with
-merge/production at 31b08a3aa2: production is unmoved at 781c15773d — local, origin/production and a
-fresh FETCH_HEAD all agree; git -c rerere.enabled=false merge-tree --write-tree production
-merge/production → exit 0, single tree oid eaa0e77c1f; git diff --stat merge/production eaa0e77c1f →
-1 file, content/data-stories/congestion-tolling-update/index.md, +2/-1]`. That is the PR #1471 hotfix
-and nothing else, matching the 2026-08-19 finding. The branch is 43 commits ahead of `production`
-with zero merge commits. Re-run this if either tip moves before the merge.
+**Task 3 precheck re-run at the branch tip, and it still passes** `[verified 2026-08-20 with
+merge/production at adafc076e1: production is unmoved at 781c15773d — local and origin/production
+agree; git -c rerere.enabled=false merge-tree --write-tree production merge/production → exit 0,
+single tree oid 9013dac397; git diff --stat merge/production 9013dac397 → 1 file,
+content/data-stories/congestion-tolling-update/index.md, +2/-1]`. The same check at `31b08a3aa2`
+returned tree `eaa0e77c1f` with the same one-file diff. That is the PR #1471 hotfix
+and nothing else, matching the 2026-08-19 finding. The branch carries **zero merge commits**
+`[verified 2026-08-20: git rev-list --merges --count production..merge/production → 0]`. For how far
+ahead it is, run `git rev-list --count production..merge/production` — a number written here is
+falsified by the commit that carries it, which is row 6 of
+[`nr-followups-2026-08-15.md`](nr-followups-2026-08-15.md). Re-run this precheck if either tip moves
+before the merge.
 
 **Environment state a cold session needs.** The work happens in the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed. `production`
