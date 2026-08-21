@@ -899,14 +899,16 @@ function redrawChart(zoneID) {
 
 
   revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizOne", revSpecOne)
-
   revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizTwo", revSpecTwo)
-
   revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizThree", revSpecThree)
-
   revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizFour", revSpecFour)
+
+  return Promise.all([
+    vegaEmbed("#vizOne", revSpecOne, {renderer: "svg"}),
+    vegaEmbed("#vizTwo", revSpecTwo, {renderer: "svg"}),
+    vegaEmbed("#vizThree", revSpecThree, {renderer: "svg"}),
+    vegaEmbed("#vizFour", revSpecFour, {renderer: "svg"})
+  ]).catch(error => {
+    console.error('Unable to redraw rat mitigation charts:', error);
+  });
 }
