@@ -32,7 +32,15 @@ neighborhood-reports/active_design_physical_activity_and_health/ — the topicla
 failed with "neighborhoods is not defined" before Task 1]`. No `airnowapi.org` CORS flake on either
 run. Smoke ran twice: once at `81ad0123e9`, then again after `31b08a3aa2` landed, because a green
 run is a fact about the commit it loaded and `31b08a3aa2` changes a template. **Cite the run that
-covers the tip, and re-run smoke if any further commit lands before the PR merges.**
+covers the tip, and re-run smoke if any further commit lands before the PR merges.** One exception,
+and it is narrow: a commit confined to `documents/` cannot reach the build. That directory is not a
+Hugo mount — `config/_default/config.toml` mounts `node_modules`, `content`, `static`, `layouts` and
+`data`, and nothing else — and the only two templates naming it do so in source comments citing an
+audit `[verified 2026-08-20: grep for "documents" across config/, and for "documents/" across
+themes/, assets/ and content/ — two hits, both source comments]`. So the run at `31b08a3aa2` still
+covers the rendered output
+after a docs-only commit. Any commit touching a template, `assets/`, `content/`, `data/` or `config/`
+re-arms the rule.
 
 **Two unplanned commits rode along.** `81ad0123e9` adds port `8081` to `PROBE_PORTS` in
 `scripts/dev-server.mjs`, so the smoke harness finds a server running there instead of starting a
@@ -40,6 +48,12 @@ second builder. `31b08a3aa2` writes `partial "nr-leaflet.html"` in place of `par
 `topiclanding.html` and carries this memo; the partial resolves either way and
 `themes/dohmh/layouts/partials/nr-leaflet.html` exists. Both merge to `production` with everything
 else. The `8081` change makes three records false — see the reconciliation note at the end.
+
+**A third rode along, docs-only.** `documents/audit-backlog-production-2026-08-20.md` is the plan for
+the easy and moderate audit findings that are open on this tree. It is committed here rather than on
+the branches that will execute it, so that it reaches `production` with this merge and is in place
+before those branches are cut off the merge commit. It changes no build input; see the exception
+above.
 
 **Task 3 precheck run at the branch tip, and it passes** `[verified 2026-08-20 with
 merge/production at 31b08a3aa2: production is unmoved at 781c15773d — local, origin/production and a
