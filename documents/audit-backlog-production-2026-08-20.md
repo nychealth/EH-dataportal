@@ -20,10 +20,11 @@ by decision 2026-08-20, unchanged by anything here.
 **Status as of 2026-08-21: Branch A is in review as
 [PR #1474](https://github.com/nychealth/EH-dataportal/pull/1474) — base `production`, head
 `2b4abe82f2`, 7 task commits `3ce4b8f2b3..cad179b26c` plus ledger commits on top. Branch B
-(`hotfix-audit-seo-meta`) is cut from A's tip and complete: Tasks 10–16 committed as
-`f697da1c81..eb80c2abd4`, one commit per task except Tasks 12 and 13, which both edit `head.html`
-and share one. Branch B is not pushed and has no PR. Branch C is not cut; it is next, from B's
-tip.** PR #1473
+(`hotfix-audit-seo-meta`) is cut from A's tip and in review as
+[PR #1475](https://github.com/nychealth/EH-dataportal/pull/1475), **based on `hotfix-audit-markup-a11y`,
+not `production`** — Tasks 10–16 committed as `f697da1c81..eb80c2abd4`, one per task except Tasks 12
+and 13, which both edit `head.html` and share one, plus ledger commits on top. Branch C is not cut;
+it is next, from B's tip.** PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
@@ -194,29 +195,29 @@ claim below was re-run on the final tree after the last edit, so all of it descr
 
 ### The exact next commands
 
-Branch A is in review as PR #1474. Branch B is committed but **not pushed, and has no PR**. The
-worktree has B checked out, not A. Derive the git state rather than trusting this paragraph:
+Branches A and B are both pushed and both in review — A as #1474 onto `production`, B as #1475 onto
+A. The worktree has B checked out, not A. Derive the git state rather than trusting this paragraph:
 
 ```bash
 cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-seo-meta checked out
 git branch --show-current                     # expect hotfix-audit-seo-meta
 git log --oneline 2b4abe82f2..HEAD            # B's six task commits; Task 10 is the oldest
 git status --porcelain                        # expect empty
-gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE 2026-08-21
+git rev-list --left-right --count origin/hotfix-audit-seo-meta...HEAD   # 0 0 = pushed
+gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE
+gh pr view 1475 --json state,baseRefName,mergeable   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
 ```
 
-Two things are owed on B, and neither waits on #1474:
-
-```bash
-git push -u origin hotfix-audit-seo-meta
-gh pr create --base hotfix-audit-markup-a11y --head hotfix-audit-seo-meta   # stacked on A
-```
-
-Then cut C from B's tip and work Tasks 17–22:
+Nothing is owed on B. Branch C is next — cut it from B's tip and work Tasks 17–22 while A and B are
+in review:
 
 ```bash
 git checkout -b feature-audit-moderate          # C, from B's tip
+#   …Branch C tasks; commit, push, open its PR against hotfix-audit-seo-meta
 ```
+
+**Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
+merges, or merge them in order down the stack.
 
 Retarget each PR to `production` as its parent merges, or merge them in order A → B → C. If review
 changes A, rebase the stack rather than merging down it:
