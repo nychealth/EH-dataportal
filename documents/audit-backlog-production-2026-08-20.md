@@ -17,13 +17,15 @@ by decision 2026-08-20, unchanged by anything here.
 
 ## Ledger
 
-**Status as of 2026-08-21: the blocker is gone, and Branch A is implemented, verified and committed
-as 7 task commits, `3ce4b8f2b3..cad179b26c`, plus ledger updates; pushed 2026-08-21.** PR #1473
+**Status as of 2026-08-21: Branch A is implemented, verified, pushed and in review as
+[PR #1474](https://github.com/nychealth/EH-dataportal/pull/1474) — base `production`, head
+`ef6f37ac28`, 7 task commits `3ce4b8f2b3..cad179b26c` plus ledger commits on top. Branches B and C
+are not cut; B is the next step and does not wait on #1474.** PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
 Tasks 1–9 are implemented and proved, one commit per task except Tasks 4 and 5, which share one.
-Branches B and C are not cut — see the sequencing decision below.
+See the sequencing decision below.
 
 **Sequencing decision, 2026-08-21 — superseded the same day. A, B and C are stacked, and all three
 are worked and reviewed in parallel.** B is cut from A's tip, C from B's tip. Nothing waits on a
@@ -91,7 +93,11 @@ Against the working tree at branch point `6a2101c19a`, on 2026-08-21:
 - **Sweeps over the generated HTML**, not over the template diff: doubled `data-toggle` 0,
   `<a …><li` 0, doubled `class` 0, logo-img-without-alt 0. Every probe was validated against the
   pre-change file at `HEAD` and fired there at exactly the expected count (6, 3, 9 and 0).
-- **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`.
+- **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`. Chris re-ran it himself on
+  branch A on 2026-08-21 after the push and reported it green; that run was not observed here, so
+  the commit it ran against is not recorded. It covers the shipping code regardless —
+  `git diff --name-only cad179b26c ef6f37ac28` returns only this ledger file, so everything after
+  the last task commit is documents-only.
 - **axe-core 4.13** over the home page, `data-features/cooling-info/`, `data-features/nyccas/` and
   `data-stories/adult-lead/`, rules `image-alt, link-name, landmark-unique, list, listitem,
   aria-allowed-attr`: all zero except two pre-existing `link-name` violations recorded below. The
@@ -116,7 +122,7 @@ fix was unaffected in every case, but the reason for it changed:
 - *Environment.* No hugo process was running when this work resumed, contradicting the environment
   note below. One was started for this work:
   `npx hugo serve --environment development --port 1313 --appendPort=false --baseURL "http://localhost:1313/dev-prod/"`.
-  **It is still running and must be stopped** — it was not there before.
+  **It has since been stopped** — see the environment note below.
 
 ### Found while executing, not in this plan — three open items
 
@@ -136,23 +142,22 @@ fix was unaffected in every case, but the reason for it changed:
 
 ### The exact next commands
 
-Branch A is committed and pushed. Its seven task commits are `3ce4b8f2b3..cad179b26c`; ledger
-updates sit on top of those and move the tip, so derive the rest rather than trusting this
-paragraph, which is a snapshot:
+Branch A is committed, pushed and in review as PR #1474. Ledger commits sit on top of its seven
+task commits and move the tip, so derive the git state rather than trusting this paragraph, which
+is a snapshot:
 
 ```bash
 cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-markup-a11y checked out
 git log --oneline 6a2101c19a..HEAD            # Task 2's commit is the oldest
 git status --porcelain                        # expect empty
 git rev-list --left-right --count origin/hotfix-audit-markup-a11y...HEAD   # 0 0 = pushed
-gh pr list --head hotfix-audit-markup-a11y    # is a PR open, and against which base?
+gh pr view 1474 --json state,baseRefName,mergeable   # OPEN / production / MERGEABLE on 2026-08-21
 ```
 
-Open the PR if the check above shows none. **Do not wait for it to merge.** Cut B from A's tip and
-C from B's tip, and work them while A is in review:
+**Do not wait for #1474 to merge.** Branch B is next: cut it from A's tip and work Tasks 10–16 while
+A is in review. C is cut from B's tip the same way.
 
 ```bash
-git push -u origin hotfix-audit-markup-a11y     # A — done 2026-08-21
 git checkout -b hotfix-audit-seo-meta           # B, from A's tip
 #   …Branch B tasks; commit, push, open its PR against hotfix-audit-markup-a11y
 git checkout -b feature-audit-moderate          # C, from B's tip
@@ -172,9 +177,13 @@ should be renamed at all, given GA4 event-name continuity (Task 15).
 
 **Environment state a cold session needs.** The work is planned from the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
-is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`). A hugo
-process was running on 2026-08-20 that this planning session did not start — **never start a second
-builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses what it finds.
+is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
+**No hugo process is running** `[verified 2026-08-21: PowerShell Get-Process -Name hugo returned
+nothing, and http://localhost:1313/dev-prod/ timed out at 4 s. Check this from PowerShell, not Bash
+— Git Bash rewrites the /fi in tasklist /fi into a path, so the command errors and prints nothing,
+which reads as "no server running"]`. The `hugo serve` on :1313 that the Branch A work started is
+therefore stopped, and the one seen on 2026-08-20 is gone too. Before starting one, **never start a
+second builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses what it finds.
 
 **Execute these directly, not through subagents.** Every task here is grep- or lint-provable against
 a standing harness; a subagent would re-derive the file list this document already holds.
