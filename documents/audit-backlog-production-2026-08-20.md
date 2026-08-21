@@ -23,8 +23,12 @@ by decision 2026-08-20, unchanged by anything here.
 (`hotfix-audit-seo-meta`) is cut from A's tip and in review as
 [PR #1475](https://github.com/nychealth/EH-dataportal/pull/1475), **based on `hotfix-audit-markup-a11y`,
 not `production`** — Tasks 10–16 committed as `f697da1c81..eb80c2abd4`, one per task except Tasks 12
-and 13, which both edit `head.html` and share one, plus ledger commits on top. Branch C is not cut;
-it is next, from B's tip.** PR #1473
+and 13, which both edit `head.html` and share one, plus ledger commits on top. **B also carries one
+commit that belongs to no task** — `b905e1e3d4` edits the project `CLAUDE.md`, adding a fourth entry
+to "ways a local check silently lies" and making the stale-asset rule checkable; it came out of the
+lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
+Task 20 and Task 22 should read it before touching that file. Branch C is not cut; it is next, from
+B's tip.** PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
@@ -201,7 +205,7 @@ A. The worktree has B checked out, not A. Derive the git state rather than trust
 ```bash
 cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-seo-meta checked out
 git branch --show-current                     # expect hotfix-audit-seo-meta
-git log --oneline 2b4abe82f2..HEAD            # B's six task commits; Task 10 is the oldest
+git log --oneline 2b4abe82f2..HEAD            # 9: 6 task commits, 2 ledger, 1 CLAUDE.md; Task 10 oldest
 git status --porcelain                        # expect empty
 git rev-list --left-right --count origin/hotfix-audit-seo-meta...HEAD   # 0 0 = pushed
 gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE
@@ -217,10 +221,8 @@ git checkout -b feature-audit-moderate          # C, from B's tip
 ```
 
 **Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
-merges, or merge them in order down the stack.
-
-Retarget each PR to `production` as its parent merges, or merge them in order A → B → C. If review
-changes A, rebase the stack rather than merging down it:
+merges, or merge them in order down the stack. If review changes A, rebase the stack rather than
+merging down it:
 
 ```bash
 git rebase --onto hotfix-audit-markup-a11y <old-A-tip> hotfix-audit-seo-meta
@@ -236,8 +238,9 @@ ends at the cutover.
 **Environment state a cold session needs.** The work is planned from the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
 is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
-**No hugo process is running** `[verified 2026-08-21: PowerShell Get-Process -Name hugo returned
-nothing, and http://localhost:1313/dev-prod/ timed out at 4 s. Check this from PowerShell, not Bash
+**No hugo process is running** `[re-verified 2026-08-21 after the Branch B work: PowerShell
+Get-Process -Name hugo returned nothing, and ports 1313, 8080 and 8081 all failed to answer — those
+are the three scripts/dev-server.mjs probes. Check this from PowerShell, not Bash
 — Git Bash rewrites the /fi in tasklist /fi into a path, so the command errors and prints nothing,
 which reads as "no server running"]`. The `hugo serve` on :1313 that the Branch A work started is
 therefore stopped, and the one seen on 2026-08-20 is gone too. Before starting one, **never start a
@@ -519,7 +522,21 @@ must not share one (element-id changes, per CLAUDE.md).
 ### Task 17: De-duplicate `#skip-header-target`
 
 **Files:** `themes/dohmh/layouts/_default/baseof.html` (the canonical declaration, on `<main>`) plus
-the id's other declarations — 49 layout files carry it as of 2026-08-20.
+the id's other declarations. **The "49 layout files carry it" figure written here on 2026-08-20 was
+wrong in a way that matters** `[re-derived 2026-08-21 on Branch B's tip]`: 49 files *mention*
+`skip-header-target`, but only **47 declare the id**. The other two are `partials/header.html:2` and
+`partials/header-ds.html:2`, which carry the skip *link* — `href="#skip-header-target"`. Dropping
+anything from those two breaks the link this task exists to fix.
+
+```bash
+git grep -l 'id="skip-header-target"' -- themes/          # 47 — the edit set
+git grep -n 'href="#skip-header-target"' -- themes/       # 2 — do not touch
+for d in themes assets/js assets/scss content; do echo "$d $(git grep -l skip-header-target -- $d | wc -l)"; done
+```
+
+That last sweep returns `themes 49`, and **0 for `assets/js`, `assets/scss` and `content`**
+`[verified 2026-08-21]`, so step 3's four-surface grep resolves to templates only. Neither
+`baseof.html:22` nor `list.html:27` carries `tabindex="-1"` yet, so step 2 is fully outstanding.
 
 The keyboard skip link's target is declared on `<main>` and again inside it on most pages. The DE
 branch fixed it in the form to copy: the id was dropped from the templates that duplicated it, and
