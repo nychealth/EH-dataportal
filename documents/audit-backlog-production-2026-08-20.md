@@ -29,7 +29,7 @@ to "ways a local check silently lies" and making the stale-asset rule checkable;
 lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
 Task 20 and Task 22 should read it before touching that file. Branch C (`feature-audit-moderate`) was
 cut from B's tip at `3cd323a44d` on 2026-08-21, in the same `merge/production` worktree, which now
-has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus one ledger commit on top. Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands". **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
+has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus three ledger commits on top (`ab668aec40`, `016f785d8f`, `71d84bbadf`). Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands"; as of 2026-08-22 all three branches were pushed with PRs open, C's being #1476. **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
 PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
@@ -418,32 +418,34 @@ writing the next one of these.
 
 ### The exact next commands
 
-Branches A and B are both pushed and both in review — A as #1474 onto `production`, B as #1475 onto
-A. The worktree has **C** checked out. Derive the git state rather than trusting this paragraph:
+All three branches are pushed and all three are in review — A as #1474 onto `production`, B as
+#1475 onto A, C as #1476 onto B `[derived 2026-08-22]`. The worktree has **C** checked out. Derive
+the git state rather than trusting this paragraph:
 
 ```bash
 cd EH-dataportal.worktrees/merge/production   # has feature-audit-moderate checked out
 git branch --show-current                     # expect feature-audit-moderate
-git log --oneline 3cd323a44d..HEAD            # C's own commits; expect 7 task commits + 1 ledger
-git status --porcelain                        # expected empty once the ledger commit lands
-git rev-list --left-right --count origin/feature-audit-moderate...HEAD   # fails until C is pushed
-gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE
-gh pr view 1475 --json state,baseRefName,mergeable   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
-gh pr list --head feature-audit-moderate             # C: no PR yet
+git log --oneline 3cd323a44d..HEAD            # C's own commits; expect 7 task commits + 3 ledger
+git status --porcelain                        # expect empty
+git rev-list --left-right --count origin/feature-audit-moderate...HEAD   # 0 0 means pushed
+gh pr view 1474 --json state,baseRefName,mergeable,reviewDecision   # A: OPEN / production / MERGEABLE
+gh pr view 1475 --json state,baseRefName,mergeable,reviewDecision   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
+gh pr view 1476 --json state,baseRefName,mergeable,reviewDecision   # C: OPEN / hotfix-audit-seo-meta / MERGEABLE
 ```
 
-Nothing is owed on A or B. **All of Branch C's tasks have landed** — `3cd323a44d..465ffceb84`, seven
-commits: Task 17 alone at `d057ea74ca` as the element-id rule requires, then Tasks 18–22 one commit
-each, plus `74a11a51ef`, which belongs to no task. What is left is pushing it and opening its PR:
+**Nothing is owed on any of the three branches, and all 22 tasks have landed.** Branch C's own work
+is `3cd323a44d..465ffceb84`, seven commits: Task 17 alone at `d057ea74ca` as the element-id rule
+requires, then Tasks 18–22 one commit each, plus `74a11a51ef`, which belongs to no task. Three
+ledger commits sit on top; `git diff --name-only 465ffceb84 71d84bbadf` returns two paths, both
+under `documents/`, which is what keeps Task 21's build and smoke standing for the branch.
 
-```bash
-git log --oneline 3cd323a44d..HEAD          # expect 7 commits + the ledger commit on top
-git push -u origin feature-audit-moderate
-gh pr create --base hotfix-audit-seo-meta --head feature-audit-moderate
-```
+What is left is **review, then the serial merge below**, and the **eleven found-items** recorded in
+this document (3 on A, 3 on B, 5 on C) — none of which any branch owns, and none of which is
+tracked anywhere else.
 
-**Then stop the `hugo serve` on :1313** — see the environment note below for why `TaskStop` is not
-enough.
+**The `hugo serve` on :1313 is still up** `[verified 2026-08-22: one `hugo.exe`, and
+`Get-NetTCPConnection -LocalPort 1313` names it]`, and nothing outstanding needs it. Stop it by that
+PID — see the environment note below for why `TaskStop` is not enough.
 
 **Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
 merges, or merge them in order down the stack. If review changes A, rebase the stack rather than
