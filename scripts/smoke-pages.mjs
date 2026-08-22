@@ -128,9 +128,28 @@ const parseArgs = (argv) => {
     };
 };
 
-// Load one page and return the unexpected console errors it produced.
-const visit = async (browser, baseURL, path) => {
+// Playwright's default UA says "HeadlessChrome", and some third-party endpoints
+// refuse it — which surfaces as a page bug rather than a harness one. forecast7.com
+// (Cloudflare) answers 403 to that UA and 200 with an Access-Control-Allow-Origin
+// header to a normal Chrome one, so the weatherwidget.io embed on
+// data-features/heat-syndrome/ reported a CORS failure and rendered at zero height
+// under the sweep while working for real visitors, on production and locally alike
+// [verified 2026-08-22: same browser, same run — default UA 3 errors / iframe 0px,
+// de-headlessed UA 0 errors / 211px; curl to forecast7 403 vs 200].
+//
+// Dropping "Headless" is enough; deriving it from the browser's own default keeps
+// it correct across Chromium bumps. No first-party JS reads navigator.userAgent,
+// so this changes nothing about how the site's own code runs.
+const browserUserAgent = async (browser) => {
     const page = await browser.newPage();
+    const ua = await page.evaluate(() => navigator.userAgent);
+    await page.close();
+    return ua.replace("HeadlessChrome", "Chrome");
+};
+
+// Load one page and return the unexpected console errors it produced.
+const visit = async (browser, baseURL, path, userAgent) => {
+    const page = await browser.newPage({ userAgent });
     const errors = [];
 
     page.on("console", (msg) => {
@@ -198,6 +217,7 @@ const main = async () => {
     const { baseURL, stop } = await ensureDevServer();
     const paths = all ? await collectAllPaths(baseURL) : PAGES;
     const browser = await chromium.launch({ headless: true });
+    const userAgent = await browserUserAgent(browser);
 
     let failures = [];
     let cleared = [];
@@ -205,7 +225,7 @@ const main = async () => {
     try {
         let done = 0;
         const results = await mapPool(paths, concurrency, async (path) => {
-            const errors = await visit(browser, baseURL, path);
+            const errors = await visit(browser, baseURL, path, userAgent);
             done++;
 
             if (errors.length) {
@@ -231,7 +251,7 @@ const main = async () => {
             console.log(`\nRe-checking ${failures.length} failing page(s) sequentially...`);
             const rechecked = [];
             for (const { path } of failures) {
-                const errors = await visit(browser, baseURL, path);
+                const errors = await visit(browser, baseURL, path, userAgent);
                 if (errors.length) rechecked.push({ path, errors });
                 else cleared.push(path);
             }
