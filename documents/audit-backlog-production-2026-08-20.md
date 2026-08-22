@@ -454,9 +454,10 @@ requires, then Tasks 18–22 one commit each, plus `74a11a51ef`, which belongs t
 ledger commits sit on top; `git diff --name-only 465ffceb84 71d84bbadf` returns two paths, both
 under `documents/`, which is what keeps Task 21's build and smoke standing for the branch.
 
-What is left is **review, then the serial merge below**, and the **eleven found-items** recorded in
-this document (3 on A, 3 on B, 5 on C) — none of which any branch owns, and none of which is
-tracked anywhere else.
+What is left is **review, then the serial merge below**. The **eleven found-items** recorded in this
+document (3 on A, 3 on B, 5 on C) belong to no task and to no branch; they were moved to
+[`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15 at `6e8b52a52d` so they
+outlive this ledger, and the copies below are the as-found record rather than the live backlog.
 
 **The `hugo serve` on :1313 is still up** `[verified 2026-08-22: one `hugo.exe`, and
 `Get-NetTCPConnection -LocalPort 1313` names it]`, and nothing outstanding needs it. Stop it by that
