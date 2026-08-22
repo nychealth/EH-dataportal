@@ -127,6 +127,8 @@ Browser JS under `assets/js/` is fingerprinted and served with Subresource Integ
 
 `themes/dohmh/layouts/partials/head.html` gates library `<script>` blocks on page kind and section (`.Kind`, `.Section`). Check that gate before assuming a library is available on a given template — a library loaded for `data-explorer` single pages is not necessarily loaded for its section page.
 
+**A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle: `content/data-features/hvi/hvi.js` and `.../neighborhood-air-quality/aqe.js` are where those pages call `.flexdatalist()`, while `hvi.html` and `aqe.html` only load it. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
+
 ### Data explorer
 
 `assets/js/data-explorer/` is ten vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
