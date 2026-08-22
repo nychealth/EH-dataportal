@@ -1,5 +1,8 @@
 # CLAUDE.md
 
+<!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts assets/scss config data content scripts -->
+<!-- docs-check verified: 74a11a51ef 2026-08-21 -->
+
 Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 This file covers conventions that hold across the whole repo. Feature branches carry their own additions to it and merge them in when their PRs land — so if you are on a feature branch, expect this file to say more than it does here. The same holds for `documents/`: audits and plans exist in divergent per-branch copies, so a finding marked FIXED describes the branch its copy was written on `[verified 2026-08-20: §11 row 15 reads FIXED and robots.txt is bodiless on this tree; §5k scopes flexdatalist at three call sites and this tree has five]`. Enumerate with `git ls-tree -r <branch> -- documents/` before concluding a subject is undocumented, and re-run a finding's own sweep against your tree before acting on its status.
@@ -127,7 +130,7 @@ Browser JS under `assets/js/` is fingerprinted and served with Subresource Integ
 
 `themes/dohmh/layouts/partials/head.html` gates library `<script>` blocks on page kind and section (`.Kind`, `.Section`). Check that gate before assuming a library is available on a given template — a library loaded for `data-explorer` single pages is not necessarily loaded for its section page.
 
-**A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle: `content/data-features/hvi/hvi.js` and `.../neighborhood-air-quality/aqe.js` are where those pages call `.flexdatalist()`, while `hvi.html` and `aqe.html` only load it. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
+**A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle: `content/data-features/hvi/hvi.js` and `content/data-features/neighborhood-air-quality/aqe.js` are where those pages call `.flexdatalist()`, while `hvi.html` and `aqe.html` only load it. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
 
 ### Data explorer
 
