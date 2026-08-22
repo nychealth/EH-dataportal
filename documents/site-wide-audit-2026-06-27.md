@@ -1762,9 +1762,13 @@ flagship feature.
   > `assets/images/nyc-bubble-logo.svg`, and the footer labels it "NYC Logo" and links it to
   > nyc.gov — it is the City's, not the department's.
   >
-  > **Not verified against a consumer.** Google's Rich Results Test was unreachable from the
-  > session that wrote this, so no type here has been checked by anything but a JSON parser and a
-  > browser's `JSON.parse`.
+  > **Verified against consumers 2026-08-22.** Google's Rich Results Test accepts the
+  > `BreadcrumbList` — 1 valid item, 0 errors, 0 warnings — and returns "No items detected" for
+  > the home `@graph`. That null is the tool's feature scope, not a defect: it reports only types
+  > it can generate a rich result for, and the breadcrumb run beside it is the control proving the
+  > submission fired. `validator.schema.org` covers what it skips — 0 errors and 0 warnings on the
+  > `@graph`, with `publisher.@id` resolved into the Organization node. Both were run in
+  > code-snippet mode against a `prod_prod` build, since the live site carries none of this yet.
 
 ### The Data Explorer's real content is invisible to every non-JS crawler (P1)
 
