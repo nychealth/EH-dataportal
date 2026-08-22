@@ -43,16 +43,22 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 33 pages
+npm run smoke                                          # 33 pages, one per template kind
+npm run smoke:all                                      # every page the site serves
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
-`scripts/smoke-pages.mjs` loads one page per template kind under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only automated check in the repo, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
+`scripts/smoke-pages.mjs` loads pages under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only automated check in the repo, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
 
-Three things to know before trusting a result:
+The default reads the curated `PAGES` list — one page per template kind, weighted toward templates that load map and chart libraries, which is what a quick check wants. `smoke:all` reads the whole site instead, for a pre-merge or pre-deploy sweep.
 
-- **Before citing it as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered.
-- **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere. The allowlist should trend to zero: fixing a bug is what removes its entry.
+Six things to know before trusting a result:
+
+- **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
+- **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
+- **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere — which now means across the whole site, not across 33 pages. The allowlist should trend to zero: fixing a bug is what removes its entry.
+- **`smoke:all` enumerates rather than hardcodes, and prints the breakdown every run** (`scripts/site-urls.mjs`): `sitemap.xml` for content pages in all three languages, plus a probe walk for paginator pages, plus `404.html`. Hugo lists neither of the last two in any sitemap, and reports only a *count* for paginator pages — which is the cross-check. `[verified 2026-08-22 on feature-audit-moderate against a development-environment server: 925 pages = 830 sitemap + 94 paginator + 1, enumerated in 0.5s, and the 94 matched Hugo's build summary exactly]`. That total is the same set as the 927 counted below over a `prod_prod` build; only the paginator count differs between branches.
+- **Concurrent failures are re-checked sequentially before being reported.** Several pages contending for one `hugo server`'s on-demand render can push a slow page past the 30s navigation timeout, and a sweep that reports that as a regression gets ignored. Pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at the default concurrency of 6; zero cleared on re-check]`.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
