@@ -88,3 +88,6 @@ scripts/nr-characterization-current/
 
 # CP report characterization --check output (baseline IS committed)
 scripts/cp-characterization-current/
+
+# Full-site smoke run reports
+scripts/smoke-reports/

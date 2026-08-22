@@ -1,5 +1,5 @@
-// Console-error smoke test across one page per template kind. Fails on any
-// console `error` or `pageerror` that isn't in the allowlist below.
+// Console-error smoke test. Fails on any console `error` or `pageerror` that
+// isn't in the allowlist below.
 //
 // It exists to catch what a clean `hugo` build cannot: the site's browser JS is
 // loaded as classic <script> tags sharing one global scope, so a bad edit throws
@@ -7,11 +7,23 @@
 // that touches a shared template (head.html, baseof.html, the header/footer
 // partials) or any file under assets/js/.
 //
-//   npm run smoke
+// Two modes:
+//   npm run smoke        one page per template kind (the PAGES list), sequential
+//   npm run smoke:all    every page the site serves, concurrent — for a
+//                        pre-merge or pre-deploy sweep
+//
+//   node scripts/smoke-pages.mjs --all --concurrency 12
 //   DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # existing server
+//
+// NOTE: `npm run smoke -- --all` does NOT work under PowerShell, which eats the
+// `--` and leaves the script with an empty argv. That is why --all has its own
+// npm script rather than being a forwarded flag.
 
+import { execFileSync } from "node:child_process";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { chromium } from "playwright";
 import { ensureDevServer } from "./dev-server.mjs";
+import { collectAllPaths, mapPool } from "./site-urls.mjs";
 
 // One page per template kind, prefix-relative — joined onto whatever baseURL
 // ensureDevServer() returns.
@@ -65,6 +77,11 @@ const PAGES = [
 // identified. A bug-specific signature must NOT be excused site-wide, or a real
 // regression producing the same text elsewhere is silently swallowed. Reserve
 // `page: null` for generic dev-server noise that is benign everywhere.
+//
+// --all mode makes this rule load-bearing rather than tidy: it covers hundreds of
+// pages nothing has ever loaded, so it WILL surface unfamiliar errors. Quieting
+// one of them with a new `page: null` entry disables that check across the whole
+// site. Scope the entry to the page, or fix the bug.
 const KNOWN_NOISE = [
     // urban-heat-island embeds two Google Maps Street View iframes
     // (data-stories/uhi.html:63 and :73). Street View asks for the accelerometer
@@ -92,56 +109,173 @@ const KNOWN_NOISE = [
 const isKnownNoise = (text, path) =>
     KNOWN_NOISE.some(({ page, error }) => error.test(text) && (page === null || page.test(path)));
 
-const main = async () => {
+// Default browser concurrency for --all. Six pages against one `hugo server`
+// leaves headroom on a machine that is also being used for something else;
+// --concurrency raises it.
+const DEFAULT_CONCURRENCY = 6;
 
-    const { baseURL, stop } = await ensureDevServer();
-    const browser = await chromium.launch({ headless: true });
-    const failures = [];
+// Minimal flag parsing — three flags do not justify a dependency.
+const parseArgs = (argv) => {
+    const all = argv.includes("--all");
+    const at = (flag) => {
+        const i = argv.indexOf(flag);
+        return i !== -1 && argv[i + 1] ? argv[i + 1] : null;
+    };
+    return {
+        all,
+        concurrency: Number(at("--concurrency")) || (all ? DEFAULT_CONCURRENCY : 1),
+        report: at("--report"),
+    };
+};
+
+// Load one page and return the unexpected console errors it produced.
+const visit = async (browser, baseURL, path) => {
+    const page = await browser.newPage();
+    const errors = [];
+
+    page.on("console", (msg) => {
+        if (msg.type() === "error" && !isKnownNoise(msg.text(), path)) errors.push(msg.text());
+    });
+    page.on("pageerror", (err) => {
+        if (!isKnownNoise(err.message, path)) errors.push(err.message);
+    });
 
     try {
-        for (const path of PAGES) {
-            const url = baseURL + path;
-            const page = await browser.newPage();
-            const errors = [];
+        // "load" rather than "networkidle": pages embedding third-party
+        // iframes that poll continuously (Datawrapper, the AirNow widget)
+        // never reach networkidle and would time out. The settle delay
+        // lets deferred scripts surface errors that fire after load.
+        await page.goto(baseURL + path, { waitUntil: "load", timeout: 30000 });
+        await page.waitForTimeout(2000);
+    } catch (e) {
+        errors.push(`navigation failed: ${e.message}`);
+    }
 
-            page.on("console", (msg) => {
-                if (msg.type() === "error" && !isKnownNoise(msg.text(), path)) errors.push(msg.text());
-            });
-            page.on("pageerror", (err) => {
-                if (!isKnownNoise(err.message, path)) errors.push(err.message);
-            });
+    await page.close();
+    return errors;
+};
 
-            try {
-                // "load" rather than "networkidle": pages embedding third-party
-                // iframes that poll continuously (Datawrapper, the AirNow widget)
-                // never reach networkidle and would time out. The settle delay
-                // lets deferred scripts surface errors that fire after load.
-                await page.goto(url, { waitUntil: "load", timeout: 30000 });
-                await page.waitForTimeout(2000);
-            } catch (e) {
-                errors.push(`navigation failed: ${e.message}`);
-            }
+const label = (path) => path || "(home)";
+
+// Group failures by exact error text, so a summary shows at a glance whether one
+// error is site-wide or confined to a single template. Grouping on exact text
+// rather than a normalised form keeps the summary honest: two errors shown as
+// one signature really are the same string.
+const groupSignatures = (failures) => {
+    const groups = new Map();
+    for (const { path, errors } of failures) {
+        for (const error of errors) {
+            if (!groups.has(error)) groups.set(error, []);
+            groups.get(error).push(path);
+        }
+    }
+    return [...groups.entries()]
+        .map(([error, pages]) => ({ error, count: pages.length, pages }))
+        .sort((a, b) => b.count - a.count);
+};
+
+const writeReport = (target, report) => {
+    // A path ending in .json is a file; anything else is a directory to timestamp
+    // into, which is how the npm script uses it.
+    const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const file = target.endsWith(".json") ? target : `${target.replace(/\/?$/, "/")}smoke-${stamp}.json`;
+    mkdirSync(file.replace(/[^/\\]+$/, ""), { recursive: true });
+    writeFileSync(file, JSON.stringify(report, null, 4));
+    console.log(`\nReport written to ${file}`);
+};
+
+const gitHead = () => {
+    try {
+        return execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    } catch {
+        return null;
+    }
+};
+
+const main = async () => {
+
+    const { all, concurrency, report } = parseArgs(process.argv.slice(2));
+    const { baseURL, stop } = await ensureDevServer();
+    const paths = all ? await collectAllPaths(baseURL) : PAGES;
+    const browser = await chromium.launch({ headless: true });
+
+    let failures = [];
+    let cleared = [];
+
+    try {
+        let done = 0;
+        const results = await mapPool(paths, concurrency, async (path) => {
+            const errors = await visit(browser, baseURL, path);
+            done++;
 
             if (errors.length) {
-                failures.push({ path, errors });
-                console.error(`FAIL  ${path || "(home)"}`);
+                console.error(`FAIL  ${label(path)}`);
                 for (const e of errors) console.error(`        ${e}`);
-            } else {
-                console.log(`ok    ${path || "(home)"}`);
+            } else if (!all) {
+                // --all would print hundreds of `ok` lines, drowning the failures.
+                console.log(`ok    ${label(path)}`);
             }
 
-            await page.close();
+            if (all && done % 50 === 0) console.log(`      ... ${done}/${paths.length}`);
+            return { path, errors };
+        });
+
+        failures = results.filter((r) => r.errors.length);
+
+        // Concurrency introduces a failure mode sequential runs don't have: several
+        // pages contending for one `hugo server`'s on-demand render can push a slow
+        // page past the navigation timeout. Re-check every failure sequentially
+        // before reporting it, so the sweep doesn't cry wolf. Skipped when
+        // concurrency is 1, where there is no contention to rule out.
+        if (concurrency > 1 && failures.length) {
+            console.log(`\nRe-checking ${failures.length} failing page(s) sequentially...`);
+            const rechecked = [];
+            for (const { path } of failures) {
+                const errors = await visit(browser, baseURL, path);
+                if (errors.length) rechecked.push({ path, errors });
+                else cleared.push(path);
+            }
+            failures = rechecked;
         }
     } finally {
         await browser.close();
         await stop();
     }
 
+    const signatures = groupSignatures(failures);
+
+    if (cleared.length) {
+        console.log(`\n${cleared.length} page(s) failed under concurrency but were clean on a sequential re-run:`);
+        for (const p of cleared) console.log(`      ${label(p)}`);
+    }
+
+    if (signatures.length) {
+        console.error(`\nDistinct error signatures (${signatures.length}):`);
+        for (const { error, count, pages } of signatures) {
+            console.error(`  ${String(count).padStart(4)}x  ${error.split("\n")[0].slice(0, 160)}`);
+            console.error(`        e.g. ${pages.slice(0, 3).map(label).join(", ")}${pages.length > 3 ? ", ..." : ""}`);
+        }
+    }
+
+    if (report) {
+        writeReport(report, {
+            timestamp: new Date().toISOString(),
+            baseURL,
+            mode: all ? "all" : "curated",
+            concurrency,
+            gitHead: gitHead(),
+            pagesChecked: paths.length,
+            clearedOnRecheck: cleared,
+            failures,
+            signatures,
+        });
+    }
+
     if (failures.length) {
-        console.error(`\nSmoke test FAILED — ${failures.length} of ${PAGES.length} page(s) had unexpected console errors.`);
+        console.error(`\nSmoke test FAILED — ${failures.length} of ${paths.length} page(s) had unexpected console errors.`);
         process.exitCode = 1;
     } else {
-        console.log(`\nSmoke test PASSED — ${PAGES.length} pages clean (known noise allowlisted).`);
+        console.log(`\nSmoke test PASSED — ${paths.length} pages clean (known noise allowlisted).`);
     }
 
 };
