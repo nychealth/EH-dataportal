@@ -27,8 +27,10 @@ and 13, which both edit `head.html` and share one, plus ledger commits on top. *
 commit that belongs to no task** — `b905e1e3d4` edits the project `CLAUDE.md`, adding a fourth entry
 to "ways a local check silently lies" and making the stale-asset rule checkable; it came out of the
 lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
-Task 20 and Task 22 should read it before touching that file. Branch C is not cut; it is next, from
-B's tip.** PR #1473
+Task 20 and Task 22 should read it before touching that file. Branch C (`feature-audit-moderate`) was
+cut from B's tip at `3cd323a44d` on 2026-08-21, in the same `merge/production` worktree, which now
+has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus one ledger commit on top. Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands". **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
+PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
@@ -79,16 +81,16 @@ merges; check `git log production` before citing one as live on the site.
 | 10 | `<html lang>` from the page's language | B @ `f697da1c81` | **DONE 2026-08-21** | Generated HTML, isolated `prod_prod` build: `es/` and `zh/` each went from 51 pages at `lang="en"` to 51 at their own language; the 827 English pages unchanged. Counted excluding Hugo's 442 internal alias stubs, which hardcode `lang="en"` and would have masked the result |
 | 11 | `robots.txt` production body + `Sitemap:` | B @ `fa966be9c9` | **DONE 2026-08-21** | Copied verbatim; `git hash-object` matches `feature-MOD-Lab-NR-recode-refactor`'s blob `1a3bbb2502`. Built both environments: `prod_prod` writes 1089 bytes with a bodiless `Disallow:` and an absolute `Sitemap:`; `development` writes 736 `Disallow` lines and **0** `Sitemap`. The pre-change tree wrote **no robots.txt at all** under `prod_prod` — stronger than the plan's "emits nothing" |
 | 12 | Collapse the stacked `robots` metas | B @ `c7497564b9` | **DONE 2026-08-21** | Control build of the pre-change tip shows **3 pages carrying 2 metas** — so the sweep can see the defect it reports gone. After: 927 real pages with exactly 1; `resources/` reads `noindex` under `prod_prod` and `noindex, nofollow` under `development` |
-| 13 | `<title>` brand suffix | B @ `c7497564b9` | **DONE 2026-08-21** | 0 → 924 of 933 real pages end in the suffix. The 9 that do not: the 3 home pages, excluded by an `.IsHome` guard, and 6 static files that never reach `head.html`. Instrument check in the same sweep: 0 pages have a `<title>` spanning lines, so the line-oriented read is sound here |
+| 13 | `<title>` brand suffix | B @ `c7497564b9` | **DONE 2026-08-21** | 0 → 924 of 927 real pages end in the suffix. The 3 that do not are the home pages, excluded by an `.IsHome` guard. (Originally written as "924 of 933 … the 9 that do not", counting 6 `static/` files that never reach `head.html` and were never real pages — see found-item 6.) Instrument check in the same sweep: 0 pages have a `<title>` spanning lines, so the line-oriented read is sound here |
 | 14 | Vestigial metas out; `canonical`/`og:url` absolute | B @ `cc8f651bcc` | **DONE 2026-08-21** | 927 pages went path-only → absolute for both `canonical` and `og:url`; `geo.region` and `fb:profile_id` went from 927 pages to 0. The `og:url` half is now sourced: OGP's URL type is "All valid URLs that utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21] |
 | 15 | `click_how_caclulated` misspelling | B @ `8334d0450a` | **DONE 2026-08-21 — renamed** | Decision 2026-08-21: rename, accepting the GA4 continuity cost. Browser, reading `window.dataLayer` directly: one `click_how_calculated`, zero under the old spelling, `#howCalcModal` still opens. Cutover date recorded in the audit's §9, which is this repo's analytics inventory |
 | 16 | `click_subscribe` fires twice — confirm, then fix | B @ `eb80c2abd4` | **DONE 2026-08-21 — the doubling was real** | Evidence first: one click produced **2** events with two schemas, `{page, place}` from `main.js` and `{page, place, click_url}` from `site.js`. Removed the `main.js` emitter; re-click gives exactly 1 and the modal still opens. The `main.js` fingerprint differed across the two runs, ruling out a cached script |
-| 17 | `#skip-header-target` de-duplication | C | Not started | — |
-| 18 | flexdatalist combobox port, 5 call sites | C | Not started | — |
-| 19 | `$primary`-as-text contrast sweep | C | Not started | — |
-| 20 | Port the guardrails (`lint`, `docs-check`) | C | Not started | — |
-| 21 | JSON-LD: Organization, WebSite, BreadcrumbList | C | Not started | — |
-| 22 | Reconcile the audit records | C | Not started | — |
+| 17 | `#skip-header-target` de-duplication | C @ `d057ea74ca` | **DONE 2026-08-21** | Control build of the pre-change tip: **355 real pages carried 2 declarations**, so the sweep can see the defect it reports gone. After: **all 927** real pages carry exactly 1, all on `<main>` with `tabindex="-1"`. (Originally "927 of 933"; the 6 `static/` passthrough files with no header and no skip link were never real pages — see found-item 6. They were identical before and after either way.) Browser, 5 pages: Enter on the skip link leaves `document.activeElement` as `<main id="skip-header-target">`; a negative control that strips `tabindex` in-page leaves it on `<body>`, which is what shows the probe reads focus and not scroll. `npm run smoke` 33/33 |
+| 18 | flexdatalist combobox port, 5 call sites | C @ `9c2f424ce0` | **DONE 2026-08-21** | Browser, all 5 call sites, with a full control run on the stashed pre-change tree. **Control fired on every discriminating check:** `aria-expanded` read `false` with 36/4/4/1/1 options showing, and after Escape the list was gone at 60 ms and **back at 660 ms** — the reopen defect, reproduced on 5 of 5. After: `role=combobox`, `aria-expanded` true while open, `aria-activedescendant` resolving to a real `<li>` id after ArrowDown, and `false` with no list at both 60 ms and 660 ms. axe 4.13.0 `aria-allowed-attr` [critical] **4 → 0**; the 5th (aqe) never reported it, for the reason in the found-items below. Not discriminating, and recorded as such: the outside-click path reads the same in control and after |
+| 19 | `$primary`-as-text contrast sweep | C @ `4f5e7f5f4f` | **DONE 2026-08-21** | `getComputedStyle` on live nodes across 15 pages, every rendered element painting `#008939` or `#007a31`, ratio computed against the composited background actually behind it. **Control on the stashed pre-change tree: 4 measurements below their applicable AA threshold; after: 0.** Three rules switched to `$primary-dark`: `a`, `$accordion-title-color`, `.neighborhood-list-button`. The full table and the four instrument corrections are below |
+| 20 | Port the guardrails (`lint`, `docs-check`) | C @ `e45cdb603f` | **DONE 2026-08-21 — `lint` lands red, on purpose** | `npm run docs-check` PASSES on `CLAUDE.md`, and all three of its probes were shown to fire first on a seeded control (missing source root, missing path, unknown identifier), so the pass is not a null result. Its one real hit was a path claim written into `CLAUDE.md` earlier the same day. `npm run lint` exits 1 with **33 `no-undef` errors over 5 names**; see the found-items below for why they are real and left unfixed. eslint's DE block is byte-identical to the source branch's apart from two rewritten comments — `diff -u` against `feature-MOD-Lab-NR-recode-refactor:eslint.config.mjs` shows every code deletion is NR-only. `scripts/docs-check.mjs` is byte-identical (`cmp -s`) |
+| 21 | JSON-LD: Organization, WebSite, BreadcrumbList | C @ `d293ef6cfd` | **DONE 2026-08-21 — Rich Results Test still owed** | Isolated `prod_prod` build, exit 0, **0 ERROR**: **927 of 927** pages rendered through `head.html` carry a block — 924 `BreadcrumbList` plus 3 home-page `@graph`s — 0 JSON parse failures, and 0 breadcrumbs with a non-monotonic `position`, a relative `item` URL or an empty `name`. Browser check on the home page adds what the file sweep cannot: `JSON.parse` returns `[object Object]`, not `[object String]`, which is the discriminating read against the `safeJS` bug below; the site name's ampersand round-trips; and `WebSite.publisher.@id` matches the Organization's `@id` exactly. `npm run smoke` 33/33 against the `development` server, `head.html` being the rule's trigger. **The external half is not done** — Google's Rich Results Test is unreachable from this session, so no type has been checked against a consumer |
+| 22 | Reconcile the audit records | C @ `465ffceb84` | **DONE 2026-08-21** | Doc-only, and proved so: `git diff --name-only d293ef6cfd 465ffceb84` returns three paths, all `.md`, **0 non-`.md`** — which is what lets Task 21's build and smoke stand for the branch. §11's status table re-swept, 9 rows moved; **every zero carries a positive control** — the same pattern against `production`'s copy of the same file returns 3, 6, 2 and 1 for rows 7, 9, 12 and 16, the counts those rows originally reported. Four narrative findings re-checked and annotated in place (§5k, §10a, §12 metadata, §12 structured data). `js-conventions.md` replaced by the unified version, byte-identical from `## Scope` down under an arrival banner. The "24 of 77" path figure **replaced rather than refreshed** — its extraction rule was never recorded, so the number is not reproducible; re-derived as 19 of 84 checkable, with the rule written into the banner. `npm run docs-check` still PASSES after the `CLAUDE.md` edits |
 
 ### Branch A verification that ran
 
@@ -161,10 +163,15 @@ claim below was re-run on the final tree after the last edit, so all of it descr
 - **One Python walk per tree, not per-file greps.** The first attempt shelled out a `grep` per file
   per probe and was killed at 10 minutes — process creation under Git Bash on Windows makes that
   shape unusable at ~900 files x 3 trees. Reach for a single-pass script here, not a shell loop.
-- **"Real pages" is 933 of the 1397 HTML files, and the distinction is load-bearing.** The excluded
-  464 are Hugo's 442 internal alias-redirect stubs plus 22 static passthrough files. The alias stubs
-  carry their own `noindex` **and** `lang="en"`, so a naive tree-wide count reports 442 phantom
-  failures of Tasks 10 and 12. Real pages are those emitting `head.html`'s viewport meta.
+- **"Real pages" is 927 of the 1397 HTML files, and the distinction is load-bearing.** The excluded
+  470 are Hugo's internal alias-redirect stubs plus static passthrough files. The alias stubs
+  carry their own `noindex` **and** `lang="en"`, so a naive tree-wide count reports ~443 phantom
+  failures of Tasks 10 and 12. **The marker matters as much as the count** — `head.html`'s viewport
+  meta returns 928 because one `static/` file carries the identical tag, and a loose
+  `name="viewport"` match returns 933 by picking up five more. Use `data-pagefind-meta="title:`.
+  Rows written during Tasks 10–17 were measured with the loose marker and their denominators are
+  corrected in place below; the numerators — the pages that actually carry each signal — were
+  counted directly and did not change. See found-item 6.
 - **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`, against a `dev_stage` server on
   :8080 started for this work and since stopped.
 - **Browser, for Tasks 15 and 16 only.** `window.dataLayer` read directly, never through a `gtag`
@@ -190,35 +197,247 @@ claim below was re-run on the final tree after the last edit, so all of it descr
 1. **`og:image` and `twitter:image` are still path-only.** `seo.html:13` uses `.RelPermalink`, `:20`
    uses `relURL`. The OGP sentence that justified the `og:url` change covers them equally, but Task
    14's stated scope named only `canonical` and `og:url`, so they were left alone.
-2. **`og:locale` is hardcoded `en_us`** at `seo.html:8`, on all 933 pages. Task 10 has just made
+2. **`og:locale` is hardcoded `en_us`** at `seo.html:8`, on all 927 real pages. Task 10 has just made
    `<html lang>` correct for the 102 `es`/`zh` pages, so those pages now assert two different
    languages in two places. The value is also `en_us`, where the spec's examples use `en_US`.
 3. **A commented-out `console.log` sits above the gtag call** at `app.js:151`, and the orientation
    comment above the `#citeButton` block at `app.js:157-159` reads "how calculated" — copied from
    the block above it. The dead comment was renamed rather than deleted, to match its neighbours.
 
+### Branch C verification that ran
+
+Against `feature-audit-moderate`, cut from B's tip at `3cd323a44d`, on 2026-08-21.
+
+- **Two isolated `prod_prod` builds** in the form CLAUDE.md documents as safe beside a server —
+  `HUGO_RESOURCEDIR="$SP/iso-resources" npx hugo --environment prod_prod -d "$SP/iso-docs-<label>"` —
+  one of the changed tree and one of the pre-change tip as control, the latter reached by
+  `git stash push -- themes/`. Both exit 0, **0 ERROR**, 1397 HTML files each, and 933 by the loose viewport match then in use — 927 real pages by the corrected marker;
+  `git status --porcelain docs/ resources/` empty afterward. The stash pop was checked byte-exact
+  before continuing, not eyeballed.
+- **One Python walk per tree**, per the Branch B finding — a `grep` per file per probe is unusable
+  at ~900 files x 2 trees under Git Bash on Windows. The first attempt at this sweep still hit the
+  2-minute tool timeout inside a Bash heredoc; running the same script from PowerShell finished it.
+- **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`, against the `development`
+  server described under environment state below. Run first after Task 17, the task that touches
+  `baseof.html`, and **again after Task 21 at `d293ef6cfd`** — 33/33 both times.
+- **The branch-closing `prod_prod` build is `d293ef6cfd`, not the branch tip.** It exited 0 with
+  **0 ERROR** and 1397 HTML files. Task 22 (`465ffceb84`) is the only commit after it, and it is
+  doc-only: `git diff --name-only d293ef6cfd 465ffceb84` returns three paths, all `.md`, 0
+  non-`.md`. That is what lets a build of the earlier commit stand for the branch — state it as
+  the fact about `d293ef6cfd` that it is, not as a fact about the tip.
+- **Every browser claim on this branch has a control run behind it**, obtained with
+  `git stash push -- themes/ content/` to put the tree back at the pre-change state, waiting for the
+  dev server to rebuild, re-running the identical script, then `git stash pop`. Confirm the control
+  really is the pre-change state before trusting it — `curl … | grep -c wireComboboxState` returning
+  0 is the cheap check, and the pop was verified byte-exact each time. This is what separates "the
+  probe reports the fixed value" from "the probe never ran": the Escape and outside-click readings
+  are both plain `false`, and only one of them changes between control and after.
+
+**Corrections to this plan's own premises, found while executing.**
+
+- *Task 17, the four-surface sweep.* The plan's `for d in themes assets/js assets/scss content` loop
+  returns 49/0/0/0 as written, but those four directories are not the whole repo: `git grep -l
+  skip-header-target` with no pathspec returns **53** files. The other four are `documents/*.md` —
+  this plan, the merge plan, the NR/DE integration plan and the site-wide audit. No code outside
+  `themes/`, so the conclusion holds; the sweep as written is what does not prove it.
+- *Task 17, why `list.html` is exempt.* The plan keeps the id in `baseof.html` and `list.html`
+  without saying why the second one is not itself a duplicate. It is a **standalone document** —
+  its own `<!DOCTYPE html>`, `<head>` and `<body>` — so it never renders inside `baseof.html` and
+  needs its own target. The theme has exactly one `baseof.html`, and all 45 files the id was
+  stripped from are `{{ define "main" }}` blocks that render inside it. That is what makes the strip
+  safe, and it was checked per file rather than assumed.
+- *Task 17, how many pages actually carried the duplicate.* **355** of 927 real pages, not most of
+  them; the other 572 already had exactly one, from `baseof.html` alone. `_default/list.html`
+  renders 510 of those pages, so its half of the `tabindex` edit is live rather than dead code.
+- *Task 18, the target list is 8 files, not 5.* The plan names `data-features/aqe.html` and
+  `data-features/hvi.html` as call sites. **Neither initializes flexdatalist.** Both only load the
+  library and then a page-bundle script named in frontmatter (`customJS`), and the `.flexdatalist()`
+  call lives in `content/data-features/neighborhood-air-quality/aqe.js:18` and
+  `content/data-features/hvi/hvi.js:47`. So the two layouts get the partial include and the two
+  **content** files get the `wireComboboxState()` call — files the plan does not list. That works
+  because these are classic scripts sharing one global scope, the same property the data explorer
+  relies on.
+- *Task 18, the hardcoded results id.* The source hardcodes `flex_search-flexdatalist-results`. All
+  five call sites here happen to author `id="flex_search"`, so the hardcode would in fact have
+  worked; it is derived anyway as `input.id + '-results'`, which is what the library itself does
+  (`jquery.flexdatalist.js:1572`). One shared partial that cannot be broken by renaming an input.
+- *Task 18, one wrong line citation in the ported comment.* The source cites `:1551-1560` for the
+  `<li>` creation that omits ids. In this tree's copy of the library it is **`:1507-1514`**. The
+  other citations were re-checked and hold: `accessibility()` at `:474-482`, `aria-expanded`
+  appearing exactly once in the file, `removed:flexdatalist.results` at `:1635`, the Escape handler
+  at `:2046`, the outside-click handler at `:2027`, `searchDelay: 400` at `:115`. Both branches
+  declare `jquery-flexdatalist ^2.3.0`, so this is a citation error, not a version difference.
+- *Task 20, which way the NR block fails.* The plan says leaving it in means the config "either
+  throws or silently lints nothing". It **throws**, and the mechanism is worth naming because it
+  decides the fix: `scanDeclaredGlobals(NR_DIR)` runs at module evaluation, not at lint time, so
+  `readdirSync("assets/js/nr-report")` raises `ENOENT` before ESLint reads a single file. Deleting
+  the block is mandatory, not tidying — no `files:` glob could have made it inert.
+- *Task 20, `docs-check` is not a no-op on arrival.* The plan says porting it "changes nothing until
+  a doc opts in", which is true of the port and stops being true one step later: the same task opts
+  `CLAUDE.md` in, and the first run failed it. Budget for the first opt-in finding something.
+- *Task 21, the SearchAction has no target to point at.* The plan says to emit one "pointing at the
+  Pagefind search URL". There is no such URL: search is a modal (`#searchModal`, `partials/footer.html`)
+  and `/search-results/` is an orphan — zero inbound links in the repo, an empty `js_bot` block, and
+  `?q=asthma` renders an empty title with all five result containers still `hidden` and **0** result
+  links, against **5** links in the static fallback block on the same page as a control. Omitted, with
+  the reason in the partial.
+- *Task 21, the plan's proof would have passed the bug.* "The emitted JSON parses (`node -e` over the
+  extracted block)" is satisfied by the pre-`safeJS` output, which was the whole document as a
+  **quoted JSON string** — `json.loads` returns a `str` and raises nothing. Check the parsed value's
+  *type*, not that parsing succeeded.
+- *Task 21, no Organization `logo`.* The repo holds exactly one logo asset,
+  `assets/images/nyc-bubble-logo.svg`, and the footer labels it "NYC Logo" and links it to nyc.gov —
+  it is the City's, not the department's. Adding a DOHMH logo asset is what closes this.
+
+### Task 19's measurements, and what the harness got wrong four times
+
+**The rule set was derived from the compiled stylesheet, not from the plan's source lines.** The
+plan names 17 candidate rules; `color: #008939` appears in **24** rules in the built CSS. The extra
+seven are Bootstrap's generated `.btn-outline-primary` / `.btn-outline-hover` variants and the
+`.text-primary` / `.text-hover` utilities, which come from the `$theme-colors` map rather than from
+any line the plan lists.
+
+**Eleven of the 24 render nowhere.** Seven are dead by any reading — `.btn-outline-hover`,
+`.text-hover`, `.btn-outline-green`, `.sidebar-report` (two rules), `.indicator-anchor:hover
+.indicator-short-name` and `.kt-accent i` appear in **zero** built pages and in zero files under
+`themes/`, `content/`, `assets/js` or `static/` `[verified 2026-08-21, with pullquote/resource-card/
+accordion-group as positive controls returning 3, 1 and 8 files]`. `.indicator-anchor` survives only
+in `partials/nr-indicator-old.html`, which nothing includes. **Four of the plan's own 17 candidates
+are among the dead** — `theme.scss:454`, `theme.scss:472`, `theme.scss:580` and `_custom.scss:104`
+— so they cannot be measured and were not changed. The remaining four unrendered selectors are
+`.btn-outline-primary` in its disabled state and `.related-reading .card-header`, whose classes do
+render but whose specific instances did not appear in the crawled set.
+
+**Result, thirteen rendered rules.** Control on the stashed pre-change tree, then the identical run:
+
+| measurement | before | after | background | size/weight |
+|---|---|---|---|---|
+| `.btn-outline-primary` (normal) | **4.24 FAIL** | 5.13 PASS | `#EFFAF4` | 16px/700 |
+| `.neighborhood-list-button` (normal) | **4.24 FAIL** | 5.13 PASS | `#EFFAF4` | 16px/700 |
+| `a` (normal) | **4.45 FAIL** | 4.53 PASS | `#FDFDFD` | 14px/400 |
+| `a:hover` (normal) | **4.45 FAIL** | 4.53 PASS | `#FDFDFD` | 14px/400 |
+| `.accordion-group a[data-toggle]` (large) | 3.46 PASS | 4.19 PASS | `#E1E1E1` | 18.672px/700 |
+| `.text-primary`, `.pullquote`, `.key-topics i`, `h1.report-title .sub-title`, both `.related-reading .card a` rules, both `.content-card … resource-card` rules | 4.53 PASS | 4.53 PASS | `#FFFFFF` | various |
+
+Rules that already passed are recorded as passing rather than silently skipped, per the plan.
+
+**Three rules changed, and only to `$primary-dark`:** `theme.scss` `a`, `_f-layout-elements.scss`
+`$accordion-title-color`, `_custom.scss` `.neighborhood-list-button`. `.btn-outline-primary`'s 4.24
+is on the same nodes, where `.neighborhood-list-button`'s `!important` wins the cascade, so those
+buttons are fixed without touching the Bootstrap-generated rule — which would mean changing
+`$primary` itself and is out of scope.
+
+**Two findings the palette could not have produced.** The `a` failure is on `#FDFDFD`, a near-white
+that is not one of the two greens `$primary-dark`'s own comment records — it is only reachable by
+measuring. And the accordion's `#E1E1E1` header is the worst background on the site for this colour
+at 3.46:1; it passes AA solely because 18.672px/700 is WCAG large text, where the threshold is 3:1.
+`$primary-dark` takes it to 4.19:1, which still would not clear 4.5:1 — noted in a comment beside
+the variable, because a restyle that drops that size or weight re-opens it.
+
+**The harness was wrong four times, and each error changed the answer.** Worth reading before
+writing the next one of these.
+
+1. *`color:` is a substring of `background-color:`.* The first selector extraction returned 41
+   rules; 17 of them set the background, not the text. A `background-color: #008939` count of 15
+   as a separate control is what made the overlap visible.
+2. *An element that inherits a colour need not paint any text.* The header logo `<a>` inherits
+   `a { color: $primary }` and contains only an `<img>`, so it measured green-on-green at **1.00:1**
+   — a headline-shaped number for a link that renders no text at all.
+3. *The element a selector matches is often not the element that paints.* Requiring a direct text
+   node then lost `.pullquote` (text in a `<figcaption>`) and both buttons (text in a `<span>`).
+   Each match has to expand to itself **plus its descendants**, keeping whichever still compute to
+   the colour.
+4. *One worst case per rule compares the wrong number to the wrong threshold.* WCAG AA is 4.5:1 for
+   normal text and 3:1 for large. Tracking a single worst case per rule reported the accordion as
+   failing at 3.46:1 when its size and weight make 3:1 the applicable bar. Worst normal-size and
+   worst large-text have to be tracked separately.
+
+### Found while executing Branch C, not in this plan — six open items
+
+1. **The whole neighborhood picker on `data-features/aqe.html:21` is inside `aria-hidden="true"`,**
+   wrapping the label text, the input, the Clear button and the "About NTAs" link. axe reports
+   `aria-hidden-focus` [serious]. This is also **why aqe was the one page of five where axe reported
+   no `aria-allowed-attr` before the fix** — axe skips hidden subtrees, so the wrapper concealed the
+   defect rather than removing it. Task 18's wiring is in place there and becomes effective for
+   assistive tech the moment the wrapper goes; removing it is a separate change with its own commit.
+2. **Neither flexdatalist input has an accessible name on 3 of the 5 sites** — axe `label`
+   [critical] ×2 (the authored `#flex_search` and the generated `#flex_search-flexdatalist`) on
+   `data-explorer/indicator-catalog/`, `data-features/hvi/` and the NR topic landing pages. The NR
+   section page escapes only because its input carries `placeholder="Search"`, which axe accepts as
+   a last-resort name; aqe escapes only by being hidden per item 1. The source partial on
+   `feature-MOD-Lab-NR-recode-refactor` fixes this with `aria-labelledby` at the call site, which is
+   outside Task 18's stated scope of role, `aria-expanded` and `aria-activedescendant`.
+3. **The fix trades one axe *violation* for one axe *incomplete*, while the list is open.** With
+   `aria-controls` set, axe 4.13.0 parks `aria-valid-attr-value` [critical] in *incomplete* with
+   "Unable to determine if aria-controls referenced ID exists on the page while using
+   aria-haspopup" — a limitation of that rule, not a dangling reference: the id resolves and the
+   list is in the DOM, both measured. With the list **closed** every page is clean, 0 violations and
+   0 incomplete, which is what the add-and-remove-with-the-list design buys.
+4. **`neighborhood-reports/` has its own `aria-hidden-focus` [serious]** on `.nr-clickable-uhf`,
+   the Leaflet map's UHF shapes — pre-existing, unrelated to flexdatalist, and reported by axe both
+   before and after.
+5. **`npm run lint` is red on arrival: 33 `no-undef` errors over 5 undeclared names** —
+   `indicators`, `selectedDisparity`, `xValue`, `yValue`, `comp_group_col`. Every one is assigned
+   with no declarator (`comp_group_col = "Geography"` at `assets/js/data-explorer/trend.js:142`,
+   and so on), and none is declared anywhere under `assets/`, `themes/` or `content/` — the one
+   apparent declaration, `let indicators;` at `data-explorer/data-index.html:65`, is on a page that
+   does not load `data.js`. So they are implicit globals, which is exactly what CLAUDE.md's data
+   explorer section says not to create. **Confirmed in a browser, not inferred:** on
+   `data-explorer/asthma/?id=2380`, `window.indicators` and `window.selectedDisparity` are own
+   properties after load, and `window.comp_group_col` is `"Geography"` after `#display=trend`
+   runs — against a control pair that discriminates, since `global.js`'s `let showMap` is correctly
+   *absent* from `window` while `jQuery` is present. `xValue`/`yValue` live in `links.js`, whose
+   view was not driven, so those two rest on the source reading alone. The fix is five declarations
+   in `global.js` and is collision-free — `global.js` loads only from `data-explorer/single.html`
+   (one grep hit repo-wide), and nothing reads any of the five through `window.`, so moving them to
+   lexical bindings changes no reachable read. It is still a change to runtime JS on the explorer
+   and wants its own task and its own smoke run, so Task 20 landed the guardrail red rather than
+   widening into it.
+6. **The "933 real pages" figure in `CLAUDE.md` is wrong, and so is the marker it recommends.**
+   CLAUDE.md says a `prod_prod` build writes 1397 HTML files "of which 933 are pages", and names
+   `head.html`'s viewport meta as the way to select them. Measured on the Task 21 build, all three
+   numbers differ: `data-pagefind-meta="title:` — also emitted unconditionally by `head.html` —
+   matches **927** files, and agrees with the `<script type="application/ld+json">` count on every
+   one of the 1397 files, **0 disagreements**. The exact viewport string matches **928**: the extra
+   file is `static/data-stories/cold/source/index.html`, a standalone static page that happens to
+   contain the identical meta tag. A loose `name="viewport"` match returns **933** — the CLAUDE.md
+   figure — picking up five more `static/` files with their own variants (three heat-report figure
+   embeds, two HOLC maps). So 933 was taken with a looser pattern than the rule prescribes, and the
+   real figure is 927. This matters beyond bookkeeping: several **DONE** rows on Branches B and C
+   state their proofs as "N of 933", so their denominators wanted re-deriving. **Both closed in
+   Task 22:** the CLAUDE.md rule now names 927, says the viewport meta is unsafe and why, and points
+   at `data-pagefind-meta="title:`; the rows 13 and 17 denominators are corrected in place above,
+   each keeping the original wording in a parenthetical so the change is legible. The numerators
+   were counted directly and none moved.
+
 ### The exact next commands
 
 Branches A and B are both pushed and both in review — A as #1474 onto `production`, B as #1475 onto
-A. The worktree has B checked out, not A. Derive the git state rather than trusting this paragraph:
+A. The worktree has **C** checked out. Derive the git state rather than trusting this paragraph:
 
 ```bash
-cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-seo-meta checked out
-git branch --show-current                     # expect hotfix-audit-seo-meta
-git log --oneline 2b4abe82f2..HEAD            # 9: 6 task commits, 2 ledger, 1 CLAUDE.md; Task 10 oldest
-git status --porcelain                        # expect empty
-git rev-list --left-right --count origin/hotfix-audit-seo-meta...HEAD   # 0 0 = pushed
+cd EH-dataportal.worktrees/merge/production   # has feature-audit-moderate checked out
+git branch --show-current                     # expect feature-audit-moderate
+git log --oneline 3cd323a44d..HEAD            # C's own commits; expect 7 task commits + 1 ledger
+git status --porcelain                        # expected empty once the ledger commit lands
+git rev-list --left-right --count origin/feature-audit-moderate...HEAD   # fails until C is pushed
 gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE
 gh pr view 1475 --json state,baseRefName,mergeable   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
+gh pr list --head feature-audit-moderate             # C: no PR yet
 ```
 
-Nothing is owed on B. Branch C is next — cut it from B's tip and work Tasks 17–22 while A and B are
-in review:
+Nothing is owed on A or B. **All of Branch C's tasks have landed** — `3cd323a44d..465ffceb84`, seven
+commits: Task 17 alone at `d057ea74ca` as the element-id rule requires, then Tasks 18–22 one commit
+each, plus `74a11a51ef`, which belongs to no task. What is left is pushing it and opening its PR:
 
 ```bash
-git checkout -b feature-audit-moderate          # C, from B's tip
-#   …Branch C tasks; commit, push, open its PR against hotfix-audit-seo-meta
+git log --oneline 3cd323a44d..HEAD          # expect 7 commits + the ledger commit on top
+git push -u origin feature-audit-moderate
+gh pr create --base hotfix-audit-seo-meta --head feature-audit-moderate
 ```
+
+**Then stop the `hugo serve` on :1313** — see the environment note below for why `TaskStop` is not
+enough.
 
 **Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
 merges, or merge them in order down the stack. If review changes A, rebase the stack rather than
@@ -238,13 +457,18 @@ ends at the cutover.
 **Environment state a cold session needs.** The work is planned from the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
 is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
-**No hugo process is running** `[re-verified 2026-08-21 after the Branch B work: PowerShell
-Get-Process -Name hugo returned nothing, and ports 1313, 8080 and 8081 all failed to answer — those
-are the three scripts/dev-server.mjs probes. Check this from PowerShell, not Bash
-— Git Bash rewrites the /fi in tasklist /fi into a path, so the command errors and prints nothing,
-which reads as "no server running"]`. The `hugo serve` on :1313 that the Branch A work started is
-therefore stopped, and the one seen on 2026-08-20 is gone too. Before starting one, **never start a
-second builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses what it finds.
+
+**A `hugo serve` is running on :1313 and was started for the Branch C work** —
+`npx hugo serve --environment development --port 1313 --appendPort=false --baseURL
+"http://localhost:1313/dev-prod/"`, which is the same invocation Branch A used. Tasks 18 and 19 both
+need a browser, so it is deliberately left up; **stop it when Branch C is done.** Nothing was running
+before it `[verified 2026-08-21 from PowerShell: Get-Process -Name hugo returned nothing and ports
+1313, 8080 and 8081 all failed to answer — those are the three scripts/dev-server.mjs probes. Check
+this from PowerShell, not Bash — Git Bash rewrites the /fi in tasklist /fi into a path, so the
+command errors and prints nothing, which reads as "no server running"]`. Before starting another,
+**never start a second builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses
+what it finds. Note that `npx hugo serve` leaves **two** `hugo.exe` processes for one server, and
+`TaskStop` on the backgrounded command does not end them — stop them explicitly.
 
 **Execute these directly, not through subagents.** Every task here is grep- or lint-provable against
 a standing harness; a subagent would re-derive the file list this document already holds.
