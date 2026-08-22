@@ -188,9 +188,15 @@ claim below was re-run on the final tree after the last edit, so all of it descr
   other three line numbers were correct.
 - *Task 16.* The plan allows for the doubling being unconfirmed, in which case "this task is a doc
   correction and ends here". It is not — both emitters fire, so it was a code change.
-- *Environment.* No hugo process was running when this work started, and none is running now. Note
-  that `npx hugo server` leaves **two** `hugo.exe` processes for one server, so a process count is
-  not a usable "is a builder running" signal.
+- *Environment.* No hugo process was running when this work started, and none is running now. A
+  process count is not a usable "is a builder running" signal, but **not for the reason recorded
+  here earlier** — "`npx hugo server` leaves two `hugo.exe` processes for one server" is wrong
+  `[corrected 2026-08-21: one server owns exactly one `hugo.exe`; `Win32_Process` showed PID 17624
+  running `node_modules/hugo-extended/vendor/hugo.exe` with the node shim as its parent, and
+  `Get-NetTCPConnection -LocalPort 1313` named that same PID]`. Two processes meant two servers or
+  a survivor from an earlier run, which is the real reason the count says nothing: it cannot
+  distinguish those from each other. Read each process's `CommandLine` and check which PID owns the
+  port.
 
 ### Found while executing Branch B, not in this plan — three open items
 
@@ -352,7 +358,7 @@ writing the next one of these.
    failing at 3.46:1 when its size and weight make 3:1 the applicable bar. Worst normal-size and
    worst large-text have to be tracked separately.
 
-### Found while executing Branch C, not in this plan — six open items
+### Found while executing Branch C, not in this plan — six items, five still open
 
 1. **The whole neighborhood picker on `data-features/aqe.html:21` is inside `aria-hidden="true"`,**
    wrapping the label text, the input, the Clear button and the "About NTAs" link. axe reports
@@ -467,8 +473,10 @@ before it `[verified 2026-08-21 from PowerShell: Get-Process -Name hugo returned
 this from PowerShell, not Bash — Git Bash rewrites the /fi in tasklist /fi into a path, so the
 command errors and prints nothing, which reads as "no server running"]`. Before starting another,
 **never start a second builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses
-what it finds. Note that `npx hugo serve` leaves **two** `hugo.exe` processes for one server, and
-`TaskStop` on the backgrounded command does not end them — stop them explicitly.
+what it finds. `TaskStop` on the backgrounded command does not end the server — stop it
+explicitly, by the PID that `Get-NetTCPConnection -LocalPort 1313` names. Don't go by a process
+count: one server is one `hugo.exe`, so a count above one means a second server or a leftover, and
+those are indistinguishable without reading each `CommandLine`.
 
 **Execute these directly, not through subagents.** Every task here is grep- or lint-provable against
 a standing harness; a subagent would re-derive the file list this document already holds.
