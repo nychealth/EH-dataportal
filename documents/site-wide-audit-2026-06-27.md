@@ -1111,6 +1111,10 @@ red.
 
 ### 5k. flexdatalist emits combobox ARIA with no combobox role — five call sites here, fixed 2026-08-21 (P2, added 2026-08-11)
 
+> **Two follow-ups this fix did not cover are at §15.7 and §15.8** — the aqe picker sits inside
+> `aria-hidden="true"`, and three of the five inputs have no accessible name. §15.9 records why axe
+> now reports one *incomplete* on these pages.
+
 Split out of the Neighborhood Reports accessibility audit
 (`documents/nr-accessibility-audit-2026-08-10.md`, F3 / C4), which fixed it on the NR
 neighborhood picker and deliberately left the rest here rather than pull three unrelated
@@ -2001,6 +2005,9 @@ Black is presumably what was wanted, so nothing renders wrongly today — the co
 attribute that reads as live styling, propagated by copy-paste. Fix: delete whichever of the
 two is not intended. The readme's copies are already fixed.
 
+**Three more instances, in content rather than templates, are recorded at §15.2.** The template
+instances were fixed on branch `hotfix-audit-markup-a11y` as Task 8; the content ones were not.
+
 ### 14.2 Card images on the home page have no `alt` attribute (P2, a11y)
 
 The four section cards at `index.html:175, 193, 212, 233` render
@@ -2057,3 +2064,174 @@ duplicate environment. Both need a decision about which name is canonical.
 Related and lower-value: `partials/conditional-modal.html` branches on
 `hugo.Environment "production"`, `"development"`, and `"data_staging"`. No template includes
 this partial, and `config/` has no `data_staging` directory, so all three branches are dead.
+
+---
+
+## 15. Found while executing the audit backlog (added 2026-08-22)
+
+Eleven items surfaced while implementing
+[`audit-backlog-production-2026-08-20.md`](audit-backlog-production-2026-08-20.md) that fell outside
+every one of its 22 tasks' stated scopes. That ledger records them as they were found, per branch;
+this section is their tracked home, because the ledger closes when its three PRs merge and these do
+not close with it.
+
+**Nothing here was introduced by that work** — each is either pre-existing or a deliberate
+out-of-scope decision recorded at the time. All eleven are **open**.
+
+Every `file:line` below was re-opened on `feature-audit-moderate` at `5484bfadfc` on 2026-08-22
+rather than copied forward. **Three moved and are corrected here**: `main.js:193` → **`:181`** (Task
+16 deleted the `click_subscribe` emitter above it), `index.html:92` → **`:93`**, and the `app.js`
+orientation comment `:157-159` → **`:155-157`**. Where an item's evidence is a browser or axe
+measurement, the ledger's own dated reading is cited rather than re-run.
+
+### 15.1 An unclosed `<a>` splits the home page's featured-story link in two (P2, a11y)
+
+`themes/dohmh/layouts/index.html:62` opens `<a href="{{ relURL .Params.featured_link }}">`, and its
+`</a>` at `:93` sits *outside* the three `<div>`s the anchor opened. The parser recovers by closing
+the anchor early and emitting a second, empty one — the same content-model failure Task 5 fixed on
+the site title. axe reports `link-name` [serious] on the unnamed half
+`[ledger, 2026-08-21: axe 4.13.0 on the home page]`.
+
+Pre-existing, and specifically **not** caused by Branch A: that anchor contains no `<img>`, and
+Branch A's `index.html` diff touches only lines 111, 165, 186, 204, 223 and 244.
+
+Fix is the Task 5 shape — move `</a>` inside the `<div>` nesting, or wrap rather than interleave.
+
+### 15.2 Three more doubled `class` attributes, in content rather than templates (P3)
+
+`<div class="tab-content" id="myTabContent" class="mb-4">` at
+`content/data-stories/housing/index.md:609`, `index.es.md:388` and `index.zh.md:394`
+`[verified 2026-08-22: one grep for the literal string, 3 hits, one per file]`.
+
+Identical to §14.1 and to Task 8, but outside Task 8's stated scope of `themes/dohmh/layouts/`. The
+parser keeps the first `class` and drops the second, so `mb-4` has never applied — meaning removing
+it changes nothing rendered, and *applying* it is a visual change that needs a look.
+
+### 15.3 `<hr>` and a bare `<a>` are direct children of `<ul>` in the header menus (P3, a11y)
+
+`<ul>` permits only `<li>`, `<script>` and `<template>` as children. Four menus in
+`themes/dohmh/layouts/partials/header.html` violate it, all on lines adjacent to the ones Task 4
+corrected and none matched by its grep `[verified 2026-08-22: each ul opened and read to its close]`:
+
+| `<ul>` opens | Offending children | Menu |
+|---|---|---|
+| `:103` | `<hr>` `:108`, `:111`; bare `<a>All topics</a>` `:115` | desktop Topics |
+| `~:150` | `<hr>` `:163` | desktop, second menu |
+| `:262` | `<hr>` `:267`, `:270`; bare `<a>All topics</a>` `:274` | mobile Topics |
+| `~:310` | `<hr>` `:322` | mobile, second menu |
+
+Each `<hr>` wants wrapping in its `<li>` (or replacing with a CSS border on the `<li>`); each bare
+`<a>` wants an `<li>` around it.
+
+**Separately, and unrelated to the content model:** `assets/js/main.js:181` and
+`assets/js/site.js:85` both bind `.lang-select` — `main.js` with a direct `.click()` handler,
+`site.js` with a delegated `classList.contains("lang-select")` branch. That is the same
+doubled-handler shape Task 16 confirmed and fixed for `click_subscribe`, and it has not been
+measured here. Whether it double-fires is a browser question, not a source-reading one.
+
+### 15.4 `og:image` and `twitter:image` are still path-only (P2, SEO)
+
+`themes/dohmh/layouts/partials/seo.html:13` emits `og:image` from `$image.RelPermalink`; `:20` emits
+`twitter:image` from `relURL` `[verified 2026-08-22]`. Both are site-relative paths.
+
+Task 14 made `canonical` and `og:url` absolute on the strength of OGP's URL type — "All valid URLs
+that utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21] — which
+covers the two image properties identically. They were left alone only because Task 14's stated
+scope named `canonical` and `og:url`.
+
+Fix: `.Permalink` / `absURL`, matching what Task 14 did two lines above.
+
+### 15.5 `og:locale` is hardcoded `en_us` on every page, including the translations (P2, SEO)
+
+`seo.html:8` emits `<meta property="og:locale" content="en_us" />` unconditionally, on all 927 real
+pages `[verified 2026-08-22: the line is a literal with no template expression]`.
+
+Task 10 has just made `<html lang>` correct for the 102 `es` and `zh` pages, so those pages now
+assert one language in `<html lang>` and a different one in `og:locale`. The value is also
+mis-cased: OGP's examples use the `en_US` form.
+
+Fix: derive it from `.Language.Lang` the way Task 10 derives `<html lang>`.
+
+### 15.6 Dead comment and a copy-pasted banner in the explorer's analytics block (P3)
+
+`assets/js/data-explorer/app.js:151` is a commented-out `console.log` above the `gtag` call — left
+in place rather than deleted, and renamed with the event during Task 15, to match its neighbours,
+which carry the same shape. `:155-157` is a banner comment reading `how calculated` above the
+`#citeButton` block at `:159`, copied from the `#howCalcButton` block above it and never updated
+`[verified 2026-08-22]`.
+
+Cosmetic. Listed because the wrong banner actively misdirects anyone tracing an analytics event.
+
+### 15.7 The whole neighborhood picker on `aqe.html` is inside `aria-hidden="true"` (P1, a11y)
+
+`themes/dohmh/layouts/data-features/aqe.html:21` opens `<div class="my-2" aria-hidden="true">`
+wrapping the label text, the search input, the Clear button and the "About NTAs" link
+`[verified 2026-08-22]`. axe reports `aria-hidden-focus` [serious]: focusable controls inside a
+hidden subtree.
+
+This also explains an otherwise-odd result in §5k's fix — **aqe was the one page of five where axe
+reported no `aria-allowed-attr` before the combobox fix**, because axe skips hidden subtrees. The
+wrapper concealed the defect rather than removing it. Task 18's combobox wiring is in place on that
+page and becomes effective for assistive tech the moment the wrapper goes.
+
+On the axis of who is shut out entirely, this is the worst item in the section: a screen-reader user
+currently cannot reach the page's only data-selection control. Fix is deleting one attribute, but it
+needs a look at *why* it was added — nothing in the ledger explains it.
+
+### 15.8 Neither flexdatalist input has an accessible name on 3 of the 5 call sites (P1, a11y)
+
+axe `label` [critical] ×2 — on both the authored `#flex_search` and the generated
+`#flex_search-flexdatalist` — on `data-explorer/indicator-catalog/`, `data-features/hvi/` and the NR
+topic landing pages `[ledger, 2026-08-21: axe 4.13.0, all five call sites driven]`.
+
+The other two escape for reasons that are not fixes: the NR section page's input carries
+`placeholder="Search"`, which axe accepts as a last-resort name, and aqe escapes only by being
+hidden per §15.7.
+
+`feature-MOD-Lab-NR-recode-refactor`'s copy of the source partial fixes this with `aria-labelledby`
+at the call site. That was outside Task 18's stated scope, which named role, `aria-expanded` and
+`aria-activedescendant` only. Porting it is the same shape of port Task 18 already did — see §5k.
+
+### 15.9 The combobox fix trades one axe *violation* for one axe *incomplete* (not a defect)
+
+With `aria-controls` set, axe 4.13.0 parks `aria-valid-attr-value` [critical] in *incomplete* with
+"Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup"
+`[ledger, 2026-08-21]`. That is a limitation of the rule, not a dangling reference — the id resolves
+and the list is in the DOM, both measured.
+
+With the list **closed** every page reads 0 violations and 0 incomplete, which is what the
+add-and-remove-with-the-list design buys. Recorded so the next person running axe against these
+pages does not read the incomplete as a regression.
+
+### 15.10 `neighborhood-reports/` has its own `aria-hidden-focus` on the Leaflet UHF shapes (P2, a11y)
+
+axe `aria-hidden-focus` [serious] on `.nr-clickable-uhf`, the Leaflet map's UHF shapes, reported both
+before and after the Task 18 change `[ledger, 2026-08-21]`. Pre-existing and unrelated to
+flexdatalist. Same rule as §15.7, different cause: these are focusable map shapes marked hidden.
+
+### 15.11 `npm run lint` is red on arrival: 33 `no-undef` over 5 implicit globals (P2)
+
+Task 20 ported eslint from `feature-MOD-Lab-NR-recode-refactor` and it lands red **on purpose** —
+the guardrail is the deliverable, and the errors it reports are real `[verified 2026-08-22: npx
+eslint . returned 37 problems, 33 errors and 4 warnings; the 33 are all no-undef, the 4 are
+unused-disable warnings in vendored leaflet.js under docs/ and static/]`.
+
+Five names, none declared anywhere under `assets/`, `themes/` or `content/`: `indicators`,
+`selectedDisparity`, `xValue`, `yValue`, `comp_group_col`. Each is assigned with no declarator —
+`comp_group_col = "Geography"` at `assets/js/data-explorer/trend.js:142`, and again at `:183` and
+`:227` `[verified 2026-08-22]`. The one apparent declaration, `let indicators;` at
+`data-explorer/data-index.html:65`, is on a page that does not load `data.js`.
+
+So they are implicit globals — exactly what CLAUDE.md's data-explorer section says not to create.
+**Confirmed in a browser, not inferred** `[ledger, 2026-08-21]`: on
+`data-explorer/asthma/?id=2380`, `window.indicators` and `window.selectedDisparity` are own
+properties after load, and `window.comp_group_col` is `"Geography"` after `#display=trend` runs —
+against a control pair that discriminates, since `global.js`'s `let showMap` is correctly *absent*
+from `window` while `jQuery` is present. `xValue`/`yValue` live in `links.js`, whose view was not
+driven, so those two rest on the source reading alone.
+
+The fix is five declarations in `global.js` and is collision-free: `global.js` loads only from
+`data-explorer/single.html` (one grep hit repo-wide), and nothing reads any of the five through
+`window.`, so moving them to lexical bindings changes no reachable read. It is still a change to
+runtime JS on the explorer and wants its own task and its own `npm run smoke` run, which is why
+Task 20 landed the guardrail red rather than widening into it.

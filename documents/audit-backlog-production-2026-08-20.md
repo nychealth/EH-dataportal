@@ -136,6 +136,11 @@ fix was unaffected in every case, but the reason for it changed:
 
 ### Found while executing, not in this plan — three open items
 
+> **These are tracked in [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15**,
+> which is their home once this ledger closes. Entries below are the record as found on 2026-08-21;
+> §15 re-verified every `file:line` on 2026-08-22 and corrects three that moved.
+
+
 1. **A second, unnamed link to the featured story on every home page load.**
    `themes/dohmh/layouts/index.html:62` opens an `<a>` whose `</a>` at `:92` sits outside the `<div>`s
    it opened, so the parser splits it in two exactly as in Task 5. axe reports `link-name` [serious]
@@ -199,6 +204,11 @@ claim below was re-run on the final tree after the last edit, so all of it descr
   port.
 
 ### Found while executing Branch B, not in this plan — three open items
+
+> **These are tracked in [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15**,
+> which is their home once this ledger closes. Entries below are the record as found on 2026-08-21;
+> §15 re-verified every `file:line` on 2026-08-22 and corrects three that moved.
+
 
 1. **`og:image` and `twitter:image` are still path-only.** `seo.html:13` uses `.RelPermalink`, `:20`
    uses `relURL`. The OGP sentence that justified the `og:url` change covers them equally, but Task
@@ -359,6 +369,11 @@ writing the next one of these.
    worst large-text have to be tracked separately.
 
 ### Found while executing Branch C, not in this plan — six items, five still open
+
+> **These are tracked in [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15**,
+> which is their home once this ledger closes. Entries below are the record as found on 2026-08-21;
+> §15 re-verified every `file:line` on 2026-08-22 and corrects three that moved.
+
 
 1. **The whole neighborhood picker on `data-features/aqe.html:21` is inside `aria-hidden="true"`,**
    wrapping the label text, the input, the Clear button and the "About NTAs" link. axe reports
