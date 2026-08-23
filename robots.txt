@@ -1,0 +1,17 @@
+# Every crawler is allowed every path, search and AI-training alike. Decided
+# 2026-08-05, and written here because until then the same behaviour was produced
+# by this file having no body at all — which left "allow everyone deliberately"
+# and "nobody ever considered it" indistinguishable. The rationale: people ask
+# chatbots questions the Department has data for, so being crawled is a public
+# service independent of how anyone feels about the use case. Nothing below grants
+# it — allow-all is the default, and Google's parser ignores a Disallow carrying no
+# path [robots.txt spec, fetched 2026-08-08]. The pair is a marker for readers.
+User-agent: *
+Disallow:
+
+# The multilingual sitemap index, listing the en/es/zh sitemaps in turn. The sitemap
+# field is not tied to a user-agent group and is followed by any crawler, so this is
+# how the sitemap is found without registering the site with each of them
+# [Google robots.txt spec, fetched 2026-08-08]. The URL must be fully qualified,
+# which is what absURL gives.
+Sitemap: https://a816-dohbesp.nyc.gov/IndicatorPublic/sitemap.xml
