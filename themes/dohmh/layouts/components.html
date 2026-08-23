@@ -11,7 +11,7 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
     <div class="card-content data-explorer mb-4">
       <a class="position-relative" href={{ relURL "data-explorer" }}>
         <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
-        <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }}>
+        <img class="card-img-top" src={{ relURL "images/image_tab_key_topics.jpg" }} alt="Data Explorer">
       </a>
       <div class="card-body">
         <h3 class="card-title">Data Explorer</h3>
@@ -40,7 +40,7 @@ SECTION-SPECIFIC CARDS WITH SECTION-COLOR ON THE BOTTOM BORDER:
         {{- end -}}
 
         <div class="card-body">
-            <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             <div class="mb-2">{{ .Content | truncate 150 }}</div>
             <div class="d-flex justify-content-end link">
                 <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get the data</a>
@@ -82,7 +82,7 @@ This is like the section-specific card, but uses the primary green. Use this for
         </a>
 
         <div class="card-body">
-            <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+            <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             <div class="mb-2">{{ .Content | truncate 150 }}</div>
             <div class="d-flex justify-content-end link">
                 <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Get data, info, and more <i class="fa-solid fa-angle-right"></i></a>

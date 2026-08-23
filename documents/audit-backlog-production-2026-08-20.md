@@ -17,35 +17,159 @@ by decision 2026-08-20, unchanged by anything here.
 
 ## Ledger
 
-**Status as of 2026-08-20: nothing started. Every task Not started, and all of them BLOCKED on PR
-#1473 merging.** This document is committed on `merge/production`, so it arrives on `production` with
-that PR and is already in place when the three branches below are cut.
+**Status as of 2026-08-21: Branch A is implemented, verified, pushed and in review as
+[PR #1474](https://github.com/nychealth/EH-dataportal/pull/1474) — base `production`, head
+`ef6f37ac28`, 7 task commits `3ce4b8f2b3..cad179b26c` plus ledger commits on top. Branches B and C
+are not cut; B is the next step and does not wait on #1474.** PR #1473
+merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
+is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
+`merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
+Tasks 1–9 are implemented and proved, one commit per task except Tasks 4 and 5, which share one.
+See the sequencing decision below.
+
+**Sequencing decision, 2026-08-21 — superseded the same day. A, B and C are stacked, and all three
+are worked and reviewed in parallel.** B is cut from A's tip, C from B's tip. Nothing waits on a
+merge into `production`: all three PRs can be open at once, and only the *merge* order stays serial
+(A → B → C).
+
+Rejected, with reasons. **Cutting all three from `production`** — the measured overlap makes this the
+expensive option, not the cheap one. Task 17 touches the 49 layouts carrying `#skip-header-target`,
+and 9 of them are files Branch A modifies (`partials/header.html`, `partials/header-ds.html`,
+`key-topics/single.html`, the four `data-features/` feature layouts, `data-features/section.html`,
+`data-stories/section.html`); Task 21 adds an include to `partials/head.html` that Tasks 12 and 13
+are rewriting `[verified 2026-08-21: comm -12 of the skip-header-target file list against the
+Branch A working-tree file list returned those 9; Branch B's file list intersects Branch A's in
+nothing]`. It would also give each branch its own copy of this ledger — the per-branch `documents/`
+divergence CLAUDE.md warns about. **Running them serially**, each cut after the previous merges, was
+the earlier decision recorded here; it keeps one ledger lineage but blocks each branch on the
+previous branch's review, which is the cost that retired it.
+
+Cost of stacking: if review changes Branch A, B and C need `git rebase --onto`. That is the same
+9-file collision either way — stacking pays it with a lineage to rebase along, cutting from
+`production` pays it as a merge conflict without one.
+
+**The ledger ports forward by lineage, not by hand.** B contains A and C contains B, so this
+document's later copies already hold the earlier branches' rows: one lineage, no manual
+reconciliation. Task 22 lands last, on C, and therefore sees all three branches' entries.
+
+**Completed work is referenced by branch, and by commit once one exists — `A @ <sha>`.** A `DONE`
+row is a fact about the branch named in its Branch column and about nothing else until that branch
+merges; check `git log production` before citing one as live on the site.
 
 | # | Task | Branch | Status | Proof that ran |
 |---|---|---|---|---|
-| 0 | Merge `upgrade-GHA-dependencies` | (its own) | BLOCKED on #1473 | — |
-| 1 | Header logo `alt` + link name | A | BLOCKED on #1473 | — |
-| 2 | Duplicate `id="languages"` | A | BLOCKED on #1473 | — |
-| 3 | Duplicate `data-toggle` ×3 | A | BLOCKED on #1473 | — |
-| 4 | `<a><li>` ×6 | A | BLOCKED on #1473 | — |
-| 5 | Site-title `<a>`/`<span>` overlap | A | BLOCKED on #1473 | — |
-| 6 | Unlabeled `<nav>` landmarks | A | BLOCKED on #1473 | — |
-| 7 | 16 `<img>` with no `alt` | A | BLOCKED on #1473 | — |
-| 8 | 19 doubled `class` attributes | A | BLOCKED on #1473 | — |
-| 9 | Gate `g-dev-tools.scss` by environment | A | BLOCKED on #1473 | — |
-| 10 | `<html lang>` from the page's language | B | BLOCKED on #1473 | — |
-| 11 | `robots.txt` production body + `Sitemap:` | B | BLOCKED on #1473 | — |
-| 12 | Collapse the stacked `robots` metas | B | BLOCKED on #1473 | — |
-| 13 | `<title>` brand suffix | B | BLOCKED on #1473 | — |
-| 14 | Vestigial metas out; `canonical`/`og:url` absolute | B | BLOCKED on #1473 | — |
-| 15 | `click_how_caclulated` misspelling | B | BLOCKED on #1473 | — |
-| 16 | `click_subscribe` fires twice — confirm, then fix | B | BLOCKED on #1473 | — |
-| 17 | `#skip-header-target` de-duplication | C | BLOCKED on #1473 | — |
-| 18 | flexdatalist combobox port, 5 call sites | C | BLOCKED on #1473 | — |
-| 19 | `$primary`-as-text contrast sweep | C | BLOCKED on #1473 | — |
-| 20 | Port the guardrails (`lint`, `docs-check`) | C | BLOCKED on #1473 | — |
-| 21 | JSON-LD: Organization, WebSite, BreadcrumbList | C | BLOCKED on #1473 | — |
-| 22 | Reconcile the audit records | C | BLOCKED on #1473 | — |
+| 0 | Merge `upgrade-GHA-dependencies` | (its own) | **DONE 2026-08-21** | Already merged at `dcaafea20a`, ahead of #1473. `git rev-list --left-right --count upgrade-GHA-dependencies...production` returned `0 49`; `git diff --name-only production upgrade-GHA-dependencies -- .github/` returned nothing |
+| 1 | Header logo `alt` + link name | A @ `712c74a33c` | **DONE 2026-08-21** | axe `image-alt` and `link-name` both 0 violations over 4 pages; a11y tree shows `img "Environment & Health Data Portal home"` |
+| 2 | Duplicate `id="languages"` | A @ `3ce4b8f2b3` | **DONE 2026-08-21** | `grep -c 'id="languages"' footer.html` returned 1. Renamed the **hidden** (`d-none`) block to `languages-grid`; the visible block keeps `languages` so `[id="languages"]` in `_f-layout-elements.scss:27` still matches. No JS references either id |
+| 3 | Duplicate `data-toggle` ×3 | A @ `9ae35c3e9a` | **DONE 2026-08-21** | Pattern 3 to 0 in the template. All 3 call sites open `#searchModal` in-browser, with a validated positive control (driving the modal directly opened it) and a negative control (closed state reads false). A synchronous read after `.click()` returns a false negative — the modal is animated |
+| 4 | `<a><li>` ×6 | A @ `d0fc7e1753` | **DONE 2026-08-21** | Pattern 6 to 0; axe `list`/`listitem` 0 violations. Dropdown **pixel-identical** before/after under a matched procedure, and desktop + mobile geometry identical on 5 measured boxes |
+| 5 | Site-title `<a>`/`<span>` overlap | A @ `d0fc7e1753` | **DONE 2026-08-21** | a11y tree: one `link "Environment & Health Data Portal"` where the parser previously produced **two** anchors. Header screenshot pixel-identical across the change |
+| 6 | Unlabeled `<nav>` landmarks | A @ `6c85c4a575` | **DONE 2026-08-21** | axe `landmark-unique` 0 violations; a11y tree shows exactly `navigation "Main"` and `navigation "Footer"` exposed on the home page |
+| 7 | 16 `<img>` with no `alt` | A @ `b152f67c31` | **DONE 2026-08-21** | axe `image-alt` 0 violations on home, cooling-info, nyccas and a data story. Task 7 covered **14** images, not the 15 the plan lists (16 site-wide including Task 1) — see the corrections below |
+| 8 | 19 doubled `class` attributes | A @ `cad179b26c` | **DONE 2026-08-21** | 19 to 0 in templates. Proved a no-op **against the Task 8 commit alone**, which is the only scope where the proof holds — `index.html` and `components.html` also carry Task 7's `alt` additions, so file-scoped it fails on 2 of 7. Stripping every `class="…"` from `cad179b26c` and from its parent leaves all 7 files identical, 7 of 7, with the same comparison unstripped differing as a control. The surviving attribute is the first one in all 19 |
+| 9 | Gate `g-dev-tools.scss` by environment | A | **DONE 2026-08-21 — no change made** | Doc correction. The partial emits **zero CSS**: both features are gated on `$floating-breakpoints-bar: false` and `$container-background-color: false`, hardcoded with no environment input. Compiled stylesheet: `breakpoint: ` 0 hits, `[class*="container"]` 0 hits, against positive controls `.site-title` 3 and `.link-no-dec` 1 |
+| 10 | `<html lang>` from the page's language | B | Not started | — |
+| 11 | `robots.txt` production body + `Sitemap:` | B | Not started | — |
+| 12 | Collapse the stacked `robots` metas | B | Not started | — |
+| 13 | `<title>` brand suffix | B | Not started | — |
+| 14 | Vestigial metas out; `canonical`/`og:url` absolute | B | Not started | — |
+| 15 | `click_how_caclulated` misspelling | B | Not started | — |
+| 16 | `click_subscribe` fires twice — confirm, then fix | B | Not started | — |
+| 17 | `#skip-header-target` de-duplication | C | Not started | — |
+| 18 | flexdatalist combobox port, 5 call sites | C | Not started | — |
+| 19 | `$primary`-as-text contrast sweep | C | Not started | — |
+| 20 | Port the guardrails (`lint`, `docs-check`) | C | Not started | — |
+| 21 | JSON-LD: Organization, WebSite, BreadcrumbList | C | Not started | — |
+| 22 | Reconcile the audit records | C | Not started | — |
+
+### Branch A verification that ran
+
+Against the working tree at branch point `6a2101c19a`, on 2026-08-21:
+
+- **Isolated `prod_prod` build**, the form CLAUDE.md documents as safe beside a live server:
+  `HUGO_RESOURCEDIR="$SP/iso-resources" npx hugo --environment prod_prod -d "$SP/iso-docs-prod"`.
+  Exit 0, 30.9 s, 1282 EN pages, **0 ERROR**, 1397 HTML files written. `git status --porcelain docs/`
+  was empty afterward.
+- **Sweeps over the generated HTML**, not over the template diff: doubled `data-toggle` 0,
+  `<a …><li` 0, doubled `class` 0, logo-img-without-alt 0. Every probe was validated against the
+  pre-change file at `HEAD` and fired there at exactly the expected count (6, 3, 9 and 0).
+- **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`. Chris re-ran it himself on
+  branch A on 2026-08-21 after the push and reported it green; that run was not observed here, so
+  the commit it ran against is not recorded. It covers the shipping code regardless —
+  `git diff --name-only cad179b26c ef6f37ac28` returns only this ledger file, so everything after
+  the last task commit is documents-only.
+- **axe-core 4.13** over the home page, `data-features/cooling-info/`, `data-features/nyccas/` and
+  `data-stories/adult-lead/`, rules `image-alt, link-name, landmark-unique, list, listitem,
+  aria-allowed-attr`: all zero except two pre-existing `link-name` violations recorded below. The
+  harness was a scratch script, since deleted; building it properly belongs in Task 20.
+- **Screenshot and geometry diffs** for Tasks 4 and 5, at desktop 1440×900 and mobile 390×844.
+
+**Corrections to this plan's own premises, found while executing.** Each was wrong as written. The
+fix was unaffected in every case, but the reason for it changed:
+
+- *Task 4.* The plan says browsers "recover by restructuring the DOM". They do not, here — the parsed
+  tree was `UL > A > LI`, exactly what the template said, and `.extensible-list li` is a descendant
+  selector that matched either way. The real defect is that the `<ul>` had no `<li>` **children**.
+- *Task 5.* Here the parser **does** restructure: the adoption agency algorithm split the crossed
+  tags into **two** separate anchors to the home page. The fix genuinely goes 2 links to 1.
+- *Task 7.* The line-based sweep returns 16 at `HEAD`; the true total is **15**, so Task 7 covered 14, not 15. `data-features/minimum-wage-with-maps.html:278` is a
+  false positive of a line-based sweep — its tag spans lines and `alt="Table 1 (Table)"` sits on line
+  280. The plan's own sweep inherited that error.
+- *Task 8.* "Every one is the same shape" is wrong for 4 of the 19: `data-features/section.html:114`
+  has an **empty** first `class`, `key-topics/single.html:191` has `link-track`, `index.html:165` is a
+  `<button>`, and `partials/nr-chooser.html:9` is a `<div>` discarding `d-inline mr-1`.
+- *Task 9.* Not a change at all — see the ledger row above.
+- *Environment.* No hugo process was running when this work resumed, contradicting the environment
+  note below. One was started for this work:
+  `npx hugo serve --environment development --port 1313 --appendPort=false --baseURL "http://localhost:1313/dev-prod/"`.
+  **It has since been stopped** — see the environment note below.
+
+### Found while executing, not in this plan — three open items
+
+1. **A second, unnamed link to the featured story on every home page load.**
+   `themes/dohmh/layouts/index.html:62` opens an `<a>` whose `</a>` at `:92` sits outside the `<div>`s
+   it opened, so the parser splits it in two exactly as in Task 5. axe reports `link-name` [serious]
+   on the second, unnamed half. **Pre-existing, not caused by Branch A** — that anchor contains no
+   `<img>`, and Branch A's `index.html` diff touches only lines 111, 165, 186, 204, 223 and 244.
+2. **Three more doubled `class` attributes, in content rather than templates.**
+   `class="tab-content" id="myTabContent" class="mb-4"` in `content/data-stories/housing/index.md:609`
+   and its `.es.md:388` and `.zh.md:394` translations. Same defect as Task 8 but outside its stated
+   scope of `themes/dohmh/layouts/`; the `mb-4` has never applied.
+3. **`<hr>` and a bare `<a>All topics</a>` are still direct children of `<ul>`** in the four header
+   menus Task 4 touched — the same invalid content model, on adjacent lines, not matched by Task 4's
+   grep. Separately, `assets/js/main.js:193` and `assets/js/site.js:85` both bind `.lang-select`,
+   which is the same doubled-handler shape Task 16 exists to investigate.
+
+### The exact next commands
+
+Branch A is committed, pushed and in review as PR #1474. Ledger commits sit on top of its seven
+task commits and move the tip, so derive the git state rather than trusting this paragraph, which
+is a snapshot:
+
+```bash
+cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-markup-a11y checked out
+git log --oneline 6a2101c19a..HEAD            # Task 2's commit is the oldest
+git status --porcelain                        # expect empty
+git rev-list --left-right --count origin/hotfix-audit-markup-a11y...HEAD   # 0 0 = pushed
+gh pr view 1474 --json state,baseRefName,mergeable   # OPEN / production / MERGEABLE on 2026-08-21
+```
+
+**Do not wait for #1474 to merge.** Branch B is next: cut it from A's tip and work Tasks 10–16 while
+A is in review. C is cut from B's tip the same way.
+
+```bash
+git checkout -b hotfix-audit-seo-meta           # B, from A's tip
+#   …Branch B tasks; commit, push, open its PR against hotfix-audit-markup-a11y
+git checkout -b feature-audit-moderate          # C, from B's tip
+```
+
+Retarget each PR to `production` as its parent merges, or merge them in order A → B → C. If review
+changes A, rebase the stack rather than merging down it:
+
+```bash
+git rebase --onto hotfix-audit-markup-a11y <old-A-tip> hotfix-audit-seo-meta
+git rebase --onto hotfix-audit-seo-meta   <old-B-tip> feature-audit-moderate
+```
 
 **Two open questions, neither blocking any task above.** Whether `content/resources/` should stay
 `noindex` in production (Task 12 records it, changes nothing); and whether `click_how_caclulated`
@@ -53,9 +177,13 @@ should be renamed at all, given GA4 event-name continuity (Task 15).
 
 **Environment state a cold session needs.** The work is planned from the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
-is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`). A hugo
-process was running on 2026-08-20 that this planning session did not start — **never start a second
-builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses what it finds.
+is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
+**No hugo process is running** `[verified 2026-08-21: PowerShell Get-Process -Name hugo returned
+nothing, and http://localhost:1313/dev-prod/ timed out at 4 s. Check this from PowerShell, not Bash
+— Git Bash rewrites the /fi in tasklist /fi into a path, so the command errors and prints nothing,
+which reads as "no server running"]`. The `hugo serve` on :1313 that the Branch A work started is
+therefore stopped, and the one seen on 2026-08-20 is gone too. Before starting one, **never start a
+second builder**; `scripts/dev-server.mjs` probes :8080, :8081 and :1313 and reuses what it finds.
 
 **Execute these directly, not through subagents.** Every task here is grep- or lint-provable against
 a standing harness; a subagent would re-derive the file list this document already holds.
