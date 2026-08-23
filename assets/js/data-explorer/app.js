@@ -148,8 +148,8 @@ $('#tab-btn-links').on('click', e => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 $('#howCalcButton').on('click', e => {
-    // console.log("click_how_caclulated");
-    gtag('event', 'click_how_caclulated');
+    // console.log("click_how_calculated");
+    gtag('event', 'click_how_calculated');
 });
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //

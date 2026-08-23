@@ -17,10 +17,18 @@ by decision 2026-08-20, unchanged by anything here.
 
 ## Ledger
 
-**Status as of 2026-08-21: Branch A is implemented, verified, pushed and in review as
+**Status as of 2026-08-21: Branch A is in review as
 [PR #1474](https://github.com/nychealth/EH-dataportal/pull/1474) — base `production`, head
-`ef6f37ac28`, 7 task commits `3ce4b8f2b3..cad179b26c` plus ledger commits on top. Branches B and C
-are not cut; B is the next step and does not wait on #1474.** PR #1473
+`2b4abe82f2`, 7 task commits `3ce4b8f2b3..cad179b26c` plus ledger commits on top. Branch B
+(`hotfix-audit-seo-meta`) is cut from A's tip and in review as
+[PR #1475](https://github.com/nychealth/EH-dataportal/pull/1475), **based on `hotfix-audit-markup-a11y`,
+not `production`** — Tasks 10–16 committed as `f697da1c81..eb80c2abd4`, one per task except Tasks 12
+and 13, which both edit `head.html` and share one, plus ledger commits on top. **B also carries one
+commit that belongs to no task** — `b905e1e3d4` edits the project `CLAUDE.md`, adding a fourth entry
+to "ways a local check silently lies" and making the stale-asset rule checkable; it came out of the
+lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
+Task 20 and Task 22 should read it before touching that file. Branch C is not cut; it is next, from
+B's tip.** PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
 `merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
@@ -68,13 +76,13 @@ merges; check `git log production` before citing one as live on the site.
 | 7 | 16 `<img>` with no `alt` | A @ `b152f67c31` | **DONE 2026-08-21** | axe `image-alt` 0 violations on home, cooling-info, nyccas and a data story. Task 7 covered **14** images, not the 15 the plan lists (16 site-wide including Task 1) — see the corrections below |
 | 8 | 19 doubled `class` attributes | A @ `cad179b26c` | **DONE 2026-08-21** | 19 to 0 in templates. Proved a no-op **against the Task 8 commit alone**, which is the only scope where the proof holds — `index.html` and `components.html` also carry Task 7's `alt` additions, so file-scoped it fails on 2 of 7. Stripping every `class="…"` from `cad179b26c` and from its parent leaves all 7 files identical, 7 of 7, with the same comparison unstripped differing as a control. The surviving attribute is the first one in all 19 |
 | 9 | Gate `g-dev-tools.scss` by environment | A | **DONE 2026-08-21 — no change made** | Doc correction. The partial emits **zero CSS**: both features are gated on `$floating-breakpoints-bar: false` and `$container-background-color: false`, hardcoded with no environment input. Compiled stylesheet: `breakpoint: ` 0 hits, `[class*="container"]` 0 hits, against positive controls `.site-title` 3 and `.link-no-dec` 1 |
-| 10 | `<html lang>` from the page's language | B | Not started | — |
-| 11 | `robots.txt` production body + `Sitemap:` | B | Not started | — |
-| 12 | Collapse the stacked `robots` metas | B | Not started | — |
-| 13 | `<title>` brand suffix | B | Not started | — |
-| 14 | Vestigial metas out; `canonical`/`og:url` absolute | B | Not started | — |
-| 15 | `click_how_caclulated` misspelling | B | Not started | — |
-| 16 | `click_subscribe` fires twice — confirm, then fix | B | Not started | — |
+| 10 | `<html lang>` from the page's language | B @ `f697da1c81` | **DONE 2026-08-21** | Generated HTML, isolated `prod_prod` build: `es/` and `zh/` each went from 51 pages at `lang="en"` to 51 at their own language; the 827 English pages unchanged. Counted excluding Hugo's 442 internal alias stubs, which hardcode `lang="en"` and would have masked the result |
+| 11 | `robots.txt` production body + `Sitemap:` | B @ `fa966be9c9` | **DONE 2026-08-21** | Copied verbatim; `git hash-object` matches `feature-MOD-Lab-NR-recode-refactor`'s blob `1a3bbb2502`. Built both environments: `prod_prod` writes 1089 bytes with a bodiless `Disallow:` and an absolute `Sitemap:`; `development` writes 736 `Disallow` lines and **0** `Sitemap`. The pre-change tree wrote **no robots.txt at all** under `prod_prod` — stronger than the plan's "emits nothing" |
+| 12 | Collapse the stacked `robots` metas | B @ `c7497564b9` | **DONE 2026-08-21** | Control build of the pre-change tip shows **3 pages carrying 2 metas** — so the sweep can see the defect it reports gone. After: 927 real pages with exactly 1; `resources/` reads `noindex` under `prod_prod` and `noindex, nofollow` under `development` |
+| 13 | `<title>` brand suffix | B @ `c7497564b9` | **DONE 2026-08-21** | 0 → 924 of 933 real pages end in the suffix. The 9 that do not: the 3 home pages, excluded by an `.IsHome` guard, and 6 static files that never reach `head.html`. Instrument check in the same sweep: 0 pages have a `<title>` spanning lines, so the line-oriented read is sound here |
+| 14 | Vestigial metas out; `canonical`/`og:url` absolute | B @ `cc8f651bcc` | **DONE 2026-08-21** | 927 pages went path-only → absolute for both `canonical` and `og:url`; `geo.region` and `fb:profile_id` went from 927 pages to 0. The `og:url` half is now sourced: OGP's URL type is "All valid URLs that utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21] |
+| 15 | `click_how_caclulated` misspelling | B @ `8334d0450a` | **DONE 2026-08-21 — renamed** | Decision 2026-08-21: rename, accepting the GA4 continuity cost. Browser, reading `window.dataLayer` directly: one `click_how_calculated`, zero under the old spelling, `#howCalcModal` still opens. Cutover date recorded in the audit's §9, which is this repo's analytics inventory |
+| 16 | `click_subscribe` fires twice — confirm, then fix | B @ `eb80c2abd4` | **DONE 2026-08-21 — the doubling was real** | Evidence first: one click produced **2** events with two schemas, `{page, place}` from `main.js` and `{page, place, click_url}` from `site.js`. Removed the `main.js` emitter; re-click gives exactly 1 and the modal still opens. The `main.js` fingerprint differed across the two runs, ruling out a cached script |
 | 17 | `#skip-header-target` de-duplication | C | Not started | — |
 | 18 | flexdatalist combobox port, 5 call sites | C | Not started | — |
 | 19 | `$primary`-as-text contrast sweep | C | Not started | — |
@@ -140,46 +148,99 @@ fix was unaffected in every case, but the reason for it changed:
    grep. Separately, `assets/js/main.js:193` and `assets/js/site.js:85` both bind `.lang-select`,
    which is the same doubled-handler shape Task 16 exists to investigate.
 
+### Branch B verification that ran
+
+Against `hotfix-audit-seo-meta`, cut from A's tip at `2b4abe82f2`, on 2026-08-21. Every build-visible
+claim below was re-run on the final tree after the last edit, so all of it describes one state.
+
+- **Three isolated builds**, the form CLAUDE.md documents as safe beside a server:
+  `HUGO_RESOURCEDIR="$SP/iso-resources" npx hugo --environment <env> -d "$SP/iso-docs-<env>"`.
+  `prod_prod` and `development` on the changed tree, plus a third of the pre-change tip as control.
+  All exit 0, **0 ERROR**, 1397 HTML files each; `git status --porcelain docs/ resources/` empty
+  afterward.
+- **One Python walk per tree, not per-file greps.** The first attempt shelled out a `grep` per file
+  per probe and was killed at 10 minutes — process creation under Git Bash on Windows makes that
+  shape unusable at ~900 files x 3 trees. Reach for a single-pass script here, not a shell loop.
+- **"Real pages" is 933 of the 1397 HTML files, and the distinction is load-bearing.** The excluded
+  464 are Hugo's 442 internal alias-redirect stubs plus 22 static passthrough files. The alias stubs
+  carry their own `noindex` **and** `lang="en"`, so a naive tree-wide count reports 442 phantom
+  failures of Tasks 10 and 12. Real pages are those emitting `head.html`'s viewport meta.
+- **`npm run smoke`** returned `Smoke test PASSED — 33 pages clean`, against a `dev_stage` server on
+  :8080 started for this work and since stopped.
+- **Browser, for Tasks 15 and 16 only.** `window.dataLayer` read directly, never through a `gtag`
+  stub — the GA snippet redefines `gtag` after page scripts run, which cost a false negative on
+  2026-08-15. In both tests the fingerprinted asset filename differed between the before and after
+  reads, which is what rules out a cached-script reading.
+
+**Corrections to this plan's own premises, found while executing.**
+
+- *Task 11.* The plan says the template "currently emits nothing at all" under production. It is
+  stronger than that: **no `robots.txt` is written at all**, so the path 404s rather than serving an
+  empty body.
+- *Task 14.* The plan cites `seo.html:10` for `og:url`; it was `:11`, and `:10` is `og:locale`. The
+  other three line numbers were correct.
+- *Task 16.* The plan allows for the doubling being unconfirmed, in which case "this task is a doc
+  correction and ends here". It is not — both emitters fire, so it was a code change.
+- *Environment.* No hugo process was running when this work started, and none is running now. Note
+  that `npx hugo server` leaves **two** `hugo.exe` processes for one server, so a process count is
+  not a usable "is a builder running" signal.
+
+### Found while executing Branch B, not in this plan — three open items
+
+1. **`og:image` and `twitter:image` are still path-only.** `seo.html:13` uses `.RelPermalink`, `:20`
+   uses `relURL`. The OGP sentence that justified the `og:url` change covers them equally, but Task
+   14's stated scope named only `canonical` and `og:url`, so they were left alone.
+2. **`og:locale` is hardcoded `en_us`** at `seo.html:8`, on all 933 pages. Task 10 has just made
+   `<html lang>` correct for the 102 `es`/`zh` pages, so those pages now assert two different
+   languages in two places. The value is also `en_us`, where the spec's examples use `en_US`.
+3. **A commented-out `console.log` sits above the gtag call** at `app.js:151`, and the orientation
+   comment above the `#citeButton` block at `app.js:157-159` reads "how calculated" — copied from
+   the block above it. The dead comment was renamed rather than deleted, to match its neighbours.
+
 ### The exact next commands
 
-Branch A is committed, pushed and in review as PR #1474. Ledger commits sit on top of its seven
-task commits and move the tip, so derive the git state rather than trusting this paragraph, which
-is a snapshot:
+Branches A and B are both pushed and both in review — A as #1474 onto `production`, B as #1475 onto
+A. The worktree has B checked out, not A. Derive the git state rather than trusting this paragraph:
 
 ```bash
-cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-markup-a11y checked out
-git log --oneline 6a2101c19a..HEAD            # Task 2's commit is the oldest
+cd EH-dataportal.worktrees/merge/production   # has hotfix-audit-seo-meta checked out
+git branch --show-current                     # expect hotfix-audit-seo-meta
+git log --oneline 2b4abe82f2..HEAD            # 9: 6 task commits, 2 ledger, 1 CLAUDE.md; Task 10 oldest
 git status --porcelain                        # expect empty
-git rev-list --left-right --count origin/hotfix-audit-markup-a11y...HEAD   # 0 0 = pushed
-gh pr view 1474 --json state,baseRefName,mergeable   # OPEN / production / MERGEABLE on 2026-08-21
+git rev-list --left-right --count origin/hotfix-audit-seo-meta...HEAD   # 0 0 = pushed
+gh pr view 1474 --json state,baseRefName,mergeable   # A: OPEN / production / MERGEABLE
+gh pr view 1475 --json state,baseRefName,mergeable   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
 ```
 
-**Do not wait for #1474 to merge.** Branch B is next: cut it from A's tip and work Tasks 10–16 while
-A is in review. C is cut from B's tip the same way.
+Nothing is owed on B. Branch C is next — cut it from B's tip and work Tasks 17–22 while A and B are
+in review:
 
 ```bash
-git checkout -b hotfix-audit-seo-meta           # B, from A's tip
-#   …Branch B tasks; commit, push, open its PR against hotfix-audit-markup-a11y
 git checkout -b feature-audit-moderate          # C, from B's tip
+#   …Branch C tasks; commit, push, open its PR against hotfix-audit-seo-meta
 ```
 
-Retarget each PR to `production` as its parent merges, or merge them in order A → B → C. If review
-changes A, rebase the stack rather than merging down it:
+**Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
+merges, or merge them in order down the stack. If review changes A, rebase the stack rather than
+merging down it:
 
 ```bash
 git rebase --onto hotfix-audit-markup-a11y <old-A-tip> hotfix-audit-seo-meta
 git rebase --onto hotfix-audit-seo-meta   <old-B-tip> feature-audit-moderate
 ```
 
-**Two open questions, neither blocking any task above.** Whether `content/resources/` should stay
-`noindex` in production (Task 12 records it, changes nothing); and whether `click_how_caclulated`
-should be renamed at all, given GA4 event-name continuity (Task 15).
+**Both open questions were answered 2026-08-21 and are closed.** `content/resources/` **stays
+`noindex` in production** — the section holds `health-code-reference` and `sugar-lookup`, and
+keeping them out of the index is deliberate; the rationale is now a comment in `head.html` rather
+than only here. And `click_how_caclulated` **was renamed**, accepting that the historical series
+ends at the cutover.
 
 **Environment state a cold session needs.** The work is planned from the
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
 is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
-**No hugo process is running** `[verified 2026-08-21: PowerShell Get-Process -Name hugo returned
-nothing, and http://localhost:1313/dev-prod/ timed out at 4 s. Check this from PowerShell, not Bash
+**No hugo process is running** `[re-verified 2026-08-21 after the Branch B work: PowerShell
+Get-Process -Name hugo returned nothing, and ports 1313, 8080 and 8081 all failed to answer — those
+are the three scripts/dev-server.mjs probes. Check this from PowerShell, not Bash
 — Git Bash rewrites the /fi in tasklist /fi into a path, so the command errors and prints nothing,
 which reads as "no server running"]`. The `hugo serve` on :1313 that the Branch A work started is
 therefore stopped, and the one seen on 2026-08-20 is gone too. Before starting one, **never start a
@@ -461,7 +522,21 @@ must not share one (element-id changes, per CLAUDE.md).
 ### Task 17: De-duplicate `#skip-header-target`
 
 **Files:** `themes/dohmh/layouts/_default/baseof.html` (the canonical declaration, on `<main>`) plus
-the id's other declarations — 49 layout files carry it as of 2026-08-20.
+the id's other declarations. **The "49 layout files carry it" figure written here on 2026-08-20 was
+wrong in a way that matters** `[re-derived 2026-08-21 on Branch B's tip]`: 49 files *mention*
+`skip-header-target`, but only **47 declare the id**. The other two are `partials/header.html:2` and
+`partials/header-ds.html:2`, which carry the skip *link* — `href="#skip-header-target"`. Dropping
+anything from those two breaks the link this task exists to fix.
+
+```bash
+git grep -l 'id="skip-header-target"' -- themes/          # 47 — the edit set
+git grep -n 'href="#skip-header-target"' -- themes/       # 2 — do not touch
+for d in themes assets/js assets/scss content; do echo "$d $(git grep -l skip-header-target -- $d | wc -l)"; done
+```
+
+That last sweep returns `themes 49`, and **0 for `assets/js`, `assets/scss` and `content`**
+`[verified 2026-08-21]`, so step 3's four-surface grep resolves to templates only. Neither
+`baseof.html:22` nor `list.html:27` carries `tabindex="-1"` yet, so step 2 is fully outstanding.
 
 The keyboard skip link's target is declared on `<main>` and again inside it on most pages. The DE
 branch fixed it in the form to copy: the id was dropped from the templates that duplicated it, and

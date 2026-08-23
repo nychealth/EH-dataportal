@@ -54,11 +54,12 @@ Three things to know before trusting a result:
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
-### Three ways a local check silently lies
+### Four ways a local check silently lies
 
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
-- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages.
+- **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file.
 - **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
+- **Counting over generated HTML? Define the real-page set first.** A `prod_prod` build writes 1397 HTML files of which 933 are pages — 442 are Hugo alias-redirect shells carrying their own `noindex` and `lang="en"`, and 22 are `static/` passthrough that never reaches `head.html`. A tree-wide count scores those 464 as failures. Select real pages by a marker only the layout emits; `head.html`'s viewport meta works `[verified 2026-08-21]`.
 
 To build while someone's server is up, redirect both writable outputs to temp directories — the build then cannot reach `resources/_gen/` or `docs/` at all:
 

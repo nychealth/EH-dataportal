@@ -1417,6 +1417,14 @@ from a full grep of `gtag(`, the `trackDataExplorer*` family, and
   **Reporting consequence:** the new explorer's figures for this dimension are
   *not* continuous with the historical series, which lives under the misspelled
   name. Anyone comparing across the cutover needs to know that.
+  **Production cutover, 2026-08-21.** On the `production` lineage the handler is
+  bound to a `#howCalcButton` that *does* exist
+  ([data-explorer/single.html:813](../themes/dohmh/layouts/data-explorer/single.html)),
+  so the event fires here and the misspelled series is live rather than empty. It
+  was renamed to `click_how_calculated` on that date — decided by the team, against
+  the continuity cost — in audit-backlog Branch B, Task 15. Reports spanning the
+  date have to union `click_how_caclulated` (through 2026-08-21) with
+  `click_how_calculated` (from the first production build after it).
 - **Param-name casing is inconsistent:** `IndicatorID` (PascalCase) in
   `click_indicator` vs snake_case everywhere else (`file_name`, `chart_type`,
   `page_viewed`, `click_url`). GA4's convention is snake_case; mixed casing makes
