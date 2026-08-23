@@ -312,7 +312,16 @@ export const CAPTURE = (prefix) => {
     // --- images ----------------------------------------------------------
     // Counted over the parsed DOM rather than over source lines: a line-oriented
     // sweep scores the opening line of a multi-line <img> as missing its alt.
-    const imgs = $$("img");
+    //
+    // Leaflet map tiles are excluded, and that exclusion is load-bearing. How
+    // many tiles a map has fetched is a fact about network timing, not about
+    // the page: four loads of one neighborhood report gave img.total 17, 17,
+    // 20, 20, and img.leaflet-tile 9, 9, 12, 12 — while the images *outside*
+    // the map container were 8 on all four [verified 2026-08-23 in a browser].
+    // Left in, this field alone failed the first full-site --check on 9 NR
+    // pages. Only `.leaflet-tile` goes; marker icons and anything else inside
+    // the map are still counted, because those are page structure.
+    const imgs = $$("img").filter((el) => !el.classList.contains("leaflet-tile"));
 
     const img = {
         total: imgs.length,

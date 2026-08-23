@@ -691,6 +691,36 @@ estimated]`. It sits beside `### Smoke test`, which is 804 words, and is less th
 **Proof:** `git rev-parse HEAD` recorded beside the baseline, and `--check` passing against that
 exact commit.
 
+### Task 6 findings
+
+**The first full-site `--check` failed, and it found a real defect in the harness.** All nine
+remaining differences were `img.total` and `img.emptyAlt` on neighborhood-report pages, deltas of
+3 and 4 in both directions.
+
+**Cause, measured in a browser, not reasoned from the source:** four loads of
+`neighborhood-reports/flushing_clearview/asthma_and_the_environment/` gave `img.total` 17, 17, 20, 20
+and `img.leaflet-tile` 9, 9, 12, 12 — while images *outside* the map container were 8 on all four
+`[verified 2026-08-23]`. How many tiles a Leaflet map has fetched is a fact about network timing,
+not about page structure, so the field was reading noise on every map-bearing page.
+
+**Fix:** `img` now excludes `.leaflet-tile` only. Marker icons and anything else inside the map
+container are still counted, because those *are* structure. This is the same signature as Task 4's
+row 9, where a `200vw` body changed `img.total`/`img.emptyAlt` on exactly 10 map-bearing pages —
+that was the same defect showing up as collateral in a control, and it was not recognised at the time.
+
+**The `cleared` branch executed, closing Task 3's one NOT-proven row.** Of 12 pages differing under
+concurrency, 3 matched on a sequential re-capture and were reported rather than failed
+(`greenwich_village_soho/climate_and_health/`, `greenwich_village_soho/`, `upper_east_side/`). The
+path is no longer written-but-never-run.
+
+**18 of 925 pages needed arbitration when the baseline was captured, and all 18 are runtime-fetching
+page kinds** — 17 neighborhood reports and `data-explorer/climate/`. No page kind that renders
+entirely at build time disagreed. That is the first evidence that narrows the open instability to a
+class rather than to three URLs, and it is consistent with the cold-fetch theory without testing it.
+
+**`zh/` was the one page that never reached DOM quiescence** and was captured at the 30s cap. Its
+record is therefore the first to suspect if the home pages start churning. Not diagnosed.
+
 **Deferred, not forgotten:** folding `smoke`'s console check and this sweep into one page visit
 would halve the wall time of running both. Not done here because it would refactor the repo's only
 automated check. What would un-defer it: the two harnesses being run together routinely enough that
