@@ -29,7 +29,7 @@ to "ways a local check silently lies" and making the stale-asset rule checkable;
 lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
 Task 20 and Task 22 should read it before touching that file. Branch C (`feature-audit-moderate`) was
 cut from B's tip at `3cd323a44d` on 2026-08-21, in the same `merge/production` worktree, which now
-has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus three ledger commits on top (`ab668aec40`, `016f785d8f`, `71d84bbadf`). Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands"; as of 2026-08-22 all three branches were pushed with PRs open, C's being #1476. **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
+has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus three ledger commits on top (`ab668aec40`, `016f785d8f`, `71d84bbadf`). Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands"; as of 2026-08-22 all three PRs had merged into `production`, C's being #1476. **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
 PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
@@ -433,44 +433,63 @@ writing the next one of these.
 
 ### The exact next commands
 
-All three branches are pushed and all three are in review — A as #1474 onto `production`, B as
-#1475 onto A, C as #1476 onto B `[derived 2026-08-22]`. The worktree has **C** checked out. Derive
-the git state rather than trusting this paragraph:
+**All three PRs are merged into `production`.** A landed as #1474 at `b9243d6160`, B as #1475 at
+`b7780e0212`, C as #1476 at `3242bde3c2` — in that order, all three inside two and a half minutes
+`[gh pr view, mergedAt 2026-08-23T03:27:12Z / 03:28:01Z / 03:29:27Z]`. Each was retargeted onto
+`production` as its parent merged, rather than merged down the stack, so all three record
+`baseRefName: production`. Derive the state rather than trusting this paragraph:
 
 ```bash
-cd EH-dataportal.worktrees/merge/production   # has feature-audit-moderate checked out
-git branch --show-current                     # expect feature-audit-moderate
-git log --oneline 3cd323a44d..HEAD            # C's own commits; expect 7 task commits + 3 ledger
-git status --porcelain                        # expect empty
-git rev-list --left-right --count origin/feature-audit-moderate...HEAD   # 0 0 means pushed
-gh pr view 1474 --json state,baseRefName,mergeable,reviewDecision   # A: OPEN / production / MERGEABLE
-gh pr view 1475 --json state,baseRefName,mergeable,reviewDecision   # B: OPEN / hotfix-audit-markup-a11y / MERGEABLE
-gh pr view 1476 --json state,baseRefName,mergeable,reviewDecision   # C: OPEN / hotfix-audit-seo-meta / MERGEABLE
+cd EH-dataportal.worktrees/merge/production
+git fetch origin
+git log --oneline -1 origin/production          # expect 3242bde3c2, the #1476 merge
+git merge-base --is-ancestor origin/feature-audit-moderate origin/production   # exit 0 = C is in
+gh pr view 1474 --json state,baseRefName,mergedAt   # A: MERGED / production
+gh pr view 1475 --json state,baseRefName,mergedAt   # B: MERGED / production
+gh pr view 1476 --json state,baseRefName,mergedAt   # C: MERGED / production
 ```
+
+**A local `feature-audit-moderate` here reads `ahead 27, behind 29` against its remote, and that is
+not work owed.** The 27 local commits and 27 of the remote's 29 carry the same subjects in the same
+order at different hashes; the remote's other two are the #1474 and #1475 merges. The three trees
+— local branch, `origin/feature-audit-moderate`, `origin/production` — are one object,
+`4cdc697cb6` `[verified 2026-08-22: git rev-parse of all three ^{tree} returns the same hash, and
+git diff --name-status between any pair is empty]`. Nothing is unpushed, and a force-push would
+delete those two merges from a merged branch for no content change. Reconcile the local ref with
+`git reset --hard origin/feature-audit-moderate`, or delete it.
 
 **Nothing is owed on any of the three branches, and all 22 tasks have landed.** Branch C's own work
 is `3cd323a44d..465ffceb84`, seven commits: Task 17 alone at `d057ea74ca` as the element-id rule
-requires, then Tasks 18–22 one commit each, plus `74a11a51ef`, which belongs to no task. Three
-ledger commits sit on top; `git diff --name-only 465ffceb84 71d84bbadf` returns two paths, both
-under `documents/`, which is what keeps Task 21's build and smoke standing for the branch.
+requires, then Tasks 18–22 one commit each, plus `74a11a51ef`, which belongs to no task. Six
+ledger commits sit on top, and four more that belong to no task and to no branch: `136301256d` and
+`b20267ac87` add a full-site mode to the smoke test, `79cfabefc3` and `4648aa85b2` fix the user
+agent it sends. Tooling, not audit work — see the PR for what they do.
 
-What is left is **review, then the serial merge below**. The **eleven found-items** recorded in this
-document (3 on A, 3 on B, 5 on C) belong to no task and to no branch; they were moved to
-[`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15 at `6e8b52a52d` so they
-outlive this ledger, and the copies below are the as-found record rather than the live backlog.
+**Restated 2026-08-22.** This paragraph read "`git diff --name-only 465ffceb84 71d84bbadf` returns
+two paths, both under `documents/`, which is what keeps Task 21's build and smoke standing for the
+branch." Those four commits falsified it: the same diff against the branch tip now returns seven
+paths — `.gitignore`, `CLAUDE.md`, two under `documents/`, `package.json` (one added npm script)
+and two under `scripts/`. The conclusion survives on better evidence than the docs-only reasoning
+it replaces. **No file Hugo renders has changed** — a grep of that diff for
+`content|themes|assets|data|config|static|layouts` returns nothing — and `npm run smoke:all`
+returned **925 pages, 0 failures, 0 cleared on re-check** at `79cfabefc3`, above which only
+`CLAUDE.md` has moved.
 
-**The `hugo serve` on :1313 is still up** `[verified 2026-08-22: one `hugo.exe`, and
-`Get-NetTCPConnection -LocalPort 1313` names it]`, and nothing outstanding needs it. Stop it by that
-PID — see the environment note below for why `TaskStop` is not enough.
+**The serial merge is done — what is left of this document is the record.** The **eleven
+found-items** recorded in this document (3 on A, 3 on B, 5 on C) belong to no task and to no
+branch; they were moved to [`site-wide-audit-2026-06-27.md`](site-wide-audit-2026-06-27.md) §15
+at `6e8b52a52d` so they outlive this ledger, and the copies below are the as-found record rather
+than the live backlog.
 
-**Merge order stays serial: A, then B, then C.** Retarget each PR to `production` as its parent
-merges, or merge them in order down the stack. If review changes A, rebase the stack rather than
-merging down it:
+**The `hugo serve` on :1313 is stopped** `[verified 2026-08-22 from PowerShell: Get-Process -Name
+hugo returned nothing, and Get-NetTCPConnection -LocalPort 1313 found no listener]`. It was up
+earlier the same day and nothing outstanding needed it. See the environment note below for why
+`TaskStop` is not enough to end one.
 
-```bash
-git rebase --onto hotfix-audit-markup-a11y <old-A-tip> hotfix-audit-seo-meta
-git rebase --onto hotfix-audit-seo-meta   <old-B-tip> feature-audit-moderate
-```
+**The merge ran serially: A, then B, then C**, by retargeting each PR onto `production` as its
+parent merged — the first of the two options this section offered. The stack was never rebased, and
+no review is recorded on any of the three `[gh pr view 1474/1475/1476 --json reviews, 2026-08-22:
+all three empty]`.
 
 **Both open questions were answered 2026-08-21 and are closed.** `content/resources/` **stays
 `noindex` in production** — the section holds `health-code-reference` and `sugar-lookup`, and
@@ -482,10 +501,10 @@ ends at the cutover.
 `EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
 is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
 
-**A `hugo serve` is running on :1313 and was started for the Branch C work** —
+**A `hugo serve` was run on :1313 for the Branch C work** —
 `npx hugo serve --environment development --port 1313 --appendPort=false --baseURL
 "http://localhost:1313/dev-prod/"`, which is the same invocation Branch A used. Tasks 18 and 19 both
-need a browser, so it is deliberately left up; **stop it when Branch C is done.** Nothing was running
+needed a browser, so it was left up until the branch was done; it is stopped now. Nothing was running
 before it `[verified 2026-08-21 from PowerShell: Get-Process -Name hugo returned nothing and ports
 1313, 8080 and 8081 all failed to answer — those are the three scripts/dev-server.mjs probes. Check
 this from PowerShell, not Bash — Git Bash rewrites the /fi in tasklist /fi into a path, so the
