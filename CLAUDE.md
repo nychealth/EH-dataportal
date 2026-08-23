@@ -199,6 +199,8 @@ Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[
 
 A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 
+**Stacked branches yes, GitHub's Stacked PRs feature no** (decided 2026-08-23). Cutting B from A's tip and C from B's is worth keeping; retarget each PR to `production` by hand as the one below it merges. Don't enable the GitHub feature: merging the bottom PR fires a server-side cascading rebase that force-pushes every branch above it, so the hashes those branches recorded in their own ledgers stop resolving. The cost and the 24-pair mapping are in [audit-backlog-production-2026-08-20.md](documents/audit-backlog-production-2026-08-20.md).
+
 ## Common gotchas
 
 - **Missing images fail the build.** Hugo resizes images at build time; a missing source aborts the build.
