@@ -1,10 +1,18 @@
 # Whole-site characterization harness — plan
 
 **Status as of 2026-08-23:** branch `feature-site-characterization` cut from `production` at
-`d8c45abebe`. Tasks 1 and 2 **done** — the premise held, but only after one source of run-to-run
-churn and five harness defects were found and fixed, and all eleven constant fields have now been
-justified rather than assumed. See *Task 1 findings* and *Task 2 findings*. Tasks 3–6 not started.
-The signal set is settled and no field was deleted.
+`d8c45abebe`. Tasks 1–3 **done**. Tasks 4–6 not started. The signal set is settled and no field was
+deleted.
+
+**Read Task 3's findings before trusting anything Task 1 concluded.** Task 1 declared the harness
+deterministic on three agreeing sweeps; Task 3's first `--baseline`/`--check` cycle disproved it.
+**The cause of that failure is still unestablished** — three explanations were proposed, two are
+ruled out and one is unsupported, and it has not been reproduced since. What is in the harness is a
+guard justified by the observed failure, not a fix for a known mechanism. This harness has also
+produced three separate false "N runs agreed" results, so agreement is weak evidence here.
+
+**The baseline in the working tree is the 41-page sample, not the real one.** Task 6 captures the
+925-page baseline. Do not commit the sample as if it were that.
 
 **One thing a later reader must not miss:** the baseline is **environment-specific**. `meta.robots`
 reads `"noindex, nofollow"` on all 925 pages under `dev_stage`; under `prod_prod` the same field
@@ -125,7 +133,7 @@ Two field notes that are load-bearing:
 |---|---|---|---|---|
 | 1 | Probe core + determinism control | `9cbb2d44d0` | **DONE 2026-08-23** | 3 sweeps, 3 separately started servers, all 3 pairs byte-identical over 41 pages `[git diff --no-index --exit-code, exit 0 on a-b, a-c, b-c]`; control perturbing `landmarks.nav`, `lang` and `assets` fired on all 3 |
 | 2 | Dead-field sweep over 925 pages | `e6ebe5c2c5` | **DONE 2026-08-23** | 925/925 captured, all quiesced; distinct-value table for all 36 `structure` fields; the 3 zero-constants proved live by `node scripts/site-characterization-probe-control.mjs`, all 4 responded |
-| 3 | Baseline / check plumbing | — | **Not started** | — |
+| 3 | Baseline / check plumbing | `4c076520d0` | **DONE 2026-08-23** | `--baseline` then `--check` exit 0; perturbed `content.title` → `--check` exit 0 and `--check --content` exit 1 naming the page; baseline corrupted to `controls.button: 999` → exit 1 naming the field, with the sequential re-capture path firing. The `cleared` branch is **not** proven — see findings |
 | 4 | Positive controls — prove the net catches things | — | **Not started** | — |
 | 5 | Wire up npm scripts and document | — | **Not started** | — |
 | 6 | Commit the baseline | — | **Not started** | — |
@@ -199,10 +207,17 @@ premise is wrong and the signal set needs rethinking, not more code.
 
 ### Task 1 findings
 
-**Result: the premise holds.** Three sweeps, each against a separately started `hugo server`, all
-three pairs byte-identical across 41 pages `[verified 2026-08-23: git diff --no-index --exit-code,
-exit 0 on a-b, a-c and b-c; plus an independent Node file-by-file comparator, 0 files differing]`.
-It did not hold on the first attempt.
+> **Superseded in part by Task 3 — read this section with its correction.** Task 1 concluded from
+> three agreeing sweeps that the premise held. It did not: Task 3's first `--baseline` followed
+> immediately by `--check` found the data-explorer pages churning by hundreds of links and dozens
+> of controls. The DOM-quiescence wait described below was necessary and **not sufficient**, and
+> the fix is recorded under *Task 3 findings*. Everything else in this section stands.
+
+**Result as recorded at the time: the premise holds.** Three sweeps, each against a separately
+started `hugo server`, all three pairs byte-identical across 41 pages
+`[verified 2026-08-23: git diff --no-index --exit-code, exit 0 on a-b, a-c and b-c; plus an
+independent Node file-by-file comparator, 0 files differing]`. It did not hold on the first attempt
+— and, as Task 3 showed, it did not hold on this one either.
 
 **Two runs agreeing is not a determinism test, and this is why the task ran three.** The first pair
 of sweeps came back identical and would have closed the task. Two later pairs disagreed — and once
@@ -413,6 +428,88 @@ change that would break it.
    one page. Revert the hand-edit.
 
 **Proof:** step 3's two exit codes, which discriminate. Step 2 alone does not.
+
+### Task 3 findings
+
+**Step 2 failed, and that is the whole value of this task.** `--baseline` followed immediately by
+`--check`, same commit, same tree, reported structure differences on three data-explorer pages:
+`controls.button 25 -> 96`, `links.internal 70 -> 638`, `tables.total 0 -> 2`. Task 1 had declared
+the harness deterministic on the strength of three agreeing sweeps. It was not.
+
+**The cause is NOT established.** Three explanations were proposed; two are ruled out and the third
+turned out not to be supported either. The failure has not been reproduced since. This is written
+out in full because a plan that names a confident wrong cause is what the next person refactors
+against.
+
+*Explanation 1: the runtime fetch leaves a quiet DOM.* The data explorer fetches EHDP-data from raw
+GitHub URLs, so the theory was that between initial render and fetch resolution the DOM is
+genuinely still and the quiescence wait accepts that gap. A zero-in-flight condition was added, then
+measured as never binding: "DOM quiet" and "DOM quiet and nothing in flight" arrive at the same
+millisecond on every page sampled `[2026-08-23: extra = 0ms on about/, key-topics/airquality/,
+data-explorer/asthma/, data-explorer/data-index/]`. **That disproof is invalid.** It ran against a
+warm HTTP cache, where the fetch resolves instantly and the condition has no window in which to
+bind — it shows the condition is inert when the data is cached and says nothing about a cold fetch,
+which is the case the theory is about. **Status: open.** Three `--check` runs passed after that
+change and none of them is evidence either way.
+
+*Explanation 2: the pages are slow.* **Ruled out.** Hit sequentially, `data-explorer/asthma/`
+reaches its final state at **260ms**, `?id=2380` at **269ms**, the NR report page at **1050ms**,
+static pages at **~4ms** `[2026-08-23: 250ms sampling of button, link, table and image counts for
+25s per page]`. No wait would have fixed this, because nothing is slow.
+
+*Explanation 3: six pages starve one `hugo server`'s on-demand render.* This is
+[`smoke-pages.mjs:246`](../scripts/smoke-pages.mjs)'s explanation, which this repo's `CLAUDE.md`
+repeats — and it is a code comment, not a measurement. **Not supported.** Measured over 12 pages at
+concurrency 6 against concurrency 1, navigation (`goto` → `load`) slowed **1.34x** (8052ms → 10823ms)
+while JS settle time was **1.00x** (2564ms → 2552ms), and all 12 pages reached **identical** final
+DOM states `[2026-08-23]`. A 1.34x slower navigation cannot produce a capture taken before a page's
+first render state.
+
+*What is not in doubt.* The failing capture read `controls.button` **25**, and that page's *first*
+sampled state is already **63**. It was not caught between two states — it was caught before its
+first. Something can produce that; nothing measured so far does.
+
+**The fix is a guard, not a cure, and is justified by the observed failure rather than by a known
+mechanism.** `--check` re-captures any page differing from the baseline one at a time and reports
+separately those that then agree; `--baseline` runs two concurrent sweeps and sequentially
+re-captures anything they disagree on, so no baseline entry can come from a single anomalous
+capture. Worth the roughly doubled `--baseline` cost on an operation run this rarely, and it is the
+same answer `smoke-pages.mjs` reaches for — whose *response* is sound whether or not its stated
+cause is.
+
+**Open, for whoever picks this up:** reproduce the failure on demand. The one lead not yet tested is
+Explanation 1 against a genuinely cold fetch, since every measurement so far has run warm.
+
+**The one general lesson worth carrying out of this file:** waiting for the DOM to stop changing
+cannot distinguish a page that has **finished** rendering from one that has **not started**. Both
+are quiet. Any readiness check built on quiescence alone inherits that blindness — which is why the
+answer here is arbitration rather than a longer wait.
+
+**The second lesson is about the diagnosis, not the bug.** Two of the three explanations above were
+retired on measurements that felt conclusive and were not: one "disproof" ran against a warm cache
+and so could not have observed the thing it declared absent, and the other inherited its mechanism
+from a code comment nobody had tested. Both were written into the harness and this document as
+established before being checked.
+
+**What is proven, and what is not.** Stated separately because the gap matters:
+
+| Claim | Status |
+|---|---|
+| `--baseline` then `--check` passes on an unchanged tree | Proven — and it is a necessary condition only, which is why the rest of this table exists |
+| `--content` widens the gate | Proven. A perturbed `content.title` leaves `--check` at exit 0 and drives `--check --content` to exit 1 naming that page |
+| `--check` detects a real difference and names the field | Proven. A baseline corrupted to `controls.button: 999` produced exit 1 and the exact field |
+| The sequential re-capture path executes | Proven. The corrupted-baseline run printed `1 page(s) differ from the baseline — re-capturing sequentially` |
+| The **`cleared` branch** — a page differing under concurrency that agrees sequentially | **NOT proven.** The contention is intermittent and `--check --concurrency 24` over 41 pages did not reproduce it, so that branch has never executed. It is written from the failure that was observed, not from one that was reproduced on demand |
+| Determinism generally | Held on every run since arbitration landed, but this harness has now produced three separate false "N runs agreed" results. Treat agreement as weak evidence and the mechanism as the argument |
+
+**Environment guard added**, forced by Task 2's `meta.robots` finding: the baseline records the
+server's path prefix in `_meta.json`, and `--check` aborts before sweeping if the running server's
+prefix differs. Comparing a `dev_stage` baseline against a `prod_prod` run would otherwise report a
+robots change on every one of 925 pages and bury any real regression in it.
+
+**`--check` working directories** (`scripts/site-characterization-current/`, `scripts/.sc-check/`)
+are gitignored and deliberately kept at a short in-repo path, per Task 1's finding that
+`git diff --no-index` prints nothing on a long one.
 
 ---
 
