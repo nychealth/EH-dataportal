@@ -19,7 +19,9 @@
 
 
 
-  <main id="skip-header-target" role="main" data-pagefind-body>
+  <!-- tabindex="-1" makes <main> programmatically focusable, so the "Skip Header" link
+       moves focus here rather than only scrolling the page to it. -->
+  <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body>
     {{- block "main" . -}}{{- end -}}
     <ul id="results"></ul>
   </main>

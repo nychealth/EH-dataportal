@@ -13,22 +13,37 @@
 > **It was written against a different tree.** Findings describe the branch they were found
 > on unless a line says otherwise. Two mechanical facts about this copy on `production`:
 >
-> - **24 of the 77 repo paths it cites do not exist here** `[verified 2026-08-12: existence
->   check of every path matching `(themes|assets|scripts|config|content|data|static|documents|.github)/…`]`.
->   The absent ones cluster in identifiable places: everything under `assets/js/data-explorer-old/`
->   (§1, §5, §9, §11 row 12) and `assets/js/nr-topic-spa*` (§5a, §5h), the DE-only partials
->   `header-de.html`, `de-indicator-info.html`, `search-modal.html`, `lib-vega.html`
->   (§11 rows 17, 19, 20, 23 and §12), and the `scripts/` harnesses (§10a, §5h). A finding
->   whose evidence is a file this tree does not have is about another branch.
-> - **The sibling documents it cross-references are not in this repo.**
+> - **19 of the 84 checkable repo paths it cites do not exist here** `[re-derived 2026-08-21
+>   on `feature-audit-moderate`: every backticked token and markdown-link target matching
+>   `(themes|assets|scripts|config|content|data|static|documents|.github)/…`, with a trailing
+>   `:line` or `:line-line` stripped and 4 globs/placeholders excluded — 88 citations, 84
+>   checkable, 65 present]`. **This replaces an earlier "24 of 77", taken 2026-08-12 with an
+>   extraction rule that was not written down and cannot be reproduced; the two numbers are not
+>   comparable and the older one should not be quoted.** The absent paths cluster in identifiable
+>   places: everything under `assets/js/data-explorer-old/` (§1, §5, §9, §11 row 12) and
+>   `assets/js/nr-topic-spa*` (§5a, §5h), the DE-only partials `header-de.html`,
+>   `de-indicator-info.html`, `de-indicator-names-pf.html` and `search-modal.html` (§11 rows 17,
+>   19, 20 and §12), the `scripts/` harnesses `nr-characterization.mjs` and `nr-a11y-audit.mjs`
+>   (§10a, §5h), two `assets/js/data-explorer/` files this tree's explorer does not have
+>   (`menu.js`, `topic-indicator-selector.js`), and `data/globals/uhflist.json`, which is a wrong
+>   path rather than a branch difference — the file is at `assets/js/uhflist.json`. A finding whose
+>   evidence is a file this tree does not have is about another branch.
+>   **`lib-vega.html` was named in the absent list and is present** (§11 row 23 is about a file
+>   this tree has).
+> - **Most of the sibling documents it cross-references are not in this repo.**
 >   `data-explorer-deep-audit-2026-06-27.md`, `data-explorer-fresh-audit-2026-07-13.md`,
->   `js-conventions.md`, `nr-accessibility-audit-2026-08-10.md` and
->   `flexdatalist-accessibility-seed-2026-08-11.md` live only on the branches that own that work.
+>   `nr-accessibility-audit-2026-08-10.md` and `flexdatalist-accessibility-seed-2026-08-11.md`
+>   live only on the branches that own that work. **`js-conventions.md` is the exception and was
+>   wrongly listed here** — it has been in this repo throughout, and as of 2026-08-21 it is the
+>   unified "Browser-Side JS" version ported from `feature-MOD-Lab-NR-recode-refactor`.
 >
 > **What was re-checked here.** The §11 quick-wins table, because it is the part meant to be
-> acted on — see the status note directly above that table. Nothing else in this document has
-> been re-verified against `production`; treat the rest as the branch's record until it is.
-> §14 holds findings first observed on this tree.
+> acted on — see the status note directly above that table. As of 2026-08-21 that sweep was re-run
+> against `feature-audit-moderate` and four narrative findings were re-checked and annotated in
+> place: §5k (flexdatalist combobox), §10a (the brand green as text), §12's crawl-directive and
+> metadata bullets, and §12's structured-data section. Each annotation names the branch and commit
+> that changed it. **Nothing else in this document has been re-verified**; treat the rest as the
+> branch's record until it is. §14 holds findings first observed on this tree.
 
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
 Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
@@ -1094,7 +1109,11 @@ red.
 
 ---
 
-### 5k. flexdatalist emits combobox ARIA with no combobox role, on three non-NR pages (P2, added 2026-08-11)
+### 5k. flexdatalist emits combobox ARIA with no combobox role — five call sites here, fixed 2026-08-21 (P2, added 2026-08-11)
+
+> **Two follow-ups this fix did not cover are at §15.7 and §15.8** — the aqe picker sits inside
+> `aria-hidden="true"`, and three of the five inputs have no accessible name. §15.9 records why axe
+> now reports one *incomplete* on these pages.
 
 Split out of the Neighborhood Reports accessibility audit
 (`documents/nr-accessibility-audit-2026-08-10.md`, F3 / C4), which fixed it on the NR
@@ -1134,6 +1153,33 @@ render time.
 Not done here because each of the three needs its own browser verification. Factoring the helper
 into a partial the four callers share is the obvious follow-up; it was left alone so the NR
 fix could be verified in isolation first.
+
+> **FIXED 2026-08-21 on `feature-audit-moderate` @ `9c2f424ce0`, and it was five call sites, not
+> three.** The helper was factored into
+> [`partials/flexdatalist-combobox-js.html`](../themes/dohmh/layouts/partials/flexdatalist-combobox-js.html),
+> which all five now include. The two the table above misses are the Neighborhood Reports section
+> page and topic-landing page — this tree has no `nr-neighborhood-picker-js.html`, so the NR
+> fix this finding says "already exists and is a copy away" is not here either; it was ported from
+> `feature-MOD-Lab-NR-recode-refactor`.
+>
+> **And it was eight files, not five.** `aqe.html` and `hvi.html` only *load* the library; the
+> `.flexdatalist()` calls live in `content/data-features/neighborhood-air-quality/aqe.js` and
+> `content/data-features/hvi/hvi.js`, reached through `customJS` frontmatter, so those two content
+> files needed the wiring call. Grep `content/` as well as `themes/` when tracing a library here.
+>
+> **Verified with a full control run on the stashed pre-change tree, and the control fired on
+> every discriminating check:** `aria-expanded` read `false` with 36/4/4/1/1 options showing, and
+> after Escape the list was gone at 60 ms and **back at 660 ms** on 5 of 5 — the library
+> reschedules its search behind a `searchDelay: 400`. After: `role="combobox"`, `aria-expanded`
+> true while open, `aria-activedescendant` resolving to a real `<li>` id, and `false` with no list
+> at both 60 ms and 660 ms. axe 4.13.0 `aria-allowed-attr` [critical] **4 → 0**.
+>
+> Two corrections to this finding's own citations. The `<li>`-creation line is **`:1507-1514`** in
+> this tree's copy of the library, not `:1551-1560`; the rest of its citations re-checked clean.
+> And the fifth page never reported `aria-allowed-attr` at all, which looks like it was already
+> fine and was not: `data-features/aqe.html:21` wraps the whole picker in `aria-hidden="true"`,
+> and axe skips hidden subtrees. That wrapper is its own `aria-hidden-focus` [serious] defect and
+> is still open.
 
 **Corrected 2026-08-11.** This paragraph originally added "and one of them (`de-text-search.html`)
 is shared with a branch this tree does not own." That is wrong. The partial is included by
@@ -1505,6 +1551,30 @@ Two worth looking at first, because their names imply a tinted ground:
 and the three hardcoded `#008939` rules in
 [`__portal-custom.scss:201, 204, 1283`](../assets/scss/__portal-custom.scss).
 
+> **SWEPT 2026-08-21 on `feature-audit-moderate` @ `4f5e7f5f4f`, and the "about twenty" was
+> 24 — of which 11 render nowhere.** Method: `getComputedStyle` on live nodes across 15 pages,
+> every rendered element painting `#008939` or `#007A31`, with the ratio computed against the
+> composited background actually behind it rather than against the palette. **Control on the
+> stashed pre-change tree: 4 measurements below their applicable AA threshold; after: 0.**
+>
+> Three rules changed, all to `$primary-dark`: `a` (link text, worst case **4.45:1** on the
+> near-white `#FDFDFD` of `data-features/cooling-info` — a background this palette does not
+> record, so the table above could not have predicted it), `$accordion-title-color` (**4.24:1**
+> on the explorer's `#EFFAF4`, **3.46:1** on data stories' `#E1E1E1`), and
+> `.neighborhood-list-button` (**4.24:1** at 16px/700, which is normal-size text for WCAG).
+>
+> **`$accordion-title-color` clears AA at 4.19:1 because those headers are 18.672px/700 — WCAG
+> large text, where the bar is 3:1.** It would not clear 4.5:1, so a restyle that drops the size
+> or the weight below large-text needs a darker value or a lighter header background. That
+> threshold-by-text-size distinction is the fourth of four ways the measuring harness was wrong
+> before it was right; the others are recorded in
+> [`audit-backlog-production-2026-08-20.md`](audit-backlog-production-2026-08-20.md).
+>
+> **`__portal-custom.scss` does not exist on this tree**, so the three hardcoded `#008939` rules
+> this finding names as candidates could not be checked here. Four of the finding's own 17
+> candidates turned out to be dead CSS — rules whose selectors match nothing rendered — which is
+> why the sweep was driven from what paints rather than from what compiles.
+
 Two cautions for whoever sweeps this, both learned by getting them wrong:
 
 - **axe's violation count is a floor, not a census.** `color-contrast` lands in axe's
@@ -1532,26 +1602,38 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 > "FIXED" without naming the branch made it read as global. Anyone exercising
 > rats-in-your-neighborhood on the NR lineage still hits a CDN that shut down in 2019.
 
-> **Status of this table on `production`, checked 2026-08-12.** One sweep per row against
-> this tree; each row is *open here* unless listed otherwise. The command run for each is
-> given so it can be re-run.
+> **Status of this table, re-checked 2026-08-21 on `feature-audit-moderate`.** Supersedes the
+> 2026-08-12 sweep against `production`. One sweep per row against this tree; each row is *open
+> here* unless listed otherwise. Nine rows moved, all from the stacked audit-backlog branches
+> A (`hotfix-audit-markup-a11y`, PR #1474), B (`hotfix-audit-seo-meta`, PR #1475) and
+> C (`feature-audit-moderate`), whose ledger is
+> [`audit-backlog-production-2026-08-20.md`](audit-backlog-production-2026-08-20.md).
 >
-> | Row | On `production` | Evidence |
+> **A `FIXED` row here is a fact about the branch named in it, not about the live site.** None of
+> the three branches had merged to `production` when this was written; run
+> `git merge-base --is-ancestor <sha> production` — it exits non-zero for *no* — before citing one
+> as shipped.
+>
+> Every zero below has a positive control: the same pattern run against `production`'s copy of the
+> same file returns the count the row originally reported (3, 6, 2 and 1 respectively for rows 7,
+> 9, 12 and 16), so these are fixes, not patterns that stopped matching.
+>
+> | Row | Here | Evidence |
 > |---|---|---|
 > | 1 (RawGit) | **not applicable** | `grep -c rawgit head.html` → 0 |
-> | 2 (CI) | **open** | all 9 `uses:` are tag-pinned, not SHA-pinned; 5 of 6 workflows have no `permissions:` block (only `codeql.yml` does) |
-> | 3 (`click_subscribe` twice) | **both call sites exist** | `main.js:14` (`gtag`) and `site.js:99` (`sendAnalyticsEvent`). Whether both fire on one click was *not* re-verified in a browser here |
-> | 5 (CSS not minified) | **open** | `head.html:125` is `$sass \| toCSS \| resources.Fingerprint`, no `minify`. Note the branch record: minification was proposed and **rejected by the user** on 2026-07-14 |
-> | 7 (duplicate `data-toggle`) | **open** | 3 lines in `header.html` carry the attribute twice |
-> | 8 (title `<a>`/`<span>` overlap) | **open** | `header.html:78-79` — the `<a>` opens inside one `<span>` and closes inside the next |
-> | 9 (`<a><li>`) | **open** | 6 occurrences in `header.html` |
-> | 11 (GA in dev) | **not applicable — inverted here** | `head.html:3` gates GA on `prod_prod` *only*, so no dev environment fires the production property. The inversion this creates is **§14.4** |
-> | 12 (`click_how_caclulated`) | **open** | 2 occurrences in `assets/js/data-explorer/app.js` — this tree's explorer, not `data-explorer-old/` |
-> | 13, 14 (Datawrapper SVG sizing) | **did not reproduce** | `data-stories/housing/` ran clean under `npm run smoke` on 2026-08-12 with no allowlist entry for it |
-> | 15 (robots.txt) | **open** | no `Sitemap:` directive in `themes/dohmh/layouts/robots.txt` |
-> | 16 (`<html lang="en">`) | **open** | hardcoded in `baseof.html:2` and `list.html:2`; this tree has 14 translated pages (7 `.es`, 7 `.zh`) |
-> | 18 (`#skip-header-target`) | **open** | the id appears in 48 layout files |
-> | 21, 22, 23 (Dependabot) | **subjects present** | `georaster ^1.6.0`, `hugo-extended ^0.146.3`, `vega ^5.30.0` in `package.json`. Alert *state* not re-checked |
+> | 2 (CI) | **half closed since 2026-08-12** | `permissions:` is now in **5 of 6** workflows — only `check-deploy.yml` has none, where the earlier sweep found only `codeql.yml` had one. All 10 distinct `uses:` are still tag-pinned, never SHA-pinned |
+> | 3 (`click_subscribe` twice) | **FIXED — B @ `eb80c2abd4`** (Task 16) | Confirmed in a browser first: one click produced **2** events with two schemas. The `main.js` emitter was removed and `main.js:97` is now a comment pointing at `site.js`; one click gives exactly 1 |
+> | 5 (CSS not minified) | **open, by decision** | `head.html:141` is still `$sass \| toCSS \| resources.Fingerprint`. Minification was proposed and **rejected by the user** 2026-07-14 — don't re-add without checking in |
+> | 7 (duplicate `data-toggle`) | **FIXED — A @ `9ae35c3e9a`** (Task 3) | 3 → 0 in `header.html`. All 3 call sites still open `#searchModal` in-browser |
+> | 8 (title `<a>`/`<span>` overlap) | **FIXED — A @ `d0fc7e1753`** (Task 5) | The `<a>` now opens before the first `<span>` and closes after the second. Accessibility tree shows one link where the parser previously produced two |
+> | 9 (`<a><li>`) | **FIXED — A @ `d0fc7e1753`** (Task 4) | 6 → 0. Dropdown pixel-identical before/after under a matched procedure |
+> | 11 (GA in dev) | **not applicable — inverted here** | `head.html:3` gates GA on `prod_prod` only. The inversion is **§14.4** |
+> | 12 (`click_how_caclulated`) | **FIXED — B @ `8334d0450a`** (Task 15) | Renamed, accepting the GA4 continuity cost; decided 2026-08-21. `app.js` now has 0 of the misspelling and 2 of `click_how_calculated`, and `window.dataLayer` confirms one correctly-spelled event per click |
+> | 13, 14 (Datawrapper SVG sizing) | **did not reproduce** | `data-stories/housing/` ran clean under `npm run smoke` on 2026-08-12, and again 2026-08-21 |
+> | 15 (robots.txt) | **FIXED — B @ `fa966be9c9`** (Task 11) | Built `prod_prod` writes 1089 bytes with a bodiless `Disallow:` and an absolute `Sitemap:`; `development` writes 736 `Disallow` lines and no `Sitemap`. The pre-change tree wrote **no robots.txt at all** under `prod_prod` |
+> | 16 (`<html lang="en">`) | **FIXED — B @ `f697da1c81`** (Task 10) | Both `baseof.html:2` and `list.html:2` now read `lang="{{ .Language.Lang }}"`. In the built output the 51 `es/` and 51 `zh/` pages each carry their own language |
+> | 18 (`#skip-header-target`) | **FIXED — C @ `d057ea74ca`** (Task 17) | The id was stripped from 45 templates and kept only where a document root needs it: `baseof.html:24` and `list.html:29`, both now `tabindex="-1"`. The other 2 of the 4 remaining mentions are the skip links themselves. 355 real pages carried 2 declarations before; after, 927 carry exactly 1 |
+> | 21, 22, 23 (Dependabot) | **subjects present** | `georaster ^1.6.0`, `hugo-extended ^0.147.3`, `vega ^5.30.0` in `package.json`. Alert *state* not re-checked. Note row 23 cites `lib-vega.html`, which **is** present here |
 > | 17, 19, 20 | **not applicable** | each cites a partial this tree does not have (`de-indicator-info.html`, `header-de.html`) |
 >
 > Also relevant: §5c's `rats-in-your-neighborhood` `area.contains` error **did not reproduce**
@@ -1561,22 +1643,22 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 |---|---|---|---|
 | 1 | ~~P1~~ **FIXED 2026-07-14 — but only on some branches; see note below** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
 | 2 | P1 | CI workflows | Unpinned actions + no `permissions:` block (your own CLAUDE.md rules) |
-| 3 | P2 | [main.js:110](../assets/js/main.js) + [site.js:94](../assets/js/site.js) | `click_subscribe` analytics fires twice |
+| 3 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `eb80c2abd4`** | [main.js](../assets/js/main.js) + [site.js:99](../assets/js/site.js) | `click_subscribe` analytics fires twice — confirmed in a browser (one click, 2 events, two schemas) before the `main.js` emitter was removed. `site.js` is now the single emitter |
 | 4 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | Font Awesome shipped as render-blocking JS *and* CSS — the `all.min.js` SVG-injector was dropped (CSS + webfonts kept). Caused one regression: per-section accent icon coloring had silently depended on the injector rewriting `<i class="fa…">` into `<svg><path>`; fixed separately on `hotfix-color-styles` |
 | 5 | P2 | [head.html:137](../themes/dohmh/layouts/partials/head.html) | Production CSS not minified — proposed + rejected by user 2026-07-14, don't re-add without checking in |
 | 6 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | nyc-lib CSS loaded twice on every page; favicon `<link>` duplicated. Both de-duped — nyc-lib CSS is now behind `.Params.mapLib` only (set on the 3 `take-action/` pages), so every other page stopped paying for it |
-| 7 | P3 | [header.html:188,244,347](../themes/dohmh/layouts/partials/header.html) | Duplicate `data-toggle` attribute (second ignored) |
-| 8 | P3 | [header.html:77-80](../themes/dohmh/layouts/partials/header.html) | Overlapping `<a>`/`<span>` nesting in site title |
-| 9 | P3 | [header.html:107…](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup |
+| 7 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-markup-a11y` @ `9ae35c3e9a`** | [header.html](../themes/dohmh/layouts/partials/header.html) | Duplicate `data-toggle` attribute (second ignored) — 3 → 0, all 3 call sites re-checked in-browser |
+| 8 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-markup-a11y` @ `d0fc7e1753`** | [header.html:78-80](../themes/dohmh/layouts/partials/header.html) | Overlapping `<a>`/`<span>` nesting in site title — the parser produced two anchors; now one, header screenshot pixel-identical |
+| 9 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-markup-a11y` @ `d0fc7e1753`** | [header.html](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup — 6 → 0, axe `list`/`listitem` clean, dropdown pixel-identical |
 | 10 | ~~P3~~ **NOT A DEFECT — corrected + rewritten 2026-07-14** | [head.html:112-117](../themes/dohmh/layouts/partials/head.html) | The webfont `range` loop was called dead here and in the DE audit. It wasn't: evaluating `$woff.RelPermalink` as an argument triggered Hugo's lazy publish-on-access for the matched resource, which is exactly what the fingerprinted FA CSS's relative `url(../webfonts/…)` `@font-face` rules need. Deleting it would have broken every FA icon site-wide once the JS injector was also dropped (row 4). Rewritten to use the explicit `.Publish` idiom instead of relying on an accidental read |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
-| 12 | P3 | [data-explorer-old/app.js:152](../assets/js/data-explorer-old/app.js) | Misspelled GA event `click_how_caclulated` — **new explorer resolved 2026-07-25**; its handler was bound to a non-existent element and had never fired, and the coverage is now a `click_about` parameter. Old explorer still has it (see §9) |
+| 12 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `8334d0450a`** | [data-explorer/app.js](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated`. Two resolutions on different trees: the **new** explorer dropped it 2026-07-25 (its handler was bound to a non-existent element and had never fired; the coverage is now a `click_about` parameter), and **this** tree's explorer was renamed to `click_how_calculated` on 2026-08-21, accepting the GA4 continuity break, with the cutover date recorded in §9. `app.js` now holds 0 of the misspelling and 2 of the correct name. The path this row previously cited, `data-explorer-old/app.js`, does not exist here |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
-| 15 | ~~P3~~ **FIXED 2026-08-08** | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` had no body — no `Sitemap:` directive. NR retirement Stage G added it, plus an explicit allow-all and the dated crawler decision. See §12 |
-| 16 | P2 | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) pages, see §12 |
+| 15 | ~~P3~~ **FIXED 2026-08-08 on the NR retirement branch; landed here 2026-08-21 on `hotfix-audit-seo-meta` @ `fa966be9c9`** | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` had no body — no `Sitemap:` directive. NR retirement Stage G added it, plus an explicit allow-all and the dated crawler decision; the file was copied here verbatim (`git hash-object` matches the source blob `1a3bbb2502`). On this tree the pre-change state was stronger than "no body": `prod_prod` wrote **no robots.txt at all**. See §12 |
+| 16 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f697da1c81`** | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) source pages. Both now emit `.Language.Lang`; in the built site the 51 `es/` and 51 `zh/` pages carry their own language and the 827 English pages are unchanged. See §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
-| 18 | ~~P2~~ **FIXED 2026-07-25** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + 44 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — id dropped from 44 templates (not ~20), and `tabindex="-1"` added to the `<main>` in `baseof.html`/`list.html` so the skip link actually moves focus. `data-explorer-old/` keeps its copies until §1. See §4a |
+| 18 | ~~P2~~ **FIXED 2026-07-25 on the DE branch; landed here 2026-08-21 on `feature-audit-moderate` @ `d057ea74ca`** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + [list.html:29](../themes/dohmh/layouts/_default/list.html) + 45 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — the id was stripped from **45** templates on this tree (the DE branch's figure was 44), and `tabindex="-1"` added to the `<main>` in both `baseof.html` and `list.html`, which is a standalone document with its own `<html>` and so needs its own target. "Most pages" was **355 of 927** real pages; the rest already carried exactly one. After: all 927 carry exactly one, and Enter on the skip link leaves `document.activeElement` on the `<main>` — focus, not just scroll. See §4a |
 | 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
 | 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
 | 21 | P2 | `package.json` (`georaster@1.6.0` subtree) | 4 of the 8 open Dependabot alerts share one root — cheapest fix of the three groups in §3a |
@@ -1647,7 +1729,7 @@ flagship feature.
   > Still no stance on individual AI crawlers by name, which the decision makes unnecessary:
   > allowing everyone needs no per-agent list. No `llms.txt`, as this finding advised.
 
-### Structured data — none (P2)
+### Structured data — none, until 2026-08-21 (P2)
 
 - **Zero JSON-LD or Microdata anywhere in the theme** (confirmed: no `ld+json`, `schema.org`, or
   `itemscope`/`itemtype` across all 136 layouts / 63 partials). For a government **data portal**,
@@ -1659,6 +1741,38 @@ flagship feature.
   indicator → neighborhood) are the other three that would cost little relative to payoff, since
   the underlying data (indicator names/descriptions from `metadata.json`, org name, page
   hierarchy) already exists in Hugo `.Params`/menu structure.
+
+  > **PARTLY FIXED 2026-08-21 on `feature-audit-moderate` @ `d293ef6cfd`.**
+  > [structured-data.html](../themes/dohmh/layouts/partials/structured-data.html), included from
+  > `head.html`, emits `Organization` and `WebSite` on the three home pages and `BreadcrumbList`
+  > everywhere else: **927 of the 927 pages rendered through `head.html`** carry a block on a
+  > `prod_prod` build, 924 breadcrumb lists and 3 home `@graph`s, every one parsing and no
+  > breadcrumb with a non-monotonic `position`, a relative `item` URL or an empty `name`.
+  >
+  > **`Dataset` is still open, and is still the highest-value item of the four.** It needs
+  > indicator metadata at build time and the explorer fetches `metadata.json` at runtime, so it
+  > wants its own scoping pass rather than a partial build.
+  >
+  > **The `SearchAction` was dropped, not deferred.** It needs a target URL a crawler can
+  > navigate to, and this site has none: search is a Pagefind modal (`#searchModal` in
+  > `partials/footer.html`), not a route. The one candidate, `/search-results/`, is an orphan —
+  > no inbound links anywhere in the repo, an empty `js_bot` block in its layout, and `?q=asthma`
+  > renders an empty title with all five result containers still `hidden` and zero result links
+  > `[verified 2026-08-21 in a browser, against 5 links in the same page's static fallback block
+  > as a control]`. Emitting one would advertise an endpoint that returns nothing. Building a real
+  > search route is what would un-defer it.
+  >
+  > **No `Organization` `logo` either.** The repo holds one logo asset,
+  > `assets/images/nyc-bubble-logo.svg`, and the footer labels it "NYC Logo" and links it to
+  > nyc.gov — it is the City's, not the department's.
+  >
+  > **Verified against consumers 2026-08-22.** Google's Rich Results Test accepts the
+  > `BreadcrumbList` — 1 valid item, 0 errors, 0 warnings — and returns "No items detected" for
+  > the home `@graph`. That null is the tool's feature scope, not a defect: it reports only types
+  > it can generate a rich result for, and the breadcrumb run beside it is the control proving the
+  > submission fired. `validator.schema.org` covers what it skips — 0 errors and 0 warnings on the
+  > `@graph`, with `publisher.@id` resolved into the Organization node. Both were run in
+  > code-snippet mode against a `prod_prod` build, since the live site carries none of this yet.
 
 ### The Data Explorer's real content is invisible to every non-JS crawler (P1)
 
@@ -1727,11 +1841,23 @@ HTML response — it's less than it looks:
   ([head.html:82-86](../themes/dohmh/layouts/partials/head.html)), which correctly reflects each
   translation's real language — the two signals disagree on the same page. Also affects screen
   readers (wrong pronunciation/voice). Fix: `<html lang="{{ .Language.Lang }}" dir="ltr">`.
+
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f697da1c81`**, exactly as written. Built
+  > `prod_prod`: the 51 `es/` and 51 `zh/` pages each moved from `lang="en"` to their own
+  > language, the 827 English pages unchanged. Counted excluding Hugo's 442 alias stubs, which
+  > hardcode `lang="en"` and would have masked the result. See §11 row 16.
 - **Three `<meta name="robots">` tags can stack on one response**
   ([head.html:17,26,41](../themes/dohmh/layouts/partials/head.html)): the prod/dev branch, plus an
   unconditional second tag for `.Section == "resources"`. Functionally fine — Google documents that
   the most restrictive directive wins when multiple robots meta tags conflict — but fragile and
   non-obvious; collapse to one computed value.
+
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `c7497564b9`** — collapsed to one computed
+  > value, as advised. A control build of the pre-change tip shows **3 pages carrying 2 metas**, so
+  > the sweep can see the defect it reports gone; after, 927 pages carry exactly 1. `resources/`
+  > reads `noindex` under `prod_prod` and `noindex, nofollow` elsewhere. The decision to keep
+  > `content/resources/` noindexed in production was taken 2026-08-21 and is recorded in
+  > `head.html` beside the code, which answers the bullet below.
 - **`content/resources/` is `noindex`ed in every environment, including production**
   ([head.html:39-42](../themes/dohmh/layouts/partials/head.html)). The section holds
   `health-code-reference` and `sugar-lookup` — both look like real, standalone public tools, not
@@ -1743,11 +1869,24 @@ HTML response — it's less than it looks:
   [head.html:62-64](../themes/dohmh/layouts/partials/head.html)) — the tag that actually becomes
   the browser-tab text and (usually) the search-result blue link carries no branding, while social
   shares do. Minor, one-line fix for consistency.
+
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `c7497564b9`.** 0 → 924 of 927 real pages end
+  > in the suffix. The 3 that do not are the home pages, excluded by an `.IsHome` guard because
+  > their `seo_title` is already a full brand statement. Instrument check in the same sweep: 0
+  > pages have a `<title>` spanning lines, so the line-oriented read is sound here.
 - **Vestigial meta tags:** `geo.region` ships with an empty `content=""`
   ([seo.html:4](../themes/dohmh/layouts/partials/seo.html)) and `fb:profile_id` is hardcoded to
   `"0"` ([seo.html:8](../themes/dohmh/layouts/partials/seo.html)) — both look like placeholders
   nobody filled in or removed. `geo.*` meta tags haven't influenced Google ranking in well over a
   decade regardless; safe to delete both rather than fix.
+
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `cc8f651bcc`** — both deleted, 927 pages to 0.
+  > The same commit made `canonical` and `og:url` absolute (927 pages, path-only → absolute),
+  > sourced because it is a claim about an outside system: OGP's URL type is "All valid URLs that
+  > utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21].
+  > **The "`geo.*` meta tags haven't influenced Google ranking in well over a decade" claim above
+  > carries no source and no date** — it did not drive the deletion (an empty `content=""` is
+  > reason enough) and should not be quoted as established.
 - **~18% of content pages (111 of 624 `.md` files) have no `seo_description` override**, falling
   back to one site-wide sentence ([globals/seo_defaults.yml](../data/globals/seo_defaults.yml)).
   Spot-checked: most of the 111 are non-rendered leaf-bundle fragments (e.g.
@@ -1773,6 +1912,16 @@ HTML response — it's less than it looks:
 > Data Explorer JS-only-content gap is the biggest item here — start by making the existing
 > hidden-indicator-name pattern visible and `id`-specific instead of a hidden bag of everything,
 > which also resolves the multi-`<h1>` and hidden-text issues in the same pass.
+
+> **Status of this summary, 2026-08-21.** (1) is **done** — `Sitemap:`, `lang`, the `<title>`
+> suffix and both vestigial metas all landed on `hotfix-audit-seo-meta`; see the annotations
+> above and §11. (2) is **done** — decided 2026-08-05, allow all crawlers affirmatively, recorded
+> in `robots.txt` itself. (3) is **partly done** — `Organization`, `WebSite` and `BreadcrumbList`
+> ship as of `d293ef6cfd`; `Dataset` does not, and the `SearchAction` was dropped for want of a
+> search route. **"The single highest-leverage structured-data addition" ranks four types against
+> each other on an axis nobody scored** — what is defensible is that `Dataset` is the one of the
+> four that needs new build-time data, which is why it is the one still open. (4) is **untouched**,
+> and "the biggest item here" is the same unscored superlative.
 
 ---
 
@@ -1805,6 +1954,15 @@ government open-data site); make the Data Explorer's hidden per-topic
 indicator name/description block visible and `id`-specific instead of a
 hidden bag of everything — the biggest item in §12, since it's the only thing
 a non-JS crawler can currently read on the site's flagship pages.
+
+> **Phase 1 and Phase 1.5 status, 2026-08-21.** Every §12 item in Phase 1 landed on
+> `hotfix-audit-seo-meta`, and the header-markup bugs on `hotfix-audit-markup-a11y`; the crawler
+> policy was decided 2026-08-05; `Organization`/`WebSite`/`BreadcrumbList` JSON-LD shipped on
+> `feature-audit-moderate` @ `d293ef6cfd`. Still open in these two phases: `Dataset` JSON-LD,
+> the Data Explorer's JS-only content, FA JS (already dropped 2026-07-14), and the §5c follow-on.
+> Per-item detail is in the §11 table and the annotations in §12. The two superlatives in this
+> paragraph — "highest-leverage" and "the biggest item" — rank items on an axis nobody scored;
+> read them as "worth doing".
 
 **Phase 2 — delete forks (cutover done 2026-06-27; deletion pending).** The
 endpoint cutover landed. Remaining: delete the three `data-explorer-old` trees
@@ -1846,6 +2004,9 @@ control that the probe can tell the two apart]`.
 Black is presumably what was wanted, so nothing renders wrongly today — the cost is a dead
 attribute that reads as live styling, propagated by copy-paste. Fix: delete whichever of the
 two is not intended. The readme's copies are already fixed.
+
+**Three more instances, in content rather than templates, are recorded at §15.2.** The template
+instances were fixed on branch `hotfix-audit-markup-a11y` as Task 8; the content ones were not.
 
 ### 14.2 Card images on the home page have no `alt` attribute (P2, a11y)
 
@@ -1903,3 +2064,174 @@ duplicate environment. Both need a decision about which name is canonical.
 Related and lower-value: `partials/conditional-modal.html` branches on
 `hugo.Environment "production"`, `"development"`, and `"data_staging"`. No template includes
 this partial, and `config/` has no `data_staging` directory, so all three branches are dead.
+
+---
+
+## 15. Found while executing the audit backlog (added 2026-08-22)
+
+Eleven items surfaced while implementing
+[`audit-backlog-production-2026-08-20.md`](audit-backlog-production-2026-08-20.md) that fell outside
+every one of its 22 tasks' stated scopes. That ledger records them as they were found, per branch;
+this section is their tracked home, because the ledger closes when its three PRs merge and these do
+not close with it.
+
+**Nothing here was introduced by that work** — each is either pre-existing or a deliberate
+out-of-scope decision recorded at the time. All eleven are **open**.
+
+Every `file:line` below was re-opened on `feature-audit-moderate` at `5484bfadfc` on 2026-08-22
+rather than copied forward. **Three moved and are corrected here**: `main.js:193` → **`:181`** (Task
+16 deleted the `click_subscribe` emitter above it), `index.html:92` → **`:93`**, and the `app.js`
+orientation comment `:157-159` → **`:155-157`**. Where an item's evidence is a browser or axe
+measurement, the ledger's own dated reading is cited rather than re-run.
+
+### 15.1 An unclosed `<a>` splits the home page's featured-story link in two (P2, a11y)
+
+`themes/dohmh/layouts/index.html:62` opens `<a href="{{ relURL .Params.featured_link }}">`, and its
+`</a>` at `:93` sits *outside* the three `<div>`s the anchor opened. The parser recovers by closing
+the anchor early and emitting a second, empty one — the same content-model failure Task 5 fixed on
+the site title. axe reports `link-name` [serious] on the unnamed half
+`[ledger, 2026-08-21: axe 4.13.0 on the home page]`.
+
+Pre-existing, and specifically **not** caused by Branch A: that anchor contains no `<img>`, and
+Branch A's `index.html` diff touches only lines 111, 165, 186, 204, 223 and 244.
+
+Fix is the Task 5 shape — move `</a>` inside the `<div>` nesting, or wrap rather than interleave.
+
+### 15.2 Three more doubled `class` attributes, in content rather than templates (P3)
+
+`<div class="tab-content" id="myTabContent" class="mb-4">` at
+`content/data-stories/housing/index.md:609`, `index.es.md:388` and `index.zh.md:394`
+`[verified 2026-08-22: one grep for the literal string, 3 hits, one per file]`.
+
+Identical to §14.1 and to Task 8, but outside Task 8's stated scope of `themes/dohmh/layouts/`. The
+parser keeps the first `class` and drops the second, so `mb-4` has never applied — meaning removing
+it changes nothing rendered, and *applying* it is a visual change that needs a look.
+
+### 15.3 `<hr>` and a bare `<a>` are direct children of `<ul>` in the header menus (P3, a11y)
+
+`<ul>` permits only `<li>`, `<script>` and `<template>` as children. Four menus in
+`themes/dohmh/layouts/partials/header.html` violate it, all on lines adjacent to the ones Task 4
+corrected and none matched by its grep `[verified 2026-08-22: each ul opened and read to its close]`:
+
+| `<ul>` opens | Offending children | Menu |
+|---|---|---|
+| `:103` | `<hr>` `:108`, `:111`; bare `<a>All topics</a>` `:115` | desktop Topics |
+| `~:150` | `<hr>` `:163` | desktop, second menu |
+| `:262` | `<hr>` `:267`, `:270`; bare `<a>All topics</a>` `:274` | mobile Topics |
+| `~:310` | `<hr>` `:322` | mobile, second menu |
+
+Each `<hr>` wants wrapping in its `<li>` (or replacing with a CSS border on the `<li>`); each bare
+`<a>` wants an `<li>` around it.
+
+**Separately, and unrelated to the content model:** `assets/js/main.js:181` and
+`assets/js/site.js:85` both bind `.lang-select` — `main.js` with a direct `.click()` handler,
+`site.js` with a delegated `classList.contains("lang-select")` branch. That is the same
+doubled-handler shape Task 16 confirmed and fixed for `click_subscribe`, and it has not been
+measured here. Whether it double-fires is a browser question, not a source-reading one.
+
+### 15.4 `og:image` and `twitter:image` are still path-only (P2, SEO)
+
+`themes/dohmh/layouts/partials/seo.html:13` emits `og:image` from `$image.RelPermalink`; `:20` emits
+`twitter:image` from `relURL` `[verified 2026-08-22]`. Both are site-relative paths.
+
+Task 14 made `canonical` and `og:url` absolute on the strength of OGP's URL type — "All valid URLs
+that utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21] — which
+covers the two image properties identically. They were left alone only because Task 14's stated
+scope named `canonical` and `og:url`.
+
+Fix: `.Permalink` / `absURL`, matching what Task 14 did two lines above.
+
+### 15.5 `og:locale` is hardcoded `en_us` on every page, including the translations (P2, SEO)
+
+`seo.html:8` emits `<meta property="og:locale" content="en_us" />` unconditionally, on all 927 real
+pages `[verified 2026-08-22: the line is a literal with no template expression]`.
+
+Task 10 has just made `<html lang>` correct for the 102 `es` and `zh` pages, so those pages now
+assert one language in `<html lang>` and a different one in `og:locale`. The value is also
+mis-cased: OGP's examples use the `en_US` form.
+
+Fix: derive it from `.Language.Lang` the way Task 10 derives `<html lang>`.
+
+### 15.6 Dead comment and a copy-pasted banner in the explorer's analytics block (P3)
+
+`assets/js/data-explorer/app.js:151` is a commented-out `console.log` above the `gtag` call — left
+in place rather than deleted, and renamed with the event during Task 15, to match its neighbours,
+which carry the same shape. `:155-157` is a banner comment reading `how calculated` above the
+`#citeButton` block at `:159`, copied from the `#howCalcButton` block above it and never updated
+`[verified 2026-08-22]`.
+
+Cosmetic. Listed because the wrong banner actively misdirects anyone tracing an analytics event.
+
+### 15.7 The whole neighborhood picker on `aqe.html` is inside `aria-hidden="true"` (P1, a11y)
+
+`themes/dohmh/layouts/data-features/aqe.html:21` opens `<div class="my-2" aria-hidden="true">`
+wrapping the label text, the search input, the Clear button and the "About NTAs" link
+`[verified 2026-08-22]`. axe reports `aria-hidden-focus` [serious]: focusable controls inside a
+hidden subtree.
+
+This also explains an otherwise-odd result in §5k's fix — **aqe was the one page of five where axe
+reported no `aria-allowed-attr` before the combobox fix**, because axe skips hidden subtrees. The
+wrapper concealed the defect rather than removing it. Task 18's combobox wiring is in place on that
+page and becomes effective for assistive tech the moment the wrapper goes.
+
+On the axis of who is shut out entirely, this is the worst item in the section: a screen-reader user
+currently cannot reach the page's only data-selection control. Fix is deleting one attribute, but it
+needs a look at *why* it was added — nothing in the ledger explains it.
+
+### 15.8 Neither flexdatalist input has an accessible name on 3 of the 5 call sites (P1, a11y)
+
+axe `label` [critical] ×2 — on both the authored `#flex_search` and the generated
+`#flex_search-flexdatalist` — on `data-explorer/indicator-catalog/`, `data-features/hvi/` and the NR
+topic landing pages `[ledger, 2026-08-21: axe 4.13.0, all five call sites driven]`.
+
+The other two escape for reasons that are not fixes: the NR section page's input carries
+`placeholder="Search"`, which axe accepts as a last-resort name, and aqe escapes only by being
+hidden per §15.7.
+
+`feature-MOD-Lab-NR-recode-refactor`'s copy of the source partial fixes this with `aria-labelledby`
+at the call site. That was outside Task 18's stated scope, which named role, `aria-expanded` and
+`aria-activedescendant` only. Porting it is the same shape of port Task 18 already did — see §5k.
+
+### 15.9 The combobox fix trades one axe *violation* for one axe *incomplete* (not a defect)
+
+With `aria-controls` set, axe 4.13.0 parks `aria-valid-attr-value` [critical] in *incomplete* with
+"Unable to determine if aria-controls referenced ID exists on the page while using aria-haspopup"
+`[ledger, 2026-08-21]`. That is a limitation of the rule, not a dangling reference — the id resolves
+and the list is in the DOM, both measured.
+
+With the list **closed** every page reads 0 violations and 0 incomplete, which is what the
+add-and-remove-with-the-list design buys. Recorded so the next person running axe against these
+pages does not read the incomplete as a regression.
+
+### 15.10 `neighborhood-reports/` has its own `aria-hidden-focus` on the Leaflet UHF shapes (P2, a11y)
+
+axe `aria-hidden-focus` [serious] on `.nr-clickable-uhf`, the Leaflet map's UHF shapes, reported both
+before and after the Task 18 change `[ledger, 2026-08-21]`. Pre-existing and unrelated to
+flexdatalist. Same rule as §15.7, different cause: these are focusable map shapes marked hidden.
+
+### 15.11 `npm run lint` is red on arrival: 33 `no-undef` over 5 implicit globals (P2)
+
+Task 20 ported eslint from `feature-MOD-Lab-NR-recode-refactor` and it lands red **on purpose** —
+the guardrail is the deliverable, and the errors it reports are real `[verified 2026-08-22: npx
+eslint . returned 37 problems, 33 errors and 4 warnings; the 33 are all no-undef, the 4 are
+unused-disable warnings in vendored leaflet.js under docs/ and static/]`.
+
+Five names, none declared anywhere under `assets/`, `themes/` or `content/`: `indicators`,
+`selectedDisparity`, `xValue`, `yValue`, `comp_group_col`. Each is assigned with no declarator —
+`comp_group_col = "Geography"` at `assets/js/data-explorer/trend.js:142`, and again at `:183` and
+`:227` `[verified 2026-08-22]`. The one apparent declaration, `let indicators;` at
+`data-explorer/data-index.html:65`, is on a page that does not load `data.js`.
+
+So they are implicit globals — exactly what CLAUDE.md's data-explorer section says not to create.
+**Confirmed in a browser, not inferred** `[ledger, 2026-08-21]`: on
+`data-explorer/asthma/?id=2380`, `window.indicators` and `window.selectedDisparity` are own
+properties after load, and `window.comp_group_col` is `"Geography"` after `#display=trend` runs —
+against a control pair that discriminates, since `global.js`'s `let showMap` is correctly *absent*
+from `window` while `jQuery` is present. `xValue`/`yValue` live in `links.js`, whose view was not
+driven, so those two rest on the source reading alone.
+
+The fix is five declarations in `global.js` and is collision-free: `global.js` loads only from
+`data-explorer/single.html` (one grep hit repo-wide), and nothing reads any of the five through
+`window.`, so moving them to lexical bindings changes no reachable read. It is still a change to
+runtime JS on the explorer and wants its own task and its own `npm run smoke` run, which is why
+Task 20 landed the guardrail red rather than widening into it.

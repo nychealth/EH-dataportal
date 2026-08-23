@@ -24,7 +24,9 @@
       Issue: If doesn't capture Regular Pages the way we want/expect
     -->
 
-    <main id="skip-header-target" role="main">
+    <!-- tabindex="-1" makes <main> programmatically focusable, so the "Skip Header" link
+         moves focus here rather than only scrolling the page to it. -->
+    <main id="skip-header-target" tabindex="-1" role="main">
     <div class="row mt-4">
         <div class="col-8 mx-auto">
             <h1 class="mb-2">More content about <span style="color: #008939">{{ .Title }}</span>:</h1>

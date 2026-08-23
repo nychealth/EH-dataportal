@@ -771,7 +771,13 @@ $matrix-gutter-padding: ($grid-gutter-width / 4);
 $accordion-button-border: false;
 $accordion-button-shadow: false;
 
-$accordion-title-color: $primary;
+// Accordion headers carry their own background, which varies by page: $primary measured
+// 4.24:1 on the data explorer's #EFFAF4 and 3.46:1 on the #E1E1E1 headers in data stories.
+// $primary-dark takes the worst case to 4.19:1. That clears AA because these headers are
+// 18.672px/700 — WCAG large text, where the threshold is 3:1, not 4.5:1. It would NOT clear
+// 4.5:1, so a future restyle that drops the size or the weight below large-text needs a
+// darker value or a lighter header background. See $primary-dark in _a-global-variables.scss.
+$accordion-title-color: $primary-dark;
 $accordion-bg-color: $light;
 $accordion-margin-y: $spacer-1;
 

@@ -5,7 +5,7 @@
 {{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
 <script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
 
-<article class="container-fluid" id="skip-header-target" data-pagefind-ignore="all">
+<article class="container-fluid" data-pagefind-ignore="all">
 
     <div class="col-lg-10 col-md-12 mx-auto">
         <div class="row">

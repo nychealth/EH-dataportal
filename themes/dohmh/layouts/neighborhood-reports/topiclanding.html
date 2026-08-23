@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
         <div class="col-lg-12 mx-auto col-12">
@@ -156,6 +156,8 @@
 {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
+{{- partial "flexdatalist-combobox-js.html" . -}}
+
 
 <script type="text/javascript">
 
@@ -206,6 +208,18 @@
         });
 
         // console.log("$input", $input);
+
+        // ----- give the generated input a combobox role ----------------------------- //
+
+        // flexdatalist hides the authored input and renders its own; the generated one is
+        // what the reader focuses, and its id is the authored id + "-flexdatalist"
+        // (jquery.flexdatalist.js:475). See partials/flexdatalist-combobox-js.html.
+
+        const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+        if (generated) {
+            wireComboboxState(generated);
+        }
 
         // ----- add flexdatalist select handler -------------------------------------------------- //
 

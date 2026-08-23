@@ -18,7 +18,7 @@
 {{- $lazyTabEmbedsJS := resources.Get "js/data-stories/lazy-tab-embeds.js" | partial "short-fingerprint.html" }}
 <script src="{{ $lazyTabEmbedsJS.RelPermalink }}" integrity="{{ $lazyTabEmbedsJS.Data.Integrity }}"></script>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
         <div class="col-xl-2"></div>
