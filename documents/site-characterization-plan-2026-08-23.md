@@ -459,7 +459,8 @@ static pages at **~4ms** `[2026-08-23: 250ms sampling of button, link, table and
 
 *Explanation 3: six pages starve one `hugo server`'s on-demand render.* This is
 [`smoke-pages.mjs:246`](../scripts/smoke-pages.mjs)'s explanation, which this repo's `CLAUDE.md`
-repeats — and it is a code comment, not a measurement. **Not supported.** Measured over 12 pages at
+repeated — a code comment, not a measurement. Both were corrected on 2026-08-23 off the back of this
+task, so neither now states it. **Not supported.** Measured over 12 pages at
 concurrency 6 against concurrency 1, navigation (`goto` → `load`) slowed **1.34x** (8052ms → 10823ms)
 while JS settle time was **1.00x** (2564ms → 2552ms), and all 12 pages reached **identical** final
 DOM states `[2026-08-23]`. A 1.34x slower navigation cannot produce a capture taken before a page's

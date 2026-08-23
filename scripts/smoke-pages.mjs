@@ -242,11 +242,18 @@ const main = async () => {
 
         failures = results.filter((r) => r.errors.length);
 
-        // Concurrency introduces a failure mode sequential runs don't have: several
-        // pages contending for one `hugo server`'s on-demand render can push a slow
-        // page past the navigation timeout. Re-check every failure sequentially
-        // before reporting it, so the sweep doesn't cry wolf. Skipped when
-        // concurrency is 1, where there is no contention to rule out.
+        // Concurrency introduces a failure mode sequential runs don't have: a page
+        // can time out under a concurrent sweep and pass on its own. Re-check every
+        // failure sequentially before reporting it, so the sweep doesn't cry wolf.
+        // Skipped when concurrency is 1, where there is nothing to rule out.
+        //
+        // WHY that happens is NOT established. This comment used to attribute it to
+        // "several pages contending for one `hugo server`'s on-demand render" — never
+        // measured, and it does not hold up: at concurrency 6 against 1 over 12 pages,
+        // navigation slowed 1.34x, JS settle time 1.00x, and all 12 reached identical
+        // final DOM states `[2026-08-23]`. The re-check is a guard for an unexplained
+        // flake, not a fix for a known cause. site-characterization.mjs hit the same
+        // wall and reaches for the same guard.
         if (concurrency > 1 && failures.length) {
             console.log(`\nRe-checking ${failures.length} failing page(s) sequentially...`);
             const rechecked = [];
