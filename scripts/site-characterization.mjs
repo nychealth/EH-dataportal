@@ -34,6 +34,7 @@
 import { chromium } from "playwright";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
+import { pathToFileURL } from "node:url";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, mapPool } from "./site-urls.mjs";
 
@@ -142,7 +143,12 @@ const SAMPLE = [...SAMPLE_BASE, ...SAMPLE_EXTRA];
 // never the site's own globals — so it stays valid across a refactor that
 // renames them.
 
-const CAPTURE = (prefix) => {
+// Exported so a control can run it against a page it has deliberately modified.
+// A field that is constant across every page is either constant by
+// construction or reading a node that does not exist, and the two are
+// indistinguishable in the output — the only way to tell them apart is to make
+// the node exist and check the number moves.
+export const CAPTURE = (prefix) => {
 
     const $$ = (sel) => [...document.querySelectorAll(sel)];
     const squash = (s) => (s || "").replace(/\s+/g, " ").trim();
@@ -632,4 +638,6 @@ const main = async () => {
     }
 };
 
-main();
+// Only sweep when run directly. CAPTURE and capturePage() are imported by the
+// probe controls, and an unguarded main() would start a full sweep on import.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) main();
