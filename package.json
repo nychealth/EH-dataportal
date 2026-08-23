@@ -16,6 +16,9 @@
         "smoke": "node scripts/smoke-pages.mjs",
         "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
         "characterize:cp": "node scripts/cp-characterization.mjs",
+        "characterize:site": "node scripts/site-characterization.mjs --check --all",
+        "characterize:site:sample": "node scripts/site-characterization.mjs --check",
+        "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
         "docs-check": "node scripts/docs-check.mjs"
     },
     "dependencies": {

@@ -1,8 +1,9 @@
 # Whole-site characterization harness — plan
 
 **Status as of 2026-08-23:** branch `feature-site-characterization` cut from `production` at
-`d8c45abebe`. Tasks 1–3 **done**. Tasks 4–6 not started. The signal set is settled and no field was
-deleted.
+`d8c45abebe`. Tasks 1–4 **done**; Tasks 5–6 in progress. The signal set is settled and no field was
+deleted. **Every one of the eleven probes has now been proved to fire** against an injected
+regression — Task 4's findings table is the evidence, and it is what a passing `--check` is worth.
 
 **Read Task 3's findings before trusting anything Task 1 concluded.** Task 1 declared the harness
 deterministic on three agreeing sweeps; Task 3's first `--baseline`/`--check` cycle disproved it.
@@ -134,8 +135,8 @@ Two field notes that are load-bearing:
 | 1 | Probe core + determinism control | `9cbb2d44d0` | **DONE 2026-08-23** | 3 sweeps, 3 separately started servers, all 3 pairs byte-identical over 41 pages `[git diff --no-index --exit-code, exit 0 on a-b, a-c, b-c]`; control perturbing `landmarks.nav`, `lang` and `assets` fired on all 3 |
 | 2 | Dead-field sweep over 925 pages | `e6ebe5c2c5` | **DONE 2026-08-23** | 925/925 captured, all quiesced; distinct-value table for all 36 `structure` fields; the 3 zero-constants proved live by `node scripts/site-characterization-probe-control.mjs`, all 4 responded |
 | 3 | Baseline / check plumbing | `4c076520d0` | **DONE 2026-08-23** | `--baseline` then `--check` exit 0; perturbed `content.title` → `--check` exit 0 and `--check --content` exit 1 naming the page; baseline corrupted to `controls.button: 999` → exit 1 naming the field, with the sequential re-capture path firing. The `cleared` branch is **not** proven — see findings |
-| 4 | Positive controls — prove the net catches things | — | **Not started** | — |
-| 5 | Wire up npm scripts and document | — | **Not started** | — |
+| 4 | Positive controls — prove the net catches things | *no code change* — the evidence is the findings section below | **DONE 2026-08-23** | 11 of 11 injected regressions drove `--check` to exit 1, each naming its own field; tree clean and `--check` passing again after all reverts. Two prescribed injections were wrong about the repo and are corrected in the table |
+| 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
 | 6 | Commit the baseline | — | **Not started** | — |
 
 Derive what this table deliberately does not claim:
@@ -533,9 +534,9 @@ named, then `git checkout --` the file and confirm `--check` is clean again.
 |---|---|---|---|
 | 1 | `assets` | Comment out one `<script>` block in `themes/dohmh/layouts/partials/head.html` | every page that gated it in |
 | 2 | `headingLevels` / `headingJumps` | Change one `<h2>` to `<h4>` in a shared partial | every page rendering that partial |
-| 3 | `img.missingAlt` | Delete one `alt` attribute in a shared partial | every page rendering it |
+| 3 | `img.missingAlt` | Delete one `alt` attribute in a shared partial — **and mark the edit with an added attribute**, see findings | every page rendering it |
 | 4 | `landmarks` | Delete the `<nav>` wrapper in `partials/header.html` | every page |
-| 5 | `controls.noAccessibleName` | Remove one `aria-label` from a header button | every page |
+| 5 | `controls.noAccessibleName` | Remove **every** name source from a header button — `aria-label`, `sr-only` text and `title`, see findings | every page |
 | 6 | `meta` | Remove `<meta name="description">` from `head.html` | every page |
 | 7 | `jsonld.topLevelIsObject` | Wrap one JSON-LD block's output in an extra `jsonify` | that page kind |
 | 8 | `tables.withTh` | Change one `<th>` to `<td>` in a table-bearing template | that page kind |
@@ -549,6 +550,73 @@ probe did not fire is a broken probe, not a skipped control**, and it gets fixed
 deleted before Task 6.
 
 **Gate:** Task 6 does not run until every row in this table has fired.
+
+### Task 4 findings
+
+**All eleven probes fired.** Every row drove `--check` to exit 1 and named its own field.
+
+Run against the 41-page sample baseline captured at `5e3391846b`, on one `hugo server
+--environment dev_stage --disableFastRender` that stayed up for the whole task (PID owning :8080
+confirmed once, per the two-builders rule). Driver:
+`scratchpad/task4-controls.py`, disposable — it makes the edit, waits for the change to appear in
+the **served** page, runs `--check`, then reverts with `git checkout --`.
+
+| # | Probe | Injection | Exit | Pages named | Field in the diff |
+|---|---|---|---|---|---|
+| 1 | `assets` | dompurify `<script>` removed from `partials/head.html` | 1 | 41 | `assets`, `assetsWithIntegrity` |
+| 2 | `headingLevels` / `headingJumps` | `partials/footer.html` `<h2 class="sr-only">` → `<h4>` | 1 | 41 | `headingLevels` (`2`→`4`), `headingJumps` |
+| 3 | `img.missingAlt` | logo `alt` removed in `partials/header.html` | 1 | 41 | `missingAlt` |
+| 4 | `landmarks.nav` | both `<nav class="nav">` → `<div>`, closing tags too | 1 | 41 | `nav` |
+| 5 | `controls.noAccessibleName` | menu toggle's `aria-label`, `sr-only` text **and** `title` removed | 1 | 41 | `noAccessibleName` |
+| 6 | `meta.description` | `partials/seo.html` meta renamed | 1 | 41 | `description` |
+| 7 | `jsonld.topLevelIsObject` | second `jsonify` on the breadcrumb graph | 1 | 38 | `topLevelIsObject`, `type`, `keys` |
+| 8 | `tables.withTh` | `data-explorer/data-index.html` `<th>` → `<td>` (6) | 1 | 1 | `withTh` |
+| 9 | `overflowX` | `body { min-width: 200vw }` in `assets/scss/theme.scss` | 1 | 40 | `overflowX` |
+| 10 | `iframes[].zeroSize` | `data-stories/cold.html` iframe `height: 750px` → `0px` | 1 | 1 | `zeroSize` |
+| 11 | `links.internal` | one footer language link deleted (both copies) | 1 | 41 | `internal`, `emptyHref` |
+
+**Clean again after revert:** `git status --porcelain` shows no template or SCSS file modified, and
+a final `--check` against the same baseline passed. That single end-state check is what proves every
+one of the eleven reverts was complete — a residue from any earlier row would still have been
+present at the end.
+
+**Row 5 needed three edits, not one.** The plan's "remove one `aria-label`" would not have fired:
+`accessibleName()` falls back through `aria-labelledby` → `aria-label` → `el.labels` → own text →
+`img[alt]` → `title`, and that button carries an `aria-label`, an `sr-only` span reading "Main Menu",
+and `title="Main Menu"`. Removing one of three leaves the control named and the probe correctly
+silent. The written control was wrong about the repo, not about the probe.
+
+**Row 3 first came back INCONCLUSIVE, and that is the served-page gate working.** The driver waited
+for `alt="NYC Logo"` to disappear from the served page; it never can, because that string is in
+three partials and `partials/footer.html`'s copy renders on every page. Without that gate the run
+would have recorded a dead `img.missingAlt` probe. Re-run against an injected `data-sc-control`
+attribute instead of a removed one, the row fired on all 41 pages. **State an injection's marker as
+something the edit *adds*, never as something it removes.**
+
+**Three rows produced diffs wider than their target field**, which is worth knowing before reading a
+real failure:
+
+- **Row 9** additionally changed `img.total` and `img.emptyAlt` on exactly 10 pages, all of them
+  map-bearing (`data-features/*` with Leaflet, and neighborhood reports). Leaflet tiles are `<img>`
+  with empty alt, so a body forced to `200vw` plausibly loads a different tile count. Not verified
+  beyond the page list — the row's purpose was met.
+- **Row 1** additionally changed `controls.button`, `controls.input`, `links.external`, `img.total`
+  and `tables.withTh` on exactly 2 pages: `data-explorer/asthma/` and `data-explorer/asthma/?id=2380`.
+  Console errors were flat across the run (373, against 374 on the clean check either side), so a
+  "page JS throws without DOMPurify" explanation is **not** supported by that signal. Those two pages
+  are also two of the three that needed sequential arbitration when this baseline was captured, so
+  this is the open instability and the injection landing on the same page kind, and this run cannot
+  separate them.
+- **Row 2** changed nothing outside `headingLevels` and `headingJumps`.
+
+**A fourth observation of the data-explorer instability.** Capturing the baseline for this task —
+`--baseline` on a freshly started server, so a cold Hugo render and a cold browser cache — put
+`data-explorer/asthma/`, `data-explorer/asthma/?id=2380` and `data-explorer/data-index/` through
+sequential arbitration, i.e. the two sweeps disagreed on exactly those three pages. Every `--check`
+afterwards, against the warm server, was clean. That is consistent with the untested cold-fetch
+theory in Task 3's findings and is not a test of it: nothing here varied the cache deliberately.
+What would settle it: capture twice against a server started fresh each time, with the browser cache
+disabled, and see whether the same three pages disagree.
 
 ---
 
@@ -573,6 +641,36 @@ deleted before Task 6.
    probe whose Task 4 row did not fire.
 
 **Proof:** each npm script runs clean from both PowerShell and Bash.
+
+### Task 5 findings
+
+**Scripts added** to `package.json`:
+
+| Script | Runs |
+|---|---|
+| `characterize:site` | `--check --all` — the full sweep against the committed baseline |
+| `characterize:site:sample` | `--check` — the same check over the 41-page sample |
+| `characterize:site:baseline` | `--baseline --all` — re-capture what gets committed |
+
+`--content` has no script. It is the rarer mode and it takes a flag on the direct `node` call,
+which is what the file header documents.
+
+**Verified:** `npm run characterize:site:sample` exits 0 with `Characterization check PASSED` from
+**both** Bash and PowerShell `[2026-08-23, against the 41-page baseline at 5e3391846b]`. The two
+`--all` scripts are **not** yet verified — they need the 925-page baseline that Task 6 captures, and
+running them before it exists would prove nothing. Task 6 verifies them.
+
+**The `readme-development.md` pointer was dropped, and the plan's premise for it was false.**
+That step said to add one "matching how `smoke` is referenced there". `smoke` is referenced nowhere
+in it — `grep -rn "smoke\|npm run" readme-development.md README.md readme-content.md` returns zero
+hits across all three human-facing docs `[2026-08-23]`. None of them documents any harness, so there
+was no form to match, and adding characterization alone would have made it the one harness in a file
+that documents none. If the team wants the harnesses in `readme-development.md`, `smoke` goes in the
+same pass — that is a separate piece of work.
+
+**Section size, for the always-loaded file:** the new `### Site characterization` subsection is 380
+words, added to a `CLAUDE.md` that was 3,658 — a 10.4% growth, to 4,038 `[measured 2026-08-23, not
+estimated]`. It sits beside `### Smoke test`, which is 804 words, and is less than half its length.
 
 ---
 

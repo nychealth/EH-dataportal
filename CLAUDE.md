@@ -64,6 +64,41 @@ Seven things to know before trusting a result:
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
+### Site characterization
+
+```bash
+npm run characterize:site            # every page, diff `structure` against the committed baseline
+npm run characterize:site:sample     # the same check over 41 pages, one per template kind
+npm run characterize:site:baseline   # re-capture the committed baseline — commit the result
+node scripts/site-characterization.mjs --check --content   # widen the gate to titles and link targets
+```
+
+`scripts/site-characterization.mjs` is the breadth-first counterpart to `smoke`: every page, one
+load each, no interaction. Where `smoke` fails on JS that throws, this fails on a page whose
+rendered *structure* moved — an asset that stopped loading, a heading level that started skipping,
+a lost `alt` or `<th>`, a container that began overflowing the viewport, an `<iframe>` at zero
+height, JSON-LD that stopped being a JSON object. Neither sees what the other does. Console errors
+are printed as a harness-health number and deliberately **not** baselined — that is `smoke`'s job.
+
+- **Each record splits into `structure` and `content`, and `--check` gates on `structure` alone.**
+  CloudCannon commits content directly, so a check that also gated on titles and link text would
+  fail on commits that never touch a template — and a check that fails routinely stops being read.
+  `--content` widens it when you want that.
+- **A baseline is a fact about one commit *and one environment*.** `meta.robots` alone differs on
+  every page between environments (`head.html:46-53`), so `--check` aborts when the running
+  server's path prefix does not match the one in the baseline's `_meta.json`. Never compare
+  baselines taken under different environments.
+- **What a pass is worth is established by `documents/site-characterization-plan-2026-08-23.md`,
+  not by the check passing.** All eleven probes were driven by an injected regression and each one
+  fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on
+  every page is otherwise indistinguishable from a dead selector — three fields read zero site-wide
+  and are proved live by `node scripts/site-characterization-probe-control.mjs`.
+- **Each mode has its own npm script rather than a forwarded flag**, for the same reason
+  `smoke:all` does: PowerShell eats the `--` in `npm run x -- --flag`.
+- **Pages that disagree between sweeps are re-captured sequentially before anything is reported.**
+  Three `data-explorer` pages have repeatedly needed that arbitration. **The cause is not
+  established** — see the plan's Task 3 and Task 4 findings before treating it as understood.
+
 ### Four ways a local check silently lies
 
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
