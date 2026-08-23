@@ -25,14 +25,22 @@
 // against itself. Read a count here as "this changed", never as "this is how
 // many controls are unlabelled".
 //
-// Usage (Task 1 driver — baseline/check plumbing lands in Task 3):
-//   node scripts/site-characterization.mjs --out scripts/tmp/run-a
-//   node scripts/site-characterization.mjs --out scripts/tmp/run-b --all
+// Usage:
+//   node scripts/site-characterization.mjs --baseline --all   write + commit
+//   node scripts/site-characterization.mjs --check --all      gate on `structure`
+//   node scripts/site-characterization.mjs --check --content  gate on both halves
+//   node scripts/site-characterization.mjs --out <dir>        raw capture, no baseline
+//
+// A BASELINE IS A FACT ABOUT ONE COMMIT AND ONE ENVIRONMENT. meta.robots alone
+// differs on every page between environments (head.html:46-53), so --check
+// refuses to run when the server's path prefix does not match the one recorded
+// in the baseline's _meta.json.
 //
 // Plan and ledger: documents/site-characterization-plan-2026-08-23.md
 
 import { chromium } from "playwright";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { ensureDevServer } from "./dev-server.mjs";
@@ -48,6 +56,17 @@ import { collectAllPaths, mapPool } from "./site-urls.mjs";
 const VIEWPORT = { width: 1280, height: 900 };
 
 const DEFAULT_CONCURRENCY = 6;
+
+const BASELINE_DIR = "scripts/site-characterization-baseline";
+const CURRENT_DIR = "scripts/site-characterization-current";
+
+// Where --check writes the two section-filtered trees it actually diffs. Kept
+// inside the repo and deliberately short: `git diff --no-index` returns the
+// correct exit code but prints ZERO lines of diff when handed a long path,
+// which reads as a broken harness rather than as a failing check
+// `[verified 2026-08-23: exit 1 and no output against a ~150-char temp path;
+// full field-level output for the same comparison under C:/temp]`.
+const DIFF_DIR = "scripts/.sc-check";
 
 // Hosts whose requests are aborted before they can inject anything.
 //
@@ -435,24 +454,69 @@ const INSTALL_MUTATION_COUNTER = () => {
         .observe(document.documentElement, { childList: true, subtree: true });
 };
 
-// Polls until the mutation count holds still, or the cap expires. Returns
-// whether it actually settled — a probe with a stop condition has to say which
-// stop condition it hit, or a capped page is indistinguishable from a quiet one.
-const waitForQuiescence = async (page, { interval = 400, stableSamples = 3, cap = 15000 } = {}) => {
+// Polls until the DOM has stopped changing AND no main-frame request is still
+// in flight, or the cap expires. Returns whether it actually settled — a probe
+// with a stop condition has to say which stop condition it hit, or a capped
+// page is indistinguishable from a quiet one.
+//
+// The in-flight half was added on the theory that the data explorer's runtime
+// fetch of EHDP-data leaves a quiet DOM while the fetch is outstanding. It was
+// then measured as never binding — "DOM quiet" and "DOM quiet and nothing in
+// flight" arrived at the same millisecond on every page sampled
+// `[2026-08-23: extra = 0ms on about/, key-topics/airquality/,
+// data-explorer/asthma/, data-explorer/data-index/]`.
+//
+// THAT MEASUREMENT DOES NOT SETTLE IT. It ran against a warm HTTP cache, where
+// the fetch resolves immediately and there is no window for the condition to
+// bind. It shows the condition is inert when the data is already cached; it
+// says nothing about a cold fetch, which is the case the theory is about. Keep
+// the condition, and treat neither the theory nor its "disproof" as settled.
+//
+// What the theory does illustrate is not in doubt: waiting for the DOM to stop
+// changing cannot distinguish a page that has FINISHED rendering from one that
+// has NOT STARTED. Both are quiet. Any readiness check built on quiescence
+// alone inherits that blindness — which is why recapture() exists rather than
+// a longer wait.
+//
+// Only MAIN-FRAME requests are counted. Datawrapper and the AirNow widget poll
+// continuously from inside their own cross-origin iframes, and counting those
+// would mean no page carrying one ever settles — the same reason
+// smoke-pages.mjs waits for `load` rather than `networkidle`.
+const waitForQuiescence = async (page, { interval = 400, stableSamples = 3, cap = 30000 } = {}) => {
 
-    const deadline = Date.now() + cap;
-    let last = -1;
-    let stable = 0;
+    let inFlight = 0;
 
-    while (Date.now() < deadline) {
-        await page.waitForTimeout(interval);
-        const n = await page.evaluate(() => window.__scMutations ?? 0);
-        stable = (n === last) ? stable + 1 : 0;
-        last = n;
-        if (stable >= stableSamples) return true;
+    const isMainFrame = (request) => {
+        try { return request.frame() === page.mainFrame(); } catch { return false; }
+    };
+
+    const started = (request) => { if (isMainFrame(request)) inFlight++; };
+    const ended = (request) => { if (isMainFrame(request)) inFlight--; };
+
+    page.on("request", started);
+    page.on("requestfinished", ended);
+    page.on("requestfailed", ended);
+
+    try {
+        const deadline = Date.now() + cap;
+        let last = -1;
+        let stable = 0;
+
+        while (Date.now() < deadline) {
+            await page.waitForTimeout(interval);
+            const n = await page.evaluate(() => window.__scMutations ?? 0);
+            stable = (n === last && inFlight <= 0) ? stable + 1 : 0;
+            last = n;
+            if (stable >= stableSamples) return true;
+        }
+
+        return false;
+
+    } finally {
+        page.off("request", started);
+        page.off("requestfinished", ended);
+        page.off("requestfailed", ended);
     }
-
-    return false;
 };
 
 // ----------------------------------------------------------------------- //
@@ -530,6 +594,131 @@ const write = (outDir, result) => {
     writeFileSync(file, JSON.stringify(recordFor(result), null, 4) + "\n");
 };
 
+const walk = (dir, base = "") => readdirSync(dir, { withFileTypes: true })
+    .flatMap((e) => e.isDirectory() ? walk(`${dir}/${e.name}`, `${base}${e.name}/`) : [`${base}${e.name}`]);
+
+// ----------------------------------------------------------------------- //
+// sequential arbitration
+// ----------------------------------------------------------------------- //
+
+// Re-captures a set of pages one at a time and rewrites their records.
+//
+// THE FAILURE IS REAL AND ITS CAUSE IS NOT ESTABLISHED. Saying so here is
+// deliberate: the next person will refactor against whatever this comment
+// claims, and a confident wrong cause is worse than an open question.
+//
+// What happened: a --baseline immediately followed by a --check, same commit,
+// reported controls.button 25 -> 96 and links.internal 70 -> 638 on three
+// data-explorer pages. 25 is below even that page's FIRST sampled state of 63,
+// so the baseline captured a page before its initial render, not between two
+// states.
+//
+// What is measured, and rules things out rather than in:
+//   - The pages are not slow. Hit sequentially, data-explorer/asthma/ reaches
+//     its final state at 260ms, ?id=2380 at 269ms, the NR report at 1050ms,
+//     static pages at ~4ms `[2026-08-23]`.
+//   - Concurrency barely touches them. At 6 vs 1 over 12 pages, navigation
+//     (goto -> load) slowed 1.34x while JS settle time was 1.00x, and all 12
+//     reached identical final DOM states `[2026-08-23]`. That is nowhere near
+//     enough to explain a pre-first-render capture, so "six pages starve one
+//     hugo server's render" — smoke-pages.mjs:246's explanation, which this
+//     repo's CLAUDE.md repeats — is NOT supported for this failure.
+//   - An earlier theory, that the EHDP-data fetch leaves the DOM quiet while it
+//     is in flight, was called disproved on an "extra = 0ms" measurement. That
+//     measurement ran against a warm HTTP cache and therefore could not have
+//     seen the condition bind. The theory is open, not dead.
+//
+// The failure has not been reproduced since. This function is therefore a
+// GUARD, justified by the observed failure, not by a known mechanism: two
+// captures that disagree are arbitrated by a third taken alone. That is worth
+// having whatever the cause turns out to be, and it is the same answer
+// smoke-pages.mjs reaches for.
+const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => {
+
+    const results = [];
+
+    for (const path of paths) {
+        const result = await capturePage(browser, baseURL, path, userAgent, prefix);
+        write(outDir, result);
+        results.push(result);
+    }
+
+    return results;
+};
+
+// Paths whose records differ between two capture directories.
+const differingPaths = (dirA, dirB) => walk(dirA)
+    .filter((rel) => rel !== META_FILE)
+    .filter((rel) => {
+        try {
+            return readFileSync(`${dirA}/${rel}`, "utf8") !== readFileSync(`${dirB}/${rel}`, "utf8");
+        } catch {
+            return true;
+        }
+    })
+    .map((rel) => JSON.parse(readFileSync(`${dirA}/${rel}`, "utf8")).path);
+
+// ----------------------------------------------------------------------- //
+// baseline metadata
+// ----------------------------------------------------------------------- //
+
+// A baseline is a fact about one commit AND one environment, and neither is
+// recoverable from the records themselves.
+//
+// The environment half is not paranoia. meta.robots reads "noindex, nofollow"
+// on every page outside prod_prod, and under prod_prod reads "all" except on
+// the resources section, which reads "noindex" (head.html:46-53). Diffing a
+// dev_stage baseline against a prod_prod run therefore reports ~925 robots
+// changes that are nothing of the kind, and the real regressions are lost in
+// them. --check refuses the comparison rather than let that read as a finding.
+const META_FILE = "_meta.json";
+
+const gitHead = () => {
+    try {
+        return execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    } catch {
+        return null;
+    }
+};
+
+const writeMeta = (dir, { prefix, pages, all }) => {
+    writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
+        capturedAt: new Date().toISOString(),
+        gitHead: gitHead(),
+        prefix,
+        mode: all ? "all" : "sample",
+        pages,
+        viewport: VIEWPORT,
+        blockedHosts: BLOCKED_HOSTS,
+    }, null, 4) + "\n");
+};
+
+// ----------------------------------------------------------------------- //
+// section-filtered diff
+// ----------------------------------------------------------------------- //
+
+// Writes a copy of `srcDir` holding only the record sections in `keys`, so the
+// default check can gate on `structure` while `content` still lives in the
+// committed baseline for anyone who wants to read or diff it.
+//
+// A projection rather than a two-file-per-page layout: it keeps the committed
+// baseline at one readable file per page instead of 1,850 half-records, and the
+// projected trees are throwaway.
+const project = (srcDir, dstDir, keys) => {
+
+    rmSync(dstDir, { recursive: true, force: true });
+
+    for (const rel of walk(srcDir)) {
+        if (rel === META_FILE) continue;
+        const record = JSON.parse(readFileSync(`${srcDir}/${rel}`, "utf8"));
+        const kept = { path: record.path, status: record.status };
+        for (const k of keys) kept[k] = record[k];
+        const dst = `${dstDir}/${rel}`;
+        mkdirSync(dirname(dst), { recursive: true });
+        writeFileSync(dst, JSON.stringify(kept, null, 4) + "\n");
+    }
+};
+
 // ----------------------------------------------------------------------- //
 // main
 // ----------------------------------------------------------------------- //
@@ -541,10 +730,24 @@ const parseArgs = (argv) => {
     };
     return {
         all: argv.includes("--all"),
+        baseline: argv.includes("--baseline"),
+        check: argv.includes("--check"),
+        content: argv.includes("--content"),
         out: at("--out"),
         concurrency: Number(at("--concurrency")) || DEFAULT_CONCURRENCY,
     };
 };
+
+const USAGE = `Usage:
+  node scripts/site-characterization.mjs --baseline [--all]     write the committed baseline
+  node scripts/site-characterization.mjs --check    [--all]     diff the structure half against it
+  node scripts/site-characterization.mjs --check --content      diff structure AND content
+  node scripts/site-characterization.mjs --out <dir> [--all]    raw capture, no baseline involved
+
+  --concurrency N   browser pages in flight (default ${DEFAULT_CONCURRENCY})
+
+Under PowerShell, prefer the npm scripts: \`npm run characterize:site -- --check\` does NOT work,
+because PowerShell eats the \`--\` and the script sees an empty argv.`;
 
 // Playwright's default UA says "HeadlessChrome", which some third parties
 // refuse — forecast7.com answers 403 to it, so the heat-syndrome embed renders
@@ -560,11 +763,25 @@ const browserUserAgent = async (browser) => {
 
 const main = async () => {
 
-    const { all, out, concurrency } = parseArgs(process.argv.slice(2));
+    const { all, baseline, check, content, out, concurrency } = parseArgs(process.argv.slice(2));
 
-    if (!out) {
-        console.error("Usage: node scripts/site-characterization.mjs --out <dir> [--all] [--concurrency N]");
+    if ([baseline, check, Boolean(out)].filter(Boolean).length !== 1) {
+        console.error(USAGE);
         process.exit(2);
+    }
+
+    const outDir = out || (baseline ? BASELINE_DIR : CURRENT_DIR);
+
+    // Read the baseline's environment BEFORE sweeping, so a mismatch costs a
+    // file read rather than a full capture.
+    let baselineMeta = null;
+
+    if (check) {
+        if (!existsSync(`${BASELINE_DIR}/${META_FILE}`)) {
+            console.error(`No baseline at ${BASELINE_DIR}/ — run --baseline first.`);
+            process.exit(2);
+        }
+        baselineMeta = JSON.parse(readFileSync(`${BASELINE_DIR}/${META_FILE}`, "utf8"));
     }
 
     const { baseURL, stop } = await ensureDevServer();
@@ -574,12 +791,24 @@ const main = async () => {
     // than the environment that served it.
     const prefix = new URL(baseURL).pathname;
 
+    if (baselineMeta && baselineMeta.prefix !== prefix) {
+        await stop();
+        console.error(
+            `Environment mismatch — refusing to check.\n` +
+            `  baseline was captured against ${baselineMeta.prefix}\n` +
+            `  this server serves            ${prefix}\n\n` +
+            `meta.robots alone differs on every page between environments, so this comparison\n` +
+            `would report hundreds of changes that are not regressions. Point DE_BASE_URL at a\n` +
+            `server matching the baseline, or re-baseline against this one.`);
+        process.exit(2);
+    }
+
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const browser = await chromium.launch({ headless: true });
     const userAgent = await browserUserAgent(browser);
 
-    rmSync(out, { recursive: true, force: true });
-    mkdirSync(out, { recursive: true });
+    rmSync(outDir, { recursive: true, force: true });
+    mkdirSync(outDir, { recursive: true });
 
     let done = 0;
     let failed = 0;
@@ -587,11 +816,13 @@ const main = async () => {
     let consoleErrorTotal = 0;
     let rawHashedAssets = 0;
 
-    try {
-        await mapPool(paths, concurrency, async (path) => {
+    // Sweeps `paths` into `dir` at `concurrency`, accumulating the run stats
+    // above. Extracted so --baseline can run it twice: one sweep cannot tell an
+    // anomalous capture from a real one, and two disagreeing sweeps can.
+    const sweep = (dir, at) => mapPool(paths, at, async (path) => {
 
             const result = await capturePage(browser, baseURL, path, userAgent, prefix);
-            write(out, result);
+            write(dir, result);
 
             done++;
             consoleErrorTotal += result.consoleErrors.length;
@@ -613,12 +844,52 @@ const main = async () => {
 
             if (done % 50 === 0) console.log(`      ... ${done}/${paths.length}`);
         });
+
+    let arbitrated = [];
+    let cleared = [];
+
+    try {
+        await sweep(outDir, concurrency);
+
+        // --baseline arbitrates against a second sweep. A baseline entry taken
+        // from an anomalous capture would fail every check from then on, so it
+        // is worth a second pass on an operation this rare.
+        if (baseline && !failed) {
+            const verifyDir = `${DIFF_DIR}/verify`;
+            rmSync(verifyDir, { recursive: true, force: true });
+            mkdirSync(verifyDir, { recursive: true });
+
+            console.log("\nVerifying the baseline against a second sweep...");
+            done = 0;
+            await sweep(verifyDir, concurrency);
+
+            arbitrated = differingPaths(outDir, verifyDir);
+            if (arbitrated.length) {
+                console.log(`${arbitrated.length} page(s) disagreed between sweeps — re-capturing sequentially:`);
+                for (const p of arbitrated) console.log(`      ${p || "(home)"}`);
+                await recapture(browser, baseURL, userAgent, prefix, outDir, arbitrated);
+            }
+            rmSync(verifyDir, { recursive: true, force: true });
+        }
+
+        // --check arbitrates only what differs from the baseline. A page that
+        // agrees on a calm sequential re-capture was contending, not changed.
+        if (check && !failed) {
+            const suspect = differingPaths(BASELINE_DIR, outDir);
+            if (suspect.length) {
+                console.log(`\n${suspect.length} page(s) differ from the baseline — re-capturing sequentially before reporting.`);
+                await recapture(browser, baseURL, userAgent, prefix, outDir, suspect);
+                const still = new Set(differingPaths(BASELINE_DIR, outDir));
+                cleared = suspect.filter((p) => !still.has(p));
+            }
+        }
+
     } finally {
         await browser.close();
         await stop();
     }
 
-    console.log(`\nCaptured ${done - failed}/${paths.length} pages into ${out}`);
+    console.log(`\nCaptured ${done - failed}/${paths.length} pages into ${outDir}`);
     console.log(`Fingerprinted asset references seen (strip control): ${rawHashedAssets}`);
     console.log(`Console errors across the sweep (NOT baselined — that is smoke's job): ${consoleErrorTotal}`);
 
@@ -633,7 +904,49 @@ const main = async () => {
     }
 
     if (failed) {
-        console.error(`${failed} page(s) failed to load.`);
+        console.error(`\n${failed} page(s) failed to load — not writing a baseline or a verdict from a partial sweep.`);
+        process.exitCode = 1;
+        return;
+    }
+
+    if (baseline) {
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated });
+        console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
+        console.log(arbitrated.length
+            ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`
+            : "Both sweeps agreed on every page — no arbitration was needed.");
+        return;
+    }
+
+    if (!check) return;
+
+    // The gated sections. `content` is always captured and always committed;
+    // --content only widens what the check refuses to let through.
+    const keys = content ? ["structure", "content"] : ["structure"];
+
+    project(BASELINE_DIR, `${DIFF_DIR}/base`, keys);
+    project(CURRENT_DIR, `${DIFF_DIR}/head`, keys);
+
+    if (cleared.length) {
+        console.log(`\n${cleared.length} page(s) differed under concurrency but matched on a sequential `
+            + `re-capture, so they are reported rather than failed:`);
+        for (const p of cleared) console.log(`      ${p || "(home)"}`);
+    }
+
+    console.log(`\nDiffing ${keys.join(" + ")} against the baseline captured at `
+        + `${baselineMeta.gitHead?.slice(0, 10)} (${baselineMeta.capturedAt})`);
+
+    try {
+        execFileSync("git", ["diff", "--no-index", "--exit-code", `${DIFF_DIR}/base`, `${DIFF_DIR}/head`],
+            { stdio: "inherit" });
+        console.log(`\nCharacterization check PASSED — ${keys.length > 1 ? "both halves" : "the structure half"} `
+            + `matches the baseline.`);
+    } catch {
+        console.error(`\nCharacterization check FAILED — differences shown above.`);
+        if (!content) {
+            console.error(`(Only ${keys.join(" + ")} was compared. Re-run with --content to include titles, `
+                + `heading text and link targets.)`);
+        }
         process.exitCode = 1;
     }
 };

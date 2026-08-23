@@ -91,3 +91,8 @@ scripts/cp-characterization-current/
 
 # Full-site smoke run reports
 scripts/smoke-reports/
+
+# Characterization harness working directories. The BASELINE is committed;
+# these two are regenerated on every --check.
+scripts/site-characterization-current/
+scripts/.sc-check/
