@@ -13,6 +13,42 @@ invalidate the 33/33 smoke run it cites at `31b08a3aa2` and delay the deploy beh
 ([`cp-report-analytics-events.md`](cp-report-analytics-events.md), 7 tasks, all unstarted) — deferred
 by decision 2026-08-20, unchanged by anything here.
 
+**Read this before running any hash in this document.** All three PRs merged 2026-08-22 — #1474 at
+`b9243d6160`, #1475 at `b7780e0212`, #1476 at `3242bde3c2`. **Branch A's commits are unchanged, but
+B's and C's were rebased on the way in**, so most hashes recorded below name commits `production`
+does not contain, even though their content is in it. The cause is GitHub's stacked-PR cascade: when
+the PR at the bottom of a stack merges, GitHub rebases every unmerged branch above it onto the trunk
+and force-pushes the result `[https://github.github.com/gh-stack/introduction/overview, fetched
+2026-08-23: "After partial merges — When you merge a PR at the bottom of the stack, the remaining
+branches are automatically rebased"]`. It fired 3 seconds after #1474 merged and 2 seconds after
+#1475, restamping committer dates while leaving author dates at 2026-08-21.
+
+This document is left as the branches recorded it — it is their ledger, and a hash here is a fact
+about what was committed on the branch. The `site-wide-audit-2026-06-27.md` citations were remapped
+instead, because that document tells readers to run `git merge-base --is-ancestor <sha> production`.
+Translate with the table below `[verified 2026-08-23: 35 hashes across these two documents and the
+memory store resolve to commits unreachable from `production`; 24 matched a `production` commit 1:1
+on `git patch-id --stable`, 0 ambiguous, 0 unmatched. The other 11 name commits on
+`feature-new-data-explorer` and `feature-MOD-Lab-NR-recode-refactor` and are correctly
+branch-scoped]`. Note that the local branches still point at the pre-rebase tips (`3cd323a44d` for B,
+`4648aa85b2` for C) while their remotes were force-pushed, so `git branch --contains <old sha>`
+succeeds locally and tells you nothing about `production`.
+
+| pre-rebase | on `production` | | pre-rebase | on `production` |
+|---|---|---|---|---|
+| `016f785d8f` | `3a884a0df8` | | `136301256d` | `8d328a71ef` |
+| `3cd323a44d` | `5b3ddddb5f` | | `4648aa85b2` | `12e4cbb9d5` |
+| `465ffceb84` | `4829cacd9b` | | `4f5e7f5f4f` | `0007cf874f` |
+| `5484bfadfc` | `76ab3d793d` | | `6e8b52a52d` | `38b8a1547f` |
+| `71d84bbadf` | `842d26c0d7` | | `74a11a51ef` | `62c11242b2` |
+| `79cfabefc3` | `921f6bd726` | | `8334d0450a` | `bc46f8c4ef` |
+| `9c2f424ce0` | `e70327e984` | | `ab668aec40` | `d7d4cf90e5` |
+| `b20267ac87` | `69a896404a` | | `b905e1e3d4` | `3196d971b6` |
+| `c7497564b9` | `f93c6324e1` | | `cc8f651bcc` | `f010266500` |
+| `d057ea74ca` | `b8771726c9` | | `d293ef6cfd` | `638379bd81` |
+| `e45cdb603f` | `393e3cbac7` | | `eb80c2abd4` | `6446199e3a` |
+| `f697da1c81` | `ac27116b14` | | `fa966be9c9` | `7b7d0e6deb` |
+
 ---
 
 ## Ledger

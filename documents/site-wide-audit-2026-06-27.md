@@ -1154,7 +1154,7 @@ Not done here because each of the three needs its own browser verification. Fact
 into a partial the four callers share is the obvious follow-up; it was left alone so the NR
 fix could be verified in isolation first.
 
-> **FIXED 2026-08-21 on `feature-audit-moderate` @ `9c2f424ce0`, and it was five call sites, not
+> **FIXED 2026-08-21 on `feature-audit-moderate` @ `e70327e984` (pre-rebase `9c2f424ce0`), and it was five call sites, not
 > three.** The helper was factored into
 > [`partials/flexdatalist-combobox-js.html`](../themes/dohmh/layouts/partials/flexdatalist-combobox-js.html),
 > which all five now include. The two the table above misses are the Neighborhood Reports section
@@ -1551,7 +1551,7 @@ Two worth looking at first, because their names imply a tinted ground:
 and the three hardcoded `#008939` rules in
 [`__portal-custom.scss:201, 204, 1283`](../assets/scss/__portal-custom.scss).
 
-> **SWEPT 2026-08-21 on `feature-audit-moderate` @ `4f5e7f5f4f`, and the "about twenty" was
+> **SWEPT 2026-08-21 on `feature-audit-moderate` @ `0007cf874f` (pre-rebase `4f5e7f5f4f`), and the "about twenty" was
 > 24 — of which 11 render nowhere.** Method: `getComputedStyle` on live nodes across 15 pages,
 > every rendered element painting `#008939` or `#007A31`, with the ratio computed against the
 > composited background actually behind it rather than against the palette. **Control on the
@@ -1614,6 +1614,20 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 > `git merge-base --is-ancestor <sha> production` — it exits non-zero for *no* — before citing one
 > as shipped.
 >
+> **Update 2026-08-23: all three merged 2026-08-22**, as PR #1474 at `b9243d6160`, #1475 at
+> `b7780e0212` and #1476 at `3242bde3c2`, so the rows below now describe `production` too. B's and
+> C's commits were **rebased on the way in** — GitHub's stacked-PR cascade force-pushes each
+> unmerged branch onto the trunk when the PR below it merges, so the hashes B and C recorded name
+> commits `production` does not contain, though their content is in it. **The 20 audit-backlog
+> citations in this document were remapped** to the hashes `production` carries, each keeping its
+> pre-rebase original in a parenthetical, so the `merge-base` recipe above answers *yes* for all of
+> them again `[verified 2026-08-23: 24 of 24 pass, and all 24 pre-rebase originals fail, so the
+> check discriminates]`. The 11 hashes naming `feature-new-data-explorer` and
+> `feature-MOD-Lab-NR-recode-refactor` were left alone and still answer *no*, correctly — that work
+> has not merged. The 24-pair mapping is in
+> [`audit-backlog-production-2026-08-20.md`](audit-backlog-production-2026-08-20.md), which is left
+> as the branches recorded it.
+>
 > Every zero below has a positive control: the same pattern run against `production`'s copy of the
 > same file returns the count the row originally reported (3, 6, 2 and 1 respectively for rows 7,
 > 9, 12 and 16), so these are fixes, not patterns that stopped matching.
@@ -1622,17 +1636,17 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 > |---|---|---|
 > | 1 (RawGit) | **not applicable** | `grep -c rawgit head.html` → 0 |
 > | 2 (CI) | **half closed since 2026-08-12** | `permissions:` is now in **5 of 6** workflows — only `check-deploy.yml` has none, where the earlier sweep found only `codeql.yml` had one. All 10 distinct `uses:` are still tag-pinned, never SHA-pinned |
-> | 3 (`click_subscribe` twice) | **FIXED — B @ `eb80c2abd4`** (Task 16) | Confirmed in a browser first: one click produced **2** events with two schemas. The `main.js` emitter was removed and `main.js:97` is now a comment pointing at `site.js`; one click gives exactly 1 |
+> | 3 (`click_subscribe` twice) | **FIXED — B @ `6446199e3a` (pre-rebase `eb80c2abd4`)** (Task 16) | Confirmed in a browser first: one click produced **2** events with two schemas. The `main.js` emitter was removed and `main.js:97` is now a comment pointing at `site.js`; one click gives exactly 1 |
 > | 5 (CSS not minified) | **open, by decision** | `head.html:141` is still `$sass \| toCSS \| resources.Fingerprint`. Minification was proposed and **rejected by the user** 2026-07-14 — don't re-add without checking in |
 > | 7 (duplicate `data-toggle`) | **FIXED — A @ `9ae35c3e9a`** (Task 3) | 3 → 0 in `header.html`. All 3 call sites still open `#searchModal` in-browser |
 > | 8 (title `<a>`/`<span>` overlap) | **FIXED — A @ `d0fc7e1753`** (Task 5) | The `<a>` now opens before the first `<span>` and closes after the second. Accessibility tree shows one link where the parser previously produced two |
 > | 9 (`<a><li>`) | **FIXED — A @ `d0fc7e1753`** (Task 4) | 6 → 0. Dropdown pixel-identical before/after under a matched procedure |
 > | 11 (GA in dev) | **not applicable — inverted here** | `head.html:3` gates GA on `prod_prod` only. The inversion is **§14.4** |
-> | 12 (`click_how_caclulated`) | **FIXED — B @ `8334d0450a`** (Task 15) | Renamed, accepting the GA4 continuity cost; decided 2026-08-21. `app.js` now has 0 of the misspelling and 2 of `click_how_calculated`, and `window.dataLayer` confirms one correctly-spelled event per click |
+> | 12 (`click_how_caclulated`) | **FIXED — B @ `bc46f8c4ef` (pre-rebase `8334d0450a`)** (Task 15) | Renamed, accepting the GA4 continuity cost; decided 2026-08-21. `app.js` now has 0 of the misspelling and 2 of `click_how_calculated`, and `window.dataLayer` confirms one correctly-spelled event per click |
 > | 13, 14 (Datawrapper SVG sizing) | **did not reproduce** | `data-stories/housing/` ran clean under `npm run smoke` on 2026-08-12, and again 2026-08-21 |
-> | 15 (robots.txt) | **FIXED — B @ `fa966be9c9`** (Task 11) | Built `prod_prod` writes 1089 bytes with a bodiless `Disallow:` and an absolute `Sitemap:`; `development` writes 736 `Disallow` lines and no `Sitemap`. The pre-change tree wrote **no robots.txt at all** under `prod_prod` |
-> | 16 (`<html lang="en">`) | **FIXED — B @ `f697da1c81`** (Task 10) | Both `baseof.html:2` and `list.html:2` now read `lang="{{ .Language.Lang }}"`. In the built output the 51 `es/` and 51 `zh/` pages each carry their own language |
-> | 18 (`#skip-header-target`) | **FIXED — C @ `d057ea74ca`** (Task 17) | The id was stripped from 45 templates and kept only where a document root needs it: `baseof.html:24` and `list.html:29`, both now `tabindex="-1"`. The other 2 of the 4 remaining mentions are the skip links themselves. 355 real pages carried 2 declarations before; after, 927 carry exactly 1 |
+> | 15 (robots.txt) | **FIXED — B @ `7b7d0e6deb` (pre-rebase `fa966be9c9`)** (Task 11) | Built `prod_prod` writes 1089 bytes with a bodiless `Disallow:` and an absolute `Sitemap:`; `development` writes 736 `Disallow` lines and no `Sitemap`. The pre-change tree wrote **no robots.txt at all** under `prod_prod` |
+> | 16 (`<html lang="en">`) | **FIXED — B @ `ac27116b14` (pre-rebase `f697da1c81`)** (Task 10) | Both `baseof.html:2` and `list.html:2` now read `lang="{{ .Language.Lang }}"`. In the built output the 51 `es/` and 51 `zh/` pages each carry their own language |
+> | 18 (`#skip-header-target`) | **FIXED — C @ `b8771726c9` (pre-rebase `d057ea74ca`)** (Task 17) | The id was stripped from 45 templates and kept only where a document root needs it: `baseof.html:24` and `list.html:29`, both now `tabindex="-1"`. The other 2 of the 4 remaining mentions are the skip links themselves. 355 real pages carried 2 declarations before; after, 927 carry exactly 1 |
 > | 21, 22, 23 (Dependabot) | **subjects present** | `georaster ^1.6.0`, `hugo-extended ^0.147.3`, `vega ^5.30.0` in `package.json`. Alert *state* not re-checked. Note row 23 cites `lib-vega.html`, which **is** present here |
 > | 17, 19, 20 | **not applicable** | each cites a partial this tree does not have (`de-indicator-info.html`, `header-de.html`) |
 >
@@ -1643,7 +1657,7 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 |---|---|---|---|
 | 1 | ~~P1~~ **FIXED 2026-07-14 — but only on some branches; see note below** | `head.html` | Point-in-polygon loaded from shut-down `cdn.rawgit.com`; tag deleted in DE-audit Tier 1.6. The breakage it was masking, and three surviving RawGit OpenLayers tags, moved to **§5c** |
 | 2 | P1 | CI workflows | Unpinned actions + no `permissions:` block (your own CLAUDE.md rules) |
-| 3 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `eb80c2abd4`** | [main.js](../assets/js/main.js) + [site.js:99](../assets/js/site.js) | `click_subscribe` analytics fires twice — confirmed in a browser (one click, 2 events, two schemas) before the `main.js` emitter was removed. `site.js` is now the single emitter |
+| 3 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `6446199e3a` (pre-rebase `eb80c2abd4`)** | [main.js](../assets/js/main.js) + [site.js:99](../assets/js/site.js) | `click_subscribe` analytics fires twice — confirmed in a browser (one click, 2 events, two schemas) before the `main.js` emitter was removed. `site.js` is now the single emitter |
 | 4 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | Font Awesome shipped as render-blocking JS *and* CSS — the `all.min.js` SVG-injector was dropped (CSS + webfonts kept). Caused one regression: per-section accent icon coloring had silently depended on the injector rewriting `<i class="fa…">` into `<svg><path>`; fixed separately on `hotfix-color-styles` |
 | 5 | P2 | [head.html:137](../themes/dohmh/layouts/partials/head.html) | Production CSS not minified — proposed + rejected by user 2026-07-14, don't re-add without checking in |
 | 6 | ~~P2~~ **FIXED 2026-07-14** | `head.html` | nyc-lib CSS loaded twice on every page; favicon `<link>` duplicated. Both de-duped — nyc-lib CSS is now behind `.Params.mapLib` only (set on the 3 `take-action/` pages), so every other page stopped paying for it |
@@ -1652,13 +1666,13 @@ Two cautions for whoever sweeps this, both learned by getting them wrong:
 | 9 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-markup-a11y` @ `d0fc7e1753`** | [header.html](../themes/dohmh/layouts/partials/header.html) | `<a><li></li></a>` invalid list markup — 6 → 0, axe `list`/`listitem` clean, dropdown pixel-identical |
 | 10 | ~~P3~~ **NOT A DEFECT — corrected + rewritten 2026-07-14** | [head.html:112-117](../themes/dohmh/layouts/partials/head.html) | The webfont `range` loop was called dead here and in the DE audit. It wasn't: evaluating `$woff.RelPermalink` as an argument triggered Hugo's lazy publish-on-access for the matched resource, which is exactly what the fingerprinted FA CSS's relative `url(../webfonts/…)` `@font-face` rules need. Deleting it would have broken every FA icon site-wide once the JS injector was also dropped (row 4). Rewritten to use the explicit `.Publish` idiom instead of relying on an accidental read |
 | 11 | P2 | [head.html:3-37](../themes/dohmh/layouts/partials/head.html) | GA fires in dev/local environments (incl. `hugo server`) → dev property polluted by developer/CI traffic |
-| 12 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `8334d0450a`** | [data-explorer/app.js](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated`. Two resolutions on different trees: the **new** explorer dropped it 2026-07-25 (its handler was bound to a non-existent element and had never fired; the coverage is now a `click_about` parameter), and **this** tree's explorer was renamed to `click_how_calculated` on 2026-08-21, accepting the GA4 continuity break, with the cutover date recorded in §9. `app.js` now holds 0 of the misspelling and 2 of the correct name. The path this row previously cited, `data-explorer-old/app.js`, does not exist here |
+| 12 | ~~P3~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `bc46f8c4ef` (pre-rebase `8334d0450a`)** | [data-explorer/app.js](../assets/js/data-explorer/app.js) | Misspelled GA event `click_how_caclulated`. Two resolutions on different trees: the **new** explorer dropped it 2026-07-25 (its handler was bound to a non-existent element and had never fired; the coverage is now a `click_about` parameter), and **this** tree's explorer was renamed to `click_how_calculated` on 2026-08-21, accepting the GA4 continuity break, with the cutover date recorded in §9. `app.js` now holds 0 of the misspelling and 2 of the correct name. The path this row previously cited, `data-explorer-old/app.js`, does not exist here |
 | 13 | P3 | `content/data-stories/{housing,redlining,air-quality-snapshots,vectorborne-diseases-and-health}` | ~~Datawrapper embeds in hidden Bootstrap tabs throw SVG-sizing console errors on load~~ — fixed 2026-07-16, see §5b |
 | 14 | P3 | `content/data-stories/housing/index.es.md` (income-level radio toggle) | Same `display:none`-render-timing issue, different trigger (radio `onclick`, not tabs) and severity (warning, not error) — not fixed, see §5b |
-| 15 | ~~P3~~ **FIXED 2026-08-08 on the NR retirement branch; landed here 2026-08-21 on `hotfix-audit-seo-meta` @ `fa966be9c9`** | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` had no body — no `Sitemap:` directive. NR retirement Stage G added it, plus an explicit allow-all and the dated crawler decision; the file was copied here verbatim (`git hash-object` matches the source blob `1a3bbb2502`). On this tree the pre-change state was stronger than "no body": `prod_prod` wrote **no robots.txt at all**. See §12 |
-| 16 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f697da1c81`** | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) source pages. Both now emit `.Language.Lang`; in the built site the 51 `es/` and 51 `zh/` pages carry their own language and the 827 English pages are unchanged. See §12 |
+| 15 | ~~P3~~ **FIXED 2026-08-08 on the NR retirement branch; landed here 2026-08-21 on `hotfix-audit-seo-meta` @ `7b7d0e6deb` (pre-rebase `fa966be9c9`)** | [robots.txt](../themes/dohmh/layouts/robots.txt) | Production `robots.txt` had no body — no `Sitemap:` directive. NR retirement Stage G added it, plus an explicit allow-all and the dated crawler decision; the file was copied here verbatim (`git hash-object` matches the source blob `1a3bbb2502`). On this tree the pre-change state was stronger than "no body": `prod_prod` wrote **no robots.txt at all**. See §12 |
+| 16 | ~~P2~~ **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `ac27116b14` (pre-rebase `f697da1c81`)** | [baseof.html:2](../themes/dohmh/layouts/_default/baseof.html) + [list.html:2](../themes/dohmh/layouts/_default/list.html) | `<html lang="en">` hardcoded — wrong on all 14 translated (`.es`/`.zh`) source pages. Both now emit `.Language.Lang`; in the built site the 51 `es/` and 51 `zh/` pages carry their own language and the 827 English pages are unchanged. See §12 |
 | 17 | P1 | [de-indicator-info.html](../themes/dohmh/layouts/partials/de-indicator-info.html) | Data Explorer's real content is 100% client-rendered — invisible to non-JS (i.e. most AI) crawlers, see §12 |
-| 18 | ~~P2~~ **FIXED 2026-07-25 on the DE branch; landed here 2026-08-21 on `feature-audit-moderate` @ `d057ea74ca`** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + [list.html:29](../themes/dohmh/layouts/_default/list.html) + 45 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — the id was stripped from **45** templates on this tree (the DE branch's figure was 44), and `tabindex="-1"` added to the `<main>` in both `baseof.html` and `list.html`, which is a standalone document with its own `<html>` and so needs its own target. "Most pages" was **355 of 927** real pages; the rest already carried exactly one. After: all 927 carry exactly one, and Enter on the skip link leaves `document.activeElement` on the `<main>` — focus, not just scroll. See §4a |
+| 18 | ~~P2~~ **FIXED 2026-07-25 on the DE branch; landed here 2026-08-21 on `feature-audit-moderate` @ `b8771726c9` (pre-rebase `d057ea74ca`)** | [baseof.html:24](../themes/dohmh/layouts/_default/baseof.html) + [list.html:29](../themes/dohmh/layouts/_default/list.html) + 45 templates | ~~`#skip-header-target` duplicated on most pages — the keyboard-skip target, so a11y-relevant~~ — the id was stripped from **45** templates on this tree (the DE branch's figure was 44), and `tabindex="-1"` added to the `<main>` in both `baseof.html` and `list.html`, which is a standalone document with its own `<html>` and so needs its own target. "Most pages" was **355 of 927** real pages; the rest already carried exactly one. After: all 927 carry exactly one, and Enter on the skip link leaves `document.activeElement` on the `<main>` — focus, not just scroll. See §4a |
 | 19 | ~~P2~~ **FIXED 2026-07-25** | `header-de.html` + `de-tab-button.html` | Every explorer page rendered two `#dropdownMenuButton` (desktop + mobile Take Action) and two `#311`/`#311label`. Renamed in the DE-only partials; `takeaction.html` keeps the old ids until the old tree is deleted. See §4a and DE audit §4.1-follow-up |
 | 20 | ~~P2~~ **FIXED 2026-07-25** | [header-de.html:291,358,402](../themes/dohmh/layouts/partials/header-de.html) | Three DE modals had dangling `aria-labelledby` → no accessible name, including the dataset picker. See §10 |
 | 21 | P2 | `package.json` (`georaster@1.6.0` subtree) | 4 of the 8 open Dependabot alerts share one root — cheapest fix of the three groups in §3a |
@@ -1742,7 +1756,7 @@ flagship feature.
   the underlying data (indicator names/descriptions from `metadata.json`, org name, page
   hierarchy) already exists in Hugo `.Params`/menu structure.
 
-  > **PARTLY FIXED 2026-08-21 on `feature-audit-moderate` @ `d293ef6cfd`.**
+  > **PARTLY FIXED 2026-08-21 on `feature-audit-moderate` @ `638379bd81` (pre-rebase `d293ef6cfd`).**
   > [structured-data.html](../themes/dohmh/layouts/partials/structured-data.html), included from
   > `head.html`, emits `Organization` and `WebSite` on the three home pages and `BreadcrumbList`
   > everywhere else: **927 of the 927 pages rendered through `head.html`** carry a block on a
@@ -1842,7 +1856,7 @@ HTML response — it's less than it looks:
   translation's real language — the two signals disagree on the same page. Also affects screen
   readers (wrong pronunciation/voice). Fix: `<html lang="{{ .Language.Lang }}" dir="ltr">`.
 
-  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f697da1c81`**, exactly as written. Built
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `ac27116b14` (pre-rebase `f697da1c81`)**, exactly as written. Built
   > `prod_prod`: the 51 `es/` and 51 `zh/` pages each moved from `lang="en"` to their own
   > language, the 827 English pages unchanged. Counted excluding Hugo's 442 alias stubs, which
   > hardcode `lang="en"` and would have masked the result. See §11 row 16.
@@ -1852,7 +1866,7 @@ HTML response — it's less than it looks:
   the most restrictive directive wins when multiple robots meta tags conflict — but fragile and
   non-obvious; collapse to one computed value.
 
-  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `c7497564b9`** — collapsed to one computed
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f93c6324e1` (pre-rebase `c7497564b9`)** — collapsed to one computed
   > value, as advised. A control build of the pre-change tip shows **3 pages carrying 2 metas**, so
   > the sweep can see the defect it reports gone; after, 927 pages carry exactly 1. `resources/`
   > reads `noindex` under `prod_prod` and `noindex, nofollow` elsewhere. The decision to keep
@@ -1870,7 +1884,7 @@ HTML response — it's less than it looks:
   the browser-tab text and (usually) the search-result blue link carries no branding, while social
   shares do. Minor, one-line fix for consistency.
 
-  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `c7497564b9`.** 0 → 924 of 927 real pages end
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f93c6324e1` (pre-rebase `c7497564b9`).** 0 → 924 of 927 real pages end
   > in the suffix. The 3 that do not are the home pages, excluded by an `.IsHome` guard because
   > their `seo_title` is already a full brand statement. Instrument check in the same sweep: 0
   > pages have a `<title>` spanning lines, so the line-oriented read is sound here.
@@ -1880,7 +1894,7 @@ HTML response — it's less than it looks:
   nobody filled in or removed. `geo.*` meta tags haven't influenced Google ranking in well over a
   decade regardless; safe to delete both rather than fix.
 
-  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `cc8f651bcc`** — both deleted, 927 pages to 0.
+  > **FIXED 2026-08-21 on `hotfix-audit-seo-meta` @ `f010266500` (pre-rebase `cc8f651bcc`)** — both deleted, 927 pages to 0.
   > The same commit made `canonical` and `og:url` absolute (927 pages, path-only → absolute),
   > sourced because it is a claim about an outside system: OGP's URL type is "All valid URLs that
   > utilize the http:// or https:// protocols" [https://ogp.me/, retrieved 2026-08-21].
@@ -1917,7 +1931,7 @@ HTML response — it's less than it looks:
 > suffix and both vestigial metas all landed on `hotfix-audit-seo-meta`; see the annotations
 > above and §11. (2) is **done** — decided 2026-08-05, allow all crawlers affirmatively, recorded
 > in `robots.txt` itself. (3) is **partly done** — `Organization`, `WebSite` and `BreadcrumbList`
-> ship as of `d293ef6cfd`; `Dataset` does not, and the `SearchAction` was dropped for want of a
+> ship as of `638379bd81` (pre-rebase `d293ef6cfd`); `Dataset` does not, and the `SearchAction` was dropped for want of a
 > search route. **"The single highest-leverage structured-data addition" ranks four types against
 > each other on an axis nobody scored** — what is defensible is that `Dataset` is the one of the
 > four that needs new build-time data, which is why it is the one still open. (4) is **untouched**,
@@ -1958,7 +1972,7 @@ a non-JS crawler can currently read on the site's flagship pages.
 > **Phase 1 and Phase 1.5 status, 2026-08-21.** Every §12 item in Phase 1 landed on
 > `hotfix-audit-seo-meta`, and the header-markup bugs on `hotfix-audit-markup-a11y`; the crawler
 > policy was decided 2026-08-05; `Organization`/`WebSite`/`BreadcrumbList` JSON-LD shipped on
-> `feature-audit-moderate` @ `d293ef6cfd`. Still open in these two phases: `Dataset` JSON-LD,
+> `feature-audit-moderate` @ `638379bd81` (pre-rebase `d293ef6cfd`). Still open in these two phases: `Dataset` JSON-LD,
 > the Data Explorer's JS-only content, FA JS (already dropped 2026-07-14), and the §5c follow-on.
 > Per-item detail is in the §11 table and the annotations in §12. The two superlatives in this
 > paragraph — "highest-leverage" and "the biggest item" — rank items on an axis nobody scored;
@@ -2078,7 +2092,7 @@ not close with it.
 **Nothing here was introduced by that work** — each is either pre-existing or a deliberate
 out-of-scope decision recorded at the time. All eleven are **open**.
 
-Every `file:line` below was re-opened on `feature-audit-moderate` at `5484bfadfc` on 2026-08-22
+Every `file:line` below was re-opened on `feature-audit-moderate` at `76ab3d793d` (pre-rebase `5484bfadfc`) on 2026-08-22
 rather than copied forward. **Three moved and are corrected here**: `main.js:193` → **`:181`** (Task
 16 deleted the `click_subscribe` emitter above it), `index.html:92` → **`:93`**, and the `app.js`
 orientation comment `:157-159` → **`:155-157`**. Where an item's evidence is a browser or axe
