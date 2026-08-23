@@ -1,9 +1,16 @@
 # Whole-site characterization harness — plan
 
 **Status as of 2026-08-23:** branch `feature-site-characterization` cut from `production` at
-`d8c45abebe`. Task 1 **done** — the premise held, but only after one source of run-to-run churn and
-five harness defects were found and fixed; see *Task 1 findings*. Tasks 2–6 not started. The signal
-set is now settled.
+`d8c45abebe`. Tasks 1 and 2 **done** — the premise held, but only after one source of run-to-run
+churn and five harness defects were found and fixed, and all eleven constant fields have now been
+justified rather than assumed. See *Task 1 findings* and *Task 2 findings*. Tasks 3–6 not started.
+The signal set is settled and no field was deleted.
+
+**One thing a later reader must not miss:** the baseline is **environment-specific**. `meta.robots`
+reads `"noindex, nofollow"` on all 925 pages under `dev_stage`; under `prod_prod` the same field
+would read `"all"` on most pages and `"noindex"` on the `resources` section
+(`head.html:46-53`). Record the environment alongside any baseline, and never compare baselines
+taken under different ones.
 
 ## Why this, when `smoke` already exists
 
@@ -117,7 +124,7 @@ Two field notes that are load-bearing:
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Probe core + determinism control | `9cbb2d44d0` | **DONE 2026-08-23** | 3 sweeps, 3 separately started servers, all 3 pairs byte-identical over 41 pages `[git diff --no-index --exit-code, exit 0 on a-b, a-c, b-c]`; control perturbing `landmarks.nav`, `lang` and `assets` fired on all 3 |
-| 2 | Dead-field sweep over 925 pages | — | **Not started** | — |
+| 2 | Dead-field sweep over 925 pages | `e6ebe5c2c5` | **DONE 2026-08-23** | 925/925 captured, all quiesced; distinct-value table for all 36 `structure` fields; the 3 zero-constants proved live by `node scripts/site-characterization-probe-control.mjs`, all 4 responded |
 | 3 | Baseline / check plumbing | — | **Not started** | — |
 | 4 | Positive controls — prove the net catches things | — | **Not started** | — |
 | 5 | Wire up npm scripts and document | — | **Not started** | — |
@@ -304,6 +311,81 @@ it covers is dead, not passing*).
 4. Delete or fix any field whose constancy cannot be justified.
 
 **Proof:** the distinct-value table in this document, with every count-of-1 field justified.
+
+### Task 2 findings
+
+**925/925 pages captured, every one reaching DOM quiescence before the cap**, and the enumeration
+printed the expected `830 sitemap + 94 paginator + 1 extra`. Zero records came back with a null
+`structure`. Strip control: 9,909 fingerprinted asset references seen.
+
+Wall time for the capture phase was **about 5m24s** at concurrency 6 — first record written
+14:30:27, log closed 14:35:51, by file mtime — with server start and enumeration on top of that.
+
+**Distinct values per `structure` field across all 925 records**, ordered by how little each varies:
+
+| Field | Distinct | Field | Distinct |
+|---|---|---|---|
+| `landmarks.main` | 1 | `img.missingAlt` | 5 |
+| `landmarks.header` | 1 | `tables.total` | 6 |
+| `landmarks.aside` | 1 | `tables.withTh` | 6 |
+| `meta.description` | 1 | `img.zeroSize` | 9 |
+| `meta.canonical` | 1 | `assetsWithIntegrity` | 10 |
+| `meta.robots` | 1 | `links.noAccessibleText` | 14 |
+| `meta.ogTitle` | 1 | `links.emptyHref` | 15 |
+| `meta.ogImage` | 1 | `img.emptyAlt` | 18 |
+| `meta.viewport` | 1 | `landmarks.h1` | 20 |
+| `controls.textarea` | 1 | `img.total` | 21 |
+| `tables.withCaption` | 1 | `links.external` | 22 |
+| `landmarks.footer` | 2 | `controls.input` | 27 |
+| `jsonld` | 2 | `iframes` | 29 |
+| `controls.select` | 2 | `assets` | 33 |
+| `overflowX` | 2 | `controls.button` | 47 |
+| `lang` | 3 | `links.internal` | 77 |
+| `landmarks.nav` | 3 | `headingLevels` | 115 |
+| `controls.noAccessibleName` | 3 | | |
+| `headingJumps` | 5 | | |
+
+**Eleven fields are constant. They split into two kinds, and only one kind is suspicious.**
+
+*Positive constants — cannot be dead probes.* `meta.description`, `meta.canonical`, `meta.ogTitle`,
+`meta.ogImage`, `meta.viewport` all read `true`; `landmarks.main` and `landmarks.header` read 1;
+`meta.robots` reads a non-empty string. A probe that found nothing would return `false`, `0` or
+`null` here, so a positive value on all 925 pages is itself the evidence that the probe fires.
+
+- The five `meta.*` tags are emitted **unconditionally** — verified in
+  [`partials/seo.html`](../themes/dohmh/layouts/partials/seo.html) lines 2, 3, 10 and 13 and
+  [`partials/head.html:66`](../themes/dohmh/layouts/partials/head.html). The `{{ if }}` blocks
+  around them choose the tag's *content*, and every branch falls back to
+  `.Site.Data.globals.seo_defaults`, so the tag itself is always present. **`meta.description` is
+  therefore a presence-only probe:** it detects the tag being removed and nothing else. The
+  description's actual text is in `content.metaDescription`, ungated.
+  These four are not in `head.html` at all — it reaches them via `{{ partial "seo" . }}` at line 104.
+- `landmarks.main` — one unconditional `<main>` in
+  [`_default/baseof.html:24`](../themes/dohmh/layouts/_default/baseof.html).
+- `landmarks.header` — one unconditional `<header>` in
+  [`partials/header.html:4`](../themes/dohmh/layouts/partials/header.html).
+- **`meta.robots` reading `"noindex, nofollow"` on all 925 pages is the environment, not the site.**
+  The tag is always emitted; only its value branches
+  ([`head.html:46-53`](../themes/dohmh/layouts/partials/head.html)): `$robots` starts at `"all"`,
+  becomes `"noindex, nofollow"` when the environment is not `prod_prod`, and becomes `"noindex"`
+  for the `resources` section under `prod_prod`. So this sweep, run against `dev_stage`, sees one
+  value — while a `prod_prod` baseline would see **two**, and the field would then be a live check
+  on the resources-section noindex rule decided 2026-08-21. **The baseline is environment-specific
+  and the environment it was taken under has to be recorded with it.**
+
+*Negative constants — the suspicious shape, and the reason `site-characterization-probe-control.mjs`
+exists.* `landmarks.aside`, `controls.textarea` and `tables.withCaption` all read 0 everywhere. A
+grep says the elements exist nowhere in the repo, but a grep cannot tell a correct selector on an
+absent element from a wrong selector. The control injects an `<aside>`, a `<textarea>` and a
+`<table><caption>` into a real page and re-runs the capture
+`[verified 2026-08-23: landmarks.aside 0 -> 1, controls.textarea 0 -> 1, tables.withCaption 0 -> 1,
+tables.total 0 -> 1; all four responded]`. The zeros are real.
+
+`tables.withCaption` being genuinely zero site-wide is a small accessibility finding in its own
+right, separate from this harness: **no table on the site carries a `<caption>`.**
+
+**No field was deleted.** All eleven constants are justified, and each is a live detector for the
+change that would break it.
 
 ---
 
