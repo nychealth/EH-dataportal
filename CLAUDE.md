@@ -56,7 +56,11 @@ Seven things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
-- **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere — which now means across the whole site, not across 33 pages. The allowlist should trend to zero: fixing a bug is what removes its entry.
+- **Each `KNOWN_NOISE` entry is scoped to the page where its cause was identified**, so the same error text elsewhere still fails. Adding a site-wide entry to quiet one page disables the check everywhere — which now means across the whole site, not across 33 pages. The allowlist should trend to zero: fixing a bug is what removes its entry. One entry is
+  *conditional* rather than scoped: Pagefind's, which applies only when the index is absent, because
+  `dev-server.mjs` now builds one for servers it starts. Smoke prints `Pagefind index: served` or
+  `ABSENT` before it sweeps. Blanket-allowlisting it was masking `PagefindUI is not defined` on
+  every page `[2026-08-24: with the predicate forced off and no index, smoke failed 33 of 33]`.
 - **`smoke:all` enumerates rather than hardcodes, and prints the breakdown every run** (`scripts/site-urls.mjs`): `sitemap.xml` for content pages in all three languages, plus a probe walk for paginator pages, plus `404.html`. Hugo lists neither of the last two in any sitemap, and reports only a *count* for paginator pages — which is the cross-check. `[verified 2026-08-22 on feature-audit-moderate against a development-environment server: 925 pages = 830 sitemap + 94 paginator + 1, enumerated in 0.5s, and the 94 matched Hugo's build summary exactly; reproduced 2026-08-23 on `production` against a dev_stage server, same 830/94/1 breakdown]`. That total is the same set as the 927 counted below over a `prod_prod` build; only the paginator count differs between branches.
 - **Concurrent failures are re-checked sequentially before being reported.** A sweep that reports a concurrency artefact as a regression gets ignored, so pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at the default concurrency of 6; zero cleared on re-check]`. **The mechanism is not established.** The explanation that used to sit in `smoke-pages.mjs`, and in this bullet — pages contending for one `hugo server`'s on-demand render — was never measured, and does not hold up: measured 2026-08-23 at concurrency 6 against 1 over 12 pages, navigation slowed 1.34x, JS settle time was 1.00x, and all 12 reached identical final DOM states — nowhere near enough to time a page out. Treat the re-check as a guard for an unexplained flake, not a fix for a known cause.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
@@ -105,12 +109,23 @@ are printed as a harness-health number and deliberately **not** baselined — th
   Records are prefix-relative, so a `prod_stage` server on `/IndicatorPublic/` checks correctly
   against a `dev_stage`-captured `staging` baseline. Only `staging` and `prod_prod` are committed;
   capture `production` with `--baseline` against a `dev_prod` server if you need it.
+- **The harness serves Pagefind, and `--check` refuses to compare a site that has it against a
+  baseline that doesn't.** `hugo server` renders `docs/` to disk (since Hugo v0.123; `Serving pages
+  from disk` in its own startup output), so `dev-server.mjs` runs `npx -y pagefind --site docs` —
+  the deploy workflow's own command — against any server it starts. It does **not** build into a
+  server it merely reused or was pointed at via `DE_BASE_URL`, since it doesn't own that
+  `publishDir`; it reports `pagefind served` / `ABSENT` on the environment line either way. The
+  search UI is worth `controls.button` +1 and `controls.input` +1 on every page and nothing else
+  `[2026-08-24: 925 of 925 pages in both baselines, zero changed lines outside those two fields]`,
+  so a mismatched run would report 925 regressions — `_meta.json` records the state and the check
+  exits 2 naming the fix instead. If you started the server yourself and see `ABSENT`, run
+  `npx -y pagefind --site docs` against it and re-run; a rebuild will not remove the index.
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
-  `[2026-08-24, 24 logical processors]`. A full 925-page sweep is ~114s, which is why the 41-page
-  sample is for cheap churn measurement rather than for saving time. `--concurrency N` overrides.
-  The bounds are the range measured, not a known optimum.
+  `[2026-08-24, 24 logical processors]`. A full `characterize:site` including the Hugo and Pagefind
+  builds is ~130s, which is why the 41-page sample is for cheap churn measurement rather than for
+  saving time. `--concurrency N` overrides. The bounds are the range measured, not a known optimum.
 - **What a pass is worth is established by `documents/site-characterization-plan-2026-08-23.md`,
   not by the check passing.** All eleven probes were driven by an injected regression and each one
   fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on

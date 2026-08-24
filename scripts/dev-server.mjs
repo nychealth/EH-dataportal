@@ -7,9 +7,14 @@
 //     is shared and not namespaced by environment — see CLAUDE.md). If nothing
 //     answers our probes but a hugo process exists, we ABORT rather than spawn.
 //   - Spawn the command CLAUDE.md documents, not a paraphrase of it.
+//   - Report whether Pagefind is served, and never guess. `hugo server` does
+//     not build the search index, so a server without it serves a site whose
+//     search UI is absent from every page. Consumers that compare against a
+//     recorded site need to know which of the two they got.
 
 import { spawn, execSync } from "node:child_process";
 import { setTimeout as sleep } from "node:timers/promises";
+import { fileURLToPath } from "node:url";
 
 // Ports and path prefixes this repo's servers use. Probed in order; the first
 // (port, prefix) pair returning HTTP 200 wins. The prefixes are the paths from
@@ -25,6 +30,17 @@ const SPAWN_PORT = 8080;
 const SPAWN_PREFIX = "/dev-stage/";
 const SPAWN_CMD = "hugo";
 const SPAWN_ARGS = ["server", "--environment", "dev_stage", "--cleanDestinationDir", "--disableFastRender", "-p", String(SPAWN_PORT)];
+
+// Repo root, derived from this file's own location rather than from cwd, so the
+// pagefind build works whichever directory the harness was launched from.
+const REPO_ROOT = fileURLToPath(new URL("..", import.meta.url));
+
+// Hugo's publishDir (config/_default/config.toml) and the asset whose presence
+// proves the index was built. `hugo server` >= 0.123 writes and serves this
+// directory from disk, so a second process can write into it and the running
+// server will serve what it finds `[verified 2026-08-24 on hugo v0.147.9]`.
+const PUBLISH_DIR = "docs";
+const PAGEFIND_PROBE = "pagefind/pagefind.js";
 
 // True if a URL returns HTTP 200 within a short timeout.
 async function responds(url) {
@@ -64,6 +80,38 @@ function hugoProcessExists() {
     }
 }
 
+// True if the running server answers 200 for Pagefind's runtime script. This is
+// asked on every path, including servers we did not start, because the answer
+// changes what the site *is*: with the index built, the search UI mounts and
+// adds a button and an input to every page.
+async function pagefindServed(baseURL) {
+    return responds(`${baseURL}${PAGEFIND_PROBE}`);
+}
+
+// Build the Pagefind index into the server's publishDir. Same command the deploy
+// workflow runs (.github/workflows/hugo-build-to-prod-prod.yml), so what gets
+// served here is what ships. Safe to run against a live server: Hugo watches
+// source directories, not publishDir, so this triggers no rebuild — and a
+// rebuild would not remove it either `[verified 2026-08-24: touched
+// content/_index.md, server rebuilt in 1164ms, both pagefind assets still 200
+// afterwards, with --cleanDestinationDir in the server's own args]`.
+//
+// Returns true on success. A failure is reported, never thrown: the caller's
+// own pagefind probe is what decides, and a harness that can still run a
+// degraded check is more useful than one that refuses to start.
+function buildPagefind() {
+    try {
+        execSync(`npx -y pagefind --site ${PUBLISH_DIR}`, {
+            cwd: REPO_ROOT,
+            stdio: "ignore",
+        });
+        return true;
+    } catch (e) {
+        console.warn(`Pagefind index build failed (${e.message}); continuing without it.`);
+        return false;
+    }
+}
+
 // Kill a spawned server and all its descendants. child.kill() alone doesn't reap
 // descendants on Windows, so use taskkill /T there.
 function makeStop(child) {
@@ -83,13 +131,15 @@ export async function ensureDevServer() {
     // Force a trailing slash so consumers can join `baseURL + path` safely; the
     // probe and spawn paths already return slash-terminated prefixes.
     if (process.env.DE_BASE_URL) {
-        return { baseURL: process.env.DE_BASE_URL.replace(/\/?$/, "/"), stop: async () => {} };
+        const baseURL = process.env.DE_BASE_URL.replace(/\/?$/, "/");
+        return { baseURL, stop: async () => {}, pagefind: await pagefindServed(baseURL) };
     }
 
-    // Path 2: reuse a server that's already answering.
+    // Path 2: reuse a server that's already answering. We don't own it, so we
+    // don't build into its publishDir — we only report what it serves.
     const running = await findRunningServer();
     if (running) {
-        return { baseURL: running, stop: async () => {} };
+        return { baseURL: running, stop: async () => {}, pagefind: await pagefindServed(running) };
     }
 
     // Path 3: a hugo process exists but didn't answer our probes — it's on a
@@ -122,7 +172,13 @@ export async function ensureDevServer() {
 
     const baseURL = `http://localhost:${SPAWN_PORT}${SPAWN_PREFIX}`;
     for (let i = 0; i < 90; i++) {
-        if (await responds(baseURL)) return { baseURL, stop };
+        if (await responds(baseURL)) {
+            // We own this server, so we know its publishDir is on disk and whose
+            // it is. Build the index before handing the URL back, so the first
+            // page a consumer loads already has the search UI.
+            buildPagefind();
+            return { baseURL, stop, pagefind: await pagefindServed(baseURL) };
+        }
         await sleep(1000);
     }
 

@@ -1,9 +1,10 @@
 {
-    "capturedAt": "2026-08-24T02:24:27.729Z",
-    "gitHead": "e9605238421bb65963ef8b8f22357cb06046ae7e",
+    "capturedAt": "2026-08-24T14:03:01.193Z",
+    "gitHead": "a6d91e78ec1a796ae25bff439e4ec03d762d9414",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
+    "pagefind": true,
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 925,

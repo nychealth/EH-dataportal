@@ -770,13 +770,20 @@ const gitHead = () => {
     }
 };
 
-const writeMeta = (dir, { prefix, pages, all, env }) => {
+const writeMeta = (dir, { prefix, pages, all, env, pagefind }) => {
     writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
         capturedAt: new Date().toISOString(),
         gitHead: gitHead(),
         baselineKey: env.key,
         hugoEnv: env.hugoEnv,
         dataBranch: env.dataBranch,
+        // Whether Pagefind's index was served at capture time. `hugo server`
+        // does not build it, and without it the search UI never mounts — worth
+        // one button and one input on every page `[measured 2026-08-24: 40 of
+        // 40 sample pages, controls.button and controls.input each +1, no other
+        // field touched]`. Recorded rather than assumed so --check can refuse a
+        // comparison across the two states instead of reporting 925 regressions.
+        pagefind,
         // Informational only. The prefix no longer gates the check — records are
         // prefix-relative, so an environment may be served at any path.
         prefix,
@@ -914,7 +921,7 @@ const main = async () => {
         process.exit(2);
     }
 
-    const { baseURL, stop } = await ensureDevServer();
+    const { baseURL, stop, pagefind } = await ensureDevServer();
 
     // The server's own path prefix (/dev-stage/, /IndicatorPublic/, ...). Every
     // probe that reads a URL strips it, so a record describes the site rather
@@ -961,10 +968,32 @@ const main = async () => {
             process.exit(2);
         }
         baselineMeta = JSON.parse(readFileSync(`${baselineDir}/${META_FILE}`, "utf8"));
+
+        // Comparing a searched site against a search-less one (or the reverse)
+        // moves controls.button and controls.input on every page, which buries
+        // anything real under 925 diffs. Refuse the comparison and name the fix
+        // rather than spend a full sweep producing noise. Baselines captured
+        // before this field existed have `pagefind` undefined; those are not
+        // gated, since we cannot know which state they hold.
+        if (baselineMeta.pagefind !== undefined && baselineMeta.pagefind !== pagefind) {
+            await browser.close();
+            await stop();
+            console.error(
+                `Pagefind mismatch: this server ${pagefind ? "serves" : "does not serve"} the search `
+                + `index, the "${env.key}" baseline was captured ${baselineMeta.pagefind ? "with" : "without"} it.
+`
+                + `Every page would differ on controls.button and controls.input.
+
+`
+                + (pagefind
+                    ? `Re-capture the baseline with --baseline, or point DE_BASE_URL at a server without the index.`
+                    : `Build it: npx -y pagefind --site docs   (against this server's publishDir, then re-run)`));
+            process.exit(2);
+        }
     }
 
     console.log(`Environment: ${env.hugoEnv} (EHDP-data ${env.dataBranch}) at ${prefix} `
-        + `— baseline "${env.key}"`);
+        + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`);
 
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const userAgent = await browserUserAgent(browser);
@@ -1091,7 +1120,7 @@ ${nonOk.length} page(s) did not answer 200:`);
     }
 
     if (baseline) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env });
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env, pagefind });
         console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
         console.log(arbitrated.length
             ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`

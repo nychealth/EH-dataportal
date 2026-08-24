@@ -69,8 +69,8 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 4,
-            "input": 3,
+            "button": 5,
+            "input": 4,
             "select": 0,
             "textarea": 0,
             "noAccessibleName": 1

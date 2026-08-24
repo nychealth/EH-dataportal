@@ -1,9 +1,10 @@
 {
-    "capturedAt": "2026-08-24T02:45:19.525Z",
-    "gitHead": "e9605238421bb65963ef8b8f22357cb06046ae7e",
+    "capturedAt": "2026-08-24T14:08:18.993Z",
+    "gitHead": "a6d91e78ec1a796ae25bff439e4ec03d762d9414",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
+    "pagefind": true,
     "prefix": "/dev-stage/",
     "mode": "all",
     "pages": 925,

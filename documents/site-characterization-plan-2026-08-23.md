@@ -144,6 +144,10 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
+**Status as of 2026-08-24: Tasks 1-8 done and committed, Task 9 done in the working tree.**
+The branch is `feature-site-characterization`; derive everything else from the commands below the
+table rather than from this line.
+
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Probe core + determinism control | `9cbb2d44d0` | **DONE 2026-08-23** | 3 sweeps, 3 separately started servers, all 3 pairs byte-identical over 41 pages `[git diff --no-index --exit-code, exit 0 on a-b, a-c, b-c]`; control perturbing `landmarks.nav`, `lang` and `assets` fired on all 3 |
@@ -152,8 +156,9 @@ Two field notes that are load-bearing:
 | 4 | Positive controls — prove the net catches things | *no code change* — the evidence is the findings section below | **DONE 2026-08-23** | 11 of 11 injected regressions drove `--check` to exit 1, each naming its own field; tree clean and `--check` passing again after all reverts. Two prescribed injections were wrong about the repo and are corrected in the table |
 | 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
 | 6 | Commit the baseline | harness fix `6200892d85`; baseline in the commit that follows it | **DONE 2026-08-23** | `npm run characterize:site` exit 0 against the baseline captured at `6200892d85` — 925/925, every page quiesced, zero pages differing, arbitration not needed. Baseline measured at 926 files / 4.74 MiB. The first attempt FAILED and found a dead field — see findings |
-| 7 | Cold-fetch experiment | *the commit that follows* | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
-| 8 | Multiple environments | *the commit that follows* | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings; the one real difference is Pagefind |
+| 7 | Cold-fetch experiment | `e960523842` | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
+| 8 | Multiple environments | `a6d91e78ec` | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings; the one real difference is Pagefind |
+| 9 | Serve Pagefind, and raise concurrency | *the commit that follows* | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
 
 Derive what this table deliberately does not claim:
 
@@ -921,14 +926,130 @@ from `externalHosts`, identical to `staging` `[2026-08-24]`.
 it, so `pagefind/pagefind.js` and `pagefind-ui.js` both answer **404** under the dev server
 `[verified 2026-08-24]`. The baseline still lists `pagefind/pagefind-ui.js` and
 `pagefind/pagefind-ui.css` in `assets`, because the request is recorded whatever its status — so the
-asset list is unaffected. What would change is that in a real build those scripts **execute**, and
-whatever the search UI injects would land in `controls`, `landmarks` and `img`. That is untested.
+asset list is unaffected.
 
-**So:** serve with `hugo server` and the committed baselines apply as-is. If you would rather check
-the artifact that actually ships, that is a legitimate different choice — capture the baseline from
-a static build too, and expect Pagefind to appear in it. The test either way: build to a temp
-directory with the isolated-build recipe in CLAUDE.md, serve it, point `DE_BASE_URL` at it, and
-`--check` against the committed `prod_prod` baseline.
+**Superseded by Task 9.** The paragraph that stood here said the rest was untested and treated
+"serve with `hugo server`" and "check what actually ships" as a fork. It is neither untested nor a
+fork: `hugo server` renders to disk, so Pagefind can be built into the site the dev server is
+already serving. The guess that the search UI would land in `controls`, `landmarks` and `img` was
+one third right. Read Task 9 instead.
+
+---
+
+## Task 9: serve Pagefind, and set concurrency from the machine
+
+**Why:** two separate gaps, both found by questioning a premise Task 8 had written down as settled.
+
+### `hugo server` renders to disk, so Pagefind needs no static build
+
+Task 8 recorded Pagefind as the one difference between serving modes and left it there. The premise
+behind that — that testing Pagefind means building and serving statically — is false for this Hugo.
+
+`hugo server` has written and served `publishDir` from disk by default since v0.123; the installed
+binary's own help says so, and the running server prints `Serving pages from disk`
+`[verified 2026-08-24 on hugo v0.147.9-extended]`. So a second process can write into `docs/` and
+the running server serves what it finds. That is exactly what the deploy workflow already does —
+`npx -y pagefind --site docs`, `.github/workflows/hugo-build-to-prod-prod.yml:122`.
+
+Measured, in order:
+
+| Step | Result |
+|---|---|
+| `pagefind.js` / `pagefind-ui.js` / `pagefind-ui.css` before | 404 / 404 / 404 |
+| `npx -y pagefind --site docs` | 201 pages, 8221 words, 0.502s |
+| The same three after | 200 / 200 / 200 — 45,555 + 119,987 + 14,482 bytes |
+| Rebuild survival | touched `content/_index.md`; server rebuilt in 1164ms; both assets still 200 — despite `--cleanDestinationDir` in the server's own args |
+
+`docs` is gitignored (`.gitignore:19`) and holds no tracked files, so serving from disk leaves the
+tree clean.
+
+**`dev-server.mjs` now owns this.** It builds the index for any server it starts — never for one it
+reuses or is pointed at, because it does not own that server's `publishDir` — and reports
+`pagefind: true | false` on every path, including those. Reporting it on paths it cannot fix is the
+point: a reused server started with `--cleanDestinationDir` has no index, and that is a state a
+consumer must be told about rather than left to infer.
+
+### What the search UI is worth
+
+**`controls.button` +1 and `controls.input` +1, on every page, and nothing else.** Across both
+re-captured baselines: 1850 changed `button` lines and 1850 changed `input` lines, the delta `+1`
+on all 925 pages in each, zero unpaired lines, and **zero changed lines** outside those two fields
+and the five `_meta.json` lines `[2026-08-24, one sweep over the whole diff]`. Task 8 guessed
+`controls`, `landmarks` and `img`; `landmarks` and `img` do not move.
+
+Directly observed rather than inferred from the diff: with the index served, `.pagefind-ui` and
+`.pagefind-ui__search-input` each mount exactly once on `(home)`, `search-results/`,
+`data-explorer/asthma/` and `about/`, with **0** pagefind-related console errors. Positive control
+— the same probe with the index moved aside — reported 3 to 4 per page and 0 mounted nodes.
+
+Both re-captured baselines pass their own `--check --all` `[2026-08-24]`: `staging` in 130s
+including the Hugo and Pagefind builds, `prod_prod` in 112s against an already-running server, both
+exit 0 with zero pages differing.
+
+### `--check` refuses to compare across the two states
+
+A searched site against a search-less baseline moves two fields on all 925 pages, which buries
+anything real. `_meta.json` now records `pagefind`, and `--check` aborts with exit 2 naming the fix
+rather than spending a sweep producing noise. Baselines predating the field have it `undefined` and
+are not gated, since their state is unknown.
+
+Positive control `[2026-08-24]`: index removed → exit **2**, `Pagefind mismatch: this server does
+not serve the search index, the "staging" baseline was captured with it.` Index restored → exit
+**0**, PASSED.
+
+### Smoke's blanket Pagefind allowlist entry is now conditional
+
+`smoke-pages.mjs` allowlisted `/pagefind|favicon|Failed to load resource|net::ERR/i` site-wide,
+which was masking `PagefindUI is not defined` on every page — the precise failure its own CAUTION
+comment warns about. The `pagefind` term is now split out and applies only when the index is
+absent.
+
+Both branches have a control, because a pass on one side proves nothing `[2026-08-24, 33 pages]`:
+
+| Index | `when` predicate | Result |
+|---|---|---|
+| Served | live | PASSED, 0 pagefind errors |
+| Absent | live | PASSED — the entry applies |
+| Absent | forced to `false` | **FAILED, 33 of 33 pages**, `PagefindUI is not defined` |
+
+The third row is what makes the first two mean anything: it proves the errors are genuinely present
+and that the predicate is what suppresses them.
+
+### Concurrency is now derived from the machine
+
+`DEFAULT_CONCURRENCY` was a hard-coded 6. It is now
+`min(24, max(6, availableParallelism()))` — 24 on the workstation this was measured on, and not
+enough to overcommit a small Actions runner.
+
+Measured over 925 pages against one `prod_prod` server, three sweeps interleaved so a warm cache
+could not be read as a concurrency effect:
+
+| Order | Concurrency | Wall |
+|---|---|---|
+| 1st | 12 | 198s |
+| 2nd | **24** | **114s** |
+| 3rd | 12 | 199s |
+
+All three captures byte-identical across all 925 records, every page quiesced, console-error total
+1862 in all three. The two `12` runs bracket the `24` run and agree to 1s, which is what rules out
+warmth. A full `--check --all` including the Hugo build and the Pagefind build now takes **130s**.
+
+The bounds are the range measured, not a known optimum. Raising the ceiling means measuring above
+it first.
+
+**One page churned, and it is not diagnosed.** The verifying `--check --all` reported
+`data-explorer/drinking-water-quality/` differing under concurrency and matching on a sequential
+re-capture. The arbitration guard handled it and the check passed. Arbitration has now gone
+18 → 2 → 0 → 1 across the tile fix, the observer fix and this change — but a single occurrence does
+not establish that concurrency 24 caused it, and the three interleaved sweeps above were
+byte-identical at both 12 and 24. Recorded as observed, not explained.
+
+### Not done: smoke's own concurrency
+
+`smoke-pages.mjs` keeps `DEFAULT_CONCURRENCY = 6`. Its workload is different — it fails on console
+errors and already re-checks concurrent failures sequentially — and nothing here measured it. What
+would un-defer it: two `smoke:all` runs at different concurrencies, compared on both wall time and
+the failure set.
 
 ---
 

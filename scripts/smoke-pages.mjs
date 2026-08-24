@@ -98,16 +98,33 @@ const KNOWN_NOISE = [
     // the refusal on every page that renders the header. Report-only, so nothing
     // is blocked — but it does mean the embed itself never renders.
     { page: null, error: /frame-ancestors|Framing 'https:\/\/docs\.google\.com\//i },
-    // Generic dev-server resource noise: Pagefind's index isn't built by
-    // `hugo server`, and favicons/404s of that kind say nothing about the page.
+    // Pagefind, allowlisted only when its index is genuinely absent. `hugo
+    // server` does not build one, but dev-server.mjs now does for any server it
+    // starts, so the index is present on the common path and a pagefind error
+    // there is a real regression rather than dev-server noise.
+    //
+    // What this entry hides when it does apply, measured by removing the index
+    // from a server that had it: three to four errors per page — the css and js
+    // both `Refused to ...` on a text/plain 404, then `PagefindUI is not
+    // defined` `[2026-08-24]`. That last one is the downstream symptom the
+    // CAUTION below is about, and it was being masked on every page.
+    { page: null, error: /pagefind/i, when: () => !pagefindServed },
+    // Generic dev-server resource noise: favicons and 404s of that kind say
+    // nothing about the page.
     // CAUTION: the broad `Failed to load resource` entry also hides the *cause*
     // of a blocked script, leaving only a downstream "X is not defined". When
     // diagnosing one of those, re-run with this entry commented out.
-    { page: null, error: /pagefind|favicon|Failed to load resource|net::ERR/i },
+    { page: null, error: /favicon|Failed to load resource|net::ERR/i },
 ];
 
+// Whether the server under test serves Pagefind's index. Set once from
+// ensureDevServer() before any page is visited; read by the conditional entry
+// above, which is why it is module scope rather than threaded through visit().
+let pagefindServed = false;
+
 const isKnownNoise = (text, path) =>
-    KNOWN_NOISE.some(({ page, error }) => error.test(text) && (page === null || page.test(path)));
+    KNOWN_NOISE.some(({ page, error, when }) =>
+        error.test(text) && (page === null || page.test(path)) && (when === undefined || when()));
 
 // Default browser concurrency for --all. Six pages against one `hugo server`
 // leaves headroom on a machine that is also being used for something else;
@@ -214,7 +231,9 @@ const gitHead = () => {
 const main = async () => {
 
     const { all, concurrency, report } = parseArgs(process.argv.slice(2));
-    const { baseURL, stop } = await ensureDevServer();
+    const { baseURL, stop, pagefind } = await ensureDevServer();
+    pagefindServed = pagefind;
+    console.log(`Pagefind index: ${pagefind ? "served" : "ABSENT — its errors are allowlisted"}`);
     const paths = all ? await collectAllPaths(baseURL) : PAGES;
     const browser = await chromium.launch({ headless: true });
     const userAgent = await browserUserAgent(browser);
