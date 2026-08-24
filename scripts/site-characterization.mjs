@@ -44,6 +44,7 @@ import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
+import { availableParallelism } from "node:os";
 import { pathToFileURL } from "node:url";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, mapPool } from "./site-urls.mjs";
@@ -57,7 +58,27 @@ import { collectAllPaths, mapPool } from "./site-urls.mjs";
 // constant rather than a flag.
 const VIEWPORT = { width: 1280, height: 900 };
 
-const DEFAULT_CONCURRENCY = 6;
+// Browser pages in flight. Derived from the machine rather than fixed, because
+// the two places this runs differ by an order of magnitude in cores — a dev
+// workstation and a GitHub Actions runner — and a number tuned for one starves
+// or overcommits the other.
+//
+// Measured on this repo, 925 pages, one prod_prod `hugo server`, three
+// interleaved sweeps so a warm cache could not be mistaken for concurrency:
+// 12 -> 198s, 24 -> 114s, 12 -> 199s. All three captures byte-identical across
+// all 925 records, every page quiesced before the cap, and the console-error
+// total was 1862 in all three `[2026-08-24, 24 logical processors]`.
+//
+// The bounds are the range that was actually measured, not a known optimum: 6
+// is the value Tasks 1-8 ran at, 24 is the highest tried. Raising the ceiling
+// means measuring above it first — this harness's whole value rests on captures
+// that agree, and concurrency is the obvious thing that could break that.
+const CONCURRENCY_FLOOR = 6;
+const CONCURRENCY_CEILING = 24;
+const DEFAULT_CONCURRENCY = Math.min(
+    CONCURRENCY_CEILING,
+    Math.max(CONCURRENCY_FLOOR, availableParallelism()),
+);
 
 // Baselines are filed by what actually changes the site's output, not by Hugo
 // environment name. The precedent is scripts/nr-characterization-baseline/ on

@@ -105,6 +105,12 @@ are printed as a harness-health number and deliberately **not** baselined — th
   Records are prefix-relative, so a `prod_stage` server on `/IndicatorPublic/` checks correctly
   against a `dev_stage`-captured `staging` baseline. Only `staging` and `prod_prod` are committed;
   capture `production` with `--baseline` against a `dev_prod` server if you need it.
+- **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
+  over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
+  12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
+  `[2026-08-24, 24 logical processors]`. A full 925-page sweep is ~114s, which is why the 41-page
+  sample is for cheap churn measurement rather than for saving time. `--concurrency N` overrides.
+  The bounds are the range measured, not a known optimum.
 - **What a pass is worth is established by `documents/site-characterization-plan-2026-08-23.md`,
   not by the check passing.** All eleven probes were driven by an injected regression and each one
   fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on
