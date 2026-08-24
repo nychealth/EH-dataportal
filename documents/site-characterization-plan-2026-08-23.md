@@ -144,10 +144,12 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
-**All ten tasks done 2026-08-24. Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is
-`90328b504e..d0b3050820`. The check is green on a GitHub runner — run `32780688054` at
-`d0b3050820` — and draft PR #1480 into `production` is open and unmerged. The branch tip has since
-moved by a docs-only commit, so re-read `git rev-parse HEAD` before citing that green run.**
+**Tasks 1-10 done 2026-08-24. Tasks 11-14 opened the same day**, out of the question the first
+red run could not answer: it said three pages differed, and nothing about what to go and look at.
+Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`. The check is green
+on a GitHub runner — run `32780688054` at `d0b3050820` — and draft PR #1480 into `production` is
+open and unmerged. The branch tip has since moved by docs-only commits, so re-read
+`git rev-parse HEAD` before citing that green run.
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -163,6 +165,10 @@ table rather than from this line.
 | 8 | Multiple environments | `a6d91e78ec` | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings. The remaining Pagefind difference was closed by Task 9 |
 | 9 | Serve Pagefind, and raise concurrency | concurrency `b5bfb73cc5`; pagefind + baselines `3625c7f377` | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
 | 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c`; run fixes `4f2e669c77`, `156aed9289`; revert `d0b3050820` | **DONE 2026-08-24** — green on a GitHub runner. Open: PR #1480 is a draft and unmerged, so the file is not on `production` and `workflow_dispatch` stays unregistered | Static checks first: YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. Then four runs, all `pull_request` events from PR #1480: `32771116783` @ `60ea1333ee` GREEN, 8m13s job — 62s to a serving build, 1.2s Pagefind, 370s to sweep 925 pages at concurrency 6 (ubuntu-24.04 reports 4 logical processors); `32777189174` @ `cb334f5b37` RED on three deliberately perturbed baseline records, which is what exercised the `if: failure()` path a green run skips entirely, and exposed the artifact upload dropping both `.sc-check` trees plus an orphaned `hugo`; `32779430909` @ `156aed9289` RED on the same injection with both fixed and the artifact complete; `32780688054` @ `d0b3050820` GREEN after the revert, 8m9s |
+| 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
+| 12 | Say what changed, not just that something did | *not started* | **NOT STARTED** | — |
+| 13 | Put the summary on the run page, and name the candidate source files | *not started* | **NOT STARTED** | — |
+| 14 | Merge-base control run — my change, or EHDP-data's? | *not started* | **NOT STARTED** | — |
 
 Derive what this table deliberately does not claim:
 
@@ -1200,3 +1206,223 @@ pinning it is available. A fixture branch is preferable to a SHA, because the ba
 ref string and a SHA makes the baseline directory name churn on every bump. Costs a new
 `config/<env>/config.toml` and a fresh 925-page baseline. What would un-defer it: the gate going red
 for data reasons often enough to be ignored.
+
+
+---
+
+## Reading a red run
+
+Written 2026-08-24 against run `32779430909`, the first red one. **This is the draft of a section
+that belongs in `readme-development.md`** — refine it here while Tasks 12-14 change what the output
+looks like, then port it there.
+
+### 1. The environment line, before the diff
+
+```
+Environment: prod_prod (EHDP-data production) at /IndicatorPublic/ — baseline "prod_prod" — pagefind served
+```
+
+Four facts, and if any is wrong nothing below it means anything: the Hugo environment, the
+EHDP-data branch it pulled, the path prefix served, and which committed baseline was selected.
+`pagefind served` carries as much weight as the rest — the search UI is worth `controls.button` +1
+and `controls.input` +1 on **every** page, so a site without the index compared against a baseline
+with it would report 925 false regressions. The check refuses that comparison rather than making
+it.
+
+Exit codes: **0** pass; **1** the compared sections differ; **2** the run could not be compared at
+all — a missing baseline, or a Pagefind state that disagrees with the baseline's.
+
+### 2. What the check can establish, and what it cannot
+
+The harness observes rendered output. Getting from an output delta to the edit that caused it is
+inference, and one input is structurally invisible to it: EHDP-data moves independently of this
+repo, so a PR that touched nothing can go red and the diff holds no trace of why.
+
+| Question | Answerable from one run? |
+|---|---|
+| What moved — field path, before, after, on which pages | Yes, exactly |
+| Which source file — the page set narrowed against the PR's own diff | A strong hint, not proof |
+| My change, or EHDP-data's? | **No.** Task 14 is the experiment that answers it |
+
+### 3. The page set is the sharpest single signal
+
+It costs nothing to read and it is usually decisive:
+
+- **All 925 pages** — something in `baseof.html`, `head.html`, the header/footer partials, or a
+  globally loaded asset. Nothing else reaches every page.
+- **One section** (`data-explorer/*`, `data-stories/*`) — that section's layout folder, or the
+  `.Section` gate in `head.html` that decides which libraries load there.
+- **One page** — that page's content bundle, or its `customJS`.
+- **A scatter with no shape** — suspect the data, and go to Task 14.
+
+### 4. Which fields move for which reason
+
+Task 8's cross-environment measurement separates the two axes, and is the only calibration we have
+for this: comparing the `staging` and `prod_prod` baselines, `meta` moved on all 925 pages from the
+environment-*name* axis, while `controls` (95 pages), `headingLevels` (86) and `links` (84) moved
+from the **data branch** `[2026-08-24]`.
+
+So `controls.*`, `links.*` and `headingLevels` moving on data-explorer or neighborhood-report pages
+is what a data change looks like. `assets`, `meta`, `landmarks`, `jsonld`, `img.missingAlt` and
+`overflowX` have no data path to them and point at this repo.
+
+This is calibration, not a rule — it was measured across two environments, not across two states of
+the same one.
+
+### 5. Three numbers that are printed and not gated
+
+```
+Fingerprinted asset references seen (strip control): 9909
+Console errors across the sweep (NOT baselined — that is smoke's job): 1869
+Every page reached DOM quiescence before the cap.
+```
+
+The first is a control on the comparison itself: fingerprinted filenames are stripped before
+diffing, and a **0** there would mean the stripping matched nothing and every asset comparison is
+meaningless. The second is harness health — console errors are `smoke`'s gate, deliberately not
+this one, so the number is context and never a failure. The third says no page was captured
+mid-render.
+
+### 6. The artifact
+
+A failed run uploads `site-characterization-<run_id>`, holding the full capture
+(`scripts/site-characterization-current/`), both projected comparison trees (`scripts/.sc-check/`)
+and `hugo-server.log`. Download it and run `git diff --no-index scripts/.sc-check/base
+scripts/.sc-check/head` locally — keep it at a short path, since `--no-index` prints nothing at all
+on a long one while still returning the right exit code.
+
+---
+
+## Task 11: skip docs-only PRs
+
+**Files:** `.github/workflows/site-characterization.yml` — the `on.pull_request` block.
+
+**Interfaces:** none. Nothing else reads or depends on this.
+
+DONE 2026-08-24 in `7bcdec1945`. `paths-ignore` with ten explicit entries:
+`documents/**`, `memories/**`, `.claude/**`, `.agents/**`, the four root `readme*` / `README.md` /
+`CLAUDE.md` files, and `LICENSE`.
+
+**Explicit entries rather than a pattern, deliberately.** A blanket `**.md` would also skip
+`content/**/*.md`, which is the site's own copy and the most ordinary reason for the check to have
+something to say. Everything on the list is unreachable from a rendered page: Hugo builds from
+`content/`, `themes/`, `assets/`, `data/`, `static/`, `config/` and `archetypes/`, and none of these
+are among them `[verified 2026-08-24: across themes/, content/, config/, data/, assets/ and
+static/, the only mentions of documents/ or memories/ are two HTML comments citing an audit doc]`.
+
+**It does nothing for PR #1480, and that is the filter working as documented.** A `pull_request`
+path filter is evaluated against the whole three-dot diff, not against the latest push — GitHub:
+"If any path names do not match patterns in `paths-ignore`, even if some path names match the
+patterns, the workflow will run"
+`[docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax, read 2026-08-24]`.
+This PR's diff carries 1856 files under `scripts/`, so nothing it will ever receive can be
+docs-only. The filter pays off on a *future* PR whose entire diff is documentation. To suppress a
+single run on a PR like this one, the tool is a commit-message keyword — `[skip ci]`, `[ci skip]`,
+`[no ci]`, `[skip actions]`, `[actions skip]`, or a `skip-checks: true` trailer — which applies to
+`push` and `pull_request`
+`[docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs, read 2026-08-24]`.
+
+**WARNING, recorded in the file as well:** do not make this a required status check while it has a
+path filter. GitHub: "Associated checks stay in a 'Pending' state and block merging" when a
+workflow is skipped by path filtering, and the same applies to a skip keyword
+`[docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks,
+read 2026-08-24]`. A docs-only PR would then be unmergeable. Nothing is required on `production`
+today `[gh api .../branches/production/protection, 2026-08-24: no required_status_checks key, and
+rulesets is empty]`.
+
+**Proof that ran:** the file parses to the intended shape — 2 triggers, `branches` + `paths-ignore`
+under `pull_request`, the same 2 branches, 10 ignore entries, the same 2 dispatch inputs, the same
+11 steps, `timeout-minutes: 20` `[js-yaml, 2026-08-24]`. **Never exercised on a runner**, and it
+cannot be until a PR arrives whose whole diff is docs.
+
+## Task 12: say what changed, not just that something did
+
+**Files:**
+
+- `scripts/site-characterization.mjs:1186-1210` — the check's reporting block. `project()` writes
+  both comparison trees, then `execFileSync("git", ["diff", …], { stdio: "inherit" })` at line 1199
+  streams raw hunks to the console with no summary in front of them.
+- `scripts/site-characterization.mjs:683` — `walk()`, already used to enumerate both trees.
+- `scripts/site-characterization.mjs:108, 116` — `CURRENT_DIR` and `DIFF_DIR`.
+
+**Interfaces:** consumes the two projected trees `${DIFF_DIR}/base` and `${DIFF_DIR}/head` that
+`project()` has already written. Produces a `summarize(baseDir, headDir)` returning
+`[{ page, field, before, after }]`, which Task 13 consumes.
+
+The failure this fixes is not the one the CI run showed. Three unrelated fields on three pages
+reads fine as raw hunks. The common case does not: a template edit moves one field on all 925
+pages, and the log becomes 925 near-identical hunks with no sentence saying it is one field.
+
+**Do not parse the diff text.** Both sides are JSON on disk, so compare the objects directly —
+a recursive walk yields exact dotted field paths and both values, where recovering a field path
+from `-            "missingAlt": 3,` means reconstructing nesting from indentation.
+
+1. Add `flatten(obj, prefix)` returning a `Map` of dotted path to a JSON-stringified leaf value.
+   Arrays flatten as whole values, not per index, so `assets` reports as one changed field rather
+   than as N insertions. Expected: `flatten` on any baseline record returns a Map whose size equals
+   the record's leaf count.
+2. Add `summarize(baseDir, headDir)` — walk the intersection of both trees, flatten each pair,
+   and collect every key whose stringified values differ. Expected: on two identical trees it
+   returns `[]`.
+3. Print before the raw diff, on failure only: the count of differing pages out of the total; a
+   table of field → page count → one example page with its before/after; and a per-section
+   breakdown. Expected on the Task 4 injection: three rows, one page each.
+4. Cap the raw diff at the first 40 hunks and print `… N more — see the artifact` beyond that.
+   Keep the full diff in `${DIFF_DIR}`, which the artifact already uploads. Expected: a 925-page
+   single-field regression prints one summary table and 40 hunks, not 925.
+
+**Proof:** re-apply the exact three-record perturbation from `cb334f5b37` and confirm the summary
+names those three fields on those three pages and nothing else. That control comes from a known-red
+case captured before this code existed, so it cannot be circular. Then revert and confirm a clean
+`--check` prints no summary at all. Two local `characterize:site` runs, ~130s each.
+
+## Task 13: put the summary on the run page, and name the candidate source files
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — the reporting block from Task 12.
+- `.github/workflows/site-characterization.yml` — the `Run the characterization check` step.
+
+**Interfaces:** consumes Task 12's `summarize()` output. Produces a markdown table appended to
+`$GITHUB_STEP_SUMMARY`, which GitHub renders on the run page.
+
+1. When `process.env.GITHUB_STEP_SUMMARY` is set, append the same table as markdown. Expected: a
+   red run is legible on the run page without opening the log. When it is unset, behaviour is
+   unchanged — that is what keeps local runs identical.
+2. Emit the page-set shape as one sentence, computed rather than left to the reader: all pages, one
+   section, or a scatter. Expected: the Task 4 injection reports a scatter of three.
+3. Intersect the changed page set against the PR's changed files
+   (`github.event.pull_request` provides them) and list the layouts and assets in the diff that
+   could plausibly render those pages. **Print these as candidates, never as a cause** — the
+   intersection cannot see EHDP-data, and Task 14 is what decides that.
+
+**Proof:** the injection control from Task 12, run once with `GITHUB_STEP_SUMMARY` pointed at a
+temp file, and the file's contents compared against the console table. A CI run is not needed to
+prove the markdown; it is needed to prove GitHub renders it, which is one push.
+
+## Task 14: merge-base control run — my change, or EHDP-data's?
+
+**Files:** `.github/workflows/site-characterization.yml` — a second job, `if: failure()` on the
+first.
+
+**Interfaces:** consumes nothing from Tasks 12-13. Produces one line: whether the same failure
+reproduces at the merge base.
+
+This is the disconfirming test for the one question no amount of better formatting can answer.
+Check out `github.event.pull_request.base.sha`, build, sweep, and compare against the same
+committed baseline. Red there too means EHDP-data moved and the PR is innocent. Green there and red
+at the head means it is the PR.
+
+Two things to settle before building it, both of which could kill it:
+
+- **Cost.** It doubles an ~8-minute job on failure, and `timeout-minutes: 20` already came within
+  ~2 minutes of expiring once, on a run where `Checkout` alone took 9m52s. A separate job with its
+  own timeout is the way to avoid inheriting that margin.
+- **It may be redundant.** Pinning `data_branch` to a fixture ref — already scoped under *Not done:
+  making the gate independent of EHDP-data* — makes a red run unambiguously code, and then this
+  control has nothing left to distinguish. Decide which of the two to build; building both is
+  paying twice for one answer.
+
+**Proof:** trigger it by checking a PR head against a baseline captured before an EHDP-data change,
+so the head is red for a data reason and the base is red identically. Until that case exists,
+the job is unproven no matter how many green runs it sits beside.
