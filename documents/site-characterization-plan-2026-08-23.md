@@ -144,9 +144,10 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
-**Reopened 2026-08-24 for Task 10 (run the check in CI). Tasks 1-9 done, in
-`d8c45abebe..3625c7f377`. Task 10's code is in `90328b504e` and `946ca1336c`; what remains is one
-CI run.**
+**All ten tasks done 2026-08-24. Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is
+`90328b504e..d0b3050820`. The check is green on a GitHub runner — run `32780688054` at
+`d0b3050820` — and draft PR #1480 into `production` is open and unmerged. The branch tip has since
+moved by a docs-only commit, so re-read `git rev-parse HEAD` before citing that green run.**
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -161,7 +162,7 @@ table rather than from this line.
 | 7 | Cold-fetch experiment | `e960523842` | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
 | 8 | Multiple environments | `a6d91e78ec` | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings. The remaining Pagefind difference was closed by Task 9 |
 | 9 | Serve Pagefind, and raise concurrency | concurrency `b5bfb73cc5`; pagefind + baselines `3625c7f377` | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
-| 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c` | **In progress 2026-08-24** — workflow written and statically validated; never executed on a runner. Next: open a draft PR into `production` — that is the only trigger available before the file reaches the default branch — and set `timeout-minutes` and the 240s readiness poll from what it reports | YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. **Nothing here proves a green CI run** |
+| 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c`; run fixes `4f2e669c77`, `156aed9289`; revert `d0b3050820` | **DONE 2026-08-24** — green on a GitHub runner. Open: PR #1480 is a draft and unmerged, so the file is not on `production` and `workflow_dispatch` stays unregistered | Static checks first: YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. Then four runs, all `pull_request` events from PR #1480: `32771116783` @ `60ea1333ee` GREEN, 8m13s job — 62s to a serving build, 1.2s Pagefind, 370s to sweep 925 pages at concurrency 6 (ubuntu-24.04 reports 4 logical processors); `32777189174` @ `cb334f5b37` RED on three deliberately perturbed baseline records, which is what exercised the `if: failure()` path a green run skips entirely, and exposed the artifact upload dropping both `.sc-check` trees plus an orphaned `hugo`; `32779430909` @ `156aed9289` RED on the same injection with both fixed and the artifact complete; `32780688054` @ `d0b3050820` GREEN after the revert, 8m9s |
 
 Derive what this table deliberately does not claim:
 
@@ -1118,9 +1119,18 @@ PATH, and the site emits no generator meta, so nothing better is observable. Not
 
 ### What is not proven
 
-The workflow has never run on a GitHub runner. Two numbers in it are placeholders nobody derived:
-`timeout-minutes: 30` and the 240s server-readiness poll. `hugo-extended` is now pinned exactly
-(`90328b504e`), so `npm ci` in CI resolves the same binary the deploy workflows install.
+It has now run on a GitHub runner — four times, green and red; the ledger row names each run and
+its commit. `hugo-extended` is pinned exactly (`90328b504e`), so `npm ci` in CI resolves the same
+binary the deploy workflows install.
+
+Still not proven: the workflow on `production`. PR #1480 is an open draft, so `workflow_dispatch` —
+and with it the cheap 41-page `scope=sample` mode — remains unregistered, and nothing but this PR
+has ever triggered a run.
+
+**`timeout-minutes: 20` has less headroom than the sweep suggests.** The longest job was 17m52s
+(`32777189174`), of which 9m52s was `Checkout`, against 19-35s in the other three runs. Nothing
+diagnosed that outlier. The sweep in that run was normal (380s), so the margin was spent by a step
+this workflow does not control.
 
 ### How to get a first run, before it is on `production`
 
@@ -1160,15 +1170,25 @@ step to save wall time on the reversible one, and it ships a workflow that has n
 Also rejected: cherry-picking just the workflow file onto `production` in a small PR, which merges
 to `production` all the same and therefore deploys all the same.
 
-Two numbers to set from the first runs:
-`timeout-minutes: 30` and the 240s server-readiness poll. Local reference points only — a warm
-`prod_prod` server build is 4.6s, a cold-`resourceDir` static build is 43s, and a 925-page sweep is
-114s at concurrency 24 on 24 logical processors, where a GitHub runner will clamp to the floor of 6.
-Set both from the first run.
+**Carried out 2026-08-24** — the draft PR is #1480 and the full sweep ran there. The merge half is
+still outstanding.
 
-Waiting on a 200 is a sound readiness gate rather than a race: Hugo prints `Built in Nms`, then
-`Environment:`, then `Web Server is available`, and does not bind the port before that
-`[verified 2026-08-24]`.
+**Both numbers are now set from the runs, 2026-08-24.** `timeout-minutes` is 20, 2.4x the 8m13s
+job measured by `32771116783`. The readiness poll is 300s bounded by the clock, not 240 attempts —
+a single `curl` can block for as long as the build takes, so counting attempts does not measure
+time. Measured on the runner: 62s to a serving build, 1.2s for Pagefind, 370s to sweep 925 pages at
+concurrency 6, the floor, since ubuntu-24.04 reports 4 logical processors. Locally the same 925
+pages take 114s at concurrency 24. The local reference points that stood here before — a 4.6s warm
+`prod_prod` server build and a 43s cold-`resourceDir` static build — were never the binding
+constraint.
+
+**Corrected 2026-08-24 — the line that stood here was wrong.** It read that Hugo "does not bind
+the port" before printing `Web Server is available`, stamped `[verified 2026-08-24]`. On the runner
+it binds first: the opening `curl` was refused at 0ms and the second blocked inside one iteration
+for 62s of wall clock before answering `[run 32771116783]`. Waiting on a 200 is still a sound gate
+— a poll cannot catch a half-built site, because the connection is held open until Hugo can answer
+— but for the opposite reason to the one recorded, and that is why the poll is bounded by the clock
+rather than by attempts.
 
 ### Not done: making the gate independent of EHDP-data
 
