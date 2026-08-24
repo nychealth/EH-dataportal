@@ -144,7 +144,9 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
-**Closed 2026-08-24. All nine tasks done, in `d8c45abebe..3625c7f377`.**
+**Reopened 2026-08-24 for Task 10 (run the check in CI). Tasks 1-9 done, in
+`d8c45abebe..3625c7f377`. Task 10's code is in `90328b504e` and `946ca1336c`; what remains is one
+CI run.**
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -159,6 +161,7 @@ table rather than from this line.
 | 7 | Cold-fetch experiment | `e960523842` | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
 | 8 | Multiple environments | `a6d91e78ec` | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings. The remaining Pagefind difference was closed by Task 9 |
 | 9 | Serve Pagefind, and raise concurrency | concurrency `b5bfb73cc5`; pagefind + baselines `3625c7f377` | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
+| 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c` | **In progress 2026-08-24** — workflow written and statically validated; never executed on a runner. Next: open a draft PR into `production` — that is the only trigger available before the file reaches the default branch — and set `timeout-minutes` and the 240s readiness poll from what it reports | YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. **Nothing here proves a green CI run** |
 
 Derive what this table deliberately does not claim:
 
@@ -1057,3 +1060,103 @@ the failure set.
 would halve the wall time of running both. Not done here because it would refactor the repo's only
 automated check. What would un-defer it: the two harnesses being run together routinely enough that
 the second sweep's cost is felt.
+
+---
+
+## Task 10: run the check in GitHub Actions
+
+`.github/workflows/site-characterization.yml`. Triggers on `pull_request` into `production` or
+`development`, plus `workflow_dispatch` with a `scope` (all / sample) and a `content` input.
+`permissions: contents: read`. Action `uses:` are pinned to commit SHAs.
+
+### It runs `prod_prod`, not `dev_stage`
+
+The point of the gate is the site that is about to be deployed, against the data it will be
+deployed against — so the workflow builds `--environment prod_prod` and the check selects the
+committed `prod_prod` baseline. `hugo server` keeps the config baseURL's path while replacing the
+host, so the site is served at `http://localhost:8080/IndicatorPublic/`
+`[verified 2026-08-24: 200 there, 404 on / and /dev-stage/]`. That server's build summary reports
+88 + 3 + 3 = 94 paginator pages, matching the 94 the sweep's own enumeration expects.
+
+**Analytics do not fire under the harness.** `prod_prod` is the only environment emitting the
+production GA property (`head.html:8`, `G-64BWDRHRGB`), and its only transport is `gtag.js` from
+`www.googletagmanager.com` — which is in `BLOCKED_HOSTS` and aborted at `page.route`
+(`site-characterization.mjs:630-633`), so the script never loads and the inline `gtag()` calls
+reach nothing but a local `dataLayer`.
+
+### Hugo version: measured equivalent, and now recorded
+
+The repo held two Hugos, and which one ran depended on invocation: `node_modules/.bin/hugo` under
+an `npm run`, the PATH binary otherwise. The deploy builds run **0.147.3** — `hugo-version: 0.147.3`
+and build `05417512bd` in the log of run `32648348501` (2026-08-23) — and the lockfile has since
+been moved to 0.147.3 to match, so the workflow uses `npx hugo` rather than
+`peaceiris/actions-hugo`.
+
+Whether that mattered was measured, three isolated builds under `--environment development`,
+interleaved 0.147.3 / 0.147.9 / 0.147.3 so a time-ordered drift could not pass for a version
+effect:
+
+| Pair | Files | Content differs |
+|---|---|---|
+| 0.147.3 vs 0.147.3 (control) | 2936 / 2936 | 3 |
+| 0.147.3 vs 0.147.9 | 2936 / 2936 | 3 |
+| 0.147.3 (2nd) vs 0.147.9 | 2936 / 2936 | 3 |
+
+The same three files in every pair — `index.html`, `es/index.html`, `zh/index.html` — and the only
+line that moves is `<meta name="build_datetime">`. So the version effect equals the control floor:
+**the two render this site identically**, and the "three home pages are build-nondeterministic"
+note has a name — a clock, not randomness. No record reads that field, so it cannot reach a
+baseline. Both committed baselines are valid whichever binary captured them.
+
+`_meta.json` now records `hugo: { version, owned }` anyway, so a future divergence is diagnosable.
+`owned` is load-bearing: the version is a fact about the *server* only when `ensureDevServer()`
+spawned it. For a `DE_BASE_URL` or reused server — which is the CI case — it describes the machine's
+PATH, and the site emits no generator meta, so nothing better is observable. Nothing gates on it.
+
+### What is not proven
+
+The workflow has never run on a GitHub runner. Two numbers in it are placeholders nobody derived:
+`timeout-minutes: 30` and the 240s server-readiness poll. `hugo-extended` is now pinned exactly
+(`90328b504e`), so `npm ci` in CI resolves the same binary the deploy workflows install.
+
+### How to get a first run, before it is on `production`
+
+`workflow_dispatch` is unavailable until then: GitHub documents that "this event will only trigger a
+workflow run if the workflow file exists on the default branch"
+`[docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows, read
+2026-08-24]`. `gh workflow run` does take `-r/--ref`, so the CLI is not the limitation — the
+registration is.
+
+`pull_request` carries no such requirement; a workflow added on a PR branch runs for that PR. So
+the first execution comes from opening a PR from this branch into `production`, which the trigger
+already matches on its base branch.
+
+**Opening that PR does not deploy.** `hugo-build-to-prod-prod.yml` is `pull_request` with
+`types: [closed]` and an `if: ... github.event.pull_request.merged == true` guard on the job, so it
+fires on merge and not on open. A draft PR is therefore a free way to run this check, and each push
+to the branch re-runs it — `cancel-in-progress` retires the superseded run.
+
+The consequence for the first run: it will be the full 925-page `--all` sweep, because `scope` only
+exists on the dispatch trigger. The cheap 41-page mode is not reachable until the file is on
+`production`.
+
+Two numbers to set from the first runs:
+`timeout-minutes: 30` and the 240s server-readiness poll. Local reference points only — a warm
+`prod_prod` server build is 4.6s, a cold-`resourceDir` static build is 43s, and a 925-page sweep is
+114s at concurrency 24 on 24 logical processors, where a GitHub runner will clamp to the floor of 6.
+Set both from the first run.
+
+Waiting on a 200 is a sound readiness gate rather than a race: Hugo prints `Built in Nms`, then
+`Environment:`, then `Web Server is available`, and does not bind the port before that
+`[verified 2026-08-24]`.
+
+### Not done: making the gate independent of EHDP-data
+
+`structure` carries data-derived counts, and `prod_prod` pulls EHDP-data's `production` branch, so
+a PR touching no template can go red because the data moved. `data_branch` is only a ref segment in
+`{data_repo}{data_branch}/...`, and `raw.githubusercontent.com` serves a commit SHA there exactly as
+it serves a branch name `[verified 2026-08-24: 200 for both `staging` and `b2b63d0635`]` — so
+pinning it is available. A fixture branch is preferable to a SHA, because the baseline key is the
+ref string and a SHA makes the baseline directory name churn on every bump. Costs a new
+`config/<env>/config.toml` and a fresh 925-page baseline. What would un-defer it: the gate going red
+for data reasons often enough to be ignored.
