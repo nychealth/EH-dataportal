@@ -175,9 +175,12 @@ gh pr list --head feature-site-characterization                                 
 
 - Branch `feature-site-characterization`, cut from **local** `production` at `d8c45abebe`.
   `git config --get branch.feature-site-characterization.merge` is empty, which is correct.
-- Worktree: `EH-dataportal.worktrees/merge/production`. Nine other worktrees exist; do not start a
+- Worktree: `EH-dataportal.worktrees/feature-site-characterization`, moved there 2026-08-24 from
+  `merge/production`, which has since been removed. Three other worktrees exist; do not start a
   second Hugo builder in any of them while this one has a server up (CLAUDE.md § *Four ways a local
-  check silently lies*).
+  check silently lies*). `.claude/settings.local.json` is globally ignored and does not travel with
+  a checkout — a new worktree needs it recreated, pointing `autoMemoryDirectory` at the main repo's
+  store, or a session there starts on an empty one.
 - `scripts/smoke-reports/` is gitignored (`.gitignore:93`), so smoke runs leave the tree clean.
 - No server is left running between tasks; `ensureDevServer()` starts and stops its own.
 
@@ -1130,6 +1133,15 @@ registration is.
 `pull_request` carries no such requirement; a workflow added on a PR branch runs for that PR. So
 the first execution comes from opening a PR from this branch into `production`, which the trigger
 already matches on its base branch.
+
+**Once it is on `production`, iteration gets cheap.** A `--ref` dispatch executes the workflow file
+from that ref rather than the default branch's copy, so `gh workflow run site-characterization.yml
+--ref feature-site-characterization -f scope=sample` runs the branch's version at 41 pages. Measured
+2026-08-24 by `.github/workflows/test-print-branch.yml`: the copy merged to `production`
+(`e6a1acc0d3`) prints the literal string `production`, the branch-only follow-up (`b1deba145d`,
+confirmed not an ancestor of `production`) prints `feature-add-workflow-version-test`, and the
+`--ref` dispatches printed the latter. That experiment does **not** speak to the registration
+requirement above — all four of its runs came after the merge that put the file on `production`.
 
 **Opening that PR does not deploy.** `hugo-build-to-prod-prod.yml` is `pull_request` with
 `types: [closed]` and an `if: ... github.event.pull_request.merged == true` guard on the job, so it
