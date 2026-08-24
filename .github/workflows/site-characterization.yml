@@ -75,9 +75,10 @@ jobs:
     # 2.4x the measured wall time `[run 32771116783, 2026-08-24: 8m13s for the
     # whole job — 62s to a serving prod_prod build, 1.2s for Pagefind, 370s to
     # sweep 925 pages]`. The sweep is the part that grows with the site, and it
-    # runs at a concurrency derived from the runner's core count against 24
-    # locally, where the same 925 pages take 114s. The check prints both, so the
-    # ratio is readable off the log rather than assumed.
+    # runs at concurrency 6 here — the floor, since ubuntu-24.04 reports 4
+    # logical processors — against 24 locally, where the same 925 pages take
+    # 114s `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`. The
+    # check prints both, so a future runner change is readable off the log.
     timeout-minutes: 20
 
     concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
@@ -210,16 +211,28 @@ jobs:
             scripts/site-characterization-current/
             scripts/.sc-check/
             hugo-server.log
+          # .sc-check is a DOT directory, and the action skips hidden paths
+          # unless told not to. Left at the default it dropped both projected
+          # trees — the half a failure is actually diagnosed from — while
+          # reporting success, because the other path matched and
+          # if-no-files-found only fires when NOTHING matches
+          # `[run 32777189174, 2026-08-24: "there will be 926 files uploaded",
+          # and the downloaded artifact held the capture and no .sc-check]`.
+          include-hidden-files: true
           retention-days: 14
           if-no-files-found: warn
 
-      # HUGO_PID is npx's node shim; `hugo` is its child and does not die with
-      # it, so killing only the parent left the binary for the runner to reap
-      # `[run 32771116783: "Terminate orphan process: pid (3046) (hugo)"]`.
-      # Harmless on an ephemeral runner, wrong everywhere else.
+      # `npx hugo server` leaves HUGO_PID somewhere above the binary, and two
+      # attempts to reach it by descent both failed: killing HUGO_PID alone
+      # `[run 32771116783]`, then killing HUGO_PID's direct children as well
+      # `[run 32777189174]`. Both runs ended with the runner reporting
+      # "Terminate orphan process: (hugo)". The tree's exact depth was never
+      # measured — which is the argument for not depending on it. Match by name:
+      # this runner is ephemeral and single-purpose, so the only hugo on it is
+      # the one this job started.
 
       - name: Stop the Hugo server
         if: always()
         run: |
-          pkill -TERM -P "${HUGO_PID}" 2>/dev/null || true
+          pkill -TERM -x hugo 2>/dev/null || true
           kill -TERM "${HUGO_PID}" 2>/dev/null || true
