@@ -1,0 +1,205 @@
+name: Site characterization check
+
+# Loads every page the site serves and diffs its rendered STRUCTURE against the
+# committed baseline in scripts/site-characterization-baseline/. Complements the
+# Hugo build (which only proves the templates compile) and smoke-pages.mjs
+# (which only fails on JS that throws) — this one catches an asset that stopped
+# loading, a heading level that started skipping, a lost alt or <th>, an iframe
+# at zero height, JSON-LD that stopped being an object.
+#
+# It builds with `--environment prod_prod` against EHDP-data's `production`
+# branch: the point is to characterize the site that is about to be deployed,
+# with the data it will be deployed against. That selects the committed
+# `prod_prod` baseline, the only one whose `robots` values match a production
+# build (head.html:46-53 branches on the environment NAME).
+#
+# Analytics do not fire. prod_prod is the one environment that emits the
+# production GA property (head.html:8, G-64BWDRHRGB), and its only transport is
+# gtag.js from www.googletagmanager.com — a host the harness aborts at the
+# network layer, so the script never loads and the inline gtag() calls reach
+# nothing but a local dataLayer.
+#
+# EHDP-data's `production` branch changes independently of this repo, and
+# `structure` carries data-derived counts, so a red run is not always a
+# regression in the PR — read the diff before treating it as one. The fix for a
+# legitimate data change is to re-capture and commit the baseline:
+# `npm run characterize:site:baseline`.
+
+on:
+  pull_request:
+    branches:
+      - production
+      - development
+
+  workflow_dispatch:
+
+    inputs:
+
+      scope:
+        description: Pages to sweep
+        required: false
+        type: choice
+        default: all
+        options:
+          - all
+          - sample
+
+      content:
+        description: Also gate on titles, heading text and link targets
+        required: false
+        type: boolean
+        default: false
+
+# read-only: this workflow reports, it never publishes
+permissions:
+  contents: read
+
+env:
+  TZ: America/New_York
+  SERVER_PORT: 8080
+  # prod_prod's baseURL is https://a816-dohbesp.nyc.gov/IndicatorPublic/, and
+  # `hugo server` keeps the path while replacing the host
+  # `[verified 2026-08-24: 200 on /IndicatorPublic/, 404 on / and /dev-stage/]`.
+  SERVER_URL: http://localhost:8080/IndicatorPublic/
+
+jobs:
+
+  # ---------------------
+  # characterize the site
+  # ---------------------
+
+  characterize:
+    name: Diff rendered structure against the baseline
+    runs-on: ubuntu-24.04
+
+    # wall time is not yet measured on a GitHub runner — tune this after the
+    # first green run rather than leaving a number nobody derived
+    timeout-minutes: 30
+
+    concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
+      group: ${{ github.workflow }}-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      # fetch-depth 1: the harness reads `git rev-parse HEAD` for the record
+      # metadata and needs no history beyond the tip
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # npm ci, not npm install: the lockfile pins hugo-extended 0.147.3, the
+      # same release the deploy workflows install through peaceiris/actions-hugo
+      # (build 05417512bd, confirmed in run 32648348501). Using the locked binary
+      # keeps one Hugo in the repo instead of two.
+
+      - name: Install dependencies
+        run: npm ci
+
+      # hugo-extended is an OPTIONAL dependency, so a failed platform binary
+      # install is silent. Fail here, where the message is legible, rather than
+      # as a server that never answers.
+
+      - name: Confirm the locked Hugo is present
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # ---------------------------------------------------------------------
+      # the site under test
+      #
+      # The workflow owns the server rather than letting scripts/dev-server.mjs
+      # spawn one: dev-server.mjs waits a fixed 90s for the first 200, and a
+      # cold CI build fetching remote EHDP-data resources has no cache to hit.
+      # Owning it here makes the wait explicit and tunable.
+      #
+      # Hugo binds the port only after the build finishes — it prints
+      # "Built in Nms", then "Web Server is available" — so polling for a 200
+      # cannot catch a half-built site `[verified 2026-08-24]`.
+      # ---------------------------------------------------------------------
+
+      - name: Start the Hugo server
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > hugo-server.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      - name: Wait for the server
+        run: |
+          for i in $(seq 1 240); do
+            if curl -fsS -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${i}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 240s:"
+          tail -n 50 hugo-server.log
+          exit 1
+
+      # `hugo server` does not build the search index, and Pagefind's UI is worth
+      # one button and one input on EVERY page — the baseline records
+      # `pagefind: true`, and --check refuses to compare across that difference
+      # rather than report 925 false regressions. Same command the deploy
+      # workflows run; hugo serves docs/ from disk, so writing into it works.
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site docs
+
+      # ---------------------------------------------------------------------
+      # the check
+      #
+      # DE_BASE_URL tells dev-server.mjs to trust this server and own nothing —
+      # it probes Pagefind and hands the URL straight back.
+      # ---------------------------------------------------------------------
+
+      - name: Run the characterization check
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+        run: |
+          # inputs.scope is empty on a pull_request event, so PRs get the full sweep
+          args="--check"
+          if [ "${{ inputs.scope }}" != "sample" ]; then
+            args="$args --all"
+          fi
+          if [ "${{ inputs.content }}" = "true" ]; then
+            args="$args --content"
+          fi
+          echo "node scripts/site-characterization.mjs $args"
+          node scripts/site-characterization.mjs $args
+
+      # The console diff is in the step log; these are for diffing locally.
+      # Both directories are gitignored and exist only on the runner.
+
+      - name: Upload the capture and the projected diff trees
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: site-characterization-${{ github.run_id }}
+          path: |
+            scripts/site-characterization-current/
+            scripts/.sc-check/
+            hugo-server.log
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Stop the Hugo server
+        if: always()
+        run: kill "${HUGO_PID}" 2>/dev/null || true

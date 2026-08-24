@@ -11,6 +11,8 @@
 //     not build the search index, so a server without it serves a site whose
 //     search UI is absent from every page. Consumers that compare against a
 //     recorded site need to know which of the two they got.
+//   - Report the Hugo version, flagged with whether we own the server, so a
+//     baseline records which binary produced the site it describes.
 
 import { spawn, execSync } from "node:child_process";
 import { setTimeout as sleep } from "node:timers/promises";
@@ -112,6 +114,23 @@ function buildPagefind() {
     }
 }
 
+// Full version identity of the `hugo` this process resolves on PATH, e.g.
+// "0.147.3-05417512bd...+extended". The commit hash is the useful half: it is
+// what distinguishes two builds of the same version number.
+//
+// Reported alongside `owned` and never on its own, because it is only a fact
+// about the SERVER when we spawned it. For a reused or DE_BASE_URL server it
+// describes this machine, and the binary that actually built the served site
+// is not observable from here — the site emits no generator meta.
+function hugoVersion() {
+    try {
+        const out = execSync(`${SPAWN_CMD} version`, { encoding: "utf8" });
+        return out.match(/hugo v(\S+)/)?.[1] ?? null;
+    } catch {
+        return null;
+    }
+}
+
 // Kill a spawned server and all its descendants. child.kill() alone doesn't reap
 // descendants on Windows, so use taskkill /T there.
 function makeStop(child) {
@@ -132,14 +151,24 @@ export async function ensureDevServer() {
     // probe and spawn paths already return slash-terminated prefixes.
     if (process.env.DE_BASE_URL) {
         const baseURL = process.env.DE_BASE_URL.replace(/\/?$/, "/");
-        return { baseURL, stop: async () => {}, pagefind: await pagefindServed(baseURL) };
+        return {
+            baseURL,
+            stop: async () => {},
+            pagefind: await pagefindServed(baseURL),
+            hugo: { version: hugoVersion(), owned: false },
+        };
     }
 
     // Path 2: reuse a server that's already answering. We don't own it, so we
     // don't build into its publishDir — we only report what it serves.
     const running = await findRunningServer();
     if (running) {
-        return { baseURL: running, stop: async () => {}, pagefind: await pagefindServed(running) };
+        return {
+            baseURL: running,
+            stop: async () => {},
+            pagefind: await pagefindServed(running),
+            hugo: { version: hugoVersion(), owned: false },
+        };
     }
 
     // Path 3: a hugo process exists but didn't answer our probes — it's on a
@@ -177,7 +206,12 @@ export async function ensureDevServer() {
             // it is. Build the index before handing the URL back, so the first
             // page a consumer loads already has the search UI.
             buildPagefind();
-            return { baseURL, stop, pagefind: await pagefindServed(baseURL) };
+            return {
+                baseURL,
+                stop,
+                pagefind: await pagefindServed(baseURL),
+                hugo: { version: hugoVersion(), owned: true },
+            };
         }
         await sleep(1000);
     }

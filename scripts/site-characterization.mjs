@@ -770,7 +770,7 @@ const gitHead = () => {
     }
 };
 
-const writeMeta = (dir, { prefix, pages, all, env, pagefind }) => {
+const writeMeta = (dir, { prefix, pages, all, env, pagefind, hugo }) => {
     writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
         capturedAt: new Date().toISOString(),
         gitHead: gitHead(),
@@ -784,6 +784,15 @@ const writeMeta = (dir, { prefix, pages, all, env, pagefind }) => {
         // field touched]`. Recorded rather than assumed so --check can refuse a
         // comparison across the two states instead of reporting 925 regressions.
         pagefind,
+        // Which Hugo built the site this baseline describes, and whether that is
+        // known or merely likely. `owned: true` means this process spawned the
+        // server, so the version is the server's; `owned: false` means the
+        // server came from DE_BASE_URL or was already running, and the version
+        // describes this machine's PATH instead. Recorded rather than gated on:
+        // measured 2026-08-24, v0.147.3 and v0.147.9 build this site to
+        // byte-identical output across 2936 files, the only difference being the
+        // build_datetime meta on the three home pages, which no record reads.
+        hugo: hugo ?? null,
         // Informational only. The prefix no longer gates the check — records are
         // prefix-relative, so an environment may be served at any path.
         prefix,
@@ -921,7 +930,7 @@ const main = async () => {
         process.exit(2);
     }
 
-    const { baseURL, stop, pagefind } = await ensureDevServer();
+    const { baseURL, stop, pagefind, hugo } = await ensureDevServer();
 
     // The server's own path prefix (/dev-stage/, /IndicatorPublic/, ...). Every
     // probe that reads a URL strips it, so a record describes the site rather
@@ -993,7 +1002,10 @@ const main = async () => {
     }
 
     console.log(`Environment: ${env.hugoEnv} (EHDP-data ${env.dataBranch}) at ${prefix} `
-        + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`);
+        + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`
+        + `
+Hugo: ${hugo?.version ?? "unknown"}`
+        + `${hugo?.owned ? "" : " (this machine's PATH — the server was not started by this process)"}`);
 
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const userAgent = await browserUserAgent(browser);
@@ -1120,7 +1132,7 @@ ${nonOk.length} page(s) did not answer 200:`);
     }
 
     if (baseline) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env, pagefind });
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env, pagefind, hugo });
         console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
         console.log(arbitrated.length
             ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`
