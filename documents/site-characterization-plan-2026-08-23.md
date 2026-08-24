@@ -1152,6 +1152,14 @@ The consequence for the first run: it will be the full 925-page `--all` sweep, b
 exists on the dispatch trigger. The cheap 41-page mode is not reachable until the file is on
 `production`.
 
+**Decision taken 2026-08-24 — the order to run these in.** Push the branch, open a **draft** PR into
+`production`, and let the full sweep run there. Merge only once it is green, then iterate with
+`--ref` sample dispatches. Rejected: merging the workflow to `production` first to unlock the cheap
+mode. It reverses the value — merging is what deploys the live site, so it spends the irreversible
+step to save wall time on the reversible one, and it ships a workflow that has never executed.
+Also rejected: cherry-picking just the workflow file onto `production` in a small PR, which merges
+to `production` all the same and therefore deploys all the same.
+
 Two numbers to set from the first runs:
 `timeout-minutes: 30` and the 240s server-readiness poll. Local reference points only — a warm
 `prod_prod` server build is 4.6s, a cold-`resourceDir` static build is 43s, and a 925-page sweep is
