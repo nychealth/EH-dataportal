@@ -31,6 +31,37 @@ on:
       - production
       - development
 
+    # A docs-only push should not spend an 8-minute 925-page sweep. Nothing
+    # listed here can reach a rendered page: Hugo builds from content/,
+    # themes/, assets/, data/, static/, config/ and archetypes/, and none of
+    # these are among them `[verified 2026-08-24: across themes/, content/,
+    # config/, data/, assets/ and static/, the only mentions of documents/ or
+    # memories/ are two HTML comments citing an audit doc]`.
+    #
+    # Deliberately NOT ignored: content/**/*.md is the site's own copy, so a
+    # blanket `**.md` would skip real content changes. Keep this list explicit
+    # rather than pattern-based.
+    #
+    # WARNING: do not make this a REQUIRED status check while it has a path
+    # filter. GitHub: "Associated checks stay in a 'Pending' state and block
+    # merging" when a workflow is skipped by path filtering
+    # `[docs.github.com/en/pull-requests/collaborating-with-pull-requests/
+    # collaborating-on-repositories-with-code-quality-features/
+    # troubleshooting-required-status-checks, read 2026-08-24]`. Nothing is
+    # required on `production` today `[gh api .../branches/production/protection,
+    # 2026-08-24: no required_status_checks key, and rulesets is empty]`.
+    paths-ignore:
+      - documents/**
+      - memories/**
+      - .claude/**
+      - .agents/**
+      - CLAUDE.md
+      - README.md
+      - readme-components.md
+      - readme-content.md
+      - readme-development.md
+      - LICENSE
+
   workflow_dispatch:
 
     inputs:
