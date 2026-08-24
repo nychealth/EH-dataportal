@@ -1,9 +1,13 @@
 # Whole-site characterization harness — plan
 
 **Status as of 2026-08-23:** branch `feature-site-characterization` cut from `production` at
-`d8c45abebe`. Tasks 1–4 **done**; Tasks 5–6 in progress. The signal set is settled and no field was
-deleted. **Every one of the eleven probes has now been proved to fire** against an injected
-regression — Task 4's findings table is the evidence, and it is what a passing `--check` is worth.
+`d8c45abebe`. **All six tasks done.** **Every one of the eleven probes has been proved to fire**
+against an injected regression — Task 4's findings table is the evidence, and it is what a passing
+`--check` is worth. The committed baseline is 925 pages captured at `6200892d85` against
+`/dev-stage/`, and `npm run characterize:site` passes against it with zero pages differing.
+
+One signal was **deleted** after Task 6's first full check failed on it: `img` no longer counts
+Leaflet tiles, which were a measure of network timing rather than of page structure.
 
 **Read Task 3's findings before trusting anything Task 1 concluded.** Task 1 declared the harness
 deterministic on three agreeing sweeps; Task 3's first `--baseline`/`--check` cycle disproved it.
@@ -12,8 +16,9 @@ ruled out and one is unsupported, and it has not been reproduced since. What is 
 guard justified by the observed failure, not a fix for a known mechanism. This harness has also
 produced three separate false "N runs agreed" results, so agreement is weak evidence here.
 
-**The baseline in the working tree is the 41-page sample, not the real one.** Task 6 captures the
-925-page baseline. Do not commit the sample as if it were that.
+**The committed baseline is the 925-page one.** Re-capture it with
+`npm run characterize:site:baseline`, never by hand, and commit the whole directory — `_meta.json`
+records the commit, the environment prefix and the viewport that make the records comparable.
 
 **One thing a later reader must not miss:** the baseline is **environment-specific**. `meta.robots`
 reads `"noindex, nofollow"` on all 925 pages under `dev_stage`; under `prod_prod` the same field
@@ -137,7 +142,7 @@ Two field notes that are load-bearing:
 | 3 | Baseline / check plumbing | `4c076520d0` | **DONE 2026-08-23** | `--baseline` then `--check` exit 0; perturbed `content.title` → `--check` exit 0 and `--check --content` exit 1 naming the page; baseline corrupted to `controls.button: 999` → exit 1 naming the field, with the sequential re-capture path firing. The `cleared` branch is **not** proven — see findings |
 | 4 | Positive controls — prove the net catches things | *no code change* — the evidence is the findings section below | **DONE 2026-08-23** | 11 of 11 injected regressions drove `--check` to exit 1, each naming its own field; tree clean and `--check` passing again after all reverts. Two prescribed injections were wrong about the repo and are corrected in the table |
 | 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
-| 6 | Commit the baseline | — | **Not started** | — |
+| 6 | Commit the baseline | harness fix `6200892d85`; baseline in the commit that follows it | **DONE 2026-08-23** | `npm run characterize:site` exit 0 against the baseline captured at `6200892d85` — 925/925, every page quiesced, zero pages differing, arbitration not needed. Baseline measured at 926 files / 4.74 MiB. The first attempt FAILED and found a dead field — see findings |
 
 Derive what this table deliberately does not claim:
 
@@ -718,8 +723,34 @@ page kinds** — 17 neighborhood reports and `data-explorer/climate/`. No page k
 entirely at build time disagreed. That is the first evidence that narrows the open instability to a
 class rather than to three URLs, and it is consistent with the cold-fetch theory without testing it.
 
-**`zh/` was the one page that never reached DOM quiescence** and was captured at the 30s cap. Its
-record is therefore the first to suspect if the home pages start churning. Not diagnosed.
+**`zh/` was the one page that never reached DOM quiescence** in the pre-fix capture and was taken at
+the 30s cap. After the fix every one of the 925 pages quiesced, on both the capture and the check.
+
+**The committed baseline.** Captured at `6200892d85` against `/dev-stage/`, mode `all`:
+**926 files, 4,974,574 bytes (4.74 MiB)** `[measured 2026-08-23 by a directory walk, not estimated]`
+— 925 page records plus `_meta.json`.
+
+**The check that proves it:** `npm run characterize:site` against that exact baseline, at that exact
+commit, **exit 0 — 925/925 captured, every page quiesced, zero pages differing.** The sequential
+arbitration path was not needed at all, where the pre-fix run had put 12 pages through it.
+
+**The tile fix is what moved those numbers**, and the effect is large enough to state plainly:
+
+| | pre-fix (`7ba7957fe0`) | post-fix (`6200892d85`) |
+|---|---|---|
+| Pages arbitrated during `--baseline` | 18 | 2 |
+| Pages differing at `--check` | 12 (3 cleared, 9 failed) | 0 |
+| Pages hitting the quiescence cap | 1 (`zh/`) | 0 |
+| `--check` verdict | FAILED | PASSED |
+
+The 2 pages still arbitrated at capture were `data-explorer/climate/` and `data-explorer/waterways/`
+— both runtime-fetching, consistent with the class narrowing above. **The open instability is
+therefore smaller than it looked and is not closed:** most of what Task 3 and Task 4 were watching
+was this one dead field, but two data-explorer pages still disagreed between sweeps on a single
+capture, and the cold-fetch theory is still untested.
+
+**Both `--all` npm scripts are now verified**, which is what Task 5 deferred to here:
+`characterize:site:baseline` and `characterize:site` each exit as documented against the full site.
 
 **Deferred, not forgotten:** folding `smoke`'s console check and this sweep into one page visit
 would halve the wall time of running both. Not done here because it would refactor the repo's only
