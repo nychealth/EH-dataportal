@@ -64,12 +64,12 @@ commit that belongs to no task** — `b905e1e3d4` edits the project `CLAUDE.md`,
 to "ways a local check silently lies" and making the stale-asset rule checkable; it came out of the
 lessons pass on Branch B, and it reaches `production` behind B like any other change on this branch.
 Task 20 and Task 22 should read it before touching that file. Branch C (`feature-audit-moderate`) was
-cut from B's tip at `3cd323a44d` on 2026-08-21, in the same `merge/production` worktree, which now
-has C checked out rather than B; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus three ledger commits on top (`ab668aec40`, `016f785d8f`, `71d84bbadf`). Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands"; as of 2026-08-22 all three PRs had merged into `production`, C's being #1476. **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
+cut from B's tip at `3cd323a44d` on 2026-08-21, in the `merge/production` worktree, which was
+removed on 2026-08-24; Tasks 17–22 all landed there on 2026-08-21 as `3cd323a44d..465ffceb84`, seven commits, plus three ledger commits on top (`ab668aec40`, `016f785d8f`, `71d84bbadf`). Whether C is pushed and whether a PR exists are relationships, not facts — derive them with the commands under "The exact next commands"; as of 2026-08-22 all three PRs had merged into `production`, C's being #1476. **C also carries one commit that belongs to no task**, in the same shape as B's `b905e1e3d4`: `74a11a51ef` adds a paragraph to the project `CLAUDE.md` about `customJS` bundles being where two `data-features` pages initialize flexdatalist, from the lessons pass after Task 19.**
 PR #1473
 merged at `6a2101c19a`; Task 0's branch had already merged ahead of it at `dcaafea20a`, so Task 0
 is DONE without any work. Branch A (`hotfix-audit-markup-a11y`) was cut from `6a2101c19a` **in the
-`merge/production` worktree**, which now has that branch checked out rather than `merge/production`.
+`merge/production` worktree**, which was removed on 2026-08-24.
 Tasks 1–9 are implemented and proved, one commit per task except Tasks 4 and 5, which share one.
 See the sequencing decision below.
 
@@ -476,23 +476,22 @@ writing the next one of these.
 `baseRefName: production`. Derive the state rather than trusting this paragraph:
 
 ```bash
-cd EH-dataportal.worktrees/merge/production
+# from any worktree of this repo — the merge/production worktree was removed 2026-08-24
 git fetch origin
-git log --oneline -1 origin/production          # expect 3242bde3c2, the #1476 merge
+git merge-base --is-ancestor 3242bde3c2 origin/production      # exit 0 = the #1476 merge is in
 git merge-base --is-ancestor origin/feature-audit-moderate origin/production   # exit 0 = C is in
 gh pr view 1474 --json state,baseRefName,mergedAt   # A: MERGED / production
 gh pr view 1475 --json state,baseRefName,mergedAt   # B: MERGED / production
 gh pr view 1476 --json state,baseRefName,mergedAt   # C: MERGED / production
 ```
 
-**A local `feature-audit-moderate` here reads `ahead 27, behind 29` against its remote, and that is
-not work owed.** The 27 local commits and 27 of the remote's 29 carry the same subjects in the same
-order at different hashes; the remote's other two are the #1474 and #1475 merges. The three trees
-— local branch, `origin/feature-audit-moderate`, `origin/production` — are one object,
-`4cdc697cb6` `[verified 2026-08-22: git rev-parse of all three ^{tree} returns the same hash, and
-git diff --name-status between any pair is empty]`. Nothing is unpushed, and a force-push would
-delete those two merges from a merged branch for no content change. Reconcile the local ref with
-`git reset --hard origin/feature-audit-moderate`, or delete it.
+**The `feature-audit-moderate` divergence is resolved.** On 2026-08-22 the local ref read
+`ahead 27, behind 29` against its remote — the same 27 subjects at different hashes, plus the
+#1474 and #1475 merges on the remote side — and all three trees were one object, `4cdc697cb6`.
+It has since been reconciled: `git rev-list --left-right --count
+origin/feature-audit-moderate...feature-audit-moderate` returns `0 0`, and both refs still carry
+tree `4cdc697cb6` `[re-derived 2026-08-24]`. `origin/production` has moved past them and no longer
+shares that tree, which is expected rather than a finding.
 
 **Nothing is owed on any of the three branches, and all 22 tasks have landed.** Branch C's own work
 is `3cd323a44d..465ffceb84`, seven commits: Task 17 alone at `d057ea74ca` as the element-id rule
@@ -533,9 +532,11 @@ keeping them out of the index is deliberate; the rationale is now a comment in `
 than only here. And `click_how_caclulated` **was renamed**, accepting that the historical series
 ends at the cutover.
 
-**Environment state a cold session needs.** The work is planned from the
-`EH-dataportal.worktrees/merge/production` worktree, which has `node_modules` installed; `production`
-is checked out in the main repo directory (`Documents/DOHMH/Programming/EH-dataportal`).
+**Environment state a cold session needs.** The work was planned from the
+`EH-dataportal.worktrees/merge/production` worktree, which was removed on 2026-08-24 along with
+seven others. `production` is checked out in the main repo directory
+(`Documents/DOHMH/Programming/EH-dataportal`), which is where these commands now want to run; a
+worktree created fresh needs `npm install` before anything here that uses `node_modules`.
 
 **A `hugo serve` was run on :1313 for the Branch C work** —
 `npx hugo serve --environment development --port 1313 --appendPort=false --baseURL
