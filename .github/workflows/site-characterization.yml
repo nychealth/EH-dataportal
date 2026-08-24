@@ -72,9 +72,13 @@ jobs:
     name: Diff rendered structure against the baseline
     runs-on: ubuntu-24.04
 
-    # wall time is not yet measured on a GitHub runner — tune this after the
-    # first green run rather than leaving a number nobody derived
-    timeout-minutes: 30
+    # 2.4x the measured wall time `[run 32771116783, 2026-08-24: 8m13s for the
+    # whole job — 62s to a serving prod_prod build, 1.2s for Pagefind, 370s to
+    # sweep 925 pages]`. The sweep is the part that grows with the site, and it
+    # runs at a concurrency derived from the runner's core count against 24
+    # locally, where the same 925 pages take 114s. The check prints both, so the
+    # ratio is readable off the log rather than assumed.
+    timeout-minutes: 20
 
     concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
       group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -122,9 +126,12 @@ jobs:
       # cold CI build fetching remote EHDP-data resources has no cache to hit.
       # Owning it here makes the wait explicit and tunable.
       #
-      # Hugo binds the port only after the build finishes — it prints
-      # "Built in Nms", then "Web Server is available" — so polling for a 200
-      # cannot catch a half-built site `[verified 2026-08-24]`.
+      # Hugo accepts a connection BEFORE the build finishes and holds it open
+      # until it can answer, so a poll cannot catch a half-built site — but it
+      # also cannot be timed by counting attempts. On the runner the second
+      # curl blocked for 61 seconds inside one iteration
+      # `[run 32771116783, 2026-08-24: first attempt refused at 0ms, second
+      # answered 62s of wall clock later, and the loop reported "after 2s"]`.
       # ---------------------------------------------------------------------
 
       - name: Start the Hugo server
@@ -136,11 +143,17 @@ jobs:
             -p "${SERVER_PORT}" > hugo-server.log 2>&1 &
           echo "HUGO_PID=$!" >> "$GITHUB_ENV"
 
+      # Bounded by the CLOCK, not by an attempt count, because a single attempt
+      # can block for as long as the build takes. --max-time caps one attempt so
+      # a wedged connection cannot swallow the whole budget silently; the retry
+      # after it costs one second. $SECONDS counts from this step's shell start.
+
       - name: Wait for the server
         run: |
-          for i in $(seq 1 240); do
-            if curl -fsS -o /dev/null "${SERVER_URL}"; then
-              echo "Server answered after ${i}s"
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
               exit 0
             fi
             if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
@@ -150,7 +163,7 @@ jobs:
             fi
             sleep 1
           done
-          echo "No 200 from ${SERVER_URL} within 240s:"
+          echo "No 200 from ${SERVER_URL} within 300s:"
           tail -n 50 hugo-server.log
           exit 1
 
@@ -200,6 +213,13 @@ jobs:
           retention-days: 14
           if-no-files-found: warn
 
+      # HUGO_PID is npx's node shim; `hugo` is its child and does not die with
+      # it, so killing only the parent left the binary for the runner to reap
+      # `[run 32771116783: "Terminate orphan process: pid (3046) (hugo)"]`.
+      # Harmless on an ephemeral runner, wrong everywhere else.
+
       - name: Stop the Hugo server
         if: always()
-        run: kill "${HUGO_PID}" 2>/dev/null || true
+        run: |
+          pkill -TERM -P "${HUGO_PID}" 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true

@@ -15,6 +15,7 @@
 //     baseline records which binary produced the site it describes.
 
 import { spawn, execSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import { setTimeout as sleep } from "node:timers/promises";
 import { fileURLToPath } from "node:url";
 
@@ -30,7 +31,28 @@ const PREFIXES = ["/dev-stage/", "/dev-prod/", "/local-stage/", "/local-prod/", 
 // errors this harness reads.
 const SPAWN_PORT = 8080;
 const SPAWN_PREFIX = "/dev-stage/";
-const SPAWN_CMD = "hugo";
+// The hugo this repo PINS (package.json, exactly 0.147.3), preferred over
+// whatever a machine happens to have on PATH. Two reasons, one of them measured:
+// nothing puts hugo on PATH inside CI, so the version probe below printed
+// "/bin/sh: 1: hugo: not found" and recorded the version as unknown
+// `[run 32771116783, 2026-08-24]`; and a spawn resolving through PATH can start
+// a different binary from the one the probe reports, which would make the
+// provenance in a baseline's _meta.json wrong rather than merely absent.
+//
+// Falls back to a bare `hugo` when the optional platform binary did not install
+// — that is the case the "Confirm the locked Hugo is present" CI step exists to
+// catch, and a local developer with only a PATH hugo is still served.
+const VENDORED_HUGO = fileURLToPath(new URL(
+    process.platform === "win32" ? "../node_modules/.bin/hugo.cmd" : "../node_modules/.bin/hugo",
+    import.meta.url,
+));
+const SPAWN_CMD = existsSync(VENDORED_HUGO) ? VENDORED_HUGO : "hugo";
+
+// Shell-safe form of SPAWN_CMD. A resolved path can contain spaces where the
+// bare name never could, and both the Windows spawn branch and hugoVersion()
+// hand their command to a shell as one string.
+const SPAWN_CMD_ARG = /\s/.test(SPAWN_CMD) ? `"${SPAWN_CMD}"` : SPAWN_CMD;
+
 const SPAWN_ARGS = ["server", "--environment", "dev_stage", "--cleanDestinationDir", "--disableFastRender", "-p", String(SPAWN_PORT)];
 
 // Repo root, derived from this file's own location rather than from cwd, so the
@@ -114,17 +136,25 @@ function buildPagefind() {
     }
 }
 
-// Full version identity of the `hugo` this process resolves on PATH, e.g.
-// "0.147.3-05417512bd...+extended". The commit hash is the useful half: it is
-// what distinguishes two builds of the same version number.
+// Full version identity of SPAWN_CMD — the repo's pinned hugo where it
+// installed, a PATH hugo otherwise — e.g. "0.147.3-05417512bd...+extended". The
+// commit hash is the useful half: it is what distinguishes two builds of the
+// same version number.
 //
 // Reported alongside `owned` and never on its own, because it is only a fact
 // about the SERVER when we spawned it. For a reused or DE_BASE_URL server it
-// describes this machine, and the binary that actually built the served site
-// is not observable from here — the site emits no generator meta.
+// describes the binary this checkout WOULD have used, and the one that actually
+// built the served site is not observable from here — the site emits no
+// generator meta.
 function hugoVersion() {
     try {
-        const out = execSync(`${SPAWN_CMD} version`, { encoding: "utf8" });
+        // stderr ignored, not inherited: a missing hugo is a null return here,
+        // and letting the shell's "hugo: not found" reach the console makes a
+        // recorded absence look like a broken run.
+        const out = execSync(`${SPAWN_CMD_ARG} version`, {
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "ignore"],
+        });
         return out.match(/hugo v(\S+)/)?.[1] ?? null;
     } catch {
         return null;
@@ -191,7 +221,7 @@ export async function ensureDevServer() {
     // constants, so there is no injection surface. Off-Windows keeps the clean
     // array form with no shell.
     const child = process.platform === "win32"
-        ? spawn(`${SPAWN_CMD} ${SPAWN_ARGS.join(" ")}`, { stdio: "ignore", shell: true })
+        ? spawn(`${SPAWN_CMD_ARG} ${SPAWN_ARGS.join(" ")}`, { stdio: "ignore", shell: true })
         : spawn(SPAWN_CMD, SPAWN_ARGS, { stdio: "ignore" });
     const stop = makeStop(child);
 

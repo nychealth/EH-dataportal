@@ -788,7 +788,7 @@ const writeMeta = (dir, { prefix, pages, all, env, pagefind, hugo }) => {
         // known or merely likely. `owned: true` means this process spawned the
         // server, so the version is the server's; `owned: false` means the
         // server came from DE_BASE_URL or was already running, and the version
-        // describes this machine's PATH instead. Recorded rather than gated on:
+        // describes the binary this checkout would have used. Recorded, not gated:
         // measured 2026-08-24, v0.147.3 and v0.147.9 build this site to
         // byte-identical output across 2936 files, the only difference being the
         // build_datetime meta on the three home pages, which no record reads.
@@ -1005,7 +1005,13 @@ const main = async () => {
         + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`
         + `
 Hugo: ${hugo?.version ?? "unknown"}`
-        + `${hugo?.owned ? "" : " (this machine's PATH — the server was not started by this process)"}`);
+        + `${hugo?.owned ? "" : " (this checkout's pinned binary — the server was not started by this process)"}`
+        // Printed rather than inferred: DEFAULT_CONCURRENCY is derived from the
+        // machine, so the same command runs at a different width on a developer
+        // box and on a CI runner, and two sweep timings are not comparable
+        // without knowing which width each was taken at.
+        + `
+Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
 
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const userAgent = await browserUserAgent(browser);
