@@ -457,10 +457,31 @@ export const CAPTURE = (prefix) => {
 // childList/subtree only, not attributes: Leaflet and Bootstrap mutate
 // attributes continuously on some pages, and a page that never stops would hit
 // the cap on every run rather than settle.
+//
+// The deferred attach is not defensive style, it is the whole thing working.
+// addInitScript runs before the page's own scripts, and at that point
+// document.readyState is "loading" and document.documentElement is null, so
+// `.observe(document.documentElement, ...)` throws
+// `TypeError: parameter 1 is not of type 'Node'` and the observer never
+// attaches [verified 2026-08-24]. The assignment on the line above it survives,
+// so __scMutations sits at 0 for the life of the page and waitForQuiescence
+// compares 0 to 0 forever. Measured on data-explorer/climate/: this
+// construction read 0 after 8s where a correctly attached observer counted
+// 2,558 mutation batches.
 const INSTALL_MUTATION_COUNTER = () => {
+
     window.__scMutations = 0;
-    new MutationObserver((records) => { window.__scMutations += records.length; })
-        .observe(document.documentElement, { childList: true, subtree: true });
+    window.__scObserverAttached = false;
+
+    const attach = () => {
+        if (!document.documentElement) return false;
+        new MutationObserver((records) => { window.__scMutations += records.length; })
+            .observe(document.documentElement, { childList: true, subtree: true });
+        window.__scObserverAttached = true;
+        return true;
+    };
+
+    if (!attach()) document.addEventListener("readystatechange", attach, { once: true });
 };
 
 // Polls until the DOM has stopped changing AND no main-frame request is still
@@ -514,6 +535,15 @@ const waitForQuiescence = async (page, { interval = 400, stableSamples = 3, cap 
         while (Date.now() < deadline) {
             await page.waitForTimeout(interval);
             const n = await page.evaluate(() => window.__scMutations ?? 0);
+
+            // A counter that never attached also reads a constant 0, which is
+            // indistinguishable from a quiet page — that is exactly how this
+            // wait silently degenerated into a ~1.2s sleep. Fail loudly instead.
+            if (!await page.evaluate(() => window.__scObserverAttached === true)) {
+                throw new Error("the mutation observer never attached — "
+                    + "quiescence cannot be measured, so no capture from this run is trustworthy");
+            }
+
             stable = (n === last && inFlight <= 0) ? stable + 1 : 0;
             last = n;
             if (stable >= stableSamples) return true;

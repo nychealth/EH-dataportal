@@ -9,6 +9,11 @@ against an injected regression — Task 4's findings table is the evidence, and 
 One signal was **deleted** after Task 6's first full check failed on it: `img` no longer counts
 Leaflet tiles, which were a measure of network timing rather than of page structure.
 
+**Task 7 then found that the DOM-quiescence detector had never worked** — the MutationObserver threw
+on attach and the counter read a constant 0 on every page since Task 1. Fixed and guarded; the
+committed baseline was unaffected and did not need re-capturing. Read Task 7 before trusting any
+sentence elsewhere in this document that credits the quiescence wait for anything.
+
 **Read Task 3's findings before trusting anything Task 1 concluded.** Task 1 declared the harness
 deterministic on three agreeing sweeps; Task 3's first `--baseline`/`--check` cycle disproved it.
 **The cause of that failure is still unestablished** — three explanations were proposed, two are
@@ -143,6 +148,7 @@ Two field notes that are load-bearing:
 | 4 | Positive controls — prove the net catches things | *no code change* — the evidence is the findings section below | **DONE 2026-08-23** | 11 of 11 injected regressions drove `--check` to exit 1, each naming its own field; tree clean and `--check` passing again after all reverts. Two prescribed injections were wrong about the repo and are corrected in the table |
 | 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
 | 6 | Commit the baseline | harness fix `6200892d85`; baseline in the commit that follows it | **DONE 2026-08-23** | `npm run characterize:site` exit 0 against the baseline captured at `6200892d85` — 925/925, every page quiesced, zero pages differing, arbitration not needed. Baseline measured at 926 files / 4.74 MiB. The first attempt FAILED and found a dead field — see findings |
+| 7 | Cold-fetch experiment | *the commit that follows* | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
 
 Derive what this table deliberately does not claim:
 
@@ -751,6 +757,73 @@ capture, and the cold-fetch theory is still untested.
 
 **Both `--all` npm scripts are now verified**, which is what Task 5 deferred to here:
 `characterize:site:baseline` and `characterize:site` each exit as documented against the full site.
+
+---
+
+## Task 7: the cold-fetch experiment, and what it actually found
+
+Run to settle the open instability. **The theory was dead on its premise, and testing it found a
+harness defect that had been invisible since Task 1.**
+
+### The premise was wrong
+
+There is no warm cache to be cold against.
+
+- `hugo server` sends **no `Cache-Control` and no `ETag`** — only `Last-Modified`, stamped at server
+  start `[verified 2026-08-24: curl -I on both the HTML and a fingerprinted JS asset]`.
+- `browser.newPage()` creates a **new browser context** per page, so every capture is already
+  isolated.
+
+Every capture this harness has ever taken was a cold fetch. The warm/cold framing — including the
+measurement in Task 3's findings that "ran warm-cached and therefore does not settle it" — was about
+a distinction that does not exist here.
+
+### The mutation observer never attached
+
+`page.addInitScript` runs while `document.readyState` is `"loading"` and `document.documentElement`
+is `null`, so `.observe(document.documentElement, …)` threw
+`TypeError: parameter 1 is not of type 'Node'` on every page. The `window.__scMutations = 0`
+assignment on the preceding line survives, so the counter read a constant **0** for the life of every
+page, and `waitForQuiescence` compared 0 to 0 on every sample and returned after three of them.
+
+`[verified 2026-08-24 on data-explorer/climate/: the harness's construction read 0 mutation batches
+after 8s; a deferred attach on the same page counted 2,558. The failing construction reported
+docElAtInit false, readyState "loading", and the TypeError above.]`
+
+**The tell was in the output from the beginning.** "Every page reached DOM quiescence before the cap"
+on 925 of 925 is a constant-true field — the same dead-field signature Task 2 was built to catch, in
+the harness's own summary line rather than in a record.
+
+**What actually did the waiting** was the in-flight main-frame request check beside it, plus
+`waitUntil: "load"`. Not the mutation count.
+
+### Fix
+
+Attach when `documentElement` exists, retrying on `readystatechange`. And **`waitForQuiescence` now
+throws if the observer did not attach**, because a dead counter and a quiet page are otherwise
+indistinguishable, which is precisely how this survived three tasks and two "determinism" results.
+
+**Positive control on the guard:** with the retry deliberately removed, all 41 sample pages raised
+`the mutation observer never attached` and the run exited 1 `[2026-08-24]`.
+
+### What the fix changes: nothing measurable
+
+| Check | Result |
+|---|---|
+| 41-page sample, fixed observer vs committed baseline | 39 of 39 overlapping records **identical**, 0 changed |
+| `npm run characterize:site`, fixed observer, 925 pages | **exit 0** — 925/925, zero pages differing, no page hit the cap, 383s |
+
+So the committed baseline stays valid and needs no re-capture. The fix is worth having anyway: the
+instrument was dead, and the next page that genuinely needs more than a load event plus request-idle
+would have been captured half-built with the harness reporting it settled.
+
+### Still open
+
+The two `data-explorer` pages that disagreed between `--baseline`'s two sweeps were not re-tested by
+this run — `--check` is a single sweep. Whether a working observer closes that is unmeasured. Do not
+record it as fixed.
+
+---
 
 **Deferred, not forgotten:** folding `smoke`'s console check and this sweep into one page visit
 would halve the wall time of running both. Not done here because it would refactor the repo's only
