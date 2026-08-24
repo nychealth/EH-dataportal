@@ -1,0 +1,162 @@
+{
+    "path": "data-features/rat-mitigation-zones/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "data-features/rat-mitigation-zones/rmz.js",
+            "js/L.colorIcon.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet-easybutton/src/easy-button.css",
+            "node_modules/leaflet-easybutton/src/easy-button.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 15,
+        "headingLevels": [
+            1,
+            2,
+            4,
+            4,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 3,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 86,
+            "external": 23,
+            "emptyHref": 31,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 6,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": true
+    },
+    "content": {
+        "title": "NYC's rat mitigation zones – Environment & Health Data Portal",
+        "headingText": [
+            "Rat Mitigation Zones",
+            "About the data",
+            "Rat Mitigation Zones",
+            "Are you in an RMZ? Here's what you need to know.",
+            "",
+            "311 complaints",
+            "Initial inspections",
+            "Compliance inspections",
+            "Exterminator visits",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features",
+            "/data-features/",
+            "/data-features/rat-information-portal/",
+            "/data-features/rat-mitigation-zones/",
+            "/data-features/rat-mitigation-zones/311-complaints.csv",
+            "/data-features/rat-mitigation-zones/compliance-inspections.csv",
+            "/data-features/rat-mitigation-zones/exterminator-visits.csv",
+            "/data-features/rat-mitigation-zones/initial-inspections.csv",
+            "/data-features/rats-in-your-neighborhood/",
+            "/data-stories/",
+            "/data-stories/rat-complaints/",
+            "/data-stories/rat-inspections/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Data on NYC's rat mitigation zones."
+    }
+}

@@ -1,0 +1,177 @@
+{
+    "path": "es/data-stories/redlining/",
+    "status": 200,
+    "structure": {
+        "lang": "es",
+        "assets": [
+            "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 9,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            3,
+            3,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 5,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 6,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 70,
+            "external": 25,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 4,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "(self)",
+                "zeroSize": false
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Una breve historia del redlining – Environment & Health Data Portal",
+        "headingText": [
+            "Una breve historia del redlining",
+            "La política financiera de 90 años que daña nuestra salud.",
+            "Una breve historia del redlining",
+            "El redlining impulsó la segregación residencial",
+            "Los efectos del redlining continúan en la actualidad",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/redlining/",
+            "/es/data-stories/asthma-and-poverty/",
+            "/es/data-stories/housing/",
+            "/es/data-stories/redlining/",
+            "/es/data-stories/violence/",
+            "/es/keywords/asthma/",
+            "/es/keywords/disinvestment/",
+            "/es/keywords/housing/",
+            "/es/keywords/injustice/",
+            "/es/keywords/poverty/",
+            "/es/keywords/racism/",
+            "/es/keywords/redlining/",
+            "/es/keywords/social-determinants/",
+            "/key-topics",
+            "/neighborhood-reports/",
+            "/zh/data-stories/redlining/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "dsl.richmond.edu",
+            "ncrc.org",
+            "twitter.com",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www.who.int",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "La política financiera de 90 años que daña nuestra salud."
+    }
+}

@@ -1,0 +1,177 @@
+{
+    "path": "neighborhood-reports/upper_west_side/active_design_physical_activity_and_health/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "js/uhflist.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/arquero/dist/arquero.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 15,
+        "headingLevels": [
+            1,
+            1,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 6,
+            "missingAlt": 1,
+            "emptyAlt": 0,
+            "zeroSize": 2
+        },
+        "links": {
+            "internal": 87,
+            "external": 25,
+            "emptyHref": 43,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 27,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Active Design in Upper West Side – Environment & Health Data Portal",
+        "headingText": [
+            "Active Design, Physical Activity and Health in",
+            "Active Design, Physical Activity and Health in",
+            "Injury and health",
+            "Overweight Overweight or obesity (adults), 2022 49.1* Percent Lower Overweight Overweight or obesity (adults), 2022 49.1* Percent Lower than most neighborhoods",
+            "Bicycle injuries Bicycle injury emergency department visits, 2014 52.9 Rate per 100,000 Lower Bicycle injuries Bicycle injury emergency department visits, 2014 52.9 Rate per 100,000 Lower than most neighborhoods",
+            "Pedestrian injuries Pedestrian injury emergency department visits, 2014 40.6 Rate per 100,000 Lower Pedestrian injuries Pedestrian injury emergency department visits, 2014 40.6 Rate per 100,000 Lower than most neighborhoods",
+            "Death before 65 Premature mortality, 2020 136.7 Age-adjusted rate per 100,000 Lower Death before 65 Premature mortality, 2020 136.7 Age-adjusted rate per 100,000 Lower than most neighborhoods",
+            "Neighborhood resources",
+            "Tree shade Tree canopy cover, 2014 22.4 Percent of land area Higher Tree shade Tree canopy cover, 2014 22.4 Percent of land area Higher than most neighborhoods",
+            "Sidewalk area Sidewalk area, 2014 10.1 Percent of land area Higher Sidewalk area Sidewalk area, 2014 10.1 Percent of land area Higher than most neighborhoods",
+            "Park access Walking distance to a park, 2017 99.0 Percent Higher Park access Walking distance to a park, 2017 99.0 Percent Higher than most neighborhoods",
+            "Bike lanes Bicycle network coverage, 2017 32.0 Percent Higher Bike lanes Bicycle network coverage, 2017 32.0 Percent Higher than most neighborhoods",
+            "Subway access Walking distance to a subway station, 2018 94.0 Percent Higher Subway access Walking distance to a subway station, 2018 94.0 Percent Higher than most neighborhoods",
+            "Neighborhood risk factors",
+            "Poverty Neighborhood poverty, 2019-23 11.5 Percent Lower Poverty Neighborhood poverty, 2019-23 11.5 Percent Lower than most neighborhoods",
+            "Neighborhood safety Perception of neighborhood safety, 2016 97.0 Percent Higher Neighborhood safety Perception of neighborhood safety, 2016 97.0 Percent Higher than most neighborhoods",
+            "Mice or rats (outside) Adults reporting mice or rats outside, 2020 54.4 Percent Higher Mice or rats (outside) Adults reporting mice or rats outside, 2020 54.4 Percent Higher than most neighborhoods",
+            "Physical activity",
+            "Regular biking Monthly bicycle use, 2022 25.8 Percent Higher Regular biking Monthly bicycle use, 2022 25.8 Percent Higher than most neighborhoods",
+            "Exercise Recent exercise, 2022 93.1 Percent Higher Exercise Recent exercise, 2022 93.1 Percent Higher than most neighborhoods",
+            "What is the City doing?",
+            "What you can do",
+            "More about",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports",
+            "/neighborhood-reports/",
+            "/neighborhood-reports/upper_west_side/",
+            "/neighborhood-reports/upper_west_side/active_design_physical_activity_and_health/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "portal.311.nyc.gov",
+            "www.nyc.gov",
+            "www.nycgovparks.org",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Active Design Physical Activity and Health data profile for the Upper West Side neighborhood of NYC."
+    }
+}

@@ -1,0 +1,173 @@
+{
+    "path": "data-stories/urban-heat-island/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 8,
+        "headingLevels": [
+            1,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 7,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 101,
+            "external": 33,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 4,
+            "input": 3,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 1
+        },
+        "tables": {
+            "total": 2,
+            "withTh": 2,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "(self)",
+                "zeroSize": false
+            },
+            {
+                "host": "www.google.com",
+                "zeroSize": false
+            },
+            {
+                "host": "www.google.com",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "The Urban Heat Island Effect in New York City – Environment & Health Data Portal",
+        "headingText": [
+            "The urban heat island effect in NYC",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/climate/",
+            "/data-features/",
+            "/data-features/heat-story/",
+            "/data-features/hvi/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/heat/",
+            "/data-stories/urban-heat-island/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/climatehealth/hvi",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/air-conditioning/",
+            "/keywords/building/",
+            "/keywords/climate/",
+            "/keywords/cooling/",
+            "/keywords/global-warming/",
+            "/keywords/green-space/",
+            "/keywords/greenspace/",
+            "/keywords/heat-island/",
+            "/keywords/heat/",
+            "/keywords/hot-weather/",
+            "/keywords/housing/",
+            "/keywords/parks/",
+            "/keywords/summer/",
+            "/keywords/temperature/",
+            "/keywords/urban-heat-island/",
+            "/keywords/weather/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "council.nyc.gov",
+            "data.cityofnewyork.us",
+            "naturalareasnyc.org",
+            "treesny.org",
+            "twitter.com",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.milliontreesnyc.org",
+            "www.nyc.gov",
+            "www.nycgovparks.org",
+            "www.tpl.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "A data story on block-by-block heat differences."
+    }
+}

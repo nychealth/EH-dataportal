@@ -1,0 +1,17 @@
+{
+    "capturedAt": "2026-08-23T23:31:29.953Z",
+    "gitHead": "6200892d852304b0c4d44921f043f3f8508d423c",
+    "prefix": "/dev-stage/",
+    "mode": "all",
+    "pages": 925,
+    "viewport": {
+        "width": 1280,
+        "height": 900
+    },
+    "blockedHosts": [
+        "translate.google.com",
+        "translate.googleapis.com",
+        "www.gstatic.com",
+        "www.googletagmanager.com"
+    ]
+}
