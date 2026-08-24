@@ -262,7 +262,7 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 - **If a nearby working example contradicts the theory, the theory is wrong.** Adding a secondary explanation for why the working case is exempt is how a wrong diagnosis survives review.
 - **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. The next person re-tests a hypothesis but trusts an explanation.
 - **After one failed fix attempt, gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
-- **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did. For an A/B timing comparison the confound is *order* — the first run warms the caches for the rest. Run A, B, A; a non-monotonic result across an ordered sweep means you measured order, not the variable `[2026-08-24]`.
+- **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did. For an A/B timing comparison the confound is *order* — the first run warms the caches for the rest. Run A, B, A; a non-monotonic result across an ordered sweep means you measured order, not the variable `[2026-08-24]`. For an A/B comparison of *output* rather than timing, run one condition twice as well — the same-condition control is what separates a real difference from the floor. Hugo 0.147.3 vs 0.147.9 differed on 3 of 2936 built files, and so did 0.147.3 against itself: a `build_datetime` clock, not a version effect `[2026-08-24]`.
 
 ## Refactors and renames
 
@@ -277,6 +277,8 @@ Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[
 A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 
 **Stacked branches yes, GitHub's Stacked PRs feature no** (decided 2026-08-23). Cutting B from A's tip and C from B's is worth keeping; retarget each PR to `production` by hand as the one below it merges. Don't enable the GitHub feature: merging the bottom PR fires a server-side cascading rebase that force-pushes every branch above it, so the hashes those branches recorded in their own ledgers stop resolving. The cost and the 24-pair mapping are in [audit-backlog-production-2026-08-20.md](documents/audit-backlog-production-2026-08-20.md).
+
+**Test a new workflow with a PR into `production`, not by merging it.** `workflow_dispatch` only registers from the default branch — GitHub documents that the event "will only trigger a workflow run if the workflow file exists on the default branch" — but `pull_request` carries no such requirement, and opening a PR into `production` does not deploy, because `hugo-build-to-prod-prod.yml` is `types: [closed]` with a `merged == true` guard on the job. Once the file is on `production`, `gh workflow run <wf> --ref <branch>` runs *that branch's* copy `[verified 2026-08-24]`.
 
 ## Common gotchas
 
