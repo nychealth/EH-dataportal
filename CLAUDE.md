@@ -262,7 +262,7 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 - **If a nearby working example contradicts the theory, the theory is wrong.** Adding a secondary explanation for why the working case is exempt is how a wrong diagnosis survives review.
 - **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. The next person re-tests a hypothesis but trusts an explanation.
 - **After one failed fix attempt, gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
-- **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did.
+- **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did. For an A/B timing comparison the confound is *order* — the first run warms the caches for the rest. Run A, B, A; a non-monotonic result across an ordered sweep means you measured order, not the variable `[2026-08-24]`.
 
 ## Refactors and renames
 
