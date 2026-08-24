@@ -1,0 +1,139 @@
+{
+    "path": "data-features/rat-report/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "data-features/rat-report/rat-report.js",
+            "datawrapper.dwcdn.net",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 8,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 3,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 72,
+            "external": 27,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 33,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Rat Mitigation Zone Report – Environment & Health Data Portal",
+        "headingText": [
+            "Rat Mitigation Zone Report: January 2025 to June 2025",
+            "Introduction",
+            "Rat Mitigation Zones",
+            "1. The metrics the Department is using to measure the efficacy of rat mitigation in such zones, including a description of whether the department has seen improvement, as measured by such metrics, and, if so, how such improvement has been achieved.",
+            "2. Current and planned rat mitigation measures",
+            "3. A description of the public outreach measures undertaken by the department in relation to rat mitigation in each such zone.",
+            "4. Explanations of the creation or elimination of rat mitigation zones, or any change of boundaries of such zone, since the previous report, if applicable.",
+            "5. Explanations of any changes to the rat mitigation measured used in each such zone since the previous report, if applicable.",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/Rats/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/mice-and-rats/",
+            "/data-features",
+            "/data-features/",
+            "/data-features/rat-mitigation-zones/",
+            "/data-features/rat-report/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Reporting on rat inspection and mitigation work."
+    }
+}

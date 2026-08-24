@@ -69,7 +69,7 @@ Seven things to know before trusting a result:
 ```bash
 npm run characterize:site            # every page, diff `structure` against the committed baseline
 npm run characterize:site:sample     # the same check over 41 pages, one per template kind
-npm run characterize:site:baseline   # re-capture the committed baseline — commit the result
+npm run characterize:site:baseline   # re-capture this environment's baseline — commit the result
 node scripts/site-characterization.mjs --check --content   # widen the gate to titles and link targets
 ```
 
@@ -84,10 +84,27 @@ are printed as a harness-health number and deliberately **not** baselined — th
   CloudCannon commits content directly, so a check that also gated on titles and link text would
   fail on commits that never touch a template — and a check that fails routinely stops being read.
   `--content` widens it when you want that.
-- **A baseline is a fact about one commit *and one environment*.** `meta.robots` alone differs on
-  every page between environments (`head.html:46-53`), so `--check` aborts when the running
-  server's path prefix does not match the one in the baseline's `_meta.json`. Never compare
-  baselines taken under different environments.
+- **Baselines are filed by environment class, and `--check` picks its own.** They live under
+  `scripts/site-characterization-baseline/<key>/`, and the harness reads the key off the running
+  site — it prints `Environment: dev_stage (EHDP-data staging) at /dev-stage/ — baseline
+  "staging"` before it sweeps. Three keys, because two things vary:
+
+  | Key | Environments |
+  |---|---|
+  | `staging` | dev_stage, local_stage, prod_stage |
+  | `production` | dev_prod, development, local_prod, production |
+  | `prod_prod` | prod_prod |
+
+  The data branch is the first axis — staging and production carry different indicator data. The
+  second is `prod_prod` alone: `head.html:46-53` branches on the environment *name*, so only
+  `prod_prod` emits `robots` as `"all"` (`"noindex"` for the `resources` section) where every other
+  environment emits `"noindex, nofollow"` on every page. Measured: **all 925 shared pages differ
+  between the `staging` and `prod_prod` baselines** — `meta` on 925 of them, plus `controls` on 95,
+  `headingLevels` on 86 and `links` on 84 from the data branch `[2026-08-24]`.
+
+  Records are prefix-relative, so a `prod_stage` server on `/IndicatorPublic/` checks correctly
+  against a `dev_stage`-captured `staging` baseline. Only `staging` and `prod_prod` are committed;
+  capture `production` with `--baseline` against a `dev_prod` server if you need it.
 - **What a pass is worth is established by `documents/site-characterization-plan-2026-08-23.md`,
   not by the check passing.** All eleven probes were driven by an injected regression and each one
   fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on
@@ -96,8 +113,12 @@ are printed as a harness-health number and deliberately **not** baselined — th
 - **Each mode has its own npm script rather than a forwarded flag**, for the same reason
   `smoke:all` does: PowerShell eats the `--` in `npm run x -- --flag`.
 - **Pages that disagree between sweeps are re-captured sequentially before anything is reported.**
-  Three `data-explorer` pages have repeatedly needed that arbitration. **The cause is not
-  established** — see the plan's Task 3 and Task 4 findings before treating it as understood.
+  Most of what looked like instability was one dead field: `img` was counting Leaflet map tiles,
+  which measure network timing rather than page structure. Removing it took `--baseline`
+  arbitration from 18 pages to 2, and the `prod_prod` capture needed none at all. **Whatever
+  remains is not diagnosed** — read the plan's Task 6 and Task 7 findings before treating it as
+  understood, and note that Task 7 found the DOM-quiescence detector had never attached, so any
+  older claim crediting that wait is void.
 
 ### Four ways a local check silently lies
 

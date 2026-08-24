@@ -1,0 +1,153 @@
+{
+    "path": "data-features/heat-story/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "data-features/heat-story/embed/config.js",
+            "data-features/heat-story/embed/heat-story-leaflet.js",
+            "js/heat-story-js-libs.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/arquero/dist/arquero.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 12,
+        "headingLevels": [
+            1,
+            4,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 22,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 117,
+            "external": 31,
+            "emptyHref": 32,
+            "noAccessibleText": 4
+        },
+        "controls": {
+            "button": 27,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Your NYC heat story – Environment & Health Data Portal",
+        "headingText": [
+            "Your heat story",
+            "Submit your heat story",
+            "How do the methods and results differ from other projects?",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features",
+            "/data-features/",
+            "/data-features/cooling-info/",
+            "/data-features/heat-report/",
+            "/data-features/heat-story/",
+            "/data-features/hvi/",
+            "/data-stories/",
+            "/data-stories/heat/",
+            "/data-stories/localtemp/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "docs.google.com",
+            "leafletjs.com",
+            "linktr.ee",
+            "storymaps.arcgis.com",
+            "www.capastrategies.com",
+            "www.fountainhouse.org",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www.southbronxunite.org",
+            "www.southqueenswomensmarch.org",
+            "www.weact.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Explore this summer's high temps and health effects."
+    }
+}

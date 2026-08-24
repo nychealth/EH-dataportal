@@ -31,10 +31,12 @@
 //   node scripts/site-characterization.mjs --check --content  gate on both halves
 //   node scripts/site-characterization.mjs --out <dir>        raw capture, no baseline
 //
-// A BASELINE IS A FACT ABOUT ONE COMMIT AND ONE ENVIRONMENT. meta.robots alone
-// differs on every page between environments (head.html:46-53), so --check
-// refuses to run when the server's path prefix does not match the one recorded
-// in the baseline's _meta.json.
+// A BASELINE IS A FACT ABOUT ONE COMMIT AND ONE CLASS OF ENVIRONMENT. Baselines
+// live under scripts/site-characterization-baseline/<key>/, where the key is the
+// EHDP-data branch — or "prod_prod", the one environment whose template output
+// differs from its data-branch siblings. See BASELINE_ROOT below. The harness
+// reads the key off the running site, so --check selects its own baseline and
+// prints which one it used.
 //
 // Plan and ledger: documents/site-characterization-plan-2026-08-23.md
 
@@ -57,7 +59,31 @@ const VIEWPORT = { width: 1280, height: 900 };
 
 const DEFAULT_CONCURRENCY = 6;
 
-const BASELINE_DIR = "scripts/site-characterization-baseline";
+// Baselines are filed by what actually changes the site's output, not by Hugo
+// environment name. The precedent is scripts/nr-characterization-baseline/ on
+// feature-MOD-Lab-NR-recode-refactor, which splits by EHDP-data branch.
+//
+// Two things vary here, not one:
+//
+//   - data_branch. staging and production carry different indicator data, so a
+//     production-data server checked against a staging baseline reports content
+//     differences as regressions.
+//   - prod_prod. head.html:46-53 branches on the environment NAME, not on the
+//     data branch: only prod_prod emits robots "all" (or "noindex" for the
+//     resources section), where every other environment emits "noindex,
+//     nofollow" on every page. So prod_prod and dev_prod share production data
+//     and still differ in meta.robots on all 925 pages.
+//
+// Hence three keys, not four — prod_prod is always production data:
+//
+//   staging/     dev_stage, local_stage, prod_stage
+//   production/  dev_prod, development, local_prod, production
+//   prod_prod/   prod_prod
+//
+// Paths and asset references are recorded prefix-relative (see CAPTURE), so one
+// baseline checks from any environment in its row whatever path it is mounted
+// at — that is the property that makes the split work at all.
+const BASELINE_ROOT = "scripts/site-characterization-baseline";
 const CURRENT_DIR = "scripts/site-characterization-current";
 
 // Where --check writes the two section-filtered trees it actually diffs. Kept
@@ -113,7 +139,7 @@ const SAMPLE_EXTRA = [
     "es/",
     "zh/",
     "es/data-stories/housing/",
-    "zh/data-stories/geographies/",
+    "zh/data-stories/redlining/",
 ];
 
 const SAMPLE_BASE = [
@@ -686,8 +712,11 @@ const recapture = async (browser, baseURL, userAgent, prefix, outDir, paths) => 
 };
 
 // Paths whose records differ between two capture directories.
-const differingPaths = (dirA, dirB) => walk(dirA)
+// `only`, where given, restricts the comparison to files the run actually
+// captured — see project() for why sample mode needs it.
+const differingPaths = (dirA, dirB, only = null) => walk(dirA)
     .filter((rel) => rel !== META_FILE)
+    .filter((rel) => !only || only.has(rel))
     .filter((rel) => {
         try {
             return readFileSync(`${dirA}/${rel}`, "utf8") !== readFileSync(`${dirB}/${rel}`, "utf8");
@@ -720,10 +749,15 @@ const gitHead = () => {
     }
 };
 
-const writeMeta = (dir, { prefix, pages, all }) => {
+const writeMeta = (dir, { prefix, pages, all, env }) => {
     writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
         capturedAt: new Date().toISOString(),
         gitHead: gitHead(),
+        baselineKey: env.key,
+        hugoEnv: env.hugoEnv,
+        dataBranch: env.dataBranch,
+        // Informational only. The prefix no longer gates the check — records are
+        // prefix-relative, so an environment may be served at any path.
         prefix,
         mode: all ? "all" : "sample",
         pages,
@@ -743,12 +777,19 @@ const writeMeta = (dir, { prefix, pages, all }) => {
 // A projection rather than a two-file-per-page layout: it keeps the committed
 // baseline at one readable file per page instead of 1,850 half-records, and the
 // projected trees are throwaway.
-const project = (srcDir, dstDir, keys) => {
+//
+// `only` restricts the projection to a set of relative filenames. A sample-mode
+// --check captures 41 pages against a baseline holding 925, and without this the
+// diff reports the other 884 as deletions and fails every time. Scoping the
+// projection to what was actually captured is what makes the sample check mean
+// "these 41 pages are unchanged" rather than "the baseline is bigger than the run".
+const project = (srcDir, dstDir, keys, only = null) => {
 
     rmSync(dstDir, { recursive: true, force: true });
 
     for (const rel of walk(srcDir)) {
         if (rel === META_FILE) continue;
+        if (only && !only.has(rel)) continue;
         const record = JSON.parse(readFileSync(`${srcDir}/${rel}`, "utf8"));
         const kept = { path: record.path, status: record.status };
         for (const k of keys) kept[k] = record[k];
@@ -793,6 +834,49 @@ because PowerShell eats the \`--\` and the script sees an empty argv.`;
 // at zero height under the harness while working for visitors. Same
 // de-headlessing as smoke-pages.mjs, and for the same reason: without it this
 // harness would bake a harness artefact into the baseline as a finding.
+// head.html declares data_branch and hugoEnv as top-level `let`s in an inline
+// script, so they are reachable from an evaluate() but are NOT window
+// properties — window.data_branch reads undefined. Same trap the NR harness
+// documents.
+const readEnvironment = async (browser, baseURL) => {
+
+    const page = await browser.newPage();
+
+    try {
+        await page.goto(baseURL, { waitUntil: "domcontentloaded", timeout: 30000 });
+
+        const env = await page.evaluate(() => ({
+            dataBranch: typeof data_branch === "undefined" ? null : data_branch,
+            hugoEnv: typeof hugoEnv === "undefined" ? null : hugoEnv,
+        }));
+
+        if (!env.dataBranch || !env.hugoEnv) {
+            throw new Error(
+                `Could not read data_branch / hugoEnv from ${baseURL}.
+`
+                + `head.html emits both as top-level lets in an inline script; check they are
+`
+                + `still emitted before trusting any baseline captured from this server.`);
+        }
+
+        // prod_prod is the only environment whose TEMPLATE output differs from
+        // its data-branch siblings, so it gets its own key.
+        return { ...env, key: env.hugoEnv === "prod_prod" ? "prod_prod" : env.dataBranch };
+
+    } finally {
+        await page.close();
+    }
+};
+
+// The baseline keys that already exist on disk, for an error message that tells
+// you what you could have pointed at instead.
+const existingBaselines = () => {
+    if (!existsSync(BASELINE_ROOT)) return [];
+    return readdirSync(BASELINE_ROOT, { withFileTypes: true })
+        .filter((d) => d.isDirectory() && existsSync(`${BASELINE_ROOT}/${d.name}/${META_FILE}`))
+        .map((d) => d.name);
+};
+
 const browserUserAgent = async (browser) => {
     const page = await browser.newPage();
     const ua = await page.evaluate(() => navigator.userAgent);
@@ -809,20 +893,6 @@ const main = async () => {
         process.exit(2);
     }
 
-    const outDir = out || (baseline ? BASELINE_DIR : CURRENT_DIR);
-
-    // Read the baseline's environment BEFORE sweeping, so a mismatch costs a
-    // file read rather than a full capture.
-    let baselineMeta = null;
-
-    if (check) {
-        if (!existsSync(`${BASELINE_DIR}/${META_FILE}`)) {
-            console.error(`No baseline at ${BASELINE_DIR}/ — run --baseline first.`);
-            process.exit(2);
-        }
-        baselineMeta = JSON.parse(readFileSync(`${BASELINE_DIR}/${META_FILE}`, "utf8"));
-    }
-
     const { baseURL, stop } = await ensureDevServer();
 
     // The server's own path prefix (/dev-stage/, /IndicatorPublic/, ...). Every
@@ -830,20 +900,52 @@ const main = async () => {
     // than the environment that served it.
     const prefix = new URL(baseURL).pathname;
 
-    if (baselineMeta && baselineMeta.prefix !== prefix) {
+    const browser = await chromium.launch({ headless: true });
+
+    // Which baseline this server belongs to, read from the running site BEFORE
+    // sweeping — pointing at the wrong environment then costs one page load
+    // rather than a full capture.
+    let env;
+
+    try {
+        env = await readEnvironment(browser, baseURL);
+    } catch (e) {
+        await browser.close();
         await stop();
-        console.error(
-            `Environment mismatch — refusing to check.\n` +
-            `  baseline was captured against ${baselineMeta.prefix}\n` +
-            `  this server serves            ${prefix}\n\n` +
-            `meta.robots alone differs on every page between environments, so this comparison\n` +
-            `would report hundreds of changes that are not regressions. Point DE_BASE_URL at a\n` +
-            `server matching the baseline, or re-baseline against this one.`);
+        console.error(String(e.message ?? e));
         process.exit(2);
     }
 
+    const baselineDir = `${BASELINE_ROOT}/${env.key}`;
+    const outDir = out || (baseline ? baselineDir : CURRENT_DIR);
+
+    let baselineMeta = null;
+
+    if (check) {
+        if (!existsSync(`${baselineDir}/${META_FILE}`)) {
+            await browser.close();
+            await stop();
+            const have = existingBaselines();
+            console.error(
+                `No baseline for "${env.key}" — looked in ${baselineDir}/.
+` +
+                `  hugo environment: ${env.hugoEnv}
+` +
+                `  EHDP-data branch: ${env.dataBranch}
+
+` +
+                `Capture one with --baseline against this server, or point DE_BASE_URL at an
+` +
+                `environment that has one. Baselines present: ${have.length ? have.join(", ") : "(none)"}`);
+            process.exit(2);
+        }
+        baselineMeta = JSON.parse(readFileSync(`${baselineDir}/${META_FILE}`, "utf8"));
+    }
+
+    console.log(`Environment: ${env.hugoEnv} (EHDP-data ${env.dataBranch}) at ${prefix} `
+        + `— baseline "${env.key}"`);
+
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
-    const browser = await chromium.launch({ headless: true });
     const userAgent = await browserUserAgent(browser);
 
     rmSync(outDir, { recursive: true, force: true });
@@ -914,11 +1016,13 @@ const main = async () => {
         // --check arbitrates only what differs from the baseline. A page that
         // agrees on a calm sequential re-capture was contending, not changed.
         if (check && !failed) {
-            const suspect = differingPaths(BASELINE_DIR, outDir);
+            const captured = all ? null : new Set(
+                walk(outDir).filter((rel) => rel !== META_FILE));
+            const suspect = differingPaths(baselineDir, outDir, captured);
             if (suspect.length) {
                 console.log(`\n${suspect.length} page(s) differ from the baseline — re-capturing sequentially before reporting.`);
                 await recapture(browser, baseURL, userAgent, prefix, outDir, suspect);
-                const still = new Set(differingPaths(BASELINE_DIR, outDir));
+                const still = new Set(differingPaths(baselineDir, outDir, captured));
                 cleared = suspect.filter((p) => !still.has(p));
             }
         }
@@ -935,6 +1039,23 @@ const main = async () => {
     // A page that hit the quiescence cap was measured mid-change, so its record
     // is the one to suspect first when the baseline churns. Named, not counted:
     // a count cannot tell you which page to go and look at.
+    // A page that answers non-200 is not necessarily a failure — 404.html is in
+    // the --all set on purpose — but a sample entry that has always 404'd is
+    // invisible otherwise. zh/data-stories/geographies/ was one, from Task 1
+    // until 2026-08-24: it was added to stop `lang` reading constant, and the
+    // 404 page renders lang="en", so it contributed nothing while looking like
+    // coverage.
+    const nonOk = walk(outDir)
+        .filter((rel) => rel !== META_FILE)
+        .map((rel) => JSON.parse(readFileSync(`${outDir}/${rel}`, "utf8")))
+        .filter((r) => r.status !== 200);
+
+    if (nonOk.length) {
+        console.log(`
+${nonOk.length} page(s) did not answer 200:`);
+        for (const r of nonOk) console.log(`      ${r.status}  ${r.path || "(home)"}`);
+    }
+
     if (unsettled.length) {
         console.log(`\n${unsettled.length} page(s) never reached DOM quiescence and were captured at the cap:`);
         for (const p of unsettled) console.log(`      ${p}`);
@@ -949,7 +1070,7 @@ const main = async () => {
     }
 
     if (baseline) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated });
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env });
         console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
         console.log(arbitrated.length
             ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`
@@ -963,8 +1084,39 @@ const main = async () => {
     // --content only widens what the check refuses to let through.
     const keys = content ? ["structure", "content"] : ["structure"];
 
-    project(BASELINE_DIR, `${DIFF_DIR}/base`, keys);
-    project(CURRENT_DIR, `${DIFF_DIR}/head`, keys);
+    // In sample mode the baseline is a superset of what was captured, so both
+    // sides are projected through the INTERSECTION. In --all mode `only` is null
+    // and a page missing from the run still shows up as a deletion, which is a
+    // real regression worth failing on.
+    //
+    // The intersection rather than the captured set, because the sample contains
+    // pages the baseline cannot: `--all` enumerates from sitemap.xml, which lists
+    // no query strings, so data-explorer/asthma/?id=2380 has no baseline record
+    // and would otherwise fail every sample check as an addition. Those pages are
+    // named rather than silently dropped — an unmatched page is uncovered, and a
+    // check that quietly ignores what it cannot compare is the failure this whole
+    // harness is built against.
+    let only = null;
+    let unmatched = [];
+
+    if (!all) {
+        const captured = walk(CURRENT_DIR).filter((rel) => rel !== META_FILE);
+        const inBaseline = new Set(walk(baselineDir).filter((rel) => rel !== META_FILE));
+        only = new Set(captured.filter((rel) => inBaseline.has(rel)));
+        unmatched = captured.filter((rel) => !inBaseline.has(rel));
+    }
+
+    if (unmatched.length) {
+        console.log(`
+${unmatched.length} sample page(s) have no record in this baseline and were `
+            + `NOT compared:`);
+        for (const rel of unmatched) {
+            console.log(`      ${JSON.parse(readFileSync(`${CURRENT_DIR}/${rel}`, "utf8")).path}`);
+        }
+    }
+
+    project(baselineDir, `${DIFF_DIR}/base`, keys, only);
+    project(CURRENT_DIR, `${DIFF_DIR}/head`, keys, only);
 
     if (cleared.length) {
         console.log(`\n${cleared.length} page(s) differed under concurrency but matched on a sequential `

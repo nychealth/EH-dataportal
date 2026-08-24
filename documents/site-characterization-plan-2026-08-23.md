@@ -9,7 +9,11 @@ against an injected regression — Task 4's findings table is the evidence, and 
 One signal was **deleted** after Task 6's first full check failed on it: `img` no longer counts
 Leaflet tiles, which were a measure of network timing rather than of page structure.
 
-**Task 7 then found that the DOM-quiescence detector had never worked** — the MutationObserver threw
+**Baselines are per environment class** — `staging/`, `production/`, `prod_prod/` under
+`scripts/site-characterization-baseline/`, selected automatically from the running site. `staging`
+and `prod_prod` are committed; see Task 8.
+
+**Task 7 found that the DOM-quiescence detector had never worked** — the MutationObserver threw
 on attach and the counter read a constant 0 on every page since Task 1. Fixed and guarded; the
 committed baseline was unaffected and did not need re-capturing. Read Task 7 before trusting any
 sentence elsewhere in this document that credits the quiescence wait for anything.
@@ -149,6 +153,7 @@ Two field notes that are load-bearing:
 | 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
 | 6 | Commit the baseline | harness fix `6200892d85`; baseline in the commit that follows it | **DONE 2026-08-23** | `npm run characterize:site` exit 0 against the baseline captured at `6200892d85` — 925/925, every page quiesced, zero pages differing, arbitration not needed. Baseline measured at 926 files / 4.74 MiB. The first attempt FAILED and found a dead field — see findings |
 | 7 | Cold-fetch experiment | *the commit that follows* | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
+| 8 | Multiple environments | *the commit that follows* | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings; the one real difference is Pagefind |
 
 Derive what this table deliberately does not claim:
 
@@ -822,6 +827,108 @@ would have been captured half-built with the harness reporting it settled.
 The two `data-explorer` pages that disagreed between `--baseline`'s two sweeps were not re-tested by
 this run — `--check` is a single sweep. Whether a working observer closes that is unmeasured. Do not
 record it as fixed.
+
+---
+
+## Task 8: multiple environments
+
+**Why:** one intended use is a GitHub Action on a PR closing into `production`, which builds under
+`prod_prod`. A harness that can only check the environment it was baselined against cannot do that.
+
+**Precedent followed:** `scripts/nr-characterization-baseline/{production,staging}/` on
+`feature-MOD-Lab-NR-recode-refactor`, which files baselines by **EHDP-data branch** rather than by
+Hugo environment, and reads `data_branch` off the running page.
+
+### Three keys, not two
+
+This harness needs one axis the NR one does not. `head.html:46-53` branches on the environment
+*name*, so `prod_prod` alone emits `robots` as `"all"` — `"noindex"` for the `resources` section —
+where every other environment emits `"noindex, nofollow"` on every page. `prod_prod` carries
+production data, so it would otherwise share a directory with `dev_prod` and differ from it on all
+925 pages.
+
+| Key | Environments |
+|---|---|
+| `staging` | dev_stage, local_stage, prod_stage |
+| `production` | dev_prod, development, local_prod, production |
+| `prod_prod` | prod_prod |
+
+The key is read off the running site — `data_branch` and `hugoEnv` are top-level `let`s in
+`head.html`'s inline script, so `page.evaluate(() => data_branch)` reaches them and
+`window.data_branch` does not. `--check` selects its own baseline and names it before sweeping.
+
+**The prefix abort is gone.** Records are prefix-relative, so a `prod_stage` server on
+`/IndicatorPublic/` checks against a `dev_stage`-captured `staging` baseline. What replaces it is a
+missing-baseline error naming the environment, the data branch, and the keys that do exist.
+
+### Evidence that the split was necessary
+
+**All 925 shared pages differ between the `staging` and `prod_prod` baselines** `[2026-08-24,
+whole-record comparison]` — `meta` on all 925, and from the data branch, `controls` on 95,
+`headingLevels` on 86, `links` on 84, `landmarks` on 2. Without the split a `prod_prod` run against
+a `staging` baseline reports 925 regressions and buries anything real.
+
+### Results
+
+| | `staging` | `prod_prod` |
+|---|---|---|
+| Captured | 925/925 | 925/925 |
+| Arbitration at `--baseline` | **none** — both sweeps agreed | **none** — both sweeps agreed |
+| Pages at the quiescence cap | 0 | 0 |
+| `--check` | PASSED, zero differing | PASSED, zero differing |
+| Committed size | 926 files, 4.74 MiB | 926 files, 4.72 MiB |
+
+Both captured at `e960523842`. **Arbitration has now gone 18 → 2 → 0** across the tile fix and the
+observer fix — but that is one capture per environment, and this harness has produced false
+"N runs agreed" results before. Read it as consistent with both fixes, not as proof.
+
+### Two bugs found on the way
+
+**`characterize:site:sample` was broken by the move.** A 41-page capture against a 925-page baseline
+diffed the other 884 as deletions. Both sides are now projected through the **intersection**, and
+pages that cannot be compared are named rather than dropped — a check that silently ignores what it
+cannot compare is this harness's own failure mode. One page qualifies: `data-explorer/asthma/?id=2380`,
+because `--all` enumerates from `sitemap.xml`, which lists no query strings.
+
+**`zh/data-stories/geographies/` had been a 404 since Task 1.** It is in `SAMPLE_EXTRA` specifically
+so `lang` does not read constant — and the 404 page renders `lang="en"`, so it supplied no Simplified
+Chinese coverage at all while looking like it did. One of the 41 pages Task 4's controls ran against
+was an error page. Repointed to `zh/data-stories/redlining/` (200). **The run summary now reports any
+non-200**, which is what would have caught it on day one; positive control: an injected bogus path
+printed `404  this-page-does-not-exist-sc-control/` `[2026-08-24]`.
+
+### Running this in CI
+
+**Use `hugo server --environment prod_prod` in the Action.** An earlier draft of this section
+assumed a CI job must build and serve statically, and raised two objections to that. Both were
+wrong and are recorded here because the wrong version was written down as a finding:
+
+- *"Links in a static build would carry the production origin, so `links.internal` would count them
+  all as external."* **Unfounded.** Exactly one `.Permalink` appears in an `href` anywhere in
+  `themes/dohmh/layouts/` — the canonical `<link>` in `seo.html:3`, which is not an `<a>` and does
+  not feed `links`. The other 507 URL emissions are `relURL` / `RelPermalink`, i.e. root-relative
+  paths that are same-origin under any host `[2026-08-24]`.
+- *"`collectAllPaths()` may not enumerate from a statically served `sitemap.xml`."* Non-issue.
+  `hugo server` already serves that sitemap; it is where the 925 came from.
+
+There was never a reason `hugo server` could not run on Actions. **The actual constraint is that a
+baseline is only comparable to a run served the same way**, and both committed baselines were
+captured under `hugo server` — which is also what rewrites `baseURL` to localhost and is why
+`prod_prod` recorded `internal=89 / external=24` on `about/`, with `a816-dohbesp.nyc.gov` absent
+from `externalHosts`, identical to `staging` `[2026-08-24]`.
+
+**The one genuine difference between the two serving modes is Pagefind.** `hugo serve` never builds
+it, so `pagefind/pagefind.js` and `pagefind-ui.js` both answer **404** under the dev server
+`[verified 2026-08-24]`. The baseline still lists `pagefind/pagefind-ui.js` and
+`pagefind/pagefind-ui.css` in `assets`, because the request is recorded whatever its status — so the
+asset list is unaffected. What would change is that in a real build those scripts **execute**, and
+whatever the search UI injects would land in `controls`, `landmarks` and `img`. That is untested.
+
+**So:** serve with `hugo server` and the committed baselines apply as-is. If you would rather check
+the artifact that actually ships, that is a legitimate different choice — capture the baseline from
+a static build too, and expect Pagefind to appear in it. The test either way: build to a temp
+directory with the isolated-build recipe in CLAUDE.md, serve it, point `DE_BASE_URL` at it, and
+`--check` against the committed `prod_prod` baseline.
 
 ---
 

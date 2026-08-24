@@ -1,0 +1,180 @@
+{
+    "path": "neighborhood-reports/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/ccd-to-uhf42.js",
+            "js/cd-to-uhf42.js",
+            "js/main.js",
+            "js/site.js",
+            "js/uhflist.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css",
+            "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 15,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            2,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 3,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 268,
+            "external": 21,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 13,
+            "input": 2,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 2
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Neighborhood Reports – Environment & Health Data Portal",
+        "headingText": [
+            "Neighborhood Reports",
+            "Choose report",
+            "Choose Neighborhood",
+            "Select neighborhood",
+            "Get data for Community Districts or City Council District",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories/",
+            "/data-stories/geographies/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports",
+            "/neighborhood-reports/",
+            "/neighborhood-reports/bayside_little_neck/",
+            "/neighborhood-reports/bedford_stuyvesant_crown_heights/",
+            "/neighborhood-reports/bensonhurst_bay_ridge/",
+            "/neighborhood-reports/borough_park/",
+            "/neighborhood-reports/canarsie_flatlands/",
+            "/neighborhood-reports/central_harlem_morningside_heights/",
+            "/neighborhood-reports/chelsea_clinton/",
+            "/neighborhood-reports/coney_island_sheepshead_bay/",
+            "/neighborhood-reports/crotona_tremont/",
+            "/neighborhood-reports/downtown_heights_slope/",
+            "/neighborhood-reports/east_flatbush_flatbush/",
+            "/neighborhood-reports/east_harlem/",
+            "/neighborhood-reports/east_new_york/",
+            "/neighborhood-reports/flushing_clearview/",
+            "/neighborhood-reports/fordham_bronx_pk/",
+            "/neighborhood-reports/fresh_meadows/",
+            "/neighborhood-reports/gramercy_park_murray_hill/",
+            "/neighborhood-reports/greenpoint/",
+            "/neighborhood-reports/greenwich_village_soho/",
+            "/neighborhood-reports/high_bridge_morrisania/",
+            "/neighborhood-reports/hunts_point_mott_haven/",
+            "/neighborhood-reports/jamaica/",
+            "/neighborhood-reports/kingsbridge_riverdale/",
+            "/neighborhood-reports/long_island_city_astoria/",
+            "/neighborhood-reports/lower_manhattan/",
+            "/neighborhood-reports/northeast_bronx/",
+            "/neighborhood-reports/pelham_throgs_neck/",
+            "/neighborhood-reports/port_richmond/",
+            "/neighborhood-reports/ridgewood_forest_hills/",
+            "/neighborhood-reports/rockaways/",
+            "/neighborhood-reports/south_beach_tottenville/",
+            "/neighborhood-reports/southeast_queens/",
+            "/neighborhood-reports/southwest_queens/",
+            "/neighborhood-reports/stapleton_st_george/",
+            "/neighborhood-reports/sunset_park/",
+            "/neighborhood-reports/union_square_lower_east_side/",
+            "/neighborhood-reports/upper_east_side/",
+            "/neighborhood-reports/upper_west_side/",
+            "/neighborhood-reports/washington_heights/",
+            "/neighborhood-reports/west_queens/",
+            "/neighborhood-reports/williamsburg_bushwick/",
+            "/neighborhood-reports/willowbrook/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Explore data on how environments shape health in New York City's neighborhoods."
+    }
+}

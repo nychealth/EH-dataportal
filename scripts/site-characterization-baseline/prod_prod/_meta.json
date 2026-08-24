@@ -1,0 +1,20 @@
+{
+    "capturedAt": "2026-08-24T02:24:27.729Z",
+    "gitHead": "e9605238421bb65963ef8b8f22357cb06046ae7e",
+    "baselineKey": "prod_prod",
+    "hugoEnv": "prod_prod",
+    "dataBranch": "production",
+    "prefix": "/IndicatorPublic/",
+    "mode": "all",
+    "pages": 925,
+    "viewport": {
+        "width": 1280,
+        "height": 900
+    },
+    "blockedHosts": [
+        "translate.google.com",
+        "translate.googleapis.com",
+        "www.gstatic.com",
+        "www.googletagmanager.com"
+    ]
+}

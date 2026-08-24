@@ -1,0 +1,182 @@
+{
+    "path": "neighborhood-reports/ridgewood_forest_hills/housing_and_health/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "js/uhflist.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/arquero/dist/arquero.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 15,
+        "headingLevels": [
+            1,
+            1,
+            3,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            4,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 6,
+            "missingAlt": 1,
+            "emptyAlt": 0,
+            "zeroSize": 2
+        },
+        "links": {
+            "internal": 90,
+            "external": 28,
+            "emptyHref": 46,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 30,
+            "input": 0,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Housing and Health in Ridgewood - Forest Hills – Environment & Health Data Portal",
+        "headingText": [
+            "Housing and Health in",
+            "Housing and Health in",
+            "Health outcomes",
+            "Asthma hospitalizations (age 5 to 17) Asthma hospitalizations (age 5 to 17), 2023 7.7 Estimated annual rate per 10,000 Lower Asthma hospitalizations (age 5 to 17) Asthma hospitalizations (age 5 to 17), 2023 7.7 Estimated annual rate per 10,000 Lower than most neighborhoods",
+            "Asthma hospitalizations (adults) Asthma hospitalizations (adults), 2023 3.7 Age-adjusted rate per 10,000 Lower Asthma hospitalizations (adults) Asthma hospitalizations (adults), 2023 3.7 Age-adjusted rate per 10,000 Lower than most neighborhoods",
+            "Heat hospitalizations Heat stress: yearly hospitalizations, 2016 0.9* Age-adjusted rate per 100,000 Heat hospitalizations Heat stress: yearly hospitalizations, 2016 0.9* Age-adjusted rate per 100,000 In the middle of neighborhoods",
+            "Child lead poisoning Elevated blood lead levels (under age 6), 2024 9.6 Rate (5+ mcg/dL) per 1,000 tested Child lead poisoning Elevated blood lead levels (under age 6), 2024 9.6 Rate (5+ mcg/dL) per 1,000 tested In the middle of neighborhoods",
+            "Home safety and maintenance",
+            "Cracks Homes with cracks or holes, 2017 4.2* Percent Lower Cracks Homes with cracks or holes, 2017 4.2* Percent Lower than most neighborhoods",
+            "Peeling paint Old homes with peeling paint, 2017 0.7* Percent Lower Peeling paint Old homes with peeling paint, 2017 0.7* Percent Lower than most neighborhoods",
+            "Leaks Homes with leaks, 2017 4.8* Percent Lower Leaks Homes with leaks, 2017 4.8* Percent Lower than most neighborhoods",
+            "Supplemental heat Homes using supplemental heat, 2017 8.2* Percent Lower Supplemental heat Homes using supplemental heat, 2017 8.2* Percent Lower than most neighborhoods",
+            "Carbon monoxide Carbon monoxide incidents (without a detector), 2014-2016 0.2* Average annual rate per 10,000 buildings Lower Carbon monoxide Carbon monoxide incidents (without a detector), 2014-2016 0.2* Average annual rate per 10,000 buildings Lower than most neighborhoods",
+            "Households with AC Household air conditioning, 2017 94.0* Percent (with AC) Higher Households with AC Household air conditioning, 2017 94.0* Percent (with AC) Higher than most neighborhoods",
+            "Housing problems Renter-occupied homes with any health-related housing problems, 2017 37.0* Percent Lower Housing problems Renter-occupied homes with any health-related housing problems, 2017 37.0* Percent Lower than most neighborhoods",
+            "Indoor air quality",
+            "Mice or rats (in the building) Homes with mice or rats in the building, 2017 9.6 Percent Lower Mice or rats (in the building) Homes with mice or rats in the building, 2017 9.6 Percent Lower than most neighborhoods",
+            "Cockroaches Homes with cockroaches, 2017 11.0 Percent Lower Cockroaches Homes with cockroaches, 2017 11.0 Percent Lower than most neighborhoods",
+            "Social and economic risk factors",
+            "Child poverty Child poverty (under age 5), 2017-21 10.3 Percent Lower Child poverty Child poverty (under age 5), 2017-21 10.3 Percent Lower than most neighborhoods",
+            "Rent burden Rent-burdened households, 2017-21 45.1 Percent Lower Rent burden Rent-burdened households, 2017-21 45.1 Percent Lower than most neighborhoods",
+            "Evictions Evictions (court-ordered), 2022 3.9 Estimated annual rate per 10,000 homes Lower Evictions Evictions (court-ordered), 2022 3.9 Estimated annual rate per 10,000 homes Lower than most neighborhoods",
+            "Crowding Household crowding, 2019-23 7.2 Percent Crowding Household crowding, 2019-23 7.2 Percent In the middle of neighborhoods",
+            "What is the City doing?",
+            "What you can do",
+            "More about",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports",
+            "/neighborhood-reports/",
+            "/neighborhood-reports/ridgewood_forest_hills/",
+            "/neighborhood-reports/ridgewood_forest_hills/housing_and_health/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "access.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Housing and Health data profile for the Ridgewood - Forest Hills neighborhood of NYC."
+    }
+}
