@@ -144,12 +144,16 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
-**Tasks 1-10 done 2026-08-24. Tasks 11-14 opened the same day**, out of the question the first
-red run could not answer: it said three pages differed, and nothing about what to go and look at.
-Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`. The check is green
-on a GitHub runner — run `32780688054` at `d0b3050820` — and draft PR #1480 into `production` is
-open and unmerged. The branch tip has since moved by docs-only commits, so re-read
-`git rev-parse HEAD` before citing that green run.
+**Tasks 1-10 done 2026-08-24. Tasks 11-15 done or part-done 2026-08-25** — 11-14 out of the
+question the first red run could not answer (it said three pages differed, and nothing about what
+to go and look at), and 15 out of the 20-minute timeout that answering it cost.
+Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; Tasks 11-15 are the
+commits from `7bcdec1945` to `e9e4234a5a`. The check is green on a GitHub runner
+— run `32807666633` at `e9e4234a5a`, 2026-08-25, the last commit that changed the site or the
+harness — and draft PR #1480 into `production` is open and
+unmerged. **One thing is still owed: Task 14's red arm**, where a perturbed baseline sends both the
+sweep and the base control red and the verdict must read "probably not yours". A green run is a
+fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that run.
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -167,8 +171,8 @@ table rather than from this line.
 | 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c`; run fixes `4f2e669c77`, `156aed9289`; revert `d0b3050820` | **DONE 2026-08-24** — green on a GitHub runner. Open: PR #1480 is a draft and unmerged, so the file is not on `production` and `workflow_dispatch` stays unregistered | Static checks first: YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. Then four runs, all `pull_request` events from PR #1480: `32771116783` @ `60ea1333ee` GREEN, 8m13s job — 62s to a serving build, 1.2s Pagefind, 370s to sweep 925 pages at concurrency 6 (ubuntu-24.04 reports 4 logical processors); `32777189174` @ `cb334f5b37` RED on three deliberately perturbed baseline records, which is what exercised the `if: failure()` path a green run skips entirely, and exposed the artifact upload dropping both `.sc-check` trees plus an orphaned `hugo`; `32779430909` @ `156aed9289` RED on the same injection with both fixed and the artifact complete; `32780688054` @ `d0b3050820` GREEN after the revert, 8m9s |
 | 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
 | 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
-| 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **PARTIAL 2026-08-24** — the step summary is in; the source-file intersection was dropped for something better grounded | `GITHUB_STEP_SUMMARY` written as a 4-column markdown table on the red run and **not written at all** on the green one, both checked against a temp file. **That GitHub renders it is unproven and cannot be proven locally** — it needs one push |
-| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **BUILT, STILL NEVER RUN 2026-08-25** — the first attempt to exercise it timed out before the sweep reported, and a cancelled job does not satisfy `if: failure()`, so the control was SKIPPED | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. On a runner: `if: failure()` correctly skipped it on a green sweep `[run 32801546852]` — the only arm CI has confirmed. The green arm attempt is `[run 32802721473]`, and it found Task 15 instead |
+| 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **DONE 2026-08-25** — the step summary renders; the source-file intersection was dropped for something better grounded | Locally: written as a 4-column table on a red run and **not written at all** on a green one. On a runner `[run 32806127560]`: both blocks render on the run's landing page — the sweep's table reading `structure.lang / 925 / 404.html / "en" -> "zz"`, and base-control's verdict paragraph beneath it. Confirmed by eye, which is the only way a rendering claim can be confirmed |
+| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **GREEN ARM DONE 2026-08-25; red arm still owed** — the first attempt timed out and found Task 15 instead; the second ran the control end to end | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. On a runner: `if: failure()` correctly skipped it on a green sweep `[run 32801546852]`; the first green-arm attempt `[run 32802721473]` timed out and found Task 15 instead; the second `[run 32806127560, after the cap]` ran it end to end — sweep red at 8m33s, control green at 8m53s, verdict "The base branch is GREEN … this PR's changes are" rendered on the run page, and both injection reverts are green `[32804532898 @ 986b4d969c, 32807666633 @ e9e4234a5a]`. **The RED arm is still unexercised** |
 | 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
 
 Derive what this table deliberately does not claim:
@@ -1438,8 +1442,19 @@ prove the markdown; it is needed to prove GitHub renders it, which is one push.
 
 **Step 1 is in and proven both ways**: on the red run the file is a valid 4-column markdown table;
 on the green run it is never created, which is the half that a positive-only check would miss.
-**Whether GitHub renders it is untested and untestable here** — it needs one push, and until that
-happens this task is not closed.
+
+**Rendering confirmed 2026-08-25** `[run 32806127560]`. Both blocks appear on the run's landing
+page: the sweep's table, whose single row reads `structure.lang / 925 / 404.html / "en" -> "zz"`,
+and base-control's verdict paragraph below it. Two things worth knowing for the next person.
+
+Summaries render on the run's **landing page**, below the job graph — never inside the step logs,
+by design, since the content is written to a file rather than to stdout. Looking in the log view
+and finding nothing is not evidence that the write failed; it is where the write is guaranteed not
+to appear. That cost a round trip here.
+
+The table **clips on a narrow viewport**: `Change` is the fourth of four columns and is pushed
+off-screen on a phone, which is the least useful ordering, since `Example page` is the column a
+reader needs least. Worth swapping if the summary is read on anything but a desktop.
 
 **Step 2 is in**, as `shapeOf()`, with the floor described under Task 12.
 
@@ -1560,6 +1575,28 @@ Three consequences, each worse than the timeout:
 - **Tasks 13 and 14 both stayed open.** The step summary never wrote, and the control never ran.
 
 Task 15 is the fix. Retrying the injection before it lands would time out the same way.
+
+### The second attempt, 2026-08-25 — the green arm, confirmed
+
+Same two-line injection, run after the cap landed `[run 32806127560]`. Every prediction held:
+
+| | First attempt | Second |
+|---|---|---|
+| sweep job | cancelled at 20m15s | failure at **8m33s** |
+| re-capture | 12 min, still running | **skipped** — the cap fired at 925 |
+| artifact | skipped | **uploaded**, 4s |
+| `base-control` | **skipped** | **ran, 8m53s, GREEN** |
+
+The summary printed one row rather than 925 hunks, and its shape line read `EVERY page (925). Look
+at baseof.html, head.html, the header or footer partials …` — checkably correct, since
+`baseof.html:2` and `list.html:2` are where the edit was. The verdict rendered as
+"The base branch is GREEN … EHDP-data is not the explanation; this PR's changes are."
+
+**The green arm is the one that proves the discrimination works**: the base branch does not carry
+the injection, so a control that could not tell the two apart would have gone red here. It did not.
+
+**The red arm is still owed** — a baseline perturbation, where both runs go red and the verdict must
+read "probably not yours". Injection reverted in `986b4d969c` and `e9e4234a5a`.
 
 ---
 

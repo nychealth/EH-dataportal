@@ -133,7 +133,13 @@ are printed as a harness-health number and deliberately **not** baselined — th
   and are proved live by `node scripts/site-characterization-probe-control.mjs`.
 - **Each mode has its own npm script rather than a forwarded flag**, for the same reason
   `smoke:all` does: PowerShell eats the `--` in `npm run x -- --flag`.
-- **Pages that disagree between sweeps are re-captured sequentially before anything is reported.**
+- **Pages that disagree between sweeps are re-captured sequentially before anything is reported —
+  up to 25 of them.** Past that cap `--check` reports what it captured and says so in the output,
+  because a capture race does not reach hundreds of pages at once and a difference that wide is
+  systematic: a one-line template edit that moved `lang` on every page sent the CI job into a
+  12-minute sequential re-capture of all 925 and hit `timeout-minutes: 20` having reported nothing
+  `[run 32802721473, 2026-08-25]`. `--baseline` is uncapped — it compares two sweeps of the same
+  commit, is run by hand, and is under no timeout.
   Most of what looked like instability was one dead field: `img` was counting Leaflet map tiles,
   which measure network timing rather than page structure. Removing it took `--baseline`
   arbitration from 18 pages to 2, and the `prod_prod` capture needed none at all. **Whatever

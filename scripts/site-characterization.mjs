@@ -125,7 +125,9 @@ const CURRENT_DIR = "scripts/site-characterization-current";
 // 25 is above every arbitration count observed here — 18 before the
 // Leaflet-tile and quiescence fixes, 2 after them, 0 on the prod_prod capture,
 // and 3 in the one failure that justifies recapture() at all — and far below
-// anything systematic. Worst case it costs about 30s.
+// anything systematic. A full-cap re-capture has never been run: at the
+// >=0.78 s/page the timed-out run implies (720s for 925 pages, and it had not
+// finished), 25 pages is on the order of 20-30s.
 //
 // Only --check is capped. --baseline arbitrates two sweeps of the SAME commit,
 // where a wide disagreement means something is wrong that a re-capture will not
