@@ -148,15 +148,18 @@ Two field notes that are load-bearing:
 question the first red run could not answer (it said three pages differed, and nothing about what
 to go and look at), and 15 out of the 20-minute timeout that answering it cost.
 Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; Tasks 11-15 are the
-commits from `7bcdec1945` to `e9e4234a5a`. The check is green on a GitHub runner
-— run `32807666633` at `e9e4234a5a`, 2026-08-25, the last commit that changed the site or the
-harness — and draft PR #1480 into `production` is open and
-unmerged. **Three things are open.** Task 14's red arm, where a perturbed baseline sends both the
-sweep and the base control red and the verdict must read "probably not yours"; Task 16, which
-is spec only — nothing of it is built; and Task 17, whose script is in at `377a306f5d` with
-its two-key path and `gitHead` cross-check still unexercised — the end-to-end attempt aborted on an
-unstable uplink, which is measured rather than guessed at in the findings. A green run is a
-fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that run.
+commits from `7bcdec1945` to `e9e4234a5a`; Task 17 is `377a306f5d`, `c7228357ac` and `1b33786d1b`.
+The check is green on a GitHub runner — run `32807666633` at `e9e4234a5a`, 2026-08-25 — and draft
+PR #1480 into `production` is open and unmerged. What landed after that run does not disturb it:
+`c7228357ac` rewrites both baselines' `_meta.json`, and `1b33786d1b` touches only the re-baseline
+tool, which the workflow never calls — it runs `site-characterization.mjs` and nothing else
+`[.github/workflows/site-characterization.yml:232,414]`. The workflow's own command was re-run
+locally at `1b33786d1b` to confirm it: `node scripts/site-characterization.mjs --check --all`
+captured 925/925 against a dev_stage server and PASSED, exit 0 `[2026-08-25]`. **Two things are
+open.** Task 14's red arm, where a perturbed baseline sends both the sweep and the base control red
+and the verdict must read "probably not yours"; and Task 16, which is spec only — nothing of it is
+built. A green run is a fact about a commit, not about the branch, so re-read `git rev-parse HEAD`
+before citing that run.
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -178,7 +181,7 @@ table rather than from this line.
 | 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **GREEN ARM DONE 2026-08-25; red arm still owed** — the first attempt timed out and found Task 15 instead; the second ran the control end to end | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. On a runner: `if: failure()` correctly skipped it on a green sweep `[run 32801546852]`; the first green-arm attempt `[run 32802721473]` timed out and found Task 15 instead; the second `[run 32806127560, after the cap]` ran it end to end — sweep red at 8m33s, control green at 8m53s, verdict "The base branch is GREEN … this PR's changes are" rendered on the run page, and both injection reverts are green `[32804532898 @ 986b4d969c, 32807666633 @ e9e4234a5a]`. **The RED arm is still unexercised** |
 | 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
 | 16 | Record which EHDP-data commit a baseline describes | *not started* | **OPEN 2026-08-25** — spec only, written out of the question "did the data move, or did I?" | none yet; the four checks it has to pass are in the task, and row 3 of that table is the one that can break the harness for everyone |
-| 17 | Re-baseline a deliberate site-wide change | `377a306f5d` | **PART-DONE 2026-08-25** — the script is built and its classification half is proven; the capture half is proven for one key and **the two-key path and the gitHead cross-check have never run**, because the end-to-end attempt aborted on 13 timed-out NR pages | Classification, no sweeps needed: unchanged pair -> 0 rows exit 0; `cb334f5b37`'s three-record perturbation replayed -> exactly those 3 pages and 3 fields, prod_prod only, below-floor shape message, exit 1; `--expect` covering one -> 1 covered / 2 not with the glob list in report.md; a glob matching no changed page -> named, not dropped. Two defects found by those rows and fixed. End to end: the isolated prod_prod server wrote 899 of 912 records **byte-identical** to the committed baseline (the 13 differing ones being the failures), against an unchanged site source across `a6d91e78ec..HEAD`; `DE_SERVER_OWNED` confirmed by the missing caveat on the Hugo line; failed-capture rollback added after that run corrupted the baseline, then proved with a stub -> 926 files, `_meta.json` back, `git status` empty, exit 2. The 13 pages load in 601-1062ms sequentially and 13-wide without failing, so the cause is **not** those pages; an A/B/A with external requests blocked puts ~75-80% of the load phase on external requests (median 4,467 -> 1,112 -> 5,545ms, doc flat at ~400ms), and the same round varies 3.5x between runs |
+| 17 | Re-baseline a deliberate site-wide change | `377a306f5d`, `c7228357ac`, `1b33786d1b` | **DONE 2026-08-25** — every proof row has run, the two-key path and the `gitHead` cross-check included | Classification, no sweeps needed: unchanged pair -> 0 rows exit 0; `cb334f5b37`'s three-record perturbation replayed -> exactly those 3 pages and 3 fields, prod_prod only, below-floor shape message, exit 1; `--expect` covering one -> 1 covered / 2 not with the glob list in report.md; a glob matching no changed page -> named, not dropped. Two defects found by those rows and fixed. **The two-key run is green** `[2026-08-25 at e93bfcf1d5]`: 925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both `_meta.json` at one `gitHead`, 0 of 925 pages changed on each, exit 0 — and all 1,850 records byte-identical to baselines captured 2026-08-24 from *normal* servers, which is the isolated-server claim at full breadth and retires the earlier 899-of-912 figure. Committed as `c7228357ac`: two `_meta.json`, no record churn. `DE_SERVER_OWNED` confirmed by the missing caveat on the Hugo line. The attempt before it failed on 5 `ERR_NETWORK_CHANGED` pages after prod_prod had completed, which fired the failed-capture rollback for real — `git status` empty under `staging/`, 926 files, `_meta.json` intact — where it had previously been proved only with a stub. Two message defects that failure exposed are fixed in `1b33786d1b`, each error path exercised. The 13 pages load in 601-1062ms sequentially and 13-wide without failing, so the cause is **not** those pages; an A/B/A with external requests blocked puts ~75-80% of the load phase on external requests (median 4,467 -> 1,112 -> 5,545ms, doc flat at ~400ms), and the same round varies 3.5x between runs |
 
 Derive what this table deliberately does not claim:
 
@@ -1844,7 +1847,9 @@ port, any other harness invocation would discover and reuse this script's privat
 ### Steps
 
 1. **Preflight.** Refuse unless `scripts/site-characterization-baseline/` is git-clean, so the
-   before-side is restorable with one `git checkout --` and the resulting diff is itself the proof.
+   before-side is restorable from git and the resulting diff is itself the proof. Restoring takes
+   `git checkout --` *and* `git clean -fd`: a re-baseline that adds pages writes records git has
+   never seen, and checkout cannot remove an untracked file `[2026-08-25]`.
    Record `git rev-parse HEAD`. Discover committed keys by scanning for `_meta.json`; map key to
    environment (`staging` to `dev_stage`, `production` to `dev_prod`, `prod_prod` to `prod_prod`).
    *Expected:* on this tree, two keys — `staging` and `prod_prod`.
@@ -1880,7 +1885,7 @@ not what any page renders, so nothing below a real run is sufficient.
 | A known perturbation replayed into the before-snapshot — the three records from `cb334f5b37`, the same control Task 12 used | exactly those 3 pages and 3 fields reported unexplained, `shapeOf` giving the below-floor message rather than asserting a template |
 | The same, with `--expect` covering one of the three | 2 unexplained, 1 counted as expected, the glob list present in `report.md` |
 | An `--expect` glob matching no changed page | named in the report as matching nothing |
-| A full two-key run on a clean tree | both `_meta.json` share one `gitHead`; `git status` shows only baseline records; `git checkout --` restores the tree exactly |
+| A full two-key run on a clean tree | both `_meta.json` share one `gitHead`; `git status` shows only baseline records; `git checkout --` plus `git clean -fd` restores the tree exactly |
 
 Row 1 is the one that separates a working comparison from a dead one: a classifier that always
 returns nothing passes every other row's "no unexplained changes" half.
@@ -1889,7 +1894,7 @@ returns nothing passes every other row's "no unexplained changes" half.
 arbitrates one sweep against another. At Task 9's 114s per 925-page sweep that is ~5 minutes a key
 and ~10-11 for both. Assembled from measured parts; not a measurement of this script.
 
-### Task 17 findings — built, part-proven, and one thing it cannot fix
+### Task 17 findings — built, proven, and one thing it cannot fix
 
 Built as `scripts/site-characterization-rebaseline.mjs`. The steps above stand as written; these
 are the corrections testing forced, and the one failure the end-to-end run surfaced that belongs to
@@ -1922,13 +1927,13 @@ same tree `data-explorer/*` matches 1 page and `data-explorer/**` matches 44. Th
 index, where `[^/]*` matches the empty string after the slash. Because record paths keep their
 trailing slash, a single star is almost never what you want for a section.
 
-### The end-to-end run failed, and what it proved on the way
+### The first end-to-end attempt failed, and what it proved on the way
 
 Run 2026-08-25 at `b6dcd4155c`, `--expect "neighborhood-reports/**"`. The prod_prod key got as far
 as a complete sweep and then **13 neighborhood-report pages hit `page.goto: Timeout 30000ms
 exceeded`**, so the harness captured 912/925 and refused — correctly — to write a baseline from a
-partial sweep. The staging key never ran. **So the two-key path and the `gitHead` cross-check in
-step 5 remain unexercised.**
+partial sweep. The staging key never ran, so that attempt left the two-key path and the `gitHead`
+cross-check in step 5 unexercised. Both have since run green — see two sections below.
 
 Three things that run did establish.
 
@@ -2002,6 +2007,71 @@ demonstrated that the probe reports non-200 rather than serving as a succeeded-p
 **`--concurrency N` is passed through to the harness** so the knob is reachable without editing
 anything. It is a workaround for something undiagnosed, not a fix, and the default is deliberately
 left as the harness's machine-derived value rather than lowered here.
+
+### The two-key run, green — and a failure that was not a slow uplink
+
+Run again 2026-08-25 at `e93bfcf1d5` on a different connection, no `--expect`, and it completed:
+**925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both
+`_meta.json` carrying one `gitHead`, 0 of 925 pages changed on each key, exit 0.** Step 5's
+cross-check has now run. Committed as `c7228357ac`, which is two `_meta.json` files and nothing else.
+
+**All 1,850 records came back byte-identical to baselines captured 2026-08-24 from normal servers.**
+That retires the 899-of-912 figure above and settles isolation at full breadth: an isolated `hugo
+server` with `-d` and `HUGO_RESOURCEDIR` redirected produces the same characterization, page for
+page, on both environments. The same caveat carries — it is evidence only because the site source
+did not move, and `git diff --name-only a6d91e78ec..HEAD -- content themes assets data config
+static` is still empty.
+
+**The attempt before it failed on a different mechanism than the timeouts diagnosed above.** Five
+pages died on `page.goto: net::ERR_NETWORK_CHANGED`, not on a 30s timeout, after prod_prod had
+completed 925/925. Windows' own `Microsoft-Windows-NetworkProfile/Operational` log splits the four
+sweep-windows exactly:
+
+| Sweep | `4004 Network State Change Fired` in window | Failures |
+|---|---|---|
+| attempt 1, prod_prod, ~15:00-15:06 | 0 | 0 |
+| attempt 1, staging, ~15:07-15:09:55 | **2** — 15:09:28 and 15:09:34 | 5 |
+| attempt 2, both keys, 15:12-15:28 | 0 | 0 |
+
+Both 15:09 events carry `Host Name Changed: true`; the adapter is an iPhone USB tether, connected at
+14:54 when the LinkNYC uplink dropped. A first pass at that log returned zero events and was wrong —
+it filtered from 18:50 *local* against UTC timestamps — so what makes the zeros real is the positive
+control: the same log with no time filter returns those two events as its most recent. Not a
+controlled experiment, since nothing here induced a network change; but three clean sweeps and one
+failure split perfectly on an independent signal.
+
+**The restore path fired for real**, where above it is recorded as proved with a stub: `git status`
+under `staging/` came back empty, 926 files present, `_meta.json` still the 2026-08-24 one, no
+`git checkout` needed.
+
+### Two defects only a real partial failure could show
+
+Both fixed in `1b33786d1b`, each error path exercised rather than reasoned about, since a green run
+reaches none of them.
+
+**1. `Nothing was re-baselined.` was false at the moment it printed.** prod_prod had completed and
+was sitting in the tree at a different `gitHead` than staging — failure mode 2 from the script's own
+header, produced by the code written to prevent it. `recapture()`'s message is now scoped to the key
+it restored, and the loop names the keys that already finished. Exercised by mapping `staging` to a
+nonexistent environment: prod_prod completed, and the failure named it.
+
+**2. The discard advice could not do what it said, and this is the half that bites in ordinary use.**
+Every site printed `git checkout -- <dir>` alone. A re-baseline that ADDS pages writes records git
+has never seen, and checkout cannot remove an untracked file — so the next run's preflight refuses on
+the leftovers and the operator loops on advice this script printed. Observed directly: after a
+capture left one untracked record, `git checkout --` reported the tree clean while `git status` still
+showed `??`, and re-running produced the refusal. All three sites now print `git clean -fd` beside
+it, and the two commands run verbatim leave the tree clean.
+
+The preflight also stopped offering "commit or discard" when the keys disagree about which commit
+they describe, and it caps the `git status` dump at 12 lines — a partial run leaves hundreds, and the
+advice was landing below them. Exercised on a 21-line dirty tree: 12 shown, `... and 9 more`, both
+commits named.
+
+**One thing left unfixed.** `classify()` takes its denominator from the *after* tree, so when the two
+sides hold different page sets the changed count can exceed the stated total: a sample-mode capture
+against a full snapshot printed `886 of 41 pages changed`. In ordinary use the sets differ by a
+handful rather than by hundreds, so the line reads oddly rather than misleadingly.
 
 ### Two things deliberately not built
 
