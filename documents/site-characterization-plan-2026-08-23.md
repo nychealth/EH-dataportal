@@ -168,7 +168,8 @@ table rather than from this line.
 | 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
 | 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
 | 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **PARTIAL 2026-08-24** — the step summary is in; the source-file intersection was dropped for something better grounded | `GITHUB_STEP_SUMMARY` written as a 4-column markdown table on the red run and **not written at all** on the green one, both checked against a temp file. **That GitHub renders it is unproven and cannot be proven locally** — it needs one push |
-| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **BUILT 2026-08-24, NEVER RUN** — it only fires when the sweep is red, and no red run has happened since it existed | The whole file parses to 2 jobs / 11 + 14 steps, the sweep job byte-unchanged `[js-yaml]`. Every `run:` block extracted and `bash -n` clean. Both verdict arms executed locally against a real base SHA — the arm CI cannot reach on any single run. **Nothing here proves the job runs on a runner** |
+| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **BUILT, STILL NEVER RUN 2026-08-25** — the first attempt to exercise it timed out before the sweep reported, and a cancelled job does not satisfy `if: failure()`, so the control was SKIPPED | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. On a runner: `if: failure()` correctly skipped it on a green sweep `[run 32801546852]` — the only arm CI has confirmed. The green arm attempt is `[run 32802721473]`, and it found Task 15 instead |
+| 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
 
 Derive what this table deliberately does not claim:
 
@@ -1532,3 +1533,88 @@ exercise one of them.
 fires only on a red sweep, and there has been no red sweep since it existed. Two deliberate reds
 per the table above will close it, and the first of them also closes Task 13's open question of
 whether GitHub renders the step summary at all.
+
+### The first attempt, 2026-08-25 — it timed out, and found a real defect instead
+
+The green-arm injection went in as specified: `<html lang>` hardcoded in both `baseof.html` and
+`list.html` (two files, because `<html lang>` is set in two places and changing one leaves
+list-rendered pages at their real language). It moved `structure.lang` on all 925 pages, which is
+what it was meant to do. **Not one of the four predictions was confirmed, because the run never
+reported.**
+
+`[run 32802721473, 2026-08-25]`: the sweep finished normally at 6m15s, printed
+`925 page(s) differ from the baseline — re-capturing sequentially before reporting`, and spent the
+next 12 minutes in an un-concurrent re-capture before `timeout-minutes: 20` cancelled it at 20m15s.
+
+**The harness was slowest exactly when it had the most to say.** `recapture()` re-captures every
+differing page one at a time; that guard is sized for the handful of pages a capture race produces,
+and a site-wide regression — the case the Task 12 summary exists for — turns it into a second,
+serial sweep.
+
+Three consequences, each worse than the timeout:
+
+- **The base-branch control was SKIPPED, not run.** `if: failure()` is false for a *cancelled* job.
+  This plan reasoned about that case when Task 14 was written and called it correct; it is not. A
+  timeout disables the diagnostic precisely when a run has died.
+- **The artifact was skipped too**, on the same condition, so nothing was left to inspect.
+- **Tasks 13 and 14 both stayed open.** The step summary never wrote, and the control never ran.
+
+Task 15 is the fix. Retrying the injection before it lands would time out the same way.
+
+---
+
+## Task 15: cap the arbitration, and keep the artifact when a job is cancelled
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — `ARBITRATION_CAP` beside the other configuration constants,
+  and the `if (check && !failed)` arbitration branch.
+- `.github/workflows/site-characterization.yml` — `id: check` on the sweep's check step, and the
+  artifact upload's condition.
+
+**Interfaces:** none. Nothing reads `ARBITRATION_CAP` outside the module.
+
+**The cap.** Above 25 differing pages, `--check` reports what it captured instead of re-capturing
+each page sequentially. `recapture()` guards against a per-page capture race, and a race does not
+reach hundreds of pages at once — a difference that wide is systematic, so arbitration is pure cost
+on a result that will not change.
+
+25 is above every arbitration count observed on this harness — 18 before the Leaflet-tile and
+quiescence fixes, 2 after them, 0 on the `prod_prod` capture, and 3 in the one failure that
+justifies `recapture()` existing at all — and far below anything systematic. Worst case it costs
+about 30s.
+
+Only `--check` is capped. `--baseline` arbitrates two sweeps of the *same* commit, where a wide
+disagreement means something is wrong that a re-capture will not settle either; it is rare, run by
+hand, and under no timeout.
+
+**The artifact condition.** `if: failure()` was wrong: a job cancelled by `timeout-minutes` skips a
+`failure()` step while still running an `always()` one `[run 32802721473, 2026-08-25: the timeout
+skipped the upload and ran "Stop the Hugo server" beside it]`, and a timed-out run is when the
+capture is most worth having. It is now `always() && steps.check.outcome != 'success'`, which also
+fails safe: if a cancelled step leaves `outcome` unset, the comparison is still not `'success'` and
+the upload runs. GitHub's own docs do not say whether `cancelled()` covers a `timeout-minutes`
+expiry `[docs.github.com/en/actions/reference/workflows-and-actions/expressions, read 2026-08-25:
+"Returns true if the workflow was canceled", with no mention of timeouts]`, which is why this gates
+on an observed step outcome rather than on that function.
+
+**Deliberately NOT changed: `base-control`'s own trigger.** Widening it to fire on a cancelled
+sweep would spend an 8-minute job every time someone cancels a run by hand. Fixing what caused the
+timeout is the better trade, and with the cap in place a 925-page regression reports in about
+7 minutes instead of timing out.
+
+**Proof that ran**, both sides of the threshold, 925 pages each, against the `staging` baseline:
+
+| Perturbed records | Cap message | Sequential re-capture | Exit | Shape line |
+|---|---|---|---|---|
+| 40 under `data-stories/` | yes, naming 40 and 25 | **none** | 1 | `confined to data-stories/ — 40 of 925` |
+| 3 under `data-stories/` | none | yes | 1 | `3 of 925 pages — too few to infer a template from` |
+
+The pairing is the proof. The above-cap run on its own shows the new branch fires; it says nothing
+about whether the old one survived, and a cap that fired at every size would disable the race guard
+everywhere while looking like a fix. The 40-page run also exercised `shapeOf`'s section branch
+against real records for the first time — it had only ever been tested on synthetic trees.
+
+ESLint clean on both scripts, and the workflow still parses to 2 jobs / 11 + 14 steps `[js-yaml]`.
+
+**Still owed:** the retry of Task 14's green arm, which is now unblocked.
