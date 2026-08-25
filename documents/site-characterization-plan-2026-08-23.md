@@ -1687,12 +1687,23 @@ retention window the upload sets. **Not fixed here**: it widens Task 14 past the
 opened for, and the call on whether a `--check` tree should carry a `_meta.json` (and whether
 `--baseline` should then ignore it) is worth taking deliberately.
 
-**What a log cannot confirm.** Whether the RED verdict *renders* on the run's landing page is a
-rendering claim, and the run log holds only the fact that the `else` branch ran and the text it
-wrote. Task 13 established that this file's summary renders on a runner `[run 32806127560]`, on the
-GREEN branch of the same `if`; the two branches are the same `>> "$GITHUB_STEP_SUMMARY"` block, so
-the remaining risk is small and is not zero. Confirm by eye at
-`https://github.com/nychealth/EH-dataportal/actions/runs/32905347134`.
+**The rendering, confirmed by eye** — the only way a rendering claim can be — **and it is better
+than this plan predicted.** Chris screenshotted the run page on 2026-08-25. The RED verdict renders
+under a **Base-branch control** heading, `production` and the base SHA in code spans, the bolded
+"The base branch is RED too." leading its paragraph.
+
+What was not predicted: the control job's summary carries **its own field table**, identical to the
+sweep's, because the harness writes to `$GITHUB_STEP_SUMMARY` on any red check (Task 12) and the
+control's check is red. So the run page shows two `3 of 925 pages differ` tables stacked, and the
+verdict's own instruction — "Compare the two field tables: a field that moved in BOTH runs is the
+data" — is a thing a reader can actually do without leaving the page. That was an accident of
+where Task 12's summary write lives, not a design, and it is the single most useful property the
+red arm has.
+
+One readability wrinkle, correct by design and worth knowing before it is reported as a bug: the
+sidebar shows a green tick beside "Was the base branch red too?" while that job's own summary
+begins "Characterization check FAILED". `continue-on-error` is why, and the verdict paragraph
+underneath is what reconciles them.
 
 **The revert needs no run of its own.** `git diff 90581f0b34 -- scripts/` is empty after
 `b2513b6904`, and `[run 32894749060 @ 90581f0b34]` was green on a runner — so the restored state is
