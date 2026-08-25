@@ -23,7 +23,7 @@ import { fileURLToPath } from "node:url";
 // (port, prefix) pair returning HTTP 200 wins. The prefixes are the paths from
 // each environment's baseURL in config/<env>/config.toml.
 const PROBE_PORTS = [8080, 8081, 1313];
-const PREFIXES = ["/dev-stage/", "/dev-prod/", "/local-stage/", "/local-prod/", "/IndicatorPublic/", "/"];
+export const PREFIXES = ["/dev-stage/", "/dev-prod/", "/local-stage/", "/local-prod/", "/IndicatorPublic/", "/"];
 
 // The server we start when none is running. dev_stage means STAGING data, so a
 // page whose content differs between EHDP-data branches will differ here from
@@ -46,7 +46,7 @@ const VENDORED_HUGO = fileURLToPath(new URL(
     process.platform === "win32" ? "../node_modules/.bin/hugo.cmd" : "../node_modules/.bin/hugo",
     import.meta.url,
 ));
-const SPAWN_CMD = existsSync(VENDORED_HUGO) ? VENDORED_HUGO : "hugo";
+export const SPAWN_CMD = existsSync(VENDORED_HUGO) ? VENDORED_HUGO : "hugo";
 
 // Shell-safe form of SPAWN_CMD. A resolved path can contain spaces where the
 // bare name never could, and both the Windows spawn branch and hugoVersion()
@@ -185,7 +185,15 @@ export async function ensureDevServer() {
             baseURL,
             stop: async () => {},
             pagefind: await pagefindServed(baseURL),
-            hugo: { version: hugoVersion(), owned: false },
+            // `owned` asserts the recorded version IS this server's, rather than
+            // the binary this checkout would have used. A DE_BASE_URL server is
+            // usually someone else's, so false is the right default — but a
+            // caller that spawned it ITSELF with SPAWN_CMD knows otherwise, and
+            // an env var is the only way that fact crosses a process boundary.
+            // site-characterization-rebaseline.mjs is the one such caller: it
+            // starts an isolated server per environment and drives this harness
+            // as a child. Never set it by hand for a server you merely found.
+            hugo: { version: hugoVersion(), owned: process.env.DE_SERVER_OWNED === "1" },
         };
     }
 

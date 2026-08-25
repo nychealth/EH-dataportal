@@ -19,6 +19,7 @@
         "characterize:site": "node scripts/site-characterization.mjs --check --all",
         "characterize:site:sample": "node scripts/site-characterization.mjs --check",
         "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
+        "characterize:site:rebaseline": "node scripts/site-characterization-rebaseline.mjs",
         "docs-check": "node scripts/docs-check.mjs"
     },
     "dependencies": {
