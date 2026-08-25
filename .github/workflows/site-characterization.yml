@@ -267,3 +267,187 @@ jobs:
         run: |
           pkill -TERM -x hugo 2>/dev/null || true
           kill -TERM "${HUGO_PID}" 2>/dev/null || true
+
+  # ---------------------------------------------------------------------
+  # was the base branch already red?
+  #
+  # `structure` carries data-derived counts and prod_prod pulls EHDP-data's
+  # `production` branch, which moves independently of this repo — so a red
+  # sweep above is not by itself a regression in the PR. This job is the
+  # disconfirming test, and nothing about better formatting can replace it:
+  # rebuild the site from the BASE branch and run the same check against it,
+  # minutes later and therefore against the same EHDP-data.
+  #
+  #   green here -> the base is fine, so this PR caused it
+  #   red here   -> the base is red too, so the data moved and the PR is
+  #                 probably innocent
+  #
+  # ONLY THE SITE SOURCE COMES FROM THE BASE. The harness and the baseline
+  # stay at this PR's head on purpose: a PR that also edits the harness or
+  # re-captures the baseline would otherwise move three variables at once,
+  # and the question is only about the first. It is also the only shape that
+  # runs at all today — `production` carries neither
+  # `scripts/site-characterization.mjs` nor a baseline directory
+  # `[verified 2026-08-24: git ls-tree production, both ABSENT]`, so a job
+  # that checked the base out wholesale would die on a missing file rather
+  # than report a finding.
+  #
+  # base.sha is the BASE BRANCH TIP, not the merge base
+  # `[verified 2026-08-24: on PR #1480 baseRefOid is d862072bea, which is
+  # production's tip, where git merge-base production HEAD is d8c45abebe]`.
+  # The tip is the right control — it is what this PR merges into and what is
+  # deployed — and it needs no history, where a real merge base would need
+  # fetch-depth 0 on a repo whose depth-1 checkout has already taken 9m52s
+  # once `[run 32777189174]`.
+  #
+  # These steps are deliberately NOT shared with the job above. They looked
+  # identical when this was planned and are not: two checkouts, two npm ci, a
+  # server built in a subdirectory, and a verdict instead of a gate.
+  # ---------------------------------------------------------------------
+
+  base-control:
+    name: Was the base branch red too?
+    needs: characterize
+    if: failure() && github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    concurrency: # its own group — sharing the sweep's would have the two cancel each other
+      group: ${{ github.workflow }}-base-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      - name: Checkout this PR (the harness and the baseline)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Checkout the base branch tip (the site under test)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # Two installs, because the two trees play different parts: the root runs
+      # the harness and needs playwright, and base/ builds the site and needs
+      # ITS OWN locked hugo-extended — the point is the site that commit builds.
+
+      - name: Install dependencies (this PR, for the harness)
+        run: npm ci
+
+      - name: Install dependencies (base branch, for its Hugo)
+        working-directory: base
+        run: npm ci
+
+      - name: Confirm the base branch's locked Hugo is present
+        working-directory: base
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start the base branch's Hugo server
+        working-directory: base
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > ../hugo-server-base.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      # Bounded by the clock for the same reason as the sweep above: Hugo
+      # accepts the connection BEFORE the build finishes and holds it open, so
+      # one curl can block for as long as the build takes and counting attempts
+      # measures nothing.
+
+      - name: Wait for the server
+        run: |
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server-base.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 300s:"
+          tail -n 50 hugo-server-base.log
+          exit 1
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site base/docs
+
+      # continue-on-error, because RED here is a FINDING rather than a failure
+      # of this job — it is the outcome that exonerates the PR. `outcome` is the
+      # result BEFORE continue-on-error is applied, which is what makes the
+      # verdict below readable
+      # `[docs.github.com/en/actions/reference/workflows-and-actions/contexts,
+      # read 2026-08-24]`.
+
+      - name: Run this PR's check against the base branch's site
+        id: control
+        continue-on-error: true
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+        run: node scripts/site-characterization.mjs --check --all
+
+      - name: Verdict
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          OUTCOME: ${{ steps.control.outcome }}
+        run: |
+          {
+            echo "### Base-branch control"
+            echo
+            echo "The sweep failed. This job rebuilt the site from \`${BASE_SHA}\` — the tip of"
+            echo "\`${BASE_REF}\` — and ran the SAME harness against the SAME baseline, so the only"
+            echo "thing that differs between the two runs is the site source."
+            echo
+            if [ "${OUTCOME}" = "success" ]; then
+              echo "**The base branch is GREEN.** EHDP-data is not the explanation; this PR's"
+              echo "changes are. Read the field summary on the failed sweep."
+            else
+              echo "**The base branch is RED too.** \`${BASE_REF}\` already fails against today's"
+              echo "EHDP-data, so this is probably not yours. Compare the two field tables: a field"
+              echo "that moved in BOTH runs is the data, and one that moved only in the sweep is"
+              echo "this PR's."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Only when the base is red, and only then is there anything to compare
+      # against the sweep's own artifact. include-hidden-files because
+      # .sc-check is a dot directory and the action skips those by default.
+
+      - name: Upload the base branch's capture and diff trees
+        if: steps.control.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: site-characterization-base-${{ github.run_id }}
+          path: |
+            scripts/site-characterization-current/
+            scripts/.sc-check/
+            hugo-server-base.log
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Stop the Hugo server
+        if: always()
+        run: |
+          pkill -TERM -x hugo 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true
