@@ -166,8 +166,8 @@ table rather than from this line.
 | 9 | Serve Pagefind, and raise concurrency | concurrency `b5bfb73cc5`; pagefind + baselines `3625c7f377` | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
 | 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c`; run fixes `4f2e669c77`, `156aed9289`; revert `d0b3050820` | **DONE 2026-08-24** — green on a GitHub runner. Open: PR #1480 is a draft and unmerged, so the file is not on `production` and `workflow_dispatch` stays unregistered | Static checks first: YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. Then four runs, all `pull_request` events from PR #1480: `32771116783` @ `60ea1333ee` GREEN, 8m13s job — 62s to a serving build, 1.2s Pagefind, 370s to sweep 925 pages at concurrency 6 (ubuntu-24.04 reports 4 logical processors); `32777189174` @ `cb334f5b37` RED on three deliberately perturbed baseline records, which is what exercised the `if: failure()` path a green run skips entirely, and exposed the artifact upload dropping both `.sc-check` trees plus an orphaned `hugo`; `32779430909` @ `156aed9289` RED on the same injection with both fixed and the artifact complete; `32780688054` @ `d0b3050820` GREEN after the revert, 8m9s |
 | 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
-| 12 | Say what changed, not just that something did | *not started* | **NOT STARTED** | — |
-| 13 | Put the summary on the run page, and name the candidate source files | *not started* | **NOT STARTED** | — |
+| 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
+| 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **PARTIAL 2026-08-24** — the step summary is in; the source-file intersection was dropped for something better grounded | `GITHUB_STEP_SUMMARY` written as a 4-column markdown table on the red run and **not written at all** on the green one, both checked against a temp file. **That GitHub renders it is unproven and cannot be proven locally** — it needs one push |
 | 14 | Merge-base control run — my change, or EHDP-data's? | *not started* | **NOT STARTED** | — |
 
 Derive what this table deliberately does not claim:
@@ -1376,6 +1376,39 @@ names those three fields on those three pages and nothing else. That control com
 case captured before this code existed, so it cannot be circular. Then revert and confirm a clean
 `--check` prints no summary at all. Two local `characterize:site` runs, ~130s each.
 
+### Task 12 findings — four places this plan was wrong
+
+Built as `scripts/site-characterization-summary.mjs`, imported by the check. The plan above is left
+as written; these are the corrections testing forced.
+
+**1. "Arrays flatten as whole values" is unreadable for two of the three array shapes.** Built three
+treatments instead, by element type. String arrays (`assets`) report set membership — `-js/main.js`
+— because order is not the finding. Number arrays (`headingLevels`, 57 entries of repeating small
+integers) report position, because a set delta says almost nothing there: one `3` becoming a `4`
+leaves `3` in the set, so the change vanishes. Object arrays (`jsonld`) report the count, which is
+what a reader can act on.
+
+**2. The data-vs-code hint was on the wrong axis.** The plan put it on the page set — a scatter
+means data. Task 8's measurement does not support that: a data change is 84-95 pages *concentrated*
+in `controls`, `links` and `headingLevels`, which is not a scatter. It now keys off which fields
+moved, against that same measurement, and the page set is reported separately as a template signal.
+
+**3. A shape claim needs a floor, found by running it.** The real 3-page injection was told it
+"looked like a data change". Below five differing pages the page set carries no template signal at
+all, so `shapeOf` now says "too few to infer a template from" rather than asserting one.
+
+**4. The raw-diff cap was specified and deliberately NOT built.** Capping means capturing
+`git diff`'s output instead of `stdio: "inherit"`, and a 925-page diff can exceed `execFileSync`'s
+1 MB default `maxBuffer` — which throws, lands in the same `catch` as a real difference, and reads
+as an ordinary failing check. That is a worse failure than a long log, and the artifact carries the
+full diff regardless. Un-defer it only with an explicit `maxBuffer` and a branch that tells the two
+throws apart.
+
+**Added, and not in the plan: a disagreement warning.** `git diff` and the summary are two
+independent comparisons of the same two trees. If git finds a difference and the summary finds
+none, the check now says so and names the summary as suspect — otherwise a blind spot in it would
+be invisible, since the raw diff still prints and the run still fails.
+
 ## Task 13: put the summary on the run page, and name the candidate source files
 
 **Files:**
@@ -1399,6 +1432,22 @@ case captured before this code existed, so it cannot be circular. Then revert an
 **Proof:** the injection control from Task 12, run once with `GITHUB_STEP_SUMMARY` pointed at a
 temp file, and the file's contents compared against the console table. A CI run is not needed to
 prove the markdown; it is needed to prove GitHub renders it, which is one push.
+
+### Task 13 findings — step 1 done, step 3 dropped
+
+**Step 1 is in and proven both ways**: on the red run the file is a valid 4-column markdown table;
+on the green run it is never created, which is the half that a positive-only check would miss.
+**Whether GitHub renders it is untested and untestable here** — it needs one push, and until that
+happens this task is not closed.
+
+**Step 2 is in**, as `shapeOf()`, with the floor described under Task 12.
+
+**Step 3 — intersecting the changed page set against the PR's changed files — was dropped, not
+deferred.** It would have printed candidate source files from a set-overlap that nothing measured,
+next to a field-based signal that rests on Task 8's actual numbers. Two hints of unequal quality in
+the same block invite reading the weaker one. What replaced it is the `Fields:` line, which says
+whether every changed field is one EHDP-data can move on its own — and when it is, points at Task
+14 rather than guessing.
 
 ## Task 14: merge-base control run — my change, or EHDP-data's?
 
