@@ -149,7 +149,7 @@
             "withCaption": 0
         },
         "iframes": [],
-        "overflowX": true
+        "overflowX": false
     },
     "content": {
         "title": "Asthma data for NYC – Environment & Health Data Portal",

@@ -6,6 +6,7 @@
         "assets": [
             "datawrapper.dwcdn.net",
             "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
             "js/site.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
