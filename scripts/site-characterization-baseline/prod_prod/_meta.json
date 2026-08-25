@@ -1,10 +1,14 @@
 {
-    "capturedAt": "2026-08-24T14:03:01.193Z",
-    "gitHead": "a6d91e78ec1a796ae25bff439e4ec03d762d9414",
+    "capturedAt": "2026-08-25T19:22:10.988Z",
+    "gitHead": "e93bfcf1d5a4d3d8fdac2021a047ddcc60765580",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "pagefind": true,
+    "hugo": {
+        "version": "0.147.3-05417512bd001c0b2cc0042dcc584575825b89b3+extended",
+        "owned": true
+    },
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 925,
