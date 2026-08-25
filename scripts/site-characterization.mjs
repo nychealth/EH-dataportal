@@ -108,6 +108,30 @@ const DEFAULT_CONCURRENCY = Math.min(
 const BASELINE_ROOT = "scripts/site-characterization-baseline";
 const CURRENT_DIR = "scripts/site-characterization-current";
 
+// Above this many differing pages, --check reports what it captured rather than
+// re-capturing each one sequentially. recapture() guards against a per-page
+// capture race, and a race does not reach hundreds of pages at once — a
+// difference that wide is systematic, so arbitration is pure cost on a result
+// that will not change.
+//
+// The cost is not marginal. A one-line template edit that moved `lang` on every
+// page sent the CI job into a 12-minute un-concurrent re-capture of all 925 and
+// hit `timeout-minutes: 20` having reported NOTHING — no field summary, no
+// artifact, and the base-branch control skipped, because `if: failure()` is
+// false for a cancelled job `[run 32802721473, 2026-08-25: sweep 6m15s, then
+// "925 page(s) differ ... re-capturing sequentially", cancelled at 20m15s]`.
+// The harness was slowest exactly when it had the most to say.
+//
+// 25 is above every arbitration count observed here — 18 before the
+// Leaflet-tile and quiescence fixes, 2 after them, 0 on the prod_prod capture,
+// and 3 in the one failure that justifies recapture() at all — and far below
+// anything systematic. Worst case it costs about 30s.
+//
+// Only --check is capped. --baseline arbitrates two sweeps of the SAME commit,
+// where a wide disagreement means something is wrong that a re-capture will not
+// settle either; it is rare, run by hand, and under no timeout.
+const ARBITRATION_CAP = 25;
+
 // Where --check writes the two section-filtered trees it actually diffs. Kept
 // inside the repo and deliberately short: `git diff --no-index` returns the
 // correct exit code but prints ZERO lines of diff when handed a long path,
@@ -1088,7 +1112,13 @@ Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
             const captured = all ? null : new Set(
                 walk(outDir).filter((rel) => rel !== META_FILE));
             const suspect = differingPaths(baselineDir, outDir, captured);
-            if (suspect.length) {
+            if (suspect.length > ARBITRATION_CAP) {
+                console.log(`\n${suspect.length} page(s) differ from the baseline — past the `
+                    + `${ARBITRATION_CAP}-page arbitration cap, so they are reported as captured `
+                    + `and NOT re-captured sequentially. A capture race does not reach this many `
+                    + `pages at once; a difference this wide is systematic. Nothing below is `
+                    + `arbitrated, so treat every page named as a real difference.`);
+            } else if (suspect.length) {
                 console.log(`\n${suspect.length} page(s) differ from the baseline — re-capturing sequentially before reporting.`);
                 await recapture(browser, baseURL, userAgent, prefix, outDir, suspect);
                 const still = new Set(differingPaths(baselineDir, outDir, captured));

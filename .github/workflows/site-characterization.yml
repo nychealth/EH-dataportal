@@ -216,6 +216,7 @@ jobs:
       # ---------------------------------------------------------------------
 
       - name: Run the characterization check
+        id: check
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
         run: |
@@ -233,8 +234,15 @@ jobs:
       # The console diff is in the step log; these are for diffing locally.
       # Both directories are gitignored and exist only on the runner.
 
+      # NOT `if: failure()`. A job cancelled by `timeout-minutes` skips a
+      # failure() step while still running an always() one — measured, not
+      # assumed `[run 32802721473, 2026-08-25: the timeout skipped this upload
+      # and ran "Stop the Hugo server" beside it]` — and a timed-out run is
+      # exactly when the capture is most worth having. Gating on the check
+      # step's own outcome also fails safe: if a cancelled step leaves `outcome`
+      # unset, the comparison is still not 'success', so the upload runs.
       - name: Upload the capture and the projected diff trees
-        if: failure()
+        if: always() && steps.check.outcome != 'success'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: site-characterization-${{ github.run_id }}
