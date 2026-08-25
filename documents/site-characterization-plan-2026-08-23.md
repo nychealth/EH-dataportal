@@ -151,8 +151,9 @@ Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; 
 commits from `7bcdec1945` to `e9e4234a5a`. The check is green on a GitHub runner
 — run `32807666633` at `e9e4234a5a`, 2026-08-25, the last commit that changed the site or the
 harness — and draft PR #1480 into `production` is open and
-unmerged. **One thing is still owed: Task 14's red arm**, where a perturbed baseline sends both the
-sweep and the base control red and the verdict must read "probably not yours". A green run is a
+unmerged. **Two things are open.** Task 14's red arm, where a perturbed baseline sends both the
+sweep and the base control red and the verdict must read "probably not yours"; and Task 16, which
+is spec only — nothing of it is built. A green run is a
 fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that run.
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
@@ -174,6 +175,7 @@ table rather than from this line.
 | 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **DONE 2026-08-25** — the step summary renders; the source-file intersection was dropped for something better grounded | Locally: written as a 4-column table on a red run and **not written at all** on a green one. On a runner `[run 32806127560]`: both blocks render on the run's landing page — the sweep's table reading `structure.lang / 925 / 404.html / "en" -> "zz"`, and base-control's verdict paragraph beneath it. Confirmed by eye, which is the only way a rendering claim can be confirmed |
 | 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **GREEN ARM DONE 2026-08-25; red arm still owed** — the first attempt timed out and found Task 15 instead; the second ran the control end to end | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. On a runner: `if: failure()` correctly skipped it on a green sweep `[run 32801546852]`; the first green-arm attempt `[run 32802721473]` timed out and found Task 15 instead; the second `[run 32806127560, after the cap]` ran it end to end — sweep red at 8m33s, control green at 8m53s, verdict "The base branch is GREEN … this PR's changes are" rendered on the run page, and both injection reverts are green `[32804532898 @ 986b4d969c, 32807666633 @ e9e4234a5a]`. **The RED arm is still unexercised** |
 | 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
+| 16 | Record which EHDP-data commit a baseline describes | *not started* | **OPEN 2026-08-25** — spec only, written out of the question "did the data move, or did I?" | none yet; the four checks it has to pass are in the task, and row 3 of that table is the one that can break the harness for everyone |
 
 Derive what this table deliberately does not claim:
 
@@ -1618,8 +1620,9 @@ on a result that will not change.
 
 25 is above every arbitration count observed on this harness — 18 before the Leaflet-tile and
 quiescence fixes, 2 after them, 0 on the `prod_prod` capture, and 3 in the one failure that
-justifies `recapture()` existing at all — and far below anything systematic. Worst case it costs
-about 30s.
+justifies `recapture()` existing at all — and far below anything systematic. A full-cap
+re-capture has never been run: at the >=0.78 s/page the timed-out run implies (720s for 925 pages,
+and it had not finished), 25 pages is on the order of 20-30s.
 
 Only `--check` is capped. `--baseline` arbitrates two sweeps of the *same* commit, where a wide
 disagreement means something is wrong that a re-capture will not settle either; it is rare, run by
@@ -1654,4 +1657,109 @@ against real records for the first time — it had only ever been tested on synt
 
 ESLint clean on both scripts, and the workflow still parses to 2 jobs / 11 + 14 steps `[js-yaml]`.
 
-**Still owed:** the retry of Task 14's green arm, which is now unblocked.
+**Still owed:** Task 14's red arm. Its green arm was retried on the cap and passed
+`[run 32806127560]`.
+
+---
+
+## Task 16: record which EHDP-data commit a baseline describes
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — `readEnvironment()`'s `page.evaluate` (L905-932),
+  `writeMeta()` (L800), the environment line (L1031), and the `--check` path that already reads the
+  baseline's `_meta.json` for the Pagefind gate.
+- No change to `scripts/site-characterization-summary.mjs`. The drift line belongs to the caller,
+  which holds both `_meta.json` objects; the summary module only sees the two projected trees.
+
+**Interfaces:** `readEnvironment()` returns `dataRepo` alongside `dataBranch` and `hugoEnv`; `writeMeta()`
+records a `dataCommit` field; `--check` reads `dataCommit` from the baseline meta and from the run.
+Nothing else consumes either.
+
+**The gap this closes.** `_meta.json` records the data *stream* and not its *state*:
+`"dataBranch": "production"` is a branch name, and both committed baselines carry it with no commit
+beside it `[scripts/site-characterization-baseline/{staging,prod_prod}/_meta.json, 2026-08-25]`. So
+when a check goes red, nothing in the artifact separates "this PR moved a template" from "the data
+moved underneath" — the question the `base-control` job spends eight minutes answering. A recorded
+SHA answers most instances of it from the run page.
+
+**Where the values come from.** `themes/dohmh/layouts/partials/head.html:184-186` declares
+`data_repo`, `data_branch` and `hugoEnv` as top-level `let`s in an inline script, and `readEnvironment()`
+already evaluates the page for the last two — read `data_repo` from the same place rather than
+parsing `config/`, so the record describes the site that was actually swept, including when
+`DE_BASE_URL` points at a server this checkout did not build. The value is
+`https://raw.githubusercontent.com/nychealth/EHDP-data/`
+`[config/_default/config.toml:18]`, so the API path is its last two non-empty segments.
+
+**Recorded, not gated** — the treatment `hugo` gets, and deliberately not the treatment `pagefind`
+gets. The tip moves daily (see the deferred decision below), so a gate would refuse almost every
+comparison made on a different day from the capture, which is every comparison.
+
+**Steps.**
+
+1. Return `data_repo` from `readEnvironment()`'s `page.evaluate`, subject to the same
+   `typeof x === "undefined"` guard as its siblings — these are inline-script `let`s, so they are
+   not properties of `window`. *Expected:* `env.dataRepo` is the raw-content URL; the environment
+   line is unchanged.
+2. Add `fetchDataCommit(repoUrl, branch)`: GET
+   `https://api.github.com/repos/<owner>/<repo>/commits/<branch>` with
+   `Accept: application/vnd.github+json` and `AbortSignal.timeout(5000)`, returning
+   `{ sha, date }`, or `null` on any non-200, parse failure, or timeout. *Expected:* the `sha` it
+   returns equals `gh api repos/nychealth/EHDP-data/commits/production --jq .sha`.
+3. Call it once per run, between `readEnvironment()` and the sweep, and add to the environment line:
+   `EHDP-data: production @ a011bab842 (2026-08-24)`, or `@ unknown` when the fetch failed.
+   *Expected:* printed by `--baseline` and `--check` alike.
+4. Record it in `writeMeta()` as `dataCommit` — `{ sha, date, fetchedAt }` or `null`. *Expected:* a
+   `--baseline` run writes it; the value agrees with `gh api`.
+5. On a red `--check` only, print one line comparing the baseline's `dataCommit` to the run's, with
+   the compare URL `https://github.com/nychealth/EHDP-data/compare/<baseSha>...<headSha>` when both
+   are present. *Expected:* absent from a green run and from any run where either side is `null`.
+
+**Proof to run.** The rung is a targeted run of the harness itself — this changes what gets
+recorded, not what any page renders, so nothing below a harness run is sufficient and nothing above
+it is warranted.
+
+| Check | Expected |
+|---|---|
+| `--baseline` from a temp cwd (`BASELINE_ROOT` is cwd-relative, so this leaves the committed tree alone) | `_meta.json` carries `dataCommit.sha` equal to what `gh api` reports |
+| The same run with the fetch made to fail — an unroutable host substituted for `data_repo` | `dataCommit: null`, exit code unchanged, environment line reads `@ unknown` |
+| `--check` against **the two committed baselines**, which have no `dataCommit` | passes; a missing field is not a mismatch |
+| `--check` with 3 records perturbed | the drift line prints both SHAs; the green run prints none |
+
+Row 3 is the one that can break the harness for everyone. `pagefind` is *gated* — a mismatch exits
+2 — and copying that shape here would refuse both committed baselines until someone re-captured
+them.
+
+Row 2 is a control, not a nicety: a field populated on every run and a field null on every run are
+indistinguishable from a dead probe by inspection, and only running both arms separates them.
+
+**Not in this task:** re-capturing the committed baselines to backfill the field. They stay valid
+under row 3, and the field appears the next time either is captured for its own reasons.
+
+### Deferred decision: an automatic run when the data moves
+
+Proposed as a trigger keyed on EHDP-data's `production` tip hash. **The hash cannot be the gate**:
+that branch takes a commit almost every day at 16:00 UTC, message "Regular auto-commit". Over the
+100 most recent commits — 2026-05-23 to 2026-08-24 — that is 93 of the 94 days in the span, the
+one gap being 2026-08-12, with four days carrying an extra commit or two (06-01, 07-10, 08-13,
+08-17); tip `a011bab842` at 2026-08-24T16:00Z `[gh api
+repos/nychealth/EHDP-data/commits?sha=production&per_page=100, 2026-08-25]`. A hash-change trigger
+therefore fires about 360 times a year — a schedule wearing a condition.
+
+The hash is also a poor proxy for the thing worth reacting to. One data commit landed between the
+`prod_prod` baseline's capture (2026-08-24T14:03Z) and run `32807666633` (2026-08-25T04:06Z), and
+that run was green over all 925 pages — so at least one daily auto-commit moved no characterized
+field. One case, not a rate.
+
+What remains genuinely open, and needs deciding before anything is built:
+
+- **Cadence.** Weekly is 52 runs a year, nightly 365, each about 8m30s of runner time.
+- **What a red scheduled run does.** A cron that only goes red becomes wallpaper. Refreshing an
+  issue is the cheap option; auto-opening a PR carrying the re-captured baseline is the useful one,
+  and it is an escalation — this workflow is `permissions: contents: read` today and would need
+  `contents: write` plus `pull-requests: write`.
+- **Two GitHub behaviors to check before writing the trigger**, both currently asserted from
+  recall and neither verified: that `schedule:` runs only from the default branch's copy of the
+  workflow, and that GitHub disables scheduled workflows after 60 days without repository activity.
+  The `workflow_dispatch` claim in `CLAUDE.md` § *Branching and deployment* got a docs quote before
+  it was relied on; these want the same.
