@@ -1606,6 +1606,51 @@ the injection, so a control that could not tell the two apart would have gone re
 **The red arm is still owed** — a baseline perturbation, where both runs go red and the verdict must
 read "probably not yours". Injection reverted in `986b4d969c` and `e9e4234a5a`.
 
+### The red arm, 2026-08-25 — predictions, written before the run
+
+The injection is `cb334f5b37`'s three baseline records replayed at HEAD, and all three lines are
+byte-identical to what that commit perturbed `[verified 2026-08-25: prod_prod/_home.json:72
+"missingAlt": 0, data-explorer/asthma/index.json:152 "overflowX": false,
+data-stories/adult-lead/index.json:9 "js/main.js" present]`. Reusing it means the sweep's own
+behaviour carries no new information — run `32779430909` already drove it red on a runner — and
+everything unproven is in the second job.
+
+**Why this needs a runner at all.** The verdict's RED text was already executed locally against a
+real base SHA. What is left is GitHub Actions mechanics: whether `continue-on-error` leaves
+`steps.control.outcome` at `failure` while the job reports success, whether `if: failure()` fires
+for a *failed* rather than cancelled sweep, and what the base artifact's upload step actually
+puts in the artifact. Nothing below a runner answers any of the three.
+
+1. `characterize` goes RED in 8-9 minutes, naming exactly three pages and three fields:
+   `_home` `img.missingAlt` 3 -> 0, `data-explorer/asthma` `overflowX` true -> false,
+   `data-stories/adult-lead` `assets` gaining `js/main.js`. Arbitration runs — 3 is under the
+   25-page cap — and no cap message prints.
+2. `base-control` RUNS rather than skips. The first attempt's timeout is what made this
+   conditional worth stating: `if: failure()` is false for a cancelled job and true for a failed
+   one.
+3. The control step exits 1, and the job still reports **success**, because `continue-on-error:
+   true`. `steps.control.outcome` is `failure`.
+4. The verdict renders its **`else`** branch on the run's landing page — "**The base branch is RED
+   too.** `production` already fails against today's EHDP-data, so this is probably not yours."
+   That branch has never rendered on a runner.
+5. The base artifact uploads as `site-characterization-base-<run_id>` carrying all three of its
+   paths: `scripts/site-characterization-current/`, `scripts/.sc-check/` — which only
+   `include-hidden-files: true` reaches — and `hugo-server-base.log`. The step has never run, and
+   the sweep's own equivalent was dropping half its payload the first time it did `[run
+   32777189174]`.
+6. The control names the **same** three pages and fields as the sweep, in the same directions.
+   This is the only prediction with content rather than mechanics, and it is what makes the
+   verdict's advice — "a field that moved in BOTH runs is the data" — actionable. It follows from
+   base and head sharing their site source: `git diff --name-only d862072bea...HEAD` over
+   `content/ themes/ assets/ data/ static/ config/ archetypes/` returns nothing, and the only
+   files it returns at all are `package.json` and `package-lock.json` `[2026-08-25]`.
+
+**What would make the run uninformative:** a base control red for some reason other than the
+perturbation. Run `32806127560`'s control was GREEN against the unperturbed baseline on the same
+base SHA, so a red control here that names fields *other* than the injected three is that case.
+The mechanics — 3, 4 and 5 — would still be exercised by any red control; prediction 6 and the
+reading of the verdict are what a confounded run loses.
+
 ---
 
 ## Task 15: cap the arbitration, and keep the artifact when a job is cancelled
