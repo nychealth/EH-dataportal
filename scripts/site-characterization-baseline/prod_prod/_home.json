@@ -69,7 +69,7 @@
         ],
         "img": {
             "total": 10,
-            "missingAlt": 0,
+            "missingAlt": 3,
             "emptyAlt": 7,
             "zeroSize": 0
         },
