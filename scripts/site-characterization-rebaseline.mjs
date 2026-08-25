@@ -57,6 +57,14 @@ const META_FILE = "_meta.json";
 
 const REPO_ROOT = fileURLToPath(new URL("..", import.meta.url));
 
+// Discarding a re-baseline takes BOTH commands. A deliberate change that adds
+// pages produces records git has never seen, and `checkout --` cannot remove an
+// untracked file — so the one-command form leaves them behind, the next run's
+// preflight refuses on them, and the operator is looping on advice this script
+// printed. `[observed 2026-08-25: a capture left one untracked record; checkout
+// alone reported the tree clean while `git status` still showed `??`]`
+const DISCARD = [`git checkout -- ${BASELINE_ROOT}`, `git clean -fd ${BASELINE_ROOT}`];
+
 // Which Hugo environment produces each baseline key. The key is a property of
 // the OUTPUT (data branch, plus prod_prod's environment-name branch in
 // head.html); this maps back to one environment that produces it. Any
@@ -80,6 +88,9 @@ const ISO_ROOT = `${tmpdir().replace(/\\/g, "/")}/sc-rebaseline`;
 
 // A build of this site takes ~34s on this machine, plus Hugo's own startup.
 const SERVER_TIMEOUT_S = 200;
+
+// How much of a dirty `git status` the preflight prints before summarizing.
+const DIRTY_LINES = 12;
 
 // ----------------------------------------------------------------------- //
 // small helpers
@@ -270,9 +281,10 @@ const recapture = async (key, concurrency) => {
         rmSync(`${BASELINE_ROOT}/${key}`, { recursive: true, force: true });
         cpSync(`${BEFORE_DIR}/${key}`, `${BASELINE_ROOT}/${key}`, { recursive: true });
         console.error(`\n  CAPTURE FAILED — restored the ${key} baseline from the snapshot; `
-            + `the tree is unchanged.`);
+            + `that key is unchanged.`);
         throw new Error(`The ${key} capture did not complete (${e.message.split("\n")[0]}).\n`
-            + `The harness's own output above says which pages failed. Nothing was re-baselined.`);
+            + `The harness's own output above says which pages failed. The ${key} baseline was `
+            + `left exactly as it was found — but see above for any key that had already run.`);
     } finally {
         stop();
         console.log(`  stopped the ${environment} server`);
@@ -481,14 +493,36 @@ async function main() {
 
     if (!reportOnly) {
 
-        // The before-side has to be restorable with one `git checkout --`, and
-        // the resulting diff has to be the proof that only this run wrote it.
-        // Both stop being true if the tree was already dirty here.
+        // The before-side has to be restorable from git, and the resulting diff
+        // has to be the proof that only this run wrote it. Both stop being true
+        // if the tree was already dirty here.
         const dirty = git("status", "--porcelain", "--", BASELINE_ROOT);
         if (dirty) {
-            console.error(`${BASELINE_ROOT}/ has uncommitted changes:\n${dirty}\n\n`
-                + `Commit or discard them first — this run overwrites that directory, and a `
-                + `dirty starting point makes the resulting diff unreadable as evidence.`);
+
+            // A run that fails part-way leaves the keys it already finished
+            // re-captured in the tree while the rest still describe an older
+            // commit — failure mode 2 from the header, arrived at from the
+            // other direction. Committing THAT is the one thing this script
+            // exists to prevent, so when the keys disagree about which commit
+            // they describe, the advice has to be discard rather than the
+            // "commit or discard" that fits a finished re-baseline.
+            const heads = new Set(keys.map((k) => readMeta(`${BASELINE_ROOT}/${k}`)?.gitHead ?? "(none)"));
+
+            // Capped: a partial run leaves hundreds of changed records, and an
+            // uncapped dump pushes the advice below off the top of the screen.
+            const lines = dirty.split("\n");
+            const shown = lines.slice(0, DIRTY_LINES).join("\n")
+                + (lines.length > DIRTY_LINES ? `\n  ... and ${lines.length - DIRTY_LINES} more` : "");
+
+            console.error(`${BASELINE_ROOT}/ has uncommitted changes:\n${shown}\n`
+                + (heads.size > 1
+                    ? `\nThose keys describe DIFFERENT commits (${[...heads].join(", ")}) — the state `
+                      + `a run that failed part-way leaves behind. Committing it would make the `
+                      + `baseline set internally inconsistent. Discard it and start over:`
+                    : `\nThis run overwrites that directory, and a dirty starting point makes the `
+                      + `resulting diff unreadable as evidence. Commit them if they are a finished `
+                      + `re-baseline, or discard them:`)
+                + DISCARD.map((c) => `\n  ${c}`).join(""));
             process.exit(2);
         }
 
@@ -505,7 +539,29 @@ async function main() {
 
         mkdirSync(BEFORE_DIR, { recursive: true });
 
-        for (const key of keys) await recapture(key, concurrency);
+        // Keys that already finished are re-captured IN THE TREE when a later
+        // one fails, so the failure has to name them: the run stops with the
+        // set internally inconsistent, and recapture()'s own "that key is
+        // unchanged" is true only of the key that threw.
+        // `[observed 2026-08-25: staging failed on 5 ERR_NETWORK_CHANGED pages
+        // after prod_prod had completed, and the run closed by saying nothing
+        // had been re-baselined]`
+        const done = [];
+
+        for (const key of keys) {
+            try {
+                await recapture(key, concurrency);
+            } catch (e) {
+                if (!done.length) throw e;
+                throw new Error(`${e.message}\n\n`
+                    + `${done.join(", ")} already completed and ${done.length > 1 ? "are" : "is"} `
+                    + `sitting re-captured at ${head} in your working tree, while ${key} still `
+                    + `describes an older commit. The set is now internally inconsistent — discard `
+                    + `it before retrying, since committing this state is failure mode 2:`
+                    + DISCARD.map((c) => `\n  ${c}`).join(""));
+            }
+            done.push(key);
+        }
 
         // Failure mode 2 from the header, asserted rather than hoped for: every
         // key must now describe the same commit, or the set is internally
@@ -555,7 +611,7 @@ async function main() {
     console.log(`\nNothing has been committed. To keep this re-baseline:`);
     console.log(`  git add ${BASELINE_ROOT}`);
     console.log(`To discard it:`);
-    console.log(`  git checkout -- ${BASELINE_ROOT}`);
+    for (const c of DISCARD) console.log(`  ${c}`);
 
     process.exitCode = unexplained ? 1 : 0;
 }
