@@ -168,7 +168,7 @@ table rather than from this line.
 | 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
 | 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
 | 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **PARTIAL 2026-08-24** — the step summary is in; the source-file intersection was dropped for something better grounded | `GITHUB_STEP_SUMMARY` written as a 4-column markdown table on the red run and **not written at all** on the green one, both checked against a temp file. **That GitHub renders it is unproven and cannot be proven locally** — it needs one push |
-| 14 | Merge-base control run — my change, or EHDP-data's? | *not started* | **NOT STARTED** | — |
+| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af` | **BUILT 2026-08-24, NEVER RUN** — it only fires when the sweep is red, and no red run has happened since it existed | The whole file parses to 2 jobs / 11 + 14 steps, the sweep job byte-unchanged `[js-yaml]`. Every `run:` block extracted and `bash -n` clean. Both verdict arms executed locally against a real base SHA — the arm CI cannot reach on any single run. **Nothing here proves the job runs on a runner** |
 
 Derive what this table deliberately does not claim:
 
@@ -1449,29 +1449,86 @@ the same block invite reading the weaker one. What replaced it is the `Fields:` 
 whether every changed field is one EHDP-data can move on its own — and when it is, points at Task
 14 rather than guessing.
 
-## Task 14: merge-base control run — my change, or EHDP-data's?
+## Task 14: base-branch control run — my change, or EHDP-data's?
 
-**Files:** `.github/workflows/site-characterization.yml` — a second job, `if: failure()` on the
-first.
+**Files:** `.github/workflows/site-characterization.yml` — the `base-control` job.
 
-**Interfaces:** consumes nothing from Tasks 12-13. Produces one line: whether the same failure
-reproduces at the merge base.
+**Interfaces:** consumes nothing from Tasks 12-13, though it reads better beside Task 12's field
+tables. Produces one verdict paragraph in `$GITHUB_STEP_SUMMARY`, and a second artifact when the
+base is also red.
 
-This is the disconfirming test for the one question no amount of better formatting can answer.
-Check out `github.event.pull_request.base.sha`, build, sweep, and compare against the same
-committed baseline. Red there too means EHDP-data moved and the PR is innocent. Green there and red
-at the head means it is the PR.
+The disconfirming test for the one question no formatting can answer. It runs only on failure,
+`needs: characterize` with `if: failure()`, in its own job with its own `timeout-minutes` so it
+does not inherit the sweep's margin — which came within ~2 minutes of expiring once, on a run where
+`Checkout` alone took 9m52s `[run 32777189174]`.
 
-Two things to settle before building it, both of which could kill it:
+### Decision 2026-08-24: the control, not a pinned data branch
 
-- **Cost.** It doubles an ~8-minute job on failure, and `timeout-minutes: 20` already came within
-  ~2 minutes of expiring once, on a run where `Checkout` alone took 9m52s. A separate job with its
-  own timeout is the way to avoid inheriting that margin.
-- **It may be redundant.** Pinning `data_branch` to a fixture ref — already scoped under *Not done:
-  making the gate independent of EHDP-data* — makes a red run unambiguously code, and then this
-  control has nothing left to distinguish. Decide which of the two to build; building both is
-  paying twice for one answer.
+*Not done: making the gate independent of EHDP-data* proposed pinning `data_branch` to a fixture
+ref, and this plan called the control possibly redundant against it. **That is now closed in favour
+of the control, and for a better reason than redundancy: a fixture ref gives false NEGATIVES.**
+EHDP-data changes constantly and sometimes lands in concert with a PR here — which is exactly the
+case a pinned ref would test against stale data and pass. A gate that goes quietly green on the
+real thing is worse than one that occasionally goes red for a reason you have to read.
 
-**Proof:** trigger it by checking a PR head against a baseline captured before an EHDP-data change,
-so the head is red for a data reason and the base is red identically. Until that case exists,
-the job is unproven no matter how many green runs it sits beside.
+### Only the site source comes from the base
+
+The obvious shape — check the base out wholesale and run its own check — was rejected on two
+counts.
+
+It does not run. `production` carries neither `scripts/site-characterization.mjs` nor a baseline
+directory `[verified 2026-08-24: git ls-tree production, both ABSENT]`, so on PR #1480 that job
+would die on a missing file rather than report a finding, and would ship unexercised — the exact
+failure Task 10 exists to warn about.
+
+It is also the weaker experiment. A PR that edits the harness or re-captures the baseline would
+move three variables at once, where the question is only about the site source. So the root
+checkout stays at this PR's head, and only `base/` comes from the base branch: same harness, same
+baseline, same EHDP-data minutes apart, one variable.
+
+### base.sha is the base branch TIP, not the merge base
+
+`[verified 2026-08-24: on PR #1480 baseRefOid is d862072bea, which is production's tip, where
+git merge-base production HEAD is d8c45abebe — they differ by everything that landed on production
+since this branch was cut]`. The tip is the right control anyway: it is what the PR merges into and
+what is deployed. It also needs no history, where a real merge base would need `fetch-depth: 0` on
+a repo whose depth-1 checkout has already taken 9m52s once. This plan previously said "merge base"
+throughout, which was imprecise.
+
+### The steps are not shared with the sweep
+
+They looked identical when this was planned. They are not: two checkouts, two `npm ci`, a server
+built in a subdirectory, a verdict instead of a gate. A local reusable workflow would have been the
+way to share them if they were — those resolve from the caller's commit, not the default branch
+`[docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows, read 2026-08-24]`, which a
+local composite action would not, since `./.github/actions/…` would resolve against the base
+checkout that does not have it.
+
+### Task 14 findings — the Task 4 injection is the WRONG control here
+
+**A baseline perturbation cannot test the green arm, and this is not obvious.** Tasks 4 and 12 both
+prove things by perturbing records under `scripts/site-characterization-baseline/`. That injection
+is useless for this job: the baseline is the *shared* input, so a perturbed one makes the sweep red
+AND the control red, and the verdict reads "probably not yours" when the truth is "you perturbed
+the baseline". It does not discriminate, because it moves the one thing both runs hold in common.
+
+The two arms need two different injections:
+
+| Arm | Inject into | Sweep | Control | Verdict it must print |
+|---|---|---|---|---|
+| green | the SITE SOURCE at head — a template edit that moves a field | RED | GREEN | "this PR's changes are" |
+| red | the BASELINE at head | RED | RED | "probably not yours" |
+
+The red arm's verdict is honest rather than false: a wrong baseline and moved data are
+indistinguishable from here, and both mean the PR's code is not the cause.
+
+**Proof that has run:** the whole file parses to two jobs, 11 + 14 steps, with the sweep job
+unchanged `[js-yaml, 2026-08-24]`. Every `run:` block was extracted and is `bash -n` clean. Both
+verdict arms were executed locally against a real base SHA with `GITHUB_STEP_SUMMARY` pointed at a
+file, and both render correct markdown — which matters because a single CI run can only ever
+exercise one of them.
+
+**Proof still owed, and it needs a runner:** the job has never executed. `if: failure()` means it
+fires only on a red sweep, and there has been no red sweep since it existed. Two deliberate reds
+per the table above will close it, and the first of them also closes Task 13's open question of
+whether GitHub renders the step summary at all.
