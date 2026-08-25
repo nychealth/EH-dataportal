@@ -42,12 +42,13 @@
 
 import { chromium } from "playwright";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
 import { availableParallelism } from "node:os";
 import { pathToFileURL } from "node:url";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, mapPool } from "./site-urls.mjs";
+import { summarize, renderText, renderMarkdown } from "./site-characterization-summary.mjs";
 
 // ----------------------------------------------------------------------- //
 // configuration
@@ -1195,17 +1196,43 @@ ${unmatched.length} sample page(s) have no record in this baseline and were `
     console.log(`\nDiffing ${keys.join(" + ")} against the baseline captured at `
         + `${baselineMeta.gitHead?.slice(0, 10)} (${baselineMeta.capturedAt})`);
 
+    // The field-level summary, computed from the two projected trees before the
+    // raw diff runs so it lands ABOVE it in the log. `git diff` stays the
+    // authority on pass/fail — this only describes what it is about to print.
+    const rels = [...new Set([...walk(`${DIFF_DIR}/base`), ...walk(`${DIFF_DIR}/head`)])];
+    const rows = summarize(`${DIFF_DIR}/base`, `${DIFF_DIR}/head`, rels);
+    if (rows.length) console.log(renderText(rows, rels.length));
+
     try {
         execFileSync("git", ["diff", "--no-index", "--exit-code", `${DIFF_DIR}/base`, `${DIFF_DIR}/head`],
             { stdio: "inherit" });
         console.log(`\nCharacterization check PASSED — ${keys.length > 1 ? "both halves" : "the structure half"} `
             + `matches the baseline.`);
     } catch {
-        console.error(`\nCharacterization check FAILED — differences shown above.`);
+        console.error(`\nCharacterization check FAILED — the summary above names every changed field; `
+            + `the raw diff follows it.`);
         if (!content) {
             console.error(`(Only ${keys.join(" + ")} was compared. Re-run with --content to include titles, `
                 + `heading text and link targets.)`);
         }
+
+        // Two independent comparisons of the same two trees, so disagreement
+        // means the summary is blind to something git can see — which would
+        // otherwise be invisible, because the raw diff below still prints it and
+        // the run still fails. Say so rather than let a silent gap accumulate.
+        if (!rows.length) {
+            console.error(`\nWARNING: git found a difference and the field summary found none. `
+                + `The summary is not seeing everything the diff sees — read the raw diff, and treat `
+                + `site-characterization-summary.mjs as suspect.`);
+        }
+
+        // GitHub renders this on the run page, so a red run is legible without
+        // opening the log. Unset locally, which is what keeps local output
+        // identical either way.
+        if (process.env.GITHUB_STEP_SUMMARY && rows.length) {
+            appendFileSync(process.env.GITHUB_STEP_SUMMARY, renderMarkdown(rows, rels.length));
+        }
+
         process.exitCode = 1;
     }
 };
