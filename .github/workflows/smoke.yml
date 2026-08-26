@@ -206,6 +206,29 @@ jobs:
       - name: Build the search index with Pagefind
         run: npx -y pagefind --site docs
 
+      # A green run must not be able to mean "the check was blind". KNOWN_NOISE
+      # has one CONDITIONAL entry — { page: null, error: /pagefind/i, when: ()
+      # => !pagefindServed } (smoke-pages.mjs:115) — so if the index is missing,
+      # every Pagefind error on every page is allowlisted and the sweep passes
+      # while testing nothing about search. What that hides was measured: with
+      # the predicate forced off and no index, smoke failed 33 of 33, and the
+      # masked errors included `PagefindUI is not defined` on every page
+      # `[2026-08-24, recorded in CLAUDE.md]`.
+      #
+      # So assert the index is SERVED rather than trusting the step above to
+      # have worked. Through the server, not the filesystem, because what
+      # matters is what the browser will get — and this is the same asset
+      # dev-server.mjs probes to set that predicate (PAGEFIND_PROBE,
+      # dev-server.mjs:67).
+      #
+      # Proved to discriminate rather than assumed to: against an isolated
+      # prod_prod server this path is 404 before the Pagefind build and 200
+      # after, and `curl -f` exits 22 on the former and 0 on the latter
+      # `[verified 2026-08-26]`.
+
+      - name: Confirm Pagefind is served
+        run: curl -fsS -o /dev/null "${SERVER_URL}pagefind/pagefind.js"
+
       # ---------------------------------------------------------------------
       # the check
       #
