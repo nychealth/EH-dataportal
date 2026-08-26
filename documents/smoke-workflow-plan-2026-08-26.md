@@ -1,10 +1,10 @@
 # Automatic smoke check in GitHub Actions
 
 **Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Task 2 written at `c7a3b3b223` but
-In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Tasks 4–6 not started.** Branch `feature-smoke-GHA`,
+In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Task 4 written at `c37149d876`, also In progress — neither of its two proof arms has run. Tasks 5–6 not started.** Branch `feature-smoke-GHA`,
 cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan had wrong — its own
 prescribed proof, and the claim that `dev_prod` emits no analytics tag — both rewritten in place
-below. Task 4 also edits `.github/workflows/smoke.yml`, the file Task 2 created and Task 3 extended.
+below. `.github/workflows/smoke.yml` now holds both jobs; Tasks 5 and 6 are the only ones left, and both need CI runs rather than edits.
 
 Derive what a status line cannot hold:
 
@@ -125,7 +125,7 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 | 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | `feature-smoke-GHA @ 6ebc18374c` | **DONE 2026-08-26** | Response-count arms 1→0, shipped-route arms 35→1, `smoke:prod_prod` 924/925 — below |
 | 2 | `.github/workflows/smoke.yml` — sweep job | `feature-smoke-GHA @ c7a3b3b223` | **In progress** — file written; the run that proves it is Task 5 | YAML parses, pins and `paths-ignore` match the reference — below |
 | 3 | `smoke.yml` — Pagefind pre-flight assertion | `feature-smoke-GHA @ 7f5890799f` | **DONE 2026-08-26** | 404 before the build / 200 after; `curl -f` exits 22 / 0 — below |
-| 4 | `smoke.yml` — base-branch control job | — | **TODO** | Injected regression, below |
+| 4 | `smoke.yml` — base-branch control job | `feature-smoke-GHA @ c37149d876` | **In progress** — job written; neither proof arm has run | Static only — the injected-regression arms need PRs — below |
 | 5 | Calibration run: open the PR into `production`, read the wall time | — | **TODO** | The run's own step timings |
 | 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | — | **TODO** | `npm run docs-check` with a stash control |
 
@@ -343,6 +343,21 @@ template (a bad identifier in an inline `<script>` in `head.html`) and open a PR
 
 Write these two expectations down before the run, and check the result against them rather than
 reading the result to fit.
+
+**Status 2026-08-26: NEITHER ARM HAS RUN.** The job is written and committed; what exists is a
+static check only — YAML parses, `base-control` `needs: smoke` and is gated on `failure() &&
+github.event_name == 'pull_request'`, the control step carries `continue-on-error` and an `id`,
+the upload is gated on that step's `outcome`, there are two checkouts (root and `base/`), and
+`GITHUB_TOKEN` appears nowhere in the file. **Nothing about the verdict, the `needs:` gating, or
+the base checkout has been observed working.**
+
+Two departures from what this task specified, both deliberate:
+
+- The **Pagefind pre-flight from Task 3 is in this job too**, which the task's list did not ask
+  for. A control that cannot fail exonerates nothing, and without the index every Pagefind error
+  is allowlisted — the same argument the sweep's own pre-flight rests on.
+- `groupSignatures` is at **`smoke-pages.mjs:271-282`**, not the `:235-246` this task cited;
+  `RECHECK_CAP = 25` is at `:197`. Line numbers only.
 
 ## Task 5: Calibration run
 
