@@ -69,6 +69,13 @@ build runs either way, so `sample` narrows what is checked and does not make the
 two `:env` scripts share :8090 and so cannot run concurrently; each refuses to start when the other
 holds it.
 
+**CI runs the full sweep on every PR into `production`.** `.github/workflows/smoke.yml` builds
+`prod_prod` on the runner, builds Pagefind and then *asserts* the index is served, and sweeps every
+page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep triggers a
+`base-control` job that rebuilds the site from the base branch tip and runs **this PR's harness**
+against it — green means the PR caused it, red means the data or a third party moved. The harness
+aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
+
 Eight things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.

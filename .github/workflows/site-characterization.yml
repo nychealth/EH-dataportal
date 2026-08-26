@@ -301,12 +301,15 @@ jobs:
   # ONLY THE SITE SOURCE COMES FROM THE BASE. The harness and the baseline
   # stay at this PR's head on purpose: a PR that also edits the harness or
   # re-captures the baseline would otherwise move three variables at once,
-  # and the question is only about the first. It is also the only shape that
-  # runs at all today — `production` carries neither
-  # `scripts/site-characterization.mjs` nor a baseline directory
-  # `[verified 2026-08-24: git ls-tree production, both ABSENT]`, so a job
-  # that checked the base out wholesale would die on a missing file rather
-  # than report a finding.
+  # and the question is only about the first.
+  #
+  # This comment used to add that the split was the only shape that ran at
+  # all, because `production` carried neither the harness nor a baseline. That
+  # was true when written on 2026-08-24 and PRs #1482 and #1483 made it false:
+  # `production` now carries `scripts/site-characterization.mjs` and
+  # `scripts/site-characterization-baseline/` both `[verified 2026-08-26:
+  # git ls-tree --name-only production -- scripts/]`. The reason above is the
+  # one that survives, and it is sufficient on its own.
   #
   # base.sha is the BASE BRANCH TIP, not the merge base
   # `[verified 2026-08-24: on PR #1480 baseRefOid is d862072bea, which is
