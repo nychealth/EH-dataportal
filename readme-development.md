@@ -26,7 +26,7 @@ Our internal workflows are to begin work by:
 - Giving the branch a unique name. We name branches: hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
 - Keeping branch work focused on discrete, unique tasks
 
-After committing, working branches can be merged into `development` for testing then merged into `production` for deployment.
+After committing, working branches are merged into `production` for deployment. To stage a branch for review, use CloudCannon, which builds individual branches. **Merging into `development` for testing is deprecated** — consistent with the tables below, where `development` appears in no branch row and `hugo-build-to-dev-prod.yml` is marked "In use? No".
 
 ### Branches
 A run-down of main branches, actions, and purposes are:
