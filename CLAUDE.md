@@ -289,7 +289,7 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 
 ## Branching and deployment
 
-Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`. Merge to `development` for testing, then to `production` to deploy. GitHub Actions builds `production` → `builds/prod-prod` (live) and `build-to-dev-stage` → `builds/dev-stage` (staging). Full workflow and environment tables: [readme-development.md](readme-development.md).
+Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. GitHub Actions builds `production` → `builds/prod-prod` (live) and `build-to-dev-stage` → `builds/dev-stage` (staging). Full workflow and environment tables: [readme-development.md](readme-development.md).
 
 A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 
