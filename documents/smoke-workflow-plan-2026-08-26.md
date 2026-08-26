@@ -1,10 +1,10 @@
 # Automatic smoke check in GitHub Actions
 
 **Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Task 2 written at `c7a3b3b223` but
-In progress — only Task 5's run proves it. Tasks 3–6 not started.** Branch `feature-smoke-GHA`,
+In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Tasks 4–6 not started.** Branch `feature-smoke-GHA`,
 cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan had wrong — its own
 prescribed proof, and the claim that `dev_prod` emits no analytics tag — both rewritten in place
-below. Tasks 3 and 4 edit `.github/workflows/smoke.yml`, the file Task 2 created.
+below. Task 4 also edits `.github/workflows/smoke.yml`, the file Task 2 created and Task 3 extended.
 
 Derive what a status line cannot hold:
 
@@ -124,7 +124,7 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 |---|---|---|---|---|
 | 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | `feature-smoke-GHA @ 6ebc18374c` | **DONE 2026-08-26** | Response-count arms 1→0, shipped-route arms 35→1, `smoke:prod_prod` 924/925 — below |
 | 2 | `.github/workflows/smoke.yml` — sweep job | `feature-smoke-GHA @ c7a3b3b223` | **In progress** — file written; the run that proves it is Task 5 | YAML parses, pins and `paths-ignore` match the reference — below |
-| 3 | `smoke.yml` — Pagefind pre-flight assertion | — | **TODO** | Forced-absent arm, below |
+| 3 | `smoke.yml` — Pagefind pre-flight assertion | `feature-smoke-GHA @ 7f5890799f` | **DONE 2026-08-26** | 404 before the build / 200 after; `curl -f` exits 22 / 0 — below |
 | 4 | `smoke.yml` — base-branch control job | — | **TODO** | Injected regression, below |
 | 5 | Calibration run: open the PR into `production`, read the wall time | — | **TODO** | The run's own step timings |
 | 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | — | **TODO** | `npm run docs-check` with a stash control |
@@ -280,9 +280,22 @@ through the server rather than the filesystem, so it tests what the browser will
   run: curl -fsS -o /dev/null "${SERVER_URL}pagefind/pagefind.js"
 ```
 
-**Proof:** run that `curl` against a server whose `docs/pagefind/` has been removed and confirm it
-exits non-zero — a pre-flight that cannot fail is not a pre-flight. Then restore and confirm
-exit 0.
+**Proof — ran 2026-08-26.** The prescribed form said to remove `docs/pagefind/` from a live
+server. What ran instead inverts the order and never deletes anything under a running Hugo: curl
+the probe **before** the Pagefind build, then again after. Same two arms, and it is the order CI
+itself hits.
+
+| arm | HTTP | `curl -f` exit |
+|---|---|---|
+| before the Pagefind build | 404 | 22 |
+| after it | 200 | 0 |
+
+The 200 arm needed a control of its own. The first attempt read **exit 23 on a 200** and would have
+been recorded as a failing pre-flight: the probe invoked `curl` through Node's `spawnSync`, which
+bypasses Git Bash's `/dev/null` → `NUL` translation and hands a Windows binary a literal path, so
+the write failed while the request succeeded. Through a shell, `-o /dev/null` exits 0; the runner
+is Linux, where it is a real device. `curl -f` exiting 22 on a 404 and 0 on a 200 was then
+confirmed a second time against a synthetic local server, independent of Hugo.
 
 ## Task 4: The base-branch control job
 
