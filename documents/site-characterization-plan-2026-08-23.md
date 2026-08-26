@@ -144,6 +144,14 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
+**CLOSED 2026-08-26. All seventeen tasks are done; the work is `d8c45abebe..df45a3bdac`, with the
+ledger commit naming that range following it.** What outlives this document is not a task, and is
+recorded where each was found rather than copied here: the **scheduled-run decision** inside Task 16,
+which needs three answers before anything is written; and three things carried as known-unproven —
+`_meta.json`'s `cleared` field, the `recapture()` anomaly Task 6 found and never reproduced, and the
+deferred single-visit fold of `smoke` and this sweep (Task 9). Everything below this line is a dated
+historical record; derive current status from `git log` and `gh pr`, not from it.
+
 **Tasks 1-10 done 2026-08-24. Tasks 11-15 and 17 done 2026-08-25. Task 16 done 2026-08-26** — 11-14 out of the
 question the first red run could not answer (it said three pages differed, and nothing about what
 to go and look at), and 15 out of the 20-minute timeout that answering it cost.
