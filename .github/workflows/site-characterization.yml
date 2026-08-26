@@ -217,8 +217,16 @@ jobs:
 
       - name: Run the characterization check
         id: check
+        # `permissions: contents: read` grants this job a token; it does NOT put
+        # it in a step's environment, so without this line the dataCommit lookup
+        # runs UNAUTHENTICATED on an IP shared with every other job on the
+        # runner. Measured 2026-08-26 against api.github.com: x-ratelimit-limit
+        # 60 without the header and 5000 with it, same sha from both. A bad
+        # token 401s, which fetchDataCommit reports as "@ unknown" rather than
+        # failing the run.
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # inputs.scope is empty on a pull_request event, so PRs get the full sweep
           args="--check"
@@ -411,6 +419,7 @@ jobs:
         continue-on-error: true
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # see the sweep job's note
         run: node scripts/site-characterization.mjs --check --all
 
       - name: Verdict

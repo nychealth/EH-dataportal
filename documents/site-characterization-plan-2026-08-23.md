@@ -1906,11 +1906,29 @@ was checking the wrong branch — `gh api …/commits/staging` matches exactly.
 
 **Two deliberate departures from the spec, both flagged rather than folded in:**
 
-- **`GITHUB_TOKEN` is sent when set.** Unauthenticated `api.github.com` allows 60 requests an hour
-  *per IP* and a GitHub-hosted runner's IP is shared, so without it the field would most often be
-  null exactly where it is worth having. Absent locally, where one request a run is nowhere near
-  the limit `[docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api, read
-  2026-08-26]`.
+- **`GITHUB_TOKEN` is sent when set, and the workflow now sets it.** Unauthenticated
+  `api.github.com` is 60 requests an hour *per IP* and a GitHub-hosted runner's IP is shared with
+  every other job on it, so without a token the field would most often be null exactly where it is
+  worth having. **Measured, not recalled** `[2026-08-26, the same URL twice: `x-ratelimit-limit` 60
+  with no header and 5000 with one, identical sha from both]`. An earlier draft of this bullet
+  attached a `docs.github.com` citation to the 60 figure; **that page was never fetched** and the
+  citation was fabricated. The measurement replaces it.
+
+  **The first runner run did not exercise the token at all.** `permissions: contents: read` grants
+  the job a token; it does **not** put `GITHUB_TOKEN` in a step's environment. So `[run 32923334977
+  @ eae44299f1]` fetched unauthenticated, got a 200 anyway, and printed
+  `EHDP-data: production @ e4f9301123 (2026-08-25)` — green for the wrong reason, with the
+  rate-limit protection inert in the one place its own comment says it matters. Both check steps
+  now carry `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}`, and the file still parses to 2 jobs /
+  11 + 14 steps.
+
+  **What a green run after this change proves is limited, and worth stating rather than
+  overclaiming twice.** An authenticated 200 and an unauthenticated 200 print the same line. A
+  *bad* token returns 401, which `fetchDataCommit` reports as `@ unknown` — observed by accident
+  when a shell variable was set without `export` and the child process received `Bearer undefined`.
+  So a real SHA after this change is consistent with the token being accepted; it is not proof the
+  token was used. Proving that would need the response's rate-limit header logged, which is noise
+  for a value nobody reads.
 - **The drift line also goes to `$GITHUB_STEP_SUMMARY`.** Step 5 says "print one line", but this
   task's own opening says a recorded SHA "answers most instances of it from the run page" — and the
   run page is the step summary, not the step log. The console line is unconditional; the markdown
