@@ -1,8 +1,9 @@
 # Per-environment characterization invocation
 
-**Status as of 2026-08-26: DONE. Branch `feature-characterize-env`, cut from `production` at
-`3d5438830c`, five commits `d14ab4e841..8c15d56ae7`, unpushed. `npm run
-characterize:site:prod_prod` passes 925/925 at `8c15d56ae7`.**
+**Status as of 2026-08-26: tasks 1-8 DONE, `d14ab4e841..8c15d56ae7` on branch
+`feature-characterize-env`, cut from `production` at `3d5438830c`. `npm run
+characterize:site:prod_prod` passes 925/925 at `8c15d56ae7`. Task 9 — the `sample` positional,
+added to match `feature-smoke-env`'s `smoke-env.mjs` — is DONE at `e92c7ac15c`.**
 
 Derive what a status line cannot hold:
 
@@ -83,6 +84,7 @@ rest exit 2 with the "No baseline" message at `site-characterization.mjs:1075-10
 | 4 | Document the split: comment block in `characterize-env.mjs` and a CLAUDE.md line saying how `characterize:site:dev_stage` (isolated, private :8090 server, never reuses) differs from `characterize:site` (reuses whatever is up, builds into `docs/`) | `feature-characterize-env @ 4a91dd94f9` | **DONE 2026-08-26** | Two CLAUDE.md bullets and the four new command lines; the argument bullet carries the measured npm table rather than asserting the behaviour |
 | 5 | End-to-end: `npm run characterize:site:prod_prod` against this tree | `feature-characterize-env @ 4a91dd94f9` | **DONE 2026-08-26** — with a caveat, see below | The wrapper worked: server up, `prod_prod` baseline selected unaided, 925 pages swept, server stopped, harness exit code (1) passed through. **Isolation proven:** `resources/_gen` 399 files and `docs/` 2934 files byte-identical on a path+size+mtime manifest before and after. The exit 1 is a real site diff, not a wrapper fault — see below. Log at `C:/temp/characterize-prod_prod.log` |
 | 6 | Fold in the hazard the incident exposed: make `rebaseline.mjs` refuse unrecognized arguments instead of ignoring them | `feature-characterize-env @ 4a91dd94f9` | **DONE 2026-08-26** | `parseArgs` rewritten as one consuming pass returning `unknown`; `main` exits 2 on any leftover and points at `characterize-env.mjs`. The exact command from the incident, `rebaseline.mjs nosuchkey`, now exits 2 without touching a baseline — as do `--nosuchflag` and a dangling `--expect` (previously dropped in silence). Positive control the other way: `--report-only --expect "data-explorer/*" --concurrency 8` still parses and runs, echoing the glob as claimed-intended, exit 0, `git status` on the baseline path silent afterwards |
+| 9 | Optional second positional `sample` on `characterize-env.mjs`, so the curated 41-page check can run against a NAMED environment; one argument contract with `feature-smoke-env`'s `smoke-env.mjs`. Plus `readme-development.md` and `CLAUDE.md` | `feature-characterize-env @ e92c7ac15c` | **DONE 2026-08-26** | Five rejection arms, each exit 2 with its own message: no argument, unknown environment, `--env prod_prod`, `prod_prod typo`, three positionals. The `typo` arm is the load-bearing one — without the explicit `SAMPLE` comparison it would have swept all 925 pages silently. End-to-end: `npm run characterize:site:prod_prod sample` -> **PASSED, exit 0**, 41/41 captured, every page quiescent before the cap, `prod_prod` baseline selected unaided, log at `C:/temp/characterize-sample.log`. That run also proves `sample` survives npm + PowerShell as a positional, and answers the open question about partial captures: the 884 uncompared pages are NOT reported as deletions — sample mode projects both sides through the intersection (`site-characterization.mjs:1345-1364`) |
 
 ## Incident 2026-08-26: an unintended re-baseline
 
@@ -259,7 +261,8 @@ All of task 8 is at `8c15d56ae7`.
 
 ## Environment state
 
-- Branch `feature-characterize-env`, cut from local `production` at `3d5438830c`. No upstream set.
+- Branch `feature-characterize-env`, cut from local `production` at `3d5438830c`. Upstream is
+  now `refs/heads/feature-characterize-env` — its own name, not `production`.
 - No Hugo server running at branch time (`Get-NetTCPConnection -LocalPort 8080,8081,1313` returned
   nothing; no `hugo.exe`).
 - Task 5 spawns a private server on :8090 and writes an isolated build under the temp root
@@ -269,7 +272,19 @@ All of task 8 is at `8c15d56ae7`.
 
 ```
 git -C . rev-parse --abbrev-ref HEAD     # expect feature-characterize-env
-git log --oneline 3d5438830c..HEAD       # the task commits; empty means task 1 has not landed
+git log --oneline 3d5438830c..HEAD       # the task commits
+git branch -a --contains e92c7ac15c      # where task 9 has reached since
 ```
 
-Then start task 1 by reading `scripts/site-characterization-rebaseline.mjs` lines 140-230.
+All nine tasks have landed. Nothing is queued; the branch is ready for a PR into `production`.
+
+To re-run task 9's end-to-end proof from scratch: `npm run characterize:site:prod_prod sample`,
+expect `Characterization check PASSED`, exit 0, 41/41 pages, and one named uncompared page
+(`data-explorer/asthma/?id=2380` — no baseline record exists for a query string, in either
+baseline; `find scripts/site-characterization-baseline -name '*id=2380*'` returns nothing).
+
+`feature-smoke-env` carries the same `sample` contract on `smoke-env.mjs` and has already edited
+`readme-development.md`'s command table and its "Checking a specific environment" block. The two
+branches will conflict in that file. **Take both sides** — the edits are the smoke row and the
+characterization row of the same table, and the smoke lines and characterization lines of the same
+code block.
