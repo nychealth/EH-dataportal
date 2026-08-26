@@ -15,6 +15,8 @@
         "lint": "eslint assets/js/data-explorer",
         "smoke": "node scripts/smoke-pages.mjs",
         "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
+        "smoke:env": "node scripts/smoke-env.mjs",
+        "smoke:prod_prod": "node scripts/smoke-env.mjs prod_prod",
         "characterize:cp": "node scripts/cp-characterization.mjs",
         "characterize:site": "node scripts/site-characterization.mjs --check --all",
         "characterize:site:sample": "node scripts/site-characterization.mjs --check",

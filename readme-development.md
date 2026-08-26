@@ -92,8 +92,10 @@ templates compile.
 |---|---|
 | `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
 | `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run smoke:env <env> [sample]` | The same, against a named environment it builds and serves itself. |
 | `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
 | `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
+| `npm run characterize:site:env <env>` | The same check, against a named environment it builds and serves itself. |
 
 Run `smoke` before merging anything that touches `partials/head.html`, `_default/baseof.html`, the
 header or footer partials, or `assets/js/`. Neither check sees what the other does: `smoke` catches
@@ -101,24 +103,42 @@ JavaScript that throws, characterization catches a page whose markup quietly mov
 
 #### Checking a specific environment
 
-`npm run characterize:site` checks whichever environment your machine happens to be serving — it
-reuses any Hugo server already answering on :8080, :8081 or :1313, and otherwise starts `dev_stage`
-for you. When you need a *named* environment instead, and especially `prod_prod`, which is the one
-that actually deploys:
+`npm run smoke` and `npm run characterize:site` check whichever environment your machine happens to
+be serving — they reuse any Hugo server already answering on :8080, :8081 or :1313, and otherwise
+start `dev_stage` for you. When you need a *named* environment instead, and especially `prod_prod`,
+which is the one that actually deploys, both checks have an `:env` form:
 
 ```bash
+npm run smoke:prod_prod                    # every page, JavaScript errors, prod_prod
+npm run smoke:env local_prod               # any environment in config/
+npm run smoke:env local_prod sample        # the curated 33 pages instead of all of them
+
 npm run characterize:site:prod_prod        # the environment the live site is built with
 npm run characterize:site:dev_stage        # staging data, deterministically
 npm run characterize:site:env local_prod   # any environment in config/
 ```
 
+Add the word `sample` to check the curated one-page-per-template list rather than the whole site.
+A full Hugo build runs either way, so `sample` narrows *what* gets checked rather than making the
+command quick.
+
 These start their own Hugo server on port 8090, build it entirely outside the repo, and stop it
 when they finish — so they ignore whatever you have running, and they leave `docs/` and
-`resources/_gen` untouched. They are slower than `characterize:site`, because a full build runs
-before the check does.
+`resources/_gen` untouched. They are slower than the plain forms, because a full build runs before
+the check does. They share that one port, so **you cannot run a `smoke:env` and a
+`characterize:site:env` at the same time** — the second one to start says so and exits rather than
+sweep the wrong site.
 
-Two baselines are committed, between them covering four of the eight environments. The rest
-stop and say which baselines exist:
+Two things make the environment worth naming rather than taking what you are given. `head.html`
+branches on the environment's *name*, so only `prod_prod` gets the production analytics property
+and a page that search engines are allowed to index. And each environment pins its own
+EHDP-data branch, which changes the data URLs a page fetches **in the browser** — so a data file
+that was renamed on one branch throws a JavaScript error on that environment only, which is
+exactly what `smoke:env` is for and what a green `hugo` build cannot see.
+
+`smoke:env` works on all eight environments — it needs no baseline, only a page that loads without
+throwing. Characterization compares against a committed baseline, and two are committed, between
+them covering four of the eight. The rest stop and say which baselines exist:
 
 | Environment | Baseline used |
 |---|---|
@@ -128,9 +148,10 @@ stop and say which baselines exist:
 
 **Pass the environment as a plain word, not as a flag.** `npm run characterize:site:env prod_prod`
 works; `npm run characterize:site:env --env prod_prod` does not, because PowerShell and npm between
-them discard the flag's name and keep only its value. The scripts refuse anything starting with `-`
-rather than act on a mangled argument. If you need the underlying flags, call the script directly:
-`node scripts/site-characterization.mjs --check --content`.
+them discard the flag's name and keep only its value. Both `:env` scripts refuse anything starting
+with `-` rather than act on a mangled argument. If you need the underlying flags, call the script
+directly: `node scripts/site-characterization.mjs --check --content`, or
+`node scripts/smoke-pages.mjs --all --concurrency 12`.
 
 #### When a check fails
 

@@ -45,14 +45,31 @@ Local site: http://localhost:1313/EH-dataportal
 ```bash
 npm run smoke                                          # 33 pages, one per template kind
 npm run smoke:all                                      # every page the site serves
+npm run smoke:prod_prod                                # every page, on an isolated prod_prod server
+npm run smoke:env local_prod                           # every page, on any environment in config/
+npm run smoke:env local_prod sample                    # the curated 33 instead, same isolated server
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
-`scripts/smoke-pages.mjs` loads pages under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only automated check in the repo, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
+`scripts/smoke-pages.mjs` loads pages under Playwright and fails on any console `error` or `pageerror` that isn't allowlisted. It is the only check here that runs the site's JavaScript, and it exists because a `hugo` build proves the templates compile and nothing more: the site's browser JS is classic `<script>` tags sharing one global scope, so a bad edit throws at load while the build stays green. **Run it before merging anything that touches `head.html`, `baseof.html`, the header/footer partials, or `assets/js/`.**
 
 The default reads the curated `PAGES` list — one page per template kind, weighted toward templates that load map and chart libraries, which is what a quick check wants. `smoke:all` reads the whole site instead, for a pre-merge or pre-deploy sweep.
 
-Seven things to know before trusting a result:
+`smoke:env <environment>` (`scripts/smoke-env.mjs`) is `smoke:all` against an environment you name
+rather than one you happen to be serving. It is the second caller of `scripts/isolated-server.mjs`
+— `characterize-env.mjs` is the first — so the isolation is theirs in common: :8090, `-d` and
+`HUGO_RESOURCEDIR` both outside the repo, server stopped afterwards. Two axes make the environment
+worth naming: `head.html` branches on the environment *name*, and each environment pins its own
+`data_branch`, which changes the EHDP-data URLs a page fetches **at runtime** — a renamed data file
+throws in the browser on one environment and not another. Same positional-argument contract as
+`characterize-env.mjs`, `--flag` rejected, for the reason measured there. An optional second
+positional, the bare word `sample`, swaps the full sweep for the curated `PAGES` list — spelled out
+exactly, so a typo exits 2 rather than quietly sweeping 925 pages when 33 were wanted. A cold Hugo
+build runs either way, so `sample` narrows what is checked and does not make the command quick. The
+two `:env` scripts share :8090 and so cannot run concurrently; each refuses to start when the other
+holds it.
+
+Eight things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -62,7 +79,20 @@ Seven things to know before trusting a result:
   `ABSENT` before it sweeps. Blanket-allowlisting it was masking `PagefindUI is not defined` on
   every page `[2026-08-24: with the predicate forced off and no index, smoke failed 33 of 33]`.
 - **`smoke:all` enumerates rather than hardcodes, and prints the breakdown every run** (`scripts/site-urls.mjs`): `sitemap.xml` for content pages in all three languages, plus a probe walk for paginator pages, plus `404.html`. Hugo lists neither of the last two in any sitemap, and reports only a *count* for paginator pages — which is the cross-check. `[verified 2026-08-22 on feature-audit-moderate against a development-environment server: 925 pages = 830 sitemap + 94 paginator + 1, enumerated in 0.5s, and the 94 matched Hugo's build summary exactly; reproduced 2026-08-23 on `production` against a dev_stage server, same 830/94/1 breakdown]`. That total is the same set as the 927 counted below over a `prod_prod` build; only the paginator count differs between branches.
-- **Concurrent failures are re-checked sequentially before being reported.** A sweep that reports a concurrency artefact as a regression gets ignored, so pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at the default concurrency of 6; zero cleared on re-check]`. **The mechanism is not established.** The explanation that used to sit in `smoke-pages.mjs`, and in this bullet — pages contending for one `hugo server`'s on-demand render — was never measured, and does not hold up: measured 2026-08-23 at concurrency 6 against 1 over 12 pages, navigation slowed 1.34x, JS settle time was 1.00x, and all 12 reached identical final DOM states — nowhere near enough to time a page out. Treat the re-check as a guard for an unexplained flake, not a fix for a known cause.
+- **Concurrent failures are re-checked sequentially before being reported.** A sweep that reports a concurrency artefact as a regression gets ignored, so pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at a concurrency of 6, which was the default at the time; zero cleared on re-check]`. **The mechanism is not established.** The explanation that used to sit in `smoke-pages.mjs`, and in this bullet — pages contending for one `hugo server`'s on-demand render — was never measured, and does not hold up: measured 2026-08-23 at concurrency 6 against 1 over 12 pages, navigation slowed 1.34x, JS settle time was 1.00x, and all 12 reached identical final DOM states — nowhere near enough to time a page out. Treat the re-check as a guard for an unexplained flake, not a fix for a known cause.
+- **That re-check is capped at 25 pages, and the concurrency default is no longer 6.** Both changed
+  2026-08-26 to match `site-characterization.mjs`, which is now the sibling this file tracks rather
+  than diverges from. The default is `min(24, max(6, availableParallelism()))` — 24 on a 24-core
+  box, still 6 on a small runner. **The 24 comes from the characterization harness's measurement
+  (925 pages, 12 -> 198s, 24 -> 114s, 12 -> 199s `[2026-08-24]`), not from one taken here**; both
+  drive one `chromium` with `browser.newPage()` per URL, but smoke adds a fixed 2s settle per page
+  that the other lacks, so do not quote 114s for a smoke run. Past 25 failures the sequential
+  re-check is skipped outright and the run says so, printing `recheckCapped: true` in its report:
+  a capture race does not reach hundreds of pages, so a failure that wide is systematic — which is
+  exactly what smoke is built to catch, and re-visiting ~925 pages at a 2s floor is 31 minutes
+  during which nothing is reported. Characterization hit that shape in CI `[run 32802721473,
+  2026-08-25]`. Both branches of the cap are proved to fire `[2026-08-26: same 33 forced failures
+  at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
 
