@@ -1,10 +1,13 @@
 # Automatic smoke check in GitHub Actions
 
 **Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Task 2 written at `c7a3b3b223` but
-In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Task 4 written at `c37149d876`, also In progress — neither of its two proof arms has run. Tasks 5–6 not started.** Branch `feature-smoke-GHA`,
+In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Task 4 written at `c37149d876`, also In progress — neither of its two proof arms has run. Task 5 not started. Task 6's three
+measurement-independent items landed at `52b7720bad`; its `timeout-minutes` item cannot run until
+Task 5 has.** Branch `feature-smoke-GHA`,
 cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan had wrong — its own
 prescribed proof, and the claim that `dev_prod` emits no analytics tag — both rewritten in place
-below. `.github/workflows/smoke.yml` now holds both jobs; Tasks 5 and 6 are the only ones left, and both need CI runs rather than edits.
+below. `.github/workflows/smoke.yml` now holds both jobs; what is left is Task 5's run and the one
+Task 6 item that reads a number off it.
 
 Derive what a status line cannot hold:
 
@@ -127,7 +130,7 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 | 3 | `smoke.yml` — Pagefind pre-flight assertion | `feature-smoke-GHA @ 7f5890799f` | **DONE 2026-08-26** | 404 before the build / 200 after; `curl -f` exits 22 / 0 — below |
 | 4 | `smoke.yml` — base-branch control job | `feature-smoke-GHA @ c37149d876` | **In progress** — job written; neither proof arm has run | Static only — the injected-regression arms need PRs — below |
 | 5 | Calibration run: open the PR into `production`, read the wall time | — | **TODO** | The run's own step timings |
-| 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | — | **TODO** | `npm run docs-check` with a stash control |
+| 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | `feature-smoke-GHA @ 52b7720bad` | **In progress** — items 2, 3 and 4 done; item 1 waits on Task 5's number | `docs-check`, four arms with a stash control and an injected bogus path — below |
 
 ## Task 1: Block the analytics host in `smoke-pages.mjs`
 
@@ -405,6 +408,28 @@ with and without these edits — plus an injected bogus path in one added senten
 zero-new-failures reading comes from a probe able to fire. Note that this worktree has never
 built, so `docs/` and `resources/_gen` are absent and `docs-check` reports two "path does not
 exist" failures on CLAUDE.md on a clean tree.
+
+**Status 2026-08-26: items 2, 3 and 4 done at `52b7720bad`. Item 1 is blocked on Task 5.**
+
+- **Item 3 — the stale comment.** Corrected in place rather than deleted: it now says the claim
+  was true when written on 2026-08-24, names PRs #1482 and #1483 as what falsified it, and keeps
+  the design reason that survives (only the site source comes from the base).
+- **Item 2 — CLAUDE.md.** One paragraph, ~75 words added to a 1299-word section.
+- **Item 4 — nothing to do.** `readme-development.md`'s workflow table lists deploy workflows only
+  and does not carry `site-characterization.yml`, so adding one of the two would be worse than
+  adding neither.
+
+**Proof that ran, on the tree that was committed:**
+
+| arm | `docs-check` failures |
+|---|---|
+| with the edits | 2 — `docs/`, `resources/_gen` |
+| stashed (control) | 2 — identical |
+| bogus path injected into an added sentence | 3 |
+| reverted | 2 |
+
+Both workflow files still parse under `npx -y js-yaml`. The two pre-existing failures are the ones
+this section already predicts for a worktree that has never built.
 
 ## Environment state
 
