@@ -1,12 +1,13 @@
 # Automatic smoke check in GitHub Actions
 
-**Status as of 2026-08-26: PLANNED. Nothing has landed.** Branch `feature-smoke-GHA`, cut from
-`production` at `9ebb11e85f`. Tasks 1–6 below are unstarted.
+**Status as of 2026-08-26: PLANNED. No task work has landed.** Branch `feature-smoke-GHA`, cut
+from `production` at `9ebb11e85f`. Tasks 1–6 below are unstarted; the only commit on the branch is
+the one carrying this document.
 
 Derive what a status line cannot hold:
 
 ```
-git log --oneline 9ebb11e85f..HEAD                                   # the task commits
+git log --oneline 9ebb11e85f..HEAD -- ':!documents/'                  # the task commits
 git rev-list --left-right --count origin/production...HEAD           # right-hand number = unpushed
 gh pr list --head feature-smoke-GHA                                  # a PR, and against which base
 gh run list --workflow smoke.yml                                     # has the workflow ever run
