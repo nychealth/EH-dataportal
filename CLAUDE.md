@@ -74,6 +74,10 @@ Seven things to know before trusting a result:
 npm run characterize:site            # every page, diff `structure` against the committed baseline
 npm run characterize:site:sample     # the same check over 41 pages, one per template kind
 npm run characterize:site:baseline   # re-capture this environment's baseline — commit the result
+npm run characterize:site:prod_prod   # the same check against an isolated prod_prod server
+npm run characterize:site:dev_stage   # ditto, dev_stage
+npm run characterize:site:env local_prod   # ditto, any environment in config/
+npm run characterize:site:env local_prod sample   # ditto, over the 41-page sample
 node scripts/site-characterization.mjs --check --content   # widen the gate to titles and link targets
 ```
 
@@ -88,6 +92,26 @@ are printed as a harness-health number and deliberately **not** baselined — th
   CloudCannon commits content directly, so a check that also gated on titles and link text would
   fail on commits that never touch a template — and a check that fails routinely stops being read.
   `--content` widens it when you want that.
+- **`characterize:site` checks whichever environment your machine happens to be serving; the
+  `:env` scripts pick one.** `dev-server.mjs` reuses any server answering on :8080/:8081/:1313 and
+  otherwise spawns `dev_stage` into the repo's own `docs/` and `resources/_gen`, so what
+  `characterize:site` compares depends on what you have running. `scripts/characterize-env.mjs`
+  ignores running servers entirely: it spawns the named environment on :8090 with `-d` and
+  `HUGO_RESOURCEDIR` redirected outside the repo, builds Pagefind into that isolated `publishDir`,
+  runs `--check --all` against it, and stops it. Slower — a cold isolated build runs before the
+  sweep, and `rebaseline.mjs` allows 200s for the server alone — and it leaves `docs/` and
+  `resources/_gen` untouched. Use `characterize:site` by default; use `:prod_prod` when the
+  question is about the site that actually deploys.
+- **Arguments to these are POSITIONAL, and that is not a style choice.** Measured 2026-08-26 (npm
+  11.4.1, PowerShell): `npm run x -- --env prod_prod` reaches the script as `argv ["prod_prod"]` —
+  PowerShell eats the `--` and npm eats the flag *name*, leaving its value as a nameless
+  positional, so `--concurrency 8` arrives as a bare `"8"`. A plain positional survives both
+  intact. `characterize-env.mjs` therefore refuses any argument starting with `-` rather than
+  half-honour it; flags stay available through a direct `node scripts/site-characterization.mjs`
+  call. For the same reason `site-characterization-rebaseline.mjs` now refuses unrecognized
+  arguments outright: it takes none, it re-captures *every* committed baseline on every run, and
+  an argument it merely ignored made a typo indistinguishable from the destructive invocation
+  `[2026-08-26: `rebaseline.mjs nosuchkey`, believed to name one key, began re-capturing both]`.
 - **Baselines are filed by environment class, and `--check` picks its own.** They live under
   `scripts/site-characterization-baseline/<key>/`, and the harness reads the key off the running
   site — it prints `Environment: dev_stage (EHDP-data staging) at /dev-stage/ — baseline

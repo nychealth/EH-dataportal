@@ -18,6 +18,9 @@
         "characterize:cp": "node scripts/cp-characterization.mjs",
         "characterize:site": "node scripts/site-characterization.mjs --check --all",
         "characterize:site:sample": "node scripts/site-characterization.mjs --check",
+        "characterize:site:env": "node scripts/characterize-env.mjs",
+        "characterize:site:prod_prod": "node scripts/characterize-env.mjs prod_prod",
+        "characterize:site:dev_stage": "node scripts/characterize-env.mjs dev_stage",
         "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
         "characterize:site:rebaseline": "node scripts/site-characterization-rebaseline.mjs",
         "docs-check": "node scripts/docs-check.mjs"

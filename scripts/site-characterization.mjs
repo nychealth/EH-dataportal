@@ -387,21 +387,62 @@ export const CAPTURE = (prefix) => {
     // Counted over the parsed DOM rather than over source lines: a line-oriented
     // sweep scores the opening line of a multi-line <img> as missing its alt.
     //
-    // Leaflet map tiles are excluded, and that exclusion is load-bearing. How
-    // many tiles a map has fetched is a fact about network timing, not about
-    // the page: four loads of one neighborhood report gave img.total 17, 17,
-    // 20, 20, and img.leaflet-tile 9, 9, 12, 12 — while the images *outside*
-    // the map container were 8 on all four [verified 2026-08-23 in a browser].
-    // Left in, this field alone failed the first full-site --check on 9 NR
-    // pages. Only `.leaflet-tile` goes; marker icons and anything else inside
-    // the map are still counted, because those are page structure.
-    const imgs = $$("img").filter((el) => !el.classList.contains("leaflet-tile"));
+    // Leaflet map tiles are excluded on every page, and that exclusion is
+    // load-bearing. How many tiles a map has fetched is a fact about network
+    // timing, not about the page: four loads of one neighborhood report gave
+    // img.total 17, 17, 20, 20 and img.leaflet-tile 9, 9, 12, 12, while the
+    // images *outside* the map container were 8 on all four [verified
+    // 2026-08-23 in a browser]. Left in, this field alone failed the first
+    // full-site --check on 9 NR pages.
+    //
+    // Marker icons are excluded on ONE page, and the narrowness is the point.
+    // A marker count is worth keeping wherever the markers come from data that
+    // changes by hand: there, markers appearing or vanishing is exactly the
+    // regression this check exists to catch. `proximity` (128 markers),
+    // `congestion-pricing-report` (111) and `heat-story` (19) are all in that
+    // class and keep their counts. `realtime-air-quality` is not: it draws one
+    // marker per LIVE air-quality monitor, so a monitor going down moves
+    // img.total and img.missingAlt with no code change — which reddened a
+    // prod_prod --check twice on 2026-08-26, 19 -> 18 and 16 -> 15, purely
+    // from the feed.
+    //
+    // A marker image carries no class of its own; the class sits on its PARENT
+    // div.leaflet-marker-icon, so `classList.contains` never matches one and
+    // only `closest` does `[verified 2026-08-26 in a browser: 15
+    // map-marker.svg, every one parented by div.leaflet-marker-icon, and the
+    // only alt-less images on that page]`.
+    //
+    // Derived from location rather than passed in, so both callers of CAPTURE
+    // keep their one-argument signature. Same prefix-stripping as the asset
+    // and link paths below, so the entry matches a record's own `path` field.
+    const LIVE_MARKER_PAGES = ["data-features/realtime-air-quality/"];
+    const herePath = location.pathname.startsWith(prefix)
+        ? location.pathname.slice(prefix.length)
+        : location.pathname.replace(/^\//, "");
+    const liveMarkers = LIVE_MARKER_PAGES.includes(herePath);
+
+    const imgs = $$("img").filter((el) => (liveMarkers
+        ? !el.closest(".leaflet-container")
+        : !el.classList.contains("leaflet-tile")));
 
     const img = {
         total: imgs.length,
         missingAlt: imgs.filter((el) => !el.hasAttribute("alt")).length,
         emptyAlt: imgs.filter((el) => el.getAttribute("alt") === "").length,
         zeroSize: imgs.filter(isZeroSized).length,
+
+        // Recorded only where the count was suppressed, because only there is
+        // it carrying anything: on a page that still counts its markers, a
+        // marker set dropping to zero already shows up as a count diff, and a
+        // second field saying so would be a field added to 925 records to
+        // restate what one of them already says.
+        //
+        // Presence, not count: how MANY markers the map drew tracks the feed,
+        // but whether it drew any at all is a fact about the page, and catches
+        // the failure that matters — tiles rendering with no data on them.
+        // Queried on `.leaflet-marker-icon` directly rather than through the
+        // images, so a marker drawn as a divIcon with no <img> still registers.
+        ...(liveMarkers ? { mapMarkers: $$(".leaflet-marker-icon").length > 0 } : {}),
     };
 
     // --- links -----------------------------------------------------------

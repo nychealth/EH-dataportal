@@ -82,10 +82,11 @@
             }
         ],
         "img": {
-            "total": 19,
-            "missingAlt": 16,
+            "total": 3,
+            "missingAlt": 0,
             "emptyAlt": 0,
-            "zeroSize": 0
+            "zeroSize": 0,
+            "mapMarkers": true
         },
         "links": {
             "internal": 91,
