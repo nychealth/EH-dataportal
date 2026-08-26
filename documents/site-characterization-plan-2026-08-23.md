@@ -150,14 +150,13 @@ to go and look at), and 15 out of the 20-minute timeout that answering it cost.
 Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; Tasks 11-15 are the
 commits from `7bcdec1945` to `e9e4234a5a`, plus Task 14's red arm at `f2f932e5f7`, `d2704a3332` and
 `b2513b6904`; Task 17 is `377a306f5d`, `c7228357ac` and `1b33786d1b`.
-The check is green on a GitHub runner — run `32894749060` at `90581f0b34`, 2026-08-25 — and draft
-PR #1480 into `production` is open and unmerged. The red arm then perturbed that baseline and
-reverted it, and `git diff 90581f0b34 -- scripts/` is empty at `b2513b6904`, so the green above
-still describes the tree. **One thing is open:** Task 16, which is spec only — nothing of it is
-built. Task 14 closed leaving one thing named rather than fixed — a `--check` capture writes no
-`_meta.json`, so a downloaded failure artifact carries 925 records and no provenance. A green run
+The check is green on a GitHub runner — run `32908900917` at `0d52d84eb2`, 2026-08-25 — and draft
+PR #1480 into `production` is open and unmerged. **One thing is open:** Task 16, which is spec only
+— nothing of it is built. The `_meta.json` gap Task 14's red arm found is closed: `--check` now
+writes one, carrying `arbitrated` / `cleared` / `capped` beside the environment fields. A green run
 is a fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that
-run.
+run — the harness commit that follows `0d52d84eb2` has been proved only by five local sample-mode
+runs and has not had a runner.
 The branch is `feature-site-characterization`; derive everything else from the commands below the
 table rather than from this line.
 
@@ -176,7 +175,7 @@ table rather than from this line.
 | 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
 | 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
 | 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **DONE 2026-08-25** — the step summary renders; the source-file intersection was dropped for something better grounded | Locally: written as a 4-column table on a red run and **not written at all** on a green one. On a runner `[run 32806127560]`: both blocks render on the run's landing page — the sweep's table reading `structure.lang / 925 / 404.html / "en" -> "zz"`, and base-control's verdict paragraph beneath it. Confirmed by eye, which is the only way a rendering claim can be confirmed |
-| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af`; red arm `d2704a3332`..`b2513b6904` | **DONE 2026-08-25** — both arms have now run on a runner. Open, and deliberately not fixed here: a `--check` capture writes no `_meta.json`, so a downloaded failure artifact carries records and no provenance | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. GREEN ARM: `if: failure()` correctly skipped the control on a green sweep `[run 32801546852]`; the first attempt `[32802721473]` timed out and found Task 15 instead; the second `[32806127560, after the cap]` ran end to end — sweep red at 8m33s, control green at 8m53s, verdict "this PR's changes are" on the run page. RED ARM `[run 32905347134 @ d2704a3332]`: `cb334f5b37`'s three baseline records replayed, sweep RED at 7m38s naming exactly those 3 pages and 3 fields with arbitration running and no cap message, control RAN at 9m48s and reported the **same** 3 rows in the same directions — the converse of the green arm, and the pair is what shows the control tracks the injection site rather than the sweep. `OUTCOME: failure` in the Verdict step's env with the job still succeeding proves `continue-on-error` leaves `outcome` readable; the never-run base artifact uploaded 2776 files and was DOWNLOADED and inventoried — 925 + 925 + 925 + `hugo-server-base.log` — so both projected trees are really in it. 5 of 6 written-in-advance predictions exact; the sixth found the missing `_meta.json`. Reverted in `b2513b6904`, which leaves `scripts/` byte-identical to `90581f0b34`, green at `[run 32894749060]` |
+| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af`; red arm `d2704a3332`..`b2513b6904` | **DONE 2026-08-25** — both arms have now run on a runner, and the artifact gap the red arm found is fixed | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. GREEN ARM: `if: failure()` correctly skipped the control on a green sweep `[run 32801546852]`; the first attempt `[32802721473]` timed out and found Task 15 instead; the second `[32806127560, after the cap]` ran end to end — sweep red at 8m33s, control green at 8m53s, verdict "this PR's changes are" on the run page. RED ARM `[run 32905347134 @ d2704a3332]`: `cb334f5b37`'s three baseline records replayed, sweep RED at 7m38s naming exactly those 3 pages and 3 fields with arbitration running and no cap message, control RAN at 9m48s and reported the **same** 3 rows in the same directions — the converse of the green arm, and the pair is what shows the control tracks the injection site rather than the sweep. `OUTCOME: failure` in the Verdict step's env with the job still succeeding proves `continue-on-error` leaves `outcome` readable; the never-run base artifact uploaded 2776 files and was DOWNLOADED and inventoried — 925 + 925 + 925 + `hugo-server-base.log` — so both projected trees are really in it. 5 of 6 written-in-advance predictions exact; the sixth found the missing `_meta.json`. Reverted in `b2513b6904`, which leaves `scripts/` byte-identical to `90581f0b34`, green at `[run 32894749060]`; `0d52d84eb2` is green too `[run 32908900917]`, with `base-control` correctly skipped. The `_meta.json` fix that followed is proved by five sample-mode runs against one dev_stage server — clean, an `arbitrated` injection, `--out`, `--baseline` from a temp cwd, and a 26-record cap injection — two of which exist only because the three new fields read `[]`/`[]`/`false` on a clean sweep. `cleared` stays unproven and the plan says so |
 | 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
 | 16 | Record which EHDP-data commit a baseline describes | *not started* | **OPEN 2026-08-25** — spec only, written out of the question "did the data move, or did I?" | none yet; the four checks it has to pass are in the task, and row 3 of that table is the one that can break the harness for everyone |
 | 17 | Re-baseline a deliberate site-wide change | `377a306f5d`, `c7228357ac`, `1b33786d1b` | **DONE 2026-08-25** — every proof row has run, the two-key path and the `gitHead` cross-check included | Classification, no sweeps needed: unchanged pair -> 0 rows exit 0; `cb334f5b37`'s three-record perturbation replayed -> exactly those 3 pages and 3 fields, prod_prod only, below-floor shape message, exit 1; `--expect` covering one -> 1 covered / 2 not with the glob list in report.md; a glob matching no changed page -> named, not dropped. Two defects found by those rows and fixed. **The two-key run is green** `[2026-08-25 at e93bfcf1d5]`: 925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both `_meta.json` at one `gitHead`, 0 of 925 pages changed on each, exit 0 — and all 1,850 records byte-identical to baselines captured 2026-08-24 from *normal* servers, which is the isolated-server claim at full breadth and retires the earlier 899-of-912 figure. Committed as `c7228357ac`: two `_meta.json`, no record churn. `DE_SERVER_OWNED` confirmed by the missing caveat on the Hugo line. The attempt before it failed on 5 `ERR_NETWORK_CHANGED` pages after prod_prod had completed, which fired the failed-capture rollback for real — `git status` empty under `staging/`, 926 files, `_meta.json` intact — where it had previously been proved only with a stub. Two message defects that failure exposed are fixed in `1b33786d1b`, each error path exercised. The 13 pages load in 601-1062ms sequentially and 13-wide without failing, so the cause is **not** those pages; an A/B/A with external requests blocked puts ~75-80% of the load phase on external requests (median 4,467 -> 1,112 -> 5,545ms, doc flat at ~400ms), and the same round varies 3.5x between runs |
@@ -1683,9 +1682,44 @@ inside the `if (baseline)` branch `[scripts/site-characterization.mjs:1174, one 
 file]`. So a downloaded artifact has 925 records and nothing saying which commit, environment, data
 branch, Hugo version or Pagefind state produced them — all of which the console log prints and the
 tree does not. That is fine while the log is beside you and thin two weeks later, which is the
-retention window the upload sets. **Not fixed here**: it widens Task 14 past the question it was
-opened for, and the call on whether a `--check` tree should carry a `_meta.json` (and whether
-`--baseline` should then ignore it) is worth taking deliberately.
+retention window the upload sets.
+
+**Fixed 2026-08-25, scoped to `--check`.** `writeMeta()` moved out of the `if (baseline)` branch
+behind an `if (!out)` guard, and three fields added to what it records: `arbitrated` (pages
+re-captured sequentially, whichever path put them there), `cleared` (the `--check` subset that then
+matched, so contention rather than change) and `capped` (the `--check` re-capture was skipped
+outright because more pages differed than `ARBITRATION_CAP`). `arbitrated` was already reaching the
+call site and being silently dropped — the signature never destructured it.
+
+Two things this deliberately does not do. **`--out` still writes no `_meta.json`**, because
+`baselineKeys()` accepts any directory under `BASELINE_ROOT` holding one, so an `--out` tree written
+there would mint a baseline without the second sweep `--baseline` arbitrates against. And **the
+committed baselines are not re-captured** to gain the three fields: nothing reads them — `--check`
+gates on `_meta.json`'s `pagefind` alone `[scripts/site-characterization.mjs:1014]` — and they
+appear on the next re-baseline.
+
+**Proof: five runs against one dev_stage server at `588b0c176e`, sample mode, 41 pages.**
+
+| Run | Injection | Expected | Result |
+|---|---|---|---|
+| A | none | exit 0, a `_meta.json` appears, and the check still passes with it there | exit 0, PASSED, 41/41; `gitHead 588b0c176e`, `baselineKey staging`, `mode sample`, `pages 41` |
+| B | `staging/_home.json` `overflowX` flipped | exit 1, and `arbitrated` NAMES the page | exit 1, `structure.overflowX (home) — true -> false`, `arbitrated: [""]` — the home page's own path — `cleared: []`, `capped: false` |
+| C | none, `--out C:/temp/…` | no `_meta.json` | 41 files written, no `_meta.json` |
+| D | none, `--baseline` from a temp cwd | still writes it, now with the three fields | exit 0, both sweeps agreed, `gitHead null` (the documented tell for a temp cwd), all three fields present |
+| E | 26 `staging` records perturbed | the cap trips, `capped` true, `arbitrated` still empty | exit 1, `26 page(s) differ … past the 25-page arbitration cap`, `capped: true`, `arbitrated: []` |
+
+**B and E are the runs that matter**, and they are there because all three new fields read
+`[]`/`[]`/`false` on a clean sweep — indistinguishable from a probe wired to nothing. B proves
+`arbitrated` fires; E proves `capped` fires and, in the same reading, that `arbitrated` correctly
+stays empty when nothing was re-captured.
+
+**`cleared` is recorded but unproven.** Forcing it needs a page that differs under concurrency and
+matches on a sequential re-capture — the undiagnosed race behind `recapture()`, which has never
+been reproduced on demand. Treat a non-empty `cleared` as informative and an empty one as saying
+nothing.
+
+`--check` and `--out` runs write into gitignored directories (`.gitignore:97`), so none of this
+leaves the tree dirty; `git status --porcelain` after all five runs showed only the harness edit.
 
 **The rendering, confirmed by eye** — the only way a rendering claim can be — **and it is better
 than this plan predicted.** Chris screenshotted the run page on 2026-08-25. The RED verdict renders

@@ -797,7 +797,7 @@ const gitHead = () => {
     }
 };
 
-const writeMeta = (dir, { prefix, pages, all, env, pagefind, hugo }) => {
+const writeMeta = (dir, { prefix, pages, all, arbitrated, cleared, capped, env, pagefind, hugo }) => {
     writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
         capturedAt: new Date().toISOString(),
         gitHead: gitHead(),
@@ -825,6 +825,18 @@ const writeMeta = (dir, { prefix, pages, all, env, pagefind, hugo }) => {
         prefix,
         mode: all ? "all" : "sample",
         pages,
+        // Which pages in this capture did not come from the concurrent sweep.
+        // `arbitrated` were re-captured sequentially — because two sweeps
+        // disagreed (--baseline) or because they differed from the baseline
+        // (--check); `cleared` is the --check subset that then matched, so
+        // contention rather than change. `capped` says the --check re-capture
+        // was skipped outright because more pages differed than
+        // ARBITRATION_CAP, which makes every record here a plain concurrent
+        // capture. Named rather than counted: a count cannot tell you which
+        // page to go and look at.
+        arbitrated,
+        cleared,
+        capped,
         viewport: VIEWPORT,
         blockedHosts: BLOCKED_HOSTS,
     }, null, 4) + "\n");
@@ -1083,6 +1095,7 @@ Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
 
     let arbitrated = [];
     let cleared = [];
+    let capped = false;
 
     try {
         await sweep(outDir, concurrency);
@@ -1115,6 +1128,7 @@ Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
                 walk(outDir).filter((rel) => rel !== META_FILE));
             const suspect = differingPaths(baselineDir, outDir, captured);
             if (suspect.length > ARBITRATION_CAP) {
+                capped = true;
                 console.log(`\n${suspect.length} page(s) differ from the baseline — past the `
                     + `${ARBITRATION_CAP}-page arbitration cap, so they are reported as captured `
                     + `and NOT re-captured sequentially. A capture race does not reach this many `
@@ -1123,6 +1137,7 @@ Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
             } else if (suspect.length) {
                 console.log(`\n${suspect.length} page(s) differ from the baseline — re-capturing sequentially before reporting.`);
                 await recapture(browser, baseURL, userAgent, prefix, outDir, suspect);
+                arbitrated = suspect;
                 const still = new Set(differingPaths(baselineDir, outDir, captured));
                 cleared = suspect.filter((p) => !still.has(p));
             }
@@ -1170,8 +1185,25 @@ ${nonOk.length} page(s) did not answer 200:`);
         return;
     }
 
+    // Provenance for the capture, not only for a committed baseline. A --check
+    // tree is what the CI failure artifact carries, and without this it is 925
+    // records with nothing saying which commit, environment, data branch or Hugo
+    // produced them — on a 14-day artifact retention, where the console log that
+    // prints the same facts is a separate object with its own lifetime
+    // `[2026-08-25: the base-control artifact from run 32905347134, downloaded
+    // and inventoried]`.
+    //
+    // Every enumeration here already skips META_FILE, so nothing downstream has
+    // to learn about the new file. NOT written for --out, which is the one mode
+    // that chooses its own path: an --out tree under BASELINE_ROOT carrying a
+    // _meta.json would register as a baseline key — baselineKeys() accepts any
+    // directory holding one — and so would let --out mint a baseline without the
+    // second sweep --baseline arbitrates against.
+    if (!out) {
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, cleared, capped, env, pagefind, hugo });
+    }
+
     if (baseline) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, env, pagefind, hugo });
         console.log(`\nBaseline written to ${outDir}/ against ${prefix} at ${gitHead()?.slice(0, 10)} — commit it.`);
         console.log(arbitrated.length
             ? `${arbitrated.length} page(s) needed sequential arbitration; their records came from that pass.`
