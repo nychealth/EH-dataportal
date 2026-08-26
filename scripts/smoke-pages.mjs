@@ -7,10 +7,13 @@
 // that touches a shared template (head.html, baseof.html, the header/footer
 // partials) or any file under assets/js/.
 //
-// Two modes:
-//   npm run smoke        one page per template kind (the PAGES list), sequential
-//   npm run smoke:all    every page the site serves, concurrent — for a
-//                        pre-merge or pre-deploy sweep
+// Three modes. The first two take whatever server dev-server.mjs resolves; the
+// third picks the environment itself, through scripts/smoke-env.mjs.
+//   npm run smoke             one page per template kind (the PAGES list), sequential
+//   npm run smoke:all         every page the site serves, concurrent — for a
+//                             pre-merge or pre-deploy sweep
+//   npm run smoke:env <env>   every page, against an isolated server for ONE
+//                             named Hugo environment (see smoke-env.mjs)
 //
 //   node scripts/smoke-pages.mjs --all --concurrency 12
 //   DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # existing server
@@ -21,6 +24,7 @@
 
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
+import { availableParallelism } from "node:os";
 import { chromium } from "playwright";
 import { ensureDevServer } from "./dev-server.mjs";
 import { collectAllPaths, mapPool } from "./site-urls.mjs";
@@ -126,10 +130,41 @@ const isKnownNoise = (text, path) =>
     KNOWN_NOISE.some(({ page, error, when }) =>
         error.test(text) && (page === null || page.test(path)) && (when === undefined || when()));
 
-// Default browser concurrency for --all. Six pages against one `hugo server`
-// leaves headroom on a machine that is also being used for something else;
-// --concurrency raises it.
-const DEFAULT_CONCURRENCY = 6;
+// Default browser concurrency for --all. Derived from the machine rather than
+// fixed, and the same formula site-characterization.mjs uses, so the repo's two
+// sweeps behave alike on the same box — the cores available differ by an order
+// of magnitude between a dev workstation and a GitHub Actions runner, and a
+// number tuned for one starves or overcommits the other.
+//
+// The bounds come from a measurement of the OTHER harness, not this one:
+// 925 pages, three interleaved sweeps, 12 -> 198s, 24 -> 114s, 12 -> 199s
+// `[2026-08-24, 24 logical processors]`. That transfers as far as the mechanism
+// does — both harnesses drive one chromium instance with browser.newPage() per
+// URL — and no further. This harness adds a fixed 2s settle per page that the
+// other does not have, which puts a floor under any wall time here. 6 is the
+// value this file ran at before 2026-08-26; 24 is the highest tried anywhere in
+// the repo. Raising the ceiling means measuring above it first.
+const CONCURRENCY_FLOOR = 6;
+const CONCURRENCY_CEILING = 24;
+const DEFAULT_CONCURRENCY = Math.min(
+    CONCURRENCY_CEILING,
+    Math.max(CONCURRENCY_FLOOR, availableParallelism()),
+);
+
+// How many concurrent failures get a sequential re-check before the harness
+// stops re-checking and says so. Same cap, for the same reason, as
+// site-characterization.mjs's re-capture limit.
+//
+// A capture race does not reach hundreds of pages at once, so a failure that
+// wide is systematic — and systematic is precisely what this harness exists to
+// catch: one bad edit to head.html or a file under assets/js/ throws on every
+// page. Each re-visit carries the fixed 2s settle below, so re-checking ~925
+// pages sequentially is 31 minutes at an absolute floor, and the run reports
+// nothing until it finishes. The characterization harness hit exactly this: a
+// one-line template edit that moved `lang` on every page sent its CI job into a
+// 12-minute sequential re-capture of all 925 and it hit `timeout-minutes: 20`
+// having reported nothing `[run 32802721473, 2026-08-25]`.
+const RECHECK_CAP = 25;
 
 // Minimal flag parsing — three flags do not justify a dependency.
 const parseArgs = (argv) => {
@@ -240,6 +275,10 @@ const main = async () => {
 
     let failures = [];
     let cleared = [];
+    // True when the sequential re-check was skipped outright because more pages
+    // failed than RECHECK_CAP, which makes every failure below a plain
+    // concurrent result with nothing ruling out contention.
+    let capped = false;
 
     try {
         let done = 0;
@@ -273,7 +312,13 @@ const main = async () => {
         // final DOM states `[2026-08-23]`. The re-check is a guard for an unexplained
         // flake, not a fix for a known cause. site-characterization.mjs hit the same
         // wall and reaches for the same guard.
-        if (concurrency > 1 && failures.length) {
+        if (concurrency > 1 && failures.length > RECHECK_CAP) {
+            capped = true;
+            console.log(`\n${failures.length} page(s) failed — past the ${RECHECK_CAP}-page re-check `
+                + `cap, so they are reported as swept and NOT re-checked sequentially. A capture `
+                + `race does not reach this many pages at once; a failure this wide is systematic. `
+                + `Nothing below is arbitrated, so treat every page named as a real failure.`);
+        } else if (concurrency > 1 && failures.length) {
             console.log(`\nRe-checking ${failures.length} failing page(s) sequentially...`);
             const rechecked = [];
             for (const { path } of failures) {
@@ -311,7 +356,12 @@ const main = async () => {
             concurrency,
             gitHead: gitHead(),
             pagesChecked: paths.length,
+            // `clearedOnRecheck` is the subset that failed concurrently and was
+            // clean sequentially — contention rather than a real error.
+            // `recheckCapped` says that re-check was skipped altogether, so a
+            // consumer knows nothing here was arbitrated.
             clearedOnRecheck: cleared,
+            recheckCapped: capped,
             failures,
             signatures,
         });
