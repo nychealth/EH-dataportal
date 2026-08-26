@@ -306,27 +306,37 @@ const classify = (key, globs) => {
 // main
 // ----------------------------------------------------------------------- //
 
+// One pass that CONSUMES every argument, so anything left over is unrecognized
+// and can be refused. The refusal is the point: this script takes no positional
+// arguments — it re-captures every committed baseline, always — and an argument
+// it merely ignored was indistinguishable from the bare, destructive
+// invocation. `[2026-08-26: `rebaseline.mjs nosuchkey`, run in the belief that
+// it named one key, silently began re-capturing both]`
 const parseArgs = (argv) => {
     const expect = [];
+    const unknown = [];
+    let concurrency = null;
+    let reportOnly = false;
+    let help = false;
+
     for (let i = 0; i < argv.length; i++) {
+        const arg = argv[i];
         // Presence, not truthiness: the home page's `path` is the EMPTY STRING,
         // so `--expect ""` is the only way to claim it and a falsy check would
         // drop it silently.
-        if (argv[i] === "--expect" && i + 1 < argv.length) expect.push(argv[++i]);
-    }
-    const at = (flag) => {
-        const i = argv.indexOf(flag);
-        return i !== -1 && argv[i + 1] ? argv[i + 1] : null;
-    };
-    return {
-        expect,
+        if (arg === "--expect" && i + 1 < argv.length) expect.push(argv[++i]);
         // Passed straight through to the harness, which owns the default. Null
         // here means "say nothing", so the harness's machine-derived value
         // stands rather than being overridden by a number chosen in this file.
-        concurrency: Number(at("--concurrency")) || null,
-        reportOnly: argv.includes("--report-only"),
-        help: argv.includes("--help") || argv.includes("-h"),
-    };
+        else if (arg === "--concurrency" && i + 1 < argv.length) concurrency = Number(argv[++i]) || null;
+        else if (arg === "--report-only") reportOnly = true;
+        else if (arg === "--help" || arg === "-h") help = true;
+        // Catches a value-taking flag given last with nothing after it, too:
+        // `--expect` alone lands here rather than being dropped in silence.
+        else unknown.push(arg);
+    }
+
+    return { expect, concurrency, reportOnly, help, unknown };
 };
 
 const USAGE = `Re-capture every committed characterization baseline after a deliberate site change.
@@ -357,11 +367,25 @@ const committedKeys = () => {
 
 async function main() {
 
-    const { expect, reportOnly, help, concurrency } = parseArgs(process.argv.slice(2));
+    const { expect, reportOnly, help, concurrency, unknown: unknownArgs } = parseArgs(process.argv.slice(2));
 
     if (help) {
         console.log(USAGE);
         return;
+    }
+
+    // Refuse rather than ignore. Every run of this script overwrites every
+    // committed baseline, so "the argument I passed did nothing" and "I ran the
+    // destructive form" have to look different from each other.
+    if (unknownArgs.length) {
+        console.error(`Unrecognized argument(s): ${unknownArgs.map((a) => `"${a}"`).join(", ")}.
+`);
+        console.error(`This script takes no positional arguments — it re-captures EVERY committed`);
+        console.error(`baseline. To check ONE environment without re-capturing anything, use`);
+        console.error(`  node scripts/characterize-env.mjs <environment>
+`);
+        console.error(USAGE);
+        process.exit(2);
     }
 
     const keys = committedKeys();
