@@ -139,6 +139,14 @@ is a starting point, not a verdict — a page can move because the data behind i
 third-party embed rendered differently, not only because someone broke it. Read what changed before
 assuming a regression.
 
+Some pages legitimately go red when *data* changes rather than code. `data-features/proximity/`,
+`data-features/congestion-pricing-report/` and `data-features/heat-story/` draw a map marker per
+row of their data, and the check counts those markers on purpose — a marker appearing or vanishing
+is a real change to what the page shows. Editing that data therefore means re-capturing the
+baselines, and that is working as intended, not a bug. `data-features/realtime-air-quality/` is the
+exception: its markers come from a live feed that nobody here controls, so its marker count is
+deliberately **not** recorded — only whether the map drew any markers at all.
+
 If a site-wide change is *intended*, the baselines are re-captured with
 `npm run characterize:site:rebaseline`, which rebuilds every committed baseline and reports what
 moved. That command takes no arguments and overwrites all of them, so it is not the way to check a
