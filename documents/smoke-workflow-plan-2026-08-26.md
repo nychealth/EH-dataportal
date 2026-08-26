@@ -1,8 +1,9 @@
 # Automatic smoke check in GitHub Actions
 
-**Status as of 2026-08-26: PLANNED. No task work has landed.** Branch `feature-smoke-GHA`, cut
-from `production` at `9ebb11e85f`. Tasks 1–6 below are unstarted; the only commit on the branch is
-the one carrying this document.
+**Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Tasks 2–6 not started.** Branch
+`feature-smoke-GHA`, cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan
+had wrong — its own prescribed proof, and the claim that `dev_prod` emits no analytics tag — both
+rewritten in place below.
 
 Derive what a status line cannot hold:
 
@@ -33,10 +34,17 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 ## Decisions taken
 
 - **`prod_prod`, with `www.googletagmanager.com` blocked in the harness.** Chosen 2026-08-26 over
-  `dev_prod`, which pins the same `data_branch` and emits no analytics tag at all.
+  `dev_prod`.
 
-  `head.html:3-15` emits `gtag/js?id=G-64BWDRHRGB` and an inline `gtag('config', …)` **only** when
-  `hugo.Environment` is `prod_prod`. `site-characterization.mjs` aborts that host at the network
+  **CORRECTED 2026-08-26, during Task 1.** This bullet read "`dev_prod` … emits no analytics tag
+  at all", and that is false. `head.html` has an `else` branch (`:19-31`): every non-`prod_prod`
+  environment emits `gtag/js?id=G-PB98MPZ31B`. So `dev_prod` would have sent one page view per
+  page to the development property rather than none, and **every** local smoke run ever made
+  against `dev_stage` or `development` has been reporting to it. The decision stands — the block
+  is by host, so it covers both properties — but not for the reason given.
+
+  `head.html:3-15` emits `gtag/js?id=G-64BWDRHRGB` and an inline `gtag('config', …)` when
+  `hugo.Environment` is `prod_prod`, and `:19-31` emits the `G-PB98MPZ31B` pair otherwise. `site-characterization.mjs` aborts that host at the network
   layer (`BLOCKED_HOSTS`, `:167-172`; the `page.route` that applies it, `:698-700`).
   `smoke-pages.mjs` has no such route — a grep for `route`, `abort` and `googletagmanager` returns
   nothing across the file `[2026-08-26]`. So a 925-page sweep under `prod_prod` has an unblocked
@@ -113,7 +121,7 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | — | **TODO** | Two-arm request-count control, below |
+| 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | `feature-smoke-GHA @ 6ebc18374c` | **DONE 2026-08-26** | Response-count arms 1→0, shipped-route arms 35→1, `smoke:prod_prod` 924/925 — below |
 | 2 | `.github/workflows/smoke.yml` — sweep job | — | **TODO** | `actionlint`; the first PR run |
 | 3 | `smoke.yml` — Pagefind pre-flight assertion | — | **TODO** | Forced-absent arm, below |
 | 4 | `smoke.yml` — base-branch control job | — | **TODO** | Injected regression, below |
@@ -142,19 +150,39 @@ Steps:
    existing broad `/favicon|Failed to load resource|net::ERR/i` entry, so this adds no failures —
    and that this is the entry CLAUDE.md warns hides the *cause* of a blocked script.
 
-**Proof — a two-arm request-count control, because a request counter reading zero is exactly what
-a probe that never attached also reads.** Start one `prod_prod` server, then, in a scratch
-Playwright script that loads a single page and counts `request` events whose host is
-`www.googletagmanager.com`:
+**Proof — CORRECTED 2026-08-26, the prescribed version could not work.** It said to count
+`request` events and expect **0** with the route registered. Playwright fires `request` for an
+*intercepted* request as well as a real one, so that counter reads 1 in both arms and a working
+route would have looked broken. The discriminating counter is `response`: a response is bytes
+coming back from Google. What ran, all against one isolated `prod_prod` server:
 
-- **arm A, route registered:** count must be 0.
-- **arm B, route commented out:** count must be **at least 1**. If arm B also reads 0 the
-  instrument is dead and arm A proves nothing — check the served HTML actually carries the gtag
-  `<script>` before believing either number.
-- **arm C, both arms:** the inline `gtag()` block must still produce no unallowlisted console
-  error, i.e. `npm run smoke:prod_prod` still passes 925/925.
+- **arm B — no route, home page.** requests=1, **responses=1**. Instrument alive; the served HTML
+  carries both the host and `gtag(`.
+- **arm A — route registered, home page.** requests=1, **responses=0**.
+- **arm B/A on `data-features/realtime-air-quality/`**, the page that behaved differently below:
+  unblocked it fetched **five** googletagmanager URLs, all 200 — the site's own `G-64BWDRHRGB`,
+  a third-party `gtm.js?id=GTM-L8ZB` from the AirNow widget, and three more chained from those.
+  Blocked: 2 top-level requests, **0 responses**; the other three never fire because the scripts
+  that would have requested them never load.
+- **arm A' — the SHIPPED registration, not a replica.** Arms A and B test a copy of the route, so
+  the two arms above say nothing about `smoke-pages.mjs` itself. An aborted request logs exactly
+  one console error, `Failed to load resource: net::ERR_FAILED`, whose text does **not** name the
+  host — so the instrument is the *count*, with the broad `net::ERR` allowlist entry temporarily
+  commented out and the curated 33-page list on `prod_prod`:
 
-Record all three counts in the ledger row, not just arm A.
+  | shipped route | `net::ERR_FAILED` total | pages failing |
+  |---|---|---|
+  | registered | 35 | 33 of 33 |
+  | commented out | 1 | 1 of 33 |
+
+  Per page, the delta is exactly +1 on 32 pages and +2 on `realtime-air-quality`, which is the
+  two top-level aborts measured above. The single error present in both arms is pre-existing.
+- **arm C — `npm run smoke:prod_prod`, everything restored.** 924 of 925 clean. The one failure is
+  `t.datasetSourceUrl is not a function` on `data-features/heat-report-archive/2024/`; that
+  identifier appears nowhere in this repo's JS or templates and the page embeds Datawrapper from
+  the unblocked `datawrapper.dwcdn.net`. **Not isolated by a control sweep** — the argument is
+  mechanism only: `BLOCKED_HOSTS` holds one host, which serves neither site nor Datawrapper code.
+  A second full sweep on a stashed tree would settle it.
 
 ## Task 2: The sweep job
 
