@@ -12,11 +12,15 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "scripts": {
+        "lint": "eslint assets/js/data-explorer",
         "smoke": "node scripts/smoke-pages.mjs",
-        "characterize:cp": "node scripts/cp-characterization.mjs"
-    },
-    "devDependencies": {
-        "playwright": "^1.62.0"
+        "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
+        "characterize:cp": "node scripts/cp-characterization.mjs",
+        "characterize:site": "node scripts/site-characterization.mjs --check --all",
+        "characterize:site:sample": "node scripts/site-characterization.mjs --check",
+        "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
+        "characterize:site:rebaseline": "node scripts/site-characterization-rebaseline.mjs",
+        "docs-check": "node scripts/docs-check.mjs"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.6.0",
@@ -50,6 +54,12 @@
         "vega-lite": "^5.21.0"
     },
     "optionalDependencies": {
-        "hugo-extended": "^0.147.3"
+        "hugo-extended": "0.147.3"
+    },
+    "devDependencies": {
+        "axe-core": "^4.13.0",
+        "eslint": "^10.7.0",
+        "globals": "^17.7.0",
+        "playwright": "^1.62.0"
     }
 }

@@ -1,0 +1,128 @@
+{{- /*  Schema.org JSON-LD. The theme emitted no structured data of any kind before this
+        — no JSON-LD, no Microdata, no `itemtype`.
+
+        Two page-level splits, both deliberate:
+
+        - Organization and WebSite describe the *site*, not the page, so they are emitted
+          on the home page only. Emitting them everywhere would put the same static block
+          on 933 pages.
+        - BreadcrumbList is per-page and comes from Hugo's own `.Ancestors`, so it is
+          emitted wherever that chain is non-empty — which is every page except home.
+
+        Every node is built as a Go map and run through `jsonify`, never written as JSON
+        text in the template. The site title contains an ampersand, and hand-written JSON
+        in a template is one unescaped character away from a block no parser will read.
+
+        `Dataset` is deliberately absent. It is the highest-value type this site could
+        carry, and it needs indicator metadata at build time — the data explorer fetches
+        that at runtime today. Scoping the change is its own piece of work; a half-built
+        Dataset node is worse than none.  */ -}}
+
+{{- if .IsHome -}}
+
+    {{- /*  The department's own page on nyc.gov, not this portal
+            [verified 2026-08-21: GET returns 200; www1.nyc.gov/site/doh/index.page 301s here].
+
+            No `logo` property: this repo holds exactly one logo asset,
+            `assets/images/nyc-bubble-logo.svg`, and it is the City of New York's — the
+            footer labels it "NYC Logo" and links it to nyc.gov. Asserting it as the
+            department's logo would be false. Adding one closes this.  */ -}}
+
+    {{- $orgID := printf "%s#organization" .Site.Home.Permalink -}}
+    {{- $siteID := printf "%s#website" .Site.Home.Permalink -}}
+
+    {{- $sameAs := slice -}}
+    {{- range .Site.Data.globals.social.social_destinations -}}
+        {{- with .url -}}
+            {{- $sameAs = $sameAs | append . -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $organization := dict
+            "@type" "Organization"
+            "@id" $orgID
+            "name" "NYC Department of Health and Mental Hygiene"
+            "url" "https://www.nyc.gov/site/doh/index.page"
+    -}}
+
+    {{- with $sameAs -}}
+        {{- $organization = merge $organization (dict "sameAs" .) -}}
+    {{- end -}}
+
+    {{- /*  No SearchAction. Schema's sitelinks search box needs a target URL template a
+            crawler can navigate to, and this site has none: search is a Pagefind modal
+            (`#searchModal` in partials/footer.html), not a route. The one candidate,
+            `/search-results/`, is an orphan — nothing in the repo links to it, its layout
+            has an empty `js_bot` block, and hitting it with `?q=asthma` renders an empty
+            title, all five result containers still `hidden`, and zero result links
+            [verified 2026-08-21 in a browser]. Pointing a SearchAction there would
+            advertise an endpoint that returns nothing.  */ -}}
+
+    {{- $website := dict
+            "@type" "WebSite"
+            "@id" $siteID
+            "name" .Site.Title
+            "url" .Site.Home.Permalink
+            "inLanguage" .Site.Language.Lang
+            "description" .Site.Data.globals.seo_defaults.seo_description
+            "publisher" (dict "@id" $orgID)
+    -}}
+
+    {{- $graph := dict "@context" "https://schema.org" "@graph" (slice $organization $website) -}}
+
+    {{- /*  `safeJS` is load-bearing, not decoration. Inside a <script> element Go's
+            html/template treats the output as a JS value and escapes it, so a bare
+            `jsonify` ships the whole document as a *quoted JSON string* — which still
+            parses, so "the JSON parses" is not a check that catches it. Confirmed on a
+            prod_prod build before the fix: the block began `"{\"@context\":...` and
+            `json.loads` returned a `str`.  */ -}}
+
+    <script type="application/ld+json">{{ $graph | jsonify | safeJS }}</script>
+
+{{- else -}}
+
+    {{- /*  Root-to-current order, which is the order BreadcrumbList's `position` means.
+            `.Ancestors` returns current-to-root, hence `.Reverse`.  */ -}}
+
+    {{- $items := slice -}}
+    {{- $position := 0 -}}
+
+    {{- /*  Skip an ancestor with no permalink. `content/data-features/heat-report-archive/`
+            is `build: {render: never}`, so it appears in `.Ancestors` but renders to no
+            URL — emitting it gives `"item": ""`, a breadcrumb step pointing nowhere.
+            Dropping the level is right: it is not a page anyone can navigate to.
+            `$position` increments only on append, so the sequence stays 1..n.  */ -}}
+
+    {{- range $ancestor := .Ancestors.Reverse -}}
+        {{- with $ancestor.Permalink -}}
+            {{- $position = add $position 1 -}}
+            {{- $items = $items | append (dict
+                    "@type" "ListItem"
+                    "position" $position
+                    "name" $ancestor.Title
+                    "item" .
+            ) -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- if $items -}}
+
+        {{- $position = add $position 1 -}}
+        {{- $items = $items | append (dict
+                "@type" "ListItem"
+                "position" $position
+                "name" .Title
+                "item" .Permalink
+        ) -}}
+
+        {{- $breadcrumbs := dict
+                "@context" "https://schema.org"
+                "@type" "BreadcrumbList"
+                "itemListElement" $items
+        -}}
+
+        <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
+
+    {{- end -}}
+
+{{- end -}}

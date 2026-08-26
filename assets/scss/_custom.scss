@@ -26,6 +26,48 @@ table {
   }
 }
 
+// Tertile and comparison markers on the report's full-sentence renditions. The word carries
+// the colour and the ::before carries the icon; Font Awesome 6 is loaded site-wide from
+// head.html as a CSS webfont, so the codepoints resolve with no per-page resource. The bad
+// case splits the two colours because $warning is 1.6:1 on white — readable as a glyph, not
+// as text — so the word takes a darkened amber at 6.3:1 instead. Rank 2 gets colour and glyph
+// from neither rule: the .middle pill is unmarked too, and an unmarked sentence is its
+// equivalent.
+$comp-bad-text: #7a5c00;
+
+// Bold picks the comparison word out of the sentence around it. It is on all three classes,
+// .comp-null included: weight marks which word is the comparison, where colour marks which
+// way it went, and rank 2 still gets no colour and no glyph.
+.comp-good,
+.comp-bad,
+.comp-null {
+  font-weight: 700;
+}
+
+.comp-good {
+  color: $success;
+}
+
+.comp-bad {
+  color: $comp-bad-text;
+}
+
+.comp-good::before,
+.comp-bad::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  padding-right: 0.3em;
+}
+
+.comp-good::before {
+  content: "\f14a";
+}
+
+.comp-bad::before {
+  content: "\f071";
+  color: $warning;
+}
+
 .print-only {
   display: none!important;
 }
@@ -110,11 +152,13 @@ $color-data-explorer: #0A408A;
   border-left: 10px solid #008939;
 }
 
+/* $primary measures 4.24:1 on this #EFFAF4 fill at 16px/700, which is normal-size text for
+   WCAG. $primary-dark clears it — the same pairing already recorded at $primary-dark. */
 .neighborhood-list-button,
 .neighborhood-list-button:hover,
 .neighborhood-list-button.active {
   background-color: #EFFAF4 !important;
-  color: $primary !important;
+  color: $primary-dark !important;
 }
 
 .neighborhood-list-button .plus,
@@ -163,11 +207,14 @@ $color-data-explorer: #0A408A;
   padding-right: 20px;
 }
 
+/* $primary is only 4.24:1 on this background and fails WCAG AA for the 14px bold button text.
+   $primary-dark measures 5.13:1 here, and 5.49:1 for the white-on-green hover state — which
+   $primary itself only cleared at 4.53:1. */
 .btn-light-green-bg {
   background-color: #EFFAF4;
-  color: #008939;
+  color: $primary-dark;
   &:hover {
-    background-color: #008939;
+    background-color: $primary-dark;
     color:white;
   }
 }

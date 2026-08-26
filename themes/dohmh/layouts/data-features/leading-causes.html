@@ -16,7 +16,7 @@
   }
 </style>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
   {{ partial "df-front-block" . }}
 
   <a href="#accessibleTables" class="sr-only"
@@ -222,6 +222,9 @@
       </div>
     </div>
   </div>
+
+  {{- partial "lib-vega.html" . }}
+  {{- partial "lib-d3.html" . }}
 
   <div class="sr-only" id="accessibleTables">
     <h2>Accessible data table</h2>
@@ -735,7 +738,7 @@
     };
 
     // Print chart
-    vegaEmbed("#chart", spec).then((result) => {
+    vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
       const view = result.view;
 
       // Mouse over event - sending to other function

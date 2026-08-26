@@ -1,0 +1,19 @@
+{{- /*  Leaflet (CSS + JS + default marker icons)  */}}
+
+<!-- leaflet CSS -->
+
+{{- $leaflet_CSS := resources.Get "node_modules/leaflet/dist/leaflet.css" | partial "short-fingerprint.html" }}
+<link rel="stylesheet" href="{{ $leaflet_CSS.RelPermalink }}" integrity="{{ $leaflet_CSS.Data.Integrity }}" />
+
+<!-- leaflet source -->
+
+{{- $leaflet := resources.Get "node_modules/leaflet/dist/leaflet.js" | partial "short-fingerprint.html" }}
+<script src="{{ $leaflet.RelPermalink }}" integrity="{{ $leaflet.Data.Integrity }}"></script>
+
+<!-- leaflet marker icons -->
+
+{{- $leaflet_marker_icon := resources.Get "node_modules/leaflet/dist/images/marker-icon.png" }}
+{{- $leaflet_marker_shadow := resources.Get "node_modules/leaflet/dist/images/marker-shadow.png" }}
+
+{{- $leaflet_marker_icon.Publish -}}
+{{- $leaflet_marker_shadow.Publish -}}

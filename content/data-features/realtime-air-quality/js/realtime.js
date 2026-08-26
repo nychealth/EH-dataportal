@@ -823,14 +823,14 @@ async function renderSpec(
     
     
     
-    // vegaSpec.signals.push(textSignal)
-    // vegaSpec.marks.push(textMark)
+        // vegaSpec.signals.push(textSignal)
+        // vegaSpec.marks.push(textMark)
+        
+        // console.log('vega spec:')
+        // console.log(vegaSpec)
     
-    // console.log('vega spec:')
-    // console.log(vegaSpec)
     
-    
-    vegaEmbed('#vis',vegaSpec).then(res => {
+    vegaEmbed('#vis',vegaSpec, {renderer: "svg"}).then(res => {
         myView = res.view // save the vega view 
         // console.log('myView, vega with marks pushed:')
         // console.log(myView)

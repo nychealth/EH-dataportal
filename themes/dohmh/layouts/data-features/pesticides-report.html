@@ -31,6 +31,8 @@
       }
 </style>
 
+{{- partial "lib-d3.html" . }}
+
 <script>
 // INGEST BIG AGENCY DATA FILE TO USE LATER
 var agencyData = [];
@@ -163,7 +165,7 @@ function printTable(data, destination, year, noDataProvided) {
 
 </script>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
 

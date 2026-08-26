@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
   {{ partial "df-front-block" . }}
 
@@ -142,6 +142,9 @@
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
+
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-vega.html" . }}
 
 <!--bring in JS -->
 <script type="text/javascript" src="heatsyndrome.js"></script>

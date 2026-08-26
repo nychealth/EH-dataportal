@@ -11,7 +11,7 @@
   }
 </style>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
   {{ partial "df-front-block" . }}
 
   <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
@@ -314,6 +314,9 @@
     </div>
   </div>
 
+  {{- partial "lib-vega.html" . }}
+  {{- partial "lib-d3.html" . }}
+
   <div class="sr-only" id="accessibleTables">
     <h2>Chart data</h2>
     {{ partial "render-accessible-table.html" (dict "csvPath" "data/chart-data.csv" "containerId" "csv-table-container-1") }}
@@ -563,7 +566,7 @@
       ],
     };
 
-    vegaEmbed(destination, mapSpec, { actions: false });
+    vegaEmbed(destination, mapSpec, { renderer: "svg", actions: false });
   }
 
   function drawChart(w, s) {
@@ -789,11 +792,11 @@
       },
     };
 
-    vegaEmbed("#chartDest", povertySpec, { actions: false }).then((res) => {
+    vegaEmbed("#chartDest", povertySpec, { renderer: "svg", actions: false }).then((res) => {
       window.addEventListener("resize", () => res.view.resize());
     });
 
-    vegaEmbed("#chartDest2", prematureMortSpec, { actions: false }).then(
+    vegaEmbed("#chartDest2", prematureMortSpec, { renderer: "svg", actions: false }).then(
       (res) => {
         window.addEventListener("resize", () => res.view.resize());
       }
