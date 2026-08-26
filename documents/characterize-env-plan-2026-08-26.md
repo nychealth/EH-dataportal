@@ -1,9 +1,9 @@
 # Per-environment characterization invocation
 
 **Status as of 2026-08-26: branch `feature-characterize-env` cut from `production` at
-`3d5438830c`; tasks 1-6 done at `d14ab4e841` and `4a91dd94f9`. The tooling works. One page
-differs on `prod_prod` that this branch did not cause, and it REPRODUCES exactly — open, and
-awaiting a decision (investigate / re-baseline / leave).**
+`3d5438830c`; tasks 1-6 done at `d14ab4e841` and `4a91dd94f9`, task 7 (human-facing docs) and the
+diagnosis of the `prod_prod` diff done and uncommitted. The diff is a live-data marker count, not
+a regression — nothing to fix in this repo, but the `img` field is unstable on any map page.**
 
 ## Why
 
@@ -120,14 +120,29 @@ first, gave the identical page, the identical two fields and the identical numbe
 16 -> 15). So this is a stable difference between the site as it renders now and the baseline
 captured 2026-08-25, not a capture flake.
 
-**Still not established: which `<img>` went.** The record stores counts only, and `assets` cannot
-narrow it — `assetNodes` (`site-characterization.mjs:329`) covers `script[src]` and
-`link[rel=stylesheet][href]` alone, so images were never in that field and its being unchanged
-means nothing here. Answering it needs the page loaded and its non-tile `<img>` set dumped.
+**Diagnosed 2026-08-26: it is one fewer map marker, drawn from live data.** The page was loaded
+twice against an isolated `prod_prod` server and every `<img>` dumped with its class, `alt`, box and
+`src`. Both passes: 30 images, 10 of them `.leaflet-tile` (excluded by the harness), and **exactly
+15 `images/map-marker.svg` — every one of them with no `alt` attribute, and the only alt-less
+images on the page.** The harness reads `missingAlt` 15 against a baseline of 16. So the marker
+count went 16 -> 15, and `total` moved by the same 1.
 
-**Consequence while it stands:** `npm run characterize:site:prod_prod` exits 1 for everyone. Three
-ways out, and the choice is the user's: find and fix the cause; re-capture the `prod_prod` baseline
-if the change is intended; or leave it recorded here as a known red.
+Markers on this page are one per live air-quality monitor, so the count is a fact about the feed
+that day, not about the site. **Nothing to fix in this repo.**
+
+(The probe counted 20 non-tile images where the harness counts 18. The three the harness sees
+besides markers are the two NYC logos and the portal icon; the two it does not are the Google
+Translate widget's. `blockedHosts` in `_meta.json` lists `translate.google.com`,
+`translate.googleapis.com`, `www.gstatic.com` and `www.googletagmanager.com`, so the widget cannot
+initialize under the harness — consistent with the arithmetic, though not separately confirmed.)
+
+**The general finding, which outlives this page:** `structure.img.total` and
+`structure.img.missingAlt` track marker counts on any page whose map draws from live data.
+`site-characterization.mjs:398` excludes `.leaflet-tile` and the comment there says marker icons
+deliberately still count — that exclusion was written for tile *timing*, and does not cover a
+marker set whose size is data-driven. Such a page goes red whenever the feed moves, with no
+code change. Worth deciding separately from this branch: exclude marker icons too, or accept
+periodic re-baselines.
 
 ## Environment state
 

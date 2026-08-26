@@ -82,6 +82,68 @@ Current environments:
 
 **A note on `production` vs `prod_prod`:** the two config files are byte-identical, but the environment *name* is what `partials/head.html` branches on. Only `prod_prod` gets the production Google Analytics property and omits the `<meta name="robots" content="noindex, nofollow">` tag; every other environment — including `production`, and including a bare `hugo` with no `--environment` flag — emits the noindex tag and the development analytics property. The build workflow uses `hugo --environment prod_prod`, so the live site is correct. Build locally with `prod_prod` if you are inspecting anything that depends on those tags.
 
+### Checking your work
+
+Two automated checks live in this repo. Both need `npm install` first, and both drive a real
+browser, so they catch things a successful `hugo` build does not — a build only proves the
+templates compile.
+
+| Command | What it does |
+|---|---|
+| `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
+| `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
+| `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
+
+Run `smoke` before merging anything that touches `partials/head.html`, `_default/baseof.html`, the
+header or footer partials, or `assets/js/`. Neither check sees what the other does: `smoke` catches
+JavaScript that throws, characterization catches a page whose markup quietly moved.
+
+#### Checking a specific environment
+
+`npm run characterize:site` checks whichever environment your machine happens to be serving — it
+reuses any Hugo server already answering on :8080, :8081 or :1313, and otherwise starts `dev_stage`
+for you. When you need a *named* environment instead, and especially `prod_prod`, which is the one
+that actually deploys:
+
+```bash
+npm run characterize:site:prod_prod        # the environment the live site is built with
+npm run characterize:site:dev_stage        # staging data, deterministically
+npm run characterize:site:env local_prod   # any environment in config/
+```
+
+These start their own Hugo server on port 8090, build it entirely outside the repo, and stop it
+when they finish — so they ignore whatever you have running, and they leave `docs/` and
+`resources/_gen` untouched. They are slower than `characterize:site`, because a full build runs
+before the check does.
+
+Two baselines are committed, between them covering four of the eight environments. The rest
+stop and say which baselines exist:
+
+| Environment | Baseline used |
+|---|---|
+| `prod_prod` | `prod_prod` |
+| `dev_stage`, `local_stage`, `prod_stage` | `staging` |
+| `dev_prod`, `development`, `local_prod`, `production` | **none — the check exits and tells you so** |
+
+**Pass the environment as a plain word, not as a flag.** `npm run characterize:site:env prod_prod`
+works; `npm run characterize:site:env --env prod_prod` does not, because PowerShell and npm between
+them discard the flag's name and keep only its value. The scripts refuse anything starting with `-`
+rather than act on a mangled argument. If you need the underlying flags, call the script directly:
+`node scripts/site-characterization.mjs --check --content`.
+
+#### When a check fails
+
+A characterization failure names each page and field that moved, with the raw diff underneath. That
+is a starting point, not a verdict — a page can move because the data behind it moved, or because a
+third-party embed rendered differently, not only because someone broke it. Read what changed before
+assuming a regression.
+
+If a site-wide change is *intended*, the baselines are re-captured with
+`npm run characterize:site:rebaseline`, which rebuilds every committed baseline and reports what
+moved. That command takes no arguments and overwrites all of them, so it is not the way to check a
+single environment — the `characterize:site:env` scripts above are.
+
 ### Data repository
 
 Most of the data used by the site is stored in the separate [EHDP-data](https://github.com/nychealth/EHDP-data) repository. This setup allows us to update the site's data without needing to re-build the entire site. Look there for descriptions of the data files, and for the code used to generate the them. 
