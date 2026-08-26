@@ -77,6 +77,7 @@ npm run characterize:site:baseline   # re-capture this environment's baseline â€
 npm run characterize:site:prod_prod   # the same check against an isolated prod_prod server
 npm run characterize:site:dev_stage   # ditto, dev_stage
 npm run characterize:site:env local_prod   # ditto, any environment in config/
+npm run characterize:site:env local_prod sample   # ditto, over the 41-page sample
 node scripts/site-characterization.mjs --check --content   # widen the gate to titles and link targets
 ```
 

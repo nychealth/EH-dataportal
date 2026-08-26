@@ -94,6 +94,7 @@ templates compile.
 | `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
 | `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
 | `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
+| `npm run characterize:site:env <env> [sample]` | The same check, against a named environment it builds and serves itself. |
 
 Run `smoke` before merging anything that touches `partials/head.html`, `_default/baseof.html`, the
 header or footer partials, or `assets/js/`. Neither check sees what the other does: `smoke` catches
@@ -110,7 +111,12 @@ that actually deploys:
 npm run characterize:site:prod_prod        # the environment the live site is built with
 npm run characterize:site:dev_stage        # staging data, deterministically
 npm run characterize:site:env local_prod   # any environment in config/
+npm run characterize:site:env local_prod sample   # the curated 41 pages instead of all of them
 ```
+
+Add the word `sample` to check the curated one-page-per-template list rather than the whole site.
+A full Hugo build runs either way, so `sample` narrows *what* gets checked rather than making the
+command quick.
 
 These start their own Hugo server on port 8090, build it entirely outside the repo, and stop it
 when they finish — so they ignore whatever you have running, and they leave `docs/` and
