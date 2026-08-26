@@ -1,9 +1,16 @@
 # Per-environment characterization invocation
 
-**Status as of 2026-08-26: branch `feature-characterize-env` cut from `production` at
-`3d5438830c`; tasks 1-6 done at `d14ab4e841` and `4a91dd94f9`, task 7 (human-facing docs) and the
-diagnosis of the `prod_prod` diff done and uncommitted. The diff is a live-data marker count, not
-a regression — nothing to fix in this repo, but the `img` field is unstable on any map page.**
+**Status as of 2026-08-26: DONE. Branch `feature-characterize-env`, cut from `production` at
+`3d5438830c`, five commits `d14ab4e841..8c15d56ae7`, unpushed. `npm run
+characterize:site:prod_prod` passes 925/925 at `8c15d56ae7`.**
+
+Derive what a status line cannot hold:
+
+```
+git log --oneline 3d5438830c..HEAD                          # the five task commits
+git rev-list --left-right --count origin/production...HEAD  # right-hand number = unpushed
+gh pr list --head feature-characterize-env                  # a PR, and against which base
+```
 
 ## Why
 
@@ -143,6 +150,112 @@ deliberately still count — that exclusion was written for tile *timing*, and d
 marker set whose size is data-driven. Such a page goes red whenever the feed moves, with no
 code change. Worth deciding separately from this branch: exclude marker icons too, or accept
 periodic re-baselines.
+
+## Task 8: stop counting map markers (in progress)
+
+Direction from the user 2026-08-26: a marker count tracks monitor uptime, which is transient —
+check for markers *at all* instead, and do not re-baseline for a down monitor.
+
+Evidence the design rests on `[verified 2026-08-26 in a browser, isolated prod_prod server, three
+page kinds]`: a marker `<img>` carries **no class of its own** — `div.leaflet-marker-icon` is its
+PARENT — which is why `classList.contains("leaflet-marker-icon")` reads false and only `closest`
+finds them. `el.closest(".leaflet-container")` separates cleanly: 25 of 30 images in-map on
+`realtime-air-quality`, 9 of 14 on `neighborhood-reports/bayside_little_neck/` (all tiles, no
+markers), 0 of 5 on `data-explorer/asthma/`.
+
+Split in two so the count change is provable apart from the field addition, which by construction
+touches all 925 records in both keys:
+
+**Step 1 — widen the filter from `.leaflet-tile` to `.leaflet-container`.** Predictions, written
+before the run:
+
+1. Exit 1.
+2. `data-features/realtime-air-quality/`: `img.total` 19 -> 3, `img.missingAlt` 16 -> 0.
+3. NR pages do NOT move — their only in-map images are tiles, already excluded.
+4. No field outside `structure.img.*` changes.
+5. Unknown, and the reason this sweep is worth its five minutes: whether
+   `data-features/proximity/` (131 images) and `data-features/congestion-pricing-report/` (115)
+   carry in-map images. Both read `missingAlt` 0, so neither is alt-less markers, but nothing
+   yet says what they are.
+
+**Step 1 result: four of five predictions confirmed exactly; the fifth was the finding.**
+Exit 1, four pages, two fields, nothing outside `structure.img.*`, and no NR page moved.
+`realtime-air-quality` went 19 -> 3 and `missingAlt` 16 -> 0, as predicted. What the sweep bought
+was prediction 5: `data-features/proximity/` 131 -> 3 and
+`data-features/congestion-pricing-report/` 115 -> 4 **both carry in-map images** — 128 and 111 of
+them — and `data-features/heat-story/` 22 -> 3 carries 19. Three pages nobody had looked at were
+recording map contents as page structure. Log at `C:/temp/characterize-step1.log`.
+
+**A cost I flagged, then retired.** The worry was that those 128 and 111 in-map images might be
+static page content the check would stop watching. They are not: the control shows all of them are
+`map-pin-hollow_P.svg` marker icons — 128 on `proximity`, 111 on `congestion-pricing-report`, 19 on
+`heat-story` — the same category as air-quality's 15 `map-marker.svg`. All four are marker sets
+drawn from data, differing only in how fast their data moves. Excluding them loses no static
+imagery. What remains true, and is the real trade: a map that loses *some* markers but not all now
+passes, because presence is all that is recorded.
+
+**Step 2 — add `img.mapMarkers`**, a boolean: did the map draw any markers at all. Queried as
+`.leaflet-marker-icon` directly rather than through the images, so a marker drawn without an
+`<img>` still counts. **Positive control passed, both directions** `[2026-08-26, six pages, isolated prod_prod server]`:
+
+| Page | `.leaflet-marker-icon` | `mapMarkers` |
+|---|---|---|
+| `data-features/proximity/` | 128 | `true` |
+| `data-features/congestion-pricing-report/` | 111 | `true` |
+| `data-features/heat-story/` | 19 | `true` |
+| `data-features/realtime-air-quality/` | 15 | `true` |
+| `neighborhood-reports/bayside_little_neck/` | 0 | `false` |
+| `data-explorer/asthma/` | 0 | `false` |
+
+So the selector is not dead, and `false` is not its only reading. The two `false` rows are the
+arm that matters — a map with tiles and no markers, and a page with no map — since a selector
+matching nothing would produce them too, and only the `true` rows rule that out. Marker counts
+reconcile against the baseline arithmetic on all four: 128 + 3 chrome = 131, 111 + 4 = 115,
+19 + 3 = 22, 15 + 3 = 18/19.
+
+**Step 2b — key the exclusion by page** (user direction 2026-08-26, replacing the global form).
+Only `realtime-air-quality` reads a live feed; `proximity`, `congestion-pricing-report` and
+`heat-story` draw markers from data that changes by hand, so on those pages a marker appearing or
+vanishing IS the regression the check exists to catch, and their counts stay. This also retires
+`mapMarkers` as a global field: where counts are kept, a marker set dropping to zero already shows
+as a count diff, so the flag is recorded only where the count was suppressed.
+
+Keyed on the record's own `path`, derived inside `CAPTURE` from `location.pathname` and `prefix`
+using the same stripping idiom as `:321`, so neither caller's one-argument signature changes.
+
+Predictions before the run:
+
+1. Exit 1.
+2. **Exactly one page** differs: `data-features/realtime-air-quality/`.
+3. On it: `img.total` 19 -> 3, `img.missingAlt` 16 -> 0, plus a new `mapMarkers: true`.
+4. `proximity`, `congestion-pricing-report` and `heat-story` do **not** move — this is the
+   control on the keying. If they move, the page match failed open.
+5. No other page gains `mapMarkers`.
+
+A wrong prefix match would make `liveMarkers` false everywhere, leaving the page at 19 and the run
+green at 0 pages — so the run discriminates the failure mode rather than merely passing.
+
+**Result: all five confirmed** `[2026-08-26, C:/temp/characterize-step2b.log]`. `1 of 925 page(s)
+differ, across 3 field(s)`, all on `data-features/realtime-air-quality/`: `total` 19 -> 3,
+`missingAlt` 16 -> 0, `mapMarkers` undefined -> true. `proximity`, `congestion-pricing-report` and
+`heat-story` kept their 131, 115 and 22 — the keying scoped rather than failing open.
+
+**Step 3 — re-baselined both keys, at the user's go-ahead.** `node
+scripts/site-characterization-rebaseline.mjs --expect "data-features/realtime-air-quality/"`:
+1 of 925 pages changed in each key, 1 covered by `--expect`, 0 not, **"Nothing unexplained"** on
+both, `"arbitrated": []` on both. The EHDP-data drift this was watched for did not materialize.
+
+Working tree matched the report exactly: four files, the two records carrying `19 -> 3`,
+`16 -> 0`, `+mapMarkers: true` and nothing else, plus the two `_meta.json` — which also gained
+`dataCommit`, `arbitrated`, `cleared` and `capped`, fields the harness grew after 2026-08-25, so
+their absence was the stale half rather than anything this change did. Provenance now records
+production data at `c03ccd89fb` (2026-08-26) and staging at `b2b63d0635` (2026-08-17).
+
+**Then the check itself was re-run, which is a different claim from "the capture succeeded":**
+`npm run characterize:site:prod_prod` -> `Characterization check PASSED`, 925/925 pages, every one
+reaching DOM quiescence before the cap, exit 0.
+
+All of task 8 is at `8c15d56ae7`.
 
 ## Environment state
 
