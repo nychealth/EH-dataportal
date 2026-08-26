@@ -296,3 +296,195 @@ jobs:
         run: |
           pkill -TERM -x hugo 2>/dev/null || true
           kill -TERM "${HUGO_PID}" 2>/dev/null || true
+
+  # ---------------------------------------------------------------------
+  # was the base branch already red?
+  #
+  # Smoke's external failure sources are stronger than the characterization
+  # check's, not weaker. Pages fetch EHDP-data from raw GitHub URLs at runtime,
+  # so a renamed data file throws in the browser with nothing in this repo
+  # having changed; pages embed third parties that go down; and CLAUDE.md
+  # records an AirNow CORS error appearing on (home) once between two passes on
+  # an unchanged tree `[verified 2026-08-17]`. So a red sweep above is not by
+  # itself a regression in the PR. This job is the disconfirming test: rebuild
+  # the site from the BASE branch and run the same harness against it, minutes
+  # later and therefore against the same EHDP-data and the same third parties.
+  #
+  #   green here -> the base is fine, so this PR caused it
+  #   red here   -> the base is red too, so the world moved and the PR is
+  #                 probably innocent
+  #
+  # ONLY THE SITE SOURCE COMES FROM THE BASE. The harness stays at this PR's
+  # head on purpose, and here that matters more than it does for the
+  # characterization workflow: KNOWN_NOISE lives INSIDE smoke-pages.mjs, so a
+  # PR that adds an allowlist entry would otherwise have its control run
+  # without that entry, and the two runs would not be comparable. Task 1's
+  # BLOCKED_HOSTS route is in the same file and travels with it.
+  #
+  # base.sha is the BASE BRANCH TIP, not the merge base `[verified 2026-08-24
+  # on PR #1480: baseRefOid is production's tip, where git merge-base differs]`.
+  # The tip is the right control — it is what this PR merges into and what is
+  # deployed — and it needs no history, where a real merge base would need
+  # fetch-depth 0.
+  # ---------------------------------------------------------------------
+
+  base-control:
+    name: Was the base branch red too?
+    needs: smoke
+    if: failure() && github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+
+    # Same placeholder as the sweep, and unmeasured for the same reason. This
+    # job additionally does two checkouts and two npm ci, so it is the slower
+    # of the two. Task 6 sets both from Task 5's numbers.
+    timeout-minutes: 30
+
+    concurrency: # its own group — sharing the sweep's would have the two cancel each other
+      group: ${{ github.workflow }}-base-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      - name: Checkout this PR (the harness and its allowlist)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Checkout the base branch tip (the site under test)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # Two installs, because the two trees play different parts: the root runs
+      # the harness and needs playwright, and base/ builds the site and needs
+      # ITS OWN locked hugo-extended — the point is the site that commit builds.
+
+      - name: Install dependencies (this PR, for the harness)
+        run: npm ci
+
+      - name: Install dependencies (base branch, for its Hugo)
+        working-directory: base
+        run: npm ci
+
+      - name: Confirm the base branch's locked Hugo is present
+        working-directory: base
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start the base branch's Hugo server
+        working-directory: base
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > ../hugo-server-base.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      # Bounded by the clock for the same reason as the sweep above: Hugo
+      # accepts the connection BEFORE the build finishes and holds it open, so
+      # one curl can block for as long as the build takes and counting attempts
+      # measures nothing.
+
+      - name: Wait for the server
+        run: |
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server-base.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 300s:"
+          tail -n 50 hugo-server-base.log
+          exit 1
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site base/docs
+
+      # Same reason as the sweep job's: without the index every Pagefind error
+      # is allowlisted, and a control that cannot fail exonerates nothing.
+
+      - name: Confirm Pagefind is served
+        run: curl -fsS -o /dev/null "${SERVER_URL}pagefind/pagefind.js"
+
+      # continue-on-error, because RED here is a FINDING rather than a failure
+      # of this job — it is the outcome that exonerates the PR. `outcome` is the
+      # result BEFORE continue-on-error is applied, which is what makes the
+      # verdict below readable
+      # `[docs.github.com/en/actions/reference/workflows-and-actions/contexts,
+      # read 2026-08-24]`.
+      #
+      # No GITHUB_TOKEN, for the same reason as the sweep job: this harness
+      # makes no API call.
+
+      - name: Run this PR's harness against the base branch's site
+        id: control
+        continue-on-error: true
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+        run: node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/
+
+      - name: Verdict
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          OUTCOME: ${{ steps.control.outcome }}
+        run: |
+          {
+            echo "### Base-branch control"
+            echo
+            echo "The sweep failed. This job rebuilt the site from \`${BASE_SHA}\` — the tip of"
+            echo "\`${BASE_REF}\` — and ran THIS PR's harness against it, so the only thing that"
+            echo "differs between the two runs is the site source. The allowlist and the blocked"
+            echo "hosts are the same in both."
+            echo
+            if [ "${OUTCOME}" = "success" ]; then
+              echo "**The base branch is GREEN.** A data rename or a third-party outage is not the"
+              echo "explanation; this PR's changes are. Read the \`signatures\` array in the sweep's"
+              echo "artifact — it groups the failures by exact error text, so it says at a glance"
+              echo "whether one error is site-wide or confined to a single template."
+            else
+              echo "**The base branch is RED too.** \`${BASE_REF}\` already fails against today's"
+              echo "EHDP-data and today's third parties, so this is probably not yours. Compare the"
+              echo "two \`signatures\` arrays: an error text present in BOTH runs is the world"
+              echo "moving, and one present only in the sweep is this PR's."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Only when the base is red, and only then is there anything to compare
+      # against the sweep's own artifact. No include-hidden-files: smoke writes
+      # no dot path.
+
+      - name: Upload the base branch's smoke report
+        if: steps.control.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: smoke-base-${{ github.run_id }}
+          path: |
+            scripts/smoke-reports/
+            hugo-server-base.log
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Stop the Hugo server
+        if: always()
+        run: |
+          pkill -TERM -x hugo 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true
