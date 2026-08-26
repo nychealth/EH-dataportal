@@ -1,9 +1,10 @@
 # Automatic smoke check in GitHub Actions
 
-**Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Tasks 2–6 not started.** Branch
-`feature-smoke-GHA`, cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan
-had wrong — its own prescribed proof, and the claim that `dev_prod` emits no analytics tag — both
-rewritten in place below.
+**Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Task 2 written at `c7a3b3b223` but
+In progress — only Task 5's run proves it. Tasks 3–6 not started.** Branch `feature-smoke-GHA`,
+cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan had wrong — its own
+prescribed proof, and the claim that `dev_prod` emits no analytics tag — both rewritten in place
+below. Tasks 3 and 4 edit `.github/workflows/smoke.yml`, the file Task 2 created.
 
 Derive what a status line cannot hold:
 
@@ -122,7 +123,7 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | `feature-smoke-GHA @ 6ebc18374c` | **DONE 2026-08-26** | Response-count arms 1→0, shipped-route arms 35→1, `smoke:prod_prod` 924/925 — below |
-| 2 | `.github/workflows/smoke.yml` — sweep job | — | **TODO** | `actionlint`; the first PR run |
+| 2 | `.github/workflows/smoke.yml` — sweep job | `feature-smoke-GHA @ c7a3b3b223` | **In progress** — file written; the run that proves it is Task 5 | YAML parses, pins and `paths-ignore` match the reference — below |
 | 3 | `smoke.yml` — Pagefind pre-flight assertion | — | **TODO** | Forced-absent arm, below |
 | 4 | `smoke.yml` — base-branch control job | — | **TODO** | Injected regression, below |
 | 5 | Calibration run: open the PR into `production`, read the wall time | — | **TODO** | The run's own step timings |
@@ -247,8 +248,16 @@ Different from it:
 - **`timeout-minutes: 30` as a placeholder**, with a comment saying it is unmeasured and that
   Tasks 5 and 6 replace it.
 
-**Proof:** `actionlint` if it is available. YAML alone proves little here — the real proof is
-Task 5, and this task is not done until that run exists.
+**Proof — static only, 2026-08-26.** `actionlint` is **not installed on this machine**, and
+neither PyYAML nor a node YAML package is present in the repo; the parse came from
+`npx -y js-yaml`, exit 0. Off the parsed document: one `smoke` job, 11 steps,
+`permissions: {contents: read}`, triggers `pull_request` and `workflow_dispatch`, the upload gated
+`always() && steps.check.outcome != 'success'`, and all three `uses:` pinned to 40-character SHAs.
+Cross-checked against `site-characterization.yml`: exactly three distinct action pins across both
+files, so the repo still has one pin per action, and `paths-ignore` diffs clean at 10 entries.
+
+None of that runs anything. **This task is not done until the Task 5 run exists** — the row above
+says **In progress** for that reason, not because anything is half-written.
 
 ## Task 3: Pagefind pre-flight assertion
 
