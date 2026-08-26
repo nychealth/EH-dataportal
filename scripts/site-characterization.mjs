@@ -797,13 +797,19 @@ const gitHead = () => {
     }
 };
 
-const writeMeta = (dir, { prefix, pages, all, arbitrated, cleared, capped, env, pagefind, hugo }) => {
+const writeMeta = (dir, { prefix, pages, all, arbitrated, cleared, capped, env, pagefind, hugo, dataCommit }) => {
     writeFileSync(`${dir}/${META_FILE}`, JSON.stringify({
         capturedAt: new Date().toISOString(),
         gitHead: gitHead(),
         baselineKey: env.key,
         hugoEnv: env.hugoEnv,
         dataBranch: env.dataBranch,
+        // Which EHDP-data commit the branch above pointed at when this was
+        // captured. Recorded, never gated — see fetchDataCommit(). Null means
+        // the lookup failed, and a baseline captured before this field existed
+        // has no key here at all; --check treats both the same way, as nothing
+        // to say rather than as a mismatch.
+        dataCommit,
         // Whether Pagefind's index was served at capture time. `hugo server`
         // does not build it, and without it the search UI never mounts — worth
         // one button and one input on every page `[measured 2026-08-24: 40 of
@@ -914,6 +920,69 @@ because PowerShell eats the \`--\` and the script sees an empty argv.`;
 // script, so they are reachable from an evaluate() but are NOT window
 // properties — window.data_branch reads undefined. Same trap the NR harness
 // documents.
+// "owner/repo" from a raw-content URL, whose last two non-empty segments are
+// exactly that: https://raw.githubusercontent.com/nychealth/EHDP-data/ ->
+// nychealth/EHDP-data `[config/_default/config.toml:18]`. Null when the URL
+// cannot yield two segments.
+export const githubSlug = (repoUrl) => {
+    if (!repoUrl) return null;
+    const [owner, repo] = repoUrl.split("/").filter(Boolean).slice(-2);
+    return owner && repo ? `${owner}/${repo}` : null;
+};
+
+// The data half of a baseline's provenance. `dataBranch` names the STREAM;
+// this names its STATE, which is the difference between "this PR moved a
+// template" and "the data moved underneath" — the question the base-control
+// job spends nine minutes answering `[run 32905347134: 9m48s]`.
+//
+// RECORDED, NEVER GATED, unlike `pagefind`. EHDP-data's production branch moves
+// on a SEASONAL schedule — the auto-commit carries heat illness surveillance
+// data, so it runs through heat season and not year round. Distinct commit-days
+// per window: 86 of the 92 days to 2026-08-01 and 24 of the 25 after it,
+// against 8 of the 92 from 2025-11-01 and 4 of the 88 after that
+// `[gh api repos/nychealth/EHDP-data/commits?sha=production, 2026-08-26]`.
+//
+// So a gate would look fine for two thirds of the year and then refuse nearly
+// every comparison through the months when the data is actually moving — which
+// is when a characterization run is worth having. It is also why a baseline
+// with no dataCommit at all must still compare cleanly.
+//
+// Null is a real answer, not an error: an unreachable host, a rate-limited API,
+// a 404, a repo URL that is not a GitHub one. The caller prints "@ unknown" and
+// carries on.
+export const fetchDataCommit = async (repoUrl, branch) => {
+    const slug = githubSlug(repoUrl);
+    if (!slug || !branch) return null;
+
+    try {
+        const res = await fetch(`https://api.github.com/repos/${slug}/commits/${encodeURIComponent(branch)}`, {
+            headers: {
+                Accept: "application/vnd.github+json",
+                // Unauthenticated api.github.com allows 60 requests an hour PER
+                // IP, and a GitHub-hosted runner's IP is shared with everyone
+                // else's job — so without this the field would most often be
+                // null exactly where it is worth having. Absent locally, where
+                // one request per run is nowhere near the limit.
+                ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
+            },
+            signal: AbortSignal.timeout(5000),
+        });
+        if (!res.ok) return null;
+
+        const body = await res.json();
+        if (!body?.sha) return null;
+        return {
+            sha: body.sha,
+            date: body.commit?.committer?.date ?? null,
+            // When the SHA was read, which is not when the pages were captured —
+            // a 925-page sweep runs for minutes after this.
+            fetchedAt: new Date().toISOString(),
+        };
+    } catch {
+        return null;
+    }
+};
+
 const readEnvironment = async (browser, baseURL) => {
 
     const page = await browser.newPage();
@@ -922,6 +991,12 @@ const readEnvironment = async (browser, baseURL) => {
         await page.goto(baseURL, { waitUntil: "domcontentloaded", timeout: 30000 });
 
         const env = await page.evaluate(() => ({
+            // Read off the PAGE, not out of config/, so the record describes the
+            // site that was actually swept — including when DE_BASE_URL points at
+            // a server this checkout did not build. Same `typeof` guard as its
+            // siblings: these are inline-script `let`s, so they are not
+            // properties of window and a bare reference would throw.
+            dataRepo: typeof data_repo === "undefined" ? null : data_repo,
             dataBranch: typeof data_branch === "undefined" ? null : data_branch,
             hugoEnv: typeof hugoEnv === "undefined" ? null : hugoEnv,
         }));
@@ -1040,6 +1115,10 @@ const main = async () => {
         }
     }
 
+    // Once per run, before the sweep. A failure costs at most the 5s timeout and
+    // changes nothing else about the run.
+    const dataCommit = await fetchDataCommit(env.dataRepo, env.dataBranch);
+
     console.log(`Environment: ${env.hugoEnv} (EHDP-data ${env.dataBranch}) at ${prefix} `
         + `— baseline "${env.key}" — pagefind ${pagefind ? "served" : "ABSENT"}`
         + `
@@ -1050,7 +1129,12 @@ Hugo: ${hugo?.version ?? "unknown"}`
         // box and on a CI runner, and two sweep timings are not comparable
         // without knowing which width each was taken at.
         + `
-Concurrency: ${concurrency} (${availableParallelism()} logical processors)`);
+Concurrency: ${concurrency} (${availableParallelism()} logical processors)`
+        + `
+EHDP-data: ${env.dataBranch} @ `
+        + (dataCommit
+            ? `${dataCommit.sha.slice(0, 10)} (${dataCommit.date?.slice(0, 10) ?? "date unknown"})`
+            : "unknown"));
 
     const paths = all ? await collectAllPaths(baseURL) : SAMPLE;
     const userAgent = await browserUserAgent(browser);
@@ -1200,7 +1284,7 @@ ${nonOk.length} page(s) did not answer 200:`);
     // directory holding one — and so would let --out mint a baseline without the
     // second sweep --baseline arbitrates against.
     if (!out) {
-        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, cleared, capped, env, pagefind, hugo });
+        writeMeta(outDir, { prefix, pages: paths.length, all, arbitrated, cleared, capped, env, pagefind, hugo, dataCommit });
     }
 
     if (baseline) {
@@ -1265,6 +1349,7 @@ ${unmatched.length} sample page(s) have no record in this baseline and were `
     // authority on pass/fail — this only describes what it is about to print.
     const rels = [...new Set([...walk(`${DIFF_DIR}/base`), ...walk(`${DIFF_DIR}/head`)])];
     const rows = summarize(`${DIFF_DIR}/base`, `${DIFF_DIR}/head`, rels);
+    let driftMd = null;
     if (rows.length) console.log(renderText(rows, rels.length));
 
     try {
@@ -1278,6 +1363,35 @@ ${unmatched.length} sample page(s) have no record in this baseline and were `
         if (!content) {
             console.error(`(Only ${keys.join(" + ")} was compared. Re-run with --content to include titles, `
                 + `heading text and link targets.)`);
+        }
+
+        // Did the data move, or did I? Both metas describe the same environment
+        // by construction — --check refuses a cross-environment comparison — so
+        // the commit is the only thing here that can differ. Silent when either
+        // side has no dataCommit, which includes every baseline captured before
+        // the field existed, and silent on a green run because this whole block
+        // is the failure path.
+        const wasSha = baselineMeta.dataCommit?.sha;
+        const nowSha = dataCommit?.sha;
+        if (wasSha && nowSha) {
+            const short = (x) => x.slice(0, 10);
+            const slug = githubSlug(env.dataRepo);
+            if (wasSha === nowSha) {
+                console.error(`
+EHDP-data has NOT moved since the baseline (${short(wasSha)}) — the data is not the explanation.`);
+                driftMd = `**EHDP-data has not moved** since the baseline (\`${short(wasSha)}\`), `
+                    + `so the data is not the explanation.
+`;
+            } else {
+                const compare = slug ? `https://github.com/${slug}/compare/${wasSha}...${nowSha}` : null;
+                console.error(`
+EHDP-data moved since the baseline: ${short(wasSha)} -> ${short(nowSha)}`
+                    + (compare ? `
+      ${compare}` : ""));
+                driftMd = `**EHDP-data moved** since the baseline: \`${short(wasSha)}\` -> \`${short(nowSha)}\``
+                    + (compare ? ` ([compare](${compare}))` : "") + `
+`;
+            }
         }
 
         // Two independent comparisons of the same two trees, so disagreement
@@ -1294,7 +1408,9 @@ ${unmatched.length} sample page(s) have no record in this baseline and were `
         // opening the log. Unset locally, which is what keeps local output
         // identical either way.
         if (process.env.GITHUB_STEP_SUMMARY && rows.length) {
-            appendFileSync(process.env.GITHUB_STEP_SUMMARY, renderMarkdown(rows, rels.length));
+            appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+                renderMarkdown(rows, rels.length) + (driftMd ? `
+${driftMd}` : ""));
         }
 
         process.exitCode = 1;

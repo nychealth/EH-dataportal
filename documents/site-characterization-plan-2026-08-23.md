@@ -144,16 +144,18 @@ Two field notes that are load-bearing:
 
 ## Ledger
 
-**Tasks 1-10 done 2026-08-24. Tasks 11-15 and 17 done 2026-08-25** — 11-14 out of the
+**Tasks 1-10 done 2026-08-24. Tasks 11-15 and 17 done 2026-08-25. Task 16 done 2026-08-26** — 11-14 out of the
 question the first red run could not answer (it said three pages differed, and nothing about what
 to go and look at), and 15 out of the 20-minute timeout that answering it cost.
 Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; Tasks 11-15 are the
 commits from `7bcdec1945` to `e9e4234a5a`, plus Task 14's red arm at `f2f932e5f7`, `d2704a3332` and
 `b2513b6904`; Task 17 is `377a306f5d`, `c7228357ac` and `1b33786d1b`.
 The check is green on a GitHub runner — run `32908900917` at `0d52d84eb2`, 2026-08-25 — and draft
-PR #1480 into `production` is open and unmerged. **One thing is open:** Task 16, which is spec only
-— nothing of it is built. The `_meta.json` gap Task 14's red arm found is closed: `--check` now
-writes one, carrying `arbitrated` / `cleared` / `capped` beside the environment fields. A green run
+PR #1480 into `production` is open and unmerged. **Every task is now built.** What remains is not a task: the
+scheduled-run decision inside Task 16, which needs three answers before anything is written —
+cadence, what a red scheduled run does, and two GitHub behaviours the plan asserts from recall and
+has not verified. Draft PR #1480 is the other open item, and the one that decides whether the
+harness is a thing the team has or a thing this branch has. A green run
 is a fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that
 run — the harness commit that follows `0d52d84eb2` has been proved only by five local sample-mode
 runs and has not had a runner.
@@ -177,7 +179,7 @@ table rather than from this line.
 | 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **DONE 2026-08-25** — the step summary renders; the source-file intersection was dropped for something better grounded | Locally: written as a 4-column table on a red run and **not written at all** on a green one. On a runner `[run 32806127560]`: both blocks render on the run's landing page — the sweep's table reading `structure.lang / 925 / 404.html / "en" -> "zz"`, and base-control's verdict paragraph beneath it. Confirmed by eye, which is the only way a rendering claim can be confirmed |
 | 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af`; red arm `d2704a3332`..`b2513b6904` | **DONE 2026-08-25** — both arms have now run on a runner, and the artifact gap the red arm found is fixed | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. GREEN ARM: `if: failure()` correctly skipped the control on a green sweep `[run 32801546852]`; the first attempt `[32802721473]` timed out and found Task 15 instead; the second `[32806127560, after the cap]` ran end to end — sweep red at 8m33s, control green at 8m53s, verdict "this PR's changes are" on the run page. RED ARM `[run 32905347134 @ d2704a3332]`: `cb334f5b37`'s three baseline records replayed, sweep RED at 7m38s naming exactly those 3 pages and 3 fields with arbitration running and no cap message, control RAN at 9m48s and reported the **same** 3 rows in the same directions — the converse of the green arm, and the pair is what shows the control tracks the injection site rather than the sweep. `OUTCOME: failure` in the Verdict step's env with the job still succeeding proves `continue-on-error` leaves `outcome` readable; the never-run base artifact uploaded 2776 files and was DOWNLOADED and inventoried — 925 + 925 + 925 + `hugo-server-base.log` — so both projected trees are really in it. 5 of 6 written-in-advance predictions exact; the sixth found the missing `_meta.json`. Reverted in `b2513b6904`, which leaves `scripts/` byte-identical to `90581f0b34`, green at `[run 32894749060]`; `0d52d84eb2` is green too `[run 32908900917]`, with `base-control` correctly skipped. The `_meta.json` fix that followed is proved by five sample-mode runs against one dev_stage server — clean, an `arbitrated` injection, `--out`, `--baseline` from a temp cwd, and a 26-record cap injection — two of which exist only because the three new fields read `[]`/`[]`/`false` on a clean sweep. `cleared` stays unproven and the plan says so |
 | 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
-| 16 | Record which EHDP-data commit a baseline describes | *not started* | **OPEN 2026-08-25** — spec only, written out of the question "did the data move, or did I?" | none yet; the four checks it has to pass are in the task, and row 3 of that table is the one that can break the harness for everyone |
+| 16 | Record which EHDP-data commit a baseline describes | *the commit that follows `759cd272f6`* | **DONE 2026-08-26** — built and proved; the scheduled-run decision inside it is still deferred and still needs three answers | Function-level first, no server needed: `githubSlug` on the real URL, on `"https://"` and on `null`; `fetchDataCommit` on the real repo — `e4f9301123…`, byte-equal to `gh api …/commits/production` — and on four failure shapes, all `null`. Then five sample-mode rows against one dev_stage server: `--baseline` from a temp cwd records `b2b63d0635…`, byte-equal to `gh api …/commits/**staging**`, which is the branch that server actually pulls; the fetch nulled reads `@ unknown` with exit 0 unchanged; `--check` against the two committed baselines, which hold **zero** `dataCommit` occurrences, PASSES — the row that could have broken the harness for everyone; a red check with equal SHAs prints the exonerating arm; a red check with the baseline SHA set to a real older staging commit prints the drift arm and a compare URL that resolves `[gh api …/compare: status=ahead, 6 commits]`, in the console and on the run page. Row 2's prescribed injection was impossible and is corrected in the findings |
 | 17 | Re-baseline a deliberate site-wide change | `377a306f5d`, `c7228357ac`, `1b33786d1b` | **DONE 2026-08-25** — every proof row has run, the two-key path and the `gitHead` cross-check included | Classification, no sweeps needed: unchanged pair -> 0 rows exit 0; `cb334f5b37`'s three-record perturbation replayed -> exactly those 3 pages and 3 fields, prod_prod only, below-floor shape message, exit 1; `--expect` covering one -> 1 covered / 2 not with the glob list in report.md; a glob matching no changed page -> named, not dropped. Two defects found by those rows and fixed. **The two-key run is green** `[2026-08-25 at e93bfcf1d5]`: 925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both `_meta.json` at one `gitHead`, 0 of 925 pages changed on each, exit 0 — and all 1,850 records byte-identical to baselines captured 2026-08-24 from *normal* servers, which is the isolated-server claim at full breadth and retires the earlier 899-of-912 figure. Committed as `c7228357ac`: two `_meta.json`, no record churn. `DE_SERVER_OWNED` confirmed by the missing caveat on the Hugo line. The attempt before it failed on 5 `ERR_NETWORK_CHANGED` pages after prod_prod had completed, which fired the failed-capture rollback for real — `git status` empty under `staging/`, 926 files, `_meta.json` intact — where it had previously been proved only with a stub. Two message defects that failure exposed are fixed in `1b33786d1b`, each error path exercised. The 13 pages load in 601-1062ms sequentially and 13-wide without failing, so the cause is **not** those pages; an A/B/A with external requests blocked puts ~75-80% of the load phase on external requests (median 4,467 -> 1,112 -> 5,545ms, doc flat at ~400ms), and the same round varies 3.5x between runs |
 
 Derive what this table deliberately does not claim:
@@ -1801,8 +1803,8 @@ against real records for the first time — it had only ever been tested on synt
 
 ESLint clean on both scripts, and the workflow still parses to 2 jobs / 11 + 14 steps `[js-yaml]`.
 
-**Still owed:** Task 14's red arm. Its green arm was retried on the cap and passed
-`[run 32806127560]`.
+**Both Task 14 arms have since run on the cap** — green `[run 32806127560]`, red
+`[run 32905347134]`, the latter tripping neither cap message nor its guard at 3 differing pages.
 
 ---
 
@@ -1880,15 +1882,90 @@ indistinguishable from a dead probe by inspection, and only running both arms se
 **Not in this task:** re-capturing the committed baselines to backfill the field. They stay valid
 under row 3, and the field appears the next time either is captured for its own reasons.
 
+### Task 16 findings — one proof row could not work as written, and the branch is not `production`
+
+**Row 2's injection was impossible.** It prescribed forcing the fetch to fail by substituting "an
+unroutable host" for `data_repo` — but step 2's own construction keeps only the URL's last two
+non-empty segments and discards the host, so the API call still goes to `api.github.com` and the
+substitution changes nothing. What ran instead: `fetchDataCommit` edited to `return null`
+unconditionally, one line, reverted after — which is the same shape Task 4 used, and which tests
+what the row was actually for (that a null reaches the environment line and changes nothing else).
+
+**The recorded branch is whatever the server is pointed at, and that is the point.** The spec's
+examples all read `production`; every run here was `dev_stage`, so the harness recorded EHDP-data's
+**staging** tip. The first comparison against `gh api …/commits/production` read as a mismatch and
+was checking the wrong branch — `gh api …/commits/staging` matches exactly.
+
+**Two deliberate departures from the spec, both flagged rather than folded in:**
+
+- **`GITHUB_TOKEN` is sent when set.** Unauthenticated `api.github.com` allows 60 requests an hour
+  *per IP* and a GitHub-hosted runner's IP is shared, so without it the field would most often be
+  null exactly where it is worth having. Absent locally, where one request a run is nowhere near
+  the limit `[docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api, read
+  2026-08-26]`.
+- **The drift line also goes to `$GITHUB_STEP_SUMMARY`.** Step 5 says "print one line", but this
+  task's own opening says a recorded SHA "answers most instances of it from the run page" — and the
+  run page is the step summary, not the step log. The console line is unconditional; the markdown
+  half inherits the existing `&& rows.length` guard, so in the rare case where git finds a
+  difference and the field summary finds none, the drift line is in the log and not on the run
+  page. Documented rather than decoupled: that case is already flagged as a harness bug by the
+  WARNING beside it.
+
+`fetchDataCommit` and `githubSlug` are exported for the control below, the same way `CAPTURE` and
+`capturePage()` are exported for the probe controls.
+
+**Proof that ran.** Function-level first, because it needs no server and can test arms an
+end-to-end run cannot reach:
+
+| case | result |
+|---|---|
+| `githubSlug` on the real `data_repo` | `nychealth/EHDP-data` |
+| `githubSlug` on `"https://"` and on `null` | `null`, `null` |
+| `fetchDataCommit(real, "production")` | `sha e4f9301123…`, `date 2026-08-25T16:00:04Z` — **identical** to `gh api repos/nychealth/EHDP-data/commits/production` |
+| repo that does not exist / branch that does not exist / non-GitHub URL / null repo | `null` ×4 |
+
+Then the five end-to-end rows, sample mode against one `dev_stage` server, 41 pages each:
+
+| Row | Expected | Result |
+|---|---|---|
+| 1 `--baseline` from a temp cwd | `dataCommit.sha` equals what `gh api` reports | `b2b63d0635516187debcc95ad2347e97cf502993` / `2026-08-17T18:33:22Z`, byte-equal to `gh api …/commits/**staging**`; env line `EHDP-data: staging @ b2b63d0635 (2026-08-17)` |
+| 2 the fetch nulled (corrected injection) | `@ unknown`, exit code unchanged | `EHDP-data: staging @ unknown`, exit 0, PASSED |
+| 3 `--check` against the committed baselines | passes — a missing field is not a mismatch | both committed `_meta.json` hold **zero** `dataCommit` occurrences; exit 0, PASSED |
+| 4a red `--check`, both SHAs equal | the exonerating arm | `EHDP-data has NOT moved since the baseline (b2b63d0635) — the data is not the explanation.` |
+| 4b red `--check`, baseline SHA set to a real older staging commit | the drift arm, with a compare URL | `EHDP-data moved since the baseline: b3ea3a5261 -> b2b63d0635` plus the compare URL, in the console **and** rendered into `$GITHUB_STEP_SUMMARY`; the URL resolves — `gh api …/compare/…` reports `status=ahead ahead_by=6 commits=6` |
+
+Row 3 is the one that could have broken the harness for everyone, and it is the reason this field is
+recorded rather than gated. Rows 2 and 4a exist for the same reason rows B and E existed for
+`_meta.json`: a field that is null on every run and a probe wired to nothing look identical, and
+only running both arms separates them.
+
+**Not done, as the task says:** the committed baselines are not re-captured to backfill
+`dataCommit`. They stay valid under row 3, and the field appears the next time either is captured.
+
 ### Deferred decision: an automatic run when the data moves
 
-Proposed as a trigger keyed on EHDP-data's `production` tip hash. **The hash cannot be the gate**:
-that branch takes a commit almost every day at 16:00 UTC, message "Regular auto-commit". Over the
-100 most recent commits — 2026-05-23 to 2026-08-24 — that is 93 of the 94 days in the span, the
-one gap being 2026-08-12, with four days carrying an extra commit or two (06-01, 07-10, 08-13,
-08-17); tip `a011bab842` at 2026-08-24T16:00Z `[gh api
-repos/nychealth/EHDP-data/commits?sha=production&per_page=100, 2026-08-25]`. A hash-change trigger
-therefore fires about 360 times a year — a schedule wearing a condition.
+Proposed as a trigger keyed on EHDP-data's `production` tip hash. **The hash cannot be the gate, and
+the reason is seasonal rather than constant.** The 16:00 UTC "Regular auto-commit" carries heat
+illness surveillance data, so it runs through heat season — summer give or take a month — and is
+close to silent the rest of the year. Distinct commit-days per window `[gh api
+repos/nychealth/EHDP-data/commits?sha=production, 2026-08-26]`:
+
+| Window | Days | Commit-days | Commits |
+|---|---|---|---|
+| 2025-11-01 → 2026-02-01 | 92 | **8** | 14 |
+| 2026-02-01 → 2026-05-01 | 88 | **4** | 12 |
+| 2026-05-01 → 2026-08-01 | 92 | **86** | 93 |
+| 2026-08-01 → 2026-08-26 | 25 | **24** | 28 |
+
+That is 122 commit-days across the 297 measured. The 2026-08-26 → 2026-11-01 span is not measured
+and September sits inside heat season, so the annual figure is above 122 — and nowhere near the
+**~360 an earlier draft of this plan asserted, which was wrong**: it took the 93-of-94 rate from a
+window that is entirely heat season and read it as a year-round rate. Corrected 2026-08-26.
+
+The seasonal shape is what makes a hash gate a bad idea rather than merely a busy one. It would sit
+quiet and plausible for two thirds of the year, then fire daily through exactly the months when the
+data is moving — which is when a characterization run is worth having, and when a gate refusing the
+comparison costs the most.
 
 The hash is also a poor proxy for the thing worth reacting to. One data commit landed between the
 `prod_prod` baseline's capture (2026-08-24T14:03Z) and run `32807666633` (2026-08-25T04:06Z), and
