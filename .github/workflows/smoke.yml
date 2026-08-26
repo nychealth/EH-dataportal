@@ -100,17 +100,27 @@ jobs:
     name: Load every page and fail on a console error
     runs-on: ubuntu-24.04
 
-    # PLACEHOLDER, and knowingly unmeasured — no smoke sweep has ever been
-    # timed on a runner. The only figure derivable without measuring is a
-    # floor, and it comes from the harness's own constant rather than from the
-    # system: visit() does a fixed 2s settle per page, so 925 pages at
-    # concurrency 6 spend 308s in settle alone, before any navigation.
-    # ubuntu-24.04 reports 4 logical processors, so
+    # 2.4x the measured job, the same multiple site-characterization.yml uses,
+    # rounded up. Measured on the calibration run `[run 33019503991,
+    # 2026-08-26]`: 62s to a serving prod_prod build, 2s for Pagefind, 427s for
+    # the 925-page sweep at concurrency 6, ~73s of checkout and setup, and
+    # 9m26s in total once the checkout anomaly below is excluded (862s less
+    # the 296s by which that fetch exceeded its sibling's). 2.4 x 9m26s is
+    # 22.6, rounded to 25, and the observed 14m22s still fits with headroom.
+    #
+    # THE MULTIPLE IS TAKEN ON 9m26s, NOT ON THE 14m22s THAT RUN ACTUALLY TOOK.
+    # `git fetch --depth=1` of the merge ref took 5m14s in that job, and that is
+    # not repo size: the characterization job fetched the SAME merge ref two
+    # seconds earlier and took 22s. One observation, cause unknown. Baking it
+    # into the ceiling would buy 10 more minutes of runner before a genuine hang
+    # is caught, which is the one thing this line exists to do.
+    #
+    # The sweep's own floor comes from the harness rather than the system:
+    # visit() does a fixed 2s settle per page, so 925 pages at concurrency 6
+    # spend 308s in settle alone. ubuntu-24.04 reports 4 logical processors, so
     # min(24, max(6, availableParallelism())) floors at 6 here
     # `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`.
-    # Task 5 of documents/smoke-workflow-plan-2026-08-26.md reads the real
-    # number off the first run and Task 6 replaces this line with it.
-    timeout-minutes: 30
+    timeout-minutes: 25
 
     concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
       group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -334,10 +344,12 @@ jobs:
     if: failure() && github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
 
-    # Same placeholder as the sweep, and unmeasured for the same reason. This
-    # job additionally does two checkouts and two npm ci, so it is the slower
-    # of the two. Task 6 sets both from Task 5's numbers.
-    timeout-minutes: 30
+    # Same 25 as the sweep, from the same run. This job was expected to be the
+    # slower of the two — two checkouts and two npm ci — and measured, it is
+    # not: 9m36s against the sweep's 14m22s, and against its 9m26s once the
+    # sweep's 5m14s fetch anomaly is excluded. The two npm ci cost ~19s
+    # together and the second checkout 22s `[run 33019503991, 2026-08-26]`.
+    timeout-minutes: 25
 
     concurrency: # its own group — sharing the sweep's would have the two cancel each other
       group: ${{ github.workflow }}-base-${{ github.ref_name }}
