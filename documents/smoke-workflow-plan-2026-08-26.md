@@ -1,13 +1,16 @@
 # Automatic smoke check in GitHub Actions
 
-**Status as of 2026-08-26: Task 1 DONE at `6ebc18374c`. Task 2 written at `c7a3b3b223` but
-In progress — only Task 5's run proves it. Task 3 DONE at `7f5890799f`. Task 4 written at `c37149d876`, also In progress — neither of its two proof arms has run. Task 5 not started. Task 6's three
-measurement-independent items landed at `52b7720bad`; its `timeout-minutes` item cannot run until
-Task 5 has.** Branch `feature-smoke-GHA`,
+**Status as of 2026-08-26: Tasks 1, 2, 3, 5 and 6 DONE. Task 4 In progress — one of its two
+proof arms has now run, the other has not.** The calibration run is `33019503991` on PR #1484,
+and it is what closed Task 2: the workflow swept 925 pages on a real `pull_request` into
+`production`. Task 4's `base-control` job fired on that run and took its **both-red** branch
+correctly — the branch global CLAUDE.md recorded as never having executed on either workflow. Its
+**discriminating** arm, base GREEN with the verdict reading "this PR's changes are", still has
+not run here. Branch `feature-smoke-GHA`,
 cut from `production` at `9ebb11e85f`. Task 1 corrected two things this plan had wrong — its own
 prescribed proof, and the claim that `dev_prod` emits no analytics tag — both rewritten in place
-below. `.github/workflows/smoke.yml` now holds both jobs; what is left is Task 5's run and the one
-Task 6 item that reads a number off it.
+below. `.github/workflows/smoke.yml` now holds both jobs, both at a measured `timeout-minutes: 25`.
+What is left is Task 4's discriminating arm, which needs a throwaway branch and a second PR.
 
 Derive what a status line cannot hold:
 
@@ -102,7 +105,17 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 
 ## What is NOT known
 
-- **The smoke sweep's wall time on a GitHub-hosted runner.** What is measured: 925 pages in 156s
+**Both items below were answered by `[run 33019503991]` on 2026-08-26 and are kept for the
+reasoning they record. Measured: the sweep took 427s and the whole job 14m22s; the sequential
+re-check fired on 3 pages and cleared 2 of them, well inside the cap.**
+
+- **The smoke sweep's wall time on a GitHub-hosted runner.** ~~Not known~~ — **427s**, in a
+  14m22s job `[run 33019503991]`. The 308s settle floor below was a real floor: the sweep came in
+  38% above it. Characterization's 370s for the same 925 pages *without* any settle is the
+  comparison the next bullet warned against adding to; measured side by side on this PR the two
+  sweeps were 427s and 375s.
+
+  The original reasoning, which stands: what had been measured was 925 pages in 156s
   *total*, including a cold `prod_prod` build and Pagefind, at concurrency 24 on a
   24-logical-processor box `[2026-08-26, smoke-env-plan Task 6]`. `ubuntu-24.04` reports 4 logical
   processors `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`, so
@@ -115,7 +128,10 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
   *without* any settle `[run 32771116783, 2026-08-24]` — but that is a different harness, and
   adding the two numbers is arithmetic, not a measurement. Task 5 measures it.
 
-- **Whether the sequential re-check fires within budget.** Below `RECHECK_CAP` (25) each failing
+- **Whether the sequential re-check fires within budget.** ~~Not known~~ — it fired on 3 pages
+  and took 11s `[run 33019503991]`; 2 of the 3 cleared. `recheckCapped: false` on both jobs.
+
+  The original reasoning, which stands: below `RECHECK_CAP` (25) each failing
   page is re-visited sequentially at the same 2s floor, so 25 failures add roughly a minute plus
   navigation. Above 25 the re-check is skipped outright and the run says so — both branches are
   proved to fire `[2026-08-26: same 33 forced failures at concurrency 4, cap 2 -> capped message
@@ -126,11 +142,11 @@ file throws in the browser and in nothing else. `prod_prod` pins `data_branch = 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Block `www.googletagmanager.com` in `smoke-pages.mjs` | `feature-smoke-GHA @ 6ebc18374c` | **DONE 2026-08-26** | Response-count arms 1→0, shipped-route arms 35→1, `smoke:prod_prod` 924/925 — below |
-| 2 | `.github/workflows/smoke.yml` — sweep job | `feature-smoke-GHA @ c7a3b3b223` | **In progress** — file written; the run that proves it is Task 5 | YAML parses, pins and `paths-ignore` match the reference — below |
+| 2 | `.github/workflows/smoke.yml` — sweep job | `feature-smoke-GHA @ c7a3b3b223` | **DONE 2026-08-26** | Swept 925 pages on a real `pull_request` — `[run 33019503991]`, below |
 | 3 | `smoke.yml` — Pagefind pre-flight assertion | `feature-smoke-GHA @ 7f5890799f` | **DONE 2026-08-26** | 404 before the build / 200 after; `curl -f` exits 22 / 0 — below |
-| 4 | `smoke.yml` — base-branch control job | `feature-smoke-GHA @ c37149d876` | **In progress** — job written; neither proof arm has run | Static only — the injected-regression arms need PRs — below |
-| 5 | Calibration run: open the PR into `production`, read the wall time | — | **TODO** | The run's own step timings |
-| 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | `feature-smoke-GHA @ 52b7720bad` | **In progress** — items 2, 3 and 4 done; item 1 waits on Task 5's number | `docs-check`, four arms with a stash control and an injected bogus path — below |
+| 4 | `smoke.yml` — base-branch control job | `feature-smoke-GHA @ c37149d876` | **In progress** — the both-red arm has run; the discriminating arm has not | `[run 33019503991]`: `OUTCOME: failure`, both-red branch taken, same signature on both sides — below |
+| 5 | Calibration run: open the PR into `production`, read the wall time | PR #1484, `[run 33019503991]` | **DONE 2026-08-26** | The run's own step timings — six numbers below |
+| 6 | Set `timeout-minutes` from Task 5; docs; correct the stale `site-characterization.yml` comment | items 2/3/4 `52b7720bad`, item 1 `09ef891c82` | **DONE 2026-08-26** | `docs-check` four arms for the docs; `js-yaml` for the timeout edit — below |
 
 ## Task 1: Block the analytics host in `smoke-pages.mjs`
 
@@ -227,8 +243,9 @@ Different from it:
 
 - **No `GITHUB_TOKEN` in the check step's env.** Characterization needs it for the `dataCommit`
   lookup against `api.github.com`. `smoke-pages.mjs` makes no API call — its only subprocess is
-  `git rev-parse HEAD` in `gitHead()` (`:258-264`). Say so in a comment, so the omission reads as
-  deliberate rather than forgotten.
+  `git rev-parse HEAD` in `gitHead()` — at `:294-300`, not the `:258-264` this task wrote, which
+  the file had already moved past. Say so in a comment, so the omission reads as deliberate rather
+  than forgotten.
 - **The check step** builds its arguments the way the characterization one does:
 
   ```
@@ -347,12 +364,40 @@ template (a bad identifier in an inline `<script>` in `head.html`) and open a PR
 Write these two expectations down before the run, and check the result against them rather than
 reading the result to fit.
 
-**Status 2026-08-26: NEITHER ARM HAS RUN.** The job is written and committed; what exists is a
-static check only — YAML parses, `base-control` `needs: smoke` and is gated on `failure() &&
-github.event_name == 'pull_request'`, the control step carries `continue-on-error` and an `id`,
-the upload is gated on that step's `outcome`, there are two checkouts (root and `base/`), and
-`GITHUB_TOKEN` appears nowhere in the file. **Nothing about the verdict, the `needs:` gating, or
-the base checkout has been observed working.**
+**Status 2026-08-26, AMENDED after `[run 33019503991]`: ONE ARM HAS NOW RUN — the both-red one,
+and it arrived on its own rather than by injection.** PR #1484's sweep failed on one page and
+`base-control` fired. Observed, not inferred: the Verdict step's own env records
+`OUTCOME: failure`, `BASE_SHA: 9ebb11e85f3f7e4c99d9eaf87cbde6741b49f550` and
+`BASE_REF: production` — which also confirms `base.sha` is the base **branch tip**, since
+`9ebb11e85f` is where this branch was cut from. The base artifact uploaded, and its gate is
+`outcome == 'failure'`, so it is a second independent witness to the same outcome. Both reports
+carry one identical signature, `t.datasetSourceUrl is not a function` on
+`data-features/heat-report-archive/2024/`, 1 of 925 on each side — which is the reading the
+both-red branch exists to produce, and it is the right one: a Datawrapper embed from an unblocked
+host, unchanged by this PR.
+
+That proves the `needs:` gating, the split checkout, the base build, the pre-flight, the control
+step's `continue-on-error` semantics and the else-branch of the verdict.
+
+**THE DISCRIMINATING ARM STILL HAS NOT RUN.** Base GREEN with the sweep RED — the branch whose
+verdict reads "this PR's changes are" — needs the site-source injection this task specifies, on a
+throwaway branch and a second PR. A both-red result cannot stand in for it: it exercises the
+`else`, and the failure it reports is one neither arm caused.
+
+One defect the run surfaced, in both workflows: **the base report's `gitHead` names the wrong
+commit.** Both artifacts record `edf2e17299`, the PR merge ref, because `gitHead()`
+(`smoke-pages.mjs:294-300`) runs `git rev-parse HEAD` in the process cwd — the root checkout —
+even when the site under test is `base/`. The two artifacts are indistinguishable by their
+recorded commit. `site-characterization.mjs:833-835` has the same shape, so its `_meta.json`
+misattributes the same way. Deferred, below.
+
+What existed before that run was a static check only — YAML parses, `base-control` `needs: smoke`
+and is gated on `failure() && github.event_name == 'pull_request'`, the control step carries
+`continue-on-error` and an `id`, the upload is gated on that step's `outcome`, there are two
+checkouts (root and `base/`), and `GITHUB_TOKEN` appears nowhere in the file. That static list is
+kept because it is what the run then confirmed: the verdict, the `needs:` gating and the base
+checkout have all now been observed working, which they had not been when this paragraph was
+first written.
 
 Two departures from what this task specified, both deliberate:
 
@@ -384,6 +429,40 @@ Record from the run's step timings, each as its own number:
 the Pagefind pre-flight's failing branch are all conditional and are proved by Tasks 3 and 4, not
 by this one.
 
+**RAN 2026-08-26 — PR #1484, `[run 33019503991]`, head `bb76986ecc`, merge ref `edf2e17299`.**
+The sweep went RED (1 of 925) and `base-control` fired, so this run also produced the first
+execution of two things the plan had recorded as never having run.
+
+The six numbers, off the step timings:
+
+| | sweep job | `base-control` |
+|---|---|---|
+| 1. seconds to a serving `prod_prod` build | **62s** | 60s |
+| 2. Pagefind build | 2s | 1s |
+| 3. the sweep | **427s** | 424s |
+| 4. job wall time | **14m22s** | 9m36s |
+| 5. concurrency | 6 | 6 |
+| 6. `pagesChecked` / `recheckCapped` | 925 / `false` | 925 / `false` |
+
+Run total 24m03s. All five predictions written before the run held: the server answered inside the
+300s deadline at the same 62s characterization measured, concurrency floored at 6, the Pagefind
+pre-flight returned 200, the sweep cleared the 308s settle floor, and
+`data-features/heat-report-archive/2024/` recurred.
+
+**The 14m22s carries a 5m14s outlier that is not repo size.** `git fetch --depth=1` of the merge
+ref ran 22:23:26 → 22:28:40 in the sweep job. The characterization job fetched the **same merge
+ref** two seconds earlier on its own runner and took 22s. One observation, cause unknown. The
+timeout is therefore taken as a multiple of 9m26s — the 862s job less the 296s by which that
+fetch exceeded its sibling's — and not of the 14m22s the run reported.
+
+**Two conditional paths executed for the first time.** The artifact upload on a failing sweep,
+gated `always() && steps.check.outcome != 'success'`, uploaded a **complete** payload in both jobs
+— the report JSON *and* `hugo-server.log`, 4 files across 2 artifacts. And `base-control` ran end
+to end: `needs: smoke` gating, both checkouts, both `npm ci`, the base server, the pre-flight, the
+control step, the verdict and the second artifact.
+
+**Neither of those is Task 4's discriminating arm.** See Task 4's status below.
+
 ## Task 6: Set the timeout, docs, and the stale comment
 
 **Files:** `.github/workflows/smoke.yml`, `CLAUDE.md` (the Smoke test section),
@@ -409,7 +488,22 @@ zero-new-failures reading comes from a probe able to fire. Note that this worktr
 built, so `docs/` and `resources/_gen` are absent and `docs-check` reports two "path does not
 exist" failures on CLAUDE.md on a clean tree.
 
-**Status 2026-08-26: items 2, 3 and 4 done at `52b7720bad`. Item 1 is blocked on Task 5.**
+**Status 2026-08-26: DONE. Items 2, 3 and 4 at `52b7720bad`; item 1 at `09ef891c82`.**
+
+- **Item 1 — the timeout.** `timeout-minutes: 25` on both jobs, from 2.4x 9m26s — the same
+  multiple `site-characterization.yml` takes on its own measured job, rounded up. The comment
+  states the multiple, the number it multiplies, and why that number is not the 14m22s the run
+  reported: the sweep job's `git fetch` took 5m14s where its sibling took 22s on the same merge
+  ref, and folding an unexplained outlier into the ceiling buys ten more minutes of runner before
+  a genuine hang is caught. The observed 14m22s still fits inside 25 with headroom.
+
+  The same edit retires a claim the run falsified. That comment said `base-control` "is the slower
+  of the two" because it does two checkouts and two `npm ci`; measured, it is faster — 9m36s
+  against 14m22s, and against 9m26s once the outlier comes out. The two `npm ci` cost ~19s
+  together and the second checkout 22s.
+
+  Proof: `npx -y js-yaml` exit 0, and off the parsed document both jobs read
+  `timeout-minutes: 25`, `permissions: {contents: read}` unchanged, 12 and 15 steps unchanged.
 
 - **Item 3 — the stale comment.** Corrected in place rather than deleted: it now says the claim
   was true when written on 2026-08-24, names PRs #1482 and #1483 as what falsified it, and keeps
@@ -443,6 +537,18 @@ this section already predicts for a worktree that has never built.
   and not namespaced by environment.
 
 ## Deferred
+
+- **`gitHead` in a base-control artifact names the wrong commit — both workflows.** Surfaced by
+  `[run 33019503991]`: the sweep's report and the base's both record `edf2e17299`, the PR merge
+  ref, so the two artifacts cannot be told apart by their recorded commit. `gitHead()` runs
+  `git rev-parse HEAD` in the process cwd, and the harness deliberately runs from the root
+  checkout while the site under test is `base/` — so the field is reporting the harness's commit
+  under a name that reads as the site's. `site-characterization.mjs:833-835` is the same shape.
+  The cheap fix is an env override the base-control job sets to
+  `${{ github.event.pull_request.base.sha }}`, which both harnesses would need. Not done here: it
+  edits a script that `production` already carries, and it is a separate change from this branch's
+  subject.
+
 
 - **Sharding the sweep across runners.** If Task 5 shows the job is uncomfortably long,
   `smoke-pages.mjs` has no shard flag and would need one (`--shard i/n` over `collectAllPaths`'s
