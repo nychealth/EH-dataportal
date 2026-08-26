@@ -120,6 +120,17 @@ are printed as a harness-health number and deliberately **not** baselined — th
   so a mismatched run would report 925 regressions — `_meta.json` records the state and the check
   exits 2 naming the fix instead. If you started the server yourself and see `ABSENT`, run
   `npx -y pagefind --site docs` against it and re-run; a rebuild will not remove the index.
+- **Every capture writes a `_meta.json` beside its records — provenance, not a gate.** Commit,
+  environment, data branch, Hugo version, Pagefind state, which pages needed re-capturing, and
+  `dataCommit`: the EHDP-data commit that branch pointed at, read from `api.github.com` and printed
+  on the environment line as `EHDP-data: staging @ b2b63d0635 (2026-08-17)`, or `@ unknown` when the
+  lookup fails. `--check` writes one too, so a CI failure artifact says what produced it; `--out`
+  deliberately does not, because `baselineKeys()` reads any directory under the baseline root
+  holding a `_meta.json` as a key. **Only `pagefind` is gated** — EHDP-data's auto-commit is
+  seasonal (heat illness surveillance), so gating on `dataCommit` would refuse nearly every
+  comparison through the months the data actually moves. A red `--check` prints one line saying
+  whether it moved, with a compare URL; a baseline captured before the field existed has none, and
+  that is not a mismatch.
 - **Concurrency defaults to `min(24, max(6, availableParallelism()))`, not a fixed 6.** Measured
   over 925 pages, three sweeps interleaved so a warm cache could not pass for a concurrency effect:
   12 -> 198s, **24 -> 114s**, 12 -> 199s, all three captures byte-identical across every record
