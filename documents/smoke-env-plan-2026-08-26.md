@@ -5,11 +5,10 @@
 `npm run smoke:prod_prod` passes 925/925 in 156s at `4955a0a006`; `npm run smoke:env prod_prod
 sample` passes 33/33 in 128s.**
 
-**Owed to the branch below:** `characterize-env.mjs` should get the same `sample` second positional
-that Task 7 added here, so the two `:env` scripts keep one contract. Handed to the session that
-owns `feature-characterize-env` on 2026-08-26; not done in this worktree. If that session does not
-pick it up, the change is the Task 7 diff with `["--check"]` / `["--check", "--all"]` in place of
-`[]` / `["--all"]`.
+**Owed to the branch below — settled.** `characterize-env.mjs` needed the same `sample` second
+positional that Task 7 added here, so the two `:env` scripts would keep one contract. Handed to the
+session owning `feature-characterize-env` on 2026-08-26 and done there at `e92c7ac15c`, which
+merged to `production` in PR #1482. Nothing outstanding.
 
 Derive what a status line cannot hold:
 
