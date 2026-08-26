@@ -1,0 +1,275 @@
+name: Smoke check
+
+# Loads every page the site serves under Playwright and fails on any console
+# `error` or `pageerror` that is not allowlisted in smoke-pages.mjs. It is the
+# only check in this repo that RUNS the site's JavaScript.
+#
+# That matters because a green Hugo build proves the templates compile and
+# nothing more: the site's browser JS is classic <script> tags sharing one
+# global scope, so a bad edit throws at load while the build stays green.
+#
+# Complements site-characterization.yml rather than overlapping it. That one
+# fails on a page whose rendered STRUCTURE moved; this one fails on a page
+# whose JS THREW. Neither sees what the other does, which is why they are two
+# workflows and two checks in the PR list.
+#
+# It builds with `--environment prod_prod` for two reasons, and only the second
+# is specific to smoke. head.html branches on the environment NAME, so
+# prod_prod is the only environment whose emitted <head> matches the deployed
+# site. And each environment pins its own data_branch: pages fetch EHDP-data
+# from raw GitHub URLs AT RUNTIME, so a renamed data file throws in the browser
+# on one environment and not another. prod_prod pins EHDP-data's `production`,
+# which is the data the site deploys against.
+#
+# Analytics do not fire. smoke-pages.mjs aborts www.googletagmanager.com at the
+# network layer (BLOCKED_HOSTS), so the external gtag.js never loads and the
+# inline gtag() calls reach nothing but a local dataLayer. Without that, a
+# 925-page sweep would report 925 page views to the live property on every PR.
+#
+# A red run is not always this PR's doing: pages embed third parties that go
+# down, and EHDP-data moves independently of this repo. CLAUDE.md records an
+# AirNow CORS error appearing on (home) once between two passes on an unchanged
+# tree `[verified 2026-08-17]`. Read the artifact before treating red as a
+# regression.
+
+on:
+  pull_request:
+    branches:
+      - production
+      - development
+
+    # Copied verbatim from site-characterization.yml, and for the same reason:
+    # a docs-only push should not spend a full 925-page sweep. Nothing listed
+    # here can reach a rendered page — Hugo builds from content/, themes/,
+    # assets/, data/, static/, config/ and archetypes/, and none of these are
+    # among them.
+    #
+    # Deliberately NOT ignored: content/**/*.md is the site's own copy, so a
+    # blanket `**.md` would skip real content changes.
+    #
+    # WARNING: do not make this a REQUIRED status check while it has a path
+    # filter. GitHub: "Associated checks stay in a 'Pending' state and block
+    # merging" when a workflow is skipped by path filtering
+    # `[docs.github.com/en/pull-requests/collaborating-with-pull-requests/
+    # collaborating-on-repositories-with-code-quality-features/
+    # troubleshooting-required-status-checks, read 2026-08-24]`.
+    paths-ignore:
+      - documents/**
+      - memories/**
+      - .claude/**
+      - .agents/**
+      - CLAUDE.md
+      - README.md
+      - readme-components.md
+      - readme-content.md
+      - readme-development.md
+      - LICENSE
+
+  workflow_dispatch:
+
+    inputs:
+
+      scope:
+        description: Pages to sweep
+        required: false
+        type: choice
+        default: all
+        options:
+          - all
+          - sample
+
+# read-only: this workflow reports, it never publishes
+permissions:
+  contents: read
+
+env:
+  TZ: America/New_York
+  SERVER_PORT: 8080
+  # prod_prod's baseURL is https://a816-dohbesp.nyc.gov/IndicatorPublic/, and
+  # `hugo server` keeps the path while replacing the host
+  # `[verified 2026-08-24: 200 on /IndicatorPublic/, 404 on / and /dev-stage/]`.
+  SERVER_URL: http://localhost:8080/IndicatorPublic/
+
+jobs:
+
+  # -------------------------------
+  # run the site's JS on every page
+  # -------------------------------
+
+  smoke:
+    name: Load every page and fail on a console error
+    runs-on: ubuntu-24.04
+
+    # PLACEHOLDER, and knowingly unmeasured — no smoke sweep has ever been
+    # timed on a runner. The only figure derivable without measuring is a
+    # floor, and it comes from the harness's own constant rather than from the
+    # system: visit() does a fixed 2s settle per page, so 925 pages at
+    # concurrency 6 spend 308s in settle alone, before any navigation.
+    # ubuntu-24.04 reports 4 logical processors, so
+    # min(24, max(6, availableParallelism())) floors at 6 here
+    # `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`.
+    # Task 5 of documents/smoke-workflow-plan-2026-08-26.md reads the real
+    # number off the first run and Task 6 replaces this line with it.
+    timeout-minutes: 30
+
+    concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
+      group: ${{ github.workflow }}-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      # fetch-depth 1: the harness reads `git rev-parse HEAD` for the report
+      # metadata (gitHead(), smoke-pages.mjs) and needs no history beyond the tip
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # npm ci, not npm install: the lockfile pins hugo-extended 0.147.3, the
+      # same release the deploy workflows install through peaceiris/actions-hugo.
+      # Using the locked binary keeps one Hugo in the repo instead of two.
+
+      - name: Install dependencies
+        run: npm ci
+
+      # hugo-extended is an OPTIONAL dependency, so a failed platform binary
+      # install is silent. Fail here, where the message is legible, rather than
+      # as a server that never answers.
+
+      - name: Confirm the locked Hugo is present
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # ---------------------------------------------------------------------
+      # the site under test
+      #
+      # The workflow owns the server rather than letting scripts/dev-server.mjs
+      # spawn one: dev-server.mjs waits a fixed 90s for the first 200, and a
+      # cold CI build fetching remote EHDP-data resources has no cache to hit.
+      # ---------------------------------------------------------------------
+
+      - name: Start the Hugo server
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > hugo-server.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      # Bounded by the CLOCK, not by an attempt count. Hugo accepts a
+      # connection BEFORE the build finishes and holds it open, so a poll
+      # cannot catch a half-built site — but it also means one attempt can
+      # block for as long as the build takes: on the runner a single curl
+      # blocked for 61 seconds inside one iteration, and a loop counting
+      # attempts reported that as "after 2s"
+      # `[run 32771116783, 2026-08-24]`. --max-time caps one attempt so a
+      # wedged connection cannot swallow the whole budget silently.
+
+      - name: Wait for the server
+        run: |
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 300s:"
+          tail -n 50 hugo-server.log
+          exit 1
+
+      # `hugo server` does not build the search index, and dev-server.mjs only
+      # builds one for a server it STARTED — a DE_BASE_URL server gets a probe
+      # and nothing else. Without the index, PagefindUI is undefined on every
+      # page: with the conditional allowlist entry forced off, smoke failed 33
+      # of 33 `[2026-08-24, recorded in CLAUDE.md]`. The allowlist would quiet
+      # that, but then CI alone would never check the search UI. Same command
+      # the deploy workflows run; hugo serves docs/ from disk, so writing into
+      # it works.
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site docs
+
+      # ---------------------------------------------------------------------
+      # the check
+      #
+      # DE_BASE_URL tells dev-server.mjs to trust this server and own nothing —
+      # it probes Pagefind and hands the URL straight back.
+      # ---------------------------------------------------------------------
+
+      - name: Run the smoke check
+        id: check
+        # No GITHUB_TOKEN here, and that is deliberate rather than forgotten.
+        # The characterization workflow needs one for its dataCommit lookup
+        # against api.github.com; this harness makes no network call of its own
+        # `[verified 2026-08-26: zero occurrences of api.github.com or
+        # GITHUB_TOKEN across smoke-pages.mjs, dev-server.mjs and
+        # site-urls.mjs]`. Its only subprocess is `git rev-parse HEAD`.
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+        run: |
+          # inputs.scope is empty on a pull_request event, so PRs get the full sweep
+          args="--report scripts/smoke-reports/"
+          if [ "${{ inputs.scope }}" != "sample" ]; then
+            args="$args --all"
+          fi
+          echo "node scripts/smoke-pages.mjs $args"
+          node scripts/smoke-pages.mjs $args
+
+      # The failing pages and their grouped signatures are in the step log;
+      # the JSON is for diffing locally. scripts/smoke-reports/ is gitignored
+      # (.gitignore:93) and exists only on the runner.
+      #
+      # NOT `if: failure()`. A job cancelled by `timeout-minutes` skips a
+      # failure() step while still running an always() one — measured, not
+      # assumed `[run 32802721473, 2026-08-25, on the characterization
+      # workflow: the timeout skipped its upload and ran the teardown beside
+      # it]` — and a timed-out run is exactly when the capture is most worth
+      # having. Gating on the check step's own outcome also fails safe: if a
+      # cancelled step leaves `outcome` unset, the comparison is still not
+      # 'success', so the upload runs.
+      #
+      # No include-hidden-files: that flag is in the characterization workflow
+      # for .sc-check, a DOT directory the action skips by default. Smoke
+      # writes no dot path, so its absence here is correct rather than an
+      # oversight.
+      - name: Upload the smoke report
+        if: always() && steps.check.outcome != 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: smoke-${{ github.run_id }}
+          path: |
+            scripts/smoke-reports/
+            hugo-server.log
+          retention-days: 14
+          if-no-files-found: warn
+
+      # `npx hugo server` leaves HUGO_PID somewhere above the binary, and two
+      # attempts to reach it by descent both failed on the characterization
+      # workflow: killing HUGO_PID alone `[run 32771116783]`, then killing its
+      # direct children as well `[run 32777189174]`. Both ended with the runner
+      # reporting "Terminate orphan process: (hugo)". Match by name instead:
+      # this runner is ephemeral and single-purpose, so the only hugo on it is
+      # the one this job started.
+
+      - name: Stop the Hugo server
+        if: always()
+        run: |
+          pkill -TERM -x hugo 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true
