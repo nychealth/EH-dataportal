@@ -2249,3 +2249,125 @@ The fix is five declarations in `global.js` and is collision-free: `global.js` l
 `window.`, so moving them to lexical bindings changes no reachable read. It is still a change to
 runtime JS on the explorer and wants its own task and its own `npm run smoke` run, which is why
 Task 20 landed the guardrail red rather than widening into it.
+
+
+## 16. Datawrapper embeds share one global runtime (added 2026-08-26)
+
+Found by the first CI run of `.github/workflows/smoke.yml`
+([`smoke-workflow-plan-2026-08-26.md`](smoke-workflow-plan-2026-08-26.md) Task 5, `[run
+33019503991]`), which failed on `data-features/heat-report-archive/2024/` with `t.datasetSourceUrl
+is not a function` -- 1 page of 925. The chart is Datawrapper's, but the exposure is a property of
+how this site embeds them, so it is tracked here rather than written off as third-party noise.
+
+### 16.1 The mechanism
+
+Datawrapper's inline (`embed.js`) form renders into the host document and registers its runtime on
+a shared global. Every runtime bundle ends with the same line:
+
+```js
+window.dw = { ...mine, ...(window.dw || {}) }
+```
+
+The existing global is spread **last**, so it wins every key. **Whichever runtime executes first
+owns `window.dw` for the life of the page**, and every later one merges in underneath.
+
+The bundles carry a version escape hatch -- each registers itself as
+`window.dw.versions["<hash>"]` -- and the web component is meant to select its own version through
+it:
+
+```js
+const n = window.dw.versions?.[visualization.dwJsHash];
+dw = n?.visualizations?.has(visualization.id) ? n : window.dw;
+```
+
+It reads `.visualizations`. The registry is `.visualization`, singular. Measured in a browser:
+`"visualizations" in window.dw` is `false`, `"visualizations" in window.dw.versions["3873ad67"]` is
+`false`, and `window.dw.versions["3873ad67"].visualization.has("d3-scatter-plot")` is `true`
+`[2026-08-26]`. **The guard can never pass**, so the fallback to `window.dw` is unconditional and
+the escape hatch is dead. That is Datawrapper's defect, not this repo's; what this repo controls is
+whether two runtimes ever meet.
+
+A page then breaks when a chart built against a newer runtime is served an older one that lacks a
+method its web component calls. On the 2024 heat report, `a899A` (figure 3) was the only chart on
+runtime `3873ad67`, the only one of the four on that page defining `datasetSourceUrl`.
+
+**It is a race, not a DOM-order effect.** The runtimes are appended dynamically and settle in
+load-completion order; the same fixture errored twice and then came back clean. Forced by delaying
+one side, it is deterministic `[2026-08-26, 3 loads per arm]`:
+
+| arm | owner of `window.dw` | pageerrors |
+|---|---|---|
+| delay the newer runtime | `d9229633` | 1, 1, 1 |
+| delay the older runtime | `3873ad67` | 0, 0, 0 |
+
+**It is not cosmetic.** The throw happens inside the "Get the data" block's reactive update.
+Clicking that control on a clean load downloads `data-a899A.csv`; on an erroring load nothing
+happens and no download fires `[2026-08-26]`. The chart itself renders identically either way --
+617px, 2 svg, 186 paths -- and that render probe is live, reading 400px / 0 svg / 0 paths with the
+CDN blocked.
+
+### 16.2 Fixed: one chart, on this branch
+
+`content/data-features/heat-report-archive/2024/5-fig-3-4.md` now embeds `a899A` as an iframe
+rather than inline, using Datawrapper's own snippet from its oEmbed API (src pinned to published
+version 4, `height="618"`, `aria-label="Scatter Plot"`). An iframe gets its own document and its
+own `window.dw`, so it cannot capture or be captured. The precedent was already on that same page:
+figures 5 and 6 (`D74jy`, `EruI0`) were iframes.
+
+Verified on an isolated `prod_prod` server, by mechanism rather than by run count -- the error was
+intermittent, so N clean loads would prove nothing. Runtime `3873ad67` is **absent** from the
+parent document's `window.dw.versions` after the change, which makes the collision structurally
+impossible; `data-stories/assaults/`, which still embeds a `3873ad67` chart inline, shows it
+present and is the positive control for that reading. The iframe renders at 617px, matching the
+pre-fix inline render, and "Get the data" downloads `data-a899A.csv` `[2026-08-26]`.
+
+### 16.3 Deferred: 38 charts across 15 pages (P3)
+
+**Open.** 166 Datawrapper charts are embedded site-wide; 151 are inline and 15 are already
+iframes. Fifteen pages run more than one runtime version, which is the precondition for this class
+`[2026-08-26: every chart's `embed.js` fetched and its `dwJsHash` read; 22 distinct runtime
+versions in use]`. Converting the minority version on each of those pages -- **38 charts** --
+would make every page single-runtime:
+
+| convert | of | page |
+|---|---|---|
+| 5 | 9 | `data-features/heat-report` |
+| 4 | 8 | `data-features/heat-report-archive/2025` |
+| 5 | 37 | `data-features/rat-report` |
+| 4 | 8 | `data-stories/air-quality-snapshots` |
+| 3 | 7 | `data-stories/congestion-tolling-update` |
+| 2 | 5 | `data-stories/air-quality-and-covid-part-2` |
+| 2 | 9 | `data-stories/vectorborne-diseases-and-health` |
+| 2 | 3 | `data-stories/assaults` |
+| 2 | 3 | `data-stories/asthma-and-poverty` |
+| 2 | 3 | `data-stories/food-safety-101` |
+| 1 | 3 | `data-stories/air-quality-and-covid` |
+| 1 | 2 | `data-stories/air-quality-by-neighborhood` |
+| 1 | 2 | `data-stories/car-free-zones` |
+| 1 | 6 | `data-stories/energy-insecurity` |
+| 2 | 7 | `data-features/heat-report-archive/2024` (3 of 7 before this branch fixed one) |
+
+**Only the 2024 heat report can throw this particular error today.** Every other runtime version
+appearing on a `3873ad67` page defines `datasetSourceUrl` `[2026-08-26: eight versions checked at
+their vendor bundles]`. The other fourteen pages are exposed to a *future* API gap, not a present
+one.
+
+Deferred rather than done, for three reasons:
+
+- **The check now catches it.** `smoke.yml` sweeps all 925 pages on every PR into `production`.
+  This class surfaces on the PR that introduces it, which is worth more than converting 38 charts
+  pre-emptively. An error thrown inside a cross-origin iframe still reaches the parent's
+  `pageerror` handler -- the one `smoke-pages.mjs:240` listens on -- so conversion does not blind
+  the check `[2026-08-26: verified under `--site-per-process`, which forces the frame out of
+  process as a real `dwcdn.net` frame is]`.
+- **Every converted page moves its characterization record.** `iframes` is a `structure` field
+  (`site-characterization.mjs:506`, `:540`) and `--check` gates on `structure`, so 15 pages' worth
+  of baseline re-capture rides along.
+- **The cost on chart-heavy pages is unmeasured.** Each iframe is a separate document pulling its
+  own runtime and vis bundle. The 38-chart set only converts 5 of `rat-report`'s 37, so this is an
+  argument against converting *everything*, not against the bounded set.
+
+If it is picked up: it is a codemod over content, so it wants the CLAUDE.md treatment -- run it on
+one page, count the diff, confirm the rendered output before extending. Each chart's `embed.js`
+carries the `publicUrl` (versioned iframe src), published height and title needed to emit the
+snippet, and Datawrapper's oEmbed API returns the official markup directly.
