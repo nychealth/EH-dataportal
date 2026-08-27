@@ -19,7 +19,7 @@ jobs:
       # checkout
       
       - name: checkout builds/prod-prod
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: builds/prod-prod
           fetch-depth: 0
@@ -78,7 +78,7 @@ jobs:
         
         if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@94de994a9f6fffee200243214e17002e2920bb59 # v18
         with:
           server_address: smtp.gmail.com
           server_port: 465
