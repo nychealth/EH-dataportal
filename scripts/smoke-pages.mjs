@@ -291,7 +291,17 @@ const writeReport = (target, report) => {
     console.log(`\nReport written to ${file}`);
 };
 
+// The commit of the SITE UNDER TEST, which is not always the commit this
+// process runs from. A base-control CI job runs the harness out of the PR's
+// checkout while the site it sweeps is built from base/, so `git rev-parse
+// HEAD` there names the harness rather than the site — and the two artifacts
+// then agree on the one field meant to tell them apart `[run 33019503991,
+// 2026-08-26: the sweep's report and the base's both recorded edf2e17299, the
+// PR merge ref]`. That job passes the base sha in; everywhere else the working
+// directory IS the site's tree and the git call is right.
 const gitHead = () => {
+    const declared = process.env.SITE_UNDER_TEST_COMMIT;
+    if (declared) return declared;
     try {
         return execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
     } catch {

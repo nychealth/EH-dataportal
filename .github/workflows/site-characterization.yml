@@ -423,6 +423,10 @@ jobs:
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # see the sweep job's note
+          # The harness runs from THIS checkout; the site it checks was built
+          # from base/. Without this the _meta.json records the PR merge ref
+          # and is indistinguishable from the sweep job's own.
+          SITE_UNDER_TEST_COMMIT: ${{ github.event.pull_request.base.sha }}
         run: node scripts/site-characterization.mjs --check --all
 
       - name: Verdict

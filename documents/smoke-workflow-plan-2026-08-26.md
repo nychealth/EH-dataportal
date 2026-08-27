@@ -549,6 +549,11 @@ this section already predicts for a worktree that has never built.
   edits a script that `production` already carries, and it is a separate change from this branch's
   subject.
 
+  **DONE 2026-08-26 on `feature-base-control-provenance` at `18a2ddb535`**, as its own branch off
+  `production` for the reason above. `SITE_UNDER_TEST_COMMIT` overrides `gitHead()` in both
+  harnesses, and only the two `base-control` jobs set it — a sweep job's checkout IS the site it
+  sweeps, so the git call is already right there.
+
 
 - **Sharding the sweep across runners.** If Task 5 shows the job is uncomfortably long,
   `smoke-pages.mjs` has no shard flag and would need one (`--shard i/n` over `collectAllPaths`'s

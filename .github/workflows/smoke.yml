@@ -451,6 +451,10 @@ jobs:
         continue-on-error: true
         env:
           DE_BASE_URL: ${{ env.SERVER_URL }}
+          # The harness runs from THIS checkout; the site it sweeps was built
+          # from base/. Without this the report records the PR merge ref and
+          # is indistinguishable from the sweep job's own report.
+          SITE_UNDER_TEST_COMMIT: ${{ github.event.pull_request.base.sha }}
         run: node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/
 
       - name: Verdict
