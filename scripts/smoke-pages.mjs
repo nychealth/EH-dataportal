@@ -130,6 +130,36 @@ const isKnownNoise = (text, path) =>
     KNOWN_NOISE.some(({ page, error, when }) =>
         error.test(text) && (page === null || page.test(path)) && (when === undefined || when()));
 
+// Hosts whose requests visit() aborts before they leave the browser.
+//
+// One host, where site-characterization.mjs blocks four. The difference is what
+// each harness records: that one baselines injected DOM, so Google Translate
+// churns it by injecting on Google's network timing, and blocking Translate buys
+// stability. Smoke records console errors, not DOM, so Translate is not a churn
+// source here. Block only what has an outward side effect.
+//
+// gtag is that side effect, and it is NOT confined to prod_prod: head.html
+// emits a gtag/js script on every environment — G-64BWDRHRGB under prod_prod,
+// G-PB98MPZ31B from the `else` branch everywhere else. So an unblocked sweep
+// reports one page view per page to a real analytics property whichever
+// environment it runs against. Blocking by HOST rather than by id covers both,
+// and covers a third party that loads its own container: the AirNow widget on
+// data-features/realtime-air-quality/ pulls gtm.js?id=GTM-L8ZB, which is why
+// that page aborts two requests where every other page aborts one
+// `[measured 2026-08-26, prod_prod: unblocked, that page fetched five
+// googletagmanager URLs and all five returned 200]`.
+//
+// Only the external script is aborted, so the inline gtag() block still runs and
+// stays under test. The aborted request logs one console error per abort —
+// `Failed to load resource: net::ERR_FAILED`, which does not name the host —
+// and the broad `/favicon|Failed to load resource|net::ERR/i` entry above
+// already swallows it, so this adds no failures. That entry is also the one
+// whose CAUTION warns it hides the *cause* of a blocked script: if a run ever
+// shows an unexplained "X is not defined", check this list before the allowlist.
+const BLOCKED_HOSTS = [
+    "www.googletagmanager.com",
+];
+
 // Default browser concurrency for --all. Derived from the machine rather than
 // fixed, and the same formula site-characterization.mjs uses, so the repo's two
 // sweeps behave alike on the same box — the cores available differ by an order
@@ -209,6 +239,12 @@ const visit = async (browser, baseURL, path, userAgent) => {
     });
     page.on("pageerror", (err) => {
         if (!isKnownNoise(err.message, path)) errors.push(err.message);
+    });
+
+    // Registered before navigating, so the very first request is covered.
+    await page.route("**/*", (route) => {
+        const host = new URL(route.request().url()).host;
+        return BLOCKED_HOSTS.includes(host) ? route.abort() : route.continue();
     });
 
     try {
