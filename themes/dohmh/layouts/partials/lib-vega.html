@@ -1,0 +1,8 @@
+{{- /*  Vega + Vega-Lite + Vega-Embed bundle  */}}
+
+{{- $vega := resources.Get "node_modules/vega/build/vega.min.js" }}
+{{- $vegaLite := resources.Get "node_modules/vega-lite/build/vega-lite.min.js" }}
+{{- $vegaEmbed := resources.Get "node_modules/vega-embed/build/vega-embed.min.js" }}
+
+{{- $vegaBundleJS := slice $vega $vegaLite $vegaEmbed | resources.Concat "js/lib-vega-bundle.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $vegaBundleJS.RelPermalink }}" integrity="{{ $vegaBundleJS.Data.Integrity }}"></script>

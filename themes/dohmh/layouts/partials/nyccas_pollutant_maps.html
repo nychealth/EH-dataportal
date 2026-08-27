@@ -88,7 +88,7 @@
 
 <div class="row no-gutters">
   <div class="col-md-9 col-sm-12 mx-auto">
-    <img id="raster" src="embed/map-images/BC_2024.png" style="width:100%; height: auto;">
+    <img id="raster" src="embed/map-images/BC_2024.png" style="width:100%; height: auto;" alt="Map of BC levels across New York City neighborhoods">
 
   </div>
 </div>
@@ -107,6 +107,10 @@
   var filename = mtPol + "_" + chosenYear + ".png"
   // console.log(filename)
   document.getElementById('raster').src = "embed/map-images/" + filename
+
+  // The alt has to move with the src: the buttons swap both the pollutant and the
+  // year, so a fixed alt describes whichever map happened to load first.
+  document.getElementById('raster').alt = "Map of " + mtPol + " levels across New York City neighborhoods, " + chosenYear
 
   }
 

@@ -198,7 +198,7 @@ var spec = {
 }
 
 // Initial embed of line chart
-vegaEmbed('#vis1',spec)
+vegaEmbed('#vis1',spec, {renderer: "svg"})
 
 
 
@@ -215,7 +215,7 @@ function changeYear(x) {
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
   }
   document.getElementById('yearHeader').innerHTML = x;
-  vegaEmbed('#vis1',spec);
+  vegaEmbed('#vis1',spec, {renderer: "svg"});
 
   var buttons = document.querySelectorAll('.yearButtons')
   for (let i = 0; i < buttons.length; i ++ ) {
@@ -237,11 +237,11 @@ function toggleScatter(x) {
   if ( scatterCount % 2 == 0) {
     // console.log('even')
     document.getElementById('scattertoggle').innerHTML = 'Show time'
-    vegaEmbed('#vis2', scatterplot)
+    vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
   } else {
     // console.log('odd')
     document.getElementById('scattertoggle').innerHTML = 'Show scatter'
-    vegaEmbed('#vis2', scatterplotTwo)
+    vegaEmbed('#vis2', scatterplotTwo, {renderer: "svg"})
 
   }
 }
@@ -436,4 +436,4 @@ var scatterplotTwo = {
 }
 
 // Initial embed of scatterplot
-vegaEmbed('#vis2', scatterplot)
+vegaEmbed('#vis2', scatterplot, {renderer: "svg"})

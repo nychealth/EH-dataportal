@@ -2,6 +2,7 @@
 title: "Health, housing, and history"
 date: 2021-01-06T08:07:31-04:00
 draft: false
+vega: true
 seo_title: "Health, housing, and history"
 seo_description: "A data story on how racist housing practices harm health."
 tags:
@@ -409,7 +410,7 @@ function changeMap(x) {
         ]
         }
 
-        vegaEmbed('#housingmap',defaultSpec)
+        vegaEmbed('#housingmap',defaultSpec, {renderer: "svg"})
 
 }
 
@@ -618,7 +619,7 @@ As a result, the highest rates of asthma emergency department visits for childre
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
         <iframe title="" aria-label="chart" id="datawrapper-chart-XBLYk"
-            src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
+            data-lazy-src="https://datawrapper.dwcdn.net/XBLYk/2/" scrolling="no"
             frameborder="0"
             style="width: 0; min-width: 100% !important; border: none;"
             height="600"></iframe>

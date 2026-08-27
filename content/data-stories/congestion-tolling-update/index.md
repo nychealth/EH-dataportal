@@ -33,8 +33,9 @@ related:
     url: "data-features/nyccas/"
 ---
 
+<!-- note: this purposely uses the full absolute URL to the live portal -->
 <div class="border mb-4 p-1 fs-sm">
-  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://www.mta.info/document/195631#nameddest=Air%20Quality%20and%20Emissions">Read MTA's report on the first year of the program, which includes our updated air quality analyses.</li></ul></a>
+  <i class="far fa-clock mr-1" aria-hidden="true"></i>Since we published this, an update is available.<ul><li><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-features/congestion-pricing-report/">Read our report on the first year of the program</a>, the most complete evaluation to date of the effects of congestion pricing on air quality in NYC.</li></ul>
 </div>
 
 In January 2025, the Metropolitan Transportation Authority Bridge and Tunnels (MTABT) started charging a toll for vehicles entering Manhattan’s [Congestion Relief Zone](https://congestionreliefzone.mta.info/) (the zone) to reduce traffic within the zone and raise money for public transportation improvements.
@@ -45,7 +46,7 @@ For this initial report, we looked at data for one kind of air pollution of part
 
 But these data don’t let us draw final conclusions about the toll’s effect at this early stage. The work is ongoing - a comprehensive study will require 12 months of data before and after the start date. For that evaluation, we will use scientific methods that will separate the effects of the toll from other factors that can affect traffic and air quality – like the season, weather patterns, activity patterns, and more. We will publish that evaluation in 2026.
 
-## Where we measured air quality   
+## Where we measured air quality   
 
 This map shows the locations of [real-time air quality monitoring]({{< relURL >}}data-features/realtime-air-quality/), both inside and outside of the tolling zone. Locations outside of the zone were chosen based on the environmental review’s predictions that congestion relief tolling could increase traffic on some roads outside the zone.
 

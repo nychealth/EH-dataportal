@@ -33,7 +33,7 @@ function changeYear(x) {
     document.getElementById('year3').innerHTML = year
     year = year.toString()
     spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
-    vegaEmbed("#map", spec) // re-run map
+    vegaEmbed("#map", spec, {renderer: "svg"}) // re-run map
     updateValues(year)
 
     // get date for overlay
@@ -44,7 +44,7 @@ function changeYear(x) {
     upper = date + 15768000000
     line.layer[0].encoding.x.datum = lower;
     line.layer[0].encoding.x2.datum = upper;
-    vegaEmbed('#lineVis', line)
+    vegaEmbed('#lineVis', line, {renderer: "svg"})
 
 }
 
@@ -208,7 +208,7 @@ var spec = {
 }
 
 // initial embedding of the map
-vegaEmbed("#map", spec)
+vegaEmbed("#map", spec, {renderer: "svg"})
 
 /*
 // Event listener for the slider
@@ -217,7 +217,7 @@ slider.addEventListener("input",function() {
     document.getElementById('yearOutput').innerHTML = slider.value
     year = slider.value
     spec.transform[0].filter = `datum.Time == ${year}` // update spec with chosen year
-    vegaEmbed("#map", spec) // re-run map
+    vegaEmbed("#map", spec, {renderer: "svg"}) // re-run map
 })
 */
 
@@ -312,4 +312,4 @@ var line = {
     ]
 }
 
-vegaEmbed('#lineVis', line)
+vegaEmbed('#lineVis', line, {renderer: "svg"})

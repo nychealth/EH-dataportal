@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
 
@@ -116,6 +116,9 @@
 
             <hr class="my-4">            
         </div>
+
+        {{- partial "lib-vega.html" . }}
+        {{- partial "lib-d3.html" . }}
 
         <div class="col-md-10 col-sm-12 mx-auto">
             {{ partial "nyccas_pollutant_maps.html" . }}

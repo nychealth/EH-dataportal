@@ -23,7 +23,7 @@ related:
 
 Bugs play an important role in our ecosystem: They pollinate plants, break down organic matter into soil, and are a source of food for animals. Some also spread diseases. We call bugs that spread disease vectors.
 
-Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.
+Some bugs, including certain types of mosquitoes and ticks, can pick up disease-causing germs from people and animals they bite. They can then spread them to the next person or animal they bite. Diseases that spread this way are called vector-borne diseases.  Examples you may have heard of in NYC are West Nile virus disease, spread by mosquitoes, and Lyme disease, spread by ticks. These diseases are sensitive to climate factors such as rainfall, humidity, and temperature.
 
 ## Vector surveillance is critical for detecting and controlling vectors and vector-borne disease
 
@@ -83,10 +83,10 @@ People can get West Nile virus when mosquitoes are active, usually between July 
     <div style="min-height:491px" id="datawrapper-vis-FhfVN"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FhfVN/embed.js" charset="utf-8" data-target="#datawrapper-vis-FhfVN"></script><noscript><img src="https://datawrapper.dwcdn.net/FhfVN/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
     <div class="tab-pane fade" id="tab-02-b" aria-labelledby="tab-btn-02-b" role="tabpanel">
-    <div style="min-height:291px" id="datawrapper-vis-TYamB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/TYamB/embed.js" charset="utf-8" data-target="#datawrapper-vis-TYamB"></script><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+    <div style="min-height:291px" id="datawrapper-vis-TYamB" data-lazy-embed-src="https://datawrapper.dwcdn.net/TYamB/embed.js"><noscript><img src="https://datawrapper.dwcdn.net/TYamB/full.png" alt="A line chart showing babesiosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
     <div class="tab-pane fade" id="tab-02-c" aria-labelledby="tab-btn-02-c" role="tabpanel">
-      <div style="min-height:334px" id="datawrapper-vis-yRPHe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yRPHe/embed.js" charset="utf-8" data-target="#datawrapper-vis-yRPHe"></script><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
+      <div style="min-height:334px" id="datawrapper-vis-yRPHe" data-lazy-embed-src="https://datawrapper.dwcdn.net/yRPHe/embed.js"><noscript><img src="https://datawrapper.dwcdn.net/yRPHe/full.png" alt="A line chart showing anaplasmosis cases have been increasing in NYC since 2000, with the most dramatic increase in Manhattan over other boroughs." /></noscript></div>
     </div>
 </div>
 </div>
@@ -141,7 +141,7 @@ Climate change impacts vector-borne diseases as it does many other health issues
 
 ## Climate change is making summers hotter and wetter in NYC, and mosquito populations are increasing
 
-The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.
+The number of days per warm season where the average temperature exceeded 86 degrees F has been steadily climbing in NYC since 1975 due to human-caused climate change. Days under 74 degrees F have also been decreasing.
 
 </div>
 

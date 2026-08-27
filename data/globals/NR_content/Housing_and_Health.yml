@@ -1,12 +1,12 @@
 report_topics:
-  - report_topic: Health Outcomes
+  - report_topic: Health outcomes
     report_topic_description: Health outcomes that can be affected by conditions in the home or neighborhood.
     MeasureID:
       - 540
       - 777
       - 1201
       - 1204
-  - report_topic: Home Safety and Maintenance
+  - report_topic: Home safety and maintenance
     report_topic_description: Buildings with maintenance issues and disrepair can harm health. Across NYC, low-income neighborhoods have more residences with maintenance issues due to past and present disinvestment and housing discrimination.
     MeasureID:
       - 76
@@ -16,13 +16,13 @@ report_topics:
       - 716
       - 781
       - 1248
-  - report_topic: Indoor Air Quality
+  - report_topic: Indoor air quality
     report_topic_description: Potential sources of allergens and pollutants that can worsen asthma and other health conditions.
     MeasureID:
       - 94
       - 245
       - 625
-  - report_topic: Social and Economic Risk Factors
+  - report_topic: Social and economic risk factors
     report_topic_description: Conditions associated with many adverse health outcomes.
     MeasureID:
       - 25
