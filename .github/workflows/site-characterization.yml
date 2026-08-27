@@ -55,6 +55,12 @@ on:
       - memories/**
       - .claude/**
       - .agents/**
+      - .github/workflows/check-deploy.yml
+      - .github/workflows/hugo-build-any-branch.yml
+      - .github/workflows/hugo-build-to-dev-prod.yml
+      - .github/workflows/hugo-build-to-dev-stage.yml
+      - .github/workflows/hugo-build-to-prod-prod.yml
+      - .github/workflows/smoke.yml
       - CLAUDE.md
       - README.md
       - readme-components.md
