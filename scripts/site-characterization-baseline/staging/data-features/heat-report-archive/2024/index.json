@@ -104,6 +104,10 @@
             {
                 "host": "datawrapper.dwcdn.net",
                 "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
             }
         ],
         "overflowX": true
