@@ -11,7 +11,7 @@
     }
 </style>
 
-<article id="skip-header-target">
+<article>
     <div class="container wide">
         <div class="row">
             <div class="col-sm-12 mt-2 mb-2">
@@ -164,7 +164,7 @@
                                     {{- end -}}
 
                                     <div class="card-body">
-                                        <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                        <h3 class="h5"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                         <div class="mb12 fs-sm">
                                             {{ if .Params.blurb }}
                                                 {{ .Params.blurb | plainify | htmlUnescape | truncate 150 }}
@@ -188,7 +188,7 @@
                             {{- if and (.Params.report) (not .Params.hide) -}}
                             <div class="card card-left-border shadow-sm mb-4">
                                 <div class="card-content card-body">
-                                    <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h4>
+                                    <h4 class="fs-md"><a class="link-track" href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
                                     <p class="fs-sm">
                                     {{ if .Params.blurb }}
                                         {{ .Params.blurb | plainify | htmlUnescape | truncate 175 }}

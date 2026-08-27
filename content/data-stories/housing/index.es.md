@@ -2,6 +2,7 @@
 title: "Salud, vivienda e historia"
 date: 2021-01-06T08:07:31-04:00
 draft: false
+vega: true
 seo_title: "Salud, vivienda e historia"
 seo_description: "Para la salud, el lugar importa."
 tags:
@@ -241,7 +242,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
                 });

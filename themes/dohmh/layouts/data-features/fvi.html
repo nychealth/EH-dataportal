@@ -65,7 +65,7 @@ font-weight: bold!important;
 }
 </style>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
 
@@ -178,6 +178,9 @@ font-weight: bold!important;
 
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
+
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon" . }}
 
 <!--bring in JS -->
 

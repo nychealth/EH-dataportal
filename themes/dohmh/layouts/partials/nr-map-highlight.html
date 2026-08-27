@@ -136,7 +136,7 @@
         spec.layer[1].encoding.stroke.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.strokeWidth.condition.test = `datum['GEOCODE'] == '${x}'`
         spec.layer[1].encoding.order.condition.test = `datum['GEOCODE'] == '${x}'`
-        vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+        vegaEmbed('#vis1', spec, {renderer: "svg", "actions": false}).then(result => {
           result.view.addEventListener('click', function(event, item) {
              // console.log('CLICK', event, item);
             // console.log(item.datum)
@@ -147,7 +147,7 @@
           }).catch(console.warn);
       }
 
-      vegaEmbed('#vis1', spec, {"actions": false}).then(result => {
+      vegaEmbed('#vis1', spec, {renderer: "svg", "actions": false}).then(result => {
         result.view.addEventListener('click', function(event, item) {
            // console.log('CLICK', event, item);
           // console.log(item.datum)
