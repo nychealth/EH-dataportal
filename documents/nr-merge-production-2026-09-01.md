@@ -11,9 +11,10 @@ and a re-captured Pagefind baseline. Both are in `79d5eb4804`. **One thing was s
 deliberately:** the `staging` site-characterization baseline, which rewrites 262 files and would
 have buried the merge diff, so it is `029e40f36e`.
 
-**Three follow-ups survive this document** — F1, F2 and F3 at the foot. **F2 is the one with a
-deadline**: the `prod_prod` characterization baseline is still production's and needs capturing
-before the PR into `production` merges.
+**Three follow-ups survive this document** — F1, F2 and F3 at the foot. **F2 was the one with a
+deadline and is now closed**: the `prod_prod` characterization baseline was re-captured on
+2026-09-02 at `7791fcfe93` and landed at `d53c718492`, alongside `staging`, after PR #1491 was
+opened into `production`.
 
 This is not a stage of `documents/nr-de-merge-integration-plan-2026-08-15.md`. That plan closed
 2026-08-19 and its stages merged `merge/production` into two feature branches. This is the
@@ -167,16 +168,22 @@ disclosure: the Guardrails and Common gotchas sections want a human eye on revie
 
 ## The exact next commands
 
-**The merge is done. What is left is F2, and it belongs to whoever opens the PR into
-`production`.**
+**The merge is done, and F2 closed on 2026-09-02. What is left is F1 and F3, neither of which
+has a deadline.**
 
 ```bash
 cd "c:/Users/Chris/Documents/DOHMH/Programming/EH-dataportal.worktrees/feature-MOD-Lab-NR-recode-refactor"
 
-# F2 — capture the prod_prod baseline, which this branch has NOT refreshed.
-# Spawns its own isolated server on :8090; leaves docs/ and resources/_gen alone.
+# F2 — DONE 2026-09-02 at 7791fcfe93. Kept here because the second line was WRONG:
+# characterize:site:env and characterize:site:prod_prod are the same script, and
+# characterize-env.mjs hardcodes --check (scripts/characterize-env.mjs:92, passed at :120). It
+# cannot capture. The capture is site-characterization-rebaseline.mjs, which drives
+# EVERY committed key and asserts they end at one gitHead — so it re-captures staging
+# too, and that is intended, not collateral. Call it through node, never npm: npm and
+# PowerShell between them eat a --flag's name.
 npm run characterize:site:prod_prod        # expect red first, for the same two causes as V8
-npm run characterize:site:env prod_prod    # …then capture, and commit the result
+node scripts/site-characterization-rebaseline.mjs --expect "neighborhood-reports/**"
+node scripts/site-characterization-rebaseline.mjs --report-only --expect ... # re-classify, free
 
 # Re-running the merge's own checks (a green result is a fact about a commit, not a branch —
 # re-read `git rev-parse HEAD` before citing any V row below).
@@ -201,5 +208,5 @@ gh pr list --head feature-MOD-Lab-NR-recode-refactor-merge
 | # | Follow-up | Status |
 |---|---|---|
 | F1 | Two near-duplicate `wireComboboxState` implementations, in `partials/flexdatalist-combobox-js.html` and `partials/nr-neighborhood-picker-js.html`. Harmless today — proved at G2, no page loads both — so this is tidying, not a fix, and it needs its own browser proof | **Not started** |
-| F2 | **The `prod_prod` site-characterization baseline stays stale on this branch even after M2**, which only re-captures `staging`. `prod_prod` is the environment that actually deploys, and capturing it needs `npm run characterize:site:prod_prod`, which spawns its own isolated server. Do it before the PR into `production` is merged, not after | **Not started** |
+| F2 | **The `prod_prod` site-characterization baseline stays stale on this branch even after M2**, which only re-captures `staging`. `prod_prod` is the environment that actually deploys. Do it before the PR into `production` is merged, not after | **DONE 2026-09-02, captured at `7791fcfe93` and landed at `d53c718492`.** `npm run characterize:site:prod_prod` exited 1 as predicted: **261 of 925 pages across 11 fields, and the differing set is exactly the 258 NR pages plus the three home pages** — nothing else on the site moved. The three home pages differ *only* on `-js/uhflist.js` and the `assetsWithIntegrity` count that follows from it, on a full `structure` diff rather than the printed hunks; they are also the positive control that makes "no other section changed" a reading rather than a probe that never fired. **A third cause V8 did not have to weigh: EHDP-data moved, `c03ccd89fb` -> `da7f64df7c`.** It explains nothing here, but that is inferred from the differing set, not from the data being static. Re-captured with `site-characterization-rebaseline.mjs`: prod_prod 261 changed and 261 claimed, staging **0 of 925 records changed** — only its `_meta.json` gitHead moved — and both sweeps agreed on every page in both keys, no arbitration. **Staging the result needed `core.longpaths`**, now set in this repo's config: the longest `prod_prod` record path is exactly 260 characters from this worktree, two over `staging`'s, and `git add` refused to index it |
 | F3 | CLAUDE.md's Guardrails section is now a union of two branches' documentation and is long. If it becomes unwieldy, `refile-rules` is the pass for it — not part of this merge | **Not started** |
