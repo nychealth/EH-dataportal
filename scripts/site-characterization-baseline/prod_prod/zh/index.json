@@ -7,7 +7,6 @@
             "js/accessible-autocomplete.min.js",
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -19,7 +18,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 10,
+        "assetsWithIntegrity": 9,
         "headingLevels": [
             2,
             3,
