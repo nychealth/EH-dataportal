@@ -45,7 +45,7 @@ hugo new key-topics/TITLE/index.md
 A dev server prints its own URL on startup — read it rather than assuming. The path prefix is the
 environment's `baseURL` path, so `development` serves under `/dev-prod/` and `dev_stage` under
 `/dev-stage/`. No environment serves under `/EH-dataportal/`
-`[verified 2026-08-07: baseURL across all eight config/ directories]`.
+`[verified 2026-08-07: baseURL across all eight environment directories under config/]`.
 
 - **`npm install <pkg>@<ver> --save-*` un-pins `package.json`.** npm's default save-prefix is `^`, so a `--save-*` flag rewrites the range to a caret one even when you named an exact version — bumping the pinned `hugo-extended` that way turns `"0.147.3"` back into `"^0.147.3"`, and the diff reads as an ordinary version change. Use `--save-exact`. It also copies the package into the lockfile's `packages[""].dependencies`, where `package.json` declares it only as optional; a later plain `npm install` deletes that line again `[verified 2026-08-24, npm 11.4.1]`.
 
@@ -99,7 +99,7 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Eight things to know before trusting a result:
+Ten things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -160,7 +160,10 @@ height, JSON-LD that stopped being a JSON object. Neither sees what the other do
 are printed as a harness-health number and deliberately **not** baselined — that is `smoke`'s job.
 
 - **Each record splits into `structure` and `content`, and `--check` gates on `structure` alone.**
-  CloudCannon commits content directly, so a check that also gated on titles and link text would
+  CloudCannon commits content directly — `git log production --pretty=%s | grep -i cloudcannon`
+  returns commits titled "Updated 1 file via CloudCannon" whose stat is a single `content/` file,
+  and note their author reads "No Name", so an `--author` search finds none. So a check that also
+  gated on titles and link text would
   fail on commits that never touch a template — and a check that fails routinely stops being read.
   `--content` widens it when you want that.
 - **`characterize:site` checks whichever environment your machine happens to be serving; the
@@ -346,7 +349,7 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `static/` — Unprocessed files served as-is
 - `data/globals/` — YAML/JSON data accessible throughout templates: featured data, SEO vars, and the three Neighborhood Reports sources — `data/globals/uhflist.json`, `data/globals/NR_topics.yml` and `data/globals/NR_content`
 - `documents/` — Internal audits and technical write-ups
-- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the three characterization harnesses, the accessibility audit, and the NR pre-capture/post-swap pair)
+- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the five characterization harnesses, the accessibility audit, and the NR pre-capture/post-swap pair)
 - `docs/` — Generated output; never edit directly
 
 ### Layout routing
@@ -558,9 +561,7 @@ After a rename or delete, fetch the served asset and assert the **old** identifi
 
 ### Subresource Integrity (SRI)
 
-Hugo calculates integrity hashes for all local JS/CSS resources using the `short-fingerprint.html` partial (a custom hash-shortening wrapper around Hugo's built-in integrity function). If SRI breaks on production, check that end-of-line characters are Unix `LF` — the GitHub Actions workflows enforce this on merge.
-
-- **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
+Hugo calculates integrity hashes for all local JS/CSS resources using the `short-fingerprint.html` partial (a custom hash-shortening wrapper around Hugo's built-in integrity function). If SRI breaks on production, check that end-of-line characters are Unix `LF` — integrity mismatches usually mean `CRLF` reached the build, and the GitHub Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
 
 ## Multi-language
 
