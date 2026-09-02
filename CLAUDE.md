@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-report themes/dohmh/layouts assets/scss config data content scripts -->
-<!-- docs-check verified: f1e5e804be 2026-08-19 -->
+<!-- docs-check verified: 79d5eb4804 2026-09-02 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -736,7 +736,7 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/nr-topic-index-picker-restore-2026-08-09.md` — the follow-up that restored the UHF42 map and the neighborhood typeahead to the topic index, which the Option D swap had dropped. Closed 2026-08-09.
 - `documents/nr-neighborhood-picker-options-2026-08-09.md` — enlarging the picker map on the topic index and the NR landing page, and extracting the two duplicated copies into shared partials. Carries the ledger and the decision list for each cosmetic difference the unification forced. Closed 2026-08-09; read it as a dated record.
 - `documents/nr-landing-list-unification-2026-08-09.md` — the follow-up that shared the 42-neighborhood list too, moved the `Choose Neighborhood` heading into the picker partial, and made the landing page's list links follow the active topic button. Carries the ledger.
-- `documents/nr-pagefind-parity-2026-08-15.md` — the search-index audit against `production`: how the two indexes were compared, what the Option D swap and the server-rendered neighborhood list did to search precision, the `data-pagefind-ignore` fix and its measured effect, and the harness that now checks all of it. Carries the ledger. Closed 2026-08-15 by restoring production's model: **the 210 report pages carry a page-level `data-pagefind-ignore="all"` and are not in the search index**, which puts both branches at 201 indexed pages. §5 of that document is the Google Analytics test that would reverse it, and §2f records the two fixes that were tried first and did not work.
+- `documents/nr-pagefind-parity-2026-08-15.md` — the search-index audit against `production`: how the two indexes were compared, what the Option D swap and the server-rendered neighborhood list did to search precision, the `data-pagefind-ignore` fix and its measured effect, and the harness that now checks all of it. Carries the ledger. Closed 2026-08-15 by restoring production's model: **the 210 report pages carry a page-level `data-pagefind-ignore="all"` and are not in the search index**, which puts both branches at 201 indexed pages **as measured on that date** — the committed Pagefind baseline and the harness both read 202 on 2026-09-02, and that one-page difference is not diagnosed. §5 of that document is the Google Analytics test that would reverse it, and §2f records the two fixes that were tried first and did not work.
 
 ## Common gotchas
 
