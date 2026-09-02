@@ -6,7 +6,7 @@
         "assets": [
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
+            "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -24,8 +24,8 @@
         ],
         "assetsWithIntegrity": 13,
         "headingLevels": [
-            2,
             1,
+            2,
             1,
             2,
             1,
@@ -93,7 +93,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 158,
+            "internal": 116,
             "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -103,7 +103,7 @@
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,
@@ -116,8 +116,8 @@
     "content": {
         "title": "Active Design, Physical Activity and Health in NYC – Environment & Health Data Portal",
         "headingText": [
-            "Select neighborhood",
             "Active Design, Physical Activity and Health",
+            "Choose Neighborhood",
             "Overweight or obesity (adults)",
             "Adults reporting a Body Mass Index over 25. People who are overweight or obese are at increased risk for heart disease and diabetes. Neighborhood factors such as walkability and the types of food retail outlets available can impact residents' risk of being overweight or obese.",
             "Bicycle injury emergency department visits",
