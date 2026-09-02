@@ -47,6 +47,8 @@ environment's `baseURL` path, so `development` serves under `/dev-prod/` and `de
 `/dev-stage/`. No environment serves under `/EH-dataportal/`
 `[verified 2026-08-07: baseURL across all eight config/ directories]`.
 
+- **`npm install <pkg>@<ver> --save-*` un-pins `package.json`.** npm's default save-prefix is `^`, so a `--save-*` flag rewrites the range to a caret one even when you named an exact version — bumping the pinned `hugo-extended` that way turns `"0.147.3"` back into `"^0.147.3"`, and the diff reads as an ordinary version change. Use `--save-exact`. It also copies the package into the lockfile's `packages[""].dependencies`, where `package.json` declares it only as optional; a later plain `npm install` deletes that line again `[verified 2026-08-24, npm 11.4.1]`.
+
 ## Guardrails
 
 Eighteen npm scripts, run from the repo root. **No two of them see the same thing**, which is
@@ -235,8 +237,6 @@ are printed as a harness-health number and deliberately **not** baselined — th
   fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on
   every page is otherwise indistinguishable from a dead selector — three fields read zero site-wide
   and are proved live by `node scripts/site-characterization-probe-control.mjs`.
-- **Each mode has its own npm script rather than a forwarded flag**, for the same reason
-  `smoke:all` does: PowerShell eats the `--` in `npm run x -- --flag`.
 - **Pages that disagree between sweeps are re-captured sequentially before anything is reported —
   up to 25 of them.** Past that cap `--check` reports what it captured and says so in the output,
   because a capture race does not reach hundreds of pages at once and a difference that wide is
@@ -255,6 +255,12 @@ are printed as a harness-health number and deliberately **not** baselined — th
 
 - `npm run characterize:nr` — Playwright characterization harness for the Neighborhood Reports report page (`scripts/nr-characterization.mjs`). Captures rendered output — neighborhood header, demographics, ZIP list, accordion ids, chart count, **and the final URL** — for three topic/neighborhood pairs, and diffs them against a baseline. `-- --check` to verify, `-- --baseline` to re-capture. **`--baseline` cannot fail** — it records whatever it finds, including three empty pages if a template change stopped the report page rendering. Only `--check` can tell you, so read its diff before re-baselining, never instead. It navigates straight to the real `<nbhd>/<topic>/` page, so it exercises the path the site actually serves; the Leaflet map is deliberately not clicked, which would make it a test of map hit-detection. **Baselines are filed per EHDP-data branch** — `scripts/nr-characterization-baseline/staging/` and `scripts/nr-characterization-baseline/production/` — because the branches render different reports: staging carries two accordion ids production does not on the asthma topic, 46 against 44 `[verified 2026-08-11: diff of the two baselines]`. The harness reads the served `data_branch` off the page and files under it, so environments sharing a branch share a baseline — and since 2026-08-15 the data branch is the *whole* condition: `staging` covers `dev_stage`, `local_stage` and `prod_stage`; `production` covers `dev_prod`, `development`, `local_prod`, `prod_prod` and `production`. An unreadable branch aborts; a branch with no baseline is named in the refusal rather than checked against another's. The captured final URL is the guard against a silent redirect to the 404 page, and it is now recorded **prefix-relative** — `stripBasePath` removes the server's baseURL path, so `/IndicatorPublic/…` and `/dev-stage/…` record the same value and a check runs from any environment on the branch. Before that it carried the raw `window.location.pathname`, and a same-branch cross-environment check failed every target on that field alone; if you meet that failure in an older record, it is the fixed bug, not a regression. The strip is anchored to the *start* of the path, so a redirect still shows as a diff `[verified 2026-08-15: prod_stage against the dev_stage-captured staging baseline — 3 of 3 targets failing on `finalURL` before, 3 of 3 passing after, with the redirect and 404 shapes still differing]`. `documents/nr-characterization-environment-options-2026-08-11.md` records why the environment *spawner* (its Option 2) was left unbuilt. Run it before any merge touching the NR templates or `assets/js/nr-report/`. It expands the first accordion panel per target so the lazy Vega path runs, and records the renderer (`hasCanvas`/`hasSvg`) plus a painted flag per mark group — structural facts only, since mark *counts* track EHDP-data row counts and would churn the baseline on every data refresh. It also captures each chart's accessible name and its export-menu label (`chartName`, `actionsLabel`), read off the node carrying `role="graphics-document"` — **not** off `.vega-embed`, which has no `aria-label` and whose empty capture left chart naming uncovered until 2026-08-11.
 - `npm run a11y:nr` — accessibility audit of the four Neighborhood Reports page kinds (`scripts/nr-a11y-audit.mjs`), axe-core under Playwright, plus probes for what no axe rule implements: a full tab-order sweep recording focus indicators and `aria-hidden` ancestors, heading order read from the accessibility tree rather than the DOM, id/ARIA-reference integrity, a before/after capture around a Leaflet re-render, chart naming, and computed colour on the comparison vocabulary. It scans the report page in four states — at rest, one panel expanded, all expanded, and print-emulated — because the chart and the print rendition do not exist in the others. **It is an audit instrument, not a gate**: it exits non-zero only when a *control* fails, never on findings. Two controls make its numbers mean anything, and both are the reason a zero here is not self-certifying. The **positive control** injects an `<img>` with no `alt` and asserts `image-alt` fires, because a scan where axe never loaded reports the same zero as a clean page. The **rendered-content control** requires a per-page selector to match first: the report page's cards come from the data repo, and against an empty one it renders five empty accordion shells that axe will honestly call almost clean. Set `DE_BASE_URL` to choose the server and `A11Y_OUT` to choose where the per-page JSON lands (default is a temp directory). Findings as of 2026-08-10 are triaged in `documents/nr-accessibility-audit-2026-08-10.md`, which also records which source-read candidates the browser disconfirmed. **Read `wcag.incompleteIds` in the per-page JSON, not only `wcag.violations`.** axe defers nodes whose background it cannot resolve, and `color-contrast` sits in that bucket on all four pages — so a zero in the violations list for that rule is a floor, not a census. The worked case: one shared partial's button, reported on the topic index but not the landing page, then on both after an unrelated change with its colours untouched.
+
+`scripts/nr-postswap-check.mjs` diffs the generated pages against
+`scripts/nr-output-precapture/capture.json`, the record of what the retired pages rendered. **It
+must run against a production-data server** — `ensureDevServer()` spawns `dev_stage`, and the
+staging branch's row counts differ, which reads as content regressions. The script refuses to run
+on a branch mismatch.
 
 ### Search index
 
@@ -297,10 +303,8 @@ are printed as a harness-health number and deliberately **not** baselined — th
 
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
 - **Open a fresh browser tab after rebuilding.** JS and CSS are fingerprinted and cached hard; an existing tab can serve the previous build's assets. A server started *before* an edit to a shared template can also keep serving stale pages. The fingerprint is also the proof: read the served asset filename out of the page and confirm it changed between your before and after reads — an unchanged one means you measured the old file.
-- **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
+- **Never run two Hugo builders against this tree at once** — a static build beside a running server, or two servers on different ports, even against different `--environment`s. They all write the same on-disk fingerprint cache (`resources/_gen/`), which is not namespaced by environment, so one can leave another pointing at asset paths that no longer exist. `scripts/dev-server.mjs` only guards the ports it probes, so a server started outside it slips past. The tell is every fingerprinted asset 404ing under the *other* environment's path prefix; the page dies with `$ is not defined` and reads like a broken code change, so check the served asset URLs before suspecting your diff. Ask before restarting a server you didn't start.
 - **Counting over generated HTML? Define the real-page set first, and pick a marker no `static/` file can also carry.** A `prod_prod` build writes 1397 HTML files, of which **927** are pages rendered through `head.html`; 443 are Hugo alias-redirect shells carrying their own `noindex` and `lang="en"`, and the rest are `static/` passthrough. A tree-wide count scores those 470 as failures. **`head.html`'s viewport meta is not a safe marker** — `static/data-stories/cold/source/index.html` contains the identical tag, so it returns 928, and a loose `name="viewport"` match returns 933 by picking up five more `static/` files with their own variants. Use `data-pagefind-meta="title:`, also emitted unconditionally by `head.html`: it returns 927 and agrees with a same-run `<script type="application/ld+json">` count on all 1397 files `[verified 2026-08-21: one Python walk, 0 disagreements]`. Earlier notes citing 933 real pages were taken with the loose match.
-
-Two builders is the hazard, not the static build specifically. `scripts/dev-server.mjs` only guards the ports it probes, so a server started outside it slips past. The tell is every fingerprinted asset 404ing under the *other* environment's prefix — the page dies with `$ is not defined` and reads as a broken code change, so check the served asset URLs before suspecting your diff.
 
 **The exception:** a build with `HUGO_RESOURCEDIR` and `-d` pointed at temp directories cannot
 reach `resources/_gen` at all, so it is safe beside a running server — the one caveat is in the
@@ -429,78 +433,13 @@ worked before still works, but nothing renders it the way it used to. Three page
   same centred `col-md-8`, not beside it. Then the shared neighborhood list. Plus the hidden
   indicator-name headings Pagefind indexes.
 
-**The report page prints a different document than it shows, and the print rendition is markup, not
-a stylesheet over the screen one.** `buildIndicatorCard` in `assets/js/nr-report/cards.js` emits
-two renditions of every indicator: the screen row, which is `d-print-none`, and a `print-only`
-sibling carrying the same name, value and units at 50/25/25 plus a full-sentence tertile label from
-`getTertileInlineLabel`. Two renditions rather than one, because what each *shows* genuinely differs
-— the screen pill is *blank* for rank 2 and reads a bare "Higher"/"Lower" otherwise, where print
-wants a sentence. What they *announce* is now the same: the screen pill carries `aria-hidden` and an
-`.sr-only` copy of the sentence sits beside it, so the accessibility tree gets one vocabulary
-wherever the reader meets the comparison (a11y audit F5/C3). The sentence is the same function the
-expanded panel uses, deliberately: a reader who opens a row on screen and then prints it would
-otherwise get the same fact in two vocabularies. It
-carries a `.comp-*` class — `assets/js/nr-report/tertiles.js` sets it, `assets/scss/_custom.scss`
-styles it, and all three classes are bold so the comparison word stands out of its sentence. That
-bold is invisible in the print row unless the column also carries `font-weight-normal`, because the
-accordion button is weight 700 and the column inherits it. Colour and glyph are then split by rank.
-`.comp-good` is
-`$success` throughout, word and square-check `\f14a`. `.comp-bad` pairs a `$warning` triangle-
-exclamation `\f071` with a **darker** amber word, because `$warning` is 1.6:1 on white — legible as
-a glyph, not as text. `.comp-null` has no rule at all, so rank 2 prints unmarked, mirroring the
-blank pill the screen row shows — visually. Rank 2 still emits the `.sr-only` sentence, because
-showing nothing was a third state a screen reader could not tell from missing data. The glyphs are
-Font Awesome 6 codepoints rather than emoji, so they come from the webfont `head.html` already loads
-sitewide and are under this repo's control; square against triangle also means the two differ in
-shape and not only in colour. All three renditions resolve through one `getTertileSentenceParts` in
-`tertiles.js`, so they cannot drift: `getTertileInlineLabel` wraps the comparison word in its
-`.comp-*` class for the panel and the print row, `getTertileSentence` returns the same sentence as
-plain text for the collapsed row. **`rankReverse` marks indicators where *higher* is better, and it
-chooses only the comparison word, never the verdict** — `data_value_rank` carries that, 1 always the
-unfavourable tertile and 3 always the favourable one. Reading the flag as a verdict flip is what
-pilled four Active Design indicators "better" for a neighborhood in the bottom tertile on all four
-(fixed 2026-08-12, a6c494a152); `getComparison` at the foot of `tertiles.js` is the function the
-rest of the file's reading is anchored to. Panels never print: `@media print` in
-`assets/scss/theme.scss` hides `.report-section .collapse` and `.collapsing`, so the printed report
-has one shape whatever the reader expanded. The print-only QR code back to the report is filled by
-`renderQRCode`, defined in the layout because the layout owns both the element and the library
-resource, and called from near the *end* of `renderAll` rather than at load — the Leaflet map
-switches neighborhood in place and rewrites the address bar, so a code generated once would point at
-the report the reader navigated away from. One call now follows it:
-`announceNeighborhoodChange` rebuilds `document.title` and writes the `#nr-report-status` live
-region, last so both describe a report that is already built. It reads `reportConfig.seoShortName`, not
-`reportName` — `reportName` is `.Title`, and the two differ on Active Design, so the title would be
-rewritten on 42 of the 210 pages. Both are suppressed on first paint, since `renderAll` runs at load
-too and nothing has changed then.
+**The rest of the NR narrative now lives in [documents/nr-architecture.md](documents/nr-architecture.md)** — how the report page renders an
+indicator row (print rendition, tertile vocabulary, the `.comp-*` classes, the QR code and the live
+region), the `topic_indicators.json` lookup behind each "Full dataset" link, the three shared
+picker/list partials, `nr-leaflet`'s framing, and the routing note. What stays below is what bites
+from *outside* the NR files.
 
-**Each panel's "Full dataset" link needs a map the page does not otherwise fetch.** The report rows
-carry `IndicatorID`, but nothing in them says which data explorer topic that indicator lives under,
-so `loadTopicIndicators` in `data.js` fetches `/IndicatorMetadata/topic_indicators.json` and reverses
-it into `indicatorTopicSlugs`, `IndicatorID` → topic slug; `getDataExplorerUrl` in `cards.js` then
-resolves the href as the card is built. **That JSON is a published Hugo resource, not a static
-file** — `themes/dohmh/layouts/partials/de-topic-indicators.html` builds it by ranging `.Site.Pages`
-and calling `.Publish`, so it exists only because the three data-explorer layouts that include that
-partial are in the build. Its two config keys are `topicIndicatorsUrl` and `dataExplorerUrl`. Three
-things follow from the shape of the data. The lookup takes the first topic an id appears under,
-matching the retired `getURL`, which returned on its first hit — 42 of the 263 ids are in more than
-one topic. An indicator in no topic gets no link at all, the same outcome as the old anchor that
-stayed `display:none`; Neighborhood safety (2073) is the live case, so a page rendering a link on
-every row is the tell that the omission broke rather than the mapping improving. And the fetch is
-counted into `totalFetches`, so a card can never render before the map is in.
-
-**The comparison vocabulary is styled in two files, and which one depends on the rendition.** The
-sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_custom.scss`; the
-collapsed row's `.worse` / `.middle` / `.better` pills live in `assets/scss/theme.scss`. Editing one
-set does not touch the other. The pills carried good-vs-bad in `background-color` alone until C3 —
-both read the same two words, so a reader with a colour vision deficiency saw no difference (WCAG
-1.4.1) — and now take the same Font Awesome codepoints the sentence uses, `\f071` on `.worse` and
-`\f14a` on `.better`, with no `color` of their own so the glyph inherits text colour that already
-passes on those backgrounds — `#212529` on `.worse` and `.better` alike, 12.5:1 on both
-`[verified 2026-08-12: computed colour read off a rendered pill, after `.worse` moved from `#F2CDD7`
-to `#FFE69B` in cd19eb2aca]`. `.middle` gets none, matching `.comp-null`. `cards.js` is the only
-thing that emits any of the three pill classes, so their blast radius is the report page.
-
-Two traps when working on any of this. `.print-only` is `display:none` normally and `display:flex`
+Two traps when working on the report page's print rendition. `.print-only` is `display:none` normally and `display:flex`
 in print (`assets/scss/_custom.scss`) — a hand-rolled class, because Bootstrap's own `_print.scss`
 is **not** imported; only the `d-print-*` utilities are. And nothing below a browser proves a print
 change: emulate print media and read `document.body.innerText`, which respects `display:none` and is
@@ -520,57 +459,6 @@ relocation**, because the inline block was carrying a page scope and a cascade p
 new home does not reproduce. Eight of the seventeen rules were dead and were deleted instead —
 `.nr-card-header`, `.nr-indicator-card` and `.card-header a` match nothing the page renders.
 
-**The picker and the neighborhood list are both shared by the topic index and the NR landing page**
-(`section.html`), which had drifted to two heights, two placeholders, two search positions and two
-introductions while running byte-identical flexdatalist config. Three partials — and the picker's
-markup one alone does nothing, since the search needs the JS one beside it:
-
-- `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — a `Choose Neighborhood` heading, a
-  visible `<label>`, the search box, then the map in a `.nr-selector-map` wrapper (height in
-  `assets/scss/_custom.scss`,
-  since `nr-leaflet`'s `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else
-  — the search field is the plain `.form-control`, 42px on both pages, since the landing page's 64px
-  override was dropped rather than kept as a parameter. The heading is in here, not in the callers,
-  for the same reason the rest is; it is an `<h2>` carrying `.h3` for size, because both callers put
-  it directly under their page `<h1>`. The label is visible rather than `sr-only` because a
-  placeholder was this field's only name and a placeholder vanishes on typing — and it is pointed at
-  twice, `for="flex_search"` on the authored input plus an `aria-labelledby` the JS partial sets on
-  flexdatalist's generated one.
-- `themes/dohmh/layouts/partials/nr-neighborhood-list.html` — the 42 neighborhood links, collapsed
-  behind a Bootstrap toggle but present in the markup either way, which is what keeps it the crawl
-  path *and* the no-JS equivalent of the map. **Both its elements carry
-  `data-pagefind-ignore="all"`, and the server-rendering is why they need it.** The list this
-  replaced was built in JS (`topiclanding.html`, `neighborhoods.forEach` + `appendChild`), so
-  Pagefind — which reads static HTML — never saw it; rendering it server-side put all 42 names and
-  every ZIP code into the index on the landing page and all five topic indexes, ~331 identical
-  words each, taking a search for "Kingsbridge" from 1 match to 12 and its own hub page from first
-  to fourth. `data-pagefind-ignore` is read by Pagefind alone, so the crawl path, the accessibility
-  tree and the JS-off fallback are untouched by it. Same reasoning covers the whole of
-  `nr-neighborhood-picker.html`, which is a control rather than content, and the five topic cards
-  on `nr-neighborhood-index.html`, where the retired `nr-output/section.html:36` had the identical
-  attribute. `documents/nr-pagefind-parity-2026-08-15.md` has the measurements and the queries.
-  Takes `topic_slug`: a slug gives `<nbhd>/<topic>/`
-  links, and `""` gives `<nbhd>/` links. Every anchor carries `data-nbhd`. **The landing page passes
-  `""` and rewrites the hrefs at runtime** — `updateNeighborhoodListLinks` in its `js_bot`, called
-  from `setIntendedDestination`, so the list follows the active topic button the way the map and
-  search already do. It runs at load too, so the links carry the default topic on first paint.
-  `path.Join` rather than `printf` builds the href, because an empty slug in a `printf` leaves a
-  doubled separator.
-- `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html` — called from each page's
-  `js_bot`. Safe there because it only binds handlers; the libraries it depends on are pulled in
-  higher up the page (see "Library loading"). **Each caller must define
-  `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
-  pages genuinely disagree on: a build-time slug on a topic index, the active topic button on the
-  landing page. Order does not matter — it is called on selection, after everything has parsed.
-  It also holds `wireComboboxState`, which supplies the `role="combobox"` flexdatalist never emits
-  and keeps `aria-expanded`, `aria-controls`, `aria-owns` and `aria-activedescendant` true. **It
-  reads the DOM through a `MutationObserver`, not the library's events, and that is deliberate** —
-  only `results.remove()` fires `removed:flexdatalist.results`, while Escape and the outside-click
-  handler each remove the list directly and fire nothing. The same observer makes Escape stick: the
-  library's own keyup re-runs the search 400ms later and re-renders what its keydown just removed,
-  and the pending search cannot be cancelled from outside (`_searchTimeout` is a closure variable),
-  so the dismissal is held and any list that reappears is removed on arrival.
-
 **`nr-leaflet.html` and `assets/js/nr-report/map.js` are two parallel Leaflet implementations
 that share four top-level names, so they must never load on the same page.** `highlightFeature`,
 `onEachFeature`, `resetHighlight` and `selectNeighborhood` are declared in both
@@ -580,13 +468,6 @@ pages do the reverse — but a `const` and a `function` of the same name in one 
 is a `SyntaxError` that kills every script on the page, and `npm run lint` cannot see it, since
 `no-undef` is satisfied by either declaration. Adding `nr-leaflet` to the report page, or the report page's
 map module to a picker page, needs a rename first.
-
-`nr-leaflet` needs no argument beyond the page: it reads a topic slug out of the first path
-segment itself. Where a page has **no** `geocode` — the landing page and the five topic indexes —
-it sets `zoomSnap = 0` and fits the UHF42 layer, so the city fills whatever box the caller gives
-it. Both statements live inside that branch, so pages that *do* carry a `geocode` keep the
-highlight-and-fly framing. `zoomSnap` is load-bearing, not a tweak: at Leaflet's default of 1,
-`fitBounds` rounds down to a whole zoom and the city spans ~59% of the box.
 
 The generator is `content/neighborhood-reports/_content.gotmpl`, a Hugo **content adapter**. It
 crosses `data/globals/uhflist.json` (42 neighborhoods) with `data/globals/NR_topics.yml` (5 topics)
@@ -598,24 +479,6 @@ the 42 per-neighborhood feeds while every HTML page looked correct. And `.File.B
 the literal string `_content`, so a `where` keyed on it matches zero rows without erroring. `.Site.Pages` and
 `.Site.GetPage` are unavailable inside an adapter — the Site object is not built yet — which is why
 everything it needs comes from `data/`.
-
-`themes/dohmh/layouts/partials/nr-topic-menu.html` renders the five topic buttons for both the
-report page and the topic index, driven by the same topic data.
-
-Routing note: the two NR rules in `static/Web.config` are gone. Every `<nbhd>/<topic>/` URL is now a
-real generated page, so nothing needs rewriting — and the old 301 would have redirected all 210 of
-them away. The `sessionStorage` hand-off that used to carry a neighborhood from a topic-first URL
-into the report page is gone at both ends — the bridge in `themes/dohmh/layouts/404.html`, which now treats
-those URLs as the genuine 404s they are, and the path-scan and bridge-read fallbacks in
-`assets/js/nr-report/url.js`. `getNeighborhoodFromURL` reads `NR_REPORT_CONFIG.neighborhood`
-and nothing else, so a page reaching that layout without the param renders no neighborhood rather
-than guessing one.
-
-`scripts/nr-postswap-check.mjs` diffs the generated pages against
-`scripts/nr-output-precapture/capture.json`, the record of what the retired pages rendered. **It
-must run against a production-data server** — `ensureDevServer()` spawns `dev_stage`, and the
-staging branch's row counts differ, which reads as content regressions. The script refuses to run
-on a branch mismatch.
 
 ### SCSS
 
@@ -661,6 +524,9 @@ Specify with `--environment ENV`. Each environment's own config.toml, under its 
 
 Key per-environment variables: `baseURL` and `data_branch`.
 
+- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but five environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `production`, `prod_prod`. Only `local_prod`, `local_stage` and `prod_stage` inherit the forever cache `[verified 2026-09-01: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under three environments and not under the other five — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
+- **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.
+
 ## Coding conventions
 
 - 4-space indentation in all files.
@@ -679,10 +545,13 @@ Key per-environment variables: `baseURL` and `data_branch`.
 - **Element-id renames get their own commit**, separate from any JS change. Ids are referenced from templates, JS string literals, SCSS, and ARIA attributes — grep all four.
 - **Prove a pure relocation by reverse-transform, not by reading the diff.** After moving a block, re-apply the inverse transform (e.g. re-indent the moved lines) and diff against the pre-move state — byte-identity proves "no behavior change" by construction, where a large diff only invites eyeballing. For a comment- or indentation-only pass, `git diff -w` proves the same thing more cheaply: every deletion it still shows must be a line of the category you meant to touch. Invalid in files with template literals — `-w` also hides whitespace edited inside a string.
 
+After a rename or delete, fetch the served asset and assert the **old** identifier is absent — that is what separates a broken change from a stale cache. An unchanged fingerprint alongside unchanged output is the tell.
+
 ## Hugo-specific rules
 
 - Edit source files (`content/`, `themes/dohmh/layouts/`, `assets/`, `data/`, `config/`). Never edit `docs/`.
 - Front matter, slugs, and asset references are load-bearing — small typos can break URLs or builds.
+- **Missing images cause build failures.** Hugo resizes images at build time; a missing source image will abort the build.
 - Environment-specific values go in config, not hardcoded strings.
 - **A standalone `.html` file that needs its own URL goes in `static/`, not in a page bundle.** Inside a leaf bundle, an extra `.html` behaves as a page resource and is not reliably published, so an iframe pointing at a bundle-relative path 404s. Bundle *resources* that templates and shortcodes read are fine to keep in the bundle (`csvtable` reads bundled CSV via `.Page.Resources.GetMatch`), as are images. The worked case, the fix, and the existing static-published examples are in [memories/repo/page-bundle-publication.md](memories/repo/page-bundle-publication.md).
 - For a page with substantial inline JS, externalize it to a per-page folder under `assets/js/` and load it through the `short-fingerprint` partial as a fingerprinted script with an integrity attribute. Keep scripts as classic (non-module) tags when they share global scope across files — load order matters and isn't enforced by tooling, so state it explicitly in a template comment. Two worked examples: [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and [data-features/congestion-pricing-report.html](themes/dohmh/layouts/data-features/congestion-pricing-report.html).
@@ -690,6 +559,8 @@ Key per-environment variables: `baseURL` and `data_branch`.
 ### Subresource Integrity (SRI)
 
 Hugo calculates integrity hashes for all local JS/CSS resources using the `short-fingerprint.html` partial (a custom hash-shortening wrapper around Hugo's built-in integrity function). If SRI breaks on production, check that end-of-line characters are Unix `LF` — the GitHub Actions workflows enforce this on merge.
+
+- **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
 
 ## Multi-language
 
@@ -725,6 +596,7 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 
 Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, which carries a substantially different data explorer — read them as that branch's record, not as a description of this tree. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
 
+- `documents/nr-architecture.md` — **not an audit**: the Neighborhood Reports narrative split out of this file on 2026-09-02, describing current code and carrying a `docs-check` stamp like this one does. Report page rendering, the shared picker partials, routing.
 - `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer, and the active log for findings on this branch (§5f–§5j).
 - `documents/data-explorer-architecture.md` — the other branch's explorer narrative. Not applicable here; carries a banner saying so.
 - `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit for that branch.
@@ -737,15 +609,3 @@ Detailed technical audits live in `documents/`. Check these before making struct
 - `documents/nr-neighborhood-picker-options-2026-08-09.md` — enlarging the picker map on the topic index and the NR landing page, and extracting the two duplicated copies into shared partials. Carries the ledger and the decision list for each cosmetic difference the unification forced. Closed 2026-08-09; read it as a dated record.
 - `documents/nr-landing-list-unification-2026-08-09.md` — the follow-up that shared the 42-neighborhood list too, moved the `Choose Neighborhood` heading into the picker partial, and made the landing page's list links follow the active topic button. Carries the ledger.
 - `documents/nr-pagefind-parity-2026-08-15.md` — the search-index audit against `production`: how the two indexes were compared, what the Option D swap and the server-rendered neighborhood list did to search precision, the `data-pagefind-ignore` fix and its measured effect, and the harness that now checks all of it. Carries the ledger. Closed 2026-08-15 by restoring production's model: **the 210 report pages carry a page-level `data-pagefind-ignore="all"` and are not in the search index**, which puts both branches at 201 indexed pages **as measured on that date** — the committed Pagefind baseline and the harness both read 202 on 2026-09-02, and that one-page difference is not diagnosed. §5 of that document is the Google Analytics test that would reverse it, and §2f records the two fixes that were tried first and did not work.
-
-## Common gotchas
-
-- **Missing images cause build failures.** Hugo resizes images at build time; a missing source image will abort the build.
-- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but five environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `production`, `prod_prod`. Only `local_prod`, `local_stage` and `prod_stage` inherit the forever cache `[verified 2026-09-01: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under three environments and not under the other five — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
-- **SRI and line endings.** Integrity mismatches on production usually mean `CRLF` endings reached the build; the Actions workflows normalize to `LF` on merge. If *every* resource breaks instead of some, look at the server certificate rather than line endings.
-- **`npm install <pkg>@<ver> --save-*` un-pins `package.json`.** npm's default save-prefix is `^`, so a `--save-*` flag rewrites the range to a caret one even when you named an exact version — bumping the pinned `hugo-extended` that way turns `"0.147.3"` back into `"^0.147.3"`, and the diff reads as an ordinary version change. Use `--save-exact`. It also copies the package into the lockfile's `packages[""].dependencies`, where `package.json` declares it only as optional; a later plain `npm install` deletes that line again `[verified 2026-08-24, npm 11.4.1]`.
-- **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.
-
-Always open a **fresh browser tab** after rebuilding — fingerprinted JS bundles are cached aggressively, so an existing tab may serve stale assets even after a rebuild. Relatedly, a server started *before* a shared-template edit can go on serving stale pages, so a smoke run may pass against output that predates your change.
-
-After a rename or delete, fetch the served asset and assert the **old** identifier is absent — that is what separates a broken change from a stale cache. An unchanged fingerprint alongside unchanged output is the tell.
