@@ -26,7 +26,7 @@ Our internal workflows are to begin work by:
 - Giving the branch a unique name. We name branches: hotfix-[FIXNAME], content-[CONTENTNAME], or feature-[PROJECTNAME].
 - Keeping branch work focused on discrete, unique tasks
 
-After committing, working branches can be merged into `development` for testing then merged into `production` for deployment.
+After committing, working branches are merged into `production` for deployment. To stage a branch for review, use CloudCannon, which builds individual branches. **Merging into `development` for testing is deprecated** — consistent with the tables below, where `development` appears in no branch row and `hugo-build-to-dev-prod.yml` is marked "In use? No".
 
 ### Branches
 A run-down of main branches, actions, and purposes are:
@@ -81,6 +81,98 @@ Current environments:
 | `local_stage` | Development | `staging`    | Preview combined site & data changes | Uses locally hosted data repo |
 
 **A note on `production` vs `prod_prod`:** the two config files are byte-identical, but the environment *name* is what `partials/head.html` branches on. Only `prod_prod` gets the production Google Analytics property and omits the `<meta name="robots" content="noindex, nofollow">` tag; every other environment — including `production`, and including a bare `hugo` with no `--environment` flag — emits the noindex tag and the development analytics property. The build workflow uses `hugo --environment prod_prod`, so the live site is correct. Build locally with `prod_prod` if you are inspecting anything that depends on those tags.
+
+### Checking your work
+
+Two automated checks live in this repo. Both need `npm install` first, and both drive a real
+browser, so they catch things a successful `hugo` build does not — a build only proves the
+templates compile.
+
+| Command | What it does |
+|---|---|
+| `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
+| `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run smoke:env <env> [sample]` | The same, against a named environment it builds and serves itself. |
+| `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
+| `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
+| `npm run characterize:site:env <env> [sample]` | The same check, against a named environment it builds and serves itself. |
+
+Run `smoke` before merging anything that touches `partials/head.html`, `_default/baseof.html`, the
+header or footer partials, or `assets/js/`. Neither check sees what the other does: `smoke` catches
+JavaScript that throws, characterization catches a page whose markup quietly moved.
+
+#### Checking a specific environment
+
+`npm run smoke` and `npm run characterize:site` check whichever environment your machine happens to
+be serving — they reuse any Hugo server already answering on :8080, :8081 or :1313, and otherwise
+start `dev_stage` for you. When you need a *named* environment instead, and especially `prod_prod`,
+which is the one that actually deploys, both checks have an `:env` form:
+
+```bash
+npm run smoke:prod_prod                    # every page, JavaScript errors, prod_prod
+npm run smoke:env local_prod               # any environment in config/
+npm run smoke:env local_prod sample        # the curated 33 pages instead of all of them
+
+npm run characterize:site:prod_prod        # the environment the live site is built with
+npm run characterize:site:dev_stage        # staging data, deterministically
+npm run characterize:site:env local_prod   # any environment in config/
+npm run characterize:site:env local_prod sample   # the curated 41 pages instead of all of them
+```
+
+Add the word `sample` to check the curated one-page-per-template list rather than the whole site.
+A full Hugo build runs either way, so `sample` narrows *what* gets checked rather than making the
+command quick.
+
+These start their own Hugo server on port 8090, build it entirely outside the repo, and stop it
+when they finish — so they ignore whatever you have running, and they leave `docs/` and
+`resources/_gen` untouched. They are slower than the plain forms, because a full build runs before
+the check does. They share that one port, so **you cannot run a `smoke:env` and a
+`characterize:site:env` at the same time** — the second one to start says so and exits rather than
+sweep the wrong site.
+
+Two things make the environment worth naming rather than taking what you are given. `head.html`
+branches on the environment's *name*, so only `prod_prod` gets the production analytics property
+and a page that search engines are allowed to index. And each environment pins its own
+EHDP-data branch, which changes the data URLs a page fetches **in the browser** — so a data file
+that was renamed on one branch throws a JavaScript error on that environment only, which is
+exactly what `smoke:env` is for and what a green `hugo` build cannot see.
+
+`smoke:env` works on all eight environments — it needs no baseline, only a page that loads without
+throwing. Characterization compares against a committed baseline, and two are committed, between
+them covering four of the eight. The rest stop and say which baselines exist:
+
+| Environment | Baseline used |
+|---|---|
+| `prod_prod` | `prod_prod` |
+| `dev_stage`, `local_stage`, `prod_stage` | `staging` |
+| `dev_prod`, `development`, `local_prod`, `production` | **none — the check exits and tells you so** |
+
+**Pass the environment as a plain word, not as a flag.** `npm run characterize:site:env prod_prod`
+works; `npm run characterize:site:env --env prod_prod` does not, because PowerShell and npm between
+them discard the flag's name and keep only its value. Both `:env` scripts refuse anything starting
+with `-` rather than act on a mangled argument. If you need the underlying flags, call the script
+directly: `node scripts/site-characterization.mjs --check --content`, or
+`node scripts/smoke-pages.mjs --all --concurrency 12`.
+
+#### When a check fails
+
+A characterization failure names each page and field that moved, with the raw diff underneath. That
+is a starting point, not a verdict — a page can move because the data behind it moved, or because a
+third-party embed rendered differently, not only because someone broke it. Read what changed before
+assuming a regression.
+
+Some pages legitimately go red when *data* changes rather than code. `data-features/proximity/`,
+`data-features/congestion-pricing-report/` and `data-features/heat-story/` draw a map marker per
+row of their data, and the check counts those markers on purpose — a marker appearing or vanishing
+is a real change to what the page shows. Editing that data therefore means re-capturing the
+baselines, and that is working as intended, not a bug. `data-features/realtime-air-quality/` is the
+exception: its markers come from a live feed that nobody here controls, so its marker count is
+deliberately **not** recorded — only whether the map drew any markers at all.
+
+If a site-wide change is *intended*, the baselines are re-captured with
+`npm run characterize:site:rebaseline`, which rebuilds every committed baseline and reports what
+moved. That command takes no arguments and overwrites all of them, so it is not the way to check a
+single environment — the `characterize:site:env` scripts above are.
 
 ### Data repository
 

@@ -1,0 +1,209 @@
+{
+    "path": "data-stories/air-quality-snapshots/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "datawrapper.dwcdn.net",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 8,
+        "headingLevels": [
+            1,
+            2,
+            3,
+            3,
+            2,
+            2,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 5,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 4,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 94,
+            "external": 22,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "(self)",
+                "zeroSize": true
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": true
+    },
+    "content": {
+        "title": "Air quality snapshots – Environment & Health Data Portal",
+        "headingText": [
+            "Air quality snapshots: special findings from 10 years of NYCCAS",
+            "Additional health threats of traffic volume",
+            "Air toxics",
+            "Noise",
+            "The benefits of cleaner heating fuel",
+            "Special monitoring for environmental justice",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/air-quality/",
+            "/data-explorer/economic-conditions/",
+            "/data-explorer/health-impacts-of-air-pollution/",
+            "/data-features/",
+            "/data-features/nyccas/",
+            "/data-features/realtime-air-quality/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/air-quality-snapshots/",
+            "/data-stories/hia/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/airquality/nyccas/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "twitter.com",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Special findings from 10+ years of New York City's citywide air quality monitoring work."
+    }
+}

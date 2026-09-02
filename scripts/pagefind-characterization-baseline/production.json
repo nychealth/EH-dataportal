@@ -93,7 +93,7 @@
       ]
     },
     "neighborhood reports": {
-      "total": 110,
+      "total": 108,
       "top": [
         {
           "url": "/neighborhood-reports/active_design_physical_activity_and_health/",
@@ -108,11 +108,11 @@
           "subResults": 1
         },
         {
-          "url": "/neighborhood-reports/greenpoint/",
+          "url": "/neighborhood-reports/willowbrook/",
           "subResults": 1
         },
         {
-          "url": "/neighborhood-reports/willowbrook/",
+          "url": "/neighborhood-reports/greenpoint/",
           "subResults": 1
         },
         {
@@ -138,7 +138,7 @@
       ]
     },
     "heat vulnerability": {
-      "total": 28,
+      "total": 26,
       "top": [
         {
           "url": "/data-features/hvi/",
@@ -183,7 +183,7 @@
       ]
     },
     "climate": {
-      "total": 40,
+      "total": 35,
       "top": [
         {
           "url": "/key-topics/climatehealth/",
@@ -228,7 +228,7 @@
       ]
     },
     "housing": {
-      "total": 73,
+      "total": 67,
       "top": [
         {
           "url": "/neighborhood-reports/housing_and_health/",
@@ -488,7 +488,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -561,7 +560,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -628,7 +626,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -691,7 +688,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -754,7 +750,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -829,7 +824,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -887,7 +881,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -957,7 +950,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1022,7 +1014,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1096,7 +1087,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1158,7 +1148,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1220,7 +1209,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1281,7 +1269,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1347,7 +1334,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1413,7 +1399,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1473,7 +1458,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1509,7 +1493,6 @@
       "anchors": [
         "indicators",
         "results",
-        "skip-header-target",
         "tablebody"
       ],
       "contentHash": "6fa172e9523d0821",
@@ -1551,7 +1534,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1616,7 +1598,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1677,7 +1658,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1743,7 +1723,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1807,7 +1786,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1868,7 +1846,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1936,7 +1913,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -1996,7 +1972,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2057,7 +2032,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2098,7 +2072,6 @@
         "measureList",
         "repoLink",
         "results",
-        "skip-header-target",
         "sourceList",
         "topicList"
       ],
@@ -2144,7 +2117,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2204,7 +2176,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2268,7 +2239,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2329,7 +2299,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2390,7 +2359,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2465,7 +2433,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2525,7 +2492,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2583,7 +2549,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2648,7 +2613,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2709,7 +2673,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2770,7 +2733,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2835,7 +2797,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2906,7 +2867,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -2965,7 +2925,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -3035,7 +2994,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -3099,7 +3057,6 @@
         "results",
         "show-disparities",
         "show-links",
-        "skip-header-target",
         "summary-table",
         "tab-btn-links",
         "tab-btn-map",
@@ -3133,8 +3090,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "b942bedf3cc09edd",
       "contentHead": "Data Features. Interactive infographics, real-time data feeds, and annual reports on important environmental health topi"
@@ -3148,8 +3104,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "5af600a08b682adf",
       "contentHead": "Active Design Guidelines 2.0. Active Design Guidelines 2.0: Designing for Health and Equity (ADG 2.0) is a playbook and "
@@ -3163,8 +3118,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "5f48075af25c64c2",
       "contentHead": "Beach Water Quality. One month before New York City’s beaches open to the public, the Health Departments starts sampling"
@@ -3198,7 +3152,6 @@
         "site-prep-wrap",
         "site-question-prefix",
         "site-question-suffix",
-        "skip-header-target",
         "tod-site-name",
         "todSiteButtons",
         "todTrafficFootnote"
@@ -3243,7 +3196,6 @@
         "results",
         "sensitiveGroup",
         "sidebarRecs",
-        "skip-header-target",
         "start",
         "testInfo",
         "usesEME"
@@ -3260,8 +3212,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "12ac75845ea1ad82",
       "contentHead": "Displacement Risk Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable ho"
@@ -3283,7 +3234,6 @@
         "overlaps",
         "prompt",
         "results",
-        "skip-header-target",
         "top"
       ],
       "contentHash": "727cb3b3dc70158a",
@@ -3308,7 +3258,6 @@
         "map",
         "period",
         "results",
-        "skip-header-target",
         "top",
         "type"
       ],
@@ -3326,8 +3275,7 @@
       "anchors": [
         "datawrapper-chart-0wHq0",
         "datawrapper-chart-0wHq0",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "3c92ddcdbbe07ac9",
       "contentHead": "2021 NYC Heat-Related Mortality Report Summary: Heat Stress Deaths. Each summer from 2010-2019, there were, on average,1"
@@ -3343,8 +3291,7 @@
       "anchors": [
         "datawrapper-chart-0wHq0",
         "datawrapper-chart-16xAz",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "6953f6d8f5b6d0d9",
       "contentHead": "2022 NYC Heat-Related Mortality Report Summary. Each summer, an estimated 370 New Yorkers die prematurely because of hot"
@@ -3369,8 +3316,7 @@
         "datawrapper-chart-zqk7k",
         "datawrapper-vis-lHcqh",
         "noteModal",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "fab34d5d8deb1076",
       "contentHead": "2023 NYC Heat-Related Mortality Report Summary. This report was corrected on Apr. 2, 2025, after we identified an error."
@@ -3388,13 +3334,12 @@
         "btn2",
         "datawrapper-chart-D74jy",
         "datawrapper-chart-EruI0",
-        "datawrapper-vis-a899A",
+        "datawrapper-chart-a899A",
         "map1",
         "map2",
         "noteModal",
         "previous-reports",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "89a4172408a4bf3d",
       "contentHead": "2024 NYC Heat-Related Mortality Report. This report was corrected on Apr. 2, 2025, after we identified an error. The num"
@@ -3424,8 +3369,7 @@
         "note-on-years-of-data-included",
         "noteModal",
         "previous-reports",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "fbd80a1f14647d90",
       "contentHead": "2025 NYC Heat-Related Mortality Report. Each summer, on average, more than 500 New Yorkers die prematurely because of ho"
@@ -3456,8 +3400,7 @@
         "note-on-years-of-data-included",
         "noteModal",
         "previous-reports",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "22153fe0242895c4",
       "contentHead": "2026 NYC Heat-Related Mortality Report. Each summer, on average, approximately 500 New Yorkers die prematurely because o"
@@ -3481,7 +3424,6 @@
         "map",
         "refreshButton",
         "results",
-        "skip-header-target",
         "story-card-general-holder",
         "story-dropdown",
         "storyTitleDropdown",
@@ -3505,7 +3447,6 @@
         "heatmodal",
         "results",
         "scattertoggle",
-        "skip-header-target",
         "syndromicmodal",
         "top",
         "vis1",
@@ -3539,7 +3480,6 @@
         "incVal",
         "mapvis",
         "results",
-        "skip-header-target",
         "tempTert",
         "tempVal",
         "top",
@@ -3580,7 +3520,6 @@
         "ratePrint",
         "readout",
         "results",
-        "skip-header-target",
         "top",
         "visualization"
       ],
@@ -3610,7 +3549,6 @@
         "scen1",
         "scen2",
         "scen3",
-        "skip-header-target",
         "top"
       ],
       "contentHash": "68c804cd09c656f4",
@@ -3640,7 +3578,6 @@
         "mapTitle",
         "results",
         "showData",
-        "skip-header-target",
         "sourceBox1",
         "sourceBox2",
         "sourceBox3",
@@ -3699,7 +3636,6 @@
         "primary-content",
         "raster",
         "results",
-        "skip-header-target",
         "sourceContainer",
         "tableBody",
         "yearPrint"
@@ -3720,7 +3656,6 @@
         "map",
         "nextButton",
         "results",
-        "skip-header-target",
         "thisText",
         "top"
       ],
@@ -3736,8 +3671,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "14af1c6c8f19ccbf",
       "contentHead": "Rat Information Portal. New York City’s Rat Information Portal is a web map application that lets you view rat inspectio"
@@ -3758,7 +3692,6 @@
         "interpret-2",
         "map",
         "results",
-        "skip-header-target",
         "top",
         "vizFour",
         "vizOne",
@@ -3840,7 +3773,6 @@
         "datawrapper-vis-sPNQu",
         "datawrapper-vis-szLTu",
         "results",
-        "skip-header-target",
         "table-2-1",
         "table-2-2",
         "table-2-3",
@@ -3898,7 +3830,6 @@
         "result",
         "results",
         "rmzYes",
-        "skip-header-target",
         "status",
         "top",
         "yearPrint"
@@ -3965,7 +3896,6 @@
         "select-a-format",
         "select-a-year",
         "sevenModal",
-        "skip-header-target",
         "table24",
         "tableBody",
         "targetURL",
@@ -4003,10 +3933,9 @@
         "pills-tabContent",
         "pills-transportation",
         "pills-transportation-tab",
-        "results",
-        "skip-header-target"
+        "results"
       ],
-      "contentHash": "53b0a6d7731683a6",
+      "contentHash": "ac0561051a2ae2d0",
       "contentHead": "Data Stories. Explainers and perspectives on important health and environment topics. Latest data stories. Tracking food"
     },
     "/data-stories/adult-lead/": {
@@ -4024,8 +3953,7 @@
         "datawrapper-chart-i7Bgo",
         "datawrapper-vis-c7jtG",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "4bdfc22117ab2816",
       "contentHead": "Lead poisoning affects adults too. Since we published this data story, some data in it have been updated. Get updated da"
@@ -4056,8 +3984,7 @@
         "datawrapper-vis-zNG5O",
         "dest",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "eba17b00c5bb4290",
       "contentHead": "An update on air quality during COVID-19. Since we published this data story, some data in it have been updated. Get upd"
@@ -4077,8 +4004,7 @@
         "datawrapper-vis-NkzJW",
         "datawrapper-vis-O0SUA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "356168faeca6463b",
       "contentHead": "Air quality during COVID-19. What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorker"
@@ -4098,8 +4024,7 @@
         "datawrapper-vis-JA1Yk",
         "datawrapper-vis-ODTtg",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "485beac2850e93b3",
       "contentHead": "What our air quality monitors tell us about NYC's neighborhoods. Since we published this data story, some data in it hav"
@@ -4145,7 +4070,6 @@
         "section4",
         "section5",
         "sidebar-nav",
-        "skip-header-target",
         "tab-01-a",
         "tab-01-b",
         "tab-01-c",
@@ -4183,8 +4107,7 @@
         "datawrapper-vis-RZtwq",
         "datawrapper-vis-xLudO",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "b83e0c99d9c9ff7a",
       "contentHead": "Disparities in violence. Since we published this data story, some data in it have been updated. Get updated data on: Vio"
@@ -4206,8 +4129,7 @@
         "datawrapper-vis-ecp3d",
         "datawrapper-vis-pxkwE",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "db9ffa94b5e39706",
       "contentHead": "Why asthma is a social justice issue. Since we published this data story, some data in it have been updated. Get updated"
@@ -4223,8 +4145,7 @@
       "anchors": [
         "article-footer",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "134c0b3bb0d2fb2d",
       "contentHead": "A walk through history. A neighborhood is not only shaped by its residents, but also by governmental practices and polic"
@@ -4246,8 +4167,7 @@
         "datawrapper-vis-840ts",
         "datawrapper-vis-dB6XN",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "5fcf8adaa5975e73",
       "contentHead": "Breathe easy: NYC's air quality is improving. Since we published this data story, some data in it have been updated. Get"
@@ -4268,8 +4188,7 @@
         "datawrapper-vis-4Ryy6",
         "datawrapper-vis-Hb6ua",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "cdf544852f7566dd",
       "contentHead": "Air quality in car-free areas. Since we published this data story, some data in it have been updated. Get updated data o"
@@ -4285,8 +4204,7 @@
       "anchors": [
         "article-footer",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "b17e83ea9346a367",
       "contentHead": "Why we're working with you to redesign the data portal. We’re making changes, and we need your help. A few months ago, w"
@@ -4301,14 +4219,13 @@
       },
       "anchors": [
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "1762955a2277e907",
       "contentHead": "Staying safe in cold weather. Cold weather can be dangerous. Here are some tips for staying safe this winter. Learn more"
     },
     "/data-stories/congestion-tolling-update/": {
-      "words": 900,
+      "words": 910,
       "title": "Initial data from Congestion Relief Tolling | Data Stories",
       "filters": {
         "section": [
@@ -4326,11 +4243,10 @@
         "datawrapper-vis-poCeg",
         "datawrapper-vis-zvNzf",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
-      "contentHash": "f191b7065c6b24b0",
-      "contentHead": "Initial data from Congestion Relief Tolling. Since we published this, an update is available. Read MTA's report on the f"
+      "contentHash": "2f3908e54dc22a71",
+      "contentHead": "Initial data from Congestion Relief Tolling. Since we published this, an update is available. Read our report on the fir"
     },
     "/data-stories/economic-stability/": {
       "words": 1157,
@@ -4355,8 +4271,7 @@
         "datawrapper-chart-uzt3a",
         "datawrapper-chart-we5Yo",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "62bca82b6ef4a853",
       "contentHead": "Economic stability creates health. Since we published this data story, some data in it have been updated. Get updated da"
@@ -4378,8 +4293,7 @@
         "datawrapper-vis-x9xYd",
         "datawrapper-vis-y773P",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "effc2c7cb9fafb49",
       "contentHead": "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it. Whether it’s el"
@@ -4395,8 +4309,7 @@
       "anchors": [
         "article-footer",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "c67e489d84c1a3c3",
       "contentHead": "NYC is working to protect your health — but we can’t do it alone. New Yorkers benefit from one of the largest health dep"
@@ -4417,8 +4330,7 @@
         "datawrapper-chart-r4fxY",
         "datawrapper-chart-yuQ6Y",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "61ca7dbdd7901ce3",
       "contentHead": "What Hurricane Ida and Superstorm Sandy taught us about flooding and health. Superstorm Sandy (2012) and rainfall from H"
@@ -4437,8 +4349,7 @@
         "datawrapper-vis-9Hwil",
         "datawrapper-vis-spZTl",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "e62250c169946a9f",
       "contentHead": "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why. Each year, the NYC Health Department re"
@@ -4458,8 +4369,7 @@
         "datawrapper-chart-e9B8r",
         "datawrapper-chart-fDvhZ",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "43d4f8e4059629a3",
       "contentHead": "What hot weather means for food safety. New Yorkers eat out more than a billion times a year. To help keep diners safe, "
@@ -4484,7 +4394,6 @@
         "map3",
         "primary-content",
         "results",
-        "skip-header-target",
         "ucd",
         "upuma"
       ],
@@ -4506,8 +4415,7 @@
         "datawrapper-chart-NSUaQ",
         "datawrapper-chart-z0BAM",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "852ee181b1d2fae5",
       "contentHead": "Protecting New Yorkers from extreme heat. Since we published this data story, some data in it have been updated. Get upd"
@@ -4531,8 +4439,7 @@
         "datawrapper-chart-V1NVo",
         "datawrapper-chart-pt7no",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "e9c89978e4bb2265",
       "contentHead": "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts. This story was recently upd"
@@ -4576,8 +4483,7 @@
         "datawrapper-chart-xy1ku",
         "datawrapper-chart-yWecX",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "a1d38dc67463ac6a",
       "contentHead": "Housing creates health. Since we published this data story, some data in it have been updated. Get updated data on: Hous"
@@ -4629,7 +4535,6 @@
         "profile-tab",
         "results",
         "rrccollapse",
-        "skip-header-target",
         "vlow"
       ],
       "contentHash": "0af37dccc309a2da",
@@ -4658,8 +4563,7 @@
         "datawrapper-chart-nyBxm",
         "datawrapper-chart-uzpwR",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "5dd1ca703fb3e870",
       "contentHead": "Injury deaths in NYC adults: how homicide and suicide contribute. Since we published this data story, some data in it ha"
@@ -4682,8 +4586,7 @@
         "datawrapper-chart-jGcgz",
         "datawrapper-chart-sbTUE",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "15a1c6b894fb57e1",
       "contentHead": "How power outages affect health. Since we published this data story, some data in it have been updated. Get updated data"
@@ -4706,8 +4609,7 @@
         "datawrapper-chart-hhMJr",
         "datawrapper-chart-nba07",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "1122b99e43c2c4df",
       "contentHead": "Public space creates health. Since we published this data story, some data in it have been updated. Get updated data on:"
@@ -4723,8 +4625,7 @@
       "anchors": [
         "article-footer",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "2e24fcfbead49165",
       "contentHead": "Public transit creates health. New York City’s public transit system has gotten New Yorkers where they need to go and ho"
@@ -4757,8 +4658,7 @@
         "panel-acc-button-04",
         "panel-acc-button-05",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "509fcac76ef7461e",
       "contentHead": "The racial wealth gap has big implications for public health and health equity. Throughout history, the distribution of "
@@ -4776,8 +4676,7 @@
         "datawrapper-vis-S4nq0",
         "datawrapper-vis-tTpnA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "842cdf8c0c628eb6",
       "contentHead": "Rat complaints and NYC’s rat problem. Everyone has a story about rats — or more likely, a complaint. If you have made a "
@@ -4794,8 +4693,7 @@
         "article-footer",
         "datawrapper-vis-JpYEi",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "22efa6be53488b32",
       "contentHead": "Inspection data are the key to controlling NYC’s rats. Rats are one of New York City’s hottest topics. You see them on t"
@@ -4811,8 +4709,7 @@
       "anchors": [
         "article-footer",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "bab99012b3607f9e",
       "contentHead": "The redesigned EH Data Portal. The Environment and Health Data Portal looks a little bit different! We recently redesign"
@@ -4856,7 +4753,6 @@
         "queens-tab",
         "results",
         "rrccollapse",
-        "skip-header-target",
         "staten",
         "staten-tab"
       ],
@@ -4885,7 +4781,6 @@
         "pm25",
         "primary-content",
         "results",
-        "skip-header-target",
         "var"
       ],
       "contentHash": "61aa90b5e6d57108",
@@ -4907,8 +4802,7 @@
         "datawrapper-chart-ayRqE",
         "datawrapper-chart-d7150",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "f011b7180b566ef9",
       "contentHead": "Why trash is a public health issue. Since we published this data story, some data in it have been updated. Get updated d"
@@ -4936,8 +4830,7 @@
         "datawrapper-chart-voUs9",
         "datawrapper-chart-yy7ko",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "b2f0cb0260b7a9cf",
       "contentHead": "Environments matter: the road to street safety in NYC. Since we published this data story, some data in it have been upd"
@@ -4960,8 +4853,7 @@
         "datawrapper-chart-XaVeD",
         "datawrapper-chart-atWCN",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "e1b43e2fa8abcea6",
       "contentHead": "The public health impacts of PM2.5 from traffic air pollution. PM2.5—or fine particulate matter—are tiny particles that "
@@ -4995,7 +4887,6 @@
         "primary-content",
         "printtemp",
         "results",
-        "skip-header-target",
         "slider",
         "tc",
         "therm",
@@ -5026,7 +4917,6 @@
         "datawrapper-vis-yRPHe",
         "primary-content",
         "results",
-        "skip-header-target",
         "tab-02-a",
         "tab-02-b",
         "tab-02-c",
@@ -5071,7 +4961,6 @@
         "primary-content",
         "redliningCollapse",
         "results",
-        "skip-header-target",
         "violcollapse"
       ],
       "contentHash": "24f23a4525d34a63",
@@ -5093,8 +4982,7 @@
         "datawrapper-chart-kKZ8g",
         "datawrapper-chart-xZOp8",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "ced9c47195184aa6",
       "contentHead": "ZAPPA: A tool to understand air quality policies. Since we published this data story, some data in it have been updated."
@@ -5147,8 +5035,7 @@
         "pills-tabContent",
         "pills-transportation",
         "pills-transportation-tab",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "8cf9e1715b11190b",
       "contentHead": "Data Stories. Explainers and perspectives on important health and environment topics. Latest data stories. Por qué la vi"
@@ -5166,8 +5053,7 @@
         "datawrapper-chart-O0SUA",
         "datawrapper-chart-O0SUA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "df6fe36cc1c7ebd9",
       "contentHead": "La calidad el aire durante la COVID-19. ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la C"
@@ -5186,8 +5072,7 @@
         "datawrapper-chart-O0SUA",
         "datawrapper-chart-O0SUA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "aeb7a217aac30797",
       "contentHead": "Por qué el asma es un problema de justicia social. La pobreza afecta la salud de muchas formas. En la ciudad de Nueva Yo"
@@ -5232,7 +5117,6 @@
         "profile-tab",
         "results",
         "rrccollapse",
-        "skip-header-target",
         "vlow"
       ],
       "contentHash": "243d81085ec88a03",
@@ -5273,7 +5157,6 @@
         "queens-tab",
         "results",
         "rrccollapse",
-        "skip-header-target",
         "staten",
         "staten-tab"
       ],
@@ -5306,7 +5189,6 @@
         "primary-content",
         "redliningCollapse",
         "results",
-        "skip-header-target",
         "violcollapse"
       ],
       "contentHash": "13a5d73e8d98e381",
@@ -5321,8 +5203,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "ba28743292da9fda",
       "contentHead": "Key Topics in Environmental Health. What creates health? Often, our environment does. The world around us shapes our hea"
@@ -5337,14 +5218,13 @@
       },
       "anchors": [
         "collapseStories",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "3ee89e5dc09ed6e0",
       "contentHead": "Accessibility About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers "
     },
     "/key-topics/airquality/": {
-      "words": 877,
+      "words": 882,
       "title": "Air quality | Key Topics in Environmental Health",
       "filters": {
         "section": [
@@ -5354,10 +5234,9 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
-      "contentHash": "7c11b65aade76d0a",
+      "contentHash": "2de62d8daf14e5f3",
       "contentHead": "Air quality New York City’s air contains particles, drops of liquid, gasses, and other pollution that can affect health."
     },
     "/key-topics/childhealth/": {
@@ -5371,14 +5250,13 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "b145a3ddcafd3774",
       "contentHead": "Child health Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and c"
     },
     "/key-topics/climatehealth/": {
-      "words": 810,
+      "words": 815,
       "title": "Climate and health | Key Topics in Environmental Health",
       "filters": {
         "section": [
@@ -5388,10 +5266,9 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
-      "contentHash": "411ab898a6a4ae92",
+      "contentHash": "78d90c51ac20be69",
       "contentHead": "Climate and health Climate, including extreme weather, has a direct impact on health. As NYC’s climate changes, along wi"
     },
     "/key-topics/foodanddrink/": {
@@ -5405,7 +5282,6 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "29ac27a4d5a2976a",
@@ -5422,7 +5298,6 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "85a05d51cd7fcee3",
@@ -5439,7 +5314,6 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "ed7e257d1476cae3",
@@ -5456,7 +5330,6 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "7c629d4739ec3c1e",
@@ -5473,7 +5346,6 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
       "contentHash": "8debfcbf28dc914d",
@@ -5489,14 +5361,13 @@
       },
       "anchors": [
         "collapseStories",
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "38f64f6ced09fd4b",
       "contentHead": "Pests and pesticides Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches"
     },
     "/key-topics/public-space/": {
-      "words": 875,
+      "words": 880,
       "title": "Public space, active design, and transportation | Key Topics in Environmental Health",
       "filters": {
         "section": [
@@ -5506,10 +5377,9 @@
       "anchors": [
         "collapseStories",
         "results",
-        "skip-header-target",
         "toggleButton"
       ],
-      "contentHash": "a7f297030ea54bf6",
+      "contentHash": "562eef42004f892b",
       "contentHead": "Public space, active design, and transportation Physical activity and healthy eating rank among the leading ways to get "
     },
     "/neighborhood-reports/": {
@@ -5562,8 +5432,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "c25df814d07f566a",
       "contentHead": "Active Design, Physical Activity and Health. The design and conditions of buildings, streets, public transportation and "
@@ -5577,8 +5446,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "01e432a3f8f76426",
       "contentHead": "Asthma and the Environment. Asthma is a leading cause of hospitalizations for children. It can be made worse by housing "
@@ -5704,8 +5572,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "d946c21d8eaddd2b",
       "contentHead": "Climate and Health. As the climate changes, we track New York City’s risk for extreme heat, storms and flooding, and epi"
@@ -5927,8 +5794,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "554ca345ccfea93b",
       "contentHead": "Housing and Health. Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poison"
@@ -6038,8 +5904,7 @@
         ]
       },
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "113f22875796f83b",
       "contentHead": "Outdoor Air and Health. Air pollution is one of the most important environmental threats to people who live in urban are"
@@ -6305,8 +6170,7 @@
       "title": "Resources | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "0a47de77214580bc",
       "contentHead": "Resources Resources: Food Safety Health Code Reference Tool. Sugar Lookup Tool."
@@ -6316,8 +6180,7 @@
       "title": "Food Safety Health Code Reference Tool | Resources",
       "filters": {},
       "anchors": [
-        "results",
-        "skip-header-target"
+        "results"
       ],
       "contentHash": "94de4465d9394615",
       "contentHead": "Food Safety Health Code Reference Tool Food Safety Health Code Reference Tool for inspectors: Mobile version. Desktop ve"
@@ -6332,8 +6195,7 @@
         "fullSugarTable",
         "fullSugarTableContainer",
         "results",
-        "searchContainer",
-        "skip-header-target"
+        "searchContainer"
       ],
       "contentHash": "67f5d397b5cb9474",
       "contentHead": "The Department’s Pre-calculations Sugar Lookup Tool. Use this tool to look up beverages to see how many calories it take"
@@ -6369,7 +6231,7 @@
       "contentHead": "Contact your elected officials. Are you concerned about environmental health issues in your neighborhood, or in our city"
     },
     "/zh/": {
-      "words": 348,
+      "words": 624,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -6386,11 +6248,11 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "bd212cd16d1f683d",
-      "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
+      "contentHash": "498aa3c2c6e53db8",
+      "contentHead": "Explore ​your ​city ​- ​through ​data​. ​The ​environment ​is ​everything ​around ​us ​- ​our ​air ​and ​water​, ​the ​c"
     },
     "/zh/data-stories/": {
-      "words": 181,
+      "words": 1321,
       "title": "Data-Stories | Environment & Health Data Portal",
       "filters": {
         "section": [
@@ -6416,14 +6278,13 @@
         "pills-tabContent",
         "pills-transportation",
         "pills-transportation-tab",
-        "results",
-        "skip-header-target"
+        "results"
       ],
-      "contentHash": "61e061f736856d33",
-      "contentHead": "Data Stories. Explainers and perspectives on important health and environment topics. Latest data stories. 为什么暴力是一个公共卫生问"
+      "contentHash": "4937d3af2abc2f71",
+      "contentHead": "Data ​Stories​. ​Explainers ​and ​perspectives ​on ​important ​health ​and ​environment ​topics​. ​Latest ​data ​stories"
     },
     "/zh/data-stories/air-quality-and-covid/": {
-      "words": 35,
+      "words": 389,
       "title": "COVID-19期间的空气质量 | Data-Stories",
       "filters": {
         "section": [
@@ -6435,14 +6296,13 @@
         "datawrapper-chart-O0SUA",
         "datawrapper-chart-O0SUA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
-      "contentHash": "fda412a1c7c44d63",
-      "contentHead": "COVID-19期间的空气质量. 纽约市民待在家里会发生什么？ COVID-19大流行颠覆了所有纽约人的生活。疫情影响了我们日常生活的许多方面，但也有一些不太明显的影响，例如对我们的环境的影响。 纽约市社区空气调查（NYC Communit"
+      "contentHash": "f69854a0ff4a34d4",
+      "contentHead": "COVID​-​19​期间​的​空气​质量​. ​纽约​市民​待​在家​里​会​发生​什么​？ ​COVID​-​19​大​流行​颠覆​了​所有​纽约​人​的​生活​。​疫情​影响​了​我们​日常​生活​的​许多​方面​，​但​也​有​一些"
     },
     "/zh/data-stories/asthma-and-poverty/": {
-      "words": 40,
+      "words": 470,
       "title": "为什么哮喘是一个社会正义问题 | Data-Stories",
       "filters": {
         "section": [
@@ -6455,14 +6315,13 @@
         "datawrapper-chart-O0SUA",
         "datawrapper-chart-O0SUA",
         "primary-content",
-        "results",
-        "skip-header-target"
+        "results"
       ],
-      "contentHash": "bcd44dd4f80ee38b",
-      "contentHead": "为什么哮喘是一个社会正义问题. 贫困以多种方式影响健康。在纽约市，哮喘病例清楚地说明了这种联系。 要想了解贫穷与哮喘之间的关系，请看下面这张纽约市贫穷率的统计图。颜色越深，身处贫困的居民就越多. 现在，将其与下面5至17岁儿童哮喘紧急就诊情"
+      "contentHash": "bb1a5f1cd4d6cf8b",
+      "contentHead": "为什么​哮喘​是​一个​社会​正义​问题​. ​贫困​以​多种​方式​影响​健康​。​在​纽约​市​，​哮喘​病​例​清楚​地​说明​了​这种​联系​。 ​要​想​了解​贫穷​与​哮喘​之间​的​关系​，​请​看​下面​这​张​纽约​市​贫"
     },
     "/zh/data-stories/housing/": {
-      "words": 163,
+      "words": 2004,
       "title": "健康、住房和历史。 | Data-Stories",
       "filters": {
         "section": [
@@ -6501,14 +6360,13 @@
         "profile-tab",
         "results",
         "rrccollapse",
-        "skip-header-target",
         "vlow"
       ],
-      "contentHash": "900a58d38270d658",
-      "contentHead": "健康、住房和历史。 为了健康，地点很重要。 什么决定您是否健康？您可能会考虑您吃了什么，您是否锻炼，您是否吸烟和您的家庭病史。 但您可能不会想到 您的住房会怎样影响您的健康 - 您可能也不会考虑会影响您选择住房的因素。 对于一个健康的住房，"
+      "contentHash": "6f73a64e2fed89ad",
+      "contentHead": "健康​、​住房​和​历史​。 ​为了​健康​，​地点​很​重要​。 ​什么​决定​您​是否​健康​？​您​可能​会​考虑​您​吃​了​什么​，​您​是否​锻炼​，​您​是否​吸烟​和​您​的​家庭​病史​。 ​但​您​可能​不会​想到 ​您"
     },
     "/zh/data-stories/redlining/": {
-      "words": 79,
+      "words": 1474,
       "title": "红线圈定的简史 | Data-Stories",
       "filters": {
         "section": [
@@ -6538,15 +6396,14 @@
         "queens",
         "queens-tab",
         "results",
-        "skip-header-target",
         "staten",
         "staten-tab"
       ],
-      "contentHash": "c0ab020f92684306",
-      "contentHead": "红线圈定的简史 危害我们健康90年的金融政策. 在公共卫生领域，我们经常引用结构性种族主义来解读我们社会的健康模式。但是，具体来说，这意味着什么？仔细看一下红线圈定的历史就可以看出这种联系。 当我们分析纽约人健康的数据时，我们经常会发现相同"
+      "contentHash": "f78fd18eabb2f29b",
+      "contentHead": "红线​圈定​的​简史 ​危害​我们​健康​90​年​的​金融​政策​. ​在​公共​卫生​领域​，​我们​经常​引用​结构​性​种族​主义​来​解读​我们​社会​的​健康​模式​。​但是​，​具体​来说​，​这​意味​着​什么​？​仔细​看"
     },
     "/zh/data-stories/violence/": {
-      "words": 199,
+      "words": 2799,
       "title": "为什么暴力是一个公共卫生问题 | Data-Stories",
       "filters": {
         "section": [
@@ -6571,11 +6428,10 @@
         "primary-content",
         "redliningCollapse",
         "results",
-        "skip-header-target",
         "violcollapse"
       ],
-      "contentHash": "bd9819a12cdb8cf6",
-      "contentHead": "为什么暴力是一个公共卫生问题 利用公共卫生预防暴力. 经历暴力会以多种方式影响人们。它不仅会导致身体伤害或死亡，而且接触它还会导致情感和心理创伤。暴力不仅会影响直接受害者，还会影响他们周围的群众。 暴力会影响人们的一生：会导致糟糕的生育率、"
+      "contentHash": "f76a9622839ac000",
+      "contentHead": "为什么​暴力​是​一个​公共​卫生​问题 ​利用​公共​卫生​预防​暴力​. ​经历​暴力​会​以​多种​方式​影响​人们​。​它​不仅​会​导致​身体​伤害​或​死亡​，​而且​接触​它​还​会​导致​情感​和​心理​创伤​。​暴力​不仅"
     }
   }
 }

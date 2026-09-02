@@ -1,853 +1,835 @@
 {{- define "main" -}}
 
 <style>
-  .vega-embed {
-    height: 100%;
-  }
+    .vega-embed {
+        height: 100%;
+    }
 
-  #chart {
-    width: 100%;
-    height: 80vh;
-  }
+    #chart {
+        width: 100%;
+        height: 80vh;
+    }
 
-  .dropdown-item.active,
-  .dropdown-item:active {
-    color: white;
-  }
+    .dropdown-item.active,
+    .dropdown-item:active {
+        color: white;
+    }
 </style>
 
-<article class="container-fluid" id="skip-header-target">
-  {{ partial "df-front-block" . }}
+<article class="container-fluid">
+    {{ partial "df-front-block" . }}
 
-  <a href="#accessibleTables" class="sr-only"
-    >Skip to accessible data tables.</a
-  >
+    <a href="#accessibleTables" class="sr-only">Skip to accessible data tables.</a>
 
-  <div class="row mt-4 mb-4">
-    <div class="col-11 mx-auto px-0">
-      <h2 class="sr-only" id="visualization">Visualization</h2>
+    <div class="row mt-4 mb-4">
+        <div class="col-11 mx-auto px-0">
+            <h2 class="sr-only" id="visualization">Visualization</h2>
 
-      <div class="row">
-        <div class="col-lg-2 col-md-4 col-sm">
-          <button class="btn btn-block btn-outline-primary type-button" id="ED">
-            ED visits
-          </button>
-        </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <button class="btn btn-block btn-outline-primary type-button" id="ED">
+                        ED visits
+                    </button>
+                </div>
 
-        <div class="col-lg-2 col-md-4 col-sm">
-          <button
-            class="btn btn-block btn-outline-primary type-button 3"
-            id="Hospitalization"
-          >
-            Hospitalizations
-          </button>
-        </div>
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <button class="btn btn-block btn-outline-primary type-button 3" id="Hospitalization">
+                        Hospitalizations
+                    </button>
+                </div>
 
-        <div class="col-lg-2 col-md-4 col-sm">
-          <button
-            class="btn btn-block btn-outline-primary active type-button"
-            id="Death"
-          >
-            Deaths
-          </button>
-        </div>
-      </div>
-
-      <div class="row mt-1">
-        <div class="col-lg-2 col-md-4 col-sm">
-          <button
-            class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4"
-            id="all"
-            data-injury="0"
-          >
-            All
-          </button>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm">
-          <button
-            class="btn btn-sm btn-block btn-outline-secondary subtype-button active"
-            id="injuryOnly"
-            data-injury="1"
-          >
-            Injury-related only
-          </button>
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-sm">
-          <div class="dropdown d-inline-block">
-            <button
-              class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0"
-              type="button"
-              data-toggle="dropdown"
-              aria-expanded="false"
-              id="buttonTitle"
-            >
-              Highlight
-            </button>
-            <div
-              class="dropdown-menu"
-              id="causeMenuHolder"
-              style="height: 40vh; overflow-y: scroll"
-            >
-
-            <!--
-              <a
-                class="dropdown-item cause-highlight"
-                href="#visualization"
-                id="showInjury"
-                data-cause="Injury"
-                >Injuries</a>
-            -->
-                
-              <div id="causeMenu"></div>
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <button class="btn btn-block btn-outline-primary active type-button" id="Death">
+                        Deaths
+                    </button>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <hr class="my-1" />
+            <div class="row mt-1">
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <button class="btn btn-sm btn-block btn-outline-secondary subtype-button px-4" id="all"
+                            data-injury="0">
+                        All
+                    </button>
+                </div>
 
-      <div class="row my-2">
-        <div class="col-md-9">
-          <!-- Chart -->
-          <div id="chart"></div>
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <button class="btn btn-sm btn-block btn-outline-secondary subtype-button active" id="injuryOnly"
+                            data-injury="1">
+                        Injury-related only
+                    </button>
+                </div>
 
-          <div class="border-top">
-            <p class="fs-xs">
-              <strong>Note:</strong> <span id="footnote"></span>Bubble size is
-              proportional to the rate for each cause.
-            </p>
-          </div>
-        </div>
+                <div class="col-lg-2 col-md-4 col-sm">
+                    <div class="dropdown d-inline-block">
+                        <button class="btn btn-sm btn-block btn-outline-info dropdown-toggle ml-0" type="button"
+                                data-toggle="dropdown" aria-expanded="false" id="buttonTitle">
+                            Highlight
+                        </button>
+                        <div class="dropdown-menu" id="causeMenuHolder" style="height: 40vh; overflow-y: scroll">
 
-        <div class="col-md-3">
-          <div id="prompt">Hover over a bubble to see data</div>
+                            <!--
+                                <a
+                                class="dropdown-item cause-highlight"
+                                href="#visualization"
+                                id="showInjury"
+                                data-cause="Injury"
+                                >Injuries</a>
+                            -->
 
-          <div id="readout" class="my-2 hide">
-            <span class="fs-sm">Age:</span><br />
-            <span class="font-weight-bold" id="agePrint">---</span>
+                            <div id="causeMenu"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <hr class="my-1" />
-            <p class="fs-sm mb-0">
-              <span id="rank">--</span> cause of <span id="intent"></span>
-              <span class="outcome">outcome</span>:
-            </p>
-            <span class="font-weight-bold my-0" id="causePrint">---</span>
-            <p class="mt-0 fs-xs" id="printDescription">---</p>
-            <hr class="my-1" />
-            <span class="fs-sm">Rate:</span><br />
-            <span class="font-weight-bold" id="ratePrint">---</span>
-            <hr class="my-1" />
-            <span class="fs-sm">Average annual number:</span><br />
-            <span class="font-weight-bold" id="countPrint">---</span>
-            <hr class="my-1" />
-            <p class="fs-xs">
-              <em><span id="flagNote" class="fs-xs">Note:</span></em>
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <div class="row fs-sm mt-4">
-        <div class="col-sm-4">
-          <div class="asidebox m-2 pxy-1 text-muted">
-            <strong>Notes on SPARCS data</strong>
-            <p>
-              New York Statewide Planning and Research Cooperative System
-              (SPARCS) (updated November 2023 (2021), October 2024 (2022-2023))
-              inpatient hospitalization and emergency department (ED) live
-              discharges. Data processed by Bureau of Environmental Surveillance
-              and Policy in March 2025 and internal analyses conducted in
-              December 2025 Statistics reported as the age-specific and total
-              crude rate per 100,000 population according to NYC DOH intercensal
-              estimates modified from US Census Bureau interpolated intercensal
-              population estimates, 2020-2023 (updated March 2025). Injury
-              intent and mechanism are classified following the National Center
-              for Health Statistics external cause of injury matrix (based on
-              the International Classification of Diseases Revision Clinical
-              Modification 10th revision (ICD-10-CM) codes).
-            </p>
-            <p>
-              These data on ED visits and hospitalizations come from the
-              Statewide Planning and Research Cooperative System (SPARCS), a
-              system that collects data on patients and treatments at hospitals.
-              These data are for NYC residents, for events that happened in NYC
-              hospitals and ED.
-            </p>
-            <p>
-              Data reflect <em>discharges:</em> a patient who visits the ED, and
-              is subsequently hospitalized, is recorded as a hospitalization
-              (discharged from the hospital), not an ED visit. A person who dies
-              is recorded as a death, not a hospitalization or ED visit.
-            </p>
-            <p>
-              Because of slight variations between datasets, results might
-              differ from those calculated using a different extract. This
-              publication was produced from raw data purchased from or provided
-              by the New York State Department of Health (NYSDOH).
-            </p>
-            <p>
-              However, the calculations, metrics, conclusions derived, and views
-              expressed herein are those of the author(s) and do not reflect the
-              conclusions or views of NYSDOH. NYSDOH, its employees, officers,
-              and agents make no representation, warranty or guarantee as to the
-              accuracy, completeness, currency, or suitability of the
-              information provided here.
-            </p>
-          </div>
-        </div>
+            <div class="row my-2">
+                <div class="col-md-9">
+                    <!-- Chart -->
+                    <div id="chart"></div>
 
-        <div class="col-sm-4">
-          <div class="asidebox m-2 pxy-2 text-muted">
-            <strong>Notes on Vital Statistics data</strong>
-            <p>
-              NYC DOH Bureau of Vital Statistics. Internal analyses conducted by
-              Bureau of Environmental Surveillance and Policy in December 2025.
-              Statistics reported as the average number of deaths per year and
-              the age-specific and total crude rate per 100,000 population
-              according to NYC DOH intercensal estimates modified from US Census
-              Bureau interpolated intercensal population estimates, 2020-2023
-              (updated March 2025). Injury intent and mechanism are classified
-              following the National Center for Health Statistics external cause
-              of injury matrix (based on the International Classification of
-              Diseases 10th Revision (ICD-10) codes).
-            </p>
-            <p>
-              Counts (numbers) of events like births and deaths may differ
-              slightly when compared to data from other public health data
-              sources, like Vital Statistics.
-            </p>
-          </div>
+                    <div class="border-top">
+                        <p class="fs-xs">
+                            <strong>Note:</strong> <span id="footnote"></span>Bubble size is
+                            proportional to the rate for each cause.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div id="prompt">Hover over a bubble to see data</div>
+
+                    <div id="readout" class="my-2 hide">
+                        <span class="fs-sm">Age:</span><br />
+                        <span class="font-weight-bold" id="agePrint">---</span>
+                        <hr class="my-1" />
+                        <p class="fs-sm mb-0">
+                            <span id="rank">--</span> cause of <span id="intent"></span>
+                            <span class="outcome">outcome</span>:
+                        </p>
+                        <span class="font-weight-bold my-0" id="causePrint">---</span>
+                        <p class="mt-0 fs-xs" id="printDescription">---</p>
+                        <hr class="my-1" />
+                        <span class="fs-sm">Rate:</span><br />
+                        <span class="font-weight-bold" id="ratePrint">---</span>
+                        <hr class="my-1" />
+                        <span class="fs-sm">Average annual number:</span><br />
+                        <span class="font-weight-bold" id="countPrint">---</span>
+                        <hr class="my-1" />
+                        <p class="fs-xs">
+                            <em><span id="flagNote" class="fs-xs">Note:</span></em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row fs-sm mt-4">
+                <div class="col-sm-4">
+                    <div class="asidebox m-2 pxy-1 text-muted">
+                        <strong>Notes on SPARCS data</strong>
+                        <p>
+                            New York Statewide Planning and Research Cooperative System
+                            (SPARCS) (updated November 2023 (2021), October 2024 (2022-2023))
+                            inpatient hospitalization and emergency department (ED) live
+                            discharges. Data processed by Bureau of Environmental Surveillance
+                            and Policy in March 2025 and internal analyses conducted in
+                            December 2025 Statistics reported as the age-specific and total
+                            crude rate per 100,000 population according to NYC DOH intercensal
+                            estimates modified from US Census Bureau interpolated intercensal
+                            population estimates, 2020-2023 (updated March 2025). Injury
+                            intent and mechanism are classified following the National Center
+                            for Health Statistics external cause of injury matrix (based on
+                            the International Classification of Diseases Revision Clinical
+                            Modification 10th revision (ICD-10-CM) codes).
+                        </p>
+                        <p>
+                            These data on ED visits and hospitalizations come from the
+                            Statewide Planning and Research Cooperative System (SPARCS), a
+                            system that collects data on patients and treatments at hospitals.
+                            These data are for NYC residents, for events that happened in NYC
+                            hospitals and ED.
+                        </p>
+                        <p>
+                            Data reflect <em>discharges:</em> a patient who visits the ED, and
+                            is subsequently hospitalized, is recorded as a hospitalization
+                            (discharged from the hospital), not an ED visit. A person who dies
+                            is recorded as a death, not a hospitalization or ED visit.
+                        </p>
+                        <p>
+                            Because of slight variations between datasets, results might
+                            differ from those calculated using a different extract. This
+                            publication was produced from raw data purchased from or provided
+                            by the New York State Department of Health (NYSDOH).
+                        </p>
+                        <p>
+                            However, the calculations, metrics, conclusions derived, and views
+                            expressed herein are those of the author(s) and do not reflect the
+                            conclusions or views of NYSDOH. NYSDOH, its employees, officers,
+                            and agents make no representation, warranty or guarantee as to the
+                            accuracy, completeness, currency, or suitability of the
+                            information provided here.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="asidebox m-2 pxy-2 text-muted">
+                        <strong>Notes on Vital Statistics data</strong>
+                        <p>
+                            NYC DOH Bureau of Vital Statistics. Internal analyses conducted by
+                            Bureau of Environmental Surveillance and Policy in December 2025.
+                            Statistics reported as the average number of deaths per year and
+                            the age-specific and total crude rate per 100,000 population
+                            according to NYC DOH intercensal estimates modified from US Census
+                            Bureau interpolated intercensal population estimates, 2020-2023
+                            (updated March 2025). Injury intent and mechanism are classified
+                            following the National Center for Health Statistics external cause
+                            of injury matrix (based on the International Classification of
+                            Diseases 10th Revision (ICD-10) codes).
+                        </p>
+                        <p>
+                            Counts (numbers) of events like births and deaths may differ
+                            slightly when compared to data from other public health data
+                            sources, like Vital Statistics.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  {{- partial "lib-vega.html" . }}
-  {{- partial "lib-d3.html" . }}
+    {{- partial "lib-vega.html" . }}
+    {{- partial "lib-d3.html" . }}
 
-  <div class="sr-only" id="accessibleTables">
-    <h2>Accessible data table</h2>
-    {{ partial "render-accessible-table.html" (dict "csvPath"
-    "data/leading-causes.csv" "containerId" "csv-table-container-1") }}
-  </div>
+    <div class="sr-only" id="accessibleTables">
+        <h2>Accessible data table</h2>
+        {{ partial "render-accessible-table.html" (dict "csvPath" "data/leading-causes.csv" "containerId" "csv-table-container-1") }}
+    </div>
+
 </article>
 
 <script>
-  // ---------------------------------------------------------- //
-  // GLOBAL VARIABLES
-  // ---------------------------------------------------------- //
-  var outcome = "Death"; // deaths, visits, or hosps
-  var intent = 1; // injury true = 1
-  var highlight = "off"; // on or off (injury highlight)
-
-  const config = [
-    {
-      id: "ED",
-      printName: "ED visits",
-      shTerm: "Self-Harm",
-      hhTerm: "Assault",
-      footnote: "",
-    },
-    {
-      id: "Hospitalization",
-      printName: "hospitalization",
-      shTerm: "Self-Harm",
-      hhTerm: "Assault",
-      footnote:
-        "Hospitalization data includes routine birth-related hospitalizations. ",
-    },
-    {
-      id: "Death",
-      printName: "death",
-      shTerm: "Suicide",
-      hhTerm: "Homicide",
-      footnote: "",
-    },
-  ];
-
-  // const injuryBtn = document.getElementById("showInjury");
-  let injuryOn = false; // record keeper
-
-  // ---------------------------------------------------------- //
-  // RETRIEVE DATA FILE
-  // ---------------------------------------------------------- //
-  let cachedCauseData = null;
-  let cachedDescriptions = null;
-
-  // Load CSV once, cache it:
-  function loadCauseData() {
-    return cachedCauseData
-      ? Promise.resolve(cachedCauseData)
-      : d3.csv("data/leading-causes.csv").then((d) => {
-          cachedCauseData = d;
-          return d;
-        });
-  }
-
-  function loadDescriptions() {
-    return cachedDescriptions
-      ? Promise.resolve(cachedDescriptions)
-      : d3.csv("data/cause-descriptions.csv").then((d) => {
-          cachedDescriptions = d;
-          return d;
-        });
-  }
-
-  // ---------------------------------------------------------- //
-  // BUTTON EVENT LISTENERS
-  // ---------------------------------------------------------- //
-
-  // Main buttons (ED, Hosp, Death)
-  document.querySelectorAll(".type-button").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      // remove active from all type buttons
-      document
-        .querySelectorAll(".type-button")
-        .forEach((b) => b.classList.remove("active"));
-
-      // add active to clicked one
-      this.classList.add("active");
-
-      // log its id
-      console.log(this.id);
-      outcome = this.id;
-
-      // update the text inside #all
-      /*
-    const allBtn = document.getElementById('all');
-    if (allBtn) {
-      allBtn.textContent = `All ${this.textContent.trim()}`;
+    
+    // ---------------------------------------------------------- //
+    // GLOBAL VARIABLES
+    // ---------------------------------------------------------- //
+    
+    var outcome = "Death"; // deaths, visits, or hosps
+    var intent = 1; // injury true = 1
+    var highlight = "off"; // on or off (injury highlight)
+    
+    const config = [
+        {
+            id: "ED",
+            printName: "ED visits",
+            shTerm: "Self-Harm",
+            hhTerm: "Assault",
+            footnote: "",
+        },
+        {
+            id: "Hospitalization",
+            printName: "hospitalization",
+            shTerm: "Self-Harm",
+            hhTerm: "Assault",
+            footnote:
+            "Hospitalization data includes routine birth-related hospitalizations.",
+        },
+        {
+            id: "Death",
+            printName: "death",
+            shTerm: "Suicide",
+            hhTerm: "Homicide",
+            footnote: "",
+        },
+    ];
+    
+    // const injuryBtn = document.getElementById("showInjury");
+    let injuryOn = false; // record keeper
+    
+    // ---------------------------------------------------------- //
+    // RETRIEVE DATA FILE
+    // ---------------------------------------------------------- //
+    let cachedCauseData = null;
+    let cachedDescriptions = null;
+    
+    // Load CSV once, cache it:
+    function loadCauseData() {
+        return cachedCauseData
+            ? Promise.resolve(cachedCauseData)
+            : d3.csv("data/leading-causes.csv").then((d) => {
+                cachedCauseData = d;
+                return d;
+            });
     }
-    */
 
-      // re draw chart and menu
-      drawChart(outcome, intent, highlight);
-      updateCauseMenu(outcome, intent);
+    function loadDescriptions() {
+        return cachedDescriptions
+            ? Promise.resolve(cachedDescriptions)
+            : d3.csv("data/cause-descriptions.csv").then((d) => {
+                cachedDescriptions = d;
+                return d;
+            });
+    }
+    
+    // ---------------------------------------------------------- //
+    // BUTTON EVENT LISTENERS
+    // ---------------------------------------------------------- //
+    
+    // Main buttons (ED, Hosp, Death)
+    document.querySelectorAll(".type-button").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            // remove active from all type buttons
+            document
+            .querySelectorAll(".type-button")
+            .forEach((b) => b.classList.remove("active"));
+            
+            // add active to clicked one
+            this.classList.add("active");
+            
+            // log its id
+            console.log(this.id);
+            outcome = this.id;
+            
+            // update the text inside #all
+            /*
+            const allBtn = document.getElementById('all');
+            if (allBtn) {
+                allBtn.textContent = `All ${this.textContent.trim()}`;
+            }
+            */
+            
+            // re draw chart and menu
+            drawChart(outcome, intent, highlight);
+            updateCauseMenu(outcome, intent);
+        });
     });
-  });
-
-  // Sub-buttons (Injury-related only)
-  document.querySelectorAll(".subtype-button").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      // remove active from all subtype buttons
-      document
-        .querySelectorAll(".subtype-button")
-        .forEach((b) => b.classList.remove("active"));
-
-      // add active to clicked one
-      this.classList.add("active");
-
-      // update global intent based on data-injury
-      intent = Number(this.dataset.injury);
-
-      // show/hide #showInjury only when "All deaths" is selected
-
-      /*
-      if (intent === 0) {
-        document.querySelector("#showInjury").classList.remove("d-none");
-      } else {
-        document.querySelector("#showInjury").classList.add("d-none");
-      }
-      */
-
-      // console.log("intent:", intent);
-
-      drawChart(outcome, intent, highlight);
-      updateCauseMenu(outcome, intent);
+    
+    // Sub-buttons (Injury-related only)
+    document.querySelectorAll(".subtype-button").forEach((btn) => {
+        btn.addEventListener("click", function () {
+            // remove active from all subtype buttons
+            document
+            .querySelectorAll(".subtype-button")
+            .forEach((b) => b.classList.remove("active"));
+            
+            // add active to clicked one
+            this.classList.add("active");
+            
+            // update global intent based on data-injury
+            intent = Number(this.dataset.injury);
+            
+            // show/hide #showInjury only when "All deaths" is selected
+            
+            /*
+            if (intent === 0) {
+                document.querySelector("#showInjury").classList.remove("d-none");
+            } else {
+                document.querySelector("#showInjury").classList.add("d-none");
+            }
+            */
+            
+            // console.log("intent:", intent);
+            
+            drawChart(outcome, intent, highlight);
+            updateCauseMenu(outcome, intent);
+        });
     });
-  });
-
-  // ---------------------------------------------------------- //
-  // WRITE CAUSE MENU
-  // ---------------------------------------------------------- //
-
-  // Generate cause menu
-  function updateCauseMenu(outcome, intent) {
-    document.getElementById("buttonTitle").innerHTML = "Highlight";
-
-    const menu = document.getElementById("causeMenu");
-    menu.innerHTML = ""; // Clear previous items
-
-    loadCauseData().then((data) => {
-      // Filter according to globals
-      const filtered = data.filter(
-        (d) => d.type === outcome && String(d.InjuryOnly) === String(intent)
-      );
-
-      // Collect unique cleaned causes
-      const uniqueCauses = new Set();
-
-      filtered.forEach((d) => {
-        if (d.cause_text) {
-          const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
-          uniqueCauses.add(cleaned.trim());
+    
+    // ---------------------------------------------------------- //
+    // WRITE CAUSE MENU
+    // ---------------------------------------------------------- //
+    
+    // Generate cause menu
+    function updateCauseMenu(outcome, intent) {
+        document.getElementById("buttonTitle").innerHTML = "Highlight";
+        
+        const menu = document.getElementById("causeMenu");
+        menu.innerHTML = ""; // Clear previous items
+        
+        loadCauseData().then((data) => {
+            // Filter according to globals
+            const filtered = data.filter(
+            (d) => d.type === outcome && String(d.InjuryOnly) === String(intent)
+            );
+            
+            // Collect unique cleaned causes
+            const uniqueCauses = new Set();
+            
+            filtered.forEach((d) => {
+                if (d.cause_text) {
+                    const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
+                    uniqueCauses.add(cleaned.trim());
+                }
+            });
+            
+            const causes = [...uniqueCauses];
+            
+            // console.log(causes)
+            
+            // show/hide #showInjury only when "All deaths" is selected
+            /*
+            if (intent === 0) {
+                document.querySelector("#showInjury").classList.remove("d-none");
+            } else {
+                document.querySelector("#showInjury").classList.add("d-none");
+            }
+            */
+            
+            // Create menu items
+            causes.forEach((cause) => {
+                const a = document.createElement("a");
+                a.className = "dropdown-item cause-highlight";
+                a.href = "#visualization";
+                a.dataset.cause = cause;
+                a.textContent = cause;
+                menu.appendChild(a);
+            });
+            
+            // Add <hr>
+            const hr = document.createElement("hr");
+            hr.className = "my-1";
+            menu.appendChild(hr);
+            
+            // Add Reset
+            const reset = document.createElement("a");
+            reset.className = "dropdown-item";
+            reset.href = "#visualization";
+            reset.dataset.cause = "reset";
+            reset.textContent = "Reset";
+            menu.appendChild(reset);
+        });
+    }
+    
+    // Event listener
+    document.addEventListener("click", function (e) {
+        const target = e.target.closest(".cause-highlight");
+        if (!target) return; // click wasn't on a cause item
+        
+        // remove .active from all
+        document
+        .querySelectorAll(".cause-highlight.active")
+        .forEach((el) => el.classList.remove("active"));
+        
+        // add .active to the clicked one
+        target.classList.add("active");
+        
+        // HIGHLIGHT THE CHART
+        console.log("highlighting", target.dataset.cause);
+        drawChart(outcome, intent, target.dataset.cause);
+    });
+    
+    // Text and reset
+    document.addEventListener("click", function (e) {
+        const target = e.target.closest(".dropdown-item");
+        
+        if (!target) return;
+        
+        const cause = target.dataset.cause;
+        const buttonTitle = document.getElementById("buttonTitle");
+        
+        // Reset clicked
+        if (cause === "reset") {
+            buttonTitle.innerText = "Highlight";
+            highlight = "off";
+            drawChart(outcome, intent, highlight);
+            return;
         }
-      });
-
-      const causes = [...uniqueCauses];
-
-      // console.log(causes)
-
-      // show/hide #showInjury only when "All deaths" is selected
-      /*
-      if (intent === 0) {
-        document.querySelector("#showInjury").classList.remove("d-none");
-      } else {
-        document.querySelector("#showInjury").classList.add("d-none");
-      }
-      */
-
-      // Create menu items
-      causes.forEach((cause) => {
-        const a = document.createElement("a");
-        a.className = "dropdown-item cause-highlight";
-        a.href = "#visualization";
-        a.dataset.cause = cause;
-        a.textContent = cause;
-        menu.appendChild(a);
-      });
-
-      // Add <hr>
-      const hr = document.createElement("hr");
-      hr.className = "my-1";
-      menu.appendChild(hr);
-
-      // Add Reset
-      const reset = document.createElement("a");
-      reset.className = "dropdown-item";
-      reset.href = "#visualization";
-      reset.dataset.cause = "reset";
-      reset.textContent = "Reset";
-      menu.appendChild(reset);
+        
+        // A cause item clicked
+        if (target.classList.contains("cause-highlight")) {
+            buttonTitle.innerText = "Showing: " + target.innerText.trim();
+        }
     });
-  }
+    
+    // ---------------------------------------------------------- //
+    // CHART DRAWING FUNCTION
+    // ---------------------------------------------------------- //
 
-  // Event listener
-  document.addEventListener("click", function (e) {
-    const target = e.target.closest(".cause-highlight");
-    if (!target) return; // click wasn't on a cause item
-
-    // remove .active from all
-    document
-      .querySelectorAll(".cause-highlight.active")
-      .forEach((el) => el.classList.remove("active"));
-
-    // add .active to the clicked one
-    target.classList.add("active");
-
-    // HIGHLIGHT THE CHART
-    console.log("highlighting", target.dataset.cause);
-    drawChart(outcome, intent, target.dataset.cause);
-  });
-
-  // Text and reset
-  document.addEventListener("click", function (e) {
-    const target = e.target.closest(".dropdown-item");
-
-    if (!target) return;
-
-    const cause = target.dataset.cause;
-    const buttonTitle = document.getElementById("buttonTitle");
-
-    // Reset clicked
-    if (cause === "reset") {
-      buttonTitle.innerText = "Highlight";
-      highlight = "off";
-      drawChart(outcome, intent, highlight);
-      return;
-    }
-
-    // A cause item clicked
-    if (target.classList.contains("cause-highlight")) {
-      buttonTitle.innerText = "Showing: " + target.innerText.trim();
-    }
-  });
-
-  // ---------------------------------------------------------- //
-  // CHART DRAWING FUNCTION
-  // ---------------------------------------------------------- //
-  function drawChart(outcome, intent, highlight) {
-    console.log("Drawing chart for", outcome);
-    console.log("Injury related?", intent);
-    console.log("Highlighting:", highlight);
-
-    intent == 1
-      ? (document.getElementById("intent").innerHTML = "injury-related")
-      : (document.getElementById("intent").innerHTML = "");
-
-    // Filter metadata config for chosen outcome
-    var metadata = config.filter(
-      (chosenOutcome) => chosenOutcome.id === outcome
-    );
-    metadata = metadata[0];
-    console.log("metadata", metadata);
-    document.getElementById("footnote").innerHTML = metadata.footnote;
-
-    // Print outcome to legend
-    document.querySelectorAll(".outcome").forEach((el) => {
-      el.innerHTML = metadata.printName;
-    });
-
-    // Set up some variables
-    var filter;
-    var color = { value: "#bcbcbc" };
-
-    // Injury filter
-    if (intent == 1) {
-      filter = "datum.InjuryOnly == 1";
-      injuryHighlight = "off";
-      color = {
-        field: "Intent",
-        type: "nominal",
-        scale: {
-          domain: [
-            "Unintentional",
-            metadata.shTerm,
-            metadata.hhTerm,
-            "Undetermined",
-          ],
-          range: ["#8ca0ca", "#65c1a4", "#fc8c61", "#eeeeee"],
-        },
-        legend: {
-          title: null,
-          orient: "bottom",
-          labelFontSize: 12,
-          labelFontWeight: 500,
-          symbolSize: 200,
-          // "labelColor": {"expr": "scale('color', datum.label)"}
-        },
-      };
-    } else {
-      filter = "datum.InjuryOnly == 0";
-    }
-
-    if (outcome === "Death" && highlight === "Injury") {
-      console.log("color highlight with injury");
-      color = {
-        field: "cause_text",
-        type: "nominal",
-        scale: {
-          domain: [
-            "Injury: Unintentional",
-            "Injury: Suicide",
-            "Injury: Homicide",
-            "Injury: Undetermined intent",
-          ],
-          range: ["#8ca0ca", "#65c1a4", "#fc8c61", "lightgray"],
-        },
-        legend: {
-          title: null,
-          orient: "bottom",
-          labelFontSize: 12,
-          labelFontWeight: 500,
-          symbolSize: 200,
-          // "labelColor": {"expr": "scale('color', datum.label)"}
-        },
-      };
-    } else {
-    }
-
-    /*
-{
-              "field": "cause_text",
-              "type": "nominal",
-              "scale": {
+    function drawChart(outcome, intent, highlight) {
+        console.log("Drawing chart for", outcome);
+        console.log("Injury related?", intent);
+        console.log("Highlighting:", highlight);
+        
+        intent == 1
+            ? (document.getElementById("intent").innerHTML = "injury-related")
+            : (document.getElementById("intent").innerHTML = "");
+        
+        // Filter metadata config for chosen outcome
+        var metadata = config.filter(
+            (chosenOutcome) => chosenOutcome.id === outcome
+        );
+        metadata = metadata[0];
+        console.log("metadata", metadata);
+        document.getElementById("footnote").innerHTML = metadata.footnote;
+        
+        // Print outcome to legend
+        document.querySelectorAll(".outcome").forEach((el) => {
+            el.innerHTML = metadata.printName;
+        });
+        
+        // Set up some variables
+        var filter;
+        var color = { value: "#bcbcbc" };
+        
+        // Injury filter
+        if (intent == 1) {
+            filter = "datum.InjuryOnly == 1";
+            injuryHighlight = "off";
+            color = {
+                field: "Intent",
+                type: "nominal",
+                scale: {
+                    domain: [
+                    "Unintentional",
+                    metadata.shTerm,
+                    metadata.hhTerm,
+                    "Undetermined",
+                    ],
+                    range: ["#8ca0ca", "#65c1a4", "#fc8c61", "#eeeeee"],
+                },
+                legend: {
+                    title: null,
+                    orient: "bottom",
+                    labelFontSize: 12,
+                    labelFontWeight: 500,
+                    symbolSize: 200,
+                    // "labelColor": {"expr": "scale('color', datum.label)"}
+                },
+            };
+        } else {
+            filter = "datum.InjuryOnly == 0";
+        }
+        
+        if (outcome === "Death" && highlight === "Injury") {
+            console.log("color highlight with injury");
+            color = {
+                field: "cause_text",
+                type: "nominal",
+                scale: {
+                    domain: [
+                    "Injury: Unintentional",
+                    "Injury: Suicide",
+                    "Injury: Homicide",
+                    "Injury: Undetermined intent",
+                    ],
+                    range: ["#8ca0ca", "#65c1a4", "#fc8c61", "lightgray"],
+                },
+                legend: {
+                    title: null,
+                    orient: "bottom",
+                    labelFontSize: 12,
+                    labelFontWeight: 500,
+                    symbolSize: 200,
+                    // "labelColor": {"expr": "scale('color', datum.label)"}
+                },
+            };
+        } else {
+        }
+        
+        /*
+        {
+            "field": "cause_text",
+            "type": "nominal",
+            "scale": {
                 "domain": [
-                  "Injury: Unintentional",
-                  "Injury: Suicide",
-                  "Injury: Homicide",
-                  "Injury: Undetermined intent"
+                "Injury: Unintentional",
+                "Injury: Suicide",
+                "Injury: Homicide",
+                "Injury: Undetermined intent"
                 ],
                 "range": [
-                  "#8ca0ca",
-                  "#65c1a4",
-                  "#fc8c61",
-                  "lightgray"
+                "#8ca0ca",
+                "#65c1a4",
+                "#fc8c61",
+                "lightgray"
                 ]
-              },
-                "legend": {
-                  "title": null,
-                  "orient": "bottom",
-                  "labelFontSize": 12,
-                  "labelFontWeight": 500,     
-                  "symbolSize": 200   
-                }
             },
-  */
-
-    // injury highlight condition
-    var strokeHighlight;
-    var strokeHighlightWidth;
-    var fieldHighlight = "datum.Intent === 'Injury'";
-
-    if (highlight === "Injury") {
-      fieldHighlight = "datum.Intent === 'Injury'";
-      strokeHighlight = "black";
-      strokeHighlightWidth = 3;
-    } else if (highlight === "off") {
-      fieldHighlight = "datum.Intent === 'Injury'";
-      strokeHighlight = "#7C7C7C";
-      strokeHighlightWidth = 1;
-    } else {
-      fieldHighlight = `datum.cause_text === '${highlight}' || datum.cause_text === 'Injury: ${highlight}'`;
-      strokeHighlight = "black";
-      strokeHighlightWidth = 3;
-    }
-
-    var spec = {
-      $schema: "https://vega.github.io/schema/vega-lite/v5.json",
-      height: "container",
-      width: "container",
-      data: {
-        url: "data/leading-causes.csv",
-      },
-      config: {
-        background: "#FFFFFF",
-        axisX: {
-          labelFontSize: 11,
-          titleFontSize: 15,
-          titleFont: "sans-serif",
-          titlePadding: 10,
-          titleFontWeight: "normal",
+            "legend": {
+                "title": null,
+                "orient": "bottom",
+                "labelFontSize": 12,
+                "labelFontWeight": 500,     
+                "symbolSize": 200   
+            }
         },
-        axisY: {
-          labelFontSize: 11,
-          titleFontSize: 0,
-          labelAngle: 0,
-          titlePadding: 10,
-          titleFont: "sans-serif",
-          tickMinStep: 1,
-          domain: false,
-          ticks: false,
-        },
-        view: { stroke: "transparent" },
-        range: { category: ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"] },
-      },
-      transform: [
-        {
-          filter: `datum.type == '${outcome}'`,
-        },
-        {
-          filter: filter,
-        },
-        {
-          calculate:
-            "(datum.agegroup == '<1' ? 1 : datum.agegroup == '1 - 4' ? 2 : datum.agegroup == '5 - 9' ? 3 : datum.agegroup == '10 - 14' ? 4 : datum.agegroup == '15 - 24' ? 5 : datum.agegroup == '25 - 34' ? 6 : datum.agegroup == '35 - 44' ? 7 : datum.agegroup == '45 - 54' ? 8 : datum.agegroup == '55 - 64' ? 9 : datum.agegroup == '65+' ? 10 : datum.agegroup == 'All ages' ? 12 : null)",
-          as: "xAxisNum",
-        },
-
-        { calculate: "datum.rate + ' per 100,000'", as: "RateWith" },
-      ],
-      mark: { type: "circle" },
-      params: [
-        {
-          name: "hover",
-          value: "#7C7C7C",
-          select: { type: "point", on: "mouseover" },
-        },
-        {
-          name: "hoverPoint",
-          select: { type: "point", on: "hover" },
-        },
-      ],
-      encoding: {
-        x: {
-          field: "agegroup",
-          type: "nominal",
-          sort: { field: "xAxisNum" },
-          axis: { ticks: true, labelAngle: 0, orient: "top", title: "" },
-        },
-        y: {
-          field: "rank_unique",
-          type: "quantitative",
-          sort: "descending",
-          scale: { domain: [0.1, 10.5] },
-          axis: { grid: false },
-        },
-        size: {
-          condition: [
-            {
-              test: "datum.flag === '^'",
-              value: 10,
-            },
-            {
-              test: "datum.rate === ''",
-              value: 10,
-            },
-          ],
-          field: "rate",
-          type: "quantitative",
-          scale: { range: [200, 10000] },
-          legend: null,
-        },
-        opacity: {
-          condition: [
-            {
-              test: "datum.flag === '^'",
-              value: 0.2,
-            },
-            {
-              test: "datum.rate === ''",
-              value: 10,
-            },
-            {
-              param: "hover",
-              empty: false,
-              value: 1,
-            },
-          ],
-          value: 0.65,
-        },
-
-        color: color,
-        stroke: {
-          condition: [
-            {
-              test: fieldHighlight,
-              value: strokeHighlight,
-            },
-          ],
-          value: "#7C7C7C",
-        },
-        strokeOpacity: { value: 1 },
-        strokeWidth: {
-          condition: [
-            {
-              test: fieldHighlight,
-              value: strokeHighlightWidth,
-            },
-          ],
-          value: 1,
-        },
-
-        /*
-    "tooltip": [
-      {"title": "Age", "field": "Age group", "type": "nominal"},
-      {"title": "Rank", "field": "Rank", "type": "quantitative"},
-      {"title": "Cause of death", "field": "Cause", "type": "nominal"},
-      {"title": "Death rate", "field": "RateWith", "type": "nominal"},
-      {
-        "title": "Average annual deaths",
-        "field": "AverageAnnualCount",
-        "type": "quantitative"
-      }
-    ]
-      */
-      },
-    };
-
-    // Print chart
-    vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
-      const view = result.view;
-
-      // Mouse over event - sending to other function
-      view.addEventListener("mouseover", (event) => {
-        showOnHover(event);
-      });
-
-      // Mouse out event
-      view.addEventListener("mouseleave", (event) => {
-        clearOnHover();
-        if (event.item && event.item.datum) {
-          console.log("Mouse left:", event.item.datum);
+        */
+        
+        // injury highlight condition
+        var strokeHighlight;
+        var strokeHighlightWidth;
+        var fieldHighlight = "datum.Intent === 'Injury'";
+        
+        if (highlight === "Injury") {
+            fieldHighlight = "datum.Intent === 'Injury'";
+            strokeHighlight = "black";
+            strokeHighlightWidth = 3;
+        } else if (highlight === "off") {
+            fieldHighlight = "datum.Intent === 'Injury'";
+            strokeHighlight = "#7C7C7C";
+            strokeHighlightWidth = 1;
+        } else {
+            fieldHighlight = `datum.cause_text === '${highlight}' || datum.cause_text === 'Injury: ${highlight}'`;
+            strokeHighlight = "black";
+            strokeHighlightWidth = 3;
         }
-      });
-    });
-  }
-
-  // ---------------------------------------------------------- //
-  // TOOLTIP FUNCTIONALITY
-  // ---------------------------------------------------------- //
-  function showOnHover(event) {
-    document.getElementById("readout").classList.remove("hide");
-    document.getElementById("prompt").classList.add("hide");
-
-    if (event.item && event.item.datum) {
-      const datum = event.item.datum;
-
-      // console.log('Hovered over:', datum);
-
-      printDescription(datum.cause_text);
-
-      var cause = datum.cause_text.replace("Injury: ", "");
-
-      // If cause is empty, show "No deaths, no cause"
-      if (datum.cause_text === "") {
-        document.getElementById("causePrint").innerText = "(None)";
-      } else {
-        document.getElementById("causePrint").innerHTML =
-          (datum.Intent ? datum.Intent + ": " : "") + cause;
-      }
-
-      document.getElementById("agePrint").innerHTML = datum["agegroup"];
-
-      document.getElementById("flagNote").innerHTML =
-        datum.flag === "*"
-          ? "Unstable rate due to high relative standard error."
-          : datum.flag === "^"
-          ? "Causes of death with very low counts are not shown."
-          : "";
-
-      document.getElementById("rank").innerHTML =
-        datum.rank_unique == 1
-          ? "Top"
-          : datum.rank_unique == 2
-          ? "2nd leading"
-          : datum.rank_unique == 3
-          ? "3rd leading"
-          : `${datum.rank_unique}th leading`;
-
-      // Format numbers with commas and no decimal places
-      const rateFormatted = Number(datum["rate"]).toLocaleString(undefined, {
-        maximumFractionDigits: 1,
-      });
-      const countFormatted = Number(
-        datum["Annual_Average_Count"]
-      ).toLocaleString(undefined, {
-        maximumFractionDigits: 0,
-      });
-
-      document.getElementById("ratePrint").innerHTML =
-        rateFormatted + " per 100,000 people";
-      document.getElementById("countPrint").innerHTML = countFormatted;
+        
+        var spec = {
+            $schema: "https://vega.github.io/schema/vega-lite/v5.json",
+            height: "container",
+            width: "container",
+            data: {
+                url: "data/leading-causes.csv",
+            },
+            config: {
+                background: "#FFFFFF",
+                axisX: {
+                    labelFontSize: 11,
+                    titleFontSize: 15,
+                    titleFont: "sans-serif",
+                    titlePadding: 10,
+                    titleFontWeight: "normal",
+                },
+                axisY: {
+                    labelFontSize: 11,
+                    titleFontSize: 0,
+                    labelAngle: 0,
+                    titlePadding: 10,
+                    titleFont: "sans-serif",
+                    tickMinStep: 1,
+                    domain: false,
+                    ticks: false,
+                },
+                view: { stroke: "transparent" },
+                range: { category: ["#ffa600", "#f5f5f5", "#40826D", "#5d5d5d"] },
+            },
+            transform: [
+            {
+                filter: `datum.type == '${outcome}'`,
+            },
+            {
+                filter: filter,
+            },
+            {
+                calculate:
+                "(datum.agegroup == '<1' ? 1 : datum.agegroup == '1 - 4' ? 2 : datum.agegroup == '5 - 9' ? 3 : datum.agegroup == '10 - 14' ? 4 : datum.agegroup == '15 - 24' ? 5 : datum.agegroup == '25 - 34' ? 6 : datum.agegroup == '35 - 44' ? 7 : datum.agegroup == '45 - 54' ? 8 : datum.agegroup == '55 - 64' ? 9 : datum.agegroup == '65+' ? 10 : datum.agegroup == 'All ages' ? 12 : null)",
+                as: "xAxisNum",
+            },
+            
+            { calculate: "datum.rate + ' per 100,000'", as: "RateWith" },
+            ],
+            mark: { type: "circle" },
+            params: [
+            {
+                name: "hover",
+                value: "#7C7C7C",
+                select: { type: "point", on: "mouseover" },
+            },
+            {
+                name: "hoverPoint",
+                select: { type: "point", on: "hover" },
+            },
+            ],
+            encoding: {
+                x: {
+                    field: "agegroup",
+                    type: "nominal",
+                    sort: { field: "xAxisNum" },
+                    axis: { ticks: true, labelAngle: 0, orient: "top", title: "" },
+                },
+                y: {
+                    field: "rank_unique",
+                    type: "quantitative",
+                    sort: "descending",
+                    scale: { domain: [0.1, 10.5] },
+                    axis: { grid: false },
+                },
+                size: {
+                    condition: [
+                    {
+                        test: "datum.flag === '^'",
+                        value: 10,
+                    },
+                    {
+                        test: "datum.rate === ''",
+                        value: 10,
+                    },
+                    ],
+                    field: "rate",
+                    type: "quantitative",
+                    scale: { range: [200, 10000] },
+                    legend: null,
+                },
+                opacity: {
+                    condition: [
+                    {
+                        test: "datum.flag === '^'",
+                        value: 0.2,
+                    },
+                    {
+                        test: "datum.rate === ''",
+                        value: 10,
+                    },
+                    {
+                        param: "hover",
+                        empty: false,
+                        value: 1,
+                    },
+                    ],
+                    value: 0.65,
+                },
+                
+                color: color,
+                stroke: {
+                    condition: [
+                    {
+                        test: fieldHighlight,
+                        value: strokeHighlight,
+                    },
+                    ],
+                    value: "#7C7C7C",
+                },
+                strokeOpacity: { value: 1 },
+                strokeWidth: {
+                    condition: [
+                    {
+                        test: fieldHighlight,
+                        value: strokeHighlightWidth,
+                    },
+                    ],
+                    value: 1,
+                },
+                
+                /*
+                "tooltip": [
+                {"title": "Age", "field": "Age group", "type": "nominal"},
+                {"title": "Rank", "field": "Rank", "type": "quantitative"},
+                {"title": "Cause of death", "field": "Cause", "type": "nominal"},
+                {"title": "Death rate", "field": "RateWith", "type": "nominal"},
+                {
+                    "title": "Average annual deaths",
+                    "field": "AverageAnnualCount",
+                    "type": "quantitative"
+                }
+                ]
+                */
+            },
+        };
+        
+        // Print chart
+        vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
+            const view = result.view;
+            
+            // Mouse over event - sending to other function
+            view.addEventListener("mouseover", (event) => {
+                showOnHover(event);
+            });
+            
+            // Mouse out event
+            view.addEventListener("mouseleave", (event) => {
+                clearOnHover();
+                if (event.item && event.item.datum) {
+                    console.log("Mouse left:", event.item.datum);
+                }
+            });
+        });
     }
-  }
+    
+    // ---------------------------------------------------------- //
+    // TOOLTIP FUNCTIONALITY
+    // ---------------------------------------------------------- //
 
-  function clearOnHover() {
-    document.getElementById("readout").classList.add("hide");
-    document.getElementById("prompt").classList.remove("hide");
-  }
+    function showOnHover(event) {
 
-  function printDescription(x) {
-    console.log(x);
-
-    loadDescriptions().then((data) => {
-      let thisCause = data.filter((datum) => datum.cause === x);
-
-      if (thisCause[0]) {
-        console.log(thisCause[0].description);
-        document.getElementById("printDescription").innerHTML =
-          thisCause[0].description;
-      } else {
-        console.log("No description found yet");
-        document.getElementById("printDescription").innerHTML =
-          "(No description yet)";
-      }
-    });
-  }
-  // ---------------------------------------------------------- //
-  // Misc helper functions
-  // ---------------------------------------------------------- //
-  function capitalizeFirstLetter(val) {
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-  }
-
-  // ---------------------------------------------------------- //
-  // Initialize chart
-  // ---------------------------------------------------------- //
-  drawChart(outcome, intent, highlight);
-  updateCauseMenu(outcome, intent);
+        document.getElementById("readout").classList.remove("hide");
+        document.getElementById("prompt").classList.add("hide");
+        
+        if (event.item && event.item.datum) {
+            const datum = event.item.datum;
+            
+            console.log('>>> Hovered over:', datum);
+            
+            printDescription(datum.cause_text);
+            
+            var cause = datum.cause_text.replace("Injury: ", "");
+            
+            // If cause is empty, show "No deaths, no cause"
+            if (datum.cause_text === "") {
+                document.getElementById("causePrint").innerText = "(None)";
+            } else {
+                document.getElementById("causePrint").innerHTML =
+                (datum.Intent ? datum.Intent + ": " : "") + cause;
+            }
+            
+            document.getElementById("agePrint").innerHTML = datum["agegroup"];
+            
+            document.getElementById("flagNote").innerHTML =
+            datum.flag === "*"
+            ? "Unstable rate due to high relative standard error."
+            : datum.flag === "^"
+            ? "Causes of death with very low counts are not shown."
+            : "";
+            
+            document.getElementById("rank").innerHTML =
+                datum.rank_unique == 1
+                    ? "Top"
+                    : datum.rank_unique == 2
+                        ? "2nd leading"
+                        : datum.rank_unique == 3
+                            ? "3rd leading"
+                            : `${datum.rank_unique}th leading`;
+            
+            // Format numbers with commas and no decimal places
+            const rateFormatted = Number(datum["rate"]).toLocaleString(undefined, {
+                maximumFractionDigits: 1,
+            });
+            const countFormatted = Number(
+            datum["Annual_Average_Count"]
+            ).toLocaleString(undefined, {
+                maximumFractionDigits: 0,
+            });
+            
+            document.getElementById("ratePrint").innerHTML =
+            rateFormatted + " per 100,000 people";
+            document.getElementById("countPrint").innerHTML = countFormatted;
+        }
+    }
+    
+    function clearOnHover() {
+        document.getElementById("readout").classList.add("hide");
+        document.getElementById("prompt").classList.remove("hide");
+    }
+    
+    function printDescription(x) {
+        console.log(x);
+        
+        loadDescriptions().then((data) => {
+            let thisCause = data.filter((datum) => datum.cause === x);
+            
+            if (thisCause[0]) {
+                console.log(thisCause[0].description);
+                document.getElementById("printDescription").innerHTML =
+                thisCause[0].description;
+            } else {
+                console.log("No description found yet");
+                document.getElementById("printDescription").innerHTML =
+                "(No description yet)";
+            }
+        });
+    }
+    // ---------------------------------------------------------- //
+    // Misc helper functions
+    // ---------------------------------------------------------- //
+    function capitalizeFirstLetter(val) {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
+    
+    // ---------------------------------------------------------- //
+    // Initialize chart
+    // ---------------------------------------------------------- //
+    drawChart(outcome, intent, highlight);
+    updateCauseMenu(outcome, intent);
 </script>
 
 <!-- Related footer -->

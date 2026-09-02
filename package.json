@@ -13,11 +13,21 @@
     },
     "scripts": {
         "lint": "eslint assets/js/data-explorer assets/js/nr-report",
+        "smoke": "node scripts/smoke-pages.mjs",
+        "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
+        "smoke:env": "node scripts/smoke-env.mjs",
+        "smoke:prod_prod": "node scripts/smoke-env.mjs prod_prod",
         "characterize:de": "node scripts/de-characterization.mjs",
         "characterize:nr": "node scripts/nr-characterization.mjs",
         "characterize:cp": "node scripts/cp-characterization.mjs",
         "characterize:pagefind": "node scripts/pagefind-characterization.mjs",
-        "smoke": "node scripts/smoke-pages.mjs",
+        "characterize:site": "node scripts/site-characterization.mjs --check --all",
+        "characterize:site:sample": "node scripts/site-characterization.mjs --check",
+        "characterize:site:env": "node scripts/characterize-env.mjs",
+        "characterize:site:prod_prod": "node scripts/characterize-env.mjs prod_prod",
+        "characterize:site:dev_stage": "node scripts/characterize-env.mjs dev_stage",
+        "characterize:site:baseline": "node scripts/site-characterization.mjs --baseline --all",
+        "characterize:site:rebaseline": "node scripts/site-characterization-rebaseline.mjs",
         "a11y:nr": "node scripts/nr-a11y-audit.mjs",
         "docs-check": "node scripts/docs-check.mjs"
     },
@@ -53,12 +63,12 @@
         "vega-lite": "^5.21.0"
     },
     "optionalDependencies": {
-        "hugo-extended": "^0.147.3"
+        "hugo-extended": "0.147.3"
     },
     "devDependencies": {
         "axe-core": "^4.13.0",
         "eslint": "^10.7.0",
         "globals": "^17.7.0",
-        "playwright": "^1.61.1"
+        "playwright": "^1.62.0"
     }
 }

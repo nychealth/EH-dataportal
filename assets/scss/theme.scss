@@ -31,8 +31,13 @@ In this file:
 
 // Basic Site Styles and Overrides
 
+// Link text is the widest surface $primary covers, and it is set against backgrounds this
+// file does not control. Worst measured normal-size case was 4.45:1, on the near-white
+// #FDFDFD of data-features/cooling-info — under AA by a hair, and invisible from the
+// palette, which only records the two near-white greens. $primary-dark is the text-only
+// variant; $primary stays the brand colour for fills, borders and map geometry.
 a {
-    color: $primary;
+    color: $primary-dark;
     &:hover {
         color: $hover;
     }

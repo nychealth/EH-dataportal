@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href={{ relURL "css/accessible-autocomplete.min.css" }}>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
     
@@ -253,5 +253,8 @@
 
 {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+{{/*  wireComboboxState() is called from aqe.js, which is where this page inits flexdatalist  */}}
+{{- partial "flexdatalist-combobox-js.html" . -}}
 
 {{- end -}}

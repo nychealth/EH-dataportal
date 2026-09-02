@@ -14,17 +14,11 @@
         gtag('config', 'G-64BWDRHRGB');
     </script>
 
-    <!-- Google will index this page -->
-    <meta name="robots" content="all" />
-
     {{/*  add GA code for dev data  */}}
 
 {{ else }}
 
     {{ warnf (print "dev environment: " hugo.Environment) }}
-
-    <!-- Google won't index this page or follow links -->
-    <meta name="robots" content="noindex, nofollow">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB98MPZ31B"></script>
@@ -38,10 +32,25 @@
 
 {{ end }}
 
-<!-- Don't index the "Resources" section --> 
-{{ if eq .Section "resources" }}
-  <meta name="robots" content="noindex">
-{{ end }}
+{{/*  Two robots metas used to ship on one response: the environment's, plus an
+      unconditional noindex for the resources section. What that page asked for
+      then depended on how a given crawler reconciles conflicting directives —
+      a rule outside this repo, which nothing here can pin. Computing the union
+      and emitting one tag says the same thing without the dependency.
+
+      content/resources/ stays noindex in production — decided 2026-08-21, after
+      the question was raised in the audit backlog. The section holds
+      health-code-reference and sugar-lookup, which are public tools; keeping
+      them out of the index is deliberate, not an oversight.  */}}
+
+{{- $robots := "all" -}}
+{{- if ne hugo.Environment "prod_prod" -}}
+    {{- $robots = "noindex, nofollow" -}}
+{{- else if eq .Section "resources" -}}
+    {{- $robots = "noindex" -}}
+{{- end }}
+
+<meta name="robots" content="{{ $robots }}">
 
 
 <!-- favicon -->
@@ -63,6 +72,11 @@
 
 <title>{{ block "title" . }}
     {{- if .Params.seo_title -}}{{ .Params.seo_title }}{{- else -}}{{ .Title }}{{ end }}
+    {{- /*  Match the suffix og:title and twitter:title already append (seo.html:12, :20),
+            so the browser tab and the search result carry the brand too. The home page is
+            excluded because its seo_title is itself a full brand statement, and the suffix
+            would read as the site name twice.  */ -}}
+    {{- if not .IsHome }} &ndash; {{ .Site.Title }}{{ end -}}
 {{- end -}}</title>
 
 {{ if .Page.IsHome -}}
@@ -88,6 +102,8 @@
 {{- end }}
 
 {{ partial "seo" . }}
+
+{{ partial "structured-data" . }}
 
 {{- if .Params.mapLib }}
     <!-- nyc-lib css (for maps in the core framework)-->

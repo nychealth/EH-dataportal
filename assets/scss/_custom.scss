@@ -225,10 +225,12 @@ $color-data-explorer: #0A408A;
   border-left: 10px solid #008939;
 }
 
+/* $primary measures 4.24:1 on this #EFFAF4 fill at 16px/700, which is normal-size text for
+   WCAG. $primary-dark clears it — the same pairing already recorded at $primary-dark. */
 .neighborhood-list-button,
 .neighborhood-list-button:hover {
   background-color: #EFFAF4 !important;
-  color: $primary !important;
+  color: $primary-dark !important;
 }
 
 .neighborhood-list-button .plus,
