@@ -1,203 +1,199 @@
-let mapComponent; // reference to <arcgis-map> element
-let mapView; // reference to the underlying MapView
+// ─────────────────────────────────────────────────────────────────
+// DOM REFERENCES
+// Top-level references shared across functions.
+// mapEl is required by both the map setup and the GT bridge below.
+// mapComponent and mapView are populated once the ArcGIS view fires.
+// ─────────────────────────────────────────────────────────────────
+const mapEl = document.getElementById('arcmap');
+let mapComponent;
+let mapView;
 
-//**********Tab Functions**********
 
+// ─────────────────────────────────────────────────────────────────
+// TAB SWITCHING
+// Hides all tab panels and buttons, then activates the chosen one.
+// If the map tab is selected for the first time, initialises the
+// ArcGIS map component.
+// ─────────────────────────────────────────────────────────────────
 async function openTab(evt, tabName) {
-    // Hide all tab content
-    const tabcontent = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-    }
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-    // Remove active highlight from all tab buttons
-    const tablinks = document.getElementsByClassName("tab-button");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-
-    // Show the chosen tab
     const tabElement = document.getElementById(tabName);
     if (tabElement) {
-        tabElement.classList.add("active");
+        tabElement.classList.add('active');
     } else {
         console.error(`Tab element with id "${tabName}" not found`);
         return;
     }
 
-    evt.currentTarget.classList.add("active");
+    evt.currentTarget.classList.add('active');
 
-    // Initialize map component if needed
-    if (tabName === "mapView" && !mapView) {
+    if (tabName === 'mapView' && !mapView) {
         await initializeMapComponent();
     }
 }
 
-//**********ArcGIS Map Component Setup**********
 
+// ─────────────────────────────────────────────────────────────────
+// MAP INITIALISATION
+// Waits for the <arcgis-map> web component to signal its view is
+// ready, then sets up all map features in sequence: search widget,
+// community district zoom/filter, popup link interception, and
+// property history tab management.
+// setupPopupLinkInterception() must run LAST — it attaches to the
+// map container which must exist before it can be referenced.
+// ─────────────────────────────────────────────────────────────────
 async function initializeMapComponent() {
-    // Get reference to the <arcgis-map> component
-    mapComponent = document.getElementById("arcmap");
-    
+    mapComponent = mapEl;
+
     if (!mapComponent) {
-        console.error("arcgis-map element not found");
+        console.error('arcgis-map element not found');
         return;
     }
 
-    // Wait for the view to be ready
     return new Promise((resolve) => {
-        mapComponent.addEventListener("arcgisViewReadyChange", async (event) => {
-            // Get the underlying MapView from the component
+        mapComponent.addEventListener('arcgisViewReadyChange', async () => {
             mapView = mapComponent.view;
             const webmap = mapView.map;
-            
-            console.log("MapView ready from component:", mapView);
 
-            // ========== ADD THIS DIAGNOSTIC CODE ==========
-            // Debug: Watch for map clicks
-            mapView.on("click", (event) => {
-                console.log("🖱️ Map clicked at:", event.mapPoint);
+            // Remove double-click zoom delay so popups open on single click
+            // without lag. ArcGIS waits after every click to detect a
+            // double-click — this intercepts it and handles zoom manually,
+            // eliminating that wait for normal single-click popup behaviour.
+            mapView.on('double-click', (e) => {
+                e.stopPropagation();
+                mapView.goTo({ zoom: mapView.zoom + 1, center: e.mapPoint });
             });
 
-            // Debug: Watch for popup state changes
-            const [reactiveUtils] = await $arcgis.import([
-                "@arcgis/core/core/reactiveUtils.js"
-            ]);
+            // GT bridge — watch shadow DOM for popup content changes
+            const sr = mapEl.shadowRoot;
+            if (sr) {
+                let translateTimer = null;
+                let lastContent = '';
 
-            reactiveUtils.watch(
-                () => mapView.popup?.visible,
-                (visible) => {
-                    console.log("👁️ Popup visible:", visible);
-                }
-            );
+                const popupObserver = new MutationObserver(() => {
+                    const container = sr.querySelector('.esri-feature__main-container');
+                    if (!container) return;
+                    const currentContent = container.textContent;
+                    if (currentContent === lastContent) return;
+                    lastContent = currentContent;
+                    clearTimeout(translateTimer);
+                    translateTimer = setTimeout(translateOpenPopup, 400);
+                });
 
-            reactiveUtils.watch(
-                () => mapView.popup?.selectedFeature,
-                (feature) => {
-                    if (feature) {
-                        console.log("📍 Feature selected:", feature.attributes);
-                    } else {
-                        console.log("📍 No feature selected");
-                    }
-                }
-            );
+                popupObserver.observe(sr, {
+                    childList: true,
+                    subtree: true,
+                    characterData: true,
+                });
+            }
 
-            reactiveUtils.watch(
-                () => mapView.popup?.content,
-                (content) => {
-                    console.log("📄 Popup content changed:", content);
-                }
-            );
-            // ========== END DIAGNOSTIC CODE ==========
-
-            // Initialize all map features in order
             await setupSearchWidget(webmap);
             await setupCommunityDistrictZoom(mapView, webmap);
-            
-            // IMPORTANT: Set up popup interception LAST, after all other features
+
+            // Must run last — depends on mapView.container being available
             setupPopupLinkInterception();
-            
-            // Set up Property History tab state management
+
             await setupPropertyHistoryTab();
-            
+
             resolve();
         });
     });
 }
-//**********Search Widget Setup**********
 
+
+// ─────────────────────────────────────────────────────────────────
+// SEARCH WIDGET
+// Adds the NYC Health Department Inspections layer as a search
+// source so users can search by BBL in addition to address.
+// The existing geocoder source is preserved alongside it.
+// ─────────────────────────────────────────────────────────────────
 async function setupSearchWidget(webmap) {
-    const searchEl = document.getElementById("arcsearch");
-    
-    // Find the inspection layer
+    const searchEl = document.getElementById('arcsearch');
+
     const inspectionLayer = webmap.allLayers.find(
-        l => l.title === "NYC Health Department Inspections"
+        l => l.title === 'NYC Health Department Inspections'
     );
 
     if (!inspectionLayer) {
-        console.warn("Inspection layer not found");
+        console.warn('[Search] Inspection layer not found in webmap');
         return;
     }
 
-    // Add layer as search source
     searchEl.sources = [
-        ...searchEl.sources, // keep existing geocoder
+        ...searchEl.sources,
         {
             layer: inspectionLayer,
-            searchFields: ["BBL"],
-            displayField: "BBL",
+            searchFields: ['BBL'],
+            displayField: 'BBL',
             exactMatch: false,
-            outFields: ["*"],
-            name: "Inspection BBL",
-            placeholder: "Search BBL",
+            outFields: ['*'],
+            name: 'Inspection BBL',
+            placeholder: 'Search BBL',
             maxResults: 6,
-            maxSuggestions: 6
+            maxSuggestions: 6,
         }
     ];
-    
-    console.log("Search widget configured");
 }
 
-//**********Community District Zoom & Filter**********
 
+// ─────────────────────────────────────────────────────────────────
+// COMMUNITY DISTRICT ZOOM & FILTER
+// Adds a dropdown to the map UI listing all community districts.
+// Selecting one filters both the Inspections and Action layers to
+// that district and zooms the map to its centroid.
+// Selecting "All" clears both filters.
+// ─────────────────────────────────────────────────────────────────
 async function setupCommunityDistrictZoom(view, webmap) {
-    // Find layers
-    const CDLayer = webmap.allLayers.find(l => l.title === "Community Districts");
-    const inspectionLayer = webmap.allLayers.find(l => l.title === "NYC Health Department Inspections");
-    const actionLayer = webmap.allLayers.find(l => l.title === "NYC Health Department Action");
+    const CDLayer = webmap.allLayers.find(l => l.title === 'Community Districts');
+    const inspectionLayer = webmap.allLayers.find(l => l.title === 'NYC Health Department Inspections');
+    const actionLayer = webmap.allLayers.find(l => l.title === 'NYC Health Department Action');
 
     if (!CDLayer) {
-        console.warn("CD layer not found in webmap");
+        console.warn('[CD Zoom] Community Districts layer not found in webmap');
         return;
     }
 
-    // Create dropdown
-    const selectDiv = document.createElement("div");
-    selectDiv.style.backgroundColor = "white";
-    selectDiv.style.padding = "5px";
+    // Build and inject dropdown into the map UI
+    const selectDiv = document.createElement('div');
+    selectDiv.style.backgroundColor = 'white';
+    selectDiv.style.padding = '5px';
     selectDiv.innerHTML = `<select id="CDSelect"><option value="">Community Board (All)</option></select>`;
-    view.ui.add(selectDiv, "bottom-left");
+    view.ui.add(selectDiv, 'bottom-left');
 
-    // Query community districts
+    // Populate dropdown from layer query
     const query = CDLayer.createQuery();
-    query.outFields = ["BoroLabel"];
+    query.outFields = ['BoroLabel'];
     query.returnGeometry = false;
-    query.where = "1=1";
-    query.orderByFields = ["BoroLabel"];
+    query.where = '1=1';
+    query.orderByFields = ['BoroLabel'];
 
     const results = await CDLayer.queryFeatures(query);
-    const select = selectDiv.querySelector("#CDSelect");
-    
+    const select = selectDiv.querySelector('#CDSelect');
+
     results.features.forEach(feature => {
-        const CD = feature.attributes.BoroLabel;
-        const opt = document.createElement("option");
-        opt.value = CD;
-        opt.textContent = CD;
+        const opt = document.createElement('option');
+        opt.value = feature.attributes.BoroLabel;
+        opt.textContent = feature.attributes.BoroLabel;
         select.appendChild(opt);
     });
 
-    // Handle dropdown change
-    select.addEventListener("change", async () => {
+    // Filter layers and zoom on selection
+    select.addEventListener('change', async () => {
         const selectedCD = select.value;
 
-        // Clear filters if nothing selected
         if (!selectedCD) {
+            // Reset — clear all definition expressions
             if (inspectionLayer) inspectionLayer.definitionExpression = null;
             if (actionLayer) actionLayer.definitionExpression = null;
             return;
         }
 
-        // Apply filters
-        if (inspectionLayer) {
-            inspectionLayer.definitionExpression = `NewCD = '${selectedCD}'`;
-            console.log(`Filtering inspections to CD: ${selectedCD}`);
-        }
-        if (actionLayer) {
-            actionLayer.definitionExpression = `NewCD = '${selectedCD}'`;
-            console.log(`Filtering actions to CD: ${selectedCD}`);
-        }
+        if (inspectionLayer) inspectionLayer.definitionExpression = `NewCD = '${selectedCD}'`;
+        if (actionLayer) actionLayer.definitionExpression = `NewCD = '${selectedCD}'`;
 
-        // Zoom to selected district
+        // Zoom map to selected district centroid
         const zoomQuery = CDLayer.createQuery();
         zoomQuery.where = `BoroLabel = '${selectedCD}'`;
         zoomQuery.returnGeometry = true;
@@ -206,222 +202,386 @@ async function setupCommunityDistrictZoom(view, webmap) {
 
         if (CDResult.features.length > 0) {
             const geometry = CDResult.features[0].geometry;
-            let centerPoint;
-            
-            if (geometry.extent) centerPoint = geometry.extent.center;
-            else if (geometry.centroid) centerPoint = geometry.centroid;
-            
+            const centerPoint = geometry.extent?.center ?? geometry.centroid;
+
             if (centerPoint) {
-                await view.goTo({
-                    target: centerPoint,
-                    scale: 10000
-                });
+                await view.goTo({ target: centerPoint, scale: 10000 });
             }
         }
     });
-    
-    console.log("Community District zoom configured");
 }
 
-//**********Popup Link Interception**********
 
+// ─────────────────────────────────────────────────────────────────
+// POPUP LINK INTERCEPTION
+// Listens for clicks on links inside the popup. Attached to the
+// stable map container rather than popup.container, which gets
+// rebuilt every time a new feature is selected.
+//
+// Handles two cases:
+// 1. Google Translate may rewrite href values through its proxy
+//    (translate.google...) — we unwrap the original URL first.
+// 2. If the link points to the property history page (tabulator.html),
+//    we intercept it, prevent the default navigation, and instead
+//    open the Property History tab inline with the correct BBL.
+//
+// Runs in capture phase so it fires before target="_blank" opens
+// a new window.
+// ─────────────────────────────────────────────────────────────────
 function setupPopupLinkInterception() {
-    // Attach to the stable map container, NOT popup.container which gets rebuilt
-    // on every new feature selection when popup is already open.
     const mapContainer = mapView.container;
 
     if (!mapContainer) {
-        console.error("mapView.container not found");
+        console.error('[Popup Links] mapView.container not found');
         return;
     }
 
-    console.log("Attaching popup link listener to stable map container");
-
-    mapContainer.addEventListener("click", function (evt) {
-        // Only act if the popup is visible
+    mapContainer.addEventListener('click', function (evt) {
+        // Only act if the popup is currently visible
         if (!mapView.popup?.visible) return;
 
         // Walk up the DOM to find an <a> tag
-        const link = evt.target.closest("a");
+        const link = evt.target.closest('a');
         if (!link) return;
 
-        let href = link.getAttribute("href"); // Use getAttribute to get the raw value
+        const href = link.getAttribute('href');
         if (!href) return;
 
         let targetUrl = href;
 
         try {
-            // Resolve relative URLs and handle Google Translate proxy
+            // Resolve relative URLs and unwrap Google Translate proxy URLs
             const urlObj = new URL(href, window.location.href);
 
-            if (urlObj.hostname.includes("translate.google")) {
-                const originalUrl = urlObj.searchParams.get("u");
+            if (urlObj.hostname.includes('translate.google')) {
+                const originalUrl = urlObj.searchParams.get('u');
                 if (originalUrl) targetUrl = originalUrl;
             } else {
                 targetUrl = urlObj.href;
             }
         } catch (err) {
-            console.warn("Invalid link href:", href);
+            console.warn('[Popup Links] Invalid link href:', href);
             return;
         }
 
-        console.log("Popup link clicked:", targetUrl);
-
-        // Check if it's a property history link
-        if (targetUrl.includes("tabulator.html")) {
+        // Intercept property history links and open inline
+        if (targetUrl.includes('tabulator.html')) {
             evt.preventDefault();
             evt.stopPropagation();
 
             const urlParams = new URL(targetUrl).searchParams;
-            const bbl = urlParams.get("bbl");
-            const address = urlParams.get("addr");
-
-            console.log("Opening property history for BBL:", bbl, "Address:", address);
+            const bbl = urlParams.get('bbl');
+            const address = urlParams.get('addr');
 
             setPropertyHistoryTabEnabled(true);
             viewPropertyHistory(bbl, address);
         }
 
-    }, true); // Capture phase — fires before the browser processes target="_blank"
+    }, true); // Capture phase
 }
 
-//**********Property History Tab Management**********
 
+// ─────────────────────────────────────────────────────────────────
+// PROPERTY HISTORY TAB MANAGEMENT
+// The Property History tab is disabled on page load and only
+// enabled when a popup link triggers viewPropertyHistory().
+// It is disabled again when the popup is closed.
+// Uses reactiveUtils (SDK 4.29+) to watch popup visibility.
+// ─────────────────────────────────────────────────────────────────
 async function setupPropertyHistoryTab() {
-    // Grey out tab on initial load
     setPropertyHistoryTabEnabled(false);
 
-    // Import reactiveUtils to watch popup visibility
     const [reactiveUtils] = await $arcgis.import([
-        "@arcgis/core/core/reactiveUtils.js"
+        '@arcgis/core/core/reactiveUtils.js'
     ]);
 
-    // Watch popup visibility - disable tab when popup closes
     reactiveUtils.watch(
         () => mapView.popup.visible,
         (visible) => {
-            if (!visible) {
-                setPropertyHistoryTabEnabled(false);
-            }
+            if (!visible) setPropertyHistoryTabEnabled(false);
         }
     );
 }
 
+// Enables or disables the Property History tab button.
 function setPropertyHistoryTabEnabled(enabled) {
-    const tabButton = Array.from(document.getElementsByClassName("tab-button"))
-        .find(btn => btn.textContent.trim() === "Property History");
+    const tabButton = Array.from(document.getElementsByClassName('tab-btn'))
+        .find(btn => btn.textContent.trim() === 'Property History');
     if (!tabButton) return;
 
     if (enabled) {
-        tabButton.classList.remove("disabled");
-        tabButton.removeAttribute("disabled");
+        tabButton.classList.remove('disabled');
+        tabButton.removeAttribute('disabled');
     } else {
-        tabButton.classList.add("disabled");
-        tabButton.setAttribute("disabled", true);
+        tabButton.classList.add('disabled');
+        tabButton.setAttribute('disabled', true);
     }
 }
 
+
+// ─────────────────────────────────────────────────────────────────
+// VIEW PROPERTY HISTORY
+// Populates the Property History tab header with the selected
+// property's address and BBL, switches to that tab, then fetches
+// inspection records from NYC Open Data.
+// Called by setupPopupLinkInterception() when a history link is
+// clicked in the popup.
+// ─────────────────────────────────────────────────────────────────
 function viewPropertyHistory(bbl, address) {
-    // Populate Property History section
-    document.getElementById("propertyBBL").textContent = bbl || "[no BBL]";
-    document.getElementById("propertyAddress").textContent = address || "[no address]";
-
-    // Switch to Property History tab
-    openTabFromMap("propHis");
-
-    // Fetch and display inspection history
+    document.getElementById('propertyBBL').textContent = bbl || '[no BBL]';
+    document.getElementById('propertyAddress').textContent = address || '[no address]';
+    openTabFromMap('propHis');
     fetchPropertyHistory(bbl);
 }
 
-//**********Helper: Switch to Property History Tab**********
 
+// ─────────────────────────────────────────────────────────────────
+// TAB SWITCH FROM MAP
+// Variant of openTab() for programmatic tab switches (e.g. from a
+// popup link) rather than from a user button click. Activates the
+// target panel and highlights the matching tab button.
+// ─────────────────────────────────────────────────────────────────
 function openTabFromMap(tabName) {
-    const tabcontent = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
-    }
-    
-    const tablinks = document.getElementsByClassName("tab-button");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-    
-    const tabElement = document.getElementById(tabName);
-    if (tabElement) tabElement.classList.add("active");
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-    // Highlight the Property History tab button
-    const propHisButton = Array.from(tablinks).find(
-        (btn) => btn.textContent.trim() === "Property History"
-    );
-    if (propHisButton) propHisButton.classList.add("active");
+    const tabElement = document.getElementById(tabName);
+    if (tabElement) tabElement.classList.add('active');
+
+    const tabButton = Array.from(document.getElementsByClassName('tab-btn'))
+        .find(btn => btn.textContent.trim() === 'Property History');
+    if (tabButton) tabButton.classList.add('active');
 }
 
-//**********Fetch Property History from NYC Open Data**********
 
+// ─────────────────────────────────────────────────────────────────
+// FETCH PROPERTY HISTORY
+// Queries the NYC Open Data rat inspection API for all records
+// for the given BBL in the last 5 years. Results are sorted
+// newest-first and rendered as an HTML table in the Property
+// History tab panel.
+// ─────────────────────────────────────────────────────────────────
 async function fetchPropertyHistory(bbl) {
-    const loading = document.getElementById("loadingIndicator");
-    const historyDiv = document.getElementById("property-history");
+    const loading = document.getElementById('loadingIndicator');
+    const historyDiv = document.getElementById('property-history');
 
-    loading.style.display = "block";
-    historyDiv.innerHTML = "";
+    loading.style.display = 'block';
+    historyDiv.innerHTML = '';
 
     try {
-        // Calculate cutoff date (5 years ago from today)
         const fiveYearsAgo = new Date();
         fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
-        const cutoffDate = fiveYearsAgo.toISOString().split("T")[0];
+        const cutoffDate = fiveYearsAgo.toISOString().split('T')[0];
 
-        const url = `https://data.cityofnewyork.us/resource/p937-wjvj.json?$select=inspection_date,inspection_type,result&$where=bbl=${bbl} AND inspection_date >= '${cutoffDate}'`;
-        console.log("Fetching property history from:", url);
+        const url = `https://data.cityofnewyork.us/resource/p937-wjvj.json`
+            + `?$select=inspection_date,inspection_type,result,letter_type,observations`
+            + `&$where=bbl=${bbl} AND inspection_date >= '${cutoffDate}'`;
 
         const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch property history");
+        if (!response.ok) throw new Error('Failed to fetch property history');
 
         const data = await response.json();
 
         if (!data || data.length === 0) {
-            historyDiv.innerHTML = "<p>No inspection records found.</p>";
+            historyDiv.innerHTML = '<p>No inspection records found.</p>';
             return;
         }
 
-        // Sort by date descending
+        // Sort newest first
         data.sort((a, b) => new Date(b.inspection_date) - new Date(a.inspection_date));
 
-        // Build table
+        // Build results table
         let table = `
-            <table class="table table-striped" style="width:100%; border-collapse: collapse;">
-                <thead>
-                    <tr style="background:#f4f4f4; text-align:left;">
-                        <th style="padding:8px; border-bottom:1px solid #ccc;">Inspection Date</th>
-                        <th style="padding:8px; border-bottom:1px solid #ccc;">Inspection Type</th>
-                        <th style="padding:8px; border-bottom:1px solid #ccc;">Result</th>
-                    </tr>
-                </thead>
-                <tbody>`;
+            <div class="scroll-hint">
+                <span>&larr; Swipe left/right to view all columns &rarr;</span>
+            </div>    
+            <div class="table-container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Inspection Date</th>
+                            <th>Inspection Type</th>
+                            <th>Result</th>
+                            <th>Letter Type</th>
+                            <th>Observations</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
 
-        data.forEach((item) => {
-            table += `<tr>
-                <td style="padding:8px; border-bottom:1px solid #eee;">${item.inspection_date ? new Date(item.inspection_date).toLocaleDateString() : ""}</td>
-                <td style="padding:8px; border-bottom:1px solid #eee;">${item.inspection_type || ""}</td>
-                <td style="padding:8px; border-bottom:1px solid #eee;">${item.result || ""}</td>
-            </tr>`;
-        });
+                    data.forEach(item => {
+                        const date = item.inspection_date
+                            ? new Date(item.inspection_date).toLocaleDateString()
+                            : '';
+                        table += `<tr>
+                            <td>${date}</td>
+                            <td>${item.inspection_type || ''}</td>
+                            <td>${item.result || ''}</td>
+                            <td>${item.letter_type || ''}</td>
+                            <td>${item.observations || ''}</td>
+                        </tr>`;
+                    });
+                    
+                    table += '</tbody></table></div>';
+                    historyDiv.innerHTML = table;
 
-        table += "</tbody></table>";
-        historyDiv.innerHTML = table;
     } catch (err) {
-        console.error(err);
-        historyDiv.innerHTML = "<p>Error loading inspection history.</p>";
+        console.error('[Property History] Fetch failed:', err);
+        historyDiv.innerHTML = '<p>Error loading inspection history.</p>';
     } finally {
-        loading.style.display = "none";
+        loading.style.display = 'none';
     }
 }
 
-//**********Initialize on Page Load - SINGLE ENTRY POINT**********
 
-document.addEventListener("DOMContentLoaded", async function () {
-    const mapTab = document.getElementById("mapView");
-    if (mapTab && mapTab.classList.contains("active")) {
+// ─────────────────────────────────────────────────────────────────
+// PAGE LOAD ENTRY POINT
+// Initialises the map component on DOMContentLoaded if the map
+// tab is the active panel on page load (which it is by default).
+// ─────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+    const mapTab = document.getElementById('mapView');
+    if (mapTab?.classList.contains('active')) {
         await initializeMapComponent();
     }
 });
+
+
+// ═══════════════════════════════════════════════════════════════════
+// GOOGLE TRANSLATE POPUP BRIDGE
+//
+// BACKGROUND
+// Google Translate works by scanning the page DOM when a language is
+// selected and replacing text nodes with translated versions. It has
+// two limitations relevant here:
+//   1. It does not re-translate content injected into the DOM after
+//      the initial translation pass.
+//   2. It cannot see inside Shadow DOM — the internal tree of web
+//      components like <arcgis-map> is completely invisible to it.
+//
+// APPROACH
+// A small set of hidden <div> elements in the normal page HTML hold
+// every static string that appears in the popup. Google Translate
+// can see and translate those divs normally. When a popup opens,
+// this code compares the original (untranslated) divs against the
+// translated ones, builds a substitution map, and applies those
+// translations directly into the popup content inside the shadow DOM.
+//
+// Google Translate does all the translation work. This code ferries
+// the results across the Shadow DOM boundary.
+//
+// To add new translatable strings, update translate-keys.js only.
+// See google-translate-shadow-dom-bridge.md for full documentation.
+// ═══════════════════════════════════════════════════════════════════
+
+
+// ── 1. Load phrases ───────────────────────────────────────────────
+// Reads all key/text pairs from one of the hidden div groups
+// (#popup-original or #popup-translated) into a plain object.
+function loadTranslatePhrases(container) {
+    const result = {};
+    if (!container) return result;
+    container.querySelectorAll('[key]').forEach(el => {
+        result[el.getAttribute('key')] = el.textContent;
+    });
+    return result;
+}
+
+
+// ── 2. Build substitution map ─────────────────────────────────────
+// Compares the original and translated div groups. Returns only the
+// strings that Google Translate actually changed, as a plain object
+// mapping original text → translated text.
+// Sorted longest-first to prevent substring collisions — for example
+// "Failed for Rat Activity" must not be substituted before
+// "Failed for Rat Activity and Other Reason".
+function buildSubstitutionMap() {
+    const original = loadTranslatePhrases(document.getElementById('popup-original'));
+    const translated = loadTranslatePhrases(document.getElementById('popup-translated'));
+    const map = {};
+
+    Object.keys(original).forEach(key => {
+        const orig = original[key]?.trim();
+        const trans = translated[key]?.trim();
+        if (orig && trans && orig !== trans) {
+            map[orig] = trans;
+        }
+    });
+
+    // Longest strings first — prevents partial substring replacement
+    return Object.fromEntries(
+        Object.entries(map).sort((a, b) => b[0].length - a[0].length)
+    );
+}
+
+
+// ── 3. Apply substitutions ────────────────────────────────────────
+// Applies the substitution map to a single DOM text node in-place.
+// Only modifies the node if at least one match is found.
+function applySubstitutions(textNode, subMap) {
+    let text = textNode.textContent;
+    let changed = false;
+    Object.entries(subMap).forEach(([orig, trans]) => {
+        if (text.includes(orig)) {
+            text = text.replaceAll(orig, trans);
+            changed = true;
+        }
+    });
+    if (changed) textNode.textContent = text;
+}
+
+
+// ── 4. Translate open popup ───────────────────────────────────────
+// Queries the ArcGIS shadow root for the popup heading and content
+// containers, walks all text nodes inside them, and applies the
+// substitution map. Exits silently if the page is in English
+// (empty substitution map) or if no popup is currently open.
+// Selectors are correct for ArcGIS Maps SDK 4.29 and above.
+function translateOpenPopup() {
+    const shadowRoot = mapEl?.shadowRoot;
+    if (!shadowRoot) return;
+
+    const subMap = buildSubstitutionMap();
+    if (Object.keys(subMap).length === 0) return; // English — nothing to do
+
+    const containers = [
+        shadowRoot.querySelector('.esri-features__heading'),
+        shadowRoot.querySelector('.esri-feature__main-container'),
+    ].filter(Boolean);
+
+    if (!containers.length) return;
+
+    containers.forEach(container => {
+        const walker = document.createTreeWalker(
+            container,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: n => n.textContent.trim()
+                    ? NodeFilter.FILTER_ACCEPT
+                    : NodeFilter.FILTER_REJECT
+            }
+        );
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(node => applySubstitutions(node, subMap));
+    });
+}
+
+
+
+// ── 5. Re-translate on language change ───────────────────────────
+// Watches the #popup-translated div for mutations caused by Google
+// Translate updating the hidden divs when the user switches language.
+// If a popup is already open at that moment, re-runs translation
+// immediately so the open popup updates without needing to be closed
+// and reopened.
+const translatedContainer = document.getElementById('popup-translated');
+if (translatedContainer) {
+    const langObserver = new MutationObserver(() => {
+        if (mapEl?.view?.popup?.visible) {
+            setTimeout(translateOpenPopup, 200);
+        }
+    });
+    langObserver.observe(translatedContainer, {
+        childList: true, characterData: true, subtree: true
+    });
+}

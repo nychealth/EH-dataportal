@@ -13,7 +13,7 @@
 	<script type="module" src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"></script>
 
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="./css/standardDOHMH.css">
+	<link rel="stylesheet" href="./css/Global.css">
 	<link rel="stylesheet" href="./css/ratCSS.css">
 
 	<!-- ArcGIS Map Components -->
@@ -23,115 +23,118 @@
 	<script src="https://js.arcgis.com/4.34/"></script>
 
 	<!-- Custom JS -->
-	<script src="./JS/ratJS.js"></script>
+	<!-- <script src="./JS/ratJS.js"></script> -->
 
 </head>
 
 <body>
-	<!-- START Black Site Header -->
-	<div class="site-header">
-		<div class="site-header__top">
-			<div class="site-header__inner">
 
-				<!-- Left: NYC logo + Health text -->
-				<div class="site-header__left">
-					<a href="https://www.nyc.gov" aria-label="NYC.gov Home">
-						<img src="./img/nyc_white.png" alt="NYC" class="site-header__logo NYCimg">
-					</a>
-					<img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
-					<span aria-label="Health" class="site-header__title">Health</span>
+
+	<!-- ══════════════════════════════════════════════════════════
+       START AGENCY HEADER  (black bar and white banner)
+  ══════════════════════════════════════════════════════════ -->
+
+	<header role="banner">
+
+		<!-- ══════════*** START BLACK BAR ***══════════ -->
+		<div>
+			<div class="site-header">
+				<div class="site-header__top">
+					<div class="site-header__inner">
+
+						<div class="site-header__left">
+							<a href="https://www.nyc.gov" aria-label="NYC.gov Home">
+								<img src="./img/nyc_white.png" alt="NYC" class="site-header__logo">
+							</a>
+							<img src="./img/upper-header-divider.gif" alt="Divider">
+							<span aria-label="Health" class="site-header__title">Health</span>
+						</div>
+
+						<div class="site-header__right">
+							<span class="site-header__service-link">
+								<a href="https://www.nyc.gov/311">311</a>
+							</span>
+							<img src="./img/upper-header-divider.gif" alt="Divider">
+							<span class="site-header__search">
+								<a href="https://www.nyc.gov/home/search/index.page">
+									Search all NYC.gov websites
+								</a>
+							</span>
+						</div>
+
+					</div>
 				</div>
+			</div>
+		</div>
+		<!-- ══════════*** END BLACK BAR ***══════════ -->
 
-				<!-- Right: 311 + Search links -->
-				<div class="site-header__right">
-					<span class="site-header__service-link">
-						<a href="https://www.nyc.gov/311">311</a>
-					</span>
-					<img src="./img/upper-header-divider.gif" alt="Divider" class="NYCimg">
-					<span class="site-header__search">
-						<a href="https://www.nyc.gov/home/search/index.page">
-							Search all NYC.gov websites
+		<!-- ══════════*** START WHITE BANNER ***══════════ -->
+		<div class="site-banner">
+			<div class="site-banner__inner">
+				<div class="site-banner__content">
+
+					<div class="site-banner__left">
+						<span class="site-banner__tagline">
+							Promoting and Protecting the City's Health
+						</span>
+					</div>
+
+					<div class="site-banner__center">
+						<a href="https://www.nyc.gov/site/doh/index.page" class="site-banner__logo">
+							<img src="./img/logo_sm.png" alt="NYC Health">
 						</a>
-					</span>
-				</div>
+						<div class="site-banner__title-container">
+							<h1>Rat Information Portal</h1>
+						</div>
+					</div>
 
+					<div class="site-banner__right">
+						<div class="language-selector">
+							<div id="google_translate_element"></div>
+						</div>
+						<div class="site-banner__program-page">
+							<a href="http://www.nyc.gov/rats">nyc.gov/rats</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- END Black Site Header -->
+		<!-- ══════════*** END WHITE BANNER ***══════════ -->
 
-
-
-
-
-	<!-- START White Header -->
-	<header class="site-banner" role="banner">
-		<div class="site-banner__inner">
-			<div class="site-banner__content">
-
-				<!-- Left Tagline-->
-				<div class="site-banner__left">
-					<span class="site-banner__tagline">
-						Promoting and Protecting the City's Health
-					</span>
-					<!-- Hidden by default; shown on mobile -->
-					<div class="site-banner__program-page site-banner__program-page--mobile">
-						<a href="http://www.nyc.gov/rats">nyc.gov/rats</a>
-					</div>
-				</div>
-
-
-				<!-- Center Logo & Title -->
-				<div class="site-banner__center">
-					<a href="https://www.nyc.gov/site/doh/index.page" class="site-banner__logo">
-						<img src="./img/logo_sm.png" alt="NYC Health">
-					</a>
-					<div class="site-banner__title-container">
-						<h1>Rat Information Portal</h1>
-					</div>
-				</div>
-
-				<!-- Right Translate & Program Home -->
-				<div class="site-banner__right">
-					<div class="language-selector">
-						<div id="google_translate_element"></div>
-					</div>
-					<div class="site-banner__program-page">
-						<a href="http://www.nyc.gov/rats">nyc.gov/rats</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
 	</header>
-	<!-- END White Site Banner -->
+
+	<!-- ══════════════════════════════════════════════════════════
+       END AGENCY HEADER  (black bar and white banner)
+  ══════════════════════════════════════════════════════════ -->
 
 
+	<!-- ══════════════════════════════════════════════════════════
+       START NAVIGATION AND CONTENT  (nav tabs, map view, property history, about and FAQ sections)
+  ══════════════════════════════════════════════════════════ -->
 
+	<main>
 
-
-	<!-- START section containing the tabs, map, history and about -->
-	<div>
-		<!--Nav Tabs START-->
+		<!-- ══════════*** START TAB NAVIGATION ***══════════ -->
 		<div class="tab-container">
-			<div class="tab-header">
-				<button class="tab-button active" onclick="openTab(event, 'mapView')">
+			<nav class="tab-nav" aria-label="Main navigation">
+				<button class="tab-btn active" role="tab" aria-selected="true" onclick="openTab(event, 'mapView')">
 					Map View
 				</button>
-				<button class="tab-button" onclick="openTab(event, 'propHis')">
+				<button class="tab-btn disabled" role="tab" aria-selected="false" disabled
+					onclick="openTab(event, 'propHis')">
 					Property History
 				</button>
-				<button class="tab-button" onclick="openTab(event, 'aboutView')">
+				<button class="tab-btn" role="tab" aria-selected="false" onclick="openTab(event, 'aboutView')">
 					About
 				</button>
-				<button class="tab-button" onclick="openTab(event, 'faqView')">
+				<button class="tab-btn" role="tab" aria-selected="false" onclick="openTab(event, 'faqView')">
 					FAQ
 				</button>
-			</div>
+			</nav>
 		</div>
-		<!--Nav Tabs END-->
+		<!-- ══════════*** END TAB NAVIGATION ***══════════ -->
 
-		<!--Map View START-->
+		<!-- ══════════*** START MAP VIEW ***══════════ -->
 		<div id="mapView" class="tab-content active">
 			<arcgis-map item-id="a613c0d4bbda42b3a2569c3a828e60b3" center="-74.006, 40.7128" zoom="15" id="arcmap">
 				<arcgis-zoom slot="top-left"></arcgis-zoom>
@@ -143,11 +146,11 @@
 				<arcgis-search id="arcsearch" slot="top-right" all-placeholder="Address or BBL"></arcgis-search>
 			</arcgis-map>
 		</div>
-		<!--Map View END-->
+		<!-- ══════════*** END MAP VIEW ***══════════ -->
 
-		<!--Property History START-->
+		<!-- ══════════*** START PROPERTY HISTORY ***══════════ -->
 		<div id="propHis" class="tab-content">
-			<h3><span id="property-history-head">Property History</span></h3>
+			<h3><span>Property History</span></h3>
 			<h4><span id="propertyAddress">[address goes here]</span></h4>
 			<h4>BBL&nbsp;<span id="propertyBBL">[bbl goes here]</span></h4><br>
 
@@ -156,78 +159,93 @@
 				Loading inspection history...
 			</div>
 
-			<div id="property-history" class="my-tabulator-table" style="max-width:900px;"></div>
+			<div id="property-history" style="max-width:900px;"></div>
 		</div>
-		<!--Property History END-->
+		<!-- ══════════*** END PROPERTY HISTORY ***══════════ -->
 
-		<!--About Section START-->
-		<div id="aboutView" class="tab-content">
+		<!-- ══════════*** START ABOUT VIEW ***══════════ -->
+		<div id="aboutView" class="tab-content about-panel">
 
 			<!--START subheader-->
-			<div id="anchorTop" class="subheader">
+			<div>
 				<h3>How To Use This Map</h3>
-				<h4>Welcome to New York City’s Rat Information Portal. This web-based mapping application lets you view
-					rat inspection and action data collected by the NYC Health Department.</h4>
+				<p>Welcome to New York City’s Rat Information Portal. This web-based mapping application lets you view
+					rat inspection and action data collected by the NYC Health Department.</p>
 			</div>
 			<!--END subheader-->
 
 			<!--START basicsearch-->
-			<div class="about-row" id="basicsearch">
+			<div class="about-section" id="about-basicsearch">
+				<div class="about-section-title">Basic Search</div>
 
-				<div class="about-descr">
-					<div class="about-title">Basic Search</div>
-					<span class="about-descr-txt">
+				<div class="about-content">
+					<span class="about-text">
 						<p>For <strong>Address, ZIP code, or neighborhood:</strong> Enter search text and select a
-							result. </p>
-						<br>
+							result.</p><br>
 						<p>For <strong>BBL:</strong> Click the drop-down arrow on the left side of the search bar and
 							select <strong>NYC Health Department Inspections</strong>, then enter the BBL. Or enter the
 							BBL, wait briefly, and select the <strong>BBL</strong> result shown below the search box.
-						</p>
-						<br>
+						</p><br>
 						<p>Use the Community Board toggle and drop-down menu to zoom to a Community Board. The map will
 							re-center and zoom to the selected area. Select <strong>Community Board (All)</strong> to
-							reset the map and show all properties. </p>
+							reset the map and show all properties.</p>
 					</span>
 				</div>
-				<div class="about-img">
-					<img src="img/howtosearch.jpg" alt="How to Locate Inspections">
+
+				<div class="about-media">
+					<img src="img/howtosearch.jpg" alt="How to Locate Inspections" class="about-image">
 				</div>
 			</div>
 			<!--END basicsearch-->
 
 
-			<!--START infopopup-->
-			<div class="about-row" id="infopopup">
-				<div class="about-descr">
-					<div class="about-title">Information Pop-Up</div>
-					<span class="about-descr-txt">
-						<p>Click any property to view inspection and NYC Health Department action information. The
-							pop-up shows the latest inspection type, result, and total number of inspections in the last
-							5 years. Properties not inspected in the last six months appear gray.</p>
+
+			<!--START Legend-->
+			<div class="about-section" id="about-legend">
+				<div class="about-content">
+					<div class="about-section-title">Legend</div>
+					<span class="about-text">
+						<p>The legend provides a reference for the symbols and inspection results shown on the map. Use
+							it to understand how properties are categorized based on their most recent inspection.</p>
 						<br>
-						<p>You can view a list of inspections and NYC Health Department actions by clicking on View
-							Property History and the results will open in a new tab.</p>
-						<br>
-						<p>For a full description of the inspection process and outcomes, see the<a href="#"
-								onclick="openTab(event, 'faqView')"> FAQ</a>.</p>
+						<p>The legend can also be accessed directly from the map using the Legend widget.</p><br>
+						<p>For a full description of inspection results and the inspection process, see the <a href="#"
+								onclick="openTab(event, 'faqView')">FAQ</a>.</p>
 					</span>
 				</div>
-				<div class="about-img">
-					<img src="img/rat_popup.jpg" alt="Information Pop-Up">
+				<div class="about-media">
+					<img src="img/legend.jpg" alt="Legend" class="about-image">
 				</div>
 			</div>
+			<!--END Legend-->
+
+			<!--START infopopup-->
+			<div class="about-section" id="about-infopopup">
+				<div class="about-content">
+					<div class="about-section-title">Information Pop-Up</div>
+					<span class="about-text">
+						<p>Click any property to view inspection and NYC Health Department action information. The
+							pop-up shows the latest inspection type, result, and total number of inspections in the last
+							5 years. Properties not inspected in the last six months appear gray.</p><br>
+						<p>You can view a list of inspections and NYC Health Department actions by clicking on View
+							Property History and the results will open in a new tab.</p><br>
+						<p>For a full description of the inspection process and outcomes, see the <a href="#"
+								onclick="openTab(event, 'faqView')">FAQ</a>.</p>
+					</span>
+				</div>
+				<div class="about-media"><img src="img/rat_popup.jpg" alt="Information Pop-Up" class="about-image">
+				</div>
+
+			</div>
 			<!--END infopopup-->
+
 		</div>
-		<!--About Section END-->
+		<!-- ══════════*** END ABOUT VIEW ***══════════ -->
 
-
-
-
-		<!--FAQ Question/Answer START-->
+		<!-- ══════════*** START FAQ VIEW ***══════════ -->
 		<div id="faqView" class="tab-content">
 			<div class="faq-container container-fluid">
-				<div id="anchorTop" class="subheader">
+				<div>
 					<h3>Frequently Asked Questions</h3>
 				</div>
 
@@ -366,8 +384,8 @@
 					<div class="faq-answer">
 						<p>Properties that have not been inspected in the last six months will appear gray on the map.
 							You can still view their inspection history by clicking on the property.</p>
-							<p>The property will appear grey on the map.</p>
-							<div class="dot-wrapper"><span class="dot" style="background-color:#969696;"></span></div>
+						<p>The property will appear grey on the map.</p>
+						<div class="dot-wrapper"><span class="dot" style="background-color:#969696;"></span></div>
 					</div>
 				</div>
 
@@ -377,7 +395,8 @@
 						<p>If a property is not appearing on the map, it may not have a valid BBL (Borough, Block, and
 							Lot number), or its BBL may have changed due to a property merger, subdivision, or update.
 							To find the current or previous BBLs for a property, please visit the <a
-								href="https://propertyinformationportal.nyc.gov/" target="_blank">Department of Finance’s Property
+								href="https://propertyinformationportal.nyc.gov/" target="_blank">Department of
+								Finance’s Property
 								Information Portal.</a> You can search by Borough, Block, and Lot or by address, and
 							then click on "Tax Map History" and then on "History of Tax Map Changes" to see any BBL
 							changes.</p>
@@ -387,7 +406,8 @@
 				<div class="faq-item">
 					<div class="faq-question">What are the NYC Health Department Actions?</div>
 					<div class="faq-answer">
-						<p>The NYC Health Department may send staff to take action on a property if the owner fails to do so
+						<p>The NYC Health Department may send staff to take action on a property if the owner fails to
+							do so
 							after receiving an order. Actions that may be taken include:</p>
 						<ul>
 							<li><strong>Bait:</strong> Application of rodenticide or other treatment.
@@ -425,7 +445,8 @@
 				<div class="faq-item">
 					<div class="faq-question">How can I submit a rodent complaint?</div>
 					<div class="faq-answer">
-						<p>You can <a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107" target="_blank">submit a complaint
+						<p>You can <a href="https://portal.311.nyc.gov/article/?kanumber=KA-01107"
+								target="_blank">submit a complaint
 								online through 311.</a></p>
 						<p>Include a description of the problem and the address of the location. Inspectors can only
 							inspect areas accessible to them. If it is a private area, include contact info to schedule
@@ -434,53 +455,41 @@
 				</div>
 			</div>
 		</div>
-		<!--FAQ Question/Answer END-->
-	</div>
-	<!-- END section containing the tabs, map, list and about -->
+		<!-- ══════════*** START FAQ VIEW ***══════════ -->
+
+	</main>
+
+	<!-- ══════════════════════════════════════════════════════════
+       END NAVIGATION AND CONTENT  (nav tabs, map view, property history, about and FAQ sections)
+  ══════════════════════════════════════════════════════════ -->
 
 
+	<!-- ══════════════════════════════════════════════════════════
+     START FOOTER (Disabled)
+  ══════════════════════════════════════════════════════════ -->
 
-
-
-
-
-	<!-- START Footer -->
-	<footer class="site-footer">
+	<!-- <footer class="site-footer">
 		<div class="site-footer__container">
 			<img class="site-footer__logo" src="img/nyc_white.png" alt="NYC Logo" width="93" height="31" />
 			<div class="site-footer__copyright">
 				<p>
 					&copy; City of New York. 2026 All Rights Reserved. NYC is a trademark and service mark of the
 					City of New York.
-					<!-- <p style="color:rgb(84, 240, 206);"> Test Version 2/18 </p> -->
 				</p>
 			</div>
 		</div>
-	</footer>
-	<!-- END Footer -->
+	</footer> -->
+
+	<!-- ══════════════════════════════════════════════════════════
+     END FOOTER (Disabled)
+  ══════════════════════════════════════════════════════════ -->
 
 
+	<!-- ══════════════════════════════════════════════════════════
+     START SCRIPTS (FAQ collapse, google translate, )
+  ══════════════════════════════════════════════════════════ -->
 
-
-
-	<!-- Google Translate -->
-
-	<!-- Desktop Google Translate -->
-	<script type="text/javascript">
-		function googleTranslateElementInit() {
-			new google.translate.TranslateElement({
-				pageLanguage: 'en',
-				includedLanguages: 'ar,bn,zh-CN,yue,en,fr,ht,it,ko,pl,ru,es,ur,yi',
-				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-			}, 'google_translate_element');
-		}
-	</script>
-	<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-	</script>
-
-
-
-	<!-- FAQ INTERACTIVITY -->
+	<!-- ══════════*** START FAQ script ***══════════ -->
 	<script>
 		document.querySelectorAll('.faq-question').forEach(q => {
 			q.addEventListener('click', () => {
@@ -498,16 +507,46 @@
 			});
 		});
 	</script>
-	<!--Side menu for mobile-->
-	<script>
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "250px";
-		}
+	<!-- ══════════*** END FAQ script ***══════════ -->
 
-		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0";
+
+	<!-- ══════════*** START Google Translate ***══════════ -->
+	<script src="./js/translate-keys.js"></script>
+	<script src="./JS/ratJS.js"></script>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'en',
+				includedLanguages: 'ar,bn,zh-CN,yue,en,fr,ht,it,ko,pl,ru,es,ur,yi',
+				layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+			}, 'google_translate_element');
 		}
 	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<!-- ══════════*** END Google Translate ***══════════ -->
+	<!-- Google tag (gtag.js) — production only -->
+	<script>
+		if (window.location.hostname === "a816-dohbesp.nyc.gov") {
+			var gtagScript = document.createElement("script");
+			gtagScript.async = true;
+			gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB";
+			document.head.appendChild(gtagScript);
+
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'G-64BWDRHRGB');
+		}
+	</script>
+
+	<!-- Google will index this page -->
+	<meta name="robots" content="all" />
+
+	<!-- ══════════════════════════════════════════════════════════
+     END SCRIPTS (FAQ collapse, google translate, )
+  ══════════════════════════════════════════════════════════ -->
+
 </body>
 
 </html>

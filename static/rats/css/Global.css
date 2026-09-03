@@ -1,0 +1,893 @@
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL.CSS — Shared template styles
+   Paste this file, unchanged, into every project folder.
+   Page-specific styles (Property History, Beach List, Commissary
+   List, etc.) belong in their own separate CSS file, not here.
+   ══════════════════════════════════════════════════════════════ */
+
+
+/* ── Brand variables ─────────────────────────────────────────
+   Change a color or font here and it updates everywhere below.
+   ────────────────────────────────────────────────────────── */
+:root {
+    --color-primary: #0080a9;
+    /* NYC Health blue — links, titles, accents */
+    --color-tab-bg: #0080a9;
+    /* tab bar background (matches primary for now) */
+    --color-tab-active: #0d3e4e;
+    /* active/hover tab background */
+    --color-tab-underline: #8bceec;
+    /* active tab bottom border */
+    --color-black-bar: #000000;
+    /* thin utility bar */
+    --color-text: #333333;
+    --color-text-muted: #555555;
+
+    --font-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+/* ── Base reset ───────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100vh;
+    font-family: var(--font-base);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* no body scroll — each panel scrolls independently */
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    /* dynamic viewport height — correct on mobile */
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   AGENCY HEADER — thin black utility bar
+   ══════════════════════════════════════════════════════════════ */
+
+.site-header {
+    width: 100%;
+}
+
+.site-header__top {
+    background: var(--color-black-bar);
+    display: flex;
+    align-items: center;
+    min-height: 25px;
+}
+
+.site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.site-header__left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.site-header__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 15px;
+}
+
+.site-header__logo {
+    height: 15px;
+    width: 40px;
+}
+
+.site-header__title,
+.site-header__service-link,
+.site-header__search {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.site-header__title {
+    padding-left: 10px;
+}
+
+.site-header__service-link a,
+.site-header__search a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.site-header__service-link a:hover,
+.site-header__search a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile: hide secondary items, keep the utility bar minimal */
+@media (max-width: 768px) {
+    .site-header__inner {
+        justify-content: flex-start;
+    }
+
+    .site-header__title,
+    .site-header__right,
+    .site-header__divider,
+    .site-header__left span {
+        display: none;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   AGENCY BANNER — white banner with logo, title, translate widget
+   ══════════════════════════════════════════════════════════════ */
+
+.site-banner {
+    position: relative;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #fff;
+}
+
+.site-banner__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.site-banner__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Left column — tagline */
+.site-banner__left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    min-width: 260px;
+}
+
+.site-banner__tagline {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+/* Center column — logo + page title */
+.site-banner__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+}
+
+.site-banner__logo img {
+    display: block;
+    margin: 0 auto;
+    max-width: 60px;
+    width: auto;
+    height: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.site-banner__title-container h1 {
+    font-size: 22px;
+    color: var(--color-primary);
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Right column — translate widget + optional program-page link */
+.site-banner__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 1;
+    min-width: 260px;
+    text-align: right;
+    font-size: 14px;
+    padding-right: 10px;
+    gap: 4px;
+}
+
+/* Optional per-page link, e.g. nyc.gov/rats — only some sites use this */
+.site-banner__program-page a {
+    color: var(--color-primary);
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.site-banner__program-page a:hover {
+    text-decoration: underline;
+}
+
+/* Google Translate widget */
+.language-selector {
+    display: block;
+    text-align: right;
+}
+
+.language-selector .goog-te-gadget-simple {
+    border: none;
+    font-weight: bold;
+}
+
+.language-selector .goog-te-gadget-icon {
+    display: none;
+}
+
+.language-selector .goog-te-gadget-simple span {
+    color: #666;
+}
+
+.language-selector .goog-te-gadget-simple span:hover {
+    color: #000;
+}
+
+/* Mobile banner adjustments */
+@media (max-width: 600px) {
+    .site-banner {
+        padding-top: 0;
+        padding-bottom: 1px;
+    }
+
+    .site-banner__inner {
+        padding: 0 12px;
+    }
+
+    .site-banner__content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0;
+    }
+
+    .site-banner__tagline {
+        display: none;
+    }
+
+    .site-banner__left {
+        width: 100%;
+        justify-content: flex-start;
+        text-align: left;
+        min-width: unset;
+    }
+
+    .site-banner__center {
+        width: 70%;
+    }
+
+    .site-banner__logo img {
+        transform: scale(0.6);
+        transform-origin: center;
+    }
+
+    .site-banner__title-container h1 {
+        font-size: 16.5px;
+        margin: 0;
+    }
+
+    .site-banner__right {
+        position: absolute;
+        top: 2px;
+        right: 8px;
+        min-width: unset;
+        flex: none;
+        padding-right: 0;
+        gap: 0;
+    }
+
+    .language-selector,
+    .language-selector .goog-te-gadget-simple {
+        font-size: 11px;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   TAB NAVIGATION — bar + panel switching (shared by every tab:
+   Map, About, FAQ, Property History, Beach List, Commissary List)
+   ══════════════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   TAB NAVIGATION — Rectangular Block Style
+   ══════════════════════════════════════════════════════════════ */
+
+.tab-container {
+    width: 100%;
+    background-color: #ffffff;
+    /* Thin grey lines above and below navigation bar */
+    border-top: 1px solid #d1d5db;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 0;
+    /* No gaps between tabs */
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+.tab-btn {
+    flex: 0 0 auto;
+    /* Natural width, prevents expanding */
+    padding: 12px 24px;
+    background-color: #f8f9fa;
+    /* Resting tab background */
+    color: var(--color-text);
+    border: none;
+    border-radius: 0;
+    /* Rectangular — no rounded edges */
+    /* Light grey separating lines between tabs */
+    border-right: 1px solid #d1d5db;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+    outline: none;
+}
+
+/* Left border on first tab to complete boundary */
+.tab-btn:first-child {
+    border-left: 1px solid #d1d5db;
+}
+
+/* Remove old underline element */
+.tab-btn::after {
+    display: none;
+}
+
+/* Hover state: Black background with white text */
+.tab-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Selected state: #0080a9 background with white text */
+.tab-btn.active {
+    background-color: var(--color-primary);
+    /* #0080a9 */
+    color: #ffffff;
+}
+
+/* Keyboard accessibility focus */
+.tab-btn:focus-visible {
+    outline: 2px solid #000000;
+    outline-offset: -2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TAB PANELS
+   ══════════════════════════════════════════════════════════════ */
+
+.tab-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 220px);
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-top: none;
+    display: none;
+    /* Hides inactive tab panels */
+}
+
+.tab-content.active {
+    display: block;
+    /* Shows the active tab panel */
+}
+
+/* Mobile height adjustment */
+@media (max-width: 480px) {
+    .tab-content {
+        min-height: 400px;
+    }
+}
+
+.tab-panel {
+    position: absolute;
+    inset: 0;
+    display: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+#panel-map {
+    overflow: hidden;
+}
+
+arcgis-map {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ── Mobile Layout (Screens 600px and below) ───────────────── */
+@media (max-width: 600px) {
+    .tab-nav {
+        width: 100%;
+    }
+
+    .tab-btn {
+        /* Distributes 2 or 3 tabs equally across full screen width */
+        flex: 1 1 0px;
+        padding: 12px 6px;
+        font-size: 14px;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    /* Remove outer left/right borders on mobile so tabs touch edges edge-to-edge */
+    .tab-btn:first-child {
+        border-left: none;
+    }
+
+    .tab-btn:last-child {
+        border-right: none;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DISABLED TAB STATE (used in rat map)
+   ══════════════════════════════════════════════════════════════ */
+
+.tab-btn.disabled,
+.tab-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    /* Prevents click events while disabled */
+}
+
+/* Ensure hover state does not trigger on disabled tabs */
+.tab-btn.disabled:hover,
+.tab-btn[disabled]:hover {
+    background-color: #f8f9fa;
+    color: var(--color-text);
+}
+
+
+/* ══════════════════════════════════════════════════════════════ 
+LIST COMPONENT Generic styling for reusable mapping lists 
+══════════════════════════════════════════════════════════════ */
+/* ------------------------------------------------------------ 
+Main List container 
+------------------------------------------------------------ */
+.list-panel {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 50px;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------ 
+List heading 
+------------------------------------------------------------ */
+.list-panel h3 {
+    color: black;
+    font-size: 20px;
+    margin-bottom: 10px;
+    /* border-bottom: 3px solid var(--color-primary); */
+    padding-bottom: 5px;
+}
+
+/* ------------------------------------------------------------ 
+Content cards 
+------------------------------------------------------------ */
+.list-row {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+/* ------------------------------------------------------------ 
+List description 
+------------------------------------------------------------ */
+.list-descr {
+    flex: 1 1 100%;
+}
+
+.list-title {
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.list-descr-txt {
+    display: block;
+    color: var(--color-text);
+}
+
+.list-descr-txt p {
+    margin-top: 0;
+}
+
+/* ------------------------------------------------------------ 
+List container 
+------------------------------------------------------------ */
+.list-container {
+    width: 100%;
+}
+
+/* ------------------------------------------------------------ 
+List 
+------------------------------------------------------------ */
+.list {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------------------------------------------------ 
+List group 
+------------------------------------------------------------ */
+.list-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #d6d6d6;
+}
+
+.list-group:last-child {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+/* ------------------------------------------------------------ 
+List group header 
+------------------------------------------------------------ */
+.list-group-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 13px 14px;
+    border: 0;
+    background-color: #ffffff;
+    color: var(--color-primary);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.list-group-header:hover {
+    background-color: #eaf4f7;
+}
+
+.list-group-header:focus-visible {
+    outline: 3px solid #0079c1;
+    outline-offset: -3px;
+}
+
+/* ------------------------------------------------------------ 
+List group name 
+------------------------------------------------------------ */
+.list-group-name {
+    flex: 1;
+}
+
+/* ------------------------------------------------------------ 
+List group count 
+------------------------------------------------------------ */
+.list-group-count {
+    min-width: 28px;
+    margin-right: 12px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: right;
+}
+
+/* ------------------------------------------------------------ 
+List group expand/collapse indicator 
+------------------------------------------------------------ */
+.list-group-icon {
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.2s ease;
+}
+
+/* Expanded group */
+.list-group.expanded .list-group-icon {
+    transform: rotate(45deg);
+}
+
+/* ------------------------------------------------------------ 
+List group content 
+------------------------------------------------------------ */
+.list-group-content {
+    display: none;
+    padding: 0 8px 8px;
+    background-color: #ffffff;
+}
+
+.list-group.expanded .list-group-content {
+    display: block;
+}
+
+/* ------------------------------------------------------------ 
+List group items 
+------------------------------------------------------------ */
+.list-group-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------------------------------------------------ 
+List item button 
+------------------------------------------------------------ */
+.list-item-button {
+    width: 100%;
+    display: block;
+    padding: 9px 12px;
+    border: 0;
+    border-bottom: 1px solid #eeeeee;
+    background-color: transparent;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.list-item-button:hover {
+    background-color: #f0f7fb;
+    color: var(--color-primary);
+}
+
+.list-item-button:focus-visible {
+    outline: 3px solid #0079c1;
+    outline-offset: -3px;
+}
+
+.list-item:last-child .list-item-button {
+    border-bottom: none;
+}
+
+/* ------------------------------------------------------------ 
+Loading state 
+------------------------------------------------------------ */
+.list-loading {
+    padding: 24px;
+    text-align: center;
+    color: var(--color-text);
+}
+
+.list-spinner {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto 10px;
+    border: 3px solid #ddd;
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: list-spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes list-spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ------------------------------------------------------------ 
+Responsive List 
+------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .list-panel {
+        padding: 15px 15px 40px;
+    }
+
+    .list-row {
+        padding: 15px;
+    }
+
+    .list-title {
+        font-size: 18px;
+    }
+
+    .list-group-header {
+        padding: 12px;
+    }
+
+    .list-item-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════ 
+END LIST COMPONENT 
+══════════════════════════════════════════════════════════════ */
+
+
+
+
+
+
+/* ══════════════════════════════════════════════════════════════ 
+ABOUT COMPONENT Generic content-card styling for the About tab 
+══════════════════════════════════════════════════════════════ */
+/* ------------------------------------------------------------ 
+Main About container 
+------------------------------------------------------------ */
+.about-panel {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 50px;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------ 
+About heading 
+------------------------------------------------------------ */
+.about-panel h3 {
+    color: black;
+    font-size: 16px;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
+}
+
+/* ------------------------------------------------------------ 
+About content sections 
+------------------------------------------------------------ */
+.about-section {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
+}
+
+
+
+/* ------------------------------------------------------------ 
+Section content 
+------------------------------------------------------------ */
+.about-content {
+    flex: 1 1 100%;
+}
+
+/* ------------------------------------------------------------ 
+Section title 
+------------------------------------------------------------ */
+.about-section-title {
+    width: 100%;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+/* ------------------------------------------------------------ 
+Section text 
+------------------------------------------------------------ */
+.about-text {
+    display: block;
+    color: rgb(51, 51, 51);
+}
+
+.about-text p {
+    margin-top: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: rgb(51, 51, 51);
+}
+
+/* ------------------------------------------------------------ 
+Links 
+------------------------------------------------------------ */
+.about-text a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.about-text a:hover {
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------------ 
+Images 
+------------------------------------------------------------ */
+.about-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------------ 
+Responsive About layout 
+------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .about-panel {
+        padding: 15px 15px 40px;
+    }
+
+    .about-section {
+        padding: 15px;
+    }
+
+    .about-section-title {
+        font-size: 18px;
+    }
+}
