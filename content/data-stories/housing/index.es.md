@@ -2,6 +2,7 @@
 title: "Salud, vivienda e historia"
 date: 2021-01-06T08:07:31-04:00
 draft: false
+vega: true
 seo_title: "Salud, vivienda e historia"
 seo_description: "Para la salud, el lugar importa."
 tags:
@@ -241,7 +242,7 @@ Explore los problemas comunes de vivienda de la ciudad de Nueva York en el sigui
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
                 });
@@ -392,7 +393,7 @@ Como resultado, las tasas más altas de visitas por asma a la sala de emergencia
     </div>
     <div class="tab-pane fade mb-4" id="profile" role="tabpanel"
         aria-labelledby="profile-tab">
-            <iframe title=" Scatterplot - spanish" aria-label="Scatter Plot" id="datawrapper-chart-f9rYe" src="https://datawrapper.dwcdn.net/f9rYe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title=" Scatterplot - spanish" aria-label="Scatter Plot" id="datawrapper-chart-f9rYe" data-lazy-src="https://datawrapper.dwcdn.net/f9rYe/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="600"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
             </script>
     </div>
 </div>

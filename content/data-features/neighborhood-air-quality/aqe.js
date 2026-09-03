@@ -32,7 +32,21 @@ const load_flexdatalist = async () => {
           });
 
           // console.log("$input", $input);
-          
+
+          // ----- give the generated input a combobox role ----------------------------- //
+
+          // flexdatalist hides the authored input and renders its own; the generated one is
+          // what the reader focuses, and its id is the authored id + "-flexdatalist"
+          // (jquery.flexdatalist.js:475). wireComboboxState comes from the partial
+          // flexdatalist-combobox-js.html, which aqe.html loads — these are classic scripts
+          // sharing one global scope.
+
+          const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+          if (generated) {
+              wireComboboxState(generated);
+          }
+
           // ----- add flexdatalist select handler -------------------------------------------------- //
 
           $input.on('select:flexdatalist', (e, set) => {
@@ -221,7 +235,7 @@ const renderChart = (
           "strokeWidth": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": 1  
+              "value": 1
             },
             "value": 0
           },
@@ -236,7 +250,7 @@ const renderChart = (
 
   // console.log(barSpec)
 
-  vegaEmbed(destination, barSpec, {actions:false})
+  vegaEmbed(destination, barSpec, {renderer: "svg", actions:false})
 }
 
 
@@ -394,7 +408,7 @@ const renderMap = (
       ]
     }
     
-    vegaEmbed("#mapHolder", mapSpec, {actions:false})
+    vegaEmbed("#mapHolder", mapSpec, {renderer: "svg", actions:false})
 
 
 }

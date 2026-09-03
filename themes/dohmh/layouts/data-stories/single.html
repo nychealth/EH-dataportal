@@ -1,6 +1,24 @@
 {{- define "main" -}}
 
-<article class="container-fluid" id="skip-header-target">
+{{- /*  Most data-stories pages are plain text/images; only a handful embed a Vega chart
+      or a D3-driven CSV table directly in their markdown. Those set `vega: true` in
+      front matter so this shared template doesn't load both libraries for every story.  */}}
+{{- if .Params.vega }}
+    {{- partial "lib-vega.html" . }}
+    {{- partial "lib-d3.html" . }}
+{{- end }}
+
+{{- /*  A few data-stories pages embed Datawrapper charts inside non-active Bootstrap
+      tabs (housing, redlining, air-quality-snapshots, vectorborne-diseases-and-health).
+      Those charts render once, immediately, while their pane is display:none, which
+      throws SVG-sizing console errors (see documents/site-wide-audit-2026-06-27.md §5b).
+      This script defers them to first tab-click; harmless/unused on pages without the
+      data-lazy-src / data-lazy-embed-src opt-in attributes, so it's loaded unconditionally
+      rather than gated behind a front-matter flag.  */}}
+{{- $lazyTabEmbedsJS := resources.Get "js/data-stories/lazy-tab-embeds.js" | partial "short-fingerprint.html" }}
+<script src="{{ $lazyTabEmbedsJS.RelPermalink }}" integrity="{{ $lazyTabEmbedsJS.Data.Integrity }}"></script>
+
+<article class="container-fluid">
 
     <div class="row">
         <div class="col-xl-2"></div>

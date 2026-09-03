@@ -45,8 +45,8 @@ pollutantsMeasured:
       ground level, which is measured by NYCCAS. It forms at ground level when 
       NO<sub>X</sub> emissions combine with sunlight and other airborne
       pollutants.  Measured O<sub>3</sub> concentrations are often highest in
-      the summer and  downwind from areas with high NO<sub>X</sub> emissions,
-      such as places with  high traffic density. In areas with heavy traffic,
+      the summer and downwind from areas with high NO<sub>X</sub> emissions,
+      such as places with high traffic density. In areas with heavy traffic,
       NO<sub>X</sub> reacts with any ground-level O<sub>3</sub> to reduce
       O<sub>3</sub> concentrations. As a result, NYCCAS has measured lower
       O<sub>3</sub> levels near roadways and in other areas of high NO<sub>X</sub>

@@ -1,0 +1,483 @@
+name: Site characterization check
+
+# Loads every page the site serves and diffs its rendered STRUCTURE against the
+# committed baseline in scripts/site-characterization-baseline/. Complements the
+# Hugo build (which only proves the templates compile) and smoke-pages.mjs
+# (which only fails on JS that throws) — this one catches an asset that stopped
+# loading, a heading level that started skipping, a lost alt or <th>, an iframe
+# at zero height, JSON-LD that stopped being an object.
+#
+# It builds with `--environment prod_prod` against EHDP-data's `production`
+# branch: the point is to characterize the site that is about to be deployed,
+# with the data it will be deployed against. That selects the committed
+# `prod_prod` baseline, the only one whose `robots` values match a production
+# build (head.html:46-53 branches on the environment NAME).
+#
+# Analytics do not fire. prod_prod is the one environment that emits the
+# production GA property (head.html:8, G-64BWDRHRGB), and its only transport is
+# gtag.js from www.googletagmanager.com — a host the harness aborts at the
+# network layer, so the script never loads and the inline gtag() calls reach
+# nothing but a local dataLayer.
+#
+# EHDP-data's `production` branch changes independently of this repo, and
+# `structure` carries data-derived counts, so a red run is not always a
+# regression in the PR — read the diff before treating it as one. The fix for a
+# legitimate data change is to re-capture and commit the baseline:
+# `npm run characterize:site:baseline`.
+
+on:
+  pull_request:
+    branches:
+      - production
+      - development
+
+    # A docs-only push should not spend an 8-minute 925-page sweep. Nothing
+    # listed here can reach a rendered page: Hugo builds from content/,
+    # themes/, assets/, data/, static/, config/ and archetypes/, and none of
+    # these are among them `[verified 2026-08-24: across themes/, content/,
+    # config/, data/, assets/ and static/, the only mentions of documents/ or
+    # memories/ are two HTML comments citing an audit doc]`.
+    #
+    # Deliberately NOT ignored: content/**/*.md is the site's own copy, so a
+    # blanket `**.md` would skip real content changes. Keep this list explicit
+    # rather than pattern-based.
+    #
+    # WARNING: do not make this a REQUIRED status check while it has a path
+    # filter. GitHub: "Associated checks stay in a 'Pending' state and block
+    # merging" when a workflow is skipped by path filtering
+    # `[docs.github.com/en/pull-requests/collaborating-with-pull-requests/
+    # collaborating-on-repositories-with-code-quality-features/
+    # troubleshooting-required-status-checks, read 2026-08-24]`. Nothing is
+    # required on `production` today `[gh api .../branches/production/protection,
+    # 2026-08-24: no required_status_checks key, and rulesets is empty]`.
+    paths-ignore:
+      - documents/**
+      - memories/**
+      - .claude/**
+      - .agents/**
+      - .github/workflows/check-deploy.yml
+      - .github/workflows/hugo-build-any-branch.yml
+      - .github/workflows/hugo-build-to-dev-prod.yml
+      - .github/workflows/hugo-build-to-dev-stage.yml
+      - .github/workflows/hugo-build-to-prod-prod.yml
+      - .github/workflows/smoke.yml
+      - CLAUDE.md
+      - README.md
+      - readme-components.md
+      - readme-content.md
+      - readme-development.md
+      - LICENSE
+
+  workflow_dispatch:
+
+    inputs:
+
+      scope:
+        description: Pages to sweep
+        required: false
+        type: choice
+        default: all
+        options:
+          - all
+          - sample
+
+      content:
+        description: Also gate on titles, heading text and link targets
+        required: false
+        type: boolean
+        default: false
+
+# read-only: this workflow reports, it never publishes
+permissions:
+  contents: read
+
+env:
+  TZ: America/New_York
+  SERVER_PORT: 8080
+  # prod_prod's baseURL is https://a816-dohbesp.nyc.gov/IndicatorPublic/, and
+  # `hugo server` keeps the path while replacing the host
+  # `[verified 2026-08-24: 200 on /IndicatorPublic/, 404 on / and /dev-stage/]`.
+  SERVER_URL: http://localhost:8080/IndicatorPublic/
+
+jobs:
+
+  # ---------------------
+  # characterize the site
+  # ---------------------
+
+  characterize:
+    name: Diff rendered structure against the baseline
+    runs-on: ubuntu-24.04
+
+    # 2.4x the measured wall time `[run 32771116783, 2026-08-24: 8m13s for the
+    # whole job — 62s to a serving prod_prod build, 1.2s for Pagefind, 370s to
+    # sweep 925 pages]`. The sweep is the part that grows with the site, and it
+    # runs at concurrency 6 here — the floor, since ubuntu-24.04 reports 4
+    # logical processors — against 24 locally, where the same 925 pages take
+    # 114s `[run 32777189174: "Concurrency: 6 (4 logical processors)"]`. The
+    # check prints both, so a future runner change is readable off the log.
+    timeout-minutes: 20
+
+    concurrency: # one run per ref; a superseded PR push doesn't need its own sweep
+      group: ${{ github.workflow }}-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      # fetch-depth 1: the harness reads `git rev-parse HEAD` for the record
+      # metadata and needs no history beyond the tip
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # npm ci, not npm install: the lockfile pins hugo-extended 0.147.3, the
+      # same release the deploy workflows install through peaceiris/actions-hugo
+      # (build 05417512bd, confirmed in run 32648348501). Using the locked binary
+      # keeps one Hugo in the repo instead of two.
+
+      - name: Install dependencies
+        run: npm ci
+
+      # hugo-extended is an OPTIONAL dependency, so a failed platform binary
+      # install is silent. Fail here, where the message is legible, rather than
+      # as a server that never answers.
+
+      - name: Confirm the locked Hugo is present
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # ---------------------------------------------------------------------
+      # the site under test
+      #
+      # The workflow owns the server rather than letting scripts/dev-server.mjs
+      # spawn one: dev-server.mjs waits a fixed 90s for the first 200, and a
+      # cold CI build fetching remote EHDP-data resources has no cache to hit.
+      # Owning it here makes the wait explicit and tunable.
+      #
+      # Hugo accepts a connection BEFORE the build finishes and holds it open
+      # until it can answer, so a poll cannot catch a half-built site — but it
+      # also cannot be timed by counting attempts. On the runner the second
+      # curl blocked for 61 seconds inside one iteration
+      # `[run 32771116783, 2026-08-24: first attempt refused at 0ms, second
+      # answered 62s of wall clock later, and the loop reported "after 2s"]`.
+      # ---------------------------------------------------------------------
+
+      - name: Start the Hugo server
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > hugo-server.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      # Bounded by the CLOCK, not by an attempt count, because a single attempt
+      # can block for as long as the build takes. --max-time caps one attempt so
+      # a wedged connection cannot swallow the whole budget silently; the retry
+      # after it costs one second. $SECONDS counts from this step's shell start.
+
+      - name: Wait for the server
+        run: |
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 300s:"
+          tail -n 50 hugo-server.log
+          exit 1
+
+      # `hugo server` does not build the search index, and Pagefind's UI is worth
+      # one button and one input on EVERY page — the baseline records
+      # `pagefind: true`, and --check refuses to compare across that difference
+      # rather than report 925 false regressions. Same command the deploy
+      # workflows run; hugo serves docs/ from disk, so writing into it works.
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site docs
+
+      # ---------------------------------------------------------------------
+      # the check
+      #
+      # DE_BASE_URL tells dev-server.mjs to trust this server and own nothing —
+      # it probes Pagefind and hands the URL straight back.
+      # ---------------------------------------------------------------------
+
+      - name: Run the characterization check
+        id: check
+        # `permissions: contents: read` grants this job a token; it does NOT put
+        # it in a step's environment, so without this line the dataCommit lookup
+        # runs UNAUTHENTICATED on an IP shared with every other job on the
+        # runner. Measured 2026-08-26 against api.github.com: x-ratelimit-limit
+        # 60 without the header and 5000 with it, same sha from both. A bad
+        # token 401s, which fetchDataCommit reports as "@ unknown" rather than
+        # failing the run.
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # inputs.scope is empty on a pull_request event, so PRs get the full sweep
+          args="--check"
+          if [ "${{ inputs.scope }}" != "sample" ]; then
+            args="$args --all"
+          fi
+          if [ "${{ inputs.content }}" = "true" ]; then
+            args="$args --content"
+          fi
+          echo "node scripts/site-characterization.mjs $args"
+          node scripts/site-characterization.mjs $args
+
+      # The console diff is in the step log; these are for diffing locally.
+      # Both directories are gitignored and exist only on the runner.
+
+      # NOT `if: failure()`. A job cancelled by `timeout-minutes` skips a
+      # failure() step while still running an always() one — measured, not
+      # assumed `[run 32802721473, 2026-08-25: the timeout skipped this upload
+      # and ran "Stop the Hugo server" beside it]` — and a timed-out run is
+      # exactly when the capture is most worth having. Gating on the check
+      # step's own outcome also fails safe: if a cancelled step leaves `outcome`
+      # unset, the comparison is still not 'success', so the upload runs.
+      - name: Upload the capture and the projected diff trees
+        if: always() && steps.check.outcome != 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: site-characterization-${{ github.run_id }}
+          path: |
+            scripts/site-characterization-current/
+            scripts/.sc-check/
+            hugo-server.log
+          # .sc-check is a DOT directory, and the action skips hidden paths
+          # unless told not to. Left at the default it dropped both projected
+          # trees — the half a failure is actually diagnosed from — while
+          # reporting success, because the other path matched and
+          # if-no-files-found only fires when NOTHING matches
+          # `[run 32777189174, 2026-08-24: "there will be 926 files uploaded",
+          # and the downloaded artifact held the capture and no .sc-check]`.
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+
+      # `npx hugo server` leaves HUGO_PID somewhere above the binary, and two
+      # attempts to reach it by descent both failed: killing HUGO_PID alone
+      # `[run 32771116783]`, then killing HUGO_PID's direct children as well
+      # `[run 32777189174]`. Both runs ended with the runner reporting
+      # "Terminate orphan process: (hugo)". The tree's exact depth was never
+      # measured — which is the argument for not depending on it. Match by name:
+      # this runner is ephemeral and single-purpose, so the only hugo on it is
+      # the one this job started.
+
+      - name: Stop the Hugo server
+        if: always()
+        run: |
+          pkill -TERM -x hugo 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true
+
+  # ---------------------------------------------------------------------
+  # was the base branch already red?
+  #
+  # `structure` carries data-derived counts and prod_prod pulls EHDP-data's
+  # `production` branch, which moves independently of this repo — so a red
+  # sweep above is not by itself a regression in the PR. This job is the
+  # disconfirming test, and nothing about better formatting can replace it:
+  # rebuild the site from the BASE branch and run the same check against it,
+  # minutes later and therefore against the same EHDP-data.
+  #
+  #   green here -> the base is fine, so this PR caused it
+  #   red here   -> the base is red too, so the data moved and the PR is
+  #                 probably innocent
+  #
+  # ONLY THE SITE SOURCE COMES FROM THE BASE. The harness and the baseline
+  # stay at this PR's head on purpose: a PR that also edits the harness or
+  # re-captures the baseline would otherwise move three variables at once,
+  # and the question is only about the first.
+  #
+  # This comment used to add that the split was the only shape that ran at
+  # all, because `production` carried neither the harness nor a baseline. That
+  # was true when written on 2026-08-24 and PRs #1482 and #1483 made it false:
+  # `production` now carries `scripts/site-characterization.mjs` and
+  # `scripts/site-characterization-baseline/` both `[verified 2026-08-26:
+  # git ls-tree --name-only production -- scripts/]`. The reason above is the
+  # one that survives, and it is sufficient on its own.
+  #
+  # base.sha is the BASE BRANCH TIP, not the merge base
+  # `[verified 2026-08-24: on PR #1480 baseRefOid is d862072bea, which is
+  # production's tip, where git merge-base production HEAD is d8c45abebe]`.
+  # The tip is the right control — it is what this PR merges into and what is
+  # deployed — and it needs no history, where a real merge base would need
+  # fetch-depth 0 on a repo whose depth-1 checkout has already taken 9m52s
+  # once `[run 32777189174]`.
+  #
+  # These steps are deliberately NOT shared with the job above. They looked
+  # identical when this was planned and are not: two checkouts, two npm ci, a
+  # server built in a subdirectory, and a verdict instead of a gate.
+  # ---------------------------------------------------------------------
+
+  base-control:
+    name: Was the base branch red too?
+    needs: characterize
+    if: failure() && github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    concurrency: # its own group — sharing the sweep's would have the two cancel each other
+      group: ${{ github.workflow }}-base-${{ github.ref_name }}
+      cancel-in-progress: true
+
+    steps:
+
+      - name: Checkout this PR (the harness and the baseline)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Checkout the base branch tip (the site under test)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          fetch-depth: 1
+
+      - name: Set up node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      # Two installs, because the two trees play different parts: the root runs
+      # the harness and needs playwright, and base/ builds the site and needs
+      # ITS OWN locked hugo-extended — the point is the site that commit builds.
+
+      - name: Install dependencies (this PR, for the harness)
+        run: npm ci
+
+      - name: Install dependencies (base branch, for its Hugo)
+        working-directory: base
+        run: npm ci
+
+      - name: Confirm the base branch's locked Hugo is present
+        working-directory: base
+        run: npx hugo version
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start the base branch's Hugo server
+        working-directory: base
+        run: |
+          npx hugo server \
+            --environment prod_prod \
+            --cleanDestinationDir \
+            --disableFastRender \
+            -p "${SERVER_PORT}" > ../hugo-server-base.log 2>&1 &
+          echo "HUGO_PID=$!" >> "$GITHUB_ENV"
+
+      # Bounded by the clock for the same reason as the sweep above: Hugo
+      # accepts the connection BEFORE the build finishes and holds it open, so
+      # one curl can block for as long as the build takes and counting attempts
+      # measures nothing.
+
+      - name: Wait for the server
+        run: |
+          deadline=$(( SECONDS + 300 ))
+          while [ "${SECONDS}" -lt "${deadline}" ]; do
+            if curl -fsS --max-time 120 -o /dev/null "${SERVER_URL}"; then
+              echo "Server answered after ${SECONDS}s"
+              exit 0
+            fi
+            if ! kill -0 "${HUGO_PID}" 2>/dev/null; then
+              echo "Hugo exited before serving anything:"
+              tail -n 50 hugo-server-base.log
+              exit 1
+            fi
+            sleep 1
+          done
+          echo "No 200 from ${SERVER_URL} within 300s:"
+          tail -n 50 hugo-server-base.log
+          exit 1
+
+      - name: Build the search index with Pagefind
+        run: npx -y pagefind --site base/docs
+
+      # continue-on-error, because RED here is a FINDING rather than a failure
+      # of this job — it is the outcome that exonerates the PR. `outcome` is the
+      # result BEFORE continue-on-error is applied, which is what makes the
+      # verdict below readable
+      # `[docs.github.com/en/actions/reference/workflows-and-actions/contexts,
+      # read 2026-08-24]`.
+
+      - name: Run this PR's check against the base branch's site
+        id: control
+        continue-on-error: true
+        env:
+          DE_BASE_URL: ${{ env.SERVER_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # see the sweep job's note
+          # The harness runs from THIS checkout; the site it checks was built
+          # from base/. Without this the _meta.json records the PR merge ref
+          # and is indistinguishable from the sweep job's own.
+          SITE_UNDER_TEST_COMMIT: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/site-characterization.mjs --check --all
+
+      - name: Verdict
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          OUTCOME: ${{ steps.control.outcome }}
+        run: |
+          {
+            echo "### Base-branch control"
+            echo
+            echo "The sweep failed. This job rebuilt the site from \`${BASE_SHA}\` — the tip of"
+            echo "\`${BASE_REF}\` — and ran the SAME harness against the SAME baseline, so the only"
+            echo "thing that differs between the two runs is the site source."
+            echo
+            if [ "${OUTCOME}" = "success" ]; then
+              echo "**The base branch is GREEN.** EHDP-data is not the explanation; this PR's"
+              echo "changes are. Read the field summary on the failed sweep."
+            else
+              echo "**The base branch is RED too.** \`${BASE_REF}\` already fails against today's"
+              echo "EHDP-data, so this is probably not yours. Compare the two field tables: a field"
+              echo "that moved in BOTH runs is the data, and one that moved only in the sweep is"
+              echo "this PR's."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Only when the base is red, and only then is there anything to compare
+      # against the sweep's own artifact. include-hidden-files because
+      # .sc-check is a dot directory and the action skips those by default.
+
+      - name: Upload the base branch's capture and diff trees
+        if: steps.control.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: site-characterization-base-${{ github.run_id }}
+          path: |
+            scripts/site-characterization-current/
+            scripts/.sc-check/
+            hugo-server-base.log
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Stop the Hugo server
+        if: always()
+        run: |
+          pkill -TERM -x hugo 2>/dev/null || true
+          kill -TERM "${HUGO_PID}" 2>/dev/null || true

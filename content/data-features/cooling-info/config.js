@@ -12,7 +12,7 @@ var content = [
     {
         "id": 1,
         "text": "Do any of these describe you or someone you live with?",
-        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnant, diabetic, limited mobility, immunocompromised, mental health, cognitive, or developmental condition </li> <li><strong>Life situations</strong>:  work or exercise outside, limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under  16 </li></ul>",
+        "prompt": "Certain health conditions and life situations can make you more vulnerable to extreme heat and unhealthy air quality. <ul> <li><strong>Health conditions</strong>: difficulty breathing, heart disease, asthma or other breathing condition, pregnancy, diabetes, limited mobility, immunodeficiency, mental health, cognitive or developmental conditions </li> <li><strong>Life situations</strong>: work or exercise outside, have limited access to indoor shelter, misuse drugs or alcohol, take medicine that makes it difficult for your body to stay cool, live alone </li> <li><strong>Age</strong>: Over 60 or under 16 </li></ul>",
         "image": "Vulnerable_groups1.svg",
         "options": [
             {
@@ -25,7 +25,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great. Let's move on.",
+                "message": "Alright. Let's move on.",
                 "setVariable": "sensitive('No')",
                 "goTo": 2
             },
@@ -52,7 +52,7 @@ var content = [
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great. Let's move on.",
+                "message": "Alright. Let's move on.",
                 "setVariable": "eme('No')",
                 "goTo": 3
             }
@@ -65,7 +65,7 @@ var content = [
 
     {
         "id": 3,
-        "text": "Do you have pets or live with animals?",
+        "text": "Do you live with pets or service animals?",
         "prompt": "Animals are also vulnerable to heat and air quality.",
         "image": "Parrot_pet.svg",
         "options": [
@@ -79,7 +79,7 @@ var content = [
             {
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great, let's move on.",
+                "message": "Alright, let's move on.",
                 "setVariable": "animal('No')",
                 "goTo": 4
             }
@@ -98,14 +98,14 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great! You have an air conditioner. If you don't have AC in every room, put your AC in the room you spend the most time in.",
+                "message": "Great! You have an air conditioner. If you don't have AC in every room, and if you are able to, put your AC in the room you spend the most time in.",
                 "setVariable": "ac('Yes')",
                 "goTo": 5
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "On a hot day, inside  without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Being in air conditioning is the best way to stay safe when it's hot outside. Let's keep going to find other ways you can stay cool.",
+                "message": "On a hot day, inside without air conditioning can be up to 10 degrees hotter than outside — and can stay hotter for days after it cools down outside. Being in air conditioning is the best way to stay safe when it's hot outside. Let's keep going to find other ways you can stay cool.",
                 "setVariable": "ac('No')",
                 "goTo": 6
             }
@@ -126,14 +126,14 @@ var content = [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Setting your air conditioner to 78F or Low Cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if your'e eligible for help cooling your home.",
+                "message": "Setting your air conditioner to 78F or low cool can keep you safe, comfortable, and save money. Visit the <a href='https://www.nyc.gov/site/hra/help/energy-assistance.page'>Home Energy Assistance Program</a> and <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>CON ED's Energy Affordability Program</a> to see if you're eligible for help cooling your home.",
                 "setVariable": "limitAC('Yes')",
                 "goTo": 6
             },
             {   
                 "optionID": 2,
                 "copy": "No",
-                "message": "Great, let's move on to the next question.",
+                "message": "Alright, let's move on to the next question.",
                 "setVariable": "limitAC('No')",
                 "goTo": 6
             }
@@ -147,13 +147,13 @@ var content = [
     {
         "id": 6,
         "text": "Do you have a fan?",
-        "prompt": "Fans can help cool you down. But, fans do not cool the air.", 
+        "prompt": "Fans can help cool you down a little bit, but they're not enough on hot days.", 
         "image": "Fan.svg",
         "options": [
             {
                 "optionID": 1,
                 "copy": "Yes",
-                "message": "Great, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside. When it's hot, a fan alone is not enough. You can visit a cool place when it is hot outside.",
+                "message": "Alright, you have a fan. Fans can help cool you down when the air outside is cooler than the air inside, but because they do not cool the air, a fan alone is not enough when it is very hot out. In fact, a fan can make you even warmer. A lot of people have gotten severely ill while using a fan without AC during hot weather. You can visit a cool place when it is hot outside.",
                 "setVariable": "fan('Yes')",
                 "goTo": 99
             },
