@@ -6,7 +6,7 @@
         "assets": [
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
+            "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -24,8 +24,8 @@
         ],
         "assetsWithIntegrity": 13,
         "headingLevels": [
-            2,
             1,
+            2,
             1,
             2,
             1,
@@ -85,7 +85,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 158,
+            "internal": 116,
             "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -95,7 +95,7 @@
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,
@@ -108,8 +108,8 @@
     "content": {
         "title": "Neighborhood reports on climate and health in NYC | Environment and Health Data Portal – Environment & Health Data Portal",
         "headingText": [
-            "Select neighborhood",
             "Climate and Health",
+            "Choose Neighborhood",
             "Homes near structures rated good or excellent",
             "Building quality predicts the number of housing maintenance problems in a residence that place residents at increased risk of acute or chronic health problems.",
             "Vegetative cover",

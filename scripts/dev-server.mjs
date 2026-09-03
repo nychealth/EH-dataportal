@@ -1,5 +1,6 @@
-// Resolve-or-start a Hugo dev server for the smoke test. Returns { baseURL, stop }.
-// Three safety rules, each of which encodes a real failure mode:
+// Resolve-or-start a Hugo dev server for the characterization harness and the
+// smoke test. Returns { baseURL, stop }. Safety rules (design §5.1), each of
+// which encodes a real prior failure:
 //   - Never stop a server it didn't start (stop is a no-op for reused servers).
 //   - Never start a SECOND server. Hugo defaults to :1313, so "a server is up on
 //     a port we didn't probe" is the likely case, not a hypothetical, and a
@@ -178,7 +179,7 @@ export async function ensureDevServer() {
 
     // Path 1: explicit override — trust it, probe nothing, own nothing.
     // Force a trailing slash so consumers can join `baseURL + path` safely; the
-    // probe and spawn paths already return slash-terminated prefixes.
+    // probe/spawn paths already return slash-terminated prefixes.
     if (process.env.DE_BASE_URL) {
         const baseURL = process.env.DE_BASE_URL.replace(/\/?$/, "/");
         return {
@@ -210,13 +211,13 @@ export async function ensureDevServer() {
     }
 
     // Path 3: a hugo process exists but didn't answer our probes — it's on a
-    // port or prefix we don't know. Starting another would poison its cache.
+    // port/prefix we don't know. Starting another would poison its cache.
     if (hugoProcessExists()) {
         throw new Error(
             "A hugo process is running but did not answer on :8080, :8081 or :1313 " +
             "with any known path prefix. Refusing to start a second server " +
-            "(two builders share resources/_gen and corrupt each other's asset " +
-            "paths). Set DE_BASE_URL to its address, e.g. " +
+            "(it would poison the running server's fingerprint cache — see " +
+            "d5fb2ea700). Set DE_BASE_URL to its address, e.g. " +
             "DE_BASE_URL=\"http://localhost:PORT/PREFIX/\", and re-run."
         );
     }
@@ -226,15 +227,16 @@ export async function ensureDevServer() {
     // mode there — but pass the command as one pre-joined string rather than an
     // args array, which is how Node wants shell invocations (an args array with
     // shell:true triggers the DEP0190 arg-escaping warning). The args are fixed
-    // constants, so there is no injection surface. Off-Windows keeps the clean
+    // constants, so there's no injection surface. Off-Windows keeps the clean
     // array form with no shell.
     const child = process.platform === "win32"
         ? spawn(`${SPAWN_CMD_ARG} ${SPAWN_ARGS.join(" ")}`, { stdio: "ignore", shell: true })
         : spawn(SPAWN_CMD, SPAWN_ARGS, { stdio: "ignore" });
     const stop = makeStop(child);
 
-    // Tear down on our own exit so Ctrl-C or a normal exit doesn't orphan it.
-    process.once("exit", () => { stop(); });
+    // Tear down on our own exit so Ctrl-C / normal exit doesn't orphan it.
+    const onExit = () => { stop(); };
+    process.once("exit", onExit);
     process.once("SIGINT", () => { stop(); process.exit(130); });
 
     const baseURL = `http://localhost:${SPAWN_PORT}${SPAWN_PREFIX}`;

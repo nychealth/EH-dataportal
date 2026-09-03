@@ -1,38 +1,5 @@
 # JavaScript Conventions — Browser-Side JS
 
-> ## Ported to `production` — read this before acting on anything below
->
-> **Provenance.** Copied on 2026-08-21 from `feature-MOD-Lab-NR-recode-refactor`, blob
-> `04c28b011b`, last updated there 2026-08-06 by `424f660adb`. Everything below this banner
-> is byte-identical to that copy. It replaces this repo's older Data-Explorer-only version
-> (7,355 bytes against 14,642).
->
-> **Five things it says that are not true of this tree**, each checked here on 2026-08-21:
->
-> - **`assets/js/data-explorer-old/` does not exist here**, so the Scope section's exemption
->   for it has no subject.
-> - **Neither does the explorer its examples describe.** The Scope section points at the
->   explorer on `feature-new-data-explorer`, "the tree that survives". That branch has not
->   merged to `production`; `assets/js/data-explorer/` here is the older explorer, and the
->   examples are aspirational rather than descriptive of the code in this directory.
-> - **`debugLog` does not exist here** — 0 occurrences under `assets/js/`. The PENDING note
->   in the Debug-logging section describes this tree's situation exactly: raw `console.log`
->   is what is acceptable here until the wrapper arrives.
-> - **`assets/js/nr-topic-spa/` does not exist here**, so the structured
->   `'scope: event: value'` format has no consumer on this branch. The call-depth markers
->   are the format in use.
-> - **`.claude/commands/js-development.md` does not exist here** — there is no `.claude/`
->   directory at all — so the supersession note at the end of Scope has nothing to supersede.
->
-> **Two rules changed by this replacement**, and both loosen what the previous copy required:
->
-> - The file-header banner went from required on **every** file to required on files over
->   ~100 lines, optional below that.
-> - "Complete sentence, active voice, present tense" for function comments is **gone on
->   purpose**. The new copy says the document deliberately does not mandate the period or
->   the third-person-vs-imperative choice, and logs the voice question as open in §5h of
->   `documents/site-wide-audit-2026-06-27.md`.
-
 ## Scope
 
 Applies to all browser-side JavaScript authored in this repo: everything under

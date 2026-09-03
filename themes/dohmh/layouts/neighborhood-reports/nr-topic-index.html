@@ -1,0 +1,133 @@
+{{- define "main" -}}
+
+{{/*
+    Topic index — /neighborhood-reports/<topic>/.
+
+    Replaces topiclanding.html for the five topic content files. The one thing that had to
+    change: the 42-neighborhood link list is server-rendered here, where topiclanding built
+    it in JS from the `neighborhoods` global. That list is what gives a crawler 42 links per
+    topic — 210 in all — into the generated report pages, which is the argument Option D
+    rests on. It stays in the markup when collapsed, so the collapse costs nothing there;
+    it is also the no-JS and screen-reader equivalent of the map beside it.
+
+    Deliberately not the report page. Before this branch the topic URL rendered nr-report.html
+    with no neighborhood, which produces eight empty section divs and a dangling
+    "Asthma and the Environment in" for anything that does not run JS (scoping memo §12a).
+*/}}
+
+{{- $contentKey := .Params.content_yml -}}
+
+{{/* The URL segment for this topic, read off the page's own permalink rather than looked
+     up, so the links below cannot disagree with where this page actually lives */}}
+{{- $topicSlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+<article class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "neighborhood-reports" }}>Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" "") }}
+
+            {{/* Title above the picker rather than beside it, in the same centred column, so
+                 the two read as one column and the map gets the width it was starved of in
+                 the old col-md-4. The picker partial carries its own "Choose Neighborhood"
+                 heading, so there is nothing to introduce it with here. */}}
+            <div class="row mt-3">
+                <div class="col-md-8 mx-auto">
+                    {{/* No data-pagefind-weight here, deliberately. Weighting this <h1> at 10.0
+                         and the intro at 7.0 was tried on 2026-08-15 to lift the topic overview
+                         above the 42 per-neighborhood reports that share its vocabulary, and it
+                         moved nothing: "climate", "asthma" and "housing" returned identical
+                         counts and an identical top 10 with and without it. The reports win on
+                         their titles — "Climate and Health | East Harlem" — and a body weight
+                         cannot outrank 42 of those. documents/nr-pagefind-parity-2026-08-15.md
+                         §2f has the A/B. */}}
+                    <h1 class="h2">{{ .Title }}</h1>
+                    <div class="report-description fs-lg my-2">{{ .Content }}</div>
+                </div>
+            </div>
+
+            {{/* The partial already handles this page: getReportAndNeighborhood recognises a
+                 topic slug in the first path segment, so a map click navigates to
+                 <nbhd>/<topic>/ — the URL shape this branch serves. `geocode` is absent on a
+                 topic page, which is what sends nr-leaflet down its fit-the-whole-city
+                 branch with nothing highlighted. */}}
+            {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                 whose inline script calls L.map() as the parser reaches it, and js_bot is
+                 emitted after main. */}}
+            {{- partial "lib-leaflet.html" . }}
+            {{- partial "lib-uhflist.html" . }}
+
+            <div class="row mb-3">
+                <div class="col-md-8 mx-auto">
+                    {{ partial "nr-neighborhood-picker" (dict "page" .) }}
+                </div>
+            </div>
+
+            {{ partial "nr-neighborhood-list" (dict "topic_slug" $topicSlug) }}
+
+        </div>
+    </div>
+</article>
+
+
+{{- /* ====  save indicator names as a resource  ==== */ -}}
+
+{{- /* Ported from topiclanding.html. Publishes the indicator-name metadata as a site
+       resource, and emits each of this topic's indicator names and descriptions as a
+       hidden heading so Pagefind indexes that vocabulary against the topic page. */ -}}
+
+{{- $nr_indicator_names := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/neighborhood-reports/metadata/nr_indicator_names.json")) | transform.Unmarshal -}}
+
+{{- $nr_indicator_names_json := $nr_indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/nr_indicator_names.json" -}}
+
+{{ $nr_indicator_names_json.Publish }}
+
+{{- /* Keyed on .Params.content_yml, not .File.BaseFileName. The JSON's `title` field holds
+       exactly the content_yml string, and on a generated page .File.BaseFileName is the
+       literal "_content" — a `where` against it matches zero rows with no error at all. */ -}}
+
+{{- range (where $nr_indicator_names "title" "eq" $contentKey) -}}
+
+    {{- /* No id, despite what the copy of this block in topiclanding.html claimed: an id is
+           what makes Pagefind emit a sub-result, and a sub-result here would link to a
+           d-none heading on a page that renders no indicators. The data-explorer copy has an
+           id because footer.html rewrites its #IndicatorID- anchor into a ?id= query the
+           explorer acts on; nothing equivalent exists on this page. */ -}}
+
+    <h1 class="d-none">{{ .indicator_name }}</h1>
+    <h2 class="d-none">{{ .indicator_description }}</h2>
+
+{{- end -}}
+
+{{- end -}}
+
+
+{{- /* ====  neighborhood typeahead  ==== */ -}}
+
+{{- /* In js_bot, matching section.html: flexdatalist is the only page here that needs it, so
+       it is not in head.html. The init itself lives in nr-neighborhood-picker-js, shared with
+       the landing page; all this block adds is where a selection should land. */ -}}
+
+{{ define "js_bot" }}
+
+    {{- $topicSlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+    <script type="text/javascript">
+
+        // The topic comes from Hugo, not from sniffing the rendered <h1> the way
+        // topiclanding.html did — this page knows its own slug at build time.
+        function nrPickerDestination() { return '{{ $topicSlug }}' }
+
+    </script>
+
+    {{ partial "nr-neighborhood-picker-js" . }}
+
+{{- end -}}

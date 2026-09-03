@@ -23,80 +23,55 @@
               <p>We're no longer at <code class="text-secondary">/beta</code>. We'll send you to your correct URL.</p>
               
             </div>
-            
-          </div>
-          
-          
-          
+
         </div>
-        <!--end main column-->
-      </div>
-      
-      <script>
-        // ---------- Get URL, and hide page content options -------------------------------------- // 
-        
-        var url = window.location.href                              // use this when live
-        
-        var chunks = document.querySelectorAll('.chunk')
-        
-        chunks.forEach(x => x.classList.add('hide'))
-        
-        
-        // ---------- does the URL include beta? ---------- // 
-        
-        url.includes("beta") ? removeBeta(url) : redirectHome()
-        
-        
-        // ----------  remove /beta from URL and redirect to otherwise same URL -------------------- // 
-        
-        function removeBeta(x) {
-          // expose page content
-          document.getElementById('redirectBeta').classList.remove('hide')
-          //console.log('It is a beta URL')
-          
-          // remove beta from URL
-          url = x.replace('/beta','')
-          // console.log('new url: ', url)
-          
-          // send to new location
-          setTimeout(() => {
-            window.location.href = url
-          }, 2000)
-        }
-        
-        // ----------  redirect to Home Page -------------------------------------------------------- // 
-        
-        function redirectHome() {
-          // expose content
-          document.getElementById('main404').classList.remove('hide')
-          
-          // start countdown
-          countDown(5)
-        }
-        
-        
-        function countDown(x) {
-          
-          if (x > 0) {
-            var print = document.getElementById('sec')
-            print.innerHTML = x
-            var oneLess = x - 1
-            setTimeout(() => {
-              countDown(oneLess)
-            }, 1000)
-            
-          } else {
-            sendHome()
-          }
-        }
-        
-        function sendHome() {
-          setTimeout(() => {
-            window.location.href = {{ relURL "" }}
-          }, 1000)
-        }
-        
-      </script>
-      
-    </article>
-    {{- end -}}
+
+
+
+    </div>
+    <!--end main column-->
+  </div>
+
+<script>
+const url = window.location.href;
+
+document.querySelectorAll('.chunk').forEach(x => x.classList.add('hide'));
+
+// A Neighborhood Reports branch used to sit here, intercepting
+// /neighborhood-reports/<topic>/<nbhd> and handing the neighborhood to the topic SPA through
+// sessionStorage. Every <nbhd>/<topic>/ URL is now a real generated page, so a neighborhood
+// report reaching this template is a genuine 404 and should be treated as one.
+
+if (url.includes('beta')) {
+  removeBeta(url);
+} else {
+  redirectHome();
+}
+
+// ----------  remove /beta from URL and redirect to otherwise same URL -------------------- //
+
+function removeBeta(x) {
+  document.getElementById('redirectBeta').classList.remove('hide');
+  setTimeout(() => { window.location.href = x.replace('/beta', ''); }, 2000);
+}
+
+// ----------  redirect to Home Page -------------------------------------------------------- //
+
+function redirectHome() {
+  document.getElementById('main404').classList.remove('hide');
+  countDown(5);
+}
+
+function countDown(x) {
+  if (x > 0) {
+    document.getElementById('sec').innerHTML = x;
+    setTimeout(() => { countDown(x - 1); }, 1000);
+  } else {
+    setTimeout(() => { window.location.href = {{ relURL "" }}; }, 1000);
+  }
+}
+
+</script>
+  
+</article>
+{{- end -}}

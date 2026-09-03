@@ -1,0 +1,6437 @@
+{
+  "pagefindVersion": "1.5.2",
+  "dataBranch": "production",
+  "pageCount": 202,
+  "sections": {
+    "(root)": 1,
+    "about": 10,
+    "data-explorer": 43,
+    "data-features": 27,
+    "data-stories": 42,
+    "es": 7,
+    "key-topics": 12,
+    "neighborhood-reports": 48,
+    "resources": 3,
+    "take-action": 2,
+    "zh": 7
+  },
+  "queries": {
+    "10463": {
+      "total": 1,
+      "top": [
+        {
+          "url": "/neighborhood-reports/kingsbridge_riverdale/",
+          "subResults": 1
+        }
+      ]
+    },
+    "Kingsbridge": {
+      "total": 1,
+      "top": [
+        {
+          "url": "/neighborhood-reports/kingsbridge_riverdale/",
+          "subResults": 1
+        }
+      ]
+    },
+    "asthma": {
+      "total": 47,
+      "top": [
+        {
+          "url": "/data-explorer/asthma/",
+          "subResults": 19
+        },
+        {
+          "url": "/neighborhood-reports/asthma_and_the_environment/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/asthma-triggers/",
+          "subResults": 7
+        },
+        {
+          "url": "/data-stories/asthma-and-poverty/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/health-impacts-of-air-pollution/",
+          "subResults": 3
+        },
+        {
+          "url": "/neighborhood-reports/housing_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/outdoor_air_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/cockroaches/",
+          "subResults": 3
+        },
+        {
+          "url": "/data-explorer/mice-and-rats/",
+          "subResults": 4
+        },
+        {
+          "url": "/neighborhood-reports/climate_and_health/",
+          "subResults": 1
+        }
+      ]
+    },
+    "asthma East Harlem": {
+      "total": 2,
+      "top": [
+        {
+          "url": "/data-stories/sanitation/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-stories/urban-heat-island/",
+          "subResults": 1
+        }
+      ]
+    },
+    "neighborhood reports": {
+      "total": 108,
+      "top": [
+        {
+          "url": "/neighborhood-reports/active_design_physical_activity_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/",
+          "subResults": 2
+        },
+        {
+          "url": "/neighborhood-reports/asthma_and_the_environment/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/willowbrook/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/greenpoint/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/east_harlem/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/sunset_park/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/east_new_york/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/fresh_meadows/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/kingsbridge_riverdale/",
+          "subResults": 1
+        }
+      ]
+    },
+    "heat vulnerability": {
+      "total": 26,
+      "top": [
+        {
+          "url": "/data-features/hvi/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-features/heat-report-archive/2025/",
+          "subResults": 2
+        },
+        {
+          "url": "/data-features/heat-report-archive/2024/",
+          "subResults": 2
+        },
+        {
+          "url": "/data-features/heat-report-archive/2023/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-features/heat-report/",
+          "subResults": 2
+        },
+        {
+          "url": "/data-features/heat-report-archive/2021/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-features/heat-report-archive/2022/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/climate/",
+          "subResults": 7
+        },
+        {
+          "url": "/neighborhood-reports/housing_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/weather-related-illness/",
+          "subResults": 8
+        }
+      ]
+    },
+    "climate": {
+      "total": 35,
+      "top": [
+        {
+          "url": "/key-topics/climatehealth/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/climate/",
+          "subResults": 2
+        },
+        {
+          "url": "/data-stories/vectorborne-diseases-and-health/",
+          "subResults": 1
+        },
+        {
+          "url": "/neighborhood-reports/climate_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-stories/energy-insecurity/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-features/adg-2/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-stories/poweroutages/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-stories/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/weather-related-illness/",
+          "subResults": 2
+        },
+        {
+          "url": "/",
+          "subResults": 1
+        }
+      ]
+    },
+    "housing": {
+      "total": 67,
+      "top": [
+        {
+          "url": "/neighborhood-reports/housing_and_health/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/housing-maintenance/",
+          "subResults": 12
+        },
+        {
+          "url": "/data-explorer/housing-stability/",
+          "subResults": 5
+        },
+        {
+          "url": "/data-explorer/housing-safety/",
+          "subResults": 3
+        },
+        {
+          "url": "/data-stories/housing-creates-health/",
+          "subResults": 1
+        },
+        {
+          "url": "/key-topics/housing/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-stories/housing/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/economic-conditions/",
+          "subResults": 6
+        },
+        {
+          "url": "/neighborhood-reports/asthma_and_the_environment/",
+          "subResults": 1
+        },
+        {
+          "url": "/data-explorer/mice-and-rats/",
+          "subResults": 4
+        }
+      ]
+    },
+    "zzqqxxwv": {
+      "total": 1,
+      "top": [
+        {
+          "url": "/about/",
+          "subResults": 1
+        }
+      ]
+    }
+  },
+  "pages": {
+    "/": {
+      "words": 420,
+      "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "aqiModalContent",
+        "aqimeaning",
+        "coldModalContent",
+        "featured-homepage",
+        "forecasthigh",
+        "forecastlow",
+        "heatModalContent",
+        "openModalBtnWeather",
+        "primary-content",
+        "results",
+        "weatherModal",
+        "weatherModalTitle"
+      ],
+      "contentHash": "f08f99580fbde88a",
+      "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
+    },
+    "/about/": {
+      "words": 495,
+      "title": "About the EH Data Portal | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "75493fc060c4e065",
+      "contentHead": "About the EH Data Portal. The NYC Environment & Health Data Portal shows how environments affect health, by publishing d"
+    },
+    "/about/accessibility-updates/": {
+      "words": 923,
+      "title": "Making data visualizations more accessible | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "datawrapper-chart-c7jtG",
+        "datawrapper-chart-d7DDS",
+        "datawrapper-chart-dB6XN",
+        "datawrapper-chart-i7Bgo",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "983bc6ab367ac7b8",
+      "contentHead": "Making data visualizations more accessible. At the Environment and Health Data Portal, our mission is to make data easy "
+    },
+    "/about/advanced-tools/": {
+      "words": 794,
+      "title": "Advanced site tools | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "428e29d8c588ddd9",
+      "contentHead": "Advanced site tools. If you are a data scientist, programmer, open data enthusiast, open source evangelist, data visuali"
+    },
+    "/about/data-sources/": {
+      "words": 1917,
+      "title": "Where does our data come from? | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "acc-button-01",
+        "acc-button-02",
+        "acc-button-03",
+        "acc-button-04",
+        "acc-button-05",
+        "acc-button-2a",
+        "acc-button-2b",
+        "acc-button-2c",
+        "acc-button-2d",
+        "acc-button-2e",
+        "acc-button-2f",
+        "accordion-01",
+        "accordion-02",
+        "panel-acc-button-01",
+        "panel-acc-button-02",
+        "panel-acc-button-03",
+        "panel-acc-button-04",
+        "panel-acc-button-05",
+        "panel-acc-button-2a",
+        "panel-acc-button-2b",
+        "panel-acc-button-2c",
+        "panel-acc-button-2d",
+        "panel-acc-button-2e",
+        "panel-acc-button-2f",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "518aadf2fd0aeda1",
+      "contentHead": "Where does our data come from? The Environment and Health Data Portal hosts over 200 sets of measures from data sources "
+    },
+    "/about/jobs/": {
+      "words": 24,
+      "title": "We're Hiring! | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "07d8e2c852e305a8",
+      "contentHead": "We're Hiring! There are no roles currently available in our bureau. Check back soon and search cityjobs.nyc.gov for ‘BES"
+    },
+    "/about/new-data-explorer-features/": {
+      "words": 825,
+      "title": "New Data Explorer features | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "355876acc6da028a",
+      "contentHead": "New Data Explorer features. If you browse data on our Data Explorer, you might notice some new changes. In recent months"
+    },
+    "/about/publications/": {
+      "words": 103,
+      "title": "Published papers | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "526d2050bae7908e",
+      "contentHead": "Published papers. Public Health Data: Lessons Learned From COVID-19 (NAACHO Exchange - 2025) Communicating public health"
+    },
+    "/about/redesign/": {
+      "words": 672,
+      "title": "The redesigned EH Data Portal | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "815d1df46e8368f7",
+      "contentHead": "The redesigned EH Data Portal. The Environment and Health Data Portal looks a little bit different! We recently redesign"
+    },
+    "/about/roadmap/": {
+      "words": 152,
+      "title": "Our Roadmap: An Open Path Forward | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "7b127a53a72da9c1",
+      "contentHead": "Our Roadmap: An Open Path Forward. In 2020, we partnered with Open Tech Strategies to review the Environment and Health "
+    },
+    "/about/subscribe/": {
+      "words": 59,
+      "title": "Subscribe for updates | About the EH Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "1814e7d737f101e1",
+      "contentHead": "Subscribe for updates. Thanks for visiting the Environment and Health Data Portal. We’d like to add you to our email lis"
+    },
+    "/data-explorer/accessibility/": {
+      "words": 613,
+      "title": "Accessibility | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2145",
+        "IndicatorID-2377",
+        "IndicatorID-2391",
+        "IndicatorID-2408",
+        "IndicatorID-2455",
+        "IndicatorID-2456",
+        "IndicatorID-2457",
+        "IndicatorID-2458",
+        "IndicatorID-2459",
+        "IndicatorID-2460",
+        "IndicatorID-2461",
+        "IndicatorID-2462",
+        "IndicatorID-2463",
+        "IndicatorID-2464",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "09ecbba9f2993f58",
+      "contentHead": "Accessibility Get maps, charts, tables, and more. About 10% of New Yorkers have a disability with varying access needs. "
+    },
+    "/data-explorer/active-design/": {
+      "words": 796,
+      "title": "Active design | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2133",
+        "IndicatorID-2143",
+        "IndicatorID-2157",
+        "IndicatorID-2158",
+        "IndicatorID-2181",
+        "IndicatorID-2388",
+        "IndicatorID-2389",
+        "IndicatorID-2390",
+        "IndicatorID-2391",
+        "IndicatorID-2416",
+        "IndicatorID-2425",
+        "IndicatorID-2426",
+        "IndicatorID-2455",
+        "IndicatorID-2456",
+        "IndicatorID-2458",
+        "IndicatorID-2460",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "ec4c3de5ddbbf0b7",
+      "contentHead": "Active design Get maps, charts, tables, and more. Physical activity and healthy eating are among the leading ways to get"
+    },
+    "/data-explorer/air-quality/": {
+      "words": 487,
+      "title": "Air quality | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2023",
+        "IndicatorID-2024",
+        "IndicatorID-2025",
+        "IndicatorID-2026",
+        "IndicatorID-2027",
+        "IndicatorID-2028",
+        "IndicatorID-2449",
+        "IndicatorID-55",
+        "IndicatorID-57",
+        "IndicatorID-92",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "abf5dd208c51a15e",
+      "contentHead": "Air quality Get maps, charts, tables, and more. Air quality is a measure of the condition of the air around us. The less"
+    },
+    "/data-explorer/alcohol-use/": {
+      "words": 249,
+      "title": "Alcohol access and use | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2049",
+        "IndicatorID-2050",
+        "IndicatorID-2051",
+        "IndicatorID-2055",
+        "IndicatorID-2056",
+        "IndicatorID-2057",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "4aabcd4c77cf2507",
+      "contentHead": "Alcohol access and use Get maps, charts, tables, and more. Heavy regular drinking and binge drinking contribute to a wid"
+    },
+    "/data-explorer/asthma-triggers/": {
+      "words": 278,
+      "title": "Asthma triggers at home | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-107",
+        "IndicatorID-2101",
+        "IndicatorID-2393",
+        "IndicatorID-2394",
+        "IndicatorID-2430",
+        "IndicatorID-48",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "9bdd8cab7e6b03bf",
+      "contentHead": "Asthma triggers at home Get maps, charts, tables, and more. Housing conditions can trigger asthma. In New York City, chi"
+    },
+    "/data-explorer/asthma/": {
+      "words": 625,
+      "title": "Asthma | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-18",
+        "IndicatorID-2048",
+        "IndicatorID-2339",
+        "IndicatorID-2378",
+        "IndicatorID-2379",
+        "IndicatorID-2380",
+        "IndicatorID-2381",
+        "IndicatorID-2382",
+        "IndicatorID-2383",
+        "IndicatorID-2384",
+        "IndicatorID-2385",
+        "IndicatorID-2386",
+        "IndicatorID-2387",
+        "IndicatorID-2392",
+        "IndicatorID-2414",
+        "IndicatorID-2429",
+        "IndicatorID-2431",
+        "IndicatorID-84",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "a1481f69c8cc02de",
+      "contentHead": "Asthma Get maps, charts, tables, and more. Asthma is a common disease in which the lungs become swollen, making breathin"
+    },
+    "/data-explorer/bed-bugs/": {
+      "words": 119,
+      "title": "Bed bugs | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2030",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "e4cd53b87c0c2801",
+      "contentHead": "Bed bugs Get maps, charts, tables, and more. Bed bugs are small insects that feed mainly on human blood. They are often "
+    },
+    "/data-explorer/birth-defects/": {
+      "words": 388,
+      "title": "Birth defects | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-101",
+        "IndicatorID-26",
+        "IndicatorID-27",
+        "IndicatorID-28",
+        "IndicatorID-29",
+        "IndicatorID-30",
+        "IndicatorID-31",
+        "IndicatorID-32",
+        "IndicatorID-33",
+        "IndicatorID-34",
+        "IndicatorID-35",
+        "IndicatorID-36",
+        "IndicatorID-37",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "6916c5e03e86fcf2",
+      "contentHead": "Birth defects Get maps, charts, tables, and more. Birth defects (also called congenital malformations) are conditions th"
+    },
+    "/data-explorer/birth-outcomes/": {
+      "words": 183,
+      "title": "Birth outcomes | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-1",
+        "IndicatorID-2",
+        "IndicatorID-3",
+        "IndicatorID-4",
+        "IndicatorID-5",
+        "IndicatorID-6",
+        "IndicatorID-7",
+        "IndicatorID-8",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "85db49c89afb07f5",
+      "contentHead": "Birth outcomes Get maps, charts, tables, and more. Close to 125,000 live births occur in New York City (NYC) each year. "
+    },
+    "/data-explorer/cancer/": {
+      "words": 326,
+      "title": "Cancer | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2077",
+        "IndicatorID-2087",
+        "IndicatorID-2088",
+        "IndicatorID-2089",
+        "IndicatorID-2090",
+        "IndicatorID-2091",
+        "IndicatorID-2095",
+        "IndicatorID-2096",
+        "IndicatorID-60",
+        "IndicatorID-63",
+        "IndicatorID-64",
+        "IndicatorID-66",
+        "IndicatorID-690",
+        "IndicatorID-71",
+        "IndicatorID-73",
+        "IndicatorID-74",
+        "IndicatorID-770",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "4956ff719b049199",
+      "contentHead": "Cancer Get maps, charts, tables, and more. Cancer is the general name for a group of more than 100 diseases in which cel"
+    },
+    "/data-explorer/cancers-in-children/": {
+      "words": 161,
+      "title": "Cancers in children | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2031",
+        "IndicatorID-2033",
+        "IndicatorID-2035",
+        "IndicatorID-2037",
+        "IndicatorID-2039",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "39e10aebb91c97b5",
+      "contentHead": "Cancers in children Get maps, charts, tables, and more. Cancer begins when cells in a part of the body start to grow out"
+    },
+    "/data-explorer/carbon-monoxide-incidents/": {
+      "words": 215,
+      "title": "Carbon monoxide | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2168",
+        "IndicatorID-2398",
+        "IndicatorID-2405",
+        "IndicatorID-2406",
+        "IndicatorID-38",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "0b786c00ab602558",
+      "contentHead": "Carbon monoxide Get maps, charts, tables, and more. Carbon monoxide (CO) is a poisonous gas that forms when fuel or othe"
+    },
+    "/data-explorer/chronic-disease/": {
+      "words": 161,
+      "title": "Chronic disease | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2465",
+        "IndicatorID-2466",
+        "IndicatorID-2467",
+        "IndicatorID-2468",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "b25a7c50339fe97e",
+      "contentHead": "Chronic disease Get maps, charts, tables, and more. Chronic diseases such as diabetes, heart disease, hypertension, and "
+    },
+    "/data-explorer/cigarette-smoke/": {
+      "words": 365,
+      "title": "Cigarette smoke | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2017",
+        "IndicatorID-2019",
+        "IndicatorID-2020",
+        "IndicatorID-2021",
+        "IndicatorID-2338",
+        "IndicatorID-2404",
+        "IndicatorID-2421",
+        "IndicatorID-2422",
+        "IndicatorID-25",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "6330fcb1f988e59a",
+      "contentHead": "Cigarette smoke Get maps, charts, tables, and more. Smoking causes over a dozen cancers, heart disease, stroke, type 2 d"
+    },
+    "/data-explorer/climate/": {
+      "words": 454,
+      "title": "Climate | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2084",
+        "IndicatorID-2104",
+        "IndicatorID-2140",
+        "IndicatorID-2141",
+        "IndicatorID-2143",
+        "IndicatorID-2185",
+        "IndicatorID-2191",
+        "IndicatorID-2377",
+        "IndicatorID-2411",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "0324b9552bfefe09",
+      "contentHead": "Climate Get maps, charts, tables, and more. A region’s climate is characterized by its usual weather conditions, seasons"
+    },
+    "/data-explorer/cockroaches/": {
+      "words": 180,
+      "title": "Cockroaches | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-107",
+        "IndicatorID-22",
+        "IndicatorID-2393",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "f8ae23d98a32d0bb",
+      "contentHead": "Cockroaches Get maps, charts, tables, and more. Cockroaches are a common urban pest. Though there are more than a thousa"
+    },
+    "/data-explorer/data-index/": {
+      "words": 129,
+      "title": "Data index | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "indicators",
+        "results",
+        "tablebody"
+      ],
+      "contentHash": "6fa172e9523d0821",
+      "contentHead": "Data index. Search by term, see available years and geographies, and filter by data source. This produces a list of topi"
+    },
+    "/data-explorer/drinking-water-quality/": {
+      "words": 267,
+      "title": "Drinking water quality | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2041",
+        "IndicatorID-2043",
+        "IndicatorID-2044",
+        "IndicatorID-2207",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "816b2ced512a1ebc",
+      "contentHead": "Drinking water quality Get maps, charts, tables, and more. All NYC residences receive drinking water from a public water"
+    },
+    "/data-explorer/economic-conditions/": {
+      "words": 268,
+      "title": "Economic conditions | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-103",
+        "IndicatorID-15",
+        "IndicatorID-17",
+        "IndicatorID-2132",
+        "IndicatorID-2176",
+        "IndicatorID-2336",
+        "IndicatorID-2337",
+        "IndicatorID-2365",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "37ad98b864650570",
+      "contentHead": "Economic conditions Get maps, charts, tables, and more. Social and economic conditions affect people’s health. These con"
+    },
+    "/data-explorer/falls-among-older-adults/": {
+      "words": 196,
+      "title": "Falls among older adults | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2135",
+        "IndicatorID-2136",
+        "IndicatorID-2408",
+        "IndicatorID-2409",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "27679223acae161b",
+      "contentHead": "Falls among older adults Get maps, charts, tables, and more. Each year, one in three older adults (65 years and older) f"
+    },
+    "/data-explorer/health-care/": {
+      "words": 328,
+      "title": "Health care | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2132",
+        "IndicatorID-2151",
+        "IndicatorID-2232",
+        "IndicatorID-2401",
+        "IndicatorID-2459",
+        "IndicatorID-2461",
+        "IndicatorID-2462",
+        "IndicatorID-2463",
+        "IndicatorID-2464",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "d06cf8f4fb9dd3ca",
+      "contentHead": "Health care Get maps, charts, tables, and more. Health care is a valuable tool to stay healthy. Health insurance coverag"
+    },
+    "/data-explorer/health-impacts-of-air-pollution/": {
+      "words": 279,
+      "title": "Health impacts of air pollution | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2108",
+        "IndicatorID-2117",
+        "IndicatorID-2119",
+        "IndicatorID-2120",
+        "IndicatorID-2121",
+        "IndicatorID-2122",
+        "IndicatorID-2124",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "1f52ed6368042f25",
+      "contentHead": "Health impacts of air pollution Get maps, charts, tables, and more. Air pollution is an important environmental threat t"
+    },
+    "/data-explorer/healthy-eating/": {
+      "words": 212,
+      "title": "Healthy eating | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2097",
+        "IndicatorID-2098",
+        "IndicatorID-2389",
+        "IndicatorID-2432",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "7d3373ec5d88970b",
+      "contentHead": "Healthy eating Get maps, charts, tables, and more. Healthy eating is associated with better health, including a reduced "
+    },
+    "/data-explorer/housing-maintenance/": {
+      "words": 419,
+      "title": "Housing maintenance | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2179",
+        "IndicatorID-2395",
+        "IndicatorID-2396",
+        "IndicatorID-2399",
+        "IndicatorID-2446",
+        "IndicatorID-40",
+        "IndicatorID-41",
+        "IndicatorID-42",
+        "IndicatorID-45",
+        "IndicatorID-46",
+        "IndicatorID-47",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "60cf737064523863",
+      "contentHead": "Housing maintenance Get maps, charts, tables, and more. Buildings with maintenance issues and disrepair can harm health."
+    },
+    "/data-explorer/housing-safety/": {
+      "words": 170,
+      "title": "Housing safety | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2104",
+        "IndicatorID-2185",
+        "IndicatorID-2377",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "01c4d0f9f552ed07",
+      "contentHead": "Housing safety Get maps, charts, tables, and more. Most people spend most of their time in their home. That makes the ho"
+    },
+    "/data-explorer/housing-stability/": {
+      "words": 178,
+      "title": "Housing stability | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-15",
+        "IndicatorID-17",
+        "IndicatorID-2336",
+        "IndicatorID-2365",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "476829cefcd1a912",
+      "contentHead": "Housing stability Get maps, charts, tables, and more. Most people spend most of their time in their home. That makes the"
+    },
+    "/data-explorer/indicator-catalog/": {
+      "words": 68,
+      "title": "Indicator catalog | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "clear",
+        "flex_search",
+        "indDesc",
+        "indName",
+        "measureList",
+        "repoLink",
+        "results",
+        "sourceList",
+        "topicList"
+      ],
+      "contentHash": "de3252f0aec275e1",
+      "contentHead": "Indicator catalog. Search by term, get metadata and download links. This produces a list of topics and IndicatorIDs, sto"
+    },
+    "/data-explorer/lead/": {
+      "words": 393,
+      "title": "Lead poisoning | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-16",
+        "IndicatorID-2176",
+        "IndicatorID-2184",
+        "IndicatorID-2189",
+        "IndicatorID-2209",
+        "IndicatorID-2216",
+        "IndicatorID-41",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "38babb9a45cb035c",
+      "contentHead": "Lead poisoning Get maps, charts, tables, and more. Lead is a metal that is toxic to people. There is no safe level of le"
+    },
+    "/data-explorer/mental-health/": {
+      "words": 207,
+      "title": "Mental health | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2417",
+        "IndicatorID-2418",
+        "IndicatorID-2419",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "365b620046ea574d",
+      "contentHead": "Mental health Get maps, charts, tables, and more. Mental health is a person’s emotional, psychological, and social wellb"
+    },
+    "/data-explorer/mice-and-rats/": {
+      "words": 336,
+      "title": "Mice and rats | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2394",
+        "IndicatorID-24",
+        "IndicatorID-2416",
+        "IndicatorID-2433",
+        "IndicatorID-2434",
+        "IndicatorID-2447",
+        "IndicatorID-48",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "e70b6b0d810c2383",
+      "contentHead": "Mice and rats Get maps, charts, tables, and more. Rats and mice are common, but preventable. In NYC, rats tend to be see"
+    },
+    "/data-explorer/mortality/": {
+      "words": 141,
+      "title": "Mortality | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2322",
+        "IndicatorID-5",
+        "IndicatorID-6",
+        "IndicatorID-8",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "84d6adb9b9aa88f1",
+      "contentHead": "Mortality Get maps, charts, tables, and more. Death is, of course, a severe health outcome. Many deaths are preventable."
+    },
+    "/data-explorer/overweight/": {
+      "words": 288,
+      "title": "Overweight | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2061",
+        "IndicatorID-2062",
+        "IndicatorID-2063",
+        "IndicatorID-2064",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "f80addf13bce2734",
+      "contentHead": "Overweight Get maps, charts, tables, and more. People who are overweight or obese are at increased risk for heart diseas"
+    },
+    "/data-explorer/pesticides/": {
+      "words": 587,
+      "title": "Pesticides | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-100",
+        "IndicatorID-102",
+        "IndicatorID-2235",
+        "IndicatorID-2312",
+        "IndicatorID-2364",
+        "IndicatorID-2366",
+        "IndicatorID-2367",
+        "IndicatorID-2368",
+        "IndicatorID-2369",
+        "IndicatorID-2370",
+        "IndicatorID-2374",
+        "IndicatorID-91",
+        "IndicatorID-93",
+        "IndicatorID-94",
+        "IndicatorID-96",
+        "IndicatorID-97",
+        "IndicatorID-98",
+        "IndicatorID-99",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "b4e5e73bc31de55a",
+      "contentHead": "Pesticides Get maps, charts, tables, and more. Pesticides are chemicals applied to kill or control insects, rats and mic"
+    },
+    "/data-explorer/physical-activity/": {
+      "words": 169,
+      "title": "Physical activity | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2058",
+        "IndicatorID-2059",
+        "IndicatorID-2060",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "055c8f3edc312299",
+      "contentHead": "Physical activity Get maps, charts, tables, and more. Physical activity is an important part of a healthy lifestyle. Reg"
+    },
+    "/data-explorer/restaurant-food-safety/": {
+      "words": 135,
+      "title": "Restaurant food safety | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2065",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "3b9e41f973baf91d",
+      "contentHead": "Restaurant food safety Get maps, charts, tables, and more. New York City has approximately 28,000 restaurants that the H"
+    },
+    "/data-explorer/social-conditions/": {
+      "words": 315,
+      "title": "Social conditions | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-14",
+        "IndicatorID-2145",
+        "IndicatorID-2146",
+        "IndicatorID-2317",
+        "IndicatorID-2323",
+        "IndicatorID-2325",
+        "IndicatorID-2334",
+        "IndicatorID-2335",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "ec608fc836a33d9d",
+      "contentHead": "Social conditions Get maps, charts, tables, and more. Social and economic conditions affect people’s health. These condi"
+    },
+    "/data-explorer/transportation-related-injuries/": {
+      "words": 183,
+      "title": "Transportation-related injuries | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2086",
+        "IndicatorID-2092",
+        "IndicatorID-2093",
+        "IndicatorID-2094",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "7e649ba83ff8b96d",
+      "contentHead": "Transportation-related injuries Get maps, charts, tables, and more. Traffic injuries are no accident. Like other public "
+    },
+    "/data-explorer/vector-borne-disease/": {
+      "words": 373,
+      "title": "Vector-borne disease | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2218",
+        "IndicatorID-2340",
+        "IndicatorID-2441",
+        "IndicatorID-2442",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "da5a9e17d90ffa8c",
+      "contentHead": "Vector-borne disease Get maps, charts, tables, and more. Vector-borne diseases are diseases that are transmitted from an"
+    },
+    "/data-explorer/violence/": {
+      "words": 340,
+      "title": "Violence | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2375",
+        "IndicatorID-2400",
+        "IndicatorID-2435",
+        "IndicatorID-2436",
+        "IndicatorID-2437",
+        "IndicatorID-2438",
+        "IndicatorID-2439",
+        "IndicatorID-2440",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "3535722459977a07",
+      "contentHead": "Violence Get maps, charts, tables, and more. Violence is the use of physical, verbal and/or emotional force to injure, h"
+    },
+    "/data-explorer/walking-driving-and-cycling/": {
+      "words": 516,
+      "title": "Walking, driving, and cycling | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2058",
+        "IndicatorID-2059",
+        "IndicatorID-2112",
+        "IndicatorID-2113",
+        "IndicatorID-2114",
+        "IndicatorID-2133",
+        "IndicatorID-2172",
+        "IndicatorID-2173",
+        "IndicatorID-2236",
+        "IndicatorID-2237",
+        "IndicatorID-2238",
+        "IndicatorID-2415",
+        "IndicatorID-2425",
+        "IndicatorID-2426",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "b0110a98ff2e3d9f",
+      "contentHead": "Walking, driving, and cycling Get maps, charts, tables, and more. People get around New York City in many ways - public "
+    },
+    "/data-explorer/waterways/": {
+      "words": 164,
+      "title": "Waterways | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2427",
+        "IndicatorID-2428",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "30851b9244415d59",
+      "contentHead": "Waterways Get maps, charts, tables, and more. Healthy waterways are important for both aquatic life and humans who use t"
+    },
+    "/data-explorer/weather-related-illness/": {
+      "words": 565,
+      "title": "Weather-related illness | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2074",
+        "IndicatorID-2075",
+        "IndicatorID-2076",
+        "IndicatorID-2084",
+        "IndicatorID-2174",
+        "IndicatorID-2175",
+        "IndicatorID-2191",
+        "IndicatorID-2376",
+        "IndicatorID-2410",
+        "IndicatorID-2411",
+        "IndicatorID-2443",
+        "IndicatorID-2444",
+        "IndicatorID-2445",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "ade9b98a06e25bf6",
+      "contentHead": "Weather-related illness Get maps, charts, tables, and more. The climate of a region is characterized by its usual weathe"
+    },
+    "/data-explorer/worker-health/": {
+      "words": 489,
+      "title": "Worker health | Data Explorer",
+      "filters": {
+        "section": [
+          "Data Explorer"
+        ]
+      },
+      "anchors": [
+        "IndicatorID-2208",
+        "IndicatorID-2209",
+        "IndicatorID-2210",
+        "IndicatorID-2211",
+        "IndicatorID-2214",
+        "IndicatorID-2215",
+        "IndicatorID-2239",
+        "allData",
+        "chartSaver",
+        "chartView",
+        "citeButton",
+        "citeText",
+        "compMenu",
+        "correlateHolder",
+        "downloadDD",
+        "dropdownMenuLink",
+        "howCalcButton",
+        "indicator-dropdown",
+        "indicatorNameMobile",
+        "indicatorTitle",
+        "links",
+        "links-unreliability",
+        "linksSidebar",
+        "linksTitle",
+        "map",
+        "map-unreliability",
+        "mapSidebar",
+        "results",
+        "show-disparities",
+        "show-links",
+        "summary-table",
+        "tab-btn-links",
+        "tab-btn-map",
+        "tab-btn-table",
+        "tab-btn-trend",
+        "tab-links",
+        "tab-map",
+        "tab-table",
+        "tab-trend",
+        "table-unreliability",
+        "tableSidebar",
+        "tableTitle",
+        "tabs-01-content",
+        "tc1",
+        "tc2",
+        "trend",
+        "trend-unreliability",
+        "trendMenuHolder",
+        "trendSidebar",
+        "viewDescription"
+      ],
+      "contentHash": "7965df0f7cd805ff",
+      "contentHead": "Worker health Get maps, charts, tables, and more. Every year in New York City, workers are injured on the job or become "
+    },
+    "/data-features/": {
+      "words": 714,
+      "title": "Data Features | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "b942bedf3cc09edd",
+      "contentHead": "Data Features. Interactive infographics, real-time data feeds, and annual reports on important environmental health topi"
+    },
+    "/data-features/adg-2/": {
+      "words": 183,
+      "title": "Active Design Guidelines 2.0 | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "5af600a08b682adf",
+      "contentHead": "Active Design Guidelines 2.0. Active Design Guidelines 2.0: Designing for Health and Equity (ADG 2.0) is a playbook and "
+    },
+    "/data-features/beaches/": {
+      "words": 145,
+      "title": "Beach Water Quality | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "5f48075af25c64c2",
+      "contentHead": "Beach Water Quality. One month before New York City’s beaches open to the public, the Health Departments starts sampling"
+    },
+    "/data-features/congestion-pricing-report/": {
+      "words": 1996,
+      "title": "Air Quality Impacts of Congestion Relief Zone Tolling | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "EJ_text",
+        "aqChangeVis",
+        "background",
+        "cpRegional",
+        "cpReportMap",
+        "cpSiteButtons",
+        "cpVis",
+        "cpVis2",
+        "cpVisTOD",
+        "explainChart",
+        "explainChart2",
+        "key-takeaways",
+        "primary-content",
+        "results",
+        "site-info-box",
+        "site-name",
+        "site-prep",
+        "site-prep-wrap",
+        "site-question-prefix",
+        "site-question-suffix",
+        "tod-site-name",
+        "todSiteButtons",
+        "todTrafficFootnote"
+      ],
+      "contentHash": "7a645291487fc92f",
+      "contentHead": "Air Quality Impacts of Congestion Relief Zone Tolling. Banner image: Alexander Spatari/Moment via Getty Images Published"
+    },
+    "/data-features/cooling-info/": {
+      "words": 250,
+      "title": "Stay safe from heat and air pollution | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "allContent",
+        "aqiNum",
+        "aqimeaning",
+        "btn-hasAC",
+        "btn-hasAnimal",
+        "btn-hasFan",
+        "btn-limitsAC",
+        "btn-sensitiveGroup",
+        "btn-usesEME",
+        "currentTemp",
+        "finalInfo",
+        "finalMessages",
+        "forecastTemp",
+        "hasAC",
+        "hasAnimal",
+        "hasFan",
+        "hot",
+        "input-aqinum",
+        "input-currentTemp",
+        "limitsAC",
+        "mainContent",
+        "messageResults",
+        "over80F",
+        "primary-content",
+        "recsHolder",
+        "results",
+        "sensitiveGroup",
+        "sidebarRecs",
+        "start",
+        "testInfo",
+        "usesEME"
+      ],
+      "contentHash": "b9fbbc65967321e8",
+      "contentHead": "Stay safe from heat and air pollution. When it is hot and the air outside is unhealthy, how can you stay safe? Answer th"
+    },
+    "/data-features/displacement-risk/": {
+      "words": 111,
+      "title": "Displacement Risk | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "12ac75845ea1ad82",
+      "contentHead": "Displacement Risk Housing stability creates health, but in NYC, many people have difficulty accessing healthy, stable ho"
+    },
+    "/data-features/find-your-uhf/": {
+      "words": 207,
+      "title": "Find your UHF neighborhood | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "CCD",
+        "CD",
+        "chosen",
+        "map",
+        "neighbHolder",
+        "overlaps",
+        "prompt",
+        "results",
+        "top"
+      ],
+      "contentHash": "727cb3b3dc70158a",
+      "contentHead": "Find your UHF neighborhood. Environmental health data can come at several different geographies, or neighborhood boundar"
+    },
+    "/data-features/flood-vulnerability-index/": {
+      "words": 399,
+      "title": "Flood Vulnerability Index | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "#display",
+        "btn-FVI_storm_surge_2050s",
+        "btn-FVI_storm_surge_2080s",
+        "btn-FVI_storm_surge_present",
+        "btn-FVI_tidal_2020s",
+        "btn-FVI_tidal_2050s",
+        "btn-FVI_tidal_2080s",
+        "map",
+        "period",
+        "results",
+        "top",
+        "type"
+      ],
+      "contentHash": "a5bdef836e7856df",
+      "contentHead": "Flood Vulnerability Index. The Flood Vulnerability Index estimates the vulnerability to flooding across NYC. It combines"
+    },
+    "/data-features/heat-report-archive/2021/": {
+      "words": 2555,
+      "title": "2021 NYC Heat-Related Mortality Report | Heat report archive",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "datawrapper-chart-0wHq0",
+        "datawrapper-chart-0wHq0",
+        "results"
+      ],
+      "contentHash": "3c92ddcdbbe07ac9",
+      "contentHead": "2021 NYC Heat-Related Mortality Report Summary: Heat Stress Deaths. Each summer from 2010-2019, there were, on average,1"
+    },
+    "/data-features/heat-report-archive/2022/": {
+      "words": 2596,
+      "title": "2022 NYC Heat-Related Mortality Report | Heat report archive",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "datawrapper-chart-0wHq0",
+        "datawrapper-chart-16xAz",
+        "results"
+      ],
+      "contentHash": "6953f6d8f5b6d0d9",
+      "contentHead": "2022 NYC Heat-Related Mortality Report Summary. Each summer, an estimated 370 New Yorkers die prematurely because of hot"
+    },
+    "/data-features/heat-report-archive/2023/": {
+      "words": 3962,
+      "title": "2023 NYC Heat-Related Mortality Report | Heat report archive",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "datawrapper-chart-7F4Tg",
+        "datawrapper-chart-FOJlT",
+        "datawrapper-chart-JmIkL",
+        "datawrapper-chart-P5pGy",
+        "datawrapper-chart-Spd0s",
+        "datawrapper-chart-UxOqX",
+        "datawrapper-chart-VFDRo",
+        "datawrapper-chart-zAvcP",
+        "datawrapper-chart-zqk7k",
+        "datawrapper-vis-lHcqh",
+        "noteModal",
+        "results"
+      ],
+      "contentHash": "fab34d5d8deb1076",
+      "contentHead": "2023 NYC Heat-Related Mortality Report Summary. This report was corrected on Apr. 2, 2025, after we identified an error."
+    },
+    "/data-features/heat-report-archive/2024/": {
+      "words": 4111,
+      "title": "2024 NYC Heat-Related Mortality Report | Heat report archive",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "btn1",
+        "btn2",
+        "datawrapper-chart-D74jy",
+        "datawrapper-chart-EruI0",
+        "datawrapper-chart-a899A",
+        "map1",
+        "map2",
+        "noteModal",
+        "previous-reports",
+        "results"
+      ],
+      "contentHash": "89a4172408a4bf3d",
+      "contentHead": "2024 NYC Heat-Related Mortality Report. This report was corrected on Apr. 2, 2025, after we identified an error. The num"
+    },
+    "/data-features/heat-report-archive/2025/": {
+      "words": 4219,
+      "title": "2025 NYC Heat-Related Mortality Report | Heat report archive",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "btn1",
+        "btn2",
+        "datawrapper-chart-OEVex",
+        "datawrapper-vis-05b1J",
+        "datawrapper-vis-3P2nA",
+        "datawrapper-vis-KSQz7",
+        "datawrapper-vis-LJjks",
+        "datawrapper-vis-QWgsz",
+        "datawrapper-vis-ULH1V",
+        "datawrapper-vis-sOcw4",
+        "datawrapper-vis-xxAI4",
+        "map1",
+        "map2",
+        "note-on-years-of-data-included",
+        "noteModal",
+        "previous-reports",
+        "results"
+      ],
+      "contentHash": "fbd80a1f14647d90",
+      "contentHead": "2025 NYC Heat-Related Mortality Report. Each summer, on average, more than 500 New Yorkers die prematurely because of ho"
+    },
+    "/data-features/heat-report/": {
+      "words": 4448,
+      "title": "2026 NYC Heat-Related Mortality Report | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "btn1",
+        "btn2",
+        "datawrapper-chart-OEVex",
+        "datawrapper-vis-5Mqvy",
+        "datawrapper-vis-6FsDa",
+        "datawrapper-vis-AzLIP",
+        "datawrapper-vis-BJc4t",
+        "datawrapper-vis-CPF5a",
+        "datawrapper-vis-GOFed",
+        "datawrapper-vis-Pzjzy",
+        "datawrapper-vis-bB99w",
+        "datawrapper-vis-kFC7E",
+        "map1",
+        "map2",
+        "note-on-years-of-data-included",
+        "noteModal",
+        "previous-reports",
+        "results"
+      ],
+      "contentHash": "22153fe0242895c4",
+      "contentHead": "2026 NYC Heat-Related Mortality Report. Each summer, on average, approximately 500 New Yorkers die prematurely because o"
+    },
+    "/data-features/heat-story/": {
+      "words": 980,
+      "title": "Your heat story | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "allDataButtons",
+        "buttonHolderAdditional",
+        "buttonHolderBase",
+        "buttonHolderStudyArea",
+        "communityScience",
+        "dropdownMenuButton",
+        "legendDescriptions",
+        "map",
+        "refreshButton",
+        "results",
+        "story-card-general-holder",
+        "story-dropdown",
+        "storyTitleDropdown",
+        "toggle-target",
+        "toggle-target-1",
+        "top"
+      ],
+      "contentHash": "e59386d18c0fc47a",
+      "contentHead": "Your heat story. As climate change worsens, extreme heat becomes more frequent and more intense. Cities get even hotter "
+    },
+    "/data-features/heat-syndrome/": {
+      "words": 911,
+      "title": "Real-time heat-related illness | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "datawrapper-vis-azZ94",
+        "heatmodal",
+        "results",
+        "scattertoggle",
+        "syndromicmodal",
+        "top",
+        "vis1",
+        "vis2",
+        "whatmodal",
+        "yearButtonHolder",
+        "yearHeader"
+      ],
+      "contentHash": "5d5ce58f36d3a130",
+      "contentHead": "Real-time heat-related illness. The weather forecast is the best way to predict heat-related health outcomes. We can als"
+    },
+    "/data-features/hvi/": {
+      "words": 727,
+      "title": "Interactive Heat Vulnerability Index | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "NTA",
+        "acTert",
+        "acVal",
+        "clear",
+        "datawrapper-vis-HTMjf",
+        "flex_search",
+        "greenTert",
+        "greenVal",
+        "hviVal",
+        "incTert",
+        "incVal",
+        "mapvis",
+        "results",
+        "tempTert",
+        "tempVal",
+        "top",
+        "zipPrint"
+      ],
+      "contentHash": "03b1a7079b156a50",
+      "contentHead": "Interactive Heat Vulnerability Index. Hot weather is dangerous. In New York City – and across the country – more people "
+    },
+    "/data-features/leading-causes/": {
+      "words": 644,
+      "title": "Leading causes of injuries and deaths in NYC (2021 - 2023) | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "Death",
+        "ED",
+        "Hospitalization",
+        "accessibleTables",
+        "agePrint",
+        "all",
+        "buttonTitle",
+        "causeMenu",
+        "causeMenuHolder",
+        "causePrint",
+        "chart",
+        "countPrint",
+        "csv-table-container-1",
+        "flagNote",
+        "footnote",
+        "injuryOnly",
+        "intent",
+        "printDescription",
+        "prompt",
+        "rank",
+        "ratePrint",
+        "readout",
+        "results",
+        "top",
+        "visualization"
+      ],
+      "contentHash": "c3b1cb309ba8ee56",
+      "contentHead": "Leading causes of injuries and deaths in NYC (2021 - 2023). This tool shows the leading causes of emergency department v"
+    },
+    "/data-features/minimum-wage/": {
+      "words": 656,
+      "title": "Raising the minimum wage would save lives | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "a20",
+        "accessibleTables",
+        "b30",
+        "chartDest",
+        "chartDest2",
+        "csv-table-container-1",
+        "csv-table-container-2",
+        "datawrapper-vis-9QaVu",
+        "mapDest",
+        "mapDest2",
+        "results",
+        "scen1",
+        "scen2",
+        "scen3",
+        "top"
+      ],
+      "contentHash": "68c804cd09c656f4",
+      "contentHead": "Raising the minimum wage would save lives. In 2016, the Health Department published a paper showing how a higher minimum"
+    },
+    "/data-features/neighborhood-air-quality/": {
+      "words": 386,
+      "title": "Your Neighborhood's Air Quality | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "BE",
+        "CC",
+        "IA",
+        "NODestination",
+        "NTA3",
+        "NTA4",
+        "PMDestination",
+        "TD",
+        "clear",
+        "datawrapper-vis-5axZx",
+        "flex_search",
+        "mapHolder",
+        "mapTitle",
+        "results",
+        "showData",
+        "sourceBox1",
+        "sourceBox2",
+        "sourceBox3",
+        "sourceBox4",
+        "thisNO2",
+        "thisPM",
+        "top",
+        "zips"
+      ],
+      "contentHash": "744e382f6c159227",
+      "contentHead": "Your Neighborhood's Air Quality. We combine data from our air quality monitoring network, NYCCAS, with other data to und"
+    },
+    "/data-features/nyccas/": {
+      "words": 3061,
+      "title": "The New York City Community Air Survey | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "acc-button-1",
+        "acc-button-2",
+        "acc-button-3",
+        "acc-button-4",
+        "acc-button-5",
+        "accordion-01",
+        "bcText",
+        "bcbtn",
+        "btnMinus",
+        "btnPlus",
+        "bySeasonButton",
+        "bySourceButton",
+        "exampleModalLabel",
+        "iframeEmbed",
+        "mainTable",
+        "mapModal",
+        "mapText",
+        "newVis",
+        "no2Text",
+        "no2btn",
+        "noText",
+        "nobtn",
+        "o3Text",
+        "o3btn",
+        "panel-acc-button-1",
+        "panel-acc-button-2",
+        "panel-acc-button-3",
+        "panel-acc-button-4",
+        "panel-acc-button-5",
+        "pm25Text",
+        "pmbtn",
+        "pollutantMaps",
+        "pollutantPredictors",
+        "pollutantTrendsEmbed",
+        "primary-content",
+        "raster",
+        "results",
+        "sourceContainer",
+        "tableBody",
+        "yearPrint"
+      ],
+      "contentHash": "c2a6a1006229d1fe",
+      "contentHead": "The New York City Community Air Survey. NYCCAS Report: 2008-2024. The New York City Health Department (Health Department"
+    },
+    "/data-features/proximity/": {
+      "words": 227,
+      "title": "Proximity indicators | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "lastButton",
+        "map",
+        "nextButton",
+        "results",
+        "thisText",
+        "top"
+      ],
+      "contentHash": "be60d78575d789e9",
+      "contentHead": "Proximity indicators. How close people live to important resources, like transit, schools, or clinics, affects their abi"
+    },
+    "/data-features/rat-information-portal/": {
+      "words": 34,
+      "title": "Rat Information Portal | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "14af1c6c8f19ccbf",
+      "contentHead": "Rat Information Portal. New York City’s Rat Information Portal is a web map application that lets you view rat inspectio"
+    },
+    "/data-features/rat-mitigation-zones/": {
+      "words": 558,
+      "title": "Rat Mitigation Zones | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "dropdownMenuButton",
+        "failpercent",
+        "failpercent2",
+        "interpret-1",
+        "interpret-2",
+        "map",
+        "results",
+        "top",
+        "vizFour",
+        "vizOne",
+        "vizThree",
+        "vizTwo",
+        "zoneName"
+      ],
+      "contentHash": "5005b7e52568b22b",
+      "contentHead": "Rat Mitigation Zones. Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RM"
+    },
+    "/data-features/rat-report/": {
+      "words": 4577,
+      "title": "Rat Mitigation Zone Report: January 2025 to June 2025 | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "2-1",
+        "2-2",
+        "2-3",
+        "2-4",
+        "2-5",
+        "3-1",
+        "3-2",
+        "3-3",
+        "3-4",
+        "3-5",
+        "33-1",
+        "33-2",
+        "33-3",
+        "33-4",
+        "5-1",
+        "5-2",
+        "5-3",
+        "5-4",
+        "5-5",
+        "5a-1",
+        "5a-2",
+        "5a-3",
+        "5a-4",
+        "5a-5",
+        "6-1",
+        "6-2",
+        "6-3",
+        "6-4",
+        "6-5",
+        "datawrapper-vis-18Wbr",
+        "datawrapper-vis-2AJd4",
+        "datawrapper-vis-5Lv5f",
+        "datawrapper-vis-9i7xg",
+        "datawrapper-vis-9qR8g",
+        "datawrapper-vis-A4dTB",
+        "datawrapper-vis-BXHue",
+        "datawrapper-vis-DKVEV",
+        "datawrapper-vis-EfIky",
+        "datawrapper-vis-FgeCo",
+        "datawrapper-vis-HIVhB",
+        "datawrapper-vis-JJRpq",
+        "datawrapper-vis-Jm1m0",
+        "datawrapper-vis-KhvBm",
+        "datawrapper-vis-LAaPy",
+        "datawrapper-vis-Lyets",
+        "datawrapper-vis-NwWcR",
+        "datawrapper-vis-PaKDr",
+        "datawrapper-vis-RBGAy",
+        "datawrapper-vis-UqEDs",
+        "datawrapper-vis-VIJdM",
+        "datawrapper-vis-bMzMo",
+        "datawrapper-vis-eEaFz",
+        "datawrapper-vis-f4qkK",
+        "datawrapper-vis-glCLq",
+        "datawrapper-vis-jaV7S",
+        "datawrapper-vis-mVQJR",
+        "datawrapper-vis-ol6ho",
+        "datawrapper-vis-pCGDW",
+        "datawrapper-vis-qx7lH",
+        "datawrapper-vis-sPNQu",
+        "datawrapper-vis-szLTu",
+        "results",
+        "table-2-1",
+        "table-2-2",
+        "table-2-3",
+        "table-2-4",
+        "table-2-5",
+        "table-3-1",
+        "table-3-2",
+        "table-3-3",
+        "table-3-4",
+        "table-3-5",
+        "table-33-1",
+        "table-33-2",
+        "table-33-3",
+        "table-33-4",
+        "table-5-1",
+        "table-5-2",
+        "table-5-3",
+        "table-5-4",
+        "table-5-5",
+        "table-5a-1",
+        "table-5a-2",
+        "table-5a-3",
+        "table-5a-4",
+        "table-5a-5",
+        "table-6-1",
+        "table-6-2",
+        "table-6-3",
+        "table-6-4",
+        "table-6-5"
+      ],
+      "contentHash": "4df919b3162399fe",
+      "contentHead": "Rat Mitigation Zone Report: January 2025 to June 2025 The NYC Health Department (Department) submits this report pursuan"
+    },
+    "/data-features/rats-in-your-neighborhood/": {
+      "words": 217,
+      "title": "Rats in your neighborhood | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "activityValue",
+        "cdFail",
+        "cdID",
+        "cdOutput",
+        "cdProp",
+        "leafletMap",
+        "map-search1",
+        "mostRecentInspection",
+        "noOutput",
+        "numOfInspections",
+        "nycMap",
+        "propertyOutput",
+        "result",
+        "results",
+        "rmzYes",
+        "status",
+        "top",
+        "yearPrint"
+      ],
+      "contentHash": "1515b6a4196234eb",
+      "contentHead": "Rats in your neighborhood. What’s going on with rats in your neighborhood, what’s being done to fight them, and how can "
+    },
+    "/data-features/realtime-air-quality/": {
+      "words": 1253,
+      "title": "Real-Time Air Quality: PM2.5 in NYC | Data Features",
+      "filters": {
+        "section": [
+          "Data Features"
+        ]
+      },
+      "anchors": [
+        "aboveBelow",
+        "acc-button-02",
+        "acc-button-2A",
+        "acc-button-2B",
+        "acc-button-2C",
+        "acc-button-2D",
+        "acc-button-3A",
+        "acc-button-3C",
+        "acc-button-3D",
+        "accordion-02",
+        "accordion-3",
+        "allUnder",
+        "archiveModal",
+        "archiveModalLabel",
+        "averageBox",
+        "copied",
+        "csv",
+        "datawrapper-vis-26bBi",
+        "downloadLink",
+        "dropdownMenuLink",
+        "exceeds",
+        "formatList",
+        "inputNum",
+        "insufficient",
+        "json",
+        "locAverage",
+        "locColor",
+        "locColor2",
+        "locInfoBox",
+        "locInfoDesc",
+        "locationSend",
+        "locationSend2",
+        "map",
+        "mapModal",
+        "mapModalLabel",
+        "months",
+        "numberinput",
+        "panel-acc-button-03",
+        "panel-acc-button-2A",
+        "panel-acc-button-2B",
+        "panel-acc-button-2C",
+        "panel-acc-button-2D",
+        "panel-acc-button-3A",
+        "panel-acc-button-3B",
+        "panel-acc-button-3D",
+        "results",
+        "rtaqReadme",
+        "select-a-format",
+        "select-a-year",
+        "sevenModal",
+        "table24",
+        "tableBody",
+        "targetURL",
+        "top",
+        "vis",
+        "yearList"
+      ],
+      "contentHash": "e9952e38cb2c1158",
+      "contentHead": "Real-Time Air Quality: PM2.5 in NYC. Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to"
+    },
+    "/data-stories/": {
+      "words": 3498,
+      "title": "Data Stories | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "pills-all",
+        "pills-all-tab",
+        "pills-aq",
+        "pills-aq-tab",
+        "pills-climate",
+        "pills-climate-tab",
+        "pills-food",
+        "pills-food-tab",
+        "pills-housing",
+        "pills-housing-tab",
+        "pills-how",
+        "pills-how-tab",
+        "pills-justice",
+        "pills-justice-tab",
+        "pills-tab",
+        "pills-tabContent",
+        "pills-transportation",
+        "pills-transportation-tab",
+        "results"
+      ],
+      "contentHash": "ac0561051a2ae2d0",
+      "contentHead": "Data Stories. Explainers and perspectives on important health and environment topics. Latest data stories. Tracking food"
+    },
+    "/data-stories/adult-lead/": {
+      "words": 1324,
+      "title": "Lead poisoning affects adults too | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-8fc1p",
+        "datawrapper-chart-Wxnny",
+        "datawrapper-chart-i7Bgo",
+        "datawrapper-vis-c7jtG",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "4bdfc22117ab2816",
+      "contentHead": "Lead poisoning affects adults too. Since we published this data story, some data in it have been updated. Get updated da"
+    },
+    "/data-stories/air-quality-and-covid-part-2/": {
+      "words": 807,
+      "title": "An update on air quality during COVID-19 | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "ModalCenter",
+        "ModalCenterTitle",
+        "article-footer",
+        "btn1",
+        "btn2",
+        "datawrapper-chart-9jeJb",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-WHK8J",
+        "datawrapper-vis-10P9Z",
+        "datawrapper-vis-iwPzz",
+        "datawrapper-vis-pqAjI",
+        "datawrapper-vis-sQ5bC",
+        "datawrapper-vis-zNG5O",
+        "dest",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "eba17b00c5bb4290",
+      "contentHead": "An update on air quality during COVID-19. Since we published this data story, some data in it have been updated. Get upd"
+    },
+    "/data-stories/air-quality-and-covid/": {
+      "words": 304,
+      "title": "Air quality during COVID-19 | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-s502E",
+        "datawrapper-vis-6NGID",
+        "datawrapper-vis-NkzJW",
+        "datawrapper-vis-O0SUA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "356168faeca6463b",
+      "contentHead": "Air quality during COVID-19. What happens when NYC stays home? The COVID-19 pandemic upended the lives of all New Yorker"
+    },
+    "/data-stories/air-quality-by-neighborhood/": {
+      "words": 463,
+      "title": "What our air quality monitors tell us about NYC's neighborhoods | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-vis-JA1Yk",
+        "datawrapper-vis-ODTtg",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "485beac2850e93b3",
+      "contentHead": "What our air quality monitors tell us about NYC's neighborhoods. Since we published this data story, some data in it hav"
+    },
+    "/data-stories/air-quality-snapshots/": {
+      "words": 1295,
+      "title": "Air quality snapshots: special findings from 10 years of NYCCAS | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-8urPc",
+        "datawrapper-chart-EPzEn",
+        "datawrapper-chart-H1gyT",
+        "datawrapper-chart-Ji3w3",
+        "datawrapper-chart-OkXon",
+        "datawrapper-chart-XWE9m",
+        "datawrapper-chart-YLti3",
+        "datawrapper-chart-c9A7X",
+        "datawrapper-chart-iGatY",
+        "datawrapper-chart-l7Ouh",
+        "datawrapper-chart-mD8qz",
+        "datawrapper-chart-mDgo3",
+        "datawrapper-chart-sAqVm",
+        "datawrapper-chart-v5vt2",
+        "datawrapper-chart-wwfaQ",
+        "datawrapper-vis-5yPxF",
+        "datawrapper-vis-Gebhh",
+        "datawrapper-vis-K8QIw",
+        "datawrapper-vis-Z1D4u",
+        "datawrapper-vis-dX7RW",
+        "datawrapper-vis-nmAUj",
+        "datawrapper-vis-qAS0v",
+        "datawrapper-vis-vSUtR",
+        "myScrollspy",
+        "primary-content",
+        "results",
+        "section1",
+        "section2",
+        "section4",
+        "section5",
+        "sidebar-nav",
+        "tab-01-a",
+        "tab-01-b",
+        "tab-01-c",
+        "tab-01-d",
+        "tab-02-a",
+        "tab-02-b",
+        "tab-02-c",
+        "tab-btn-01-a",
+        "tab-btn-01-b",
+        "tab-btn-01-c",
+        "tab-btn-01-d",
+        "tab-btn-02-a",
+        "tab-btn-02-b",
+        "tab-btn-02-c",
+        "tabs-01-content",
+        "tabs-02-content"
+      ],
+      "contentHash": "8a7a06fb01d33e71",
+      "contentHead": "Air quality snapshots: special findings from 10 years of NYCCAS. Since we published this data story, some data in it hav"
+    },
+    "/data-stories/assaults/": {
+      "words": 398,
+      "title": "Disparities in violence | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-vis-F4xxE",
+        "datawrapper-vis-RZtwq",
+        "datawrapper-vis-xLudO",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "b83e0c99d9c9ff7a",
+      "contentHead": "Disparities in violence. Since we published this data story, some data in it have been updated. Get updated data on: Vio"
+    },
+    "/data-stories/asthma-and-poverty/": {
+      "words": 424,
+      "title": "Why asthma is a social justice issue | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-vis-KvyVJ",
+        "datawrapper-vis-ecp3d",
+        "datawrapper-vis-pxkwE",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "db9ffa94b5e39706",
+      "contentHead": "Why asthma is a social justice issue. Since we published this data story, some data in it have been updated. Get updated"
+    },
+    "/data-stories/block-by-block/": {
+      "words": 1002,
+      "title": "A walk through history | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "134c0b3bb0d2fb2d",
+      "contentHead": "A walk through history. A neighborhood is not only shaped by its residents, but also by governmental practices and polic"
+    },
+    "/data-stories/breatheeasy/": {
+      "words": 674,
+      "title": "Breathe easy: NYC's air quality is improving | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-DLHxS",
+        "datawrapper-chart-d7DDS",
+        "datawrapper-chart-gIQSz",
+        "datawrapper-chart-sXhjH",
+        "datawrapper-vis-840ts",
+        "datawrapper-vis-dB6XN",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "5fcf8adaa5975e73",
+      "contentHead": "Breathe easy: NYC's air quality is improving. Since we published this data story, some data in it have been updated. Get"
+    },
+    "/data-stories/car-free-zones/": {
+      "words": 625,
+      "title": "Air quality in car-free areas | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-vis-4Ryy6",
+        "datawrapper-vis-Hb6ua",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "cdf544852f7566dd",
+      "contentHead": "Air quality in car-free areas. Since we published this data story, some data in it have been updated. Get updated data o"
+    },
+    "/data-stories/codesign/": {
+      "words": 550,
+      "title": "Why we're working with you to redesign the data portal | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "b17e83ea9346a367",
+      "contentHead": "Why we're working with you to redesign the data portal. We’re making changes, and we need your help. A few months ago, w"
+    },
+    "/data-stories/cold/": {
+      "words": 39,
+      "title": "Staying safe in cold weather | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "1762955a2277e907",
+      "contentHead": "Staying safe in cold weather. Cold weather can be dangerous. Here are some tips for staying safe this winter. Learn more"
+    },
+    "/data-stories/congestion-tolling-update/": {
+      "words": 910,
+      "title": "Initial data from Congestion Relief Tolling | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-A09XN",
+        "datawrapper-vis-1gL1D",
+        "datawrapper-vis-34i25",
+        "datawrapper-vis-8BsJV",
+        "datawrapper-vis-F2t64",
+        "datawrapper-vis-QnCs4",
+        "datawrapper-vis-poCeg",
+        "datawrapper-vis-zvNzf",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "2f3908e54dc22a71",
+      "contentHead": "Initial data from Congestion Relief Tolling. Since we published this, an update is available. Read our report on the fir"
+    },
+    "/data-stories/economic-stability/": {
+      "words": 1157,
+      "title": "Economic stability creates health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-26GS0",
+        "datawrapper-chart-2Rqll",
+        "datawrapper-chart-56Vg1",
+        "datawrapper-chart-HNb3L",
+        "datawrapper-chart-Mz3G5",
+        "datawrapper-chart-Pg8tP",
+        "datawrapper-chart-SEtPT",
+        "datawrapper-chart-W8Je1",
+        "datawrapper-chart-XiHSE",
+        "datawrapper-chart-qBcx4",
+        "datawrapper-chart-uzt3a",
+        "datawrapper-chart-we5Yo",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "62bca82b6ef4a853",
+      "contentHead": "Economic stability creates health. Since we published this data story, some data in it have been updated. Get updated da"
+    },
+    "/data-stories/energy-insecurity/": {
+      "words": 1279,
+      "title": "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-vis-6t3WI",
+        "datawrapper-vis-A255F",
+        "datawrapper-vis-JylAM",
+        "datawrapper-vis-moaSW",
+        "datawrapper-vis-x9xYd",
+        "datawrapper-vis-y773P",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "effc2c7cb9fafb49",
+      "contentHead": "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it. Whether it’s el"
+    },
+    "/data-stories/federal-funding/": {
+      "words": 1525,
+      "title": "NYC is working to protect your health — but we can’t do it alone | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "c67e489d84c1a3c3",
+      "contentHead": "NYC is working to protect your health — but we can’t do it alone. New Yorkers benefit from one of the largest health dep"
+    },
+    "/data-stories/flooding-and-health/": {
+      "words": 1952,
+      "title": "What Hurricane Ida and Superstorm Sandy taught us about flooding and health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-5BFtT",
+        "datawrapper-chart-HAWCl",
+        "datawrapper-chart-aKa9y",
+        "datawrapper-chart-r4fxY",
+        "datawrapper-chart-yuQ6Y",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "61ca7dbdd7901ce3",
+      "contentHead": "What Hurricane Ida and Superstorm Sandy taught us about flooding and health. Superstorm Sandy (2012) and rainfall from H"
+    },
+    "/data-stories/food-safety-101/": {
+      "words": 1189,
+      "title": "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-vis-0KCMy",
+        "datawrapper-vis-9Hwil",
+        "datawrapper-vis-spZTl",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "e62250c169946a9f",
+      "contentHead": "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why. Each year, the NYC Health Department re"
+    },
+    "/data-stories/food/": {
+      "words": 771,
+      "title": "What hot weather means for food safety | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-PpaPF",
+        "datawrapper-chart-TWYcr",
+        "datawrapper-chart-e9B8r",
+        "datawrapper-chart-fDvhZ",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "43d4f8e4059629a3",
+      "contentHead": "What hot weather means for food safety. New Yorkers eat out more than a billion times a year. To help keep diners safe, "
+    },
+    "/data-stories/geographies/": {
+      "words": 1800,
+      "title": "Neighborhood boundaries on the EH Data Portal | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "2-34",
+        "2-42",
+        "2-zip",
+        "34",
+        "42",
+        "article-footer",
+        "map1",
+        "map2",
+        "map3",
+        "primary-content",
+        "results",
+        "ucd",
+        "upuma"
+      ],
+      "contentHash": "0fd1de3b1da8b4b8",
+      "contentHead": "Neighborhood boundaries on the EH Data Portal. New York City has hundreds of neighborhoods and nearly as many ways of dr"
+    },
+    "/data-stories/heat/": {
+      "words": 986,
+      "title": "Protecting New Yorkers from extreme heat | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-3cap9",
+        "datawrapper-chart-F8xiB",
+        "datawrapper-chart-NSUaQ",
+        "datawrapper-chart-z0BAM",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "852ee181b1d2fae5",
+      "contentHead": "Protecting New Yorkers from extreme heat. Since we published this data story, some data in it have been updated. Get upd"
+    },
+    "/data-stories/hia/": {
+      "words": 651,
+      "title": "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-3CeEA",
+        "datawrapper-chart-4YVOx",
+        "datawrapper-chart-LVfkJ",
+        "datawrapper-chart-NvVfw",
+        "datawrapper-chart-OSgDo",
+        "datawrapper-chart-Rl7wk",
+        "datawrapper-chart-V1NVo",
+        "datawrapper-chart-pt7no",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "e9c89978e4bb2265",
+      "contentHead": "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts. This story was recently upd"
+    },
+    "/data-stories/housing-creates-health/": {
+      "words": 1297,
+      "title": "Housing creates health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "2btn1",
+        "2btn2",
+        "2btn3",
+        "2btn4",
+        "2btn5",
+        "2container1",
+        "2container2",
+        "2container3",
+        "2container4",
+        "2container5",
+        "article-footer",
+        "btn1",
+        "btn2",
+        "btn3",
+        "btn4",
+        "btn5",
+        "container1",
+        "container2",
+        "container3",
+        "container4",
+        "container5",
+        "datawrapper-chart-DEEg2",
+        "datawrapper-chart-DOJSE",
+        "datawrapper-chart-L4j3j",
+        "datawrapper-chart-VVpyh",
+        "datawrapper-chart-aV8VC",
+        "datawrapper-chart-cL0W5",
+        "datawrapper-chart-xy1ku",
+        "datawrapper-chart-yWecX",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "a1d38dc67463ac6a",
+      "contentHead": "Housing creates health. Since we published this data story, some data in it have been updated. Get updated data on: Hous"
+    },
+    "/data-stories/housing/": {
+      "words": 1666,
+      "title": "Health, housing, and history | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bbcollapse",
+        "btnGroupDrop1",
+        "contractcollapse",
+        "datawrapper-chart-IKPCG",
+        "datawrapper-chart-IlMbE",
+        "datawrapper-chart-L4GDU",
+        "datawrapper-chart-LeCdQ",
+        "datawrapper-chart-PTyc4",
+        "datawrapper-chart-XBLYk",
+        "datawrapper-chart-ajUBs",
+        "datawrapper-chart-dpI3S",
+        "datawrapper-chart-gOFSx",
+        "datawrapper-chart-mhj0X",
+        "datawrapper-chart-pLXtX",
+        "datawrapper-chart-pbMFA",
+        "datawrapper-chart-rMOZd",
+        "datawrapper-chart-yon1f",
+        "disrepaircollapse",
+        "elow",
+        "healthcollapse",
+        "holccollapse",
+        "home",
+        "home-tab",
+        "housingmap",
+        "ifElow",
+        "ifLow",
+        "ifMod",
+        "ifVlow",
+        "low",
+        "mod",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "profile",
+        "profile-tab",
+        "results",
+        "rrccollapse",
+        "vlow"
+      ],
+      "contentHash": "0af37dccc309a2da",
+      "contentHead": "Health, housing, and history. Since we published this data story, some data in it have been updated. Get updated data on"
+    },
+    "/data-stories/injury-deaths/": {
+      "words": 1435,
+      "title": "Injury deaths in NYC adults: how homicide and suicide contribute | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-67kB9",
+        "datawrapper-chart-7rrVq",
+        "datawrapper-chart-M7spx",
+        "datawrapper-chart-XMN9V",
+        "datawrapper-chart-blYxp",
+        "datawrapper-chart-c0bab",
+        "datawrapper-chart-dj1Ut",
+        "datawrapper-chart-gecpf",
+        "datawrapper-chart-iiqCJ",
+        "datawrapper-chart-jtm6b",
+        "datawrapper-chart-nyBxm",
+        "datawrapper-chart-uzpwR",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "5dd1ca703fb3e870",
+      "contentHead": "Injury deaths in NYC adults: how homicide and suicide contribute. Since we published this data story, some data in it ha"
+    },
+    "/data-stories/poweroutages/": {
+      "words": 937,
+      "title": "How power outages affect health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-415MD",
+        "datawrapper-chart-6ivif",
+        "datawrapper-chart-AwXYk",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-Y2D7s",
+        "datawrapper-chart-jGcgz",
+        "datawrapper-chart-sbTUE",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "15a1c6b894fb57e1",
+      "contentHead": "How power outages affect health. Since we published this data story, some data in it have been updated. Get updated data"
+    },
+    "/data-stories/public-space-creates-health/": {
+      "words": 1625,
+      "title": "Public space creates health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-64Jkr",
+        "datawrapper-chart-ST3yX",
+        "datawrapper-chart-XMwmK",
+        "datawrapper-chart-Y1J7m",
+        "datawrapper-chart-h8KUM",
+        "datawrapper-chart-hhMJr",
+        "datawrapper-chart-nba07",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "1122b99e43c2c4df",
+      "contentHead": "Public space creates health. Since we published this data story, some data in it have been updated. Get updated data on:"
+    },
+    "/data-stories/public-transit-creates-health/": {
+      "words": 757,
+      "title": "Public transit creates health | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "2e24fcfbead49165",
+      "contentHead": "Public transit creates health. New York City’s public transit system has gotten New Yorkers where they need to go and ho"
+    },
+    "/data-stories/racial-wealth-gap/": {
+      "words": 1567,
+      "title": "The racial wealth gap has big implications for public health and health equity | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "acc-button-01",
+        "acc-button-02",
+        "acc-button-03",
+        "acc-button-04",
+        "acc-button-05",
+        "accordion-01",
+        "article-footer",
+        "datawrapper-chart-AbBga",
+        "datawrapper-chart-nqi4y",
+        "datawrapper-chart-uPSl8",
+        "datawrapper-chart-vmOjI",
+        "glossary",
+        "glossaryModal",
+        "panel-acc-button-01",
+        "panel-acc-button-02",
+        "panel-acc-button-03",
+        "panel-acc-button-04",
+        "panel-acc-button-05",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "509fcac76ef7461e",
+      "contentHead": "The racial wealth gap has big implications for public health and health equity. Throughout history, the distribution of "
+    },
+    "/data-stories/rat-complaints/": {
+      "words": 540,
+      "title": "Rat complaints and NYC’s rat problem | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-vis-S4nq0",
+        "datawrapper-vis-tTpnA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "842cdf8c0c628eb6",
+      "contentHead": "Rat complaints and NYC’s rat problem. Everyone has a story about rats — or more likely, a complaint. If you have made a "
+    },
+    "/data-stories/rat-inspections/": {
+      "words": 661,
+      "title": "Inspection data are the key to controlling NYC’s rats | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-vis-JpYEi",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "22efa6be53488b32",
+      "contentHead": "Inspection data are the key to controlling NYC’s rats. Rats are one of New York City’s hottest topics. You see them on t"
+    },
+    "/data-stories/redesign/": {
+      "words": 678,
+      "title": "The redesigned EH Data Portal | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "bab99012b3607f9e",
+      "contentHead": "The redesigned EH Data Portal. The Environment and Health Data Portal looks a little bit different! We recently redesign"
+    },
+    "/data-stories/redlining/": {
+      "words": 1396,
+      "title": "A brief history of redlining | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bbcollapse",
+        "bronx",
+        "bronx-tab",
+        "brooklyn",
+        "brooklyn-tab",
+        "citywidemap",
+        "contractcollapse",
+        "datawrapper-chart-4Vuf4",
+        "datawrapper-chart-8RvsX",
+        "datawrapper-chart-9oZ0R",
+        "datawrapper-chart-JB9Yc",
+        "datawrapper-chart-KOI8H",
+        "datawrapper-chart-dpI3S",
+        "datawrapper-chart-eAlbF",
+        "datawrapper-chart-iQTOe",
+        "datawrapper-chart-kO9TQ",
+        "datawrapper-chart-n8cgy",
+        "datawrapper-chart-sGkqI",
+        "disinvestmentCollapseTwo",
+        "manhattan",
+        "manhattan-tab",
+        "map-tab",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "queens",
+        "queens-tab",
+        "results",
+        "rrccollapse",
+        "staten",
+        "staten-tab"
+      ],
+      "contentHash": "0437ed584cc41bf7",
+      "contentHead": "A brief history of redlining. Since we published this data story, some data in it have been updated. Get updated data on"
+    },
+    "/data-stories/restaurants-and-air-quality/": {
+      "words": 789,
+      "title": "Tracking changes in New York City's sources of air pollution | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "NYCCAS",
+        "article-footer",
+        "datawrapper-chart-3bOXl",
+        "datawrapper-chart-AEQXF",
+        "datawrapper-chart-M1AkD",
+        "datawrapper-chart-VZMcj",
+        "datawrapper-chart-XPYgD",
+        "datawrapper-chart-jQ5R1",
+        "epa",
+        "laws",
+        "pm25",
+        "primary-content",
+        "results",
+        "var"
+      ],
+      "contentHash": "61aa90b5e6d57108",
+      "contentHead": "Tracking changes in New York City's sources of air pollution. Since we published this data story, some data in it have b"
+    },
+    "/data-stories/sanitation/": {
+      "words": 1589,
+      "title": "Why trash is a public health issue | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-5WJ8y",
+        "datawrapper-chart-GNc9a",
+        "datawrapper-chart-NYs2d",
+        "datawrapper-chart-ayRqE",
+        "datawrapper-chart-d7150",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "f011b7180b566ef9",
+      "contentHead": "Why trash is a public health issue. Since we published this data story, some data in it have been updated. Get updated d"
+    },
+    "/data-stories/streets/": {
+      "words": 820,
+      "title": "Environments matter: the road to street safety in NYC | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-6Iwi2",
+        "datawrapper-chart-AEeT8",
+        "datawrapper-chart-CWXON",
+        "datawrapper-chart-Muxbx",
+        "datawrapper-chart-OFN66",
+        "datawrapper-chart-QCtIR",
+        "datawrapper-chart-Uu8zR",
+        "datawrapper-chart-gAERt",
+        "datawrapper-chart-jDbZr",
+        "datawrapper-chart-sdrHi",
+        "datawrapper-chart-voUs9",
+        "datawrapper-chart-yy7ko",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "b2f0cb0260b7a9cf",
+      "contentHead": "Environments matter: the road to street safety in NYC. Since we published this data story, some data in it have been upd"
+    },
+    "/data-stories/traffic-and-air-pollution/": {
+      "words": 628,
+      "title": "The public health impacts of PM2.5 from traffic air pollution | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-8VqIl",
+        "datawrapper-chart-9jmEo",
+        "datawrapper-chart-B0N7e",
+        "datawrapper-chart-KQ48P",
+        "datawrapper-chart-NOiOi",
+        "datawrapper-chart-XaVeD",
+        "datawrapper-chart-atWCN",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "e1b43e2fa8abcea6",
+      "contentHead": "The public health impacts of PM2.5 from traffic air pollution. PM2.5—or fine particulate matter—are tiny particles that "
+    },
+    "/data-stories/urban-heat-island/": {
+      "words": 1476,
+      "title": "The urban heat island effect in NYC | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "acc-button-01",
+        "acc-button-02",
+        "acc-button-03",
+        "acc-button-04",
+        "acc-button-06",
+        "accordion-01",
+        "article-footer",
+        "collapseOne",
+        "grassoverlay",
+        "gs",
+        "mapframe",
+        "merc",
+        "panel-acc-button-01",
+        "panel-acc-button-02",
+        "panel-acc-button-03",
+        "panel-acc-button-04",
+        "panel-acc-button-06",
+        "primary-content",
+        "printtemp",
+        "results",
+        "slider",
+        "tc",
+        "therm",
+        "treeoverlay"
+      ],
+      "contentHash": "b23d7037f0e693e5",
+      "contentHead": "The urban heat island effect in NYC. Since we published this data story, some data in it have been updated. Get updated "
+    },
+    "/data-stories/vectorborne-diseases-and-health/": {
+      "words": 1347,
+      "title": "What climate change means for vector-borne disease in NYC | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-SV4Jp",
+        "datawrapper-vis-6t3WI",
+        "datawrapper-vis-FhfVN",
+        "datawrapper-vis-TYamB",
+        "datawrapper-vis-cmOHA",
+        "datawrapper-vis-eDTvQ",
+        "datawrapper-vis-mPZdX",
+        "datawrapper-vis-moaSW",
+        "datawrapper-vis-wLmZA",
+        "datawrapper-vis-yRPHe",
+        "primary-content",
+        "results",
+        "tab-02-a",
+        "tab-02-b",
+        "tab-02-c",
+        "tab-btn-02-a",
+        "tab-btn-02-b",
+        "tab-btn-02-c",
+        "tabs-02-content"
+      ],
+      "contentHash": "31ebae3f06c7c15a",
+      "contentHead": "What climate change means for vector-borne disease in NYC. Mosquitoes and ticks can cause serious diseases for New Yorke"
+    },
+    "/data-stories/violence/": {
+      "words": 2296,
+      "title": "Why violence is a public health issue | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "covidcollapse",
+        "dataModal",
+        "datawrapper-chart-4zdNl",
+        "datawrapper-chart-DlEvR",
+        "datawrapper-chart-GXRIu",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-PldhR",
+        "datawrapper-chart-PqnEK",
+        "datawrapper-chart-QFBsi",
+        "datawrapper-chart-UnJ1o",
+        "datawrapper-chart-W3X69",
+        "datawrapper-chart-bqQeD",
+        "datawrapper-chart-gxP5i",
+        "datawrapper-chart-kqsJS",
+        "datawrapper-chart-t0Uzm",
+        "disinvestmentCollapse",
+        "disinvestmentCollapseTwo",
+        "envcollapse",
+        "primary-content",
+        "redliningCollapse",
+        "results",
+        "violcollapse"
+      ],
+      "contentHash": "24f23a4525d34a63",
+      "contentHead": "Why violence is a public health issue. Since we published this data story, some data in it have been updated. Get update"
+    },
+    "/data-stories/zappa/": {
+      "words": 1324,
+      "title": "ZAPPA: A tool to understand air quality policies | Data Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-F4ifN",
+        "datawrapper-chart-GXPne",
+        "datawrapper-chart-W9qln",
+        "datawrapper-chart-kKZ8g",
+        "datawrapper-chart-xZOp8",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "ced9c47195184aa6",
+      "contentHead": "ZAPPA: A tool to understand air quality policies. Since we published this data story, some data in it have been updated."
+    },
+    "/es/": {
+      "words": 405,
+      "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "aqiModalContent",
+        "aqimeaning",
+        "coldModalContent",
+        "featured-homepage",
+        "forecasthigh",
+        "forecastlow",
+        "heatModalContent",
+        "openModalBtnWeather",
+        "primary-content",
+        "results",
+        "weatherModal",
+        "weatherModalTitle"
+      ],
+      "contentHash": "87083b5572e18b1f",
+      "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
+    },
+    "/es/data-stories/": {
+      "words": 547,
+      "title": "Data-Stories | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "pills-all",
+        "pills-all-tab",
+        "pills-aq",
+        "pills-aq-tab",
+        "pills-climate",
+        "pills-climate-tab",
+        "pills-food",
+        "pills-food-tab",
+        "pills-housing",
+        "pills-housing-tab",
+        "pills-how",
+        "pills-how-tab",
+        "pills-justice",
+        "pills-justice-tab",
+        "pills-tab",
+        "pills-tabContent",
+        "pills-transportation",
+        "pills-transportation-tab",
+        "results"
+      ],
+      "contentHash": "8cf9e1715b11190b",
+      "contentHead": "Data Stories. Explainers and perspectives on important health and environment topics. Latest data stories. Por qué la vi"
+    },
+    "/es/data-stories/air-quality-and-covid/": {
+      "words": 406,
+      "title": "La calidad el aire durante la COVID-19 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "df6fe36cc1c7ebd9",
+      "contentHead": "La calidad el aire durante la COVID-19. ¿Qué sucede cuando la ciudad de Nueva York se queda en casa? La pandemia de la C"
+    },
+    "/es/data-stories/asthma-and-poverty/": {
+      "words": 488,
+      "title": "Por qué el asma es un problema de justicia social | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "aeb7a217aac30797",
+      "contentHead": "Por qué el asma es un problema de justicia social. La pobreza afecta la salud de muchas formas. En la ciudad de Nueva Yo"
+    },
+    "/es/data-stories/housing/": {
+      "words": 2053,
+      "title": "Salud, vivienda e historia | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bbcollapse",
+        "btnGroupDrop1",
+        "contractcollapse",
+        "datawrapper-chart-1Ck09",
+        "datawrapper-chart-1ElRS",
+        "datawrapper-chart-EFQma",
+        "datawrapper-chart-ExaJh",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-f9rYe",
+        "datawrapper-chart-gUTaG",
+        "disrepaircollapse",
+        "elow",
+        "healthcollapse",
+        "holccollapse",
+        "home",
+        "home-tab",
+        "housingmap",
+        "ifElow",
+        "ifLow",
+        "ifMod",
+        "ifVlow",
+        "low",
+        "mod",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "profile",
+        "profile-tab",
+        "results",
+        "rrccollapse",
+        "vlow"
+      ],
+      "contentHash": "243d81085ec88a03",
+      "contentHead": "Salud, vivienda e historia. Para la salud, el lugar importa. ¿Qué determina si usted está saludable o no? Puede pensar e"
+    },
+    "/es/data-stories/redlining/": {
+      "words": 1456,
+      "title": "Una breve historia del redlining | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bbcollapse",
+        "bronx",
+        "bronx-tab",
+        "brooklyn",
+        "brooklyn-tab",
+        "citywidemap",
+        "contractcollapse",
+        "datawrapper-chart-9btl1",
+        "datawrapper-chart-NBnYv",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-P5YVE",
+        "datawrapper-chart-YRGLD",
+        "datawrapper-chart-bq8UR",
+        "datawrapper-chart-f2OOZ",
+        "disinvestmentCollapseTwo",
+        "manhattan",
+        "manhattan-tab",
+        "map-tab",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "queens",
+        "queens-tab",
+        "results",
+        "rrccollapse",
+        "staten",
+        "staten-tab"
+      ],
+      "contentHash": "75d720eb9f45fcfe",
+      "contentHead": "Una breve historia del redlining La política financiera de 90 años que daña nuestra salud. En la salud pública, solemos "
+    },
+    "/es/data-stories/violence/": {
+      "words": 2770,
+      "title": "Por qué la violencia es un problema de salud pública | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "covidcollapse",
+        "dataModal",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "disinvestmentCollapse",
+        "disinvestmentCollapseTwo",
+        "envcollapse",
+        "primary-content",
+        "redliningCollapse",
+        "results",
+        "violcollapse"
+      ],
+      "contentHash": "13a5d73e8d98e381",
+      "contentHead": "Por qué la violencia es un problema de salud pública Uso de la salud pública para prevenir la violencia. Sufrir violenci"
+    },
+    "/key-topics/": {
+      "words": 85,
+      "title": "Key Topics in Environmental Health | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "ba28743292da9fda",
+      "contentHead": "Key Topics in Environmental Health. What creates health? Often, our environment does. The world around us shapes our hea"
+    },
+    "/key-topics/accessibility/": {
+      "words": 376,
+      "title": "Accessibility | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results"
+      ],
+      "contentHash": "3ee89e5dc09ed6e0",
+      "contentHead": "Accessibility About 10% of New Yorkers have a disability with varying access needs. The environment can create barriers "
+    },
+    "/key-topics/airquality/": {
+      "words": 882,
+      "title": "Air quality | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "2de62d8daf14e5f3",
+      "contentHead": "Air quality New York City’s air contains particles, drops of liquid, gasses, and other pollution that can affect health."
+    },
+    "/key-topics/childhealth/": {
+      "words": 346,
+      "title": "Child health | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "b145a3ddcafd3774",
+      "contentHead": "Child health Lifelong health can be determined by your health when you are a child. Plus, children can be fragile, and c"
+    },
+    "/key-topics/climatehealth/": {
+      "words": 815,
+      "title": "Climate and health | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "78d90c51ac20be69",
+      "contentHead": "Climate and health Climate, including extreme weather, has a direct impact on health. As NYC’s climate changes, along wi"
+    },
+    "/key-topics/foodanddrink/": {
+      "words": 366,
+      "title": "Food and drink | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "29ac27a4d5a2976a",
+      "contentHead": "Food and drink We all make choices around food and drink, but sometimes, those choices are made for us by our food envir"
+    },
+    "/key-topics/health-equity/": {
+      "words": 1178,
+      "title": "Inequality and health inequities | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "85a05d51cd7fcee3",
+      "contentHead": "Inequality and health inequities Inequality is a significant driver of bad health: a society that deprives people of res"
+    },
+    "/key-topics/healthoutcomes/": {
+      "words": 680,
+      "title": "Environmental health outcomes | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "ed7e257d1476cae3",
+      "contentHead": "Environmental health outcomes Our environment - the world around us - affects our health. Here are datasets on health ou"
+    },
+    "/key-topics/housing/": {
+      "words": 816,
+      "title": "Housing | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "7c629d4739ec3c1e",
+      "contentHead": "Housing Most people spend most of their time at home - so the household environment can significantly affect health. Dis"
+    },
+    "/key-topics/injury-and-violence/": {
+      "words": 512,
+      "title": "Injury and violence | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "8debfcbf28dc914d",
+      "contentHead": "Injury and violence Injuries, whether intentional or unintentional, are a significant cause of death among New Yorkers. "
+    },
+    "/key-topics/pests/": {
+      "words": 471,
+      "title": "Pests and pesticides | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results"
+      ],
+      "contentHash": "38f64f6ced09fd4b",
+      "contentHead": "Pests and pesticides Pests and pesticides can both have health effects. Household pests like mice, rats, and cockroaches"
+    },
+    "/key-topics/public-space/": {
+      "words": 880,
+      "title": "Public space, active design, and transportation | Key Topics in Environmental Health",
+      "filters": {
+        "section": [
+          "Key Topics"
+        ]
+      },
+      "anchors": [
+        "collapseStories",
+        "results",
+        "toggleButton"
+      ],
+      "contentHash": "562eef42004f892b",
+      "contentHead": "Public space, active design, and transportation Physical activity and healthy eating rank among the leading ways to get "
+    },
+    "/neighborhood-reports/": {
+      "words": 362,
+      "title": "Neighborhood Reports | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "Active",
+        "Active-Descr",
+        "Asthma",
+        "Asthma-Descr",
+        "CCDModal",
+        "CCDModalTitle",
+        "CDButtons",
+        "Climate",
+        "Climate-Descr",
+        "Housing",
+        "Housing-Descr",
+        "Outdoor",
+        "Outdoor-Descr",
+        "about",
+        "descr",
+        "districtButtons",
+        "overlapReveal",
+        "overlaps",
+        "primary-content",
+        "results",
+        "tab-01-a",
+        "tab-01-b",
+        "tab-02-a",
+        "tab-btn-01-a",
+        "tab-btn-01-b",
+        "tab-btn-02-a",
+        "tabs-01-content",
+        "tabs-02-content"
+      ],
+      "contentHash": "1e3e8817046bedc4",
+      "contentHead": "Neighborhood Reports. What affects health in your neighborhood, and how does it compare with other parts of the city? Th"
+    },
+    "/neighborhood-reports/active_design_physical_activity_and_health/": {
+      "words": 473,
+      "title": "Active Design, Physical Activity and Health | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "c25df814d07f566a",
+      "contentHead": "Active Design, Physical Activity and Health. The design and conditions of buildings, streets, public transportation and "
+    },
+    "/neighborhood-reports/asthma_and_the_environment/": {
+      "words": 589,
+      "title": "Asthma and the Environment | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "01e432a3f8f76426",
+      "contentHead": "Asthma and the Environment. Asthma is a leading cause of hospitalizations for children. It can be made worse by housing "
+    },
+    "/neighborhood-reports/bayside_little_neck/": {
+      "words": 13,
+      "title": "Bayside - Little Neck | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "58180eccc32231f6",
+      "contentHead": "Neighborhood Reports for Bayside - Little Neck ZIP Codes: 11361, 11362, 11363, 11364."
+    },
+    "/neighborhood-reports/bedford_stuyvesant_crown_heights/": {
+      "words": 15,
+      "title": "Bedford Stuyvesant - Crown Heights | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "3e3645c2b631d394",
+      "contentHead": "Neighborhood Reports for Bedford Stuyvesant - Crown Heights ZIP Codes: 11212, 11213, 11216, 11233, 11238."
+    },
+    "/neighborhood-reports/bensonhurst_bay_ridge/": {
+      "words": 13,
+      "title": "Bensonhurst - Bay Ridge | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "c77fabaa114f6955",
+      "contentHead": "Neighborhood Reports for Bensonhurst - Bay Ridge ZIP Codes: 11209, 11214, 11228, 11425."
+    },
+    "/neighborhood-reports/borough_park/": {
+      "words": 11,
+      "title": "Borough Park | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "12f5a6d6429aecaf",
+      "contentHead": "Neighborhood Reports for Borough Park ZIP Codes: 11204, 11218, 11219, 11230."
+    },
+    "/neighborhood-reports/canarsie_flatlands/": {
+      "words": 11,
+      "title": "Canarsie - Flatlands | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "8a0b87911e397271",
+      "contentHead": "Neighborhood Reports for Canarsie - Flatlands ZIP Codes: 11234, 11236, 11239."
+    },
+    "/neighborhood-reports/central_harlem_morningside_heights/": {
+      "words": 16,
+      "title": "Central Harlem - Morningside Heights | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "c82dd3eb4a51aa9d",
+      "contentHead": "Neighborhood Reports for Central Harlem - Morningside Heights ZIP Codes: 10026, 10027, 10030, 10037, 10039, 10115."
+    },
+    "/neighborhood-reports/chelsea_clinton/": {
+      "words": 20,
+      "title": "Chelsea - Clinton | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "00a146aadae9a49b",
+      "contentHead": "Neighborhood Reports for Chelsea - Clinton ZIP Codes: 10001, 10011, 10018, 10019, 10020, 10036, 10103, 10110, 10111, 101"
+    },
+    "/neighborhood-reports/climate_and_health/": {
+      "words": 411,
+      "title": "Climate and Health | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "d946c21d8eaddd2b",
+      "contentHead": "Climate and Health. As the climate changes, we track New York City’s risk for extreme heat, storms and flooding, and epi"
+    },
+    "/neighborhood-reports/coney_island_sheepshead_bay/": {
+      "words": 14,
+      "title": "Coney Island - Sheepshead Bay | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "58165d01e7e9fb7a",
+      "contentHead": "Neighborhood Reports for Coney Island - Sheepshead Bay ZIP Codes: 11223, 11224, 11229, 11235."
+    },
+    "/neighborhood-reports/crotona_tremont/": {
+      "words": 11,
+      "title": "Crotona - Tremont | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "1f6e4b86ab45f848",
+      "contentHead": "Neighborhood Reports for Crotona - Tremont ZIP Codes: 10453, 10457, 10460."
+    },
+    "/neighborhood-reports/downtown_heights_slope/": {
+      "words": 15,
+      "title": "Downtown - Heights - Slope | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "06e21c23ed5694f8",
+      "contentHead": "Neighborhood Reports for Downtown - Heights - Slope ZIP Codes: 11201, 11205, 11215, 11217, 11231."
+    },
+    "/neighborhood-reports/east_flatbush_flatbush/": {
+      "words": 13,
+      "title": "East Flatbush - Flatbush | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "a756474a96230d15",
+      "contentHead": "Neighborhood Reports for East Flatbush - Flatbush ZIP Codes: 11203, 11210, 11225, 11226."
+    },
+    "/neighborhood-reports/east_harlem/": {
+      "words": 9,
+      "title": "East Harlem | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "546332e184e6cebc",
+      "contentHead": "Neighborhood Reports for East Harlem ZIP Codes: 10029, 10035."
+    },
+    "/neighborhood-reports/east_new_york/": {
+      "words": 10,
+      "title": "East New York | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "e2965fdab1f8bb01",
+      "contentHead": "Neighborhood Reports for East New York ZIP Codes: 11207, 11208."
+    },
+    "/neighborhood-reports/flushing_clearview/": {
+      "words": 17,
+      "title": "Flushing - Clearview | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "c638d5d1b872e4e8",
+      "contentHead": "Neighborhood Reports for Flushing - Clearview ZIP Codes: 11351, 11354, 11355, 11356, 11357, 11358, 11359, 11360, 11368."
+    },
+    "/neighborhood-reports/fordham_bronx_pk/": {
+      "words": 13,
+      "title": "Fordham - Bronx Pk | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "747f2a9c73b07cfa",
+      "contentHead": "Neighborhood Reports for Fordham - Bronx Pk ZIP Codes: 10458, 10467, 10468, 10470."
+    },
+    "/neighborhood-reports/fresh_meadows/": {
+      "words": 10,
+      "title": "Fresh Meadows | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "f02a9e1d038e382a",
+      "contentHead": "Neighborhood Reports for Fresh Meadows ZIP Codes: 11365, 11366, 11367."
+    },
+    "/neighborhood-reports/gramercy_park_murray_hill/": {
+      "words": 27,
+      "title": "Gramercy Park - Murray Hill | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "28860c634ebd873f",
+      "contentHead": "Neighborhood Reports for Gramercy Park - Murray Hill ZIP Codes: 10010, 10016, 10017, 10022, 10152, 10153, 10154, 10165, "
+    },
+    "/neighborhood-reports/greenpoint/": {
+      "words": 8,
+      "title": "Greenpoint | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "fcaada90c733e8da",
+      "contentHead": "Neighborhood Reports for Greenpoint ZIP Codes: 11211, 11222."
+    },
+    "/neighborhood-reports/greenwich_village_soho/": {
+      "words": 12,
+      "title": "Greenwich Village - SoHo | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "d9135f8d44a45461",
+      "contentHead": "Neighborhood Reports for Greenwich Village - SoHo ZIP Codes: 10012, 10013, 10014."
+    },
+    "/neighborhood-reports/high_bridge_morrisania/": {
+      "words": 12,
+      "title": "High Bridge - Morrisania | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "206e9624616eeee9",
+      "contentHead": "Neighborhood Reports for High Bridge - Morrisania ZIP Codes: 10451, 10452, 10456."
+    },
+    "/neighborhood-reports/housing_and_health/": {
+      "words": 539,
+      "title": "Housing and Health | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "554ca345ccfea93b",
+      "contentHead": "Housing and Health. Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poison"
+    },
+    "/neighborhood-reports/hunts_point_mott_haven/": {
+      "words": 14,
+      "title": "Hunts Point - Mott Haven | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "0bc7738dc87b2bcc",
+      "contentHead": "Neighborhood Reports for Hunts Point - Mott Haven ZIP Codes: 10454, 10455, 10459, 10474."
+    },
+    "/neighborhood-reports/jamaica/": {
+      "words": 14,
+      "title": "Jamaica | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "fe1ca05382323f33",
+      "contentHead": "Neighborhood Reports for Jamaica ZIP Codes: 11412, 11423, 11432, 11433, 11434, 11435, 11436, 11451."
+    },
+    "/neighborhood-reports/kingsbridge_riverdale/": {
+      "words": 10,
+      "title": "Kingsbridge - Riverdale | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "7f5222160bb37cd0",
+      "contentHead": "Neighborhood Reports for Kingsbridge - Riverdale ZIP Codes: 10463, 10471."
+    },
+    "/neighborhood-reports/long_island_city_astoria/": {
+      "words": 17,
+      "title": "Long Island City - Astoria | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "ec5655b838abf008",
+      "contentHead": "Neighborhood Reports for Long Island City - Astoria ZIP Codes: 11101, 11102, 11103, 11104, 11105, 11106, 11109."
+    },
+    "/neighborhood-reports/lower_manhattan/": {
+      "words": 16,
+      "title": "Lower Manhattan | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "ea92f0704408a60a",
+      "contentHead": "Neighborhood Reports for Lower Manhattan ZIP Codes: 10005, 10006, 10007, 10038, 10271, 10278, 10279, 10280, 10282."
+    },
+    "/neighborhood-reports/northeast_bronx/": {
+      "words": 10,
+      "title": "Northeast Bronx | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "43625d3fb650bce2",
+      "contentHead": "Neighborhood Reports for Northeast Bronx ZIP Codes: 10466, 10469, 10475."
+    },
+    "/neighborhood-reports/outdoor_air_and_health/": {
+      "words": 557,
+      "title": "Outdoor Air and Health | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "113f22875796f83b",
+      "contentHead": "Outdoor Air and Health. Air pollution is one of the most important environmental threats to people who live in urban are"
+    },
+    "/neighborhood-reports/pelham_throgs_neck/": {
+      "words": 15,
+      "title": "Pelham - Throgs Neck | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "5f844467d4a3eea3",
+      "contentHead": "Neighborhood Reports for Pelham - Throgs Neck ZIP Codes: 10461, 10462, 10464, 10465, 10472, 10473."
+    },
+    "/neighborhood-reports/port_richmond/": {
+      "words": 10,
+      "title": "Port Richmond | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "b84f9d08cbf60ac6",
+      "contentHead": "Neighborhood Reports for Port Richmond ZIP Codes: 10302, 10303, 10310."
+    },
+    "/neighborhood-reports/ridgewood_forest_hills/": {
+      "words": 13,
+      "title": "Ridgewood - Forest Hills | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "708604b74e644b99",
+      "contentHead": "Neighborhood Reports for Ridgewood - Forest Hills ZIP Codes: 11374, 11375, 11379, 11385."
+    },
+    "/neighborhood-reports/rockaways/": {
+      "words": 10,
+      "title": "Rockaways | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "f999462ea5cf713c",
+      "contentHead": "Neighborhood Reports for Rockaways ZIP Codes: 11691, 11692, 11694, 11697."
+    },
+    "/neighborhood-reports/south_beach_tottenville/": {
+      "words": 14,
+      "title": "South Beach - Tottenville | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "e1d855caa27cf5f0",
+      "contentHead": "Neighborhood Reports for South Beach - Tottenville ZIP Codes: 10306, 10307, 10308, 10309, 10312."
+    },
+    "/neighborhood-reports/southeast_queens/": {
+      "words": 16,
+      "title": "Southeast Queens | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "7780f1f74594d0fc",
+      "contentHead": "Neighborhood Reports for Southeast Queens ZIP Codes: 11004, 11005, 11411, 11413, 11422, 11426, 11427, 11428, 11429."
+    },
+    "/neighborhood-reports/southwest_queens/": {
+      "words": 16,
+      "title": "Southwest Queens | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "fbec7b64a6303aa6",
+      "contentHead": "Neighborhood Reports for Southwest Queens ZIP Codes: 11414, 11415, 11416, 11417, 11418, 11419, 11420, 11421, 11424."
+    },
+    "/neighborhood-reports/stapleton_st_george/": {
+      "words": 12,
+      "title": "Stapleton - St. George | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "7dd78be7b923d73d",
+      "contentHead": "Neighborhood Reports for Stapleton - St. George ZIP Codes: 10301, 10304, 10305."
+    },
+    "/neighborhood-reports/sunset_park/": {
+      "words": 9,
+      "title": "Sunset Park | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "e2d9fb9510dae1a1",
+      "contentHead": "Neighborhood Reports for Sunset Park ZIP Codes: 11220, 11232."
+    },
+    "/neighborhood-reports/union_square_lower_east_side/": {
+      "words": 14,
+      "title": "Union Square - Lower East Side | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "d98793489403dffc",
+      "contentHead": "Neighborhood Reports for Union Square - Lower East Side ZIP Codes: 10002, 10003, 10009."
+    },
+    "/neighborhood-reports/upper_east_side/": {
+      "words": 15,
+      "title": "Upper East Side | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "94b881904350043c",
+      "contentHead": "Neighborhood Reports for Upper East Side ZIP Codes: 10021, 10028, 10044, 10065, 10075, 10128, 10162."
+    },
+    "/neighborhood-reports/upper_west_side/": {
+      "words": 12,
+      "title": "Upper West Side | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "580d74287e204f65",
+      "contentHead": "Neighborhood Reports for Upper West Side ZIP Codes: 10023, 10024, 10025, 10069."
+    },
+    "/neighborhood-reports/washington_heights/": {
+      "words": 12,
+      "title": "Washington Heights | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "8252b80bd0073a57",
+      "contentHead": "Neighborhood Reports for Washington Heights ZIP Codes: 10031, 10032, 10033, 10034, 10040."
+    },
+    "/neighborhood-reports/west_queens/": {
+      "words": 13,
+      "title": "West Queens | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "3f4a16a2c10e11da",
+      "contentHead": "Neighborhood Reports for West Queens ZIP Codes: 11369, 11370, 11372, 11373, 11377, 11378."
+    },
+    "/neighborhood-reports/williamsburg_bushwick/": {
+      "words": 11,
+      "title": "Williamsburg - Bushwick | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "29d1aaaa4af974d8",
+      "contentHead": "Neighborhood Reports for Williamsburg - Bushwick ZIP Codes: 11206, 11221, 11237."
+    },
+    "/neighborhood-reports/willowbrook/": {
+      "words": 8,
+      "title": "Willowbrook | Neighborhood Reports",
+      "filters": {
+        "section": [
+          "Neighborhood Reports"
+        ]
+      },
+      "anchors": [
+        "map",
+        "results",
+        "zips"
+      ],
+      "contentHash": "56c8cba1eaf0f4fc",
+      "contentHead": "Neighborhood Reports for Willowbrook ZIP Codes: 10311, 10314."
+    },
+    "/resources/": {
+      "words": 11,
+      "title": "Resources | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "0a47de77214580bc",
+      "contentHead": "Resources Resources: Food Safety Health Code Reference Tool. Sugar Lookup Tool."
+    },
+    "/resources/health-code-reference/": {
+      "words": 18,
+      "title": "Food Safety Health Code Reference Tool | Resources",
+      "filters": {},
+      "anchors": [
+        "results"
+      ],
+      "contentHash": "94de4465d9394615",
+      "contentHead": "Food Safety Health Code Reference Tool Food Safety Health Code Reference Tool for inspectors: Mobile version. Desktop ve"
+    },
+    "/resources/sugar-lookup/": {
+      "words": 29,
+      "title": "The Department’s Pre-calculations Sugar Lookup Tool | Resources",
+      "filters": {},
+      "anchors": [
+        "brandFilter",
+        "clearBrandFilter",
+        "fullSugarTable",
+        "fullSugarTableContainer",
+        "results",
+        "searchContainer"
+      ],
+      "contentHash": "67f5d397b5cb9474",
+      "contentHead": "The Department’s Pre-calculations Sugar Lookup Tool. Use this tool to look up beverages to see how many calories it take"
+    },
+    "/take-action/": {
+      "words": 76,
+      "title": "Take Action | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "59f36d70ae70ae1e",
+      "contentHead": "Take Action. Take action about issues in your community! Environmental health issues are big. They’re not something that"
+    },
+    "/take-action/email-electeds/": {
+      "words": 137,
+      "title": "Contact your elected officials | Take Action",
+      "filters": {},
+      "anchors": [
+        "link",
+        "map-search",
+        "mapLocator",
+        "newTable",
+        "newTableBody",
+        "outputRow",
+        "primary-content",
+        "register",
+        "results",
+        "searchHolder"
+      ],
+      "contentHash": "c12f9ccb85b194a8",
+      "contentHead": "Contact your elected officials. Are you concerned about environmental health issues in your neighborhood, or in our city"
+    },
+    "/zh/": {
+      "words": 624,
+      "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
+      "filters": {},
+      "anchors": [
+        "aqiModalContent",
+        "aqimeaning",
+        "coldModalContent",
+        "featured-homepage",
+        "forecasthigh",
+        "forecastlow",
+        "heatModalContent",
+        "openModalBtnWeather",
+        "primary-content",
+        "results",
+        "weatherModal",
+        "weatherModalTitle"
+      ],
+      "contentHash": "498aa3c2c6e53db8",
+      "contentHead": "Explore ​your ​city ​- ​through ​data​. ​The ​environment ​is ​everything ​around ​us ​- ​our ​air ​and ​water​, ​the ​c"
+    },
+    "/zh/data-stories/": {
+      "words": 1321,
+      "title": "Data-Stories | Environment & Health Data Portal",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "pills-all",
+        "pills-all-tab",
+        "pills-aq",
+        "pills-aq-tab",
+        "pills-climate",
+        "pills-climate-tab",
+        "pills-food",
+        "pills-food-tab",
+        "pills-housing",
+        "pills-housing-tab",
+        "pills-how",
+        "pills-how-tab",
+        "pills-justice",
+        "pills-justice-tab",
+        "pills-tab",
+        "pills-tabContent",
+        "pills-transportation",
+        "pills-transportation-tab",
+        "results"
+      ],
+      "contentHash": "4937d3af2abc2f71",
+      "contentHead": "Data ​Stories​. ​Explainers ​and ​perspectives ​on ​important ​health ​and ​environment ​topics​. ​Latest ​data ​stories"
+    },
+    "/zh/data-stories/air-quality-and-covid/": {
+      "words": 389,
+      "title": "COVID-19期间的空气质量 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "f69854a0ff4a34d4",
+      "contentHead": "COVID​-​19​期间​的​空气​质量​. ​纽约​市民​待​在家​里​会​发生​什么​？ ​COVID​-​19​大​流行​颠覆​了​所有​纽约​人​的​生活​。​疫情​影响​了​我们​日常​生活​的​许多​方面​，​但​也​有​一些"
+    },
+    "/zh/data-stories/asthma-and-poverty/": {
+      "words": 470,
+      "title": "为什么哮喘是一个社会正义问题 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "primary-content",
+        "results"
+      ],
+      "contentHash": "bb1a5f1cd4d6cf8b",
+      "contentHead": "为什么​哮喘​是​一个​社会​正义​问题​. ​贫困​以​多种​方式​影响​健康​。​在​纽约​市​，​哮喘​病​例​清楚​地​说明​了​这种​联系​。 ​要​想​了解​贫穷​与​哮喘​之间​的​关系​，​请​看​下面​这​张​纽约​市​贫"
+    },
+    "/zh/data-stories/housing/": {
+      "words": 2004,
+      "title": "健康、住房和历史。 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bbcollapse",
+        "btnGroupDrop1",
+        "contractcollapse",
+        "datawrapper-chart-94kNi",
+        "datawrapper-chart-I2WVT",
+        "datawrapper-chart-L3vvv",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-S5cP3",
+        "datawrapper-chart-YRJDi",
+        "datawrapper-chart-Zo65O",
+        "disrepaircollapse",
+        "elow",
+        "healthcollapse",
+        "holccollapse",
+        "home",
+        "home-tab",
+        "housingmap",
+        "ifElow",
+        "ifLow",
+        "ifMod",
+        "ifVlow",
+        "low",
+        "mod",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "profile",
+        "profile-tab",
+        "results",
+        "rrccollapse",
+        "vlow"
+      ],
+      "contentHash": "6f73a64e2fed89ad",
+      "contentHead": "健康​、​住房​和​历史​。 ​为了​健康​，​地点​很​重要​。 ​什么​决定​您​是否​健康​？​您​可能​会​考虑​您​吃​了​什么​，​您​是否​锻炼​，​您​是否​吸烟​和​您​的​家庭​病史​。 ​但​您​可能​不会​想到 ​您"
+    },
+    "/zh/data-stories/redlining/": {
+      "words": 1474,
+      "title": "红线圈定的简史 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "bronx",
+        "bronx-tab",
+        "brooklyn",
+        "brooklyn-tab",
+        "citywidemap",
+        "datawrapper-chart-D2K07",
+        "datawrapper-chart-MmeuP",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-PkSCB",
+        "datawrapper-chart-g5K1u",
+        "datawrapper-chart-k9Imm",
+        "datawrapper-chart-kHuYf",
+        "manhattan",
+        "manhattan-tab",
+        "map-tab",
+        "myTab",
+        "myTabContent",
+        "primary-content",
+        "queens",
+        "queens-tab",
+        "results",
+        "staten",
+        "staten-tab"
+      ],
+      "contentHash": "f78fd18eabb2f29b",
+      "contentHead": "红线​圈定​的​简史 ​危害​我们​健康​90​年​的​金融​政策​. ​在​公共​卫生​领域​，​我们​经常​引用​结构​性​种族​主义​来​解读​我们​社会​的​健康​模式​。​但是​，​具体​来说​，​这​意味​着​什么​？​仔细​看"
+    },
+    "/zh/data-stories/violence/": {
+      "words": 2799,
+      "title": "为什么暴力是一个公共卫生问题 | Data-Stories",
+      "filters": {
+        "section": [
+          "Data Stories"
+        ]
+      },
+      "anchors": [
+        "article-footer",
+        "covidcollapse",
+        "dataModal",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "datawrapper-chart-O0SUA",
+        "disinvestmentCollapse",
+        "disinvestmentCollapseTwo",
+        "envcollapse",
+        "primary-content",
+        "redliningCollapse",
+        "results",
+        "violcollapse"
+      ],
+      "contentHash": "f76a9622839ac000",
+      "contentHead": "为什么​暴力​是​一个​公共​卫生​问题 ​利用​公共​卫生​预防​暴力​. ​经历​暴力​会​以​多种​方式​影响​人们​。​它​不仅​会​导致​身体​伤害​或​死亡​，​而且​接触​它​还​会​导致​情感​和​心理​创伤​。​暴力​不仅"
+    }
+  }
+}

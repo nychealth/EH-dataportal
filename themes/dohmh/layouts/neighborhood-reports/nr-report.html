@@ -1,0 +1,420 @@
+{{- define "main" -}}
+
+{{/*
+    Per-neighborhood report layout — /neighborhood-reports/<nbhd>/<topic>/.
+    - Rendered for the 210 pages the content adapter generates, one per neighborhood/topic.
+        It no longer serves the five topic markdown files; those render nr-topic-index.html.
+    - Reads all report_topics from the NR_content YAML for this topic.
+    - Builds an EHDP-data JSON URL per report_topic and passes them to a JS app.
+    - Indicator rows are accordion-expandable, showing description, comparisons,
+        a Vega choropleth map + bar chart, and data source on expand.
+    - The neighborhood comes from the page itself, not from the URL or sessionStorage. The
+        Leaflet map still switches neighborhood in place; url.js rewrites the address bar.
+
+    Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
+    .Title only, so .Params.title renders blank on all 210 of these pages.
+*/}}
+
+{{/* Look up all report_topics for this Neighborhood Report content key */}}
+{{- $contentKey := .Params.content_yml -}}
+{{- $reportTopics := (index (index .Site.Data.globals.NR_content $contentKey) "report_topics") -}}
+
+{{/* This page's styles live in assets/scss/_custom.scss, under the "Neighborhood Reports
+     report page" heading — moved out of an inline <style> block here on 2026-08-15. The
+     .card-header rules are scoped to .nr-report-accordion there; they were page-scoped for
+     free while they were inline, and .card-header is a site-wide Bootstrap class. */}}
+
+{{/*
+    data-pagefind-ignore="all" on the whole report — these 210 pages contribute nothing to the
+    search index. This is production's model, restored deliberately: the retired
+    nr-output/single.html carried the identical attribute on the identical element, put there by
+    9b270a71d6 (2023-10-25) as part of a five-commit selective-indexing pass. Search for NR is
+    one indexable page per topic, carrying that topic's whole indicator vocabulary, and 210
+    combinatorial pages carrying none of it.
+
+    Why the page level rather than another targeted ignore: a report page wins the first page of
+    results on its *title*. "Climate and Health | East Harlem" matches a search for "climate",
+    there are 42 per topic, and no body-level lever reaches a title — measured 2026-08-15, a
+    data-pagefind-weight on the topic overview moved nothing at all, and ignoring the shared topic
+    menu cut the result count by two thirds while leaving the first page byte-identical. Only
+    removing the pages from the index changes it.
+
+    THE COST, so a later reader does not have to rediscover it: "asthma East Harlem" no longer
+    finds East Harlem's asthma report, and "Kingsbridge" returns its hub page alone rather than
+    its hub plus its five reports. That is the trade, it is reversible by deleting this one
+    attribute, and documents/nr-pagefind-parity-2026-08-15.md §5 is the Google Analytics test
+    that would reverse it.
+
+    The narrower ignores further down — the tertile explainer, the print-only QR caption — have no
+    effect while this one stands. They are kept because they are separately correct and the §5
+    test may bring them back into play.
+*/}}
+<section class="container-fluid" data-pagefind-ignore="all">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            {{/* Breadcrumbs — the neighborhood index sits between the section and this page,
+                mirroring the real URL and giving each report page a link back up to its 41
+                siblings' entry point */}}
+            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            {{/* Clicking a map polygon rebuilds the entire report body, swaps both <h1>s and
+                rewrites the address bar, with nothing said about it — report.js writes the
+                new neighborhood here so the change is announced rather than silent.
+
+                It sits outside #nr-report-header and outside every section container, because
+                renderAll() empties those: a live region replaced between the write and the
+                read is not announced. Server-rendered empty and left empty on first paint —
+                renderAll() runs at load too, where nothing has changed and an announcement
+                would be noise. role="status" carries aria-live="polite" and aria-atomic. */}}
+            <div id="nr-report-status" role="status" class="sr-only"></div>
+
+            {{/* Mobile title (visible below md breakpoint).
+                Neighborhood name and visibility are server-rendered rather than left to the JS
+                that used to fill them: without JS this page otherwise reads "Asthma and the
+                Environment in" with nothing after it (scoping memo §12a). renderAll() still
+                writes the same textContent when it switches neighborhood in place. */}}
+            <div class="row d-md-none">
+                {{/* The id stays on the wrapper rather than the h1, so Pagefind emits no sub-result
+                    for this heading — one would only duplicate the page's own result title.
+                    report.js used the id solely to unhide the block, which the wrapper does too. */}}
+                <div class="col-12 mb-2" id="nr-mobile-title">
+                    <h1 class="h2 nr-report-heading">
+                        {{ .Title }} <span style="font-weight:normal">in</span>
+                        <span class="h2 text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {{/* Left column: map, demographics */}}
+                <div class="col-md-4 mb-4 d-print-none">
+
+                    {{/*
+                        Interactive Leaflet map for neighborhood selection.
+                        Loads UHF42 GeoJSON from static/geojson/. Clicking a neighborhood
+                        updates the report data in place (no page navigation).
+                    */}}
+                    <div id="nr-map" class="border" style="height: 450px; width: 100%;"></div>
+
+                    {{/* Server-rendered for the same reason as the neighborhood name: the ZIP list
+                        is distinguishing text on a page whose 41 siblings are otherwise near
+                        identical, and with JS off it was the empty string. demographics.js
+                        rewrites it with the same value on a neighborhood switch. */}}
+                    <div class="fs-md my-1" id="nr-zip-codes">
+                        <span style="font-weight:bold;color:darkslategrey">ZIP Codes:</span>
+                        <span id="nr-zip-list">{{ .Params.zipcodes }}</span>
+                    </div>
+
+                    {{/* Demographics table — populated by JS from the `neighborhoods` global,
+                        emitted by lib-uhflist.html from data/globals/uhflist.json */}}
+                    <div id="nr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
+                        <table class="table fs-sm" style="color:darkslategrey">
+                            {{/* Row headers, not plain cells: in a two-column table a screen
+                                reader reading cell by cell otherwise announces the value with
+                                no metric name attached. */}}
+                            <thead class="sr-only">
+                                <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row"><strong>Population</strong></th><td id="nr-pop" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Over age 65</strong></th><td id="nr-old" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Under age 18</strong></th><td id="nr-young" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Poverty</strong></th><td id="nr-pov" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Graduated high school</strong></th><td id="nr-grad" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Limited English</strong></th><td id="nr-eng" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="nr-own" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="nr-rent" class="text-right"></td></tr>
+                            </tbody>
+                        </table>
+                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                    </div>
+
+                    <hr class="my-2">
+                    {{/* Ignored by Pagefind: this explainer is byte-identical on all 210 report
+                         pages — ~75 of ~355 indexed words — so indexing it made every report a
+                         match for "tertile" and "lowest third" without telling those searches
+                         apart. It stays visible, and its alt text stays in the accessibility
+                         tree; only the index skips it. */}}
+                    <div class="asidebox m-2 pxy-2 text-muted" data-pagefind-ignore="all">
+                        <strong>Indicator rankings</strong>
+                        <p class="leading-sm">For each dataset, we divide neighborhoods up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this neighborhood, to all other NYC neighborhoods, for this indicator.</p>
+                        <div class="row no-gutters">
+                            <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                <strong>Lower</strong>: for that dataset, the neighborhood is in the lowest third of all neighborhoods.
+                            </div>
+                            <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                <strong>Higher</strong>: for that dataset, the neighborhood is in the upper third of all neighborhoods.
+                            </div>
+                        </div>
+                        <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of neighborhoods with the lowest values are labelled Lower. The one-third of neighborhoods with the highest values are labelled Higher.">
+                        <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                    </div>
+
+                </div>
+
+                {{/* Right column: topic buttons + report header + sections */}}
+                <div class="col-md-8 col-print-12">
+
+                    {{/*
+                        Topic mini-menu: the five topic buttons, hrefs pointing at this neighborhood's
+                        other four reports. url.js rewrites them if the map switches neighborhood.
+                    */}}
+                    {{ partial "nr-topic-menu" (dict "active" $contentKey "neighborhood_slug" .Params.neighborhood_slug) }}
+
+                    {{/*
+                        Report header: title + neighborhood name + intro copy + buttons.
+                        Rendered visible with the neighborhood already in place — see the mobile title
+                        above. renderAll() rewrites the name on an in-place neighborhood switch.
+                    */}}
+                    <div id="nr-report-header">
+                        <div class="d-none d-md-block mb-">
+                            <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
+                                <span class="h2 text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
+                            </h1>
+                        </div>
+
+                        <div class="d-md-none my-1">
+                            <strong>{{ .Title }}</strong>
+                        </div>
+
+                        <hr class="mb-2 mt-1">
+                        {{/* The topic intro copy lives in the topic markdown file's body, which is now
+                            a different page (nr-topic-index.html) — a generated page has no .Content
+                            of its own. Same lookup nr-output/single.html did, keyed instead of a
+                            five-branch if-chain. */}}
+                        <div class="mb-2">
+                            {{- with .Site.GetPage (printf "/neighborhood-reports/%s.md" $contentKey) -}}
+                                {{ .Content }}
+                            {{- end -}}
+                        </div>
+
+                        <div class="row d-print-none">
+                            <div class="col-sm-6">
+                                <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                            </div>
+                            <div class="col-sm-6 text-sm-right">
+                                {{/* aria-controls names the section containers, not the individual
+                                    panels: the panel ids are minted in JS (nr-acc-N-c) and change
+                                    on every neighborhood switch, where these are in the markup and
+                                    stable. app.js keeps aria-expanded in step with the label. */}}
+                                {{- $accordionIds := slice -}}
+                                {{- range $i, $rt := $reportTopics -}}
+                                    {{- $accordionIds = $accordionIds | append (printf "nr-accordion-%d" $i) -}}
+                                {{- end -}}
+                                <button id="nr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2"
+                                        aria-expanded="false" aria-controls="{{ delimit $accordionIds " " }}" disabled>
+                                    <i class="fas fa-expand-alt mr-1" aria-hidden="true"></i><span class="nr-accordion-toggle-label">Expand all</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{/*
+                        Loop over every report_topic from the NR_content YAML.
+                        Each section is wrapped in the production accordion container
+                        with the green top border and border styling.
+                    */}}
+                    {{- range $i, $rt := $reportTopics -}}
+                        {{/*
+                            Use the range index for DOM ids (nr-accordion-N / nr-section-N), not urlized titles.
+                            Topic titles can urlize to strings that are awkward for CSS selectors or can drift
+                            between Hugo versions; mismatched id vs NR_REPORT_CONFIG leaves sections empty.
+                        */}}
+                        <div class="accordion nr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="nr-accordion-{{ $i }}">
+                            <div class="px-2 pb-2">
+                                {{/* h2, with .h4 carrying the visual size: these sections sit
+                                    directly under the page h1, and each indicator card inside is
+                                    an h3. The level and the type scale are independent here. */}}
+                                <h2 class="h4 fs-rg">
+                                    {{ $rt.report_topic }}
+                                </h2>
+                                <p class="fs-sm">
+                                    {{ $rt.report_topic_description }}
+                                </p>
+                            </div>
+                            <div id="nr-section-{{ $i }}">
+                            </div>
+                        </div>
+                    {{- end -}}
+
+                    {{/* Print-only QR code back to this report, carried over from
+                        nr-output/single.html. Filled by renderQRCode() below, which runs from
+                        renderAll() rather than at load: the Leaflet map can switch neighborhood in
+                        place, and a code generated once would then point at the wrong report. */}}
+                    {{/* Ignored by Pagefind for the same reason as the tertile box: one identical
+                         caption on 210 pages. It is print-only markup, so it was never on screen
+                         for the searcher who landed on it either. */}}
+                    <div class="row print-only" data-pagefind-ignore="all">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <div id="qrcode" class="text-center"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {{/* Curated per-topic "what the City is doing / what you can do" footer, kept from
+                nr-output/single.html — the report page has no equivalent, so dropping it with the rest
+                of nr-output would have been content loss. It carries data-pagefind-ignore="all",
+                so it adds nothing to the search index on 210 newly-indexed pages. */}}
+            {{ partial "nr-report-footer-sm" . }}
+
+        </div>
+    </div>
+</section>
+
+{{/*
+    Pass configuration to the JS module.
+    - sections: array of report_topic objects with EHDP-data URLs and container IDs.
+    - vizUrl: combined viz dataset URL for map/chart rendering.
+    - topicIndicatorsUrl / dataExplorerUrl: the two halves of each card's "Full dataset" link.
+    - dataRepo / dataBranch: used by the JS to construct geography TopoJSON URLs.
+    - geojsonUrl: local UHF42 GeoJSON for the Leaflet map.
+    - reportName: page title for CSV download filenames.
+    - neighborhood: the neighborhood this page was generated for.
+*/}}
+{{- $nrGlobal       := resources.Get "js/nr-report/global.js"       | partial "short-fingerprint.html" -}}
+{{- $nrUrl          := resources.Get "js/nr-report/url.js"          | partial "short-fingerprint.html" -}}
+{{- $nrTertiles     := resources.Get "js/nr-report/tertiles.js"     | partial "short-fingerprint.html" -}}
+{{- $nrDemographics := resources.Get "js/nr-report/demographics.js" | partial "short-fingerprint.html" -}}
+{{- $nrCards        := resources.Get "js/nr-report/cards.js"        | partial "short-fingerprint.html" -}}
+{{- $nrReport       := resources.Get "js/nr-report/report.js"       | partial "short-fingerprint.html" -}}
+{{- $nrChart        := resources.Get "js/nr-report/chart.js"        | partial "short-fingerprint.html" -}}
+{{- $nrMap          := resources.Get "js/nr-report/map.js"          | partial "short-fingerprint.html" -}}
+{{- $nrData         := resources.Get "js/nr-report/data.js"         | partial "short-fingerprint.html" -}}
+{{- $nrApp          := resources.Get "js/nr-report/app.js"          | partial "short-fingerprint.html" -}}
+
+{{- $vizUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/viz/" $contentKey ".json" -}}
+<script>
+    window.NR_REPORT_CONFIG = {
+        reportName: "{{ .Title }}",
+        // The topic half of <title>, which head.html renders from .Params.seo_title.
+        // Not reportName: that is .Title, and the two differ on Active Design, so an
+        // in-place switch rebuilding the title from reportName would replace the string
+        // 42 of these pages actually shipped with
+        seoShortName: "{{ .Params.seo_short_name }}",
+        // The neighborhood this page was generated for, and the only thing
+        // getNeighborhoodFromURL consults — nothing parses the path for it
+        neighborhood: "{{ .Params.neighborhood }}",
+        geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
+        vizUrl: "{{ $vizUrl }}",
+        // Topic → IndicatorID[] map, used to build each card's "Full dataset" link back to
+        // the data explorer. Fetched rather than inlined: it is one 7 KB file the browser
+        // caches across all 210 report pages, where inlining would put 6 KB of it in each.
+        // It is a *published Hugo resource*, not a static file — de-topic-indicators.html
+        // builds it by ranging .Site.Pages and calling .Publish, so it exists only because
+        // the three data-explorer layouts that include that partial are in the build
+        topicIndicatorsUrl: "{{ relURL "IndicatorMetadata/topic_indicators.json" }}",
+        dataExplorerUrl: "{{ relURL "data-explorer/" }}",
+        dataRepo: "{{ $.Site.Params.data_repo }}",
+        dataBranch: "{{ $.Site.Params.data_branch }}",
+        sections: [
+            {{- range $i, $rt := $reportTopics -}}
+                {{- $cleanTopic := replace $rt.report_topic ":" "" -}}
+                {{/* Spaces in the filename must be %20 for reliable fetch() (e.g. "...Health Physical Activity.json"). */}}
+                {{- $reportFile := print $contentKey " " $cleanTopic ".json" -}}
+                {{- $reportFileEncoded := replace $reportFile " " "%20" -}}
+                {{- $url := print $.Site.Params.data_repo $.Site.Params.data_branch "/neighborhood-reports/data/report/" $reportFileEncoded -}}
+                {{- if $i }},{{ end -}}
+                {
+                    "id": "{{ $i }}",
+                    "containerId": "nr-section-{{ $i }}",
+                    "reportUrl": "{{ $url }}"
+                }
+            {{- end -}}
+        ],
+        // URL slug for this topic page, e.g. "asthma_and_the_environment".
+        // Used by setNeighborhoodInURL to locate the topic segment in the current path
+        // when updating the address bar after a neighborhood is selected.
+        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
+        // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
+        // e.g. { "east_new_york": "East New York", ... }.
+        // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
+        // Built from data/globals/uhflist.json — the same rows the content adapter generates
+        // the pages from — rather than by ranging .Sections. Those sections are now themselves
+        // adapter output, so deriving the map from them would make it depend on Hugo's section
+        // machinery agreeing with the adapter instead of on the one source both come from.
+        neighborhoodMap: {
+            {{- range $i, $n := site.Data.globals.uhflist -}}
+                {{- if $i }},{{ end -}}
+                "{{ $n.page_name }}": "{{ $n.UHF_name }}"
+            {{- end -}}
+        }
+    };
+</script>
+
+{{/* QR code generator for the print-only block above — mounted from node_modules, not a CDN */}}
+{{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" -}}
+
+{{/* The QR library and the one function that uses it, ahead of the report scripts so the
+    library is parsed before anything can call renderQRCode. It lives in the template rather
+    than in assets/js/nr-report/ because it is the template that owns the #qrcode element
+    and the library resource — the same reason data-explorer/single.html keeps
+    renderIndicatorDropdown inline. report.js calls it from renderAll(). */}}
+<script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+<script>
+    // Redraws the print-only QR code from the current address, which renderAll() has just
+    // rewritten if the reader switched neighborhood on the map
+    function renderQRCode() {
+
+        const destination = document.getElementById('qrcode');
+
+        if (!destination || typeof qrcode !== 'function') return;
+
+        // Type 10 at error-correction level M: production's settings, comfortably large
+        // enough for the longest neighborhood/topic URL the site generates
+        const code = qrcode(10, 'M');
+        code.addData(location.href);
+        code.make();
+
+        // (2, 8) are createImgTag's own defaults — passed explicitly only because alt is
+        // its third argument, and the library omits the attribute entirely when it is absent
+        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + location.href);
+
+    }
+</script>
+
+{{/* The libraries the ten report modules call at load, ahead of them for the same reason the
+    QR library sits ahead of renderQRCode. Leaflet for map.js, the neighborhoods global for
+    demographics.js and global.js, Vega for chart.js, Arquero for app.js/chart.js/data.js.
+    No d3 or DataTables: nothing under assets/js/nr-report/ references either. */}}
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-uhflist.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-arquero.html" . }}
+
+{{/*
+    Ten classic (non-module) scripts sharing one top-level scope, in load order.
+    Nothing enforces that order, so it is stated here rather than inferred:
+    app.js must load last. It holds the only two statements that run at load time
+    (the window.nrDownloadCSV export and the bootstrap() call), and both read names
+    the other nine declare. Everything else runs from bootstrap() or a DOM event,
+    by which point all ten have run.
+*/}}
+<script src="{{ $nrGlobal.RelPermalink }}" integrity="{{ $nrGlobal.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrUrl.RelPermalink }}" integrity="{{ $nrUrl.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrTertiles.RelPermalink }}" integrity="{{ $nrTertiles.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrDemographics.RelPermalink }}" integrity="{{ $nrDemographics.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrCards.RelPermalink }}" integrity="{{ $nrCards.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrReport.RelPermalink }}" integrity="{{ $nrReport.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrChart.RelPermalink }}" integrity="{{ $nrChart.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrMap.RelPermalink }}" integrity="{{ $nrMap.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrData.RelPermalink }}" integrity="{{ $nrData.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $nrApp.RelPermalink }}" integrity="{{ $nrApp.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{- end -}}
