@@ -91,7 +91,7 @@ function getMagmaColors(n) {
 // Line chart spec
 
 var spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Line chart of maximum daily temperature, and heat-related ED visits",
   "title": "",
   "width": "container",
