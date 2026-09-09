@@ -251,10 +251,12 @@
     // ---------------------------------------------------------- //
     // RETRIEVE DATA FILE
     // ---------------------------------------------------------- //
+
     let cachedCauseData = null;
     let cachedDescriptions = null;
     
     // Load CSV once, cache it:
+
     function loadCauseData() {
         return cachedCauseData
             ? Promise.resolve(cachedCauseData)
@@ -278,8 +280,11 @@
     // ---------------------------------------------------------- //
     
     // Main buttons (ED, Hosp, Death)
+
     document.querySelectorAll(".type-button").forEach((btn) => {
+
         btn.addEventListener("click", function () {
+
             // remove active from all type buttons
             document
             .querySelectorAll(".type-button")
@@ -303,12 +308,17 @@
             // re draw chart and menu
             drawChart(outcome, intent, highlight);
             updateCauseMenu(outcome, intent);
+
         });
+
     });
     
     // Sub-buttons (Injury-related only)
+
     document.querySelectorAll(".subtype-button").forEach((btn) => {
+
         btn.addEventListener("click", function () {
+
             // remove active from all subtype buttons
             document
             .querySelectorAll(".subtype-button")
@@ -334,7 +344,9 @@
             
             drawChart(outcome, intent, highlight);
             updateCauseMenu(outcome, intent);
+
         });
+
     });
     
     // ---------------------------------------------------------- //
@@ -342,13 +354,16 @@
     // ---------------------------------------------------------- //
     
     // Generate cause menu
+
     function updateCauseMenu(outcome, intent) {
+
         document.getElementById("buttonTitle").innerHTML = "Highlight";
         
         const menu = document.getElementById("causeMenu");
         menu.innerHTML = ""; // Clear previous items
         
         loadCauseData().then((data) => {
+
             // Filter according to globals
             const filtered = data.filter(
             (d) => d.type === outcome && String(d.InjuryOnly) === String(intent)
@@ -358,10 +373,14 @@
             const uniqueCauses = new Set();
             
             filtered.forEach((d) => {
+
                 if (d.cause_text) {
+
                     const cleaned = d.cause_text.replace(/^Injury:\s*/, "");
                     uniqueCauses.add(cleaned.trim());
+
                 }
+
             });
             
             const causes = [...uniqueCauses];
@@ -379,12 +398,14 @@
             
             // Create menu items
             causes.forEach((cause) => {
+
                 const a = document.createElement("a");
                 a.className = "dropdown-item cause-highlight";
                 a.href = "#visualization";
                 a.dataset.cause = cause;
                 a.textContent = cause;
                 menu.appendChild(a);
+
             });
             
             // Add <hr>
@@ -399,11 +420,14 @@
             reset.dataset.cause = "reset";
             reset.textContent = "Reset";
             menu.appendChild(reset);
+
         });
     }
     
     // Event listener
+
     document.addEventListener("click", function (e) {
+
         const target = e.target.closest(".cause-highlight");
         if (!target) return; // click wasn't on a cause item
         
@@ -418,10 +442,12 @@
         // HIGHLIGHT THE CHART
         console.log("highlighting", target.dataset.cause);
         drawChart(outcome, intent, target.dataset.cause);
+
     });
     
     // Text and reset
     document.addEventListener("click", function (e) {
+
         const target = e.target.closest(".dropdown-item");
         
         if (!target) return;
@@ -431,15 +457,19 @@
         
         // Reset clicked
         if (cause === "reset") {
+
             buttonTitle.innerText = "Highlight";
             highlight = "off";
             drawChart(outcome, intent, highlight);
             return;
+
         }
         
         // A cause item clicked
         if (target.classList.contains("cause-highlight")) {
+
             buttonTitle.innerText = "Showing: " + target.innerText.trim();
+
         }
     });
     
@@ -448,6 +478,7 @@
     // ---------------------------------------------------------- //
 
     function drawChart(outcome, intent, highlight) {
+
         console.log("Drawing chart for", outcome);
         console.log("Injury related?", intent);
         console.log("Highlighting:", highlight);
@@ -460,6 +491,7 @@
         var metadata = config.filter(
             (chosenOutcome) => chosenOutcome.id === outcome
         );
+
         metadata = metadata[0];
         console.log("metadata", metadata);
         document.getElementById("footnote").innerHTML = metadata.footnote;
@@ -474,7 +506,9 @@
         var color = { value: "#bcbcbc" };
         
         // Injury filter
+
         if (intent == 1) {
+
             filter = "datum.InjuryOnly == 1";
             injuryHighlight = "off";
             color = {
@@ -498,12 +532,17 @@
                     // "labelColor": {"expr": "scale('color', datum.label)"}
                 },
             };
+
         } else {
+
             filter = "datum.InjuryOnly == 0";
+
         }
         
         if (outcome === "Death" && highlight === "Injury") {
+
             console.log("color highlight with injury");
+
             color = {
                 field: "cause_text",
                 type: "nominal",
@@ -525,6 +564,7 @@
                     // "labelColor": {"expr": "scale('color', datum.label)"}
                 },
             };
+
         } else {
         }
         
@@ -557,25 +597,33 @@
         */
         
         // injury highlight condition
+        
         var strokeHighlight;
         var strokeHighlightWidth;
         var fieldHighlight = "datum.Intent === 'Injury'";
         
         if (highlight === "Injury") {
+
             fieldHighlight = "datum.Intent === 'Injury'";
             strokeHighlight = "black";
             strokeHighlightWidth = 3;
+
         } else if (highlight === "off") {
+
             fieldHighlight = "datum.Intent === 'Injury'";
             strokeHighlight = "#7C7C7C";
             strokeHighlightWidth = 1;
+
         } else {
+
             fieldHighlight = `datum.cause_text === '${highlight}' || datum.cause_text === 'Injury: ${highlight}'`;
             strokeHighlight = "black";
             strokeHighlightWidth = 3;
+
         }
         
         var spec = {
+
             $schema: "https://vega.github.io/schema/vega-lite/v5.json",
             height: "container",
             width: "container",
@@ -719,6 +767,7 @@
         
         // Print chart
         vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
+
             const view = result.view;
             
             // Mouse over event - sending to other function
@@ -728,10 +777,13 @@
             
             // Mouse out event
             view.addEventListener("mouseleave", (event) => {
+
                 clearOnHover();
+
                 if (event.item && event.item.datum) {
                     console.log("Mouse left:", event.item.datum);
                 }
+
             });
         });
     }
@@ -746,6 +798,7 @@
         document.getElementById("prompt").classList.add("hide");
         
         if (event.item && event.item.datum) {
+
             const datum = event.item.datum;
             
             console.log('>>> Hovered over:', datum);
@@ -755,11 +808,16 @@
             var cause = datum.cause_text.replace("Injury: ", "");
             
             // If cause is empty, show "No deaths, no cause"
+
             if (datum.cause_text === "") {
+
                 document.getElementById("causePrint").innerText = "(None)";
+
             } else {
+
                 document.getElementById("causePrint").innerHTML =
                 (datum.Intent ? datum.Intent + ": " : "") + cause;
+
             }
             
             document.getElementById("agePrint").innerHTML = datum["agegroup"];
@@ -781,18 +839,18 @@
                             : `${datum.rank_unique}th leading`;
             
             // Format numbers with commas and no decimal places
+
             const rateFormatted = Number(datum["rate"]).toLocaleString(undefined, {
-                maximumFractionDigits: 1,
+                maximumFractionDigits: 1
             });
-            const countFormatted = Number(
-            datum["Annual_Average_Count"]
-            ).toLocaleString(undefined, {
-                maximumFractionDigits: 0,
-            });
+
+            const countFormatted = 
+                Number(datum["Annual_Average_Count"])
+                .toLocaleString(undefined, {maximumFractionDigits: 0});
             
-            document.getElementById("ratePrint").innerHTML =
-            rateFormatted + " per 100,000 people";
+            document.getElementById("ratePrint").innerHTML = rateFormatted + " per 100,000 people";
             document.getElementById("countPrint").innerHTML = countFormatted;
+
         }
     }
     
@@ -802,25 +860,35 @@
     }
     
     function printDescription(x) {
+
         console.log(x);
         
         loadDescriptions().then((data) => {
+
             let thisCause = data.filter((datum) => datum.cause === x);
             
             if (thisCause[0]) {
+
                 console.log(thisCause[0].description);
                 document.getElementById("printDescription").innerHTML =
                 thisCause[0].description;
+
             } else {
+
                 console.log("No description found yet");
                 document.getElementById("printDescription").innerHTML =
                 "(No description yet)";
+
             }
+
         });
+
     }
+
     // ---------------------------------------------------------- //
     // Misc helper functions
     // ---------------------------------------------------------- //
+
     function capitalizeFirstLetter(val) {
         return String(val).charAt(0).toUpperCase() + String(val).slice(1);
     }
@@ -828,8 +896,10 @@
     // ---------------------------------------------------------- //
     // Initialize chart
     // ---------------------------------------------------------- //
+
     drawChart(outcome, intent, highlight);
     updateCauseMenu(outcome, intent);
+
 </script>
 
 <!-- Related footer -->
