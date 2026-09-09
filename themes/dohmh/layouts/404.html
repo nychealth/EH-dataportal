@@ -51,14 +51,17 @@
         
         function removeBeta(x) {
           // expose page content
+
           document.getElementById('redirectBeta').classList.remove('hide')
           //console.log('It is a beta URL')
           
           // remove beta from URL
+
           url = x.replace('/beta','')
           // console.log('new url: ', url)
           
           // send to new location
+
           setTimeout(() => {
             window.location.href = url
           }, 2000)
@@ -68,9 +71,11 @@
         
         function redirectHome() {
           // expose content
+
           document.getElementById('main404').classList.remove('hide')
           
           // start countdown
+
           countDown(5)
         }
         

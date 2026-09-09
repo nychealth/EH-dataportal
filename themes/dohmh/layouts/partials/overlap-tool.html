@@ -59,6 +59,7 @@
 <script>
 
     // print Community Districts to menu
+
     var CDholder = document.getElementById('CDButtons')
 
     CDtoUHF.forEach(cd => {
@@ -71,6 +72,7 @@
 
 
     // print City Council Districts to menu
+
     var holder = document.getElementById('districtButtons')
 
     CCDtoUHF.forEach(ccd => {
@@ -92,6 +94,7 @@
 
             console.log('Getting UHFs for City Council District ' + geo)
             // Style CCD selections
+
             var allButtons = document.querySelectorAll('.ccd-items')
             allButtons.forEach(btn => {
                 btn.classList.remove('active')
@@ -103,12 +106,14 @@
             selected.classList.add('text-white')
 
             // Loop through source JS
+
             thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
 
         } else if (from === 'CD') {
 
             console.log('Getting UHFs for Community District ' + geo)
             // Style CD selections
+
                         var allButtons = document.querySelectorAll('.cd-items')
             allButtons.forEach(btn => {
                 btn.classList.remove('active')
@@ -120,6 +125,7 @@
             selected.classList.add('text-white')
 
             // Loop through source JS
+
             thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
 
         } else {
@@ -132,6 +138,7 @@
         console.log(thisOverlap[0])
 
         // Print matching overlaps to page
+
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
             var uhfid = ol.UHF_id
@@ -145,6 +152,7 @@
                     : null;
 
             // set minimum overlap
+
             if (overl < 5) {
                 return
                 } else {

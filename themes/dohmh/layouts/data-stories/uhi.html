@@ -433,6 +433,7 @@
 
 
                 // get temp based on canopy and grass inputs
+
                 outputData = allData.filter(function (sf) {
                     return sf.veg === vegClean && sf.imperv === impervVar;
                 });
@@ -440,6 +441,7 @@
                 // console.log(outputData);
 
                 // assign temp based on canopy and green values
+
                 tempVar = Number(outputData[0].temp.toFixed(2));
 
                 // console.log("holding: ", slider.value, vegClean, impervVar, tempVar);

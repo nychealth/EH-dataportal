@@ -339,11 +339,13 @@
 
   async function ingestData() {
     // Wait for the CSV to finish loading
+
     const data = await d3.csv("data/map-data.csv");
     dataFile = data;
     // console.log('Data loaded:', dataFile);
 
     // Now safe to draw maps
+
     drawMap(wage, scenario, "poverty");
     drawMap(wage, scenario, "prematuremort");
   }
@@ -382,6 +384,7 @@
     }
 
     // Filter the data based on the arguments
+
     const filtered = dataFile.filter(
       (d) => d.Wage === w && d.Variable === v && d.Scenario === s
     );
@@ -389,6 +392,7 @@
     // console.log('filtered:', filtered)
 
     // Convert changeFromBaseline to number and find min/max
+
     const values = filtered.map((d) => +d.changeFromBaseline);
     const minValue = Math.min(...values);
     const maxValue = Math.max(...values);
@@ -611,6 +615,7 @@
       transform: [
         { filter: `datum.MinWage==='${w}'` },
         // {"filter": "datum.Neighborhood!='NYC'"},
+
         { filter: `datum.Scenario==='${s}'` },
         { filter: "datum.Variable==='Poverty'" },
         { calculate: "datum.Value/100", as: "Value" },
@@ -717,6 +722,7 @@
       transform: [
         { filter: `datum.MinWage==='${w}'` },
         // {"filter": "datum.Neighborhood!='NYC'"},
+
         { filter: `datum.Scenario==='${s}'` },
         { filter: "datum.Variable==='PrematureMort'" },
         {
@@ -806,20 +812,25 @@
   drawChart(wage, scenario);
 
   // helper to wire up a group of buttons
+
   function setupButtonGroup(selector, variableName) {
     const buttons = document.querySelectorAll(selector);
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         // remove active from all in this group
+
         buttons.forEach((b) => b.classList.remove("active"));
         // add active to the clicked one
+
         btn.classList.add("active");
 
         // update variable
+
         if (variableName === "wage") {
           wage = btn.dataset.value;
           // Show corresponding div, hide others
+
           const wageDivs = document.querySelectorAll(".mwage");
           wageDivs.forEach((div) => {
             div.style.display = div.id === wage ? "block" : "none";
@@ -828,6 +839,7 @@
           scenario = btn.dataset.value;
 
           // Show corresponding div, hide others
+
           const scenarioDivs = document.querySelectorAll("div[id^='scen']");
           scenarioDivs.forEach((div) => {
             div.style.display = div.id === scenario ? "block" : "none";
@@ -843,10 +855,12 @@
   }
 
   // initialize both groups
+
   setupButtonGroup(".wagecontrol", "wage");
   setupButtonGroup(".scenariocontrol", "scenario");
 
   // optional: on page load, hide all scenario divs except default
+
   document.querySelectorAll("div[id^='scen']").forEach((div) => {
     div.style.display = div.id === scenario ? "block" : "none";
   });

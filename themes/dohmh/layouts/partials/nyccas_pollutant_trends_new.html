@@ -71,6 +71,7 @@
 
   <script>
     // INITIALIZE VARIABLES
+
     var allPollutants = [
       {
         pollutant: "BC",
@@ -134,6 +135,7 @@
     var sourceOrSeason = "Season"; // should be 'Season' or 'Source'
 
     // ESTABLISH INITIAL RUN CHART. TAKES CHOSENPOLLUTANT JSON, AND SOURCEORSEASON VARIABLE
+
     function runChart(cp, sos) {
       let filterFor = cp.pollutant;
       let chartTitle = cp.name + " (" + cp.units + ")";
@@ -151,6 +153,7 @@
       var annualLineTransform;
 
       // SET UP BASICS FOR SEASONAL DATA
+
       if (sos === "Season") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`,
@@ -163,6 +166,7 @@
         annualLineTransform = [{ filter: "datum.Source != 'ALL'" }];
 
         // Remove duplicate annual lines from seasonal-only pollutants
+
         if (filterFor === "O3" || filterFor === "SO2") {
           basicFilter = {
             filter: `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`,
@@ -170,6 +174,7 @@
         }
       } else if (sos === "Source") {
         // SET UP BASICS FOR DATA BY SOURCE
+
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
         };
@@ -183,6 +188,7 @@
       }
 
       // SPECIFICS FOR SO2
+
       if (filterFor === "SO2" && sos === "Source") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
@@ -196,6 +202,7 @@
       }
 
       // SPECIFICS FOR O3
+
       if (filterFor === "O3" && sos === "Source") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Summer' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
@@ -340,18 +347,21 @@
           {
             transform: [
                 // Set as number
+
                 {
                   calculate: "toNumber(datum.Value)",
                   as: "Value"
                 },
 
                 // Handle 'ALL' values
+
                 {
                   calculate: "datum.Tertile === 'ALL' ? 'Annual average' : datum.Tertile",
                   as: "Tertile"
                 },
 
                 // Dataset-wide maxima
+
                 {
                   joinaggregate: [
                     { op: "max", field: "Value", as: "maxVal" },
@@ -361,9 +371,11 @@
                 },
 
                 // Keep only last time point
+
                 { filter: "datum.Time === datum.maxTime" },
 
                 // Seed label position
+
                 { calculate: "datum.Value", as: "labelPosition" },
 
                 /* ================= PASS 1 ================= */
@@ -459,10 +471,12 @@
     }
 
     // INITIALIZE CHART AND SOURCES
+
     runChart(chosenPollutant, sourceOrSeason);
     writeSources(chosenPollutant);
 
     // LISTENER ON BUTTONS TO CHANGE POLLUTANTS AND RE-RUN CHART
+
     const selectButtons = document.querySelectorAll(".btn2");
 
     for (var i = 0; i < selectButtons.length; i++) {

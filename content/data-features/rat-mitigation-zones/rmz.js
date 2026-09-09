@@ -1,4 +1,5 @@
 // ===== CREATE MAP ================================================== //
+
 var name;
 var id;
 var ratData = [];
@@ -33,11 +34,13 @@ L.easyButton({
 
 function resetZoom() {
     // console.log('reset zoom 3')
+
     window.location.hash = '#top'
     location.reload()
 }
 
 // When style is run in const geojson, it returns these - default styles
+
 function style(feature) {
     return {
         weight: 1,
@@ -55,6 +58,7 @@ function style(feature) {
 function getGeoJSON(x) {
   return new Promise((resolve, reject) => {
       // Fetch the GeoJSON data
+
       fetch(x)
       .then(response => {
           if (!response.ok) {
@@ -65,6 +69,7 @@ function getGeoJSON(x) {
       .then(data => {
         rmzgeojson = data; // Store the GeoJSON data in a global variable
           // console.log('GeoJSON data loaded:', rmzgeojson);
+
           resolve(); // Resolve the promise when the data is ready
           geog = L.geoJson(rmzgeojson,{
               style,
@@ -100,12 +105,14 @@ function zoomToFeature(e) {
   // console.log('zoom to feature:'),
   // console.log(e)
   // console.log(rmzgeojson)
+
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
     // console.log('Filtering data for: ')
     // console.log('Name: ' + e.target.feature.properties.Label) 
     // console.log('ID: ', id)
+
     redrawChart(id)
     name = e.target.feature.properties.Label
     printToPage(id);
@@ -131,6 +138,7 @@ function highlightFeature(e) {
     geog.resetStyle()
     // console.log('highlight feature:')
     // console.log(e)
+
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
         weight: 3,
@@ -144,16 +152,20 @@ layer.bringToFront();
 }
 
 // ===== PRINT INFO TO PAGE ================================================== //
+
 function printToPage(x) {
     // console.log("id: " + x)
+
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
 }
 
 // update map and page from dropdown
+
 function update(x) {
   // console.log('updated for: ', x)
+
   let zone = x - 1
   let layerzone = rmzgeojson.features[zone]
 
@@ -169,19 +181,24 @@ function update(x) {
 }
 
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
+
 function interpretInitial(x) {
   // filter recent Initial Inspections data for this neighborhood
+
   thisRecent = recent.filter (y => y.zoneID == x)
 
   // get ARS fail number
+
   var ars = thisRecent.filter(y => y.Type === 'Active rat signs')
   var arsfail = ars[0].Number
 
   // get total inspections
+
   var entry = thisRecent.filter(y => y.Type === 'Initial inspections')
   var initial = entry[0].Number 
 
   // calculate percent
+
   var percent = 100 * arsfail / initial
 
   document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
@@ -205,6 +222,7 @@ function interpretCompliance(x) {
 }
 
 // REVISED 311 COMPLAINTS SPEC //
+
 var revSpecOne = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -336,6 +354,7 @@ var revSpecOne = {
 }
 
 // ===== INITIAL INSPECTIONS SPEC ================================================== //
+
 var revSpecTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -466,6 +485,7 @@ var revSpecTwo = {
 }
 
 // ===== COMPLIANCE INSPECTIONS SPEC ================================================== //
+
 var revSpecThree = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -715,6 +735,7 @@ var specThree = {
 }
 
 // ===== EXTERMINATOR SPEC ================================================== //
+
 var revSpecFour = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -850,17 +871,21 @@ var revSpecFour = {
   var thisRecent = [];
   d3.csv('initial-inspections.csv').then(data => {
     // ingest data
+
     initialData = data
 
     // get final date
+
     var finalPos = initialData.length - 1    
     var mostRecentDate = initialData[finalPos].Date
 
     // get data for final date installment
+
     recent = initialData.filter(x => x.Date === mostRecentDate)
   })
 
     //// ----- Get most recent data for Compliance Inspections ------ ////
+
   var complianceData = [];
   var complianceRecent = [];
   var thisCompliance = [];

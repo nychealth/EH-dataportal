@@ -57,6 +57,7 @@
 
     // Fetches the NWS forecast and AirNow AQI, then shows the weather modal
     // with whichever heat/cold/air-quality sections apply.
+
     const initialize = async () => {
 
         // ----- forecast high/low ----- //
@@ -100,6 +101,7 @@
     // ----------------------------------------------------------------------- //
 
     // Maps an AirNow AQI category number to its display text and colors.
+
     const getAqiInterpretation = (aqi) => {
         switch (String(aqi)) {
             case '1': return { text: 'Good', bgColor: '#00E400' };
@@ -118,6 +120,7 @@
 
     // Shows whichever heat/cold/air-quality sections are active in the shared
     // weather modal and builds its title from that same set of active events.
+
     const fireWeatherModal = ({ isHot, isCold, isBadAQ, high, low, aqi }) => {
 
         const heatContent = document.getElementById('heatModalContent');

@@ -59,6 +59,7 @@
 <script>
 
   // URLs for geojson
+
   var geojsonURLs = [
     {
         "name": "CD",
@@ -87,6 +88,7 @@
 
     function initializeMap() {
         // Add a basemap
+
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
         {
@@ -95,6 +97,7 @@
         }).addTo(map);
 
         // add reset button
+
         L.easyButton({
             position: "bottomleft",
             states: [{
@@ -114,6 +117,7 @@
     function reset() {
       console.log('Reset')
       // loadGeoJSON("CD");
+
       document.getElementById('overlaps').innerHTML = ''
       document.getElementById('neighbHolder').innerHTML = ''
       document.getElementById('prompt').classList.add('hide')
@@ -140,6 +144,7 @@
 
 
     // Function to load GeoJSON by name
+
     function loadGeoJSON(name) {
       const match = geojsonURLs.find(d => d.name === name);
       if (!match) {
@@ -148,14 +153,17 @@
       }
 
       // Store the property name for this layer
+
       currentProperty = match.property;
 
       // Remove old layer if exists
+
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
 
         // Remove UHF layer if exists
+
         if (UHFLayer) {
             map.removeLayer(UHFLayer);
             UHFLayer = null
@@ -165,12 +173,14 @@
       selectedID = null; // reset selection when switching layers
 
       // Fetch and add new GeoJSON
+
       fetch(match.url)
         .then(response => response.json())
         .then(data => {
           geojsonLayer = L.geoJSON(data, {
             style: function (feature) {
               // Default style before any click
+
               return {
                 color: "#333",
                 weight: 1,
@@ -181,6 +191,7 @@
             onEachFeature: function (feature, layer) {
 
                 // Determine tooltip label
+
                 let tooltipLabel;
                 if (name === 'CD') {
                   tooltipLabel = feature.properties.GEONAME;
@@ -191,11 +202,13 @@
                 }
 
                 // Bind tooltip (hover label)
+
                 layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
 
 
 
               // bind actions
+
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
                 let neighborhoodName;
@@ -211,12 +224,14 @@
                 document.getElementById('neighbHolder').innerHTML = neighborhoodName;
 
                 // Create popup content (bold text)
+
                 const popupContent = `<b>${neighborhoodName}</b>`;
                 layer.bindPopup(popupContent);
 
                 selectedID = id;
 
                 // Remove tooltips from non-selected features
+
                 geojsonLayer.eachLayer(function (l) {
                   if (l !== layer) {
                     l.unbindTooltip();
@@ -224,9 +239,11 @@
                 });
 
                 // Reset styles for all features
+
                 geojsonLayer.setStyle(function (f) {
                   if (f.properties[currentProperty] === selectedID) {
                     // Clicked feature highlighted
+
                     return {
                       color: "#333",
                       weight: 2,
@@ -235,6 +252,7 @@
                     };
                   } else {
                     // Non-clicked features invisible
+
                     return {
                       color: "#e5e5e5",
                       weight: 1,
@@ -245,6 +263,7 @@
                 });
 
                 // Zoom to clicked feature
+
                 map.fitBounds(layer.getBounds());
                 layer.openPopup();
               });
@@ -253,11 +272,13 @@
           }).addTo(map);
 
           // Fit bounds to all features initially
+
           map.fitBounds(geojsonLayer.getBounds());
         });
     }
 
     // Radio button listeners
+
     const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
     radios.forEach(radio => {
       radio.addEventListener('change', function () {
@@ -269,21 +290,25 @@
     });
 
     // Load default (CD) on startup
+
     loadGeoJSON("CD");
 
 function drawUHFs(UHF_ids) {
 
   // Remove previous layer if exists
+
   if (UHFLayer) {
     map.removeLayer(UHFLayer);
     UHFLayer = null;
   }
 
   // Fetch the UHF42 GeoJSON
+
   fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
     .then(response => response.json())
     .then(data => {
       // Filter features for all matching UHF_ids
+
       const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
       if (features.length === 0) {
         console.warn("No matching UHF polygons for:", UHF_ids);
@@ -291,6 +316,7 @@ function drawUHFs(UHF_ids) {
       }
 
       // Add all matching polygons as a single layer
+
       UHFLayer = L.geoJSON(features, {
         style: {
           color: "red",
@@ -311,9 +337,11 @@ function drawUHFs(UHF_ids) {
       }).addTo(map);
 
       // Zoom to bounds of all selected polygons
+
       map.fitBounds(UHFLayer.getBounds());
 
       // remove clickability from CD/CCDs
+
       geojsonLayer.eachLayer(layer => {
         layer.off("click"); // removes click events
       });
@@ -336,6 +364,7 @@ function drawUHFs(UHF_ids) {
 
 
             // Loop through source JS
+
             thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
 
         } else if (from === 'CD') {
@@ -343,6 +372,7 @@ function drawUHFs(UHF_ids) {
             console.log('Getting UHFs for Community District ' + geo)
 
             // Loop through source JS
+
             thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
 
         } else {
@@ -358,6 +388,7 @@ function drawUHFs(UHF_ids) {
 
 
         // Print matching overlaps to page
+
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
             var uhfid = ol.UHF_id
@@ -371,6 +402,7 @@ function drawUHFs(UHF_ids) {
                     : null;
 
             // set minimum overlap
+
             if (overl < 0.1) {
                 return
                 } else {

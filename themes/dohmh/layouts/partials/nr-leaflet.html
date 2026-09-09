@@ -203,6 +203,7 @@
     var chosenButton;       // this is a selected button, on NR home or Topic Landing
     
     // Javascript for nav buttons:
+
     const topicSlugs = {
         Active: "active_design_physical_activity_and_health",
         Asthma: "asthma_and_the_environment",
@@ -299,6 +300,7 @@
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
         // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -308,12 +310,15 @@
         if (match && match.page_name) {
 
             // Get the current URL parts
+
             const parts = window.location.pathname.split("/");
             
             // Replace the 3rd index (neighborhood slug) with the new one
+
             parts[3] = match.page_name;
             
             // set report destination
+
             const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
             
             // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
@@ -321,6 +326,7 @@
             const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
             
             // Redirect - send to new page
+
             window.location.href = buildURL;
             // console.log(buildURL)
             
