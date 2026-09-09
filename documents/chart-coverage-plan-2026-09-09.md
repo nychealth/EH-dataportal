@@ -380,7 +380,9 @@ the ledger's proof column.
 
 **Files:**
 - Edit `package.json` — add scripts alongside the existing `characterize:*` block
-- Edit `CLAUDE.md` — a section beside "Site characterization"
+- Edit `.claude/skills/running-site-checks/SKILL.md` — the smoke and characterization operational
+  detail moved there on 2026-09-09; `CLAUDE.md` keeps only a pointer under
+  "### Checks: smoke and site characterization"
 - Edit `readme-development.md` — if the existing harnesses are documented there, match it
 - Possibly create `.github/workflows/` entry — decided in step 3
 
