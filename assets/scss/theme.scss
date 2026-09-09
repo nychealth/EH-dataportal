@@ -671,18 +671,20 @@ h2.report-info {
 // read the same two words, so a reader with a colour vision deficiency saw no difference at
 // all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
 // triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
-// codepoints .comp-good / .comp-bad use on the sentence renditions
-// (assets/scss/_custom.scss), so the report makes the comparison the same way wherever the
-// reader meets it. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no
-// per-page resource is involved.
+// codepoints .comp-good / .comp-bad already use in the expanded panel
+// (assets/scss/_custom.scss), so the report makes the comparison the same way in both places.
+// The print row carries the pill classes, not .comp-*, so it is covered by this rule and not
+// that one. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
+// resource is involved.
 //
 // No `color` of its own: the glyph inherits the pill's text colour, which already passes
-// against these backgrounds. Colouring it the way .comp-bad::before does would put $warning on
-// #FFE69B, and the shape carries the distinction regardless — adding a second contrast question
-// to close a contrast-adjacent finding is not a trade worth making.
+// against these backgrounds. Colouring it the way .comp-* does would put $warning on #F2CDD7,
+// and the shape carries the distinction regardless — adding a second contrast question to
+// close a contrast-adjacent finding is not a trade worth making.
 //
-// Chrome drops ::before glyphs from the accessibility tree entirely, so this is the visual
-// half only. .middle gets no glyph, matching .comp-null, which gets none either.
+// Chrome drops ::before glyphs from the accessibility tree entirely (§4 of the audit), so
+// this is the visual half of the fix only; cards.js carries the .sr-only sentence that is
+// the other half. .middle gets no glyph, matching .comp-null, which gets none either.
 .worse::before,
 .better::before {
     font-family: "Font Awesome 6 Free";
@@ -733,14 +735,15 @@ h2.report-info {
         background: none;
         padding: 8px 0;
     }
+    // The map is hidden by this rule rather than by a d-print-none wrapper: the wrapper
+    // production used lived in nr-output/single.html, which the SPA recode retired. The
+    // class is emitted by cards.js and read by chart.js.
+    .nr-map-container {
+        display: none !important;
+    }
     // Print the report in one shape whatever the reader had expanded on screen: the
-    // print-only header row in nr-indicator-new.html / nr-indicator-old.html is the printed
-    // rendition of an indicator, the panel never is. .collapsing covers a print fired
-    // mid-animation, when Bootstrap has swapped the class.
-    //
-    // The recode branch pairs these with a .nr-map-container rule; that class does not exist
-    // on this branch, where the map is already inside a d-print-none wrapper
-    // (themes/dohmh/layouts/nr-output/single.html, the col-md-4 holding nr-leaflet).
+    // print-only header row is the printed rendition of an indicator, the panel never is.
+    // .collapsing covers a print fired mid-animation, when Bootstrap has swapped the class
     .report-section .collapse,
     .report-section .collapsing {
         display: none !important;

@@ -108,16 +108,55 @@
                 }
                 
             } else {
-                
-                console.log("No geocode provided; skipping zoom.");
-                
+
+                // No geocode: the landing page and the five topic indexes, where the map is a
+                // whole-city picker rather than a located report. Fit the UHF42 layer instead
+                // of keeping the fixed zoom-10 view, so the city fills whatever box the caller
+                // gives it — at a fixed zoom a wider container just adds water on both sides.
+
+                // zoomSnap is set here rather than at construction so this stays scoped to the
+                // two picker pages: the geocode branch above keeps Leaflet's whole-number
+                // framing on the 42 neighborhood index pages. It has to be 0 because the
+                // default of 1 makes fitBounds round *down* to a whole zoom level — measured
+                // 2026-08-09, that left the city spanning 59% of a 679px-wide box.
+                map.options.zoomSnap = 0;
+
+                map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10] });
+
             }
-            
+
+            removeHiddenMapFromTabOrder();
+
         })
         .catch((err) => console.error("Error loading GeoJSON:", err));
 
+    // A caller may wrap this map in aria-hidden="true" — nr-neighborhood-picker.html does,
+    // because the 42-link neighborhood list beside it is the map's text equivalent. A hidden
+    // subtree must hold no keyboard stops, or a keyboard user tabs through positions a screen
+    // reader is told do not exist. Two sources of them here, and neither is an authored
+    // tabindex: Leaflet's `keyboard` option puts tabindex="0" on the container, and the
+    // polygons follow it into the tab order carrying no tabindex attribute of their own
+    // [verified 2026-08-11: 46 stops inside the hidden subtree — container, 42 polygons,
+    // 3 attribution links]. Setting tabindex="-1" explicitly removes an element from the
+    // sequential order whatever put it there. Keyed off the ancestor rather than a parameter
+    // so the report page, whose map is NOT hidden and IS the neighborhood switcher, is untouched.
+
+    function removeHiddenMapFromTabOrder() {
+
+        const container = map.getContainer();
+
+        if (!container.closest('[aria-hidden="true"]')) return;
+
+        container.setAttribute("tabindex", "-1");
+
+        container
+            .querySelectorAll("a, path, [tabindex]")
+            .forEach((el) => el.setAttribute("tabindex", "-1"));
+
+    }
+
     // define styl function
-    
+
     function style(feature) {
         return {
             weight: 1.5,
@@ -298,7 +337,8 @@
         
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
-        // Find the matching neighborhood - 'neighborhoods' is a variable set in uhflist.js
+        // Find the matching neighborhood - 'neighborhoods' is a global emitted by the
+        // lib-uhflist.html partial from data/globals/uhflist.json
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -307,23 +347,21 @@
         
         if (match && match.page_name) {
 
-            // Get the current URL parts
-            const parts = window.location.pathname.split("/");
-            
-            // Replace the 3rd index (neighborhood slug) with the new one
-            parts[3] = match.page_name;
-            
-            // set report destination
-            const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
-            
-            // Build the new path; this will now work if reportURL is set (as in the Output), or if it's not (as on a Neighborhood Landing Page)
-            
-            const buildURL = {{ relURL "neighborhood-reports/" }} + parts[3] + "/" + dest + '/'
-            
+            // Report destination: a topic button's choice on the NR landing page, or the
+            // topic already being read. Null on a neighborhood index, which has neither.
+            const dest = intendedDestinationName || chosenReport;
+
+            // Neighborhood-first URLs. Both shapes are pages the content adapter generates,
+            // so the slug travels in the path — there is no sessionStorage hand-off left to
+            // make, and no clean topic URL that would read one.
+            const buildURL = dest
+                ? {{ relURL "neighborhood-reports/" }} + match.page_name + '/' + dest + '/'
+                : {{ relURL "neighborhood-reports/" }} + match.page_name + '/';
+
             // Redirect - send to new page
             window.location.href = buildURL;
             // console.log(buildURL)
-            
+
         } else {
             console.warn("No matching neighborhood for GEOCODE:", geocodeClicked);
         }

@@ -1,0 +1,24 @@
+---
+description: "EH Data Portal project context. Always check the README files for stack, structure, and conventions before applying global skills."
+alwaysApply: true
+---
+
+# Project context
+
+Before making project-specific decisions (content model, templates, images, JS), **read this project’s `README.md` and `README-MOD.md`** if you haven’t recently. These files are the source of truth for:
+
+- **Tech stack** — Hugo, Bootstrap, front-end JS libraries, and other core dependencies.
+- **Project structure** — Where templates, components, assets, configuration, and data integrations live.
+- **What is unique** — Custom modules, features, data flows, or behaviors specific to this project.
+- **Content model** — Sections, entry types, globals, and how content is rendered.
+- **Local development** — How to run the site, build commands, environments, and deployment workflows.
+- **Accessibility & SEO** — Target level and any project-specific patterns or requirements.
+
+When the README or README-MOD explain that this project differs from our usual conventions, **follow the README, README-MOD, and existing codebase** for those areas. Apply general content-modeling and template-coding skills for philosophy and defaults, but defer to the project docs and code when they specify a different approach.
+
+If the README or README-MOD are missing information or appear outdated, suggest clear, concrete updates to those files rather than guessing. Prefer matching existing patterns in the repo over introducing new ones unless the task is explicitly to refactor toward a new standard.
+
+## Key details
+- Always consult `README.md` and `README-MOD.md` before making project-level decisions about templates, content model, JS, or assets.
+- Prefer the conventions described in this project’s docs and code over generic starter patterns when they conflict.
+- When you discover gaps or inconsistencies, recommend updates to `README-MOD.md` so it continues to reflect the current stack, structure, and workflows.

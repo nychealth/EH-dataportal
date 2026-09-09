@@ -328,7 +328,11 @@
 {{- $aa_js := resources.Get "js/accessible-autocomplete.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $aa_js.RelPermalink }}" integrity="{{ $aa_js.Data.Integrity }}"></script>
 
-{{- $uhflist_js := resources.Get "js/uhflist.js" | partial "short-fingerprint.html" -}}
-<script type="text/javascript" src="{{ $uhflist_js.RelPermalink }}" integrity="{{ $uhflist_js.Data.Integrity }}"></script>
-
+{{- /*
+    A uhflist tag used to sit here. Nothing on this page reads the `neighborhoods` global it
+    defines, so the home page was fetching 20KB it never used [verified 2026-08-06: zero
+    references in the built home pages or in the only two scripts they load, main.js and
+    accessible-autocomplete]. Under the lib-* gating model the tag is per-template anyway
+    (partial "lib-uhflist.html"), so there is nothing here to opt out of — do not re-add it.
+*/ -}}
 {{- end -}}

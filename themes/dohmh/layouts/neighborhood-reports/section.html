@@ -1,6 +1,10 @@
 {{- define "main" -}}
 
-<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
+{{/* The data-pagefind-ignore="all" that used to sit on this element kept the section's
+     own landing page — its entry point — out of search results. It comes off with the
+     rest of the NR indexing changes: the 252 generated pages below it are indexed, so a
+     search for "neighborhood reports" should be able to reach the page they hang off. */}}
+<article class="container-fluid overflow-hidden" id="primary-content">
 
   <style>
     .selectedOption {
@@ -9,7 +13,7 @@
   </style>
 
   <div class="row mb-4">
-    <div class="col-lg-12 mx-auto col-12">
+    <div class="col-lg-10 mx-auto col-12">
       <nav aria-label="breadcrumb" class="mt-2 mb-3">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
@@ -27,8 +31,10 @@
       </div>
 
       <div class="row">
-        <div class="col-md-7">
-              <h3>Choose report</h3>
+        <div class="col-12">
+              {{/* h2 with .h3 for size: this sits directly under the page h1, and an h3 here
+                   made the landing page's exposed sequence jump a level */}}
+              <h2 class="h3">Choose report</h2>
 
               <div class="row no-gutters">
                 <div class="col-sm mb-2 mr-1 mb-lg-0">
@@ -55,45 +61,38 @@
 
             </div>
 
-            <div class="row mt-6">
-              <div class="col-12 fs-sm">
-                <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
-                <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
-                <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
-
-              </div>
-            </div>
         </div>
+      </div>
 
-        <div class="col-md-5">
-              <h3>Choose Neighborhood</h3>
-
-                <div class="btn-group" role="group" style="width:100%;">
-
-                <input
-                    id="flex_search"
-                    type='search'
-                    class='flexdatalist form-control nr-flexdatalist'
-                    name='indicator_name_suggestion'
-                    style="width:100%;"
-                    placeholder="Search"
-                />
-
-                <button id="clear" class="btn btn-md btn-primary">Clear</button>
-
-              </div>
-
+      {{/* Picker below the topic buttons rather than beside them, in a centred column, so
+           the map gets the width it was starved of in the old col-md-5. */}}
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+              {{/* Libraries before the picker, not in js_bot: the picker renders nr-leaflet,
+                   whose inline script calls L.map() as the parser reaches it, and js_bot is
+                   emitted after main. */}}
               {{- partial "lib-leaflet.html" . }}
               {{- partial "lib-uhflist.html" . }}
 
-              <div class="nr-clickable-uhf" style="height:400px" aria-hidden="true">
-                {{- partial "nr-leaflet" . -}}
-              </div>
+              {{ partial "nr-neighborhood-picker" (dict "page" .) }}
 
-                {{ partial "nr-show-zips" (dict "urlSuffix" "/") }}
+              {{/* No topic slug: the destination here is whichever topic button is active, which
+                   is a runtime fact. The served hrefs point at the neighborhood index, and
+                   updateNeighborhoodListLinks below rewrites them as the selection changes. */}}
+              {{ partial "nr-neighborhood-list" (dict "topic_slug" "") }}
         </div>
+      </div>
 
+      {{/* Footnote, so it sits under the picker rather than beside it — and in the same
+           centred column, which keeps it at a readable measure instead of the full
+           col-lg-10 width. */}}
+      <div class="row mt-6">
+        <div class="col-md-8 mx-auto fs-sm">
+          <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these neighborhoods</strong>
+          <p>There are different ways to break up NYC into neighborhoods. These Neighborhood Reports include data for 42 NYC neighborhoods &mdash; a neighborhood scheme called UHF42. <a href="../data-stories/geographies/">Read about different neighborhood schemes in our data</a>.</p>
+          <p><i class="fas fa-question-circle mr-1" aria-hidden="true"></i>If you're looking for data for <strong>Community Districts</strong> or <strong>City Council Districts</strong>, <a href="#about" data-toggle="modal" data-target="#CCDModal">use this tool to get data for overlapping neighborhoods</a>.</p>
 
+        </div>
       </div>
 
       <div class="row my-4">
@@ -108,7 +107,7 @@
   </div>
 
   <!-- Council District Chooser Modal -->
-<div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalLabel" aria-hidden="true">
+<div class="modal fade" id="CCDModal" tabindex="-1" role="dialog" aria-labelledby="CCDModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -164,41 +163,6 @@
 
 
 
-<style>
-
-/* ------------------------------------------------------------------------------------- */
-/* Flexdatalist custom style for properties text */
-/* ------------------------------------------------------------------------------------- */
-
-.flexdatalist-results span:not(:first-child):not(.highlight) {
-  padding-left: 10px;
-  display: inline-block;
-  font-size: 90%;
-  color: rgba(0, 0, 0, 0.90);
-}
-.flexdatalist-results li.active span:not(:first-child):not(.highlight) {
-  color: rgba(255, 255, 255, 0.70);
-}
-.flexdatalist-results li span.highlight {
-  font-weight: 500;
-  text-decoration: none;
-  color: #000000;
-  background: #feff7f;
-}
-
-.flex_search-flexdatalist input:placeholder-shown {
-  background-color: white;
-}
-.flex_search-flexdatalist input::placeholder {
-  color: gray;
-  font-weight: normal;
-  font-style: italic;
-}
-
-
-</style>
-
-
 </article>
 
 
@@ -206,17 +170,6 @@
 {{- end -}}
 
 {{ define "js_bot" }}
-
-  <!-- flexdatalist -->
-
-  {{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
-  <link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
-
-  {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
-  <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
-
-  {{- partial "flexdatalist-combobox-js.html" . -}}
-
 
 <script type="text/javascript">
 
@@ -269,6 +222,24 @@ function setIntendedDestination(x) {
 
   console.log('intended destination url: ', intendedDestinationName);
 
+  updateNeighborhoodListLinks()
+
+}
+
+
+// The neighborhood list ships from Hugo with topic-less hrefs, so it works with JS off and
+// gives crawlers a path to the 42 neighborhood index pages. Once a topic is active the links
+// follow it, so clicking one lands where the map and the search box already send you.
+function updateNeighborhoodListLinks() {
+  const base = {{ relURL "neighborhood-reports/" }}
+
+  // Falls back to the neighborhood index when the lookup in setIntendedDestination missed:
+  // intendedDestinationName stays null there, and null would otherwise land in the URL.
+  const suffix = intendedDestinationName ? intendedDestinationName + '/' : ''
+
+  document.querySelectorAll('#nr-neighborhood-list a[data-nbhd]').forEach(a => {
+    a.href = base + a.dataset.nbhd + '/' + suffix
+  })
 }
 
 // SET DEFAULTS FOR HOME PAGE
@@ -277,75 +248,17 @@ document.getElementById('descr').innerHTML = document.getElementById('Active-Des
 handleTopicButtons()
 
 
-// ===== load flexdatalist ================================================== //
+// ===== neighborhood picker destination ==================================== //
 
-function loadList() {
-  // console.log(neighborhoods)
-
-  // ----- init flexdatalist -------------------------------------------------- //
-
-  let $input = $('.flexdatalist').flexdatalist({
-    minLength: 0,
-    valueProperty: ["UHF_id", "UHF_name"],
-    textProperty: "{UHF_name}",
-    selectionRequired: false,
-    focusFirstResult: true,
-    visibleProperties: ["UHF_id", "UHF_name", "Zipcodes"],
-    searchIn: ["UHF_name", "Zipcodes"],
-    searchContain: true,
-    searchByWord: true,
-    redoSearchOnFocus: true,
-    toggleSelected: true,
-    cache: false,
-    data: neighborhoods
-});
-
-  // console.log("$input", $input);
-
-  // ----- give the generated input a combobox role ----------------------------- //
-
-  // flexdatalist hides the authored input and renders its own; the generated one is what
-  // the reader focuses, and its id is the authored id + "-flexdatalist"
-  // (jquery.flexdatalist.js:475). See partials/flexdatalist-combobox-js.html.
-
-  const generated = document.getElementById($input.attr('id') + '-flexdatalist');
-
-  if (generated) {
-    wireComboboxState(generated);
-  }
-
-  // ----- add flexdatalist select handler -------------------------------------------------- //
-
-  $input.on('select:flexdatalist', (e, set) => {
-
-    // console.log("set", set);
-
-    // SEND TO NEIGHBORHOOD...!
-
-    // console.log('chosen neighb:')
-    // console.log(set.page_name);
-
-    window.location.href = {{ relURL "neighborhood-reports/" }} + set.page_name + '/' + intendedDestinationName
-
-})
-
-// ----- add clear button handler -------------------------------------------------- //
-
-$("#clear").on("click", (e) => {
-
-    // console.log("e [clear click]", e);
-
-    $($input).find("~input").val("").trigger( "focus" )
-
-})
-
-}
-
-loadList()
-
-
+// Read at selection time rather than baked in the way the topic indexes bake theirs: here
+// the destination is whichever topic button is active. Navigating straight to
+// <nbhd>/<topic>/ is a page the content adapter generates, so the neighborhood no longer
+// has to travel through sessionStorage to a topic page that would re-select it.
+function nrPickerDestination() { return intendedDestinationName }
 
 
   </script>
+
+  {{ partial "nr-neighborhood-picker-js" . }}
 
 {{- end -}}

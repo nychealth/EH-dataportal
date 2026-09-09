@@ -59,9 +59,10 @@ const PAGES = [
     "data-features/congestion-pricing-report/",     // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
     "data-features/heat-report-archive/2021/",      // report layout
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
-    "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
-    "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
-    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-output/single.html — the report itself
+    "neighborhood-reports/active_design_physical_activity_and_health/",  // nr-topic-index.html — Option D kept the
+                                                    // URL and changed what renders it; topiclanding.html is retired
+    "neighborhood-reports/bayside_little_neck/",                         // nr-neighborhood-index.html
+    "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-report.html — the report itself
     "key-topics/",                                  // key-topics/section.html
     "key-topics/airquality/",                       // key-topics/single.html
     "about/",                                       // about/section.html

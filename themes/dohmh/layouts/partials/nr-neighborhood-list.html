@@ -1,0 +1,56 @@
+{{/*
+    The 42-neighborhood link list, collapsed behind a Bootstrap toggle but present in the
+    markup either way. Shared by the NR landing page (neighborhood-reports/section.html) and
+    the five topic indexes (nr-topic-index.html).
+
+    Server-rendered on purpose, not built in JS. It is the crawl path into the generated
+    report pages — 42 links per topic, 210 in all — which is the argument Option D rests on,
+    and it is the no-JS and screen-reader equivalent of the map beside it. Both properties
+    are lost the moment the list is assembled at runtime.
+
+    Params:
+      topic_slug  the topic to append to each neighborhood, or "" for none
+
+    With a topic, a link lands on <nbhd>/<topic>/. Without one it lands on the neighborhood
+    index, <nbhd>/ — which is what the landing page renders, since the topic there is a
+    runtime choice. Its js_bot rewrites these hrefs from data-nbhd as the active topic
+    button changes; the served markup is the JS-off fallback.
+
+    Both elements below carry data-pagefind-ignore="all", and it is the server-rendering
+    above that makes them need it. The list production replaced this with was built in JS
+    (topiclanding.html, neighborhoods.forEach + appendChild), so Pagefind — which reads
+    static HTML — never saw it. Rendering it server-side put all 42 names and every ZIP
+    code into the index on the landing page and all five topic indexes: ~331 identical
+    words per page, enough that "Kingsbridge" matched 12 pages against production's 1.
+    data-pagefind-ignore is read by Pagefind alone, so the crawl path, the accessibility
+    tree and the JS-off fallback — the three reasons this list is server-rendered at all —
+    are all untouched by it.
+*/}}
+
+{{- $topicSlug := .topic_slug -}}
+
+<button class="d-flex btn btn-md text-left btn-outline-primary mt-1 w-100 text-decoration-none neighborhood-list-button nr-list-toggle collapsed p-2"
+        type="button"
+        data-pagefind-ignore="all"
+        data-toggle="collapse"
+        data-target="#nr-neighborhood-list"
+        aria-expanded="false"
+        aria-controls="nr-neighborhood-list">
+    <span class="flex-grow-1 text-lg">See neighborhood list</span>
+    <span class="plus">&plus;</span>
+    <span class="minus">&minus;</span>
+</button>
+
+{{/* Ranged over uhflist rather than .Site.Pages so the list does not depend on the generated
+     pages having been built in any particular order. path.Join rather than printf because it
+     drops an empty $topicSlug instead of leaving a doubled separator. */}}
+<div class="collapse" id="nr-neighborhood-list" data-pagefind-ignore="all">
+    <ul class="list-unstyled row neighborhood-list border border-top-0 border-primary p-3 m-0">
+        {{- range site.Data.globals.uhflist -}}
+            <li class="col-md-4 col-sm-6 mb-2">
+                <a href="{{ relURL (printf "%s/" (path.Join "neighborhood-reports" .page_name $topicSlug)) }}" data-nbhd="{{ .page_name }}">{{ .UHF_name }}</a>
+                <span class="fs-sm text-muted d-block">{{ .Zipcodes }}</span>
+            </li>
+        {{- end -}}
+    </ul>
+</div>

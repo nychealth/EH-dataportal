@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-08-27T01:52:41.950Z",
-    "gitHead": "156693a99be9a13c972caae8633f9f53abea38ed",
+    "capturedAt": "2026-09-02T17:36:44.355Z",
+    "gitHead": "7791fcfe934d18b5088ce26afc8ade9112cc36ec",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
-        "sha": "c03ccd89fb167fff2416902645d63a5b3b3c61bb",
-        "date": "2026-08-26T16:00:05Z",
-        "fetchedAt": "2026-08-27T01:49:02.547Z"
+        "sha": "da7f64df7cf7800ee2c84c1e93ce9f3762148e5a",
+        "date": "2026-09-02T16:00:05Z",
+        "fetchedAt": "2026-09-02T17:33:06.906Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,9 +17,7 @@
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 925,
-    "arbitrated": [
-        "data-explorer/economic-conditions/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {

@@ -6,7 +6,7 @@
         "assets": [
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
+            "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -67,7 +67,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 80,
+            "internal": 79,
             "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -88,7 +88,7 @@
         "overflowX": false
     },
     "content": {
-        "title": "Williamsburg - Bushwick – Environment & Health Data Portal",
+        "title": "Neighborhood report - Williamsburg - Bushwick | Environment & Health Data Portal – Environment & Health Data Portal",
         "headingText": [
             "Neighborhood Reports for Williamsburg - Bushwick",
             "Active Design, Physical Activity and Health",

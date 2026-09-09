@@ -78,6 +78,8 @@ const renderLinksChart = (
     let yMeasure;
     let xMeasureName;
     let yMeasureName;
+    let xValue;
+    let yValue;
     let xDisplay = null;
     let yDisplay = null;
     let xTimePeriod;

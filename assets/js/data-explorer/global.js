@@ -30,6 +30,9 @@ let linksData;
 let joinedLinksDataObjects;
 let disparityData; // used by disparities.js
 
+let indicators; // full catalog, loaded in data.js; read by measures.js and disparities.js
+let selectedDisparity; // toggled between data.js and disparities.js
+
 let indicator;
 let indicatorName;
 let indicatorDesc;
