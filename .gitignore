@@ -97,3 +97,7 @@ scripts/smoke-reports/
 scripts/site-characterization-current/
 scripts/.sc-check/
 scripts/.sc-rebaseline/
+
+# NDHR source documents (Word drafts, screenshots) — working files, not repo content.
+# documents/ndhr-*.md plans and audits ARE committed.
+documents/NDHR/
