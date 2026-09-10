@@ -1,19 +1,23 @@
 
 // set year default
+
 var year = '2011' 
 
 // set gray overlay defaults:
+
 var lower = 1277956800000 // 2010.5
 var mid = 1293840000000 // value for 2011
 var upper = 1309492800000 // 2011.5; one year: 31536000000; 1/2 year: 15768000000
 
 // changeYear runs on button click
+
 function changeYear(x) {
     year = Number(year);
     year = year + x
     document.getElementById('2020note').innerHTML = ''
 
     // run interactions
+
     if (year < 2011) {
     year = 2011
     } else if (year == 2011) {
@@ -37,6 +41,7 @@ function changeYear(x) {
     updateValues(year)
 
     // get date for overlay
+
     var date = year + '/01/01'
     date = Math.floor(new Date(date).getTime())
     console.log(date)
@@ -49,6 +54,7 @@ function changeYear(x) {
 }
 
 // ingest data for filtering and page printing
+
 var fullData = [];
 var partData = [];
 var uhfData = [];
@@ -56,20 +62,25 @@ var cityValue = [];
 d3.csv('resto-data-full.csv').then(data => {
     fullData = data;
     // console.log(fullData)
+
     updateValues(year)
 })
 
 // updateValues runs on button click, and updates page-printed values
+
 function updateValues(x) {
     // console.log('to filter for:' + x)
+
     partData = fullData.filter(row => row.Time == year)
     // console.log(partData)
 
     // get Citywide Value
+
     cityValue = partData.filter(row => row.GeoTypeDesc == 'Citywide')
     document.getElementById('citywide').innerHTML = cityValue[0].Percent + '%'
 
     // get lowest value
+
     const lowValue = partData.reduce(
     (acc, loc) =>
         acc.Percent < loc.Percent
@@ -79,6 +90,7 @@ function updateValues(x) {
     document.getElementById('lowest').innerHTML = lowValue.Percent + "%"
 
     // get highest value
+
     const highValue = partData.reduce(
     (acc, loc) => 
         acc.Percent > loc.Percent
@@ -88,9 +100,11 @@ function updateValues(x) {
     document.getElementById('highest').innerHTML = highValue.Percent + "%"
 
     // get median
+
     uhfData = partData.filter(row => row.GeoTypeDesc == 'UHF 42')
     // console.log('uhf data:')
     // console.log(uhfData)
+
     var valuesArray = [];
     for (let i = 0; i < uhfData.length; i++) {
     valuesArray.push(uhfData[i].Percent);
@@ -100,12 +114,14 @@ function updateValues(x) {
     return a - b;
     })
     // console.log(valuesArray)
+
     valuesArray.splice(0,20) // remove first 21 values
     // document.getElementById('median').innerHTML = valuesArray[0] + '%'
 }
 
 
 // initial chart spec, updated and re-printed on year change
+
 var spec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
@@ -208,10 +224,12 @@ var spec = {
 }
 
 // initial embedding of the map
+
 vegaEmbed("#map", spec, {renderer: "svg"})
 
 /*
 // Event listener for the slider
+
 var slider = document.getElementById('input')
 slider.addEventListener("input",function() {
     document.getElementById('yearOutput').innerHTML = slider.value
@@ -222,6 +240,7 @@ slider.addEventListener("input",function() {
 */
 
 // Line vis
+
 var line = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "height": 150,

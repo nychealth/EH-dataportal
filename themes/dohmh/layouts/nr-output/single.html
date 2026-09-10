@@ -81,6 +81,7 @@
     let NeighborhoodName = "{{ $.Params.neighborhood }}"; // setting for use in visualizations
 
     // this gets a json of topics and nested indicators
+
     async function get_topic_indicators() {
         d3.json('{{ relURL "IndicatorMetadata/topic_indicators.json" }}').then(data => {
             topicIndicators = data
@@ -110,6 +111,7 @@
 
                 thisTopic = y
                 // console.log('topic is: ' + ind + ": " + thisTopic)
+
                 URL = {{ relURL "data-explorer/" }} + thisTopic + "/?id=" + ind; // creates URL
                 document.getElementById(indID).style.display = "inline-block";
                 document.getElementById(indID).href = URL; // sends it to unique ID - Get the Dataset button
@@ -497,10 +499,12 @@
         })
 
         // set data download location
+
         let reportData;
         let download;
 
         // create an element, create the CSV, and download it
+
         function downloadData() {
 
             download = arqTable
@@ -509,6 +513,7 @@
 
             let downloadTableCSV = download.toCSV(); // format as CSV
             // Data URI
+
             let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
             let hiddenElement = document.createElement('a');
             hiddenElement.href = csvData;
@@ -564,9 +569,11 @@
 <script>
 
 // FIRST, APPLY ACTIVE CLASS TO THE BUTTON FOR THE CHOSEN REPORT
+
 console.log('**getting report topic')
 
     // look up matching key from topicSlugs
+
     let matchingKey = null;
 
     for (const [key, value] of Object.entries(topicSlugs)) {
@@ -579,6 +586,7 @@ console.log('**getting report topic')
     document.getElementById(matchingKey).classList.add('active')
 
 // NOW, ADD EVENT LISTENER TO BUTTONS - AND REDIRECT ON CLICK
+
 const buttons = document.querySelectorAll('.output-topic-button');
 
 buttons.forEach(button => {
@@ -586,9 +594,11 @@ buttons.forEach(button => {
         console.log('button clicked for: ', button.id)
 
         // change URL destination in a way that matches topicSlugs 
+
         const reportDestination = topicSlugs[button.id] || null;
 
         // assemble new url
+
         const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
         var urlParts = pageURL.split('/')
 

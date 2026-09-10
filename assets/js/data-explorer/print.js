@@ -138,6 +138,7 @@ function changeMapSpec(x,y) {
   console.log(y)
 
   // Safely add sources only once
+
   if (Array.isArray(vizSource)) {
       const allElementsExist = vizSource.every(item => sourceArray.includes(item));
       console.log('do all elements exist in this array?', allElementsExist);
@@ -156,11 +157,13 @@ function changeMapSpec(x,y) {
   }
 
   // Update the title safely
+
   if (!printSpec.title.text.includes(x)) {
       printSpec.title.text += ` - ${x} (${y})`;
   }
 
   // Check if a sourceLayer has already been added
+
   const sourceLayerExists = printSpec.vconcat.some(layer => {
       return layer.mark && layer.mark.type === 'text' && layer.encoding && layer.encoding.text && layer.encoding.text.value === sourceArray;
   });
@@ -191,6 +194,7 @@ function changeMapSpec(x,y) {
   }
 
   // Update modal footnotes
+
   let modalFootnotes = document.getElementById('modalFootnotes');
   modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML;
 
@@ -302,6 +306,7 @@ function changeDisparitiesSpec() {
 // ----------------------------------------------------------------------- //
 // Deactive Save Button for table
 // ----------------------------------------------------------------------- //
+
 window.addEventListener('hashchange', function() {
   let chartbtn = document.getElementById('chartSaver')
   currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')

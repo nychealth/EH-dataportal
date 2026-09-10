@@ -62,6 +62,7 @@ const load_flexdatalist = async () => {
               // dataChange(set.GEOCODE);
 
               // call tester Function
+
               setNeighborhood(set.NTACode, set.GEONAME, set.zipcode)
               
           })
@@ -80,6 +81,7 @@ const load_flexdatalist = async () => {
 }
 
 // ----- Load data and call loader function -------------------------------------------------- //
+
 var allData = [];
 var neighborhoodData = [];
 
@@ -108,6 +110,7 @@ function setNeighborhood(x, y, z) {
 
 
   // console.log('geocode',x)
+
   thisGeocode = x
   // console.log(y)
 
@@ -120,6 +123,7 @@ function setNeighborhood(x, y, z) {
   document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
+
   neighborhoodData = allData.filter(neighb => neighb.NTACODE == x)
 
   console.table(neighborhoodData)
@@ -146,12 +150,15 @@ function sourceTertile(x,dest) {
 
   if (x === 'High') {
     // change class
+
     destination.classList.add('badge-worse')
   } else if (x === 'Medium') {
     // change class
+
     destination.classList.add('badge-medium')
   } else if (x === 'Low') {
     // change class
+
     destination.classList.add('badge-better')
   }
 
@@ -171,6 +178,7 @@ const renderChart = (
 ) => {
 
   // add conditionals for TITLE, units, etc.
+
   var title
   var units
 
@@ -259,16 +267,19 @@ function changeSource(x) {
   // console.log(x)
 
   // get all class sourceBox and remove active
+
   var sourceBoxes = document.querySelectorAll(".sourceBox")
   for (let i = 0; i < sourceBoxes.length; i++) {
       sourceBoxes[i].classList.remove('sourceBox-active')
   }
 
   // highlight what you clicked on
+
   var thisBox = 'sourceBox' + x
   document.getElementById(thisBox).classList.add('sourceBox-active')
 
   // change map
+
   var title;
 
   if (x==1) {

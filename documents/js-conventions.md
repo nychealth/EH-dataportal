@@ -68,8 +68,7 @@ This document supersedes the earlier directory-scoped split between it and
 ## File header
 
 Files over ~100 lines open with a banner, the filename, and a one-sentence module
-description. No blank line between the description line and the first section
-header. Shorter files may have one; if a file already has one, keep it.
+description, then a blank line before the first section header.
 
 ```js
 // ======================================================================= //
@@ -140,6 +139,7 @@ explicitly:
 
 ```js
 // expose one function; everything else stays file-scoped
+
 window.nrDownloadCSV = downloadCSV;
 ```
 
@@ -183,14 +183,17 @@ is *for* — not just what the variables are. One blank line between groups.
 
 ```js
 // Summary-table filter state persists across redraws until a new indicator resets it
+
 let selectedTableTimes = [];
 let selectedTableGeography = [];
 
 // Lookup tables are rebuilt on each indicator load and reused by menus and renderers
+
 let geoTable;
 let timeTable;
 
 // Per-view default metadata is recomputed per indicator load
+
 let defaultTrendMetadata;
 let defaultMapMetadata;
 ```
@@ -240,12 +243,12 @@ const nrById = id => document.getElementById(id);
 
 ### The comment above every function
 
-One line, directly above the function, no blank line between it and the function
-keyword. Applies to `const fn = () =>`, `function fn()`, and method-style
-definitions alike.
+One line, above the function, separated from it by a blank line. Applies to
+`const fn = () =>`, `function fn()`, and method-style definitions alike.
 
 ```js
 // Assigns a sortable rank so geographies can be ordered from broad to fine
+
 const assignGeoRank = (GeoType) => {
     ...
 };
@@ -266,8 +269,11 @@ why-not-what rule:
 
 ```js
 // Normalize rank values that may arrive as numbers or strings
+
 const r = String(rank);
+
 // rankReverse indicates indicators where lower values are directionally better
+
 const reverse = rankReverse === true || rankReverse === 'true';
 ```
 
@@ -277,6 +283,25 @@ const reverse = rankReverse === true || rankReverse === 'true';
 
 Functions should breathe — a reader should be able to scan one and immediately see
 its distinct phases.
+
+- **Blank line between a comment and the code it introduces.** Applies at every
+  level — a banner, a step comment, the one-line comment above a function, a
+  comment above a variable group, and a comment above a single statement inside a
+  function body. Two exceptions, both cases where the comment is not introducing
+  anything. A comment above an object-literal property: spec objects (Vega,
+  Leaflet) annotate consecutive keys, and spacing each one doubles the block's
+  height without making it easier to scan. And a comment above a line that
+  continues or closes what came before — a `.filter()` in a fluent chain, a
+  closing `}`, an `else` — where the comment is trailing content and a blank line
+  would split the chain from its own continuation.
+
+  `scripts/js-comment-spacing.py` applies this rule, both exceptions included, to
+  `assets/js`, `content/**/*.js`, and the `<script>` bodies in
+  `themes/dohmh/layouts/**/*.html`. Write new code to the convention — the script
+  is for the moment old code arrives, which is the merge of a long-lived branch.
+  It is idempotent, so a re-run only touches what the merge brought in. Read its
+  docstring first: it is regex heuristics, not a JS parser, and it names the check
+  you have to run against its own diff.
 
 - Blank line after the opening `{` of any block longer than ~3 lines.
 - Blank line before the closing `}`.
@@ -309,6 +334,7 @@ A longer example, showing the group-and-`return` spacing:
 const renderSection = (section, neighborhoodName) => {
 
     // Section containers are layout-driven and may be absent in some templates
+
     const container = document.getElementById(section.containerId);
 
     if (!container) {
@@ -316,6 +342,7 @@ const renderSection = (section, neighborhoodName) => {
     }
 
     // Neighborhood-level rows are pre-grouped during loadSection
+
     const byNeighborhood = sectionData[section.id] || {};
     const rows = byNeighborhood[neighborhoodName] || [];
 
@@ -458,6 +485,7 @@ const headerHTML =
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Assigns a sortable rank so geographies can be ordered from broad to fine
+
 const assignGeoRank = (GeoType) => {
 
     switch (GeoType) {
@@ -475,6 +503,7 @@ const assignGeoRank = (GeoType) => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // Finds the first measure in visArray whose MeasurementType satisfies typeMatcher
+
 const findFirstMeasureByType = (visArray, typeMatcher) => {
 
     return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
@@ -483,6 +512,7 @@ const findFirstMeasureByType = (visArray, typeMatcher) => {
 
 
 // Picks one default measure using the shared priority order used by all tabs
+
 const pickDefaultMeasureByPriority = (visArray) => {
 
     if (!visArray.length) {

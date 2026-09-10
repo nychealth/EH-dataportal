@@ -289,6 +289,7 @@ const renderTrendChart = (
     let dedupedThresholds = compThresholds.flat().filter(item => item !== null);
     
     // Step 2: Deduplicate the array of objects
+
     let uniqueThresholds = [
         ...new Map(dedupedThresholds.map(item => [JSON.stringify(item), item])).values()
     ];
@@ -299,6 +300,7 @@ const renderTrendChart = (
     let thresholdSpec = []
 
     // loop through unique Thresholds
+
     for (let i = 0; i < uniqueThresholds.length; i ++ ) {
 
         let value = i + 1
@@ -369,11 +371,13 @@ const renderTrendChart = (
         // console.log('running noCompare')
 
         // print text
+
         let noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`
         document.querySelector("#trend-unreliability").innerHTML += "<div class='fs-xs'>" + noCompareFootnote + "</div>" ;
         document.getElementById("trend-unreliability").classList.remove('hide')
 
         // convert to milliseconds format - this is necessary for compspec2
+
         const year = new Date(`${compNoCompare}-01-01T00:00:00Z`);
         compNoCompare = year.getTime() + 15768000000 // add half a year, for placement
 
@@ -407,9 +411,11 @@ const renderTrendChart = (
     let comparisonToolTipLabel;
     if (metadataObject[0].ComparisonID === 566 || metadataObject[0].ComparisonID === 565 || metadataObject[0].ComparisonID === 564) {
       // console.log('AQ action days comparison')
+
       comparisonToolTipLabel = 'Action days';
     }  else {
       // console.log('false')
+
       comparisonToolTipLabel = compMeasurementType;
     }
 
@@ -477,16 +483,19 @@ const renderTrendChart = (
             },
             "transform": [
                 // Adds space to line name
+
                 {
                     "calculate": `replace(datum.${comp_group_col}, /(.{1,15})(\\s+|$)/g, '$1\\n')`,
                     "as": "textLabel"
                 },
 
                 // adds display to value
+
                 {
                     "calculate": `datum.DisplayValue + ' ${compDisplayTypes}'`, "as": "valueWithDisplay"
                 },
                 // gets index position of row
+
                 {
                     "window": [
                         {
@@ -496,12 +505,14 @@ const renderTrendChart = (
                     ]
                 },
                 // splits quarters, if it's quarterly data
+
                 {
                     "calculate": "datum.TimeType === 'quarter' ? replace(datum.TimePeriod, /-Q/, ' Q') : datum.TimePeriod",
                     "as": "TimeSplit1"
                     
                 }, 
                 // splits other data if it's long strings
+
                 {
                     "calculate": "split(datum.TimeSplit1, ' ')",
                     "as": "TimePeriodSplit"
@@ -517,6 +528,7 @@ const renderTrendChart = (
                     "as": "year_end_period"
                 },
                 // calculates every other year for x-axis label, as long as it's not quarterly data
+
                 {
                     "calculate": "(datum.TimeType !== 'quarter' && datum.year_end_period % 2 === 0) ? datum.TimePeriodSplit : (datum.TimeType === 'quarter' ? datum.TimePeriodSplit : '')",
                     "as": "fallbackYear"
@@ -601,12 +613,14 @@ const renderTrendChart = (
                         "description": "Hover text",
                         "transform": [
                             // get dataset max, and endate Median
+
                             {
                             "joinaggregate": [
                                 {"op": "max", "field": "Value", "as": "maxVal"}
                             ]
                             },
                             // Get max date
+
                             {
                             "aggregate": [
                                 {"op": "argmax", "field": "end_period", "as": "endDate"},
@@ -616,6 +630,7 @@ const renderTrendChart = (
                             },
 
                             // re-store endDateValue
+
                             {
                             "calculate": "datum.endDate ? datum.endDate.Value : null",
                             "as": "endDateValue"
@@ -626,12 +641,14 @@ const renderTrendChart = (
                             },
 
                                 // initial labelValue == endDateValue
+
                                 {
                                     "calculate": "datum.endDateValue",
                                     "as": "labelValue"
                                 },
 
                                 // PASS 1: compare against previous labelValue (which currently equals endDateValue)
+
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
@@ -642,6 +659,7 @@ const renderTrendChart = (
                                 },
 
                                 // PASS 2: re-check using the updated labelValue
+
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel2"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
@@ -652,6 +670,7 @@ const renderTrendChart = (
                                 },
 
                                 // PASS 3: 
+
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel3"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
@@ -661,6 +680,7 @@ const renderTrendChart = (
                                     "as": "labelValue"
                                 },
                                   // PASS 4:
+
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel4"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
@@ -670,6 +690,7 @@ const renderTrendChart = (
                                     "as": "labelValue"
                                 },
                                     // PASS 5:
+
                                 {
                                     "window": [{"op": "lag", "field": "labelValue", "as": "prevLabel5"}],
                                     "sort": [{"field": "endDateValue", "order": "ascending"}]
@@ -751,6 +772,7 @@ const renderTrendChart = (
     });
 
     // send info for printing
+
     vizSource = metadataObject[0].Sources
     printSpec = compspec2;
     chartType = 'trend'

@@ -17,6 +17,7 @@ function init() {
     drawStoryCardDropdown();
 
     // drawStoryCard("getting-started");
+
     $("#btn-getting-started").addClass("active");
     $("#btn-getting-started").attr('aria-selected', true);
 
@@ -42,6 +43,7 @@ let lastMapState = JSON.parse(JSON.stringify(initial_state));
 
 
 // let map = L.map('map').setView([40.715554, -74.0026642], 11); // [Lat, Long], Zoom
+
 let map = L.map('map', {
     zoomControl: false,
     minZoom: 10,
@@ -95,6 +97,7 @@ let timeTable;
 const CUSTOM_ID_FIELD = '_custom_id';
 
 // to adjust the weights by the zoom, we use a scale factor. the larger it is, the thinner the lines
+
 const ZOOM_WEIGHT_SCALE_FACTOR = 8;
 
 
@@ -232,6 +235,7 @@ function setupMap() {
     map.on("zoomend", () => {
         zoom = map.getZoom();
         // scale the weight based on the zoom layer so it looks good zooming in and out
+
         layerGroup.eachLayer((layer) => layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR }))
     });
 
@@ -312,11 +316,13 @@ function setupMap() {
             filterPins(e.target.attributes["data-theme-id"].nodeValue)
 
             // remove .active from all .theme-item elements
+
             document.querySelectorAll('.theme-item.active').forEach(item => {
                 item.classList.remove('active');
             });
 
             // add .active to the clicked .theme-item
+
             e.target.classList.add('active');
 
         });
@@ -326,12 +332,14 @@ function setupMap() {
 }
 
     // Custom control with + ⟳ - buttons in one row
+
     const zoomRefreshControl = L.control({ position: 'bottomleft' });
 
     zoomRefreshControl.onAdd = function(map) {
     const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control d-flex');
 
     // Button styles
+
     div.style.display = 'flex';
     div.style.margin = '0 0 10px 10px';
     div.style.flexDirection = 'row';
@@ -341,6 +349,7 @@ function setupMap() {
     div.style.background = 'white';
 
     // Add buttons
+
         div.innerHTML = `
         <a href="#" class="leaflet-control-button" style="border-bottom:none;border-right:1px solid #ccc;" title="Zoom in"><i class="fa-solid fa-plus"></i></a>
         <a href="#" class="leaflet-control-button" style="border-bottom:none;border-right:1px solid #ccc;" title="Reset map"><i class="fas fa-undo"></i></a>
@@ -349,9 +358,11 @@ function setupMap() {
 
 
     // Get button elements
+
     const [zoomInBtn, refreshBtn, zoomOutBtn] = div.querySelectorAll('.leaflet-control-button');
 
     // Hook up actions
+
     zoomInBtn.onclick = function(e) {
         e.preventDefault();
         map.zoomIn();
@@ -431,9 +442,11 @@ function addLayerButtons() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 // create layer group for pins, so we can clear them later
+
 let storyMarkers = L.layerGroup().addTo(map);
 
 // Create custom icon
+
 const storyIcon = L.icon({
     iconUrl: 'map-pin-hollow_P.svg',   // Path to your icon file
     iconSize: [29, 47],       // Size of the icon [width, height]
@@ -444,12 +457,14 @@ const storyIcon = L.icon({
 function placeAllStoryPins() {
 
     // start by removing .active from Theme FIlters
+
     document.querySelectorAll('.theme-item.active').forEach(item => {
         item.classList.remove('active');
     });
 
 
     // Loop through stories and add to map, with popup
+
     config.stories.forEach(story => {
 
         const lat = Number(story.mapState.lat);
@@ -494,9 +509,11 @@ function filterPins(theme) {
     console.log('filtering for ', theme)
 
     // remove all pins
+
     storyMarkers.clearLayers();
 
     // loop through stories
+
     for (let i = 0; i < config.stories.length; i++) {
 
         if (config.stories[i].themes.includes(theme)) {
@@ -506,6 +523,7 @@ function filterPins(theme) {
             console.log(theme)
 
             // add pins
+
             const lat = Number(config.stories[i].mapState.lat);
             const lng = Number(config.stories[i].mapState.lng);
 
@@ -528,6 +546,7 @@ function filterPins(theme) {
             });
 
             // add them to storyMarkers layer
+
             storyMarkers.addLayer(thisStory);
 
         } else {
@@ -691,6 +710,7 @@ function drawStoryCard(id) {
 // ----------------------------------------------------------------------- //
 // create redlining layer
 // ----------------------------------------------------------------------- //
+
 /*
  * The redlined layer comes from a series of JS files. See the red lined HOLC map for details
  * This function pulls those files and creates a custom layer. It is a categorical layer, so
@@ -843,6 +863,7 @@ async function createMeasuresLayer({ id, name, measureInfo, args, displayPropert
     }
 
     // All metrics have an Id of value. Add that to 
+
     const updatedDisplayProperties = {
         ...displayProperties, 
         displayPropertyArgs: displayProperties.displayPropertyArgs
@@ -1157,6 +1178,7 @@ async function createGeotiffLayer({ id, url, args, name }) {
 // ----------------------------------------------------------------------- //
 // Create layers by calling layer funs
 // ----------------------------------------------------------------------- //
+
 /*
  * Create a layer using the layer configs.
  * The layers are created by type using all their arguments.
@@ -1231,6 +1253,7 @@ async function getOrCreateLayer(layerId) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // Add a layer to the map
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * If it does not exist in the cache, create it.
  * If the layer is already on the map, ignore it.
@@ -1256,11 +1279,13 @@ async function addLayerToMap(layerId) {
         layer.setStyle && layer.setStyle({ weight: zoom / ZOOM_WEIGHT_SCALE_FACTOR });
 
         // only one active one at a time
+
         if ( layersExclusive.has(layerId) ) {
 
             for (_layerId in layersVisible) {
 
                 // this only applies to exclusive layers
+
                 if (!layersExclusive.has(_layerId)) {
                     continue;
                 }
@@ -1318,6 +1343,7 @@ function removeLayerFromMap(layerId) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // toggle layers
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * If a layer is on the map, take it off. If it is not on the map, add it.
  */
@@ -1329,10 +1355,12 @@ async function toggleLayerOnMap(layerId, button) {
     console.log("* toggleLayerOnMap:", layerId);
     
     // FIXME disable while waiting
+
     try {
         button.disabled = true;
         if (!(layerId in layersVisible)) {
             // FIXME make this a set
+
             await addLayerToMap(layerId);
         } else {
             removeLayerFromMap(layerId);
@@ -1346,6 +1374,7 @@ async function toggleLayerOnMap(layerId, button) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // track map state
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Keep track of the current map state.
  * Stores the lat, lng, zoom and visible layers
@@ -1370,6 +1399,7 @@ function saveCurrentMapState() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // update map state
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /**
  * Update the map state to show a story.
  * @param {*} storyId 
@@ -1401,11 +1431,13 @@ async function updateMapStateForStory(storyId) {
     layerGroup.eachLayer(l => layersVisible.push(l.options[CUSTOM_ID_FIELD]));
 
     // add the layers that are not in the visible layer
+
     layers.filter(l => !(l in layersVisible)).forEach(async l => {
         await addLayerToMap(l);
     });
 
     // remove
+
     layersVisible.filter(l => !(l in layers)).forEach(async l => {
         removeLayerFromMap(l)
     });
@@ -1419,6 +1451,7 @@ async function updateMapStateForStory(storyId) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // reset map state
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Reset the map config based on the last known map state.
  */
@@ -1465,6 +1498,7 @@ async function resetMapState() {
     $('.layer-button').attr('aria-selected', false);
 
     // close any open story pins
+
     map.closePopup();
 
 
@@ -1478,6 +1512,7 @@ async function resetMapState() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // format data value
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Format the value based on a type.
  * Types can be
@@ -1493,6 +1528,7 @@ function formatValue(value, type) {
     // console.log(">> type [formatValue]", type);
     
     // FIXME handle NaN
+
     if (type == null || value == null) return value;
 
     switch(type) {
@@ -1503,6 +1539,7 @@ function formatValue(value, type) {
         return `${(value * 100).toFixed(1)}%`;
     case 'currency':
         // code block
+
         return value.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -1518,6 +1555,7 @@ function formatValue(value, type) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // create infoBox HTML
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * The html is based on displayProperties and displayPropertyArgs
  * from the config that then get put into the layer.
@@ -1539,6 +1577,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     }
 
     // convert our list of arguments in the format of { id, value } to { id: { id, value } }
+
     const displayPropertyArgs = displayProperties?.displayPropertyArgs?.reduce((m, x) => {
         m[x.id] = x;
         return m;
@@ -1547,6 +1586,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     const missingDisplay = displayProperties.missingDisplay || '';
 
     // create a map of unique keys to values
+
     const featureMap = Object.entries(feature.properties)
         .filter(x => x[0] in displayPropertyArgs)
         .map(x => {
@@ -1577,6 +1617,7 @@ function featureInfoToHtmlForInfoBox(feature, layer) {
     // console.log("GEOTypePretty", geoTypePretty);
 
     // then create that into an html table
+
     console.log('featureMap:')
     console.log(featureMap)
 
@@ -1640,6 +1681,7 @@ function formatInfoBox(features) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // update the infoBox (tooltip)
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * This function looks at the visible layers in the layer group,
  * grabs the data for each layer, formats the data, then displays it.
@@ -1679,6 +1721,7 @@ function updateInfoBox({ lat, lng }) {
     // console.log("visibleLayers [updateInfoBox]", visibleLayers);
 
     // if there are no layers, then we don't need a infoBox
+
     if (Object.keys(layerGroup._layers).length == 0 || featureMouseOver == null) {
     // if (Object.keys(layerGroup._layers).length == 0) {
 
@@ -1742,6 +1785,7 @@ function updateInfoBox({ lat, lng }) {
     const content = formatInfoBox(features);
 
     // console.log("infoBox [updateInfoBox]", infoBox);
+
     console.log("content [updateInfoBox]", content);
 
     if (infoBox == null && content != null) {
@@ -1751,6 +1795,7 @@ function updateInfoBox({ lat, lng }) {
         // console.log("> new infoBox");
 
         // infoBox = L.popup({autoPan: false, maxWidth: 560}).setLatLng({ lat, lng }).setContent(content).openOn(map);
+
         infoBox.update(content)
         infoBoxContent = content;
 
@@ -1774,6 +1819,7 @@ function updateInfoBox({ lat, lng }) {
         // console.log("> remove infoBox");
 
         // infoBox.removeFrom(map);
+
         infoBox = null;
 
     }
@@ -1787,6 +1833,7 @@ function updateInfoBox({ lat, lng }) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // extend legend
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Create a custom legend control for leaflet.
  * This example can be found in the docs.
@@ -1875,6 +1922,7 @@ let lastLayerEventHash = {id: null, type: null};
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // legend adding function
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Create the legend. The legend comes from the legendDescription
  * and gets added below the map in a separate div
@@ -1917,6 +1965,7 @@ function createLegend(fun) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // create legend for color maps
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Create the legend for a layer that uses a color map
  */
@@ -1933,6 +1982,7 @@ const legendFuncForColorMap = (id, name, args) => {
     let labels = [];
     // split into even parts
     // see an example https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients#creating_color_bands_stripes
+
     const percent = 100 / colorMapEntries.length;
 
     for (let i = 0; i < colorMapEntries.length; i++) {
@@ -1975,6 +2025,7 @@ const legendFuncForColorMap = (id, name, args) => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 // create legend function
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
 /*
  * Generic function to create legend for layers. Calls the colorMap function if a colorMap is found.
  * Doesn't work for geotiffs
@@ -1988,6 +2039,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
 
     return () => {
         // console.log("** legendFunc [createMeasuresLayer]");
+
         if (args?.colorMap) {
             return legendFuncForColorMap(id, name, args);
         }
@@ -2003,6 +2055,7 @@ const legendFuncForLayer = (id, name, args, layer) => {
             : '';
 
         // const borderColor = args?.color ? `border-width: 0px; border-color: ${args?.color}; border-style: solid;` : '';
+
         const borderColor = '';
 
         const backgroundCss = (args.colorFeatureProperty != null
@@ -2076,6 +2129,7 @@ async function loadIndicator(indicatorID, measureID, geoType, time) {
     console.log("* loadIndicator");
 
     // indicators have measures. we want to search both
+
     /*
     const sampleIndicatorID = 2024; // Black carbon
     const sampleMeasureID = 370; // Black carbon, Mean
@@ -2258,6 +2312,7 @@ const getTopoUrl = ( data, metadata ) => {
 // ======================================================================= //
 // add listeners
 // ======================================================================= //
+
 /*
  * Add listeners to all our various buttons.
  * The listeners add / remove layers.

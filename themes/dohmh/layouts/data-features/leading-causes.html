@@ -246,6 +246,7 @@
     ];
     
     // const injuryBtn = document.getElementById("showInjury");
+
     let injuryOn = false; // record keeper
     
     // ---------------------------------------------------------- //
@@ -286,18 +287,22 @@
         btn.addEventListener("click", function () {
 
             // remove active from all type buttons
+
             document
                 .querySelectorAll(".type-button")
                 .forEach((b) => b.classList.remove("active"));
             
             // add active to clicked one
+
             this.classList.add("active");
             
             // log its id
+
             console.log(this.id);
             outcome = this.id;
             
             // update the text inside #all
+
             /*
             const allBtn = document.getElementById('all');
             if (allBtn) {
@@ -306,6 +311,7 @@
             */
             
             // re draw chart and menu
+
             drawChart(outcome, intent, highlight);
             updateCauseMenu(outcome, intent);
 
@@ -320,14 +326,17 @@
         btn.addEventListener("click", function () {
 
             // remove active from all subtype buttons
+
             document
                 .querySelectorAll(".subtype-button")
                 .forEach((b) => b.classList.remove("active"));
             
             // add active to clicked one
+
             this.classList.add("active");
             
             // update global intent based on data-injury
+
             intent = Number(this.dataset.injury);
             
             // show/hide #showInjury only when "All deaths" is selected
@@ -365,11 +374,13 @@
         loadCauseData().then((data) => {
 
             // Filter according to globals
+
             const filtered = data.filter(
                 (d) => d.type === outcome && String(d.InjuryOnly) === String(intent)
             );
             
             // Collect unique cleaned causes
+
             const uniqueCauses = new Set();
             
             filtered.forEach((d) => {
@@ -388,6 +399,7 @@
             // console.log(causes)
             
             // show/hide #showInjury only when "All deaths" is selected
+
             /*
             if (intent === 0) {
                 document.querySelector("#showInjury").classList.remove("d-none");
@@ -397,6 +409,7 @@
             */
             
             // Create menu items
+
             causes.forEach((cause) => {
 
                 const a = document.createElement("a");
@@ -409,11 +422,13 @@
             });
             
             // Add <hr>
+
             const hr = document.createElement("hr");
             hr.className = "my-1";
             menu.appendChild(hr);
             
             // Add Reset
+
             const reset = document.createElement("a");
             reset.className = "dropdown-item";
             reset.href = "#visualization";
@@ -432,20 +447,24 @@
         if (!target) return; // click wasn't on a cause item
         
         // remove .active from all
+
         document
         .querySelectorAll(".cause-highlight.active")
         .forEach((el) => el.classList.remove("active"));
         
         // add .active to the clicked one
+
         target.classList.add("active");
         
         // HIGHLIGHT THE CHART
+
         console.log("highlighting", target.dataset.cause);
         drawChart(outcome, intent, target.dataset.cause);
 
     });
     
     // Text and reset
+
     document.addEventListener("click", function (e) {
 
         const target = e.target.closest(".dropdown-item");
@@ -456,6 +475,7 @@
         const buttonTitle = document.getElementById("buttonTitle");
         
         // Reset clicked
+
         if (cause === "reset") {
 
             buttonTitle.innerText = "Highlight";
@@ -466,6 +486,7 @@
         }
         
         // A cause item clicked
+
         if (target.classList.contains("cause-highlight")) {
 
             buttonTitle.innerText = "Showing: " + target.innerText.trim();
@@ -488,6 +509,7 @@
             : (document.getElementById("intent").innerHTML = "");
         
         // Filter metadata config for chosen outcome
+
         var metadata = config.filter(
             (chosenOutcome) => chosenOutcome.id === outcome
         );
@@ -497,11 +519,13 @@
         document.getElementById("footnote").innerHTML = metadata.footnote;
         
         // Print outcome to legend
+
         document.querySelectorAll(".outcome").forEach((el) => {
             el.innerHTML = metadata.printName;
         });
         
         // Set up some variables
+
         var filter;
         var color = { value: "#bcbcbc" };
         
@@ -766,16 +790,19 @@
         };
         
         // Print chart
+
         vegaEmbed("#chart", spec, {renderer: "svg"}).then((result) => {
 
             const view = result.view;
             
             // Mouse over event - sending to other function
+
             view.addEventListener("mouseover", (event) => {
                 showOnHover(event);
             });
             
             // Mouse out event
+
             view.addEventListener("mouseleave", (event) => {
 
                 clearOnHover();

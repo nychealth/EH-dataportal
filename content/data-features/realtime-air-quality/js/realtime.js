@@ -19,6 +19,7 @@ THEN, ADD A UNIQUE PIN
 
 
 // initialize variables (other variables are initialized closer to their prime use)
+
 var rtaqData = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/view.csv'
 var current_spec;
 var dt;
@@ -52,6 +53,7 @@ var myView;
 
 
 // ---- INITIAL: ingest data feed ---- // 
+
 aq.loadCSV(rtaqData).then(data => {
     
     dt = data
@@ -66,12 +68,14 @@ aq.loadCSV(rtaqData).then(data => {
     chartStart = floorDate
     
     // get most recent time
+
     ftl = fullTable.length - 1
     maxTime = fullTable[ftl].starttime
     maxTime = Date.parse(maxTime)
     maxTimeMinusDay = maxTime - 86400000
     
     // console.log("fullTable:", fullTable);
+
     getStationsFromData();
     
 });
@@ -88,6 +92,7 @@ function getStationsFromData() {
     stations = [...new Set(sites)]
     
     // Null Handling
+
     times = dt.select('starttime','timeofday').dedupe('starttime') // creats an arquero table of only times
     
     var accumulatedRows = [];
@@ -119,12 +124,14 @@ function getStationsFromData() {
             var thisStationFull = times.join_full(thisStation, 'starttime')             // join to times
             
             // put thisStationFull into one table
+
             dataWithNulls = dataWithNulls.concat(thisStationFull); // adds subsequent loops to the fll table
         }
         
     }
     
     // with stations, load locations from data file
+
     loadMonitorLocations();
 }
 
@@ -147,15 +154,18 @@ let colors = [
 
 
 // ---- LOAD LOCATIONS: Creates list of active monitors and their metadata (lat/longs, colors, etc) ---- //
+
 function loadMonitorLocations() {
 
     d3.csv("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv").then(data => {
         allMonitorLocations = data;
         
         // assign .Color to each item in allMonitorLocations, from colors
+
         for (let i = 0; i < allMonitorLocations.length; i++) {
             
             // make DEC gray, else, assign color from colors array
+
             if (allMonitorLocations[i].loc_col === 'DEC_Avg') {
                 console.log('We are making DEC gray')
                 allMonitorLocations[i].Color = '#999999'
@@ -174,17 +184,20 @@ function loadMonitorLocations() {
         
         for (let i = 0; i < allMonitorLocations.length; i++) {
             // if stations includes allMonitorLocations[i].loc_col, push to activeMonitors
+
             if (stations.includes(allMonitorLocations[i].loc_col)) {
                 activeMonitors.push(allMonitorLocations[i]);
             }
         }
         
         // alphabetize activeMonitors for color coordination
+
         activeMonitors.sort(GetSortOrder("loc_col"));
         console.log('active Monitors:')
         console.log(activeMonitors)
         
         // Draw page
+
         drawMap();
         drawCheckboxes();
         renderSpec(dataWithNulls.objects());
@@ -236,6 +249,7 @@ function listenTable() {
             // console.log(e.currentTarget)
             
             // remove previous active classes, add Active to clicked item
+
             rows.forEach(row => {
                 row.classList.remove('row-active')
                 row.classList.remove('table-highlight')
@@ -249,9 +263,11 @@ function listenTable() {
             }
             
             // send to zoom to
+
             zoomTo(e.currentTarget.dataset.loc)
             
             // pass chosenSite into renderSpec for use in highlighted layer
+
             renderSpec(dataWithNulls, chosenSite)
             
         })
@@ -262,11 +278,13 @@ function zoomTo(locationColumn) {
     console.log('Zooming to ' + locationColumn + ' from table click')
     
     // filter activeMonitors to locationColumn
+
     const thisLocation = activeMonitors.filter((loc) => loc.loc_col === locationColumn)
     
     console.log('this location:', thisLocation, thisLocation[0].Latitude, thisLocation[0].Longitude)
     
     // map zoom to lat/long.
+
     map.setView([thisLocation[0].Latitude, thisLocation[0].Longitude],13)
     
 }
@@ -276,6 +294,7 @@ function zoomTo(locationColumn) {
 
 function printRecentAverage() {
     // first, creating convertData that has starttime in milliseconds 
+
     var convertData = []
     for (let i = 0; i < fullTable.length; i++) {
         convertData.push(fullTable[i])
@@ -287,10 +306,12 @@ function printRecentAverage() {
     // console.log('convertData', convertData)
     
     // then, get the largest one
+
     var mostRecentTime = convertData[convertData.length - 1].starttime
     var startingTime = mostRecentTime - 86400000
     
     // then, filter everything over largest one minus 24 hours of milliseconds
+
     var last24HoursData = []
     for (let i = 0; i < convertData.length; i++) {
         if (convertData[i].starttime > startingTime) {
@@ -299,11 +320,13 @@ function printRecentAverage() {
     }
     
     // first, loop through and get values, and get max value
+
     for (let i = 0; i < activeMonitors.length; i++) {
         var thisLast = []
         thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
         
         // count if there are 17 entries
+
         if (thisLast.length > 17) {
             var average;
             var sum = []
@@ -324,19 +347,23 @@ function printRecentAverage() {
     }
     
     // get max value
+
     max = Math.max(...values)
     var maxWidth = max * 1
     
     // get all names of active Monitors
+
     for (let i = 0; i < activeMonitors.length; i++) {
         // console.log(activeMonitors[i].loc_col)
         
         // for each of those names, filter last 24 hours of data
+
         var thisLast = []
         thisLast = last24HoursData.filter(s => s.SiteName === activeMonitors[i].loc_col)
         // console.log('this last:', thisLast)
         
         // count if there are 17 entries
+
         if (thisLast.length > 17) {
             var average;
             var sum = []
@@ -355,6 +382,7 @@ function printRecentAverage() {
             values.push(average)
             
             // console.log(activeMonitors[i].loc_col + ' average for this location over the last 24 hours: ' + average)
+
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
             document.getElementById(print).innerHTML = average 
@@ -372,6 +400,7 @@ function printRecentAverage() {
             
         } else {
             // console.log(activeMonitors[i].loc_col + " doesn't have enough data")
+
             var print = 'value-'+activeMonitors[i].loc_col+'-1'
             var print2 = 'value-'+activeMonitors[i].loc_col+'-2'
             
@@ -390,6 +419,7 @@ function printRecentAverage() {
 
 
 // --------------------------------------- CREATE LEAFLET MAP ---- // 
+
 var map;
 var monitors_group = L.featureGroup();
 var monitors_group_noDEC = L.featureGroup();
@@ -399,6 +429,7 @@ var monitors_bounds = L.Bounds();
 var monitor_locations;
 
 // draw map fires when data and monitor_locations load:
+
 function drawMap() {
     
     monitor_locations = activeMonitors
@@ -420,6 +451,7 @@ function drawMap() {
                 .addTo(monitors_group)
         
         // create group without the DEC Monitor, which we'll use to set the center and bounds
+
         if (monitor.Location != "DEC Monitor Average") {
 
             var those_monitors = 
@@ -466,6 +498,7 @@ function drawMap() {
     }).addTo(map);
     
     // if Hamilton Bridge isn't reporting, add the marker anyway
+
     if (!stations.includes('Hamilton Bridge')) {drawHamiltonBridge()} 
     
     // adding the monitor markers to the map
@@ -504,6 +537,7 @@ function resetZoom() {
 // ---- TIME FILTER ---- //
 
 // event listener on the time-selection form
+
 document.getElementById('inputNum').addEventListener('change', function (event) {
     event.preventDefault();
     inputNum = document.getElementById('inputNum').value;
@@ -517,6 +551,7 @@ document.getElementById('inputNum').addEventListener('change', function (event) 
 });
 
 // Time update function - uses transform[0].filter
+
 function updateTime(x) {
     var last = fullTable.pop()
     const date = new Date(last.starttime)
@@ -531,8 +566,10 @@ function updateTime(x) {
 
 
 // ---- Update data based on map click ---- // 
+
 function updateData(x) {
     // look in active monitors for x.
+
     console.log('updating data for ', x)
     var thisLocation = activeMonitors.filter(mon => mon.loc_col === x)
     
@@ -544,22 +581,26 @@ function updateData(x) {
     }
     
     // loop through rows and remove .table-highlight
+
     var rows = document.querySelectorAll('.location-row')
     rows.forEach(row => row.classList.remove('row-active'))
     rows.forEach(row => row.classList.remove('table-highlight'))
     
     // add table row highlight...?
+
     var row = 'row-'+x
     document.getElementById(row).classList.add('table-highlight')
     
     renderSpec(dataWithNulls, chosenSite)
     
     // scroll chart into view (for mobile)
+
     document.getElementById('vis').scrollIntoView();
     
 }
 
 // -- DRAW HAMILTON BRIDGE ---- //
+
 function drawHamiltonBridge() {
     console.log('Hamilton Bridge not reporting. Drawing point anyway')
     const hamiltonBridgeLocation = allMonitorLocations.filter(item => item.Location === 'Hamilton Bridge');
@@ -579,35 +620,45 @@ function drawHamiltonBridge() {
 
 
 // --- SORT TABLE FUNCTION ---- //
+
 /*
 Note: relies on an invisible column of just values. Values displayed as * are given a 0 in this column. 
 */
 function sortTable() {
     // console.log('sort table running')
+
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("table24");
     switching = true;
     // Make a loop that will continue until no switching has been done:*/
+
     while (switching) {
         //start by saying: no switching is done:
+
         switching = false;
         rows = table.rows;
         // Loop through all table rows (except the first, which contains table headers):*/
+
         for (i = 1; i < (rows.length - 1); i++) {
             //start by saying there should be no switching:
+
             shouldSwitch = false;
             // Get the two elements you want to compare, one from current row and one from the next:*/
+
             x = rows[i].getElementsByTagName("td")[0];
             y = rows[i + 1].getElementsByTagName("td")[0];
             // check if the two rows should switch place:
+
             if (Number(x.innerHTML) < Number(y.innerHTML)) {
                 // if so, mark as a switch and break the loop:
+
                 shouldSwitch = true;
                 break;
             }
         }
         if (shouldSwitch) {
             // If a switch has been marked, make the switch and mark that a switch has been done:*/
+
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
         }
@@ -615,6 +666,7 @@ function sortTable() {
 }
 
 // Comparer Function - used later    
+
 function GetSortOrder(prop) {    
     return function(a, b) {    
         if (a[prop] > b[prop]) {    
@@ -628,6 +680,7 @@ function GetSortOrder(prop) {
 
 
 // ---- RENDER CHART SPEC ---- // 
+
 async function renderSpec(
     data,
     site
@@ -767,6 +820,7 @@ async function renderSpec(
     // console.log(chartSpec)
     
     // compile chartSpec to vega
+
     const vegaSpec = vegaLite.compile(chartSpec).spec;
     
     const colorSignal = {

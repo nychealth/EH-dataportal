@@ -13,12 +13,14 @@
 const TOD_CONTAINER_ID = "cpVisTOD";
 
 // Traffic monitor labels differ from the broader site names used elsewhere in the report.
+
 const trafficMonitoringLocations = {
     "FDR": "FDR at Houston St",
     "SI Expwy": "I-278 Staten Island Expressway",
 };
 
 // The traffic facet header is the anchor for its monitor-specific footnote.
+
 const TRAFFIC_PANEL_TITLE = "Traffic (vehicles per hour)";
 
 // tod_site_names is derived from CP_SITES (hasTOD), defined in shared.js
@@ -76,6 +78,7 @@ const todBaseSpec = {
     // Data transformations applied before encoding — filtering, calculated fields, label mapping
     transform: [
         // Placeholder — replaced by specForTODSite() before each render
+
         { filter: "datum.Site === 'BQE'" },
         {
             calculate: "datum.Value + ' (' + datum.Units + ')'",
@@ -114,6 +117,7 @@ const todBaseSpec = {
         },
         layer: [
             // Layer 1: lines connecting Pre → Post for each TOD period
+
             {
                 mark: { type: "line", strokeDash: [0, 0], opacity: 1 },
 
@@ -138,6 +142,7 @@ const todBaseSpec = {
             },
 
             // Layer 2: dots at each data point, with tooltip
+
             {
                 mark: { type: "circle", size: 150, opacity: 1 },
 
@@ -258,9 +263,11 @@ async function renderTODChart(site) {
     try {
         await embedFitted(el, () => specForTODSite(site), CP_FIT.tod, applyTODFacet);
         // Release the lock now that the new chart is in place
+
         el.style.minHeight = "";
     } catch (err) {
         // Release the lock even if the chart fails to render
+
         console.error("TOD Traffic Vega render failed:", err);
         el.innerHTML =
             "<pre style='white-space:pre-wrap'>Chart failed to render. See console.</pre>";
