@@ -56,6 +56,7 @@ const renderTable = () => {
             geosNotAvailable.push(checkbox)
             
             // set this element as disabled
+
             $(checkbox).addClass("disabled");
             $(checkbox).attr('aria-disabled', true);
             
@@ -146,9 +147,11 @@ const renderTable = () => {
         })
         .relocate([
                 // these columns always exist, and we always want to hide all except the last one, so let's put them first, respecting the original relative order
+
                 "TimePeriod", "GeoTypeDesc", "GeoID", "GeoRank", "BoroID", "Borough", "Geography", "Area",
 
                 // set order for table columns (this is half a priori, half ad hoc): standard is Number, Crude Rate, Age-adjusted rate; left to right in order of calculated complexity; or general to specific. 
+
                 aq.matches(/everyday/i),
                 aq.matches(/sometimes/i),
                 aq.matches(/never/i),
@@ -205,6 +208,7 @@ const renderTable = () => {
     document.querySelector('#summary-table table').id = "tableID"
     
     // set some display properties 
+
     document.querySelector('#summary-table table').className = "cell-border stripe"
     document.querySelector('#summary-table table').width = "100%"
     
@@ -234,6 +238,7 @@ const renderTable = () => {
     // default sort: when grouped by borough, GeoID keeps boroughs in a sensible
     //  order; when ungrouped, sort areas alphabetically so the flat list is useful
     //  (the user can still re-sort any column by clicking its header)
+
     const sortBy = groupTableByBorough ? 2 : 7 // 2 = GeoID, 7 = Area
     const sortName = dataColumnNames[sortBy]
 
@@ -303,6 +308,7 @@ const renderTable = () => {
                 render: function (data, type, row) {
                     if (type === 'sort' || type === 'type') {
                         // Remove commas and try to parse as float
+
                         const cleaned = data.replace(/,/g, '');
                         const num = parseFloat(cleaned);
                         return isNaN(num) ? -Infinity : num;
@@ -333,6 +339,7 @@ const renderTable = () => {
             if (time && GeoTypeDesc) {
                 // ancestry attributes let a group header find (and toggle) all of
                 //  its descendant rows: nested group headers + data rows
+
                 row.setAttribute(`data-time`, timeKey(time));
                 row.setAttribute(`data-geo`, geoKey(time, GeoTypeDesc));
                 if (hasBorough(GeoTypeDesc, borough)) {
@@ -383,6 +390,7 @@ const renderTable = () => {
             }
 
             // level 0: time period
+
             createGroupRow(
                 groupColumnTime, 0,
                 (time) => timeKey(time),
@@ -390,6 +398,7 @@ const renderTable = () => {
             );
 
             // level 1: geo type
+
             createGroupRow(
                 groupColumnGeo, 1,
                 (time, geoTypeDesc) => geoKey(time, geoTypeDesc),
@@ -397,6 +406,7 @@ const renderTable = () => {
             );
 
             // level 2: borough (only for the smaller geo types, and only when the borough grouping toggle is on)
+
             if (groupTableByBorough) {
                 createGroupRow(
                     groupColumnBoro, 2,
@@ -446,6 +456,7 @@ const handleToggle = () => {
         if (td.hasClass('hidden')) {
 
             // expand: reveal everything beneath, and reset nested headers to expanded (− icon)
+
             td.removeClass('hidden');
             descendants.show();
             descendants.find('td').removeClass('hidden');
@@ -453,6 +464,7 @@ const handleToggle = () => {
         } else {
 
             // collapse: hide everything beneath
+
             td.addClass('hidden');
             descendants.hide();
 

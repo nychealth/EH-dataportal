@@ -978,15 +978,18 @@
 
 <script>
     
+
     var earliestDate = {
         "year": 2019,
         "month": 10
     }
     
     
+
     const date = new Date();
 
     
+
     console.log("Today's date:", date);
 
     let thisMonth = date.getMonth() + 1;    
@@ -996,6 +999,7 @@
     
 
         
+
         var chosenYear
         var chosenMonth
         if (availMonth == 0) {
@@ -1004,6 +1008,7 @@
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
         } else {
             
+
             chosenYear = thisYear
             chosenMonth = availMonth
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
@@ -1014,6 +1019,7 @@
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
     
+
     var downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
 
     
@@ -1042,11 +1048,13 @@
         
     
         
+
         if (chosenYear == earliestDate.year && chosenMonth < earliestDate.month) {
             alert('We do not have data before October 2019. Please select a different month.')
         } else {}
     
         
+
         if (chosenYear == thisYear && chosenMonth > thisMonth) {
             alert('You cannot download data for future months.')
         } else {}
@@ -1058,6 +1066,7 @@
     
     
     
+
     var yearRadios = document.querySelectorAll('.year-radio')
     for (i = 0; i < yearRadios.length; i++) {
         yearRadios[i].onclick = function() {
@@ -1067,6 +1076,7 @@
     }
     
     
+
     function changeMonth() {
         var e = document.getElementById("months");
         var value = e.value;
@@ -1076,6 +1086,7 @@
     
     
     
+
     var formatRadios = document.querySelectorAll('.format-radio')
     for (i = 0; i < formatRadios.length; i++) {
         formatRadios[i].onclick = function() {
@@ -1134,12 +1145,14 @@ function markdownToHTML(md) {
     line = line.trim();
 
     
+
     if (!line) {
       flushParagraph();
       continue;
     }
 
     
+
     if (line.startsWith("## ")) {
       flushParagraph();
       html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
@@ -1153,12 +1166,14 @@ function markdownToHTML(md) {
     }
 
     
+
     paragraph.push(escapeHTML(line));
   }
 
   flushParagraph();
   return html;
 }
+
 
 
 fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
@@ -1610,6 +1625,7 @@ fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/R
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -1619,13 +1635,13 @@ fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/R
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

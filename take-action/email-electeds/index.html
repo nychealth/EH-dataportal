@@ -600,11 +600,13 @@
             drawMap()
             
             
+
             document.getElementById('map-search').addEventListener("change", getData)
             
             let searchButton = document.querySelector('.btn.btn-srch');
             
             
+
             if (searchButton) {
                 
                 searchButton.onclick = function() {
@@ -621,6 +623,7 @@
             
             
             
+
             
 
             
@@ -634,13 +637,16 @@
                     console.log("map.location [post]", map.location);
                     
                     
+
                     getDataFor(map.location)
                     
                     
+
                     document.getElementById('map-search').disabled = true
                     let button = document.querySelector('#searchHolder button');
                     
                     
+
                     if (button) {
                         button.innerHTML = 'Start over'
                         button.onclick = function() {
@@ -659,9 +665,11 @@
                 console.log(map.location.name)
                 
                 
+
                 window.location.hash = map.location.name
                 
                 
+
                 var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
                 document.getElementById('link').setAttribute("href",linkURL)
                 
@@ -669,10 +677,12 @@
                 let data  = map.location.data
                 
                 
+
                 document.getElementById('outputRow').classList.remove('hide')
                 document.getElementById('contactContainer').classList.remove('hide')
                 
                 
+
                 retrieveAPIData('Mayor',null,null);
                 retrieveAPIData('NYC Public Advocate',null,null);
                 retrieveAPIData('NYC Comptroller',null,null)
@@ -706,6 +716,7 @@
                     
                     
                     
+
                     printData(data,x)    
                     
                 } catch (error) {
@@ -749,6 +760,7 @@
                 
                 for (let i = 0; i < data.length; i++) {
                     
+
                     let row = document.createElement('tr');
                     
                     let cell_office = document.createElement('td');
@@ -782,12 +794,14 @@
                     }
                     
                     
+
                     row.appendChild(cell_office);
                     row.appendChild(cell_name);
                     row.appendChild(cell_phone);
                     row.appendChild(cell_email);
                     
                     
+
                     let inserted = false;
                     let rows = tableBody.getElementsByTagName("tr");
                     
@@ -813,6 +827,7 @@
             
             
             
+
                 const checkNested = function(obj, args) {
                     for (var i = 0; i < args.length; i++) {
                         if (!obj || !obj.hasOwnProperty(args[i])) {
@@ -830,6 +845,7 @@
                     } else {
                         setTimeout(function() {
                             
+
                             waitForGlobal(keyPath, callback);
                         }, 100);
                     }
@@ -849,6 +865,7 @@
                 }
                 
                 
+
                 const enterEvent = new KeyboardEvent('keydown', {
                     key: 'Enter',
                     keyCode: 13, 
@@ -1174,6 +1191,7 @@
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -1183,13 +1201,13 @@
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

@@ -511,6 +511,7 @@
     let NeighborhoodName = "East Flatbush - Flatbush"; 
 
     
+
     async function get_topic_indicators() {
         d3.json('\/IndicatorPublic\/IndicatorMetadata\/topic_indicators.json').then(data => {
             topicIndicators = data
@@ -540,6 +541,7 @@
 
                 thisTopic = y
                 
+
                 URL = "/IndicatorPublic/data-explorer/" + thisTopic + "/?id=" + ind; 
                 document.getElementById(indID).style.display = "inline-block";
                 document.getElementById(indID).href = URL; 
@@ -833,6 +835,7 @@
     var chosenButton;       
     
     
+
     const topicSlugs = {
         Active: "active_design_physical_activity_and_health",
         Asthma: "asthma_and_the_environment",
@@ -929,6 +932,7 @@
         const geocodeClicked = layer.feature.properties.GEOCODE;
         
         
+
         const match = neighborhoods.find(
             n => n.UHF_id == geocodeClicked
         );
@@ -938,12 +942,15 @@
         if (match && match.page_name) {
 
             
+
             const parts = window.location.pathname.split("/");
             
             
+
             parts[3] = match.page_name;
             
             
+
             const dest = intendedDestinationName ? intendedDestinationName : (chosenReport ? chosenReport : '/');
             
             
@@ -951,6 +958,7 @@
             const buildURL = "/IndicatorPublic/neighborhood-reports/" + parts[3] + "/" + dest + '/'
             
             
+
             window.location.href = buildURL;
             
             
@@ -1274,6 +1282,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -1493,6 +1502,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -1711,6 +1721,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -1930,6 +1941,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -2170,6 +2182,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -2388,6 +2401,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -2606,6 +2620,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -2846,6 +2861,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -3065,6 +3081,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -3306,6 +3323,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -3524,6 +3542,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -3742,6 +3761,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -3982,6 +4002,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -4200,6 +4221,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -4419,6 +4441,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -4638,6 +4661,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -4857,6 +4881,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -5097,6 +5122,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -5316,6 +5342,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -5535,6 +5562,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -5754,6 +5782,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -5973,6 +6002,7 @@
 
 <script>
     
+
     (function(x, y) {
         var endDate = new Date(x);
         var year = endDate.getFullYear(); 
@@ -6138,10 +6168,12 @@
         })
 
         
+
         let reportData;
         let download;
 
         
+
         function downloadData() {
 
             download = arqTable
@@ -6150,6 +6182,7 @@
 
             let downloadTableCSV = download.toCSV(); 
             
+
             let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
             let hiddenElement = document.createElement('a');
             hiddenElement.href = csvData;
@@ -6205,9 +6238,11 @@
 <script>
 
 
+
 console.log('**getting report topic')
 
     
+
     let matchingKey = null;
 
     for (const [key, value] of Object.entries(topicSlugs)) {
@@ -6220,6 +6255,7 @@ console.log('**getting report topic')
     document.getElementById(matchingKey).classList.add('active')
 
 
+
 const buttons = document.querySelectorAll('.output-topic-button');
 
 buttons.forEach(button => {
@@ -6227,9 +6263,11 @@ buttons.forEach(button => {
         console.log('button clicked for: ', button.id)
 
         
+
         const reportDestination = topicSlugs[button.id] || null;
 
         
+
         const pageURL = window.location.pathname.match(/neighborhood-reports.*/)[0]
         var urlParts = pageURL.split('/')
 
@@ -6796,6 +6834,7 @@ const renderNRMap = (
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -6805,13 +6844,13 @@ const renderNRMap = (
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

@@ -563,6 +563,7 @@
 <script>
 
   
+
   var geojsonURLs = [
     {
         "name": "CD",
@@ -591,6 +592,7 @@
 
     function initializeMap() {
         
+
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
         {
@@ -599,6 +601,7 @@
         }).addTo(map);
 
         
+
         L.easyButton({
             position: "bottomleft",
             states: [{
@@ -618,6 +621,7 @@
     function reset() {
       console.log('Reset')
       
+
       document.getElementById('overlaps').innerHTML = ''
       document.getElementById('neighbHolder').innerHTML = ''
       document.getElementById('prompt').classList.add('hide')
@@ -644,6 +648,7 @@
 
 
     
+
     function loadGeoJSON(name) {
       const match = geojsonURLs.find(d => d.name === name);
       if (!match) {
@@ -652,14 +657,17 @@
       }
 
       
+
       currentProperty = match.property;
 
       
+
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
 
         
+
         if (UHFLayer) {
             map.removeLayer(UHFLayer);
             UHFLayer = null
@@ -669,12 +677,14 @@
       selectedID = null; 
 
       
+
       fetch(match.url)
         .then(response => response.json())
         .then(data => {
           geojsonLayer = L.geoJSON(data, {
             style: function (feature) {
               
+
               return {
                 color: "#333",
                 weight: 1,
@@ -685,6 +695,7 @@
             onEachFeature: function (feature, layer) {
 
                 
+
                 let tooltipLabel;
                 if (name === 'CD') {
                   tooltipLabel = feature.properties.GEONAME;
@@ -695,11 +706,13 @@
                 }
 
                 
+
                 layer.bindTooltip(`<b>${tooltipLabel}</b>`, { sticky: true });
 
 
 
               
+
               layer.on("click", function () {
                 const id = feature.properties[currentProperty];
                 let neighborhoodName;
@@ -715,12 +728,14 @@
                 document.getElementById('neighbHolder').innerHTML = neighborhoodName;
 
                 
+
                 const popupContent = `<b>${neighborhoodName}</b>`;
                 layer.bindPopup(popupContent);
 
                 selectedID = id;
 
                 
+
                 geojsonLayer.eachLayer(function (l) {
                   if (l !== layer) {
                     l.unbindTooltip();
@@ -728,9 +743,11 @@
                 });
 
                 
+
                 geojsonLayer.setStyle(function (f) {
                   if (f.properties[currentProperty] === selectedID) {
                     
+
                     return {
                       color: "#333",
                       weight: 2,
@@ -739,6 +756,7 @@
                     };
                   } else {
                     
+
                     return {
                       color: "#e5e5e5",
                       weight: 1,
@@ -749,6 +767,7 @@
                 });
 
                 
+
                 map.fitBounds(layer.getBounds());
                 layer.openPopup();
               });
@@ -757,11 +776,13 @@
           }).addTo(map);
 
           
+
           map.fitBounds(geojsonLayer.getBounds());
         });
     }
 
     
+
     const radios = document.querySelectorAll('input[name="inlineRadioOptions"]');
     radios.forEach(radio => {
       radio.addEventListener('change', function () {
@@ -773,21 +794,25 @@
     });
 
     
+
     loadGeoJSON("CD");
 
 function drawUHFs(UHF_ids) {
 
   
+
   if (UHFLayer) {
     map.removeLayer(UHFLayer);
     UHFLayer = null;
   }
 
   
+
   fetch("https://raw.githubusercontent.com/nychealth/EHDP-data/refs/heads/production/geography/UHF42.geojson")
     .then(response => response.json())
     .then(data => {
       
+
       const features = data.features.filter(f => UHF_ids.includes(f.properties.GEOCODE));
       if (features.length === 0) {
         console.warn("No matching UHF polygons for:", UHF_ids);
@@ -795,6 +820,7 @@ function drawUHFs(UHF_ids) {
       }
 
       
+
       UHFLayer = L.geoJSON(features, {
         style: {
           color: "red",
@@ -815,9 +841,11 @@ function drawUHFs(UHF_ids) {
       }).addTo(map);
 
       
+
       map.fitBounds(UHFLayer.getBounds());
 
       
+
       geojsonLayer.eachLayer(layer => {
         layer.off("click"); 
       });
@@ -840,6 +868,7 @@ function drawUHFs(UHF_ids) {
 
 
             
+
             thisOverlap = CCDtoUHF.filter(neighborhood => neighborhood.CCD == geo)
 
         } else if (from === 'CD') {
@@ -847,6 +876,7 @@ function drawUHFs(UHF_ids) {
             console.log('Getting UHFs for Community District ' + geo)
 
             
+
             thisOverlap = CDtoUHF.filter(cd => cd.CD == geo)
 
         } else {
@@ -862,6 +892,7 @@ function drawUHFs(UHF_ids) {
 
 
         
+
         thisOverlap[0].matchingUHFs.forEach(ol => {
 
             var uhfid = ol.UHF_id
@@ -875,6 +906,7 @@ function drawUHFs(UHF_ids) {
                     : null;
 
             
+
             if (overl < 0.1) {
                 return
                 } else {
@@ -1286,6 +1318,7 @@ function drawUHFs(UHF_ids) {
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -1295,13 +1328,13 @@ function drawUHFs(UHF_ids) {
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

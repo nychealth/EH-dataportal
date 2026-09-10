@@ -828,6 +828,7 @@
       table.className = "table table-striped table-bordered table-sm";
 
       
+
       const thead = document.createElement("thead");
       thead.className = "thead-light";
       const headerRow = document.createElement("tr");
@@ -841,6 +842,7 @@
       table.appendChild(thead);
 
       
+
       const tbody = document.createElement("tbody");
       data.forEach(row => {
         const tr = document.createElement("tr");
@@ -854,6 +856,7 @@
       table.appendChild(tbody);
 
       
+
       container.appendChild(table);
     }).catch(error => {
       console.error("Error loading CSV:", error);
@@ -891,6 +894,7 @@
       table.className = "table table-striped table-bordered table-sm";
 
       
+
       const thead = document.createElement("thead");
       thead.className = "thead-light";
       const headerRow = document.createElement("tr");
@@ -904,6 +908,7 @@
       table.appendChild(thead);
 
       
+
       const tbody = document.createElement("tbody");
       data.forEach(row => {
         const tr = document.createElement("tr");
@@ -917,6 +922,7 @@
       table.appendChild(tbody);
 
       
+
       container.appendChild(table);
     }).catch(error => {
       console.error("Error loading CSV:", error);
@@ -1035,11 +1041,13 @@
 
   async function ingestData() {
     
+
     const data = await d3.csv("data/map-data.csv");
     dataFile = data;
     
 
     
+
     drawMap(wage, scenario, "poverty");
     drawMap(wage, scenario, "prematuremort");
   }
@@ -1078,6 +1086,7 @@
     }
 
     
+
     const filtered = dataFile.filter(
       (d) => d.Wage === w && d.Variable === v && d.Scenario === s
     );
@@ -1085,6 +1094,7 @@
     
 
     
+
     const values = filtered.map((d) => +d.changeFromBaseline);
     const minValue = Math.min(...values);
     const maxValue = Math.max(...values);
@@ -1307,6 +1317,7 @@
       transform: [
         { filter: `datum.MinWage==='${w}'` },
         
+
         { filter: `datum.Scenario==='${s}'` },
         { filter: "datum.Variable==='Poverty'" },
         { calculate: "datum.Value/100", as: "Value" },
@@ -1413,6 +1424,7 @@
       transform: [
         { filter: `datum.MinWage==='${w}'` },
         
+
         { filter: `datum.Scenario==='${s}'` },
         { filter: "datum.Variable==='PrematureMort'" },
         {
@@ -1502,20 +1514,25 @@
   drawChart(wage, scenario);
 
   
+
   function setupButtonGroup(selector, variableName) {
     const buttons = document.querySelectorAll(selector);
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         
+
         buttons.forEach((b) => b.classList.remove("active"));
         
+
         btn.classList.add("active");
 
         
+
         if (variableName === "wage") {
           wage = btn.dataset.value;
           
+
           const wageDivs = document.querySelectorAll(".mwage");
           wageDivs.forEach((div) => {
             div.style.display = div.id === wage ? "block" : "none";
@@ -1524,6 +1541,7 @@
           scenario = btn.dataset.value;
 
           
+
           const scenarioDivs = document.querySelectorAll("div[id^='scen']");
           scenarioDivs.forEach((div) => {
             div.style.display = div.id === scenario ? "block" : "none";
@@ -1539,10 +1557,12 @@
   }
 
   
+
   setupButtonGroup(".wagecontrol", "wage");
   setupButtonGroup(".scenariocontrol", "scenario");
 
   
+
   document.querySelectorAll("div[id^='scen']").forEach((div) => {
     div.style.display = div.id === scenario ? "block" : "none";
   });
@@ -1863,6 +1883,7 @@
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -1872,13 +1893,13 @@
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

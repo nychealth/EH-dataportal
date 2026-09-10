@@ -527,11 +527,13 @@
     
     
     
+
     function wireComboboxState(input) {
 
         
         
         
+
         const RESULTS_ID = input.id + '-results';
 
         input.setAttribute('role', 'combobox');
@@ -558,11 +560,13 @@
         
         
         
+
         let dismissed = false;
 
         
         
         
+
         input.addEventListener('keydown', e => { dismissed = e.key === 'Escape'; });
         input.addEventListener('mousedown', () => { dismissed = false; });
         input.addEventListener('blur', () => { dismissed = false; });
@@ -577,12 +581,14 @@
         
         
         
+
         const sync = () => {
 
             let list = document.getElementById(RESULTS_ID);
 
             
             
+
             if (dismissed && list) {
                 list.remove();
                 list = null;
@@ -604,6 +610,7 @@
 
             
             
+
             let active = null;
 
             options.forEach((li, i) => {
@@ -624,6 +631,7 @@
         
         
         
+
         const listObserver = new MutationObserver(sync);
 
         const bodyObserver = new MutationObserver(() => {
@@ -632,6 +640,7 @@
 
             
             
+
             if (list && list !== watched) {
                 watched = list;
                 listObserver.observe(list, {
@@ -700,9 +709,11 @@ const load_flexdatalist = async () => {
 
 
             
+
             $input.on('select:flexdatalist', (e, set) => {
                 
                 
+
                 if (typeof printToPage === "function") {
                     printToPage(set) 
                 } else {
@@ -713,6 +724,7 @@ const load_flexdatalist = async () => {
 
 
             
+
             $("#clear").on("click", (e) => {
 
                 
@@ -783,16 +795,20 @@ function sendToIndicator(x) {
 
         <script>
             
+
             function printToPage(x) {
 
                 
+
                 document.getElementById('indName').innerHTML = `<p class="fs-md">${x.IndicatorName}&nbsp;<span class="badge badge-pill badge-light ml-2">${x.IndicatorID}</span></p>`
                 document.getElementById('indDesc').innerHTML = `<p class="fs-md"><i>${x.IndicatorDescription}</i></p>`
 
                 
+
                 document.getElementById('repoLink').innerHTML = `<a href="https://github.com/nychealth/EHDP-data/tree/production/indicators/data/${x.IndicatorID}.json"><button class="btn btn-sm btn-block btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Download JSON from repo</button></a>`
 
                 
+
                 document.getElementById('measureList').innerHTML = ''
                 document.getElementById('sourceList').innerHTML = ''
 
@@ -811,12 +827,14 @@ function sendToIndicator(x) {
 
                 
                 
+
                 const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
                 
 
                 document.getElementById('topicList').innerHTML = ''
                 for (let i = 0; i < topics.length; i++) {
                     
+
                     var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
                     document.getElementById('topicList').innerHTML += datatopic
                 }
@@ -1139,6 +1157,7 @@ function sendToIndicator(x) {
     );
 
     
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));
@@ -1148,13 +1167,13 @@ function sendToIndicator(x) {
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/main.531a22e86ab19502.js"
-  integrity="sha512-YCww6qBzAgRn2WL/O5TIxu&#43;7QdqmorQ/3S1Oh9xPenHNpnlrBg5X083km&#43;0IjDdYDilikMYKyEf5Rhz8ioaczw=="
+  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 <script
   type="text/javascript"
-  src="/IndicatorPublic/js/site.438acce403efd5f2.js"
-  integrity="sha512-AtoYBDkz3THYAugmo529XMmsQzqq0U/Bm&#43;p4z//QMRv8Him06Np2rMq23oGLzaQp/GxIpC&#43;KPZfZNJk0hiXymA=="
+  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
 ></script>
 
   

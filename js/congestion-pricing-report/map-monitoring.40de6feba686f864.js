@@ -156,6 +156,7 @@
                 .addTo(map);
 
             // Clicking a marker zooms in on it
+
             site.on('click', function (event) {
                 map.setView(event.latlng, 13);
             });
