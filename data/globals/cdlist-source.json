@@ -1,0 +1,111 @@
+{
+    "generatedBy": "scripts/ndhr-build-cdlist.mjs",
+    "generatedAt": "2026-09-11T00:48:09.351Z",
+    "gitHead": "8181e4803b4a7cda1bc0fb185290ede628b09775",
+    "environment": "production",
+    "dataBranch": "production",
+    "source": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/",
+    "communityDistricts": 59,
+    "demographicFields": [
+        {
+            "field": "PovertyPercent",
+            "indicatorId": 103,
+            "indicatorName": "Neighborhood poverty",
+            "measureId": 221,
+            "measureName": "Poverty, Percent",
+            "timePeriod": "2015-19",
+            "timePeriodId": 287
+        },
+        {
+            "field": "PercentLimitedEnglish",
+            "indicatorId": 2335,
+            "indicatorName": "Limited English",
+            "measureId": 1027,
+            "measureName": "Limited English, Percent",
+            "timePeriod": "2015-19",
+            "timePeriodId": 287
+        },
+        {
+            "field": "PercentGraduatedHighSchool",
+            "indicatorId": 2334,
+            "indicatorName": "Graduated high school",
+            "measureId": 1025,
+            "measureName": "High school, Percent",
+            "timePeriod": "2015-19",
+            "timePeriodId": 287
+        },
+        {
+            "field": "PercentOwnerOccupied",
+            "indicatorId": 17,
+            "indicatorName": "Owner-occupied homes",
+            "measureId": 29,
+            "measureName": "Owner-occupied homes, Percent",
+            "timePeriod": "2015-19",
+            "timePeriodId": 287
+        },
+        {
+            "field": "PercentRentBurdened",
+            "indicatorId": 2336,
+            "indicatorName": "Rent-burdened households",
+            "measureId": 1029,
+            "measureName": "Rent burden, Percent",
+            "timePeriod": "2015-19",
+            "timePeriodId": 287
+        }
+    ],
+    "acsFieldsWithNoSource": [
+        "TotalPopulation",
+        "PercentOver65",
+        "PercentUnder18"
+    ],
+    "reportedAsOneArea": [
+        [
+            {
+                "CD_id": 101,
+                "CD_name": "Financial District (CD1)",
+                "borough": "Manhattan"
+            },
+            {
+                "CD_id": 102,
+                "CD_name": "Greenwich Village and Soho (CD2)",
+                "borough": "Manhattan"
+            }
+        ],
+        [
+            {
+                "CD_id": 104,
+                "CD_name": "Clinton and Chelsea (CD4)",
+                "borough": "Manhattan"
+            },
+            {
+                "CD_id": 105,
+                "CD_name": "Midtown (CD5)",
+                "borough": "Manhattan"
+            }
+        ],
+        [
+            {
+                "CD_id": 201,
+                "CD_name": "Mott Haven and Melrose (CD1)",
+                "borough": "Bronx"
+            },
+            {
+                "CD_id": 202,
+                "CD_name": "Hunts Point and Longwood (CD2)",
+                "borough": "Bronx"
+            }
+        ],
+        [
+            {
+                "CD_id": 203,
+                "CD_name": "Morrisania and Crotona (CD3)",
+                "borough": "Bronx"
+            },
+            {
+                "CD_id": 206,
+                "CD_name": "Belmont and East Tremont (CD6)",
+                "borough": "Bronx"
+            }
+        ]
+    ]
+}

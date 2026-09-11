@@ -1,0 +1,21 @@
+{{- /*  Community district list (defines the global `communityDistricts`).
+        The CD analogue of lib-uhflist.html, and deliberately the same shape: generated at
+        build time from data/globals/cdlist.json via resources.FromString, fingerprinted and
+        SRI-hashed, so the JSON stays the single source of truth for the 59 community
+        districts and the NDHR content adapter can read the same file.
+
+        data/globals/cdlist.json is GENERATED — regenerate it with
+        `npm run ndhr:cdlist build`, and `npm run ndhr:cdlist check` fails when EHDP-data has
+        moved under it. data/globals/cdlist-source.json records which indicator, measure and
+        time period each demographic field came from; do not hand-edit either file.
+
+        The target name is js/cdlist-data.js and must stay distinct from every other
+        resources.FromString target: resources/_gen/ caches by path, so a reused name risks
+        serving another list's cached entry.
+
+        `communityDistricts` and `neighborhoods` are separate globals on purpose. This
+        partial must never load on a page that also loads lib-uhflist.html under an
+        expectation that one overrides the other — they describe different geographies.  */}}
+
+{{- $cdlist_js := printf "var communityDistricts = %s" (jsonify site.Data.globals.cdlist) | resources.FromString "js/cdlist-data.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $cdlist_js.RelPermalink }}" integrity="{{ $cdlist_js.Data.Integrity }}"></script>

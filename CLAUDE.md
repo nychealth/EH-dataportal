@@ -51,7 +51,7 @@ environment's `baseURL` path, so `development` serves under `/dev-prod/` and `de
 
 ## Guardrails
 
-Nineteen npm scripts, run from the repo root. **No two of them see the same thing**, which is
+Twenty npm scripts, run from the repo root. **No two of them see the same thing**, which is
 why a change to a shared template wants more than one: `lint` catches an undefined name without
 loading a page; `smoke` runs the site's JavaScript and fails on a console error;
 `characterize:site` compares rendered *structure* and deliberately does not gate on console
@@ -302,7 +302,7 @@ on a branch mismatch.
 
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
 
-### NDHR indicator availability
+### NDHR data generation
 
 - `npm run ndhr:availability [print|baseline|check] [environment]` — re-derives which of the
   28 NDHR indicators are published at community-district geography, from the indicator
@@ -315,6 +315,18 @@ on a branch mismatch.
   `[verified 2026-09-10: measured in both shells]`. Two controls gate every mode including
   `baseline`: 2143 must report CD and 2133 must not, which separates an empty fetch from
   bucket logic that says yes to everything.
+- `npm run ndhr:cdlist [print|build|check] [environment]` — generates data/globals/cdlist.json,
+  the CD analogue of `data/globals/uhflist.json`, plus a `cdlist-source.json` sidecar recording
+  which indicator, measure and time period each demographic field came from
+  (`scripts/ndhr-build-cdlist.mjs`). `check` regenerates and diffs, so an EHDP-data refresh
+  fails a command instead of ageing quietly. **Do not hand-edit either file.** Three things it
+  records that bite: the latest time period is the one whose coverage ends last and **never**
+  the highest `TimePeriodID` — on production the highest id is "2007-11" against a true latest
+  of "2015-19", and no control catches that choice, only the period printed in the report;
+  `TotalPopulation`, `PercentOver65` and `PercentUnder18` are null on all 59 rows because
+  EHDP-data publishes no such indicator at CD; and four CD pairs share one value across all
+  five demographic fields, so 59 rows carry 55 distinct measurements
+  `[all verified 2026-09-10]`.
 
 ### Four ways a local check silently lies
 

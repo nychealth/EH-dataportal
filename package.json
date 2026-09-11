@@ -14,6 +14,7 @@
     "scripts": {
         "lint": "eslint assets/js/data-explorer assets/js/nr-report",
         "ndhr:availability": "node scripts/ndhr-indicator-availability.mjs",
+        "ndhr:cdlist": "node scripts/ndhr-build-cdlist.mjs",
         "smoke": "node scripts/smoke-pages.mjs",
         "smoke:all": "node scripts/smoke-pages.mjs --all --report scripts/smoke-reports/",
         "smoke:env": "node scripts/smoke-env.mjs",
