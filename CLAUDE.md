@@ -338,6 +338,13 @@ on a branch mismatch.
   publish, a geotype only a sibling publishes (which a union check passes), removed
   empty_state, a duplicated measure, a renamed file, and a wrong category key; a removed
   `measures` key and an absent directory each exit 2]`.
+- **A `.docx` source under `documents/NDHR/` must be read with its tracked changes ACCEPTED.**
+  Stripping tags from the document XML inside the zip merges insertions and deletions into one
+  stream that still reads as grammatical prose, so there is nothing to notice — drop each `w:del`
+  element and its contents first, and print the `w:del`/`w:ins` run counts so a zero is
+  distinguishable from a file you did not filter. "Text of Neighborhood Development Health Report Tool for Revi.docx"
+  carries 26 and 38 `[2026-09-11]`; accepting them also deletes two whole indicator rows and
+  leaves one header ungrammatical, which is content, not extraction damage.
 - `npm run ndhr:cdlist [print|build|check] [environment]` — generates data/globals/cdlist.json,
   the CD analogue of `data/globals/uhflist.json`, plus a `cdlist-source.json` sidecar recording
   which indicator, measure and time period each demographic field came from
