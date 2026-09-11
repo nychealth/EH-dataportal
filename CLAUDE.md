@@ -60,7 +60,7 @@ surface none of the others reaches.
 
 ### Linting and docs
 
-- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-report/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`, `assets/js/nr-report/` and `assets/js/report-data/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and the inline `<script>` blocks in `themes/dohmh/layouts/data-explorer/single.html`) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
 - `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
 
 ### Smoke
@@ -369,6 +369,38 @@ on a branch mismatch.
   groups against the groups recovered from the demographic values themselves — data computed
   without reference to the crosswalk. Under a deliberate swap that control exits 2 and the other
   three do not `[verified 2026-09-11]`.
+- `npm run report-data:parity [report-key|all] [environment]` — checks
+  assets/js/report-data/normalize.js, the shared browser-side compute behind NDHR, against
+  the precomputed Neighborhood Reports payloads EHDP-data publishes
+  (`scripts/report-data-parity.mjs`). **Nothing else in this repo can test it**: `lint` does
+  not run the file, `smoke` would only prove it throws no console error, and the plan's
+  whole "compute in the browser" decision rests on the numbers matching. It runs `buildRows`
+  at UHF42 over an NR report's own MeasureID list and diffs field by field, area by area —
+  **34,398 comparisons over all five reports, 0 mismatched** `[2026-09-11, production data
+  branch]`. Positional arguments only, same reason as `ndhr:availability`.
+
+  It evaluates the real classic script in a `node:vm` context rather than a Node-shaped copy,
+  so what passes is the file the site ships. **Three controls, not one**, each re-evaluating
+  that file with a different rule broken: every NR section has exactly 42 areas, so the
+  first version's lone control — removing NTILE's remainder distribution — perturbed a branch
+  that never executes and returned 0 against a correct run `[2026-09-11]`. A control the data
+  cannot see reports the treatment arm's own number.
+
+  Two categories of difference are scored rather than failed, and both are bounded. **48 rows
+  sit in a tie group straddling a tertile boundary**, where the published order is not a
+  function of any field in the data. **7 rows are a named allowance** — exact half-way values
+  that measures 687, 755 and 645 round one way and 221 and 1128 the other; an entry that stops
+  being needed fails the run, so the list cannot absorb a later regression. Everything else
+  is a failure.
+
+  **It also reports the export gap route A has to close: 10 measures the published payloads
+  carry cannot be computed from what EHDP-data exports.** Seven — 691, 2377, 640, 641, 642,
+  646, 647 — are absent from `metadata.json` with their data files 404, **because the database
+  holds data exported into the neighborhood-report payloads but not exported as indicators**
+  `[per Chris 2026-09-11; the harness sees only current state, so it cannot tell "never
+  exported" from "withdrawn" — do not infer a retirement from the 404]`. The other two, 625 and
+  1284, are exported and have no usable UHF42 row, which may or may not be the same cause. Read
+  that list before costing an NR migration.
 
 ### Four ways a local check silently lies
 
@@ -417,7 +449,7 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `static/` — Unprocessed files served as-is
 - `data/globals/` — YAML/JSON data accessible throughout templates: featured data, SEO vars, and the three Neighborhood Reports sources — `data/globals/uhflist.json`, `data/globals/NR_topics.yml` and `data/globals/NR_content`
 - `documents/` — Internal audits and technical write-ups
-- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the five characterization harnesses, the accessibility audit, and the NR pre-capture/post-swap pair)
+- `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the five characterization harnesses, the accessibility audit, the NR pre-capture/post-swap pair, and the NDHR generators plus the report-data parity harness)
 - `docs/` — Generated output; never edit directly
 
 ### Layout routing

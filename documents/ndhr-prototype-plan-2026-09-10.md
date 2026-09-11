@@ -352,23 +352,23 @@ that the probe can see these assets at all]`. A session re-running the proof as 
 read that absence as a regression. **The build proof belongs to Task 6**, which adds the include;
 until then the partial's only check is that it parses, which the same build shows.
 | 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
-| 4. Shared compute module | not started | — | — |
+| 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
 | 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
 | 6. Report layout and CD Leaflet map | not started | — | — |
 | 7. Renderers and geography labelling | not started | — | — |
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-11:** Tasks 1, 2, 2b and 3 done on `feature-NDHR-prototype`; Tasks 5 and 8
-unblocked and untouched; 4, 6, 7, 9 not started. **Nothing is blocked.**
+**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3 and 4 done on `feature-NDHR-prototype`; Tasks 5 and
+8 unblocked and untouched; 6, 7, 9 not started. **Nothing is blocked.**
 
-Next command: **Task 4, the shared compute module**, which now has Task 3's indicator lists to
-read — or **Task 5**, which has both `cdlist.json` and `NDHR_categories.yml` and is independent of
-Task 4. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
+Next command: **Task 5**, which has `cdlist.json` and `NDHR_categories.yml` and needs nothing from
+Task 4 — or **Task 8**. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
 this plan rest on them:
 
 ```bash
 npm run ndhr:availability check    # expect exit 0, "UNCHANGED — all 28 rows"
+npm run report-data:parity all     # expect exit 0, "34398 field comparisons, 0 mismatched"
 npm run ndhr:cdlist check          # expect exit 0, "UNCHANGED"
 node scripts/ndhr-build-cdlist.mjs print prod_stage   # expect exit 0 — the other data branch
 ```
@@ -873,6 +873,95 @@ Write the expected result down before running: `indicator_short_name` differs, s
 established it has no upstream source; every other consumed field matches. A run that fails for
 an unexpected reason reads as a flake without that written first, and gets retried instead of
 diagnosed.
+
+### Task 4 as built
+
+**The result: 34,398 field comparisons against the published NR payloads, 0 mismatched**, over all
+five reports and 22 sections at UHF42 — not the one report this task specified. Route A is
+established: the browser can reproduce the numbers NR has published for years, from EHDP-data's
+own indicator files.
+
+The prediction written before the first run held on the fields it named and was **too narrow on
+two counts**. `indicator_short_name` does differ, as §2 said. So does `units` — populated in the
+payloads ("per 100,000", "of land area"), absent from metadata, and not derivable from
+`MeasurementType`, since two measures sharing "Percent" carry different units. Both are now
+site-owned fields the content YAML supplies. The third, `nbr_rank`, is not emitted at all:
+`assets/js/nr-report/cards.js` reads `data_value_rank` only and nothing in the NR templates or
+modules reads `nbr_rank`, so its published tie convention — neither competition nor dense ranking
+in either direction — was left unrecovered rather than approximated.
+
+**Two of the task's five steps were wrong as written.** Step 1 resolves an IndicatorID to a
+measure by geotype; Task 3's MeasureID rekeying made that obsolete, and `buildRows` takes the
+content rows directly. Step 4 reads `rankReverse` from the measure's `VisOptions.Map` entry for
+the requested geotype — which **does not exist for 2 of the 18 NDHR measures**: 690 has Map
+entries for Borough and NTA2010 only, and 537's single entry carries `GeoType: null,
+RankReverse: null`. Falling back to any non-null entry is safe by measurement rather than
+assumption — across all 731 measures in production metadata, `RankReverse` is constant within a
+measure, zero exceptions — but **223 of those 731 carry no non-null value anywhere**, so the
+content YAML may state `rank_reverse` and the default is 0.
+
+**Five rules the plan did not have, each recovered by diffing and each load-bearing.**
+
+- The number is `Value` rounded to **one decimal**, via `Number(v.toFixed(1))`. `Value` is
+  unrounded (46.9313) and every published figure is rounded (46.9). `Math.round(v * 10) / 10` is
+  not the same operation — it rounds 26.95 up to 27 because multiplying by 10 first loses the
+  fact that the stored double is 26.9499999999999993, where the payload publishes 26.9.
+- Ranking runs on the **rounded** value. Rounding merges distinct figures into ties, and ranking
+  the unrounded column produces ranks the payload does not have. The control that removes the
+  rounding produces 243 mismatches.
+- Tertiles are **`NTILE(3)` over position**, sorted unfavourable-first: the first `n % 3` buckets
+  take the extra area, so 41 areas split 14/14/13. `floor(n/3)` leaves 8 rows unexplained across
+  the corpus and `ceil(n/3)` leaves 2; NTILE leaves 0.
+- The latest period is the one whose coverage **ends last and has at least one usable value**.
+  Measure 1128 publishes a complete 59-row CD set for 2022 in which every value is null — "latest
+  period present at this geotype" renders that indicator empty on all 59 pages with no error.
+- `DisplayValue` **already carries its footnote marker** ("43.7\*", and "^^" on measure 86, so the
+  markers are not all asterisks). It is emitted verbatim; the one case needing work is a
+  suppressed row, whose DisplayValue is the bare marker and which the payload prefixes "N/A" to.
+
+**48 of 34,398 rows cannot be matched by any implementation and are scored separately.** Tertiles
+split by position, so a run of tied values straddling a boundary lands in two tertiles, and which
+area falls on which side is not a function of any field in the data — the payloads order such ties
+inconsistently between measures. Reproducing that split rather than giving a tie group one tertile
+was decided 2026-09-11; on NDHR's own data it affects 38 rows of 1,062, 24 of them on the Heat
+Vulnerability Index, whose integer 1–5 score ties heavily.
+
+**Seven rows are a named allowance, not a tolerance.** They are exact half-way values (99.95,
+2.05, 22.05) where the payload rounds the other way, and they cluster on measures 687, 755 and 645
+against 221 and 1128 — two upstream pipelines rounding differently. `toFixed` agrees with the
+payload on 2,598 of 2,603 area values and `DisplayValue` on 2,171, so the first is the rule and
+these are its residual. Each is listed row by row, and an entry that stops being needed fails the
+run, so the list cannot quietly absorb a later regression.
+
+**The first control battery was a single arm and it was dead.** It removed NTILE's remainder
+distribution — and every NR section has exactly 42 areas, which divides by 3, so that branch never
+executes. It returned 0 against a run that was in fact correct, and the harness refused to certify
+its own green result. Replaced by three arms that must each move something the data can see.
+
+**What the harness could not check, and what it found instead — the export gap route A has to
+close.** **10 measures the published payloads carry cannot be computed from what EHDP-data
+exports**, and they split into two shapes with different causes:
+
+- **Seven have no metadata entry and no data file**: 691, 2377, 640, 641, 642, 646 and 647 are
+  absent from `metadata.json` and their indicator data files 404. **The cause is an export gap,
+  not a retirement** — per Chris 2026-09-11, the database holds data that is exported into the
+  neighborhood-report payloads but not exported as indicators, and closing that is a prerequisite
+  for route A. Worth stating because the observation alone cannot tell the two apart: the harness
+  sees only current state, so "absent now" reads equally as "removed" and as "never published",
+  and only the author can say which.
+- **Two are exported but carry no usable UHF42 row**: 625 and 1284 are in `metadata.json` with
+  data files that fetch. Whether that is the same gap at geography granularity or a separate
+  cause is **not established** — it is a different fix if it is different.
+
+Four more sections have no published payload to compare against at all (the PM2.5 and ozone
+health-burden pairs, 404 on both reports).
+
+**Three NDHR facts for Task 7.** Measure 822 (Heat Vulnerability Index) publishes at CDTA2020
+**only** — no Borough, no Citywide row — so its card can carry a tertile sentence but no borough
+or citywide comparison. Measure 781 renders "N/A\*\*" on the 21 community districts PUMA2020 does
+not cover, which is the gap accepted on 2026-09-11 rather than a failure. And `area_count` varies
+by row on one page — 59 at CD and CDTA2020, 35 or 52 at PUMA2020 — so "than most neighborhoods"
+is comparing against different-sized sets within one report.
 
 ---
 
