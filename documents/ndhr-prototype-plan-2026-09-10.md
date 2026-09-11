@@ -44,9 +44,16 @@ Leaflet selector and the Vega choropleth respectively.
 
 CDTA2020-sourced indicators (HVI 2191, public bathrooms 2457) are shown on their matching CD.
 The crosswalk is derived, not authored: both `Name` strings in `GeoLookup.json` carry a
-`(CD n)` suffix and a borough, and parsing those joins the two sets **59 to 59 with no leftover
-on either side** `[verified 2026-09-10: parsed (borough, CD number) out of all 59 CD and all 59
-CDTA2020 rows of GeoLookup.json; 59 matched, CD-only set empty, CDTA-only set empty]`.
+`(CD n)` suffix and a borough, and **every row of the generated `cdlist.json` pairs a CD with the
+CDTA of the same borough and number, 59 of 59** `[verified 2026-09-11: per-pair check — for each
+row, `CD_id` and `CDTA_id` resolved through GeoLookup names to the same (borough, CD number)]`.
+
+**That per-pair form is the claim; set equality is not.** An earlier version of this bracket cited
+"59 matched, CD-only set empty, CDTA-only set empty", which compares the two geotypes' *key sets*
+and never reads the generated pairing at all — so it holds at 59/59 under any permutation of the
+assignment. Rotating CDTA ids between two boroughs leaves set equality at 59/59 while the per-pair
+check drops to 53 (Brooklyn ↔ Staten Island) and 35 (Manhattan ↔ Bronx), which is what makes the
+per-pair run a measurement rather than a restatement `[both controls run 2026-09-11]`.
 
 CD and CDTA2020 are not identical polygons. The page must say which geography each value came
 from — see Task 7.
@@ -505,8 +512,15 @@ assets/js/data-explorer and assets/js/nr-report, excluding minified vendor bundl
 trap into a working convenience. **De-prioritised, not dropped, 2026-09-11**: with an explicit
 CD-to-CDTA map committed here (below), nothing in this repo is waiting on a renumbering, so the
 case for doing it upstream is convenience for other consumers rather than anything NDHR needs.
-NTA2020 and CDTA2020 would have to move together to keep the nesting. If it is ever done, the
-geometry and the data must move together
+NTA2020 and CDTA2020 would have to move together to keep the nesting. **It now has a plan of its
+own upstream**: `EHDP-data/documents/geoid-borocode-migration.md` on branch
+`hotfix-CDTA2020-codes`, scoped to CDTA2020 and NTA2020 with NTA2010 staying on FIPS, and reading
+"nothing started, not urgent, not blocking" as of 2026-09-11. Its measurements and this section's
+agree independently — 27 NTA2010/CD collisions under `BoroCode`, 0 for NTA2020 either way, 197/197
+nesting under both schemes. **And EHDP-data has deliberately not published a crosswalk file**, on
+the grounds that `cdlist.json` is its only consumer and a renumbering would reduce any upstream
+copy to an identity map; `geography/README.md` documents the name-parse instead. If it is ever
+done, the geometry and the data must move together
 or the CDTA choropleth matches nothing and draws unfilled — `CDTA2020.topo.json`,
 `CDTA_2020.topo.json`, `GeoLookup.json`, `GeoLookup.csv` and the 33 indicators publishing
 CDTA2020. **No site code changes**: every CDTA reference under `assets/`, `themes/` and `content/`
@@ -520,8 +534,9 @@ not a rule about id construction `[verified 2026-09-11: 59 rows, zero null, 59 d
 CDTA 6101, working tree clean for that path at `c3d03a2fbf`]`. The crosswalk behind it parses
 `(borough, CD number)` out of both `Name`
 strings, which is correct under either id scheme and depends on no id convention at all
-`[verified 2026-09-10: 59 of 59 matched, zero unparsed, zero leftover either side, pairs
-spot-checked by name in all five boroughs]`. If the ids are ever corrected,
+`[verified 2026-09-11: per-pair, 59 of 59 — see DECIDED-2 for the check and its two permutation
+controls; the set-equality figure this bracket used to cite could not have seen a mispairing]`.
+If the ids are ever corrected,
 `npm run ndhr:cdlist check` reports 59 changed `CDTA_id` values — re-run `build`, and do **not**
 switch the join to `GeoID`.
 
