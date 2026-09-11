@@ -1,0 +1,402 @@
+{
+    "capturedAt": "2026-09-10T23:39:18.235Z",
+    "gitHead": "288ad51a1147550df0dfe10f1e98484cde3710d2",
+    "environment": "production",
+    "dataBranch": "production",
+    "metadataUrl": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/indicators/metadata/metadata.json",
+    "indicatorCount": 267,
+    "rows": [
+        {
+            "category": "Climate & Active Design",
+            "label": "Walking distance to a park",
+            "soughtName": "Walking distance to a park",
+            "metadataName": "Walking distance to a park",
+            "indicatorId": 2388,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2010",
+                "NTA2020",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Climate & Active Design",
+            "label": "Walking distance to a subway station",
+            "soughtName": "Walking distance to a subway station",
+            "metadataName": "Walking distance to a subway station",
+            "indicatorId": 2391,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "UHF42"
+            ],
+            "bucket": "uhf42-only"
+        },
+        {
+            "category": "Climate & Active Design",
+            "label": "Walkability index",
+            "soughtName": "Walkability index",
+            "metadataName": "Walkability index",
+            "indicatorId": 2133,
+            "geoTypes": [
+                "UHF42"
+            ],
+            "bucket": "uhf42-only"
+        },
+        {
+            "category": "Climate & Active Design",
+            "label": "Heat Vulnerability Index",
+            "soughtName": "Heat vulnerability index",
+            "metadataName": "Heat vulnerability index",
+            "indicatorId": 2191,
+            "geoTypes": [
+                "CDTA2020"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Climate & Active Design",
+            "label": "Households with air conditioning",
+            "soughtName": "Household air conditioning",
+            "metadataName": "Household air conditioning",
+            "indicatorId": 2185,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "PUMA2010",
+                "PUMA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "puma-subboro"
+        },
+        {
+            "category": "Climate & Active Design",
+            "label": "Households w/ electric medical equipment",
+            "soughtName": "Households using electric medical equipment",
+            "metadataName": "Households using electric medical equipment",
+            "indicatorId": 2377,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "PUMA2010",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "puma-subboro"
+        },
+        {
+            "category": "Housing",
+            "label": "Household crowding",
+            "soughtName": "Household crowding",
+            "metadataName": "Household crowding",
+            "indicatorId": 15,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2010",
+                "NTA2020",
+                "PUMA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Housing",
+            "label": "Homes with 3+ housing problems",
+            "soughtName": "Homes with 3+ housing problems",
+            "metadataName": "Homes with 3+ housing problems",
+            "indicatorId": 45,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "PUMA2010",
+                "PUMA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "puma-subboro"
+        },
+        {
+            "category": "Housing",
+            "label": "Homes with cockroaches",
+            "soughtName": "Homes with cockroaches",
+            "metadataName": "Homes with cockroaches",
+            "indicatorId": 107,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "PUMA2010",
+                "PUMA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "puma-subboro"
+        },
+        {
+            "category": "Housing",
+            "label": "Rent burdened households",
+            "soughtName": "Rent-burdened households",
+            "metadataName": "Rent-burdened households",
+            "indicatorId": 2336,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2010",
+                "NTA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Housing",
+            "label": "Independent living difficulty",
+            "soughtName": "Independent living difficulty (adults)",
+            "metadataName": "Independent living difficulty (adults)",
+            "indicatorId": 2145,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2010",
+                "NTA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Housing",
+            "label": "Evictions (court-ordered)",
+            "soughtName": "Evictions (court-ordered)",
+            "metadataName": "Evictions (court-ordered)",
+            "indicatorId": 2365,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2010",
+                "NTA2020",
+                "Subboro",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Vegetative cover",
+            "soughtName": "Vegetative cover",
+            "metadataName": "Vegetative cover",
+            "indicatorId": 2143,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide",
+                "NTA2010",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Violence-related ED visits (all ages)",
+            "soughtName": "Violence-related emergency department visits (all ages)",
+            "metadataName": "Violence-related emergency department visits (all ages)",
+            "indicatorId": 2400,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Perception of neighborhood safety",
+            "soughtName": "Perception of neighborhood safety",
+            "metadataName": "Perception of neighborhood safety",
+            "indicatorId": 2073,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "UHF34",
+                "UHF42"
+            ],
+            "bucket": "uhf42-only"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Public bathroom availability",
+            "soughtName": "Public bathroom availability",
+            "metadataName": "Public bathroom availability",
+            "indicatorId": 2457,
+            "geoTypes": [
+                "Borough",
+                "CDTA2020",
+                "Citywide",
+                "NTA2020",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Unhealthy food access",
+            "soughtName": "Unhealthy food access",
+            "metadataName": "Unhealthy food access",
+            "indicatorId": 2389,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Displacement risk",
+            "soughtName": null,
+            "metadataName": null,
+            "indicatorId": null,
+            "geoTypes": [],
+            "bucket": "not-found"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "School absenteeism",
+            "soughtName": "School absenteeism",
+            "metadataName": "School absenteeism",
+            "indicatorId": 2323,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Litter basket coverage",
+            "soughtName": "Litter basket coverage",
+            "metadataName": "Litter basket coverage",
+            "indicatorId": 2416,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "CDTA2020",
+                "Citywide",
+                "NTA2020",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Neighborhood Conditions",
+            "label": "Social cohesion",
+            "soughtName": null,
+            "metadataName": null,
+            "indicatorId": null,
+            "geoTypes": [],
+            "bucket": "not-found"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Maternal mortality",
+            "soughtName": null,
+            "metadataName": null,
+            "indicatorId": null,
+            "geoTypes": [],
+            "bucket": "not-found"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Heat stress: yearly ED visits",
+            "soughtName": "Heat stress: yearly emergency department visits",
+            "metadataName": "Heat stress: yearly emergency department visits",
+            "indicatorId": 2075,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Premature mortality",
+            "soughtName": "Premature mortality",
+            "metadataName": "Premature mortality",
+            "indicatorId": 2322,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Psychiatric hospitalizations",
+            "soughtName": "Psychiatric hospitalizations (adults)",
+            "metadataName": "Psychiatric hospitalizations (adults)",
+            "indicatorId": 2418,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "UHF42"
+            ],
+            "bucket": "uhf42-only"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Premature mortality attributed to drug use",
+            "soughtName": null,
+            "metadataName": null,
+            "indicatorId": null,
+            "geoTypes": [],
+            "bucket": "not-found"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Asthma ED visits (age 5 to 17)",
+            "soughtName": "Asthma emergency department visits (age 5 to 17)",
+            "metadataName": "Asthma emergency department visits (age 5 to 17)",
+            "indicatorId": 2379,
+            "geoTypes": [
+                "Borough",
+                "CD",
+                "Citywide",
+                "UHF42"
+            ],
+            "bucket": "cd-family"
+        },
+        {
+            "category": "Health Outcomes & Care Access",
+            "label": "Health insurance (adults)",
+            "soughtName": "Health insurance (adults)",
+            "metadataName": "Health insurance (adults)",
+            "indicatorId": 2132,
+            "geoTypes": [
+                "Borough",
+                "Citywide",
+                "UHF34",
+                "UHF42"
+            ],
+            "bucket": "uhf42-only"
+        }
+    ]
+}

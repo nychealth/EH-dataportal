@@ -51,7 +51,7 @@ environment's `baseURL` path, so `development` serves under `/dev-prod/` and `de
 
 ## Guardrails
 
-Eighteen npm scripts, run from the repo root. **No two of them see the same thing**, which is
+Nineteen npm scripts, run from the repo root. **No two of them see the same thing**, which is
 why a change to a shared template wants more than one: `lint` catches an undefined name without
 loading a page; `smoke` runs the site's JavaScript and fails on a console error;
 `characterize:site` compares rendered *structure* and deliberately does not gate on console
@@ -301,6 +301,20 @@ on a branch mismatch.
 ### Data explorer harness
 
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
+
+### NDHR indicator availability
+
+- `npm run ndhr:availability [print|baseline|check] [environment]` — re-derives which of the
+  28 NDHR indicators are published at community-district geography, from the indicator
+  metadata EHDP-data publishes at indicators/metadata/metadata.json — fetched at the
+  environment's own `data_branch` (`scripts/ndhr-indicator-availability.mjs`). It exists
+  because `documents/ndhr-prototype-plan-2026-09-10.md` §3 scopes the prototype off a table
+  that EHDP-data can move under it. **Positional arguments only** — on PowerShell,
+  `npm run ndhr:availability -- --check` reaches the script with no arguments at all, prints
+  the table and exits 0, which reads exactly like a check that passed
+  `[verified 2026-09-10: measured in both shells]`. Two controls gate every mode including
+  `baseline`: 2143 must report CD and 2133 must not, which separates an empty fetch from
+  bucket logic that says yes to everything.
 
 ### Four ways a local check silently lies
 
