@@ -1,0 +1,76 @@
+# Per-category metadata for the five Neighborhood Development Health Report categories.
+#
+# The NDHR analogue of data/globals/NR_topics.yml, and the same division of labour:
+# this file is page metadata, and data/globals/NDHR_content/<key>.yml is the
+# indicator spec. The content adapter (content/ndhr/_content.gotmpl, Task 5) crosses
+# this file with data/globals/cdlist.json to generate 295 report pages, 59 community
+# district indexes and 5 category indexes.
+#
+# An array, not a map, so menu order is fixed here rather than falling out of Hugo's
+# key sort. The order is documents/ndhr-prototype-plan-2026-09-10.md §2's table order.
+#
+# `key` is the join key: it names a file in data/globals/NDHR_content/, and it is what
+# each generated page carries as `content_yml`.
+#
+# `slug` is the URL segment, under /ndhr/<cd-slug>/<slug>/. Hyphens, where NR_topics
+# uses underscores — NR's slugs reproduce URLs already indexed and this section has
+# none yet, so it is a free choice rather than a compatibility one.
+#
+# Summaries are the header descriptions from
+# documents/NDHR/Text of Neighborhood Development Health Report Tool for Revi.docx,
+# section "Headers and Header Description", read with its tracked changes ACCEPTED.
+# Reading that file with changes flattened yields text carrying both the insertions
+# and the deletions, which parses as prose and is not what the author wrote.
+
+- key: climate_and_active_design
+  slug: climate-and-active-design
+  title: "Climate and Active Design"
+  menu_label: "Climate & Active Design"
+  seo_short_name: "Climate and Active Design"
+  seo_long_name: "Climate and Active Design — Neighborhood Development Health Report"
+  summary: "Climate change is driving higher temperatures and more frequent and intense rainfall and storms. Approximately 500 New Yorkers die from heat each summer. Active design is an approach to creating streets, buildings and neighborhoods that promote the physical and mental health and well-being of residents."
+
+# TODO (source document, not site work): the Housing header description carries an
+# unresolved authoring note — "[Also add language about housing affordability,
+# stability, and accessibility]". The bracket is deliberately not reproduced below;
+# the summary is what the document actually says today.
+- key: housing
+  slug: housing
+  title: "Housing"
+  menu_label: "Housing"
+  seo_short_name: "Housing"
+  seo_long_name: "Housing — Neighborhood Development Health Report"
+  summary: "Safe, quality housing is a primary driver of health. For example, the presence of pests can exacerbate asthma."
+
+- key: neighborhood_conditions
+  slug: neighborhood-conditions
+  title: "Neighborhood Conditions"
+  menu_label: "Neighborhood Conditions"
+  seo_short_name: "Neighborhood Conditions"
+  seo_long_name: "Neighborhood Conditions — Neighborhood Development Health Report"
+  summary: "Neighborhood conditions include amenities available for public use by those living in the neighborhood, design of public spaces that create a sense of safety, and unique characteristics that gives a community a sense of identity. These conditions reflect policies and investment that contribute to the overall mental and physical health of community members."
+
+# The header description below is REPAIRED, not transcribed. Accepting the document's
+# tracked changes leaves "...across the city,and its availability  can encourage more
+# preventive care", where the deletion removed the noun phrase the sentence needs. The
+# missing phrase is restored from the other source document, "2026 Neighborhood
+# Development Health Report.docx", which carries the same sentence intact.
+- key: health_outcomes_and_care_access
+  slug: health-outcomes-and-care-access
+  title: "Health Outcomes and Care Access"
+  menu_label: "Health Outcomes & Care Access"
+  seo_short_name: "Health Outcomes and Care Access"
+  seo_long_name: "Health Outcomes and Care Access — Neighborhood Development Health Report"
+  summary: "Health care access is not equally distributed across the city, and the availability of affordable health-related facilities in a community can encourage more preventive care. Variable access to healthcare facilities contributes to disparities between communities in death rates from chronic diseases and maternal health outcomes."
+
+# Zero indicators at community-district geography — see the plan's DECIDED-7. The
+# category is deliberately present: its content file carries an `empty_state` string
+# and an empty indicator list, so a page that renders nothing is distinguishable from
+# a template that dropped the rows.
+- key: mental_health
+  slug: mental-health
+  title: "Mental Health"
+  menu_label: "Mental Health"
+  seo_short_name: "Mental Health"
+  seo_long_name: "Mental Health — Neighborhood Development Health Report"
+  summary: "The quality of housing (e.g., lighting and density), landscape environment (e.g., green spaces), and community service facilities all can influence residents’ mental health. Additionally, environmental risk factors such as coastal storms, flooding, heat, and other disasters contribute to the stress experienced by residents."

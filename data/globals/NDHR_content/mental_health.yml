@@ -1,0 +1,20 @@
+# Mental Health — indicator spec for the NDHR report page.
+# Field contract, shape and sources: see the header of climate_and_active_design.yml.
+#
+# This category renders with NO indicator rows on all 59 pages, per DECIDED-7. Every
+# mental-health indicator EHDP-data publishes is UHF42-only — depression (2417),
+# psychiatric hospitalizations (2418), serious psychological distress (2419) — and
+# the two source documents list no indicators under this heading at all.
+#
+# `empty_state` is REQUIRED here rather than optional, and an empty `measures` list
+# is written out rather than omitted. A category that silently renders nothing is
+# indistinguishable from a template bug that dropped the rows; a stated absence is
+# not. Task 7 renders this string.
+
+report_topics:
+
+  - report_topic: Mental Health
+    report_topic_description: null
+    measures: []
+
+empty_state: "No community district data is published for these measures yet. The Health Department publishes its mental health indicators at a larger neighborhood geography, so they cannot be shown for a single community district."

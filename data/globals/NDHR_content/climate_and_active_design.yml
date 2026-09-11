@@ -1,0 +1,79 @@
+# Climate and Active Design — indicator spec for the NDHR report page.
+#
+# The NDHR analogue of data/globals/NR_content/*.yml, and it keeps that file's shape
+# and its key naming: `report_topics` holds named subsections, each carrying the
+# measures it shows. NDHR forks the NR presentation (DECIDED-5) and the NR templates
+# are the ones already known to work, so the data they read keeps its form.
+#
+# ONE SUBSECTION PER FILE, and that is a consequence of the shape rather than a
+# decision the source documents made. Neither NDHR document groups indicators below
+# the five categories, so each file carries a single `report_topic` named after its
+# category, and `report_topic_description` is null — the category's own header
+# description lives in data/globals/NDHR_categories.yml and is not repeated here.
+# Adding real subsections later is adding entries to this list.
+#
+# Three fields NR_content does not carry, each deliberate:
+#
+#   - `indicator_short_name`, the bold card headline, because no upstream source has
+#     one — EHDP-data metadata carries only the long form, and the curated
+#     nr_indicator_names.json has no short-name column
+#   - `geotype`, the geography the value is READ AT. NR needs no such field because
+#     every NR row is UHF42; NDHR reads three rows at PUMA2020 and two at CDTA2020
+#     (DECIDED-10), and several of these measures publish at more than one geography,
+#     so it cannot be implicit
+#   - `strategy` and `strategy_description`, site-owned content with no EHDP-data
+#     equivalent
+#
+# `MeasureID` is the join key, as in NR_content: MeasureIDs are unique across the
+# whole of EHDP-data and name exactly one series, where an IndicatorID names a family
+# of them ("Number", "Percent", "Age-adjusted rate") whose values are not
+# interchangeable. `IndicatorID` rides alongside because it is what locates the
+# file — EHDP-data publishes indicators/data/<IndicatorID>.json and MeasureID is a
+# column inside it — so the pair is two different jobs, not a duplication.
+#
+# `MeasureName` is the exact EHDP-data name. It is here so an author editing strategy
+# text can see which series they are on, and it is checked rather than decorative:
+# `node scripts/ndhr-indicator-availability.mjs check` fails when the measure does not
+# sit under the declared indicator, when the name disagrees, or when the measure does
+# not publish at the declared geotype.
+#
+# Strategy text is from "Text of Neighborhood Development Health Report Tool for
+# Revi.docx", section "Strategies and Strategy Description", tracked changes
+# accepted.
+#
+# Not listed here, and deliberately: walking distance to a subway station (2391) and
+# walkability index (2133) are UHF42-only, and households using electric medical
+# equipment (2377) has no PUMA2020 data. See DECIDED-1 and DECIDED-10.
+
+report_topics:
+
+  - report_topic: Climate and Active Design
+    report_topic_description: null
+    measures:
+
+      - MeasureID: 1224
+        IndicatorID: 2388
+        MeasureName: "Park access, Percent"
+        indicator_short_name: "Park access"
+        geotype: CD
+        strategy: "Increase presence of parks or green spaces"
+        strategy_description: "Plans such as the Walk to a Park Initiative from the Parks Department seek to increase access to parks and greenspaces, including by partnering with public and private institutions."
+
+      - MeasureID: 822
+        IndicatorID: 2191
+        MeasureName: "Heat Vulnerability Index, Score"
+        indicator_short_name: "Heat vulnerability"
+        geotype: CDTA2020
+        strategy: "Increase shade, vegetation, or reflective surfaces to combat heat vulnerability"
+        strategy_description: "Combating individual exposure to heat requires access to air conditioning. On the community level, the Climate Resilience Design Guidelines recommend increasing shading, vegetation, and/or high solar reflected surfaces of spaces to decrease heat vulnerability."
+
+      # The with-AC framing, matching what the NR Climate report already shows (781).
+      # 1045 is the same data stated as households WITHOUT air conditioning, which
+      # would invert the tertile reading against every other row on the page.
+      - MeasureID: 781
+        IndicatorID: 2185
+        MeasureName: "Households with AC, Percent (with AC)"
+        indicator_short_name: "Air conditioning"
+        geotype: PUMA2020
+        strategy: "Increase access to cooling"
+        strategy_description: "Programs and planning/building design that provide air conditioning for households and lower energy bills can increase access to cooling."
