@@ -39,7 +39,20 @@ const TIME_PERIODS = "indicators/metadata/TimePeriods.json";
 const INDICATOR_METADATA = "indicators/metadata/metadata.json";
 const indicatorData = (id) => `indicators/data/${id}.json`;
 
+// Two vintages of the same relationship, and they are NOT interchangeable — see the
+// control that compares PUMA2010's merged groups against the demographic data, and the
+// note beside it. Never collapse these into one `PUMA_id`.
+const PUMA2020_CROSSWALK = "geography/puma2020_to_cd.csv";
+const PUMA2010_CROSSWALK = "geography/puma2010_to_subboro_cd.csv";
+
 const EXPECTED_CD_COUNT = 59;
+
+// Each crosswalk is 59 CD rows resolving to 55 areas, because four PUMAs cover two CDs
+// each. True of PUMA2010, PUMA2020 and Subboro alike `[verified 2026-09-11: all three
+// key columns matched their own geography type's GeoID set in GeoLookup.json, 55 of 55,
+// none missing and none extra]` — which is also why this count cannot tell the two
+// vintages apart, and why the merged-group control below exists.
+const EXPECTED_PUMA_COUNT = 55;
 
 // The five NR sidebar rows that exist as EHDP indicators at CD. Each resolves to
 // its indicator's single `Percent` measure — read off metadata rather than hard-coded,
@@ -73,10 +86,18 @@ const ACS_FIELDS = ["TotalPopulation", "PercentOver65", "PercentUnder18"];
 // each geotype's geometry, GeoLookup rows and indicator data agree with each other,
 // which is the only thing an arbitrary internal key has to do.
 //
-// It looks like it ought to work because it was meant to. EHDP-data's
-// geography/create_TopoJSON.r:279-283 concatenates CountyFIPS where BoroCode was
-// intended; under BoroCode the CDTA ids would equal the CD ids exactly, 59 of 59
-// `[per the export code's author 2026-09-10: a mistake, not a convention]`.
+// It looks like it ought to work because under the other available scheme it would.
+// EHDP-data's geography/create_TopoJSON.r:279-283 concatenates CountyFIPS rather than
+// BoroCode; under BoroCode the CDTA ids would equal the CD ids exactly, 59 of 59.
+//
+// That is a pattern carried forward, not a slip. The same construction appears at :329
+// for NTA2010 and :381 for NTA2020, and at NTA2010 the FIPS prefix bought something
+// real — under BoroCode, 27 of the 195 NTA2010 ids would have collided with a CD id
+// `[verified 2026-09-11: reconstructed from GeoLookup.json and intersected]`. NTA2020
+// and CDTA2020 then followed the established pattern. By then it had expired: NTA2020's
+// four-digit unit numbers cannot collide with a CD id either way, and the NTA-under-CDTA
+// nesting holds 197 of 197 under both schemes. So the cost lands entirely on
+// CDTA-against-CD, which is this file's problem and nobody else's.
 //
 // If those ids are ever corrected, `check` reports 59 changed CDTA_id values — re-run
 // `build`, and do NOT switch this to a GeoID join. The name parse is correct under
@@ -141,6 +162,43 @@ const getJson = async (base, path) => {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`${res.status} ${res.statusText} from ${url}`);
     return res.json();
+};
+
+// The two PUMA crosswalks are the only CSV sources here: a plain header, integer cells,
+// no quoting or embedded commas, so a CSV library would be more machinery than the
+// format warrants. What it would buy — noticing a malformed row instead of coercing it —
+// is bought here instead by asserting the header, every row's width, and every cell's
+// integer-ness, since a quietly mis-parsed id is precisely the failure this file exists
+// to prevent.
+const getCsv = async (base, path, expectedColumns) => {
+
+    const url = `${base}${path}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText} from ${url}`);
+
+    const lines = (await res.text()).trim().split(/\r?\n/);
+    if (lines.length < 2) throw new Error(`${path} has ${lines.length} line(s), so no data rows`);
+
+    const header = lines[0].split(",").map((h) => h.trim());
+    if (header.join(",") !== expectedColumns.join(",")) {
+        throw new Error(`${path} header is "${header.join(",")}", expected "${expectedColumns.join(",")}"`);
+    }
+
+    return lines.slice(1).map((line, i) => {
+
+        const cells = line.split(",").map((c) => c.trim());
+        if (cells.length !== header.length) {
+            throw new Error(`${path} line ${i + 2} has ${cells.length} cell(s), expected ${header.length}: ${JSON.stringify(line)}`);
+        }
+
+        return Object.fromEntries(header.map((h, j) => {
+            const n = Number(cells[j]);
+            if (!Number.isInteger(n)) throw new Error(`${path} line ${i + 2}: ${h} is ${JSON.stringify(cells[j])}, not an integer id`);
+            return [h, n];
+        }));
+
+    });
+
 };
 
 // EHDP-data's geography and indicator files are COLUMN-oriented: an object of equal
@@ -212,7 +270,7 @@ const latestPeriod = (periodIds, periodsById, what) => {
 
 };
 
-const buildRows = ({ geoLookup, periods, metadata, demographicData }) => {
+const buildRows = ({ geoLookup, periods, metadata, demographicData, crosswalks }) => {
 
     const periodsById = new Map(periods.map((p) => [p.TimePeriodID, p]));
 
@@ -233,6 +291,31 @@ const buildRows = ({ geoLookup, periods, metadata, demographicData }) => {
         const k = crosswalkKey(r);
         if (cdtaByKey.has(k)) throw new Error(`two CDTA2020 rows parse to the same (borough, CD number) ${k}`);
         cdtaByKey.set(k, r);
+    }
+
+    // --- the PUMA crosswalks --------------------------------------------- //
+
+    // Keyed on CD, not on PUMA, because CD is the page's geography and every CD appears
+    // exactly once in each file. Unlike CDTA above, these are joined on ids rather than
+    // parsed from names: the CD column carries DCP BoroCode ids that ARE CD's own GeoID
+    // values, and PUMA names carry no "(CD n)" suffix to parse in the first place
+    // `[verified 2026-09-11: PUMA2020 GeoLookup names are "Lower East Side & Chinatown"
+    // and the like; both files' CD columns matched the published CD GeoID set exactly,
+    // 59 of 59 in both directions]`. That is a join within the crosswalk's own declared
+    // key space, not the cross-geotype GeoID join the comment on CD_NUMBER forbids.
+    const pumaByCd = new Map();
+
+    for (const r of crosswalks.puma2020) {
+        if (pumaByCd.has(r.CD)) throw new Error(`${PUMA2020_CROSSWALK} lists CD ${r.CD} more than once`);
+        pumaByCd.set(r.CD, { PUMA2020_id: r.PUMA2020 });
+    }
+
+    for (const r of crosswalks.puma2010) {
+        const hit = pumaByCd.get(r.CD);
+        if (!hit) throw new Error(`${PUMA2010_CROSSWALK} has CD ${r.CD}, which is not in ${PUMA2020_CROSSWALK}`);
+        if (hit.PUMA2010_id !== undefined) throw new Error(`${PUMA2010_CROSSWALK} lists CD ${r.CD} more than once`);
+        hit.PUMA2010_id = r.PUMA2010;
+        hit.Subboro_id = r.Subboro;
     }
 
     // --- the demographic fields ------------------------------------------ //
@@ -270,13 +353,20 @@ const buildRows = ({ geoLookup, periods, metadata, demographicData }) => {
     const rows = cdRows.map((cd) => {
 
         const cdta = cdtaByKey.get(crosswalkKey(cd));
+        const puma = pumaByCd.get(cd.GeoID) ?? {};
 
+        // PUMA2020_id is the one the report reads (plan DECIDED-10). The other two ride
+        // along at no extra cost — Subboro shares a file with PUMA2010 — and keep open
+        // the one option that would return indicator 2377, which has no PUMA2020 rows.
         const row = {
             CD_id: cd.GeoID,
             CD_name: cd.Name,
             page_name: slugify(cd.Name),
             borough: cd.Borough,
-            CDTA_id: cdta ? cdta.GeoID : null
+            CDTA_id: cdta ? cdta.GeoID : null,
+            PUMA2020_id: puma.PUMA2020_id ?? null,
+            PUMA2010_id: puma.PUMA2010_id ?? null,
+            Subboro_id: puma.Subboro_id ?? null
         };
 
         for (const f of ACS_FIELDS) row[f] = null;
@@ -307,6 +397,24 @@ const buildRows = ({ geoLookup, periods, metadata, demographicData }) => {
 // Recorded rather than corrected — it is upstream. It matters downstream because the
 // sidebar shows Manhattan CD1 and CD2 as identical, and a reader comparing two
 // neighbouring districts reads that as a bug unless the page says otherwise.
+// The CD groups that share one value of `field` — the crosswalk's own account of which
+// districts are reported together, as against mergedAreas() below, which reads the same
+// structure off the published values instead. Comparing the two is the whole point.
+const groupsSharing = (rows, field) => {
+
+    const byValue = new Map();
+    for (const r of rows) {
+        if (!byValue.has(r[field])) byValue.set(r[field], []);
+        byValue.get(r[field]).push(r.CD_id);
+    }
+
+    return [...byValue.values()].filter((g) => g.length > 1);
+
+};
+
+// Sorted and joined so two groupings compare as strings regardless of row order.
+const groupKey = (cdIds) => [...cdIds].sort((a, b) => a - b).join("+");
+
 const mergedAreas = (rows) => {
 
     const byTuple = new Map();
@@ -358,6 +466,50 @@ const runControls = ({ rows, demographics }) => {
         if (missing.length) failures.push(`${d.field} is null on ${missing.length} of ${rows.length} rows (${d.name}, ${d.period.TimePeriod})`);
     }
 
+    // --- the PUMA crosswalk columns --------------------------------------- //
+
+    for (const field of ["PUMA2020_id", "PUMA2010_id", "Subboro_id"]) {
+
+        const missing = rows.filter((r) => r[field] === null);
+        if (missing.length) {
+            failures.push(`${field} is null on ${missing.length} of ${rows.length} rows: ${missing.map((r) => r.CD_name).join(", ")}`);
+            continue;
+        }
+
+        const distinct = new Set(rows.map((r) => r[field])).size;
+        if (distinct !== EXPECTED_PUMA_COUNT) {
+            failures.push(`${field} resolves to ${distinct} distinct values across ${rows.length} CDs, expected ${EXPECTED_PUMA_COUNT}`);
+        }
+
+    }
+
+    // THE control that can tell the two vintages apart — and the reason the three above
+    // cannot. Both crosswalks are 59 CD rows resolving to 55 areas with four merged
+    // pairs, so every count, null check and distinctness check passes identically under
+    // either. What separates them is WHICH districts they merge: PUMA2010 merges
+    // Manhattan CD4+CD5 and leaves CD6 alone, PUMA2020 merges CD5+CD6 and leaves CD4
+    // alone, and the other three merged pairs are the same in both.
+    //
+    // EHDP-data's CD-level demographic indicators are published on the PUMA2010
+    // structure, and mergedAreas() recovers that structure from the values themselves —
+    // so this compares the crosswalk against data computed without reference to it,
+    // rather than restating the file back to itself.
+    //
+    // A swap is correct on 56 of 59 districts, all three errors in one borough, which is
+    // the shape a spot check anywhere else passes `[verified 2026-09-11: the two files'
+    // merged groups differ only in Manhattan; the same comparison against PUMA2020
+    // returns false, so this control discriminates rather than merely firing]`.
+    const fromData = new Set(mergedAreas(rows).map((g) => groupKey(g.map((r) => r.CD_id))));
+    const fromCrosswalk = new Set(groupsSharing(rows, "PUMA2010_id").map(groupKey));
+    const sameGrouping = fromData.size === fromCrosswalk.size && [...fromData].every((k) => fromCrosswalk.has(k));
+
+    if (!sameGrouping) {
+        failures.push(
+            `PUMA2010_id merges CD groups [${[...fromCrosswalk].join(", ") || "none"}], but the demographic data reports ` +
+            `[${[...fromData].join(", ") || "none"}] as one area. Either the two crosswalk vintages were swapped ` +
+            `(PUMA2020 merges 105+106 where PUMA2010 merges 104+105), or EHDP-data changed which districts it reports together.`);
+    }
+
     // The inverse control for the ACS gap: if a source is ever found, these stop being
     // null and this line is the reminder to delete the control rather than the finding.
     const acsFilled = ACS_FIELDS.filter((f) => rows.some((r) => r[f] !== null));
@@ -388,6 +540,17 @@ const report = ({ rows, demographics }) => {
     const distinct = rows.length - merged.reduce((n, g) => n + g.length - 1, 0);
     console.log(`\nReported as one area (identical on all five fields): ${merged.length} group(s), so ${rows.length} rows carry ${distinct} distinct measurements.`);
     for (const g of merged) console.log(`  ${g.map((r) => `${r.borough} ${r.CD_name}`).join("  ==  ")}`);
+
+    // Printed because no control reads which vintage the report consumes — the controls
+    // check that PUMA2010 agrees with the demographic data, which is a different claim.
+    const distinctIn = (field) => new Set(rows.map((r) => r[field])).size;
+    console.log(`\nPUMA2020 — what the report reads (DECIDED-10): ${distinctIn("PUMA2020_id")} distinct across ${rows.length} CDs.`);
+    for (const g of groupsSharing(rows, "PUMA2020_id")) {
+        console.log(`  one PUMA2020 covers CD ${g.join(" and CD ")}`);
+    }
+    console.log(`  Also emitted, unread by the report: PUMA2010_id (${distinctIn("PUMA2010_id")} distinct), Subboro_id (${distinctIn("Subboro_id")} distinct).`);
+    console.log("  The sidebar's demographics are on the PUMA2010 merge structure, so the two disagree in Manhattan.");
+    console.log("  Task 7 must label BOTH, not only the PUMA rows.");
 
     console.log(`\n  ACS fields (${ACS_FIELDS.join(", ")}): null on all ${rows.length} rows.`);
     console.log("  No EHDP-data source exists at CD. Task 7 must render a null as absent, never as 0.");
@@ -432,6 +595,11 @@ async function main() {
         const demographicDocs = await Promise.all(
             DEMOGRAPHIC_FIELDS.map((d) => getJson(base, indicatorData(d.indicatorId))));
 
+        const [puma2020, puma2010] = await Promise.all([
+            getCsv(base, PUMA2020_CROSSWALK, ["PUMA2020", "CD"]),
+            getCsv(base, PUMA2010_CROSSWALK, ["PUMA2010", "Subboro", "CD"])
+        ]);
+
         // Unlike the geography and indicator-data files, metadata.json is a plain array
         // of indicator records rather than a column table.
         if (!Array.isArray(metadataDoc) || metadataDoc.length === 0) throw new Error(`${INDICATOR_METADATA} is not a non-empty array of indicators`);
@@ -444,7 +612,8 @@ async function main() {
             geoLookup: expandColumns(geoDoc, GEO_LOOKUP),
             periods: expandColumns(periodsDoc, TIME_PERIODS),
             metadata,
-            demographicData
+            demographicData,
+            crosswalks: { puma2020, puma2010 }
         });
 
     } catch (err) {
@@ -486,6 +655,15 @@ async function main() {
             timePeriodId: d.period.TimePeriodID
         })),
         acsFieldsWithNoSource: ACS_FIELDS,
+        // Which file each PUMA column came from, and which one the report actually
+        // reads — the sidecar is where a later reader checks that without re-deriving it.
+        crosswalks: {
+            PUMA2020_id: PUMA2020_CROSSWALK,
+            PUMA2010_id: PUMA2010_CROSSWALK,
+            Subboro_id: PUMA2010_CROSSWALK,
+            readByTheReport: "PUMA2020_id",
+            demographicsAreOn: "PUMA2010_id"
+        },
         reportedAsOneArea: mergedAreas(built.rows)
     };
 
