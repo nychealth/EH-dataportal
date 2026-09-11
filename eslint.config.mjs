@@ -15,6 +15,7 @@ import { join } from "node:path";
 
 const DE_DIR = "assets/js/data-explorer";
 const NR_DIR = "assets/js/nr-report";
+const RD_DIR = "assets/js/report-data";
 
 // Names head.html, the loaded libraries, and the page templates inject into the
 // global scope. These aren't declared in the DE files, so the scan below won't
@@ -78,6 +79,17 @@ for (const name of DE_EXTERNAL_GLOBALS) {
 
 const nrGlobals = { ...scanDeclaredGlobals(NR_DIR), ...NR_EXTERNAL_GLOBALS };
 
+// The shared report-compute module. Only two names come from outside it, both injected by
+// head.html, and both are read through a `typeof` guard so the file also runs under Node
+// in scripts/report-data-parity.mjs — but the ternary's other branch is still a bare
+// reference, which `no-undef` sees.
+const RD_EXTERNAL_GLOBALS = {
+    data_repo: "readonly",
+    data_branch: "readonly"
+};
+
+const rdGlobals = { ...scanDeclaredGlobals(RD_DIR), ...RD_EXTERNAL_GLOBALS };
+
 export default [
     {
         files: ["assets/js/data-explorer/**/*.js"],
@@ -87,6 +99,20 @@ export default [
             globals: {
                 ...globals.browser,
                 ...deGlobals
+            }
+        },
+        rules: {
+            "no-undef": "error"
+        }
+    },
+    {
+        files: ["assets/js/report-data/**/*.js"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "script",
+            globals: {
+                ...globals.browser,
+                ...rdGlobals
             }
         },
         rules: {

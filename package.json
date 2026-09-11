@@ -12,7 +12,8 @@
         "url": "https://github.com/nychealth/EH-dataportal/issues"
     },
     "scripts": {
-        "lint": "eslint assets/js/data-explorer assets/js/nr-report",
+        "lint": "eslint assets/js/data-explorer assets/js/nr-report assets/js/report-data",
+        "report-data:parity": "node scripts/report-data-parity.mjs",
         "ndhr:availability": "node scripts/ndhr-indicator-availability.mjs",
         "ndhr:cdlist": "node scripts/ndhr-build-cdlist.mjs",
         "smoke": "node scripts/smoke-pages.mjs",
