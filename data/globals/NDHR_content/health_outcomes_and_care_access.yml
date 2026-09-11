@@ -8,32 +8,28 @@
 # All three rows are age-adjusted or annualized rather than counts, so that ranking
 # 59 community districts on them ranks the burden and not the population.
 
-report_topics:
+measures:
 
-  - report_topic: Health Outcomes and Care Access
-    report_topic_description: null
-    measures:
+  - MeasureID: 537
+    IndicatorID: 2075
+    MeasureName: "Heat ED visits, Age-adjusted rate"
+    indicator_short_name: "Heat stress"
+    geotype: CD
+    strategy: "Identify and develop a space to be a resilience hub, taking into consideration climate events such as flooding, cold or heat events"
+    strategy_description: "A resilience hub is a publicly accessible facility that serves as a trusted gathering place and connects the local community to resources before, during, or after a climate event. The Housing Preservation and Development Guidelines contains a description of the components of a resilience hub."
 
-      - MeasureID: 537
-        IndicatorID: 2075
-        MeasureName: "Heat ED visits, Age-adjusted rate"
-        indicator_short_name: "Heat stress"
-        geotype: CD
-        strategy: "Identify and develop a space to be a resilience hub, taking into consideration climate events such as flooding, cold or heat events"
-        strategy_description: "A resilience hub is a publicly accessible facility that serves as a trusted gathering place and connects the local community to resources before, during, or after a climate event. The Housing Preservation and Development Guidelines contains a description of the components of a resilience hub."
+  - MeasureID: 983
+    IndicatorID: 2322
+    MeasureName: "Death before 65, Age-adjusted rate"
+    indicator_short_name: "Premature mortality"
+    geotype: CD
+    strategy: "Create community spaces and recreation areas in developments to increase social cohesion"
+    strategy_description: "Creating community spaces and recreation areas increases social cohesion by facilitating regular positive social interaction, which strengthens trust and mutual support networks, leading to improved mental and physical health outcomes."
 
-      - MeasureID: 983
-        IndicatorID: 2322
-        MeasureName: "Death before 65, Age-adjusted rate"
-        indicator_short_name: "Premature mortality"
-        geotype: CD
-        strategy: "Create community spaces and recreation areas in developments to increase social cohesion"
-        strategy_description: "Creating community spaces and recreation areas increases social cohesion by facilitating regular positive social interaction, which strengthens trust and mutual support networks, leading to improved mental and physical health outcomes."
-
-      - MeasureID: 1196
-        IndicatorID: 2379
-        MeasureName: "Asthma ED visits (age 5 to 17), Estimated annual rate"
-        indicator_short_name: "Child asthma"
-        geotype: CD
-        strategy: "For individuals, promote good indoor air quality; for the community, leverage public spaces for vegetation that improves air quality"
-        strategy_description: "Many factors affecting indoor air quality can contribute to health risks, and the Healthy Homes program contains resources to improve it. On a community level, increasing plants that serve as a barrier to air pollution could improve air quality."
+  - MeasureID: 1196
+    IndicatorID: 2379
+    MeasureName: "Asthma ED visits (age 5 to 17), Estimated annual rate"
+    indicator_short_name: "Child asthma"
+    geotype: CD
+    strategy: "For individuals, promote good indoor air quality; for the community, leverage public spaces for vegetation that improves air quality"
+    strategy_description: "Many factors affecting indoor air quality can contribute to health risks, and the Healthy Homes program contains resources to improve it. On a community level, increasing plants that serve as a barrier to air pollution could improve air quality."

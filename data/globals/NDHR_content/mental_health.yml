@@ -11,10 +11,6 @@
 # indistinguishable from a template bug that dropped the rows; a stated absence is
 # not. Task 7 renders this string.
 
-report_topics:
-
-  - report_topic: Mental Health
-    report_topic_description: null
-    measures: []
+measures: []
 
 empty_state: "No community district data is published for these measures yet. The Health Department publishes its mental health indicators at a larger neighborhood geography, so they cannot be shown for a single community district."

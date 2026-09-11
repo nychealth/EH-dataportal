@@ -316,8 +316,10 @@ on a branch mismatch.
   `baseline`: 2143 must report CD and 2133 must not, which separates an empty fetch from
   bucket logic that says yes to everything.
 
-  **`check` also validates the NDHR content YAML**, which nothing else can. Every row in
-  `data/globals/NDHR_content/*.yml` names a `MeasureID`, and it must exist in metadata, sit
+  **`check` also validates the NDHR content YAML**, which nothing else can. Each file holds a
+  flat `measures` list — no `report_topics` layer, unlike `NR_content`, because neither NDHR
+  source document groups indicators below the five categories. Every row names a `MeasureID`,
+  and it must exist in metadata, sit
   under the `IndicatorID` the row also names, carry the `MeasureName` the row claims, and
   publish at the row's declared `geotype` — plus `data/globals/NDHR_categories.yml` and the
   content directory must name each other exactly, no measure may appear twice, and a category
@@ -335,7 +337,7 @@ on a branch mismatch.
   MeasureID, a sibling measure swapped in, wrong MeasureName, a geotype the measure does not
   publish, a geotype only a sibling publishes (which a union check passes), removed
   empty_state, a duplicated measure, a renamed file, and a wrong category key; a removed
-  `report_topics` key and an absent directory each exit 2]`.
+  `measures` key and an absent directory each exit 2]`.
 - `npm run ndhr:cdlist [print|build|check] [environment]` — generates data/globals/cdlist.json,
   the CD analogue of `data/globals/uhflist.json`, plus a `cdlist-source.json` sidecar recording
   which indicator, measure and time period each demographic field came from

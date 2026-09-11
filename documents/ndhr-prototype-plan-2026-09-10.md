@@ -351,7 +351,7 @@ work is committed, never "done, uncommitted".
 that the probe can see these assets at all]`. A session re-running the proof as written would
 read that absence as a regression. **The build proof belongs to Task 6**, which adds the include;
 until then the partial's only check is that it parses, which the same build shows.
-| 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures in NR_content shape, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0, and a deliberately malformed content file fails it naming the file, so that pass is about these files | — |
+| 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
 | 4. Shared compute module | not started | — | — |
 | 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
 | 6. Report layout and CD Leaflet map | not started | — | — |
@@ -736,14 +736,18 @@ empty row.
 validator; `js-yaml` was added as a devDependency, since nothing in `node_modules` could parse
 YAML and no other script in `scripts/` reads any.
 
-**Keyed on MeasureID, in NR_content's shape and its key naming — the user's decision,
-2026-09-11, twice.** This task's own text specified IndicatorID ("because route A resolves
-measures from metadata"), and the flat file shape and snake_case keys that came with it were
-an unprompted divergence from the files this work is modelled on. Both were reversed: **NR is
-the reference because the work to make NR render has already been done**, so the data its
-templates read keeps its form unless there is a reason to depart. `report_topics` holds named
-subsections, each with a `measures` list; `MeasureID`, `IndicatorID` and `MeasureName` are
-spelled as EHDP-data spells them.
+**Keyed on MeasureID, in NR_content's key naming — the user's decision, 2026-09-11.** This
+task's own text specified IndicatorID ("because route A resolves measures from metadata"), and
+the snake_case keys that came with it were an unprompted divergence from the files this work is
+modelled on. Both were reversed: **NR is the reference because the work to make NR render has
+already been done**, so the data its templates read keeps its form unless there is a reason to
+depart. `MeasureID`, `IndicatorID` and `MeasureName` are spelled as EHDP-data spells them.
+
+**One place it does depart, also the user's call: no `report_topics` layer.** NR_content groups
+its MeasureIDs into named subsections. Neither NDHR source document groups indicators below the
+five categories, so that layer held exactly one group per file, named after the category, with a
+null description — structure carrying no information. A flat `measures` list instead. If real
+subsections are ever authored this becomes a list of them and the renderer gains a heading level.
 
 MeasureID is also the better key on its own terms: an IndicatorID names a family of series —
 "Number", "Percent", "Age-adjusted rate" — whose values are not interchangeable, and choosing
@@ -758,11 +762,6 @@ four are recorded with their reason in a comment beside the row: rates rather th
 evictions and the three health outcomes, density rather than count for public bathrooms and
 litter baskets, and the with-AC framing rather than without-AC, which would invert the tertile
 reading.
-
-**One thing the nested shape forced.** Neither source document groups indicators below the five
-categories, so each file carries a single `report_topic` named after its category with a null
-`report_topic_description` — the category's header description lives in `NDHR_categories.yml`
-and is not repeated. Real subsections are additional list entries when someone writes them.
 
 **Three fields NR_content does not carry**, each named in this task or forced by an earlier
 decision: `indicator_short_name` (§2 established it has no upstream source), `strategy` and
@@ -798,13 +797,13 @@ indicators have measures that disagree that way: 2185, 107, 45 `[verified 2026-0
 per row that the MeasureID exists, sits under the declared IndicatorID, carries the declared
 MeasureName, and publishes at the declared geotype.
 
-**Verification `[all run 2026-09-11 at `9ccce9dcc9`]`:**
+**Verification `[all run 2026-09-11]`:**
 `node scripts/ndhr-indicator-availability.mjs check` exits 0 and prints "Content: 5 categories,
 18 measures — consistent with the metadata". Nine injections each exit 1 naming their own cause:
 an unknown MeasureID, a real sibling measure swapped in, a wrong MeasureName, a geotype the
 measure does not publish, **a geotype only a sibling publishes — the case a union check passes**,
 Mental Health's `empty_state` removed, one measure declared in two files, a content file renamed
-out from under its category entry, and a category key with no file. A removed `report_topics` key
+out from under its category entry, and a category key with no file. A removed `measures` key
 exits 2. The files were restored from a copy and diffed back to byte-identical afterwards.
 
 **The first pass of this injection suite included one that did not fire, and the premise behind

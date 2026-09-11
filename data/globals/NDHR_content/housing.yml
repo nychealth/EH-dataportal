@@ -1,65 +1,61 @@
 # Housing — indicator spec for the NDHR report page.
 # Field contract, shape and sources: see the header of climate_and_active_design.yml.
 
-report_topics:
+measures:
 
-  - report_topic: Housing
-    report_topic_description: null
-    measures:
+  - MeasureID: 25
+    IndicatorID: 15
+    MeasureName: "Crowding, Percent"
+    indicator_short_name: "Crowding"
+    geotype: CD
+    strategy: "Create shared housing to alleviate housing shortage"
+    strategy_description: "Shared housing is two or more independently occupied rooms that share living facilities, like bathrooms and kitchens, and may increase the amount of housing available at a lower cost."
 
-      - MeasureID: 25
-        IndicatorID: 15
-        MeasureName: "Crowding, Percent"
-        indicator_short_name: "Crowding"
-        geotype: CD
-        strategy: "Create shared housing to alleviate housing shortage"
-        strategy_description: "Shared housing is two or more independently occupied rooms that share living facilities, like bathrooms and kitchens, and may increase the amount of housing available at a lower cost."
+  # Evictions is the one indicator the "Text of ..." document does not cover — it
+  # is in neither its description table nor its strategy table. The strategy below
+  # is the "Example Intervention" from the other source document, "2026
+  # Neighborhood Development Health Report.docx", whose table has no description
+  # column.
+  # TODO (agency content): a strategy_description for this row.
+  #
+  # The rate, not 1127 "Evictions, Number": a count rises with the size of a
+  # community district, so ranking 59 of them on it would rank population.
+  - MeasureID: 1128
+    IndicatorID: 2365
+    MeasureName: "Evictions, Estimated annual rate"
+    indicator_short_name: "Evictions"
+    geotype: CD
+    strategy: "Increase awareness of tenants’ rights and resources"
+    strategy_description: null
 
-      # Evictions is the one indicator the "Text of ..." document does not cover — it
-      # is in neither its description table nor its strategy table. The strategy below
-      # is the "Example Intervention" from the other source document, "2026
-      # Neighborhood Development Health Report.docx", whose table has no description
-      # column.
-      # TODO (agency content): a strategy_description for this row.
-      #
-      # The rate, not 1127 "Evictions, Number": a count rises with the size of a
-      # community district, so ranking 59 of them on it would rank population.
-      - MeasureID: 1128
-        IndicatorID: 2365
-        MeasureName: "Evictions, Estimated annual rate"
-        indicator_short_name: "Evictions"
-        geotype: CD
-        strategy: "Increase awareness of tenants’ rights and resources"
-        strategy_description: null
+  - MeasureID: 1029
+    IndicatorID: 2336
+    MeasureName: "Rent burden, Percent"
+    indicator_short_name: "Rent burden"
+    geotype: CD
+    strategy: "Increase access to community-based peer support services to connect to programs and resources"
+    strategy_description: "The Department of Social Services provide programs for rental assistance as well as other tenant resources."
 
-      - MeasureID: 1029
-        IndicatorID: 2336
-        MeasureName: "Rent burden, Percent"
-        indicator_short_name: "Rent burden"
-        geotype: CD
-        strategy: "Increase access to community-based peer support services to connect to programs and resources"
-        strategy_description: "The Department of Social Services provide programs for rental assistance as well as other tenant resources."
+  - MeasureID: 692
+    IndicatorID: 2145
+    MeasureName: "Independence difficulty, Percent"
+    indicator_short_name: "Independent living"
+    geotype: CD
+    strategy: "Increase access to community-based peer support services to connect to programs and resources"
+    strategy_description: "The NYC Department for the Aging has a free Older Adults Home Modification program that provides no-cost home assessment and modification. Improving access and use of public spaces can also increase social cohesion, which can serve as a protector in climate events."
 
-      - MeasureID: 692
-        IndicatorID: 2145
-        MeasureName: "Independence difficulty, Percent"
-        indicator_short_name: "Independent living"
-        geotype: CD
-        strategy: "Increase access to community-based peer support services to connect to programs and resources"
-        strategy_description: "The NYC Department for the Aging has a free Older Adults Home Modification program that provides no-cost home assessment and modification. Improving access and use of public spaces can also increase social cohesion, which can serve as a protector in climate events."
+  - MeasureID: 86
+    IndicatorID: 45
+    MeasureName: "Homes with 3+ housing problems, Percent"
+    indicator_short_name: "Housing problems"
+    geotype: PUMA2020
+    strategy: "Increase access to community-based peer support services to connect to programs and resources"
+    strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."
 
-      - MeasureID: 86
-        IndicatorID: 45
-        MeasureName: "Homes with 3+ housing problems, Percent"
-        indicator_short_name: "Housing problems"
-        geotype: PUMA2020
-        strategy: "Increase access to community-based peer support services to connect to programs and resources"
-        strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."
-
-      - MeasureID: 245
-        IndicatorID: 107
-        MeasureName: "Cockroaches, Percent"
-        indicator_short_name: "Cockroaches"
-        geotype: PUMA2020
-        strategy: "Increase access to community-based peer support services to connect to programs and resources"
-        strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."
+  - MeasureID: 245
+    IndicatorID: 107
+    MeasureName: "Cockroaches, Percent"
+    indicator_short_name: "Cockroaches"
+    geotype: PUMA2020
+    strategy: "Increase access to community-based peer support services to connect to programs and resources"
+    strategy_description: "The Healthy Homes program can provide residents with resources and information on addressing indoor environmental issues that lead to acute and chronic health problems."

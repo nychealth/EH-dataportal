@@ -5,64 +5,60 @@
 # UHF42-only, and displacement risk and social cohesion are absent from EHDP-data
 # under any name at any geography. See DECIDED-1.
 
-report_topics:
+measures:
 
-  - report_topic: Neighborhood Conditions
-    report_topic_description: null
-    measures:
+  - MeasureID: 690
+    IndicatorID: 2143
+    MeasureName: "Grass and tree cover, Percent"
+    indicator_short_name: "Vegetative cover"
+    geotype: CD
+    strategy: "Contribute to the Parks Tree Fund, fund a Super Steward, participate in the NYC Urban Agriculture program"
+    strategy_description: "Well maintained and planned green spaces can cool outdoor spaces as well as improve mental health."
 
-      - MeasureID: 690
-        IndicatorID: 2143
-        MeasureName: "Grass and tree cover, Percent"
-        indicator_short_name: "Vegetative cover"
-        geotype: CD
-        strategy: "Contribute to the Parks Tree Fund, fund a Super Steward, participate in the NYC Urban Agriculture program"
-        strategy_description: "Well maintained and planned green spaces can cool outdoor spaces as well as improve mental health."
+  - MeasureID: 1250
+    IndicatorID: 2400
+    MeasureName: "Violence-related ED visits (all ages), Age-adjusted rate"
+    indicator_short_name: "Violence"
+    geotype: CD
+    strategy: "Contribute funding to City initiatives to reduce violence in neighborhoods like VPI or HVIP"
+    strategy_description: "Hospital-Based Violence Intervention Programs (HVIPs) are multidisciplinary initiatives that provide support to individuals who have experienced violent injuries, linking them with community resources and services to reduce the risk of re-injury and promote recovery. These programs engage patients during their hospital stay and continue support after discharge, addressing underlying factors that contribute to violence."
 
-      - MeasureID: 1250
-        IndicatorID: 2400
-        MeasureName: "Violence-related ED visits (all ages), Age-adjusted rate"
-        indicator_short_name: "Violence"
-        geotype: CD
-        strategy: "Contribute funding to City initiatives to reduce violence in neighborhoods like VPI or HVIP"
-        strategy_description: "Hospital-Based Violence Intervention Programs (HVIPs) are multidisciplinary initiatives that provide support to individuals who have experienced violent injuries, linking them with community resources and services to reduce the risk of re-injury and promote recovery. These programs engage patients during their hospital stay and continue support after discharge, addressing underlying factors that contribute to violence."
+  # Density rather than 1452 "Number": a district with more bathrooms is not
+  # better served if it is also larger. 1455 "Percent accessible" answers a
+  # different question — how many of the bathrooms are accessible, not how many
+  # there are.
+  - MeasureID: 1454
+    IndicatorID: 2457
+    MeasureName: "Public bathrooms, Density"
+    indicator_short_name: "Public bathrooms"
+    geotype: CDTA2020
+    strategy: "Support the development of the Citywide Strategy for public bathrooms"
+    strategy_description: "Participate in the community engagement process to develop the citywide plan by using publicly available tools such as public restroom maps to find areas in need."
 
-      # Density rather than 1452 "Number": a district with more bathrooms is not
-      # better served if it is also larger. 1455 "Percent accessible" answers a
-      # different question — how many of the bathrooms are accessible, not how many
-      # there are.
-      - MeasureID: 1454
-        IndicatorID: 2457
-        MeasureName: "Public bathrooms, Density"
-        indicator_short_name: "Public bathrooms"
-        geotype: CDTA2020
-        strategy: "Support the development of the Citywide Strategy for public bathrooms"
-        strategy_description: "Participate in the community engagement process to develop the citywide plan by using publicly available tools such as public restroom maps to find areas in need."
+  - MeasureID: 1225
+    IndicatorID: 2389
+    MeasureName: "Unhealthy food access, Ratio"
+    indicator_short_name: "Food access"
+    geotype: CD
+    strategy: "Promote food access programs such as FRESH, green carts, shop healthy, and other food-related strategies from the Health Department"
+    strategy_description: "Access to healthy food can be improved with programs of different approaches, whether it is designating space for a new grocery store, improving selection of healthy food at local bodegas, or increasing local gardening to address local needs."
 
-      - MeasureID: 1225
-        IndicatorID: 2389
-        MeasureName: "Unhealthy food access, Ratio"
-        indicator_short_name: "Food access"
-        geotype: CD
-        strategy: "Promote food access programs such as FRESH, green carts, shop healthy, and other food-related strategies from the Health Department"
-        strategy_description: "Access to healthy food can be improved with programs of different approaches, whether it is designating space for a new grocery store, improving selection of healthy food at local bodegas, or increasing local gardening to address local needs."
+  - MeasureID: 984
+    IndicatorID: 2323
+    MeasureName: "School absenteeism, Percent"
+    indicator_short_name: "Absenteeism"
+    geotype: CD
+    strategy: "Implement programs that enable students to complete their degrees, access advanced courses, or address social-emotional learning"
+    strategy_description: "Equity NYC has nine specific strategies to address causes of unequal education advancement; school absenteeism is a symptom of education condition and not a comprehensive measure, the strategies provided by Equity NYC address multiple pathways."
 
-      - MeasureID: 984
-        IndicatorID: 2323
-        MeasureName: "School absenteeism, Percent"
-        indicator_short_name: "Absenteeism"
-        geotype: CD
-        strategy: "Implement programs that enable students to complete their degrees, access advanced courses, or address social-emotional learning"
-        strategy_description: "Equity NYC has nine specific strategies to address causes of unequal education advancement; school absenteeism is a symptom of education condition and not a comprehensive measure, the strategies provided by Equity NYC address multiple pathways."
-
-      # Density of all baskets. The four alternatives split two ways — total count
-      # (1308) against density (1314), and all baskets against non-wire only (1316,
-      # 1317, 1322). Density for the same reason as public bathrooms; all baskets
-      # because the source document's strategy is about basket coverage generally.
-      - MeasureID: 1314
-        IndicatorID: 2416
-        MeasureName: "Litter basket coverage, Density"
-        indicator_short_name: "Litter baskets"
-        geotype: CD
-        strategy: "Report dirty conditions and request location for litter baskets"
-        strategy_description: "The NYC Department of Sanitation has resources on reporting dirty conditions in a neighborhood as well as suggesting locations for new litter baskets."
+  # Density of all baskets. The four alternatives split two ways — total count
+  # (1308) against density (1314), and all baskets against non-wire only (1316,
+  # 1317, 1322). Density for the same reason as public bathrooms; all baskets
+  # because the source document's strategy is about basket coverage generally.
+  - MeasureID: 1314
+    IndicatorID: 2416
+    MeasureName: "Litter basket coverage, Density"
+    indicator_short_name: "Litter baskets"
+    geotype: CD
+    strategy: "Report dirty conditions and request location for litter baskets"
+    strategy_description: "The NYC Department of Sanitation has resources on reporting dirty conditions in a neighborhood as well as suggesting locations for new litter baskets."

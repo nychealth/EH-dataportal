@@ -316,13 +316,8 @@ const readContent = () => {
     const content = new Map();
     for (const f of files) {
         const doc = loadYaml(readFileSync(`${CONTENT_DIR}/${f}`, "utf8"));
-        if (!doc || !Array.isArray(doc.report_topics)) {
-            throw new Error(`${CONTENT_DIR}/${f} has no \`report_topics\` array`);
-        }
-        for (const t of doc.report_topics) {
-            if (!Array.isArray(t?.measures)) {
-                throw new Error(`${CONTENT_DIR}/${f}: report_topic "${t?.report_topic}" has no \`measures\` array`);
-            }
+        if (!doc || !Array.isArray(doc.measures)) {
+            throw new Error(`${CONTENT_DIR}/${f} has no \`measures\` array`);
         }
         content.set(f.replace(/\.yml$/, ""), doc);
     }
@@ -373,7 +368,7 @@ const validateContent = ({ categories, content }, metadata) => {
 
     for (const [key, doc] of content) {
 
-        const rows = doc.report_topics.flatMap((t) => t.measures);
+        const rows = doc.measures;
 
         // DECIDED-7's requirement, made checkable. An absent empty_state on an empty
         // category is exactly the case a reader cannot tell from a broken template.
