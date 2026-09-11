@@ -236,7 +236,7 @@ work is committed, never "done, uncommitted".
 | Task | Status | Proof that ran | Commit |
 |---|---|---|---|
 | 1. Availability sweep as a committed script | done | `npm run ndhr:availability check` exits 0; five hand-edits of one baseline row each exit 1; the control arm exits 2 when flipped; `npm run docs-check` passes | `451b3da94f` |
-| 2. `cdlist.json` | not started | — | — |
+| 2. `cdlist.json` | done, except the three ACS fields | `npm run ndhr:cdlist check` exits 0; 59 rows, `CDTA_id` non-null and distinct; isolated build emits the fingerprinted `cdlist-data` script; three build-path injections each exit 2 | `c3d03a2fbf` |
 | 3. Category and content YAML | blocked on OPEN-1, OPEN-2 for two of four files | — | — |
 | 4. Shared compute module | not started | — | — |
 | 5. Content adapter and routing | blocked on OPEN-2, OPEN-3 | — | — |
@@ -245,7 +245,9 @@ work is committed, never "done, uncommitted".
 | 8. Strategies column and contact form | blocked on OPEN-1, OPEN-4 | — | — |
 | 9. Guardrails | not started | — | — |
 
-Next command: Task 2. Re-run `npm run ndhr:availability check` before acting on §3's table.
+Next command: Task 4 — Tasks 3 and 5 are blocked on the OPEN decisions. Re-run
+`npm run ndhr:availability check` and `npm run ndhr:cdlist check` before acting on §3's table
+or on any demographic figure.
 
 ---
 
@@ -280,7 +282,7 @@ re-derivable.
    `npm run ndhr:availability -- --check` reaches the script with an empty argv, prints the
    table and exits 0, which reads exactly like a check that passed
    `[verified 2026-09-10: run in PowerShell, empty argv and exit 0; control: the same command
-   in Bash delivers `--check` intact and the script refuses it with exit 2]`. So the `-`
+   in Bash delivers --check intact and the script refuses it with exit 2]`. So the `-`
    refusal protects the direct-node path only, and the mode must be a bare word.
 4. Bare invocation prints the table; `baseline` writes the JSON; `check` diffs and exits 1 on
    a difference. An optional second positional names an environment, defaulting to
@@ -343,6 +345,55 @@ rather than rendering it empty.
 non-null and distinct, and that a `hugo --environment development` build emits the fingerprinted
 `cdlist-data` script. The crosswalk assertion is the one that matters — a null there means the
 `(CD n)` parse failed on a name string.
+
+### Task 2 as built `[c3d03a2fbf]`
+
+**The file is generated, not authored** — `scripts/ndhr-build-cdlist.mjs`, run as
+`npm run ndhr:cdlist build`, with a `check` mode that regenerates and diffs. A deviation from
+the file list above, taken for Task 1's reason: 59 rows x 10 derived fields is 590 values, five
+of the fields move with every EHDP-data refresh, and a throwaway generator is what makes an
+artifact decay silently. `data/globals/cdlist-source.json` is the sidecar recording which
+indicator, measure and time period each demographic field came from.
+
+**Three ACS fields are unfilled and this task is not closed on them.** `TotalPopulation`,
+`PercentOver65` and `PercentUnder18` are `null` on all 59 rows. EHDP-data publishes no
+total-population or age-structure indicator at CD — the only CD-level population indicator is
+"Foreign-born population" (14), a different quantity `[verified 2026-09-10: every
+IndicatorName matching /popul|age|65|under 18/ swept for CD in AvailableGeoTypes; control:
+the same sweep returns 2146 and 2176 as CD-available, so it fires]`. "From ACS by hand" needs
+a source and a decision about which vintage; **Task 7 must render a null as absent, never as
+0**, and the generator refuses a half-filled set so the gap cannot be closed by accident.
+
+**`GeoID` cannot join CD to CDTA2020, and the failure would be silent.** CD `GeoID` 501 is
+Staten Island CD1; CDTA2020 `GeoID` 501 is Bronx CD1. A GeoID join does not error, it swaps
+boroughs. The two `Name` spellings also differ — "Financial District (CD1)" against
+"Financial District-Tribeca (CD 1)" — so the optional space in the parse is load-bearing
+`[verified 2026-09-10: 59 of 59 matched, zero unparsed, zero leftover either side, pairs
+spot-checked by name in all five boroughs]`.
+
+**The latest time period is never the highest `TimePeriodID`.** On production the highest id
+(288) is "2007-11" and the true latest (287) is "2015-19"; all five fields disagree the same
+way. Resolved by `end_period`. **No control catches a wrong choice here** — forcing the reducer
+to `max(TimePeriodID)` builds a complete, plausible file, 59 of 59 rows, no nulls, every control
+passing, every value eight years stale `[verified 2026-09-10: the injection ran and exited 0
+with "Controls: passed"]`. Only the printed period, the sidecar, and `check` against a
+committed file surface it. **Task 4 fetches the same indicator files and inherits this.**
+
+**The five demographic fields are 55 measurements across 59 districts.** Four CD pairs carry
+one value between them, identically across all five fields, and it is the same four every time:
+Manhattan CD1/CD2, Manhattan CD4/CD5, Bronx CD1/CD2, Bronx CD3/CD6. The merge structure is
+PUMA's — DECIDED-3 names the two Manhattan ones — but the values are not copied Subboro values:
+9 to 20 CD values per field appear at no Subboro area `[verified 2026-09-10: exact Value
+comparison, CD against Subboro, all five indicators at TimePeriodID 287]`. Recorded as
+`reportedAsOneArea` in the sidecar rather than corrected, because it is upstream. **Task 7 owes
+this a label**: the sidebar otherwise shows two neighbouring districts as identical, which reads
+as a bug. It is also a partial answer to DECIDED-3 — for these five fields EHDP-data has already
+made the CD-to-PUMA decision upstream, under a CD label.
+
+**No `namezip` either.** It has zero consumers across `themes/`, `assets/` and `content/`, so it
+is dead in `uhflist.json` as well `[verified 2026-09-10: grep over all three trees]`. The
+typeahead in `nr-neighborhood-picker-js.html` searches `UHF_name` and `Zipcodes`, not `namezip`,
+so an NDHR picker needs its own `searchIn` list rather than a substitute field.
 
 ---
 
