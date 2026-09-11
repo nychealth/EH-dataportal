@@ -13,69 +13,28 @@ yet, which is exactly what that check would fail on.
 
 ---
 
-## 1. Open decisions
+## 1. Decisions taken
 
-Four decisions are the user's and are **OPEN**. Each names what it blocks, so a later revision
-can be applied without re-deriving the consequence.
+All four decisions that were OPEN were taken by the user on 2026-09-11 and are recorded as
+DECIDED-6 through DECIDED-9. **Nothing in this plan is blocked on a decision any more.**
 
-### OPEN-1 — Climate & Active Design renders two rows
+### DECIDED-1 — Prototype what exists; drop what does not
 
-After the scope decisions in §2, that category contains **park access (2388) and HVI (2191)**
-and nothing else. The other four indicators the spec names for it are unavailable at community
-district geography: household AC (2185) and electric medical equipment (2377) are PUMA/Subboro
-only and deferred by DECIDED-3; walkability index (2133) and subway walking distance (2391)
-have no CD-family geography at all.
+Of the 28 indicators named across both documents, **18 are renderable** at community-district
+geography and **10 are not**. Five exist only at UHF42 — walkability index (2133), subway walking
+distance (2391), perception of neighborhood safety (2073), psychiatric hospitalizations (2418),
+health insurance adults (2132). Four are absent from EHDP-data under any name at any geography —
+displacement risk, social cohesion, maternal mortality, premature mortality attributed to drug
+use.
 
-Blocks: Task 3 (how many indicators the category YAML declares) and Task 8 (whether the page
-needs a "more indicators coming" affordance). Does **not** block Tasks 1, 2, 4, 5.
+The prototype drops those nine rather than approximating them. Re-raising any is a request to the
+data team, not site work. `npm run ndhr:availability check` re-derives the split and fails when
+EHDP-data moves it.
 
-Options: accept two rows for the prototype; pull the PUMA crosswalk out of deferral, which adds
-AC and electric medical equipment and makes it four; or ask EHDP-data to recompute walkability
-at CD.
-
-### OPEN-2 — Is Mental Health a fifth category?
-
-The two source documents disagree. "Text of ... for Review" lists five headers with written
-descriptions — Climate and Active Design, Health Outcomes and Access, Housing, **Mental
-Health**, Neighborhood Conditions — but its indicator table has four, and Mental Health has zero
-indicators under it. "2026 Neighborhood Development Health Report" says four throughout and
-lists four.
-
-Blocks: the page count in Task 5 (four categories is 236 report pages, five is 295) and the
-category YAML in Task 3. Does **not** block Tasks 1, 2, 4.
-
-### OPEN-3 — Public name
-
-The branch and the first document say NDHR / Neighborhood Development Health Report. The second
-document is titled "Text of Healthy Places Toolkit for Review". This plan uses `ndhr` for the
-URL segment and NDHR in prose, on the branch-name evidence.
-
-Blocks: Task 5's URL paths, Task 5's section directory name, and every `seo_title` string. Cheap
-to change while the section is unbuilt and expensive after the URLs are public.
-
-### OPEN-4 — Contact form backend
-
-The spec asks for a form collecting first name, last name, affiliation (public agency / private
-organization / community organization / general public), email, and a short inquiry. This is a
-Hugo static site published to a GitHub build branch; there is no server to post to.
-
-Blocks: Task 8. Options: a third-party form endpoint, a link out to an existing DOHMH form, or
-cut from the prototype.
-
----
-
-## 2. Decisions taken
-
-### DECIDED-1 — Prototype what exists; drop the nine that do not
-
-Of the 28 indicators named across both documents, nine cannot be published at community-district
-geography. Five exist only at UHF42 — walkability index (2133), subway walking distance (2391),
-perception of neighborhood safety (2073), psychiatric hospitalizations (2418), health insurance
-adults (2132). Four are absent from EHDP-data under any name at any geography — displacement
-risk, social cohesion, maternal mortality, premature mortality attributed to drug use.
-
-The prototype drops all nine rather than approximating them. Re-raising any of them is a request
-to the data team, not site work.
+**Amended twice on 2026-09-11.** DECIDED-6 moved the four PUMA/Subboro indicators from dropped
+to renderable, 15 to 19; DECIDED-10 then set PUMA2020 as the geography, which returns 2377 to
+the dropped list for want of PUMA2020 data — 18 renderable, 10 dropped. 2377 is **deferred**
+there, unlike the other nine, and DECIDED-10 says what would bring it back.
 
 ### DECIDED-2 — CD is the page geography; CDTA2020 joins exactly
 
@@ -95,26 +54,12 @@ from — see Task 7.
 The crosswalk is parsed from the names rather than joined on `GeoID`, because a `GeoID` is unique
 only within its own geotype and CD's collides with CDTA2020's — see "Task 2 as built".
 
-### DECIDED-3 — The CD-to-PUMA crosswalk is deferred, explicitly
+### DECIDED-3 — The CD-to-PUMA crosswalk is NO LONGER deferred
 
-Four indicators exist only at PUMA2010 / PUMA2020 / Subboro: household AC (2185), electric
-medical equipment (2377), homes with 3+ housing problems (45), homes with cockroaches (107).
-
-These areas do **not** nest one-to-one into community districts. Manhattan has 12 CDs against 10
-PUMA2010, 10 Subboro and 10 PUMA2020 areas; "Battery Park City, Greenwich Village & Soho" is
-CD1 and CD2 together, "Chelsea, Clinton & Midtown Business District" is CD4 and CD5
-`[verified 2026-09-10: GeoLookup.json rows for the three geotypes filtered to Borough ==
-Manhattan]`. No CD-to-PUMA crosswalk file exists in either repository — `EHDP-data/geography/`
-carries `puma_to_subboro.csv`, `puma_2010_names.csv` and `puma_2020_names.csv`, none of which
-reference community districts `[verified 2026-09-10: full directory listing via the GitHub
-contents API on ref=production; control: the same listing returns zcta_to_uhf.csv, so the
-listing is not empty]`.
-
-**The decision is that both crosswalks are wanted and the PUMA one is deferred**, not that it
-was rejected. Bringing it forward is a scoped piece of work: build the crosswalk from DCP's
-published PUMA-to-CD equivalency, and label each affected value on the page with the wider area
-it actually covers. It is deferred because a wrong crosswalk row misattributes a value with
-nothing visible to catch it, and the prototype has 15 indicators without it.
+**Reversed 2026-09-11 by DECIDED-6.** The original entry deferred it, recorded that both
+crosswalks were wanted, and named what would bring it forward. That is what happened. The
+reasoning that justified the deferral — no published CD-to-PUMA file in either repository — was
+true of the two repositories it named and false of a third; see DECIDED-6.
 
 ### DECIDED-4 — Route A: compute in the browser, from the data explorer's own files
 
@@ -142,9 +87,150 @@ and the contact form are NDHR-only. So `assets/js/ndhr-report/` forks the NR ren
 The compute half does not fork. NR is migrating onto route A, so a forked tertile and comparison
 implementation would be two copies of logic already known to be converging.
 
+### DECIDED-6 — PUMA is out of deferral; the crosswalk exists and is vintage-sensitive
+
+**The user's decision, 2026-09-11**: pull PUMA out of deferral. Four indicators rejoin the
+prototype — household AC (2185), electric medical equipment (2377), homes with 3+ housing
+problems (45), homes with cockroaches (107) — taking Climate & Active Design from two rows to
+four and Housing from four to six, and the renderable total from 15 to 19.
+
+**The crosswalk does not have to be built.** It already exists, twice, under
+`cgettings-EHDP-work/data/gis/`: `puma2020_to_cd.csv` (`PUMA2020,CD`) and
+`puma2010_to_subboro_cd.csv` (`PUMA2010,Subboro,CD`). Each is 59 rows, covers all 59 of
+`cdlist.json`'s `CD_id` values with none missing and none extra, and resolves to 55 distinct
+PUMAs `[verified 2026-09-11: both read and joined against data/globals/cdlist.json]`. DECIDED-3
+deferred this partly because "no CD-to-PUMA crosswalk file exists in either repository" — which
+was true of EH-dataportal and EHDP-data, the two it checked, and false of the working repo where
+the geography is actually prepared.
+
+**The two vintages disagree, and the disagreement is the whole risk.** Both merge exactly four
+PUMAs across two CDs each, but not the same four:
+
+| | merges | Manhattan effect |
+|---|---|---|
+| PUMA2010 (`puma2010_to_subboro_cd.csv`) | 3705→[203,206], 3710→[201,202], **3807→[104,105]**, 3810→[101,102] | CD4+CD5 share; CD6 alone |
+| PUMA2020 (`puma2020_to_cd.csv`) | 4221→[201,202], 4263→[203,206], **4165→[105,106]**, 4121→[101,102] | CD5+CD6 share; CD4 alone |
+
+The Bronx pairs agree; Manhattan does not. **Choosing the wrong vintage silently shifts Manhattan
+CD4, CD5 and CD6** — a value lands on a district it does not describe, correctly formatted, with
+nothing on the page to betray it. This is the exact hazard the original deferral named, now
+located.
+
+This plan originally resolved that by choosing a crosswalk per indicator. **DECIDED-10
+supersedes that with one geography for every PUMA-sourced row — PUMA2020** — which removes the
+per-indicator choice and with it the chance of making it inconsistently. The cost is 2377,
+which publishes at PUMA2010 and Subboro and not at PUMA2020
+`[verified 2026-09-10: npm run ndhr:availability, baseline rows]`. Task 7 must still label each
+PUMA-sourced row with the wider area it covers, as the original deferral required.
+
+**Both CSVs go to EHDP-data**, per the user 2026-09-11 — published under `geography/` beside
+`puma_to_subboro.csv`, not committed into EH-dataportal. Both, even though the report reads
+only PUMA2020: `puma2010_to_subboro_cd.csv` is what carries `Subboro`, which DECIDED-10 keeps
+available. So Task 2's generator fetches them from
+`data_repo` + `data_branch` like everything else it reads, and they are subject to the same
+`npm run ndhr:cdlist check` drift guard. Until they are published, the generator has nothing to
+read: **this is Task 2's one external dependency, and it is the only thing in the plan waiting on
+another repository.**
+
+### DECIDED-7 — Mental Health is a fifth category, and it will render empty
+
+**The user's decision, 2026-09-11**: add Mental Health, on the reasoning that it can be dropped
+later. Five categories, so the report inventory goes from 236 pages to **295** (59 CDs x 5).
+
+**It has zero indicators at community-district geography, and that is not a gap in this plan's
+research.** The two source documents list no indicators under the Mental Health heading at all.
+Independently, every mental-health indicator EHDP-data publishes is UHF42-only — depression
+(adults) 2417, psychiatric hospitalizations (adults) 2418, serious psychological distress
+(adults) 2419 `[verified 2026-09-11: swept every IndicatorName matching
+/mental|psych|depress|anxi|suicide|self-harm|substance|drug|alcohol|opioid|overdose|isolat|lonel/
+for CD or CDTA2020 in AvailableGeoTypes; control: the same sweep returned 2417, 2418 and 2419,
+so it can see mental-health indicators — none is CD-family. The eight CD-family hits it also
+returned are heat- and cold-stress indicators matching on the word "stress" and are not mental
+health]`.
+
+So the category renders a header, its written description from "Text of ... for Review", and no
+indicator rows, on all 59 pages. **Task 3 must give it an explicit empty state and Task 7 must
+render that state**, rather than either emitting an empty accordion or letting a zero-length loop
+produce nothing — a category that silently renders nothing is indistinguishable from a template
+bug.
+
+Dropping it later costs one entry in `NDHR_categories.yml` and re-running the adapter. Filling it
+is a request to the data team for any of 2417/2418/2419 at CD.
+
+### DECIDED-8 — The public name is the Neighborhood Development Health Report (NDHR)
+
+**The user's decision, 2026-09-11**: use NDHR, and the long form alongside it. Not "Healthy
+Places Toolkit", which is the title of the second source document only.
+
+First or most prominent mention on a page carries **Neighborhood Development Health Report
+(NDHR)**; later mentions carry NDHR. `ndhr` is the URL segment and the section directory name, as
+this plan already assumed. Task 5's `seo_title` strings take the long form, since search results
+have no earlier mention to expand the abbreviation.
+
+### DECIDED-9 — The contact form is deferred as a later enhancement
+
+**The user's decision, 2026-09-11**: defer, as an enhancement idea rather than prototype scope.
+
+**The decision is that the form is wanted and deferred, not that it was rejected.** What is
+deferred: the form collecting first name, last name, affiliation (public agency / private
+organization / community organization / general public), email, and a short inquiry.
+
+What justifies waiting: this is a Hugo static site published to a GitHub build branch, so there is
+no server to post to, and every option costs something outside the prototype's reach — a
+third-party endpoint is a procurement and privacy question, and a link out to an existing DOHMH
+form needs one to exist.
+
+What brings it forward: a decision on which of those two routes, which is an agency question
+rather than a site one. Until then Task 8 builds the strategies column only, and the page carries
+no contact affordance rather than a disabled one.
+
+
+### DECIDED-10 — PUMA2020 is the geography for PUMA-sourced rows; 2377 is deferred
+
+**The user's decision, 2026-09-11**: use PUMA2020, accepting the loss of one indicator, because
+the subborough boundaries are not trusted to have held across vintages. **Subboro is not dropped**
+— it stays as a column in `cdlist.json`, unused by the report, so the option costs nothing to keep
+open.
+
+The question asked was what restricting to PUMA2020 costs. Measured against the four indicators'
+own data files rather than against `AvailableGeoTypes`, because availability and
+rows-at-a-useful-period are different questions:
+
+| | 2185 AC | 2377 medical equip. | 45 3+ problems | 107 cockroaches |
+|---|---|---|---|---|
+| PUMA2010 | 2017 | 2017 | 2017 | 2017 |
+| PUMA2020 | 2023 | **no rows at all** | 2021 | 2023 |
+| Subboro | 2023 | 2017 | 2021 | 2023 |
+
+`[verified 2026-09-11: latest period per geotype by end_period, with 55 of 55 areas present at
+that period in every populated cell]`
+
+It costs exactly one indicator — **2377, households using electric medical equipment**, which has
+no PUMA2020 rows — and buys four to six years of freshness on the other three. PUMA2010 was not
+the conservative option it looks like: choosing it for consistency would publish 2017 figures on
+three indicators that have 2021-2023 data.
+
+Subboro would have carried all four at the freshest period each, with CD groupings identical to
+PUMA2010's. It was not chosen because that depends on subborough boundaries having held between
+2017 and 2023, which this plan could not establish — 55 areas at every period from 1999 to 2023
+and no year suffix on the geotype is consistent with stability and is not proof.
+
+**2377 is deferred, not rejected.** What is deferred: one indicator, in Climate & Active Design,
+which drops that category from four rows to three. Why waiting: its only geographies are PUMA2010
+and Subboro, and rendering it would mean putting a second, differently-merged geography on the
+page for one row. What brings it forward: either EHDP-data publishing it at PUMA2020, or the data
+team confirming subborough boundaries held — at which point it renders on `Subboro_id`, which
+`cdlist.json` already carries, with a label naming the wider area.
+
+**Two merge patterns will coexist on three Manhattan pages, and both are correct.** The
+demographic sidebar comes from CD-level ACS, which merges CD4+CD5; the PUMA2020 rows merge
+CD5+CD6 `[verified 2026-09-11: sidebar groups measured from the five indicators in "Task 2 as
+built", PUMA groups read from puma2020_to_cd.csv]`. So on Manhattan CD5's page the sidebar matches
+CD4's and the indicator rows match CD6's. **Task 7 must label both, not only the PUMA rows** — a
+reader who notices one shared value and not the other will conclude the page is broken.
 ---
 
-## 3. Findings this plan rests on
+## 2. Findings this plan rests on
 
 Every claim below was measured on 2026-09-10 against EHDP-data `production` unless stated.
 
@@ -156,16 +242,20 @@ carries 42 UHF42 rows and nothing else; 2191 carries CDTA2020 only; 45 carries P
 and no CD. So the metadata is accurate on a case that says present and on a case that says
 absent.
 
-The 15 indicators the prototype renders:
+The 18 indicators the prototype renders. **Geotype is the geography the value is read at**;
+every PUMA-sourced row is PUMA2020, per DECIDED-10:
 
 | Category | Indicator (IndicatorID) | Geotype |
 |---|---|---|
 | Climate & Active Design | Walking distance to a park (2388) | CD |
 | | Heat Vulnerability Index (2191) | CDTA2020 |
+| | Household air conditioning (2185) | PUMA2020 |
 | Housing | Household crowding (15) | CD |
 | | Rent-burdened households (2336) | CD |
 | | Independent living difficulty, adults (2145) | CD |
 | | Evictions, court-ordered (2365) | CD |
+| | Homes with 3+ housing problems (45) | PUMA2020 |
+| | Homes with cockroaches (107) | PUMA2020 |
 | Neighborhood Conditions | Vegetative cover (2143) | CD |
 | | Violence-related ED visits, all ages (2400) | CD |
 | | Public bathroom availability (2457) | CDTA2020 |
@@ -175,6 +265,10 @@ The 15 indicators the prototype renders:
 | Health Outcomes & Care Access | Heat stress, yearly ED visits (2075) | CD |
 | | Premature mortality (2322) | CD |
 | | Asthma ED visits age 5 to 17 (2379) | CD |
+| Mental Health | *(none available at CD — see DECIDED-7)* | — |
+
+Deferred rather than dropped: **households using electric medical equipment (2377)**, Climate &
+Active Design, which has no PUMA2020 data. See DECIDED-10.
 
 **Per-indicator data files are thin.** Column-oriented, eight columns: `MeasureID`, `GeoID`,
 `GeoType`, `TimePeriodID`, `Value`, `CI`, `Note`, `DisplayValue`. Everything else the card shows
@@ -231,7 +325,7 @@ districts.
 
 ---
 
-## 4. Ledger
+## 3. Ledger
 
 Update this table inside each task, before moving to the next. Record the commit hash once the
 work is committed, never "done, uncommitted".
@@ -239,24 +333,25 @@ work is committed, never "done, uncommitted".
 | Task | Status | Proof that ran | Commit |
 |---|---|---|---|
 | 1. Availability sweep as a committed script | done | `npm run ndhr:availability check` exits 0; five hand-edits of one baseline row each exit 1; the control arm exits 2 when flipped; `npm run docs-check` passes | `451b3da94f` |
-| 2. `cdlist.json` | done, except the three ACS fields | `npm run ndhr:cdlist check` exits 0; 59 rows, `CDTA_id` non-null and distinct; isolated build emits the fingerprinted `cdlist-data` script; three build-path injections each exit 2 | `c3d03a2fbf` |
-| 3. Category and content YAML | blocked on OPEN-1, OPEN-2 for two of four files | — | — |
+| 2. `cdlist.json` | done, except the three ACS fields; **re-opened by DECIDED-6** for the PUMA crosswalk columns | `npm run ndhr:cdlist check` exits 0; 59 rows, `CDTA_id` non-null and distinct; isolated build emits the fingerprinted `cdlist-data` script; three build-path injections each exit 2 | `c3d03a2fbf` |
+| 3. Category and content YAML | unblocked 2026-09-11; five categories, one of them empty | — | — |
 | 4. Shared compute module | not started | — | — |
-| 5. Content adapter and routing | blocked on OPEN-2, OPEN-3 | — | — |
+| 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
 | 6. Report layout and CD Leaflet map | not started | — | — |
 | 7. Renderers and geography labelling | not started | — | — |
-| 8. Strategies column and contact form | blocked on OPEN-1, OPEN-4 | — | — |
+| 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-Next command: Task 4 — Tasks 3 and 5 are blocked on the OPEN decisions. Re-run
-`npm run ndhr:availability check` and `npm run ndhr:cdlist check` before acting on §3's table
-or on any demographic figure.
+Next command: **Task 2's re-opened half** — add the PUMA crosswalk columns to `cdlist.json`,
+since Tasks 4 and 7 both read them. Then Task 4. Nothing is blocked on a decision any more.
+Re-run `npm run ndhr:availability check` and `npm run ndhr:cdlist check` before acting on
+§2's table or on any demographic figure.
 
 ---
 
 ## Task 1: Commit the availability sweep as a re-runnable script
 
-§3's indicator table is the plan's load-bearing claim and it was produced by a throwaway script.
+§2's indicator table is the plan's load-bearing claim and it was produced by a throwaway script.
 EHDP-data adds indicators and geotypes over time, so the table decays silently. Make it
 re-derivable.
 
@@ -435,6 +530,38 @@ is dead in `uhflist.json` as well `[verified 2026-09-10: grep over all three tre
 typeahead in `nr-neighborhood-picker-js.html` searches `UHF_name` and `Zipcodes`, not `namezip`,
 so an NDHR picker needs its own `searchIn` list rather than a substitute field.
 
+### Task 2 re-opened by DECIDED-6: the PUMA crosswalk columns
+
+**Files:**
+- **Blocked on EHDP-data**: `puma2010_to_subboro_cd.csv` and `puma2020_to_cd.csv` published
+  under `geography/`, from `cgettings-EHDP-work/data/gis/`. Nothing here can start until they
+  are there
+- Edit `scripts/ndhr-build-cdlist.mjs` — fetch both from `data_repo` + `data_branch`, emit
+  three new columns
+- Regenerate `data/globals/cdlist.json` and `data/globals/cdlist-source.json`
+
+**Three columns, one of them used.** `PUMA2020_id` is what the report reads, per DECIDED-10.
+`Subboro_id` and `PUMA2010_id` are emitted too — DECIDED-10 keeps Subboro available rather than
+dropping it, and both ride along in `puma2010_to_subboro_cd.csv` at no extra cost. Task 4 reads
+`PUMA2020_id` and nothing else until that decision changes.
+
+**Never name a column `PUMA_id`.** An unqualified name invites a later reader to treat the two
+vintages as interchangeable, and they are not: they merge different Manhattan districts, so the
+wrong one is right for 56 of 59 and silently wrong for CD4, CD5 and CD6 — the shape that passes
+a spot check of any other borough. The generator's controls must assert all three columns are
+non-null on all 59 rows, that each resolves to 55 distinct values, and that the multi-CD groups
+are the four each vintage actually declares.
+
+**Interfaces:** consumes the two CSVs from EHDP-data `geography/`; produces three columns, of
+which Tasks 4 and 7 read `PUMA2020_id`.
+
+**Verification rung:** the generator's own `check`, plus one assertion it does not have yet — the
+set of CDs sharing a `PUMA2010_id` must equal the four groups measured from the demographic data
+in "Task 2 as built" (Manhattan CD1/CD2, Manhattan CD4/CD5, Bronx CD1/CD2, Bronx CD3/CD6). That
+is a cross-check of the crosswalk against data computed independently of it, and it is the only
+thing here that would catch a vintage swap: under PUMA2020 the Manhattan group is CD5/CD6 and the
+assertion fails `[verified 2026-09-11: the two CSVs merge different Manhattan pairs]`.
+
 ---
 
 ## Task 3: Author the category and content YAML
@@ -455,13 +582,20 @@ so an NDHR picker needs its own `searchIn` list rather than a substitute field.
 
 `NDHR_content/<key>.yml` differs from `NR_content` in three ways, each deliberate:
 - keyed on **IndicatorID**, not MeasureID, because route A resolves measures from metadata
-- carries `indicator_short_name` per indicator, since §3 established it has no upstream source
+- carries `indicator_short_name` per indicator, since §2 established it has no upstream source
 - carries `strategy` and `strategy_description` per indicator, from "Text of ... for Review",
   section "Strategies and Strategy Description" — site-owned content with no EHDP-data equivalent
 
-**Blocked by OPEN-1** for how many indicators the Climate & Active Design file declares, and by
-**OPEN-2** for whether a fifth category file exists. Author Housing, Neighborhood Conditions and
-Health Outcomes & Care Access first; those three are not blocked.
+**Unblocked 2026-09-11.** Five category files, 18 indicators: Climate & Active Design declares
+three (2388, 2191, 2185) per DECIDED-10, Housing six (15, 2336, 2145, 2365, 45, 107),
+Neighborhood Conditions six (2143, 2400, 2457, 2389, 2323, 2416), Health Outcomes & Care Access
+three (2075, 2322, 2379), and **Mental Health none**.
+
+Mental Health needs an explicit empty state rather than an absent or zero-length indicator
+list, per DECIDED-7: give it a required `empty_state` string saying no community-district data
+is published for these measures yet, so Task 7 renders a stated absence and a template bug that
+drops the rows is still distinguishable from it. A category whose indicator list is simply
+missing is not.
 
 **Verification rung:** a build, plus one assertion added to Task 1's script — every IndicatorID
 appearing in a content file must be present in the availability baseline with a CD-family
@@ -509,7 +643,7 @@ health.json` for the same neighborhoods.
 This is the task's whole point. It validates route A against the numbers NR ships today, before
 any NDHR page exists — and it is the evidence an eventual NR migration will need.
 
-Write the expected result down before running: `indicator_short_name` differs, since §3
+Write the expected result down before running: `indicator_short_name` differs, since §2
 established it has no upstream source; every other consumed field matches. A run that fails for
 an unexpected reason reads as a flake without that written first, and gets retried instead of
 diagnosed.
@@ -529,9 +663,14 @@ diagnosed.
 - Consumes: `cdlist.json` (Task 2) and `NDHR_categories.yml` (Task 3).
 - Produces: the page set Tasks 6 and 7 render into.
 
-Pages, on four categories: 236 report pages at `/ndhr/<cd-slug>/<category-slug>/`, 59 CD indexes
-at `/ndhr/<cd-slug>/`, 4 category indexes, 1 landing. **Blocked by OPEN-2** for the count and by
-**OPEN-3** for the `ndhr` path segment.
+Pages, on five categories per DECIDED-7: **295** report pages at
+`/ndhr/<cd-slug>/<category-slug>/`, 59 CD indexes at `/ndhr/<cd-slug>/`, 5 category indexes, 1
+landing — **360 pages**. `ndhr` is confirmed as the path segment by DECIDED-8, and the long form
+"Neighborhood Development Health Report" is what `seo_title` carries.
+
+**295 of these render an indicator-free category on 59 of them.** The Mental Health pages are
+real pages with a header, a description and a stated empty state; the adapter must emit them
+rather than skipping a category with no indicators, or the count silently becomes 236 again.
 
 Three adapter constraints, each of which fails silently rather than loudly:
 - `.Site.Pages` and `.Site.GetPage` are unavailable inside an adapter — the Site object is not
@@ -579,7 +718,7 @@ EHDP-data makes the map geometry follow `data_branch` like everything else on th
 it to `static/` matches what NR does today.
 
 **Do not include `nr-leaflet.html` on this page.** Task 7's `map.js` declares the four names that
-partial also declares, per §3.
+partial also declares, per §2.
 
 **Verification rung: browser.** A map is a runtime claim and nothing below the browser settles
 it. Load one report page, confirm 59 polygons render, confirm a click selects and the address bar
@@ -610,8 +749,24 @@ rewrites, and confirm keyboard focus reaches a polygon and Enter selects it — 
 `neighborhoods`.
 
 **Each card states its geography where it is not CD.** HVI and public bathrooms are CDTA2020
-values shown on a CD page, and DECIDED-2 records that the polygons are not identical. This is
-also the affordance the deferred PUMA crosswalk will reuse when it lands.
+values shown on a CD page, and DECIDED-2 records that the polygons are not identical. The three
+PUMA2020 rows — 2185, 45, 107 — use the same affordance, naming the wider area the value covers.
+
+**The sidebar needs a label too, and this is the part that is easy to miss.** Two different merge
+patterns coexist on three Manhattan pages, and both are correct. The demographic sidebar is
+CD-level ACS, which reports Manhattan CD4 and CD5 as one area; the PUMA2020 rows report CD5 and
+CD6 as one area `[verified 2026-09-11: sidebar groups measured from the five demographic
+indicators in "Task 2 as built", PUMA groups read from puma2020_to_cd.csv]`. So on the Manhattan
+CD5 page every sidebar figure equals CD4's while every PUMA row equals CD6's.
+
+Labelling only the indicator rows is worse than labelling neither: it tells the reader that
+shared values are marked, which makes the unmarked shared sidebar read as a bug. `cdlist.json`
+carries what the sidebar label needs — the CDs sharing a `PUMA2010_id` are exactly the sidebar's
+merge groups, which is why that column is emitted despite the report reading `PUMA2020_id`.
+
+The four sidebar groups and the four PUMA2020 groups agree on the two Bronx pairs and on
+Manhattan CD1+CD2; they differ only on Manhattan CD4, CD5 and CD6. **Those three pages are the
+render check**, not a sample of one.
 
 **Adding a file to `eslint.config.mjs` does not put it in scope.** The `lint` script's argument
 list selects the files, and the two must change together. Prove the directory scan actually
@@ -624,9 +779,12 @@ the site's JavaScript and fails on a console error.
 
 ---
 
-## Task 8: Strategies column and contact form
+## Task 8: Strategies column
 
-**Blocked by OPEN-1 and OPEN-4.** Do not start until both are answered.
+**Unblocked 2026-09-11, and narrowed.** The contact form is deferred by DECIDED-9, so this task
+builds the strategies column only and the page carries no contact affordance — not a disabled
+one, which would advertise a feature that does not exist. The three PUMA2020 indicators
+kept by DECIDED-10 each need `strategy` text like every other row.
 
 **Files:**
 - Edit `assets/js/ndhr-report/cards.js` — render `strategy` and `strategy_description` from the
