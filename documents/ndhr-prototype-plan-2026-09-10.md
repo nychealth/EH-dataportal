@@ -235,7 +235,7 @@ work is committed, never "done, uncommitted".
 
 | Task | Status | Proof that ran | Commit |
 |---|---|---|---|
-| 1. Availability sweep as a committed script | not started | — | — |
+| 1. Availability sweep as a committed script | done | `npm run ndhr:availability check` exits 0; five hand-edits of one baseline row each exit 1; the control arm exits 2 when flipped; `npm run docs-check` passes | `451b3da94f` |
 | 2. `cdlist.json` | not started | — | — |
 | 3. Category and content YAML | blocked on OPEN-1, OPEN-2 for two of four files | — | — |
 | 4. Shared compute module | not started | — | — |
@@ -245,7 +245,7 @@ work is committed, never "done, uncommitted".
 | 8. Strategies column and contact form | blocked on OPEN-1, OPEN-4 | — | — |
 | 9. Guardrails | not started | — | — |
 
-Next command: `node scripts/ndhr-indicator-availability.mjs --baseline` (Task 1 creates it).
+Next command: Task 2. Re-run `npm run ndhr:availability check` before acting on §3's table.
 
 ---
 
@@ -273,18 +273,41 @@ re-derivable.
    `AvailableGeoTypes` across that indicator's measures.
 2. Classify each into one of four buckets: CD-family available, PUMA/Subboro only, UHF42 only,
    not found.
-3. Positional arguments only, and reject any argument starting with `-`. PowerShell eats the
-   `--` in `npm run x -- --flag` and npm eats the flag name, so a flag arrives as a nameless
-   positional; `scripts/characterize-env.mjs` refuses them for this reason.
-4. `--baseline` writes the JSON; bare invocation prints the table; `--check` diffs and exits 1 on
-   a difference.
+3. Positional arguments only, and reject any argument starting with `-`;
+   `scripts/characterize-env.mjs` refuses them for the same reason. **The mechanism is worse
+   than "npm eats the flag name" for a valueless flag.** A flag with a value arrives as a
+   nameless positional, but `--check` carries none, so nothing arrives at all:
+   `npm run ndhr:availability -- --check` reaches the script with an empty argv, prints the
+   table and exits 0, which reads exactly like a check that passed
+   `[verified 2026-09-10: run in PowerShell, empty argv and exit 0; control: the same command
+   in Bash delivers `--check` intact and the script refuses it with exit 2]`. So the `-`
+   refusal protects the direct-node path only, and the mode must be a bare word.
+4. Bare invocation prints the table; `baseline` writes the JSON; `check` diffs and exits 1 on
+   a difference. An optional second positional names an environment, defaulting to
+   `production`; `check` refuses a baseline captured on a different EHDP-data branch, since
+   staging and production carry different indicator sets and a cross-branch diff reports real
+   differences that mean nothing about whether anything moved.
 5. Include a positive control: assert that indicator 2143 resolves and reports CD, and that 2133
-   resolves and does **not** report CD. A run where the fetch silently returned an empty document
-   would otherwise report "nothing available" identically to a real answer.
+   resolves and does **not** report CD. Two arms, because one cannot separate the two innocent
+   readings: a fetch that silently returned an empty document reports every row "not found",
+   which only the 2143 arm catches, while bucket logic reading `AvailableGeoTypes` as
+   always-present reports every row "CD-family", which only the 2133 arm catches. The controls
+   gate `baseline` too — a baseline written from a broken sweep looks like a real one, and
+   every later check passes against it.
 
-**Verification rung:** run the script — it is its own proof. Confirm `--check` exits 0 against
+**Verification rung:** run the script — it is its own proof. Confirm `check` exits 0 against
 the baseline it just wrote, and exits 1 when one row of that baseline is edited by hand. The
 second half is what separates a working check from one that passes on everything.
+
+**Read the exit code, not the message.** The script was run 15 ways on 2026-09-10; every message
+was correct while the control-failure path exited **127**: on Node v24.0.1 / Windows,
+`process.exit()` after a `fetch()` aborts with `Assertion failed: !(handle->flags &
+UV_HANDLE_CLOSING), file src\win\async.c, line 76`. `main()` therefore returns its code and
+the caller sets `process.exitCode`. It is a race against socket teardown, so the paths that
+exited correctly were winning it rather than exempt — which is why the fix covers all of them
+`[verified 2026-09-10: an 8-line repro independent of this script — fetch, console.error,
+process.exit(2) — exits 127; the same script with process.exitCode = 2 exits 2, and faster
+(0.144s against 0.240s)]`. Tasks 2 and 4 fetch from EHDP-data the same way and inherit this.
 
 ---
 
