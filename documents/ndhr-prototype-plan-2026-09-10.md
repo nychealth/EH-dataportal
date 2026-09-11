@@ -92,6 +92,9 @@ CDTA2020 rows of GeoLookup.json; 59 matched, CD-only set empty, CDTA-only set em
 CD and CDTA2020 are not identical polygons. The page must say which geography each value came
 from — see Task 7.
 
+The crosswalk is parsed from the names rather than joined on `GeoID`, because a `GeoID` is unique
+only within its own geotype and CD's collides with CDTA2020's — see "Task 2 as built".
+
 ### DECIDED-3 — The CD-to-PUMA crosswalk is deferred, explicitly
 
 Four indicators exist only at PUMA2010 / PUMA2020 / Subboro: household AC (2185), electric
@@ -364,12 +367,49 @@ the same sweep returns 2146 and 2176 as CD-available, so it fires]`. "From ACS b
 a source and a decision about which vintage; **Task 7 must render a null as absent, never as
 0**, and the generator refuses a half-filled set so the gap cannot be closed by accident.
 
-**`GeoID` cannot join CD to CDTA2020, and the failure would be silent.** CD `GeoID` 501 is
-Staten Island CD1; CDTA2020 `GeoID` 501 is Bronx CD1. A GeoID join does not error, it swaps
-boroughs. The two `Name` spellings also differ — "Financial District (CD1)" against
-"Financial District-Tribeca (CD 1)" — so the optional space in the parse is load-bearing
+**Join CD to CDTA2020 on the parsed names, never on `GeoID` — and nothing is broken upstream.**
+A `GeoID` value is an arbitrary internal key. Its only job is that a geotype's geometry, its
+`GeoLookup` rows and its indicator data agree with each other, and all three do, so every map and
+every indicator on the site is correct today. There is no fix this plan waits on.
+
+What a `GeoID` does **not** carry is any relationship *between* geotypes. It is unique only within
+one: across `GeoLookup` as a whole, `(GeoType, GeoID)` is unique at 801 of 801 while `GeoID` alone
+is 644 distinct, with 89 values used by more than one geotype `[verified 2026-09-10: counted over
+all 801 rows]`. Three of those collisions are CD against CDTA2020, and they are the dangerous
+shape — CD `GeoID` 501 is Staten Island CD1 while CDTA2020 `GeoID` 501 is Bronx CD1, so a GeoID
+join does not error, it swaps boroughs.
+
+The reason this looks like it ought to work is that it was meant to.
+`EHDP-data/geography/create_TopoJSON.r:279-283` builds the CDTA2020 id by stripping the two-letter
+borough prefix off DCP's `BX01` and concatenating `CountyFIPS` where `BoroCode` was intended, then
+casting to integer — per the export code's author 2026-09-10, a mistake, possibly carried in from
+borrowed code where FIPS was the right field. Under `BoroCode` the CDTA ids would equal the CD ids
+exactly, 59 of 59, and the join this warns against would have been the intended one. The
+three-digit Bronx ids are the tell: `as.integer` drops the two leading zeros of FIPS `005`.
+
+**NTA2010 and NTA2020 carry the same mistake** — same four-line construction at
+`create_TopoJSON.r:329` and `:381` — and NTA had no analogous geography to disagree with, which is
+why only CDTA surfaced it. Their ids nest under CDTA's for the same reason, not by design, and
+nothing consumes that nesting: no authored JS derives one geography's id from another's, and every
+use of `properties.GEOCODE` is a within-geotype join between indicator data and that geotype's own
+topojson `[verified 2026-09-10: grep over assets/js/data-explorer and assets/js/nr-report,
+excluding minified vendor bundles]`.
+
+**Correcting the ids is therefore cosmetic, and optional.** What it would buy is turning a silent
+trap into a working convenience. If it is ever done, the geometry and the data must move together
+or the CDTA choropleth matches nothing and draws unfilled — `CDTA2020.topo.json`,
+`CDTA_2020.topo.json`, `GeoLookup.json`, `GeoLookup.csv` and the 33 indicators publishing
+CDTA2020. **No site code changes**: every CDTA reference under `assets/`, `themes/` and `content/`
+handles the geotype *name*, never an id value. One repo-local file would go stale rather than
+break, since the proximity feature reads only its own bundled geojson:
+`content/data-features/proximity/geojson/800m_CDTA2020_pct_walkable_ADA_subway.geojson`.
+
+**None of this reaches NDHR.** The crosswalk parses `(borough, CD number)` out of both `Name`
+strings, which is correct under either id scheme and depends on no id convention at all
 `[verified 2026-09-10: 59 of 59 matched, zero unparsed, zero leftover either side, pairs
-spot-checked by name in all five boroughs]`.
+spot-checked by name in all five boroughs]`. If the ids are ever corrected,
+`npm run ndhr:cdlist check` reports 59 changed `CDTA_id` values — re-run `build`, and do **not**
+switch the join to `GeoID`.
 
 **The latest time period is never the highest `TimePeriodID`.** On production the highest id
 (288) is "2007-11" and the true latest (287) is "2015-19"; all five fields disagree the same

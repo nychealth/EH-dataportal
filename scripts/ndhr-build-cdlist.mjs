@@ -66,8 +66,21 @@ const ACS_FIELDS = ["TotalPopulation", "PercentOver65", "PercentUnder18"];
 // Both Name strings carry the community district number, but they are spelled
 // differently — CD is "Financial District (CD1)" and CDTA2020 is
 // "Melrose-Mott Haven-Port Morris (CD 1)" — so the optional space is load-bearing.
-// GeoID cannot be joined on: CD numbers Manhattan 1xx and Staten Island 5xx, while
-// CDTA2020 numbers the Bronx 5xx.
+//
+// The names are parsed rather than the ids joined, because a GeoID is unique only
+// within its own geotype: CD 501 is Staten Island CD1 and CDTA2020 501 is Bronx CD1, so
+// a GeoID join does not error, it swaps boroughs. Nothing upstream is broken by this —
+// each geotype's geometry, GeoLookup rows and indicator data agree with each other,
+// which is the only thing an arbitrary internal key has to do.
+//
+// It looks like it ought to work because it was meant to. EHDP-data's
+// geography/create_TopoJSON.r:279-283 concatenates CountyFIPS where BoroCode was
+// intended; under BoroCode the CDTA ids would equal the CD ids exactly, 59 of 59
+// `[per the export code's author 2026-09-10: a mistake, not a convention]`.
+//
+// If those ids are ever corrected, `check` reports 59 changed CDTA_id values — re-run
+// `build`, and do NOT switch this to a GeoID join. The name parse is correct under
+// either scheme and depends on no id convention at all.
 const CD_NUMBER = /\(\s*CD\s*(\d+)\s*\)\s*$/;
 
 // ----------------------------------------------------------------------- //
