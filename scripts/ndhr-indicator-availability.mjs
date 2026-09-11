@@ -5,9 +5,11 @@
 // Which of the 28 NDHR indicators can actually be published at community-district
 // geography, read from EHDP-data rather than asserted.
 //
-// documents/ndhr-prototype-plan-2026-09-10.md rests on a table of 15 renderable
-// indicators, 4 that exist only at PUMA/Subboro, 5 only at UHF42, and 4 that are
-// absent from EHDP-data entirely. That table was produced by a throwaway script,
+// documents/ndhr-prototype-plan-2026-09-10.md rests on a table of 18 renderable
+// indicators and 10 that are not — 1 deferred for want of PUMA2020 data, 5 that
+// exist only at UHF42, and 4 absent from EHDP-data entirely. (It read 15 and 13
+// until DECIDED-6 brought the PUMA crosswalk forward and DECIDED-10 chose PUMA2020
+// as the geography.) That table was produced by a throwaway script,
 // and EHDP-data adds indicators and geotypes over time — so the table decays with
 // nothing to announce it, and the plan's scope decision (DECIDED-1) decays with it.
 // This makes it re-derivable, and `check` makes the decay visible at the moment it
@@ -16,7 +18,9 @@
 // Usage — POSITIONAL arguments only:
 //   node scripts/ndhr-indicator-availability.mjs                    print the table
 //   node scripts/ndhr-indicator-availability.mjs baseline           write the baseline
-//   node scripts/ndhr-indicator-availability.mjs check              diff against it
+//   node scripts/ndhr-indicator-availability.mjs check              diff against it,
+//                                                                   and validate the
+//                                                                   Task 3 content YAML
 //   node scripts/ndhr-indicator-availability.mjs check dev_stage    ...on another environment
 //   npm run ndhr:availability check
 //
@@ -29,7 +33,9 @@
 // 2 the run could not be made, or a control failed.
 
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+// js-yaml 5.x ships named ESM exports and no default, so `import yaml from` fails at load.
+import { load as loadYaml } from "js-yaml";
 
 // ----------------------------------------------------------------------- //
 // configuration
@@ -38,6 +44,10 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 const HUGO_CLI = "node_modules/hugo-extended/lib/cli.js";
 const BASELINE_FILE = "scripts/ndhr-indicator-availability-baseline.json";
 const METADATA_PATH = "indicators/metadata/metadata.json";
+
+// The Task 3 content files this script also validates, in `check` mode.
+const CATEGORIES_FILE = "data/globals/NDHR_categories.yml";
+const CONTENT_DIR = "data/globals/NDHR_content";
 
 // `production` rather than `development`: same data branch and data repo, but it is
 // the environment whose name says which EHDP-data branch this is about. The two
@@ -99,8 +109,11 @@ const NDHR_INDICATORS = [
 ];
 
 // CD is the page geography and CDTA2020 joins it 59-to-59 (plan DECIDED-2), so both
-// are renderable. PUMA2010/PUMA2020/Subboro do not nest into CDs and their crosswalk
-// is deferred (DECIDED-3), so they are a bucket of their own rather than renderable.
+// are renderable. PUMA2010/PUMA2020/Subboro do not nest into CDs, so they stay a
+// bucket of their own — but no longer an unrenderable one: DECIDED-6 published the
+// crosswalk and DECIDED-10 picked PUMA2020, so three of this bucket's rows are in
+// the prototype. Which ones is a decision, recorded per indicator as `geotype` in
+// data/globals/NDHR_content/ and checked there, not derivable from this bucket.
 const CD_FAMILY = ["CD", "CDTA2020"];
 const PUMA_FAMILY = ["PUMA2010", "PUMA2020", "Subboro"];
 
@@ -278,6 +291,135 @@ const runControls = (rows) => {
 };
 
 // ----------------------------------------------------------------------- //
+// the Task 3 content files
+// ----------------------------------------------------------------------- //
+
+// Reads data/globals/NDHR_categories.yml and data/globals/NDHR_content/*.yml.
+//
+// Throws rather than returning an empty result when the files cannot be read: a
+// validator that finds nothing reports zero failures, which is indistinguishable
+// from a clean pass. The caller turns a throw into exit 2 ("the run could not be
+// made") and a returned failure list into exit 1 ("something disagrees").
+const readContent = () => {
+
+    if (!existsSync(CATEGORIES_FILE)) throw new Error(`no ${CATEGORIES_FILE}`);
+    if (!existsSync(CONTENT_DIR)) throw new Error(`no ${CONTENT_DIR}/`);
+
+    const categories = loadYaml(readFileSync(CATEGORIES_FILE, "utf8"));
+    if (!Array.isArray(categories) || categories.length === 0) {
+        throw new Error(`${CATEGORIES_FILE} did not parse as a non-empty array`);
+    }
+
+    const files = readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".yml"));
+    if (files.length === 0) throw new Error(`${CONTENT_DIR}/ holds no .yml files`);
+
+    const content = new Map();
+    for (const f of files) {
+        const doc = loadYaml(readFileSync(`${CONTENT_DIR}/${f}`, "utf8"));
+        if (!doc || !Array.isArray(doc.report_topics)) {
+            throw new Error(`${CONTENT_DIR}/${f} has no \`report_topics\` array`);
+        }
+        for (const t of doc.report_topics) {
+            if (!Array.isArray(t?.measures)) {
+                throw new Error(`${CONTENT_DIR}/${f}: report_topic "${t?.report_topic}" has no \`measures\` array`);
+            }
+        }
+        content.set(f.replace(/\.yml$/, ""), doc);
+    }
+
+    return { categories, content };
+
+};
+
+// Every row in a content file must name a MeasureID that exists in metadata, sits
+// under the IndicatorID the row also names, carries the MeasureName the row claims,
+// and publishes at the geography the row reads it at.
+//
+// Checked against METADATA, not against the baseline, and the baseline could not do
+// this job. Its `geoTypes` is the union across an indicator's measures, so a row
+// declaring a geotype that only a SIBLING measure publishes at would pass — and
+// those siblings are exactly what a per-measure spec exists to tell apart. Three of
+// the eighteen indicators have measures that disagree on geography: 2185, 107 and 45
+// `[verified 2026-09-11: per-measure AvailableGeoTypes against the indicator union.
+// "Households with AC, Number" (782) publishes at Subboro and NOT PUMA2020, while
+// its indicator's union includes PUMA2020, so that row would pass a baseline check
+// and produce an empty series]`.
+//
+// This also outgrew the plan's wording for the assertion, "...present in the
+// availability baseline with a CD-family geotype", which DECIDED-10 outdated —
+// three of the eighteen are read at PUMA2020, which is not CD-family.
+const validateContent = ({ categories, content }, metadata) => {
+
+    const failures = [];
+
+    // MeasureID -> the measure and its parent indicator. MeasureIDs are unique
+    // across all of EHDP-data, which is what makes them the join key.
+    const byMeasure = new Map();
+    for (const ind of metadata) {
+        for (const ms of ind.Measures || []) byMeasure.set(ms.MeasureID, { ms, ind });
+    }
+
+    const declaredKeys = categories.map((c) => c.key);
+    for (const key of declaredKeys) {
+        if (!content.has(key)) failures.push(`${CATEGORIES_FILE} declares "${key}" with no ${CONTENT_DIR}/${key}.yml`);
+    }
+    for (const key of content.keys()) {
+        if (!declaredKeys.includes(key)) failures.push(`${CONTENT_DIR}/${key}.yml has no entry in ${CATEGORIES_FILE}`);
+    }
+
+    // One measure on two pages would be a content mistake, not a design: each row
+    // carries its own strategy text, and a duplicate silently forks it.
+    const seen = new Map();
+
+    for (const [key, doc] of content) {
+
+        const rows = doc.report_topics.flatMap((t) => t.measures);
+
+        // DECIDED-7's requirement, made checkable. An absent empty_state on an empty
+        // category is exactly the case a reader cannot tell from a broken template.
+        if (rows.length === 0 && !doc.empty_state) {
+            failures.push(`${key}.yml declares no measures and carries no empty_state`);
+        }
+        if (rows.length > 0 && doc.empty_state) {
+            failures.push(`${key}.yml declares ${rows.length} measure(s) and an empty_state, which cannot both apply`);
+        }
+
+        for (const row of rows) {
+
+            const where = `${key}.yml / measure ${row.MeasureID}`;
+
+            if (seen.has(row.MeasureID)) {
+                failures.push(`${where} is already declared in ${seen.get(row.MeasureID)}.yml`);
+            }
+            seen.set(row.MeasureID, key);
+
+            if (!row.indicator_short_name) failures.push(`${where} has no indicator_short_name`);
+            if (!row.strategy) failures.push(`${where} has no strategy`);
+
+            const found = byMeasure.get(row.MeasureID);
+            if (!found) {
+                failures.push(`${where} is in no measure of the metadata`);
+                continue;
+            }
+            if (found.ind.IndicatorID !== row.IndicatorID) {
+                failures.push(`${where} is declared under indicator ${row.IndicatorID}, metadata puts it under ${found.ind.IndicatorID} (${found.ind.IndicatorName})`);
+            }
+            if (found.ms.MeasureName !== row.MeasureName) {
+                failures.push(`${where} names it "${row.MeasureName}", metadata "${found.ms.MeasureName}"`);
+            }
+            if (!found.ms.AvailableGeoTypes.includes(row.geotype)) {
+                failures.push(`${where} reads at ${row.geotype}, which this measure does not publish (${found.ms.AvailableGeoTypes.join(", ")})`);
+            }
+
+        }
+
+    }
+
+    return { failures, categoryCount: categories.length, measureCount: seen.size };
+
+};
+
+// ----------------------------------------------------------------------- //
 // output
 // ----------------------------------------------------------------------- //
 
@@ -433,16 +575,39 @@ async function main() {
         return 2;
     }
 
+    // Checked against this run's metadata rather than the baseline: the baseline
+    // records indicator-level geotype unions, and a per-measure spec needs the
+    // measure's own AvailableGeoTypes. The branch refusal above already guarantees
+    // this metadata and the baseline describe the same EHDP-data branch.
+    let content;
+    try {
+        content = validateContent(readContent(), metadata);
+    } catch (err) {
+        console.error(`\nREFUSING TO CHECK the content files — ${err.message}.\n`);
+        return 2;
+    }
+
+    console.log(`Content: ${content.categoryCount} categories, ${content.measureCount} measures — ${content.failures.length ? "FAILED" : "consistent with the metadata"}`);
+
     const lines = diff(baseline, capture);
 
-    if (lines.length === 0) {
+    if (lines.length === 0 && content.failures.length === 0) {
         console.log(`\nUNCHANGED — all ${rows.length} rows match ${BASELINE_FILE} (captured ${baseline.capturedAt}).\n`);
         return 0;
     }
 
-    console.log(`\nAVAILABILITY MOVED — ${lines.length} difference(s) against ${BASELINE_FILE} (captured ${baseline.capturedAt}):\n`);
-    for (const l of lines) console.log(l);
-    console.log("\nRead documents/ndhr-prototype-plan-2026-09-10.md §3 before re-baselining — DECIDED-1's scope rests on this table.\n");
+    if (content.failures.length) {
+        console.log(`\nCONTENT DISAGREES WITH THE BASELINE — ${content.failures.length} problem(s) in ${CATEGORIES_FILE} and ${CONTENT_DIR}/:\n`);
+        for (const f of content.failures) console.log(`  ${f}`);
+    }
+
+    if (lines.length) {
+        console.log(`\nAVAILABILITY MOVED — ${lines.length} difference(s) against ${BASELINE_FILE} (captured ${baseline.capturedAt}):\n`);
+        for (const l of lines) console.log(l);
+        console.log("\nRead documents/ndhr-prototype-plan-2026-09-10.md §3 before re-baselining — DECIDED-1's scope rests on this table.");
+    }
+
+    console.log("");
     return 1;
 
 }

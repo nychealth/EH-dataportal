@@ -71,6 +71,7 @@
         "axe-core": "^4.13.0",
         "eslint": "^10.7.0",
         "globals": "^17.7.0",
+        "js-yaml": "5.4.1",
         "playwright": "^1.62.0"
     }
 }

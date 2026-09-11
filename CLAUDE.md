@@ -1,5 +1,5 @@
 <!-- docs-check source-roots: assets/js/data-explorer assets/js/nr-report themes/dohmh/layouts assets/scss config data content scripts -->
-<!-- docs-check verified: 0c3fc50c05 2026-09-02 -->
+<!-- docs-check verified: 9ccce9dcc9 2026-09-11 -->
 <!-- docs-check ignore: maxAge ignoreFiles -->
 # CLAUDE.md
 
@@ -315,6 +315,27 @@ on a branch mismatch.
   `[verified 2026-09-10: measured in both shells]`. Two controls gate every mode including
   `baseline`: 2143 must report CD and 2133 must not, which separates an empty fetch from
   bucket logic that says yes to everything.
+
+  **`check` also validates the NDHR content YAML**, which nothing else can. Every row in
+  `data/globals/NDHR_content/*.yml` names a `MeasureID`, and it must exist in metadata, sit
+  under the `IndicatorID` the row also names, carry the `MeasureName` the row claims, and
+  publish at the row's declared `geotype` — plus `data/globals/NDHR_categories.yml` and the
+  content directory must name each other exactly, no measure may appear twice, and a category
+  with no measures must carry an `empty_state` string (the Mental Health case; a category
+  that silently renders nothing is indistinguishable from a template bug).
+
+  **It reads live metadata rather than the availability baseline, and the baseline could not
+  do this job**: the baseline's `geoTypes` is the union across an indicator's measures, so a
+  row naming a geography only a *sibling* measure publishes at would pass. Three of the
+  eighteen have measures that disagree that way — 2185, 107, 45. A content problem exits 1
+  beside an availability diff; **a missing, unparseable, or wrong-shaped content directory
+  exits 2 rather than reporting zero problems**, since a validator that found nothing looks
+  exactly like a clean pass
+  `[verified 2026-09-11: nine injections each exit 1 naming their own cause — unknown
+  MeasureID, a sibling measure swapped in, wrong MeasureName, a geotype the measure does not
+  publish, a geotype only a sibling publishes (which a union check passes), removed
+  empty_state, a duplicated measure, a renamed file, and a wrong category key; a removed
+  `report_topics` key and an absent directory each exit 2]`.
 - `npm run ndhr:cdlist [print|build|check] [environment]` — generates data/globals/cdlist.json,
   the CD analogue of `data/globals/uhflist.json`, plus a `cdlist-source.json` sidecar recording
   which indicator, measure and time period each demographic field came from

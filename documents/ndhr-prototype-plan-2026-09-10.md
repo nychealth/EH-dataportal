@@ -351,7 +351,7 @@ work is committed, never "done, uncommitted".
 that the probe can see these assets at all]`. A session re-running the proof as written would
 read that absence as a regression. **The build proof belongs to Task 6**, which adds the include;
 until then the partial's only check is that it parses, which the same build shows.
-| 3. Category and content YAML | unblocked 2026-09-11; five categories, one of them empty | — | — |
+| 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures in NR_content shape, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0, and a deliberately malformed content file fails it naming the file, so that pass is about these files | — |
 | 4. Shared compute module | not started | — | — |
 | 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
 | 6. Report layout and CD Leaflet map | not started | — | — |
@@ -359,13 +359,13 @@ until then the partial's only check is that it parses, which the same build show
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-11:** Tasks 1, 2 and 2b done on `feature-NDHR-prototype`; Tasks 3, 5 and 8
-unblocked and untouched; 4, 6, 7, 9 not started. **Nothing is blocked** — the upstream publish 2b
-waited on has landed on both data branches.
+**Status as of 2026-09-11:** Tasks 1, 2, 2b and 3 done on `feature-NDHR-prototype`; Tasks 5 and 8
+unblocked and untouched; 4, 6, 7, 9 not started. **Nothing is blocked.**
 
-Next command: **Task 4, the shared compute module.** Task 3 is equally available and feeds Tasks 5
-and 7; Task 4 is independent of it. Re-run the two checks first — they are cheap, and §2's table
-and every demographic figure in this plan rest on them:
+Next command: **Task 4, the shared compute module**, which now has Task 3's indicator lists to
+read — or **Task 5**, which has both `cdlist.json` and `NDHR_categories.yml` and is independent of
+Task 4. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
+this plan rest on them:
 
 ```bash
 npm run ndhr:availability check    # expect exit 0, "UNCHANGED — all 28 rows"
@@ -727,6 +727,107 @@ missing is not.
 appearing in a content file must be present in the availability baseline with a CD-family
 geotype. Checking that by eye across four files is how a typo'd ID reaches Task 4 as a silent
 empty row.
+
+### Task 3 as built
+
+**DONE 2026-09-11.** Files: `data/globals/NDHR_categories.yml` (five categories) and
+`data/globals/NDHR_content/{climate_and_active_design,housing,neighborhood_conditions,health_outcomes_and_care_access,mental_health}.yml`
+(18 measures, Mental Health zero). `scripts/ndhr-indicator-availability.mjs` gained the
+validator; `js-yaml` was added as a devDependency, since nothing in `node_modules` could parse
+YAML and no other script in `scripts/` reads any.
+
+**Keyed on MeasureID, in NR_content's shape and its key naming — the user's decision,
+2026-09-11, twice.** This task's own text specified IndicatorID ("because route A resolves
+measures from metadata"), and the flat file shape and snake_case keys that came with it were
+an unprompted divergence from the files this work is modelled on. Both were reversed: **NR is
+the reference because the work to make NR render has already been done**, so the data its
+templates read keeps its form unless there is a reason to depart. `report_topics` holds named
+subsections, each with a `measures` list; `MeasureID`, `IndicatorID` and `MeasureName` are
+spelled as EHDP-data spells them.
+
+MeasureID is also the better key on its own terms: an IndicatorID names a family of series —
+"Number", "Percent", "Age-adjusted rate" — whose values are not interchangeable, and choosing
+among them is a content decision the file should record. `IndicatorID` stays beside it because
+it is what locates the data file; EHDP-data publishes `indicators/data/<IndicatorID>.json` with
+MeasureID as a column inside.
+
+**Ten of the eighteen measures are the ones NR already chose** for the same indicator — 25,
+245, 690, 692, 781, 983, 1029, 1128, 1196, 1224 `[verified 2026-09-11: MeasureIDs in
+data/globals/NR_content/*.yml]`. Of the remaining eight, four had only one measure to take and
+four are recorded with their reason in a comment beside the row: rates rather than counts for
+evictions and the three health outcomes, density rather than count for public bathrooms and
+litter baskets, and the with-AC framing rather than without-AC, which would invert the tertile
+reading.
+
+**One thing the nested shape forced.** Neither source document groups indicators below the five
+categories, so each file carries a single `report_topic` named after its category with a null
+`report_topic_description` — the category's header description lives in `NDHR_categories.yml`
+and is not repeated. Real subsections are additional list entries when someone writes them.
+
+**Three fields NR_content does not carry**, each named in this task or forced by an earlier
+decision: `indicator_short_name` (§2 established it has no upstream source), `strategy` and
+`strategy_description` (DECIDED-5), and `geotype`. The last is the one this task did not
+anticipate: NR needs no such field because every NR row is UHF42, while NDHR reads three rows
+at PUMA2020 and two at CDTA2020 per DECIDED-10, and several of these measures publish at more
+than one geography.
+
+**The source document must be read with its tracked changes ACCEPTED, and this is not a
+detail.** Flattening the XML yields text carrying both the insertions and the deletions, which
+still reads as prose: "Health care access is not equally distributed across the city,. Theand
+its availability of affordable health-related facilities…". Two rows also vanish on acceptance —
+households using electric medical equipment and health insurance (adults) — and both are
+indicators this plan had already dropped for other reasons, so the document and DECIDED-1/10
+agree more closely than the flattened text suggests `[26 `w:del` runs, 38 `w:ins`]`.
+
+**One summary is repaired rather than transcribed.** Accepting the changes leaves the Health
+Outcomes header ungrammatical — the deletion took the noun phrase its sentence needs. The phrase
+is restored from the other source document, which carries the same sentence intact, and the YAML
+comment says so at the point of use. Two further content gaps are recorded as `TODO` comments
+rather than invented: the Housing header carries an unresolved authoring note
+("[Also add language about housing affordability, stability, and accessibility]"), and evictions
+(2365) appears in neither table of "Text of ...", so its strategy comes from the other document's
+"Example Intervention" column and its `strategy_description` is null.
+
+**The rung's assertion outgrew this task's wording twice over.** "Present in the availability
+baseline with a **CD-family** geotype" predates DECIDED-10 — three of the eighteen are read at
+PUMA2020, which is not CD-family — and the baseline could not carry the check at all once the
+files became measure-keyed. **Its `geoTypes` is the union across an indicator's measures**, so a
+row naming a geography only a *sibling* measure publishes at would pass. Three of the eighteen
+indicators have measures that disagree that way: 2185, 107, 45 `[verified 2026-09-11: per-measure
+`AvailableGeoTypes` against the indicator union]`. So the check reads live metadata, and asserts
+per row that the MeasureID exists, sits under the declared IndicatorID, carries the declared
+MeasureName, and publishes at the declared geotype.
+
+**Verification `[all run 2026-09-11 at `9ccce9dcc9`]`:**
+`node scripts/ndhr-indicator-availability.mjs check` exits 0 and prints "Content: 5 categories,
+18 measures — consistent with the metadata". Nine injections each exit 1 naming their own cause:
+an unknown MeasureID, a real sibling measure swapped in, a wrong MeasureName, a geotype the
+measure does not publish, **a geotype only a sibling publishes — the case a union check passes**,
+Mental Health's `empty_state` removed, one measure declared in two files, a content file renamed
+out from under its category entry, and a category key with no file. A removed `report_topics` key
+exits 2. The files were restored from a copy and diffed back to byte-identical afterwards.
+
+**The first pass of this injection suite included one that did not fire, and the premise behind
+it was wrong rather than the code.** It set indicator 15's row to a sibling-only geotype — but
+"Crowding, Percent" and "Crowding, Number" publish at the same nine geographies, so there was no
+sibling-only geotype to name. The comment in the script had cited 15 as the live case; it now
+cites 2185, where "Households with AC, Number" (782) publishes at Subboro and not PUMA2020 while
+its indicator's union includes PUMA2020. A green suite would have hidden that the discriminating
+arm had never run.
+
+**The validator's no-power case is loud, which is the point.** A validator that cannot find the
+files reports zero problems, and zero problems is what a clean pass looks like — so a missing or
+unparseable content directory exits **2**, not 0. Verified by moving the directory aside.
+
+**The build proof has its own control.** An isolated `development` build exits 0 with the new
+data files present — but Hugo loads all of `data/` whether or not anything reads it, so that pass
+would look identical if it had never opened them. Appending one malformed line to
+`housing.yml` fails the build naming the file and line, which is what makes the clean exit 0 a
+statement about these files `[both builds run with `HUGO_RESOURCEDIR` and `-d` outside the repo]`.
+
+**Category slugs are hyphenated** — `/ndhr/<cd-slug>/climate-and-active-design/` — where
+`NR_topics.yml` uses underscores. NR's slugs reproduce URLs already indexed; this section has
+none yet, so it was a free choice. Reversible now, expensive after Task 5 generates 295 pages.
 
 ---
 
