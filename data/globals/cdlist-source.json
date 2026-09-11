@@ -1,7 +1,7 @@
 {
     "generatedBy": "scripts/ndhr-build-cdlist.mjs",
-    "generatedAt": "2026-09-11T00:48:09.351Z",
-    "gitHead": "8181e4803b4a7cda1bc0fb185290ede628b09775",
+    "generatedAt": "2026-09-11T17:13:00.400Z",
+    "gitHead": "1258b86b5fe1e126e37f00e526f1903ccf1260a6",
     "environment": "production",
     "dataBranch": "production",
     "source": "https://raw.githubusercontent.com/nychealth/EHDP-data/production/",
@@ -58,6 +58,13 @@
         "PercentOver65",
         "PercentUnder18"
     ],
+    "crosswalks": {
+        "PUMA2020_id": "geography/puma2020_to_cd.csv",
+        "PUMA2010_id": "geography/puma2010_to_subboro_cd.csv",
+        "Subboro_id": "geography/puma2010_to_subboro_cd.csv",
+        "readByTheReport": "PUMA2020_id",
+        "demographicsAreOn": "PUMA2010_id"
+    },
     "reportedAsOneArea": [
         [
             {
