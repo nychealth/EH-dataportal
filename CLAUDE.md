@@ -328,6 +328,18 @@ on a branch mismatch.
   five demographic fields, so 59 rows carry 55 distinct measurements
   `[all verified 2026-09-10]`.
 
+  It also emits `PUMA2020_id`, `PUMA2010_id` and `Subboro_id`, read from the two crosswalks
+  EHDP-data publishes at geography/puma2020_to_cd.csv and geography/puma2010_to_subboro_cd.csv.
+  **Never collapse those into one `PUMA_id`.** The two vintages merge different Manhattan
+  districts — PUMA2010 merges CD4+CD5, PUMA2020 merges CD5+CD6 — so the wrong one is correct
+  for 56 of 59 districts and silently wrong for three, in one borough, which is the shape a spot
+  check anywhere else passes. Only `PUMA2020_id` is read by the NDHR report. **One control does
+  the work here and it is worth knowing which**: the null, distinctness and 55-area checks pass
+  identically under either file, so what catches a swap is comparing `PUMA2010_id`'s merged CD
+  groups against the groups recovered from the demographic values themselves — data computed
+  without reference to the crosswalk. Under a deliberate swap that control exits 2 and the other
+  three do not `[verified 2026-09-11]`.
+
 ### Four ways a local check silently lies
 
 - **A Hugo build's exit code is a fact about the tree *and* its `data_branch`, not the tree alone.** Each environment pins its own branch, so the same commit can build clean under one and abort under another when EHDP-data filenames differ. Name the environment in any claim that a branch does or does not build.
