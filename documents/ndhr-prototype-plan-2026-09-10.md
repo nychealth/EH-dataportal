@@ -340,7 +340,8 @@ work is committed, never "done, uncommitted".
 | Task | Status | Proof that ran | Commit |
 |---|---|---|---|
 | 1. Availability sweep as a committed script | done | `npm run ndhr:availability check` exits 0; five hand-edits of one baseline row each exit 1; the control arm exits 2 when flipped; `npm run docs-check` passes | `451b3da94f` |
-| 2. `cdlist.json` | done, except the three ACS fields; **re-opened by DECIDED-6** for the PUMA crosswalk columns | `npm run ndhr:cdlist check` exits 0; 59 rows, `CDTA_id` non-null and distinct; isolated build emits the fingerprinted `cdlist-data` script; three build-path injections each exit 2 | `c3d03a2fbf` |
+| 2. `cdlist.json` | done, except the three ACS fields | `npm run ndhr:cdlist check` exits 0; 59 rows, `CDTA_id` non-null and distinct; isolated build emits the fingerprinted `cdlist-data` script; three build-path injections each exit 2 | `c3d03a2fbf` |
+| 2b. PUMA crosswalk columns (DECIDED-6) | generator **done**; **BLOCKED** on the EHDP-data branch merging into `production`/`staging` — pushed 2026-09-11 but not merged, so `cdlist.json` is NOT yet regenerated and `ndhr:cdlist check` exits 2 on the 404 | clean run exits 0 against a local mirror serving the real files, reporting both merge structures; three injections each exit 2 — a vintage swap trips the grouping control **and nothing else**, a dropped CD row and a renamed header are refused before any row is built | `c8fc31c182` |
 | 3. Category and content YAML | unblocked 2026-09-11; five categories, one of them empty | — | — |
 | 4. Shared compute module | not started | — | — |
 | 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
@@ -349,10 +350,60 @@ work is committed, never "done, uncommitted".
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-Next command: **Task 2's re-opened half** — add the PUMA crosswalk columns to `cdlist.json`,
-since Tasks 4 and 7 both read them. Then Task 4. Nothing is blocked on a decision any more.
-Re-run `npm run ndhr:availability check` and `npm run ndhr:cdlist check` before acting on
-§2's table or on any demographic figure.
+**Status as of 2026-09-11:** Tasks 1 and 2 done on `feature-NDHR-prototype`; Task 2b's generator
+done and blocked on an upstream publish; Tasks 3, 5 and 8 unblocked and untouched; 4, 6, 7, 9 not
+started. Nothing is blocked on a *decision* any more — 2b is blocked on a push.
+
+Next command: **merge the EHDP-data branch into `production` and `staging`**, which is what
+unblocks everything downstream. `feature-cd-puma-crosswalks` at `b573b8ae` in the EHDP-data clone
+at `../EHDP-data` holds the two CSVs plus a `## PUMA to Community District` README section, cut
+from local `production` and pushed 2026-09-11. How far it has travelled is derived, not recorded:
+
+```bash
+git -C ../EHDP-data branch -r --contains b573b8ae
+# 2026-09-11: origin/feature-cd-puma-crosswalks only — neither production nor staging
+```
+
+```bash
+# 1. merge it (PRs into production and staging), then confirm the raw URL resolves —
+#    this 404s until the merge lands, and it is the whole block
+curl -s -o /dev/null -w "%{http_code}\n" \
+  https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/puma2020_to_cd.csv
+
+# 2. regenerate and commit cdlist.json (from this repo) — expect 59 rows x 3 new columns
+npm run ndhr:cdlist build
+npm run ndhr:cdlist check          # expect exit 0, "UNCHANGED"
+
+# 3. re-derive the indicator split, which the same publish does not affect
+npm run ndhr:availability check    # expect exit 0
+```
+
+Until step 1 lands, `npm run ndhr:cdlist check` exits 2 with `REFUSING TO RUN — 404 Not Found`
+on `geography/puma2020_to_cd.csv`. That is the block, not a regression.
+
+**The push already retires one risk in the verification below.** The generator was exercised
+against a local mirror rather than GitHub, so "the published files are the ones that were tested"
+was an assumption. It is now measured: both files fetched from the pushed branch are byte-identical
+to the copies the mirror served `[verified 2026-09-11: sha256, 98baee58a7c03e49 and
+d6d93465557a6b8b, each matching its local copy; the two hashes differ from each other, so the
+comparison discriminates]`. What the merge adds is reachability at the branch the config pins,
+not different bytes.
+
+**Environment state this session left behind.** The EHDP-data clone's checked-out branch was
+moved: it was on `hotfix-CDTA2020-codes` (since renamed `docs-geoid-scheme`) with a clean tree,
+and is now on `feature-cd-puma-crosswalks`. Nothing was uncommitted. Restore with
+`git -C ../EHDP-data switch docs-geoid-scheme`. The two CSVs were also copied into the local IIS
+mirror at `C:\inetpub\wwwroot\EHDP-data\production\geography\` to verify the generator, and
+**removed again** — confirmed 404 on both, with `GeoLookup.json` still 200 as the control.
+
+**Deferred, so it reads as a decision rather than an oversight:** the `geography/README.md`
+section this session added carries `TODO: record the source they were transcribed from`. Nothing
+in `cgettings-EHDP-work` generates the two CSVs — `code/gis/puma2010_to_puma2020.R` only reads
+them — so their provenance is unrecorded and only the author can supply it. Worth closing before
+that PR merges.
+
+Then Task 4. Re-run `npm run ndhr:availability check` and `npm run ndhr:cdlist check` before
+acting on §2's table or on any demographic figure.
 
 ---
 
@@ -514,12 +565,17 @@ CD-to-CDTA map committed here (below), nothing in this repo is waiting on a renu
 case for doing it upstream is convenience for other consumers rather than anything NDHR needs.
 NTA2020 and CDTA2020 would have to move together to keep the nesting. **It now has a plan of its
 own upstream**: `EHDP-data/documents/geoid-borocode-migration.md` on branch
-`hotfix-CDTA2020-codes`, scoped to CDTA2020 and NTA2020 with NTA2010 staying on FIPS, and reading
+`docs-geoid-scheme` (named `hotfix-CDTA2020-codes` until 2026-09-11), scoped to CDTA2020 and
+NTA2020 with NTA2010 staying on FIPS, and reading
 "nothing started, not urgent, not blocking" as of 2026-09-11. Its measurements and this section's
 agree independently — 27 NTA2010/CD collisions under `BoroCode`, 0 for NTA2020 either way, 197/197
-nesting under both schemes. **And EHDP-data has deliberately not published a crosswalk file**, on
+nesting under both schemes. **And EHDP-data has deliberately not published a CD-to-CDTA crosswalk file**, on
 the grounds that `cdlist.json` is its only consumer and a renumbering would reduce any upstream
-copy to an identity map; `geography/README.md` documents the name-parse instead. If it is ever
+copy to an identity map; `geography/README.md` documents the name-parse instead. **That README
+section is on `docs-geoid-scheme` and is unmerged** — `production` and `staging` carry a
+`geography/README.md` with no `## CD and CDTA2020` heading at all
+`[verified 2026-09-11: headings compared across all three branches]`. None of this governs the
+*PUMA* crosswalks, which are a different relationship and are being published (Task 2b). If it is ever
 done, the geometry and the data must move together
 or the CDTA choropleth matches nothing and draws unfilled — `CDTA2020.topo.json`,
 `CDTA_2020.topo.json`, `GeoLookup.json`, `GeoLookup.csv` and the 33 indicators publishing
@@ -567,12 +623,14 @@ so an NDHR picker needs its own `searchIn` list rather than a substitute field.
 ### Task 2 re-opened by DECIDED-6: the PUMA crosswalk columns
 
 **Files:**
-- **Blocked on EHDP-data**: `puma2010_to_subboro_cd.csv` and `puma2020_to_cd.csv` published
-  under `geography/`, from `cgettings-EHDP-work/data/gis/`. Nothing here can start until they
-  are there
-- Edit `scripts/ndhr-build-cdlist.mjs` — fetch both from `data_repo` + `data_branch`, emit
-  three new columns
-- Regenerate `data/globals/cdlist.json` and `data/globals/cdlist-source.json`
+- **BLOCKED on EHDP-data**: `puma2010_to_subboro_cd.csv` and `puma2020_to_cd.csv` published
+  under `geography/`, from `cgettings-EHDP-work/data/gis/`. Committed at `b573b8ae` on
+  `feature-cd-puma-crosswalks`, cut from local `production`; §3's next-command block gives the
+  command that derives how far it has since travelled
+- **DONE `c8fc31c182`**: `scripts/ndhr-build-cdlist.mjs` fetches both from `data_repo` +
+  `data_branch` and emits the three columns
+- **NOT DONE**: regenerate `data/globals/cdlist.json` and `data/globals/cdlist-source.json` —
+  it cannot run until the publish lands, and `check` exits 2 on the 404 until then
 
 **Three columns, one of them used.** `PUMA2020_id` is what the report reads, per DECIDED-10.
 `Subboro_id` and `PUMA2010_id` are emitted too — DECIDED-10 keeps Subboro available rather than
@@ -589,12 +647,25 @@ are the four each vintage actually declares.
 **Interfaces:** consumes the two CSVs from EHDP-data `geography/`; produces three columns, of
 which Tasks 4 and 7 read `PUMA2020_id`.
 
-**Verification rung:** the generator's own `check`, plus one assertion it does not have yet — the
-set of CDs sharing a `PUMA2010_id` must equal the four groups measured from the demographic data
-in "Task 2 as built" (Manhattan CD1/CD2, Manhattan CD4/CD5, Bronx CD1/CD2, Bronx CD3/CD6). That
-is a cross-check of the crosswalk against data computed independently of it, and it is the only
-thing here that would catch a vintage swap: under PUMA2020 the Manhattan group is CD5/CD6 and the
-assertion fails `[verified 2026-09-11: the two CSVs merge different Manhattan pairs]`.
+**Verification rung `[built and run 2026-09-11, `c8fc31c182`]`:** the generator's own `check`,
+plus the assertion it lacked — the set of CDs sharing a `PUMA2010_id` must equal the four groups
+measured from the demographic data in "Task 2 as built" (Manhattan CD1/CD2, Manhattan CD4/CD5,
+Bronx CD1/CD2, Bronx CD3/CD6). That is a cross-check of the crosswalk against data computed
+independently of it, and it is the only thing here that catches a vintage swap.
+
+How it was run, since EHDP-data had not published the CSVs: the two files were copied into the
+local IIS mirror at `C:\inetpub\wwwroot\EHDP-data\production\geography\`, exercised through
+`node scripts/ndhr-build-cdlist.mjs print local_prod`, and removed afterwards. A clean run exits 0
+and prints both merge structures. **The discriminating result is which controls fired, not that
+one did**: reshaping `puma2020_to_cd.csv` into the 2010 file's columns — the literal vintage swap —
+exits 2 on the grouping control **and on nothing else**, because the null, distinctness and
+55-area checks pass identically under either file. Two structural injections also exit 2, both
+refused before any row is built: a dropped CD row (`has CD 503, which is not in
+geography/puma2020_to_cd.csv`) and a renamed header (`header is "PUMA_2020,CD"`).
+
+One live consequence: `npm run ndhr:cdlist check` exits 2 with `REFUSING TO RUN — 404 Not Found`
+until the publish lands. Deliberate — a missing crosswalk must not build a file whose three new
+columns are quietly null.
 
 ---
 
