@@ -145,11 +145,25 @@ const loadDistrictRows = async districtName => {
 
     debugLog('loadDistrictRows: enter:', districtName);
 
+    // A category with no measures has nothing to build and no file to fetch. This is the
+    // right place for that check rather than in bootstrap(), because it is a property of
+    // the category and so holds for every district switch as well as for first load —
+    // otherwise each switch on the empty-state page fires a metadata request that could
+    // only ever resolve to an empty list
+    if (!reportConfig.measures || !reportConfig.measures.length) {
+        debugLog('loadDistrictRows: branch-no-measures:', districtName);
+        return { rows: [], series: {} };
+    }
+
     const geoIds = geoIdsForDistrict(districtName);
 
+    // `{ rows, series }`, not a bare array: both callers read `.rows` and `.series` off
+    // the result, and a bare [] only survived because `[].rows` is undefined and each
+    // read is `|| `-defaulted. Returning the shape the callers destructure removes the
+    // accident rather than relying on it
     if (!geoIds) {
         debugLog('loadDistrictRows: branch-no-geoids:', districtName);
-        return [];
+        return { rows: [], series: {} };
     }
 
     try {

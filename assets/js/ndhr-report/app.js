@@ -138,13 +138,21 @@ const bootstrap = () => {
     }
 
     // A category with no measures is a supported state, not a broken page: Mental Health
-    // renders a server-side empty state (plan DECIDED-7) and has no map, no accordion and
-    // nothing to load. Returning here is what keeps that page free of console errors
-    if (!Array.isArray(reportConfig.measures) || !reportConfig.measures.length) {
-        debugLog('bootstrap: branch-no-measures-empty-state-category');
-        return;
-    }
-
+    // renders a server-side empty state (plan DECIDED-7) and has no indicator rows.
+    //
+    // It is NOT short-circuited here. An earlier version returned at this point, and that
+    // also skipped everything the left column and the header need — none of which has
+    // anything to do with measures. The cost was a blank bordered 450px box where the
+    // district map belongs, a demographics panel still at display:none with all five
+    // values empty, and no print QR code, on all 59 Mental Health report pages
+    // `[verified 2026-09-12 against the same district's Housing page as the control:
+    // mapPanes 0 against 7, map polygons 0 against 62, demographics display none/0px
+    // against block/337px, qrcode children 0 against 1]`.
+    //
+    // The emptiness is handled where it belongs instead — loadDistrictRows returns an
+    // empty result without fetching, so it holds for a map-driven district switch too,
+    // and renderIndicators finds no #ndhr-indicators container because the template
+    // rendered the empty-state branch in its place
     if (!document.getElementById('ndhr-map')) {
         debugLog('bootstrap: missing-map-container');
         return;
