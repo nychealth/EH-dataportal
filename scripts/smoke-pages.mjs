@@ -63,6 +63,11 @@ const PAGES = [
                                                     // URL and changed what renders it; topiclanding.html is retired
     "neighborhood-reports/bayside_little_neck/",                         // nr-neighborhood-index.html
     "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-report.html — the report itself
+    // ndhr/ndhr-report.html — the NDHR report page. Housing rather than a lighter category
+    // because it carries rows at two geographies: four CD measures and two read at PUMA2020,
+    // so the geography-labelling path executes here and not on a CD-only category. The other
+    // three NDHR page kinds are Task 9's to add
+    "ndhr/midtown/housing/",
     "key-topics/",                                  // key-topics/section.html
     "key-topics/airquality/",                       // key-topics/single.html
     "about/",                                       // about/section.html

@@ -136,6 +136,13 @@
                                 <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="ndhr-rent" class="text-right"></td></tr>
                             </tbody>
                         </table>
+                        {{/* Filled by demographics.js, empty on the 51 districts the ACS
+                            reports on their own. Four pairs share one set of figures, and on
+                            those eight pages every number above is the pair's. Labelling the
+                            indicator rows and not this panel would be worse than labelling
+                            neither — it would tell a reader that shared values are marked,
+                            which makes an unmarked shared sidebar read as a bug. */}}
+                        <p id="ndhr-demographics-note" class="fs-xs font-italic mb-1" style="color:darkslategray;"></p>
                         <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
                     </div>
 
@@ -382,11 +389,61 @@
 
 {{/* The libraries the report modules call at load, ahead of them for the same reason the QR
     library sits ahead of renderQRCode. Leaflet for map.js, the communityDistricts global for
-    demographics.js, Vega for chart.js, Arquero for data.js. lib-cdlist, not lib-uhflist —
-    they describe different geographies and neither overrides the other. */}}
+    demographics.js and global.js, Vega for chart.js. lib-cdlist, not lib-uhflist — they
+    describe different geographies and neither overrides the other.
+
+    NO lib-arquero, unlike nr-report.html. NR calls it at seven sites across three files, all
+    of them on the one table data.js:220 loads with aq.loadJSON: chart.js:246-255 summarizes
+    it to the latest row per neighborhood for the choropleth, and app.js:22-23 filters it for
+    the CSV. This page has no viz payload to load — buildRows returns plain row objects and
+    has already picked the latest period — so the summary is a filter over an array and the
+    CSV is a join over a column list, and `aq` is called nowhere on the page [verified
+    2026-09-12: grep for aq./op. across assets/js/ndhr-report/,
+    assets/js/report-data/normalize.js and themes/dohmh/layouts/ndhr/ returns one comment and
+    no call, against 7 call sites in assets/js/nr-report/ as the control that the pattern
+    matches a real use].
+
+    NO nr-leaflet.html, ever: it declares highlightFeature, onEachFeature, resetHighlight and
+    a selectNeighborhood that assets/js/ndhr-report/map.js also declares, and two of one name
+    in a single classic-script scope is a SyntaxError that kills every script on the page. */}}
 {{- partial "lib-leaflet.html" . }}
 {{- partial "lib-cdlist.html" . }}
 {{- partial "lib-vega.html" . }}
-{{- partial "lib-arquero.html" . }}
+
+{{/* The shared browser-side compute, ahead of the ten modules that call buildRows.
+    assets/js/report-data/ is checked against EHDP-data's own published Neighborhood Reports
+    payloads by `npm run report-data:parity all` — 37,044 field comparisons, 0 mismatched. */}}
+{{- $reportDataNormalize := resources.Get "js/report-data/normalize.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $reportDataNormalize.RelPermalink }}" integrity="{{ $reportDataNormalize.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{- $ndhrGlobal       := resources.Get "js/ndhr-report/global.js"       | partial "short-fingerprint.html" -}}
+{{- $ndhrUrl          := resources.Get "js/ndhr-report/url.js"          | partial "short-fingerprint.html" -}}
+{{- $ndhrTertiles     := resources.Get "js/ndhr-report/tertiles.js"     | partial "short-fingerprint.html" -}}
+{{- $ndhrDemographics := resources.Get "js/ndhr-report/demographics.js" | partial "short-fingerprint.html" -}}
+{{- $ndhrCards        := resources.Get "js/ndhr-report/cards.js"        | partial "short-fingerprint.html" -}}
+{{- $ndhrReport       := resources.Get "js/ndhr-report/report.js"       | partial "short-fingerprint.html" -}}
+{{- $ndhrChart        := resources.Get "js/ndhr-report/chart.js"        | partial "short-fingerprint.html" -}}
+{{- $ndhrMap          := resources.Get "js/ndhr-report/map.js"          | partial "short-fingerprint.html" -}}
+{{- $ndhrData         := resources.Get "js/ndhr-report/data.js"         | partial "short-fingerprint.html" -}}
+{{- $ndhrApp          := resources.Get "js/ndhr-report/app.js"          | partial "short-fingerprint.html" -}}
+
+{{/*
+    Ten classic (non-module) scripts sharing one top-level scope, in load order.
+    Nothing enforces that order, so it is stated here rather than inferred:
+    app.js must load last. It holds the only two statements that run at load time
+    (the window.ndhrDownloadCSV export and the bootstrap() call), and both read names
+    the other nine declare. Everything else runs from bootstrap() or a DOM event,
+    by which point all ten have run.
+*/}}
+<script src="{{ $ndhrGlobal.RelPermalink }}" integrity="{{ $ndhrGlobal.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrUrl.RelPermalink }}" integrity="{{ $ndhrUrl.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrTertiles.RelPermalink }}" integrity="{{ $ndhrTertiles.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrDemographics.RelPermalink }}" integrity="{{ $ndhrDemographics.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrCards.RelPermalink }}" integrity="{{ $ndhrCards.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrReport.RelPermalink }}" integrity="{{ $ndhrReport.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrChart.RelPermalink }}" integrity="{{ $ndhrChart.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrMap.RelPermalink }}" integrity="{{ $ndhrMap.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrData.RelPermalink }}" integrity="{{ $ndhrData.Data.Integrity }}" crossorigin="anonymous"></script>
+<script src="{{ $ndhrApp.RelPermalink }}" integrity="{{ $ndhrApp.Data.Integrity }}" crossorigin="anonymous"></script>
 
 {{- end -}}

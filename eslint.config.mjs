@@ -15,6 +15,7 @@ import { join } from "node:path";
 
 const DE_DIR = "assets/js/data-explorer";
 const NR_DIR = "assets/js/nr-report";
+const NDHR_DIR = "assets/js/ndhr-report";
 const RD_DIR = "assets/js/report-data";
 
 // Names head.html, the loaded libraries, and the page templates inject into the
@@ -43,6 +44,28 @@ const NR_EXTERNAL_GLOBALS = {
     neighborhoods: "readonly",  // `var`, generated from data/globals/uhflist.json in head.html
     debugLog: "readonly",       // inline <script> in partials/head.html
     renderQRCode: "readonly"    // inline <script> in neighborhood-reports/nr-report.html
+};
+
+// The NDHR equivalent. Shorter than NR's in one place and longer in another: no
+// `neighborhoods` and no arquero, because the report page loads neither — and five names
+// from assets/js/report-data/, which the scan below cannot see because it reads one
+// directory at a time and those live in a sibling.
+const NDHR_EXTERNAL_GLOBALS = {
+    $: "readonly",                          // jquery, loaded in head.html
+    L: "readonly",                          // leaflet
+    vegaEmbed: "readonly",                  // vega-embed, in the vegaBundle concat
+    communityDistricts: "readonly",         // `var`, generated from data/globals/cdlist.json by lib-cdlist.html
+    debugLog: "readonly",                   // inline <script> in partials/head.html
+    renderQRCode: "readonly",               // inline <script> in ndhr/ndhr-report.html
+
+    // assets/js/report-data/normalize.js, loaded as a classic script ahead of these ten.
+    // A name added there and used here has to be added to this list too — the scan is
+    // per-directory, so nothing else will notice
+    buildRows: "readonly",
+    reportDataFetchJSON: "readonly",
+    reportDataExpandColumns: "readonly",
+    reportDataIsUsable: "readonly",
+    reportDataNumericValue: "readonly"
 };
 
 // Extract top-level `function`/`const`/`let`/`var` names from one directory's files.
@@ -78,6 +101,8 @@ for (const name of DE_EXTERNAL_GLOBALS) {
 }
 
 const nrGlobals = { ...scanDeclaredGlobals(NR_DIR), ...NR_EXTERNAL_GLOBALS };
+
+const ndhrGlobals = { ...scanDeclaredGlobals(NDHR_DIR), ...NDHR_EXTERNAL_GLOBALS };
 
 // The shared report-compute module. Only two names come from outside it, both injected by
 // head.html, and both are read through a `typeof` guard so the file also runs under Node
@@ -127,6 +152,20 @@ export default [
             globals: {
                 ...globals.browser,
                 ...nrGlobals
+            }
+        },
+        rules: {
+            "no-undef": "error"
+        }
+    },
+    {
+        files: ["assets/js/ndhr-report/**/*.js"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "script",
+            globals: {
+                ...globals.browser,
+                ...ndhrGlobals
             }
         },
         rules: {

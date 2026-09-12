@@ -114,7 +114,11 @@ $comp-bad-text: #7a5c00;
   border-top: 5px solid $primary !important;
 }
 
-.nr-map-container {
+// Two class names, one rule: the NDHR report page builds the same container from
+// assets/js/ndhr-report/cards.js. Adding the second selector rather than reusing the nr-
+// name keeps the class on an NDHR page from claiming to be a Neighborhood Reports one.
+.nr-map-container,
+.ndhr-map-container {
   min-height: 350px;
 }
 
