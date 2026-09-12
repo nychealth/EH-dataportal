@@ -142,10 +142,11 @@ $comp-bad-text: #7a5c00;
 // ===== NDHR report page =====
 //
 // The Neighborhood Development Health Report's counterpart to the block above. Only the
-// two rules that must not be shared are here; everything else the report page needs is
-// already global in this file and is reused rather than duplicated — .report-section for
-// the green top border, .card-body-no-top for the demographics block, .leading-sm for the
-// tertile explainer.
+// rules that cannot be shared are here — two that must not be (.card-header, #ndhr-map)
+// and one NR has no counterpart for (.ndhr-strategy-cell, the strategies column). What
+// the report page needs beyond them is already global in this file and is reused rather
+// than duplicated — .report-section for the green top border, .card-body-no-top for the
+// demographics block, .leading-sm for the tertile explainer.
 //
 // .card-header is SCOPED to .ndhr-report-accordion for the same load-bearing reason it is
 // scoped to .nr-report-accordion above: .card-header is a Bootstrap class used across the
@@ -170,6 +171,22 @@ $comp-bad-text: #7a5c00;
 
   .card-header .btn:hover {
     text-decoration: none;
+  }
+
+  // The strategies column, which NR has no counterpart for. It sits inside .card-header
+  // and outside the <button>, so the rule that divides it from the value and pill columns
+  // cannot be Bootstrap's border-left utility: below md the cell stacks underneath the
+  // button, where a left border would run alongside nothing. $gray-300 is Bootstrap's own
+  // $border-color default, which is what the .border-* utilities beside it paint.
+  .ndhr-strategy-cell {
+    border-top: 1px solid $gray-300;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .ndhr-report-accordion .ndhr-strategy-cell {
+    border-top: 0;
+    border-left: 1px solid $gray-300;
   }
 }
 

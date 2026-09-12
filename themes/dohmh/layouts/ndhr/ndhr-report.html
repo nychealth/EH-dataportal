@@ -18,12 +18,9 @@
     Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
     .Title only, so .Params.title renders blank on all 295 of these pages.
 
-    THE TEN REPORT MODULES ARE NOT LOADED YET. assets/js/ndhr-report/ is Task 7 of
-    documents/ndhr-prototype-plan-2026-09-10.md; `resources.Get` on a path that does not
-    exist returns nil and fails the build, so the script block that mirrors nr-report.html's
-    last twenty lines lands with those files. Until then this page serves its server-rendered
-    half — header, breadcrumbs, demographics shell, the empty-state string, the config
-    object — and the map div stays empty.
+    The ten report modules load at the foot of this file, in the order the block there
+    states. They landed with Task 7 of documents/ndhr-prototype-plan-2026-09-10.md; a
+    paragraph here saying they had not is what this replaces.
 */}}
 
 {{/* The indicator spec for this category. `measures` is flat; `empty_state` is present
@@ -145,6 +142,20 @@
                         <p id="ndhr-demographics-note" class="fs-xs font-italic mb-1" style="color:darkslategray;"></p>
                         <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
                     </div>
+
+                    {{/* NO CONTACT BLOCK, and its absence is a decision rather than an
+                        omission. The NDHR screenshot marks this corner of the left column
+                        "Population Demographic and Contact Information", so a reader
+                        comparing the two will look for the second half here.
+
+                        Plan DECIDED-9 defers the contact form: this is a Hugo static site
+                        published to a GitHub build branch, so there is no server to post to,
+                        and both routes out of that cost something outside the prototype —
+                        a third-party endpoint is a procurement and privacy question, a link
+                        to an existing DOHMH form needs one to exist. The page carries no
+                        affordance at all rather than a disabled one, which would advertise
+                        a feature that does not exist. What brings it forward is a decision
+                        on which of the two routes. */}}
 
                     <hr class="my-2">
                     {{/* Ignored by Pagefind: this explainer is byte-identical on all 295

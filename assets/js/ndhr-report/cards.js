@@ -74,6 +74,42 @@ const geotypeSentence = row => {
 
 
 // ----------------------------------------------------------------------- //
+// strategy lookup
+// ----------------------------------------------------------------------- //
+
+// MeasureID → the content YAML's strategy pair, built once at load.
+//
+// Read off reportConfig rather than off the row, and that is not a convenience:
+// assets/js/report-data/normalize.js is shared with Neighborhood Reports, and
+// scripts/report-data-parity.mjs pins its output field by field against NR's published
+// payloads, which carry no strategy of their own. Adding one to buildRows would put a
+// site-authored field into the compute layer the harness exists to hold still. The
+// template already emits the YAML rows verbatim (ndhr-report.html's `measures`), so both
+// strings are on the page with no template change and no row change.
+//
+// reportConfig is guarded because global.js reads it straight off window — a page that
+// somehow shipped without the config block should render an empty strategy column rather
+// than throw at load and take the other nine modules with it
+const STRATEGY_BY_MEASURE = {};
+
+((reportConfig && reportConfig.measures) || []).forEach(measure => {
+
+    STRATEGY_BY_MEASURE[measure.MeasureID] = {
+        strategy: measure.strategy || '',
+        description: measure.strategy_description || ''
+    };
+
+});
+
+
+// Returns { strategy, description } for a measure. `description` is legitimately '' for
+// evictions (1128), which appears in neither table of the "Text of ..." source document —
+// the YAML records that as an explicit null rather than inventing one
+const strategyForMeasure = measureId =>
+    STRATEGY_BY_MEASURE[measureId] || { strategy: '', description: '' };
+
+
+// ----------------------------------------------------------------------- //
 // data explorer link
 // ----------------------------------------------------------------------- //
 
@@ -151,31 +187,71 @@ const buildIndicatorCard = (row, districtName) => {
         ? '<br><span class="fs-xs font-weight-normal text-muted">' + geoTag + '</span>'
         : '';
 
+    // ----- strategy ----- //
+
+    const strategyPair = strategyForMeasure(row.MeasureID);
+
     // ----- print rendition of the header row ----- //
 
-    // The screen row is d-print-none, so print needs its own copy of the same three facts.
+    // The screen row is d-print-none, so print needs its own copy of the same facts.
     // It is a second rendition rather than a print stylesheet over the first because the
     // content genuinely differs: the pill is blank for rank 2 and shows a bare
     // "Higher"/"Lower" otherwise, where print carries a full sentence. Both are built from
     // the locals above, so the two cannot drift.
-    // Plain divs at 50/25/25, not grid columns: .print-only resolves to display:flex
+    // Plain divs, not grid columns: .print-only resolves to display:flex. Four now rather
+    // than three, at 35/15/25/25 — the strategy is the fourth, and the tertile sentence
+    // keeps its 25% because it is a sentence and not a word
     const printRowHTML =
         '<div class="col-12 print-only" style="flex-direction:row; width:100%;">' +
-            '<div style="width:50%;" class="border-right pl-1">' +
+            '<div style="width:35%;" class="border-right pl-1">' +
                 '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
                 '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
             '</div>' +
-            '<div style="width:25%;" class="border-right pl-1">' +
+            '<div style="width:15%;" class="border-right pl-1">' +
                 '<span class="font-weight-bold fs-md">' + value + '</span><br>' +
                 '<span class="fs-xs font-weight-normal">' + units + '</span>' +
                 geoTagHTML +
             '</div>' +
             // font-weight-normal because the accordion button is bold and the column
             // inherits it, which would leave nothing for the .comp-* bold to pick out
-            '<div style="width:25%;" class="pl-1 fs-sm font-weight-normal">' +
+            '<div style="width:25%;" class="border-right pl-1 fs-sm font-weight-normal">' +
                 getTertileInlineLabel(row.data_value_rank, row.rankReverse) +
             '</div>' +
+            // The printed report is the rendition someone carries into a meeting, so the
+            // strategy belongs on it. The description does not — it sits in the panel,
+            // which @media print hides along with the rest of the collapse
+            '<div style="width:25%;" class="pl-1 fs-sm font-weight-normal">' +
+                strategyPair.strategy +
+            '</div>' +
         '</div>';
+
+    // ----- strategy cell ----- //
+
+    // The strategy column the NDHR screenshot marks at the right edge of each indicator
+    // row. It sits INSIDE .card-header and OUTSIDE the <button>, which is the resolution
+    // of the collision the plan's Task 8 names: the pill is the comparison verdict and
+    // keeps its place in the button's three-column row, while the strategy is editorial
+    // prose that has no business in a control's accessible name — the button already
+    // announces name, long name, value, units and the tertile sentence as one string.
+    // Cost of the split: the right quarter of the header no longer expands the panel on
+    // click. That is the correct trade for text a reader may one day need to select, and
+    // for a field that will carry a link if the contact route in DECIDED-9 ever lands.
+    //
+    // The micro-label is per row rather than a column header above the accordion: the
+    // cards are Bootstrap collapses, not table rows, so there is no header row to align to
+    // and a bare imperative phrase at the right edge reads as an instruction to the reader
+    // The divider is .ndhr-strategy-cell in _custom.scss rather than Bootstrap's
+    // border-left utility, because the border has to move: below md the cell stacks under
+    // the button, where a left border runs alongside nothing.
+    // Omitted entirely rather than left as an empty column when a measure names no
+    // strategy — all 18 in the content YAML do, and the content check would fail before a
+    // row without one reached here, so this is a guard and not a rendered state
+    const strategyCellHTML = strategyPair.strategy
+        ? '<div class="col-md-3 pl-2 py-1 d-print-none ndhr-strategy-cell">' +
+              '<span class="fs-xs text-muted text-uppercase">Strategy</span><br>' +
+              '<span class="fs-sm">' + strategyPair.strategy + '</span>' +
+          '</div>'
+        : '';
 
     // ----- header HTML ----- //
 
@@ -183,29 +259,36 @@ const buildIndicatorCard = (row, districtName) => {
     // cannot contain a quote, but routing them all one way keeps the rule checkable by eye
     const headerHTML =
         '<div class="card-header border-top" id="' + escapeAttr(headingId) + '">' +
-            // h3: one level below the section h2 in ndhr-report.html. As an h2 every
-            // indicator read as closing its section and opening a sibling of the page title
-            '<h3 class="mb-0">' +
-                '<button class="btn btn-block btn-sm text-left" type="button" ' +
-                    'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
-                    'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
-                    '<div class="row no-gutters d-print-none" style="width:100%">' +
-                        '<div class="col-7">' +
-                            '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
-                            '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
-                        '</div>' +
-                        '<div class="col-3 pl-1">' +
-                            '<span class="font-weight-bold fs-md">' + value + '</span><br>' +
-                            '<span class="fs-sm font-weight-normal">' + units + '</span>' +
-                            geoTagHTML +
-                        '</div>' +
-                        '<div class="col-2">' +
-                            '<div class="float-right mt-1">' + pillHTML + '</div>' +
-                        '</div>' +
-                    '</div>' +
-                    printRowHTML +
-                '</button>' +
-            '</h3>' +
+            '<div class="row no-gutters">' +
+                // col-md-9 / col-md-3: one stacked column each below md, where a quarter
+                // of a phone's width would hold two words per line
+                '<div class="col-md-9">' +
+                    // h3: one level below the section h2 in ndhr-report.html. As an h2 every
+                    // indicator read as closing its section and opening a sibling of the page title
+                    '<h3 class="mb-0">' +
+                        '<button class="btn btn-block btn-sm text-left" type="button" ' +
+                            'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
+                            'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
+                            '<div class="row no-gutters d-print-none" style="width:100%">' +
+                                '<div class="col-7">' +
+                                    '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
+                                    '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
+                                '</div>' +
+                                '<div class="col-3 pl-1">' +
+                                    '<span class="font-weight-bold fs-md">' + value + '</span><br>' +
+                                    '<span class="fs-sm font-weight-normal">' + units + '</span>' +
+                                    geoTagHTML +
+                                '</div>' +
+                                '<div class="col-2">' +
+                                    '<div class="float-right mt-1">' + pillHTML + '</div>' +
+                                '</div>' +
+                            '</div>' +
+                            printRowHTML +
+                        '</button>' +
+                    '</h3>' +
+                '</div>' +
+                strategyCellHTML +
+            '</div>' +
         '</div>';
 
     // ----- comparison blocks ----- //
@@ -293,6 +376,23 @@ const buildIndicatorCard = (row, districtName) => {
         ? '<p class="fs-sm text-muted mb-2"><em>' + geoSentence + '</em></p>'
         : '';
 
+    // The description half of the strategy, which is too long for the collapsed row —
+    // these run to a full sentence or two and the cell they would sit in is a quarter of
+    // the column. The phrase repeats here as the lead-in rather than being referred back
+    // to, so the block reads on its own when a reader expands one panel out of six.
+    // Rendered only when the YAML carries a description: evictions (1128) has an explicit
+    // null and a TODO beside it, and an empty <p> would read as a rendering fault
+    const strategyPanelHTML = strategyPair.description
+        ? '<div class="row no-gutters">' +
+              '<div class="col-12 pt-2 border-top">' +
+                  '<p class="fs-sm mb-2">' +
+                      '<strong>Strategy: ' + strategyPair.strategy + '.</strong> ' +
+                      strategyPair.description +
+                  '</p>' +
+              '</div>' +
+          '</div>'
+        : '';
+
     // ----- detail panel HTML ----- //
 
     // Keep data-* attributes on the collapse panel for lazy chart rendering.
@@ -323,6 +423,7 @@ const buildIndicatorCard = (row, districtName) => {
                     '</div>' +
                     comparisonsHTML +
                 '</div>' +
+                strategyPanelHTML +
                 '<div class="row no-gutters">' +
                     '<div class="col-7">' +
                         '<p class="fs-xs"><strong>Source:</strong> ' + (row.data_source_list || '') + '</p>' +
