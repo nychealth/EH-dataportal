@@ -361,34 +361,43 @@ until then the partial's only check is that it parses, which the same build show
 | 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
 | 7. Renderers and geography labelling | **DONE 2026-09-12** — ten modules in `assets/js/ndhr-report/`, plus the layout's script tags, the SCSS container rule, the lint block and one smoke entry. **`chart.js` is not the rename pass this task predicted** and Arquero left the page; see the as-built section | `npm run lint` exits 0 with an injected undefined name exiting 1 and the restore returning to 0; isolated `development` build exits 0 with all **295** report pages carrying exactly ten `ndhr-report` scripts plus `normalize.js` and zero carrying arquero; `npm run smoke` **34 pages clean** including `ndhr/midtown/housing/`. Browser on a `dev_stage` server over 5 page kinds: HTTP 200 and 0 console errors on 5 of 5, 59 named polygons, a click rewriting the address bar and rebuilding all 6 cards with 0 pageerrors, and an SVG chart named per indicator. The CD4/CD5/CD6 sidebar-vs-PUMA crossing is measured page by page. **Tab-order membership is NOT established** — only programmatic focus | `eae618a844` |
 | 8. Strategies column | **DONE 2026-09-12** — the strategy cell inside `.card-header` and outside the `<button>`, the description in the expanded panel, the phrase in the print rendition. No contact affordance, per DECIDED-9. The row-height cost was measured and **accepted by the user, 2026-09-12**; see the as-built section | Browser on a `dev_stage` server: `/ndhr/midtown/housing/` renders 6 headers and 6 strategy cells, **0 inside a `<button>`**, 0 empty, 0 console errors, and the accessibility tree shows each button's name ending at the tertile sentence with the strategy as a sibling text node. 5 of 6 panels carry a description block and evictions (1128) does not, which is its explicit YAML null. Print-emulated `document.body.innerText` with all six panels expanded carries **6 phrases and 0 descriptions**. Computed style: `border-left: 1px solid rgb(222,226,230)` and no top border at 1280px, the reverse at 500px, with the cell beside the button at 1280 and 55px beneath it at 500. `npm run lint` exits 0, `npm run smoke` **34 pages clean**, `npm run docs-check` exits 0 | `c2209d3f63` |
-| 9. Guardrails | **in progress 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines are done and committed. **What is left is the Pagefind re-capture**, and only that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
+| 9. Guardrails | **DONE 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines. The Pagefind item closed **without a re-capture**: the section was taken out of the index instead, so the committed baseline still describes the site. Four `absent: true` controls now guard that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
 | 10. District typeahead | **not started** — never scoped; added 2026-09-12 at the user's instruction after the NR/NDHR divergence audit. The cheap half, independently shippable | — | — |
 | 11. CD picker map | **not started** — same audit. On `geography/CD.topo.json` per the user, which is 74% smaller than the geojson `map.js` fetches today | — | — |
 
-**Status as of 2026-09-12:** Tasks 1 through 8 done on `feature-NDHR-prototype`. **Task 9 is in
-progress with one item left** — the Pagefind re-capture, which needs the decision below. **Tasks
-10 and 11 are new**, added this date at the user's instruction: the district typeahead and the CD
-picker map, neither ever scoped by this plan. Nothing is blocked.
+**Status as of 2026-09-12:** Tasks 1 through 9 done on `feature-NDHR-prototype`. **Tasks 10 and
+11 are new**, added this date at the user's instruction: the district typeahead and the CD picker
+map, neither ever scoped by this plan. Nothing is blocked.
 
-Next command: finish **Task 9** by settling Pagefind, then **Task 10**, which is the cheaper of
-the two new ones and needs no new geometry.
+Next command: **Task 10**, the cheaper of the two new ones, which needs no new geometry.
 
-```
-node scripts/pagefind-characterization.mjs --check    # the only Task 9 item still open
-node scripts/pagefind-characterization.mjs --baseline # ONLY once the ranking question is settled
-```
+**Pagefind is settled: the whole NDHR section is out of the index**, decided by the user
+2026-09-12 — "proceed with indexing turned off, we can refine it later". A page-level
+`data-pagefind-ignore="all"` on each of the four layouts, so all 360 pages, not just the 295
+report pages.
 
-**The Pagefind question is narrower than it was.** Two of the three symptoms recorded in "Task 6
-as built" were one bug, fixed in `c895d33575`: the landing page's 59 district names were indexed
-as body text, so `/ndhr/` answered "asthma East Harlem" on "East" from *Upper East Side* and
-"Harlem" from *Central Harlem*, matching neither the phrase nor "asthma". Both that and the
-`Kingsbridge` over-match are gone. What remains is `/ndhr/climate-and-active-design/` first for
-"climate" (17.26 against `/key-topics/climatehealth/`'s 17.04) and `/neighborhood-reports/` out of
-the top five for "neighborhood reports" — where the top five score 4.65, 4.62, 4.62, 4.62, 4.62,
-so it is a tie-break among equals rather than a ranking loss `[all verified 2026-09-12: Pagefind
-scores read off the built index]`. **That reading says accept and re-baseline**, and the plan's
-option 1 — ignoring the 59 district index pages — would now be a departure from NR, which indexes
-all 42 of its neighborhood indexes.
+**The measurement that decided it goes beyond the rank changes recorded in "Task 6 as built".**
+Indexing the 65 non-report pages did not merely add them to the corpus — it stopped one query
+discriminating. Every NDHR page carries the phrase "Neighborhood Development Health Report", so
+for "neighborhood reports" both terms became common: the top score fell from **6.5880 to 4.6470**
+and the count of results within 0.05 of the top went from **2 to 105** of 173, with
+`/neighborhood-reports/` falling from rank 2 to rank 99. An earlier note in this plan read that
+as "a tie-break among equals"; it was not — the tie was created by the change, and that reading
+rested on a post-change reading with no before to compare. Separately
+`/ndhr/climate-and-active-design/` took first for "climate" at 17.2595 against
+`/key-topics/climatehealth/`'s 17.0357, a margin ten times the 0.023 gap between the two below
+it, so that one was never a tie either. With the section out, `--check` **exits 0 and matches the
+committed baseline in every recorded field** — no re-capture, and `/neighborhood-reports/` back
+at rank 2 of 108 with only 2 results within 0.05 of the top
+`[all verified 2026-09-12: two isolated builds of the same commit, the same query set measured on
+both through Pagefind's JS API]`.
+
+**What it costs and how to reverse it.** No NDHR page is reachable through the search box. It is
+a prototype decision and four attributes undo it — which now fails four `absent: true` controls
+in `scripts/pagefind-characterization.mjs`, one per page kind, rather than reading as a diff to
+re-baseline. The untested middle is ignoring only the 59 district indexes and keeping the landing
+and category pages: it would plausibly fix the dilution and leave the "climate" result standing,
+since a category index is what won that slot. One build settles it.
 
 Three decisions from Task 7 are open and none blocks Task 9: the row order (authored YAML order,
 where NR sorts by rank), the hand-written CSV export, and `lib-arquero` removed from the layout.
@@ -1233,14 +1242,23 @@ the 295 report pages are correctly out of the index. The ranking half is not neu
   Harlem, so that is a false positive against a two-word query NR's own indexing decisions were
   tuned around.
 
-The baseline was deliberately **not** re-captured. Three responses are available and they are not
-exclusive: `data-pagefind-ignore="all"` on the 59 district indexes, which are near-identical to
-each other; a `data-pagefind-weight` on the category indexes; or accepting it. The instrument that
-would settle it is the one `documents/nr-pagefind-parity-2026-08-15.md` §5 already describes.
+**Resolved 2026-09-12: the whole section came out of the index instead, and the baseline was
+never re-captured.** Two of the three symptoms above were one bug, fixed in `c895d33575` {EM} the
+landing page's 59 district names were body text, which is what answered "asthma East Harlem" on
+*East* from Upper East Side and *Harlem* from Central Harlem. Of the remaining two, neither was
+the tie-break a later note in this plan called them: for "neighborhood reports" the tie itself was
+created by the change (2 results within 0.05 of the top before, 105 of 173 after, top score 6.5880
+to 4.6470), and for "climate" there were no ties at all {EM} 37 distinct scores over 37 results.
+Three responses had been named and were not exclusive: ignore the 59 district indexes, weight the
+category indexes, or accept. The user chose a fourth {EM} ignore all of it for now {EM} which
+returns `--check` to exit 0 against the committed baseline. See the status block at the top for the
+full numbers and how to reverse it. `documents/nr-pagefind-parity-2026-08-15.md` §5 remains the
+instrument that would settle whether any of this matters to real searchers.
 
-**Task 9's file list is short by one line.** It names re-capturing
-`scripts/site-characterization-baseline/staging/` and `.../prod_prod/` and does not name the
-Pagefind baseline, which this measurement shows also moves.
+**Task 9's file list was short by one line** {EM} it named re-capturing
+`scripts/site-characterization-baseline/staging/` and `.../prod_prod/` and not the Pagefind
+baseline, which this measurement showed also moves. Added 2026-09-11, then closed 2026-09-12
+without a re-capture being needed at all.
 
 **What was built beyond the four files this task names, and why each:**
 
@@ -1571,11 +1589,12 @@ report modules were not loaded yet and named Task 7 as what would land them. The
 - Edit `scripts/smoke-pages.mjs` — add four `PAGES` entries, one per NDHR page kind, each with a
   comment naming the template that renders it, matching the NR entries at lines 61-65
 - Re-capture `scripts/site-characterization-baseline/staging/` and `.../prod_prod/`
-- Re-capture `scripts/pagefind-characterization-baseline/` — **added 2026-09-11**: Task 6's
-  browser rung measured the index moving 202 pages to 267, and the *ranking* moving with it on
-  queries that have nothing to do with NDHR. Read the `--check` diff and settle the three
-  responses named in "Task 6 as built" before re-capturing; a re-capture taken first records
-  whichever ranking happens to be current as the intended one
+- ~~Re-capture `scripts/pagefind-characterization-baseline/`~~ — **added 2026-09-11, closed
+  2026-09-12 without a re-capture.** Task 6's browser rung measured the index moving 202 pages to
+  267 and the ranking moving with it on queries that have nothing to do with NDHR. The response
+  chosen was to take the section out of the index, so the committed baseline still describes the
+  site and `--check` exits 0. What landed instead: a page-level `data-pagefind-ignore="all"` on
+  all four NDHR layouts, and four `absent: true` controls in the harness
 - Create `scripts/ndhr-characterization.mjs`, modelled on `scripts/nr-characterization.mjs`
 
 **Interfaces:**

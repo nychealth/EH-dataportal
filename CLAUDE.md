@@ -294,9 +294,22 @@ on a branch mismatch.
   is a *ceiling*, not `=== 0`, because Pagefind matches fuzzily — `zzqqxxwv` returns `/about/`
   `[verified 2026-08-15: five nonsense tokens, only one returned 0]`. A control may also be
   **inverted** (`absent: true`), asserting a page is deliberately *not* indexed; the NR report page
-  is the case, so removing its page-level ignore fails a control instead of reading as a diff to
-  re-baseline. Run it before any merge touching a shared partial, `head.html`, `baseof.html`, or an
-  NR template.
+  and all four NDHR page kinds are the cases, so removing a page-level ignore fails a control
+  instead of reading as a diff to re-baseline. Run it before any merge touching a shared partial,
+  `head.html`, `baseof.html`, or an NR template.
+- `node scripts/pagefind-rank.mjs <built-site-dir> [query] ...` — the **diagnostic** beside that
+  harness, for when a query's ordering moved and you need to know whether the move meant anything.
+  The harness records the top ten URLs and no scores, deliberately: it is a regression check, and a
+  baseline holding scored rows would churn on every content edit. So it can say a page left the top
+  ten and cannot say whether it fell to eleventh or ninety-ninth, nor whether the ordering it left
+  was meaningful. This prints every result with its score, plus how many sit within 0.01, 0.05 and
+  0.5 of the top — **the last of those is the number that decides it.** A page dropping out of a
+  head where 105 of 173 results are within 0.05 has lost nothing; the same drop where only 2 are has
+  lost a real position `[both measured 2026-09-12, the two states of the NDHR indexing decision]`.
+  It needs a *built* site, which `hugo server` never produces an index for — take the directory
+  `node scripts/pagefind-characterization.mjs --check --keep-build` prints and append `public`. It
+  refuses a path ending in `docs`, which holds whatever was last built. Positional arguments, an
+  argument starting with `-` refused, for the reason measured under Site characterization.
 
 ### Data explorer harness
 
@@ -664,10 +677,19 @@ Four things that bite from outside these files:
   `cdlist.json` exactly — 59 features, `GEOCODE` matches `CD_id` and `GEONAME` matches `CD_name` on
   all 59, unlike `UHF42.geojson`, whose `GEONAME` disagrees with `uhflist`'s `UHF_name` on 6 of 42
   `[verified 2026-09-11 against production; the file is byte-identical on staging]`.
-- **Adding this section moved the search index and the search results.** 65 of the 360 pages are
-  indexed (the 295 report pages are not), taking the index from 202 pages to 267, and the committed
-  Pagefind baseline has not been re-captured. Read `node scripts/pagefind-characterization.mjs
-  --check` before doing so — the diff is where the ranking effects are, not only the page count.
+- **No NDHR page is in the search index — all 360, not just the 295 report pages.** Each of the
+  four layouts carries a page-level `data-pagefind-ignore="all"`, decided 2026-09-12 after the
+  65 non-report pages were measured with it on. They did not merely join the index: every NDHR
+  page carries the phrase "Neighborhood Development Health Report", so for the query
+  "neighborhood reports" both terms became common, the top score fell from 6.5880 to 4.6470 and
+  the results within 0.05 of the top went from **2 to 105 of 173**, with `/neighborhood-reports/`
+  falling from rank 2 to rank 99. `/ndhr/climate-and-active-design/` also took first place for
+  "climate" from `/key-topics/climatehealth/`. With the section out, the index matches the
+  committed baseline in every recorded field and needs no re-capture
+  `[verified 2026-09-12: two builds of the same commit, same query set on both]`.
+  **This is a prototype decision, reversible by deleting four attributes** — which fails four
+  `absent: true` controls in `scripts/pagefind-characterization.mjs` rather than reading as a
+  diff to re-baseline. `themes/dohmh/layouts/ndhr/section.html` carries the full rationale.
 
 The report page's styles sit in `assets/scss/_custom.scss` under an "NDHR report page" heading, with
 `.card-header` scoped to `.ndhr-report-accordion` for the same load-bearing reason the NR rules are

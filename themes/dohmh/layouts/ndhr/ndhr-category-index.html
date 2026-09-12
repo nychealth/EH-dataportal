@@ -7,8 +7,11 @@
     `layout: ndhr-category-index` and an explicit `url`. Forked from
     themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html.
 
-    These five pages are the section's indexed surface: the 295 report pages carry
-    data-pagefind-ignore="all", so the category vocabulary reaches search from here.
+    Not indexed: data-pagefind-ignore="all" on the wrapper below, as on all four NDHR
+    layouts. This page is the one that took first place for "climate" from
+    /key-topics/climatehealth/, which is half the reason the section came out of the index
+    on 2026-09-12; themes/dohmh/layouts/ndhr/section.html carries the full rationale and the
+    numbers.
 
     No picker map, for the same reason as ndhr-cd-index.html — nr-leaflet.html's CD
     analogue is not in Task 6's file list. The 59 districts are listed below as links,
@@ -24,7 +27,7 @@
      so reading the permalink cannot disagree with the page the reader is on. */}}
 {{- $categorySlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
 
-<div class="container-fluid">
+<div class="container-fluid" data-pagefind-ignore="all">
     <div class="row">
         <div class="col-lg-10 mx-auto col-12">
 

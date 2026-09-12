@@ -138,11 +138,20 @@ const QUERY_DEPTH = 10;
 // records do. A missing URL fails the control too: a control that silently skips
 // the page it was meant to prove is not a control.
 //
-// `absent: true` inverts it, asserting a page is deliberately NOT in the index. The
-// 210 report pages are the case: they carry a page-level data-pagefind-ignore, and
-// an inverted control is what stops that being undone by accident — a deleted
-// attribute would otherwise read as a diff to re-baseline rather than as a control
-// failure. That they still *render* is characterize:nr's job, not this one's.
+// `absent: true` inverts it, asserting a page is deliberately NOT in the index. Two
+// cases. NR's 210 report pages carry a page-level data-pagefind-ignore, and an
+// inverted control is what stops that being undone by accident — a deleted attribute
+// would otherwise read as a diff to re-baseline rather than as a control failure.
+// That they still *render* is characterize:nr's job, not this one's.
+//
+// NDHR is the second, and it is the whole section rather than one page kind: all 360
+// pages are out of the index, decided 2026-09-12. Indexing its 65 non-report pages
+// did not merely add them — it stopped "neighborhood reports" discriminating at all.
+// Every NDHR page carries "Neighborhood Development Health Report", so both query
+// terms became common, and the results within 0.05 of the top score went from 2 to
+// 105 of 173 while /neighborhood-reports/ fell from rank 2 to rank 99
+// [verified 2026-09-12: the same query measured on both builds]. All four kinds get a
+// control, because the ignore now lives in four separate layouts.
 const CONTENT_CONTROLS = [
     { url: '/',                                                          min: 100, kind: 'home' },
     { url: '/data-explorer/asthma/',                                     min: 200, kind: 'data explorer topic' },
@@ -152,7 +161,11 @@ const CONTENT_CONTROLS = [
     { url: '/neighborhood-reports/',                                     min: 100, kind: 'NR landing' },
     { url: '/neighborhood-reports/asthma_and_the_environment/',          min: 200, kind: 'NR topic index' },
     { url: '/neighborhood-reports/east_harlem/',                         min: 5,   kind: 'NR neighborhood index' },
-    { url: '/neighborhood-reports/east_harlem/asthma_and_the_environment/', absent: true, kind: 'NR report (deliberately un-indexed)' }
+    { url: '/neighborhood-reports/east_harlem/asthma_and_the_environment/', absent: true, kind: 'NR report (deliberately un-indexed)' },
+    { url: '/ndhr/',                                                     absent: true, kind: 'NDHR landing (deliberately un-indexed)' },
+    { url: '/ndhr/climate-and-active-design/',                           absent: true, kind: 'NDHR category index (deliberately un-indexed)' },
+    { url: '/ndhr/midtown/',                                             absent: true, kind: 'NDHR district index (deliberately un-indexed)' },
+    { url: '/ndhr/midtown/housing/',                                     absent: true, kind: 'NDHR report (deliberately un-indexed)' }
 ];
 
 // Content types for the throwaway static server. Pagefind fetches its index shards

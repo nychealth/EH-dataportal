@@ -15,11 +15,30 @@
     community districts. Both are server-rendered links, which is what a crawler and a
     keyboard user need; a picker map would be an addition on top, not a replacement.
 
-    Indexed, like the NR landing page: this is the entry point for the 354 generated pages
-    below it, 295 of which are deliberately out of the index.
+    NOT indexed, unlike the NR landing page: data-pagefind-ignore="all" sits on the wrapper
+    below, and the same attribute sits on all four NDHR layouts. The whole section is out of
+    the search index, decided 2026-09-12.
+
+    The reason is measured, not stylistic. With the 65 non-report NDHR pages indexed, the
+    query "neighborhood reports" stopped discriminating: every NDHR page carries the phrase
+    "Neighborhood Development Health Report", so both terms became common across the corpus,
+    the top score fell from 6.5880 to 4.6470, and the results scoring within 0.05 of the top
+    went from 2 to 105 of 173 — with /neighborhood-reports/ falling from rank 2 to rank 99.
+    Separately, /ndhr/climate-and-active-design/ took first place for "climate" from
+    /key-topics/climatehealth/, by a margin ten times the gap between the two pages below it.
+    Turning the section off returns the index to its committed baseline in every recorded
+    field `[verified 2026-09-12: two builds of the same commit, the same query set measured
+    on both, and node scripts/pagefind-characterization.mjs --check exiting 0]`.
+
+    This is a prototype decision and it is reversible by deleting four attributes. Doing so
+    fails four inverted controls in scripts/pagefind-characterization.mjs rather than reading
+    as a diff to re-baseline, which is the point of them. What it costs today: no NDHR page
+    is reachable through the search box. Nothing else is affected — data-pagefind-ignore is
+    read by Pagefind alone, so crawlers, the accessibility tree and the JS-off navigation
+    are untouched.
 */}}
 
-<article class="container-fluid overflow-hidden" id="primary-content">
+<article class="container-fluid overflow-hidden" id="primary-content" data-pagefind-ignore="all">
 
     <div class="row mb-4">
         <div class="col-lg-10 mx-auto col-12">
@@ -91,10 +110,10 @@
                          records fixing — server-rendering a name list that used to be built
                          in JS, which Pagefind never saw.
 
-                         Districts stay findable through their own index pages, which are
-                         indexed and score ~47 on their own name. data-pagefind-ignore is
-                         read by Pagefind alone, so the crawl path, the accessibility tree
-                         and the JS-off navigation this list exists for are untouched. */}}
+                         This inner ignore is redundant while the page-level one above it
+                         stands, and is kept deliberately: it is the correct state for this
+                         list on its own merits, so lifting the section-wide ignore later
+                         does not silently restore the place-token bag described above. */}}
                     <div data-pagefind-ignore="all">
                     {{- $lastBorough := "" -}}
                     {{- range site.Data.globals.cdlist -}}
