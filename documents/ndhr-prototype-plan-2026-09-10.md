@@ -361,19 +361,34 @@ until then the partial's only check is that it parses, which the same build show
 | 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
 | 7. Renderers and geography labelling | **DONE 2026-09-12** — ten modules in `assets/js/ndhr-report/`, plus the layout's script tags, the SCSS container rule, the lint block and one smoke entry. **`chart.js` is not the rename pass this task predicted** and Arquero left the page; see the as-built section | `npm run lint` exits 0 with an injected undefined name exiting 1 and the restore returning to 0; isolated `development` build exits 0 with all **295** report pages carrying exactly ten `ndhr-report` scripts plus `normalize.js` and zero carrying arquero; `npm run smoke` **34 pages clean** including `ndhr/midtown/housing/`. Browser on a `dev_stage` server over 5 page kinds: HTTP 200 and 0 console errors on 5 of 5, 59 named polygons, a click rewriting the address bar and rebuilding all 6 cards with 0 pageerrors, and an SVG chart named per indicator. The CD4/CD5/CD6 sidebar-vs-PUMA crossing is measured page by page. **Tab-order membership is NOT established** — only programmatic focus | `eae618a844` |
 | 8. Strategies column | **DONE 2026-09-12** — the strategy cell inside `.card-header` and outside the `<button>`, the description in the expanded panel, the phrase in the print rendition. No contact affordance, per DECIDED-9. The row-height cost was measured and **accepted by the user, 2026-09-12**; see the as-built section | Browser on a `dev_stage` server: `/ndhr/midtown/housing/` renders 6 headers and 6 strategy cells, **0 inside a `<button>`**, 0 empty, 0 console errors, and the accessibility tree shows each button's name ending at the tertile sentence with the strategy as a sibling text node. 5 of 6 panels carry a description block and evictions (1128) does not, which is its explicit YAML null. Print-emulated `document.body.innerText` with all six panels expanded carries **6 phrases and 0 descriptions**. Computed style: `border-left: 1px solid rgb(222,226,230)` and no top border at 1280px, the reverse at 500px, with the cell beside the button at 1280 and 55px beneath it at 500. `npm run lint` exits 0, `npm run smoke` **34 pages clean**, `npm run docs-check` exits 0 | `c2209d3f63` |
-| 9. Guardrails | not started | — | — |
+| 9. Guardrails | **in progress 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines are done and committed. **What is left is the Pagefind re-capture**, and only that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
+| 10. District typeahead | **not started** — never scoped; added 2026-09-12 at the user's instruction after the NR/NDHR divergence audit. The cheap half, independently shippable | — | — |
+| 11. CD picker map | **not started** — same audit. On `geography/CD.topo.json` per the user, which is 74% smaller than the geojson `map.js` fetches today | — | — |
 
-**Status as of 2026-09-12:** Tasks 1 through 8 done on `feature-NDHR-prototype`; **Task 9 is the
-only one not started.** Nothing is blocked, but Task 9 carries a decision inside it — see below.
+**Status as of 2026-09-12:** Tasks 1 through 8 done on `feature-NDHR-prototype`. **Task 9 is in
+progress with one item left** — the Pagefind re-capture, which needs the decision below. **Tasks
+10 and 11 are new**, added this date at the user's instruction: the district typeahead and the CD
+picker map, neither ever scoped by this plan. Nothing is blocked.
 
-Next command: **Task 9**, the last task. Take its four items in this order, because the third is
-the one with an open question in front of it:
+Next command: finish **Task 9** by settling Pagefind, then **Task 10**, which is the cheaper of
+the two new ones and needs no new geometry.
 
 ```
-node scripts/site-characterization.mjs --check        # read the diff BEFORE re-baselining
-node scripts/pagefind-characterization.mjs --check    # read the diff; do NOT re-baseline yet
-npm run lint ; npm run smoke:all                      # `;` not `&&` — see the check's own note
+node scripts/pagefind-characterization.mjs --check    # the only Task 9 item still open
+node scripts/pagefind-characterization.mjs --baseline # ONLY once the ranking question is settled
 ```
+
+**The Pagefind question is narrower than it was.** Two of the three symptoms recorded in "Task 6
+as built" were one bug, fixed in `c895d33575`: the landing page's 59 district names were indexed
+as body text, so `/ndhr/` answered "asthma East Harlem" on "East" from *Upper East Side* and
+"Harlem" from *Central Harlem*, matching neither the phrase nor "asthma". Both that and the
+`Kingsbridge` over-match are gone. What remains is `/ndhr/climate-and-active-design/` first for
+"climate" (17.26 against `/key-topics/climatehealth/`'s 17.04) and `/neighborhood-reports/` out of
+the top five for "neighborhood reports" — where the top five score 4.65, 4.62, 4.62, 4.62, 4.62,
+so it is a tie-break among equals rather than a ranking loss `[all verified 2026-09-12: Pagefind
+scores read off the built index]`. **That reading says accept and re-baseline**, and the plan's
+option 1 — ignoring the 59 district index pages — would now be a departure from NR, which indexes
+all 42 of its neighborhood indexes.
 
 Three decisions from Task 7 are open and none blocks Task 9: the row order (authored YAML order,
 where NR sorts by rank), the hand-written CSV export, and `lib-arquero` removed from the layout.
@@ -1581,3 +1596,126 @@ later change is checked against. `npm run lint`, `npm run smoke:all`, then
 `npm run characterize:site` and read its diff before `npm run characterize:site:baseline`.
 Record the commit hash beside each result — a green check is a fact about a commit, not about a
 branch.
+
+---
+
+## Task 10: District typeahead on the landing and category pages
+
+**Added 2026-09-12, at the user's instruction, after an NR/NDHR divergence audit found it
+absent.** It was never scoped: this plan mentions a picker three times and all three are
+asides — §"Two crossing merge patterns" notes in passing that an NDHR typeahead would need its
+own `searchIn` list, and "Task 6 as built" records the absence after the fact. Both layouts
+give the reason as "not in Task 6's file list", which is scope rather than rationale, and then
+offer a justification ("server-rendered links are what a crawler and a keyboard user need")
+that does not answer it — NR has the links **and** the picker.
+
+**The precedent is decisive and it points the other way.** The Option D swap dropped exactly
+this from the NR topic index, and `documents/nr-topic-index-picker-restore-2026-08-09.md` exists
+because the user set the scope in session to put it back: "restore the map *and* the
+flexdatalist, keep the 42-neighborhood link list but collapse it. Work exactly like the old
+version, implementation is a looser requirement." NDHR currently reproduces the pre-restore
+state, with 59 items to scan rather than 42.
+
+**This is the cheap half of the picker work and is independently shippable.** It needs no new
+geometry, no new partial, and no Leaflet.
+
+**Files:**
+- Edit `themes/dohmh/layouts/ndhr/section.html` — typeahead above the district list
+- Edit `themes/dohmh/layouts/ndhr/ndhr-category-index.html` — the same, linking to that
+  category's report for the chosen district
+- Possibly a shared partial rather than two copies; `nr-neighborhood-picker-js.html` is the
+  model, and the NR work that extracted its two duplicated copies into shared partials is
+  `documents/nr-neighborhood-picker-options-2026-08-09.md`
+
+**Interfaces:**
+- Consumes: the `communityDistricts` global from `lib-cdlist.html` (59 rows), which neither page
+  currently loads — check before assuming, since `section.html` renders its list from
+  `site.Data.globals.cdlist` at build time and needs no JS global today.
+- Produces: a district chooser that does not require scanning 59 names.
+
+**`searchIn` is the one substantive difference from the NR original.**
+`nr-neighborhood-picker-js.html` searches `UHF_name` and `Zipcodes`. A community district has
+neither: `cdlist.json` carries `CD_name` and no ZIP list at all, because community districts are
+not ZIP-based. So the field list is a swap, not an addition — and there is no ZIP fallback, which
+means a reader who knows only their ZIP cannot use this. Say so or solve it; do not leave it
+implied.
+
+**flexdatalist has no `lib-*` partial** — the four templates that use it load it themselves
+(project `CLAUDE.md`, "Library loading"). A fifth and sixth caller here is the existing pattern,
+not a new one, but it is worth asking whether that is the moment to write the partial.
+
+**Verification rung:** browser. Type a partial district name and assert the option list narrows
+to the right rows and the chosen link resolves to a real page — `npm run smoke` will not catch a
+typeahead that silently matches nothing, because matching nothing throws no console error. The
+NDHR characterization harness does not cover these two page kinds; extending it is optional here
+and is the cheaper alternative to a bespoke test.
+
+---
+
+## Task 11: Community district picker map
+
+**Added 2026-09-12, same audit as Task 10.** The expensive half, and genuinely new work rather
+than an include.
+
+**`nr-leaflet.html` cannot be reused.** It is hard-bound to UHF42: it fetches
+`geojson/UHF42.geojson` at line 45 and holds it in a `uhf_geojson` binding used throughout
+`[verified 2026-09-12]`. A CD counterpart is a new partial.
+
+**The script-collision argument does NOT block this, and an earlier note in this plan implied it
+did.** `nr-leaflet.html` and `assets/js/ndhr-report/map.js` do share four top-level names
+(`highlightFeature`, `onEachFeature`, `resetHighlight`, `selectNeighborhood`), and two
+declarations of one name in a shared classic-script scope is a `SyntaxError` that kills every
+script on the page. But that only bites on a page loading both, and none of the three non-report
+NDHR layouts loads any `ndhr-report` module — `grep -c "ndhr-report/"` returns **0** on
+`section.html`, `ndhr-category-index.html` and `ndhr-cd-index.html` `[verified 2026-09-12]`. The
+collision is a real constraint on the *report* page and nowhere else. A new `ndhr-leaflet.html`
+should still pick distinct names, so that it and `map.js` could coexist later.
+
+**Use `geography/CD.topo.json`, not `CD.geojson`** — the user's instruction, and the measurement
+supports it:
+
+| source | bytes |
+|---|---|
+| `geography/CD.geojson` (what `map.js` fetches today) | 162,386 |
+| `geography/CD.topo.json` | 34,421 |
+| `topojson-client.min.js` (already a dependency) | 7,169 |
+| **topojson route, total** | **41,590 — a 120,796 byte saving, 74%** |
+
+`[all verified 2026-09-12: `curl` against the production data branch, and `wc -c` on the
+installed `node_modules/topojson-client/dist/topojson-client.min.js`]`
+
+It carries everything a picker needs: `type: "Topology"`, one object named `collection`, **59
+geometries**, and `id` / `GEOCODE` / `GEONAME` present on all 59. `GEOCODE` matches `cdlist.json`'s
+`CD_id` on **59 of 59** and `GEONAME` matches `CD_name` on **59 of 59**, with no unmatched codes
+`[verified 2026-09-12]` — the same clean join the plan already recorded for `CD.geojson`, and
+better than `UHF42.geojson`, whose `GEONAME` disagrees with `uhflist` on 6 of 42.
+
+**Leaflet needs GeoJSON, so this costs one conversion.** `topojson.feature(topo,
+topo.objects.collection)` from `topojson-client`, which is already in `package.json` and already
+bundled by `themes/dohmh/layouts/data-features/heatstory.html` via `resources.Concat`. Every other
+topojson consumer in this repo — `data-explorer/map.js`, `minimum-wage-with-maps.html`,
+`ndhr-report/chart.js` — uses **Vega's** built-in `format: {type: "topojson"}` and needs no
+client, so heatstory is the only precedent for the Leaflet direction. There is no `lib-topojson`
+partial; writing one is part of this task.
+
+**Files:**
+- New `themes/dohmh/layouts/partials/ndhr-leaflet.html` — the CD analogue, on `CD.topo.json`
+- New `themes/dohmh/layouts/partials/lib-topojson.html`, or a justified reason to bundle instead
+- Edit `themes/dohmh/layouts/ndhr/section.html`, `ndhr-category-index.html` and
+  `ndhr-cd-index.html` to include it
+
+**Interfaces:**
+- Consumes: `geography/CD.topo.json` at the environment's own `data_branch`, and
+  `communityDistricts` for the names.
+- Produces: the map half of the picker.
+
+**One decision this task surfaces and should not silently take.** `assets/js/ndhr-report/map.js`
+fetches `CD.geojson` on all 295 report pages. If this task builds the topojson path anyway, moving
+`map.js` onto it saves ~120 KB per report page — but that edits shipped Task 7 code that
+`scripts/ndhr-characterization.mjs` now baselines, so it is a separate change with its own
+verification, not a free rider. Decide it explicitly; do not fold it in.
+
+**Verification rung:** browser. 59 named polygons, a click reaching the right URL, and keyboard
+reachability — `map.js`'s own rung, which "Task 7 as built" records as **NOT** establishing
+tab-order membership, only programmatic focus. Do not repeat that gap here: assert the polygons
+are in the tab order, or say plainly that they are not.
