@@ -430,7 +430,9 @@ this document exists about. The file was then restored byte-identically and `--c
 node scripts/pagefind-characterization.mjs --check
 ```
 
-Expected: `PASSED`, 201 indexed pages, controls passing. Re-baseline with `--baseline` only after
+Expected: `PASSED`, **202** indexed pages, controls passing — 201 was the figure on 2026-08-15 and
+the committed baseline has held 202 since at least 2026-09-02; that one-page difference is not
+diagnosed. Re-baseline with `--baseline` only after
 reading a `--check` diff — the baseline records whatever it is given, and the controls only catch
 a broken *build*, not an unintended-but-working change.
 

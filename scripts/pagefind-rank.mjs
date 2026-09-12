@@ -17,8 +17,11 @@
 // 0.05 of the top score, against 2 before — the query had stopped discriminating, which
 // is a different finding with a different answer.
 //
-// It needs a BUILT site because hugo server never builds a Pagefind index at all. Get
-// one from the harness's own build:
+// It needs a BUILT site because Pagefind is a post-build step that hugo itself never runs.
+// A server started by scripts/dev-server.mjs is the exception — it runs `npx -y pagefind
+// --site docs` afterwards (dev-server.mjs:129) — but that index describes docs/, whatever
+// was last built there, which is why this script refuses that path. Get one from the
+// harness's own build:
 //
 //   node scripts/pagefind-characterization.mjs --check --keep-build
 //

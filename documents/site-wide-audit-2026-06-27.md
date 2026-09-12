@@ -2410,8 +2410,10 @@ code that `scripts/ndhr-characterization.mjs` now baselines.
 
 ### 17a. What each swap actually costs
 
-- **Leaflet cannot read TopoJSON**, so each swap adds one `topojson.feature(topo,
-  topo.objects.<key>)` call and the `topojson-client` library — 2,604 bytes gzipped, paid once and
+- **Leaflet ingests GeoJSON only** — its loader API is `L.geoJSON`, and this repo's one Leaflet
+  TopoJSON consumer converts before handing over, at
+  `content/data-features/heat-story/embed/heat-story-leaflet.js:168-169`. So each swap adds one
+  `topojson.feature(topo, topo.objects.<key>)` call and the `topojson-client` library — 2,604 bytes gzipped, paid once and
   cached, against savings that start at 7,666 bytes on the cheapest row. The object key is
   `collection` on every file measured here **except** `CityCouncilDistrict.topo.json`, whose single
   object is named `data`. Do not hardcode `collection`.
