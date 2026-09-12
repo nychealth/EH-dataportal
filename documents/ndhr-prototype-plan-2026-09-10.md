@@ -296,6 +296,10 @@ identical to each other on indicator 2061. EHDP-data's curated
 `indicator_name`, `indicator_description` — across 79 rows and no short name
 `[verified 2026-09-10: enumerated the actual key sets rather than grepping for guessed names —
 6 keys at indicator level, 10 at measure level, 3 in the curated file, none a short name]`.
+**The measure-level count is 11, not 10, and identical across all 731 measures**
+`[re-measured 2026-09-11]`. The extra key is not a short name, so the finding above stands as
+written — but one of the 11 is `DisplayType`, which the same enumeration recorded and the
+`units` conclusion then missed; see the correction under "Task 4 as built".
 
 NDHR authors its own short names in `NDHR_content/` (Task 3), alongside the strategy text that
 is site-owned anyway. **This is the one thing an eventual NR migration to route A will need that
@@ -352,7 +356,7 @@ that the probe can see these assets at all]`. A session re-running the proof as 
 read that absence as a regression. **The build proof belongs to Task 6**, which adds the include;
 until then the partial's only check is that it parses, which the same build shows.
 | 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
-| 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
+| 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42 — 13 fields over 2,646 rows, **now 14 and 37,044 since the `units` correction of 2026-09-11**, so a re-run reports the larger number. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
 | 5. Content adapter and routing | **DONE 2026-09-11** — `content/ndhr/`: the adapter, the section landing page and the five category pages | Isolated `development` build exits 0 and lists **360** `/ndhr/` URLs in the built English sitemap — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 295 of them at depth 2, so no CD slug collides with a category slug. **The marker count reads 60, not 360, until Task 6 lands** — see the as-built section for why, and for the placeholder-layout control that takes it to 360 | `e679133fc8` |
 | 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
 | 7. Renderers and geography labelling | not started | — | — |
@@ -368,19 +372,19 @@ on it. **Task 8 is not independent of it**, whatever an earlier version of this 
 8's file list edits `assets/js/ndhr-report/cards.js`, which Task 7 creates, and its interfaces
 block names Task 7's card markup as an input.
 
-**Two things Task 7 needs settled first.** `buildRows` reads `units` off each measure row and
-"Task 4 as built" records it as a field the content YAML supplies — no
-`data/globals/NDHR_content/` file carries one, so every card renders a bare number. That is Task 3
-content, not a template change, and it is a content edit plus a re-run of
-`node scripts/ndhr-indicator-availability.mjs check`. And the Pagefind ranking finding in "Task 6
-as built" has three open responses; it does not block Task 7, but it blocks Task 9's re-capture.
+**One thing outstanding, and it does not block Task 7.** The Pagefind ranking finding in "Task 6
+as built" has three open responses; it blocks Task 9's re-capture and nothing before it.
+
+**The `units` gap Task 6 surfaced is closed** — `normalize.js` reads metadata's `DisplayType`,
+which is the field, and no content authoring is needed. See the correction under "Task 4 as
+built".
 
 Re-run the checks first — they are cheap, and §2's table and every demographic figure in
 this plan rest on them:
 
 ```bash
 npm run ndhr:availability check    # expect exit 0, "UNCHANGED — all 28 rows"
-npm run report-data:parity all     # expect exit 0, "34398 field comparisons, 0 mismatched"
+npm run report-data:parity all     # expect exit 0, "37044 field comparisons, 0 mismatched"
 npm run ndhr:cdlist check          # expect exit 0, "UNCHANGED"
 node scripts/ndhr-build-cdlist.mjs print prod_stage   # expect exit 0 — the other data branch
 npm run lint                       # expect exit 0
@@ -391,10 +395,9 @@ npm run docs-check                 # expect exit 0, "2 doc(s) checked"
 — 202 indexed pages to 267. Read its diff; do not re-baseline it until the ranking question is
 settled.
 
-The `units` gap, checked rather than recalled: `grep -rn units data/globals/NDHR_content/` returns
-**0** across all five files, against 22 for `MeasureID` in the same directory as the control that
-the grep can see them `[verified 2026-09-11]`. `assets/js/report-data/normalize.js:411` reads
-`spec.units || ''`.
+`npm run report-data:parity all` now expects **37,044** field comparisons, not 34,398 — `units`
+joined the compared set on 2026-09-11. A run still reporting 34,398 is running against a
+`normalize.js` from before that correction.
 
 **How a crosswalk reaches the data branches, for the next time one has to.** Cherry-pick onto
 `production` and `staging` separately; do not merge a branch cut from `production` into `staging`.
@@ -900,18 +903,49 @@ diagnosed.
 ### Task 4 as built
 
 **The result: 34,398 field comparisons against the published NR payloads, 0 mismatched**, over all
-five reports and 22 sections at UHF42 — not the one report this task specified. Route A is
+five reports and 22 sections at UHF42 — **37,044 on a re-run, once `units` joined the compared set** — not the one report this task specified. Route A is
 established: the browser can reproduce the numbers NR has published for years, from EHDP-data's
 own indicator files.
 
 The prediction written before the first run held on the fields it named and was **too narrow on
-two counts**. `indicator_short_name` does differ, as §2 said. So does `units` — populated in the
-payloads ("per 100,000", "of land area"), absent from metadata, and not derivable from
-`MeasurementType`, since two measures sharing "Percent" carry different units. Both are now
-site-owned fields the content YAML supplies. The third, `nbr_rank`, is not emitted at all:
+two counts**. `indicator_short_name` does differ, as §2 said, and is a site-owned field the
+content YAML supplies. So, it was recorded here, does `units` — **and that was wrong; corrected
+2026-09-11, see below**. The third, `nbr_rank`, is not emitted at all:
 `assets/js/nr-report/cards.js` reads `data_value_rank` only and nothing in the NR templates or
 modules reads `nbr_rank`, so its published tie convention — neither competition nor dense ranking
 in either direction — was left unrecovered rather than approximated.
+
+**Correction, 2026-09-11: `units` is not site-owned. Metadata's `DisplayType` is that field.**
+The original claim was that units appear nowhere in metadata. They had been sought under
+`MeasurementType`, where they genuinely are not — two "Percent" measures do carry different units,
+so that half of the reasoning was sound and the conclusion drawn from it was not.
+`measure.DisplayType` carries `"per 100,000"`, `"per 10,000 homes"`, `"per square mile"`,
+`"out of 5"`, `"Bodegas to supermarkets"`, and the empty string for every `Percent` measure.
+
+It agrees with the published payloads' `units` on **10 of 10** NDHR measures that appear in an NR
+payload, empty string included. That sample is small and is not what the correction rests on:
+`normalize.js` now reads `measure.DisplayType ?? ''`, `units` moved out of the parity harness's
+`EXPECTED_ABSENT` into its compared-fields list, and the harness re-run is the proof —
+**37,044 field comparisons, 0 mismatched**, up from 34,398 by 2,646, which is one new comparison
+per row over all five reports and 22 sections. All three controls still fire (17, 243, 514).
+
+**What this retires.** Task 3 needs no `units` authoring, and Task 7 does not wait on it. The gap
+recorded at the foot of "Task 6 as built" — every card rendering a bare number — is closed by a
+one-line read, not by 18 hand-written strings, and the 8 NDHR measures with no NR precedent are
+covered as well as the 10 with one, which hand-authoring would not have been.
+
+**The generalizable half, and it is sharper than "we didn't look".** §2 *had* enumerated the
+measure-level key set on 2026-09-10 rather than grepping for guessed names — which is the right
+method, and `DisplayType` was in what it returned. Enumerating the keys does not tell you what a
+key holds, and this one's name says *display*, not *units*.
+
+So the name-shaped search fails in both directions here. Searching the measure objects for keys
+matching `/unit/i` returns **zero** — not `MeasureName`, `MeasurementType`, `DisplayType` or
+`how_calculated` contains the string, so that search reads as confirmation of the absence. What
+finds it is searching for a known *value*: `"per 100,000"` appears in 117 of the 731 measure
+objects, in exactly two fields, `how_calculated` and `DisplayType` `[verified 2026-09-11]`.
+**When asserting a field is absent from an upstream source, search for an instance of what it
+would hold, not for what it would be called.**
 
 **Two of the task's five steps were wrong as written.** Step 1 resolves an IndicatorID to a
 measure by geotype; Task 3's MeasureID rekeying made that obsolete, and `buildRows` takes the
@@ -942,7 +976,9 @@ content YAML may state `rank_reverse` and the default is 0.
   markers are not all asterisks). It is emitted verbatim; the one case needing work is a
   suppressed row, whose DisplayValue is the bare marker and which the payload prefixes "N/A" to.
 
-**48 of 34,398 rows cannot be matched by any implementation and are scored separately.** Tertiles
+**48 of 2,646 rows cannot be matched by any implementation and are scored separately.** (The
+denominator here read 34,398 until 2026-09-11, which is the *comparison* count — 13 fields over
+those same 2,646 rows, now 14 and 37,044.) Tertiles
 split by position, so a run of tied values straddling a boundary lands in two tertiles, and which
 area falls on which side is not a function of any field in the data — the payloads order such ties
 inconsistently between measures. Reproducing that split rather than giving a tie group one tertile
@@ -1224,10 +1260,13 @@ these 60 pages had no layout of their own. `ndhr-cd-index.html` and `section.htm
 paginate, so the aliases stop being written `[verified 2026-09-11: alias-file sets diffed between
 the two builds — 60 removed, all under /ndhr/, 0 added]`.
 
-**One gap this task surfaced for Task 7.** `buildRows` reads `units` off each measure row and
-"Task 4 as built" records it as a field the content YAML supplies. No `data/globals/NDHR_content/`
-file carries one, so every card would render its number with no unit. That is Task 3 content, not
-a template change.
+**One gap this task surfaced for Task 7 — since closed, and the diagnosis was wrong.**
+`buildRows` reads `units` off each measure row; "Task 4 as built" recorded it as a field the
+content YAML supplies, no `data/globals/NDHR_content/` file carries one, and the conclusion drawn
+was that Task 3 owed 18 hand-written strings. Metadata's `DisplayType` is the field, so
+`normalize.js` reads it directly and Task 3 owes nothing. The correction, and the parity re-run
+that proves it across every NR measure rather than the 10 it was found on, are under "Task 4 as
+built".
 
 ---
 

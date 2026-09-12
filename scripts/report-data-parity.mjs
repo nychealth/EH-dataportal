@@ -69,7 +69,13 @@ const COMPARED = [
     ["indicator_long_name", row => row.indicator_long_name, truth => truth.indicator_long_name],
     ["indicator_description", row => row.indicator_description, truth => truth.indicator_description],
     ["measurement_type", row => row.measurement_type, truth => truth.measurement_type],
-    ["data_source_list", row => row.data_source_list, truth => truth.data_source_list]
+    ["data_source_list", row => row.data_source_list, truth => truth.data_source_list],
+
+    // Compared since 2026-09-11. It was in EXPECTED_ABSENT on the belief that metadata
+    // carries no units field; metadata's `DisplayType` is that field, so this row is what
+    // holds normalize.js to it across every NR measure rather than the 10 NDHR ones the
+    // finding came from.
+    ["units", row => row.units, truth => truth.units]
 ];
 
 // Deliberately not compared, because no upstream source exists for either and both are
@@ -78,7 +84,6 @@ const COMPARED = [
 // check behind it.
 const EXPECTED_ABSENT = [
     "indicator_short_name — EHDP-data carries only the long form; the curated nr_indicator_names.json has no short-name column",
-    "units — populated in the published payloads ('per 100,000', 'of land area') and absent from metadata; two measures sharing MeasurementType 'Percent' carry different units",
     "nbr_rank — carried by the published payloads and rendered by nothing; its tie convention was not recovered, so normalize.js does not emit it"
 ];
 

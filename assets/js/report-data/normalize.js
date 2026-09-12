@@ -404,11 +404,14 @@ const buildRows = async ({
             indicator_long_name: indicator.IndicatorName + ', ' + ((timePeriodsById[period] || {}).TimePeriod || ''),
             indicator_description: indicator.IndicatorDescription,
 
-            // Also site-owned, and for the same reason: `units` is populated in the
-            // precomputed payloads ("per 100,000", "of land area") and appears nowhere in
-            // metadata — two measures sharing MeasurementType "Percent" carry different
-            // units, so it cannot be derived from one either `[verified 2026-09-11]`.
-            units: spec.units || '',
+            // NOT site-owned: metadata's `DisplayType` is this field. An earlier comment
+            // here said units appeared nowhere in metadata, which was wrong — it had been
+            // sought under MeasurementType, where it genuinely is not (two "Percent"
+            // measures carry different units). `DisplayType` agrees with the published
+            // payloads' `units` on 10 of 10 NDHR measures that appear in one, empty string
+            // included, and the parity harness now compares the field across every NR
+            // measure rather than excluding it `[verified 2026-09-11]`.
+            units: measure.DisplayType ?? '',
 
             measurement_type: measure.MeasurementType,
             data_source_list: measure.Sources,

@@ -376,8 +376,11 @@ on a branch mismatch.
   not run the file, `smoke` would only prove it throws no console error, and the plan's
   whole "compute in the browser" decision rests on the numbers matching. It runs `buildRows`
   at UHF42 over an NR report's own MeasureID list and diffs field by field, area by area —
-  **34,398 comparisons over all five reports, 0 mismatched** `[2026-09-11, production data
-  branch]`. Positional arguments only, same reason as `ndhr:availability`.
+  **37,044 comparisons over all five reports, 0 mismatched** — 14 fields over 2,646 rows
+  `[2026-09-11, production data branch]`. It read 34,398 until `units` joined the compared
+  set that same day; metadata's `DisplayType` is that field, which an earlier note here and
+  in `normalize.js` had recorded as absent from metadata. Positional arguments only, same
+  reason as `ndhr:availability`.
 
   It evaluates the real classic script in a `node:vm` context rather than a Node-shaped copy,
   so what passes is the file the site ships. **Three controls, not one**, each re-evaluating
