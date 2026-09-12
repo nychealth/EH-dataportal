@@ -1,0 +1,91 @@
+{{/*
+  Content adapter for the Neighborhood Development Health Report (NDHR).
+
+  Generates 354 of the section's 360 pages:
+
+    - 59 community district indexes at <cd>/              (kind section, ndhr-cd-index.html)
+    - 295 report pages at <cd>/<category>/                (kind page,    ndhr-report.html)
+
+  The remaining 6 are hand-written: the 5 category indexes (content/ndhr/<key>.md, each
+  setting an explicit `url`) and this section's own _index.md.
+
+  Modelled on content/neighborhood-reports/_content.gotmpl, which is the working
+  reference for this shape. The two sources are crossed: data/globals/cdlist.json
+  supplies the 59 community districts (CD_id, CD_name, page_name, borough, CDTA_id,
+  PUMA2020_id) and data/globals/NDHR_categories.yml the 5 categories. Both are plain
+  data files rather than pages, which is required here — the Site object is not fully
+  built while an adapter runs, so Site.Pages and Site.GetPage are unavailable
+  [verified 2026-08-07 for the NR adapter: Hugo content-adapters docs, "Page
+  collections" warning].
+
+  Three adapter facts this depends on, none of which fails loudly if it stops holding:
+    - a top-level `title` in the page map sets .Title but NOT .Params.title, so the
+      layouts must read .Title
+    - `summary` is top level for the same reason: .Summary is what the RSS feed prints
+      as each report's <description>, and a generated page has no body to summarize
+    - .File is not nil on a generated page; .File.BaseFileName is the string "_content",
+      so anything keyed on it silently matches nothing
+
+  The category range is UNCONDITIONAL. Mental Health has no indicators at community
+  district geography (plan DECIDED-7) and still gets its 59 pages — skipping a category
+  with an empty indicator list would silently make this 236 report pages, and the empty
+  state is Task 7's to render, not this file's to avoid.
+
+  No seo_image: NDHR_categories.yml carries none, where NR_topics.yml does. The card
+  images on the CD index are therefore a Task 6 decision, not an omission here.
+*/}}
+
+{{- $districts := .Site.Data.globals.cdlist -}}
+{{- $categories := .Site.Data.globals.NDHR_categories -}}
+
+{{- range $cd := $districts -}}
+
+    {{/* The community district index: a real branch page, so its 5 report pages are
+         .Pages and .Parent.Title on each of them is the district name. */}}
+    {{- $.AddPage (dict
+        "path"    $cd.page_name
+        "kind"    "section"
+        "title"   $cd.CD_name
+        "layout"  "ndhr-cd-index"
+        "params"  (dict
+            "cd_id"           $cd.CD_id
+            "cdta_id"         $cd.CDTA_id
+            "puma2020_id"     $cd.PUMA2020_id
+            "borough"         $cd.borough
+            "seo_title"       (printf "%s | Neighborhood Development Health Report" $cd.CD_name)
+            "seo_description" (printf "Neighborhood Development Health Report data for %s, a community district in %s." $cd.CD_name $cd.borough)
+        )
+    ) -}}
+
+    {{- range $category := $categories -}}
+
+        {{/* `seo_short_name` is the uncomposed half of `seo_title`, carried rather than
+             derived for the same reason NR carries it: the report page switches district
+             in place and rebuilds document.title from it, and .Title is not that string.
+
+             The three geography ids all ride on every report page because the compute
+             module reads one geography per measure — CD, CDTA2020 or PUMA2020 — and which
+             one a given row needs is a property of the measure, not of the page. */}}
+        {{- $.AddPage (dict
+            "path"    (printf "%s/%s" $cd.page_name $category.slug)
+            "kind"    "page"
+            "title"   $category.title
+            "layout"  "ndhr-report"
+            "summary" $category.summary
+            "params"  (dict
+                "community_district"      $cd.CD_name
+                "community_district_slug" $cd.page_name
+                "cd_id"                   $cd.CD_id
+                "cdta_id"                 $cd.CDTA_id
+                "puma2020_id"             $cd.PUMA2020_id
+                "borough"                 $cd.borough
+                "content_yml"             $category.key
+                "seo_title"               (printf "%s in %s | Neighborhood Development Health Report" $category.seo_short_name $cd.CD_name)
+                "seo_short_name"          $category.seo_short_name
+                "seo_description"         (printf "%s data for %s, a community district in %s." $category.seo_short_name $cd.CD_name $cd.borough)
+            )
+        ) -}}
+
+    {{- end -}}
+
+{{- end -}}
