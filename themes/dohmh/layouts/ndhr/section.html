@@ -76,7 +76,26 @@
                     {{/* Grouped by borough rather than one flat list of 59: the district
                          names do not carry their borough, and a bare list of 59 is not
                          scannable. cdlist.json is already in borough-then-id order, so this
-                         is a break on the borough field rather than a sort. */}}
+                         is a break on the borough field rather than a sort.
+
+                         data-pagefind-ignore="all", matching ndhr-category-index.html and
+                         the nr-neighborhood-list partial. Without it these 59 names were
+                         body text on this page, which made it a bag of NYC place tokens
+                         that any two-word place query could hit across UNRELATED districts:
+                         "asthma East Harlem" returned this page first, on "East" from
+                         "Upper East Side (CD8)" and "Harlem" from "Central Harlem (CD10)",
+                         matching neither the phrase nor "asthma" at all, and "Kingsbridge"
+                         matched here as well as at its own district index
+                         `[verified 2026-09-12: Pagefind scores and excerpts off the built
+                         index]`. This is the same defect the NR partial's own comment
+                         records fixing — server-rendering a name list that used to be built
+                         in JS, which Pagefind never saw.
+
+                         Districts stay findable through their own index pages, which are
+                         indexed and score ~47 on their own name. data-pagefind-ignore is
+                         read by Pagefind alone, so the crawl path, the accessibility tree
+                         and the JS-off navigation this list exists for are untouched. */}}
+                    <div data-pagefind-ignore="all">
                     {{- $lastBorough := "" -}}
                     {{- range site.Data.globals.cdlist -}}
                         {{- if ne .borough $lastBorough -}}
@@ -88,6 +107,7 @@
                         <li><a href="{{ relURL (printf "ndhr/%s/" .page_name) }}">{{ .CD_name }}</a></li>
                     {{- end -}}
                     </ul>
+                    </div>
 
                 </div>
             </div>
