@@ -1,0 +1,112 @@
+{{- define "main" -}}
+
+{{/*
+    Section landing page — /ndhr/.
+
+    Rendered for content/ndhr/_index.md. The NDHR counterpart of
+    themes/dohmh/layouts/neighborhood-reports/section.html, and deliberately much shorter
+    than it: that file's 264 lines carry a topic-button block wired to
+    nr-neighborhood-picker-js.html, the shared Leaflet picker, and a Community District
+    chooser modal. None of those have an NDHR analogue in Task 6's file list, and the
+    modal's whole purpose — sending a reader from UHF42 to community districts — is what
+    this section already is.
+
+    So the landing page is the two lists a reader needs: the five categories, and the 59
+    community districts. Both are server-rendered links, which is what a crawler and a
+    keyboard user need; a picker map would be an addition on top, not a replacement.
+
+    Indexed, like the NR landing page: this is the entry point for the 354 generated pages
+    below it, 295 of which are deliberately out of the index.
+*/}}
+
+<article class="container-fluid overflow-hidden" id="primary-content">
+
+    <div class="row mb-4">
+        <div class="col-lg-10 mx-auto col-12">
+
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item active"><a href={{ relURL "ndhr" }}>{{ .Title }}</a></li>
+                </ul>
+            </nav>
+
+            <div class="nr-accent">
+                <div class="row">
+                    <div class="col-md-7 col-sm-12 my-2">
+                        {{/* First mention carries the long form with the abbreviation, per
+                             DECIDED-8. .Title is already the long form, so the page h1 adds
+                             only the abbreviation. */}}
+                        <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }} (NDHR)</h1>
+                        {{- .Content -}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    {{/* h2 with .h3 for size: this sits directly under the page h1, and an
+                         h3 here would make the landing page's heading sequence jump a level */}}
+                    <h2 class="h3 mt-3">Choose a report</h2>
+
+                    {{/* Category cards, ordered by NDHR_categories.yml rather than by a sort
+                         — the same order the button menu uses. The five destinations are the
+                         category index pages, which is where a reader with no district in
+                         mind should land. */}}
+                    <div class="row mt-2">
+                        {{- range site.Data.globals.NDHR_categories -}}
+                            <div class="card content-card mb-3 col-md-4 col-sm-6">
+                                <div class="card-content primary">
+                                    <div class="card-body p-2">
+                                        <h3 class="card-title fs-md"><a href="{{ relURL (printf "ndhr/%s/" .slug) }}" class="text-primary fs-lg">{{ .title }}</a></h3>
+                                        <p class="card-text fs-sm">{{ .summary | truncate 150 }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {{- end -}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+
+                    <h2 class="h3 mt-4">Choose a community district</h2>
+
+                    {{/* Grouped by borough rather than one flat list of 59: the district
+                         names do not carry their borough, and a bare list of 59 is not
+                         scannable. cdlist.json is already in borough-then-id order, so this
+                         is a break on the borough field rather than a sort. */}}
+                    {{- $lastBorough := "" -}}
+                    {{- range site.Data.globals.cdlist -}}
+                        {{- if ne .borough $lastBorough -}}
+                            {{- if ne $lastBorough "" }}</ul>{{ end -}}
+                            <h3 class="h6 mt-3">{{ .borough }}</h3>
+                            <ul class="list-unstyled fs-sm">
+                            {{- $lastBorough = .borough -}}
+                        {{- end -}}
+                        <li><a href="{{ relURL (printf "ndhr/%s/" .page_name) }}">{{ .CD_name }}</a></li>
+                    {{- end -}}
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-8 mx-auto fs-sm">
+                    <strong><i class="fas fa-info-circle mr-1" aria-hidden="true"></i>About these community districts</strong>
+                    <p>There are different ways to break up NYC into neighborhoods. These reports use the city's 59 <strong>community districts</strong>. <a href="{{ relURL "data-stories/geographies/" }}">Read about different neighborhood schemes in our data</a>.</p>
+                    {{/* Stated here rather than only on the affected cards: a few indicators
+                         are published at a wider geography than a community district, so a
+                         reader meeting one on a report page has already been told to expect
+                         it. Which rows, and their per-card labels, are Task 7. */}}
+                    <p>A few indicators are not published for community districts, and are shown at the closest larger area that publishes them. Those rows say so.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</article>
+
+{{- end -}}

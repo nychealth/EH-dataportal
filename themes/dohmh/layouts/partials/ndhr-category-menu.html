@@ -1,0 +1,43 @@
+{{/*
+    The five-category mini-menu, shared by the generated report pages (ndhr-report.html)
+    and the five category index pages (ndhr-category-index.html). Driven by
+    data/globals/NDHR_categories.yml so the button order and labels have one source
+    rather than a hardcoded block per layout.
+
+    The NDHR analogue of nr-topic-menu.html, and deliberately the same shape.
+
+    Call with:
+      active        — the content_yml key of the current category, for the .active class
+      district_slug — the community district in the path, or "" on a category index page
+
+    When a district is known the hrefs are real <cd>/<category>/ pages, so a click keeps
+    the district. The .ndhr-category-link class is what url.js rewrites when the map
+    switches district in place.
+*/}}
+
+{{- $active := .active -}}
+{{- $slug := .district_slug -}}
+
+{{/* data-pagefind-ignore="all", for the same reason nr-topic-menu carries it: these five
+     labels are the five NDHR category words and this partial puts all of them on every
+     page it appears on, so indexing them would make every page a body match for every
+     category word. The active category is already carried by the page title and the
+     report header. */}}
+<div class="row no-gutters d-print-none mb-2" data-pagefind-ignore="all">
+
+    {{- range site.Data.globals.NDHR_categories -}}
+
+        {{- $href := cond (eq $slug "")
+            (printf "ndhr/%s/" .slug)
+            (printf "ndhr/%s/%s/" $slug .slug) -}}
+
+        <div class="col-sm mb-2 mr-1 mb-lg-0">
+            <a class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 ndhr-category-link{{ if eq .key $active }} active{{ end }}"
+               href="{{ relURL $href }}">
+                {{ .menu_label }}
+            </a>
+        </div>
+
+    {{- end -}}
+
+</div>

@@ -1,0 +1,86 @@
+{{- define "main" -}}
+
+{{/*
+    Per-community-district index — /ndhr/<cd>/.
+
+    Rendered for the 59 `kind: section` pages content/ndhr/_content.gotmpl generates.
+    Forked from themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html.
+
+    Two deliberate differences from that file, both because of what the data carries:
+      - no ZIP list. cdlist.json has none; community districts are not ZIP-based
+      - no card image. NDHR_categories.yml carries no seo_image where NR_topics.yml does,
+        so the cards are text. Adding images is adding that field plus the assets
+
+    No picker map here, unlike its NR counterpart. That map is themes/dohmh/layouts/
+    partials/nr-leaflet.html, a 370-line partial whose CD analogue is not in Task 6's file
+    list; the 59 districts are reachable from the section landing page's list instead.
+
+    Nothing here is data-pagefind-ignored except the five cards. The district name is
+    exactly the text that distinguishes this page from the other 58.
+*/}}
+
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 mx-auto col-sm-12">
+
+                <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "ndhr" }}>Neighborhood Development Health Report</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                    </ul>
+                </nav>
+
+                {{/* The district name is the one string that makes this page findable as
+                     itself, so it carries the search weight. First mention on the page takes
+                     the long form with the abbreviation, per DECIDED-8. */}}
+                <h1 class="report-title border-bottom">Neighborhood Development Health Report (NDHR) for
+                    <span class="sub-title" data-pagefind-weight="10">{{ .Title }}</span>
+                </h1>
+
+                <div class="fs-md mb-3" style="color:darkslategrey">
+                    <strong>Borough:</strong> {{ .Params.borough }}
+                </div>
+
+                {{/* One card per category report for this district. Ordered by the category
+                     list rather than by .Pages, so the cards follow NDHR_categories.yml's
+                     stated order — the same order the button menu uses — instead of a
+                     default sort. .Pages is matched on the URL segment because that is what
+                     the adapter built the path from. */}}
+                <div class="row mt-4">
+
+                    {{- $pages := .Pages -}}
+                    {{- range site.Data.globals.NDHR_categories -}}
+
+                        {{- $slug := .slug -}}
+                        {{- $summary := .summary -}}
+                        {{- range where $pages "Params.content_yml" .key -}}
+
+                            {{/* data-pagefind-ignore="all", exactly as nr-neighborhood-index
+                                 has it: the five cards are the same title and truncated
+                                 summary on all 59 of these pages, which would leave a district
+                                 index matching "housing" as strongly as a report about it.
+                                 What stays indexed is the <h1> district name. */}}
+                            <div class="card content-card mb-3 col-md-4 col-sm-6" data-pagefind-ignore="all">
+                                <div class="card-content primary">
+                                    <div class="card-body p-2">
+                                        <h2 class="card-title fs-md"><a href="{{ .RelPermalink }}" class="text-primary fs-lg">{{ .Title }}</a></h2>
+                                        <p class="card-text fs-sm">{{ $summary | truncate 150 }}</p>
+                                        <p class="fs-sm text-right"><a href="{{ .RelPermalink }}">See&nbsp;report&nbsp;<i class="fas fa-arrow-circle-right"></i></a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{- end -}}
+
+                    {{- end -}}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{{- end -}}

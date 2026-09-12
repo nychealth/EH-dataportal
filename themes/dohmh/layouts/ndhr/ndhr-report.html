@@ -1,0 +1,392 @@
+{{- define "main" -}}
+
+{{/*
+    Per-community-district report layout — /ndhr/<cd>/<category>/.
+    - Rendered for the 295 pages content/ndhr/_content.gotmpl generates, one per
+        community district / category pair.
+    - Reads the flat `measures` list from the NDHR_content YAML for this category.
+        NR_content nests its MeasureIDs under report_topics and this does not, so there
+        is ONE indicator container here where nr-report.html has one per subsection.
+    - The community district comes from the page itself, not from the URL. The Leaflet
+        map switches district in place; assets/js/ndhr-report/url.js rewrites the address
+        bar.
+
+    Forked from themes/dohmh/layouts/neighborhood-reports/nr-report.html per DECIDED-5,
+    which is the presentation this is meant to reproduce. What is deliberately NOT carried
+    over is noted at each site rather than here.
+
+    Titles read .Title, never .Params.title: a content adapter's top-level `title` key sets
+    .Title only, so .Params.title renders blank on all 295 of these pages.
+
+    THE TEN REPORT MODULES ARE NOT LOADED YET. assets/js/ndhr-report/ is Task 7 of
+    documents/ndhr-prototype-plan-2026-09-10.md; `resources.Get` on a path that does not
+    exist returns nil and fails the build, so the script block that mirrors nr-report.html's
+    last twenty lines lands with those files. Until then this page serves its server-rendered
+    half — header, breadcrumbs, demographics shell, the empty-state string, the config
+    object — and the map div stays empty.
+*/}}
+
+{{/* The indicator spec for this category. `measures` is flat; `empty_state` is present
+     only on a category with no measures, and Mental Health is that category. */}}
+{{- $contentKey := .Params.content_yml -}}
+{{- $content := index .Site.Data.globals.NDHR_content $contentKey -}}
+{{- $measures := $content.measures -}}
+{{- $emptyState := $content.empty_state -}}
+
+{{/* This page's styles live in assets/scss/_custom.scss, under the "NDHR report page"
+     heading, for the same reason the NR ones do: .card-header is a site-wide Bootstrap
+     class, so its rules are scoped to .ndhr-report-accordion there. */}}
+
+{{/*
+    data-pagefind-ignore="all" on the whole report, matching nr-report.html. The argument
+    that put it there carries over unchanged and is stronger here: a report page wins the
+    first page of results on its *title*, there are 59 per category rather than 42, and the
+    category vocabulary is already carried by the five category index pages, which are
+    indexed. documents/nr-pagefind-parity-2026-08-15.md §5 is the test that would reverse
+    it for NR; the same test would settle it here.
+*/}}
+<section class="container-fluid" data-pagefind-ignore="all">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            {{/* Breadcrumbs — the community district index sits between the section and
+                this page, mirroring the real URL and giving each report page a link back
+                up to its 58 siblings' entry point */}}
+            <nav aria-label="breadcrumb" class="mt-2 mb-3 d-print-none">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL "ndhr" }}">Neighborhood Development Health Report</a></li>
+                    <li class="breadcrumb-item"><a href="{{ relURL (printf "ndhr/%s/" .Params.community_district_slug) }}">{{ .Params.community_district }}</a></li>
+                    <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            {{/* Clicking a map polygon rebuilds the entire report body, swaps both <h1>s
+                and rewrites the address bar, with nothing said about it — report.js writes
+                the new district here so the change is announced rather than silent.
+
+                It sits outside #ndhr-report-header and outside every section container,
+                because renderAll() empties those: a live region replaced between the write
+                and the read is not announced. Server-rendered empty and left empty on first
+                paint. role="status" carries aria-live="polite" and aria-atomic. */}}
+            <div id="ndhr-report-status" role="status" class="sr-only"></div>
+
+            {{/* Mobile title (visible below md breakpoint).
+                District name and visibility are server-rendered rather than left to JS:
+                without JS this page would otherwise read "Housing in" with nothing after
+                it. */}}
+            <div class="row d-md-none">
+                {{/* The id stays on the wrapper rather than the h1, so Pagefind emits no
+                    sub-result for this heading. */}}
+                <div class="col-12 mb-2" id="ndhr-mobile-title">
+                    <h1 class="h2 ndhr-report-heading">
+                        {{ .Title }} <span style="font-weight:normal">in</span>
+                        <span class="h2 text-primary" id="ndhr-mobile-district">{{ .Params.community_district }}</span>
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {{/* Left column: map, demographics */}}
+                <div class="col-md-4 mb-4 d-print-none">
+
+                    {{/*
+                        Interactive Leaflet map for community district selection, drawn by
+                        assets/js/ndhr-report/map.js from the geojson named in the config
+                        below. Clicking a district updates the report in place.
+
+                        nr-leaflet.html is deliberately NOT included here: it declares
+                        highlightFeature, onEachFeature, resetHighlight and selectNeighborhood
+                        at the top level, and so does the report page's own map module. Two
+                        declarations of one name in a shared classic-script scope is a
+                        SyntaxError that kills every script on the page, and `npm run lint`
+                        cannot see it.
+                    */}}
+                    <div id="ndhr-map" class="border" style="height: 450px; width: 100%;"></div>
+
+                    {{/* Demographics table — populated by JS from the `communityDistricts`
+                        global, emitted by lib-cdlist.html from data/globals/cdlist.json.
+
+                        NO ZIP LIST, unlike nr-report.html: cdlist.json carries none, because
+                        community districts are not ZIP-based.
+
+                        FIVE ROWS, NOT EIGHT. Population, Over 65 and Under 18 are null on all
+                        59 rows — EHDP-data publishes no such indicator at community district
+                        geography, which "Task 2 as built" records — so rendering them would
+                        give every page three permanently blank cells. Restoring them is
+                        adding three <tr> back here once those indicators exist.
+
+                        The source line names the same ACS vintage the values were read at;
+                        data/globals/cdlist-source.json records the indicator, measure and
+                        time period per field. */}}
+                    <div id="ndhr-demographics" class="report-section card-body-no-top my-2" style="display:none;">
+                        <table class="table fs-sm" style="color:darkslategrey">
+                            {{/* Row headers, not plain cells: in a two-column table a screen
+                                reader reading cell by cell otherwise announces the value with
+                                no metric name attached. */}}
+                            <thead class="sr-only">
+                                <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><th scope="row"><strong>Poverty</strong></th><td id="ndhr-pov" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Graduated high school</strong></th><td id="ndhr-grad" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Limited English</strong></th><td id="ndhr-eng" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Owner-occupied homes</strong></th><td id="ndhr-own" class="text-right"></td></tr>
+                                <tr><th scope="row"><strong>Rent-burdened households</strong></th><td id="ndhr-rent" class="text-right"></td></tr>
+                            </tbody>
+                        </table>
+                        <span class="fs-xs" style="color:darkslategray;"><strong>Source:</strong> American Community Survey (2019-2023)</span>
+                    </div>
+
+                    <hr class="my-2">
+                    {{/* Ignored by Pagefind: this explainer is byte-identical on all 295
+                         report pages, so indexing it would make every report a match for
+                         "tertile" and "lowest third" without telling those searches apart.
+                         It stays visible and its alt text stays in the accessibility tree;
+                         only the index skips it.
+
+                         "community districts" rather than "neighborhoods", and the image is
+                         the NR one — the diagram is about the shape of a distribution and
+                         carries no geography of its own. Its alt text is reworded to match. */}}
+                    <div class="asidebox m-2 pxy-2 text-muted" data-pagefind-ignore="all">
+                        <strong>Indicator rankings</strong>
+                        <p class="leading-sm">For each dataset, we divide community districts up into <strong>tertiles</strong>, or thirds. This provides a rough comparison of this community district, to all other NYC community districts, for this indicator.</p>
+                        <div class="row no-gutters">
+                            <div class="col-4 mr-auto fs-xs" style="line-height: 100%">
+                                <strong>Lower</strong>: for that dataset, the community district is in the lowest third of all community districts.
+                            </div>
+                            <div class="col-4 ml-auto fs-xs" style="line-height: 100%;">
+                                <strong>Higher</strong>: for that dataset, the community district is in the upper third of all community districts.
+                            </div>
+                        </div>
+                        <img class="my-1" src="{{ .Site.BaseURL }}images/edited_tertile.jpg" style="width:100%" alt="An example bar chart. The one-third of areas with the lowest values are labelled Lower. The one-third of areas with the highest values are labelled Higher.">
+                        <p class="leading-sm"><span class="fs-xs">These are only based on the distribution of data values, not the range. The absolute values of indicators in different categories may not be all that different.</span></p>
+                    </div>
+
+                </div>
+
+                {{/* Right column: category buttons + report header + indicator rows */}}
+                <div class="col-md-8 col-print-12">
+
+                    {{/*
+                        Category mini-menu: the five category buttons, hrefs pointing at this
+                        district's other four reports. url.js rewrites them if the map
+                        switches district.
+                    */}}
+                    {{ partial "ndhr-category-menu" (dict "active" $contentKey "district_slug" .Params.community_district_slug) }}
+
+                    {{/*
+                        Report header: title + district name + intro copy + buttons.
+                        Rendered visible with the district already in place.
+                    */}}
+                    <div id="ndhr-report-header">
+                        <div class="d-none d-md-block mb-">
+                            <h1 class="h2 mt-3 ndhr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
+                                <span class="h2 text-primary" id="ndhr-header-district">{{ .Params.community_district }}</span>
+                            </h1>
+                        </div>
+
+                        <div class="d-md-none my-1">
+                            <strong>{{ .Title }}</strong>
+                        </div>
+
+                        <hr class="mb-2 mt-1">
+                        {{/* The category intro copy lives in the category markdown file's
+                            body — a generated page has no .Content of its own. Same lookup
+                            nr-report.html makes for its topic copy. */}}
+                        <div class="mb-2">
+                            {{- with .Site.GetPage (printf "/ndhr/%s.md" $contentKey) -}}
+                                {{ .Content }}
+                            {{- end -}}
+                        </div>
+
+                        <div class="row d-print-none">
+                            <div class="col-sm-6">
+                                <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
+                                <button onclick="window.ndhrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                            </div>
+                            <div class="col-sm-6 text-sm-right">
+                                {{/* aria-controls names the container, not the individual
+                                    panels: the panel ids are minted in JS and change on every
+                                    district switch, where this one is in the markup and
+                                    stable. app.js keeps aria-expanded in step with the label.
+                                    Disabled until the modules enable it — and with no measures
+                                    there is nothing to expand at all. */}}
+                                <button id="ndhr-toggle-accordions" type="button" class="btn btn-sm btn-report mt-2"
+                                        aria-expanded="false" aria-controls="ndhr-accordion" disabled>
+                                    <i class="fas fa-expand-alt mr-1" aria-hidden="true"></i><span class="ndhr-accordion-toggle-label">Expand all</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{/*
+                        One container, not one per subsection: the NDHR content YAML has no
+                        report_topics layer, so there is no second heading level to render.
+                        cards.js fills #ndhr-indicators.
+
+                        A category with no measures renders its stated empty state HERE,
+                        server-side, rather than waiting for JS. A category that renders
+                        nothing is indistinguishable from a template bug, and a server-rendered
+                        sentence says which it is with JS off as well as on. Mental Health is
+                        the case (plan DECIDED-7).
+                    */}}
+                    {{- if $measures }}
+                        <div class="accordion ndhr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="ndhr-accordion">
+                            <div id="ndhr-indicators">
+                            </div>
+                        </div>
+                    {{- else }}
+                        <div class="my-4 report-section pt-2 border-left border-right border-bottom" id="ndhr-accordion">
+                            <div class="px-2 py-2 fs-sm text-muted">
+                                {{ $emptyState }}
+                            </div>
+                        </div>
+                    {{- end }}
+
+                    {{/* Print-only QR code back to this report. Filled by renderQRCode()
+                        below, which runs from renderAll() rather than at load: the Leaflet map
+                        can switch district in place, and a code generated once would then
+                        point at the wrong report. */}}
+                    {{/* Ignored by Pagefind for the same reason as the tertile box: one
+                         identical caption on 295 pages, in print-only markup that was never on
+                         screen for the searcher who landed on it. */}}
+                    <div class="row print-only" data-pagefind-ignore="all">
+                        <div class="col-12">
+                            <p class="text-center">View this report online:</p>
+                        </div>
+                    </div>
+                    <div class="row print-only">
+                        <div class="col-12">
+                            <div id="qrcode" class="text-center"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {{/* No nr-report-footer-sm analogue. NR's per-topic "what the City is doing"
+                footer comes from data/globals/NR_footer/, which has no NDHR equivalent — the
+                NDHR source documents put that content in a per-indicator strategies column
+                instead, which is Task 8. */}}
+
+        </div>
+    </div>
+</section>
+
+{{/*
+    Pass configuration to the JS modules.
+    - measures: the category's rows from the NDHR_content YAML, passed through verbatim.
+        buildRows (assets/js/report-data/normalize.js) reads MeasureID, IndicatorID,
+        geotype, indicator_short_name, units and rank_reverse off each one; cards.js reads
+        the strategy fields. Emitting the rows rather than a projection of them means a new
+        YAML field needs no template change.
+    - geoIds: this district's id in each geography a measure may be read at. Three, not one:
+        DECIDED-10 reads three measures at PUMA2020 and two at CDTA2020, and which geography
+        a row needs is a property of the measure.
+    - geojsonUrl: EHDP-data's geography/CD.geojson, NOT a copy in static/geojson/.
+        UHF42.geojson lives in static/ and NR reads it from there, so this is the departure
+        and the reason is that CD.geojson is a file the data repository generates and owns
+        (its geography/ directory carries the R scripts that build it). Fetching it at
+        data_branch makes the map geometry move with the data the page already fetches at
+        data_branch, and avoids a 162 KB duplicate here that nothing in this repo updates.
+        It joins cdlist.json cleanly: 59 features, GEOCODE matches CD_id on all 59, and
+        GEONAME matches CD_name on all 59 — unlike UHF42.geojson, whose GEONAME disagrees
+        with uhflist's UHF_name on 6 of 42 [verified 2026-09-11 against the production
+        branch; the file is byte-identical on staging].
+    - No vizUrl and no sections array: NDHR computes its rows in the browser from EHDP-data's
+        own indicator files (DECIDED-4), so there are no precomputed per-section payloads to
+        name.
+*/}}
+{{- $cdGeojsonUrl := print $.Site.Params.data_repo $.Site.Params.data_branch "/geography/CD.geojson" -}}
+<script>
+    window.NDHR_REPORT_CONFIG = {
+        reportName: "{{ .Title }}",
+        // The category half of <title>, which head.html renders from .Params.seo_title.
+        // Not reportName: an in-place district switch rebuilds the title from this
+        seoShortName: "{{ .Params.seo_short_name }}",
+        // The community district this page was generated for, and the only thing
+        // getDistrictFromURL consults — nothing parses the path for it
+        communityDistrict: "{{ .Params.community_district }}",
+        communityDistrictSlug: "{{ .Params.community_district_slug }}",
+        borough: "{{ .Params.borough }}",
+        // The page geography. Every measure is RANKED against the 59 community districts;
+        // `geotype` on a measure row says which geography its value is READ at
+        geoType: "CD",
+        geoIds: {
+            "CD": {{ .Params.cd_id }},
+            "CDTA2020": {{ .Params.cdta_id }},
+            "PUMA2020": {{ .Params.puma2020_id }}
+        },
+        geojsonUrl: "{{ $cdGeojsonUrl }}",
+        // safeJS, not a bare jsonify: inside a <script> Hugo's context-aware escaper treats
+        // template output as a JS *string* and quotes the whole array, so the consumer
+        // receives one long string instead of a list. jsonify still escapes <, > and & to
+        // their unicode form, so a "</script>" in the YAML cannot break out of the block
+        measures: {{ $measures | jsonify | safeJS }},
+        // null on the four categories that have measures; the string only on Mental Health
+        emptyState: {{ $emptyState | jsonify | safeJS }},
+        // Indicator → IndicatorID[] map, used to build each card's "Full dataset" link back
+        // to the data explorer. A published Hugo resource, not a static file —
+        // de-topic-indicators.html builds it by ranging .Site.Pages and calling .Publish
+        topicIndicatorsUrl: "{{ relURL "IndicatorMetadata/topic_indicators.json" }}",
+        dataExplorerUrl: "{{ relURL "data-explorer/" }}",
+        dataRepo: "{{ $.Site.Params.data_repo }}",
+        dataBranch: "{{ $.Site.Params.data_branch }}",
+        // URL slug for this category, e.g. "climate-and-active-design". Used by
+        // setDistrictInURL to locate the category segment when updating the address bar
+        categorySlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
+        // district URL slug → display name for all 59 community districts. Built from
+        // data/globals/cdlist.json — the same rows the content adapter generates the pages
+        // from — rather than by ranging .Sections, so it depends on the one source both
+        // come from instead of on Hugo's section machinery agreeing with the adapter
+        districtMap: {
+            {{- range $i, $cd := site.Data.globals.cdlist -}}
+                {{- if $i }},{{ end -}}
+                "{{ $cd.page_name }}": "{{ $cd.CD_name }}"
+            {{- end -}}
+        }
+    };
+</script>
+
+{{/* QR code generator for the print-only block above — mounted from node_modules, not a CDN */}}
+{{- $qrcode := resources.Get "node_modules/qrcode-generator/dist/qrcode.js" | partial "short-fingerprint.html" -}}
+
+{{/* The QR library and the one function that uses it, ahead of the report scripts so the
+    library is parsed before anything can call renderQRCode. It lives in the template rather
+    than in assets/js/ndhr-report/ because it is the template that owns the #qrcode element
+    and the library resource. report.js calls it from renderAll(). */}}
+<script src="{{ $qrcode.RelPermalink }}" integrity="{{ $qrcode.Data.Integrity }}" crossorigin="anonymous"></script>
+<script>
+    // Redraws the print-only QR code from the current address, which renderAll() has just
+    // rewritten if the reader switched community district on the map
+    function renderQRCode() {
+
+        const destination = document.getElementById('qrcode');
+
+        if (!destination || typeof qrcode !== 'function') return;
+
+        // Type 10 at error-correction level M: the NR settings, comfortably large enough for
+        // the longest district/category URL this section generates
+        const code = qrcode(10, 'M');
+        code.addData(location.href);
+        code.make();
+
+        // (2, 8) are createImgTag's own defaults — passed explicitly only because alt is
+        // its third argument, and the library omits the attribute entirely when it is absent
+        destination.innerHTML = code.createImgTag(2, 8, 'QR code linking to this report at ' + location.href);
+
+    }
+</script>
+
+{{/* The libraries the report modules call at load, ahead of them for the same reason the QR
+    library sits ahead of renderQRCode. Leaflet for map.js, the communityDistricts global for
+    demographics.js, Vega for chart.js, Arquero for data.js. lib-cdlist, not lib-uhflist —
+    they describe different geographies and neither overrides the other. */}}
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-cdlist.html" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-arquero.html" . }}
+
+{{- end -}}

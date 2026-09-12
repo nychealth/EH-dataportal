@@ -135,6 +135,44 @@ $comp-bad-text: #7a5c00;
   cursor: pointer;
 }
 
+// ===== NDHR report page =====
+//
+// The Neighborhood Development Health Report's counterpart to the block above. Only the
+// two rules that must not be shared are here; everything else the report page needs is
+// already global in this file and is reused rather than duplicated — .report-section for
+// the green top border, .card-body-no-top for the demographics block, .leading-sm for the
+// tertile explainer.
+//
+// .card-header is SCOPED to .ndhr-report-accordion for the same load-bearing reason it is
+// scoped to .nr-report-accordion above: .card-header is a Bootstrap class used across the
+// whole site, and `background: white !important` unscoped would repaint every card header
+// on it. The measured case is on /data-features/realtime-air-quality/, where 8 headers went
+// #EFFAF4 to white when the NR scope was removed.
+//
+// Most of what this styles is built in JS (assets/js/ndhr-report/cards.js), so grepping the
+// layout for these class names will not find the markup they hit.
+.ndhr-report-accordion {
+  .card-header {
+    padding: 0.5rem 0.5rem;
+    background: white !important;
+  }
+
+  // #EFFAF4 is deliberately a literal here too: $light-green is #F8FCF7, a different tint,
+  // and there is no variable for this one.
+  .card-header:hover {
+    background-color: #EFFAF4 !important;
+    text-decoration: none;
+  }
+
+  .card-header .btn:hover {
+    text-decoration: none;
+  }
+}
+
+#ndhr-map:hover {
+  cursor: pointer;
+}
+
 
 @media print {
   .print-only {

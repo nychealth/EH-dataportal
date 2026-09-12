@@ -1,0 +1,103 @@
+{{- define "main" -}}
+
+{{/*
+    Per-category index — /ndhr/<category>/.
+
+    Rendered for the five hand-written markdown files in content/ndhr/, each of which sets
+    `layout: ndhr-category-index` and an explicit `url`. Forked from
+    themes/dohmh/layouts/neighborhood-reports/nr-topic-index.html.
+
+    These five pages are the section's indexed surface: the 295 report pages carry
+    data-pagefind-ignore="all", so the category vocabulary reaches search from here.
+
+    No picker map, for the same reason as ndhr-cd-index.html — nr-leaflet.html's CD
+    analogue is not in Task 6's file list. The 59 districts are listed below as links,
+    which is what a crawler and a keyboard user need either way.
+*/}}
+
+{{- $contentKey := .Params.content_yml -}}
+{{- $content := index .Site.Data.globals.NDHR_content $contentKey -}}
+{{- $measures := $content.measures -}}
+
+{{/* The category's URL segment, read off this page's own permalink rather than looked up
+     in NDHR_categories.yml — the front matter's explicit `url` is what actually decides it,
+     so reading the permalink cannot disagree with the page the reader is on. */}}
+{{- $categorySlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 mx-auto col-12">
+
+            <nav aria-label="breadcrumb" class="mt-2 mb-3">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
+                    <li class="breadcrumb-item"><a href={{ relURL "ndhr" }}>Neighborhood Development Health Report</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+                </ul>
+            </nav>
+
+            {{/* No district in the path, so the menu's hrefs point at the other four
+                 category indexes */}}
+            {{ partial "ndhr-category-menu" (dict "active" $contentKey "district_slug" "") }}
+
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+
+                    <h1 class="h2">{{ .Title }}</h1>
+                    <hr class="mb-2 mt-1">
+                    <div class="mb-3">{{ .Content }}</div>
+
+                    {{/* The indicator names this category reports, which is the vocabulary
+                         that makes this page findable for the things it actually covers —
+                         the 295 report pages carrying those names are out of the index.
+                         `indicator_short_name` is the site-owned card headline from the
+                         content YAML; `MeasureName` is EHDP-data's own, and both are listed
+                         because a searcher may use either.
+
+                         A category with no measures says so instead, from the same
+                         `empty_state` string the report pages render. */}}
+                    {{- if $measures }}
+                        <h2 class="h4">Indicators in this report</h2>
+                        <ul class="fs-sm">
+                            {{- range $measures }}
+                                <li><strong>{{ .indicator_short_name }}</strong> &mdash; {{ .MeasureName }}</li>
+                            {{- end }}
+                        </ul>
+                    {{- else }}
+                        <p class="fs-sm text-muted">{{ $content.empty_state }}</p>
+                    {{- end }}
+
+                    <h2 class="h4 mt-4">Choose a community district</h2>
+
+                    {{/* Grouped by borough rather than one flat list of 59: the district
+                         names do not carry their borough, and "Community Board 3" is a
+                         different place in each of the five. Read from
+                         data/globals/cdlist.json, which is already in borough-then-id order,
+                         so the grouping is a break on the borough field rather than a sort.
+
+                         data-pagefind-ignore="all": these 59 names are identical on all five
+                         category pages, so indexing them would make every category a match
+                         for every district name. The districts are findable through their own
+                         index pages, which are indexed. */}}
+                    <div data-pagefind-ignore="all">
+                        {{- $lastBorough := "" -}}
+                        {{- range site.Data.globals.cdlist -}}
+                            {{- if ne .borough $lastBorough -}}
+                                {{- if ne $lastBorough "" }}</ul>{{ end -}}
+                                <h3 class="h6 mt-3">{{ .borough }}</h3>
+                                <ul class="list-unstyled fs-sm">
+                                {{- $lastBorough = .borough -}}
+                            {{- end -}}
+                            <li><a href="{{ relURL (printf "ndhr/%s/%s/" .page_name $categorySlug) }}">{{ .CD_name }}</a></li>
+                        {{- end -}}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{{- end -}}
