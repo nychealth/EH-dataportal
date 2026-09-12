@@ -2371,3 +2371,105 @@ If it is picked up: it is a codemod over content, so it wants the CLAUDE.md trea
 one page, count the diff, confirm the rendered output before extending. Each chart's `embed.js`
 carries the `publicUrl` (versioned iframe src), published height and title needed to emit the
 snippet, and Datawrapper's oEmbed API returns the official markup directly.
+
+---
+
+## 17. GeoJSON fetched where a TopoJSON of the same geography is already published (added 2026-09-12)
+
+EHDP-data's `geography/` directory is almost entirely TopoJSON: of its 52 entries, **four** are
+`.geojson` — `CD`, `CityCouncilDistrict`, `UHF42`, `rmz` — against **24** `.topo.json`, and
+the repository generates both from the same source with its own `create_TopoJSON.r`. Five pages
+here fetch the GeoJSON while the TopoJSON counterpart sits beside it in the same directory.
+
+**Quote the wire column, not the raw one.** raw.githubusercontent.com serves these files gzipped,
+and part of what TopoJSON removes is redundancy gzip also finds, so a raw-byte comparison
+overstates the win — comparing geometry against geometry, `CD` reads **79% raw against 75%
+compressed** (162,386 -> 34,421, against 46,926 -> 11,732) and the local UHF42 copy **74% raw
+against 46% compressed** (95,185 -> 25,042, against 16,560 -> 8,894). Every figure below is the compressed body length with
+`Accept-Encoding: gzip`, read off the `Content-Encoding` header
+`[all verified 2026-09-12 against the production data branch]`.
+
+| Consumer | Pages | Fetches now | Wire | Candidate | Wire | Saving | Drop-in? |
+|---|---|---|---|---|---|---|---|
+| `partials/overlap-tool-with-map.html:70` | 1 | `CityCouncilDistrict.geojson` | 1,527,427 | `CityCouncilDistrict.topo.json` | 42,527 | **1,484,900 (97%)** | yes |
+| `partials/overlap-tool-with-map.html:65` | 1 | `CD.geojson` | 46,926 | `CD.topo.json` | 11,732 | 35,194 (75%) | yes |
+| `partials/overlap-tool-with-map.html:75`, `:283` | 1 | `UHF42.geojson` | 27,140 | `UHF42.topo.json` | 8,894 | 18,246 (67%) | yes, with the 43rd-feature note |
+| `content/data-features/rat-mitigation-zones/rmz.js:81` | 1 | `rmz.geojson` | 21,443 | `RMZ.topo.json` | 2,789 | 18,654 (87%) | two property renames |
+| `content/data-features/rats-in-your-neighborhood/neighborhood-rats.js:7` | 1 | bundle-local `rmz.geojson` | 20,393 | `RMZ.topo.json` | 2,789 | 17,604 (86%) | same renames |
+| `assets/js/nr-report/map.js:269` and `partials/nr-leaflet.html:45` | 258 | `static/geojson/UHF42.geojson` | 16,560 | `UHF42.topo.json` | 8,894 | 7,666 (46%) | yes, with the 43rd-feature note |
+
+The 258 is 210 report pages plus 42 neighborhood indexes, 5 topic indexes and the NR landing page.
+It is the only row where the saving is per-page across a section rather than on a single feature
+page — and also the only row whose source is a **copy in this repo** rather than the data
+repository, so the swap there is a source change as well as a format change.
+
+`assets/js/ndhr-report/map.js` fetches `CD.geojson` on 295 NDHR report pages, the same 35,194-byte
+saving. **That one is not this document's** — it is a named decision inside Task 11 of
+`documents/ndhr-prototype-plan-2026-09-10.md`, deliberately kept separate because it edits shipped
+code that `scripts/ndhr-characterization.mjs` now baselines.
+
+### 17a. What each swap actually costs
+
+- **Leaflet cannot read TopoJSON**, so each swap adds one `topojson.feature(topo,
+  topo.objects.<key>)` call and the `topojson-client` library — 2,604 bytes gzipped, paid once and
+  cached, against savings that start at 7,666 bytes on the cheapest row. The object key is
+  `collection` on every file measured here **except** `CityCouncilDistrict.topo.json`, whose single
+  object is named `data`. Do not hardcode `collection`.
+- **There is no `lib-topojson.html` partial.** `topojson-client` is in `package.json` and is
+  bundled today only by `themes/dohmh/layouts/data-features/heatstory.html` via `resources.Concat`;
+  every other TopoJSON consumer in the repo (`data-explorer/map.js`,
+  `minimum-wage-with-maps.html`, `ndhr-report/chart.js`) reaches it through **Vega's** built-in
+  `format: {type: "topojson"}` and needs no client at all. Writing the partial is part of the first
+  swap that lands.
+- **The 43rd-feature note is not a blocker.** `static/geojson/UHF42.geojson` carries 43 features,
+  the extra one having `GEOCODE: 0`, `GEONAME: ""`, `BOROUGH: "N/A"` and a real 2,825-byte
+  MultiPolygon; `UHF42.topo.json` carries 42. Both consumers already discard it —
+  `filter: feature => feature.properties.GEOCODE != 0` at `assets/js/nr-report/map.js:278` and
+  `themes/dohmh/layouts/partials/nr-leaflet.html:57` — so the TopoJSON's 42 are exactly the
+  polygons drawn today, and the filter can go with the swap. `BOROUGH` is absent from the
+  TopoJSON and is read by no consumer of either file `[verified 2026-09-12: grep across
+  `assets/js/nr-report/`, `nr-leaflet.html` and `overlap-tool-with-map.html`]`.
+- **The RMZ swap is a rename, not a remodel.** All four zones are present in both, and the values
+  are identical strings: `OBJECTID` 1-4 becomes `GEOCODE` 1-4, and `Label` becomes `GEONAME` on 4
+  of 4 ("Brooklyn: Bed Stuy and Bushwick Zone", and so on). `NRRType` — constant `"RMZ Zone"` —
+  is dropped and is read nowhere. The reads to change are `rmz.js:105`, `:110` and `:164`, and
+  `neighborhood-rats.js:126`.
+
+### 17b. The largest payload on the list is not a swap
+
+`content/data-features/rats-in-your-neighborhood/geojson/cd.geojson` is **1,408,488 bytes over the
+wire** — larger than every other candidate here except the council districts — and `CD.topo.json`
+is *not* its counterpart. It holds **71 features** against CD's 59, keyed on `boro_cd` with
+`shape_area`/`shape_leng`, where `CD.topo.json` is keyed on `GEOCODE`/`GEONAME`/`id`. The extra
+twelve are the non-residential districts (parks, airports and similar) that the 59-district
+published set excludes. Converting it would need a TopoJSON generated from *that* source, which is
+an EHDP-data change, not an edit here.
+
+### 17c. Large GeoJSON with no counterpart at all, for the record
+
+Measured locally, gzipped at level 6 — indicative of what a server would send, not read off one:
+
+| File | Raw | Gzipped | Referenced by |
+|---|---|---|---|
+| `static/geojson/greenspace.geojson` | 20,815,881 | 2,070,133 | `content/data-features/heat-story/embed/config.js:214` |
+| `static/geojson/neighborhoods.geojson` | 19,350,172 | 2,102,253 | nothing in this repo's source |
+| `content/data-features/proximity/geojson/800m_CT_pct_walkable_ADA_subway.geojson` | 8,799,560 | 2,492,656 | `proxConfig.js:52` |
+| `content/data-features/proximity/geojson/800m_BG_pct_walkable_ADA_subway.geojson` | 8,229,459 | 2,128,234 | nothing in this repo's source |
+| `content/data-features/flood-vulnerability-index/fvi.geojson` | 5,958,551 | 1,818,565 | `fvi.js:273` |
+
+These carry per-feature *data* alongside geometry, which is the half TopoJSON does not compress,
+so they are not the same kind of candidate — they are listed because a page fetching 2 MB
+compressed is worth knowing about whatever the format.
+
+**Two of them are referenced by no source file in this repo** `[verified 2026-09-12: one
+repo-wide grep for the literal stem `.geojson`, excluding `docs/`, `node_modules/` and the
+baseline snapshots under `scripts/`]`. That is not proof they are dead: a Vega spec fetched from
+EHDP-data at runtime could name either, and this sweep cannot see EHDP-data. Check there before
+deleting 39 MB.
+
+### 17d. One thing noticed in passing
+
+`overlap-tool-with-map.html` hardcodes `refs/heads/production` in all four of its data URLs rather
+than reading `.Site.Params.data_branch`, so the neighborhood-overlap tool draws production geometry
+on every environment, staging included. Whether all four fetches fire on page load was not
+measured — the per-fetch figures above hold either way.

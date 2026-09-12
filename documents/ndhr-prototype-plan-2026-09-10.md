@@ -1674,15 +1674,21 @@ should still pick distinct names, so that it and `map.js` could coexist later.
 **Use `geography/CD.topo.json`, not `CD.geojson`** — the user's instruction, and the measurement
 supports it:
 
-| source | bytes |
-|---|---|
-| `geography/CD.geojson` (what `map.js` fetches today) | 162,386 |
-| `geography/CD.topo.json` | 34,421 |
-| `topojson-client.min.js` (already a dependency) | 7,169 |
-| **topojson route, total** | **41,590 — a 120,796 byte saving, 74%** |
+| source | raw bytes | over the wire |
+|---|---|---|
+| `geography/CD.geojson` (what `map.js` fetches today) | 162,386 | 46,926 |
+| `geography/CD.topo.json` | 34,421 | 11,732 |
+| `topojson-client.min.js` (already a dependency) | 7,169 | 2,604 |
+| **topojson route, total** | **41,590 — a 120,796 byte saving, 74%** | **14,336 — a 32,590 byte saving, 69%** |
 
-`[all verified 2026-09-12: `curl` against the production data branch, and `wc -c` on the
-installed `node_modules/topojson-client/dist/topojson-client.min.js`]`
+**The wire column is the one to quote.** An earlier version of this table had only the raw
+column, and a raw-byte comparison overstates what a visitor pays: raw.githubusercontent.com
+serves these files gzipped, and topojson's win is partly redundancy that gzip also finds.
+The saving is real either way — 69% rather than 74% — but it is 32,590 bytes, not 120,796.
+
+`[all verified 2026-09-12: `urllib` with `Accept-Encoding: gzip` against the production data
+branch, reading the compressed body length and the `Content-Encoding` header; `topojson-client`
+gzipped locally at level 6, since Hugo serves it as a fingerprinted local asset]`
 
 It carries everything a picker needs: `type: "Topology"`, one object named `collection`, **59
 geometries**, and `id` / `GEOCODE` / `GEONAME` present on all 59. `GEOCODE` matches `cdlist.json`'s
