@@ -354,16 +354,28 @@ until then the partial's only check is that it parses, which the same build show
 | 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
 | 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
 | 5. Content adapter and routing | **DONE 2026-09-11** — `content/ndhr/`: the adapter, the section landing page and the five category pages | Isolated `development` build exits 0 and lists **360** `/ndhr/` URLs in the built English sitemap — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 295 of them at depth 2, so no CD slug collides with a category slug. **The marker count reads 60, not 360, until Task 6 lands** — see the as-built section for why, and for the placeholder-layout control that takes it to 360 | `e679133fc8` |
-| 6. Report layout and CD Leaflet map | not started | — | — |
+| 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
 | 7. Renderers and geography labelling | not started | — | — |
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3, 4 and 5 done on `feature-NDHR-prototype`; Task 8
-unblocked and untouched; 6, 7, 9 not started. **Nothing is blocked.**
+**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3, 4, 5 and 6 done on `feature-NDHR-prototype`; Task
+8 unblocked and untouched; 7 and 9 not started. **Nothing is blocked.**
 
-Next command: **Task 6**, which now has 360 generated pages waiting for layouts and is what makes
-them render at all — or **Task 8**, which is independent of both. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
+Next command: **Task 7**, which is what makes the report rows render at all — every page is
+server-rendered shell until `assets/js/ndhr-report/` exists, and Task 6's own map rung is waiting
+on it. **Task 8 is not independent of it**, whatever an earlier version of this line said: Task
+8's file list edits `assets/js/ndhr-report/cards.js`, which Task 7 creates, and its interfaces
+block names Task 7's card markup as an input.
+
+**Two things Task 7 needs settled first.** `buildRows` reads `units` off each measure row and
+"Task 4 as built" records it as a field the content YAML supplies — no
+`data/globals/NDHR_content/` file carries one, so every card renders a bare number. That is Task 3
+content, not a template change, and it is a content edit plus a re-run of
+`node scripts/ndhr-indicator-availability.mjs check`. And the Pagefind ranking finding in "Task 6
+as built" has three open responses; it does not block Task 7, but it blocks Task 9's re-capture.
+
+Re-run the checks first — they are cheap, and §2's table and every demographic figure in
 this plan rest on them:
 
 ```bash
@@ -371,7 +383,18 @@ npm run ndhr:availability check    # expect exit 0, "UNCHANGED — all 28 rows"
 npm run report-data:parity all     # expect exit 0, "34398 field comparisons, 0 mismatched"
 npm run ndhr:cdlist check          # expect exit 0, "UNCHANGED"
 node scripts/ndhr-build-cdlist.mjs print prod_stage   # expect exit 0 — the other data branch
+npm run lint                       # expect exit 0
+npm run docs-check                 # expect exit 0, "2 doc(s) checked"
 ```
+
+`node scripts/pagefind-characterization.mjs --check` exits **1** on this branch and is expected to
+— 202 indexed pages to 267. Read its diff; do not re-baseline it until the ranking question is
+settled.
+
+The `units` gap, checked rather than recalled: `grep -rn units data/globals/NDHR_content/` returns
+**0** across all five files, against 22 for `MeasureID` in the same directory as the control that
+the grep can see them `[verified 2026-09-11]`. `assets/js/report-data/normalize.js:411` reads
+`spec.units || ''`.
 
 **How a crosswalk reaches the data branches, for the next time one has to.** Cherry-pick onto
 `production` and `staging` separately; do not merge a branch cut from `production` into `staging`.
@@ -1104,6 +1127,110 @@ rewrites, and confirm keyboard focus reaches a polygon and Enter selects it — 
 
 ---
 
+### Task 6 as built
+
+**All 360 pages now render.** An isolated `development` build exits 0 and writes 360 NDHR pages
+counted by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 community
+district indexes, 295 report pages, 59 distinct districts, all five category segments, 0
+unclassified. Site-wide that is 987 to 1287 real pages.
+
+**This task's browser rung as written cannot run, and the premise behind it is worth naming.** It
+asks for 59 polygons, a click that rewrites the address bar, and keyboard focus reaching a
+polygon — all of which `assets/js/ndhr-report/map.js` draws, and that directory is Task 7. The
+same coupling stops the layout being a complete fork: `resources.Get` on a path that does not
+exist returns nil and fails the build, so the ten `<script>` tags that mirror `nr-report.html`'s
+last twenty lines land with the modules they name. **Task 6 is the server-rendered half; the map
+rung belongs to Task 7 and this row does not claim it.**
+
+What was run instead is the browser, on all five page kinds against a `dev_stage` server:
+
+- **200 and a clean console on 5 of 5.** No `console.error`, no `pageerror`.
+- **The four library partials define their globals on the report page** — `L` object,
+  `communityDistricts` array of 59, `vegaEmbed` function, `aq` object, plus `renderQRCode`.
+  `lib-cdlist`, not `lib-uhflist`: `uhflist-data` appears 0 times on an NDHR page.
+- **`NDHR_REPORT_CONFIG` parses as an object**, with `measures` an array of 6 on Housing and of 0
+  on Mental Health, `geoIds` carrying all three geographies, and `districtMap` 59 entries. That
+  needed a fix: `{{ jsonify }}` inside a `<script>` is escaped as a JS *string*, so the first
+  build shipped `measures` as one long quoted string and `emptyState` as the string `"null"`.
+  `safeJS` is what makes it a literal, and `jsonify` still escapes `<`, `>` and `&`.
+- **Heading order introduces no skip.** The landing page reads 1 2 3 3 3 3 3 2 3 3 3 3 3 2 and the
+  report page 1 1 2 — the two `h1`s being the mobile and desktop titles, as on the NR report page.
+  The one skip the probe reports, `h2 "Page Footer"` to `h5 "Search"`, is on the home page and both
+  NR pages too, so it is the shared footer and predates this work `[verified 2026-09-11: the same
+  probe over 5 pages, 2 of them pre-existing]`.
+
+**The finding that needs a decision: adding this section moved search results for pages that
+already existed.** `node scripts/pagefind-characterization.mjs --check` exits 1, and the count half
+is exactly as intended — **202 indexed pages to 267, all 65 new ones under `/ndhr/`, none lost**, so
+the 295 report pages are correctly out of the index. The ranking half is not neutral:
+
+- **A search for "neighborhood reports" no longer returns the Neighborhood Reports landing page in
+  its top five.** It was second; the result count went 108 to 173 and `/neighborhood-reports/` is
+  no longer among the five printed. Its exact new rank was not measured.
+- **"climate" now returns `/ndhr/climate-and-active-design/` first**, ahead of
+  `/key-topics/climatehealth/`, which held that slot.
+- **"asthma East Harlem" now returns `/ndhr/` first.** NDHR has no asthma category and no East
+  Harlem, so that is a false positive against a two-word query NR's own indexing decisions were
+  tuned around.
+
+The baseline was deliberately **not** re-captured. Three responses are available and they are not
+exclusive: `data-pagefind-ignore="all"` on the 59 district indexes, which are near-identical to
+each other; a `data-pagefind-weight` on the category indexes; or accepting it. The instrument that
+would settle it is the one `documents/nr-pagefind-parity-2026-08-15.md` §5 already describes.
+
+**Task 9's file list is short by one line.** It names re-capturing
+`scripts/site-characterization-baseline/staging/` and `.../prod_prod/` and does not name the
+Pagefind baseline, which this measurement shows also moves.
+
+**What was built beyond the four files this task names, and why each:**
+
+- `themes/dohmh/layouts/partials/ndhr-category-menu.html`, the analogue of `nr-topic-menu.html`.
+  The report page cannot be a fork of `nr-report.html` without it, and both the report page and the
+  category index render it.
+- The **empty state renders server-side**, in `ndhr-report.html`, rather than in Task 7's JS as
+  the plan assigns it. It is five lines of template, it works with JS off, and a category that
+  renders nothing is the exact thing the state exists to distinguish from a template bug. Task 7
+  inherits nothing here.
+
+**Four departures from `nr-report.html`, each because of what the data carries:**
+
+- **No ZIP list.** `cdlist.json` has none; community districts are not ZIP-based.
+- **Five demographic rows, not eight.** Population, Over 65 and Under 18 are null on all 59 rows,
+  which "Task 2 as built" records, so rendering them would give every page three permanently blank
+  cells. Restoring them is three `<tr>` once those indicators exist at CD.
+- **One indicator container, not one per subsection.** The NDHR content YAML has no `report_topics`
+  layer, so there is no second heading level to render.
+- **No `nr-report-footer-sm` analogue.** `data/globals/NR_footer/` has no NDHR equivalent — that
+  content is the per-indicator strategies column, which is Task 8.
+
+**The map geometry comes from EHDP-data, which is the decision this task left open.**
+`geography/CD.geojson` at the environment's own `data_branch`, not a copy in `static/geojson/`
+where NR keeps `UHF42.geojson`. Three reasons, in order of weight: the data repository generates
+and owns that file, its `geography/` directory carrying the R scripts that build it; fetching it at
+`data_branch` makes the geometry move with the data the page already fetches at `data_branch`; and
+a copy here would be 162 KB that nothing in this repo updates. It joins `cdlist.json` exactly —
+59 features, `GEOCODE` matching `CD_id` and `GEONAME` matching `CD_name` on all 59, where
+`UHF42.geojson`'s `GEONAME` disagrees with `uhflist`'s `UHF_name` on 6 of 42 `[verified 2026-09-11
+against the production branch; byte-identical on staging]`.
+
+**No picker map on the district index or the category index**, where their NR counterparts have
+one. That map is `nr-leaflet.html`, 370 lines, whose CD analogue is in no task's file list; both
+pages list their destinations as server-rendered links instead, which is what a crawler and a
+keyboard user need either way. Adding the partial later is an addition, not a rewrite.
+
+**A number that moves and is fully explained: the build's alias count falls 423 to 363.** The 60
+are `ndhr/<cd>/page/1/` and `ndhr/page/1/` — paginator redirects `_default/list.html` emitted while
+these 60 pages had no layout of their own. `ndhr-cd-index.html` and `section.html` do not
+paginate, so the aliases stop being written `[verified 2026-09-11: alias-file sets diffed between
+the two builds — 60 removed, all under /ndhr/, 0 added]`.
+
+**One gap this task surfaced for Task 7.** `buildRows` reads `units` off each measure row and
+"Task 4 as built" records it as a field the content YAML supplies. No `data/globals/NDHR_content/`
+file carries one, so every card would render its number with no unit. That is Task 3 content, not
+a template change.
+
+---
+
 ## Task 7: Renderers, and labelling the geography
 
 **Files:**
@@ -1190,6 +1317,11 @@ emulation — it respects `display:none` and is therefore what print actually sh
 - Edit `scripts/smoke-pages.mjs` — add four `PAGES` entries, one per NDHR page kind, each with a
   comment naming the template that renders it, matching the NR entries at lines 61-65
 - Re-capture `scripts/site-characterization-baseline/staging/` and `.../prod_prod/`
+- Re-capture `scripts/pagefind-characterization-baseline/` — **added 2026-09-11**: Task 6's
+  browser rung measured the index moving 202 pages to 267, and the *ranking* moving with it on
+  queries that have nothing to do with NDHR. Read the `--check` diff and settle the three
+  responses named in "Task 6 as built" before re-capturing; a re-capture taken first records
+  whichever ranking happens to be current as the intended one
 - Create `scripts/ndhr-characterization.mjs`, modelled on `scripts/nr-characterization.mjs`
 
 **Interfaces:**
