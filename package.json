@@ -22,6 +22,7 @@
         "smoke:prod_prod": "node scripts/smoke-env.mjs prod_prod",
         "characterize:de": "node scripts/de-characterization.mjs",
         "characterize:nr": "node scripts/nr-characterization.mjs",
+        "characterize:ndhr": "node scripts/ndhr-characterization.mjs",
         "characterize:cp": "node scripts/cp-characterization.mjs",
         "characterize:pagefind": "node scripts/pagefind-characterization.mjs",
         "characterize:site": "node scripts/site-characterization.mjs --check --all",

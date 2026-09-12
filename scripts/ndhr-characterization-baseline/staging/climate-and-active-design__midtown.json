@@ -1,0 +1,66 @@
+{
+  "finalURL": "/ndhr/midtown/climate-and-active-design/",
+  "headerDistrict": "Midtown (CD5)",
+  "mobileDistrict": "Midtown (CD5)",
+  "mobileTitle": "Climate and Active Design in Midtown (CD5)",
+  "reportHeader": "Climate and Active Design in Midtown (CD5) Climate and Active Design Climate change is driving higher temperatures and more frequent and intense rainfall and storms. Approximately 500 New Yorkers die from heat each summer. Active design is an approach to creating streets, buildings and neighborhoods that promote the physical and mental health and well-being of residents. Print Download (downloads a CSV file) Expand all",
+  "demographics": "MetricValue Poverty12.3% Graduated high school94.5% Limited English9.3% Owner-occupied homes23.7% Rent-burdened households39.0% These figures cover Midtown (CD5) together with Clinton and Chelsea (CD4), which the American Community Survey reports as one area. Source: American Community Survey (2019-2023)",
+  "demographicsNote": "These figures cover Midtown (CD5) together with Clinton and Chelsea (CD4), which the American Community Survey reports as one area.",
+  "accordionIds": [
+    "ndhr-acc-1-c",
+    "ndhr-acc-1-h",
+    "ndhr-acc-2-c",
+    "ndhr-acc-2-h",
+    "ndhr-acc-3-c",
+    "ndhr-acc-3-h"
+  ],
+  "accordionCount": 6,
+  "indicatorShortNames": [
+    "Park access",
+    "Heat vulnerability",
+    "Air conditioning"
+  ],
+  "strategies": [
+    "StrategyIncrease presence of parks or green spaces",
+    "StrategyIncrease shade, vegetation, or reflective surfaces to combat heat vulnerability",
+    "StrategyIncrease access to cooling"
+  ],
+  "geotypeTags": [
+    "",
+    "CDTA area",
+    "PUMA area"
+  ],
+  "emptyStateRendered": false,
+  "emptyStateText": null,
+  "expandedPanel": "ndhr-acc-1-c",
+  "charts": [
+    {
+      "chartName": "Park access across all NYC community districts",
+      "actionsLabel": "Export or view source for Park access across all NYC community districts",
+      "hasCanvas": false,
+      "hasSvg": true,
+      "markGroups": [
+        {
+          "cls": "mark-rect role-mark concat_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_0_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_2_marks",
+          "painted": true
+        }
+      ]
+    }
+  ],
+  "chartCount": 1,
+  "categoryLinkCount": 5,
+  "mapPanes": 7,
+  "consoleErrors": []
+}

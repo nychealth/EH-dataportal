@@ -63,11 +63,19 @@ const PAGES = [
                                                     // URL and changed what renders it; topiclanding.html is retired
     "neighborhood-reports/bayside_little_neck/",                         // nr-neighborhood-index.html
     "neighborhood-reports/bayside_little_neck/asthma_and_the_environment/", // nr-report.html — the report itself
+    "ndhr/",                                        // ndhr/section.html — NDHR landing
+    "ndhr/housing/",                                // ndhr/ndhr-category-index.html
+    "ndhr/midtown/",                                // ndhr/ndhr-cd-index.html — Leaflet + the 5 category cards
     // ndhr/ndhr-report.html — the NDHR report page. Housing rather than a lighter category
     // because it carries rows at two geographies: four CD measures and two read at PUMA2020,
-    // so the geography-labelling path executes here and not on a CD-only category. The other
-    // three NDHR page kinds are Task 9's to add
+    // so the geography-labelling path executes here and not on a CD-only category
     "ndhr/midtown/housing/",
+    // The SAME template as the line above, and in the list anyway: Mental Health is the only
+    // category with no measures, so it is the one page where app.js's bootstrap() returns
+    // before wiring a single event and the server-rendered empty state is all there is
+    // (plan DECIDED-7). That early return is a branch no other NDHR page executes, and a
+    // console error inside it would be invisible to every other entry here
+    "ndhr/midtown/mental-health/",
     "key-topics/",                                  // key-topics/section.html
     "key-topics/airquality/",                       // key-topics/single.html
     "about/",                                       // about/section.html
@@ -111,6 +119,15 @@ const KNOWN_NOISE = [
     // present on production's own tip via the smoke base-control job on PR #1489.
     // Remove this when the embed loads again.
     { page: /displacement-risk/, error: /Unauthorized access to Maps API/i },
+    // Same embed, further degraded on their side as of 2026-09-12: it now also
+    // fails Mapbox calls carrying the literal placeholder `access_token=no-token`.
+    // The console text names the requesting origin, and it is theirs —
+    // "from origin 'https://equitableexplorer.planning.nyc.gov'" — so these are
+    // requests made by their document, not by any page this repo renders. Kept as
+    // two entries rather than one widened pattern: the CARTO key and the Mapbox
+    // token are separate failures on their side and either can be fixed alone,
+    // and an entry that stops being needed is what tells us so.
+    { page: /displacement-risk/, error: /events\.mapbox\.com|api\.mapbox\.com/i },
     // The signup <iframe> in partials/header.html embeds a Google Form, which
     // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
     // the refusal on every page that renders the header. Report-only, so nothing

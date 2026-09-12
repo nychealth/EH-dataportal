@@ -51,12 +51,12 @@ environment's `baseURL` path, so `development` serves under `/dev-prod/` and `de
 
 ## Guardrails
 
-Twenty npm scripts, run from the repo root. **No two of them see the same thing**, which is
+Twenty-one npm scripts, run from the repo root. **No two of them see the same thing**, which is
 why a change to a shared template wants more than one: `lint` catches an undefined name without
 loading a page; `smoke` runs the site's JavaScript and fails on a console error;
 `characterize:site` compares rendered *structure* and deliberately does not gate on console
-errors; and the Neighborhood Reports, Pagefind and congestion-pricing harnesses each cover a
-surface none of the others reaches.
+errors; and the Neighborhood Reports, NDHR, Pagefind and congestion-pricing harnesses each cover
+a surface none of the others reaches.
 
 ### Linting and docs
 
@@ -301,6 +301,45 @@ on a branch mismatch.
 ### Data explorer harness
 
 - `npm run characterize:de` — the equivalent harness for the data explorer (`scripts/de-characterization.mjs`). **Currently non-functional on this branch**: it was written against the `feature-new-data-explorer` explorer and waits on DOM this branch never produces. Migrated for parity, not usable here; no baseline is committed. Do not treat a failure from it as a regression signal.
+
+### NDHR report harness
+
+- `npm run characterize:ndhr [check|baseline] [environment]` — the NDHR counterpart to
+  `characterize:nr` (`scripts/ndhr-characterization.mjs`). Captures the rendered output of
+  four category/community-district pairs and diffs it against a committed baseline.
+  **Positional arguments, unlike `characterize:nr`'s `-- --check`** — PowerShell eats the
+  `--` and npm eats the flag name, so the flag form reaches a script with no arguments at
+  all; an argument starting with `-` is refused outright rather than half-honoured. The
+  optional second positional names a Hugo environment to spawn in isolation on :8090, which
+  is how a branch your machine is not serving gets captured.
+
+  **What it covers that nothing else does.** `lint` does not run the report modules;
+  `smoke` only proves they throw no console error; `characterize:site` compares structure
+  *counts* and not the words in them. This is the only check that reads the strategies
+  column's text, the per-row geography tags, and the indicator names in render order.
+
+  Four targets, each chosen for a reason. `climate-and-active-design` is the **only**
+  category carrying all three geotypes — one CD row, one CDTA2020, one PUMA2020 — so it is
+  the single page exercising every branch of the geography labelling. `housing` at two
+  districts isolates district-driven content, and `financial_district` is the second
+  because its PUMA2020 merges CD1 with CD2, which is the shared-value case the tag exists
+  to disclose. `mental-health` is the empty-state category, where a page that renders
+  nothing is otherwise indistinguishable from a template bug.
+
+  **Unlike `characterize:nr`, `baseline` here can fail.** A rendered-content control runs
+  before anything is written and refuses a capture of empty pages — the gap its NR sibling
+  still has, where `--baseline` records whatever it finds. The empty-state target is
+  asserted the other way round, so a change that started rendering cards on a measure-less
+  category fails the control too.
+
+  **Both committed baselines currently capture identically**, staging against production,
+  all four targets byte-for-byte `[verified 2026-09-12]`. That follows from what is
+  captured: the row set comes from `data/globals/NDHR_content/` and the demographics from
+  `data/globals/cdlist.json`, both committed here, and no captured field reads an indicator
+  value. The NR harness's justification for splitting by branch does not transfer. The split
+  is kept so a production-data environment gets a check rather than a refusal — five of the
+  eight environments — and because a measure withdrawn on one branch would change what
+  renders.
 
 ### NDHR data generation
 

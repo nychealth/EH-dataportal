@@ -1,0 +1,81 @@
+{
+  "finalURL": "/ndhr/midtown/housing/",
+  "headerDistrict": "Midtown (CD5)",
+  "mobileDistrict": "Midtown (CD5)",
+  "mobileTitle": "Housing in Midtown (CD5)",
+  "reportHeader": "Housing in Midtown (CD5) Housing Safe, quality housing is a primary driver of health. For example, the presence of pests can exacerbate asthma. Print Download (downloads a CSV file) Expand all",
+  "demographics": "MetricValue Poverty12.3% Graduated high school94.5% Limited English9.3% Owner-occupied homes23.7% Rent-burdened households39.0% These figures cover Midtown (CD5) together with Clinton and Chelsea (CD4), which the American Community Survey reports as one area. Source: American Community Survey (2019-2023)",
+  "demographicsNote": "These figures cover Midtown (CD5) together with Clinton and Chelsea (CD4), which the American Community Survey reports as one area.",
+  "accordionIds": [
+    "ndhr-acc-1-c",
+    "ndhr-acc-1-h",
+    "ndhr-acc-2-c",
+    "ndhr-acc-2-h",
+    "ndhr-acc-3-c",
+    "ndhr-acc-3-h",
+    "ndhr-acc-4-c",
+    "ndhr-acc-4-h",
+    "ndhr-acc-5-c",
+    "ndhr-acc-5-h",
+    "ndhr-acc-6-c",
+    "ndhr-acc-6-h"
+  ],
+  "accordionCount": 12,
+  "indicatorShortNames": [
+    "Crowding",
+    "Evictions",
+    "Rent burden",
+    "Independent living",
+    "Housing problems",
+    "Cockroaches"
+  ],
+  "strategies": [
+    "StrategyCreate shared housing to alleviate housing shortage",
+    "StrategyIncrease awareness of tenants’ rights and resources",
+    "StrategyIncrease access to community-based peer support services to connect to programs and resources",
+    "StrategyIncrease access to community-based peer support services to connect to programs and resources",
+    "StrategyIncrease access to community-based peer support services to connect to programs and resources",
+    "StrategyIncrease access to community-based peer support services to connect to programs and resources"
+  ],
+  "geotypeTags": [
+    "",
+    "",
+    "",
+    "",
+    "PUMA area",
+    "PUMA area"
+  ],
+  "emptyStateRendered": false,
+  "emptyStateText": null,
+  "expandedPanel": "ndhr-acc-1-c",
+  "charts": [
+    {
+      "chartName": "Crowding across all NYC community districts",
+      "actionsLabel": "Export or view source for Crowding across all NYC community districts",
+      "hasCanvas": false,
+      "hasSvg": true,
+      "markGroups": [
+        {
+          "cls": "mark-rect role-mark concat_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_0_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_1_marks",
+          "painted": true
+        },
+        {
+          "cls": "mark-shape role-mark concat_0_layer_2_marks",
+          "painted": true
+        }
+      ]
+    }
+  ],
+  "chartCount": 1,
+  "categoryLinkCount": 5,
+  "mapPanes": 7,
+  "consoleErrors": []
+}
