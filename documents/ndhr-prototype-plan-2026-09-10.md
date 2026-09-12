@@ -353,17 +353,17 @@ read that absence as a regression. **The build proof belongs to Task 6**, which 
 until then the partial's only check is that it parses, which the same build shows.
 | 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
 | 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
-| 5. Content adapter and routing | unblocked 2026-09-11; 295 report pages, `ndhr` URL segment | — | — |
+| 5. Content adapter and routing | **DONE 2026-09-11** — `content/ndhr/`: the adapter, the section landing page and the five category pages | Isolated `development` build exits 0 and lists **360** `/ndhr/` URLs in the built English sitemap — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 295 of them at depth 2, so no CD slug collides with a category slug. **The marker count reads 60, not 360, until Task 6 lands** — see the as-built section for why, and for the placeholder-layout control that takes it to 360 | `e679133fc8` |
 | 6. Report layout and CD Leaflet map | not started | — | — |
 | 7. Renderers and geography labelling | not started | — | — |
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3 and 4 done on `feature-NDHR-prototype`; Tasks 5 and
-8 unblocked and untouched; 6, 7, 9 not started. **Nothing is blocked.**
+**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3, 4 and 5 done on `feature-NDHR-prototype`; Task 8
+unblocked and untouched; 6, 7, 9 not started. **Nothing is blocked.**
 
-Next command: **Task 5**, which has `cdlist.json` and `NDHR_categories.yml` and needs nothing from
-Task 4 — or **Task 8**. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
+Next command: **Task 6**, which now has 360 generated pages waiting for layouts and is what makes
+them render at all — or **Task 8**, which is independent of both. Re-run the checks first — they are cheap, and §2's table and every demographic figure in
 this plan rest on them:
 
 ```bash
@@ -1007,6 +1007,68 @@ Count generated pages by the `data-pagefind-meta="title:` marker, which
 `head.html` emits unconditionally. A viewport-meta count is not safe here —
 `static/data-stories/cold/source/index.html` carries the identical tag and would be scored as a
 page.
+
+---
+
+### Task 5 as built
+
+**The page inventory is exactly the number this task predicted: 360.** An isolated `development`
+build lists 360 `/ndhr/` URLs in `en/sitemap.xml` — 1 landing, 5 category indexes, 59 community
+district indexes, 295 report pages — with 295 of them at depth 2 (`<cd>/<category>/`), so no CD
+slug collides with a category slug. Mental Health is among the five, unconditionally: its 59
+pages exist and carry its header and description, and the empty indicator list is Task 7's to
+render.
+
+**The finding that changes Task 6: a `kind: page` with no renderable layout is dropped in
+silence.** With no `themes/dohmh/layouts/ndhr/` directory, the build exits 0, prints no warning,
+lists all 360 URLs in the sitemap, and writes **60** HTML files — the landing page and the 59 CD
+indexes, which resolve to `_default/list.html`. The 300 `kind: page` entries resolve instead to
+`themes/dohmh/layouts/_default/single.html`, **which is a zero-byte file** and has been since the
+repository's first commit `[verified 2026-09-11: `git cat-file -s` on that path reads 0 at both
+this branch's HEAD and `production`]`. Nothing in the build output distinguishes that from a
+section that was never generated.
+
+So the marker count this task specified cannot reach 360 until Task 6 lands, and a session running
+it before then will read 60 and suspect the adapter. Two things separate those cases, and both
+were run:
+
+- **The sitemap is the adapter's own output** and reads 360 with no layouts present at all.
+- **A placeholder-layout control.** Three minimal `{{ define "main" }}` stubs at
+  `themes/dohmh/layouts/ndhr/ndhr-{report,category-index,cd-index}.html` take the build from 60
+  NDHR pages to **360**, counted by the `data-pagefind-meta="title:` marker
+  `[verified 2026-09-11: 1 landing + 5 category + 59 CD + 295 report, 59 distinct CDs, all five
+  category segments present, 0 unclassified]`. The stubs were deleted afterwards — they are Task
+  6's files, not this task's. Site-wide the same count moved 987 to 1287, and 1287 minus 360 is
+  927, which is the real-page count CLAUDE.md records for a `prod_prod` build; the environments
+  differ only in `head.html`'s robots meta, so that is a cross-check rather than a proof.
+
+**Three things this task decided that its spec did not name, each reversible in one line:**
+
+- **No main-menu entry.** `config/_default/config.toml` has five `[[menu.main]]` blocks and NDHR
+  is not a sixth. Adding one puts a prototype in the site's primary navigation, which is a
+  publishing decision rather than a routing one.
+- **No `categories` front matter on the five category pages.** The NR topic files carry one, which
+  is what cross-links them to Key Topics. NDHR has no assigned key topics, and inventing keys
+  would create wrong cross-links rather than missing ones.
+- **No `seo_image`.** `NDHR_categories.yml` carries none where `NR_topics.yml` does, so the card
+  images on the CD index are a Task 6 decision.
+
+**One duplication was accepted deliberately.** Each category's summary appears twice — as
+`summary` in `NDHR_categories.yml`, which feeds `.Summary` on the 295 generated report pages, and
+as the body of `content/ndhr/<key>.md`, which is what a category index renders. NR has the same
+two slots and fills them with different prose; NDHR has one written description per category, so
+the two copies are the same string and can drift. Giving the category pages their own intro copy
+is the fix, and it needs copy that does not exist yet.
+
+**The landing page prose is sourced, not composed.** `content/ndhr/_index.md` paraphrases the
+Context section of `documents/NDHR/2026 Neighborhood Development Health Report.docx`, paragraphs 2
+and 3. That file carries 0 tracked changes, unlike the other source document.
+
+**`seo_title` carries the long form on every kind of page**, per DECIDED-8 — report pages as
+"<Category> in <CD> | Neighborhood Development Health Report", CD indexes as
+"<CD> | Neighborhood Development Health Report", category indexes as the `seo_long_name` string.
+`head.html` appends " – Environment & Health Data Portal" to every non-home page, so none of these
+repeats the brand the way `nr-neighborhood-index`'s does.
 
 ---
 
