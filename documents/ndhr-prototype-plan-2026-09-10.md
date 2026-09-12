@@ -360,22 +360,29 @@ until then the partial's only check is that it parses, which the same build show
 | 5. Content adapter and routing | **DONE 2026-09-11** — `content/ndhr/`: the adapter, the section landing page and the five category pages | Isolated `development` build exits 0 and lists **360** `/ndhr/` URLs in the built English sitemap — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 295 of them at depth 2, so no CD slug collides with a category slug. **The marker count reads 60, not 360, until Task 6 lands** — see the as-built section for why, and for the placeholder-layout control that takes it to 360 | `e679133fc8` |
 | 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
 | 7. Renderers and geography labelling | **DONE 2026-09-12** — ten modules in `assets/js/ndhr-report/`, plus the layout's script tags, the SCSS container rule, the lint block and one smoke entry. **`chart.js` is not the rename pass this task predicted** and Arquero left the page; see the as-built section | `npm run lint` exits 0 with an injected undefined name exiting 1 and the restore returning to 0; isolated `development` build exits 0 with all **295** report pages carrying exactly ten `ndhr-report` scripts plus `normalize.js` and zero carrying arquero; `npm run smoke` **34 pages clean** including `ndhr/midtown/housing/`. Browser on a `dev_stage` server over 5 page kinds: HTTP 200 and 0 console errors on 5 of 5, 59 named polygons, a click rewriting the address bar and rebuilding all 6 cards with 0 pageerrors, and an SVG chart named per indicator. The CD4/CD5/CD6 sidebar-vs-PUMA crossing is measured page by page. **Tab-order membership is NOT established** — only programmatic focus | `eae618a844` |
-| 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
+| 8. Strategies column | **DONE 2026-09-12** — the strategy cell inside `.card-header` and outside the `<button>`, the description in the expanded panel, the phrase in the print rendition. No contact affordance, per DECIDED-9. The row-height cost was measured and **accepted by the user, 2026-09-12**; see the as-built section | Browser on a `dev_stage` server: `/ndhr/midtown/housing/` renders 6 headers and 6 strategy cells, **0 inside a `<button>`**, 0 empty, 0 console errors, and the accessibility tree shows each button's name ending at the tertile sentence with the strategy as a sibling text node. 5 of 6 panels carry a description block and evictions (1128) does not, which is its explicit YAML null. Print-emulated `document.body.innerText` with all six panels expanded carries **6 phrases and 0 descriptions**. Computed style: `border-left: 1px solid rgb(222,226,230)` and no top border at 1280px, the reverse at 500px, with the cell beside the button at 1280 and 55px beneath it at 500. `npm run lint` exits 0, `npm run smoke` **34 pages clean**, `npm run docs-check` exits 0 | `c2209d3f63` |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-12:** Tasks 1, 2, 2b, 3, 4, 5, 6 and 7 done on
-`feature-NDHR-prototype`; Task 8 unblocked and untouched; 9 not started. **Nothing is blocked.**
+**Status as of 2026-09-12:** Tasks 1 through 8 done on `feature-NDHR-prototype`; **Task 9 is the
+only one not started.** Nothing is blocked, but Task 9 carries a decision inside it — see below.
 
-Next command: **Task 8**, now unblocked in fact as well as in principle —
-`assets/js/ndhr-report/cards.js` exists, which is the file its list edits. Then **Task 9**, whose
-baseline re-captures are the last thing before this branch is reviewable.
+Next command: **Task 9**, the last task. Take its four items in this order, because the third is
+the one with an open question in front of it:
 
-Three decisions from Task 7 are open and none blocks either: the row order (authored YAML order,
+```
+node scripts/site-characterization.mjs --check        # read the diff BEFORE re-baselining
+node scripts/pagefind-characterization.mjs --check    # read the diff; do NOT re-baseline yet
+npm run lint ; npm run smoke:all                      # `;` not `&&` — see the check's own note
+```
+
+Three decisions from Task 7 are open and none blocks Task 9: the row order (authored YAML order,
 where NR sorts by rank), the hand-written CSV export, and `lib-arquero` removed from the layout.
-Each is named in "Task 7 as built" with what reversing it costs.
+Each is named in "Task 7 as built" with what reversing it costs. Task 8 closed one of its own —
+the strategies column's row-height cost — and that one is decided rather than open.
 
-**One thing outstanding, and it does not block Task 7.** The Pagefind ranking finding in "Task 6
-as built" has three open responses; it blocks Task 9's re-capture and nothing before it.
+**One thing outstanding, and it sits inside Task 9 rather than before it.** The Pagefind ranking
+finding in "Task 6 as built" has three open responses; it blocks Task 9's Pagefind re-capture and
+nothing else. The site-characterization re-captures do not wait on it.
 
 **The `units` gap Task 6 surfaced is closed** — `normalize.js` reads metadata's `DisplayType`,
 which is the field, and no content authoring is needed. See the correction under "Task 4 as
@@ -1448,6 +1455,98 @@ collision at design time rather than by stacking them and seeing what happens.
 `display:none` normally and `display:flex` in print, hand-rolled in `_custom.scss` because
 Bootstrap's own `_print.scss` is not imported. Read `document.body.innerText` under print
 emulation — it respects `display:none` and is therefore what print actually shows.
+
+### Task 8 as built `[c2209d3f63]`
+
+Three files, 167 insertions: `assets/js/ndhr-report/cards.js`, `assets/scss/_custom.scss`,
+`themes/dohmh/layouts/ndhr/ndhr-report.html`.
+
+**The pill/strategy collision is resolved by the DOM, not by the grid.** The strategy cell sits
+**inside `.card-header` and outside the `<button>`**. The pill keeps its place in the button's
+three-column row as the comparison verdict; the strategy is editorial prose and does not belong in
+a control's accessible name, which already runs short name, long name, value, units and the
+tertile sentence together. The accessibility tree shows the split directly:
+
+```
+- button "Crowding Household crowding, 2015-19 4.7 Percent Lower than most community districts"
+- text:  Strategy Create shared housing to alleviate housing shortage
+```
+
+**The cost of the split, stated because it is a real loss:** the right quarter of the header no
+longer expands the panel on click. That is the correct trade for text a reader may want to select,
+and for a field that would carry a link if DECIDED-9's contact route ever lands.
+
+**`textContent` cannot answer this question and reported the opposite.** The first probe read
+`textContent` on each button and found the strategy in it, which reads as a failure. `textContent`
+includes `display:none` content and `.print-only` is `display:none` on screen, so it was counting
+the print rendition. The reading that settles it is the accessibility tree, cross-checked against
+`innerText` — the method `scripts/nr-a11y-audit.mjs`'s `probeHeadings` already uses, and for the
+same reason.
+
+**The row-height cost was measured and accepted.** Measured at 1280px against the counterfactual
+of the same list with no strategy column — each button's own height plus `.card-header`'s 0.5rem
+top and bottom padding:
+
+| Category | rows | collapsed list | buttons alone | ratio |
+|---|---|---|---|---|
+| Health Outcomes & Care Access | 3 | 687px | 276px | **2.49×** |
+| Neighborhood Conditions | 6 | 1234px | 531px | 2.32× |
+| Housing | 6 | 1094px | 531px | 2.06× |
+| Climate & Active Design | 3 | 407px | 255px | 1.60× |
+
+The strategy sets the row height on every category except Climate — the cell is 165px wide and
+100–240px tall against buttons of 55–97px. Health Outcomes is the worst case rather than
+Neighborhood Conditions: its three rows carry two of the three longest phrases with only three
+buttons to amortize them. Across all 18 measures the phrases run 26–132 characters, median 93.
+
+**The user's decision, 2026-09-12**: accept it. Two alternatives were costed and declined —
+`col-md-4`/`col-md-8`, which widens the cell to ~220px at the indicator name's expense and is one
+number in two places in `cards.js`; and a three-line clamp with the full phrase in the panel,
+which hides content behind an expand the cell itself no longer triggers.
+
+**`strategy_description` is in the panel, not the row.** These run to a sentence or two against a
+165px cell. The phrase repeats as the block's lead-in rather than being referred back to, so the
+block reads on its own when a reader expands one panel out of six. Evictions (1128) renders no
+block at all: its YAML `strategy_description` is an explicit `null` with a TODO beside it — the
+row appears in neither table of "Text of ..." — and an empty `<p>` would read as a rendering
+fault. Measured: 5 of 6 Housing panels carry the block, 1128 does not.
+
+**Print carries the phrase and not the description.** The print rendition inside the button goes
+from three blocks at 50/25/25 to four at 35/15/25/25; the tertile column keeps its 25% because it
+is a sentence and not a word. The description needs no print rule — `@media print` already hides
+the collapse it sits in. Verified with all six panels expanded first, so the absence is the print
+rule and not a collapsed panel.
+
+**Read off `reportConfig.measures`, not off the row, and that is structural.**
+`assets/js/report-data/normalize.js` is shared with Neighborhood Reports and
+`scripts/report-data-parity.mjs` pins its output field by field against NR's published payloads,
+which carry no strategy of their own. Adding one to `buildRows` would put a site-authored field
+into the compute layer that harness exists to hold still. The template already emits the YAML rows
+verbatim, so both strings reach the page with no template change and no row change.
+
+**The divider is a rule, not a Bootstrap utility**, because it has to move: below md the cell
+stacks under the button, where a `border-left` runs alongside nothing. Bootstrap 4 has no
+responsive border utilities. `$gray-300` is Bootstrap's own `$border-color` default, which is what
+the `.border-*` utilities beside it paint. Verified by computed style at both widths — at 1280px
+`border-left: 1px solid rgb(222,226,230)` with no top border and the cell top equal to the button
+top; at 500px the reverse, with the cell 55px below the button.
+
+**No contact affordance**, per DECIDED-9, with the reason written into the template at the point
+the screenshot's "Population Demographic and Contact Information" annotation points — so a reader
+comparing the two finds the decision where they look for the missing half, rather than in this
+document.
+
+**Two things deliberately not done.**
+
+- **The CSV export keeps its 12 data columns.** A 13th would repeat one editorial sentence on
+  every row of every district's download; the strategy is constant across all 59 districts, where
+  everything else in the file varies by district. Reversing it costs one entry in `CSV_COLUMNS`
+  plus a special case in `downloadCSV`'s `map`, since `indicatorRows` does not carry the field.
+- **`normalize.js` is untouched**, per the paragraph above.
+
+**One stale paragraph removed on the way past.** `ndhr-report.html`'s header comment said the ten
+report modules were not loaded yet and named Task 7 as what would land them. They landed in
+`eae618a844`; the file's own foot has loaded them since.
 
 ---
 
