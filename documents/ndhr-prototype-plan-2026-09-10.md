@@ -88,8 +88,10 @@ JSON rather than against nothing.
 
 ### DECIDED-5 — Fork the presentation, share the compute
 
-The NR report page is merged and shipped; this branch must not reshape it. The strategies column
-and the contact form are NDHR-only. So `assets/js/ndhr-report/` forks the NR renderers.
+The NR report page is settled and lands ahead of this work; this branch must not reshape it. (It
+is in this branch's ancestry rather than on `production` — see the merge-order note in the status
+block.) The strategies column and the contact form are NDHR-only. So `assets/js/ndhr-report/`
+forks the NR renderers.
 
 The compute half does not fork. NR is migrating onto route A, so a forked tertile and comparison
 implementation would be two copies of logic already known to be converging.
@@ -370,6 +372,14 @@ until then the partial's only check is that it parses, which the same build show
 map, neither ever scoped by this plan. Nothing is blocked.
 
 Next command: **Task 10**, the cheaper of the two new ones, which needs no new geometry.
+
+**This branch lands AFTER the NR retirement, per the user 2026-09-12 — do not read its diff
+against `production` as its own work.** `production` still carries all 252 hand-written NR content
+files and has no `content/neighborhood-reports/_content.gotmpl`, so `git diff production...HEAD`
+is 258 NR files plus the NDHR work; the Option D retirement is in this branch's ancestry and
+merges ahead of it `[verified 2026-09-12: `git ls-tree` on both refs — 258 NR content files on
+`production`, 7 here]`. Size and review this work against the NR branch it sits on, not against
+`production`.
 
 **Pagefind is settled: the whole NDHR section is out of the index**, decided by the user
 2026-09-12 — "proceed with indexing turned off, we can refine it later". A page-level
