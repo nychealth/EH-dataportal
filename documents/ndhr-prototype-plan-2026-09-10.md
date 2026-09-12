@@ -356,21 +356,23 @@ that the probe can see these assets at all]`. A session re-running the proof as 
 read that absence as a regression. **The build proof belongs to Task 6**, which adds the include;
 until then the partial's only check is that it parses, which the same build shows.
 | 3. Category and content YAML | **DONE 2026-09-11** — five categories, 18 measures keyed on MeasureID in a flat `measures` list, Mental Health empty with a stated empty state | `node scripts/ndhr-indicator-availability.mjs check` exits 0 with "5 categories, 18 measures — consistent with the metadata"; nine injections each exit 1 naming their own cause, including the sibling-only geotype a union check would pass, and a wrong-shaped or absent content directory exits 2; isolated `development` build exits 0 over 1205 EN pages, and a deliberately malformed content file fails it naming file and line, so that pass is about these files | `110a1ada44`, `f02134901a` (the flat shape landed in the next commit after those two on this branch) |
-| 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42 — 13 fields over 2,646 rows, **now 14 and 37,044 since the `units` correction of 2026-09-11**, so a re-run reports the larger number. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
+| 4. Shared compute module | **DONE 2026-09-11** — `assets/js/report-data/normalize.js` plus `scripts/report-data-parity.mjs`; keyed on MeasureID, not the IndicatorID this task was written against | `npm run report-data:parity all` exits 0: **34,398 field comparisons against the published NR payloads, 0 mismatched**, over all 5 reports and 22 sections at UHF42 — 13 fields over 2,646 rows, **now 14 and 37,044 since the `units` correction of 2026-09-11 (`42e85ae72d`)**, so a re-run reports the larger number. Three controls each fire (tertile boundary 17, rounding removed 243, rankReverse forced off 514); 7 named upstream rounding rows are allowed and a stale allowance fails the run; `npm run lint` passes with an undefined-name control exiting 1 | `554ac114b2` |
 | 5. Content adapter and routing | **DONE 2026-09-11** — `content/ndhr/`: the adapter, the section landing page and the five category pages | Isolated `development` build exits 0 and lists **360** `/ndhr/` URLs in the built English sitemap — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 295 of them at depth 2, so no CD slug collides with a category slug. **The marker count reads 60, not 360, until Task 6 lands** — see the as-built section for why, and for the placeholder-layout control that takes it to 360 | `e679133fc8` |
 | 6. Report layout and CD Leaflet map | **DONE 2026-09-11** — the server-rendered half only. The map rung this task prescribes needs `assets/js/ndhr-report/map.js`, which is Task 7, and **this row does not claim it** | Isolated `development` build exits 0 and writes **360** NDHR pages by the `data-pagefind-meta="title:` marker — 1 landing, 5 category indexes, 59 CD indexes, 295 report pages, 0 unclassified, against the 60 that marker counted before these layouts existed. Browser on a `dev_stage` server, all five page kinds: 200 and a clean console on 5 of 5, no `console.error` or `pageerror`; `L`, `communityDistricts` (59), `vegaEmbed`, `aq` and `renderQRCode` all defined on the report page and `uhflist-data` absent from it; `NDHR_REPORT_CONFIG` parses as an **object** — the `safeJS` fix — with `measures` 6 on Housing and 0 on Mental Health and `districtMap` 59; heading order introduces no new skip, the one it reports being the shared footer, present on two pre-existing pages in the same run. `npm run lint` and `npm run docs-check` both exit 0 `[re-run 2026-09-11 at this tree]`. **`node scripts/pagefind-characterization.mjs --check` exits 1 and was deliberately not re-baselined** — see the ranking finding in the as-built section | `6164da52e2` |
-| 7. Renderers and geography labelling | not started | — | — |
+| 7. Renderers and geography labelling | **DONE 2026-09-12** — ten modules in `assets/js/ndhr-report/`, plus the layout's script tags, the SCSS container rule, the lint block and one smoke entry. **`chart.js` is not the rename pass this task predicted** and Arquero left the page; see the as-built section | `npm run lint` exits 0 with an injected undefined name exiting 1 and the restore returning to 0; isolated `development` build exits 0 with all **295** report pages carrying exactly ten `ndhr-report` scripts plus `normalize.js` and zero carrying arquero; `npm run smoke` **34 pages clean** including `ndhr/midtown/housing/`. Browser on a `dev_stage` server over 5 page kinds: HTTP 200 and 0 console errors on 5 of 5, 59 named polygons, a click rewriting the address bar and rebuilding all 6 cards with 0 pageerrors, and an SVG chart named per indicator. The CD4/CD5/CD6 sidebar-vs-PUMA crossing is measured page by page. **Tab-order membership is NOT established** — only programmatic focus | `eae618a844` |
 | 8. Strategies column | unblocked 2026-09-11; contact form deferred by DECIDED-9 | — | — |
 | 9. Guardrails | not started | — | — |
 
-**Status as of 2026-09-11:** Tasks 1, 2, 2b, 3, 4, 5 and 6 done on `feature-NDHR-prototype`; Task
-8 unblocked and untouched; 7 and 9 not started. **Nothing is blocked.**
+**Status as of 2026-09-12:** Tasks 1, 2, 2b, 3, 4, 5, 6 and 7 done on
+`feature-NDHR-prototype`; Task 8 unblocked and untouched; 9 not started. **Nothing is blocked.**
 
-Next command: **Task 7**, which is what makes the report rows render at all — every page is
-server-rendered shell until `assets/js/ndhr-report/` exists, and Task 6's own map rung is waiting
-on it. **Task 8 is not independent of it**, whatever an earlier version of this line said: Task
-8's file list edits `assets/js/ndhr-report/cards.js`, which Task 7 creates, and its interfaces
-block names Task 7's card markup as an input.
+Next command: **Task 8**, now unblocked in fact as well as in principle —
+`assets/js/ndhr-report/cards.js` exists, which is the file its list edits. Then **Task 9**, whose
+baseline re-captures are the last thing before this branch is reviewable.
+
+Three decisions from Task 7 are open and none blocks either: the row order (authored YAML order,
+where NR sorts by rank), the hand-written CSV export, and `lib-arquero` removed from the layout.
+Each is named in "Task 7 as built" with what reversing it costs.
 
 **One thing outstanding, and it does not block Task 7.** The Pagefind ranking finding in "Task 6
 as built" has three open responses; it blocks Task 9's re-capture and nothing before it.
@@ -1319,6 +1321,105 @@ confirm lint still passes.
 **Verification rung:** `npm run lint`, then `npm run smoke` with one NDHR page added to `PAGES`
 (Task 9 adds the rest). Lint proves no undefined names; smoke is the only check here that runs
 the site's JavaScript and fails on a console error.
+
+---
+
+### Task 7 as built `[eae618a844]`
+
+**All 295 report pages render their rows.** `npm run lint` exits 0 over the new directory, with
+an injected undefined name exiting 1 and the restore exiting 0 again; an isolated `development`
+build exits 0 and every one of the 295 carries exactly ten `ndhr-report` scripts plus
+`normalize.js`; `npm run smoke` passes **34 pages clean** with `ndhr/midtown/housing/` added to
+`PAGES`.
+
+**The lint block's scan is proved loaded, not assumed.** `report.js` calls six names declared
+across the other five files — `buildIndicatorCard` (cards), `renderDemographics` (demographics),
+`setDistrictInURL` (url), `updateAccordionToggle` (app), `geoIdsForDistrict` (global),
+`loadDistrictRows` (data) — and none is a browser global, so an empty scan would have failed all
+six. The injection control above proves `no-undef` fires in this block at all.
+
+**Two files are not the rename pass this task predicted.**
+
+`data.js` calls `buildRows`, which the task does say. What it does not say is that `buildRows`
+returns the current district's row and its rank and **not** the other 58 areas' values — which the
+choropleth needs. `buildIndicatorSeries` derives them from the same indicator files `buildRows`
+already fetched; `normalize.js` caches by URL, so the second read costs no network. It was put
+here rather than into `buildRows` because `scripts/report-data-parity.mjs` pins that function
+against the published NR payloads, and widening its return shape would mean widening that
+comparison to fields the payloads do not carry.
+
+`chart.js` is the one this task calls a rename, and it is the larger change of the two. NR's chart
+reads one precomputed viz table holding every indicator across every neighborhood; there is no
+such table here.
+
+**The Arquero replacements, site by site.** NR calls it at **seven sites across three files**, all
+downstream of the single `aq.loadJSON` that makes its viz payload a table. The page no longer
+loads `lib-arquero` at all.
+
+| NR site | What it does there | What NDHR does instead |
+|---|---|---|
+| `nr-report/data.js:220` | `aq.loadJSON(reportConfig.vizUrl, …)` — the viz payload arrives *as* a table, which is what makes the dependency structural rather than incidental | Nothing. There is no viz payload: `buildRows` returns plain row objects |
+| `nr-report/chart.js:246` | `.filter(aq.escape(d => d.indicator_data_name === indicatorName))` | `indicatorSeries[measureId]` — the series is keyed by MeasureID when it is built, so there is nothing to filter at render time |
+| `nr-report/chart.js:250` | `.orderby('neighborhood', aq.desc('end_date'))` then `.slice(0, 1)` — the latest row per neighborhood | Already done upstream: `reportDataLatestPeriod` in `normalize.js` picks the period before any row is built, and `buildIndicatorSeries` filters on that one `TimePeriodID` |
+| `nr-report/chart.js:253` | `op.parse_float` over the value column | `reportDataNumericValue`, the same helper `buildRows` uses, applied per row in the `.map()` |
+| `nr-report/chart.js:255` | `.select(aq.not('end_date'))` | The `.map()` emits three fields, so there is nothing to drop |
+| `nr-report/app.js:22` | `.select(aq.not('report_id', 'indicator_id', …))` — five columns dropped from the export | `CSV_COLUMNS`, an explicit 12-name list in `app.js`. A public export is the thing worth being explicit about, and an allow-list cannot leak a field a future row gains |
+| `nr-report/app.js:23` | `.filter(aq.escape(d => d.neighborhood === currentNeighborhood))` | Nothing. `indicatorRows` already holds exactly the current district's rows |
+
+`[verified 2026-09-12: 7 call sites in assets/js/nr-report/, 0 in assets/js/ndhr-report/ and
+assets/js/report-data/normalize.js — the NR count is the control that the pattern matches a real
+call, without which the zero describes only the search]`.
+
+**Both merge patterns are labelled, and the three Manhattan pages prove they cross.** The sidebar
+is CD-level ACS, which merges CD4 with CD5; the PUMA2020 rows merge CD5 with CD6. Measured in the
+browser on a `dev_stage` server:
+
+| Page | Sidebar poverty / rent-burden | PUMA rows (measure=geoid) | Sidebar note |
+|---|---|---|---|
+| Clinton and Chelsea (CD4) | 12.3% / 39.0% | `86=4104`, `245=4104` | names CD5 |
+| Midtown (CD5) | 12.3% / 39.0% | `86=4165`, `245=4165` | names CD4 |
+| Stuyvesant Town and Turtle Bay (CD6) | 7.9% / 41.2% | `86=4165`, `245=4165` | none, correctly |
+
+So CD4 and CD5 share a sidebar while differing on PUMA, and CD5 and CD6 share PUMA while differing
+on the sidebar. Labelling only the indicator rows would have told a reader that shared values are
+marked, which makes the unmarked shared sidebar read as a bug rather than as the same situation.
+
+The sidebar's merge groups were re-derived rather than taken from the plan: grouping the 59 cdlist
+rows by their five demographic values gives `101,102 / 104,105 / 201,202 / 203,206`, exactly the
+PUMA2010 groups, where the PUMA2020 groups read `101,102 / 105,106 / 201,202 / 203,206`
+`[verified 2026-09-11; the demographic values are computed without reference to the crosswalk, so
+this is a control and not a restatement]`.
+
+**The map rung Task 6 deferred to here, all of it.** A click rewrote the address bar
+`ndhr/midtown/housing/` -> `ndhr/financial_district/housing/`, the header followed, all 6 cards
+rebuilt, 0 pageerrors through the switch. 59 polygons carry `role="button"` and a name. An
+accordion expand rendered an SVG chart with a `role="graphics-document"` node named "Crowding
+across all NYC community districts".
+
+**One thing that rung does NOT establish: tab-order membership.** The polygon reported
+`focused: true` after a programmatic `.focus()` and carries no `tabindex` attribute, and an SVG
+`<path>` is not tabbable by default. `nr-report/map.js` asserts its 42 polygons were already in
+the tab order through Leaflet's own container handling; that mechanism is inherited here unchanged
+and **was not verified** — a `.focus()` call cannot tell the two apart. Task 9's accessibility
+work is where that gets a real tab sweep.
+
+**Three departures worth a decision rather than a default.**
+
+- **Row order.** Rendered in the order `NDHR_content` lists the measures, because that order was
+  authored from the NDHR source documents. NR sorts by `data_value_rank` descending, having no
+  authored order to preserve. One line in `report.js`.
+- **The CSV export is hand-written** against an explicit column list rather than Arquero's
+  `toCSV()`. This is what let the library go.
+- **`lib-arquero` removed from the layout.** Task 6 included it with a comment naming `data.js` as
+  the consumer; `data.js` does not call it and neither does anything else on the page.
+
+**Files this task changed beyond its own list:** `themes/dohmh/layouts/ndhr/ndhr-report.html` (the
+ten script tags, `normalize.js` ahead of them, the sidebar note element, `lib-arquero` removed),
+`assets/scss/_custom.scss` (`.ndhr-map-container` beside `.nr-map-container`), and
+`scripts/smoke-pages.mjs` (the one NDHR entry this task's rung asks for).
+
+**`normalize.js` had never been loaded by any template before this.** Checked before adding the
+tag: a second load would redeclare its top-level `const`s and kill every script on the page.
 
 ---
 
