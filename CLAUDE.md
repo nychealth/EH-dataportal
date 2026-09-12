@@ -590,6 +590,12 @@ is **not** imported; only the `d-print-*` utilities are. And nothing below a bro
 change: emulate print media and read `document.body.innerText`, which respects `display:none` and is
 therefore what print actually shows. `documents/nr-print-view-fix-2026-08-10.md` has the before/after
 numbers and the instrument that reported a false pass.
+The converse bites on screen, and on both report page kinds: the NR and NDHR cards render every
+header fact twice — once `d-print-none` for screen, once `.print-only` for print — so
+`textContent` on a card header returns it all doubled, and reports content as present in a
+control's accessible name that the accessibility tree excludes. Use `innerText`, or read the
+accessibility tree itself as `scripts/nr-a11y-audit.mjs` does, for any "what does a reader
+actually get" question on either page — never `textContent`.
 
 **The report page has no styles of its own any more.** Its inline `<style>` block moved into
 `assets/scss/_custom.scss` on 2026-08-15, under a "Neighborhood Reports report page" heading, so a
