@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-09-02T17:36:44.355Z",
-    "gitHead": "7791fcfe934d18b5088ce26afc8ade9112cc36ec",
+    "capturedAt": "2026-09-12T15:13:42.218Z",
+    "gitHead": "df4823f756c3cce400ea9d38029238d44b98191e",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
-        "sha": "da7f64df7cf7800ee2c84c1e93ce9f3762148e5a",
-        "date": "2026-09-02T16:00:05Z",
-        "fetchedAt": "2026-09-02T17:33:06.906Z"
+        "sha": "b696872bea52507277f4c724deac9c8f7ca400e5",
+        "date": "2026-09-11T17:08:22Z",
+        "fetchedAt": "2026-09-12T15:07:56.058Z"
     },
     "pagefind": true,
     "hugo": {
@@ -16,8 +16,18 @@
     },
     "prefix": "/IndicatorPublic/",
     "mode": "all",
-    "pages": 925,
-    "arbitrated": [],
+    "pages": 1285,
+    "arbitrated": [
+        "ndhr/bayside_and_little_neck/neighborhood-conditions/",
+        "ndhr/bay_ridge_and_dyker_heights/neighborhood-conditions/",
+        "ndhr/bedford_stuyvesant/neighborhood-conditions/",
+        "ndhr/belmont_and_east_tremont/neighborhood-conditions/",
+        "ndhr/bensonhurst/neighborhood-conditions/",
+        "ndhr/borough_park/neighborhood-conditions/",
+        "ndhr/brownsville/neighborhood-conditions/",
+        "ndhr/bushwick/neighborhood-conditions/",
+        "ndhr/central_harlem/neighborhood-conditions/"
+    ],
     "cleared": [],
     "capped": false,
     "viewport": {

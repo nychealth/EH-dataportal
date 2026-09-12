@@ -1,0 +1,154 @@
+{
+    "path": "ndhr/morningside_heights_and_hamilton_heights/climate-and-active-design/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/cdlist-data.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/ndhr-report/app.js",
+            "js/ndhr-report/cards.js",
+            "js/ndhr-report/chart.js",
+            "js/ndhr-report/data.js",
+            "js/ndhr-report/demographics.js",
+            "js/ndhr-report/global.js",
+            "js/ndhr-report/map.js",
+            "js/ndhr-report/report.js",
+            "js/ndhr-report/tertiles.js",
+            "js/ndhr-report/url.js",
+            "js/report-data/normalize.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 24,
+        "headingLevels": [
+            1,
+            1,
+            3,
+            3,
+            3,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 5,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 1
+        },
+        "links": {
+            "internal": 78,
+            "external": 21,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 11,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Climate and Active Design in Morningside Heights and Hamilton Heights (CD9)",
+        "headingText": [
+            "Climate and Active Design in Morningside Heights and Hamilton Heights (CD9)",
+            "Climate and Active Design in Morningside Heights and Hamilton Heights (CD9)",
+            "Park accessWalking distance to a park, 2023100.0PercentHigherHigher than most community districtsPark accessWalking distance to a park, 2023100.0PercentHigher than most community districtsIncrease presence of parks or green spaces",
+            "Heat vulnerabilityHeat vulnerability index, 20233Score out of 5CDTA areaIn the middle of community districtsHeat vulnerabilityHeat vulnerability index, 20233Score out of 5CDTA areaIn the middle of community districtsIncrease shade, vegetation, or reflective surfaces to combat heat vulnerability",
+            "Air conditioningHousehold air conditioning, 202385.2^^Percent (with AC)PUMA areaLowerLower than most community districtsAir conditioningHousehold air conditioning, 202385.2^^Percent (with AC)PUMA areaLower than most community districtsIncrease access to cooling",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/active-design/",
+            "/data-explorer/climate/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/ndhr",
+            "/ndhr/morningside_heights_and_hamilton_heights/",
+            "/ndhr/morningside_heights_and_hamilton_heights/climate-and-active-design/",
+            "/ndhr/morningside_heights_and_hamilton_heights/health-outcomes-and-care-access/",
+            "/ndhr/morningside_heights_and_hamilton_heights/housing/",
+            "/ndhr/morningside_heights_and_hamilton_heights/mental-health/",
+            "/ndhr/morningside_heights_and_hamilton_heights/neighborhood-conditions/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Climate and Active Design data for Morningside Heights and Hamilton Heights (CD9), a community district in Manhattan."
+    }
+}

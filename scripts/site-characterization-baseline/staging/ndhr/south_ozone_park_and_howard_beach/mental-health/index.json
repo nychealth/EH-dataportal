@@ -1,0 +1,146 @@
+{
+    "path": "ndhr/south_ozone_park_and_howard_beach/mental-health/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/cdlist-data.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/ndhr-report/app.js",
+            "js/ndhr-report/cards.js",
+            "js/ndhr-report/chart.js",
+            "js/ndhr-report/data.js",
+            "js/ndhr-report/demographics.js",
+            "js/ndhr-report/global.js",
+            "js/ndhr-report/map.js",
+            "js/ndhr-report/report.js",
+            "js/ndhr-report/tertiles.js",
+            "js/ndhr-report/url.js",
+            "js/report-data/normalize.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 24,
+        "headingLevels": [
+            1,
+            1,
+            2,
+            5
+        ],
+        "headingJumps": 1,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 5,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 1
+        },
+        "links": {
+            "internal": 75,
+            "external": 21,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 8,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Mental Health in South Ozone Park and Howard Beach (CD10)",
+        "headingText": [
+            "Mental Health in South Ozone Park and Howard Beach (CD10)",
+            "Mental Health in South Ozone Park and Howard Beach (CD10)",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/ndhr",
+            "/ndhr/south_ozone_park_and_howard_beach/",
+            "/ndhr/south_ozone_park_and_howard_beach/climate-and-active-design/",
+            "/ndhr/south_ozone_park_and_howard_beach/health-outcomes-and-care-access/",
+            "/ndhr/south_ozone_park_and_howard_beach/housing/",
+            "/ndhr/south_ozone_park_and_howard_beach/mental-health/",
+            "/ndhr/south_ozone_park_and_howard_beach/neighborhood-conditions/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Mental Health data for South Ozone Park and Howard Beach (CD10), a community district in Queens."
+    }
+}

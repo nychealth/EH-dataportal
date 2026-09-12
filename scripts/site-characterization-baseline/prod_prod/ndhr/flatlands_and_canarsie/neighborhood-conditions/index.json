@@ -1,0 +1,162 @@
+{
+    "path": "ndhr/flatlands_and_canarsie/neighborhood-conditions/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/cdlist-data.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/ndhr-report/app.js",
+            "js/ndhr-report/cards.js",
+            "js/ndhr-report/chart.js",
+            "js/ndhr-report/data.js",
+            "js/ndhr-report/demographics.js",
+            "js/ndhr-report/global.js",
+            "js/ndhr-report/map.js",
+            "js/ndhr-report/report.js",
+            "js/ndhr-report/tertiles.js",
+            "js/ndhr-report/url.js",
+            "js/report-data/normalize.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 24,
+        "headingLevels": [
+            1,
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 5,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 1
+        },
+        "links": {
+            "internal": 81,
+            "external": 21,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 14,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Neighborhood Conditions in Flatlands and Canarsie (CD18)",
+        "headingText": [
+            "Neighborhood Conditions in Flatlands and Canarsie (CD18)",
+            "Neighborhood Conditions in Flatlands and Canarsie (CD18)",
+            "Vegetative coverVegetative cover, 201734.9PercentHigherHigher than most community districtsVegetative coverVegetative cover, 201734.9PercentHigher than most community districtsContribute to the Parks Tree Fund, fund a Super Steward, participate in the NYC Urban Agriculture program",
+            "ViolenceViolence-related emergency department visits (all ages), 2023466.6Age-adjusted rate per 100,000In the middle of community districtsViolenceViolence-related emergency department visits (all ages), 2023466.6Age-adjusted rate per 100,000In the middle of community districtsContribute funding to City initiatives to reduce violence in neighborhoods like VPI or HVIP",
+            "Public bathroomsPublic bathroom availability, 20251.9Density per square mileCDTA areaIn the middle of community districtsPublic bathroomsPublic bathroom availability, 20251.9Density per square mileCDTA areaIn the middle of community districtsSupport the development of the Citywide Strategy for public bathrooms",
+            "Food accessUnhealthy food access, 20169Ratio Bodegas to supermarketsLowerLower than most community districtsFood accessUnhealthy food access, 20169Ratio Bodegas to supermarketsLower than most community districtsPromote food access programs such as FRESH, green carts, shop healthy, and other food-related strategies from the Health Department",
+            "AbsenteeismSchool absenteeism, 2013-201417.0PercentIn the middle of community districtsAbsenteeismSchool absenteeism, 2013-201417.0PercentIn the middle of community districtsImplement programs that enable students to complete their degrees, access advanced courses, or address social-emotional learning",
+            "Litter basketsLitter basket coverage, 202222.5Density per square mileLowerLower than most community districtsLitter basketsLitter basket coverage, 202222.5Density per square mileLower than most community districtsReport dirty conditions and request location for litter baskets",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/accessibility/",
+            "/data-explorer/active-design/",
+            "/data-explorer/social-conditions/",
+            "/data-explorer/violence/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/ndhr",
+            "/ndhr/flatlands_and_canarsie/",
+            "/ndhr/flatlands_and_canarsie/climate-and-active-design/",
+            "/ndhr/flatlands_and_canarsie/health-outcomes-and-care-access/",
+            "/ndhr/flatlands_and_canarsie/housing/",
+            "/ndhr/flatlands_and_canarsie/mental-health/",
+            "/ndhr/flatlands_and_canarsie/neighborhood-conditions/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Neighborhood Conditions data for Flatlands and Canarsie (CD18), a community district in Brooklyn."
+    }
+}
