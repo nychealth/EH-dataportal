@@ -1,0 +1,360 @@
+{{/*
+    The community district picker map — the CD analogue of partials/nr-leaflet.html, and a
+    new file rather than an include because that one is hard-bound to UHF42: it fetches
+    geojson/UHF42.geojson and threads a `uhf_geojson` binding through every function.
+
+    Built by Task 11 of documents/ndhr-prototype-plan-2026-09-10.md.
+
+    Call it with the PAGE as context. Three things the caller must supply above it, in
+    `main` rather than `js_bot` — the script below calls L.map() as the parser reaches it,
+    and baseof.html renders `main` before `js_bot`:
+      - partials/lib-leaflet.html
+      - partials/lib-topojson.html
+      - partials/lib-cdlist.html, for the `communityDistricts` global
+
+    Optionally also ndhrPickerDestination(), the same hook partials/ndhr-district-picker-js.html
+    reads, so a page's map and its typeahead cannot send a reader to two different places.
+    It is called on click, long after every script on the page has parsed, so where the
+    caller declares it does not matter. A page that declares none gets the district index,
+    which is what the 59 district index pages want.
+
+    ---- GEOMETRY: geography/CD.topo.json, at the environment's own data_branch ----
+
+    Not geojson/ in this repo, where NR keeps UHF42.geojson: the data repository generates
+    and owns the CD geometry, so fetching it at data_branch makes the map move with the data
+    the rest of the section already fetches at data_branch.
+
+    TopoJSON rather than CD.geojson, which assets/js/ndhr-report/map.js fetches today. The
+    saving a visitor actually pays is the gzipped one, since raw.githubusercontent.com
+    serves both compressed: 11,732 B for the topology plus 2,604 B for topojson-client
+    against 46,926 B for the GeoJSON — 14,336 against 46,926, a 69% cut. The raw-byte
+    comparison is 41,590 against 162,386, or 74%, and overstates what is saved, because
+    part of topojson's win is redundancy gzip also finds
+    `[verified 2026-09-12: urllib with Accept-Encoding: gzip against the production branch,
+    reading the compressed body length and the Content-Encoding header; topojson-client
+    gzipped locally at level 6, since Hugo serves it as a fingerprinted local asset]`.
+
+    One object, named `collection`, 59 geometries, GEOCODE and GEONAME on all 59, and
+    GEOCODE matches cdlist.json's CD_id on 59 of 59 with GEONAME matching CD_name on 59 of
+    59. Byte-identical on the production and staging branches
+    `[verified 2026-09-12 against both]`.
+
+    NO GEOCODE filter, unlike nr-leaflet and assets/js/ndhr-report/map.js, which both drop
+    `GEOCODE != 0`. That filter is live on UHF42.geojson, which carries 43 features of which
+    one is GEOCODE 0; CD.topo.json carries 59 and none `[verified 2026-09-12]`. Copying a
+    filter that matches nothing would read as a claim about this data that is not true.
+
+    ---- KEYBOARD: the caller decides, by wrapping this or not ----
+
+    Keyed off an aria-hidden ancestor rather than a parameter, exactly as nr-leaflet is:
+
+      - WRAPPED in aria-hidden="true" (the landing page and the five category indexes): the
+        map is redundant with the 59-link borough-grouped list directly beneath it, so it is
+        hidden from the accessibility tree and every tab stop inside it is removed. A hidden
+        subtree must hold no keyboard stops, or a keyboard user tabs through positions a
+        screen reader is told do not exist. Leaflet creates them two ways and neither is an
+        authored tabindex: the `keyboard` option puts tabindex="0" on the container, and the
+        polygons follow it into the tab order carrying no tabindex of their own.
+
+      - NOT WRAPPED (the 59 district index pages): the map is that page's only district
+        navigation, so the polygons stay in the tab order, carry role="button" and an
+        aria-label, and answer Enter and Space. This is deliberately BETTER than the NR
+        neighborhood index, where 42 polygons are tab stops that do nothing because
+        nr-leaflet binds click and not keydown.
+
+    ---- NAMES ----
+
+    Everything below is inside an IIFE, so this partial declares no top-level name at all.
+    assets/js/ndhr-report/map.js is a second Leaflet implementation over the same geometry
+    and shares vocabulary with this one (highlightFeature, onEachFeature, resetHighlight);
+    two declarations of one name in the shared classic-script scope is a SyntaxError that
+    kills every script on the page and `npm run lint` cannot see it. No NDHR layout loads
+    both today, and the IIFE means one could. Precedent for the form: assets/js/site.js and
+    partials/render-accessible-table.html.
+*/}}
+
+{{- $cdId := .Params.cd_id | default "" -}}
+{{- $topoUrl := print .Site.Params.data_repo .Site.Params.data_branch "/geography/CD.topo.json" -}}
+
+<div id="ndhr-picker-map" style="width: 100%; height: 100%"></div>
+
+<style>
+    #ndhr-picker-map:hover {
+        cursor: pointer;
+    }
+</style>
+
+<script>
+(() => {
+
+    // ------------------------------------------------------------------ //
+    // build-time configuration
+    // ------------------------------------------------------------------ //
+
+    // Empty on the landing page and the five category indexes; the CD id on a district
+    // index, where that one polygon is highlighted. Every page frames the whole city —
+    // see the fit at the foot of this file for why the located page does not zoom in.
+    const cdId = "{{ $cdId }}";
+
+    const topoUrl = "{{ $topoUrl }}";
+
+    // ------------------------------------------------------------------ //
+    // map and basemap
+    // ------------------------------------------------------------------ //
+
+    const map = L.map("ndhr-picker-map", { zoomControl: false }).setView([40.715554, -74.0026642], 10);
+
+    L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        {
+            maxZoom: 15,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }
+    ).addTo(map);
+
+    L.control.scale({ metric: false, position: "bottomleft" }).addTo(map);
+
+    // ------------------------------------------------------------------ //
+    // polygon styles
+    // ------------------------------------------------------------------ //
+
+    // Same values assets/js/ndhr-report/map.js and nr-leaflet.html use, so the two NDHR
+    // maps and the NR one read as one family rather than three.
+    const defaultStyle = {
+        weight: 1.5,
+        opacity: 1,
+        color: "black",
+        dashArray: "1",
+        fillOpacity: 0.05,
+        fillColor: "#008939"
+    };
+
+    const selectedStyle = {
+        weight: 3,
+        color: "#008939",
+        dashArray: "3",
+        fillOpacity: 0.5
+    };
+
+    let cdLayer = null;
+
+    // ------------------------------------------------------------------ //
+    // name resolution
+    // ------------------------------------------------------------------ //
+
+    // Resolve through cdlist rather than the topology's own GEONAME, so the label on a
+    // polygon is the same string the district list and the report headers use. The two
+    // agree on all 59 today; reading cdlist first means a future divergence resolves the
+    // way NR's featureDisplayName resolves it instead of silently going the other way.
+    const districtRow = geocode =>
+        (typeof communityDistricts === "undefined" ? [] : communityDistricts)
+            .find(row => row.CD_id == geocode);
+
+    const displayName = feature => {
+
+        const row = districtRow(feature.properties.GEOCODE);
+
+        return (row && row.CD_name) || feature.properties.GEONAME;
+
+    };
+
+    // ------------------------------------------------------------------ //
+    // navigation
+    // ------------------------------------------------------------------ //
+
+    // One selection path for pointer and keyboard alike, so the two cannot diverge.
+    const goToDistrict = layer => {
+
+        const geocode = layer.feature.properties.GEOCODE;
+        const row = districtRow(geocode);
+
+        if (!row || !row.page_name) {
+            console.warn("No matching community district for GEOCODE:", geocode);
+            return;
+        }
+
+        cdLayer.resetStyle();
+        layer.setStyle(selectedStyle);
+        layer.bringToFront();
+
+        // The page's own destination, shared with the typeahead. Absent on a district
+        // index, where landing on the clicked district's own index is what is wanted.
+        const category = typeof ndhrPickerDestination === "function" ? ndhrPickerDestination() : "";
+
+        window.location.href = {{ relURL "ndhr/" }} + row.page_name + "/" +
+            (category ? category + "/" : "");
+
+    };
+
+    // ------------------------------------------------------------------ //
+    // event handlers
+    // ------------------------------------------------------------------ //
+
+    const onHover = e => {
+
+        const layer = e.target;
+
+        layer.setStyle({ weight: 5, color: "#444", dashArray: "" });
+        layer.bringToFront();
+
+    };
+
+    const onHoverOut = e => {
+
+        const layer = e.target;
+
+        // Keep the located district's highlight on a district index
+        if (cdId && layer.feature.properties.GEOCODE == cdId) return;
+
+        layer.setStyle({ weight: 1.5, color: "black", dashArray: "1" });
+
+    };
+
+    // Leaflet delivers keydown to the layer under focus but binds neither Enter nor
+    // Space itself, so there is no contention. Without this the polygons would be tab
+    // stops that do nothing — which is the state the NR neighborhood index is in.
+    const onKeyDown = e => {
+
+        const key = e.originalEvent && e.originalEvent.key;
+
+        if (key !== "Enter" && key !== " " && key !== "Spacebar") return;
+
+        // Space would otherwise scroll the page out from under the navigation
+        e.originalEvent.preventDefault();
+
+        goToDistrict(e.target);
+
+    };
+
+    // Leaflet points aria-describedby at the tooltip it just opened and never takes it
+    // back, so after a hover sweep every polygon references nodes that no longer exist.
+    const onTooltipClose = e => {
+
+        const el = typeof e.target.getElement === "function" && e.target.getElement();
+
+        if (el) el.removeAttribute("aria-describedby");
+
+    };
+
+    const onEachFeature = (feature, layer) => {
+
+        layer.bindTooltip(displayName(feature), {
+            permanent: false,
+            opacity: 0.9,
+            className: "fs-md"
+        });
+
+        layer.on({
+            mouseover: onHover,
+            mouseout: onHoverOut,
+            click: e => goToDistrict(e.target),
+            keydown: onKeyDown,
+            tooltipclose: onTooltipClose
+        });
+
+    };
+
+    // ------------------------------------------------------------------ //
+    // accessibility passes, run once the polygons have DOM nodes
+    // ------------------------------------------------------------------ //
+
+    // Not in onEachFeature: that runs while L.geoJSON builds the group, before the
+    // renderer has created each layer's <path>, so getElement() is null there.
+    // role="button" rather than the graphics-symbol a bare <path> computes to, because
+    // after onKeyDown these are activatable controls.
+    const namePolygons = () => {
+
+        cdLayer.eachLayer(layer => {
+
+            const el = typeof layer.getElement === "function" && layer.getElement();
+            const name = displayName(layer.feature);
+
+            if (!el || !name) return;
+
+            el.setAttribute("role", "button");
+            el.setAttribute("aria-label", name);
+
+        });
+
+    };
+
+    // Only fires when a caller has hidden this map from the accessibility tree. Setting
+    // tabindex="-1" explicitly removes an element from the sequential order whatever put
+    // it there, which is what the container's tabindex="0" and the bare <path>s need.
+    const removeHiddenMapFromTabOrder = () => {
+
+        const container = map.getContainer();
+
+        if (!container.closest('[aria-hidden="true"]')) return;
+
+        container.setAttribute("tabindex", "-1");
+
+        container
+            .querySelectorAll("a, path, [tabindex]")
+            .forEach(el => el.setAttribute("tabindex", "-1"));
+
+    };
+
+    // ------------------------------------------------------------------ //
+    // load the geometry
+    // ------------------------------------------------------------------ //
+
+    fetch(topoUrl)
+        .then(res => res.json())
+        .then(topo => {
+
+            // topojson-client, from partials/lib-topojson.html. Leaflet reads GeoJSON,
+            // so the topology is converted once here; `collection` is the single object
+            // EHDP-data publishes in this file.
+            cdLayer = L.geoJSON(topojson.feature(topo, topo.objects.collection), {
+                style: () => defaultStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            // addTo is synchronous, so every polygon has its <path> by here
+            namePolygons();
+
+            // Highlight the located district, on the 59 district indexes. NOTHING ELSE —
+            // no fly-to, which is a DELIBERATE divergence from nr-leaflet.html, where the
+            // located branch calls flyToBounds on the neighborhood.
+            //
+            // The reason is that this map is a navigation control and NR's is not. Zoomed
+            // to one community district, the other 58 are outside the map viewport: with
+            // the fly-to in, an un-forced Playwright click on Central Harlem from the
+            // Midtown page timed out on its actionability check, while the identical click
+            // succeeded on the whole-city landing page and a click event dispatched
+            // directly on the same node navigated correctly — so the handler was never the
+            // problem, the pointer simply could not reach the polygon
+            // `[verified 2026-09-12, four arms]`. nr-leaflet can afford the zoom because
+            // its polygons answer no key and its neighborhood index offers navigation
+            // elsewhere; these carry role="button" and answer Enter, so every one of them
+            // has to stay reachable.
+            if (cdId) {
+
+                const located = cdLayer.getLayers()
+                    .find(layer => layer.feature.properties.GEOCODE == cdId);
+
+                if (located) {
+                    located.setStyle(selectedStyle);
+                    located.bringToFront();
+                } else {
+                    console.warn("No matching GEOCODE found:", cdId);
+                }
+
+            }
+
+            // Fit the city to whatever box the caller gives this, rather than keeping the
+            // fixed zoom-10 view — at a fixed zoom a wider container just adds water on
+            // both sides. zoomSnap has to be 0: the default of 1 makes fitBounds round DOWN
+            // to a whole zoom level, which on the NR equivalent left the city spanning 59%
+            // of a 679px-wide box `[measured 2026-08-09]`.
+            map.options.zoomSnap = 0;
+            map.fitBounds(cdLayer.getBounds(), { padding: [10, 10] });
+
+            removeHiddenMapFromTabOrder();
+
+        })
+        .catch(err => console.error("Error loading CD topology:", err));
+
+})();
+</script>

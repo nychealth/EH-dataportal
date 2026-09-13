@@ -529,13 +529,16 @@ JS files under `assets/js/` are fingerprinted and served with Subresource Integr
 
 #### Library loading
 
-`head.html` loads only what every page needs: jQuery, Font Awesome (CSS webfont), and DOMPurify. Everything else is a **`lib-*` partial that the template including it opts into** — seven of them, each wrapping one library's `resources.Get` calls, fingerprinting and SRI:
+`head.html` loads only what every page needs: jQuery, Font Awesome (CSS webfont), and DOMPurify. Everything else is a **`lib-*` partial that the template including it opts into** — nine of them, each wrapping one library's `resources.Get` calls, fingerprinting and SRI:
 
-`lib-leaflet` · `lib-easybutton-coloricon` · `lib-uhflist` · `lib-vega` · `lib-arquero` · `lib-d3` · `lib-datatables`
+`lib-leaflet` · `lib-easybutton-coloricon` · `lib-uhflist` · `lib-cdlist` · `lib-vega` · `lib-arquero` · `lib-d3` · `lib-datatables` · `lib-topojson`
+
+This list read seven and named neither `lib-cdlist` nor `lib-topojson` until 2026-09-12; the first had been on disk since the NDHR report layout landed. Enumerate with `ls themes/dohmh/layouts/partials/lib-*.html` rather than trusting the count.
 
 - **`lib-easybutton-coloricon` must follow `lib-leaflet`** — both extend the global `L`.
 - **`lib-uhflist` emits the global `neighborhoods`**, generated at build time from `data/globals/uhflist.json` via `resources.FromString` into a fingerprinted `uhflist-data` script. The old hand-maintained `uhflist.js` source under `assets/js/` is gone; a comment naming it is stale.
-- **Placement is not free.** `baseof.html` renders `block "main"` before `block "js_bot"`, so a partial included in `js_bot` is parsed *after* any inline `<script>` in `main`. `nr-leaflet.html` calls `L.map(...)` at the top level of an inline script, so every template rendering it includes `lib-leaflet` in `main`, above that call. Put the include beside the consumer that runs earliest, not at the foot of the page by habit.
+- **Placement is not free.** `baseof.html` renders `block "main"` before `block "js_bot"`, so a partial included in `js_bot` is parsed *after* any inline `<script>` in `main`. `nr-leaflet.html` calls `L.map(...)` at the top level of an inline script, so every template rendering it includes `lib-leaflet` in `main`, above that call. Put the include beside the consumer that runs earliest, not at the foot of the page by habit. **A data global read from inside a `fetch` callback needs the same treatment, which is less obvious** — the callback can run between two script blocks, so a `lib-*` data partial left in `js_bot` is a race and not a guaranteed win. `lib-cdlist` moved from `js_bot` into `main` on the NDHR landing and category pages for exactly that reason when `ndhr-leaflet.html` landed.
+- **`lib-topojson` is for the Leaflet direction only.** Vega converts topology itself through `format: {type: "topojson"}`, so `assets/js/data-explorer/map.js`, `themes/dohmh/layouts/data-features/minimum-wage-with-maps.html` and `assets/js/ndhr-report/chart.js` need nothing loaded. `ndhr-leaflet.html` is the one consumer, because Leaflet reads GeoJSON. `themes/dohmh/layouts/data-features/heatstory.html` uses the same library and deliberately does not use this partial: it concatenates five libraries into one bundle with `resources.Concat`.
 - Not every template uses the partials: `themes/dohmh/layouts/data-explorer/single.html` still declares its libraries inline, and flexdatalist has no `lib-*` partial — the five templates that use it load it themselves (`themes/dohmh/layouts/partials/de-text-search.html`, `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html`, `themes/dohmh/layouts/partials/ndhr-district-picker-js.html`, `themes/dohmh/layouts/data-features/aqe.html`, `themes/dohmh/layouts/data-features/hvi.html`) `[verified 2026-09-12: grep for the `resources.Get` on the package across `themes/`; it read four until the NDHR district picker landed]`.
 - **A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle, and `content/data-features/hvi/hvi.js` and `content/data-features/neighborhood-air-quality/aqe.js` are where those two pages call `.flexdatalist()` — `hvi.html` and `aqe.html` only load it. The other three init sites are in the partials themselves. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
 - **The combobox ARIA fix is a partial, and one caller does not use it.** `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html` declares `wireComboboxState`, which supplies the `combobox` role flexdatalist never sets and keeps `aria-expanded` true; `de-text-search`, `ndhr-district-picker-js`, `aqe.js` and `hvi.js` call it. `nr-neighborhood-picker-js.html` carries its own inline copy instead, so those two partials must never load on one page — two declarations of one name in the shared classic-script scope is a `SyntaxError` that `npm run lint` cannot see.
@@ -673,7 +676,7 @@ in the browser from EHDP-data's own indicator files rather than from precomputed
 `content/ndhr/_content.gotmpl` generates the first two by crossing `data/globals/cdlist.json` with
 `data/globals/NDHR_categories.yml`; the other six pages are the markdown files beside it.
 
-Five things that bite from outside these files:
+Six things that bite from outside these files:
 
 - **`nr-leaflet.html` must never load on an NDHR report page.** It declares `highlightFeature`,
   `onEachFeature`, `resetHighlight` and `selectNeighborhood`, and so does the report page's own map
@@ -689,11 +692,38 @@ Five things that bite from outside these files:
   It searches `CD_name` and `borough`; **there is no ZIP search**, because `cdlist.json` has no
   ZIP field and EHDP-data publishes no ZIP-to-CD crosswalk. Only the landing page and the five
   category indexes carry it; the 59 district indexes do not.
-- **The map geometry comes from EHDP-data, not `static/geojson/`.** `geography/CD.geojson` at the
-  environment's own `data_branch`, where NR reads `UHF42.geojson` from this repo. It joins
-  `cdlist.json` exactly — 59 features, `GEOCODE` matches `CD_id` and `GEONAME` matches `CD_name` on
-  all 59, unlike `UHF42.geojson`, whose `GEONAME` disagrees with `uhflist`'s `UHF_name` on 6 of 42
-  `[verified 2026-09-11 against production; the file is byte-identical on staging]`.
+- **The picker MAP is a second partial again, and it is NOT the one NR uses.**
+  `themes/dohmh/layouts/partials/ndhr-leaflet.html` — `nr-leaflet.html` could not be reused
+  because it fetches `geojson/UHF42.geojson` and threads a `uhf_geojson` binding throughout.
+  It needs `lib-leaflet`, `lib-topojson` and `lib-cdlist` above it **in `main`**, since it calls
+  `L.map()` as the parser reaches it. It reads the same `ndhrPickerDestination()` the typeahead
+  does, so a page's two affordances cannot send a reader to two different places, and falls back
+  to the district index when a caller declares none. Everything in it is inside an IIFE, so it
+  declares no top-level name and could coexist with `assets/js/ndhr-report/map.js`.
+  **Whether its polygons are keyboard stops is the caller's choice, expressed as an
+  `aria-hidden="true"` wrapper and nothing else** — the landing page and the five category
+  indexes wrap it, because the 59-link list beneath is its text equivalent, and the partial then
+  strips every tab stop inside; the 59 district indexes do not wrap it, and there the polygons
+  carry `role="button"`, a district name, and answer Enter and Space.
+  **It does not fly to the located district, deliberately, where `nr-leaflet.html` does** — zoomed
+  to one community district the other 58 are outside the map viewport, which on a map that IS the
+  page's navigation makes them unclickable `[verified 2026-09-12: with the fly-to in, an un-forced
+  click on Central Harlem from the Midtown page timed out on its actionability check while the
+  identical click succeeded on the whole-city landing page, and a directly dispatched click event
+  navigated correctly — so the handler was never the problem]`.
+- **The map geometry comes from EHDP-data, not `static/geojson/`** — at the environment's own
+  `data_branch`, where NR reads `UHF42.geojson` from this repo. **Two files, not one:** the report
+  page's `assets/js/ndhr-report/map.js` fetches geography/CD.geojson, and the picker map fetches
+  geography/CD.topo.json, which is why `lib-topojson` exists. Both join `cdlist.json` exactly —
+  59 features, `GEOCODE` matches `CD_id` and `GEONAME` matches `CD_name` on all 59, unlike
+  `UHF42.geojson`, whose `GEONAME` disagrees with `uhflist`'s `UHF_name` on 6 of 42
+  `[verified 2026-09-11 for the geojson and 2026-09-12 for the topology, against production; both
+  files are byte-identical on staging]`. Quote the **gzipped** saving if you quote one:
+  raw.githubusercontent.com serves both compressed, so topology plus `topojson-client` is 14,336 B
+  against the GeoJSON's 46,926 B — 69%, not the 74% a raw-byte comparison gives
+  `[verified 2026-09-12]`. **`UHF42.geojson` carries a `GEOCODE` 0 feature and `CD.topo.json` does
+  not**, so the `filter: GEOCODE != 0` the NR partial and `map.js` both use is live there and dead
+  here; `ndhr-leaflet.html` omits it on purpose.
 - **No NDHR page is in the search index — all 360, not just the 295 report pages.** Each of the
   four layouts carries a page-level `data-pagefind-ignore="all"`, decided 2026-09-12 after the
   65 non-report pages were measured with it on. They did not merely join the index: every NDHR

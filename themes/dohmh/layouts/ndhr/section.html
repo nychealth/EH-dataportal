@@ -16,9 +16,9 @@
     partials/ndhr-district-picker.html, added by Task 10 of
     documents/ndhr-prototype-plan-2026-09-10.md after an NR/NDHR divergence audit found it
     missing; the NR precedent is documents/nr-topic-index-picker-restore-2026-08-09.md,
-    where the same affordance was restored after a swap dropped it. The picker MAP is still
-    absent and is Task 11: nr-leaflet.html is hard-bound to UHF42 geometry, so a CD version
-    is a new partial rather than an include.
+    where the same affordance was restored after a swap dropped it. The picker MAP beneath
+    it is partials/ndhr-leaflet.html, Task 11 of the same plan — a new partial rather than
+    an include of nr-leaflet.html, which is hard-bound to UHF42 geometry.
 
     NOT indexed, unlike the NR landing page: data-pagefind-ignore="all" sits on the wrapper
     below, and the same attribute sits on all four NDHR layouts. The whole section is out of
@@ -103,6 +103,24 @@
                          crawler fallback. */}}
                     {{ partial "ndhr-district-picker" . }}
 
+                    {{/* Libraries here rather than in js_bot: ndhr-leaflet's inline script
+                         calls L.map() as the parser reaches it, so Leaflet, topojson-client
+                         and the communityDistricts global must all already be parsed.
+                         lib-cdlist moved up here from js_bot when this map landed — the
+                         typeahead below still sees the global, since it is one shared
+                         classic-script scope, but the map's fetch callback can resolve
+                         between two script blocks and would otherwise race it. */}}
+                    {{- partial "lib-leaflet.html" . }}
+                    {{- partial "lib-topojson.html" . }}
+                    {{- partial "lib-cdlist.html" . }}
+
+                    {{/* aria-hidden because the 59-link list directly below is this map's
+                         text equivalent, and the partial keys its tab-order strip off that
+                         attribute — a hidden subtree must hold no keyboard stops. Same
+                         arrangement as nr-neighborhood-picker.html. */}}
+                    <div class="ndhr-selector-map border mt-2" aria-hidden="true" data-pagefind-ignore="all">
+                        {{- partial "ndhr-leaflet" . -}}
+                    </div>
 
                     {{/* Grouped by borough rather than one flat list of 59: the district
                          names do not carry their borough, and a bare list of 59 is not
@@ -166,10 +184,12 @@
 {{- /* ====  community district typeahead  ==== */ -}}
 
 {{- /* In js_bot because flexdatalist is not in head.html, and this is the only page kind
-       here that needs it. lib-cdlist sits beside its one consumer rather than in main: the
-       picker has no map, so nothing on this page reads `communityDistricts` before the init
-       below. The init itself lives in ndhr-district-picker-js, shared with the category
-       indexes; all this block adds is where a selection should land. */ -}}
+       here that needs it. lib-cdlist is NOT here — it moved into `main` above the picker
+       map when Task 11 landed, since ndhr-leaflet reads `communityDistricts` from a fetch
+       callback that can run between script blocks. The typeahead still sees it: one shared
+       classic-script scope. The init itself lives in ndhr-district-picker-js, shared with
+       the category indexes; all this block adds is where a selection should land, for the
+       typeahead and the map alike. */ -}}
 
 {{ define "js_bot" }}
 
@@ -177,12 +197,12 @@
 
         // The landing page nominates no category — it is the one NDHR page with no active
         // one — so a selection lands on the district index, which is also where this page's
-        // own 59 links go.
+        // own 59 links go. Read by the typeahead and by the picker map, so the two cannot
+        // send a reader to two different places.
         function ndhrPickerDestination() { return '' }
 
     </script>
 
-    {{ partial "lib-cdlist.html" . }}
     {{ partial "ndhr-district-picker-js" . }}
 
 {{- end -}}

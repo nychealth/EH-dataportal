@@ -11,9 +11,17 @@
       - no card image. NDHR_categories.yml carries no seo_image where NR_topics.yml does,
         so the cards are text. Adding images is adding that field plus the assets
 
-    No picker map here, unlike its NR counterpart. That map is themes/dohmh/layouts/
-    partials/nr-leaflet.html, a 370-line partial whose CD analogue is not in Task 6's file
-    list; the 59 districts are reachable from the section landing page's list instead.
+    The map below the cards is partials/ndhr-leaflet.html, Task 11 of
+    documents/ndhr-prototype-plan-2026-09-10.md — the CD analogue of nr-leaflet.html, which
+    could not be reused because it is hard-bound to UHF42 geometry. It does two jobs here:
+    it locates this district, and it is this page's only district navigation.
+
+    So, UNLIKE the landing page and the five category indexes, it is NOT wrapped in
+    aria-hidden and its polygons are NOT removed from the tab order. Those pages carry a
+    59-link district list as the map's text equivalent; this page does not, so the map has
+    to stand on its own — 59 polygons carrying role="button" and a district name, answering
+    Enter and Space. The partial keys that entirely off the aria-hidden ancestor, so the
+    difference is the wrapper below and nothing else.
 
     Not indexed: data-pagefind-ignore="all" on the wrapper below, as on all four NDHR
     layouts. These 59 near-identical pages are the bulk of what stopped the query
@@ -80,6 +88,40 @@
 
                     {{- end -}}
 
+                </div>
+
+                {{/* Libraries here rather than at the foot of the page: ndhr-leaflet's
+                     inline script calls L.map() as the parser reaches it, so Leaflet,
+                     topojson-client and the communityDistricts global must all already be
+                     parsed. This page has no js_bot block and needs none. */}}
+                {{- partial "lib-leaflet.html" . }}
+                {{- partial "lib-topojson.html" . }}
+                {{- partial "lib-cdlist.html" . }}
+
+                <div class="row mt-2">
+                    <div class="col-md-8 mx-auto">
+
+                        {{/* h2 because the five card titles above are h2s under the page
+                             h1 — an h3 here would read as belonging to the last card. */}}
+                        <h2 class="h4">{{ .Title }} on the map</h2>
+
+                        {{/* Said rather than left to be discovered: the map's highlight
+                             shows where this district is, and its other 58 polygons are
+                             the navigation this page would otherwise not have. No
+                             ndhrPickerDestination() is declared on this page kind, so the
+                             partial falls back to the district index — which is the page
+                             a reader choosing a different district from here should get. */}}
+                        <p class="fs-sm">This district is highlighted below. Select any other community district on the map to open its report.</p>
+
+                        {{/* No aria-hidden, unlike the landing page and the category
+                             indexes: there is no district list on this page to act as the
+                             map's text equivalent, so the polygons stay in the tab order
+                             named and operable. The header comment has the full reasoning. */}}
+                        <div class="ndhr-selector-map border mt-2">
+                            {{- partial "ndhr-leaflet" . -}}
+                        </div>
+
+                    </div>
                 </div>
 
             </div>

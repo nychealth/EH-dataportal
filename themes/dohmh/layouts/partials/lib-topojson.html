@@ -1,0 +1,18 @@
+{{- /*  topojson-client (defines the global `topojson`)
+
+        Loaded only by consumers that hand topology to a library expecting GeoJSON —
+        today that is partials/ndhr-leaflet.html, since Leaflet reads GeoJSON and
+        EHDP-data publishes geography/CD.topo.json.
+
+        Most topojson in this repo needs NOTHING loaded: assets/js/data-explorer/map.js,
+        data-features/minimum-wage-with-maps.html and assets/js/ndhr-report/chart.js all
+        pass topology to VEGA, whose `format: {type: "topojson"}` does the conversion
+        itself. Reach for this partial only for the Leaflet direction.
+
+        data-features/heatstory.html is the other topojson-client caller and does not use
+        this partial: it concatenates five libraries into one fingerprinted bundle with
+        resources.Concat, so a separate <script> would be a sixth request for a page that
+        deliberately makes one.  */}}
+
+{{- $topojson := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
+<script src="{{ $topojson.RelPermalink }}" integrity="{{ $topojson.Data.Integrity }}"></script>
