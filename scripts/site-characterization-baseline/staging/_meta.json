@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-09-12T23:45:34.683Z",
-    "gitHead": "893e9c8e768d8d436befe79ec76588b8c8a281de",
+    "capturedAt": "2026-09-13T02:45:52.262Z",
+    "gitHead": "ae318e64fcbb12c97d109f48674f2f08e92df3cf",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "3a26d038eb5e642963cc98279c416a52f3626711",
         "date": "2026-09-11T17:12:13Z",
-        "fetchedAt": "2026-09-12T23:40:14.755Z"
+        "fetchedAt": "2026-09-13T02:40:21.524Z"
     },
     "pagefind": true,
     "hugo": {
@@ -18,7 +18,13 @@
     "mode": "all",
     "pages": 1285,
     "arbitrated": [
-        "ndhr/woodside_and_sunnyside/housing/"
+        "ndhr/parkchester_and_soundview/neighborhood-conditions/",
+        "ndhr/riverdale_and_fieldston/neighborhood-conditions/",
+        "ndhr/south_ozone_park_and_howard_beach/neighborhood-conditions/",
+        "ndhr/st_george_and_stapleton/neighborhood-conditions/",
+        "ndhr/sunset_park/neighborhood-conditions/",
+        "ndhr/upper_east_side/neighborhood-conditions/",
+        "ndhr/washington_heights_and_inwood/neighborhood-conditions/"
     ],
     "cleared": [],
     "capped": false,

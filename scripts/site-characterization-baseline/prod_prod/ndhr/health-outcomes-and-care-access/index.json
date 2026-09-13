@@ -13,14 +13,17 @@
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css",
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js",
             "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
             "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/topojson-client/dist/topojson-client.min.js",
             "pagefind/pagefind-ui.css",
             "pagefind/pagefind-ui.js",
             "scss/theme.css",
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 11,
+        "assetsWithIntegrity": 14,
         "headingLevels": [
             1,
             2,
@@ -70,7 +73,7 @@
         },
         "links": {
             "internal": 133,
-            "external": 18,
+            "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
         },
@@ -192,7 +195,10 @@
             "a127-ess.nyc.gov",
             "a856-citystore.nyc.gov",
             "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
             "www.nyc.gov",
+            "www.openstreetmap.org",
             "www1.nyc.gov"
         ],
         "metaDescription": "Health care access is not equally distributed across the city, and the availability of affordable health-related facilities in a community can encourage more preventive care. Variable access to healthcare facilities contributes to disparities between communities in death rates from chronic diseases and maternal health outcomes."

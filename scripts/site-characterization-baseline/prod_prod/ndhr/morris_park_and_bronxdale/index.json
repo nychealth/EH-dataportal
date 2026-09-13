@@ -4,22 +4,27 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "js/cdlist-data.js",
             "js/main.js",
             "js/site.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
             "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
             "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/topojson-client/dist/topojson-client.min.js",
             "pagefind/pagefind-ui.css",
             "pagefind/pagefind-ui.js",
             "scss/theme.css",
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 8,
+        "assetsWithIntegrity": 12,
         "headingLevels": [
             1,
+            2,
             2,
             2,
             2,
@@ -65,7 +70,7 @@
         },
         "links": {
             "internal": 79,
-            "external": 18,
+            "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
         },
@@ -93,6 +98,7 @@
             "Neighborhood Conditions",
             "Health Outcomes and Care Access",
             "Mental Health",
+            "Morris Park and Bronxdale (CD11) on the map",
             "Page Footer",
             "Search"
         ],
@@ -127,7 +133,10 @@
             "a127-ess.nyc.gov",
             "a856-citystore.nyc.gov",
             "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
             "www.nyc.gov",
+            "www.openstreetmap.org",
             "www1.nyc.gov"
         ],
         "metaDescription": "Neighborhood Development Health Report data for Morris Park and Bronxdale (CD11), a community district in Bronx."
