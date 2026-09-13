@@ -3,11 +3,23 @@
 
     Include this AFTER the jquery.flexdatalist.min.js <script> tag and BEFORE the block
     that calls .flexdatalist(), then call wireComboboxState() on the generated input once
-    that call has returned. Five call sites do this: partials/de-text-search.html,
-    neighborhood-reports/section.html, neighborhood-reports/topiclanding.html, and — via
-    the shared global scope, since these are classic scripts — the page-bundle files
+    that call has returned.
+
+    Four call sites do this on this tree: partials/de-text-search.html,
+    partials/ndhr-district-picker-js.html, and — via the shared global scope, since these
+    are classic scripts — the page-bundle files
     content/data-features/neighborhood-air-quality/aqe.js and content/data-features/hvi/hvi.js,
     which is where data-features/aqe.html and data-features/hvi.html actually initialize.
+    This list previously named neighborhood-reports/section.html and
+    neighborhood-reports/topiclanding.html, and neither is a caller here: the first does not
+    include this partial and the second does not exist on this branch
+    `[verified 2026-09-12: grep for the include across themes/, plus ls of
+    themes/dohmh/layouts/neighborhood-reports/]`.
+
+    partials/nr-neighborhood-picker-js.html is the fifth flexdatalist site and does NOT
+    include this — it carries its own inline copy of wireComboboxState, which is where this
+    partial was ported from. The two must never load on one page: two declarations of one
+    name in the shared classic-script scope is a SyntaxError that kills every script on it.
 
     Ported from nr-neighborhood-picker-js.html on feature-MOD-Lab-NR-recode-refactor, which
     is where this was first written and verified. Two changes on arrival: the results-list id

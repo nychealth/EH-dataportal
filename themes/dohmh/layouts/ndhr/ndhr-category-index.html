@@ -13,9 +13,13 @@
     on 2026-09-12; themes/dohmh/layouts/ndhr/section.html carries the full rationale and the
     numbers.
 
-    No picker map, for the same reason as ndhr-cd-index.html — nr-leaflet.html's CD
-    analogue is not in Task 6's file list. The 59 districts are listed below as links,
-    which is what a crawler and a keyboard user need either way.
+    The district typeahead above the list is partials/ndhr-district-picker.html, shared with
+    the landing page and added by Task 10 of documents/ndhr-prototype-plan-2026-09-10.md. It
+    searches district and borough names; community districts have no ZIP list, which the
+    partial's comment explains. Still no picker MAP — that is Task 11, and it needs a new
+    partial rather than an include, since nr-leaflet.html is hard-bound to UHF42 geometry.
+    The 59 districts stay listed below as links either way, which is what a crawler and a
+    keyboard user need.
 */}}
 
 {{- $contentKey := .Params.content_yml -}}
@@ -72,6 +76,12 @@
 
                     <h2 class="h4 mt-4">Choose a community district</h2>
 
+                    {{/* Typeahead above the district list, matching the landing page. A
+                         selection lands on this category's report for the chosen district,
+                         which is where the 59 links below go too. */}}
+                    {{ partial "ndhr-district-picker" . }}
+
+
                     {{/* Grouped by borough rather than one flat list of 59: the district
                          names do not carry their borough, and "Community Board 3" is a
                          different place in each of the five. Read from
@@ -102,5 +112,32 @@
         </div>
     </div>
 </div>
+
+{{- end -}}
+
+
+{{- /* ====  community district typeahead  ==== */ -}}
+
+{{- /* In js_bot, matching ndhr/section.html: flexdatalist is not in head.html, and
+       lib-cdlist sits beside its one consumer because nothing on this page reads
+       `communityDistricts` earlier. The init lives in ndhr-district-picker-js, shared with
+       the landing page; all this block adds is where a selection should land. */ -}}
+
+{{ define "js_bot" }}
+
+    {{/* Recomputed here rather than shared with "main": the two blocks do not see each
+         other's variables. Read off this page's own permalink for the reason the main block
+         gives — the front matter's explicit `url` is what decides the segment. */}}
+    {{- $categorySlug := .RelPermalink | strings.TrimSuffix "/" | path.Base -}}
+
+    <script type="text/javascript">
+
+        // The category comes from Hugo: this page knows its own slug at build time.
+        function ndhrPickerDestination() { return '{{ $categorySlug }}' }
+
+    </script>
+
+    {{ partial "lib-cdlist.html" . }}
+    {{ partial "ndhr-district-picker-js" . }}
 
 {{- end -}}

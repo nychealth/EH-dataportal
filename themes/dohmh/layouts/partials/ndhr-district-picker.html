@@ -1,0 +1,62 @@
+{{/*
+    The community district typeahead: a visible label, a search box over the 59 rows of
+    data/globals/cdlist.json, and a Clear button. Shared by the NDHR landing page
+    (ndhr/section.html) and the five category indexes (ndhr/ndhr-category-index.html).
+
+    Markup only. Pair it with partials/ndhr-district-picker-js.html in the caller's js_bot
+    block or this box does nothing — that partial loads flexdatalist and wires the search.
+    Where a selection lands is the one thing the two callers disagree on, so it is not here:
+    each defines ndhrPickerDestination(), returning "" on the landing page and the category
+    slug on a category index.
+
+    NO HEADING, unlike partials/nr-neighborhood-picker.html. That one carries its own because
+    its two callers had drifted to two different introductions; here both callers already
+    render one identical "Choose a community district" heading above their district list, and
+    this sits directly beneath it.
+
+    NO MAP. Its NR counterpart renders nr-leaflet below the search box. The CD equivalent is
+    Task 11 of documents/ndhr-prototype-plan-2026-09-10.md and needs a new partial, since
+    nr-leaflet.html is hard-bound to UHF42 geometry.
+
+    NAME AND BOROUGH ARE THE WHOLE SEARCH SPACE, and that is a real limit rather than an
+    omission. The NR original also searches Zipcodes; cdlist.json has no such field because
+    ZIP codes do not nest into community districts and EHDP-data publishes no crosswalk (the
+    plan's Task 2, "No Zipcodes field"). So a reader who knows only their ZIP cannot find
+    their district here. The placeholder and the note below say what IS searchable rather
+    than leaving a reader to discover it by typing a ZIP and getting nothing back.
+
+    id="flex_search" is the site-wide convention and is load-bearing: flexdatalist derives
+    the wrapper class from the authored id, and __portal-custom.scss:1281-1286 styles the
+    placeholder through .flex_search-flexdatalist. The other four call sites — the NR picker,
+    de-text-search, aqe and hvi — all use it, and no page carries two.
+
+    Every element carries data-pagefind-ignore="all". That is redundant while the page-level
+    ignore on both callers stands, and is kept for the same reason section.html's district
+    list keeps its own: it is the correct state for these words on their own merits, so
+    lifting the section-wide ignore later cannot silently put them back. The NR partial's
+    comment records the measurement behind it — indexing "Choose Neighborhood" and "Search
+    for a neighborhood" made all six of its caller pages match a search for "neighborhood".
+*/}}
+
+{{/* The label is visible rather than sr-only for the reason the NR picker records: a
+     placeholder was the only name that field had, and a placeholder disappears the moment
+     the reader types, leaving a filled-in box with nothing saying what it holds (WCAG
+     3.3.2). `for="flex_search"` names the authored input; flexdatalist hides that one and
+     renders its own, so ndhr-district-picker-js.html points the generated input at this
+     same label. */}}
+<label id="ndhr-search-label" for="flex_search" class="fs-sm mb-1" data-pagefind-ignore="all">Search for a community district</label>
+
+<div class="btn-group w-100" role="group" aria-labelledby="ndhr-search-label" data-pagefind-ignore="all">
+    <input
+        id="flex_search"
+        type="search"
+        class="flexdatalist form-control"
+        name="indicator_name_suggestion"
+        placeholder="Search district or borough name"
+    />
+    <button id="clear" type="button" class="btn btn-md btn-primary">Clear</button>
+</div>
+
+{{/* Stated, not implied: see the ZIP note above. Kept to one line and tied to the list
+     below it, which is the fallback when this search cannot help. */}}
+<p class="fs-sm text-muted mt-1 mb-0" data-pagefind-ignore="all">Community districts are not based on ZIP codes, so this searches district and borough names only. The full list is below.</p>

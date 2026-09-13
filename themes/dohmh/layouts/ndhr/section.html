@@ -4,16 +4,21 @@
     Section landing page — /ndhr/.
 
     Rendered for content/ndhr/_index.md. The NDHR counterpart of
-    themes/dohmh/layouts/neighborhood-reports/section.html, and deliberately much shorter
-    than it: that file's 264 lines carry a topic-button block wired to
-    nr-neighborhood-picker-js.html, the shared Leaflet picker, and a Community District
-    chooser modal. None of those have an NDHR analogue in Task 6's file list, and the
-    modal's whole purpose — sending a reader from UHF42 to community districts — is what
-    this section already is.
+    themes/dohmh/layouts/neighborhood-reports/section.html, and shorter than it: that file's
+    264 lines carry a topic-button block, the shared Leaflet picker, and a Community
+    District chooser modal. The modal's whole purpose — sending a reader from UHF42 to
+    community districts — is what this section already is, so it has no NDHR analogue and
+    will not get one.
 
-    So the landing page is the two lists a reader needs: the five categories, and the 59
-    community districts. Both are server-rendered links, which is what a crawler and a
-    keyboard user need; a picker map would be an addition on top, not a replacement.
+    So the landing page is the two lists a reader needs — the five categories and the 59
+    community districts, both server-rendered links, which is what a crawler and a keyboard
+    user need — plus the district typeahead above the second of them. The typeahead is
+    partials/ndhr-district-picker.html, added by Task 10 of
+    documents/ndhr-prototype-plan-2026-09-10.md after an NR/NDHR divergence audit found it
+    missing; the NR precedent is documents/nr-topic-index-picker-restore-2026-08-09.md,
+    where the same affordance was restored after a swap dropped it. The picker MAP is still
+    absent and is Task 11: nr-leaflet.html is hard-bound to UHF42 geometry, so a CD version
+    is a new partial rather than an include.
 
     NOT indexed, unlike the NR landing page: data-pagefind-ignore="all" sits on the wrapper
     below, and the same attribute sits on all four NDHR layouts. The whole section is out of
@@ -92,6 +97,13 @@
 
                     <h2 class="h3 mt-4">Choose a community district</h2>
 
+                    {{/* Typeahead above the district list, not below it: it is the primary
+                         affordance here, and 59 grouped names are a long scroll past on a
+                         phone. The list stays as the browse path and as the JS-off and
+                         crawler fallback. */}}
+                    {{ partial "ndhr-district-picker" . }}
+
+
                     {{/* Grouped by borough rather than one flat list of 59: the district
                          names do not carry their borough, and a bare list of 59 is not
                          scannable. cdlist.json is already in borough-then-id order, so this
@@ -147,5 +159,30 @@
     </div>
 
 </article>
+
+{{- end -}}
+
+
+{{- /* ====  community district typeahead  ==== */ -}}
+
+{{- /* In js_bot because flexdatalist is not in head.html, and this is the only page kind
+       here that needs it. lib-cdlist sits beside its one consumer rather than in main: the
+       picker has no map, so nothing on this page reads `communityDistricts` before the init
+       below. The init itself lives in ndhr-district-picker-js, shared with the category
+       indexes; all this block adds is where a selection should land. */ -}}
+
+{{ define "js_bot" }}
+
+    <script type="text/javascript">
+
+        // The landing page nominates no category — it is the one NDHR page with no active
+        // one — so a selection lands on the district index, which is also where this page's
+        // own 59 links go.
+        function ndhrPickerDestination() { return '' }
+
+    </script>
+
+    {{ partial "lib-cdlist.html" . }}
+    {{ partial "ndhr-district-picker-js" . }}
 
 {{- end -}}

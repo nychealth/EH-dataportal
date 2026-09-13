@@ -1,0 +1,105 @@
+{{/*
+    Loads flexdatalist and wires the community district picker's search box. Call this from
+    inside a page's {{ define "js_bot" }} block, alongside partials/ndhr-district-picker.html
+    in the body — flexdatalist is not in head.html, so the init has to run at the page foot.
+
+    Two things the caller must supply:
+      - partials/lib-cdlist.html, which emits the `communityDistricts` global. Neither NDHR
+        page loaded it before Task 10: both render their district list from
+        site.Data.globals.cdlist at build time and needed no JS global.
+      - ndhrPickerDestination(), returning the category slug to append to the chosen
+        district, or "" to land on the district index. Declaration order does not matter:
+        it is called on selection, long after every script on the page has parsed.
+
+    UNLIKE nr-neighborhood-picker-js.html, the combobox ARIA work is included rather than
+    copied. That partial carries its own inline wireComboboxState(); the same function also
+    exists as partials/flexdatalist-combobox-js.html, already shared by de-text-search, aqe
+    and hvi, and deriving its results-list id from the input rather than hardcoding it. A
+    sixth copy of ~120 lines is not worth writing. The two must never load on one page —
+    both declare wireComboboxState in the shared classic-script scope, and two declarations
+    of one name there is a SyntaxError that kills every script on the page. No NDHR layout
+    includes an NR partial `[verified 2026-09-12]`.
+
+    EXPECT controls.noAccessibleName TO READ 1 on every page carrying this picker, in
+    scripts/site-characterization.mjs. flexdatalist re-points the authored input's
+    <label for> at the generated one (jquery.flexdatalist.js:403), so the authored
+    #flex_search is left with no label and the harness — which walks the DOM, not the
+    accessibility tree — counts it. It is not reachable: the library parks it at
+    position:absolute around x -13700, y -12689 with tabIndex -1, and Tab from the generated
+    input goes straight to #clear `[verified 2026-09-12, and identical on
+    /neighborhood-reports/, whose committed baseline already records the same 1]`. A reader
+    never meets it; do not chase this as a regression, and do not "fix" it by adding a second
+    label, which would name a node nothing can focus.
+*/}}
+
+{{- $flexdatalist_css := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css" | partial "short-fingerprint.html" -}}
+<link rel="stylesheet" href="{{ $flexdatalist_css.RelPermalink }}" integrity="{{ $flexdatalist_css.Data.Integrity }}"/>
+
+{{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
+<script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+{{- partial "flexdatalist-combobox-js.html" . -}}
+
+<script type="text/javascript">
+
+    // Search the 59 community districts by district or borough name, then jump to that
+    // district's report for whichever category the page nominates. `communityDistricts` is
+    // the global lib-cdlist.html builds from data/globals/cdlist.json.
+    function loadDistrictSearch() {
+
+        // searchIn is a SWAP from the NR original's ["UHF_name", "Zipcodes"], not an
+        // addition: cdlist.json has no ZIP field at all. `borough` earns its place because
+        // the district names do not carry one and five of them are called "Community Board
+        // 3" — typing "Bronx" is the only way to narrow to a borough from this box.
+        const $input = $('#flex_search').flexdatalist({
+            minLength: 0,
+            valueProperty: ["CD_id", "CD_name"],
+            textProperty: "{CD_name}",
+            selectionRequired: false,
+            focusFirstResult: true,
+            visibleProperties: ["CD_name", "borough"],
+            searchIn: ["CD_name", "borough"],
+            searchContain: true,
+            searchByWord: true,
+            redoSearchOnFocus: true,
+            toggleSelected: true,
+            cache: false,
+            data: communityDistricts
+        });
+
+        // The destination category is the one thing the two callers disagree on, so each
+        // defines ndhrPickerDestination() itself — a build-time slug on a category index,
+        // an empty string on the landing page, which has no active category and whose own
+        // 59 links go to the district index too.
+        $input.on('select:flexdatalist', (e, set) => {
+
+            const category = ndhrPickerDestination();
+
+            window.location.href = {{ relURL "ndhr/" }} + set.page_name + '/' +
+                (category ? category + '/' : '');
+
+        })
+
+        // flexdatalist hides the original input and renders its own; "~input" is how the
+        // other copies of this reach that visible one.
+        $("#clear").on("click", () => {
+            $($input).find("~input").val("").trigger("focus")
+        })
+
+        // The generated input is the one the reader focuses, and it inherits nothing from
+        // the authored input's <label for>. Without this its only name is the placeholder,
+        // which vanishes as soon as there is a value in the box. flexdatalist derives the
+        // generated id from the authored one (jquery.flexdatalist.js:475), so
+        // "#flex_search-flexdatalist" is stable.
+        const generated = document.getElementById('flex_search-flexdatalist');
+
+        if (generated) {
+            generated.setAttribute('aria-labelledby', 'ndhr-search-label');
+            wireComboboxState(generated);
+        }
+
+    }
+
+    loadDistrictSearch()
+
+</script>

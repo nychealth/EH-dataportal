@@ -528,8 +528,9 @@ JS files under `assets/js/` are fingerprinted and served with Subresource Integr
 - **`lib-easybutton-coloricon` must follow `lib-leaflet`** — both extend the global `L`.
 - **`lib-uhflist` emits the global `neighborhoods`**, generated at build time from `data/globals/uhflist.json` via `resources.FromString` into a fingerprinted `uhflist-data` script. The old hand-maintained `uhflist.js` source under `assets/js/` is gone; a comment naming it is stale.
 - **Placement is not free.** `baseof.html` renders `block "main"` before `block "js_bot"`, so a partial included in `js_bot` is parsed *after* any inline `<script>` in `main`. `nr-leaflet.html` calls `L.map(...)` at the top level of an inline script, so every template rendering it includes `lib-leaflet` in `main`, above that call. Put the include beside the consumer that runs earliest, not at the foot of the page by habit.
-- Not every template uses the partials: `themes/dohmh/layouts/data-explorer/single.html` still declares its libraries inline, and flexdatalist has no `lib-*` partial — the four templates that use it load it themselves (`themes/dohmh/layouts/partials/de-text-search.html`, `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html`, `themes/dohmh/layouts/data-features/aqe.html`, `themes/dohmh/layouts/data-features/hvi.html`) `[verified 2026-09-01: grep for the `resources.Get` on the package across `themes/`]`.
-- **A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle, and `content/data-features/hvi/hvi.js` and `content/data-features/neighborhood-air-quality/aqe.js` are where those two pages call `.flexdatalist()` — `hvi.html` and `aqe.html` only load it. The other two init sites are in the partials themselves. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
+- Not every template uses the partials: `themes/dohmh/layouts/data-explorer/single.html` still declares its libraries inline, and flexdatalist has no `lib-*` partial — the five templates that use it load it themselves (`themes/dohmh/layouts/partials/de-text-search.html`, `themes/dohmh/layouts/partials/nr-neighborhood-picker-js.html`, `themes/dohmh/layouts/partials/ndhr-district-picker-js.html`, `themes/dohmh/layouts/data-features/aqe.html`, `themes/dohmh/layouts/data-features/hvi.html`) `[verified 2026-09-12: grep for the `resources.Get` on the package across `themes/`; it read four until the NDHR district picker landed]`.
+- **A layout that loads a library is not necessarily where it is initialized.** `customJS` frontmatter names a `.js` inside the content bundle, and `content/data-features/hvi/hvi.js` and `content/data-features/neighborhood-air-quality/aqe.js` are where those two pages call `.flexdatalist()` — `hvi.html` and `aqe.html` only load it. The other three init sites are in the partials themselves. Classic scripts, so they share the layout's global scope. Grep `content/` as well as `themes/` when tracing a library's wiring.
+- **The combobox ARIA fix is a partial, and one caller does not use it.** `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html` declares `wireComboboxState`, which supplies the `combobox` role flexdatalist never sets and keeps `aria-expanded` true; `de-text-search`, `ndhr-district-picker-js`, `aqe.js` and `hvi.js` call it. `nr-neighborhood-picker-js.html` carries its own inline copy instead, so those two partials must never load on one page — two declarations of one name in the shared classic-script scope is a `SyntaxError` that `npm run lint` cannot see.
 
 Adding a library call to a template's JS means adding its `lib-*` include too — nothing loads it globally any more, and the failure is a runtime `X is not defined` that a green build will not show you.
 
@@ -664,7 +665,7 @@ in the browser from EHDP-data's own indicator files rather than from precomputed
 `content/ndhr/_content.gotmpl` generates the first two by crossing `data/globals/cdlist.json` with
 `data/globals/NDHR_categories.yml`; the other six pages are the markdown files beside it.
 
-Four things that bite from outside these files:
+Five things that bite from outside these files:
 
 - **`nr-leaflet.html` must never load on an NDHR report page.** It declares `highlightFeature`,
   `onEachFeature`, `resetHighlight` and `selectNeighborhood`, and so does the report page's own map
@@ -672,6 +673,14 @@ Four things that bite from outside these files:
   `SyntaxError` that kills every script on the page, invisible to `npm run lint`.
 - **`lib-cdlist.html`, not `lib-uhflist.html`.** They emit `communityDistricts` and `neighborhoods`,
   two different geographies, and neither overrides the other.
+- **The district typeahead is a partial PAIR, and half of it does nothing alone.**
+  `themes/dohmh/layouts/partials/ndhr-district-picker.html` is markup only; the search is wired by
+  `themes/dohmh/layouts/partials/ndhr-district-picker-js.html`, which belongs in the caller's
+  `js_bot` block beside `lib-cdlist.html` and needs the caller to define
+  `ndhrPickerDestination()` — `""` on the landing page, the category slug on a category index.
+  It searches `CD_name` and `borough`; **there is no ZIP search**, because `cdlist.json` has no
+  ZIP field and EHDP-data publishes no ZIP-to-CD crosswalk. Only the landing page and the five
+  category indexes carry it; the 59 district indexes do not.
 - **The map geometry comes from EHDP-data, not `static/geojson/`.** `geography/CD.geojson` at the
   environment's own `data_branch`, where NR reads `UHF42.geojson` from this repo. It joins
   `cdlist.json` exactly — 59 features, `GEOCODE` matches `CD_id` and `GEONAME` matches `CD_name` on
