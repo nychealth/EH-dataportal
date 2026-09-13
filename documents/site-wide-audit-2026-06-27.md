@@ -2425,7 +2425,11 @@ repository, so the swap there is a source change as well as a format change.
 `assets/js/ndhr-report/map.js` fetches `CD.geojson` on 295 NDHR report pages, the same 35,194-byte
 saving. **That one is not this document's** — it is a named decision inside Task 11 of
 `documents/ndhr-prototype-plan-2026-09-10.md`, deliberately kept separate because it edits shipped
-code that `scripts/ndhr-characterization.mjs` now baselines.
+code that `scripts/ndhr-characterization.mjs` now baselines. **Put to the user 2026-09-12 and
+deferred as a potential future enhancement**, on the re-verification cost rather than the code:
+`topojson-client` would join `structure.assets` on 295 pages, so both site-characterization
+baselines would need re-capturing. That plan's status block carries the edit surface. Do not
+re-raise it here as though it were unexamined.
 
 ### 17a. What each swap actually costs
 
@@ -2436,12 +2440,20 @@ code that `scripts/ndhr-characterization.mjs` now baselines.
   cached, against savings that start at 7,666 bytes on the cheapest row. The object key is
   `collection` on every file measured here **except** `CityCouncilDistrict.topo.json`, whose single
   object is named `data`. Do not hardcode `collection`.
-- **There is no `lib-topojson.html` partial.** `topojson-client` is in `package.json` and is
-  bundled today only by `themes/dohmh/layouts/data-features/heatstory.html` via `resources.Concat`;
-  every other TopoJSON consumer in the repo (`data-explorer/map.js`,
-  `minimum-wage-with-maps.html`, `ndhr-report/chart.js`) reaches it through **Vega's** built-in
-  `format: {type: "topojson"}` and needs no client at all. Writing the partial is part of the first
-  swap that lands.
+- **`themes/dohmh/layouts/partials/lib-topojson.html` now exists. This bullet said it did not,
+  which was true when this section was written on 2026-09-12 and stopped being true the same
+  day** — Task 11 of `documents/ndhr-prototype-plan-2026-09-10.md` wrote it for a NEW Leaflet
+  consumer (`themes/dohmh/layouts/partials/ndhr-leaflet.html`, the NDHR community district picker
+  map), not for any swap in the table above, so **every row above is still unswapped**. The cost
+  each row was quoted at has fallen by whatever writing the partial was worth; the library byte
+  cost has not, since it is per page and not per repo.
+  `topojson-client` is in `package.json` and is also bundled by
+  `themes/dohmh/layouts/data-features/heatstory.html` via `resources.Concat`, which deliberately
+  does not use the partial — it concatenates five libraries into one request. Every other
+  TopoJSON consumer in the repo (`assets/js/data-explorer/map.js`,
+  `themes/dohmh/layouts/data-features/minimum-wage-with-maps.html`,
+  `assets/js/ndhr-report/chart.js`) reaches it through **Vega's** built-in
+  `format: {type: "topojson"}` and needs no client at all.
 - **The 43rd-feature note is not a blocker.** `static/geojson/UHF42.geojson` carries 43 features,
   the extra one having `GEOCODE: 0`, `GEONAME: ""`, `BOROUGH: "N/A"` and a real 2,825-byte
   MultiPolygon; `UHF42.topo.json` carries 42. Both consumers already discard it —
