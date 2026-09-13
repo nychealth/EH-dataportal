@@ -235,6 +235,14 @@ are printed as a harness-health number and deliberately **not** baselined — th
   `[2026-08-24, 24 logical processors]`. A full `characterize:site` including the Hugo and Pagefind
   builds is ~130s, which is why the 41-page sample is for cheap churn measurement rather than for
   saving time. `--concurrency N` overrides. The bounds are the range measured, not a known optimum.
+- **The committed baseline is a corpus, not only a gate.** When a page newly adopts a pattern
+  another page already carries and `--check` reports a field that got *worse*, read that page's
+  committed record first — one file read, and it separates "this pattern has always scored this"
+  from "this change broke something". `controls.noAccessibleName` 0 → 1 on the six NDHR picker
+  pages was settled that way against
+  `scripts/site-characterization-baseline/staging/neighborhood-reports/index.json`, which already
+  read 1; `themes/dohmh/layouts/partials/ndhr-district-picker-js.html` carries the mechanism and
+  the measurement.
 - **What a pass is worth is established by `documents/site-characterization-plan-2026-08-23.md`,
   not by the check passing.** All eleven probes were driven by an injected regression and each one
   fired `[2026-08-23: 11 of 11, exit 1, each naming its own field]`. A probe that reads zero on

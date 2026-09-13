@@ -2206,6 +2206,25 @@ hidden per §15.7.
 at the call site. That was outside Task 18's stated scope, which named role, `aria-expanded` and
 `aria-activedescendant` only. Porting it is the same shape of port Task 18 already did — see §5k.
 
+> **What the `aria-labelledby` fix leaves behind, 2026-09-12.** Two call sites now carry it — the
+> NR neighborhood picker (`partials/nr-neighborhood-picker-js.html`) and the new NDHR district
+> picker (`partials/ndhr-district-picker-js.html`) — and on both the *generated* input is named
+> and the **authored** `#flex_search` is not. The library is why: it re-points the authored
+> input's `<label for>` at the generated one it creates
+> (`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:403`), so the authored node is left
+> with no label whatever the call site does.
+>
+> That node is unreachable, which is what makes this expected rather than a half-finished fix:
+> `position: absolute` at x −13700 / y −12689, `tabIndex: -1`, and Tab from the generated input
+> goes straight to `#clear` `[verified 2026-09-12 in a browser, identical on /ndhr/ and
+> /neighborhood-reports/]`. `scripts/site-characterization.mjs` still counts it, because that
+> harness walks the DOM rather than the accessibility tree — `controls.noAccessibleName` reads 1
+> on every page carrying a picker, in both committed baselines, by design.
+>
+> **axe was NOT re-run for this note.** What was measured is name resolution and reachability, not
+> what axe 4.13.0 reports; whether the `label` violation on `#flex_search` survives the fix is
+> open. Do not read this as closing the finding.
+
 ### 15.9 The combobox fix trades one axe *violation* for one axe *incomplete* (not a defect)
 
 With `aria-controls` set, axe 4.13.0 parks `aria-valid-attr-value` [critical] in *incomplete* with
