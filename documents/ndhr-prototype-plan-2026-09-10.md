@@ -364,14 +364,17 @@ until then the partial's only check is that it parses, which the same build show
 | 7. Renderers and geography labelling | **DONE 2026-09-12** — ten modules in `assets/js/ndhr-report/`, plus the layout's script tags, the SCSS container rule, the lint block and one smoke entry. **`chart.js` is not the rename pass this task predicted** and Arquero left the page; see the as-built section | `npm run lint` exits 0 with an injected undefined name exiting 1 and the restore returning to 0; isolated `development` build exits 0 with all **295** report pages carrying exactly ten `ndhr-report` scripts plus `normalize.js` and zero carrying arquero; `npm run smoke` **34 pages clean** including `ndhr/midtown/housing/`. Browser on a `dev_stage` server over 5 page kinds: HTTP 200 and 0 console errors on 5 of 5, 59 named polygons, a click rewriting the address bar and rebuilding all 6 cards with 0 pageerrors, and an SVG chart named per indicator. The CD4/CD5/CD6 sidebar-vs-PUMA crossing is measured page by page. **Tab-order membership is NOT established** — only programmatic focus | `eae618a844` |
 | 8. Strategies column | **DONE 2026-09-12** — the strategy cell inside `.card-header` and outside the `<button>`, the description in the expanded panel, the phrase in the print rendition. No contact affordance, per DECIDED-9. The row-height cost was measured and **accepted by the user, 2026-09-12**; see the as-built section | Browser on a `dev_stage` server: `/ndhr/midtown/housing/` renders 6 headers and 6 strategy cells, **0 inside a `<button>`**, 0 empty, 0 console errors, and the accessibility tree shows each button's name ending at the tertile sentence with the strategy as a sibling text node. 5 of 6 panels carry a description block and evictions (1128) does not, which is its explicit YAML null. Print-emulated `document.body.innerText` with all six panels expanded carries **6 phrases and 0 descriptions**. Computed style: `border-left: 1px solid rgb(222,226,230)` and no top border at 1280px, the reverse at 500px, with the cell beside the button at 1280 and 55px beneath it at 500. `npm run lint` exits 0, `npm run smoke` **34 pages clean**, `npm run docs-check` exits 0 | `c2209d3f63` |
 | 9. Guardrails | **DONE 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines. The Pagefind item closed **without a re-capture**: the section was taken out of the index instead, so the committed baseline still describes the site. Four `absent: true` controls now guard that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
-| 10. District typeahead | **not started** — never scoped; added 2026-09-12 at the user's instruction after the NR/NDHR divergence audit. The cheap half, independently shippable | — | — |
+| 10. District typeahead | **DONE 2026-09-12** — two partials (`ndhr-district-picker.html` + `-js.html`) on the landing page and the five category indexes; the 59 district indexes were out of scope and did not get one. Searches `CD_name` and `borough`, with **no ZIP search**, which the partial says on the page rather than leaving implied | Isolated `development` build exit 0, picker markup on exactly **6 of 360** NDHR pages with 0 duplicate `wireComboboxState` and 0 NR partials; browser on `dev_stage`, both page kinds: HTTP 200 and **0 console errors**, `role="combobox"` + `aria-labelledby` on the generated input, `communityDistricts` 59, "bedford" → 2 rows, "Bronx" → all 12, "11216" and "zzqqxx" → none, Escape dismisses and `aria-expanded` returns false, and a selection lands on the right page from both kinds. `npm run lint` 0, `npm run docs-check` 0, `npm run smoke` 38 clean. `characterize:site` moved 5 fields on those 6 pages — the diff was read before re-baselining, and `controls.noAccessibleName` 0 → 1 is diagnosed in the as-built section, not absorbed | `9411011f73`, `1952ff919b` |
 | 11. CD picker map | **not started** — same audit. On `geography/CD.topo.json` per the user, which is 74% smaller than the geojson `map.js` fetches today | — | — |
 
-**Status as of 2026-09-12:** Tasks 1 through 9 done on `feature-NDHR-prototype`. **Tasks 10 and
-11 are new**, added this date at the user's instruction: the district typeahead and the CD picker
-map, neither ever scoped by this plan. Nothing is blocked.
+**Status as of 2026-09-12:** Tasks 1 through 10 done on `feature-NDHR-prototype`. **Task 11 is
+the only one open** — the CD picker map, added this date at the user's instruction alongside
+Task 10 after the NR/NDHR divergence audit, and never scoped by this plan before that. Nothing
+is blocked.
 
-Next command: **Task 10**, the cheaper of the two new ones, which needs no new geometry.
+Next command: **Task 11**, the CD picker map on `geography/CD.topo.json`. It is the expensive
+half: a new `ndhr-leaflet.html`, a `lib-topojson.html` partial, and new geometry — where Task 10
+needed none of those.
 
 **This branch lands AFTER the NR retirement, per the user 2026-09-12 — do not read its diff
 against `production` as its own work.** `production` still carries all 252 hand-written NR content
@@ -1678,6 +1681,71 @@ to the right rows and the chosen link resolves to a real page — `npm run smoke
 typeahead that silently matches nothing, because matching nothing throws no console error. The
 NDHR characterization harness does not cover these two page kinds; extending it is optional here
 and is the cheaper alternative to a bespoke test.
+
+### Task 10 as built
+
+**Two partials, not two copies.** `themes/dohmh/layouts/partials/ndhr-district-picker.html` is
+markup only — label, search box, Clear button, and one sentence saying what is searchable.
+`themes/dohmh/layouts/partials/ndhr-district-picker-js.html` loads flexdatalist and wires it, and
+goes in the caller's `js_bot` block beside `lib-cdlist.html`. Each caller defines
+`ndhrPickerDestination()`: `''` on the landing page, the category slug on a category index. That
+is the same split `nr-neighborhood-picker.html` / `-js.html` uses, and for the same reason — the
+destination is the one thing the two callers disagree on.
+
+**Three departures from the NR original, each deliberate.**
+
+- **No heading in the partial.** The NR one carries `Choose Neighborhood` because its two callers
+  had drifted to two different introductions. Both NDHR callers already render one identical
+  `Choose a community district` heading above their district list, so the picker sits under it.
+- **The combobox ARIA work is included, not copied.** `nr-neighborhood-picker-js.html` holds its
+  own inline `wireComboboxState`; `partials/flexdatalist-combobox-js.html` is the same function,
+  already shared by `de-text-search`, `aqe.js` and `hvi.js` and deriving its results-list id from
+  the input rather than hardcoding `flex_search`. A sixth copy was not worth writing. The two must
+  never load on one page — two declarations of one name in the shared classic-script scope is a
+  `SyntaxError`.
+- **`searchIn` is `["CD_name", "borough"]`.** A swap for the NR original's
+  `["UHF_name", "Zipcodes"]`, not an addition: `cdlist.json` has no ZIP field, per this plan's
+  Task 2. `borough` earns its place because district names do not carry one and five districts are
+  called `Community Board 3`.
+
+**The ZIP gap is stated rather than implied, per this task's own instruction.** The placeholder
+reads `Search district or borough name`, and the partial renders one line under the box:
+"Community districts are not based on ZIP codes, so this searches district and borough names only.
+The full list is below." Typing `11216` returns flexdatalist's own "No results found", so a reader
+who tries it is told, not left guessing.
+
+**`id="flex_search"` is the site-wide convention and is load-bearing.** flexdatalist derives its
+wrapper class from the authored id, and `assets/scss/__portal-custom.scss:1281-1286` styles the
+placeholder through `.flex_search-flexdatalist`. All four pre-existing call sites use it and no
+page carries two.
+
+**Six pages, not eight.** The landing page and the five category indexes. The 59 district indexes
+were not in this task's scope and did not get one.
+
+**Verification.** Isolated `development` build exit 0; the picker markup on exactly **6 of 360**
+NDHR pages, `cdlist-data` and the two flexdatalist assets on the same 6, **0** pages with a
+duplicate `wireComboboxState` and **0** loading an NR partial; the five category pages each
+render their own slug in `ndhrPickerDestination()`. Browser on a `dev_stage` server, both page
+kinds: HTTP 200 and **0 console errors**; the generated input carries `role="combobox"` and
+`aria-labelledby="ndhr-search-label"`; `communityDistricts` 59; `bedford` narrows to 2 rows,
+`Bronx` to all 12 Bronx districts, `11216` and `zzqqxx` to none; Escape dismisses the list and
+`aria-expanded` returns to `false`; selecting a row lands on
+`/ndhr/kingsbridge_heights_and_bedford/` from the landing page and
+`.../housing/` from the category page, each rendering the expected `h1`. `npm run lint` 0,
+`npm run docs-check` 0, `npm run smoke` 38 pages clean.
+
+**One characterization field moved for a reason worth recording: `controls.noAccessibleName`
+0 -> 1 on all six pages.** flexdatalist re-points the authored input's `<label for>` at the
+generated one (`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:403`), leaving the
+authored `#flex_search` unlabelled; `site-characterization.mjs` walks the DOM rather than the
+accessibility tree, so it counts it. **That node is unreachable** — `position: absolute` at
+x -13700, y -12689, `tabIndex -1`, and Tab from the generated input goes straight to `#clear`
+`[verified 2026-09-12]`. The same is true on `/neighborhood-reports/`, whose committed baseline
+already records `noAccessibleName: 1`, so this is the shared flexdatalist pattern arriving on six
+more pages rather than a new defect. The finding is written into
+`ndhr-district-picker-js.html`'s own comment so the next reader does not re-diagnose it. Both
+committed site-characterization baselines were re-captured after reading the `--check` diff, not
+instead of it.
 
 ---
 
