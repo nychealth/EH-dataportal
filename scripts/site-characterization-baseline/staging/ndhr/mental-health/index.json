@@ -4,11 +4,14 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "js/cdlist-data.js",
             "js/main.js",
             "js/site.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css",
+            "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js",
             "node_modules/jquery/dist/jquery.min.js",
             "node_modules/popper.js/dist/umd/popper.min.js",
             "pagefind/pagefind-ui.css",
@@ -17,7 +20,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 8,
+        "assetsWithIntegrity": 11,
         "headingLevels": [
             1,
             2,
@@ -71,11 +74,11 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 5,
-            "input": 1,
+            "button": 6,
+            "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 0
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,

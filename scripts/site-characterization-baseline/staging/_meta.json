@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-09-12T15:20:01.589Z",
-    "gitHead": "df4823f756c3cce400ea9d38029238d44b98191e",
+    "capturedAt": "2026-09-12T23:45:34.683Z",
+    "gitHead": "893e9c8e768d8d436befe79ec76588b8c8a281de",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "3a26d038eb5e642963cc98279c416a52f3626711",
         "date": "2026-09-11T17:12:13Z",
-        "fetchedAt": "2026-09-12T15:14:29.015Z"
+        "fetchedAt": "2026-09-12T23:40:14.755Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,7 +17,9 @@
     "prefix": "/dev-stage/",
     "mode": "all",
     "pages": 1285,
-    "arbitrated": [],
+    "arbitrated": [
+        "ndhr/woodside_and_sunnyside/housing/"
+    ],
     "cleared": [],
     "capped": false,
     "viewport": {
