@@ -2506,3 +2506,55 @@ deleting 39 MB.
 than reading `.Site.Params.data_branch`, so the neighborhood-overlap tool draws production geometry
 on every environment, staging included. Whether all four fetches fire on page load was not
 measured — the per-fetch figures above hold either way.
+
+
+---
+
+## 18. The NR report map's viewport leaves most neighborhoods unclickable (added 2026-09-13)
+
+Found while reviewing the NDHR prototype, which forked its report page from this one. **Filed
+here rather than fixed there on the user's instruction 2026-09-13**: the NDHR half is fixed on
+`feature-NDHR-prototype`; this is the Neighborhood Reports half, which is not that branch's
+feature.
+
+`assets/js/nr-report/map.js` flies the map to the selected neighborhood's bounds, on first paint
+and again on every in-place switch. The map is the report page's only in-place neighborhood
+switcher and its polygons carry `role="button"`, so what a pointer can reach on it is what a
+pointer can reach in the page's navigation.
+
+**Measured on the NDHR fork, which had the identical code:** an un-forced click could reach
+**9 of 59** polygons at the zoom the page left itself, against **55 of 59** with the same map
+fitted to every polygon. A click event dispatched directly on the same node navigated correctly
+in both arms, so the handler is not the problem — the pointer cannot reach the polygon. The same
+measurement on **this** page returns **9 of 45** `[verified 2026-09-13]`.
+
+After the NDHR fix, the two arms were re-measured on one page, run A -> B -> A so ordering
+cannot explain the result, with the old fly-to re-applied by hand as arm B:
+
+| arm | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — fitted to all | 9.58 | 57 of 59 |
+| B — fly-to re-applied | 13.78 | **5 of 59** |
+| A — refitted | 9.58 | 56 of 59 |
+
+`[verified 2026-09-13: `/ndhr/midtown/climate-and-active-design/` against a `dev_prod` server,
+Playwright actionability check as the reachability test, two runs returning identical counts]`
+
+**The keyboard path is unaffected** — Tab reaches the polygons and Enter switches the report.
+The defect is pointer-only, which is the unusual direction and is why an accessibility pass did
+not surface it.
+
+**The precedent is already in this repo, twice.** `themes/dohmh/layouts/partials/ndhr-leaflet.html`
+declined the fly-to on 2026-09-12 for this reason and carries the longer rationale;
+`assets/js/ndhr-report/map.js` followed on 2026-09-13. The shape of that fix: drop the `zoom`
+argument from `selectLayer` and its call sites, then `fitBounds` on the whole layer once the
+geometry lands, with `zoomSnap = 0` so `fitBounds` does not round down to a whole zoom level.
+
+**`themes/dohmh/layouts/partials/nr-leaflet.html` is NOT in scope and should keep its fly-to.**
+It is the picker map on the topic index and landing page, its polygons answer no key, and the
+42-neighborhood list beside it carries the navigation. That distinction is the one the NDHR
+partial's comment records; do not sweep both on a grep for `flyToBounds`.
+
+**Not measured:** whether the NR page's container is the same width as NDHR's, which sets how
+much of the city a given zoom shows. The 9-of-45 reading was taken on the NR page itself, so the
+finding holds regardless, but a fix should re-measure rather than assume 57-of-59 transfers.

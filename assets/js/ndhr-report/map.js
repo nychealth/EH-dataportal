@@ -62,19 +62,27 @@ const resetHighlight = e => {
 };
 
 
-// Applies the selected style to a layer, optionally flying the map to it
-const selectLayer = (layer, zoom) => {
+// Applies the selected style to a layer. Styling ONLY — no fly-to, which this function
+// used to do for both its callers and which made most of the city unclickable.
+//
+// This map is the page's sole district selector (see the header comment in global.js), so
+// every polygon has to stay reachable by pointer. Zoomed to one district the other 58 sit
+// outside a 324x450 viewport: as the page left it, an un-forced click could reach 9 of 59
+// polygons at zoom 13, against 55 of 59 with the same map fitted to all of them at zoom 9.
+// A click event dispatched directly on the same node navigated correctly in both arms, so
+// the handler was never the problem — the pointer could not reach the polygon
+// `[verified 2026-09-13: two arms on one page, run A -> B -> A so ordering cannot explain it]`.
+//
+// ndhr-leaflet.html reached the same conclusion for the picker map on 2026-09-12 and carries
+// the longer version of this reasoning. nr-leaflet.html still flies, and can afford to: its
+// polygons answer no key and its neighborhood index offers the navigation elsewhere
+const selectLayer = layer => {
 
     // Clear previous selection style first
     if (cdLayer) cdLayer.resetStyle();
 
     layer.setStyle(highlightStyle);
     layer.bringToFront();
-
-    // Optionally animate map to selection bounds for click-driven navigation
-    if (zoom && leafletMap) {
-        leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5 });
-    }
 
 };
 
@@ -145,7 +153,7 @@ const selectDistrict = (layer, source) => {
     const geocode = layer.feature.properties.GEOCODE;
     const name = featureDisplayName(layer.feature);
 
-    selectLayer(layer, true);
+    selectLayer(layer);
 
     // Ignore selection-driven render until the first row build has landed
     if (dataReady) {
@@ -284,6 +292,17 @@ const initLeafletMap = () => {
 
             // addTo is synchronous, so every polygon has its <path> by here
             nameMapPolygons();
+
+            // Fit the whole city rather than keeping the fixed zoom-10 view above, which is
+            // centered on lower Manhattan and cuts off the outer boroughs in this column's
+            // width. With the fly-to gone this is the framing every district is selected
+            // from, so it has to hold all 59.
+            //
+            // zoomSnap has to be 0: the default of 1 makes fitBounds round DOWN to a whole
+            // zoom level, which on the NR picker left the city spanning 59% of its box
+            // `[measured 2026-08-09]`. Same padding as ndhr-leaflet.html, for the same reason
+            leafletMap.options.zoomSnap = 0;
+            leafletMap.fitBounds(cdLayer.getBounds(), { padding: [10, 10] });
 
             mapReady = true;
             tryInitialRender();
