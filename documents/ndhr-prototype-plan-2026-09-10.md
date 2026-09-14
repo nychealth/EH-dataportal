@@ -16,7 +16,10 @@ yet, which is exactly what that check would fail on.
 ## 1. Decisions taken
 
 All four decisions that were OPEN were taken by the user on 2026-09-11 and are recorded as
-DECIDED-6 through DECIDED-9. **Nothing in this plan is blocked on a decision any more.**
+DECIDED-6 through DECIDED-9. Nothing in Tasks 1-11 is blocked on a decision.
+
+**One decision re-opened on 2026-09-13**: OPEN-11, below, on which text the indicator
+description column should carry. It blocks Task 15 and nothing else.
 
 ### DECIDED-1 — Prototype what exists; drop what does not
 
@@ -237,6 +240,42 @@ CD5+CD6 `[verified 2026-09-11: sidebar groups measured from the five indicators 
 built", PUMA groups read from puma2020_to_cd.csv]`. So on Manhattan CD5's page the sidebar matches
 CD4's and the indicator rows match CD6's. **Task 7 must label both, not only the PUMA rows** — a
 reader who notices one shared value and not the other will conclude the page is broken.
+
+
+### OPEN-11 — Which text is the indicator description
+
+**Added 2026-09-13 by the review in §4. It is the only OPEN entry in this section** — Task 12 and
+Task 14 also want the user's word before they start, but on scope and placement rather than on a
+question this section has to settle first.
+
+The source document's indicator table has two columns, `Indicator` and `Description`, and its
+26 descriptions are written in built-environment terms for this tool's audience. The page renders
+EHDP-data's `IndicatorDescription` instead — `assets/js/report-data/normalize.js:405`.
+
+Walking distance to a park, as the page renders it:
+
+> The percentage of the population who live within walking distance to a park: a quarter-mile or
+> less to entrances of smaller sites…
+
+The same indicator, as the source document writes it:
+
+> Nearby green spaces make it easier for residents to walk daily, which can lower risks of
+> obesity chronic diseases such as diabetes, heart disease, anxiety, and depression.
+
+Both are correct. The first is methodological, the second is audience-facing.
+
+**The question is whether this was decided or never surfaced.** No decision entry in §1 names it,
+and `indicator_description` appears in this plan only as a field of the NR payload shape and of
+`normalize.js`'s output — never as a choice of source `[verified 2026-09-13: `grep -n -i
+'IndicatorDescription\|indicator_description\|description key'` over this file returns 2 hits,
+both in field lists at :298 and :931]`. Only whoever authored the content YAML can say.
+
+**If the answer is "use the document's text", the mechanism already exists.** The YAML carries
+site-owned fields today — `indicator_short_name`, `strategy`, `strategy_description`, and nothing
+else besides `geotype` and `MeasureID`/`MeasureName` `[verified 2026-09-13: union of second-level
+keys across `data/globals/NDHR_content/*.yml`]`. A `description` key is the same mechanism, read
+in `cards.js` beside `indicator_short_name`. That is Task 15.
+
 ---
 
 ## 2. Findings this plan rests on
@@ -366,12 +405,28 @@ until then the partial's only check is that it parses, which the same build show
 | 9. Guardrails | **DONE 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines. The Pagefind item closed **without a re-capture**: the section was taken out of the index instead, so the committed baseline still describes the site. Four `absent: true` controls now guard that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
 | 10. District typeahead | **DONE 2026-09-12** — two partials (`ndhr-district-picker.html` + `-js.html`) on the landing page and the five category indexes; the 59 district indexes were out of scope and did not get one. Searches `CD_name` and `borough`, with **no ZIP search**, which the partial says on the page rather than leaving implied | Isolated `development` build exit 0, picker markup on exactly **6 of 360** NDHR pages with 0 duplicate `wireComboboxState` and 0 NR partials; browser on `dev_stage`, both page kinds: HTTP 200 and **0 console errors**, `role="combobox"` + `aria-labelledby` on the generated input, `communityDistricts` 59, "bedford" → 2 rows, "Bronx" → all 12, "11216" and "zzqqxx" → none, Escape dismisses and `aria-expanded` returns false, and a selection lands on the right page from both kinds. `npm run lint` 0, `npm run docs-check` 0, `npm run smoke` 38 clean. `characterize:site` moved 5 fields on those 6 pages — the diff was read before re-baselining, and `controls.noAccessibleName` 0 → 1 is diagnosed in the as-built section, not absorbed | `9411011f73`, `1952ff919b` |
 | 11. CD picker map | **DONE 2026-09-12** — `themes/dohmh/layouts/partials/ndhr-leaflet.html` on geography/CD.topo.json, plus `themes/dohmh/layouts/partials/lib-topojson.html`, on all three non-report layouts. Two things this row does not leave implied: its polygons are keyboard stops on the 59 district indexes and deliberately **not** on the 6 picker pages, and it **does not fly to the located district** where `nr-leaflet.html` does. Both are in the as-built section | Isolated `development` build exit 0; the map on exactly **65 of 360** NDHR pages — 1 landing, 5 category indexes, 59 district indexes — each with one CD.topo.json reference and one topojson-client script, and **0 on all 295 report pages**, so the `map.js` name collision stays unreachable. Browser on `dev_stage` over 4 page kinds: HTTP 200 and **0 console errors** on 4 of 4; 59 polygons each carrying `role="button"` and a district name on all three map-bearing kinds; on the 6 picker pages the container and **65 of 65** candidate nodes carry `tabindex="-1"`, on a district index **0 of 65** do and a real Tab sweep put focus on 7 polygons in 8 stops — **tab-order membership measured rather than inferred, which Task 7 explicitly could not claim**. Exactly one polygon carries the selected style on a district index and none on the picker pages. Un-forced clicks land on `/ndhr/midtown/`, `/ndhr/midtown/housing/` and `/ndhr/central_harlem/` from the three kinds, and Enter on a focused polygon does the same. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` **38 clean**. `characterize:site` moved 4 fields on those 65 pages and nothing else; the diff was read before re-baselining | `77932ab348`, `b770e2fb1a` |
+| 12. Report map viewport (review) | **OPEN** — added 2026-09-13. One scope decision first: whether the identical NR defect is in scope | none yet. The finding's own proof is a two-arm zoom measurement, 9 of 59 against 55 of 59, with a dispatched-click control ruling out the handler | — |
+| 13. Tertile sentence geography (review) | **OPEN** — added 2026-09-13. DECIDED-2's obligation, unmet on 5 of 18 rows | none yet | — |
+| 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
+| 15. Indicator descriptions (review) | **BLOCKED on OPEN-11** — added 2026-09-13. May close as "decided, not built" | none yet | — |
+| 16. Four low-symptom defects (review) | **OPEN** — added 2026-09-13. 16a is a correctness bug with a session-permanent consequence; 16d is comment-only | none yet | — |
 
-**Status as of 2026-09-12:** **All eleven tasks are done on `feature-NDHR-prototype`.** Nothing
-in this plan is open and nothing is blocked.
+**Status as of 2026-09-13:** **Tasks 1-11 are done on `feature-NDHR-prototype`.** A review on
+2026-09-13 added **Tasks 12-16, all open**, and re-opened one decision as **OPEN-11**. §4 carries
+the review's own summary, including what it checked and did not find.
 
-Next command: none from this plan. Two things it names that are deliberately NOT in it, and that
-a later session should not read as oversights:
+**An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
+That was true of Tasks 1-11 and is no longer true of the plan.** A session resuming here starts
+at §4, not at the task list above it.
+
+**Next command: none — Task 12 opens with a question rather than an edit.** It must not be
+started before the user decides whether the identical defect on the NR report page is in this
+branch's scope; the three options and what each costs are in the task. Task 14 has a placement
+question of the same kind, and Task 15 is blocked outright on OPEN-11. Task 13 and Task 16 are
+the two that can be picked up without asking anything.
+
+Two things this plan names that are deliberately NOT in it, and that a later session should not
+read as oversights:
 
 - **Moving `assets/js/ndhr-report/map.js` onto the topology — DECIDED 2026-09-12: deferred by
   the user as a potential future enhancement.** Task 11 raised it, built the topojson path, and
@@ -1931,3 +1986,310 @@ that `scripts/ndhr-characterization.mjs` baselines, so it carries its own verifi
 **Put to the user 2026-09-12 with the three options and the measurement; deferred as a potential
 future enhancement.** The status block above carries the edit surface and the re-verification it
 would re-open, so a later session does not have to re-derive either.
+
+
+---
+
+## 4. Review findings, 2026-09-13
+
+A review of the whole feature against its two source documents and the annotated screenshot, run
+at `cd1bd9329f` with all six committed guardrails passing (`lint`, `docs-check`,
+`ndhr:availability check`, `ndhr:cdlist check`, `report-data:parity all`,
+`characterize:ndhr check` — all exit 0). Runtime findings were measured against a `development`
+server on :8080, production data branch.
+
+Tasks 12-16 below are its output, and the two halves of their evidence have different provenance.
+**Every `file:line`, absence sweep and control in them was re-run at `cd1bd9329f` while these
+tasks were written**, not carried across from the review's own text — one citation moved
+(`tertiles.js` carries three strings, not the two a "than most" pattern finds) and the docx
+extraction was redone, returning the same 26 `w:del` / 38 `w:ins`. **The browser measurements were
+not re-run**: the zoom two-arm table in Task 12, the rendered card header in Task 13, and the
+keyboard sweeps are the review session's own, on the same day and the same commit. A session
+acting on Task 12 re-runs that measurement anyway, since it is the before-arm of the fix's proof.
+
+**What the review did NOT find, recorded so a later session does not re-derive it.** `CD.geojson`
+is 59 features, `GEOCODE` 0 absent, joining `cdlist.json` 59/59 with no orphan polygons, so the
+`filter: GEOCODE != 0` in `map.js` is dead but harmless and there is no unknown-name fallback
+path. No duplicate ids in any built NDHR page; `id="ndhr-accordion"` appears twice in
+`ndhr-report.html` but in the two branches of one `if`. The four repeated "community-based peer
+support services" strategies are the source document's own repetition, not a mis-mapping. There
+is no sanitization on `indicator_description` and its siblings, which matches
+`nr-report/cards.js` exactly — inherited, not a fork regression.
+
+**Content fidelity checks out where it could be measured.** All 18 CD-renderable indicators from
+the 28-row availability baseline are in the content YAML with none omitted; the category
+assignment matches the authoritative "Text of…" document exactly, including its re-filing of food
+access from Climate into Neighborhood Conditions; all 18 strategies trace to a source document
+row. Mental Health renders its stated empty state server-side with map, sidebar and QR intact,
+and the Manhattan double-merge DECIDED-10 flagged is handled and labelled.
+
+**The three remaining gaps between the prototype and the documents are all recorded as decisions,
+not defects**: the contact affordance (DECIDED-9), the three null demographic rows — population,
+over-65, under-18, which EHDP-data publishes at no CD-level indicator, already a data-team ask —
+and the indicator descriptions (OPEN-11 / Task 15). The 10 dropped indicators each have a DECIDED
+entry with a re-runnable check behind it.
+
+
+## Task 12: The report map's viewport leaves most districts unclickable
+
+**`global.js:26` calls the map "sole community district selector"** `[verified 2026-09-13]`, so
+what a pointer can reach on it is what a pointer can reach in the whole page's navigation.
+
+On first paint `data.js:114` calls `selectLayer(layer, true)`, and `map.js:71-77` flies the map to
+that one layer's bounds when the second argument is truthy. `map.js:148` does it again on every
+in-place district switch, so the map re-zooms after each selection `[all verified 2026-09-13:
+lines read at `cd1bd9329f`]`.
+
+Two arms on one page, one variable, run A -> B -> A so ordering cannot explain the result:
+
+| | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — as the page leaves it | 13.00 | **9 of 59** |
+| B — same map fitted to all 59 | 9.00 | 55 of 59 |
+
+An un-forced click on Central Harlem fails in arm A and succeeds in arm B. **A directly dispatched
+click event navigates correctly in both**, which is the control that rules out the handler: it is
+the viewport, not the listener.
+
+`[verified 2026-09-13: two-arm measurement on `/ndhr/midtown/climate-and-active-design/` against a
+`development` server on :8080, Playwright actionability check as the reachability test]`
+
+**This is the same mechanism Task 11 diagnosed and deliberately left out of `ndhr-leaflet.html`.**
+That task's as-built section records it as a finding about the picker map; the report map still
+has it.
+
+**It is inherited, not introduced.** The identical measurement on NR's report page returns 9 of 45
+`[verified 2026-09-13]`. Fixing NDHR alone leaves `/neighborhood-reports/` as it is.
+
+**The keyboard path is unaffected** — Tab reached 6 polygons in under 60 stops and Enter switched
+the report correctly `[verified 2026-09-13]`. The defect is pointer-only, which is the unusual
+direction and is why a keyboard-first accessibility pass did not surface it.
+
+**Files:**
+- Edit `assets/js/ndhr-report/data.js:114` and `assets/js/ndhr-report/map.js:148` — the two
+  `selectLayer(layer, true)` call sites
+- Possibly edit `assets/js/ndhr-report/map.js:71-77` — the `if (zoom && leafletMap)` block, if the
+  fly-to stops having any caller
+- `assets/js/nr-report/map.js` — only if the NR half is in scope; see below
+
+**Interfaces:**
+- Consumes: nothing new.
+- Produces: a map whose selected district is styled but which stays fitted to all 59, matching what
+  `ndhr-leaflet.html` already does on the picker pages.
+
+**One scope decision this task must not take silently.** The same defect is on the NR report page,
+which is not this branch's feature. Three options, and the user picks: fix NDHR only and file the
+NR half; fix both here, which widens this branch's diff into NR code and re-opens NR's own
+verification; or fix NDHR here and take NR as a follow-up commit on the same branch so one
+site-characterization re-capture covers both.
+
+**Verification rung:** browser, and nothing below it will do — this is a claim about pointer
+hit-testing. Re-run the two-arm measurement above and expect arm A to read 55-of-59 after the fix,
+with the selected-style assertion still passing so the fix did not simply stop selecting.
+`npm run characterize:ndhr check` must also be re-run: the harness does not read zoom, but it does
+read the report's rendered rows, and a broken selection path would move them.
+
+
+## Task 13: The tertile sentence names the wrong geography on five rows
+
+**DECIDED-2's obligation, in Task 7's own words: "The page must say which geography each value came
+from."** Two of the three renditions in a panel do. The tertile sentence does not.
+
+`assets/js/ndhr-report/tertiles.js:80`, `:86` and `:92` hardcode `' than most community districts'`
+and `' of community districts'`, and the file takes no geotype at all `[verified 2026-09-13: a
+case-sensitive count of geotype/geoType/GeoType over tertiles.js returns 0; control — the same
+count over chart.js in the same directory returns hits, so the pattern is not the reason]`. Five
+of the eighteen rows are not ranked among community districts:
+
+| row | ranked over | page says |
+|---|---|---|
+| Air conditioning (PUMA2020) | 35 PUMAs | "than most community districts" |
+| Homes with 3+ problems (PUMA2020) | 35 PUMAs | "than most community districts" |
+| Homes with cockroaches (PUMA2020) | 52 PUMAs | "than most community districts" |
+| Heat vulnerability (CDTA2020) | 59 CDTAs | "than most community districts" |
+| Public bathrooms (CDTA2020) | 59 CDTAs | "than most community districts" |
+
+On `/ndhr/midtown/climate-and-active-design/` one card header reads, in sequence:
+`Household air conditioning, 2023 | 95.6^^ | Percent (with AC) | PUMA area | Higher | Higher than
+most community districts`. **The geography tag and the comparison claim contradict each other
+inside one row**, and the screen-reader copy is the plain string `"Higher than most community
+districts"`. The same phrase reaches the print rendition.
+
+`[verified 2026-09-13: rendered card header read from a `development` server on :8080]`
+
+**The fix already exists one file over.** `chart.js:23-28` declares `GEOTYPE_AREA_LABEL`, mapping
+`CD` / `CDTA2020` / `PUMA2020` to "NYC community districts" / "…community district tabulation
+areas" / "…public use microdata areas", and the chart's accessible name reads correctly as "across
+all NYC public use microdata areas". The geography note under the panel is correct too.
+`tertiles.js` is the one rendition that takes no parameter.
+
+**Files:**
+- Edit `assets/js/ndhr-report/tertiles.js:66-97` — `getTertileSentenceParts`, to take a geotype
+- Edit its callers in `assets/js/ndhr-report/cards.js` to pass `row.geotype`
+- Either read `GEOTYPE_AREA_LABEL` from `chart.js` or move it to `global.js` — classic scripts in
+  one scope, so a second copy is a divergence risk, not a syntax error
+
+**Interfaces:**
+- Consumes: `row.geotype`, which `normalize.js` already emits and `cards.js` already renders as the
+  geography tag.
+- Produces: three tertile renditions that agree with the chart title and the geography note.
+
+**Do NOT change the middle-tertile string without reading `:86`** — it is `' of community
+districts'`, a different shape from the other two, so a blind find-and-replace on "than most"
+misses it.
+
+**Verification rung:** browser. Read the sr-only string, the expanded panel and the print-emulated
+`document.body.innerText` on a page carrying all three geotypes —
+`/ndhr/midtown/climate-and-active-design/` is the only category with CD, CDTA2020 and PUMA2020 rows
+together, which is why `scripts/ndhr-characterization.mjs` already uses it as a target.
+`npm run characterize:ndhr check` will go red on that target and the diff should be read before
+re-baselining.
+
+
+## Task 14: Two caveats the source attaches to the strategy column are absent
+
+`documents/NDHR/Text of Neighborhood Development Health Report Tool for Revi.docx`, read with
+tracked changes accepted, marks both strategy-table column headers with an asterisk and footnotes
+them:
+
+- `Strategy*` — "These examples serve as ideas to address the indicators of concern, they are not
+  comprehensive or prescriptive"
+- `Description*` — "Strategies may differ if you are a city agency, community organization, or
+  private developer. Please consult with the Health Department for more details."
+
+`[verified 2026-09-13: document XML with every w:del element dropped — 26 w:del and 38 w:ins runs,
+matching the counts CLAUDE.md records; the two strings are at body paragraphs 109 and 111,
+immediately under the `Strategy*` and `Description*` headers at 108 and 110]`
+
+Neither string appears anywhere in `themes/`, `data/globals/NDHR_content/`, `content/ndhr/` or
+`assets/js/` `[verified 2026-09-13: case-insensitive filename sweep on four distinct phrases from
+the two caveats, all zero; positive control — "Increase presence of parks", a strategy that does
+render, returns `data/globals/NDHR_content/climate_and_active_design.yml`]`.
+
+So the page renders "Increase presence of parks or green spaces" to a reader who may be a private
+developer, with no qualifier.
+
+**DECIDED-9 does not cover this.** Only the second sentence of the second caveat depends on the
+deferred contact route. "These examples serve as ideas… not comprehensive or prescriptive" is plain
+text with no dependency, and "consult with the Health Department for more details" can stand
+without a form.
+
+**Files:**
+- Edit `themes/dohmh/layouts/ndhr/ndhr-report.html` — a qualifier near the strategies column
+  heading, or above the accordion
+- Possibly edit `assets/js/ndhr-report/cards.js` if the text belongs in the expanded panel beside
+  `strategy_description` rather than in the layout
+
+**Interfaces:**
+- Consumes: nothing. Static prose, owned by this repo like `strategy` and `strategy_description`.
+- Produces: the disclosure the source document attaches to this column.
+
+**Placement is the open question, not the wording.** The source puts them on column headers; the
+page has no strategies column *header* — Task 8 put the strategy inside `.card-header` and its
+description in the panel. So this needs a decision about where a per-column caveat goes when the
+column has become a per-row cell. Ask before building.
+
+**Verification rung:** browser, plus print. Both strings must reach `document.body.innerText` on
+screen and under print emulation — Task 8's own rung, and the reason it matters here is that
+`.print-only` and `d-print-none` are how that page carries its two renditions, so a caveat written
+into one is absent from the other. `npm run characterize:ndhr check` reads the strategies column's
+text, so it will go red on the two Housing targets by design.
+
+
+## Task 15: Indicator descriptions — BLOCKED on OPEN-11
+
+**Do not start this task until OPEN-11 is answered.** If the answer is that EHDP-data's
+`IndicatorDescription` is the intended text, this task is closed as "decided, not built" and the
+decision is recorded in §1 — which is the whole value of asking first.
+
+If the answer is that the source document's descriptions are wanted:
+
+**Files:**
+- Edit `data/globals/NDHR_content/*.yml` — add a `description` key per measure, from the source
+  document's second column
+- Edit `content/ndhr/_content.gotmpl` and `themes/dohmh/layouts/ndhr/ndhr-report.html` — carry it
+  into `NDHR_REPORT_CONFIG.measures` the way `indicator_short_name` and `strategy` already are
+- Edit `assets/js/ndhr-report/cards.js:416` — prefer the authored key, falling back to
+  `row.indicator_description`
+- Edit `scripts/ndhr-indicator-availability.mjs` — the content validator, so a `description` on an
+  unknown MeasureID fails `check` like every other field does
+
+**Interfaces:**
+- Consumes: the source document's `Description` column, 26 rows, of which 18 map to built rows.
+- Produces: an authored description per row, with EHDP-data's as the fallback for any row the
+  document does not cover.
+
+**Leave `normalize.js` alone.** It is shared with a future NR migration and its
+`indicator_description` must keep meaning "what EHDP-data says". The override belongs in the NDHR
+renderer, not in the shared compute — that is DECIDED-5's line, and crossing it would make
+`npm run report-data:parity all` a test of NDHR's content instead of a test of the compute.
+
+**Verification rung:** browser for the rendered text, plus `npm run report-data:parity all`
+expecting an unchanged **37,044 comparisons, 0 mismatched** — which is the proof that the override
+stayed out of the shared module. `node scripts/ndhr-indicator-availability.mjs check` with one
+injected bad `description` row must exit 1.
+
+
+## Task 16: Four defects with no reader-visible symptom yet
+
+Grouped because each is a few lines and none needs a decision. Ordered by consequence.
+
+**16a — `normalize.js` caches rejected promises.** `assets/js/report-data/normalize.js:46` writes
+the promise into `reportDataFetchCache[url]` before it settles, and nothing ever deletes a key
+`[verified 2026-09-13: `:38` declares the cache, `:42` returns a hit, `:46` writes, `:52` returns;
+no delete anywhere in the file]`. So one transient failure on `metadata.json` is permanent for the
+session. The report page re-runs `buildRows` on every district switch, so every later switch
+resolves to the same rejection and `data.js:194` returns `{rows: [], series: {}}` from its catch
+each time. **Read from the code path, not reproduced in a browser** — reproducing it needs a forced
+network failure, which is this task's own first step.
+Fix: delete the key in a `.catch` before re-throwing, so the next call retries.
+
+**16b — `map.js:274` parses without checking the response.** It calls `res.json()` directly on the
+branch geojson fetch, where `normalize.js:48` throws a named `HTTP <status> from <url>` for the
+same class of fetch `[verified 2026-09-13]`. A 404 from a renamed EHDP-data file becomes a
+`SyntaxError` in the catch rather than a named HTTP failure — and a renamed data file is exactly
+what `smoke:env` exists to catch, so the diagnostic matters.
+
+**16c — `vegaEmbed(...)` has no rejection handler.** `chart.js:224` opens a `.then()` that closes at
+`:232` with no `.catch`, and the surrounding `try` cannot see an async rejection `[verified
+2026-09-13]`. Identical at `assets/js/nr-report/chart.js:200`, so this is inherited; the NR half is
+the same scope question Task 12 raises.
+
+**16d — `data.js:136-143`'s comment describes a function it is not attached to.** It documents a
+staleness guard keyed on district name and a re-render; `loadDistrictRows` at `:144-195` does
+neither — it builds rows and returns them. Both behaviours are in `report.js:163-182`, inside the
+`.then()` on `loadDistrictRows` `[verified 2026-09-13: both bodies read]`. The comment is accurate
+about the system and misfiled, which is the kind that survives review.
+
+**Also recorded, and deliberately NOT in this task:**
+
+- **`nbr_data_note` is computed and rendered by nothing.** `normalize.js:424` emits it; zero
+  references anywhere in `assets/js/` or `themes/` `[verified 2026-09-13; positive control —
+  `indicator_description`, a sibling field of the same object, returns 3 consumers]`. Real pages
+  show `N/A**` (Midtown, housing problems) and `95.6^^` (Midtown, air conditioning) with **no
+  legend anywhere on the page** — there is no footnote block in `ndhr-report.html` or
+  `nr-report.html` `[verified 2026-09-13: no template or module matches "coefficient of variation",
+  "suppressed due to" or "interpreteted"]`. The explanatory text is already in the row, one field
+  away. It is out of this task because rendering a footnote block is a layout decision with a print
+  rendition, not a four-line fix — and it is inherited from NR, where the markers also reach the
+  page.
+- **Sequential fetches in `buildRows`.** `normalize.js:351` awaits one data file per measure inside
+  the loop, so six indicators are six sequential round trips after the three parallel lookup files;
+  `data.js:180-182` then awaits `buildIndicatorSeries` per row the same way. No timing was
+  measured, so this is a shape observation and not a performance claim. Out of scope until someone
+  measures a page load.
+- **The CSV export carries no `strategy` column.** `app.js:16-29` lists twelve columns, all
+  inherited from NR `[verified 2026-09-13]`. So the field that most distinguishes NDHR from NR is
+  absent from its download. One line, but it changes an export format, so it wants the user's word
+  rather than a quiet addition.
+
+**Files:** `assets/js/report-data/normalize.js:46`, `assets/js/ndhr-report/map.js:274`,
+`assets/js/ndhr-report/chart.js:224`, `assets/js/ndhr-report/data.js:136-143`.
+
+**Interfaces:** none — all four are internal to modules Tasks 4 and 7 already built.
+
+**Verification rung:** `npm run lint` for 16d, which is comment-only; browser for 16a and 16b, each
+with a forced failure as its own positive control — block `metadata.json`, confirm the session is
+permanently broken before the fix and recovers after, and point the geojson URL at a 404 and read
+the error message. 16c needs a spec that makes `vegaEmbed` reject. A green
+`npm run characterize:ndhr check` proves none of the four changed the happy path.
