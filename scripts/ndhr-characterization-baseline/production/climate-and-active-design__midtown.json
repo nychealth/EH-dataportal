@@ -30,6 +30,11 @@
     "CDTA area",
     "PUMA area"
   ],
+  "tertileSentences": [
+    "In the middle of community districts",
+    "Lower than most community district tabulation areas",
+    "Higher than most public use microdata areas"
+  ],
   "emptyStateRendered": false,
   "emptyStateText": null,
   "expandedPanel": "ndhr-acc-1-c",

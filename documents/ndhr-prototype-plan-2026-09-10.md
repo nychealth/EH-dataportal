@@ -419,15 +419,25 @@ until then the partial's only check is that it parses, which the same build show
 | 10. District typeahead | **DONE 2026-09-12** — two partials (`ndhr-district-picker.html` + `-js.html`) on the landing page and the five category indexes; the 59 district indexes were out of scope and did not get one. Searches `CD_name` and `borough`, with **no ZIP search**, which the partial says on the page rather than leaving implied | Isolated `development` build exit 0, picker markup on exactly **6 of 360** NDHR pages with 0 duplicate `wireComboboxState` and 0 NR partials; browser on `dev_stage`, both page kinds: HTTP 200 and **0 console errors**, `role="combobox"` + `aria-labelledby` on the generated input, `communityDistricts` 59, "bedford" → 2 rows, "Bronx" → all 12, "11216" and "zzqqxx" → none, Escape dismisses and `aria-expanded` returns false, and a selection lands on the right page from both kinds. `npm run lint` 0, `npm run docs-check` 0, `npm run smoke` 38 clean. `characterize:site` moved 5 fields on those 6 pages — the diff was read before re-baselining, and `controls.noAccessibleName` 0 → 1 is diagnosed in the as-built section, not absorbed | `9411011f73`, `1952ff919b` |
 | 11. CD picker map | **DONE 2026-09-12** — `themes/dohmh/layouts/partials/ndhr-leaflet.html` on geography/CD.topo.json, plus `themes/dohmh/layouts/partials/lib-topojson.html`, on all three non-report layouts. Two things this row does not leave implied: its polygons are keyboard stops on the 59 district indexes and deliberately **not** on the 6 picker pages, and it **does not fly to the located district** where `nr-leaflet.html` does. Both are in the as-built section | Isolated `development` build exit 0; the map on exactly **65 of 360** NDHR pages — 1 landing, 5 category indexes, 59 district indexes — each with one CD.topo.json reference and one topojson-client script, and **0 on all 295 report pages**, so the `map.js` name collision stays unreachable. Browser on `dev_stage` over 4 page kinds: HTTP 200 and **0 console errors** on 4 of 4; 59 polygons each carrying `role="button"` and a district name on all three map-bearing kinds; on the 6 picker pages the container and **65 of 65** candidate nodes carry `tabindex="-1"`, on a district index **0 of 65** do and a real Tab sweep put focus on 7 polygons in 8 stops — **tab-order membership measured rather than inferred, which Task 7 explicitly could not claim**. Exactly one polygon carries the selected style on a district index and none on the picker pages. Un-forced clicks land on `/ndhr/midtown/`, `/ndhr/midtown/housing/` and `/ndhr/central_harlem/` from the three kinds, and Enter on a focused polygon does the same. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` **38 clean**. `characterize:site` moved 4 fields on those 65 pages and nothing else; the diff was read before re-baselining | `77932ab348`, `b770e2fb1a` |
 | 12. Report map viewport (review) | **DONE 2026-09-13** — the fly-to is gone from `selectLayer` and both its call sites, replaced by a `fitBounds` on the whole layer. **Scope decided by the user 2026-09-13: fix NDHR here, file the NR half** — it is `documents/site-wide-audit-2026-06-27.md` §18, not a task in this plan | Two arms on one page, one variable, A -> B -> A: **57 of 59** reachable at zoom 9.58, **5 of 59** with the removed fly-to re-applied by hand at zoom 13.78, **56 of 59** refitted — two runs, identical counts. An un-forced click on Central Harlem navigates, exactly 1 polygon still carries the selected style, 59 polygons named. `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check` and `npm run smoke` (38 pages) all exit 0 | `999d986758` |
-| 13. Tertile sentence geography (review) | **OPEN** — added 2026-09-13. DECIDED-2's obligation, unmet on 5 of 18 rows | none yet | — |
+| 13. Tertile sentence geography (review) | **DONE 2026-09-14** — `GEOTYPE_AREA_NOUN` and `areaNounFor` in `global.js`, the three sentence strings and both wrapper signatures in `tertiles.js`, three call sites in `cards.js`, and `chart.js` reading the shared map. **The task's prescribed proof did not work and the harness was extended instead** — `characterize:ndhr` captured `geotypeTags` and no sentence, so it passed green against the defect; a `tertileSentences` field plus its control now closes that. No NR half: every NR row is UHF42 | A -> B -> A on two report pages, one variable, arm B being the hardcoded string re-applied by hand: **1 of 9 rows misnaming, 4 of 9, 1 of 9**, the two A arms identical, and the print rendition going from all three geotype nouns present to 3 missing and back. The single row BAD in both arms has no rank and so no sentence, unchanged by this task. `tertiles.js` restored byte-identical after arm B. Both baselines re-captured at **44 insertions, 0 deletions** — nothing pre-existing moved — and the two branches still capture identically. `npm run lint` 0 with an injected undefined name exiting 1, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | *not yet committed* |
 | 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
 | 15. Indicator descriptions (review) | **DONE 2026-09-14** — the document's descriptions on 17 of 18 rows, evictions (1128) an explicit null falling back to EHDP-data's text. **It also took the card headline off the site-authored `indicator_short_name` and onto EHDP-data's `IndicatorName`**, which this task did not ask for and the user decided on 2026-09-13; the YAML keeps a validated copy for the category index alone | The two new content checks are proved to fire — a wrong `IndicatorName` and a removed `description` key each exit 1 naming their own cause, file restored byte-for-byte after each. Browser on a `dev_prod` server: all three climate cards carry the data repo name and the document description, EHDP-data's park text is gone with a positive control for that search, evictions still shows EHDP-data's text, and the category index renders three items with no blank name half. `npm run report-data:parity all` still exits 0 at **37,044 comparisons, 0 mismatched**, which is the proof the override stayed out of the shared module. `npm run lint`, `npm run docs-check` and `npm run ndhr:availability check` all exit 0. Both NDHR baselines re-captured, diff read first: every changed line a name or a name-derived chart field, zero outside that set | `f0242eb371` |
 | 16. Four low-symptom defects (review) | **OPEN** — added 2026-09-13. 16a is a correctness bug with a session-permanent consequence; 16d is comment-only | none yet | — |
 
-**Status as of 2026-09-14:** **Tasks 1-12 and 15 are done on `feature-NDHR-prototype`; Tasks 13,
-14 and 16 are open and none is blocked.** A review on 2026-09-13 added Tasks 12-16 and re-opened
-one decision; Task 12 and the decision were both closed that afternoon, and Task 15 the next
-morning. §4 carries the review's own summary, including what it checked and did not find.
+**Status as of 2026-09-14:** **Tasks 1-13 and 15 are done on `feature-NDHR-prototype`; Tasks 14
+and 16 are open and neither is blocked.** A review on 2026-09-13 added Tasks 12-16 and re-opened
+one decision; Task 12 and the decision were both closed that afternoon, Task 15 the next morning
+and Task 13 that afternoon. §4 carries the review's own summary, including what it checked and did
+not find.
+
+**Task 13's row is the one to re-check first on resume**, because it is the only row whose commit
+cell does not name a commit. Derive its real state rather than trusting the cell:
+
+```
+git log --oneline -3                     # is there a Task 13 commit above f0242eb371?
+git status --porcelain                   # or is the work still in the working tree?
+npm run characterize:ndhr check          # 0 means the re-captured baselines are the committed ones
+```
 
 **An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
 That was true of Tasks 1-11 and is not true of the plan.** A session resuming here starts at §4,
@@ -444,8 +454,8 @@ Task 15's own open question — which of the document's 24 descriptions maps to 
 was settled by authoring the keys; the one row with no document equivalent carries a null rather
 than a guess. See "Task 15 as built".
 
-**Task 13 and Task 16 can be picked up without asking anything.** Task 13 is the larger of the
-two and closes a DECIDED-2 obligation, so it is the one to take first.
+**Task 16 can be picked up without asking anything** — it is now the only such task, Task 13
+having closed on 2026-09-14. 16a is the one with a reader-visible consequence.
 
 **What Task 12 settled that the other tasks inherit.** A `characterize:site` re-capture is **not**
 owed for a JS content change: the baselines record unhashed logical asset paths — `js/ndhr-report/
@@ -2233,6 +2243,62 @@ misses it.
 together, which is why `scripts/ndhr-characterization.mjs` already uses it as a target.
 `npm run characterize:ndhr check` will go red on that target and the diff should be read before
 re-baselining.
+
+### Task 13 as built
+
+**The prescribed verification rung did not work, and finding out why was the task's main
+discovery.** `npm run characterize:ndhr check` passed, green on all four targets, against a tree
+where the sentence had just changed on every non-CD row. The harness records `geotypeTags` — the
+"PUMA area" half of the contradiction — and captured no tertile sentence at all, so the exact
+class of defect Task 13 fixed was invisible to the only harness that covers this page
+`[verified 2026-09-14: the committed baseline's key list holds indicatorNames, strategies and
+geotypeTags and no sentence field]`. A `tertileSentences` field was added beside `geotypeTags`,
+with a rendered-content control that fails when every entry is empty, since an array of `''` on
+every target is what a dead selector returns. Both baselines were re-captured: **44 insertions
+and zero deletions**, so no pre-existing value moved, and the two branches still capture
+identically.
+
+**Three corrections to this task's Files block.** The callers of `getTertileSentenceParts` are
+not in `cards.js` — they are the two wrappers in `tertiles.js` (`getTertileInlineLabel`,
+`getTertileSentence`), and `cards.js` calls *those*, so the parameter threads through three
+functions and reaches three call sites rather than one. And `areaNounFor` falls back to `'areas'`,
+never to community districts: defaulting to the latter would silently restore this bug for any
+geotype added later without a line in the map.
+
+**`GEOTYPE_AREA_NOUN` holds the bare plural and `chart.js` prefixes `'NYC '`, rather than the map
+moving across whole.** Used as it stood, its `NYC ` prefix would have rewritten all 13 correct CD
+rows from "than most community districts" to "than most NYC community districts" — a copy change
+the defect does not call for. The chart title's own wording is unchanged by construction
+(`'NYC ' + 'community districts'` is the string it built before).
+
+**A -> B -> A, one page pair, one variable.** Arm B is the hardcoded string re-applied by hand on
+the fixed tree, so the defect is reproduced rather than inferred from the fix working. Nine rows
+across `/ndhr/midtown/climate-and-active-design/` and `/ndhr/midtown/housing/`, which is where the
+five non-CD rows actually live — one page does not carry them all:
+
+| arm | rows misnaming their geography | print rendition |
+|---|---|---|
+| A — as built | **1 of 9** | all three geotype nouns present |
+| B — hardcoded string restored | **4 of 9** | 3 nouns missing |
+| A — re-run | **1 of 9** | all three present |
+
+The two A arms are identical, so ordering does not explain the result. `tertiles.js` was restored
+byte-identical after arm B, checked with `diff`.
+
+**The one row scored BAD in both arms is not this task's.** "Homes with 3+ housing problems" at
+Midtown renders no tertile sentence at all, in arm A and arm B alike, so it is independent of this
+change. Its value is suppressed — the `N/A**` this plan's 2026-09-13 review already recorded on
+that exact row — and a row with no rank has no sentence to name anything in. The re-captured
+baseline carries it as `""`, which is the honest record of that state.
+
+**Task 13 has no NR half, unlike Task 12.** `assets/js/nr-report/tertiles.js` says "than most
+neighborhoods", and `geotype` appears **zero** times anywhere under `assets/js/nr-report/` — every
+NR row is UHF42, so its sentence already names the set it ranks among. Nothing to file against
+`documents/site-wide-audit-2026-06-27.md` §18.
+
+`[verified 2026-09-14: `npm run lint` 0 with an injected undefined name exiting 1 and the restore
+returning to 0; `npm run docs-check` 0; `npm run characterize:ndhr check` 0 after the re-capture;
+`npm run smoke` 38 pages clean; 0 console errors on both report pages across all three probe runs]`
 
 
 ## Task 14: Two caveats the source attaches to the strategy column are absent

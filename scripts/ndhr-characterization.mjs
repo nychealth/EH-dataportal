@@ -9,12 +9,19 @@
 //
 // Modelled on nr-characterization.mjs, and the parts that are NOT copied are the point:
 //
-//   - `strategies` and `geotypeTags` have no NR counterpart. The strategies column is
-//     NDHR-only (plan DECIDED-5), and the per-row geography tag exists because three
-//     measures are read at PUMA2020 and two at CDTA2020 (DECIDED-10) rather than at the
-//     district the page is titled with. Nothing else in this repo guards either: `lint`
-//     does not run the file, `smoke` only proves it throws no console error, and
+//   - `strategies`, `geotypeTags` and `tertileSentences` have no NR counterpart. The
+//     strategies column is NDHR-only (plan DECIDED-5), and the other two exist because
+//     three measures are read at PUMA2020 and two at CDTA2020 (DECIDED-10) rather than at
+//     the district the page is titled with. Nothing else in this repo guards any of them:
+//     `lint` does not run the file, `smoke` only proves it throws no console error, and
 //     `characterize:site` reads structure counts and not the words in them.
+//
+//     `geotypeTags` and `tertileSentences` are a PAIR and are worth reading as one. The
+//     tag says a row was read at a PUMA; the sentence says what it was ranked among. Task
+//     13 fixed a defect where they contradicted each other inside one card header — the
+//     tag read "PUMA area" and the sentence "than most community districts" — and this
+//     harness could see only the tag, so it passed throughout. Capturing the sentence too
+//     is what makes that class of contradiction visible here `[added 2026-09-14]`.
 //
 //   - `indicatorNames` is captured where NR captures only accordion ids, which makes a
 //     dropped or reordered row a diff with a name attached rather than a count that went
@@ -216,6 +223,20 @@ const captureTarget = async (browser, target, baseURL) => {
                 return tag ? tag.textContent.trim() : '';
             });
 
+        // The tertile sentence, which is the OTHER half of the pair geotypeTags records.
+        // Added 2026-09-14 with plan Task 13: the defect that task fixed was this sentence
+        // naming community districts on a row tagged "PUMA area", and the harness could see
+        // the tag and not the sentence — so the contradiction was invisible to it. The
+        // sentence is the row's screen-reader copy and lives in the only .sr-only inside a
+        // header button; the panel's "Full dataset" sr-only is outside this scope.
+        // '' for a row with no rank, which is a real state (a suppressed value renders N/A
+        // and gets no sentence), so the array's shape is the assertion exactly as above
+        const tertileSentences = [...document.querySelectorAll('.ndhr-report-accordion .card-header button')]
+            .map((el) => {
+                const sentence = el.querySelector('.sr-only');
+                return sentence ? sentence.textContent.trim() : '';
+            });
+
         // chartName reads the node that carries the name — `.vega-embed` itself has NO
         // aria-label, and reading it there is what left NR's chart naming uncovered for
         // three baselines. The spec's description lands on the inner .chart-wrapper, which
@@ -271,6 +292,7 @@ const captureTarget = async (browser, target, baseURL) => {
             indicatorNames,
             strategies,
             geotypeTags,
+            tertileSentences,
             emptyStateRendered: !!accordionContainer && !indicatorsContainer,
             emptyStateText: (!!accordionContainer && !indicatorsContainer)
                 ? accordionContainer.textContent
@@ -410,6 +432,18 @@ const controlFailures = (captures) => {
                     `${label}: ${captured.strategies.length} strategy cell(s) against ` +
                     `${captured.indicatorNames.length} indicator(s) — the columns must be row-aligned`
                 );
+            }
+            if (captured.tertileSentences.length !== captured.indicatorNames.length) {
+                failures.push(
+                    `${label}: ${captured.tertileSentences.length} tertile slot(s) against ` +
+                    `${captured.indicatorNames.length} indicator(s) — one per card, row-aligned`
+                );
+            }
+            // A row with no rank legitimately has no sentence, so this cannot require all of
+            // them to be non-empty. It requires at least one: an array of '' on every target
+            // is what a dead selector returns, and would read as a passing field forever
+            if (!captured.tertileSentences.some((s) => s)) {
+                failures.push(`${label}: every tertile sentence is empty — the selector reads nothing`);
             }
             if (captured.chartCount === 0) {
                 failures.push(`${label}: the expanded panel drew no chart, so the lazy Vega path is uncovered`);

@@ -11,6 +11,7 @@
   "indicatorNames": [],
   "strategies": [],
   "geotypeTags": [],
+  "tertileSentences": [],
   "emptyStateRendered": true,
   "emptyStateText": "No community district data is published for these measures yet. The Health Department publishes its mental health indicators at a larger neighborhood geography, so they cannot be shown for a single community district.",
   "expandedPanel": null,
