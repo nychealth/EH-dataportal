@@ -2558,3 +2558,47 @@ partial's comment records; do not sweep both on a grep for `flyToBounds`.
 **Not measured:** whether the NR page's container is the same width as NDHR's, which sets how
 much of the city a given zoom shows. The 9-of-45 reading was taken on the NR page itself, so the
 finding holds regardless, but a fix should re-measure rather than assume 57-of-59 transfers.
+
+## 19. `vegaEmbed` has no rejection handler on the NR report page (added 2026-09-14, P2)
+
+Found while reviewing the NDHR prototype, which forked its report page from this one. **Filed
+here rather than fixed there on the same basis as §18**: the NDHR half is fixed on
+`feature-NDHR-prototype` as plan Task 16c; this is the Neighborhood Reports half, which is not
+that branch's feature.
+
+`assets/js/nr-report/chart.js:200` opens a `.then()` on `vegaEmbed(...)` and closes it with no
+`.catch`. The call sits inside `onAccordionExpand`'s `try`, whose `catch` writes an "Unable to
+render chart." fallback into the panel — but `vegaEmbed` rejects **asynchronously**, so a
+synchronous `try` cannot see it and that fallback never runs.
+
+**Measured on this page rather than inferred from the fork**, with `window.vegaEmbed` stubbed to
+return a rejected promise and one accordion panel then expanded:
+
+| | |
+|---|---|
+| stub actually installed (the probe's own control) | true |
+| console errors from the page's own code | **0** |
+| unhandled rejections reaching the page | **1** |
+| "Unable to render chart." fallback shown | **false** |
+| visible empty chart containers | **1** |
+
+`[verified 2026-09-14: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+against a `dev_stage` server; 23 accordion toggles on the page, the first visible one expanded]`
+
+**The failure is not silent, and that is the part worth getting right.** An unhandled rejection
+does reach the page, and `npm run smoke` fails on `pageerror`, so CI would catch a
+systematically-broken embed. What it does not do is say which chart or which panel died — the
+rejection carries only the underlying error — and a reader meanwhile gets an empty box with no
+text in it. So this is a diagnosis-and-fallback defect, not an invisibility defect.
+
+**The fix, as applied on the NDHR side:** a `.catch` on the `vegaEmbed` promise that logs a
+message naming the chart, and writes the same "Unable to render chart." text into the container
+that the synchronous `catch` would have. It is not re-thrown — by that point there is no caller
+left to catch it.
+
+**Not measured:** whether any real Vega spec on this page can actually reject. The rejection here
+was forced with a stub, which establishes what happens when one occurs and not how often one
+does. A fix is cheap and does not depend on that number, but a priority argument would.
+
+**`assets/js/data-explorer/` is not in scope of this finding.** Its charts are a different call
+site with a different surrounding structure, and none of them was measured here.

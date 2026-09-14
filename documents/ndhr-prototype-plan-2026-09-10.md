@@ -419,31 +419,36 @@ until then the partial's only check is that it parses, which the same build show
 | 10. District typeahead | **DONE 2026-09-12** — two partials (`ndhr-district-picker.html` + `-js.html`) on the landing page and the five category indexes; the 59 district indexes were out of scope and did not get one. Searches `CD_name` and `borough`, with **no ZIP search**, which the partial says on the page rather than leaving implied | Isolated `development` build exit 0, picker markup on exactly **6 of 360** NDHR pages with 0 duplicate `wireComboboxState` and 0 NR partials; browser on `dev_stage`, both page kinds: HTTP 200 and **0 console errors**, `role="combobox"` + `aria-labelledby` on the generated input, `communityDistricts` 59, "bedford" → 2 rows, "Bronx" → all 12, "11216" and "zzqqxx" → none, Escape dismisses and `aria-expanded` returns false, and a selection lands on the right page from both kinds. `npm run lint` 0, `npm run docs-check` 0, `npm run smoke` 38 clean. `characterize:site` moved 5 fields on those 6 pages — the diff was read before re-baselining, and `controls.noAccessibleName` 0 → 1 is diagnosed in the as-built section, not absorbed | `9411011f73`, `1952ff919b` |
 | 11. CD picker map | **DONE 2026-09-12** — `themes/dohmh/layouts/partials/ndhr-leaflet.html` on geography/CD.topo.json, plus `themes/dohmh/layouts/partials/lib-topojson.html`, on all three non-report layouts. Two things this row does not leave implied: its polygons are keyboard stops on the 59 district indexes and deliberately **not** on the 6 picker pages, and it **does not fly to the located district** where `nr-leaflet.html` does. Both are in the as-built section | Isolated `development` build exit 0; the map on exactly **65 of 360** NDHR pages — 1 landing, 5 category indexes, 59 district indexes — each with one CD.topo.json reference and one topojson-client script, and **0 on all 295 report pages**, so the `map.js` name collision stays unreachable. Browser on `dev_stage` over 4 page kinds: HTTP 200 and **0 console errors** on 4 of 4; 59 polygons each carrying `role="button"` and a district name on all three map-bearing kinds; on the 6 picker pages the container and **65 of 65** candidate nodes carry `tabindex="-1"`, on a district index **0 of 65** do and a real Tab sweep put focus on 7 polygons in 8 stops — **tab-order membership measured rather than inferred, which Task 7 explicitly could not claim**. Exactly one polygon carries the selected style on a district index and none on the picker pages. Un-forced clicks land on `/ndhr/midtown/`, `/ndhr/midtown/housing/` and `/ndhr/central_harlem/` from the three kinds, and Enter on a focused polygon does the same. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` **38 clean**. `characterize:site` moved 4 fields on those 65 pages and nothing else; the diff was read before re-baselining | `77932ab348`, `b770e2fb1a` |
 | 12. Report map viewport (review) | **DONE 2026-09-13** — the fly-to is gone from `selectLayer` and both its call sites, replaced by a `fitBounds` on the whole layer. **Scope decided by the user 2026-09-13: fix NDHR here, file the NR half** — it is `documents/site-wide-audit-2026-06-27.md` §18, not a task in this plan | Two arms on one page, one variable, A -> B -> A: **57 of 59** reachable at zoom 9.58, **5 of 59** with the removed fly-to re-applied by hand at zoom 13.78, **56 of 59** refitted — two runs, identical counts. An un-forced click on Central Harlem navigates, exactly 1 polygon still carries the selected style, 59 polygons named. `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check` and `npm run smoke` (38 pages) all exit 0 | `999d986758` |
-| 13. Tertile sentence geography (review) | **DONE 2026-09-14** — `GEOTYPE_AREA_NOUN` and `areaNounFor` in `global.js`, the three sentence strings and both wrapper signatures in `tertiles.js`, three call sites in `cards.js`, and `chart.js` reading the shared map. **The task's prescribed proof did not work and the harness was extended instead** — `characterize:ndhr` captured `geotypeTags` and no sentence, so it passed green against the defect; a `tertileSentences` field plus its control now closes that. No NR half: every NR row is UHF42 | A -> B -> A on two report pages, one variable, arm B being the hardcoded string re-applied by hand: **1 of 9 rows misnaming, 4 of 9, 1 of 9**, the two A arms identical, and the print rendition going from all three geotype nouns present to 3 missing and back. The single row BAD in both arms has no rank and so no sentence, unchanged by this task. `tertiles.js` restored byte-identical after arm B. Both baselines re-captured at **44 insertions, 0 deletions** — nothing pre-existing moved — and the two branches still capture identically. `npm run lint` 0 with an injected undefined name exiting 1, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | *not yet committed* |
+| 13. Tertile sentence geography (review) | **DONE 2026-09-14** — `GEOTYPE_AREA_NOUN` and `areaNounFor` in `global.js`, the three sentence strings and both wrapper signatures in `tertiles.js`, three call sites in `cards.js`, and `chart.js` reading the shared map. **The task's prescribed proof did not work and the harness was extended instead** — `characterize:ndhr` captured `geotypeTags` and no sentence, so it passed green against the defect; a `tertileSentences` field plus its control now closes that. No NR half: every NR row is UHF42 | A -> B -> A on two report pages, one variable, arm B being the hardcoded string re-applied by hand: **1 of 9 rows misnaming, 4 of 9, 1 of 9**, the two A arms identical, and the print rendition going from all three geotype nouns present to 3 missing and back. The single row BAD in both arms has no rank and so no sentence, unchanged by this task. `tertiles.js` restored byte-identical after arm B. Both baselines re-captured at **44 insertions, 0 deletions** — nothing pre-existing moved — and the two branches still capture identically. `npm run lint` 0 with an injected undefined name exiting 1, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | `166e2055a9`, `ee62fcc186` |
 | 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
 | 15. Indicator descriptions (review) | **DONE 2026-09-14** — the document's descriptions on 17 of 18 rows, evictions (1128) an explicit null falling back to EHDP-data's text. **It also took the card headline off the site-authored `indicator_short_name` and onto EHDP-data's `IndicatorName`**, which this task did not ask for and the user decided on 2026-09-13; the YAML keeps a validated copy for the category index alone | The two new content checks are proved to fire — a wrong `IndicatorName` and a removed `description` key each exit 1 naming their own cause, file restored byte-for-byte after each. Browser on a `dev_prod` server: all three climate cards carry the data repo name and the document description, EHDP-data's park text is gone with a positive control for that search, evictions still shows EHDP-data's text, and the category index renders three items with no blank name half. `npm run report-data:parity all` still exits 0 at **37,044 comparisons, 0 mismatched**, which is the proof the override stayed out of the shared module. `npm run lint`, `npm run docs-check` and `npm run ndhr:availability check` all exit 0. Both NDHR baselines re-captured, diff read first: every changed line a name or a name-derived chart field, zero outside that set | `f0242eb371` |
-| 16. Four low-symptom defects (review) | **OPEN** — added 2026-09-13. 16a is a correctness bug with a session-permanent consequence; 16d is comment-only | none yet | — |
+| 16. Four low-symptom defects (review) | **DONE 2026-09-14** — 16a a cache-delete on rejection in the shared `normalize.js`, 16b a response check before `res.json()` in `map.js`, 16c a `.catch` on `vegaEmbed` with the fallback the sync `try` could never reach, 16d the misfiled comment moved to `report.js` beside the guard it describes. **16c's NR twin at `assets/js/nr-report/chart.js:200` is NOT fixed, and is filed as
+`documents/site-wide-audit-2026-06-27.md` section 19 rather than as a task here** | Each failure forced, A -> B -> A, arm B being the three fixes reverted by hand and proved identical to `HEAD` by an empty `git diff`: **RECOVERS / STUCK / RECOVERS** (6 cards against 0 after an in-place district switch), **NAMES THE URL / PARSER ONLY / NAMES THE URL**, **REPORTED+FALLBACK / SWALLOWED / REPORTED+FALLBACK**. `npm run report-data:parity all` 0 at 37,044 comparisons, 0 mismatched with all three controls firing — the gate that matters, since 16a edits the shared module. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | `ec2208da2b` |
 
-**Status as of 2026-09-14:** **Tasks 1-13 and 15 are done on `feature-NDHR-prototype`; Tasks 14
-and 16 are open and neither is blocked.** A review on 2026-09-13 added Tasks 12-16 and re-opened
-one decision; Task 12 and the decision were both closed that afternoon, Task 15 the next morning
-and Task 13 that afternoon. §4 carries the review's own summary, including what it checked and did
-not find.
+**Status as of 2026-09-14:** **Tasks 1-13, 15 and 16 are done on `feature-NDHR-prototype`; Task 14
+is the only one open, and it opens with a question rather than an edit.** A review on 2026-09-13
+added Tasks 12-16 and re-opened one decision; Task 12 and the decision were both closed that
+afternoon, and Tasks 15, 13 and 16 the next day. §4 carries the review's own summary, including
+what it checked and did not find.
 
-**Task 13's row is the one to re-check first on resume**, because it is the only row whose commit
-cell does not name a commit. Derive its real state rather than trusting the cell:
+**One loose end is recorded in Task 16's as-built rather than in a row of its own:**
+**16c's NR twin at `assets/js/nr-report/chart.js:200` is unfixed.** Unlike Task 12's NR half it
+is now filed — `documents/site-wide-audit-2026-06-27.md` section 19, on the same basis — so what a
+resuming session must derive is whether anyone has acted on it, which the grep below answers.
 
 ```
-git log --oneline -3                     # is there a Task 13 commit above f0242eb371?
-git status --porcelain                   # or is the work still in the working tree?
-npm run characterize:ndhr check          # 0 means the re-captured baselines are the committed ones
+git log --oneline -5                     # is the tip where the table's rightmost cells say
+git status --porcelain                   # or is the work still in the working tree
+npm run characterize:ndhr check          # 0 means the committed baselines match the tree
+npm run report-data:parity all           # 0 at 37,044 comparisons proves the shared module intact
+grep -n 'catch' assets/js/nr-report/chart.js   # no hit near :200 means the NR twin is still open
 ```
 
 **An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
 That was true of Tasks 1-11 and is not true of the plan.** A session resuming here starts at §4,
 not at the task list above it.
 
-**One of the three remaining tasks still opens with a question rather than an edit**, and a
+**The one remaining task opens with a question rather than an edit**, and a
 session that starts editing instead has taken a decision that is not its to take:
 
 - **Task 14 — placement.** The source document attaches its two caveats to column headers; Task 8
@@ -454,8 +459,8 @@ Task 15's own open question — which of the document's 24 descriptions maps to 
 was settled by authoring the keys; the one row with no document equivalent carries a null rather
 than a guess. See "Task 15 as built".
 
-**Task 16 can be picked up without asking anything** — it is now the only such task, Task 13
-having closed on 2026-09-14. 16a is the one with a reader-visible consequence.
+**Nothing else here can be picked up without asking.** Tasks 13 and 16 both closed on 2026-09-14,
+so Task 14's placement question is the last thing standing between this plan and done.
 
 **What Task 12 settled that the other tasks inherit.** A `characterize:site` re-capture is **not**
 owed for a JS content change: the baselines record unhashed logical asset paths — `js/ndhr-report/
@@ -2489,3 +2494,55 @@ with a forced failure as its own positive control — block `metadata.json`, con
 permanently broken before the fix and recovers after, and point the geojson URL at a 404 and read
 the error message. 16c needs a spec that makes `vegaEmbed` reject. A green
 `npm run characterize:ndhr check` proves none of the four changed the happy path.
+
+### Task 16 as built
+
+**All three runtime defects were reproduced before being fixed, and arm B is `HEAD` exactly.**
+Each of 16a-16c is a failure path, so each needed its failure forced; a fix that only ever passes
+the fixed arm has not been shown to do anything. The three fixes were reverted by hand for arm B
+and `git diff` came back **empty against `HEAD`**, so arm B is the pre-fix code rather than an
+approximation of it. Predictions were written before the first run and all three held.
+
+| probe | arm A (fixed) | arm B (= `HEAD`) | arm A re-run |
+|---|---|---|---|
+| **16a** metadata.json blocked, then unblocked and the district switched in place | **RECOVERS** — 0 cards while blocked, **6** after | **STUCK** — 0 cards, and permanently | RECOVERS |
+| **16b** branch geojson served 404 | **NAMES THE URL** — `HTTP 404 from …/CD.geojson` | **PARSER ONLY** — `SyntaxError: Unexpected token '<'`, naming no URL | NAMES THE URL |
+| **16c** `vegaEmbed` stubbed to reject | **REPORTED + FALLBACK** | **SWALLOWED** — 0 console errors, no fallback text | REPORTED + FALLBACK |
+
+`[verified 2026-09-14: `/ndhr/midtown/housing/` on a `dev_stage` server, one page per probe, the
+16a switch driven by a click on a real polygon — "Financial District (CD1)" — because a reload
+would create a fresh page and a fresh cache and so could not see that bug at all]`
+
+**16a's fix is in the SHARED module, so the parity harness is the gate that matters.**
+`npm run report-data:parity all` exits 0 at **37,044 comparisons, 0 mismatched** — the recorded
+figure unchanged — with all three controls firing (17, 243, 514). The change only adds a `.catch`
+on the rejection path, which parity never exercises, and the harness confirms it rather than the
+reasoning asserting it. Note `assets/js/report-data/normalize.js` is loaded by
+`themes/dohmh/layouts/ndhr/ndhr-report.html` and nothing else today, so NR inherits this fix only
+if it migrates to route A.
+
+**16c has an NR twin, not fixed here but now FILED** as
+`documents/site-wide-audit-2026-06-27.md` §19, on the user's instruction 2026-09-14 and on the
+same basis as §18. `assets/js/nr-report/chart.js:200` opens the same uncaught `.then()`.
+
+**Filing it corrected this task's own description of the defect.** Task 16c said the rejection is
+swallowed. Measured on the NR page with `vegaEmbed` stubbed to reject, it is not: the code reports
+nothing and the fallback never runs, but an unhandled rejection does reach the page — 1 pageerror,
+0 code-level errors, no fallback, 1 visible empty box — and `npm run smoke` fails on `pageerror`.
+So it is a diagnosis-and-fallback defect rather than an invisibility one, and the comment written
+at `assets/js/ndhr-report/chart.js`'s new `.catch` says so rather than repeating the original
+claim `[verified 2026-09-14 on
+`/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`]`.
+
+**16d moved rather than being deleted.** The comment was accurate about the system and attached to
+the wrong function: it described a staleness guard and a re-render that live in `report.js`, on
+`loadDistrictRows` in `data.js`, which does neither. The district-name reasoning is now in
+`report.js` beside the guard it describes, and `data.js` says what its function actually does —
+returns `{ rows, series }`, touches no shared state, and never rejects.
+
+**The three items this task recorded as deliberately out of scope stay out**, and none was
+disturbed: `nbr_data_note` is still computed and rendered by nothing, `buildRows` still fetches
+sequentially with no timing measured, and the CSV export still carries no `strategy` column.
+
+`[verified 2026-09-14: `npm run lint` 0, `npm run docs-check` 0, `npm run report-data:parity all`
+0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 pages clean]`
