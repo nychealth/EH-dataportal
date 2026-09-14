@@ -163,7 +163,11 @@ const renderAll = districtName => {
         loadDistrictRows(districtName).then(result => {
 
             // Another switch may have landed while this one was in flight; only the
-            // district currently on screen may write the shared row state
+            // district currently on screen may write the shared row state.
+            //
+            // The guard is a district NAME, not a request counter: two switches in flight
+            // resolve in whatever order the network gives them, and the only one whose
+            // rows should land is the one the reader is looking at
             if (currentDistrict !== districtName) {
                 debugLog('renderAll: branch-discard-stale-rows:', { districtName, currentDistrict });
                 return;

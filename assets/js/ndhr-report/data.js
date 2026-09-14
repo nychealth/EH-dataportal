@@ -135,12 +135,12 @@ const checkAllLoaded = () => {
 };
 
 
-// Builds one district's rows and their chart series, then re-renders if it is the
-// district currently on screen.
+// Builds one district's rows and their chart series and returns them as
+// `{ rows, series }`. It does not touch the shared state and does not re-render —
+// renderAll (report.js) owns both, including the staleness guard described there.
 //
-// The staleness guard is a district name, not a request counter: two switches in flight
-// resolve in whatever order the network gives them, and the only one whose rows should
-// land is the one the reader is looking at
+// Never rejects: a build failure is caught below and reported as empty rows, so the
+// caller's `.then` is the only path out
 const loadDistrictRows = async districtName => {
 
     debugLog('loadDistrictRows: enter:', districtName);

@@ -279,7 +279,18 @@ const initLeafletMap = () => {
     // and owns that file, and fetching it at data_branch makes the map move with the data
     // the page already fetches at data_branch
     fetch(reportConfig.geojsonUrl)
-        .then(res => res.json())
+        .then(res => {
+
+            // Check the response before parsing. res.json() on a 404 body throws a
+            // SyntaxError naming a stray '<', which says nothing about which URL failed —
+            // and a renamed EHDP-data file is precisely what `npm run smoke:env` exists to
+            // catch, so the diagnostic is the point. Same shape normalize.js throws for
+            // the same class of fetch
+            if (!res.ok) throw new Error('HTTP ' + res.status + ' from ' + reportConfig.geojsonUrl);
+
+            return res.json();
+
+        })
         .then(data => {
 
             debugLog('initLeafletMap: branch-geojson-loaded:', { featureCount: data && data.features && data.features.length });

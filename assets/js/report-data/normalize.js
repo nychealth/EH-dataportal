@@ -47,6 +47,19 @@ const reportDataFetchJSON = (url, fetchImpl) => {
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status + ' from ' + url);
             return res.json();
+        })
+        .catch(err => {
+
+            // A REJECTED promise must not stay in the cache. The report page rebuilds
+            // every row on each district switch, so without this delete one transient
+            // failure on metadata.json is permanent for the session: every later switch
+            // hits the cached rejection and data.js returns empty rows from its catch,
+            // with nothing on the page saying why and a reload the only way out.
+            // Deleting the key first means the next call retries the fetch
+            delete reportDataFetchCache[url];
+
+            throw err;
+
         });
 
     return reportDataFetchCache[url];
