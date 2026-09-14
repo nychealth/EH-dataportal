@@ -398,6 +398,16 @@ on a branch mismatch.
   publish, a geotype only a sibling publishes (which a union check passes), removed
   empty_state, a duplicated measure, a renamed file, and a wrong category key; a removed
   `measures` key and an absent directory each exit 2]`.
+
+  **Two more checks landed 2026-09-14 with the indicator names.** Every row also names an
+  `IndicatorName`, and that value must equal metadata's — the YAML's copy exists only so
+  `themes/dohmh/layouts/ndhr/ndhr-category-index.html` can render the list server-side, where
+  Hugo cannot reach `metadata.json`, and drift there would have the two pages calling one
+  indicator two different things. And every row must carry a `description` **key**, which may be
+  null (evictions, 1128, is the one row the source document does not cover) but may not be
+  absent: an absent key and a deliberate null read the same to the renderer and differently to a
+  person `[verified 2026-09-14: a wrong IndicatorName and a removed description key each exit 1
+  naming their own cause, each file restored byte-for-byte afterwards]`.
 - **A `.docx` source under `documents/NDHR/` must be read with its tracked changes ACCEPTED.**
   Stripping tags from the document XML inside the zip merges insertions and deletions into one
   stream that still reads as grammatical prose, so there is nothing to notice — drop each `w:del`

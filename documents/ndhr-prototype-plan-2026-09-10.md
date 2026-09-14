@@ -258,8 +258,12 @@ rather than a replacement of the field. Deleting the authored keys returns the p
 state.
 
 The source document's indicator table has two columns, `Indicator` and `Description`, and its
-26 descriptions are written in built-environment terms for this tool's audience. The page renders
+24 descriptions are written in built-environment terms for this tool's audience. The page renders
 EHDP-data's `IndicatorDescription` instead — `assets/js/report-data/normalize.js:405`.
+
+**This paragraph read 26 until 2026-09-14 and that was wrong** `[corrected at f0242eb371, where
+the count was re-derived from the document's own repetition rather than from a category list
+written by hand; the earlier extraction's list omitted "Health Outcomes and Care Access"]`.
 
 Walking distance to a park, as the page renders it:
 
@@ -417,28 +421,28 @@ until then the partial's only check is that it parses, which the same build show
 | 12. Report map viewport (review) | **DONE 2026-09-13** — the fly-to is gone from `selectLayer` and both its call sites, replaced by a `fitBounds` on the whole layer. **Scope decided by the user 2026-09-13: fix NDHR here, file the NR half** — it is `documents/site-wide-audit-2026-06-27.md` §18, not a task in this plan | Two arms on one page, one variable, A -> B -> A: **57 of 59** reachable at zoom 9.58, **5 of 59** with the removed fly-to re-applied by hand at zoom 13.78, **56 of 59** refitted — two runs, identical counts. An un-forced click on Central Harlem navigates, exactly 1 polygon still carries the selected style, 59 polygons named. `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check` and `npm run smoke` (38 pages) all exit 0 | `999d986758` |
 | 13. Tertile sentence geography (review) | **OPEN** — added 2026-09-13. DECIDED-2's obligation, unmet on 5 of 18 rows | none yet | — |
 | 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
-| 15. Indicator descriptions (review) | **OPEN, unblocked 2026-09-13** by DECIDED-11 — render the source document's descriptions, EHDP-data's as the fallback | none yet | — |
+| 15. Indicator descriptions (review) | **DONE 2026-09-14** — the document's descriptions on 17 of 18 rows, evictions (1128) an explicit null falling back to EHDP-data's text. **It also took the card headline off the site-authored `indicator_short_name` and onto EHDP-data's `IndicatorName`**, which this task did not ask for and the user decided on 2026-09-13; the YAML keeps a validated copy for the category index alone | The two new content checks are proved to fire — a wrong `IndicatorName` and a removed `description` key each exit 1 naming their own cause, file restored byte-for-byte after each. Browser on a `dev_prod` server: all three climate cards carry the data repo name and the document description, EHDP-data's park text is gone with a positive control for that search, evictions still shows EHDP-data's text, and the category index renders three items with no blank name half. `npm run report-data:parity all` still exits 0 at **37,044 comparisons, 0 mismatched**, which is the proof the override stayed out of the shared module. `npm run lint`, `npm run docs-check` and `npm run ndhr:availability check` all exit 0. Both NDHR baselines re-captured, diff read first: every changed line a name or a name-derived chart field, zero outside that set | `f0242eb371` |
 | 16. Four low-symptom defects (review) | **OPEN** — added 2026-09-13. 16a is a correctness bug with a session-permanent consequence; 16d is comment-only | none yet | — |
 
-**Status as of 2026-09-13, later the same day:** **Tasks 1-12 are done on
-`feature-NDHR-prototype`; Tasks 13-16 are open and none is blocked.** A review that morning added
-Tasks 12-16 and re-opened one decision; Task 12 and the decision were both closed that afternoon.
-§4 carries the review's own summary, including what it checked and did not find.
+**Status as of 2026-09-14:** **Tasks 1-12 and 15 are done on `feature-NDHR-prototype`; Tasks 13,
+14 and 16 are open and none is blocked.** A review on 2026-09-13 added Tasks 12-16 and re-opened
+one decision; Task 12 and the decision were both closed that afternoon, and Task 15 the next
+morning. §4 carries the review's own summary, including what it checked and did not find.
 
 **An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
 That was true of Tasks 1-11 and is not true of the plan.** A session resuming here starts at §4,
 not at the task list above it.
 
-**Two of the four remaining tasks still open with a question rather than an edit**, and a session
-that starts editing instead has taken a decision that is not its to take:
+**One of the three remaining tasks still opens with a question rather than an edit**, and a
+session that starts editing instead has taken a decision that is not its to take:
 
 - **Task 14 — placement.** The source document attaches its two caveats to column headers; Task 8
   dissolved the strategies column into per-row cells, so there is no header to hang them on. The
   wording is settled and the placement is not.
-- **Task 15 — scope of the authored keys.** DECIDED-11 settled *whose* text. The document carries
-  26 descriptions against 18 rendered rows, so which document row maps to which MeasureID is a
-  content judgment, and evictions (1128) already carries an explicit YAML null for its
-  description.
+
+Task 15's own open question — which of the document's 24 descriptions maps to which MeasureID —
+was settled by authoring the keys; the one row with no document equivalent carries a null rather
+than a guess. See "Task 15 as built".
 
 **Task 13 and Task 16 can be picked up without asking anything.** Task 13 is the larger of the
 two and closes a DECIDED-2 obligation, so it is the one to take first.
@@ -930,7 +934,9 @@ reading.
 
 **Three fields NR_content does not carry**, each named in this task or forced by an earlier
 decision: `indicator_short_name` (§2 established it has no upstream source), `strategy` and
-`strategy_description` (DECIDED-5), and `geotype`. The last is the one this task did not
+`strategy_description` (DECIDED-5), and `geotype`. **Task 15 made this four and renamed the
+first** — `indicator_short_name` is gone, replaced by `IndicatorName` carrying EHDP-data's own
+name, and `description` joined them; see "Task 15 as built". The last is the one this task did not
 anticipate: NR needs no such field because every NR row is UHF42, while NDHR reads three rows
 at PUMA2020 and two at CDTA2020 per DECIDED-10, and several of these measures publish at more
 than one geography.
@@ -2296,7 +2302,8 @@ cover.
   unknown MeasureID fails `check` like every other field does
 
 **Interfaces:**
-- Consumes: the source document's `Description` column, 26 rows, of which 18 map to built rows.
+- Consumes: the source document's `Description` column, 24 rows (this read 26 until 2026-09-14),
+  of which 17 map to built rows.
 - Produces: an authored description per row, with EHDP-data's as the fallback for any row the
   document does not cover.
 
@@ -2309,6 +2316,48 @@ renderer, not in the shared compute — that is DECIDED-5's line, and crossing i
 expecting an unchanged **37,044 comparisons, 0 mismatched** — which is the proof that the override
 stayed out of the shared module. `node scripts/ndhr-indicator-availability.mjs check` with one
 injected bad `description` row must exit 1.
+
+### Task 15 as built `[f0242eb371]`
+
+**The task grew a second half the review did not scope: the card headline.** DECIDED-11 settled
+the descriptions. On 2026-09-13 the user also chose EHDP-data's `IndicatorName` over the
+site-authored `indicator_short_name` for the bold headline, having been shown the measured
+comparison — three headlines run 47-55 characters against 8-12 before (537, 1196, 1250). An
+override list for those three was the alternative and was declined. So `cards.js` now takes
+`row.indicator_name`, live from metadata through `buildRows`, and **the content YAML supplies no
+name to the JS at all**.
+
+**The YAML keeps a copy, and the copy is validated rather than trusted.** `IndicatorName` — named
+to match the `MeasureName` convention beside it — exists for exactly one reader:
+`themes/dohmh/layouts/ndhr/ndhr-category-index.html` renders the indicator list server-side, where
+Hugo cannot reach `metadata.json`. Two pages naming one indicator two ways is the failure that
+makes, so `validateContent` in `scripts/ndhr-indicator-availability.mjs` now fails when the copy
+disagrees with metadata. The `description` key is required even where its value is null, for the
+reason a null exists at all: an absent key and a deliberate null are the same thing to the
+renderer and different things to a person.
+
+**17 of 18 rows carry a description.** Evictions (1128) appears in neither table of the source
+document, so it carries an explicit null and falls back to EHDP-data's text. "Displacement Risk"
+is the nearest document row; naming it would be a content judgment, so it was left alone.
+
+**The override travels the strategy pair's path, not `normalize.js`'s** — a lookup off
+`reportConfig.measures` in `cards.js`. That is what keeps DECIDED-5's line intact, and
+`report-data:parity all` at an unchanged 37,044 comparisons is the proof rather than the
+assumption.
+
+**The document carries 24 descriptions, not the 26 §2 recorded.** The first extraction filtered
+on a category list written by hand, which omitted "Health Outcomes and Care Access"; the count is
+now derived from the document's own repetition. §2 is corrected in place and says it was wrong.
+
+**The harness field `indicatorShortNames` is renamed `indicatorNames`, and its header comment was
+false rather than merely stale** — it claimed the names were committed in this repo and therefore
+immune to an EHDP-data refresh. That stopped being true the moment the headline moved to live
+metadata, which is the same change that renamed the field.
+
+**One smoke failure, not diagnosed.** `data-explorer/asthma/?id=2380` failed once and passed on
+the immediate re-run, with no data-explorer file in the diff. The mechanism is not established;
+it is the unexplained flake `CLAUDE.md` already records under Guardrails, not a finding of this
+task.
 
 
 ## Task 16: Four defects with no reader-visible symptom yet
