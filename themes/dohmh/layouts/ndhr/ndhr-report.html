@@ -251,6 +251,36 @@
                         the case (plan DECIDED-7).
                     */}}
                     {{- if $measures }}
+                        {{/*
+                            The two caveats the source document footnotes onto its strategy
+                            table's column headers. Task 8 dissolved that table into per-row
+                            cells, so there is no header left to hang a footnote on and this
+                            is the nearest equivalent: once above the list it qualifies,
+                            rather than repeated on each of the rows.
+
+                            Deliberately NOT d-print-none, and deliberately outside the
+                            accordion. theme.scss hides `.report-section .collapse` under
+                            @media print, so a caveat placed in a card's expanded panel
+                            renders on screen and never prints — measured 2026-09-14, 0 of 2
+                            strings in print innerText against a working print read. The
+                            printed report is the rendition a reader carries into a meeting
+                            and hands to someone, which is where an unqualified strategy does
+                            the most damage.
+
+                            Inside the $measures branch because the empty-state category
+                            (Mental Health) lists no strategies for it to qualify.
+
+                            Wording is the source document's, verbatim, with a period closing
+                            the first — it runs on in the original because it was a footnote
+                            fragment and here it is a sentence.
+                        */}}
+                        <p class="fs-xs text-muted mb-1">
+                            These examples serve as ideas to address the indicators of concern,
+                            they are not comprehensive or prescriptive. Strategies may differ if
+                            you are a city agency, community organization, or private developer.
+                            Please consult with the Health Department for more details.
+                        </p>
+
                         <div class="accordion ndhr-report-accordion my-4 report-section pt-2 border-left border-right border-bottom" id="ndhr-accordion">
                             <div id="ndhr-indicators">
                             </div>
