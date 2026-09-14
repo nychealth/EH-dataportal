@@ -16,10 +16,20 @@
 //     does not run the file, `smoke` only proves it throws no console error, and
 //     `characterize:site` reads structure counts and not the words in them.
 //
-//   - `indicatorShortNames` is captured where NR captures only accordion ids. The names
-//     come from data/globals/NDHR_content/, which is committed HERE, so unlike an
-//     indicator value they do not move when EHDP-data refreshes — which makes a dropped
-//     or reordered row a diff with a name attached rather than a count that went down.
+//   - `indicatorNames` is captured where NR captures only accordion ids, which makes a
+//     dropped or reordered row a diff with a name attached rather than a count that went
+//     down.
+//
+//     CHANGED 2026-09-13: these names now come from EHDP-data's own `IndicatorName`,
+//     read live from metadata.json, where they used to be the site-authored
+//     `indicator_short_name` in data/globals/NDHR_content/. An earlier version of this
+//     comment said they were committed here and so could not move on an EHDP-data
+//     refresh; that is no longer true, and a rename upstream will now fail this check.
+//     That is the intended trade — the same refresh silently renames the page, and a
+//     harness that could not see it was the worse option. The YAML still carries a
+//     validated copy for the category index, so `node
+//     scripts/ndhr-indicator-availability.mjs check` fails on the same upstream rename
+//     and names the measure, which is the cheaper diagnosis to reach for first.
 //
 //   - One target is the empty-state category. Mental Health has no measures (DECIDED-7),
 //     so its report page renders a server-side sentence and app.js's bootstrap() returns
@@ -188,7 +198,7 @@ const captureTarget = async (browser, target, baseURL) => {
         // Row identity, in render order. These come from the content YAML in this repo,
         // not from EHDP-data, so they are stable across a data refresh in a way no
         // indicator value is — which is what makes a dropped row legible here.
-        const shortNames = [...document.querySelectorAll('.ndhr-report-accordion .card-header button .col-7 .font-weight-bold')]
+        const indicatorNames = [...document.querySelectorAll('.ndhr-report-accordion .card-header button .col-7 .font-weight-bold')]
             .map((el) => el.textContent.trim());
 
         // The strategies column (Task 8). Read off the cell rather than off the config so
@@ -198,7 +208,7 @@ const captureTarget = async (browser, target, baseURL) => {
 
         // Per-row geography disclosure (DECIDED-10). '' for an ordinary CD row, so the
         // array's SHAPE is the assertion: one entry per card, in the same order as
-        // indicatorShortNames, and a tag that stops rendering shows as a '' appearing
+        // indicatorNames, and a tag that stops rendering shows as a '' appearing
         // where a name was.
         const geotypeTags = [...document.querySelectorAll('.ndhr-report-accordion .card-header button .col-3')]
             .map((el) => {
@@ -258,7 +268,7 @@ const captureTarget = async (browser, target, baseURL) => {
             // community districts are not ZIP-based
             accordionIds: accordions,
             accordionCount: accordions.length,
-            indicatorShortNames: shortNames,
+            indicatorNames,
             strategies,
             geotypeTags,
             emptyStateRendered: !!accordionContainer && !indicatorsContainer,
@@ -389,16 +399,16 @@ const controlFailures = (captures) => {
             if (captured.accordionCount === 0) {
                 failures.push(`${label}: no indicator cards rendered`);
             }
-            if (captured.indicatorShortNames.length === 0) {
+            if (captured.indicatorNames.length === 0) {
                 failures.push(`${label}: no indicator names rendered`);
             }
             if (captured.strategies.length === 0) {
                 failures.push(`${label}: no strategy cells rendered`);
             }
-            if (captured.strategies.length !== captured.indicatorShortNames.length) {
+            if (captured.strategies.length !== captured.indicatorNames.length) {
                 failures.push(
                     `${label}: ${captured.strategies.length} strategy cell(s) against ` +
-                    `${captured.indicatorShortNames.length} indicator(s) — the columns must be row-aligned`
+                    `${captured.indicatorNames.length} indicator(s) — the columns must be row-aligned`
                 );
             }
             if (captured.chartCount === 0) {

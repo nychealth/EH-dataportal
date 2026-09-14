@@ -57,9 +57,11 @@
                     {{/* The indicator names this category reports, which is the vocabulary
                          that makes this page findable for the things it actually covers —
                          the 295 report pages carrying those names are out of the index.
-                         `indicator_short_name` is the site-owned card headline from the
-                         content YAML; `MeasureName` is EHDP-data's own, and both are listed
-                         because a searcher may use either.
+                         `IndicatorName` is EHDP-data's own indicator name, held in the
+                         content YAML because Hugo has no access to metadata.json at build
+                         time and `node scripts/ndhr-indicator-availability.mjs check` fails
+                         when the two disagree; `MeasureName` is the series within it. Both
+                         are listed because a reader may recognise either.
 
                          A category with no measures says so instead, from the same
                          `empty_state` string the report pages render. */}}
@@ -67,7 +69,7 @@
                         <h2 class="h4">Indicators in this report</h2>
                         <ul class="fs-sm">
                             {{- range $measures }}
-                                <li><strong>{{ .indicator_short_name }}</strong> &mdash; {{ .MeasureName }}</li>
+                                <li><strong>{{ .IndicatorName }}</strong> &mdash; {{ .MeasureName }}</li>
                             {{- end }}
                         </ul>
                     {{- else }}

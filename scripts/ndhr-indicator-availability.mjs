@@ -388,8 +388,14 @@ const validateContent = ({ categories, content }, metadata) => {
             }
             seen.set(row.MeasureID, key);
 
-            if (!row.indicator_short_name) failures.push(`${where} has no indicator_short_name`);
+            if (!row.IndicatorName) failures.push(`${where} has no IndicatorName`);
             if (!row.strategy) failures.push(`${where} has no strategy`);
+
+            // `description` may be null — evictions (1128) has no source-document row — but
+            // the KEY must be present. An absent key and a deliberate null are the same thing
+            // to the renderer and different things to a reader, and only one of them means
+            // someone decided
+            if (!('description' in row)) failures.push(`${where} has no description key (use null if the source document has no row for it)`);
 
             const found = byMeasure.get(row.MeasureID);
             if (!found) {
@@ -401,6 +407,14 @@ const validateContent = ({ categories, content }, metadata) => {
             }
             if (found.ms.MeasureName !== row.MeasureName) {
                 failures.push(`${where} names it "${row.MeasureName}", metadata "${found.ms.MeasureName}"`);
+            }
+
+            // The YAML's IndicatorName is a COPY of metadata's, kept because the category
+            // index renders it server-side where metadata is not available. The report page
+            // reads the live value instead, so a drift here would show two different names
+            // for one indicator on two pages — which is exactly what this catches
+            if (found.ind.IndicatorName !== row.IndicatorName) {
+                failures.push(`${where} calls the indicator "${row.IndicatorName}", metadata "${found.ind.IndicatorName}"`);
             }
             if (!found.ms.AvailableGeoTypes.includes(row.geotype)) {
                 failures.push(`${where} reads at ${row.geotype}, which this measure does not publish (${found.ms.AvailableGeoTypes.join(", ")})`);

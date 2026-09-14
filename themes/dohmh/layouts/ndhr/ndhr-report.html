@@ -297,9 +297,15 @@
     Pass configuration to the JS modules.
     - measures: the category's rows from the NDHR_content YAML, passed through verbatim.
         buildRows (assets/js/report-data/normalize.js) reads MeasureID, IndicatorID,
-        geotype, indicator_short_name, units and rank_reverse off each one; cards.js reads
-        the strategy fields. Emitting the rows rather than a projection of them means a new
-        YAML field needs no template change.
+        geotype, units and rank_reverse off each one; cards.js reads the strategy fields
+        and `description` off the same rows. Emitting the rows rather than a projection of
+        them means a new YAML field needs no template change — which is how `description`
+        landed with no edit here.
+
+        `IndicatorName` in those rows is NOT read by the JS: cards.js takes the headline
+        from the row buildRows produces, which reads it live from metadata.json. The YAML
+        copy exists for the category index, which renders server-side where metadata is not
+        available, and the content check fails if the two ever disagree.
     - geoIds: this district's id in each geography a measure may be read at. Three, not one:
         DECIDED-10 reads three measures at PUMA2020 and two at CDTA2020, and which geography
         a row needs is a property of the measure.

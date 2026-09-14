@@ -109,6 +109,29 @@ const strategyForMeasure = measureId =>
     STRATEGY_BY_MEASURE[measureId] || { strategy: '', description: '' };
 
 
+// MeasureID → the indicator description written for THIS tool, off the same reportConfig
+// rows and for the same reason the strategy pair is: it is site-authored content, and
+// normalize.js is shared with Neighborhood Reports.
+//
+// The row already carries `indicator_description`, which is EHDP-data's own text. Both are
+// accurate; the difference is audience. EHDP-data's is methodological ("The percentage of
+// the population who live within walking distance to a park: a quarter-mile or less to
+// entrances of smaller sites…"), the document's is written for a reader deciding what to
+// build ("Nearby green spaces make it easier for residents to walk daily, which can lower
+// risks of obesity chronic diseases…"). DECIDED-11 chose the document's.
+//
+// Absent for any row the document does not cover — only evictions (1128) — which falls
+// back to EHDP-data's. So this is an override on 17 of 18 rows rather than a replacement of
+// the field, and deleting the YAML keys returns the page to what it rendered before
+const DESCRIPTION_BY_MEASURE = {};
+
+((reportConfig && reportConfig.measures) || []).forEach(measure => {
+
+    if (measure.description) DESCRIPTION_BY_MEASURE[measure.MeasureID] = measure.description;
+
+});
+
+
 // ----------------------------------------------------------------------- //
 // data explorer link
 // ----------------------------------------------------------------------- //
@@ -204,7 +227,7 @@ const buildIndicatorCard = (row, districtName) => {
     const printRowHTML =
         '<div class="col-12 print-only" style="flex-direction:row; width:100%;">' +
             '<div style="width:35%;" class="border-right pl-1">' +
-                '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
+                '<span class="font-weight-bold fs-md">' + (row.indicator_name || '') + '</span><br>' +
                 '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
             '</div>' +
             '<div style="width:15%;" class="border-right pl-1">' +
@@ -271,7 +294,7 @@ const buildIndicatorCard = (row, districtName) => {
                             'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
                             '<div class="row no-gutters d-print-none" style="width:100%">' +
                                 '<div class="col-7">' +
-                                    '<span class="font-weight-bold fs-md">' + (row.indicator_short_name || '') + '</span><br>' +
+                                    '<span class="font-weight-bold fs-md">' + (row.indicator_name || '') + '</span><br>' +
                                     '<span class="fs-sm font-weight-normal">' + (row.indicator_long_name || '') + '</span>' +
                                 '</div>' +
                                 '<div class="col-3 pl-1">' +
@@ -342,7 +365,7 @@ const buildIndicatorCard = (row, districtName) => {
               '<p class="float-right">' +
                   '<a href="' + escapeAttr(deUrl) + '" class="ml-1">' +
                       '<i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Full dataset' +
-                      '<span class="sr-only"> for ' + (row.indicator_short_name || '') + '</span>' +
+                      '<span class="sr-only"> for ' + (row.indicator_name || '') + '</span>' +
                   '</a>' +
               '</p>' +
           '</div>'
@@ -353,7 +376,7 @@ const buildIndicatorCard = (row, districtName) => {
 
     const comparisonsHTML =
         '<div class="col-md-5 h-100 p-1' + hideClass + '">' +
-            '<p class="fs-rg">' + (row.indicator_short_name || '') + ' in <strong>' + districtName + '</strong>:</p>' +
+            '<p class="fs-rg">' + (row.indicator_name || '') + ' in <strong>' + districtName + '</strong>:</p>' +
             '<div class="fs-md">' +
                 (tertileInlineHTML
                     ? '<p>' + tertileInlineHTML + '</p>'
@@ -404,16 +427,16 @@ const buildIndicatorCard = (row, districtName) => {
     const detailHTML =
         '<div id="' + escapeAttr(collapseId) + '" class="collapse border-bottom" ' +
             'role="region" ' +
-            'aria-label="' + escapeAttr(row.indicator_short_name || 'Indicator detail') + '" ' +
+            'aria-label="' + escapeAttr(row.indicator_name || 'Indicator detail') + '" ' +
             'data-measure-id="' + escapeAttr(row.MeasureID) + '" ' +
-            'data-indicator-label="' + escapeAttr(row.indicator_short_name || '') + '" ' +
+            'data-indicator-label="' + escapeAttr(row.indicator_name || '') + '" ' +
             'data-legend-label="' + escapeAttr(units) + '" ' +
             'data-geotype="' + escapeAttr(row.geotype || '') + '" ' +
             'data-geocode="' + escapeAttr(row.geo_entity_id || '') + '">' +
             '<div class="card-body card-body-no-top">' +
                 '<div class="row no-gutters fs-sm">' +
                     '<div class="col-12">' +
-                        '<p class="fs-md mt-1 mb-2">' + (row.indicator_description || '') + '</p>' +
+                        '<p class="fs-md mt-1 mb-2">' + (DESCRIPTION_BY_MEASURE[row.MeasureID] || row.indicator_description || '') + '</p>' +
                         geoNoteHTML +
                     '</div>' +
                     '<div class="col-md-7 border-right h-100">' +

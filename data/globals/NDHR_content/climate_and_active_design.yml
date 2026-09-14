@@ -11,11 +11,23 @@
 # a name nobody wrote. A flat `measures` list instead. If real subsections are ever
 # authored, this becomes a list of them and the renderer gains a heading level.
 #
-# Three fields NR_content does not carry, each deliberate:
+# Four fields NR_content does not carry, each deliberate:
 #
-#   - `indicator_short_name`, the bold card headline, because no upstream source has
-#     one — EHDP-data metadata carries only the long form, and the curated
-#     nr_indicator_names.json has no short-name column
+#   - `IndicatorName`, EHDP-data's own name for the indicator, spelled exactly as
+#     metadata.json spells it. It is a COPY, and the copy exists for one reader:
+#     ndhr-category-index.html renders it server-side, where Hugo has no access to
+#     metadata.json. The report page does NOT read it — cards.js takes the headline
+#     from the row buildRows produces, live from metadata — so the only way the two
+#     could disagree is drift, which `node scripts/ndhr-indicator-availability.mjs
+#     check` fails on. An earlier `indicator_short_name` held a site-authored short
+#     form here ("Crowding", "Air conditioning"); the user chose the data repo's
+#     names on 2026-09-13, so that field is gone rather than renamed.
+#   - `description`, the indicator description written for THIS tool, from the
+#     "Text of ..." document's second column. EHDP-data's own IndicatorDescription is
+#     methodological and this one is written for a reader deciding what to build;
+#     DECIDED-11 chose the document's. `null` for any row the document does not cover
+#     — only evictions (1128) — which falls back to EHDP-data's. The key is required
+#     even when null, so a deliberate gap is distinguishable from an oversight.
 #   - `geotype`, the geography the value is READ AT. NR needs no such field because
 #     every NR row is UHF42; NDHR reads three rows at PUMA2020 and two at CDTA2020
 #     (DECIDED-10), and several of these measures publish at more than one geography,
@@ -49,16 +61,18 @@ measures:
   - MeasureID: 1224
     IndicatorID: 2388
     MeasureName: "Park access, Percent"
-    indicator_short_name: "Park access"
+    IndicatorName: "Walking distance to a park"
     geotype: CD
+    description: "Nearby green spaces make it easier for residents to walk daily, which can lower risks of obesity chronic diseases such as diabetes, heart disease, anxiety, and depression."
     strategy: "Increase presence of parks or green spaces"
     strategy_description: "Plans such as the Walk to a Park Initiative from the Parks Department seek to increase access to parks and greenspaces, including by partnering with public and private institutions."
 
   - MeasureID: 822
     IndicatorID: 2191
     MeasureName: "Heat Vulnerability Index, Score"
-    indicator_short_name: "Heat vulnerability"
+    IndicatorName: "Heat vulnerability index"
     geotype: CDTA2020
+    description: "The Heat Vulnerability Index identifies communities whose residents are more at risk for dying from extreme heat based on neighborhood-level environmental and social factors, including income, race, surface temperature, air conditioning access, and green space."
     strategy: "Increase shade, vegetation, or reflective surfaces to combat heat vulnerability"
     strategy_description: "Combating individual exposure to heat requires access to air conditioning. On the community level, the Climate Resilience Design Guidelines recommend increasing shading, vegetation, and/or high solar reflected surfaces of spaces to decrease heat vulnerability."
 
@@ -68,7 +82,8 @@ measures:
   - MeasureID: 781
     IndicatorID: 2185
     MeasureName: "Households with AC, Percent (with AC)"
-    indicator_short_name: "Air conditioning"
+    IndicatorName: "Household air conditioning"
     geotype: PUMA2020
+    description: "Access to cooling at home reduces the risk of heat-related illness and death during hot weather."
     strategy: "Increase access to cooling"
     strategy_description: "Programs and planning/building design that provide air conditioning for households and lower energy bills can increase access to cooling."

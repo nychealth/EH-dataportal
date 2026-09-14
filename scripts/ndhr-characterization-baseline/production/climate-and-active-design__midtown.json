@@ -15,10 +15,10 @@
     "ndhr-acc-3-h"
   ],
   "accordionCount": 6,
-  "indicatorShortNames": [
-    "Park access",
-    "Heat vulnerability",
-    "Air conditioning"
+  "indicatorNames": [
+    "Walking distance to a park",
+    "Heat vulnerability index",
+    "Household air conditioning"
   ],
   "strategies": [
     "StrategyIncrease presence of parks or green spaces",
@@ -35,8 +35,8 @@
   "expandedPanel": "ndhr-acc-1-c",
   "charts": [
     {
-      "chartName": "Park access across all NYC community districts",
-      "actionsLabel": "Export or view source for Park access across all NYC community districts",
+      "chartName": "Walking distance to a park across all NYC community districts",
+      "actionsLabel": "Export or view source for Walking distance to a park across all NYC community districts",
       "hasCanvas": false,
       "hasSvg": true,
       "markGroups": [

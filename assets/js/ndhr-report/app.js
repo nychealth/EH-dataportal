@@ -14,7 +14,7 @@
 // aq.from().toCSV() so the column list is visible in this file, which is the thing a
 // public export wants to be explicit about
 const CSV_COLUMNS = [
-    'indicator_short_name',
+    'indicator_name',
     'indicator_long_name',
     'geotype',
     'geo_entity_name',

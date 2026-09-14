@@ -21,13 +21,13 @@
     "ndhr-acc-6-h"
   ],
   "accordionCount": 12,
-  "indicatorShortNames": [
-    "Crowding",
-    "Evictions",
-    "Rent burden",
-    "Independent living",
-    "Housing problems",
-    "Cockroaches"
+  "indicatorNames": [
+    "Household crowding",
+    "Evictions (court-ordered)",
+    "Rent-burdened households",
+    "Independent living difficulty (adults)",
+    "Homes with 3+ housing problems",
+    "Homes with cockroaches"
   ],
   "strategies": [
     "StrategyCreate shared housing to alleviate housing shortage",
@@ -50,8 +50,8 @@
   "expandedPanel": "ndhr-acc-1-c",
   "charts": [
     {
-      "chartName": "Crowding across all NYC community districts",
-      "actionsLabel": "Export or view source for Crowding across all NYC community districts",
+      "chartName": "Household crowding across all NYC community districts",
+      "actionsLabel": "Export or view source for Household crowding across all NYC community districts",
       "hasCanvas": false,
       "hasSvg": true,
       "markGroups": [
