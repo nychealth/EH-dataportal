@@ -63,10 +63,16 @@ const getTertilePillClass = (rank) => {
 // use it need it three ways: the expanded panel and the print row want the word wrapped in
 // its .comp-* class, and the collapsed row's screen-reader copy wants plain text. One source
 // so a reader who meets the same fact in two places does not meet it in two vocabularies
-const getTertileSentenceParts = (rank, rankReverse) => {
+const getTertileSentenceParts = (rank, rankReverse, geotype) => {
 
     const r = String(rank);
     const reverse = isRankReversed(rankReverse);
+
+    // A row's rank is computed among areas of its OWN geography, not among the 59
+    // community districts — three of the eighteen measures are read at PUMA2020 and two
+    // at CDTA2020 (plan DECIDED-10). Naming the wrong set here made the header contradict
+    // itself inside one row: "PUMA area | Higher than most community districts"
+    const areas = areaNounFor(geotype);
 
     // The rank carries the verdict and rankReverse only chooses the word, exactly as in
     // getTertilePillClass. Fixed 2026-08-12: cssClass used to flip along with the word, so a
@@ -77,19 +83,19 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     if (r === '1') {
         return {
             word: reverse ? 'Lower' : 'Higher',
-            rest: ' than most community districts',
+            rest: ' than most ' + areas,
             cssClass: 'comp-bad',
         };
     }
 
     if (r === '2') {
-        return { word: 'In the middle', rest: ' of community districts', cssClass: 'comp-null' };
+        return { word: 'In the middle', rest: ' of ' + areas, cssClass: 'comp-null' };
     }
 
     if (r === '3') {
         return {
             word: reverse ? 'Higher' : 'Lower',
-            rest: ' than most community districts',
+            rest: ' than most ' + areas,
             cssClass: 'comp-good',
         };
     }
@@ -100,9 +106,9 @@ const getTertileSentenceParts = (rank, rankReverse) => {
 
 
 // Expands the same rank into a full sentence fragment with the judgment word colored
-const getTertileInlineLabel = (rank, rankReverse) => {
+const getTertileInlineLabel = (rank, rankReverse, geotype) => {
 
-    const parts = getTertileSentenceParts(rank, rankReverse);
+    const parts = getTertileSentenceParts(rank, rankReverse, geotype);
 
     if (!parts.word) return '';
 
@@ -114,9 +120,9 @@ const getTertileInlineLabel = (rank, rankReverse) => {
 // The same sentence as plain text, for the collapsed row's screen-reader copy. That row shows
 // only the bare word, and which way it goes is carried by the pill's background colour — so
 // the tree gets the sentence and the pixels get a glyph (assets/scss/theme.scss)
-const getTertileSentence = (rank, rankReverse) => {
+const getTertileSentence = (rank, rankReverse, geotype) => {
 
-    const parts = getTertileSentenceParts(rank, rankReverse);
+    const parts = getTertileSentenceParts(rank, rankReverse, geotype);
 
     return parts.word ? parts.word + parts.rest : '';
 

@@ -187,7 +187,7 @@ const buildIndicatorCard = (row, districtName) => {
 
     const pillLabel = getTertileLabel(row.data_value_rank, row.rankReverse);
     const pillClass = getTertilePillClass(row.data_value_rank);
-    const pillSentence = getTertileSentence(row.data_value_rank, row.rankReverse);
+    const pillSentence = getTertileSentence(row.data_value_rank, row.rankReverse, row.geotype);
     let pillHTML = '';
 
     // The pill reads the same two words whichever way the comparison went — only its
@@ -238,7 +238,7 @@ const buildIndicatorCard = (row, districtName) => {
             // font-weight-normal because the accordion button is bold and the column
             // inherits it, which would leave nothing for the .comp-* bold to pick out
             '<div style="width:25%;" class="border-right pl-1 fs-sm font-weight-normal">' +
-                getTertileInlineLabel(row.data_value_rank, row.rankReverse) +
+                getTertileInlineLabel(row.data_value_rank, row.rankReverse, row.geotype) +
             '</div>' +
             // The printed report is the rendition someone carries into a meeting, so the
             // strategy belongs on it. The description does not — it sits in the panel,
@@ -349,7 +349,7 @@ const buildIndicatorCard = (row, districtName) => {
         unitSuffix = ' ' + row.units;
     }
 
-    const tertileInlineHTML = getTertileInlineLabel(row.data_value_rank, row.rankReverse);
+    const tertileInlineHTML = getTertileInlineLabel(row.data_value_rank, row.rankReverse, row.geotype);
 
     // ----- data explorer link ----- //
 

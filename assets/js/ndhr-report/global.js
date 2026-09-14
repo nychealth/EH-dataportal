@@ -108,6 +108,35 @@ let mapReady = false;
 
 
 // ----------------------------------------------------------------------- //
+// geography vocabulary
+// ----------------------------------------------------------------------- //
+
+// What to call the set of areas a row is ranked among, plural, with no "NYC".
+//
+// Two renditions need it and they need it two ways: chart.js names a chart "across
+// all NYC public use microdata areas" and prefixes, tertiles.js writes "than most
+// public use microdata areas" and does not. It lives here rather than in either of
+// them because two copies of one vocabulary is how the card ends up contradicting
+// itself — which is the defect this map was introduced to fix. A row read at
+// PUMA2020 is ranked among 35 PUMAs, and saying "community districts" there
+// disagrees with the geography tag in the same header
+//
+// Keyed by the `geotype` on the row, which data/globals/NDHR_content/*.yml declares
+// per measure and scripts/ndhr-indicator-availability.mjs validates against metadata
+const GEOTYPE_AREA_NOUN = {
+    CD: 'community districts',
+    CDTA2020: 'community district tabulation areas',
+    PUMA2020: 'public use microdata areas'
+};
+
+
+// The noun for a row's geotype, or the honest generic. NOT defaulted to community
+// districts: that is the wrong answer for five of the eighteen rows, and defaulting
+// to it would restore the bug for any geotype added later without a line here
+const areaNounFor = geotype => GEOTYPE_AREA_NOUN[geotype] || 'areas';
+
+
+// ----------------------------------------------------------------------- //
 // value helpers
 // ----------------------------------------------------------------------- //
 

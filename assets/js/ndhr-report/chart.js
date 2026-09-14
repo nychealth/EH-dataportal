@@ -18,13 +18,9 @@ const GEOTYPE_TOPOJSON = {
     PUMA2020: 'geography/PUMA2020.topo.json'
 };
 
-// What the chart's title calls the areas it plots. A CDTA or PUMA chart is not a chart of
-// community districts, and saying so is the same obligation the card's geography tag carries
-const GEOTYPE_AREA_LABEL = {
-    CD: 'NYC community districts',
-    CDTA2020: 'NYC community district tabulation areas',
-    PUMA2020: 'NYC public use microdata areas'
-};
+// The area noun this chart's title uses moved to global.js as GEOTYPE_AREA_NOUN, because
+// tertiles.js needs the same vocabulary in a sentence that takes no "NYC" prefix. The
+// prefix is applied at the one use below, so this title's wording is unchanged
 
 
 // Draws one indicator across every area of its own geotype, with geocode's own value
@@ -40,7 +36,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         geoType
     });
 
-    const areaLabel = GEOTYPE_AREA_LABEL[geoType] || 'NYC areas';
+    const areaLabel = 'NYC ' + areaNounFor(geoType);
 
     // Every chart on the page is otherwise named "Vega visualization" — vega's default, and
     // identical for all of them, so nothing says which indicator a chart shows. Falls back
