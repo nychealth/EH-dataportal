@@ -12,16 +12,42 @@ The page currently holds the January–June 2025 report.
 
 ## Status
 
+**Status as of 2026-09-14:** tasks 0–2 are closed except for the partner's reply. Task 3 is
+blocked on the 2026 charts, task 4 still needs a running server for smoke and the interaction
+check. Two things gate publication and neither is a task row: the `date:` field and the fact that
+nothing links to the archives — both under Open items.
+
 | Task | State | Proof that ran |
 |---|---|---|
 | 0. Send numeric discrepancies to partner | sent 2026-09-14, awaiting reply | — |
-| 1. Archive the 2025 report to `2025/` | done, `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
-| 2. Rewrite `index.md` body from the docx | not started | — |
-| 3. Swap in the 2026 chart embeds | **blocked** — see Decision D1 | — |
-| 4. Build + smoke + interaction check | not started | — |
+| 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
+| 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
+| 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
+| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 charts** — Decision D1 says ship on option A | — |
+| 4. Build + smoke + interaction check | build done; smoke and the 29-button interaction check **not started** | — |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
 exists; never write "done, uncommitted" here.
+
+### Deriving what this table deliberately does not claim
+
+A DONE row is a fact about its commit and nothing downstream of it. Run these rather than reading
+a status phrase:
+
+```
+git log --oneline 9344ce458a..HEAD                              # the task commits
+git rev-list --left-right --count origin/update-rat-mitigation-report...HEAD   # 0 0 means pushed
+gh pr list --head update-rat-mitigation-report                  # a PR, and against which base
+git merge-base --is-ancestor 6b2055b407 production              # exit 0 means it reached production
+```
+
+### Environment
+
+- No server was started. Builds went to a scratchpad directory via `HUGO_RESOURCEDIR` and `-d`;
+  `docs/` does not exist in this worktree and `resources/_gen` was untouched.
+- The source document sits at `documents/Annual Rat Mitigation Report 2026_08_31.docx`, gitignored
+  at `5a60a06b27`. It is on disk in this worktree; a fresh clone will not have it.
+- Worktree: `EH-dataportal.worktrees/update-rat-mitigation-report`.
 
 ---
 
@@ -171,10 +197,66 @@ This mirrors what commit `99339aca73` (2025-11-12, "Fix tables") did for 2024
 **Interfaces:** produces the frozen 2025 page. Task 3 depends on this existing *before* any
 Datawrapper chart is touched — otherwise editing a chart in place would alter both pages.
 
-**Known gap, not in scope:** nothing in `content/`, `themes/` or `data/` links to `2023/` or
-`2024/` `[verified 2026-09-14: grep -rn "rat-report/202" over those three trees returns 0 hits]`,
-so the archives are reachable only by direct URL or site search. `2025/` will inherit that. If an
-archive index is wanted, it is a separate piece of work.
+**Corrected 2026-09-14 — this paragraph previously said the archives were "reachable only by
+direct URL or site search". They were not reachable at all.** `content/data-features/rat-report/`
+held `index.md`, making it a *leaf* bundle, and subdirectories of a leaf bundle are page resources
+rather than pages: `2023/`, `2024/` and the `2025/` copy committed at `6020832f59` rendered nothing
+`[verified 2026-09-14: isolated build, the only output under data-features/rat-report/ was
+index.html plus images and rat-report.js; the en sitemap's 736 <loc> entries held exactly one
+rat-report URL. Control: heat-report-archive's five year URLs were present in the same sweep.]`
+Task 1a fixes it. Nothing still links to the archives — see Open items.
+
+---
+
+## Task 1a: Publish the archives — Decision D2
+
+**Decision D2 (settled 2026-09-14):** mirror `content/data-features/heat-report-archive/`, which is
+this repo's already-working solution to the same problem.
+
+That directory is a *branch* bundle: its `_index.md` carries `build: {list: never, render: never}`,
+so the container neither renders nor appears in a listing, while its year children publish. It holds
+both shapes — `2021.md`–`2023.md` beside asset directories, and `2024/index.md` /
+`2025/index.md` as leaf bundles nested one level down, which is exactly the shape the rat archives
+already have.
+
+`[verified 2026-09-14 before the move: isolated build exit 0, 0 ERROR, 1206 EN pages in 48s. Output
+held five heat-report-archive/<year>/index.html and one rat-report page; en/sitemap.xml (736 <loc>)
+listed all five heat archive URLs. A first probe against the repo-root sitemap.xml returned zero for
+both — that file is a sitemapindex, not a URL list; the numbers here are from en/sitemap.xml.]`
+
+Rejected: converting `rat-report/` itself to a branch bundle. `_index.md` routes to `section.html`,
+so the live page's `layout: report` would need re-verifying. The archive-container shape does not
+touch the live page at all.
+
+**Files:**
+- `content/data-features/rat-report-archive/_index.md` (new, mirrors the heat-report-archive one)
+- `git mv content/data-features/rat-report/{2023,2024,2025}` into it
+- `content/data-features/rat-report-archive/{2024,2025}/rat-report.js` (copies)
+
+The JS copies are load-bearing. `report.html:55-56` emits `<script src="{{ .Params.js }}">` with no
+`relURL`, so `js: rat-report.js` resolves against the *page* URL. Each archive is now its own page
+and each needs the file beside it. 2023 declares no `js` and calls `changeTable` zero times; 2024
+calls it 30 times and 2025 34.
+
+**Proof:** `[verified 2026-09-14 after the move: isolated build exit 0, 0 ERROR lines. Three
+`rat-report-archive/<year>/index.html` in the output where there were none; en sitemap 736 → 739
+`<loc>`, the three new ones being the archive URLs. 2023/2024/2025 rendered at 61,415 / 83,580 /
+88,136 bytes with 0 / 31 / 37 Datawrapper embeds. `rat-report.js` sits beside each page that asks
+for it, and both copies are `cmp`-identical to the source.]`
+
+**Do not read the build summary's EN page count as the proof.** It stayed at 1206 across both
+builds even though three pages started rendering — Hugo counted the archive `index.md` files as
+pages while they were still bundle resources producing no output. The output tree and the sitemap
+are the instruments that moved.
+
+**No listing side effect.** `data-features/section.html` ranges over `.Pages`, which is direct
+children only, and `_index.md`'s `list: never` hides the container. Control: the built
+`data-features/index.html` holds zero `heat-report-archive` links against 4 for `heat-report`.
+
+**Left alone:** each archive's `image:` frontmatter names a PNG that lives in the *parent* bundle
+and is no longer a resource of the moved page. It is inert — `.Params.image` is read only by
+listing templates, which exclude these pages, and `seo.html` uses `resources.Get` against `assets/`
+instead. Fixing it would be an unrelated change.
 
 ---
 
@@ -362,7 +444,26 @@ verification.
 
 ## Open items
 
-- Task 0 replies from the partner — record them here when they arrive.
-- Publication date for the frontmatter `date:` field.
-- D1.
+- Task 0 replies from the partner — record them here when they arrive. Three paragraphs carry an
+  HTML comment marking the disputed figure; find them with
+  `grep -n "PENDING PARTNER CONFIRMATION" content/data-features/rat-report/index.md` → 3 hits at
+  lines 94, 135 and 338.
+- **Publication date for the frontmatter `date:` field — needed before the page ships.** It
+  currently reads `2026-12-01T11:14:56-04:00`, the 2025 page's timestamp with the year bumped. That
+  is 2.5 months in the future and it is the newest date on the site, so it becomes the English
+  sitemap's own `lastmod` `[verified 2026-09-14: it is the only date after today anywhere in
+  `content/`, and the root sitemapindex's `<lastmod>` for en/sitemap.xml reads exactly
+  `2026-12-01T11:14:56-04:00`]`. It does not break the build — `config/_default/config.toml:10`
+  sets `buildFuture = true`, so the page renders regardless.
+- D1 — recommendation is to ship 2026 on option A and evaluate C for 2027.
 - Whether a new `image:` screenshot is being supplied for the 2026 page.
+- **Nothing links to the archives.** They publish as of Task 1a but are reachable only by URL or
+  site search `[verified 2026-09-14: grep -rn "rat-report/202\|rat-report-archive" over content/,
+  themes/ and data/, excluding the moved files themselves, exits 1 with no hits. Positive control:
+  the same sweep for "heat-report-archive/20" returns 5 links in
+  content/data-features/heat-report/10-conclusion.md and 3 in
+  themes/dohmh/layouts/partials/heat-report-correction.html. An earlier control here grepped
+  content/ for the literal string "rat-report-archive" and read its 0 as validation — that is
+  the same null, since grep -r searches file contents and not paths.]`. `heat-report` solves this with a
+  five-line list in `content/data-features/heat-report/10-conclusion.md:48-52`. Adding the
+  equivalent to the rat report is a content decision, not done.
