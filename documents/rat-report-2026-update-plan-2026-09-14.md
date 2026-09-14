@@ -14,8 +14,8 @@ The page currently holds the January–June 2025 report.
 
 | Task | State | Proof that ran |
 |---|---|---|
-| 0. Send numeric discrepancies to partner | not started | — |
-| 1. Archive the 2025 report to `2025/` | not started | — |
+| 0. Send numeric discrepancies to partner | sent 2026-09-14, awaiting reply | — |
+| 1. Archive the 2025 report to `2025/` | done, `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 2. Rewrite `index.md` body from the docx | not started | — |
 | 3. Swap in the 2026 chart embeds | **blocked** — see Decision D1 | — |
 | 4. Build + smoke + interaction check | not started | — |
@@ -149,7 +149,11 @@ before Task 2 rewrites the affected paragraphs.
 ## Task 1: Archive the 2025 report
 
 **Files:**
-- copy `content/data-features/rat-report/index.md` → `content/data-features/rat-report/2025/index.md` (new, 404 lines / 44,433 bytes at `5a60a06b27`)
+- copy `content/data-features/rat-report/index.md` → `content/data-features/rat-report/2025/index.md` (new, 404 lines / 48,992 bytes at `5a60a06b27`)
+
+An earlier draft of this document gave 44,433 bytes here. That is the size of the *2024-era* file
+on both sides of the byte-identity check below, not of the page being archived now
+`[re-measured 2026-09-14: wc -lc → 404 48992, and git cat-file -s on the same blob → 48992]`.
 
 This mirrors what commit `99339aca73` (2025-11-12, "Fix tables") did for 2024
 `[verified 2026-09-14: git show 99339aca73^:…/index.md and 99339aca73:…/2024/index.md are both
