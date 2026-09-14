@@ -18,8 +18,8 @@ yet, which is exactly what that check would fail on.
 All four decisions that were OPEN were taken by the user on 2026-09-11 and are recorded as
 DECIDED-6 through DECIDED-9. Nothing in Tasks 1-11 is blocked on a decision.
 
-**One decision re-opened on 2026-09-13**: OPEN-11, below, on which text the indicator
-description column should carry. It blocks Task 15 and nothing else.
+**One decision re-opened and closed on 2026-09-13**: DECIDED-11, below, on which text the
+indicator description column should carry. It had blocked Task 15 and nothing else.
 
 ### DECIDED-1 — Prototype what exists; drop what does not
 
@@ -242,11 +242,20 @@ CD4's and the indicator rows match CD6's. **Task 7 must label both, not only the
 reader who notices one shared value and not the other will conclude the page is broken.
 
 
-### OPEN-11 — Which text is the indicator description
+### DECIDED-11 — The source document's descriptions are the ones to render
 
-**Added 2026-09-13 by the review in §4. It is the only OPEN entry in this section** — Task 12 and
-Task 14 also want the user's word before they start, but on scope and placement rather than on a
-question this section has to settle first.
+**The user's decision, 2026-09-13**: "keep the source document's descriptions for now". Raised by
+the review in §4 as OPEN-11 and answered the same day, so this entry carries the question as well
+as the answer.
+
+**Read as: render the document's text, not EHDP-data's.** The document's descriptions are not on
+the page today, so there was nothing to retain under the other reading. The assumption was stated
+back to the user when the work started.
+
+**"For now" is the prototype scope, and the fallback is what makes it reversible.** Rows the
+document does not cover keep EHDP-data's `IndicatorDescription`, so this is an override on 18 rows
+rather than a replacement of the field. Deleting the authored keys returns the page to its current
+state.
 
 The source document's indicator table has two columns, `Indicator` and `Description`, and its
 26 descriptions are written in built-environment terms for this tool's audience. The page renders
@@ -274,7 +283,7 @@ both in field lists at :298 and :931]`. Only whoever authored the content YAML c
 site-owned fields today — `indicator_short_name`, `strategy`, `strategy_description`, and nothing
 else besides `geotype` and `MeasureID`/`MeasureName` `[verified 2026-09-13: union of second-level
 keys across `data/globals/NDHR_content/*.yml`]`. A `description` key is the same mechanism, read
-in `cards.js` beside `indicator_short_name`. That is Task 15.
+in `cards.js` beside `indicator_short_name`. That is Task 15, which this decision unblocks.
 
 ---
 
@@ -405,25 +414,41 @@ until then the partial's only check is that it parses, which the same build show
 | 9. Guardrails | **DONE 2026-09-12** — smoke entries, `scripts/ndhr-characterization.mjs` and both its baselines, and both site-characterization baselines. The Pagefind item closed **without a re-capture**: the section was taken out of the index instead, so the committed baseline still describes the site. Four `absent: true` controls now guard that | `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check`, `npm run characterize:site` and `npm run smoke:all` (1285 pages, 0 failures) all exit 0; the NDHR harness is proved to discriminate by two injections whose predictions were registered first — a `console.error` moved `consoleErrors` on all 4 targets, one edited strategy phrase moved `strategies` on the 2 Housing targets and no others, nothing else moved, and restoring both returned it to 0 | `c60f184477`, `0cd2fe97ff`, `c895d33575` |
 | 10. District typeahead | **DONE 2026-09-12** — two partials (`ndhr-district-picker.html` + `-js.html`) on the landing page and the five category indexes; the 59 district indexes were out of scope and did not get one. Searches `CD_name` and `borough`, with **no ZIP search**, which the partial says on the page rather than leaving implied | Isolated `development` build exit 0, picker markup on exactly **6 of 360** NDHR pages with 0 duplicate `wireComboboxState` and 0 NR partials; browser on `dev_stage`, both page kinds: HTTP 200 and **0 console errors**, `role="combobox"` + `aria-labelledby` on the generated input, `communityDistricts` 59, "bedford" → 2 rows, "Bronx" → all 12, "11216" and "zzqqxx" → none, Escape dismisses and `aria-expanded` returns false, and a selection lands on the right page from both kinds. `npm run lint` 0, `npm run docs-check` 0, `npm run smoke` 38 clean. `characterize:site` moved 5 fields on those 6 pages — the diff was read before re-baselining, and `controls.noAccessibleName` 0 → 1 is diagnosed in the as-built section, not absorbed | `9411011f73`, `1952ff919b` |
 | 11. CD picker map | **DONE 2026-09-12** — `themes/dohmh/layouts/partials/ndhr-leaflet.html` on geography/CD.topo.json, plus `themes/dohmh/layouts/partials/lib-topojson.html`, on all three non-report layouts. Two things this row does not leave implied: its polygons are keyboard stops on the 59 district indexes and deliberately **not** on the 6 picker pages, and it **does not fly to the located district** where `nr-leaflet.html` does. Both are in the as-built section | Isolated `development` build exit 0; the map on exactly **65 of 360** NDHR pages — 1 landing, 5 category indexes, 59 district indexes — each with one CD.topo.json reference and one topojson-client script, and **0 on all 295 report pages**, so the `map.js` name collision stays unreachable. Browser on `dev_stage` over 4 page kinds: HTTP 200 and **0 console errors** on 4 of 4; 59 polygons each carrying `role="button"` and a district name on all three map-bearing kinds; on the 6 picker pages the container and **65 of 65** candidate nodes carry `tabindex="-1"`, on a district index **0 of 65** do and a real Tab sweep put focus on 7 polygons in 8 stops — **tab-order membership measured rather than inferred, which Task 7 explicitly could not claim**. Exactly one polygon carries the selected style on a district index and none on the picker pages. Un-forced clicks land on `/ndhr/midtown/`, `/ndhr/midtown/housing/` and `/ndhr/central_harlem/` from the three kinds, and Enter on a focused polygon does the same. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` **38 clean**. `characterize:site` moved 4 fields on those 65 pages and nothing else; the diff was read before re-baselining | `77932ab348`, `b770e2fb1a` |
-| 12. Report map viewport (review) | **OPEN** — added 2026-09-13. One scope decision first: whether the identical NR defect is in scope | none yet. The finding's own proof is a two-arm zoom measurement, 9 of 59 against 55 of 59, with a dispatched-click control ruling out the handler | — |
+| 12. Report map viewport (review) | **DONE 2026-09-13** — the fly-to is gone from `selectLayer` and both its call sites, replaced by a `fitBounds` on the whole layer. **Scope decided by the user 2026-09-13: fix NDHR here, file the NR half** — it is `documents/site-wide-audit-2026-06-27.md` §18, not a task in this plan | Two arms on one page, one variable, A -> B -> A: **57 of 59** reachable at zoom 9.58, **5 of 59** with the removed fly-to re-applied by hand at zoom 13.78, **56 of 59** refitted — two runs, identical counts. An un-forced click on Central Harlem navigates, exactly 1 polygon still carries the selected style, 59 polygons named. `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check` and `npm run smoke` (38 pages) all exit 0 | `999d986758` |
 | 13. Tertile sentence geography (review) | **OPEN** — added 2026-09-13. DECIDED-2's obligation, unmet on 5 of 18 rows | none yet | — |
 | 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
-| 15. Indicator descriptions (review) | **BLOCKED on OPEN-11** — added 2026-09-13. May close as "decided, not built" | none yet | — |
+| 15. Indicator descriptions (review) | **OPEN, unblocked 2026-09-13** by DECIDED-11 — render the source document's descriptions, EHDP-data's as the fallback | none yet | — |
 | 16. Four low-symptom defects (review) | **OPEN** — added 2026-09-13. 16a is a correctness bug with a session-permanent consequence; 16d is comment-only | none yet | — |
 
-**Status as of 2026-09-13:** **Tasks 1-11 are done on `feature-NDHR-prototype`.** A review on
-2026-09-13 added **Tasks 12-16, all open**, and re-opened one decision as **OPEN-11**. §4 carries
-the review's own summary, including what it checked and did not find.
+**Status as of 2026-09-13, later the same day:** **Tasks 1-12 are done on
+`feature-NDHR-prototype`; Tasks 13-16 are open and none is blocked.** A review that morning added
+Tasks 12-16 and re-opened one decision; Task 12 and the decision were both closed that afternoon.
+§4 carries the review's own summary, including what it checked and did not find.
 
 **An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
-That was true of Tasks 1-11 and is no longer true of the plan.** A session resuming here starts
-at §4, not at the task list above it.
+That was true of Tasks 1-11 and is not true of the plan.** A session resuming here starts at §4,
+not at the task list above it.
 
-**Next command: none — Task 12 opens with a question rather than an edit.** It must not be
-started before the user decides whether the identical defect on the NR report page is in this
-branch's scope; the three options and what each costs are in the task. Task 14 has a placement
-question of the same kind, and Task 15 is blocked outright on OPEN-11. Task 13 and Task 16 are
-the two that can be picked up without asking anything.
+**Two of the four remaining tasks still open with a question rather than an edit**, and a session
+that starts editing instead has taken a decision that is not its to take:
+
+- **Task 14 — placement.** The source document attaches its two caveats to column headers; Task 8
+  dissolved the strategies column into per-row cells, so there is no header to hang them on. The
+  wording is settled and the placement is not.
+- **Task 15 — scope of the authored keys.** DECIDED-11 settled *whose* text. The document carries
+  26 descriptions against 18 rendered rows, so which document row maps to which MeasureID is a
+  content judgment, and evictions (1128) already carries an explicit YAML null for its
+  description.
+
+**Task 13 and Task 16 can be picked up without asking anything.** Task 13 is the larger of the
+two and closes a DECIDED-2 obligation, so it is the one to take first.
+
+**What Task 12 settled that the other tasks inherit.** A `characterize:site` re-capture is **not**
+owed for a JS content change: the baselines record unhashed logical asset paths — `js/ndhr-report/
+map.js`, not the fingerprinted filename — so a changed file moves no recorded field
+`[verified 2026-09-13: `structure.assets` read off the committed `staging` record for
+`ndhr/midtown/housing/`]`. A re-capture is owed when a task *adds or removes* an asset, which is
+what Task 11's topojson note was about. Tasks 13-16 add none.
 
 Two things this plan names that are deliberately NOT in it, and that a later session should not
 read as oversights:
@@ -2026,7 +2051,7 @@ and the Manhattan double-merge DECIDED-10 flagged is handled and labelled.
 **The three remaining gaps between the prototype and the documents are all recorded as decisions,
 not defects**: the contact affordance (DECIDED-9), the three null demographic rows — population,
 over-65, under-18, which EHDP-data publishes at no CD-level indicator, already a data-team ask —
-and the indicator descriptions (OPEN-11 / Task 15). The 10 dropped indicators each have a DECIDED
+and the indicator descriptions (DECIDED-11 / Task 15). The 10 dropped indicators each have a DECIDED
 entry with a re-runnable check behind it.
 
 
@@ -2088,6 +2113,64 @@ hit-testing. Re-run the two-arm measurement above and expect arm A to read 55-of
 with the selected-style assertion still passing so the fix did not simply stop selecting.
 `npm run characterize:ndhr check` must also be re-run: the harness does not read zoom, but it does
 read the report's rendered rows, and a broken selection path would move them.
+
+
+### Task 12 as built `[999d986758]`
+
+**Scope decided by the user 2026-09-13: fix NDHR here, file the NR half.** The NR finding is
+`documents/site-wide-audit-2026-06-27.md` §18 — that branch's active findings log — and is not a
+task in this plan. §18 excludes `themes/dohmh/layouts/partials/nr-leaflet.html` explicitly: it is
+a picker whose polygons answer no key and whose 42-neighborhood list carries the navigation, so it
+should keep its fly-to. Do not sweep both on a grep for `flyToBounds`.
+
+**`selectLayer` lost the `zoom` argument rather than being passed `false`.** Both call sites
+passed `true` and there was no third caller, so a dead parameter wrapping a `flyToBounds` is the
+kind of thing a later session switches back on. The reasoning, and the measurement behind it, is
+now a comment at the point of removal.
+
+**The task predicted two edits and the fix needed three.** The plan's Files block named the two
+call sites and the `if (zoom && leafletMap)` block. It did not name the map's *initial* framing,
+and removing the fly-to alone would not have fixed anything: `map.js` opened with a fixed
+`setView([40.7128, -74.006], 10)` — lower Manhattan at zoom 10 — which in this column's width cuts
+off the outer boroughs. With the fly-to gone that view is the one every district is selected from,
+so it had to become a `fitBounds` on the whole layer. `zoomSnap = 0` comes with it, for the reason
+`ndhr-leaflet.html` already records: the default of 1 makes `fitBounds` round **down** to a whole
+zoom level.
+
+**The measurement, re-run on the fixed build with the removed behaviour re-applied by hand as arm
+B.** One page, one variable, A -> B -> A so ordering cannot explain the result:
+
+| arm | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — as the page now leaves it | 9.58 | **57 of 59** |
+| B — old fly-to re-applied | 13.78 | **5 of 59** |
+| A — refitted to all 59 | 9.58 | **56 of 59** |
+
+Two runs returned identical counts on all three arms. Arm B is the control that matters: it
+reproduces the defect *on the fixed build*, so the mechanism is demonstrated rather than inferred
+from the fix working.
+
+`[verified 2026-09-13: `/ndhr/midtown/climate-and-active-design/` against a `dev_prod` server on
+:8080, Playwright's own actionability check via a trial click as the reachability test. The served
+`map.js` was read back and asserted to contain `fitBounds` and no `flyToBounds`, so the numbers
+describe the new file and not a cached one]`
+
+**Three things checked so the fix could not pass by breaking something else.** An un-forced click
+on Central Harlem from the Midtown page navigates to
+`/ndhr/central_harlem/climate-and-active-design/` with the `<h1>` rewritten; exactly **1** polygon
+carries the selected style, so the fix did not simply stop selecting; and **59** polygons are
+named.
+
+**The one console error that is not Pagefind was chased rather than allowlisted.** The sweep
+reported a bare `Failed to load resource: 404`, which this repo's own notes warn hides its cause.
+It is `pagefind/pagefind-ui.js`, and it appears identically on `/ndhr/` and on
+`/neighborhood-reports/` — a page this change does not touch — so it is the documented
+dev-server noise and not something introduced `[verified 2026-09-13: response listener over three
+page kinds]`.
+
+**No `characterize:site` re-capture, and that is a checked claim rather than a judgment call.**
+Its baselines record unhashed logical asset paths, so a JS content change moves no recorded field.
+The full note is in the status block above, because Tasks 13-16 inherit it.
 
 
 ## Task 13: The tertile sentence names the wrong geography on five rows
@@ -2196,13 +2279,11 @@ into one is absent from the other. `npm run characterize:ndhr check` reads the s
 text, so it will go red on the two Housing targets by design.
 
 
-## Task 15: Indicator descriptions — BLOCKED on OPEN-11
+## Task 15: Indicator descriptions
 
-**Do not start this task until OPEN-11 is answered.** If the answer is that EHDP-data's
-`IndicatorDescription` is the intended text, this task is closed as "decided, not built" and the
-decision is recorded in §1 — which is the whole value of asking first.
-
-If the answer is that the source document's descriptions are wanted:
+**Unblocked 2026-09-13 by DECIDED-11**: the source document's descriptions are the ones to
+render, with EHDP-data's `IndicatorDescription` as the fallback for any row the document does not
+cover.
 
 **Files:**
 - Edit `data/globals/NDHR_content/*.yml` — add a `description` key per measure, from the source
