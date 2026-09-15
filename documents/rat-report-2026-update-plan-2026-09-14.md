@@ -35,8 +35,8 @@ a status phrase:
 
 ```
 git log --oneline 9344ce458a..HEAD                              # the task commits
-git rev-parse --verify origin/update-rat-mitigation-report   # fails: never pushed as of 2026-09-14
-git rev-list --left-right --count origin/update-rat-mitigation-report...HEAD   # once it has: 0 0 means in sync
+git ls-remote origin refs/heads/update-rat-mitigation-report    # pushed 2026-09-15; empty output means it is gone again
+git rev-list --left-right --count origin/update-rat-mitigation-report...HEAD   # 0 0 means in sync
 gh pr list --head update-rat-mitigation-report                  # a PR, and against which base
 git merge-base --is-ancestor 6b2055b407 production              # exit 0 means it reached production
 ```
