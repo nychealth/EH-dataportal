@@ -420,16 +420,18 @@ until then the partial's only check is that it parses, which the same build show
 | 11. CD picker map | **DONE 2026-09-12** — `themes/dohmh/layouts/partials/ndhr-leaflet.html` on geography/CD.topo.json, plus `themes/dohmh/layouts/partials/lib-topojson.html`, on all three non-report layouts. Two things this row does not leave implied: its polygons are keyboard stops on the 59 district indexes and deliberately **not** on the 6 picker pages, and it **does not fly to the located district** where `nr-leaflet.html` does. Both are in the as-built section | Isolated `development` build exit 0; the map on exactly **65 of 360** NDHR pages — 1 landing, 5 category indexes, 59 district indexes — each with one CD.topo.json reference and one topojson-client script, and **0 on all 295 report pages**, so the `map.js` name collision stays unreachable. Browser on `dev_stage` over 4 page kinds: HTTP 200 and **0 console errors** on 4 of 4; 59 polygons each carrying `role="button"` and a district name on all three map-bearing kinds; on the 6 picker pages the container and **65 of 65** candidate nodes carry `tabindex="-1"`, on a district index **0 of 65** do and a real Tab sweep put focus on 7 polygons in 8 stops — **tab-order membership measured rather than inferred, which Task 7 explicitly could not claim**. Exactly one polygon carries the selected style on a district index and none on the picker pages. Un-forced clicks land on `/ndhr/midtown/`, `/ndhr/midtown/housing/` and `/ndhr/central_harlem/` from the three kinds, and Enter on a focused polygon does the same. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` **38 clean**. `characterize:site` moved 4 fields on those 65 pages and nothing else; the diff was read before re-baselining | `77932ab348`, `b770e2fb1a` |
 | 12. Report map viewport (review) | **DONE 2026-09-13** — the fly-to is gone from `selectLayer` and both its call sites, replaced by a `fitBounds` on the whole layer. **Scope decided by the user 2026-09-13: fix NDHR here, file the NR half** — it is `documents/site-wide-audit-2026-06-27.md` §18, not a task in this plan | Two arms on one page, one variable, A -> B -> A: **57 of 59** reachable at zoom 9.58, **5 of 59** with the removed fly-to re-applied by hand at zoom 13.78, **56 of 59** refitted — two runs, identical counts. An un-forced click on Central Harlem navigates, exactly 1 polygon still carries the selected style, 59 polygons named. `npm run lint`, `npm run docs-check`, `npm run characterize:ndhr check` and `npm run smoke` (38 pages) all exit 0 | `999d986758` |
 | 13. Tertile sentence geography (review) | **DONE 2026-09-14** — `GEOTYPE_AREA_NOUN` and `areaNounFor` in `global.js`, the three sentence strings and both wrapper signatures in `tertiles.js`, three call sites in `cards.js`, and `chart.js` reading the shared map. **The task's prescribed proof did not work and the harness was extended instead** — `characterize:ndhr` captured `geotypeTags` and no sentence, so it passed green against the defect; a `tertileSentences` field plus its control now closes that. No NR half: every NR row is UHF42 | A -> B -> A on two report pages, one variable, arm B being the hardcoded string re-applied by hand: **1 of 9 rows misnaming, 4 of 9, 1 of 9**, the two A arms identical, and the print rendition going from all three geotype nouns present to 3 missing and back. The single row BAD in both arms has no rank and so no sentence, unchanged by this task. `tertiles.js` restored byte-identical after arm B. Both baselines re-captured at **44 insertions, 0 deletions** — nothing pre-existing moved — and the two branches still capture identically. `npm run lint` 0 with an injected undefined name exiting 1, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | `166e2055a9`, `ee62fcc186` |
-| 14. Strategy-column caveats (review) | **OPEN** — added 2026-09-13. Placement needs the user's word; the wording is the source document's | none yet | — |
+| 14. Strategy-column caveats (review) | **DONE 2026-09-14** — both caveats once above the indicator list in `themes/dohmh/layouts/ndhr/ndhr-report.html`, inside the `$measures` branch so the empty-state category does not carry a caveat qualifying a list it has none of. **Placement was measured rather than chosen**: beside `strategy_description` in `cards.js` they render on screen and never print, because `assets/scss/theme.scss:747-750` hides `.report-section .collapse` under `@media print`. **The task's prescribed harness expectation was wrong and the harness was extended instead** — it predicted `characterize:ndhr check` would go red on the two Housing targets, and the note is outside every selector that harness reads | Browser, both renditions, on a `dev_stage` server: **1 on screen and 1 in print** on the climate (3 measures) and housing (6 measures) categories, **0 in both** on mental-health, with the print read proved live by its own controls. The rejected `cards.js` arm measured **0 of 2 strings in print** with every panel forced `.show`, against a print read that still returned the strategy phrase. Three injections on the new `strategyCaveats` field, predictions registered first and all three held — the paragraph deleted exits **2** naming all three measure targets, one reworded word exits **1** on those same three with mental-health still `ok`, and rendering it on the empty-state category exits **2** naming that target; the layout restored byte-identical to its pre-injection snapshot after each, proved by `cmp`. Both baselines re-captured at **8 insertions, 0 deletions** and the two branches still capture identically. `npm run characterize:ndhr check` 0, `npm run lint` 0, `npm run docs-check` 0, and `npm run characterize:site` passed the structure half over 1,285 pages | `a562d74324`, `81ccb4b806` |
 | 15. Indicator descriptions (review) | **DONE 2026-09-14** — the document's descriptions on 17 of 18 rows, evictions (1128) an explicit null falling back to EHDP-data's text. **It also took the card headline off the site-authored `indicator_short_name` and onto EHDP-data's `IndicatorName`**, which this task did not ask for and the user decided on 2026-09-13; the YAML keeps a validated copy for the category index alone | The two new content checks are proved to fire — a wrong `IndicatorName` and a removed `description` key each exit 1 naming their own cause, file restored byte-for-byte after each. Browser on a `dev_prod` server: all three climate cards carry the data repo name and the document description, EHDP-data's park text is gone with a positive control for that search, evictions still shows EHDP-data's text, and the category index renders three items with no blank name half. `npm run report-data:parity all` still exits 0 at **37,044 comparisons, 0 mismatched**, which is the proof the override stayed out of the shared module. `npm run lint`, `npm run docs-check` and `npm run ndhr:availability check` all exit 0. Both NDHR baselines re-captured, diff read first: every changed line a name or a name-derived chart field, zero outside that set | `f0242eb371` |
 | 16. Four low-symptom defects (review) | **DONE 2026-09-14** — 16a a cache-delete on rejection in the shared `normalize.js`, 16b a response check before `res.json()` in `map.js`, 16c a `.catch` on `vegaEmbed` with the fallback the sync `try` could never reach, 16d the misfiled comment moved to `report.js` beside the guard it describes. **16c's NR twin at `assets/js/nr-report/chart.js:200` is NOT fixed, and is filed as
 `documents/site-wide-audit-2026-06-27.md` section 19 rather than as a task here** | Each failure forced, A -> B -> A, arm B being the three fixes reverted by hand and proved identical to `HEAD` by an empty `git diff`: **RECOVERS / STUCK / RECOVERS** (6 cards against 0 after an in-place district switch), **NAMES THE URL / PARSER ONLY / NAMES THE URL**, **REPORTED+FALLBACK / SWALLOWED / REPORTED+FALLBACK**. `npm run report-data:parity all` 0 at 37,044 comparisons, 0 mismatched with all three controls firing — the gate that matters, since 16a edits the shared module. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | `ec2208da2b` |
 
-**Status as of 2026-09-14:** **Tasks 1-13, 15 and 16 are done on `feature-NDHR-prototype`; Task 14
-is the only one open, and it opens with a question rather than an edit.** A review on 2026-09-13
-added Tasks 12-16 and re-opened one decision; Task 12 and the decision were both closed that
-afternoon, and Tasks 15, 13 and 16 the next day. §4 carries the review's own summary, including
-what it checked and did not find.
+**Status as of 2026-09-14:** **All sixteen tasks are done on `feature-NDHR-prototype`.** A review
+on 2026-09-13 added Tasks 12-16 and re-opened one decision; Task 12 and the decision were both
+closed that afternoon, and Tasks 15, 13, 16 and 14 the next day. §4 carries the review's own
+summary, including what it checked and did not find.
+
+**"Done" here means every numbered task, not every loose end** — the two recorded below are real,
+and neither is a task in this plan.
 
 **One loose end is recorded in Task 16's as-built rather than in a row of its own:**
 **16c's NR twin at `assets/js/nr-report/chart.js:200` is unfixed.** Unlike Task 12's NR half it
@@ -442,25 +444,28 @@ git status --porcelain                   # or is the work still in the working t
 npm run characterize:ndhr check          # 0 means the committed baselines match the tree
 npm run report-data:parity all           # 0 at 37,044 comparisons proves the shared module intact
 grep -n 'catch' assets/js/nr-report/chart.js   # no hit near :200 means the NR twin is still open
+git log --oneline @{u}..HEAD              # non-empty means local work is unpushed
 ```
 
-**An earlier version of this block read "Nothing in this plan is open and nothing is blocked."
-That was true of Tasks 1-11 and is not true of the plan.** A session resuming here starts at §4,
-not at the task list above it.
+**An earlier version of this block read "Nothing in this plan is open and nothing is blocked"
+while Tasks 12-16 were open.** It happens to be true of the numbered tasks now, which is exactly
+why it is worth keeping: it was written before a review added five of them, and a done-ness claim
+in a plan describes the moment it was typed. Re-derive from the table and the commands above, and
+start at §4 rather than at the task list.
 
-**The one remaining task opens with a question rather than an edit**, and a
-session that starts editing instead has taken a decision that is not its to take:
+**Every task that opened with a question has had it answered.** Task 14's was placement: the
+source document attaches its two caveats to column headers, Task 8 dissolved the strategies column
+into per-row cells, and there was no header left to hang them on. The user chose the layout on
+2026-09-14, after the `cards.js` alternative was built and measured and could not reach the printed
+rendition. Task 15's — which of the document's 24 descriptions maps to which MeasureID — was
+settled by authoring the keys; the one row with no document equivalent carries a null rather than
+a guess. See the two "as built" sections.
 
-- **Task 14 — placement.** The source document attaches its two caveats to column headers; Task 8
-  dissolved the strategies column into per-row cells, so there is no header to hang them on. The
-  wording is settled and the placement is not.
-
-Task 15's own open question — which of the document's 24 descriptions maps to which MeasureID —
-was settled by authoring the keys; the one row with no document equivalent carries a null rather
-than a guess. See "Task 15 as built".
-
-**Nothing else here can be picked up without asking.** Tasks 13 and 16 both closed on 2026-09-14,
-so Task 14's placement question is the last thing standing between this plan and done.
+**Check where the branch is before starting anything, because it has run ahead of its remote.**
+On 2026-09-14 `git ls-remote --heads origin` matched no `feature-NDHR` row at all and the branch
+had no upstream; hours later it was pushed, upstream set, and local was two commits ahead again.
+Derive the gap rather than reading a number here — `git log --oneline @{u}..HEAD` — and raise a
+push with the user if it is not empty.
 
 **What Task 12 settled that the other tasks inherit.** A `characterize:site` re-capture is **not**
 owed for a JS content change: the baselines record unhashed logical asset paths — `js/ndhr-report/
@@ -2354,6 +2359,67 @@ screen and under print emulation — Task 8's own rung, and the reason it matter
 `.print-only` and `d-print-none` are how that page carries its two renditions, so a caveat written
 into one is absent from the other. `npm run characterize:ndhr check` reads the strategies column's
 text, so it will go red on the two Housing targets by design.
+
+
+### Task 14 as built
+
+**The placement question was answered twice, and the second answer came from a measurement.** The
+first build put both caveats in the expanded panel beside `strategy_description`, which is where
+the strategy's own prose lives. On screen that worked — the caveats read on 3 of 3 panels on the
+climate category and 5 of 6 on housing, the sixth being evictions (1128), whose null description
+means it renders no strategy panel at all. Under print emulation both strings read **0**, with
+every panel forced `.show`.
+
+That null is controlled. Print `innerText` was being read correctly throughout: the district name
+returned 1 and the print-only header row's strategy phrase returned 1, against a body text of 956
+characters where the screen rendition ran to 6,388. The panel's computed `display` was `none`
+**with `.show` on it**, which is not Bootstrap's collapse default but
+`assets/scss/theme.scss:747-750`:
+
+```scss
+@media print {
+    .report-section .collapse,
+    .report-section .collapsing {
+        display: none !important;
+    }
+}
+```
+
+Its own comment says the print-only header row is the printed rendition of an indicator and the
+panel never is. The rule is shared with Neighborhood Reports, so it is not NDHR's to change on its
+own account. **A caveat in the panel therefore cannot reach the rendition a reader carries into a
+meeting and hands to someone** — which is the rendition where an unqualified strategy does the
+most damage. The `cards.js` work was reverted to byte-identity with `HEAD` and rebuilt in the
+layout.
+
+**The layout placement also closed a gap the panel one had.** The panel block is gated on
+`strategy_description`, so evictions would have carried no caveat while still showing a strategy
+phrase in its header cell — 5 of 6 rows covered. Above the list it is 6 of 6. It sits inside the
+`{{- if $measures }}` branch, so the empty-state category renders none: the caveats qualify a list
+of strategies, and that category has none.
+
+**Neither harness could see the paragraph, which is why this task has a second commit.** The task
+predicted `characterize:ndhr check` would go red on the two Housing targets "by design" — that
+assumed the caveat would land in the strategies cell, which the harness reads. Above the accordion
+it is outside every selector that file captures, and it moves no field `characterize:site` records:
+the structure half passed over 1,285 pages, and the NDHR page's own record moved only on Task 13's
+and Task 15's lines. Deleting the paragraph left both checks green. `strategyCaveats` closes that,
+addressed by `id` rather than by position above `#ndhr-accordion` so an element inserted between
+the two cannot silently redirect the read, with `null` preserved rather than collapsed to `''` —
+an empty string is also what a dead selector returns, and the two control arms are what separate
+them.
+
+**The three injections and their registered predictions:**
+
+| injection | predicted | observed |
+|---|---|---|
+| paragraph deleted | exit 2, control on the 3 measure targets | exit **2**, all 3 named |
+| "ideas" to "notions" | exit 1, diff on the same 3 | exit **1**, 3 of 4, mental-health `ok` |
+| rendered on the empty-state category | exit 2, inverted control | exit **2**, mental-health named |
+
+**Not measured:** whether the note reads well at phone width, and whether `fs-xs text-muted` is the
+right weight for a disclosure rather than for an aside. Both are judgement calls the browser check
+did not make, and the screenshot the user saw was taken at desktop width.
 
 
 ## Task 15: Indicator descriptions
