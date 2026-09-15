@@ -2529,3 +2529,45 @@ does. A fix is cheap and does not depend on that number, but a priority argument
 
 **`assets/js/data-explorer/` is not in scope of this finding.** Its charts are a different call
 site with a different surrounding structure, and none of them was measured here.
+
+### 19a. FIXED 2026-09-15
+
+`assets/js/nr-report/chart.js`: the `vegaEmbed(...).then(...)` chain now ends in a `.catch` that
+`console.error`s a message naming the chart, `debugLog`s the branch, and writes the same
+`Unable to render chart.` paragraph the synchronous `catch` writes. Not re-thrown — by that
+point there is no caller left to catch it.
+
+Re-measured with the same forced rejection, run A -> B -> A by checking `HEAD`'s `chart.js` in
+and out, so the middle arm is the real pre-fix code rather than an argument about it:
+
+| | A — `.catch` present | B — `HEAD`, no `.catch` | A — `.catch` restored |
+|---|---|---|---|
+| served `chart.js` | `chart.2c9f8f13…js` | `chart.96d39599…js` | `chart.2c9f8f13…js` |
+| stub installed (control) | true | true | true |
+| stub actually called (control) | 1 | 1 | 1 |
+| console errors from page code | **1** | 0 | **1** |
+| unhandled rejections | **0** | 1 | **0** |
+| `Unable to render chart.` shown | **true** | false | **true** |
+| visible empty chart containers | **0** | 1 | **0** |
+
+`[verified 2026-09-15: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+against a `dev_stage` server; 23 accordion toggles, the first visible one ("Asthma ED visits
+(adults)") expanded; `window.vegaEmbed` replaced with a function returning a rejected promise
+after page load and before the expand]`
+
+Arm B reproduces this section's 2026-09-14 table row for row, which is what licenses reading
+arm A as the fix rather than as a difference in conditions.
+
+**A second control was added to the one §19 prescribed.** "Stub actually installed" is satisfied
+by a stub nothing ever calls, which would give the same clean arm-A numbers as a working fix. The
+probe therefore also counts invocations: 1 in every arm.
+
+**The console message names the chart, which is the half of this the unhandled rejection never
+carried:** `Error embedding chart for Asthma ED visits (adults) across all NYC neighborhoods:
+Error: probe-forced rejection`, against a bare `probe-forced rejection` in arm B.
+
+**Still not measured:** whether any real Vega spec on this page can reject. Unchanged by the fix
+— the rejection is still forced with a stub.
+
+**Harnesses:** `npm run lint`, `npm run smoke` (33 of 33) and `npm run characterize:nr -- --check`
+(3 of 3) all clean; see §18a for lint's positive control.

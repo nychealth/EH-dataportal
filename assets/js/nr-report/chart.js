@@ -205,6 +205,20 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         const summary = document.querySelector(destination + ' details > summary');
         if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
 
+    }).catch(err => {
+
+        // vegaEmbed rejects ASYNCHRONOUSLY, so onAccordionExpand's try/catch around the
+        // call to this function cannot see it: the reader is left with an empty chart box
+        // and its "Unable to render chart." fallback never runs. The failure is not silent
+        // — it surfaces as an unhandled rejection, which `npm run smoke` does fail on — but
+        // that carries only the underlying error and says nothing about WHICH chart or
+        // panel died. Reported here rather than re-thrown: there is no caller left to catch it
+        console.error('Error embedding chart for ' + chartName + ':', err);
+        debugLog('renderIndicatorChart: branch-embed-failed:', { destination, err });
+
+        const container = document.querySelector(destination);
+        if (container) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+
     });
 
 };
