@@ -185,10 +185,24 @@ are printed as a harness-health number and deliberately **not** baselined — th
   positional, so `--concurrency 8` arrives as a bare `"8"`. A plain positional survives both
   intact. `characterize-env.mjs` therefore refuses any argument starting with `-` rather than
   half-honour it; flags stay available through a direct `node scripts/site-characterization.mjs`
-  call. For the same reason `site-characterization-rebaseline.mjs` now refuses unrecognized
-  arguments outright: it takes none, it re-captures *every* committed baseline on every run, and
-  an argument it merely ignored made a typo indistinguishable from the destructive invocation
+  call. **Its optional positionals are `sample` and a bare number** — the number is how many
+  browser pages run in flight, and it exists because this script spawns a *second* Hugo server and
+  therefore runs on a machine that is by definition already busy: at the harness default beside a
+  dev server on this box, a sweep lost **62 of 1285 pages** to `page.goto` timeouts and refused a
+  verdict, where the same sweep at 8 captured 1285 of 1285 `[2026-09-14 and 2026-09-15]`. Digits
+  only and each positional at most once, so a mistyped `sample` exits 2 instead of sweeping every
+  page when 41 were wanted. Lowering it is a workaround for an undiagnosed sweep failure, not a
+  fix. For the same npm reason `site-characterization-rebaseline.mjs` refuses *unrecognized*
+  arguments outright: it takes no positional at all, it re-captures *every* committed baseline on
+  every run, and an argument it merely ignored made a typo indistinguishable from the destructive
+  invocation
   `[2026-08-26: `rebaseline.mjs nosuchkey`, believed to name one key, began re-capturing both]`.
+  **It does take three flags, where this file used to say it took none**: `--expect <glob>`,
+  repeatable, claims a group of pages as intended and is what makes the report say "nothing
+  unexplained"; `--concurrency N` passes through to the harness; `--report-only` re-classifies the
+  last snapshot without sweeping again, which is how a too-narrow glob is fixed for free — `*` does
+  not cross `/`, so a section glob written without `**` claims that section's own record and not
+  one page under it `[scripts/site-characterization-rebaseline.mjs:315-339, read 2026-09-15]`.
 - **Baselines are filed by environment class, and `--check` picks its own.** They live under
   `scripts/site-characterization-baseline/<key>/`, and the harness reads the key off the running
   site — it prints `Environment: dev_stage (EHDP-data staging) at /dev-stage/ — baseline

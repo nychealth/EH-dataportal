@@ -2,8 +2,10 @@
 //
 //   node scripts/characterize-env.mjs prod_prod            every page the site serves
 //   node scripts/characterize-env.mjs prod_prod sample     the curated one-per-template list
+//   node scripts/characterize-env.mjs prod_prod 8          every page, 8 in flight
 //   npm run characterize:site:prod_prod
 //   npm run characterize:site:env local_prod sample
+//   npm run characterize:site:env local_prod sample 8
 //
 // The check itself needs no new flag: site-characterization.mjs derives the
 // baseline key from the running site (prod_prod by environment name, otherwise
@@ -60,14 +62,32 @@ const environments = () => readdirSync(`${REPO_ROOT}/config`, { withFileTypes: t
 // stops the run instead of silently sweeping every page when 41 were wanted.
 const SAMPLE = "sample";
 
+// The other optional positional, and the reason it exists rather than being left
+// to the harness: this script spawns a SECOND Hugo server, so it runs on a
+// machine that is by definition already busy. At the harness default of
+// min(24, cores) beside a dev server on this box, a run on 2026-09-14 lost 62
+// pages to `page.goto` timeouts and refused a verdict; the same sweep at 8
+// captured 1285 of 1285. Lowering it is a workaround for an undiagnosed sweep
+// failure and not a fix — Task 17 of documents/site-characterization-plan-2026-08-23.md
+// is where that is being chased — but with no way to pass one, the alternative
+// was a hand-written copy of this file, which is what happened twice.
+//
+// Digits only, so it cannot be confused with a mistyped `sample`. Note what npm
+// does to the flag form: `npm run characterize:site:env prod_prod --concurrency 8`
+// arrives here as ["prod_prod","8"], which this now reads as the caller meant.
+const isConcurrency = (arg) => /^[1-9][0-9]*$/.test(arg);
+
 const usage = (message) => {
     console.error(`${message}\n`);
-    console.error("  node scripts/characterize-env.mjs <environment> [sample]");
-    console.error("  npm run characterize:site:env <environment> [sample]\n");
+    console.error("  node scripts/characterize-env.mjs <environment> [sample] [concurrency]");
+    console.error("  npm run characterize:site:env <environment> [sample] [concurrency]\n");
     console.error(`Environments: ${environments().join(", ")}\n`);
     console.error("Checks every page the site serves, like `npm run characterize:site`. Add the");
     console.error(`word \`${SAMPLE}\` for the curated one-page-per-template list instead, like`);
     console.error("`npm run characterize:site:sample`.\n");
+    console.error("A bare number is how many browser pages run in flight. Omit it and the harness");
+    console.error("picks from the machine; lower it when this server is sharing the box with");
+    console.error("another one.\n");
     console.error("Only `staging` (dev_stage, local_stage, prod_stage) and `prod_prod` have a");
     console.error("committed baseline; the rest exit 2 saying so. Flags are not accepted here —");
     console.error("npm and PowerShell mangle them; use node scripts/site-characterization.mjs.");
@@ -81,15 +101,34 @@ async function main() {
     const flag = args.find((a) => a.startsWith("-"));
     if (flag) usage(`This script takes no flags, and "${flag}" would not have survived npm intact.`);
     if (args.length < 1) usage("No environment given.");
-    if (args.length > 2) usage(`Expected an environment and optionally "${SAMPLE}", got ${args.length} arguments.`);
+    if (args.length > 3) usage(`Expected an environment and optionally "${SAMPLE}" and a concurrency, got ${args.length} arguments.`);
 
-    const [environment, mode] = args;
+    const [environment, ...rest] = args;
     if (!environments().includes(environment)) usage(`No config/${environment}/ in this repo.`);
-    if (mode !== undefined && mode !== SAMPLE) usage(`Second argument must be "${SAMPLE}" or absent, not "${mode}".`);
+
+    // Each remaining argument must identify itself, and each may appear once —
+    // a repeat means the caller believes it is setting two different things.
+    let mode;
+    let concurrency;
+    for (const arg of rest) {
+        if (arg === SAMPLE) {
+            if (mode) usage(`"${SAMPLE}" given twice.`);
+            mode = SAMPLE;
+        } else if (isConcurrency(arg)) {
+            if (concurrency) usage(`Two concurrencies given: "${concurrency}" and "${arg}".`);
+            concurrency = arg;
+        } else {
+            usage(`Arguments after the environment must be "${SAMPLE}" or a number, not "${arg}".`);
+        }
+    }
 
     // Full site unless asked otherwise. --all is what makes site-characterization.mjs
     // sweep every page; without it, it reads its curated sample list.
     const sweepArgs = mode === SAMPLE ? ["--check"] : ["--check", "--all"];
+
+    // Absent, say nothing: the harness owns the default, and passing a number
+    // chosen here would override the machine-derived one on every run.
+    if (concurrency) sweepArgs.push("--concurrency", concurrency);
 
     // Same guard the re-baseline tool keeps: :8090 is this port precisely
     // because nothing else probes it, so anything answering there is either a
