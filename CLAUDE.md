@@ -76,7 +76,7 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Eight things to know before trusting a result:
+Nine things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -101,7 +101,25 @@ Eight things to know before trusting a result:
   2026-08-25]`. Both branches of the cap are proved to fire `[2026-08-26: same 33 forced failures
   at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
-- **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
+- **An AirNow failure on `(home)` is external, but "re-run" is not the end of it.**
+  `themes/dohmh/layouts/partials/temp-popup.html` fetches `www.airnowapi.org` at page load, and the
+  AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does
+  not cover this one. A *single* transient failure was seen between two passes
+  `[verified 2026-08-17, on a tree where that file was unchanged from the pre-merge tip]`, and that
+  is where the re-run advice came from. **A persistent one is a different thing and was worth
+  diagnosing:** on 2026-09-14 it reproduced 2 of 2, and the API was returning `200` with an empty
+  array and then `504` with an HTML body, against an unguarded `aqiData[0].Category.Number`. That
+  threw *above* the `fireWeatherModal` call, so the heat and cold alerts died with the air quality
+  one. Fixed on `hotfix-airnow-empty-response` at `e6a48727fe`. The 2026-08-17 entry described a
+  CORS error; the 2026-09-14 one was not CORS, so the shared word is the vendor, not the fault.
+- **Smoke never checks the HTTP status.** `smoke-pages.mjs:271` calls `page.goto` and reads only
+  the console, so a 404 that renders cleanly is reported `ok` — a renamed or deleted page smokes
+  green. That compounds with `dev-server.mjs` reusing any server on :8080/:8081/:1313, **including
+  one belonging to a different worktree**, and this repo has ten. Your new pages 404, render the
+  site's 404 page, throw nothing, and pass `[verified 2026-09-14: a dev_stage server on :8080 from
+  another worktree answered 200 on /data-features/rat-report/ and 404 on
+  /data-features/rat-report-archive/2025/, which exists only on this branch]`. Read a running
+  server's command line before trusting a sweep, or use `smoke:env`, which starts its own on :8090.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
