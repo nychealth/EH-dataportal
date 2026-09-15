@@ -285,6 +285,16 @@ const captureTarget = async (browser, target, baseURL) => {
             // NDHR-only: the shared-ACS-area note, empty on the 51 districts the survey
             // reports on their own and filled on the 8 that share a PUMA2010 group
             demographicsNote: textOf('ndhr-demographics-note'),
+            // The two caveats the source document footnotes onto its strategy table's
+            // column headers, rendered once above the list (plan Task 14). Added here
+            // 2026-09-14 because neither harness could see them: the paragraph sits outside
+            // every selector this file captures and moves no field `characterize:site`
+            // records, so deleting it left both checks green. Addressed by id rather than by
+            // position above #ndhr-accordion, so an element inserted between the two does
+            // not silently redirect the read.
+            // null on the empty-state category, which lists no strategies to qualify — the
+            // control below asserts that direction too
+            strategyCaveats: textOf('ndhr-strategy-caveats'),
             // NO ZIP LIST, unlike the NR harness: cdlist.json carries none, because
             // community districts are not ZIP-based
             accordionIds: accordions,
@@ -319,6 +329,9 @@ const captureTarget = async (browser, target, baseURL) => {
         reportHeader: tidy(captured.reportHeader),
         demographics: tidy(captured.demographics),
         demographicsNote: tidy(captured.demographicsNote),
+        // null preserved for the same reason as emptyStateText below: an absent paragraph
+        // must read as absent, not as an empty string a dead selector also returns
+        strategyCaveats: captured.strategyCaveats === null ? null : tidy(captured.strategyCaveats),
         emptyStateText: captured.emptyStateText === null ? null : tidy(captured.emptyStateText),
         // Whitespace-normalized like the rest, but null is PRESERVED rather than collapsed
         // to '': tidy() turning a missing attribute into an empty string is what made NR's
@@ -415,6 +428,14 @@ const controlFailures = (captures) => {
             if (!captured.emptyStateText) {
                 failures.push(`${label}: the empty-state container rendered no text`);
             }
+            // Asserted the other way round, like the accordion count above: the caveats
+            // qualify a list of strategies, and this category has none
+            if (captured.strategyCaveats !== null) {
+                failures.push(
+                    `${label}: the strategy caveats rendered on a category with no measures ` +
+                    `— they qualify a list that is not there`
+                );
+            }
 
         } else {
 
@@ -444,6 +465,13 @@ const controlFailures = (captures) => {
             // is what a dead selector returns, and would read as a passing field forever
             if (!captured.tertileSentences.some((s) => s)) {
                 failures.push(`${label}: every tertile sentence is empty — the selector reads nothing`);
+            }
+            // A page listing strategies must carry their caveats. Checked as a non-empty
+            // read rather than against the expected wording: the wording is the source
+            // document's and belongs in the baseline, where a change to it shows as a diff
+            // to read, while a dead selector or a deleted paragraph is what this must catch
+            if (!captured.strategyCaveats) {
+                failures.push(`${label}: the strategy caveats are absent from a category that lists strategies`);
             }
             if (captured.chartCount === 0) {
                 failures.push(`${label}: the expanded panel drew no chart, so the lazy Vega path is uncovered`);

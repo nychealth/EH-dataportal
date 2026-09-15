@@ -6,6 +6,7 @@
   "reportHeader": "Housing in Financial District (CD1) Housing Safe, quality housing is a primary driver of health. For example, the presence of pests can exacerbate asthma. Print Download (downloads a CSV file) Expand all",
   "demographics": "MetricValue Poverty7.0% Graduated high school96.0% Limited English5.6% Owner-occupied homes31.5% Rent-burdened households34.8% These figures cover Financial District (CD1) together with Greenwich Village and Soho (CD2), which the American Community Survey reports as one area. Source: American Community Survey (2019-2023)",
   "demographicsNote": "These figures cover Financial District (CD1) together with Greenwich Village and Soho (CD2), which the American Community Survey reports as one area.",
+  "strategyCaveats": "These examples serve as ideas to address the indicators of concern, they are not comprehensive or prescriptive. Strategies may differ if you are a city agency, community organization, or private developer. Please consult with the Health Department for more details.",
   "accordionIds": [
     "ndhr-acc-1-c",
     "ndhr-acc-1-h",
