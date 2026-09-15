@@ -81,11 +81,39 @@
 
         // ----- current AQI ----- //
 
-        const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-        const aqiData = await aqiRes.json();
+        // AirNow fails in more than one way, and both failures used to take the
+        // whole modal down with them. Within a few minutes on 2026-09-14 it
+        // answered 200 with an empty array, and then 504 with an HTML body - the
+        // first made aqiData[0].Category throw, the second made .json() throw
+        // before any payload guard could run. Either throw landed ABOVE the
+        // fireWeatherModal call below, so isHot and isCold, already computed,
+        // were discarded: a quiet AirNow silently suppressed the heat and cold
+        // alerts too, not just the air quality one.
+        //
+        // So the AQI is treated as optional. Still the first two observations,
+        // as before, so the reading is unchanged whenever AirNow returns its
+        // usual pair; whether the max should cover every pollutant it returns is
+        // a separate question about the feature.
+        let aqi = null;
 
-        const aqi = Math.max(aqiData[0].Category.Number, aqiData[1].Category.Number);
-        const isBadAQ = aqi > 2;
+        try {
+            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+
+            const aqiData = await aqiRes.json();
+            const categories = (Array.isArray(aqiData) ? aqiData : [])
+                .slice(0, 2)
+                .map(observation => observation?.Category?.Number)
+                .filter(number => Number.isFinite(number));
+
+            if (categories.length) aqi = Math.max(...categories);
+        } catch (error) {
+            // warn, not error: smoke fails the build on console errors, and an
+            // unreachable third party is not this site's regression.
+            console.warn(`Air quality unavailable: ${error.message}`);
+        }
+
+        const isBadAQ = aqi !== null && aqi > 2;
 
         // ----- show the modal if any alert applies ----- //
 
