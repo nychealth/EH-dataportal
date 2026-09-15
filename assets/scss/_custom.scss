@@ -134,10 +134,10 @@ $comp-bad-text: #7a5c00;
 // Per-section legend explaining the markers baked into flagged values ("6.1*"), appended
 // to each #nr-section-N by renderSectionNotes in assets/js/nr-report/report.js.
 //
-// NOT the existing .data-note class from theme.scss, which this replaces rather than
-// reuses: that rule carries margin-top:-10px, tuned for sitting flush under a value inside
-// a panel. In a block after the last card that negative margin pulls the legend up into
-// the card's bottom border.
+// A new class rather than .data-note, which production still uses for this same text and
+// which this branch no longer carries: that rule set margin-top:-10px, tuned for sitting
+// flush under a value inside a panel. In a block after the last card that negative margin
+// pulls the legend up into the card's bottom border.
 .nr-section-notes {
   font-size: .8125rem;
   font-style: italic;
