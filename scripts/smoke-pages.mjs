@@ -58,6 +58,14 @@ const PAGES = [
     "data-features/rats-in-your-neighborhood/",     // rats-in-your-neighborhood layout — Leaflet
     "data-features/congestion-pricing-report/",     // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
     "data-features/heat-report-archive/2021/",      // report layout
+    // report layout WITH a `js:` param, which 2021 above does not have — these
+    // three are the only pages in the repo that hit report.html's
+    // <script src="{{ .Params.js }}"> branch. That src carries no relURL, so it
+    // resolves against the PAGE url: the two archives are the cases where a
+    // site-rooted path would break and this one does not.
+    "data-features/rat-report/",                    // report layout — 29 zone switchers, 32 Datawrapper embeds
+    "data-features/rat-report-archive/2025/",       // report layout, nested archive URL — its own rat-report.js copy
+    "data-features/rat-report-archive/2024/",       // report layout, nested archive URL — its own rat-report.js copy
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
     "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
