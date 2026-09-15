@@ -12,19 +12,18 @@ The page currently holds the January–June 2025 report.
 
 ## Status
 
-**Status as of 2026-09-14:** tasks 0–2 are closed except for the partner's reply. Task 3 is
-blocked on the 2026 charts, task 4 still needs a running server for smoke and the interaction
-check. Two things gate publication and neither is a task row: the `date:` field and the fact that
-nothing links to the archives — both under Open items.
+**Status as of 2026-09-14:** tasks 0, 1, 1a, 2 and 4 are closed. **Task 3 is the only thing left,
+and it is the only thing gating publication:** the 32 charts have to be produced before the page
+can ship, and its re-run of task 4 follows.
 
 | Task | State | Proof that ran |
 |---|---|---|
-| 0. Send numeric discrepancies to partner | sent 2026-09-14, awaiting reply | — |
+| 0. Send numeric discrepancies to partner | **DONE 2026-09-14** — `c73fd0451c` — partner confirmed the tables were right; all five prose figures corrected | each figure re-derived before writing; verified in the rendered HTML, each new figure n=1 and each old one n=0 |
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
 | 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 charts** — Decision D1 says ship on option A | — |
-| 4. Build + smoke + interaction check | build done; smoke and the 29-button interaction check **not started** | — |
+| 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
 exists; never write "done, uncommitted" here.
@@ -36,7 +35,8 @@ a status phrase:
 
 ```
 git log --oneline 9344ce458a..HEAD                              # the task commits
-git rev-list --left-right --count origin/update-rat-mitigation-report...HEAD   # 0 0 means pushed
+git rev-parse --verify origin/update-rat-mitigation-report   # fails: never pushed as of 2026-09-14
+git rev-list --left-right --count origin/update-rat-mitigation-report...HEAD   # once it has: 0 0 means in sync
 gh pr list --head update-rat-mitigation-report                  # a PR, and against which base
 git merge-base --is-ancestor 6b2055b407 production              # exit 0 means it reached production
 ```
@@ -135,7 +135,25 @@ derived rather than copied:
 
 ---
 
-## Task 0: Send the numeric discrepancies to the partner
+## Task 0: Send the numeric discrepancies to the partner — RESOLVED
+
+**Resolved 2026-09-14: the partner confirmed the tables were correct, so all five prose figures
+were corrected in `index.md` and the three `PENDING PARTNER CONFIRMATION` comments removed.**
+
+| Where | Was | Now |
+|---|---|---|
+| COTA paragraph (§I) | 17% of **36,267** initial inspections | 38,267 — 6,571/38,267 = 17.17%, matching the 17% in the same sentence |
+| Summons paragraph (§II) | **3,200 fewer** compliance inspections | 2,755 — 10,540 − 7,785 |
+| 311 paragraph (§VI) | Harlem from **2,292** to **1,460** | 2,133 and 961 — the four component counts in that same sentence sum to exactly those two |
+| Table 4 paragraph | approximately **2,500** fewer visits | approximately 2,800 — 9,704 − 6,919 = 2,785 |
+| Table 3a paragraph | East Village/Chinatown **23%** | 24% — (125+53+38)/904 = 23.89% |
+
+Verified in the rendered HTML rather than the source: each new figure appears and each old one
+returns 0. The Rat Academy and community-event counts keep the source document's July 1, 2025 –
+June 30, 2026 window, which its own comment [16] says was deliberate.
+
+The original analysis follows, kept because it records how each figure was derived.
+
 
 Three figures in the docx prose contradict the docx's own tables. The tables are internally
 consistent — zone columns sum to their Total rows in Tables 1, 2, 3, 5, 5a and 6/6a
@@ -343,7 +361,45 @@ renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the li
 
 ---
 
-## Task 4: Verify
+## Task 4: Verify — DONE 2026-09-14 (re-run after Task 3)
+
+**Build, smoke and the interaction check have all run.** Task 3 edits the same `index.md`, so the
+smoke and interaction results are void for the final state and must be re-run after the chart swap.
+
+- **Build** — isolated build, exit 0, 0 ERROR lines, 1206 EN pages.
+- **Smoke** — `npm run smoke:env dev_stage sample`, twice. The rat report and the 2025 and 2024
+  archives passed in both runs. **Use the `:env` form, not `npm run smoke`:** `dev-server.mjs`
+  reuses any server on :8080/:8081/:1313, and a server from another worktree 404s on
+  `rat-report-archive` while still answering, so the sweep would silently run against the wrong
+  tree.
+- **Smoke now covers these pages permanently.** `scripts/smoke-pages.mjs`'s `PAGES` went 33 → 36.
+  The justification is template coverage, not page coverage: `report` layout was already in the list
+  via `heat-report-archive/2021/`, but the three rat pages with a `js:` param are the only pages in
+  the repo that reach `report.html`'s `<script src="{{ .Params.js }}">` branch.
+  `rat-report-archive/2023/` was deliberately left out — it has no `js:`, so by the list's own
+  one-page-per-template-kind rule it duplicates the 2021 entry.
+- **Interaction** — 88 clicks across the four pages, zero failures: every click left the named
+  panel visible and all siblings hidden. 2023 has no switchers. The assertion was validated by
+  injection, renaming one panel id before the clicks: it failed on all three pages carrying
+  `table-2-1` and correctly reported the panel absent on 2023. The script that did this was
+  **deleted** — it re-proves a mechanism Task 3 does not touch. What Task 3 needs instead is a
+  slot-to-ID check against the 32-slot table above, since pasting the right id into the wrong slot
+  leaves every switcher working.
+
+**A known non-issue, so nobody re-diagnoses it.** The 2023 archive throws
+`t.datasetSourceUrl is not a function` up to five times — once per embed — from Datawrapper's
+own `embed.js`. It is intermittent (5 hits in one of three runs, 0 in the other two) and the charts
+render regardless `[verified 2026-09-14 by screenshot: its Table 1 renders complete and correctly
+formatted, beside the 2025 control]`. That page uses Datawrapper's older script-injection embed
+form; 2024 onward use the newer `datawrapper-vis-*` markup. It is why 2023 is not in the smoke list.
+
+**A correction to this document.** The Task 1 / D1 sections say `2023/index.md` contains no embeds.
+It contains five `[verified 2026-09-14]`. The `datawrapper-vis-*` pattern that zero came from cannot
+match the older embed form, so it described the search rather than the file. D1's option B cited
+2023 as a page with no table markup; that half still holds, but not the "0 embeds" half.
+
+### The original rung list
+
 
 Rungs, cheapest first. This page runs JS (`rat-report.js` plus, under option A, 32 third-party
 embeds), so a green build is not sufficient — `CLAUDE.md` is explicit that a build proves the
@@ -444,26 +500,18 @@ verification.
 
 ## Open items
 
-- Task 0 replies from the partner — record them here when they arrive. Three paragraphs carry an
-  HTML comment marking the disputed figure; find them with
-  `grep -n "PENDING PARTNER CONFIRMATION" content/data-features/rat-report/index.md` → 3 hits at
-  lines 94, 135 and 338.
-- **Publication date for the frontmatter `date:` field — needed before the page ships.** It
-  currently reads `2026-12-01T11:14:56-04:00`, the 2025 page's timestamp with the year bumped. That
-  is 2.5 months in the future and it is the newest date on the site, so it becomes the English
-  sitemap's own `lastmod` `[verified 2026-09-14: it is the only date after today anywhere in
-  `content/`, and the root sitemapindex's `<lastmod>` for en/sitemap.xml reads exactly
-  `2026-12-01T11:14:56-04:00`]`. It does not break the build — `config/_default/config.toml:10`
-  sets `buildFuture = true`, so the page renders regardless.
+- ~~Publication date for the frontmatter `date:` field.~~ **Closed 2026-09-14** — `07549883c0`,
+  set to `2026-09-14T11:14:56-04:00`. It had read `2026-12-01T11:14:56-04:00`, the 2025 page's timestamp
+  with the year bumped, which was 2.5 months in the future and the newest date on the site — so
+  it was the English sitemap's own `lastmod` `[verified 2026-09-14: the root sitemapindex's
+  <lastmod> for en/sitemap.xml read exactly that string]`. It never broke the build;
+  `config/_default/config.toml:10` sets `buildFuture = true`. No date after today now remains
+  anywhere in `content/`.
 - D1 — recommendation is to ship 2026 on option A and evaluate C for 2027.
 - Whether a new `image:` screenshot is being supplied for the 2026 page.
-- **Nothing links to the archives.** They publish as of Task 1a but are reachable only by URL or
-  site search `[verified 2026-09-14: grep -rn "rat-report/202\|rat-report-archive" over content/,
-  themes/ and data/, excluding the moved files themselves, exits 1 with no hits. Positive control:
-  the same sweep for "heat-report-archive/20" returns 5 links in
-  content/data-features/heat-report/10-conclusion.md and 3 in
-  themes/dohmh/layouts/partials/heat-report-correction.html. An earlier control here grepped
-  content/ for the literal string "rat-report-archive" and read its 0 as validation — that is
-  the same null, since grep -r searches file contents and not paths.]`. `heat-report` solves this with a
-  five-line list in `content/data-features/heat-report/10-conclusion.md:48-52`. Adding the
-  equivalent to the rat report is a content decision, not done.
+- ~~Nothing links to the archives.~~ **Closed 2026-09-14** — `c73fd0451c`. A
+  `### Previous reports` block at the end of `index.md` links all three, mirroring
+  `content/data-features/heat-report/10-conclusion.md:48-52`, but with this page's own
+  `<hr class=my-2>` rule rather than heat-report's `---`. Verified in the rendered HTML: three
+  `<a href>` to `/data-features/rat-report-archive/{2023,2024,2025}/`, each resolving to a file
+  that exists in the same build output.
