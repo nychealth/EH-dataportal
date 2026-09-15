@@ -1,14 +1,10 @@
 {
-    "capturedAt": "2026-09-13T02:39:38.581Z",
-    "gitHead": "ae318e64fcbb12c97d109f48674f2f08e92df3cf",
+    "capturedAt": "2026-09-15T19:16:21.176Z",
+    "gitHead": "282f3d5d7231e640c8099c2080c492119d20ce61",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
-    "dataCommit": {
-        "sha": "50d2ab25e05911058d5d7d1df1afad58ab2c6021",
-        "date": "2026-09-12T16:00:04Z",
-        "fetchedAt": "2026-09-13T02:34:18.149Z"
-    },
+    "dataCommit": null,
     "pagefind": true,
     "hugo": {
         "version": "0.147.3-05417512bd001c0b2cc0042dcc584575825b89b3+extended",
@@ -17,9 +13,7 @@
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 1285,
-    "arbitrated": [
-        "data-explorer/social-conditions/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {
