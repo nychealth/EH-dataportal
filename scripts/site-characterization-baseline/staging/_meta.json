@@ -1,31 +1,23 @@
 {
-    "capturedAt": "2026-09-13T02:45:52.262Z",
-    "gitHead": "ae318e64fcbb12c97d109f48674f2f08e92df3cf",
+    "capturedAt": "2026-09-15T01:40:17.684Z",
+    "gitHead": "81ccb4b80626c39b6b22c8ff1462356f48233a4f",
     "baselineKey": "staging",
     "hugoEnv": "dev_stage",
     "dataBranch": "staging",
     "dataCommit": {
         "sha": "3a26d038eb5e642963cc98279c416a52f3626711",
         "date": "2026-09-11T17:12:13Z",
-        "fetchedAt": "2026-09-13T02:40:21.524Z"
+        "fetchedAt": "2026-09-15T01:35:05.410Z"
     },
     "pagefind": true,
     "hugo": {
         "version": "0.147.3-05417512bd001c0b2cc0042dcc584575825b89b3+extended",
-        "owned": true
+        "owned": false
     },
     "prefix": "/dev-stage/",
     "mode": "all",
     "pages": 1285,
-    "arbitrated": [
-        "ndhr/parkchester_and_soundview/neighborhood-conditions/",
-        "ndhr/riverdale_and_fieldston/neighborhood-conditions/",
-        "ndhr/south_ozone_park_and_howard_beach/neighborhood-conditions/",
-        "ndhr/st_george_and_stapleton/neighborhood-conditions/",
-        "ndhr/sunset_park/neighborhood-conditions/",
-        "ndhr/upper_east_side/neighborhood-conditions/",
-        "ndhr/washington_heights_and_inwood/neighborhood-conditions/"
-    ],
+    "arbitrated": [],
     "cleared": [],
     "capped": false,
     "viewport": {
