@@ -46,11 +46,11 @@
 <title>NYC Environment and Health Data Portal</title>
 
 
-<meta name="build_datetime" content='2026年9月10日星期四, EDT 下午3:18:11'>
+<meta name="build_datetime" content='2026年9月15日星期二, EDT 上午11:36:58'>
 <meta name="build_environment" content='prod_prod'>
 <meta name="git_branch" content='production'>
-<meta name="git_last_hash" content='0000358d1a'>
-<meta name="git_last_msg" content='Merge pull request #1496 from nychealth:update-recently-updated-data-2026-09-10'>
+<meta name="git_last_hash" content='a2466dc266'>
+<meta name="git_last_msg" content='Merge pull request #1497 from nychealth/hotfix-airnow-empty-response'>
 
 
         <link rel="alternate" hreflang="en" href="/IndicatorPublic/" title="English">
@@ -809,11 +809,39 @@
 
         
 
-        const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
-        const aqiData = await aqiRes.json();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        let aqi = null;
 
-        const aqi = Math.max(aqiData[0].Category.Number, aqiData[1].Category.Number);
-        const isBadAQ = aqi > 2;
+        try {
+            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+
+            const aqiData = await aqiRes.json();
+            const categories = (Array.isArray(aqiData) ? aqiData : [])
+                .slice(0, 2)
+                .map(observation => observation?.Category?.Number)
+                .filter(number => Number.isFinite(number));
+
+            if (categories.length) aqi = Math.max(...categories);
+        } catch (error) {
+            
+            
+            console.warn(`Air quality unavailable: ${error.message}`);
+        }
+
+        const isBadAQ = aqi !== null && aqi > 2;
 
         
 
