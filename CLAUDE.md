@@ -191,8 +191,11 @@ are printed as a harness-health number and deliberately **not** baselined — th
   dev server on this box, a sweep lost **62 of 1285 pages** to `page.goto` timeouts and refused a
   verdict, where the same sweep at 8 captured 1285 of 1285 `[2026-09-14 and 2026-09-15]`. Digits
   only and each positional at most once, so a mistyped `sample` exits 2 instead of sweeping every
-  page when 41 were wanted. Lowering it is a workaround for an undiagnosed sweep failure, not a
-  fix. For the same npm reason `site-characterization-rebaseline.mjs` refuses *unrecognized*
+  page when 41 were wanted. Lowering it treats a symptom, and the cause is measured rather than
+  unknown: `documents/site-characterization-plan-2026-08-23.md` Task 17 put **~75-80% of a page's
+  load phase on external requests**, varying 3.5x between runs minutes apart, which is what pushes
+  a page past the 30,000ms budget at 24-wide on a busy uplink. Nobody is chasing it — that plan
+  closed 2026-08-26 with the timeouts not reproducible on demand and no fix built. For the same npm reason `site-characterization-rebaseline.mjs` refuses *unrecognized*
   arguments outright: it takes no positional at all, it re-captures *every* committed baseline on
   every run, and an argument it merely ignored made a typo indistinguishable from the destructive
   invocation

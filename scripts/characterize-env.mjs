@@ -67,10 +67,17 @@ const SAMPLE = "sample";
 // machine that is by definition already busy. At the harness default of
 // min(24, cores) beside a dev server on this box, a run on 2026-09-14 lost 62
 // pages to `page.goto` timeouts and refused a verdict; the same sweep at 8
-// captured 1285 of 1285. Lowering it is a workaround for an undiagnosed sweep
-// failure and not a fix — Task 17 of documents/site-characterization-plan-2026-08-23.md
-// is where that is being chased — but with no way to pass one, the alternative
-// was a hand-written copy of this file, which is what happened twice.
+// captured 1285 of 1285. Lowering it treats a symptom rather than the cause,
+// and the cause is already measured: Task 17 of
+// documents/site-characterization-plan-2026-08-23.md put ~75-80% of a page's
+// load phase on EXTERNAL requests under an A/B/A with them blocked, and found
+// that term varying 3.5x between runs minutes apart. That is what pushes a page
+// past the 30,000ms navigation budget at 24-wide on a busy uplink, and it is why
+// "24 is too high" never fit on its own — the same concurrency captured cleanly
+// on a different one. Nobody is chasing it: that plan closed 2026-08-26 with the
+// timeouts not reproducible on demand and no fix built. So with no way to pass a
+// concurrency, the alternative was a hand-written copy of this file, which is
+// what happened twice.
 //
 // Digits only, so it cannot be confused with a mistyped `sample`. Note what npm
 // does to the flag form: `npm run characterize:site:env prod_prod --concurrency 8`
