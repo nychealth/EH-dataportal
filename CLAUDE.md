@@ -132,7 +132,10 @@ Ten things to know before trusting a result:
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
 Import `ensureDevServer()` from that module directly for one-off browser checks — it is exported
-(`scripts/dev-server.mjs:178`). **Starting a server when none is running needs no permission**;
+(`scripts/dev-server.mjs:178`). It returns `{ baseURL, stop, pagefind, hugo }` — destructure it
+rather than using the return as a string, and call `stop()` from a `finally`: a probe that throws
+before stopping leaves a node process alive holding the server it spawned
+`[2026-09-14: one ran for an hour]`. **Starting a server when none is running needs no permission**;
 the "ask first" caution is about a server *you didn't start*.
 
 **Check whether a server is actually running before planning around one.** A process list is a point-in-time observation, and a server someone else started can exit between the check and the run — at which point the harness's own spawn path gives you a `dev_stage` server on :8080, matching the baseline prefix, with no workaround needed. Reach for the isolated-build route only once you have confirmed a server you must not disturb is holding the port.
@@ -337,7 +340,8 @@ on a branch mismatch.
   **What it covers that nothing else does.** `lint` does not run the report modules;
   `smoke` only proves they throw no console error; `characterize:site` compares structure
   *counts* and not the words in them. This is the only check that reads the strategies
-  column's text, the per-row geography tags, and the indicator names in render order.
+  column's text, the per-row geography tags, the tertile sentence, the strategy caveats above
+  the list, and the indicator names in render order.
 
   Four targets, each chosen for a reason. `climate-and-active-design` is the **only**
   category carrying all three geotypes — one CD row, one CDTA2020, one PUMA2020 — so it is
@@ -354,7 +358,8 @@ on a branch mismatch.
   category fails the control too.
 
   **Both committed baselines currently capture identically**, staging against production,
-  all four targets byte-for-byte `[verified 2026-09-12]`. That follows from what is
+  all four targets byte-for-byte `[re-verified 2026-09-14 by cmp, over two more captured
+  fields than the first reading covered]`. That follows from what is
   captured: the row set comes from `data/globals/NDHR_content/` and the demographics from
   `data/globals/cdlist.json`, both committed here, and no captured field reads an indicator
   value. The NR harness's justification for splitting by branch does not transfer. The split
@@ -678,7 +683,11 @@ in the browser from EHDP-data's own indicator files rather than from precomputed
 `themes/dohmh/layouts/ndhr/`:
 
 - **Report page** — `/ndhr/<cd>/<category>/`, 295 of them, `ndhr-report.html`. Forked from
-  `nr-report.html` and carrying the same page-level `data-pagefind-ignore="all"`.
+  `nr-report.html` and carrying the same page-level `data-pagefind-ignore="all"`. **What it
+  inherited is described in [documents/nr-architecture.md](documents/nr-architecture.md), not
+  here** — the two print renditions, the tertile vocabulary and the `.comp-*` classes are shared.
+  That document is the only place the print rendition's rules are written down, and deriving one
+  of them from the SCSS instead cost a build-and-revert on 2026-09-14.
 - **Community district index** — `/ndhr/<cd>/`, 59, `ndhr-cd-index.html`.
 - **Category index** — `/ndhr/<category>/`, 5, from the hand-written markdown in `content/ndhr/`.
 - **Landing** — `/ndhr/`, `section.html`.
