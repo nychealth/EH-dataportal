@@ -56,19 +56,32 @@ const resetHighlight = e => {
 };
 
 
-// Applies the selected style to a layer, optionally flying the map to it
-const selectLayer = (layer, zoom) => {
+// Applies the selected style to a layer. Styling ONLY — no fly-to, which this function
+// used to do for both its callers and which made most of the city unclickable.
+//
+// This map is the report page's only in-place neighborhood switcher and its polygons carry
+// role="button", so what a pointer can reach on it is what a pointer can reach in the page's
+// navigation. Zoomed to one neighborhood most of the other 41 fall outside its 324x450 box:
+// as the page left it, an un-forced click could reach 9 of the 42 polygons at zoom 12,
+// against 41 of 42 with the same map fitted to all of them at zoom 9.58
+// `[verified 2026-09-15: /neighborhood-reports/bayside_little_neck/asthma_and_the_environment/
+// against a dev_stage server, Playwright actionability check as the reachability test, the
+// two file states checked in and out so the served fingerprint proved which code ran]`.
+// The one polygon still unreachable fitted is Rockaways: it is a thin arc, so the centre of
+// its bounding box is inside the viewport but elementFromPoint there returns the map
+// container, not the path. A hit-test geometry fact no framing fixes.
+//
+// ndhr-leaflet.html reached the same conclusion for the picker map on 2026-09-12 and carries
+// the longer version of this reasoning; assets/js/ndhr-report/map.js followed on 2026-09-13.
+// nr-leaflet.html still flies, and can afford to: its polygons answer no key and the
+// 42-neighborhood list beside it carries the navigation
+const selectLayer = layer => {
 
     // Clear previous selection style first
     if (uhfLayer) uhfLayer.resetStyle();
 
     layer.setStyle(highlightStyle);
     layer.bringToFront();
-
-    // Optionally animate map to selection bounds for click-driven navigation
-    if (zoom && leafletMap) {
-        leafletMap.flyToBounds(layer.getBounds(), { duration: 0.5 });
-    }
 
 };
 
@@ -143,7 +156,7 @@ const selectNeighborhood = (layer, source) => {
     const geocode = layer.feature.properties.GEOCODE;
     const name = featureDisplayName(layer.feature);
 
-    selectLayer(layer, true);
+    selectLayer(layer);
 
     // Ignore selection-driven render until all report and viz payloads have loaded
     if (dataReady) {
@@ -280,6 +293,18 @@ const initLeafletMap = () => {
 
             // addTo is synchronous, so every polygon has its <path> by here
             nameMapPolygons();
+
+            // Fit the whole city rather than keeping the fixed zoom-10 view above. With the
+            // fly-to gone this is the framing every neighborhood is selected from, so it has
+            // to hold all 42 — and it cannot at zoom 10, since fitting all 42 in this
+            // container needs 9.58 `[measured 2026-09-15]`.
+            //
+            // zoomSnap has to be 0: the default of 1 rounds the fit DOWN to a whole zoom
+            // level. Same container, same page, measured both ways on 2026-09-15 — snap 1
+            // landed the fly-to on a flat 12, snap 0 fits at 9.58. nr-leaflet.html reached
+            // the same conclusion for the picker map, and this uses its padding
+            leafletMap.options.zoomSnap = 0;
+            leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10] });
 
             mapReady = true;
             tryInitialRender();

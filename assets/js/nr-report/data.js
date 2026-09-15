@@ -27,7 +27,7 @@ const tryInitialRender = () => {
         const layer = findLayerByName(fromURL);
         if (layer) {
             debugLog('tryInitialRender: branch-select-layer-from-url');
-            selectLayer(layer, true);
+            selectLayer(layer);
         }
 
         renderAll(fromURL);
