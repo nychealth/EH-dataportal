@@ -22,7 +22,7 @@ can ship, and its re-run of task 4 follows.
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 charts** — Decision D1 says ship on option A | — |
+| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 charts** — Decision D1 says ship on option A. Everything that does not need them is done: the 32-slot table is re-derived against `07549883c0` and the slot-to-ID proof is written and injection-tested | 32 TODO markers each sit exactly one line above a live embed, 0 orphaned and 0 uncovered; the table's 32 slot+id pairs match the derived mapping in order; every line number in it lands on a line carrying its own embed id, where the pre-edit table's failed all 32 |
 | 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
@@ -78,43 +78,55 @@ keeps archived pages frozen at their published numbers. Editing a chart in place
 
 ### The 32 live embed slots
 
-Line numbers are against `index.md` as of `5a60a06b27`. Panel ids and button ids are what
-`changeTable()` matches on — preserve both.
+**Line numbers are against `index.md` as of `07549883c0`, the last commit to touch that file.**
+They were re-derived 2026-09-15, because the numbers this table originally carried were
+`5a60a06b27`'s and Task 2 rewrote the body at `6b2055b407` — every row had moved by 2 to 33 lines,
+and so had the commented-out block, which is now at 216–244 rather than 198–232. The IDs and panel
+ids did not move: all 32 were identical, in the same order.
 
-| Line | Table | Panel | Current ID | Zone (button label) |
+**The `Slot` column is what the Task 3 proof command prints.** Panel ids and button ids are what
+`changeTable()` matches on — preserve both. The three stand-alone tables have no switcher and so no
+panel id; they are named by ordinal position in the file, which is what makes the whole table
+diffable against that command's output.
+
+| Line | Table | Slot | Current ID | Zone (button label) |
 |---|---|---|---|---|
-| 73 | 1 | — | `EfIky` | single table |
-| 105 | 2 | `table-2-1` | `bMzMo` | BX: Grand Concourse |
-| 108 | 2 | `table-2-2` | `LAaPy` | MN: Harlem |
-| 111 | 2 | `table-2-3` | `mVQJR` | MN: EV / Chinatown |
-| 113 | 2 | `table-2-4` | `DKVEV` | BK: Bed-Stuy/Bushwick |
-| 116 | 2 | `table-2-5` | `9i7xg` | Totals |
-| 137 | 3 | `table-3-1` | `jaV7S` | BX: Grand Concourse |
-| 140 | 3 | `table-3-2` | `PaKDr` | MN: Harlem |
-| 143 | 3 | `table-3-3` | `pCGDW` | MN: EV / Chinatown |
-| 146 | 3 | `table-3-4` | `f4qkK` | BK: Bed-Stuy/Bushwick |
-| 148 | 3 | `table-3-5` | `szLTu` | Totals |
-| 166 | 3a | `table-33-1` | `A4dTB` | BX: Grand Concourse |
-| 169 | 3a | `table-33-2` | `ol6ho` | MN: Harlem |
-| 172 | 3a | `table-33-3` | `JJRpq` | MN: EV / Chinatown |
-| 175 | 3a | `table-33-4` | `18Wbr` | BK: Bed-Stuy/Bushwick |
-| 189 | 4 | — | `sPNQu` | pest management visits, all zones |
-| 194 | 4a | — | `KhvBm` | stoppage visits, all zones |
-| 246 | 5 | `table-5-1` | `UqEDs` | BX: Grand Concourse |
-| 250 | 5 | `table-5-2` | `Jm1m0` | MN: Harlem |
-| 254 | 5 | `table-5-3` | `Lyets` | MN: EV / Chinatown |
-| 258 | 5 | `table-5-4` | `RBGAy` | BK: Bed-Stuy/Bushwick |
-| 261 | 5 | `table-5-5` | `9qR8g` | Totals |
-| 282 | 5a | `table-5a-1` | `VIJdM` | BX: Grand Concourse |
-| 286 | 5a | `table-5a-2` | `NwWcR` | MN: Harlem |
-| 290 | 5a | `table-5a-3` | `2AJd4` | MN: EV / Chinatown |
-| 294 | 5a | `table-5a-4` | `qx7lH` | BK: Bed-Stuy/Bushwick |
-| 297 | 5a | `table-5a-5` | `glCLq` | Totals |
-| 317 | 6 | `table-6-1` | `5Lv5f` | BX: Grand Concourse |
-| 321 | 6 | `table-6-2` | `eEaFz` | MN: Harlem |
-| 325 | 6 | `table-6-3` | `BXHue` | MN: EV / Chinatown |
-| 329 | 6 | `table-6-4` | `FgeCo` | BK: Bed-Stuy/Bushwick |
-| 332 | 6 | `table-6-5` | `HIVhB` | Totals |
+| 75 | 1 | `#1` | `EfIky` | single table |
+| 108 | 2 | `table-2-1` | `bMzMo` | BX: Grand Concourse |
+| 112 | 2 | `table-2-2` | `LAaPy` | MN: Harlem |
+| 116 | 2 | `table-2-3` | `mVQJR` | MN: EV / Chinatown |
+| 119 | 2 | `table-2-4` | `DKVEV` | BK: Bed-Stuy/Bushwick |
+| 123 | 2 | `table-2-5` | `9i7xg` | Totals |
+| 145 | 3 | `table-3-1` | `jaV7S` | BX: Grand Concourse |
+| 149 | 3 | `table-3-2` | `PaKDr` | MN: Harlem |
+| 153 | 3 | `table-3-3` | `pCGDW` | MN: EV / Chinatown |
+| 157 | 3 | `table-3-4` | `f4qkK` | BK: Bed-Stuy/Bushwick |
+| 160 | 3 | `table-3-5` | `szLTu` | Totals |
+| 179 | 3a | `table-33-1` | `A4dTB` | BX: Grand Concourse |
+| 183 | 3a | `table-33-2` | `ol6ho` | MN: Harlem |
+| 187 | 3a | `table-33-3` | `JJRpq` | MN: EV / Chinatown |
+| 191 | 3a | `table-33-4` | `18Wbr` | BK: Bed-Stuy/Bushwick |
+| 206 | 4 | `#16` | `sPNQu` | pest management visits, all zones |
+| 212 | 4a | `#17` | `KhvBm` | stoppage visits, all zones |
+| 265 | 5 | `table-5-1` | `UqEDs` | BX: Grand Concourse |
+| 270 | 5 | `table-5-2` | `Jm1m0` | MN: Harlem |
+| 275 | 5 | `table-5-3` | `Lyets` | MN: EV / Chinatown |
+| 280 | 5 | `table-5-4` | `RBGAy` | BK: Bed-Stuy/Bushwick |
+| 284 | 5 | `table-5-5` | `9qR8g` | Totals |
+| 306 | 5a | `table-5a-1` | `VIJdM` | BX: Grand Concourse |
+| 311 | 5a | `table-5a-2` | `NwWcR` | MN: Harlem |
+| 316 | 5a | `table-5a-3` | `2AJd4` | MN: EV / Chinatown |
+| 321 | 5a | `table-5a-4` | `qx7lH` | BK: Bed-Stuy/Bushwick |
+| 325 | 5a | `table-5a-5` | `glCLq` | Totals |
+| 346 | 6 | `table-6-1` | `5Lv5f` | BX: Grand Concourse |
+| 351 | 6 | `table-6-2` | `eEaFz` | MN: Harlem |
+| 356 | 6 | `table-6-3` | `BXHue` | MN: EV / Chinatown |
+| 361 | 6 | `table-6-4` | `FgeCo` | BK: Bed-Stuy/Bushwick |
+| 365 | 6 | `table-6-5` | `HIVhB` | Totals |
+
+Table 5a's buttons call `changeTable('5a', n)` — a quoted string where every other switcher passes
+a bare number, and Table 3a's pass `33`. Any pattern written against the numeric form will miss
+those five slots without erroring.
 
 Note the id inconsistency in the Table 3a set: buttons are `33-1`…`33-4` with classes
 `table33Buttons` / `table33tables`, not `3a-*`. Leave it — renaming element ids is its own commit
@@ -336,6 +348,14 @@ body; keep the scaffolding.
    every hit. Many are legitimately historical ("since 2023", "the 2024 report", "late 2024"), so
    this is a read-every-hit check, not a replace-all.
 
+**Step 4 ran 2026-09-15: 23 hits, every one legitimately historical, and 0 `PENDING PARTNER`
+comments remain.** One sentence is worth raising with the partner rather than editing. Line 422
+reads "There are no changes in rat mitigation measures since the **2024** report" — in a 2026
+report, with a 2025 report now archived. It is the docx's own sentence, character-for-character
+`[verified 2026-09-15 against the extracted `word/document.xml`: one hit, and the only paragraph
+in the document matching either "2024 report" or "2023 report"]`, so Task 2 carried it correctly
+and the question of whether they meant "2025 report" is theirs.
+
 **Proof:** `hugo --environment development` exits 0 with no ERROR lines. Build into temp
 directories if a server is running, per `CLAUDE.md`:
 `HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment development -d "$TEMP/iso-docs"`.
@@ -353,11 +373,64 @@ renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the li
 **Do not edit the existing 32 charts in Datawrapper.** After Task 1, those IDs are what the
 `2025/` archive renders; editing them in place would silently rewrite a published report.
 
-**Proof, once unblocked:** all 32 TODO markers gone
-(`grep -c "TODO 2026 chart" content/data-features/rat-report/index.md` → 0), no 2025 ID surviving
-(`grep -c -E "(EfIky|bMzMo|LAaPy|mVQJR|DKVEV|9i7xg|jaV7S|PaKDr|pCGDW|f4qkK|szLTu|A4dTB|ol6ho|JJRpq|18Wbr|sPNQu|KhvBm|UqEDs|Jm1m0|Lyets|RBGAy|9qR8g|VIJdM|NwWcR|2AJd4|qx7lH|glCLq|5Lv5f|eEaFz|BXHue|FgeCo|HIVhB)" content/data-features/rat-report/index.md`
-→ 0), and a browser read of every panel against the docx tables. Join those greps with `;`, not
-`&&` — `grep -c` exits non-zero on the zero count that is the answer.
+**Proof, once unblocked.** Four checks. Join the two greps with `;`, not `&&` — `grep -c` exits
+non-zero on the zero count that is the answer.
+
+1. All 32 TODO markers gone:
+   `grep -c "TODO 2026 chart" content/data-features/rat-report/index.md` → 0
+2. No 2025 ID surviving:
+   `grep -c -E "(EfIky|bMzMo|LAaPy|mVQJR|DKVEV|9i7xg|jaV7S|PaKDr|pCGDW|f4qkK|szLTu|A4dTB|ol6ho|JJRpq|18Wbr|sPNQu|KhvBm|UqEDs|Jm1m0|Lyets|RBGAy|9qR8g|VIJdM|NwWcR|2AJd4|qx7lH|glCLq|5Lv5f|eEaFz|BXHue|FgeCo|HIVhB)" content/data-features/rat-report/index.md`
+   → 0
+3. **The slot-to-ID check.** Neither grep above can see a right-id-in-the-wrong-slot paste: every
+   switcher still works, every marker is gone, no 2025 id survives, and the file can even be the
+   same length. Update this document's 32-slot table with the 2026 IDs *first*, from the
+   Datawrapper list, then run the command below and diff its output against the table's `Slot` and
+   `Current ID` columns. A swap shows as two mismatched rows.
+4. A browser read of every panel against the docx tables.
+
+```bash
+python - content/data-features/rat-report/index.md <<'PY'
+import re, sys
+
+lines = open(sys.argv[1], encoding="utf-8").read().split("\n")
+
+# The commented-out block holds 5 dead embed ids that must not be counted.
+dead, start = set(), None
+for i, ln in enumerate(lines, 1):
+    if "<!--" in ln and "-->" not in ln:
+        start = i
+    elif "-->" in ln and start:
+        dead.update(range(start, i + 1)); start = None
+
+rows, panel = [], None
+for i, ln in enumerate(lines, 1):
+    if i in dead:
+        continue
+    m = re.search(r'<div id="(table-[\w-]+)"', ln)
+    if m:
+        panel = m.group(1)
+    m = re.search(r"datawrapper-vis-([A-Za-z0-9]+)", ln)
+    if m:
+        rows.append([panel, m.group(1)]); panel = None
+
+for n, row in enumerate(rows, 1):
+    if row[0] is None:
+        row[0] = f"#{n}"
+
+dupes = [e for e in {e for _, e in rows} if [x for _, x in rows].count(e) > 1]
+
+print(f"{len(rows)} live slots; {len(dupes)} duplicated id(s) {sorted(dupes)}")
+for slot, eid in rows:
+    print(f"{slot}\t{eid}")
+PY
+```
+
+**Both of its probes are proved to fire** `[2026-09-15, against the file at 07549883c0]`. Swapping
+`bMzMo` and `LAaPy` — two ids inside Table 2, the subtle case, and byte-length-preserving — moved
+exactly the two expected rows and nothing else; pasting `bMzMo` into both slots reported
+`1 duplicated id(s) ['bMzMo']`. The control, the unmodified file diffed against itself, printed
+`32 live slots; 0 duplicated id(s) []` and an empty diff. Re-run the injection if the page's markup
+changes shape, since the probe reads `<div id="table-...">` and `datawrapper-vis-*` literally.
 
 ---
 
@@ -508,7 +581,14 @@ verification.
   `config/_default/config.toml:10` sets `buildFuture = true`. No date after today now remains
   anywhere in `content/`.
 - D1 — recommendation is to ship 2026 on option A and evaluate C for 2027.
-- Whether a new `image:` screenshot is being supplied for the 2026 page.
+- Whether a new `image:` screenshot is being supplied for the 2026 page. If one is, drop the two
+  unreferenced duplicates in the same commit: `ratportal-screenshot.png`,
+  `ratportal-screenshot_copy.png` and `ratportal-screenshot_copy copy.png` are byte-identical
+  (same md5, 1,440,902 B each) and only the third is referenced from this bundle
+  `[verified 2026-09-15: the other two are named only from other bundles, which carry their own
+  copies]`.
+- Whether "since the 2024 report" at `index.md:422` should read 2025. The docx says 2024; see
+  Task 2.
 - ~~Nothing links to the archives.~~ **Closed 2026-09-14** — `c73fd0451c`. A
   `### Previous reports` block at the end of `index.md` links all three, mirroring
   `content/data-features/heat-report/10-conclusion.md:48-52`, but with this page's own
