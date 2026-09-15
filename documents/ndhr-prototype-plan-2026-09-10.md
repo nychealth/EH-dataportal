@@ -425,7 +425,9 @@ until then the partial's only check is that it parses, which the same build show
 | 16. Four low-symptom defects (review) | **DONE 2026-09-14** — 16a a cache-delete on rejection in the shared `normalize.js`, 16b a response check before `res.json()` in `map.js`, 16c a `.catch` on `vegaEmbed` with the fallback the sync `try` could never reach, 16d the misfiled comment moved to `report.js` beside the guard it describes. **16c's NR twin at `assets/js/nr-report/chart.js:200` is NOT fixed, and is filed as
 `documents/site-wide-audit-2026-06-27.md` section 19 rather than as a task here** | Each failure forced, A -> B -> A, arm B being the three fixes reverted by hand and proved identical to `HEAD` by an empty `git diff`: **RECOVERS / STUCK / RECOVERS** (6 cards against 0 after an in-place district switch), **NAMES THE URL / PARSER ONLY / NAMES THE URL**, **REPORTED+FALLBACK / SWALLOWED / REPORTED+FALLBACK**. `npm run report-data:parity all` 0 at 37,044 comparisons, 0 mismatched with all three controls firing — the gate that matters, since 16a edits the shared module. `npm run lint` 0, `npm run docs-check` 0, `npm run characterize:ndhr check` 0, `npm run smoke` 38 clean | `ec2208da2b` |
 
-**Status as of 2026-09-14:** **All sixteen tasks are done on `feature-NDHR-prototype`.** A review
+| 17. Landing-page category selector (post-review) | **DONE 2026-09-15** — not a task this plan opened. The five category cards on `/ndhr/` are now five buttons that navigate nowhere and nominate the destination for the typeahead, the picker map and the 59 district links, which is how `themes/dohmh/layouts/neighborhood-reports/section.html` works. Two consequences stated rather than left to be discovered: the landing page now carries **no link to the five category index pages**, as NR's carries none to its topic indexes; and **on paper the selector is nearly inert** — the only printed difference between arms is the description paragraph, because no print rule expands the district links' hrefs | Browser on a `local_prod` server, both arms: active class, `aria-pressed`, description text and all 59 link hrefs follow the selection. Print media emulated, control `.site-title` `text-align` left → center: five buttons print, the active one white on green — **measured identically on NR's landing page**, so that is inherited and not introduced. Isolated `dev_stage` `characterize:site` captured **1285/1285** with no arbitration and reports **1 page moved** — `ndhr/` on `controls.button` 6 → 11, `links.internal` 134 → 129 and the five card `h3`s leaving `headingLevels`, with `headingJumps` unmoved. `npm run lint` 0. Both baselines re-captured at concurrency 8; every changed record on both keys is under `ndhr/`, and the re-classification pass reports nothing unexplained | `282f3d5d72`, `7141b1b2e1` |
+
+**Status as of 2026-09-15:** **All sixteen numbered tasks are done on `feature-NDHR-prototype`, and row 17 was added after them** — work this plan did not open, recorded here because it changes what the landing page is. A review
 on 2026-09-13 added Tasks 12-16 and re-opened one decision; Task 12 and the decision were both
 closed that afternoon, and Tasks 15, 13, 16 and 14 the next day. §4 carries the review's own
 summary, including what it checked and did not find.
@@ -1355,6 +1357,7 @@ What was run instead is the browser, on all five page kinds against a `dev_stage
   build shipped `measures` as one long quoted string and `emptyState` as the string `"null"`.
   `safeJS` is what makes it a literal, and `jsonify` still escapes `<`, `>` and `&`.
 - **Heading order introduces no skip.** The landing page reads 1 2 3 3 3 3 3 2 3 3 3 3 3 2 and the
+  `[superseded 2026-09-15 for the landing page: Task 17 retired the five category cards, so the committed baseline record now reads 1 2 2 3 3 3 3 3 2 5, the trailing 5 being the shared footer this probe excluded. `headingJumps` still reports only that footer skip]`
   report page 1 1 2 — the two `h1`s being the mobile and desktop titles, as on the NR report page.
   The one skip the probe reports, `h2 "Page Footer"` to `h5 "Search"`, is on the home page and both
   NR pages too, so it is the shared footer and predates this work `[verified 2026-09-11: the same
@@ -1807,7 +1810,8 @@ and is the cheaper alternative to a bespoke test.
 markup only — label, search box, Clear button, and one sentence saying what is searchable.
 `themes/dohmh/layouts/partials/ndhr-district-picker-js.html` loads flexdatalist and wires it, and
 goes in the caller's `js_bot` block beside `lib-cdlist.html`. Each caller defines
-`ndhrPickerDestination()`: `''` on the landing page, the category slug on a category index. That
+`ndhrPickerDestination()`: `''` on the landing page, the category slug on a category index.
+`[superseded 2026-09-15: Task 17 made the landing page's return value whichever category button is active — a runtime value, where a category index's stays a build-time slug]` That
 is the same split `nr-neighborhood-picker.html` / `-js.html` uses, and for the same reason — the
 destination is the one thing the two callers disagree on.
 
