@@ -91,12 +91,7 @@ The Department is using the following metrics to measure the efficacy of rat mit
 
 A COTA is sent to a private property owner when an initial inspection identifies any Health Code violation at the time of inspection including garbage conditions, harborage conditions, or any active rat signs. The COTA includes an inspection report and the follow-up actions expected of the property owner. Declines in COTA issuance suggest that fewer properties are failing inspection, and neighborhood conditions are improving.
 
-<!-- PENDING PARTNER CONFIRMATION (emailed 2026-09-14): the denominator below reads 36,267 in the
-     source document, but Table 2 gives 38,267 initial inspections for Jan-Jun 2026 and its zone
-     columns sum to that. 6,571/36,267 is 18%, contradicting the 17% in the same sentence. Left as
-     the partner wrote it until they reply. See documents/rat-report-2026-update-plan-2026-09-14.md
-     Task 0 item 1. -->
-Overall, in the first six months of 2026 in the four RMZs, the Department issued 6,571 COTAs (17% of 36,267 initial inspections) to private property owners (Table 2). The percent of initial inspections that resulted in a COTA decreased (18% in 2025 compared to 17% in 2026). This decrease is seen in the Brooklyn Bed Stuy/Bushwick RMZs (18% in January to June 2025 to 16% in January to June 2026) and East Village/Chinatown RMZ (13% in January to June 2025 to 12% in January to June 2026). The Brooklyn RMZ had the lowest failure rate on initial inspection in January to June 2026 when compared to the previous six rounds. Percent of inspection that resulted in a COTA increased in the Bronx Grand Concourse RMZ (from 23% in January to June 2025 to 24% in January to June 2026).\*
+Overall, in the first six months of 2026 in the four RMZs, the Department issued 6,571 COTAs (17% of 38,267 initial inspections) to private property owners (Table 2). The percent of initial inspections that resulted in a COTA decreased (18% in 2025 compared to 17% in 2026). This decrease is seen in the Brooklyn Bed Stuy/Bushwick RMZs (18% in January to June 2025 to 16% in January to June 2026) and East Village/Chinatown RMZ (13% in January to June 2025 to 12% in January to June 2026). The Brooklyn RMZ had the lowest failure rate on initial inspection in January to June 2026 when compared to the previous six rounds. Percent of inspection that resulted in a COTA increased in the Bronx Grand Concourse RMZ (from 23% in January to June 2025 to 24% in January to June 2026).\*
 
 <!-- TABLE 2-->
 
@@ -132,9 +127,7 @@ Overall, in the first six months of 2026 in the four RMZs, the Department issued
 
 Within about four weeks of the COTA being mailed to the owner of a private property, an inspector will conduct a follow-up (compliance) inspection. If the inspection identifies any Health Code violation, the property fails the compliance inspection and the Department issues one or more summons subject to fines to the owner of the property.
 
-<!-- PENDING PARTNER CONFIRMATION (emailed 2026-09-14): "3,200 fewer" below; 10,540 - 7,785 = 2,755.
-     Left as the partner wrote it until they reply. See the plan document, Task 0 item 2. -->
-Table 3 shows the total number of compliance inspections for each RMZ in a 6-month period and the number of failed inspections where a summons or summonses were issued (this includes repeat compliance inspections on properties that failed multiple times). The Department conducted 3,200 fewer compliance inspections in the first half of 2026 (7,785) as compared to the same period in 2025 (10,540). This can be explained both by the declining failure rates on initial inspection leading to fewer properties requiring a compliance inspection, and, because of a shift in the program’s strategy to elevate compliance inspections on properties with repeated failed inspections. In the first six months of 2026 in the four RMZs, the total inspections with a summons(es) issued was 5,232 (67% of 7,785 compliance inspections), which is less than the number of summons(es) issued in 2025 (7,142, 68% of 10,540). In Bronx, Brooklyn and East Village/Chinatown, the percent inspections with summons(es) decreased compared to January to June 2025, with the largest decrease in Brooklyn (Bronx from 67% to 66%; Brooklyn from 67% to 63%; East Village/Chinatown from 51% to 48%). In Harlem, the percent of inspections with summons(es) increased (Harlem from 77% to 81%).\*
+Table 3 shows the total number of compliance inspections for each RMZ in a 6-month period and the number of failed inspections where a summons or summonses were issued (this includes repeat compliance inspections on properties that failed multiple times). The Department conducted 2,755 fewer compliance inspections in the first half of 2026 (7,785) as compared to the same period in 2025 (10,540). This can be explained both by the declining failure rates on initial inspection leading to fewer properties requiring a compliance inspection, and, because of a shift in the program’s strategy to elevate compliance inspections on properties with repeated failed inspections. In the first six months of 2026 in the four RMZs, the total inspections with a summons(es) issued was 5,232 (67% of 7,785 compliance inspections), which is less than the number of summons(es) issued in 2025 (7,142, 68% of 10,540). In Bronx, Brooklyn and East Village/Chinatown, the percent inspections with summons(es) decreased compared to January to June 2025, with the largest decrease in Brooklyn (Bronx from 67% to 66%; Brooklyn from 67% to 63%; East Village/Chinatown from 51% to 48%). In Harlem, the percent of inspections with summons(es) increased (Harlem from 77% to 81%).\*
 
 <!-- TABLE 3-->
 <div class="border-top border-bottom mb-4 py-2">
@@ -170,7 +163,7 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 
 The Department conducts “elevated compliance inspections” on properties that have repeated failures. Violations issued on elevated compliance inspections can result in higher fines. As of late 2024, the Department has focused on elevated compliance inspections to better address these “repeat fail” properties. Each elevation increased the fine amount with a $300 fine issued on the first failed compliance, a $600 fine issued on the second failed compliance, a $1,200 fine issued on the third and a $2,000 fine issued on the fourth compliance.
 
-Table 3a shows the total number of compliance inspections for each RMZ in a 6-month period and the breakdown by compliance elevation. In all zones there is a shift in compliance elevation from higher compliance inspections to first compliances (Bronx went from 46% second or higher compliances in Jan-Jun 2025 to 17% in Jan-Jun 2026; Brooklyn went from 39% in Jan-Jun 2025 to 16% Jan-Jun 2026; Harlem went from 43% in Jan-Jun 2025 to 22% Jan-Jun 2026; Manhattan East Village/Chinatown went from 23% Jan-Jun 2025 to 19% Jan-Jun 2026).\*
+Table 3a shows the total number of compliance inspections for each RMZ in a 6-month period and the breakdown by compliance elevation. In all zones there is a shift in compliance elevation from higher compliance inspections to first compliances (Bronx went from 46% second or higher compliances in Jan-Jun 2025 to 17% in Jan-Jun 2026; Brooklyn went from 39% in Jan-Jun 2025 to 16% Jan-Jun 2026; Harlem went from 43% in Jan-Jun 2025 to 22% Jan-Jun 2026; Manhattan East Village/Chinatown went from 24% Jan-Jun 2025 to 19% Jan-Jun 2026).\*
 
 <!-- table 3a Compliance inspections by elevation level -->
 <div class="border-top border-bottom mb-4 py-2">
@@ -202,7 +195,7 @@ Table 3a shows the total number of compliance inspections for each RMZ in a 6-mo
 
 Property owners are required to maintain their property free of rats and the conditions that are conducive to rats. In cases where owners fail to maintain their property, the Department may act by treating the private property and billing the owner for the work.
 
-Table 4 and 4a provides a count of visits by the Department’s team of pest management professionals which includes “exterminators” and the “stoppage” team. The total number of visits by an exterminator in the four RMZs was 6,919, approximately 2,500 less than the number of visits in January to June 2025. By RMZ, the number of visits decreased in all zones, with the biggest decrease in Brooklyn Bed Stuy/Bushwick (3,304 visits in January to June 2025 to 1,427 in January to June 2026). This decrease is due to a combination of the Department’s policy to only apply rodenticide bait on properties with severe rodent infestation and the decreasing number of inspections that fail with severe rat activity. The number of visits in the Harlem RMZ includes visits made to apply rat contraceptives in the Harlem RMZ. The number of stoppage visits also decreased in all zones.
+Table 4 and 4a provides a count of visits by the Department’s team of pest management professionals which includes “exterminators” and the “stoppage” team. The total number of visits by an exterminator in the four RMZs was 6,919, approximately 2,800 less than the number of visits in January to June 2025. By RMZ, the number of visits decreased in all zones, with the biggest decrease in Brooklyn Bed Stuy/Bushwick (3,304 visits in January to June 2025 to 1,427 in January to June 2026). This decrease is due to a combination of the Department’s policy to only apply rodenticide bait on properties with severe rodent infestation and the decreasing number of inspections that fail with severe rat activity. The number of visits in the Harlem RMZ includes visits made to apply rat contraceptives in the Harlem RMZ. The number of stoppage visits also decreased in all zones.
 
 <!-- TABLE 4 -->
 
@@ -335,11 +328,7 @@ In the first six months of 2026 in the four RMZs, 156 NYC DPR properties failed 
 
 <strong>VI.&ensp;Reports to 311</strong>
 
-<!-- PENDING PARTNER CONFIRMATION (emailed 2026-09-14): the Harlem figures below read 2,292 and
-     1,460, which are Table 6's Jul-Dec 2024 and Jul-Dec 2025 rows. The Jan-Jun 2025 and Jan-Jun
-     2026 values are 2,133 and 961. Every other Harlem number in this paragraph matches the table.
-     Left as the partner wrote it until they reply. See the plan document, Task 0 item 3. -->
-Table 6 and 6a shows the number of 311 complaints received in each of the four RMZ for overall rodent-related complaints and for the descriptors of rat sighting, signs of rodent and conditions attracting rodents over a 6-month period from January 2023 to June 2026. Comparing 2025 to 2026, rodent complaints across the four RMZ decreased from 3,956 in January to June 2025 to 2,551 January to June 2026 (Table 6a), with the most notable decrease in Harlem (from 2,292 Rodent 311 complaints in January to June 2025 to 1,460 in January to June 2026) (Table 6). In Harlem, the decrease in rodent complaints is driven by signs of rodents (from 933 complaints in January to June 2025 to 57 complaints in January to June 2026). There are also decreased complaints in all other rat related complaints (rat sightings 933 complaints in Jan-Jun 2025 to 713 complaints in Jan-Jun 2026; conditions attracting rats 214 complaints in Jan-Jun 2025 to 171 complaints in Jan-Jun 2026; mouse sighting from 53 complaints in Jan-Jun 2025 to 20 complaints in Jan-Jun 2026).
+Table 6 and 6a shows the number of 311 complaints received in each of the four RMZ for overall rodent-related complaints and for the descriptors of rat sighting, signs of rodent and conditions attracting rodents over a 6-month period from January 2023 to June 2026. Comparing 2025 to 2026, rodent complaints across the four RMZ decreased from 3,956 in January to June 2025 to 2,551 January to June 2026 (Table 6a), with the most notable decrease in Harlem (from 2,133 Rodent 311 complaints in January to June 2025 to 961 in January to June 2026) (Table 6). In Harlem, the decrease in rodent complaints is driven by signs of rodents (from 933 complaints in January to June 2025 to 57 complaints in January to June 2026). There are also decreased complaints in all other rat related complaints (rat sightings 933 complaints in Jan-Jun 2025 to 713 complaints in Jan-Jun 2026; conditions attracting rats 214 complaints in Jan-Jun 2025 to 171 complaints in Jan-Jun 2026; mouse sighting from 53 complaints in Jan-Jun 2025 to 20 complaints in Jan-Jun 2026).
 
 <!-- TABLE 6 -->
 
@@ -457,5 +446,14 @@ For treatment visits, initial counts presented for treatment visits for the firs
 For elevated compliances, initial counts in 2024 and 2025 removed inspections marked by the Department to be a city owned property or an establishment type noted by inspector to be government properties. Because ownership change over time and property research is part of the process in communications sent to the property, this restriction in counts reported was removed.
 
 </div>
+
+<hr class=my-2>
+<br>
+
+### Previous reports {#previous-reports}
+
+- [Rat Mitigation Zone Report: January 2025 to June 2025]({{< relURL >}}data-features/rat-report-archive/2025/)
+- [Rat Mitigation Zone Report: January 2024 to June 2024]({{< relURL >}}data-features/rat-report-archive/2024/)
+- [Rat Mitigation Zone Report: January 2023 to June 2023]({{< relURL >}}data-features/rat-report-archive/2023/)
 
 <!-- end draft -->
