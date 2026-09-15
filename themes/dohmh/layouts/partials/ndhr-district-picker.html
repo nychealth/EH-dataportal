@@ -6,8 +6,9 @@
     Markup only. Pair it with partials/ndhr-district-picker-js.html in the caller's js_bot
     block or this box does nothing — that partial loads flexdatalist and wires the search.
     Where a selection lands is the one thing the two callers disagree on, so it is not here:
-    each defines ndhrPickerDestination(), returning "" on the landing page and the category
-    slug on a category index.
+    each defines ndhrPickerDestination(), returning a build-time category slug on a category
+    index and, on the landing page, whichever of its five category buttons is active — a
+    runtime value that changes without a navigation.
 
     NO HEADING, unlike partials/nr-neighborhood-picker.html. That one carries its own because
     its two callers had drifted to two different introductions; here both callers already

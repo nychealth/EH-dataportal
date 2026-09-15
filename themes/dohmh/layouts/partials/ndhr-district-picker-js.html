@@ -69,8 +69,8 @@
 
         // The destination category is the one thing the two callers disagree on, so each
         // defines ndhrPickerDestination() itself — a build-time slug on a category index,
-        // an empty string on the landing page, which has no active category and whose own
-        // 59 links go to the district index too.
+        // and on the landing page whichever of its five category buttons is active, which
+        // is why this is called on selection rather than read once at load.
         $input.on('select:flexdatalist', (e, set) => {
 
             const category = ndhrPickerDestination();
