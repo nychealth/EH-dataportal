@@ -2,6 +2,68 @@
 // report.js
 // ======================================================================= //
 
+// Returns the distinct data notes carried by a section's rows, in first-appearance order.
+//
+// A flagged value ships with its marker baked into the string ("6.1*", "N/A**") and the
+// sentence explaining it in a sibling nbr_data_note field. Distinct rather than per-row:
+// one sentence covers every row in the section carrying that marker, and a section holds
+// at most two of them [measured 2026-09-15 over the 8 asthma report JSONs on the
+// production data branch: 113 of 336 (neighborhood, section) pairs carry any note, 109
+// of those exactly one].
+//
+// The guard tests the string, not the key. nbr_data_note is present on every row and
+// empty on most of them — production's `isset .data "nbr_data_note"` guard is why the
+// live page emits 22 .data-note divs of which 4 have text
+const collectDataNotes = rows => {
+
+    const notes = rows
+        .map(row => (typeof row.nbr_data_note === 'string' ? row.nbr_data_note.trim() : ''))
+        .filter(note => note);
+
+    return [...new Set(notes)];
+
+};
+
+
+// Appends the section's data-note legend, so a marker in the always-visible card header can
+// be read without expanding a panel.
+//
+// Placement is outside every .collapse deliberately, and that is what decided per-section
+// over restoring production's per-row note: theme.scss hides `.report-section .collapse` in
+// print with !important, on purpose, so a note inside a panel cannot reach the printed
+// report at all — on this branch or on production [verified 2026-09-15: print-emulated
+// innerText, panels forced open, note found in screen media and not in print].
+//
+// Built from the section's rows rather than from what the reader has expanded, so screen
+// and print carry the same legend. textContent rather than an innerHTML concatenation
+// because the text is prose from EHDP-data and needs no markup
+const renderSectionNotes = (container, rows) => {
+
+    const notes = collectDataNotes(rows);
+
+    if (!notes.length) {
+        debugLog('renderSectionNotes: branch-no-notes:', container.id);
+        return;
+    }
+
+    debugLog('renderSectionNotes: rendering:', { containerId: container.id, count: notes.length });
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'nr-section-notes px-2 pt-2 pb-1';
+
+    notes.forEach(note => {
+
+        const line = document.createElement('p');
+        line.textContent = note;
+        wrapper.appendChild(line);
+
+    });
+
+    container.appendChild(wrapper);
+
+};
+
+
 // Fills one section's container with that neighborhood's cards, or a no-data message
 const renderSection = (section, neighborhoodName) => {
 
@@ -36,6 +98,9 @@ const renderSection = (section, neighborhoodName) => {
         container.appendChild(card);
 
     });
+
+    // Last, so the legend sits beneath the cards whose markers it explains
+    renderSectionNotes(container, rows);
 
 };
 
