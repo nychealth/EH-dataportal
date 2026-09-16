@@ -160,6 +160,12 @@ $comp-bad-text: #7a5c00;
   .card-header {
     padding: 0.5rem 0.5rem;
     background: white !important;
+
+    // The whole header answers a click, forwarded to the toggle by forwardHeaderClick in
+    // assets/js/ndhr-report/app.js. The button carries .btn and so brings its own pointer;
+    // this is for the strategy cell beside it, which is outside the button and would
+    // otherwise show a text cursor over a region that now toggles the panel.
+    cursor: pointer;
   }
 
   // #EFFAF4 is deliberately a literal here too: $light-green is #F8FCF7, a different tint,

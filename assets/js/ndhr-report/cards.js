@@ -256,9 +256,11 @@ const buildIndicatorCard = (row, districtName) => {
     // keeps its place in the button's three-column row, while the strategy is editorial
     // prose that has no business in a control's accessible name — the button already
     // announces name, long name, value, units and the tertile sentence as one string.
-    // Cost of the split: the right quarter of the header no longer expands the panel on
-    // click. That is the correct trade for text a reader may one day need to select, and
-    // for a field that will carry a link if the contact route in DECIDED-9 ever lands.
+    // The split used to cost the right quarter of its click target as well. It no longer
+    // does: forwardHeaderClick in app.js routes a click here to the button without moving
+    // the prose inside it, so the accessible name is still the button's own content and
+    // this cell still holds selectable text and can still carry a link if the contact
+    // route in DECIDED-9 ever lands.
     //
     // The micro-label is per row rather than a column header above the accordion: the
     // cards are Bootstrap collapses, not table rows, so there is no header row to align to
@@ -288,8 +290,15 @@ const buildIndicatorCard = (row, districtName) => {
                 '<div class="col-md-9">' +
                     // h3: one level below the section h2 in ndhr-report.html. As an h2 every
                     // indicator read as closing its section and opening a sibling of the page title
-                    '<h3 class="mb-0">' +
-                        '<button class="btn btn-block btn-sm text-left" type="button" ' +
+                    //
+                    // h-100 on both: the strategy cell beside this column is the taller of the
+                    // two and sets the row height, which left the button covering only its own
+                    // content and a dead band beneath it — 565x54 of a 565x100 column at 1460px
+                    // `[measured 2026-09-15]`. Stretching costs nothing visually, the button
+                    // being transparent over a transparent border, and it puts the real control
+                    // under the whole column so hover, cursor and focus ring follow the row
+                    '<h3 class="mb-0 h-100">' +
+                        '<button class="btn btn-block btn-sm text-left h-100" type="button" ' +
                             'data-toggle="collapse" data-target="#' + escapeAttr(collapseId) + '" ' +
                             'aria-expanded="false" aria-controls="' + escapeAttr(collapseId) + '">' +
                             '<div class="row no-gutters d-print-none" style="width:100%">' +

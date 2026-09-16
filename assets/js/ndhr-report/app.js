@@ -123,6 +123,33 @@ const toggleAllAccordions = () => {
 };
 
 
+// Makes the whole indicator row a hit target by routing a header click to its button
+//
+// The alternative — widening the <button> to wrap the strategy cell — is the thing
+// cards.js deliberately does not do: it would pull editorial prose into the control's
+// accessible name, which is the split plan Task 8 settled on. Forwarding leaves the
+// button's content, and so its name, exactly as it was, and adds no second control and
+// no new tab stop: the header div stays out of the accessibility tree entirely.
+const forwardHeaderClick = (event) => {
+
+    // A click that already landed on a control is that control's. Without this the
+    // button's own clicks would arrive here too and toggle a second time, netting zero
+    if (event.target.closest('a, button, input, label, select, textarea')) return;
+
+    // A drag ending in a selection was a reading gesture, not a click — which is what
+    // keeps the strategy prose selectable now that its cell answers clicks
+    const selection = window.getSelection();
+    if (selection && selection.toString()) return;
+
+    const button = event.currentTarget.querySelector('button[data-toggle="collapse"]');
+
+    debugLog('forwardHeaderClick: forwarding:', { header: event.currentTarget.id, found: !!button });
+
+    if (button) button.click();
+
+};
+
+
 // ----------------------------------------------------------------------- //
 // bootstrap
 // ----------------------------------------------------------------------- //
@@ -161,6 +188,11 @@ const bootstrap = () => {
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
     $(document).on('shown.bs.collapse hidden.bs.collapse', '.ndhr-report-accordion .collapse', updateAccordionToggle);
+
+    // Delegated for the same reason the two above are: cards.js rebuilds every header on
+    // a map-driven district switch, so a handler bound to the headers themselves would
+    // survive exactly one district
+    $(document).on('click', '.ndhr-report-accordion .card-header', forwardHeaderClick);
 
     const accordionToggle = document.getElementById('ndhr-toggle-accordions');
     if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
