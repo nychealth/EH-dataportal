@@ -4,7 +4,8 @@ name: Check deployment
 
 on:
   schedule:
-    - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
+    - cron: '30 7 * * 1-5' # every weekday at 7:30 Eastern
+      timezone: "America/New_York"
   workflow_dispatch:
 
 jobs:
