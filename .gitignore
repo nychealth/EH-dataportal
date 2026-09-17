@@ -79,12 +79,13 @@ documents/improvements-gpt-5.4.md
 
 # Playwright characterization --check output (baseline IS committed)
 documents/de-characterization-current/
-
-# Playwright characterization --check output (baseline IS committed)
 scripts/de-characterization-current/
 
 # NR characterization --check output (baseline IS committed)
 scripts/nr-characterization-current/
+
+# NDHR characterization check output (baseline IS committed)
+scripts/ndhr-characterization-current/
 
 # CP report characterization --check output (baseline IS committed)
 scripts/cp-characterization-current/
@@ -97,4 +98,9 @@ scripts/smoke-reports/
 scripts/site-characterization-current/
 scripts/.sc-check/
 scripts/.sc-rebaseline/
+
 documents/Annual Rat Mitigation Report 2026_08_31.docx
+
+# NDHR source documents (Word drafts, screenshots) — working files, not repo content.
+# documents/ndhr-*.md plans and audits ARE committed.
+documents/NDHR/
