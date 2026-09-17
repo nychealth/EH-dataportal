@@ -16,13 +16,21 @@ The page currently holds the January–June 2025 report.
 and it is the only thing gating publication:** the 32 charts have to be produced before the page
 can ship, and its re-run of task 4 follows.
 
+**Amended 2026-09-17:** Task 3 now specifies *how* the 32 charts get produced — the Datawrapper v3
+API, driven by `scripts/rat-report-charts.mjs`, rather than 32 rounds of the UI. That does not
+unblock it. Two things still gate it and neither is in this repo: the 2026 numbers, which exist
+only in the docx, and a Datawrapper API token. See Task 3's "How the 32 charts get produced". The
+script is written and committed at `47d637cf3d`; what has been run against it is recorded
+under Task 3's
+"What has been run against the script" — offline checks only, no API verb exercised.
+
 | Task | State | Proof that ran |
 |---|---|---|
 | 0. Send numeric discrepancies to partner | **DONE 2026-09-14** — `c73fd0451c` — partner confirmed the tables were right; all five prose figures corrected | each figure re-derived before writing; verified in the rendered HTML, each new figure n=1 and each old one n=0 |
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 charts** — Decision D1 says ship on option A. Everything that does not need them is done: the 32-slot table is re-derived against `07549883c0` and the slot-to-ID proof is written and injection-tested | 32 TODO markers each sit exactly one line above a live embed, 0 orphaned and 0 uncovered; the table's 32 slot+id pairs match the derived mapping in order; every line number in it lands on a line carrying its own embed id, where the pre-edit table's failed all 32 |
+| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 numbers and an API token** — Decision D1 says ship on option A; the API route and `scripts/rat-report-charts.mjs` (`47d637cf3d`) specify how, added 2026-09-17. Everything that does not need them is done: the 32-slot table is re-derived against `07549883c0` and the slot-to-ID proof is written and injection-tested | 32 TODO markers each sit exactly one line above a live embed, 0 orphaned and 0 uncovered; the table's 32 slot+id pairs match the derived mapping in order; every line number in it lands on a line carrying its own embed id, where the pre-edit table's failed all 32 |
 | 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
@@ -373,6 +381,163 @@ renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the li
 **Do not edit the existing 32 charts in Datawrapper.** After Task 1, those IDs are what the
 `2025/` archive renders; editing them in place would silently rewrite a published report.
 
+### How the 32 charts get produced: the Datawrapper API
+
+Decision D1 ships 2026 on option A — Datawrapper embeds. It does not follow that the charts have
+to be made by hand. The v3 API covers the whole loop, and `POST /charts/{id}/copy` is what keeps
+the constraint above intact rather than merely restating it: a copy is allocated its own
+5-character ID, so the 32 charts the `2025/` archive renders are never written to.
+
+Base `https://api.datawrapper.de/v3`, `Authorization: Bearer <token>`
+`[read 2026-09-17 from developer.datawrapper.de/reference via Context7; the OpenAPI blocks there
+declare `servers: https://api.datawrapper.de/v3` and doc version 2.9.0]`:
+
+| Step | Call | Scope the reference names |
+|---|---|---|
+| read the 2025 CSV | `GET /charts/{id}/data` → `text/csv` | `chart:read` |
+| read title and metadata | `GET /charts/{id}` | `chart:read` |
+| duplicate | `POST /charts/{id}/copy` → `{id, title, …}` | not stated on the single-chart form; the batch form `POST /charts/copy` names `chart:write` |
+| upload the 2026 CSV | `PUT /charts/{id}/data`, body `text/csv` → 204 | `chart:write` |
+| retitle | `PATCH /charts/{id}`, JSON merge patch | `chart:write` |
+| publish | `POST /charts/{id}/publish` → `{data, version, url}` | `chart:read` **and** `chart:write` **and** `theme:read` **and** `visualization:read` |
+
+**The reference contradicts itself on scope names, and this is not settled here.** The endpoint
+descriptions say `chart:write`; the example response under `GET /auth/token-scopes` lists
+`chart:create,chart:delete,chart:read,chart:update,dataset:*,auth:read` and no `chart:write` at
+all. Read the scopes off the token-creation UI at the moment the token is made rather than
+trusting either list.
+
+**A copy arrives unpublished** — the copy response carries `publishedAt: null` and
+`publicVersion: 0`. Nothing renders on the page until `POST /charts/{id}/publish` has run against
+the new ID.
+
+#### Three things are unverified, and one chart settles all three
+
+None of these could be checked without a token, so none of them is asserted here:
+
+1. Whether the single-chart `POST /charts/{id}/copy` appends "(Copy)" to the title. The batch form
+   documents a `markAsCopy` defaulting to true; the single-chart form documents no request body at
+   all, so it has no way to be told otherwise. The script PATCHes every title afterwards, so a
+   "(Copy)" suffix would not reach the page — but confirm it rather than assuming the PATCH is
+   redundant.
+2. Which folder or team a copy lands in. The single-chart form takes no `destination`; the batch
+   form does. If copies land outside the folder the 32 originals live in, switch to the batch form
+   with an explicit `destination.folderId`.
+3. The rate limit. No number is recorded here because none was measured or read. The script
+   serializes its calls and honours `Retry-After` on a 429 rather than guessing a safe rate.
+
+**So Step 3 below is one slot, end to end, read in the Datawrapper UI before the other 31 run.**
+It is the cheapest experiment that can falsify the approach and it costs one chart. Running all 32
+first and discovering (2) afterwards means 32 charts in the wrong place.
+
+#### Files
+
+- `scripts/rat-report-charts.mjs` — `47d637cf3d`, the four-verb tool. No npm dependency; `fetch` and
+  `node:fs` only.
+- `scripts/rat-report-charts/current/<slot>.csv` (generated) — the 32 charts' 2025 data, as
+  Datawrapper holds it.
+- `scripts/rat-report-charts/current-charts.json` (generated) — per slot: current ID, title,
+  `metadata.describe.intro`, `metadata.annotate.notes`.
+- `scripts/rat-report-charts/next-titles.json` (generated by `pull`, **edited by hand**) — per
+  slot, the title/intro/notes the 2026 chart should carry. Pre-filled with the 2025 values so it is
+  a fill-in, not a blank.
+- `scripts/rat-report-charts/next/<slot>.csv` (**written by hand**, from the docx) — the 2026 data.
+- `scripts/rat-report-charts/chart-map.json` (generated by `push`) — `slot → {from, to, version,
+  url, publishedAt}`. This is the run's own record and the second artifact the proof diffs.
+- `content/data-features/rat-report/index.md` — rewritten by `apply`.
+
+`scripts/` is outside Hugo's content, asset and data roots, so none of this reaches a build. That
+is also what makes committing `next/*.csv` free: the 2026 numbers become greppable, diffable and
+reviewable in a PR without changing how the page renders.
+
+#### What has been run against the script, and what has not
+
+`scripts/rat-report-charts.mjs` is committed at `47d637cf3d`. Everything below
+ran offline, with `DATAWRAPPER_TOKEN` unset, so **no verb that talks to Datawrapper has been
+exercised at all** — `pull`, the copy/upload/patch/publish sequence inside `push`, and every
+response shape they assert are unproved until a token exists. `apply` is local but also unrun: it
+needs a `chart-map.json`, which only `push` writes.
+
+`[verified 2026-09-17, Node v24.0.1, all on a tree with `index.md` unmodified]`:
+
+- **Parses, and the argument contract holds.** `node --check` exit 0. No arguments, `dryrun --all`
+  and an unknown command each exit 2.
+- **The missing-token path exits 2, after a correction.** Step 1 above specifies exit 2 and the
+  draft exited 1 from inside the first request. `main()` now refuses `pull`, `dryrun` and `push`
+  with exit 2 before reading anything; `apply` still exits 1, which is right — a missing
+  `chart-map.json` is a state error, not a setup one. The token gate does not shadow the
+  unknown-command path, which still exits 2 on its own.
+- **`readSlots` agrees with this document's Python probe on all 32 rows.** Dumped from the
+  script's own function and diffed against the probe's output over the same file: 32 rows each,
+  zero differing lines. Control: perturbing one character of one id in the comparison makes the
+  diff fire.
+- **The script's own derivation is injection-tested, not just the probe's.** Swapping `bMzMo` and
+  `LAaPy` in `index.md` — byte-length-preserving, the subtle case — moved exactly those two rows
+  and nothing else. `index.md` was restored with `git checkout` and `git status --porcelain`
+  returns it clean.
+- **`writeGuard`'s scan is live, and `push` reaches it before any network call.** `push table-2-1`
+  under a deliberately invalid token printed `guard: 419 published chart ids under content/ are
+  off limits` and then stopped on the missing `next-titles.json` — no request is issued before the
+  guard runs, so an invalid token is enough to exercise it. 419 is well above the 32 the
+  self-check demands. **Its abort path is proved to fire, not assumed:** pointing the content scan
+  at an empty directory made it report `found 0 chart id(s)`, name all 32 slots as unprotected and
+  exit 1 without writing. A scan that silently returned nothing would otherwise permit every write
+  the guard exists to block.
+- **The token gate runs ahead of the guard**, so `push` with `DATAWRAPPER_TOKEN` *unset* now exits
+  2 before `writeGuard` is reached. Use an invalid token, not an absent one, to exercise the guard
+  offline.
+
+**Proof 3 below needs its line endings normalized before the diff.** Python's stdout on Windows
+writes CRLF and Node writes LF, so the two derivations compared byte-for-byte report all 32 rows
+as differing while being identical `[measured 2026-09-17: 32 CR bytes in 534, against 0 in 502]`.
+Pipe the probe through `tr -d '\r'`, or diff the parsed values rather than the text.
+
+#### Steps
+
+1. **Create the token.** Datawrapper UI, scopes per the table above. Put it in the environment as
+   `DATAWRAPPER_TOKEN`; never in a file in this repo. The script reads only that variable and
+   exits 2 naming it when unset.
+2. **`node scripts/rat-report-charts.mjs pull`.** Read-only against Datawrapper. Writes the 32
+   `current/*.csv`, `current-charts.json` and `next-titles.json`. Its own check: 32 CSVs, none
+   empty. This step also settles whether the token's scopes are sufficient for reads before
+   anything is written.
+3. **Fill in one slot and push it.** Write `next/table-2-1.csv` from docx Table 2's Grand
+   Concourse column, set its entry in `next-titles.json`, then
+   `node scripts/rat-report-charts.mjs push table-2-1`. Open the new chart in the Datawrapper UI
+   and read three things: the folder it landed in, whether its title says "(Copy)", and whether
+   the table renders with the right columns. Record all three in this document before Step 4.
+4. **Write the other 31 `next/*.csv`** from the docx, and their `next-titles.json` entries.
+5. **`node scripts/rat-report-charts.mjs dryrun`.** Local plus one token check; no writes. It
+   names every slot with no `next/` CSV and every slot with no title entry, and refuses to report
+   ready while either list is non-empty.
+6. **`node scripts/rat-report-charts.mjs push`.** Copies, uploads, patches and publishes the
+   remaining 31. Resumable: a slot already in `chart-map.json` is skipped rather than copied a
+   second time, so a re-run after a network failure does not orphan charts.
+7. **`node scripts/rat-report-charts.mjs apply`.** Rewrites `index.md` — swaps each slot's ID and
+   deletes that slot's `<!-- TODO 2026 chart -->` line. Local only.
+8. **Update this document's 32-slot table** with the new IDs, then run the proof below.
+
+#### Interfaces
+
+Consumes: the 32 slot→ID pairs, derived from `index.md` itself rather than from the table above, so
+there is no second copy to drift. Consumes the docx tables, by hand, as `next/*.csv`.
+Produces: 32 published 2026 chart IDs, `chart-map.json`, and the rewritten `index.md` whose slots
+the proof below checks.
+
+#### Why the proof below still has to run
+
+`apply` and the proof are deliberately *not* the same code. The script derives slots in JavaScript;
+the proof's probe derives them in Python, from the same file, independently. The check that matters
+is the probe's output diffed against `chart-map.json` — file text against API responses, two
+artifacts produced by different means. Diffing the probe against a table the script itself printed
+would prove only that the script is self-consistent.
+
+The guard that keeps `push` off the published charts is a hard one, not a convention: every write
+call passes through one function that refuses any ID found in a `dwcdn.net/<id>/` or `datawrapper …
+src="<id>"` reference anywhere under `content/`. It carries its own positive control — the scan
+must return at least the 32 source IDs, and `push` aborts if it does not, because a scan that
+silently returned nothing would permit every write it exists to block.
+
 **Proof, once unblocked.** Four checks. Join the two greps with `;`, not `&&` — `grep -c` exits
 non-zero on the zero count that is the answer.
 
@@ -383,9 +548,10 @@ non-zero on the zero count that is the answer.
    → 0
 3. **The slot-to-ID check.** Neither grep above can see a right-id-in-the-wrong-slot paste: every
    switcher still works, every marker is gone, no 2025 id survives, and the file can even be the
-   same length. Update this document's 32-slot table with the 2026 IDs *first*, from the
-   Datawrapper list, then run the command below and diff its output against the table's `Slot` and
-   `Current ID` columns. A swap shows as two mismatched rows.
+   same length. Run the probe below and diff its `slot<TAB>id` output against `chart-map.json`'s
+   `slot → to` pairs, which are what Datawrapper's own copy responses said. A swap shows as two
+   mismatched rows. Update this document's 32-slot table from the result *after* it passes — the
+   table is then a record of a checked state rather than the thing being checked.
 4. A browser read of every panel against the docx tables.
 
 ```bash
@@ -569,6 +735,26 @@ or extending `render-table.html` with `colspan` support. Neither is large, but b
 a shared partial that the pesticides report also renders through, so they need their own
 verification.
 
+**Amended 2026-09-17 — the API route retires one of A's four costs and leaves the other three.**
+Taking them in the order listed above:
+
+1. *"The numbers are not in the repo."* Removed, and without a template change. The 32
+   `scripts/rat-report-charts/next/*.csv` the API route needs as input are the numbers, in git,
+   greppable and diffable in a PR. This was the strongest argument for C, and it turns out to be
+   separable from C.
+2. *32 permanently-live charts a year that must never be edited.* Unchanged. The API makes more of
+   them faster.
+3. *A mistyped ID renders an empty `<div>` with no console error.* Reduced, not removed — `apply`
+   writes the IDs from the copy responses rather than by hand, and the slot-to-ID check compares
+   two independently-produced artifacts. A wrong ID is now a bug in one script rather than one of
+   32 chances to mistype.
+4. *26 of 32 `<noscript>` fallbacks read `alt="Table"`.* Unchanged, and **independent of D1** —
+   that alt text is in this repo's own markup, not in Datawrapper, so it can be fixed under A, B or
+   C alike. It is not a reason to prefer one.
+
+This does not change the recommendation: ship 2026 on A. It does change what a 2027 evaluation of C
+is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
+
 ---
 
 ## Open items
@@ -589,6 +775,13 @@ verification.
   copies]`.
 - Whether "since the 2024 report" at `index.md:422` should read 2025. The docx says 2024; see
   Task 2.
+- **A Datawrapper API token, and whether the account holding it can reach the 32 charts.** Task 3's
+  route needs one; nothing in this repo indicates whether the team has API access. No file under
+  the repo names `api.datawrapper.de`, the R client `DatawRappr` or the Python `datawrapper`
+  package `[verified 2026-09-17: that six-term grep returns 0 files; control: a plain
+  case-insensitive `datawrapper` returns 370]`, so this would be the first API client here and
+  there is no existing house harness to copy. If the 32 originals sit in a team folder, the token's
+  user needs access to that folder, not just an account.
 - ~~Nothing links to the archives.~~ **Closed 2026-09-14** — `c73fd0451c`. A
   `### Previous reports` block at the end of `index.md` links all three, mirroring
   `content/data-features/heat-report/10-conclusion.md:48-52`, but with this page's own
