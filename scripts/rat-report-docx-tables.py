@@ -74,9 +74,13 @@ PERIOD = re.compile(r"^(Jan-Jun|Jul-Dec)\s+\d{4}$")
 # group that has them.
 ZONE_CELL = {1: 1, 2: 5, 3: 7, 4: 3, 5: 9}   # panel suffix -> first cell, 5-panel groups
 
+# The three panels with no switcher carry no `<div id="table-...">`, so they are
+# named by ordinal position among the 32 embeds. The spelling `#N` is not a
+# choice: rat-report-charts.mjs and the plan document's own probe both use it,
+# and push looks for next/<slot>.csv by that exact name.
 SLOT_MAP = {
-    "slot16": (6, 1, 5),                      # TABLE 4,  pest management visits
-    "slot17": (7, 1, 5),                      # TABLE 4a, stoppage visits
+    "#16": (6, 1, 5),                         # TABLE 4,  pest management visits
+    "#17": (7, 1, 5),                         # TABLE 4a, stoppage visits
     "table-33-1": (4, 1, 5),                  # TABLE 3a is split across two docx
     "table-33-2": (5, 1, 5),                  # tables, two zones each -- and the
     "table-33-3": (5, 6, 5),                  # page's four panels do not follow
@@ -95,7 +99,7 @@ for _suffix, _cell in ZONE_CELL.items():
 
 # slot1 is the one panel whose rows are zones rather than periods, so it is
 # matched by row label against docx TABLE 1 instead of by period.
-ROW_SLOT = "slot1"
+ROW_SLOT = "#1"
 ROW_TABLE = 1
 
 
@@ -135,7 +139,7 @@ def read_slots():
             panel = None
     for n, r in enumerate(rows, 1):
         if r[0] is None:
-            r[0] = f"slot{n}"
+            r[0] = f"#{n}"
     return dict(rows)
 
 

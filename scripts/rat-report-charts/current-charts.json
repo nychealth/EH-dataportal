@@ -1,0 +1,226 @@
+{
+    "#1": {
+        "id": "EfIky",
+        "line": 75,
+        "title": "Table 1: Surveyed Properties in the RMZs as of June 2025",
+        "intro": "Surveyed Properties in the RMZs as of June 2025",
+        "notes": ""
+    },
+    "table-2-1": {
+        "id": "bMzMo",
+        "line": 108,
+        "title": "Table 2: BX_Initial inspections and Commissioner Orders to Abate (COTA)",
+        "intro": "Bronx: Grand Concourse",
+        "notes": ""
+    },
+    "table-2-2": {
+        "id": "LAaPy",
+        "line": 112,
+        "title": "Table 2: MH_Initial inspections and Commissioner Orders to Abate (COTA)",
+        "intro": "Manhattan: Harlem",
+        "notes": ""
+    },
+    "table-2-3": {
+        "id": "mVQJR",
+        "line": 116,
+        "title": "Table 2: EV_Initial inspections and Commissioner Orders to Abate (COTA)",
+        "intro": "Manhattan: East Village & Chinatown",
+        "notes": ""
+    },
+    "table-2-4": {
+        "id": "DKVEV",
+        "line": 119,
+        "title": "Table 2: Brooklyn: BW_Initial inspections and Commissioner Orders to Abate (COTA)",
+        "intro": "Bushwick",
+        "notes": ""
+    },
+    "table-2-5": {
+        "id": "9i7xg",
+        "line": 123,
+        "title": "Table 2: Initial inspections and Commissioner Orders to Abate (COTA)",
+        "intro": "Totals",
+        "notes": ""
+    },
+    "table-3-1": {
+        "id": "jaV7S",
+        "line": 145,
+        "title": "Table 3: BX_Compliance inspections and summons",
+        "intro": "Bronx: Grand Concourse",
+        "notes": ""
+    },
+    "table-3-2": {
+        "id": "PaKDr",
+        "line": 149,
+        "title": "Table 3: MH_Compliance inspections and summons",
+        "intro": "Manhattan: Harlem",
+        "notes": ""
+    },
+    "table-3-3": {
+        "id": "pCGDW",
+        "line": 153,
+        "title": "Table 3: EV_Compliance inspections and summons",
+        "intro": "Manhattan: East Village & Chinatown",
+        "notes": ""
+    },
+    "table-3-4": {
+        "id": "f4qkK",
+        "line": 157,
+        "title": "Table 3: BW_Compliance inspections and summons",
+        "intro": "Brooklyn: Bed Stuy & Bushwick",
+        "notes": ""
+    },
+    "table-3-5": {
+        "id": "szLTu",
+        "line": 160,
+        "title": "Table 3: Compliance inspections and summons",
+        "intro": "Totals",
+        "notes": ""
+    },
+    "table-33-1": {
+        "id": "A4dTB",
+        "line": 179,
+        "title": "Table 3a: BX_Compliance Inspections by elevation level (first to fourth+ comp)",
+        "intro": "Bronx Grand Concourse",
+        "notes": ""
+    },
+    "table-33-2": {
+        "id": "ol6ho",
+        "line": 183,
+        "title": "Table 3a: MH_Compliance Inspections by elevation level (first to fourth+ comp)",
+        "intro": "MH: Harlem",
+        "notes": ""
+    },
+    "table-33-3": {
+        "id": "JJRpq",
+        "line": 187,
+        "title": "Table 3a: EV_Compliance Inspections by elevation level (first to fourth+ comp)",
+        "intro": "East Village",
+        "notes": ""
+    },
+    "table-33-4": {
+        "id": "18Wbr",
+        "line": 191,
+        "title": "Table 3a: BW_Compliance Inspections by elevation level (first to fourth+ comp)",
+        "intro": "Bushwick/BK",
+        "notes": ""
+    },
+    "#16": {
+        "id": "sPNQu",
+        "line": 206,
+        "title": "Extermination visits by RMZ",
+        "intro": "",
+        "notes": ""
+    },
+    "#17": {
+        "id": "KhvBm",
+        "line": 212,
+        "title": "Stoppage visits by RMZ",
+        "intro": "",
+        "notes": ""
+    },
+    "table-5-1": {
+        "id": "UqEDs",
+        "line": 265,
+        "title": "Table 5: BX_Initial inspections and City agency referrals",
+        "intro": "Bronx: Grand Concourse",
+        "notes": ""
+    },
+    "table-5-2": {
+        "id": "Jm1m0",
+        "line": 270,
+        "title": "Table 5: MH_Initial inspections and City agency referrals",
+        "intro": "Manhattan: Harlem",
+        "notes": ""
+    },
+    "table-5-3": {
+        "id": "Lyets",
+        "line": 275,
+        "title": "Table 5:EV_Initial inspections and City agency referrals",
+        "intro": "Manhattan: East Village & Chinatown",
+        "notes": ""
+    },
+    "table-5-4": {
+        "id": "RBGAy",
+        "line": 280,
+        "title": "Table 5: BW_Initial inspections and City agency referrals",
+        "intro": "Brooklyn: Bedford Stuyvesant & Bushwick",
+        "notes": ""
+    },
+    "table-5-5": {
+        "id": "9qR8g",
+        "line": 284,
+        "title": "Table 5: Initial inspections and City agency referrals",
+        "intro": "Totals",
+        "notes": ""
+    },
+    "table-5a-1": {
+        "id": "VIJdM",
+        "line": 306,
+        "title": "Table 5a: BX_Park and playground inspections",
+        "intro": "Bronx: Grand Concourse",
+        "notes": ""
+    },
+    "table-5a-2": {
+        "id": "NwWcR",
+        "line": 311,
+        "title": "Table 5a:MH_Park and playground inspections",
+        "intro": "Manhattan: Harlem",
+        "notes": ""
+    },
+    "table-5a-3": {
+        "id": "2AJd4",
+        "line": 316,
+        "title": "Table 5a: EV_Park and playground inspections",
+        "intro": "Manhattan: East Village & Chinatown",
+        "notes": ""
+    },
+    "table-5a-4": {
+        "id": "qx7lH",
+        "line": 321,
+        "title": "Table 5a: BW_Park and playground inspections",
+        "intro": "Brooklyn: Bed Stuy & Bushwick",
+        "notes": ""
+    },
+    "table-5a-5": {
+        "id": "glCLq",
+        "line": 325,
+        "title": "Table 5a: Park and playground inspections",
+        "intro": "Totals",
+        "notes": ""
+    },
+    "table-6-1": {
+        "id": "5Lv5f",
+        "line": 346,
+        "title": "Table 6: BX_Rodent complaints 311",
+        "intro": "Bronx: Grand Concourse",
+        "notes": ""
+    },
+    "table-6-2": {
+        "id": "eEaFz",
+        "line": 351,
+        "title": "Table 6: MH_Rodent complaints 311",
+        "intro": "Manhattan: Harlem",
+        "notes": ""
+    },
+    "table-6-3": {
+        "id": "BXHue",
+        "line": 356,
+        "title": "Table 6: EV_Rodent complaints 311",
+        "intro": "Manhattan: East Village & Chinatown",
+        "notes": ""
+    },
+    "table-6-4": {
+        "id": "FgeCo",
+        "line": 361,
+        "title": "Table 6: BW_Rodent complaints 311",
+        "intro": "Brooklyn: Bed Stuy & Bushwick",
+        "notes": ""
+    },
+    "table-6-5": {
+        "id": "HIVhB",
+        "line": 365,
+        "title": "Table 6a: Total RMZ rodent complaints 311",
+        "intro": "Table 6a: Totals",
+        "notes": ""
+    }
+}

@@ -104,3 +104,7 @@ documents/Annual Rat Mitigation Report 2026_08_31.docx
 # NDHR source documents (Word drafts, screenshots) — working files, not repo content.
 # documents/ndhr-*.md plans and audits ARE committed.
 documents/NDHR/
+
+# Rat report chart tooling. published/ and next/ ARE committed; current/ is the same 32
+# datasets the API returns and is byte-identical to published/, so it is pure duplication.
+scripts/rat-report-charts/current/
