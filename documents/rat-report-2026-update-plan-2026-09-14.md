@@ -53,7 +53,10 @@ git merge-base --is-ancestor 6b2055b407 production              # exit 0 means i
 
 - No server was started. Builds went to a scratchpad directory via `HUGO_RESOURCEDIR` and `-d`;
   `docs/` does not exist in this worktree and `resources/_gen` was untouched.
-- The source document sits at `documents/Annual Rat Mitigation Report 2026_08_31.docx`, gitignored
+- The source document sits at `cgettings-EHDP-work/documents/Rat report/Annual Rat Mitigation
+  Report 2026_08_31.docx`, outside this repo, 132,140 bytes `[corrected 2026-09-17; it is not in
+  `documents/` in this tree, and the worktree this section used to name no longer exists -- the
+  branch is checked out in the primary tree]`. It was previously gitignored
   at `5a60a06b27`. It is on disk in this worktree; a fresh clone will not have it.
 - Worktree: `EH-dataportal.worktrees/update-rat-mitigation-report`.
 
@@ -491,6 +494,121 @@ needs a `chart-map.json`, which only `push` writes.
 writes CRLF and Node writes LF, so the two derivations compared byte-for-byte report all 32 rows
 as differing while being identical `[measured 2026-09-17: 32 CR bytes in 534, against 0 in 502]`.
 Pipe the probe through `tr -d '\r'`, or diff the parsed values rather than the text.
+
+#### Producing the 32 CSVs from the docx
+
+Step 4 below was written as "write the other 31 `next/*.csv` by hand". It does not have to be.
+The docx's 12 tables are machine-readable and map onto all 32 slots.
+
+**The published datasets are public, so this is verifiable without a token.** Datawrapper serves a
+published chart's data at `https://datawrapper.dwcdn.net/<id>/<version>/dataset.csv`
+`[verified 2026-09-17: all 32 of the page's charts fetched, 0 missing; versions range v1-v5 and
+are found by walking upward from 1, since the embeds carry no version segment]`. That retires the
+assumption that nothing about the chart data could be checked before a token exists — `pull` is
+now a convenience, and only the write half (copy, upload, publish) still needs credentials.
+
+**The source document is not where the Environment section said.** It is at
+`cgettings-EHDP-work/documents/Rat report/Annual Rat Mitigation Report 2026_08_31.docx`, outside
+this repo, 132,140 bytes. The worktree named there no longer exists either; the branch is checked
+out in the primary tree.
+
+##### The map, derived three ways rather than assumed
+
+A `.docx` is a zip whose `word/document.xml` holds `<w:tbl>` elements, so this needs no
+dependency — Python's `zipfile` and `ElementTree` are enough, which is why the tool is Python and
+not `.mjs` like its siblings (`scripts/js-comment-spacing.py` is the precedent; Node has no
+built-in zip reader and adding one would be a new dependency).
+
+12 top-level tables, no nested tables, no images. Data rows carry a uniform cell count in all 12.
+
+- **Index by ordinal cell position, never by walking `gridSpan`.** Docx Table 2's header row sums
+  to 13 grid columns while every one of its data rows sums to 12, and `tblGrid` declares 13. The
+  other 11 tables are internally consistent, so a span-walking reader would misplace only that
+  table's Total column — the quiet kind of failure `[verified 2026-09-17]`.
+- **The page reorders the zones.** Docx column order is Bronx, Brooklyn, Harlem, East Village,
+  Total. Panel order is Bronx, Harlem, East Village, Brooklyn, Totals — so `-2` and `-4` are
+  swapped relative to the docx, in every group that has them. Established on three independent
+  signals that agree: the page's own switcher button labels, the docx header cells, and a
+  data-match of each published dataset against the docx rows.
+- **Matching on one column cannot derive this map.** Docx TABLE 2 (initial inspections + COTA) and
+  TABLE 5 (initial inspections + agency referrals) carry an identical Insp column, so a probe
+  scoring the first measure column alone put `table-2-*` and `table-5-*` on the same docx table at
+  the same offsets, 5/5 both times. Scoring the whole flattened row separates them.
+- **Formatting is per-slot and must be read off the live dataset, not applied as a rule.** The
+  same percentage appears as `-26%` in `table-2-1`, `61%` in `table-3-1` and a bare `8` in
+  `table-5-1`. Headers differ from the docx wording (`Total NYC Parks` against the docx's
+  `Total DPR Parks`), and some are wrong in ways only a human should change — `table-5a-5` labels
+  two different columns `Failed (#)`, and the `table-33-*` group labels four pairs with
+  case-varying duplicates.
+
+##### Ledger
+
+| Step | State | Proof that ran |
+|---|---|---|
+| Fetch the 32 published datasets | **DONE 2026-09-17** — no commit; re-runnable | 32 of 32 fetched from the CDN, 0 missing |
+| Derive the slot -> docx map | **DONE 2026-09-17** — no commit; recorded above | 27 of 31 period-based slots matched at 100%, on whole-row scoring; the 4 that did not are the discrepancy candidates below, and all 4 fill by the zone pattern the other groups establish |
+| `scripts/rat-report-docx-tables.py` | **DONE 2026-09-17** — `faf71b0a56` | compiles; no args / a flag / an unknown command / a verb missing its argument each exit 2; `fetch` 32 of 32; `write` and `check` agree cell-for-cell on which values differ (37 = 35 + 2) |
+| The 32-slot docx-vs-live discrepancy report | **DONE 2026-09-17** — 530 of 567 shared values agree exactly; `published/` and `next/` committed at `df70bdf265` | three findings re-verified against the raw docx cells; the `table-5a` group re-derived arithmetically |
+
+`slot1` is the one slot whose rows are zones rather than periods (docx Table 1), so it is mapped
+by hand rather than by the period-matching above.
+
+##### What the first run found
+
+`python scripts/rat-report-docx-tables.py check <docx>` over all 32 slots: **530 of 567 shared
+values agree exactly. 35 disagree on the number and 2 differ only in rendering.** The tool
+separates those two classes, because a differing rendering of the same number is not something to
+put in front of the partner.
+
+**Two of the disagreements are errors in the charts the site is serving right now**, not restated
+numbers — and the `2025/` archive renders the same chart IDs, so both are live in two places.
+
+- **`table-5a-1` (Parks and playgrounds, Bronx Grand Concourse) has the wrong percentages in its
+  last three rows.** The `Failed (%)` column repeats the `Failed (#)` count: 52, 56, 54 where the
+  arithmetic gives 88%, 81%, 78%, which is what the docx says. Re-derived across the whole group:
+  22 of the 25 published rows in `table-5a-*` are arithmetically right and only these three are
+  wrong `[verified 2026-09-17: failed/inspected recomputed per row]`.
+- **`table-2-4` (Initial inspections, Brooklyn) reads `-21%` for Jul-Dec 2023.** 4,129 of 15,533
+  is 26.6%, and the docx says 27%.
+
+The rest are restatements the partner should confirm rather than defects this can adjudicate:
+`slot1`'s NYCHA development counts moved in all four zones and the total (17/10/28/79 published
+against 15/9/24/72), and the whole `table-33-*` group differs by small amounts on both of the
+periods it shares with the docx — 27 values across four panels, mostly ±1 to ±18.
+
+The two cosmetic ones are the same defect in the published data: `table-33-1` drops the `%` from
+one cell and `table-33-3` from another. The extractor writes them consistently, which is why they
+surface as rendering rather than value differences.
+
+##### Running it
+
+```
+python scripts/rat-report-docx-tables.py fetch          # refresh published/, no credentials
+python scripts/rat-report-docx-tables.py check <docx>   # the report above; exit 1 on a numeric disagreement
+python scripts/rat-report-docx-tables.py write <docx>   # emit next/*.csv for rat-report-charts.mjs
+```
+
+Both output directories are tracked as of `df70bdf265` — `published/*.tsv` as the pre-update
+record and the reference `check` runs against, `next/*.csv` so the 2026 numbers are reviewable in
+a PR. Both are re-derivable; `scripts/` is outside Hugo's content, asset and data roots, so
+neither reaches a build.
+
+```
+```
+
+`check` exits 1 while any number disagrees, so it stays red until the partner's answers are folded
+into the docx — which is the point. `write` works regardless; it does not wait for `check` to pass.
+
+**`write` emits every period the docx holds, and 31 of 32 slots grow.** The published charts show
+5 periods (`table-33-*`, 2; the `table-6` group, 6) and the docx has 7, back to Jan-Jun 2023.
+Whether the 2026 charts show all 7 or keep a rolling window is a content decision, so the tool
+prints the change per slot and trims nothing. Decide it once and apply it before `push`.
+
+**Headers are carried through from the published chart untouched**, including the ones that are
+wrong: `table-5a-5` labels two different columns `Failed (#)`, and the `table-33-*` group labels
+four column pairs with case-varying duplicates (`First comp` / `First comp`). Fixing those is a
+content edit for `next-titles.json` and the Datawrapper UI, not something to change silently while
+swapping data.
 
 #### Steps
 
