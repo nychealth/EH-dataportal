@@ -150,6 +150,14 @@ def docx_tables(path):
     sums to 13 grid columns while all of its data rows sum to 12 and tblGrid
     declares 13, so gridSpan arithmetic places that table's Total column one
     column off while every other table reads correctly.
+
+    Reading cell text through iter(w:t) is the tracked-changes-ACCEPTED view,
+    and that is load-bearing rather than incidental: a deletion's text sits in
+    <w:delText>, which this never sees, while an insertion's sits in an
+    ordinary <w:t>, which it does. itertext() is the form that merges both into
+    prose that still parses [verified 2026-09-17 on a constructed cell]. The
+    2026 document carries no tracked changes at all -- 0 w:ins, 0 w:del -- but
+    a later one may, and nothing in the output would announce it.
     """
     root = ET.fromstring(ZipFile(path).read("word/document.xml"))
     out = []
