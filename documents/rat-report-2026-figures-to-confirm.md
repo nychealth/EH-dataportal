@@ -1,28 +1,18 @@
 # Rat Mitigation Zone Report: figures to confirm before the 2026 page is published
 
-We are updating the Environment & Health Data Portal's Rat Mitigation Zone page with the 2026
-report. The page presents 32 tables, and we build each one from the figures in the report
-document rather than retyping them.
+We are updating the Environment & Health Data Portal's Rat Mitigation Zone page with the 2026 report. The page presents 32 tables, and we build each one from the figures in the report document rather than retyping them.
 
-Before publishing, we compared every figure in the 2026 document against what the currently
-published 2025 tables show, for the reporting periods the two have in common. **Of 567 shared
-figures, 530 match exactly.** The 35 that do not are listed below.
+Before publishing, we compared every figure in the 2026 document against what the currently published 2025 tables show, for the reporting periods the two have in common. **Of 567 shared figures, 530 match exactly.** The 35 that do not are listed below.
 
-In every table, the "Published 2025 chart" column is what the page shows today, and the
-"2026 document" column is what the new report says.
+In every table, the "Published 2025 chart" column is what the page shows today, and the "2026 document" column is what the new report says.
 
 ## Four we have already corrected, for your awareness
 
-These are settled by arithmetic rather than by judgement, so we have taken the document's figures
-and no answer is needed.
+These are settled by arithmetic rather than by judgement, so we have taken the document's figures and no answer is needed.
 
-In TABLE 5a, the published Bronx Grand Concourse table repeats the *number* of parks that failed
-in the *percentage* column for three periods: it shows 52, 56 and 54 where 52 of 59, 56 of 69 and
-54 of 69 are 88%, 81% and 78%. The document agrees with the arithmetic. The other four zones in
-that table are correct in all periods.
+In TABLE 5a, the published Bronx Grand Concourse table repeats the *number* of parks that failed in the *percentage* column for three periods: it shows 52, 56 and 54 where 52 of 59, 56 of 69 and 54 of 69 are 88%, 81% and 78%. The document agrees with the arithmetic. The other four zones in that table are correct in all periods.
 
-In TABLE 2, the published Brooklyn figure for Jul-Dec 2023 reads 21% where 4,129 of 15,533 is
-26.6%. The document says 27%.
+In TABLE 2, the published Brooklyn figure for Jul-Dec 2023 reads 21% where 4,129 of 15,533 is 26.6%. The document says 27%.
 
 | Table | Zone | Period | Measure | Published 2025 chart | 2026 document |
 |---|---|---|---|---|---|
@@ -33,12 +23,9 @@ In TABLE 2, the published Brooklyn figure for Jul-Dec 2023 reads 21% where 4,129
 
 ## Thirty-one we would like you to confirm
 
-For each of these the two sources disagree and we cannot tell which is right. **Unless you tell us
-otherwise we will publish the 2026 document's figure**, on the basis that it is the later
-statement.
+For each of these the two sources disagree and we cannot tell which is right. **Unless you tell us otherwise we will publish the 2026 document's figure**, on the basis that it is the later statement.
 
-The great majority are in TABLE 3a, where the two periods it shares with the 2025 page differ by
-small amounts throughout.
+The great majority are in TABLE 3a, where the two periods it shares with the 2025 page differ by small amounts throughout.
 
 | Table | Zone | Period | Measure | Published 2025 chart | 2026 document |
 |---|---|---|---|---|---|
@@ -76,14 +63,10 @@ small amounts throughout.
 
 ## One wording question
 
-The page currently reads "since the 2024 report". The 2026 document also says 2024. Should either
-or both say 2025?
+The page currently reads "since the 2024 report". The 2026 document also says 2024. Should either or both say 2025?
 
 ## Two things we are not asking about
 
-**Period coverage.** Each table will show all seven reporting periods, back to Jan-Jun 2023,
-rather than the five most of them show today.
+**Period coverage.** Each table will show all seven reporting periods, back to Jan-Jun 2023, rather than the five most of them show today.
 
-**Column headings.** We are keeping the published headings as they stand, including two in TABLE
-5a that both read "Failed (#)" and four pairs in TABLE 3a that repeat a heading. Tell us if you
-would like those changed and we will.
+**Column headings.** We are keeping the published headings as they stand, including two in TABLE 5a that both read "Failed (#)" and four pairs in TABLE 3a that repeat a heading. Tell us if you would like those changed and we will.
