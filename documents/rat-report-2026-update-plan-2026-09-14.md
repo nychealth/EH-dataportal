@@ -24,13 +24,22 @@ script is written and committed at `47d637cf3d`; what has been run against it is
 under Task 3's
 "What has been run against the script" — offline checks only, no API verb exercised.
 
+**Amended 2026-09-17, later the same day — both gates named above have been cleared, and Task 3 is
+no longer BLOCKED.** A token was created and used; `pull`, `push` and a new `repush` verb have all
+run against the live API. The 32 `next/*.csv` exist and are committed at `df70bdf265`. **1 of 32
+slots is pushed and published** (`table-2-1` → `zVvyR`), the other 31 are not, and `apply` has
+never run — `index.md` still carries all 32 TODO markers and all 32 2025 embed IDs. What now
+gates the remaining 31 is a *partner answer*, not credentials: see
+`documents/rat-report-2026-figures-to-confirm.md`. Detail and proofs under Task 3's
+"The push run: state as of 2026-09-17".
+
 | Task | State | Proof that ran |
 |---|---|---|
 | 0. Send numeric discrepancies to partner | **DONE 2026-09-14** — `c73fd0451c` — partner confirmed the tables were right; all five prose figures corrected | each figure re-derived before writing; verified in the rendered HTML, each new figure n=1 and each old one n=0 |
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **BLOCKED on the 2026 numbers and an API token** — Decision D1 says ship on option A; the API route and `scripts/rat-report-charts.mjs` (`47d637cf3d`) specify how, added 2026-09-17. Everything that does not need them is done: the 32-slot table is re-derived against `07549883c0` and the slot-to-ID proof is written and injection-tested | 32 TODO markers each sit exactly one line above a live embed, 0 orphaned and 0 uncovered; the table's 32 slot+id pairs match the derived mapping in order; every line number in it lands on a line carrying its own embed id, where the pre-edit table's failed all 32 |
+| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 1 of 32 slots pushed** (`table-2-1` → `zVvyR` v2, live). The other 31 are **BLOCKED on the partner's answer** to `documents/rat-report-2026-figures-to-confirm.md`, not on tooling. `apply` has not run. The `repush` verb is at `119207fa01`, `chart-map.json` and the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59` | the pushed chart's live dataset at `dwcdn.net/zVvyR/2/dataset.csv` is byte-identical to `next/table-2-1.csv`, 7 rows `[verified 2026-09-17]`; earlier offline proofs unchanged — 32 TODO markers each one line above a live embed, 0 orphaned and 0 uncovered |
 | 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
@@ -59,6 +68,15 @@ git merge-base --is-ancestor 6b2055b407 production              # exit 0 means i
   branch is checked out in the primary tree]`. It was previously gitignored
   at `5a60a06b27`. It is on disk in this worktree; a fresh clone will not have it.
 - Worktree: `EH-dataportal.worktrees/update-rat-mitigation-report`.
+- **The Datawrapper token is not in this repo and not in any shell this document can reach.** It
+  was created in the Datawrapper UI on 2026-09-17 and exported as `DATAWRAPPER_TOKEN` in one
+  session's environment; a later session had it unset `[verified 2026-09-17]`. Every write verb
+  exits 2 naming it. Re-export it before `push`, `repush` or `apply`'s prerequisites.
+- **`scripts/rat-report-charts/chart-map.json` is untracked and is not gitignored**
+  `[verified 2026-09-17: `git check-ignore -v` names only `current/`]`. It is the only record of
+  which 2026 chart belongs to which slot, and losing it orphans every chart pushed so far, so it
+  was committed at `f5ea98079b`. It is rewritten by every `push` and `repush`; commit it again
+  with the run that changes it.
 
 ---
 
@@ -376,7 +394,7 @@ embed slots Task 3 fills.
 
 ---
 
-## Task 3: Swap in the 2026 chart embeds — BLOCKED
+## Task 3: Swap in the 2026 chart embeds — IN PROGRESS (1 of 32)
 
 Blocked on Decision D1 below. Until it is settled, leave the 2025 embed IDs in place so the page
 renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the line above.
@@ -453,7 +471,11 @@ first and discovering (2) afterwards means 32 charts in the wrong place.
 is also what makes committing `next/*.csv` free: the 2026 numbers become greppable, diffable and
 reviewable in a PR without changing how the page renders.
 
-#### What has been run against the script, and what has not
+#### What has been run against the script, and what has not — SUPERSEDED 2026-09-17
+
+This section describes a tree on which no API verb had been exercised. It is kept because its
+offline proofs still stand; for what has since run against the live API, read "The push run:
+state as of 2026-09-17" below.
 
 `scripts/rat-report-charts.mjs` is committed at `47d637cf3d`. Everything below
 ran offline, with `DATAWRAPPER_TOKEN` unset, so **no verb that talks to Datawrapper has been
@@ -549,6 +571,47 @@ built-in zip reader and adding one would be a new dependency).
 | Derive the slot -> docx map | **DONE 2026-09-17** — no commit; recorded above | 27 of 31 period-based slots matched at 100%, on whole-row scoring; the 4 that did not are the discrepancy candidates below, and all 4 fill by the zone pattern the other groups establish |
 | `scripts/rat-report-docx-tables.py` | **DONE 2026-09-17** — `faf71b0a56` | compiles; no args / a flag / an unknown command / a verb missing its argument each exit 2; `fetch` 32 of 32; `write` and `check` agree cell-for-cell on which values differ (37 = 35 + 2) |
 | The 32-slot docx-vs-live discrepancy report | **DONE 2026-09-17** — 530 of 567 shared values agree exactly; `published/` and `next/` committed at `df70bdf265` | three findings re-verified against the raw docx cells; the `table-5a` group re-derived arithmetically |
+
+##### The push run: state as of 2026-09-17
+
+**Read this before running anything against the API.** It supersedes "What has been run against
+the script", which describes a tree where no API verb had been exercised.
+
+| Step | State | Proof that ran |
+|---|---|---|
+| Create the token | **DONE 2026-09-17** — not recorded anywhere in the repo; see Environment | `pull` and `push` both completed against the live API |
+| `pull` | **DONE 2026-09-17** — no commit; `current/` is gitignored | 32 `current/*.csv` and a 32-slot `next-titles.json` on disk |
+| Fill `next-titles.json` | **DONE 2026-09-17** — `f5ea98079b` | 32 slots present; only `#1` needed a year change (2025 → 2026), the other 31 titles carry no year `[verified: `grep -c 2025` returns 0]` |
+| `push table-2-1` | **DONE 2026-09-17** — `zVvyR`, published 19:21Z; recorded at `f5ea98079b` | the chart resolves at `dwcdn.net/zVvyR/2/` |
+| `repush` verb added | **DONE 2026-09-17** — `119207fa01`, ~200 lines in `scripts/rat-report-charts.mjs` | exercised against `table-2-1` (map `updatedAt` 20:42Z, version 2); the live v2 dataset is byte-identical to `next/table-2-1.csv` |
+| The partner-facing figures document | **DONE 2026-09-17** — `efcace7a59`, at `documents/rat-report-2026-figures-to-confirm.md` | 4 arithmetic corrections stated as settled, 31 listed for confirmation; the counts match `check`'s 35 |
+| `push` the other 31 | **BLOCKED on the partner's answer** to that document | — |
+| `apply` | **Not started** — needs all 32 in `chart-map.json` | — |
+
+**Why `repush` had to exist.** `push` skips any slot already in `chart-map.json`, so once a number
+changes, re-running `push` prints "already copied to" and exits 0 having done nothing. `repush`
+writes into the chart already made, and its guard is deliberately narrower than `push`'s: it
+refuses any id an **archive** page renders, while permitting ids rendered only by the live report.
+
+**Step 3's three UI observations are not recorded.** The plan asked for the folder a copy lands
+in, whether the title gains "(Copy)", and whether the table renders with the right columns, all
+read in the Datawrapper UI before the other 31 run. None of the three is written down here. Read
+them off `zVvyR` and record them before `push` runs on the remaining 31.
+
+**The period-window decision is still open.** `write` emits all 7 periods the docx holds; the 2025
+charts showed 5 (`table-33-*`, 2; `table-6`, 6). `table-2-1` was pushed with all 7. If a rolling
+window is wanted instead, that decision now has to be applied to `zVvyR` via `repush` as well as
+to the 31 unpushed slots.
+
+###### The literal next command
+
+With `DATAWRAPPER_TOKEN` exported, and only once the partner has answered:
+
+```
+node scripts/rat-report-charts.mjs dryrun        # names every slot missing a CSV or a title
+node scripts/rat-report-charts.mjs push          # the remaining 31; table-2-1 is skipped as resumed
+node scripts/rat-report-charts.mjs apply         # rewrites index.md, deletes the 32 TODO lines
+```
 
 `slot1` is the one slot whose rows are zones rather than periods (docx Table 1), so it is mapped
 by hand rather than by the period-matching above.
