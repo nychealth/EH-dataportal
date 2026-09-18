@@ -86,6 +86,9 @@
             "Bash(* git restore *)",
             "Bash(* git checkout -- *)",
             "Bash(* git branch -D *)",
+            "Bash(* gh pr create)",
+            "Bash(* gh pr create *)",
+            "Bash(* node scripts/rat-report-charts.mjs *)",
             "Bash(git commit)",
             "Bash(git commit *)",
             "Bash(git push)",
@@ -104,6 +107,9 @@
             "Bash(git checkout -- *)",
             "Bash(git branch -D)",
             "Bash(git branch -D *)",
+            "Bash(gh pr create)",
+            "Bash(gh pr create *)",
+            "Bash(node scripts/rat-report-charts.mjs *)",
             "PowerShell(* git commit *)",
             "PowerShell(* git push *)",
             "PowerShell(* git reset *)",
@@ -113,6 +119,9 @@
             "PowerShell(* git restore *)",
             "PowerShell(* git checkout -- *)",
             "PowerShell(* git branch -D *)",
+            "PowerShell(* gh pr create)",
+            "PowerShell(* gh pr create *)",
+            "PowerShell(* node scripts/rat-report-charts.mjs *)",
             "PowerShell(git commit)",
             "PowerShell(git commit *)",
             "PowerShell(git push)",
@@ -130,7 +139,10 @@
             "PowerShell(git checkout --)",
             "PowerShell(git checkout -- *)",
             "PowerShell(git branch -D)",
-            "PowerShell(git branch -D *)"
+            "PowerShell(git branch -D *)",
+            "PowerShell(gh pr create)",
+            "PowerShell(gh pr create *)",
+            "PowerShell(node scripts/rat-report-charts.mjs *)"
         ]
     },
     "enabledPlugins": {
