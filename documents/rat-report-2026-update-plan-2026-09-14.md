@@ -593,15 +593,90 @@ changes, re-running `push` prints "already copied to" and exits 0 having done no
 writes into the chart already made, and its guard is deliberately narrower than `push`'s: it
 refuses any id an **archive** page renders, while permitting ids rendered only by the live report.
 
-**Step 3's three UI observations are not recorded.** The plan asked for the folder a copy lands
-in, whether the title gains "(Copy)", and whether the table renders with the right columns, all
-read in the Datawrapper UI before the other 31 run. None of the three is written down here. Read
-them off `zVvyR` and record them before `push` runs on the remaining 31.
+**Step 3's three UI observations, read off `zVvyR` 2026-09-17.** All three are answered and none
+of them blocks the remaining 31.
 
-**The period-window decision is still open.** `write` emits all 7 periods the docx holds; the 2025
-charts showed 5 (`table-33-*`, 2; `table-6`, 6). `table-2-1` was pushed with all 7. If a rolling
-window is wanted instead, that decision now has to be applied to `zVvyR` via `repush` as well as
-to the 31 unpushed slots.
+1. **No "(Copy)" suffix.** The published title is exactly the patched one, in all five places it
+   appears in the CDN page `[verified 2026-09-17: the only case-insensitive `copy` matches in
+   82,851 bytes are Datawrapper's own UI strings and `"upload-method":"copy"`]`. This confirms the
+   PATCH lands; it does **not** answer whether `POST /charts/{id}/copy` appends the suffix, because
+   the PATCH overwrote the title seconds later. That sub-question is unobservable on `zVvyR` and,
+   the PATCH being unconditional, does not affect the other 31. Note `chart-map.json`'s `title` is
+   set locally from `next-titles.json` rather than read back, so the map is evidence of intent, not
+   of what Datawrapper stored -- the CDN page is.
+2. **The copy lands in its source's folder**, `BESP > Live Charts > Data Features > Rat Report >
+   Rat Report 2025 > Table 2`, with `COPIED FROM bMzMo` shown in the UI. The failure this step was
+   guarding against did not happen: copies do not escape to a default location, so **the batch form
+   with an explicit `destination.folderId` is not needed** and the remaining 31 can run as-is. What
+   it does mean is that all 32 of the 2026 charts will be filed under a tree named *Rat Report
+   2025*. That is filing, not correctness -- the page references charts by ID and never by folder --
+   so whether to make a 2026 tree and move them is a decision, and a cheaper one before 31 more
+   land there.
+3. **The columns render correctly**: Period, Initial inspections, COTA (#), COTA (%), values
+   matching `next/table-2-1.csv` row for row. The "Bronx: Grand Concourse" line above the table is
+   the `intro` from `next-titles.json`, as set.
+
+**The rate limit is not one of these three.** "Three things are unverified" above lists the copy
+suffix, the folder and the rate limit; Step 3's three *observations* swap the rate limit for column
+rendering. It cannot be read in the UI, the script serializes and honours `Retry-After`, and one
+pushed slot is no evidence either way. It will be learned on the 31-slot run.
+
+##### The pagination finding
+
+**Not on the plan's list, and it hides the report's own reporting period.** `zVvyR` paginates at 5
+rows and now holds 7, so page 1 ends at Jan-Jun 2025 and **Jul-Dec 2025 and Jan-Jun 2026 are behind
+the page-2 arrow** `[verified 2026-09-17 in the Datawrapper UI: "Page 1 of 2", 5 rows visible]`.
+
+The setting is `metadata.visualize.perPage: 5`, a sibling of `pagination: {"enabled": true,
+"position": "top"}`, inherited from `bMzMo`. It was invisible on the 2025 chart because that chart
+held exactly 5 rows -- one page. Adding two periods is what made it bite, and 31 of 32 slots grow.
+
+**Scope: one chart, not a class.** All 32 published charts were surveyed 2026-09-17 by fetching
+each one's page from the public CDN and reading `perPage`, `horizontal-header` and
+`pagination.enabled`:
+
+| `perPage` | slots | data rows | overflows? |
+|---|---|---|---|
+| **5** | `table-2-1` (`bMzMo`) alone | 7 | **yes, hides 2** |
+| 15 | 20 slots | 6-7 | no |
+| 20 | 11 slots | 4-7 | no |
+
+Pagination is enabled on all 32, so the setting is live everywhere; `bMzMo` is simply the one set
+low. At one added period a year the others have roughly eight years of headroom. `horizontal-header`
+varies as expected -- true on `#1`, the `table-33-*` group, `table-6-*` and part of `table-5a-*` --
+so those row counts are header-adjusted.
+
+`[method: 2 requests per chart, since `/<id>/1/` returns a 239-byte JS+meta redirect stub naming the
+current version rather than the chart -- a "first 200 wins" version walk reads the stub. Controls:
+`A4dTB` must read perPage 20 / header true and `bMzMo` perPage 5 / header false; both passed, 0 of
+32 unparsed. Three earlier runs of this survey returned a confident "0 slots affected" from a dead
+probe -- first `urllib`'s default User-Agent drawing 403 from the CDN, then two regex forms that
+did not match the page's backslash-escaped JSON. The controls are what caught all three.]`
+
+**Decision taken 2026-09-17: fix it in the script** (`70338e9f0b`). `push` and `repush` now GET the
+chart before patching and set `perPage` to `max(current, dataRows)`. That is a no-op on 31 of 32 slots and sets
+7 on `table-2-1`, so it can never hide a row and never shrinks a chart. The alternative considered
+and rejected was raising `perPage` to 7 by hand: it works, but its failure mode is silent -- if
+nobody bumps it next year the 2027 chart shows 7 of 8 rows and hides the newest period with nothing
+flagging it. Assignment rather than `max()` was also rejected: it would shrink the charts at 20 down
+to 4 and re-create the bug the first year they grow. The header row is read from the chart's
+`metadata.data.horizontal-header`, not inferred from the CSV, because the 32 files disagree about
+whether row 1 is a header and `firstRowIsHeader` reads false even on charts that have one.
+
+`fitPerPage` is covered by 7 offline cases run against the function extracted from the file itself,
+including a control that returns 4 instead of 20 if the rule is assignment rather than `max()`
+`[verified 2026-09-17: 7 of 7 pass, `node --check` exit 0]`.
+
+**Two things unverified:** whether the API accepts an arbitrary `perPage` (the UI exposes a slider,
+so there may be a cap), and whether a merge PATCH carrying `metadata.visualize.perPage` leaves the
+rest of `visualize` intact. The first `repush` of `table-2-1` settles both -- run it on that one
+slot and read the chart back before pushing the other 31.
+
+**The period-window decision is still open, and pagination is now part of it.** `write` emits all
+7 periods the docx holds; the 2025 charts showed 5 (`table-33-*`, 2; `table-6`, 6). `table-2-1` was
+pushed with all 7. Keeping all 7 requires `perPage` to move with them, which the script now
+handles -- see the pagination finding above. Trimming to a rolling 5 makes that moot. Either way the decision applies to `zVvyR` via
+`repush` as well as to the 31 unpushed slots.
 
 ###### The literal next command
 
