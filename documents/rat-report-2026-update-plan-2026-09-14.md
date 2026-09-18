@@ -33,17 +33,15 @@ gates the remaining 31 is a *partner answer*, not credentials: see
 `documents/rat-report-2026-figures-to-confirm.md`. Detail and proofs under Task 3's
 "The push run: state as of 2026-09-17".
 
-**Amended 2026-09-18, on resume — a 2026 folder tree now exists in the live Datawrapper account,
-and the tooling that files charts into it is committed but unexercised.** `c2840dfbd0` carries
-three new verbs in `scripts/rat-report-charts.mjs` (`folders`, `makefolders`, `move`, +301 lines)
-and `scripts/rat-report-charts/folder-map.json`, which holds the ten folder ids `makefolders`
-created against the live API on 2026-09-18
-— a side effect `git checkout` does not undo. **`move` has not run**: `chart-map.json` is
-unmodified since `f5ea98079b` and no entry carries `folderId` or `movedAt`, so `cmdMove`'s body is
-new code on a write path that nothing has executed. The 2026-09-18 session ended having asked to
-run it on the one pushed chart and not received an answer. Rows and the next command below, under
-"Filing the 2026 charts". The remaining 31 pushes are still blocked on the partner's answer;
-nothing in this amendment changes that.
+**Amended 2026-09-18 — a 2026 folder tree exists in the live Datawrapper account, and the one
+pushed chart is filed in it.** `c2840dfbd0` carries three new verbs in
+`scripts/rat-report-charts.mjs` (`folders`, `makefolders`, `move`, +301 lines) and
+`scripts/rat-report-charts/folder-map.json`, which holds the ten folder ids `makefolders` created
+against the live API on 2026-09-18 — a side effect `git checkout` does not undo. **`move` then ran
+on `table-2-1` and is no longer unexercised**: `zVvyR` moved from `363786` to `443569`, and the
+rewritten `chart-map.json` is at `b16c041ab6`. Rows and proofs below, under "Filing the 2026
+charts". The remaining 31 pushes are still blocked on the partner's answer; nothing in this
+amendment changes that.
 
 | Task | State | Proof that ran |
 |---|---|---|
@@ -51,7 +49,7 @@ nothing in this amendment changes that.
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 1 of 32 slots pushed** (`table-2-1` → `zVvyR` v2, live). The other 31 are **BLOCKED on the partner's answer** to `documents/rat-report-2026-figures-to-confirm.md`, not on tooling. `apply` has not run. The `repush` verb is at `119207fa01`, `chart-map.json` and the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`. The `folders` / `makefolders` / `move` verbs and `folder-map.json` are at `c2840dfbd0`; `makefolders` has run against the live API and `move` has not | the pushed chart's live dataset at `dwcdn.net/zVvyR/2/dataset.csv` is byte-identical to `next/table-2-1.csv`, 7 rows `[verified 2026-09-17]`; earlier offline proofs unchanged — 32 TODO markers each one line above a live embed, 0 orphaned and 0 uncovered |
+| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 1 of 32 slots pushed** (`table-2-1` → `zVvyR` v2, live). The other 31 are **BLOCKED on the partner's answer** to `documents/rat-report-2026-figures-to-confirm.md`, not on tooling. `apply` has not run. The `repush` verb is at `119207fa01`, `chart-map.json` and the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`. The `folders` / `makefolders` / `move` verbs and `folder-map.json` are at `c2840dfbd0`; `makefolders` and `move` have both run against the live API, and the rewritten `chart-map.json` is at `b16c041ab6` | the pushed chart's live dataset at `dwcdn.net/zVvyR/2/dataset.csv` is byte-identical to `next/table-2-1.csv`, 7 rows `[verified 2026-09-17]`; earlier offline proofs unchanged — 32 TODO markers each one line above a live embed, 0 orphaned and 0 uncovered |
 | 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
@@ -719,24 +717,28 @@ pushed with all 7. Keeping all 7 requires `perPage` to move with them, which the
 handles -- see the pagination finding above. Trimming to a rolling 5 makes that moot. Either way the decision applies to `zVvyR` via
 `repush` as well as to the 31 unpushed slots.
 
-##### Filing the 2026 charts — tooling at `c2840dfbd0`, `move` unexercised
+##### Filing the 2026 charts — tooling at `c2840dfbd0`, exercised on 1 of 32
 
 Observation 2 above left a decision open: all 32 of the 2026 charts land under a tree named *Rat
 Report 2025*, because a single-chart copy inherits its source's folder. The decision taken was to
-make a 2026 tree and move them. The tree exists and the tooling is committed at `c2840dfbd0`, but
-**`move` has never made an API call**.
+make a 2026 tree and move them. The tree exists, the tooling is committed at `c2840dfbd0`, and
+**`move` has now run once — on `table-2-1`, the only pushed slot**. The other 31 follow their
+pushes.
 
 | Step | State | Proof that ran |
 |---|---|---|
-| `folders`, `makefolders`, `move` verbs | **DONE 2026-09-18** — `c2840dfbd0`, +301 lines in `scripts/rat-report-charts.mjs` | `node --check` exit 0, and 9 argument-handling cases each exit 2 — no args, a flag, an unknown verb, `makefolders` short of both arguments, three arguments to `move`, an argument to `apply`, and `folders`/`move` with the token unset `[verified 2026-09-18]`. `cmdMove`'s own body has never run |
+| `folders`, `makefolders`, `move` verbs | **DONE 2026-09-18** — `c2840dfbd0`, +301 lines in `scripts/rat-report-charts.mjs` | `node --check` exit 0, and 9 argument-handling cases each exit 2 — no args, a flag, an unknown verb, `makefolders` short of both arguments, three arguments to `move`, an argument to `apply`, and `folders`/`move` with the token unset `[verified 2026-09-18]`. `cmdMove`'s own body has since run once — see the `move` row |
 | `makefolders` run | **DONE 2026-09-18 03:12Z** — no commit; the live account changed | 10 of 10 folders printed `created`, `exit=0`; the immediate re-run printed 10 reuses / 0 created with identical ids. Tree and ids under Environment |
 | Commit the verbs and `folder-map.json` | **DONE 2026-09-18** — `c2840dfbd0` | `git show --stat c2840dfbd0`: 2 files, 335 insertions, 9 deletions, `folder-map.json` created |
-| `move` | **Not started.** Attempted 2026-09-18 and stopped twice before any API call: once by the script's own argument validation on a wrong invocation, once by the Claude Code auto-mode classifier, which classifies a Datawrapper write as "Modify Shared Resources" and needs a Bash permission rule or a non-auto mode | `chart-map.json` is unmodified since `f5ea98079b` and no entry carries `folderId` or `movedAt` `[verified 2026-09-18]`. `move table-2-1` exits 1 on argument validation, so the bad form cannot reach the API |
+| `move`, on `table-2-1` | **DONE 2026-09-18 16:55:37Z** — `b16c041ab6` carries the rewritten `chart-map.json`. Two earlier attempts that day stopped before any API call: once on the script's own argument validation, once on the Claude Code auto-mode classifier, which reads a Datawrapper write as "Modify Shared Resources". What unblocked it was a `PowerShell(node scripts/rat-report-charts.mjs *)` **ask** rule in `~/.claude/settings.json` — the command then prompted and was approved | exit 0, `folder 443569  1 chart(s): table-2-1`. Verified against the API rather than the script's read-back, with a control that had to stay put: `GET /v3/charts/zVvyR` returns `folderId` **443569** (was 363786), and the 2025 source `bMzMo` still returns **363786** — so the batch `PATCH /charts` moved only the selected id. The run's guard reported 419 chart ids under `content/` and selected 1 |
+| `move`, the other 31 | **BLOCKED** — each follows its own `push`, which waits on the partner | — |
 
-**`move` has never made an API call, and its shape is not the one `push` and `repush` use.** It
+**`move`'s shape is not the one `push` and `repush` use, and that is why it needed a control.** It
 sends `PATCH /charts` with an `ids` array, whose path carries no chart id — so the per-id guard in
 `write()` cannot match it, and `cmdMove` re-implements the archive check itself before the call.
-That guard is the part worth a control: it is new code on a path nothing has run.
+The one-chart run on 2026-09-18 exercised that path, and the control was `bMzMo`: an `ids` array
+that swept wider than intended would have moved the 2025 source too, and it did not
+`[verified 2026-09-18 via `GET /v3/charts/bMzMo`, still `363786`]`.
 
 **The `table-6-5` → `Table 6a` rule is mirrored from two years, not from an author.** The code
 comment beside it says so and says to ask whoever files these. Two years agreeing evidences a
@@ -745,32 +747,38 @@ common origin; a copy-paste satisfies that as well as a decision does. Worth one
 
 ###### The literal next command
 
-Two independent tracks. The first needs no partner answer, and is where the 2026-09-18 session
-stopped — it had asked to run `move` on the one pushed chart and was waiting on an answer:
+**Everything on the first track is done.** `move` ran on the one pushed chart at 16:55:37Z and is
+recorded at `b16c041ab6`; nothing here is runnable until the partner answers.
 
-```powershell
-$env:DATAWRAPPER_TOKEN = [Environment]::GetEnvironmentVariable('DATAWRAPPER_TOKEN','User')
-node scripts/rat-report-charts.mjs move       # zVvyR: Rat Report 2025 > Table 2  ->  2026 > Table 2 (443569)
-```
+Three things that run survived from that track and are worth keeping, because the 31-slot run
+repeats all of them:
 
-**Bare `move` is the one-chart form right now**, because `chart-map.json` holds only `table-2-1`.
-It is also the form that reads `folder-map.json`, which an explicit id would skip. `move table-2-1`
-does **not** work — `cmdMove(folderArg, only)` takes the folder id first, so the slot name is
-parsed as an id and the run exits 1 with `"table-2-1" is not a folder id`
-`[verified 2026-09-18; this block previously prescribed that command, written without running it]`.
-The one-slot escape hatch is `move <folderId> <slot>`.
+- **The token is not in the process and every run has to lift it first**, which is why it shares
+  the invocation with `node` rather than getting its own call — PowerShell has no inline env-var
+  prefix and shell state does not persist between tool calls:
 
-One chart is the whole blast radius and the undo is moving it back, so this is where the batch
-`PATCH /charts` path, the read-back check and the re-implemented archive guard get exercised
-rather than on a 32-chart run. `move` re-reads the chart and throws if `folderId` did not change,
-so a silently-ignored PATCH exits non-zero rather than passing.
+  ```powershell
+  $env:DATAWRAPPER_TOKEN = [Environment]::GetEnvironmentVariable('DATAWRAPPER_TOKEN','User'); node scripts/rat-report-charts.mjs move
+  ```
 
-Before-value for the read-back to discriminate against: `zVvyR` is in folder **`363786`**
-(`Rat Report 2025 > Table 2`) `[verified 2026-09-18 via `GET /v3/charts/zVvyR`]`, and the target
-is `443569`. The verbs and `folder-map.json` are already in at `c2840dfbd0`; `move` rewrites
-`chart-map.json`, so commit that afterwards.
+  **The prefix did not stop a permission rule matching** — the command prompted
+  `[verified 2026-09-18, reported by the user]`. **Which rule fired is not determined**, and the
+  question matters for anyone writing the next one: `~/.claude/settings.json` holds the anchored
+  `PowerShell(node scripts/rat-report-charts.mjs *)`, while this repo's `.claude/settings.json`
+  holds a leading-wildcard `PowerShell(* node scripts/rat-report-charts.mjs *)` that matches a
+  prefixed command by construction. Two rules, one prompt, no way to tell them apart from the
+  outcome. Write the wildcard form if the command will carry a prefix.
+- **Bare `move` is the all-slots form and reads `folder-map.json`**, which an explicit id would
+  skip. It moved 1 chart because `chart-map.json` held 1; after the 31-slot push it will move 32.
+  `move table-2-1` does **not** work — `cmdMove(folderArg, only)` takes the folder id first, so
+  the slot name is parsed as an id and the run exits 1 with `"table-2-1" is not a folder id`
+  `[verified 2026-09-18; this block previously prescribed that command, written without running
+  it]`. The one-slot escape hatch is `move <folderId> <slot>`.
+- **`move` re-reads each chart and throws if `folderId` did not change**, so a silently-ignored
+  PATCH exits non-zero rather than passing. Confirm the result against the API anyway, with a
+  chart that must *not* move as the control.
 
-The second waits on the partner. With `DATAWRAPPER_TOKEN` exported, and only once they have
+The second track waits on the partner. With `DATAWRAPPER_TOKEN` exported, and only once they have
 answered:
 
 ```
