@@ -301,6 +301,41 @@ function assertCsv(text, where) {
     return text;
 }
 
+// Rows-per-page has to grow with the data, and nothing else in this tool would
+// notice if it didn't. Pagination is enabled on all 32 charts, so a chart whose
+// perPage is below its row count silently hides the newest periods behind a
+// page-2 arrow. That is not hypothetical: bMzMo was set to 5, the 2026 data is
+// 7 rows, and the copy published as zVvyR put Jul-Dec 2025 and Jan-Jun 2026 —
+// the periods this year's report exists to publish — on page 2.
+//
+// It is one chart, not a class. Surveyed 2026-09-17 over all 32 published
+// charts: bMzMo alone sits at 5; 20 slots are at 15 and 11 at 20, against 4-7
+// data rows each. So only table-2-1 overflows today and the rest have room for
+// roughly eight more annual periods.
+//
+// max(), never assignment. Setting perPage to the row count would shrink the
+// charts at 20 down to 4 for no benefit, and re-create this bug the first year
+// they grow. Growing to fit is a no-op on 31 of 32 slots and can never hide a
+// row, which is why it is safe to run unconditionally.
+//
+// The header row is read off the chart rather than inferred from the CSV: the
+// 32 files disagree about whether row 1 is a header, and metadata.data's
+// horizontal-header is the flag that tracks it. firstRowIsHeader is NOT that
+// flag — it reads false on charts that do have a header row, so keying on it
+// would overcount rows by one on every header-bearing slot.
+function fitPerPage(chart, csv) {
+    const current = chart?.metadata?.visualize?.perPage;
+
+    // An unreadable perPage means the response shape moved. Leave the setting
+    // alone rather than write a number derived from a guess — the failure this
+    // guards against is hiding rows, and omitting the field hides none.
+    if (typeof current !== "number") return null;
+
+    const lines = csv.split("\n").filter((line) => line.trim()).length;
+    const header = chart?.metadata?.data?.["horizontal-header"] === true;
+    return Math.max(current, lines - (header ? 1 : 0));
+}
+
 // ---------------------------------------------------------------------------
 // State on disk
 // ---------------------------------------------------------------------------
@@ -440,6 +475,13 @@ async function cmdPush(slots, only) {
         await write("PUT", `/charts/${copy.id}/data`, { body: csv, contentType: "text/csv" });
         await sleep(PAUSE_MS);
 
+        // Read the copy back rather than trusting the copy response to carry
+        // metadata: fitPerPage needs perPage and horizontal-header, and the
+        // single-chart copy form documents no response body beyond the id.
+        const fresh = assertChart(await api("GET", `/charts/${copy.id}`), `GET /charts/${copy.id}`);
+        await sleep(PAUSE_MS);
+        const perPage = fitPerPage(fresh, csv);
+
         // Always PATCH the title, whether or not the copy endpoint appended
         // "(Copy)". The single-chart copy form takes no request body, so it has
         // no markAsCopy to set — the patch is the only control there is.
@@ -449,6 +491,7 @@ async function cmdPush(slots, only) {
                 metadata: {
                     describe: { intro: wanted.intro ?? "" },
                     annotate: { notes: wanted.notes ?? "" },
+                    ...(perPage === null ? {} : { visualize: { perPage } }),
                 },
             }),
             contentType: "application/json",
@@ -539,12 +582,19 @@ async function cmdRepush(slots, only) {
         await write("PUT", `/charts/${entry.to}/data`, { body: csv, contentType: "text/csv" });
         await sleep(PAUSE_MS);
 
+        // Read before patching, for the same reason push does. This is also the
+        // path that fixes a chart pushed before fitPerPage existed.
+        const fresh = assertChart(await api("GET", `/charts/${entry.to}`), `GET /charts/${entry.to}`);
+        await sleep(PAUSE_MS);
+        const perPage = fitPerPage(fresh, csv);
+
         await write("PATCH", `/charts/${entry.to}`, {
             body: JSON.stringify({
                 title: wanted.title,
                 metadata: {
                     describe: { intro: wanted.intro ?? "" },
                     annotate: { notes: wanted.notes ?? "" },
+                    ...(perPage === null ? {} : { visualize: { perPage } }),
                 },
             }),
             contentType: "application/json",
