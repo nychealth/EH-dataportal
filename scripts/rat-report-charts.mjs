@@ -4,6 +4,7 @@
 //   node scripts/rat-report-charts.mjs dryrun            report what push would do; writes nothing
 //   node scripts/rat-report-charts.mjs push table-2-1    one slot, end to end
 //   node scripts/rat-report-charts.mjs push              every slot not already done
+//   node scripts/rat-report-charts.mjs repush table-2-1  correct a chart already made, in place
 //   node scripts/rat-report-charts.mjs apply             rewrite index.md from the run's own map
 //
 // WHY THIS EXISTS. The annual update duplicates 32 Datawrapper charts, pastes a
@@ -59,6 +60,7 @@ const usage = (message) => {
     console.error("  node scripts/rat-report-charts.mjs pull");
     console.error("  node scripts/rat-report-charts.mjs dryrun");
     console.error("  node scripts/rat-report-charts.mjs push [slot]");
+    console.error("  node scripts/rat-report-charts.mjs repush [slot]");
     console.error("  node scripts/rat-report-charts.mjs apply\n");
     console.error("pull    GET every live chart's data and metadata into scripts/rat-report-charts/.");
     console.error("        Read-only against Datawrapper. Also writes next-titles.json prefilled with");
@@ -68,6 +70,9 @@ const usage = (message) => {
     console.error("push    Copy, upload, retitle and publish. With a slot name, just that one — run");
     console.error("        a single slot first and look at it in the UI. Resumable: a slot already in");
     console.error("        chart-map.json is skipped, not copied again.");
+    console.error("repush  Push a corrected CSV or title into a chart already made, in place. This is what");
+    console.error("        push's skip makes necessary: after a number changes, push would report the slot");
+    console.error("        already done and do nothing. Refuses any chart an archive renders.");
     console.error("apply   Swap each slot's ID in index.md and delete its TODO marker. Local only.\n");
     console.error("Needs DATAWRAPPER_TOKEN in the environment. Never put the token in a file here.");
     console.error("Flags are not accepted — npm and PowerShell mangle them.");
@@ -147,22 +152,29 @@ function markdownFiles(dir) {
 // The third carries no dwcdn.net host in the content file, so a host-only
 // pattern would miss every shortcode chart — which is exactly the kind of
 // protected ID this set exists to hold.
+// Returns id -> the set of files that render it, not a bare set of ids, because
+// the two guards below need different answers from the same scan. push refuses
+// every id anything renders; repush refuses only the ones rendered from
+// somewhere OTHER than the live page, since a chart this tool created and only
+// the live page shows is ours to correct.
 function protectedIds() {
-    const ids = new Set();
+    const ids = new Map();
+    const add = (id, file) => {
+        if (!ids.has(id)) ids.set(id, new Set());
+        ids.get(id).add(file);
+    };
     for (const file of markdownFiles(`${REPO_ROOT}/content`)) {
         const text = readFileSync(file, "utf8");
-        for (const m of text.matchAll(/dwcdn\.net\/([A-Za-z0-9]{5})\//g)) ids.add(m[1]);
-        for (const m of text.matchAll(/datawrapper[^\n]*?src="([A-Za-z0-9]{5})/g)) ids.add(m[1]);
+        for (const m of text.matchAll(/dwcdn\.net\/([A-Za-z0-9]{5})\//g)) add(m[1], file);
+        for (const m of text.matchAll(/datawrapper[^\n]*?src="([A-Za-z0-9]{5})/g)) add(m[1], file);
     }
     return ids;
 }
 
-// Returns the function every write must call first. The scan above is a null
-// detector, so it validates itself before being trusted: a scan that silently
-// found nothing — wrong path, changed markup — would permit every write this
-// guard exists to block, and would look identical to a clean pass.
-function writeGuard(slots) {
-    const ids = protectedIds();
+// Shared by both guards. The scan is a null detector, so it validates itself
+// before anything trusts it: one that silently found nothing would permit every
+// write the guards exist to block, and would look identical to a clean pass.
+function assertScanUsable(ids, slots) {
     const absent = slots.filter((s) => !ids.has(s.id)).map((s) => s.slot);
     if (absent.length || ids.size < slots.length) {
         throw new Error(
@@ -171,6 +183,15 @@ function writeGuard(slots) {
             + `them (${absent.join(", ") || "none"}). Expected at least ${slots.length}, including all of them.`,
         );
     }
+}
+
+// Returns the function every write must call first. The scan above is a null
+// detector, so it validates itself before being trusted: a scan that silently
+// found nothing — wrong path, changed markup — would permit every write this
+// guard exists to block, and would look identical to a clean pass.
+function writeGuard(slots) {
+    const ids = protectedIds();
+    assertScanUsable(ids, slots);
     console.log(`  guard: ${ids.size} published chart ids under content/ are off limits`);
 
     // Returned as a wrapper around api() rather than as a check to remember to
@@ -185,6 +206,46 @@ function writeGuard(slots) {
                 `Refusing ${method} ${path}: a tracked page under content/ renders chart ${target[1]}. Published `
                 + `charts are never written to — copying one and writing to the copy is the point of this tool.`,
             );
+        }
+        return api(method, path, opts);
+    };
+}
+
+// The guard repush writes through. Deliberately narrower than writeGuard: the
+// charts this run created are the ones repush exists to correct, and after
+// `apply` they are rendered by the live page, so writeGuard would refuse the
+// whole point of the verb. What must still be refused is any id an ARCHIVE
+// renders — editing one of those rewrites a report that has already been
+// published, which is the constraint the archive imposes and the only one.
+function repushGuard(slots) {
+    const ids = protectedIds();
+    assertScanUsable(ids, slots);
+
+    // The comparison below is path equality, which fails silently if PAGE is
+    // spelled differently from the paths the scan built. Prove they match
+    // rather than assume it: PAGE renders 32 charts, so it must be in there.
+    const scanned = new Set([...ids.values()].flatMap((files) => [...files]));
+    if (!scanned.has(PAGE)) {
+        throw new Error(
+            `The scan did not produce ${PAGE} as one of its file paths, so "rendered only by the live `
+            + `page" cannot be evaluated and nothing will be written. This is a path-spelling bug, not a `
+            + `missing file.`,
+        );
+    }
+    console.log(`  guard: ${ids.size} chart ids under content/; only those rendered solely by ${PAGE.split("/").pop()} may be rewritten`);
+
+    return function write(method, path, opts) {
+        const target = path.match(/^\/charts\/([A-Za-z0-9]{5})/);
+        const files = target && ids.get(target[1]);
+        if (files) {
+            const elsewhere = [...files].filter((f) => f !== PAGE);
+            if (elsewhere.length) {
+                throw new Error(
+                    `Refusing ${method} ${path}: chart ${target[1]} is rendered by ${elsewhere.length} page(s) `
+                    + `besides the live report — ${elsewhere.map((f) => f.replace(REPO_ROOT, "")).join(", ")}. `
+                    + `Rewriting it would change an already-published report.`,
+                );
+            }
         }
         return api(method, path, opts);
     };
@@ -338,22 +399,33 @@ async function cmdPush(slots, only) {
     const targets = only ? slots.filter((s) => s.slot === only) : slots;
     if (only && !targets.length) throw new Error(`No slot named "${only}". Slots: ${slots.map((s) => s.slot).join(", ")}`);
 
+    // Three counters, not one. A slot already in the map is a resume and is
+    // fine; a slot missing its CSV or its title is a job this run was asked to
+    // do and did not, and the two must not land in the same number. A per-slot
+    // "skipped" line is not a failure signal — nobody reads 32 lines looking
+    // for the 3 that say it — so the run reconciles its own count at the end
+    // and exits non-zero when anything was blocked.
     let pushed = 0;
+    let resumed = 0;
+    const blocked = [];
     for (const { slot, id } of targets) {
         if (map[slot]) {
             console.log(`  ${slot.padEnd(12)} skipped — already copied to ${map[slot].to}`);
+            resumed += 1;
             continue;
         }
 
         const csvPath = `${WORK}/next/${slot}.csv`;
         if (!existsSync(csvPath)) {
-            console.log(`  ${slot.padEnd(12)} skipped — no ${csvPath}`);
+            console.log(`  ${slot.padEnd(12)} BLOCKED — no ${csvPath}`);
+            blocked.push(slot);
             continue;
         }
         const csv = assertCsv(readFileSync(csvPath, "utf8"), csvPath);
         const wanted = titles[slot];
         if (!wanted?.title) {
-            console.log(`  ${slot.padEnd(12)} skipped — no title in next-titles.json`);
+            console.log(`  ${slot.padEnd(12)} BLOCKED — no title in next-titles.json`);
+            blocked.push(slot);
             continue;
         }
 
@@ -405,8 +477,106 @@ async function cmdPush(slots, only) {
         await sleep(PAUSE_MS);
     }
 
-    console.log(`\nPushed ${pushed} slot(s). Map: ${MAP}`);
+    console.log(`\n${pushed} pushed, ${resumed} already done, ${blocked.length} blocked `
+        + `— ${pushed + resumed} of ${targets.length} slot(s) now have a chart. Map: ${MAP}`);
     if (pushed) console.log("Look at the new charts in the Datawrapper UI before running apply.");
+    if (blocked.length) {
+        console.log(`\nBLOCKED: ${blocked.join(", ")}. These have no chart and apply will refuse until they do.`);
+        return 1;
+    }
+    return 0;
+}
+
+// ---------------------------------------------------------------------------
+// repush
+// ---------------------------------------------------------------------------
+
+// Push a corrected CSV or title into a chart this run already made, instead of
+// making another one. This is the verb that makes "we can fix it later" true:
+// push deliberately skips a slot already in chart-map.json, so after a number
+// changes, re-running push prints "already copied to" and exits 0 having done
+// nothing. Numbers do change here — the partner is still confirming 31 values
+// the 2026 document restates — so the correcting path has to exist before
+// anyone is told the charts are ready to look at.
+async function cmdRepush(slots, only) {
+    const write = repushGuard(slots);
+
+    const titles = readJson(TITLES, null);
+    if (!titles) throw new Error(`${TITLES} does not exist. Run pull first, then edit it.`);
+
+    const map = readJson(MAP, null);
+    if (!map) throw new Error(`${MAP} does not exist. Nothing has been pushed, so there is nothing to re-push.`);
+
+    const targets = only ? slots.filter((s) => s.slot === only) : slots;
+    if (only && !targets.length) throw new Error(`No slot named "${only}". Slots: ${slots.map((s) => s.slot).join(", ")}`);
+
+    let updated = 0;
+    const blocked = [];
+    for (const { slot } of targets) {
+        const entry = map[slot];
+        if (!entry) {
+            // Not an error when re-pushing everything — most slots simply have
+            // no chart yet — but it is one when a slot was named explicitly.
+            if (only) throw new Error(`${slot} is not in ${MAP}. It has no chart yet; use push.`);
+            continue;
+        }
+
+        const csvPath = `${WORK}/next/${slot}.csv`;
+        if (!existsSync(csvPath)) {
+            console.log(`  ${slot.padEnd(12)} BLOCKED — no ${csvPath}`);
+            blocked.push(slot);
+            continue;
+        }
+        const csv = assertCsv(readFileSync(csvPath, "utf8"), csvPath);
+        const wanted = titles[slot];
+        if (!wanted?.title) {
+            console.log(`  ${slot.padEnd(12)} BLOCKED — no title in next-titles.json`);
+            blocked.push(slot);
+            continue;
+        }
+
+        // No copy: every call names the id this tool already created.
+        await write("PUT", `/charts/${entry.to}/data`, { body: csv, contentType: "text/csv" });
+        await sleep(PAUSE_MS);
+
+        await write("PATCH", `/charts/${entry.to}`, {
+            body: JSON.stringify({
+                title: wanted.title,
+                metadata: {
+                    describe: { intro: wanted.intro ?? "" },
+                    annotate: { notes: wanted.notes ?? "" },
+                },
+            }),
+            contentType: "application/json",
+        });
+        await sleep(PAUSE_MS);
+
+        const published = await write("POST", `/charts/${entry.to}/publish`, {
+            body: JSON.stringify({}),
+            contentType: "application/json",
+        });
+
+        // A republish mints a new public version, so the recorded url and
+        // version go stale the moment this runs. Overwrite them rather than
+        // leaving the map describing the version this just replaced.
+        entry.title = wanted.title;
+        entry.version = published?.version ?? null;
+        entry.url = published?.url ?? null;
+        entry.updatedAt = new Date().toISOString();
+
+        writeJson(MAP, map);
+        updated += 1;
+        console.log(`  ${slot.padEnd(12)} ${entry.to}  v${entry.version}  ${wanted.title}`);
+        await sleep(PAUSE_MS);
+    }
+
+    const inMap = targets.filter((s) => map[s.slot]).length;
+    console.log(`\n${updated} re-pushed, ${blocked.length} blocked — ${updated} of ${inMap} slot(s) `
+        + `with a chart were updated. Map: ${MAP}`);
+    if (blocked.length) {
+        console.log(`\nBLOCKED: ${blocked.join(", ")}. Their charts still hold what was pushed before.`);
+        return 1;
+    }
     return 0;
 }
 
@@ -469,11 +639,13 @@ async function main() {
     if (args.length > 2) return usage(`Expected a command and at most one slot, got ${args.length} arguments.`);
 
     const [command, slotArg] = args;
-    if (slotArg !== undefined && command !== "push") return usage(`Only \`push\` takes a slot, not \`${command}\`.`);
+    if (slotArg !== undefined && !["push", "repush"].includes(command)) {
+        return usage(`Only \`push\` and \`repush\` take a slot, not \`${command}\`.`);
+    }
 
     // An unset token is a setup mistake, not a run that failed, so it exits 2
     // like a usage error rather than 1 from the middle of the first request.
-    if (["pull", "dryrun", "push"].includes(command) && !process.env.DATAWRAPPER_TOKEN) {
+    if (["pull", "dryrun", "push", "repush"].includes(command) && !process.env.DATAWRAPPER_TOKEN) {
         console.error("DATAWRAPPER_TOKEN is not set in the environment.");
         console.error("Create a token in the Datawrapper UI and export it; never put it in a file here.");
         return 2;
@@ -486,6 +658,7 @@ async function main() {
         case "pull": return cmdPull(slots);
         case "dryrun": return cmdDryrun(slots);
         case "push": return cmdPush(slots, slotArg);
+        case "repush": return cmdRepush(slots, slotArg);
         case "apply": return cmdApply(slots);
         default: return usage(`Unknown command "${command}".`);
     }
