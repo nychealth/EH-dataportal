@@ -6,6 +6,9 @@
 //   node scripts/rat-report-charts.mjs push              every slot not already done
 //   node scripts/rat-report-charts.mjs repush table-2-1  correct a chart already made, in place
 //   node scripts/rat-report-charts.mjs apply             rewrite index.md from the run's own map
+//   node scripts/rat-report-charts.mjs folders           list folder ids, to feed the next line
+//   node scripts/rat-report-charts.mjs makefolders 214216 2026   build this year's folder tree
+//   node scripts/rat-report-charts.mjs move              file the new charts out of last year's tree
 //
 // WHY THIS EXISTS. The annual update duplicates 32 Datawrapper charts, pastes a
 // new CSV into each, publishes each, and copies 32 new 5-character IDs into
@@ -47,6 +50,40 @@ const WORK = `${REPO_ROOT}/scripts/rat-report-charts`;
 const MAP = `${WORK}/chart-map.json`;
 const TITLES = `${WORK}/next-titles.json`;
 const CHARTS = `${WORK}/current-charts.json`;
+const FOLDERMAP = `${WORK}/folder-map.json`;
+
+// Where each slot's chart belongs inside a year's folder. Read off the 2025
+// tree with GET /folders and GET /folders/{id} on 2026-09-17, not guessed from
+// the slot names: #1, #16 and #17 carry no table number, and #1 sits in the
+// year folder itself rather than in any subfolder. 2024 and 2025 both have this
+// shape, so it is the convention rather than one year's accident.
+//
+// Order does not matter here — the patterns are mutually exclusive, since
+// "table-33-1" cannot match /^table-5?-/ and "table-5a-1" cannot match
+// /^table-5-/ — but every slot must match exactly one, and makefolders refuses
+// to run if any does not. A slot silently missing a rule would be left in the
+// 2025 tree while the run reported success.
+const FOLDER_FOR_SLOT = [
+    [/^#1$/, null],
+    [/^table-2-/, "Table 2"],
+    [/^table-3-/, "Table 3"],
+    [/^table-33-/, "Table 3a"],
+    [/^#16$/, "Table 4"],
+    [/^#17$/, "Table 4a"],
+    [/^table-5-/, "Table 5"],
+    [/^table-5a-/, "Table 5a"],
+    [/^table-6-[1-4]$/, "Table 6"],
+
+    // table-6-5 is the Totals panel and it sits in Table 6a, alone, where every
+    // other group's Totals panel sits with its siblings `[verified 2026-09-17:
+    // GET /folders/363793 holds table-6-1..4 and GET /folders/363795 holds
+    // table-6-5; 2024 has the same 4/1 split]`. Mirrored here because two years
+    // agree, but two years agreeing evidences a common origin and not
+    // necessarily a decision — a copy-paste would look identical. Worth asking
+    // whoever files these whether Table 6a is meant, rather than reading this
+    // comment as authority that it is.
+    [/^table-6-5$/, "Table 6a"],
+];
 
 // Conservative and deliberately not tuned: no rate limit was measured or read
 // from the reference, so this is a low fixed floor between calls rather than a
@@ -73,7 +110,15 @@ const usage = (message) => {
     console.error("repush  Push a corrected CSV or title into a chart already made, in place. This is what");
     console.error("        push's skip makes necessary: after a number changes, push would report the slot");
     console.error("        already done and do nothing. Refuses any chart an archive renders.");
-    console.error("apply   Swap each slot's ID in index.md and delete its TODO marker. Local only.\n");
+    console.error("apply   Swap each slot's ID in index.md and delete its TODO marker. Local only.");
+    console.error("folders      List the folders you can reach, with their numeric ids. Needs folder:read.");
+    console.error("makefolders  Create <year>'s folder tree under a parent folder id, mirroring last");
+    console.error("             year's per-table shape, and write folder-map.json. Reuses a folder that");
+    console.error("             already has the right name, so a re-run cannot duplicate the tree.");
+    console.error("move         File the charts in chart-map.json where folder-map.json says. A copy");
+    console.error("             lands in its SOURCE's folder, so without this the new charts sit under");
+    console.error("             last year's tree. Filing only — the page references charts by id.");
+    console.error("             Takes an explicit folder id and an optional slot as an escape hatch.\n");
     console.error("Needs DATAWRAPPER_TOKEN in the environment. Never put the token in a file here.");
     console.error("Flags are not accepted — npm and PowerShell mangle them.");
     return 2;
@@ -679,6 +724,241 @@ function cmdApply(slots) {
 }
 
 // ---------------------------------------------------------------------------
+// folders and move
+// ---------------------------------------------------------------------------
+
+// A copy lands in its SOURCE's folder — verified in the Datawrapper UI
+// 2026-09-17: zVvyR, copied from bMzMo, appeared at BESP > Live Charts > Data
+// Features > Rat Report > Rat Report 2025 > Table 2. The single-chart copy form
+// takes no destination, so every 2026 chart this tool makes is filed under a
+// tree named for 2025 until something moves it. Nothing about the page breaks
+// either way — index.md references charts by id and never by folder — so this
+// is filing, and it is the reason this verb exists rather than a correctness fix.
+//
+// Folder ids are numeric and the UI does not put them in front of you, which is
+// what `folders` is for.
+async function cmdFolders() {
+    const res = await api("GET", "/folders");
+    const list = res?.list ?? [];
+    if (!Array.isArray(list) || !list.length) {
+        throw new Error(`GET /folders returned no folder list. Got ${JSON.stringify(res).slice(0, 200)}`);
+    }
+    // GET /folders returns CONTAINERS, not folders: one per team plus the
+    // personal archive, each carrying its own `folders` array. Nesting is
+    // `folders` all the way down — there is no `children` key, which an earlier
+    // draft of this assumed and which printed every name as "undefined"
+    // `[against the live API 2026-09-17]`. A container's id can be a team slug
+    // like "KeHyhPba" and is NOT a folderId; `move` takes the numeric id of a
+    // real folder.
+    const walk = (nodes, depth) => {
+        for (const f of nodes) {
+            console.log(`${String(f.id).padEnd(10)}${"  ".repeat(depth)}${f.name} (${f.charts?.length ?? 0} charts)`);
+            if (Array.isArray(f.folders) && f.folders.length) walk(f.folders, depth + 1);
+        }
+    };
+    for (const container of list) {
+        console.log(`\n[${container.type ?? "container"} ${container.id}]`);
+        walk(Array.isArray(container.folders) ? container.folders : [], 1);
+    }
+    console.log(`\nPass a numeric id from above to \`move\`. Needs the folder:read scope.`);
+    return 0;
+}
+
+// Find a folder anywhere in the tree, and say which container owns it. The
+// container matters: POST /folders takes a teamId, and a folder created without
+// one lands in the personal archive rather than beside its siblings.
+function locateFolder(list, wantedId) {
+    for (const container of list) {
+        const stack = [...(container.folders ?? [])];
+        while (stack.length) {
+            const folder = stack.pop();
+            if (Number(folder.id) === wantedId) return { folder, container };
+            if (Array.isArray(folder.folders)) stack.push(...folder.folders);
+        }
+    }
+    return null;
+}
+
+// Create this year's folder tree under an existing parent, mirroring the shape
+// FOLDER_FOR_SLOT records, and write the slot -> folderId map that `move` reads.
+//
+// Reuses a folder that already carries the right name instead of creating a
+// second one. Without that, a re-run after any failure leaves a duplicate tree
+// that has to be cleaned up by hand in the UI — and the failure most likely to
+// prompt a re-run is a partial one, which is exactly when half the folders
+// already exist.
+async function cmdMakeFolders(slots, parentArg, yearArg) {
+    const parentId = Number(parentArg);
+    if (!Number.isInteger(parentId) || parentId <= 0) {
+        throw new Error(`"${parentArg}" is not a folder id. Run \`folders\` to list them; ids are positive integers.`);
+    }
+    const year = Number(yearArg);
+    if (!Number.isInteger(year) || year < 2000 || year > 2100) {
+        throw new Error(`"${yearArg}" is not a year. Usage: makefolders <parentFolderId> <year>`);
+    }
+
+    // Reconcile before creating anything. A slot with no rule would be left
+    // behind in last year's tree while the run printed a success line.
+    const wanted = new Map();
+    const unmatched = [];
+    for (const { slot } of slots) {
+        const rule = FOLDER_FOR_SLOT.find(([re]) => re.test(slot));
+        if (!rule) unmatched.push(slot);
+        else wanted.set(slot, rule[1]);
+    }
+    if (unmatched.length) {
+        throw new Error(
+            `${unmatched.length} slot(s) have no folder rule in FOLDER_FOR_SLOT: ${unmatched.join(", ")}. `
+            + `Add a rule for each before running this, or they would be left behind.`,
+        );
+    }
+
+    const tree = await api("GET", "/folders");
+    const here = locateFolder(tree?.list ?? [], parentId);
+    if (!here) throw new Error(`Folder ${parentId} is not in any tree this token can read. Run \`folders\`.`);
+    const teamId = here.container.type === "team" ? here.container.id : undefined;
+    console.log(`  parent: ${here.folder.name} (${parentId}) in ${here.container.type} ${here.container.id}`);
+
+    const ensure = async (name, parent, siblings) => {
+        const existing = (siblings ?? []).find((f) => f.name === name);
+        if (existing) {
+            console.log(`  ${String(existing.id).padEnd(8)} ${name} — already there, reusing`);
+            return { id: Number(existing.id), folders: existing.folders ?? [] };
+        }
+        const made = await api("POST", "/folders", {
+            body: JSON.stringify({ name, parentId: parent, ...(teamId ? { teamId } : {}) }),
+            contentType: "application/json",
+        });
+        await sleep(PAUSE_MS);
+        const id = Number(made?.id);
+        if (!Number.isInteger(id) || id <= 0) {
+            throw new Error(`POST /folders for "${name}" did not return a folder id. Got ${JSON.stringify(made).slice(0, 200)}`);
+        }
+        console.log(`  ${String(id).padEnd(8)} ${name} — created`);
+        return { id, folders: [] };
+    };
+
+    const yearFolder = await ensure(`Rat Report ${year}`, parentId, here.folder.folders);
+
+    const byName = new Map();
+    for (const name of new Set([...wanted.values()].filter(Boolean))) {
+        byName.set(name, (await ensure(name, yearFolder.id, yearFolder.folders)).id);
+    }
+
+    const folderMap = {};
+    for (const [slot, name] of wanted) folderMap[slot] = name === null ? yearFolder.id : byName.get(name);
+
+    const missing = Object.entries(folderMap).filter(([, id]) => !Number.isInteger(id)).map(([s]) => s);
+    if (missing.length) throw new Error(`No folder id resolved for: ${missing.join(", ")}. Nothing written.`);
+
+    writeJson(FOLDERMAP, folderMap);
+    console.log(`\n${byName.size + 1} folder(s) in place, ${Object.keys(folderMap).length} slot(s) mapped. Map: ${FOLDERMAP}`);
+    console.log("Now run `move` with no arguments to file the charts into them.");
+    return 0;
+}
+
+// Move the charts this run created into a folder. Takes the whole map by
+// default, or one slot, so the 2025 tree's per-table subfolders can be mirrored
+// by running it once per group rather than by teaching this script a structure
+// that lives in someone else's UI.
+async function cmdMove(folderArg, only) {
+    // No folder id: every slot goes where folder-map.json puts it, which is the
+    // normal path once makefolders has run. An explicit id overrides the map for
+    // every slot named, and stays as the escape hatch for a one-off.
+    let folderId = null;
+    let destinations = {};
+    if (folderArg === undefined) {
+        destinations = readJson(FOLDERMAP, null);
+        if (!destinations) {
+            throw new Error(`${FOLDERMAP} does not exist. Run \`makefolders <parentFolderId> <year>\` first, or pass a folder id.`);
+        }
+    } else {
+        folderId = Number(folderArg);
+        if (!Number.isInteger(folderId) || folderId <= 0) {
+            throw new Error(`"${folderArg}" is not a folder id. Run \`folders\` to list them; ids are positive integers.`);
+        }
+    }
+
+    const map = readJson(MAP, null);
+    if (!map) throw new Error(`${MAP} does not exist. Nothing has been pushed, so there is nothing to move.`);
+
+    const entries = Object.entries(map).filter(([slot]) => !only || slot === only);
+    if (only && !entries.length) throw new Error(`${only} is not in ${MAP}. It has no chart yet.`);
+    if (!entries.length) throw new Error(`${MAP} is empty.`);
+
+    // The per-id guard cannot help here. PATCH /charts is the documented way to
+    // move charts and its path carries no id, so the regex in write() does not
+    // match it and would pass the call through unchecked. Check the ids here
+    // instead, before the call, or this verb is a hole in the protection every
+    // other write goes through.
+    const ids = protectedIds();
+    assertScanUsable(ids, readSlots(PAGE));
+    console.log(`  guard: ${ids.size} chart ids under content/; only charts no archive renders may be moved`);
+    const offLimits = [];
+    for (const [slot, entry] of entries) {
+        const files = ids.get(entry.to);
+        const elsewhere = files ? [...files].filter((f) => f !== PAGE) : [];
+        if (elsewhere.length) offLimits.push(`${slot} (${entry.to}) rendered by ${elsewhere.map((f) => f.replace(REPO_ROOT, "")).join(", ")}`);
+    }
+    if (offLimits.length) {
+        throw new Error(
+            `Refusing to move ${offLimits.length} chart(s) that a page other than the live report renders:\n  `
+            + `${offLimits.join("\n  ")}\nMoving one would reorganize a published report's charts.`,
+        );
+    }
+
+    // One batch call per destination. With no folder id given, each slot goes
+    // where folder-map.json says, which is how the per-table tree gets mirrored
+    // without running this once per slot.
+    const byFolder = new Map();
+    for (const [slot, entry] of entries) {
+        const dest = folderId ?? destinations[slot];
+        if (!Number.isInteger(dest)) {
+            throw new Error(`${slot} has no destination in ${FOLDERMAP}. Run makefolders first, or name a folder id.`);
+        }
+        if (!byFolder.has(dest)) byFolder.set(dest, []);
+        byFolder.get(dest).push([slot, entry.to]);
+    }
+
+    let moved = 0;
+    for (const [dest, group] of byFolder) {
+        const chartIds = group.map(([, id]) => id);
+        console.log(`  folder ${String(dest).padEnd(8)} ${chartIds.length} chart(s): ${group.map(([s]) => s).join(", ")}`);
+        await api("PATCH", "/charts", {
+            body: JSON.stringify({ ids: chartIds, patch: { folderId: dest } }),
+            contentType: "application/json",
+        });
+        await sleep(PAUSE_MS);
+
+        // A 200 does not prove anything moved. Read one chart back per group and
+        // check the folder it reports, so a silently-ignored patch fails here
+        // rather than being discovered in the UI weeks later.
+        const check = assertChart(await api("GET", `/charts/${chartIds[0]}`), `GET /charts/${chartIds[0]}`);
+        if (Number(check.folderId) !== dest) {
+            throw new Error(
+                `The move reported success but ${chartIds[0]} still reports folderId ${check.folderId}, not ${dest}. `
+                + `${moved} group(s) moved before this one; the map records only those. Check the token's chart:write scope.`,
+            );
+        }
+        await sleep(PAUSE_MS);
+
+        const at = new Date().toISOString();
+        for (const [slot] of group) {
+            map[slot].folderId = dest;
+            map[slot].movedAt = at;
+        }
+        // Written per group, not once at the end: a failure partway through has
+        // already moved charts, and a map that does not say so is worse than no
+        // map at all.
+        writeJson(MAP, map);
+        moved += 1;
+    }
+
+    console.log(`\nMoved ${entries.length} chart(s) into ${byFolder.size} folder(s). Map: ${MAP}`);
+    return 0;
+}
+
+// ---------------------------------------------------------------------------
 
 async function main() {
     const args = process.argv.slice(2);
@@ -686,16 +966,25 @@ async function main() {
     const flag = args.find((a) => a.startsWith("-"));
     if (flag) return usage(`This script takes no flags, and "${flag}" would not have survived npm intact.`);
     if (!args.length) return usage("No command given.");
-    if (args.length > 2) return usage(`Expected a command and at most one slot, got ${args.length} arguments.`);
+    if (args.length > 3) return usage(`Expected a command and at most two arguments, got ${args.length}.`);
 
-    const [command, slotArg] = args;
-    if (slotArg !== undefined && !["push", "repush"].includes(command)) {
-        return usage(`Only \`push\` and \`repush\` take a slot, not \`${command}\`.`);
+    // move is the only verb taking two, because it names a destination AND may
+    // name one slot. Validate per command rather than with one shared rule, so
+    // an argument in the wrong place is a usage error instead of being ignored.
+    const [command, arg1, arg2] = args;
+    if (command === "makefolders") {
+        if (arg1 === undefined || arg2 === undefined) return usage("Usage: makefolders <parentFolderId> <year>");
+    } else if (command === "move") {
+        // No arguments is the normal path — folder-map.json holds the destinations.
+    } else if (["push", "repush"].includes(command)) {
+        if (arg2 !== undefined) return usage(`\`${command}\` takes at most one slot, got two arguments.`);
+    } else if (arg1 !== undefined) {
+        return usage(`\`${command}\` takes no arguments.`);
     }
 
     // An unset token is a setup mistake, not a run that failed, so it exits 2
     // like a usage error rather than 1 from the middle of the first request.
-    if (["pull", "dryrun", "push", "repush"].includes(command) && !process.env.DATAWRAPPER_TOKEN) {
+    if (["pull", "dryrun", "push", "repush", "folders", "makefolders", "move"].includes(command) && !process.env.DATAWRAPPER_TOKEN) {
         console.error("DATAWRAPPER_TOKEN is not set in the environment.");
         console.error("Create a token in the Datawrapper UI and export it; never put it in a file here.");
         return 2;
@@ -707,9 +996,12 @@ async function main() {
     switch (command) {
         case "pull": return cmdPull(slots);
         case "dryrun": return cmdDryrun(slots);
-        case "push": return cmdPush(slots, slotArg);
-        case "repush": return cmdRepush(slots, slotArg);
+        case "push": return cmdPush(slots, arg1);
+        case "repush": return cmdRepush(slots, arg1);
         case "apply": return cmdApply(slots);
+        case "folders": return cmdFolders();
+        case "makefolders": return cmdMakeFolders(slots, arg1, arg2);
+        case "move": return cmdMove(arg1, arg2);
         default: return usage(`Unknown command "${command}".`);
     }
 }
