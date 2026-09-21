@@ -1,5 +1,22 @@
 # Rat Mitigation Zone Report: figures to confirm before the 2026 page is published
 
+## Answered 2026-09-21
+
+The partner's reply covers all 31 rows below and confirms the 2026 document in both groups, which
+is the default this document already stated. The 27 TABLE 3a rows are a methodology change on
+elevated compliances, for which their report carries an appendix note; the 4 TABLE 1 rows are NYCHA
+developments that converted to RAD or private management, mostly in fiscal year 2026 (Jul 2025–Jun
+2026), for which there is no note and they asked whether one is needed. Their wording, our answer
+on the note, and one thing in the TABLE 3a explanation that the numbers do not bear out are in the
+2026-09-21 amendment of `rat-report-2026-update-plan-2026-09-14.md`.
+
+**The wording question and the column-headings offer at the foot of this document are still
+unanswered.**
+
+The rest of this document is left as it was sent.
+
+---
+
 We are updating the Environment & Health Data Portal's Rat Mitigation Zone page with the 2026 report. The page presents 32 tables, and we build each one from the figures in the report document rather than retyping them.
 
 Before publishing, we compared every figure in the 2026 document against what the currently published 2025 tables show, for the reporting periods the two have in common. **Of 567 shared figures, 530 match exactly.** The 35 that do not are listed below.

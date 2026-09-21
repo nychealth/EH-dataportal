@@ -43,13 +43,41 @@ rewritten `chart-map.json` is at `b16c041ab6`. Rows and proofs below, under "Fil
 charts". The remaining 31 pushes are still blocked on the partner's answer; nothing in this
 amendment changes that.
 
+**Amended 2026-09-21 — the partner answered, and the 31 pushes are no longer blocked.** Their reply
+covers all 31 rows of `documents/rat-report-2026-figures-to-confirm.md` and confirms the 2026
+document in both groups, which is what the document's stated default already assumed:
+
+- **The 27 `table-33-*` rows are a methodology change**, and their report carries an appendix note
+  for it: initial counts in 2024 and 2025 removed inspections at properties the Department marked
+  city-owned, or that an inspector noted as government properties, and that restriction was
+  dropped because ownership changes over time.
+- **The 4 `slot1` rows are NYCHA developments converting to RAD or private management**, mostly
+  during fiscal year 2026 (Jul 2025–Jun 2026). The 2026 figures are the developments still managed
+  by NYCHA and routinely surveyed by DOHMH as of June 2026. No appendix note exists for this and
+  the partner asked whether one should be added.
+
+**Their Table 3a note does not describe what the numbers do, and that is worth raising before the
+note is final.** It says inspections were *removed from the counts*, which predicts the revised
+counts rising. They do not move: in all 8 zone-periods the `Inspections` total is identical in
+`scripts/rat-report-charts/published/table-33-*.tsv` and `next/table-33-*.csv` (3524, 3448, 2621,
+2372, 919, 904, 3975, 3816), the four elevation-level counts sum to it in both, and every group's
+level changes net to exactly zero — first comp falls and the higher levels rise by the same amount
+`[verified 2026-09-21, read off the two CSV sets rather than off the difference list, which holds
+only cells that differ and so never showed the unchanged total]`. A change to how a property's
+*prior* compliance history is counted would produce this; a change to which inspections are counted
+would not. Unverified — it is the partner's to confirm.
+
+**Two questions in that document are still unanswered**: the "since the 2024 report" wording (see
+Task 2 Step 4) and the offer to fix the duplicated column headings in `table-5a-5` and the
+`table-33-*` group.
+
 | Task | State | Proof that ran |
 |---|---|---|
 | 0. Send numeric discrepancies to partner | **DONE 2026-09-14** — `c73fd0451c` — partner confirmed the tables were right; all five prose figures corrected | each figure re-derived before writing; verified in the rendered HTML, each new figure n=1 and each old one n=0 |
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 1 of 32 slots pushed** (`table-2-1` → `zVvyR` v2, live). The other 31 are **BLOCKED on the partner's answer** to `documents/rat-report-2026-figures-to-confirm.md`, not on tooling. `apply` has not run. The `repush` verb is at `119207fa01`, `chart-map.json` and the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`. The `folders` / `makefolders` / `move` verbs and `folder-map.json` are at `c2840dfbd0`; `makefolders` and `move` have both run against the live API, and the rewritten `chart-map.json` is at `b16c041ab6` | the pushed chart's live dataset at `dwcdn.net/zVvyR/2/dataset.csv` is byte-identical to `next/table-2-1.csv`, 7 rows `[verified 2026-09-17]`; earlier offline proofs unchanged — 32 TODO markers each one line above a live embed, 0 orphaned and 0 uncovered |
+| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 1 of 32 slots pushed** (`table-2-1` → `zVvyR` v2, live). The other 31 are **UNBLOCKED as of 2026-09-21** — the partner answered `documents/rat-report-2026-figures-to-confirm.md` and confirmed the 2026 figures; see the 2026-09-21 amendment. Nothing gates them but running the commands. `apply` has not run. The `repush` verb is at `119207fa01`, `chart-map.json` and the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`. The `folders` / `makefolders` / `move` verbs and `folder-map.json` are at `c2840dfbd0`; `makefolders` and `move` have both run against the live API, and the rewritten `chart-map.json` is at `b16c041ab6` | the pushed chart's live dataset at `dwcdn.net/zVvyR/2/dataset.csv` is byte-identical to `next/table-2-1.csv`, 7 rows `[verified 2026-09-17]`; earlier offline proofs unchanged — 32 TODO markers each one line above a live embed, 0 orphaned and 0 uncovered |
 | 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
@@ -423,6 +451,9 @@ report, with a 2025 report now archived. It is the docx's own sentence, characte
 `[verified 2026-09-15 against the extracted `word/document.xml`: one hit, and the only paragraph
 in the document matching either "2024 report" or "2023 report"]`, so Task 2 carried it correctly
 and the question of whether they meant "2025 report" is theirs.
+**Asked, and still open as of 2026-09-21:** it went to them as the "One wording question" section
+of `documents/rat-report-2026-figures-to-confirm.md`, and their reply of that date addresses only
+the numeric discrepancies. The page ships with "2024" unless they say otherwise.
 
 **Proof:** `hugo --environment development` exits 0 with no ERROR lines. Build into temp
 directories if a server is running, per `CLAUDE.md`:
@@ -624,7 +655,7 @@ the script", which describes a tree where no API verb had been exercised.
 | `push table-2-1` | **DONE 2026-09-17** — `zVvyR`, published 19:21Z; recorded at `f5ea98079b` | the chart resolves at `dwcdn.net/zVvyR/2/` |
 | `repush` verb added | **DONE 2026-09-17** — `119207fa01`, ~200 lines in `scripts/rat-report-charts.mjs` | exercised against `table-2-1` (map `updatedAt` 20:42Z, version 2); the live v2 dataset is byte-identical to `next/table-2-1.csv` |
 | The partner-facing figures document | **DONE 2026-09-17** — `efcace7a59`, at `documents/rat-report-2026-figures-to-confirm.md` | 4 arithmetic corrections stated as settled, 31 listed for confirmation; the counts match `check`'s 35 |
-| `push` the other 31 | **BLOCKED on the partner's answer** to that document | — |
+| `push` the other 31 | **READY 2026-09-21** — the partner answered that document and confirmed the 2026 figures; see the 2026-09-21 amendment | — |
 | `apply` | **Not started** — needs all 32 in `chart-map.json` | — |
 
 **Why `repush` had to exist.** `push` skips any slot already in `chart-map.json`, so once a number
@@ -731,7 +762,7 @@ pushes.
 | `makefolders` run | **DONE 2026-09-18 03:12Z** — no commit; the live account changed | 10 of 10 folders printed `created`, `exit=0`; the immediate re-run printed 10 reuses / 0 created with identical ids. Tree and ids under Environment |
 | Commit the verbs and `folder-map.json` | **DONE 2026-09-18** — `c2840dfbd0` | `git show --stat c2840dfbd0`: 2 files, 335 insertions, 9 deletions, `folder-map.json` created |
 | `move`, on `table-2-1` | **DONE 2026-09-18 16:55:37Z** — `b16c041ab6` carries the rewritten `chart-map.json`. Two earlier attempts that day stopped before any API call: once on the script's own argument validation, once on the Claude Code auto-mode classifier, which reads a Datawrapper write as "Modify Shared Resources". What unblocked it was a `PowerShell(node scripts/rat-report-charts.mjs *)` **ask** rule in `~/.claude/settings.json` — the command then prompted and was approved | exit 0, `folder 443569  1 chart(s): table-2-1`. Verified against the API rather than the script's read-back, with a control that had to stay put: `GET /v3/charts/zVvyR` returns `folderId` **443569** (was 363786), and the 2025 source `bMzMo` still returns **363786** — so the batch `PATCH /charts` moved only the selected id. The run's guard reported 419 chart ids under `content/` and selected 1 |
-| `move`, the other 31 | **BLOCKED** — each follows its own `push`, which waits on the partner | — |
+| `move`, the other 31 | **READY 2026-09-21** — each follows its own `push`, and those are no longer blocked | — |
 
 **`move`'s shape is not the one `push` and `repush` use, and that is why it needed a control.** It
 sends `PATCH /charts` with an `ids` array, whose path carries no chart id — so the per-id guard in
@@ -748,7 +779,8 @@ common origin; a copy-paste satisfies that as well as a decision does. Worth one
 ###### The literal next command
 
 **Everything on the first track is done.** `move` ran on the one pushed chart at 16:55:37Z and is
-recorded at `b16c041ab6`; nothing here is runnable until the partner answers.
+recorded at `b16c041ab6`. The second track below is runnable as of 2026-09-21 — the partner has
+answered.
 
 Three things that run survived from that track and are worth keeping, because the 31-slot run
 repeats all of them:
@@ -778,8 +810,7 @@ repeats all of them:
   PATCH exits non-zero rather than passing. Confirm the result against the API anyway, with a
   chart that must *not* move as the control.
 
-The second track waits on the partner. With `DATAWRAPPER_TOKEN` exported, and only once they have
-answered:
+The partner answered on 2026-09-21, so this track is clear. With `DATAWRAPPER_TOKEN` exported:
 
 ```
 node scripts/rat-report-charts.mjs dryrun        # names every slot missing a CSV or a title
@@ -814,6 +845,11 @@ The rest are restatements the partner should confirm rather than defects this ca
 against 15/9/24/72), and the whole `table-33-*` group differs by small amounts on both of the
 periods it shares with the docx — 27 values across four panels, mostly ±1 to ±18.
 
+**Answered 2026-09-21, and both are the docx's.** The `slot1` counts are NYCHA developments that
+converted to RAD or private management, mostly in fiscal year 2026; the `table-33-*` group is a
+methodology change on elevated compliances. Full wording, and the one thing in their explanation
+that the numbers do not bear out, in the 2026-09-21 amendment at the top of this document.
+
 The two cosmetic ones are the same defect in the published data: `table-33-1` drops the `%` from
 one cell and `table-33-3` from another. The extractor writes them consistently, which is why they
 surface as rendering rather than value differences.
@@ -834,8 +870,13 @@ neither reaches a build.
 ```
 ```
 
-`check` exits 1 while any number disagrees, so it stays red until the partner's answers are folded
-into the docx — which is the point. `write` works regardless; it does not wait for `check` to pass.
+`check` exits 1 while any number disagrees, so it stays red until the live charts carry the 2026
+numbers — which is the point. **The docx is not what changes.** `cmd_check` compares the docx
+against `published/*.tsv`, which `fetch` downloads from the CDN, so the 35 disagreements clear when
+the 31 slots are pushed and `fetch` is re-run — not before. The partner confirmed on 2026-09-21
+that the docx figures are the correct ones, so nothing is folded into it
+`[corrected 2026-09-21; this sentence previously said the docx was what had to change]`. `write`
+works regardless; it does not wait for `check` to pass.
 
 **`write` emits every period the docx holds, and 31 of 32 slots grow.** The published charts show
 5 periods (`table-33-*`, 2; the `table-6` group, 6) and the docx has 7, back to Jan-Jun 2023.
