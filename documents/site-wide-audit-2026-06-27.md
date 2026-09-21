@@ -44,6 +44,18 @@
 > metadata bullets, and §12's structured-data section. Each annotation names the branch and commit
 > that changed it. **Nothing else in this document has been re-verified**; treat the rest as the
 > branch's record until it is. §14 holds findings first observed on this tree.
+>
+> **§17, §18 and §19 were added after that sweep and are not covered by the path count above.**
+> They were consolidated here on 2026-09-18 from `feature-NDHR-prototype` (§17, and the
+> 2026-09-12 note in §15.8) and `feature-MOD-Lab-NR-recode-refactor-merge` (§18a, §19a)
+> — `git merge-base --is-ancestor <branch> production` says whether either has landed since.
+> They cite `assets/js/nr-report/`, `assets/js/ndhr-report/` and the
+> `partials/ndhr-*.html` pickers, **none of which exist on `production`**
+> `[verified 2026-09-18: `git ls-tree -r production -- assets/js/nr-report` returns nothing]`, so the
+> "19 of 84" figure is a reading of this document as it stood on 2026-08-21. Re-deriving it would
+> need the extraction rule that produced the 84, which survives here only as the prose above.
+> The §18a and §19a fixes are real and landed — on that branch, against files this tree does not
+> carry.
 
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
 Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
@@ -2206,6 +2218,25 @@ hidden per §15.7.
 at the call site. That was outside Task 18's stated scope, which named role, `aria-expanded` and
 `aria-activedescendant` only. Porting it is the same shape of port Task 18 already did — see §5k.
 
+> **What the `aria-labelledby` fix leaves behind, 2026-09-12.** Two call sites now carry it — the
+> NR neighborhood picker (`partials/nr-neighborhood-picker-js.html`) and the new NDHR district
+> picker (`partials/ndhr-district-picker-js.html`) — and on both the *generated* input is named
+> and the **authored** `#flex_search` is not. The library is why: it re-points the authored
+> input's `<label for>` at the generated one it creates
+> (`node_modules/jquery-flexdatalist/jquery.flexdatalist.js:403`), so the authored node is left
+> with no label whatever the call site does.
+>
+> That node is unreachable, which is what makes this expected rather than a half-finished fix:
+> `position: absolute` at x −13700 / y −12689, `tabIndex: -1`, and Tab from the generated input
+> goes straight to `#clear` `[verified 2026-09-12 in a browser, identical on /ndhr/ and
+> /neighborhood-reports/]`. `scripts/site-characterization.mjs` still counts it, because that
+> harness walks the DOM rather than the accessibility tree — `controls.noAccessibleName` reads 1
+> on every page carrying a picker, in both committed baselines, by design.
+>
+> **axe was NOT re-run for this note.** What was measured is name resolution and reachability, not
+> what axe 4.13.0 reports; whether the `label` violation on `#flex_search` survives the fix is
+> open. Do not read this as closing the finding.
+
 ### 15.9 The combobox fix trades one axe *violation* for one axe *incomplete* (not a defect)
 
 With `aria-controls` set, axe 4.13.0 parks `aria-valid-attr-value` [critical] in *incomplete* with
@@ -2371,3 +2402,319 @@ If it is picked up: it is a codemod over content, so it wants the CLAUDE.md trea
 one page, count the diff, confirm the rendered output before extending. Each chart's `embed.js`
 carries the `publicUrl` (versioned iframe src), published height and title needed to emit the
 snippet, and Datawrapper's oEmbed API returns the official markup directly.
+
+---
+
+## 17. GeoJSON fetched where a TopoJSON of the same geography is already published (added 2026-09-12)
+
+EHDP-data's `geography/` directory is almost entirely TopoJSON: of its 52 entries, **four** are
+`.geojson` — `CD`, `CityCouncilDistrict`, `UHF42`, `rmz` — against **24** `.topo.json`, and
+the repository generates both from the same source with its own `create_TopoJSON.r`. Five pages
+here fetch the GeoJSON while the TopoJSON counterpart sits beside it in the same directory.
+
+**Quote the wire column, not the raw one.** raw.githubusercontent.com serves these files gzipped,
+and part of what TopoJSON removes is redundancy gzip also finds, so a raw-byte comparison
+overstates the win — comparing geometry against geometry, `CD` reads **79% raw against 75%
+compressed** (162,386 -> 34,421, against 46,926 -> 11,732) and the local UHF42 copy **74% raw
+against 46% compressed** (95,185 -> 25,042, against 16,560 -> 8,894). Every figure below is the compressed body length with
+`Accept-Encoding: gzip`, read off the `Content-Encoding` header
+`[all verified 2026-09-12 against the production data branch]`.
+
+| Consumer | Pages | Fetches now | Wire | Candidate | Wire | Saving | Drop-in? |
+|---|---|---|---|---|---|---|---|
+| `partials/overlap-tool-with-map.html:70` | 1 | `CityCouncilDistrict.geojson` | 1,527,427 | `CityCouncilDistrict.topo.json` | 42,527 | **1,484,900 (97%)** | yes |
+| `partials/overlap-tool-with-map.html:65` | 1 | `CD.geojson` | 46,926 | `CD.topo.json` | 11,732 | 35,194 (75%) | yes |
+| `partials/overlap-tool-with-map.html:75`, `:283` | 1 | `UHF42.geojson` | 27,140 | `UHF42.topo.json` | 8,894 | 18,246 (67%) | yes, with the 43rd-feature note |
+| `content/data-features/rat-mitigation-zones/rmz.js:81` | 1 | `rmz.geojson` | 21,443 | `RMZ.topo.json` | 2,789 | 18,654 (87%) | two property renames |
+| `content/data-features/rats-in-your-neighborhood/neighborhood-rats.js:7` | 1 | bundle-local `rmz.geojson` | 20,393 | `RMZ.topo.json` | 2,789 | 17,604 (86%) | same renames |
+| `assets/js/nr-report/map.js:269` and `partials/nr-leaflet.html:45` | 258 | `static/geojson/UHF42.geojson` | 16,560 | `UHF42.topo.json` | 8,894 | 7,666 (46%) | yes, with the 43rd-feature note |
+
+The 258 is 210 report pages plus 42 neighborhood indexes, 5 topic indexes and the NR landing page.
+It is the only row where the saving is per-page across a section rather than on a single feature
+page — and also the only row whose source is a **copy in this repo** rather than the data
+repository, so the swap there is a source change as well as a format change.
+
+`assets/js/ndhr-report/map.js` fetches `CD.geojson` on 295 NDHR report pages, the same 35,194-byte
+saving. **That one is not this document's** — it is a named decision inside Task 11 of
+`documents/ndhr-prototype-plan-2026-09-10.md`, deliberately kept separate because it edits shipped
+code that `scripts/ndhr-characterization.mjs` now baselines. **Put to the user 2026-09-12 and
+deferred as a potential future enhancement**, on the re-verification cost rather than the code:
+`topojson-client` would join `structure.assets` on 295 pages, so both site-characterization
+baselines would need re-capturing. That plan's status block carries the edit surface. Do not
+re-raise it here as though it were unexamined.
+
+### 17a. What each swap actually costs
+
+- **Leaflet ingests GeoJSON only** — its loader API is `L.geoJSON`, and this repo's one Leaflet
+  TopoJSON consumer converts before handing over, at
+  `content/data-features/heat-story/embed/heat-story-leaflet.js:168-169`. So each swap adds one
+  `topojson.feature(topo, topo.objects.<key>)` call and the `topojson-client` library — 2,604 bytes gzipped, paid once and
+  cached, against savings that start at 7,666 bytes on the cheapest row. The object key is
+  `collection` on every file measured here **except** `CityCouncilDistrict.topo.json`, whose single
+  object is named `data`. Do not hardcode `collection`.
+- **`themes/dohmh/layouts/partials/lib-topojson.html` now exists. This bullet said it did not,
+  which was true when this section was written on 2026-09-12 and stopped being true the same
+  day** — Task 11 of `documents/ndhr-prototype-plan-2026-09-10.md` wrote it for a NEW Leaflet
+  consumer (`themes/dohmh/layouts/partials/ndhr-leaflet.html`, the NDHR community district picker
+  map), not for any swap in the table above, so **every row above is still unswapped**. The cost
+  each row was quoted at has fallen by whatever writing the partial was worth; the library byte
+  cost has not, since it is per page and not per repo.
+  `topojson-client` is in `package.json` and is also bundled by
+  `themes/dohmh/layouts/data-features/heatstory.html` via `resources.Concat`, which deliberately
+  does not use the partial — it concatenates five libraries into one request. Every other
+  TopoJSON consumer in the repo (`assets/js/data-explorer/map.js`,
+  `themes/dohmh/layouts/data-features/minimum-wage-with-maps.html`,
+  `assets/js/ndhr-report/chart.js`) reaches it through **Vega's** built-in
+  `format: {type: "topojson"}` and needs no client at all.
+- **The 43rd-feature note is not a blocker.** `static/geojson/UHF42.geojson` carries 43 features,
+  the extra one having `GEOCODE: 0`, `GEONAME: ""`, `BOROUGH: "N/A"` and a real 2,825-byte
+  MultiPolygon; `UHF42.topo.json` carries 42. Both consumers already discard it —
+  `filter: feature => feature.properties.GEOCODE != 0` at `assets/js/nr-report/map.js:278` and
+  `themes/dohmh/layouts/partials/nr-leaflet.html:57` — so the TopoJSON's 42 are exactly the
+  polygons drawn today, and the filter can go with the swap. `BOROUGH` is absent from the
+  TopoJSON and is read by no consumer of either file `[verified 2026-09-12: grep across
+  `assets/js/nr-report/`, `nr-leaflet.html` and `overlap-tool-with-map.html`]`.
+- **The RMZ swap is a rename, not a remodel.** All four zones are present in both, and the values
+  are identical strings: `OBJECTID` 1-4 becomes `GEOCODE` 1-4, and `Label` becomes `GEONAME` on 4
+  of 4 ("Brooklyn: Bed Stuy and Bushwick Zone", and so on). `NRRType` — constant `"RMZ Zone"` —
+  is dropped and is read nowhere. The reads to change are `rmz.js:105`, `:110` and `:164`, and
+  `neighborhood-rats.js:126`.
+
+### 17b. The largest payload on the list is not a swap
+
+`content/data-features/rats-in-your-neighborhood/geojson/cd.geojson` is **1,408,488 bytes over the
+wire** — larger than every other candidate here except the council districts — and `CD.topo.json`
+is *not* its counterpart. It holds **71 features** against CD's 59, keyed on `boro_cd` with
+`shape_area`/`shape_leng`, where `CD.topo.json` is keyed on `GEOCODE`/`GEONAME`/`id`. The extra
+twelve are the non-residential districts (parks, airports and similar) that the 59-district
+published set excludes. Converting it would need a TopoJSON generated from *that* source, which is
+an EHDP-data change, not an edit here.
+
+### 17c. Large GeoJSON with no counterpart at all, for the record
+
+Measured locally, gzipped at level 6 — indicative of what a server would send, not read off one:
+
+| File | Raw | Gzipped | Referenced by |
+|---|---|---|---|
+| `static/geojson/greenspace.geojson` | 20,815,881 | 2,070,133 | `content/data-features/heat-story/embed/config.js:214` |
+| `static/geojson/neighborhoods.geojson` | 19,350,172 | 2,102,253 | nothing in this repo's source |
+| `content/data-features/proximity/geojson/800m_CT_pct_walkable_ADA_subway.geojson` | 8,799,560 | 2,492,656 | `proxConfig.js:52` |
+| `content/data-features/proximity/geojson/800m_BG_pct_walkable_ADA_subway.geojson` | 8,229,459 | 2,128,234 | nothing in this repo's source |
+| `content/data-features/flood-vulnerability-index/fvi.geojson` | 5,958,551 | 1,818,565 | `fvi.js:273` |
+
+These carry per-feature *data* alongside geometry, which is the half TopoJSON does not compress,
+so they are not the same kind of candidate — they are listed because a page fetching 2 MB
+compressed is worth knowing about whatever the format.
+
+**Two of them are referenced by no source file in this repo** `[verified 2026-09-12: one
+repo-wide grep for the literal stem `.geojson`, excluding `docs/`, `node_modules/` and the
+baseline snapshots under `scripts/`]`. That is not proof they are dead: a Vega spec fetched from
+EHDP-data at runtime could name either, and this sweep cannot see EHDP-data. Check there before
+deleting 39 MB.
+
+### 17d. One thing noticed in passing
+
+`overlap-tool-with-map.html` hardcodes `refs/heads/production` in all four of its data URLs rather
+than reading `.Site.Params.data_branch`, so the neighborhood-overlap tool draws production geometry
+on every environment, staging included. Whether all four fetches fire on page load was not
+measured — the per-fetch figures above hold either way.
+
+---
+
+## 18. The NR report map's viewport leaves most neighborhoods unclickable (added 2026-09-13)
+
+Found while reviewing the NDHR prototype, which forked its report page from this one. **Filed
+here rather than fixed there on the user's instruction 2026-09-13**: the NDHR half is fixed on
+`feature-NDHR-prototype`; this is the Neighborhood Reports half, which is not that branch's
+feature.
+
+`assets/js/nr-report/map.js` flies the map to the selected neighborhood's bounds, on first paint
+and again on every in-place switch. The map is the report page's only in-place neighborhood
+switcher and its polygons carry `role="button"`, so what a pointer can reach on it is what a
+pointer can reach in the page's navigation.
+
+**Measured on the NDHR fork, which had the identical code:** an un-forced click could reach
+**9 of 59** polygons at the zoom the page left itself, against **55 of 59** with the same map
+fitted to every polygon. A click event dispatched directly on the same node navigated correctly
+in both arms, so the handler is not the problem — the pointer cannot reach the polygon. The same
+measurement on **this** page returns **9 of 45** `[verified 2026-09-13]`.
+
+After the NDHR fix, the two arms were re-measured on one page, run A -> B -> A so ordering
+cannot explain the result, with the old fly-to re-applied by hand as arm B:
+
+| arm | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — fitted to all | 9.58 | 57 of 59 |
+| B — fly-to re-applied | 13.78 | **5 of 59** |
+| A — refitted | 9.58 | 56 of 59 |
+
+`[verified 2026-09-13: `/ndhr/midtown/climate-and-active-design/` against a `dev_prod` server,
+Playwright actionability check as the reachability test, two runs returning identical counts]`
+
+**The keyboard path is unaffected** — Tab reaches the polygons and Enter switches the report.
+The defect is pointer-only, which is the unusual direction and is why an accessibility pass did
+not surface it.
+
+**The precedent is already in this repo, twice.** `themes/dohmh/layouts/partials/ndhr-leaflet.html`
+declined the fly-to on 2026-09-12 for this reason and carries the longer rationale;
+`assets/js/ndhr-report/map.js` followed on 2026-09-13. The shape of that fix: drop the `zoom`
+argument from `selectLayer` and its call sites, then `fitBounds` on the whole layer once the
+geometry lands, with `zoomSnap = 0` so `fitBounds` does not round down to a whole zoom level.
+
+**`themes/dohmh/layouts/partials/nr-leaflet.html` is NOT in scope and should keep its fly-to.**
+It is the picker map on the topic index and landing page, its polygons answer no key, and the
+42-neighborhood list beside it carries the navigation. That distinction is the one the NDHR
+partial's comment records; do not sweep both on a grep for `flyToBounds`.
+
+**Not measured:** whether the NR page's container is the same width as NDHR's, which sets how
+much of the city a given zoom shows. The 9-of-45 reading was taken on the NR page itself, so the
+finding holds regardless, but a fix should re-measure rather than assume 57-of-59 transfers.
+
+### 18a. FIXED 2026-09-15 — and three things above are corrected by the fix's own measurement
+
+`assets/js/nr-report/map.js`: `selectLayer` lost its `zoom` parameter and its `flyToBounds`,
+both call sites (`map.js` `selectNeighborhood`, `data.js` `tryInitialRender`) lost the `true`,
+and `initLeafletMap` now sets `zoomSnap = 0` and fits `uhfLayer`'s whole bounds once the
+geojson lands. `themes/dohmh/layouts/partials/nr-leaflet.html` is untouched and still flies.
+
+**Correction 1 — the denominator was 45 `<path>` elements, of which 42 are neighborhoods.**
+`#nr-map` holds 45 `path` nodes; three of them are the rects of Leaflet's attribution-flag
+`<svg>`, not polygons. `#nr-map path[role="button"]`, `path.leaflet-interactive`, the layer's
+own `eachLayer` count and `neighborhoods.length` all agree on 42. All three flag paths pass the
+actionability check in every arm, so a 45-denominator reading carries a constant +3. The
+numerator 9 was right; the reading is **9 of 42**.
+
+**Correction 2 — the container width is the same as NDHR's.** `#nr-map` renders at **324x450**
+on the NR report page at a 1280x720 viewport, which is the box the NDHR finding names. What did
+not transfer is the fitted count: 41 of 42 here against NDHR's 57 of 59.
+
+**Correction 3 — the prescribed arm B does not reproduce the pre-fix state, and reads 2
+polygons low.** Re-applying `flyToBounds` by hand after the fix inherits the fix's own
+`zoomSnap = 0`, so the fly lands at zoom 12.54 where the pre-fix code, at Leaflet's default
+`zoomSnap` of 1, snapped to a whole zoom 12. Deeper zoom, fewer polygons: that arm reads 7 of 42
+rather than 9. It is still a valid A -> B -> A on one page load and is recorded below, but the
+arm that actually measures the pre-fix code is checking `HEAD`'s `map.js` and `data.js` back in
+and reading the served fingerprint to prove which build the browser ran.
+
+Arm B as prescribed, three arms on one page load:
+
+| arm | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — fitted to all | 9.58 | 41 of 42 |
+| B — fly-to re-applied by hand | 12.54 | **7 of 42** |
+| A — refitted | 9.58 | 41 of 42 |
+
+`[verified 2026-09-15: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+at a 1280x720 viewport against a `dev_stage` server on :8080, Playwright trial click as the
+reachability test; two runs returning identical counts and identical miss lists]`
+
+Arm B as the pre-fix code, the two file states checked in and out:
+
+| tree state | served `map.js` | zoomSnap | zoom | polygons reachable |
+|---|---|---|---|---|
+| fix applied | `map.a55470a6173fed6c.js` | 0 | 9.58 | 41 of 42 |
+| `HEAD` restored | `map.304224d68b15bfb4.js` | 1 | 12 | **9 of 42** |
+| fix re-applied | `map.a55470a6173fed6c.js` | 0 | 9.58 | 41 of 42 |
+
+`[verified 2026-09-15: same page and server; the fingerprint moving and returning is what rules
+out a stale asset, per CLAUDE.md's "Four ways a local check silently lies"]`
+
+**Rockaways is the one polygon the fitted arm misses, and the cause is not the viewport.** It is
+a thin arc, so the centre of its bounding box lands *inside* the viewport while
+`document.elementFromPoint` there returns the `.leaflet-container` div rather than the path
+`[verified 2026-09-15: bbox 109x64 at (360,570), `isSelfAtCentre` false]`. It is also a miss at
+zoom 12.54 in arm B, so it is not specific to the fitted framing — but I measured only those
+two zooms, and whether NDHR's two residual misses have this same cause was not checked.
+
+**Harnesses:** `npm run lint` clean (positive control: an undefined name added to `map.js`
+fails it with `no-undef`, and lint returns to clean when removed — so the `nr-report` block is
+genuinely in scope); `npm run smoke` 33 of 33, and the curated `PAGES` list does include
+`neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`, so this page is covered
+rather than merely adjacent; `npm run characterize:nr -- --check` 3 of 3 against the `staging`
+baseline.
+
+## 19. `vegaEmbed` has no rejection handler on the NR report page (added 2026-09-14, P2)
+
+Found while reviewing the NDHR prototype, which forked its report page from this one. **Filed
+here rather than fixed there on the same basis as §18**: the NDHR half is fixed on
+`feature-NDHR-prototype` as plan Task 16c; this is the Neighborhood Reports half, which is not
+that branch's feature.
+
+`assets/js/nr-report/chart.js:200` opens a `.then()` on `vegaEmbed(...)` and closes it with no
+`.catch`. The call sits inside `onAccordionExpand`'s `try`, whose `catch` writes an "Unable to
+render chart." fallback into the panel — but `vegaEmbed` rejects **asynchronously**, so a
+synchronous `try` cannot see it and that fallback never runs.
+
+**Measured on this page rather than inferred from the fork**, with `window.vegaEmbed` stubbed to
+return a rejected promise and one accordion panel then expanded:
+
+| | |
+|---|---|
+| stub actually installed (the probe's own control) | true |
+| console errors from the page's own code | **0** |
+| unhandled rejections reaching the page | **1** |
+| "Unable to render chart." fallback shown | **false** |
+| visible empty chart containers | **1** |
+
+`[verified 2026-09-14: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+against a `dev_stage` server; 23 accordion toggles on the page, the first visible one expanded]`
+
+**The failure is not silent, and that is the part worth getting right.** An unhandled rejection
+does reach the page, and `npm run smoke` fails on `pageerror`, so CI would catch a
+systematically-broken embed. What it does not do is say which chart or which panel died — the
+rejection carries only the underlying error — and a reader meanwhile gets an empty box with no
+text in it. So this is a diagnosis-and-fallback defect, not an invisibility defect.
+
+**The fix, as applied on the NDHR side:** a `.catch` on the `vegaEmbed` promise that logs a
+message naming the chart, and writes the same "Unable to render chart." text into the container
+that the synchronous `catch` would have. It is not re-thrown — by that point there is no caller
+left to catch it.
+
+**Not measured:** whether any real Vega spec on this page can actually reject. The rejection here
+was forced with a stub, which establishes what happens when one occurs and not how often one
+does. A fix is cheap and does not depend on that number, but a priority argument would.
+
+**`assets/js/data-explorer/` is not in scope of this finding.** Its charts are a different call
+site with a different surrounding structure, and none of them was measured here.
+
+### 19a. FIXED 2026-09-15
+
+`assets/js/nr-report/chart.js`: the `vegaEmbed(...).then(...)` chain now ends in a `.catch` that
+`console.error`s a message naming the chart, `debugLog`s the branch, and writes the same
+`Unable to render chart.` paragraph the synchronous `catch` writes. Not re-thrown — by that
+point there is no caller left to catch it.
+
+Re-measured with the same forced rejection, run A -> B -> A by checking `HEAD`'s `chart.js` in
+and out, so the middle arm is the real pre-fix code rather than an argument about it:
+
+| | A — `.catch` present | B — `HEAD`, no `.catch` | A — `.catch` restored |
+|---|---|---|---|
+| served `chart.js` | `chart.2c9f8f13…js` | `chart.96d39599…js` | `chart.2c9f8f13…js` |
+| stub installed (control) | true | true | true |
+| stub actually called (control) | 1 | 1 | 1 |
+| console errors from page code | **1** | 0 | **1** |
+| unhandled rejections | **0** | 1 | **0** |
+| `Unable to render chart.` shown | **true** | false | **true** |
+| visible empty chart containers | **0** | 1 | **0** |
+
+`[verified 2026-09-15: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+against a `dev_stage` server; 23 accordion toggles, the first visible one ("Asthma ED visits
+(adults)") expanded; `window.vegaEmbed` replaced with a function returning a rejected promise
+after page load and before the expand]`
+
+Arm B reproduces this section's 2026-09-14 table row for row, which is what licenses reading
+arm A as the fix rather than as a difference in conditions.
+
+**A second control was added to the one §19 prescribed.** "Stub actually installed" is satisfied
+by a stub nothing ever calls, which would give the same clean arm-A numbers as a working fix. The
+probe therefore also counts invocations: 1 in every arm.
+
+**The console message names the chart, which is the half of this the unhandled rejection never
+carried:** `Error embedding chart for Asthma ED visits (adults) across all NYC neighborhoods:
+Error: probe-forced rejection`, against a bare `probe-forced rejection` in arm B.
+
+**Still not measured:** whether any real Vega spec on this page can reject. Unchanged by the fix
+— the rejection is still forced with a stub.
+
+**Harnesses:** `npm run lint`, `npm run smoke` (33 of 33) and `npm run characterize:nr -- --check`
+(3 of 3) all clean; see §18a for lint's positive control.

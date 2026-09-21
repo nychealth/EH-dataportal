@@ -58,6 +58,10 @@ const PAGES = [
     "data-features/rats-in-your-neighborhood/",     // rats-in-your-neighborhood layout — Leaflet
     "data-features/congestion-pricing-report/",     // congestion-pricing-report layout — Leaflet + easyButton, Vega, D3
     "data-features/heat-report-archive/2021/",      // report layout
+    // report layout WITH a `js:` frontmatter param, which 2021 above does not have. That
+    // <script src="{{ .Params.js }}"> carries no relURL, so it resolves against the PAGE
+    // url -- a branch nothing else in this list executes.
+    "data-features/rat-report/",                    // report layout -- Datawrapper embeds, zone switchers
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
     "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
