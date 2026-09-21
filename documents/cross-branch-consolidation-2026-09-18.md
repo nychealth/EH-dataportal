@@ -211,6 +211,13 @@ problem and not one this branch can fix by merging. Both runs also printed `89 p
 the baseline — past the 25-page arbitration cap`; that is the pre-gate capture count, of which the
 structure-only gate reports the 5 above.
 
+**Closed 2026-09-21 by PR #1501**, "Re-capture both characterization baselines for NYCCAS 2025",
+merged at `ef9ec69517` — 100 files, both baseline trees plus `site-characterization.yml`. This
+branch was then updated from `production` (`38e20c0e56` → `c86ebf9222`) and both checks passed on
+the merged tree: Smoke run `35621076276`, Site characterization run `35621076235`. A green
+structure gate means the five pages above no longer differ, so the drift was the baseline's in
+full and none of it this branch's.
+
 ## Environment state left behind
 
 None. Two `hugo server --environment dev_stage -p 8080` instances were started and both stopped
