@@ -186,9 +186,30 @@ gh pr list --head documentation-consolidate-site-wide-audit   # a PR, and agains
 
 ## What is left
 
-1. **Open the PR into `production`.** Nothing else in this document is outstanding.
+1. ~~**Open the PR into `production`.**~~ **PR #1500**, opened 2026-09-19 against `production`
+   from `5771b1c049`. Its current state is not recorded here — run
+   `gh pr view 1500 --json state,mergeStateStatus`.
 2. **Decide the CARTO allowlist entry** at `scripts/smoke-pages.mjs:107`, per the §3 finding above.
    Not this branch's to make — `hotfix-smoke-displacement-risk-maps-key` owns it.
+
+Nothing else in this document is outstanding.
+
+### CI on `5771b1c049`
+
+Both PR workflows ran. **Smoke check: passed.** **Site characterization check: failed, and the
+failure is not this branch's** — the `base-control` job rebuilt `production`'s tip
+(`451b2df450`) and ran the same harness against the same baseline, and its field table is
+identical to the sweep's: 5 of 925 pages, `structure.links.internal` on 4 (`(home)` 110 → 114,
+`data-explorer/` 224 → 228, `es/` and `zh/` 84 → 88) and `structure.controls.input` on 1
+(`data-explorer/air-quality/` 26 → 27). Both fields are ones the harness names as EHDP-data's to
+move, and the run reports EHDP-data at `c03ccd89fb -> 3b5e6257ca` since the baseline was captured
+at `156693a99b` (2026-08-27). A field moving in both runs is the data; one moving only in the
+sweep would be this PR's, and there is none.
+
+The `production` baseline is therefore stale against today's EHDP-data, which is a `production`
+problem and not one this branch can fix by merging. Both runs also printed `89 page(s) differ from
+the baseline — past the 25-page arbitration cap`; that is the pre-gate capture count, of which the
+structure-only gate reports the 5 above.
 
 ## Environment state left behind
 
