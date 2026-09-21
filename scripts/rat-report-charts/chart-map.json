@@ -8,7 +8,7 @@
         "publishedAt": "2026-09-17T19:21:24.225Z",
         "updatedAt": "2026-09-17T20:42:58.762Z",
         "folderId": 443569,
-        "movedAt": "2026-09-18T16:55:37.654Z"
+        "movedAt": "2026-09-21T23:41:56.088Z"
     },
     "#1": {
         "from": "EfIky",
@@ -16,7 +16,9 @@
         "title": "Table 1: Surveyed Properties in the RMZs as of June 2026",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/VeM79/1/",
-        "publishedAt": "2026-09-21T22:48:29.563Z"
+        "publishedAt": "2026-09-21T22:48:29.563Z",
+        "folderId": 443568,
+        "movedAt": "2026-09-21T23:41:57.193Z"
     },
     "table-2-2": {
         "from": "LAaPy",
@@ -24,7 +26,9 @@
         "title": "Table 2: MH_Initial inspections and Commissioner Orders to Abate (COTA)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/qvtE6/1/",
-        "publishedAt": "2026-09-21T22:48:34.736Z"
+        "publishedAt": "2026-09-21T22:48:34.736Z",
+        "folderId": 443569,
+        "movedAt": "2026-09-21T23:41:56.088Z"
     },
     "table-2-3": {
         "from": "mVQJR",
@@ -32,7 +36,9 @@
         "title": "Table 2: EV_Initial inspections and Commissioner Orders to Abate (COTA)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/1tmEe/1/",
-        "publishedAt": "2026-09-21T22:48:39.972Z"
+        "publishedAt": "2026-09-21T22:48:39.972Z",
+        "folderId": 443569,
+        "movedAt": "2026-09-21T23:41:56.088Z"
     },
     "table-2-4": {
         "from": "DKVEV",
@@ -40,7 +46,9 @@
         "title": "Table 2: Brooklyn: BW_Initial inspections and Commissioner Orders to Abate (COTA)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/Gow7X/1/",
-        "publishedAt": "2026-09-21T22:48:44.961Z"
+        "publishedAt": "2026-09-21T22:48:44.961Z",
+        "folderId": 443569,
+        "movedAt": "2026-09-21T23:41:56.088Z"
     },
     "table-2-5": {
         "from": "9i7xg",
@@ -48,7 +56,9 @@
         "title": "Table 2: Initial inspections and Commissioner Orders to Abate (COTA)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/qaDeq/1/",
-        "publishedAt": "2026-09-21T22:48:50.509Z"
+        "publishedAt": "2026-09-21T22:48:50.509Z",
+        "folderId": 443569,
+        "movedAt": "2026-09-21T23:41:56.088Z"
     },
     "table-3-1": {
         "from": "jaV7S",
@@ -56,7 +66,9 @@
         "title": "Table 3: BX_Compliance inspections and summons",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/RnFHG/1/",
-        "publishedAt": "2026-09-21T22:48:55.174Z"
+        "publishedAt": "2026-09-21T22:48:55.174Z",
+        "folderId": 443570,
+        "movedAt": "2026-09-21T23:41:58.332Z"
     },
     "table-3-2": {
         "from": "PaKDr",
@@ -64,7 +76,9 @@
         "title": "Table 3: MH_Compliance inspections and summons",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/96Oxo/1/",
-        "publishedAt": "2026-09-21T22:48:59.802Z"
+        "publishedAt": "2026-09-21T22:48:59.802Z",
+        "folderId": 443570,
+        "movedAt": "2026-09-21T23:41:58.332Z"
     },
     "table-3-3": {
         "from": "pCGDW",
@@ -72,7 +86,9 @@
         "title": "Table 3: EV_Compliance inspections and summons",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/I0UWY/1/",
-        "publishedAt": "2026-09-21T22:49:04.506Z"
+        "publishedAt": "2026-09-21T22:49:04.506Z",
+        "folderId": 443570,
+        "movedAt": "2026-09-21T23:41:58.332Z"
     },
     "table-3-4": {
         "from": "f4qkK",
@@ -80,7 +96,9 @@
         "title": "Table 3: BW_Compliance inspections and summons",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/5ikkr/1/",
-        "publishedAt": "2026-09-21T22:49:09.467Z"
+        "publishedAt": "2026-09-21T22:49:09.467Z",
+        "folderId": 443570,
+        "movedAt": "2026-09-21T23:41:58.332Z"
     },
     "table-3-5": {
         "from": "szLTu",
@@ -88,7 +106,9 @@
         "title": "Table 3: Compliance inspections and summons",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/tnB87/1/",
-        "publishedAt": "2026-09-21T22:49:14.123Z"
+        "publishedAt": "2026-09-21T22:49:14.123Z",
+        "folderId": 443570,
+        "movedAt": "2026-09-21T23:41:58.332Z"
     },
     "table-33-1": {
         "from": "A4dTB",
@@ -96,7 +116,9 @@
         "title": "Table 3a: BX_Compliance Inspections by elevation level (first to fourth+ comp)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/ryVVn/1/",
-        "publishedAt": "2026-09-21T22:49:19.101Z"
+        "publishedAt": "2026-09-21T22:49:19.101Z",
+        "folderId": 443571,
+        "movedAt": "2026-09-21T23:41:59.477Z"
     },
     "table-33-2": {
         "from": "ol6ho",
@@ -104,7 +126,9 @@
         "title": "Table 3a: MH_Compliance Inspections by elevation level (first to fourth+ comp)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/XopBP/1/",
-        "publishedAt": "2026-09-21T22:49:23.894Z"
+        "publishedAt": "2026-09-21T22:49:23.894Z",
+        "folderId": 443571,
+        "movedAt": "2026-09-21T23:41:59.477Z"
     },
     "table-33-3": {
         "from": "JJRpq",
@@ -112,7 +136,9 @@
         "title": "Table 3a: EV_Compliance Inspections by elevation level (first to fourth+ comp)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/QrsFU/1/",
-        "publishedAt": "2026-09-21T22:49:29.104Z"
+        "publishedAt": "2026-09-21T22:49:29.104Z",
+        "folderId": 443571,
+        "movedAt": "2026-09-21T23:41:59.477Z"
     },
     "table-33-4": {
         "from": "18Wbr",
@@ -120,7 +146,9 @@
         "title": "Table 3a: BW_Compliance Inspections by elevation level (first to fourth+ comp)",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/LJOdJ/1/",
-        "publishedAt": "2026-09-21T22:49:34.145Z"
+        "publishedAt": "2026-09-21T22:49:34.145Z",
+        "folderId": 443571,
+        "movedAt": "2026-09-21T23:41:59.477Z"
     },
     "#16": {
         "from": "sPNQu",
@@ -128,7 +156,9 @@
         "title": "Extermination visits by RMZ",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/nwvN7/1/",
-        "publishedAt": "2026-09-21T22:49:39.005Z"
+        "publishedAt": "2026-09-21T22:49:39.005Z",
+        "folderId": 443572,
+        "movedAt": "2026-09-21T23:42:00.682Z"
     },
     "#17": {
         "from": "KhvBm",
@@ -136,7 +166,9 @@
         "title": "Stoppage visits by RMZ",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/kciaO/1/",
-        "publishedAt": "2026-09-21T22:49:44.380Z"
+        "publishedAt": "2026-09-21T22:49:44.380Z",
+        "folderId": 443573,
+        "movedAt": "2026-09-21T23:42:01.793Z"
     },
     "table-5-1": {
         "from": "UqEDs",
@@ -144,7 +176,9 @@
         "title": "Table 5: BX_Initial inspections and City agency referrals",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/3M23F/1/",
-        "publishedAt": "2026-09-21T22:49:50.135Z"
+        "publishedAt": "2026-09-21T22:49:50.135Z",
+        "folderId": 443574,
+        "movedAt": "2026-09-21T23:42:02.958Z"
     },
     "table-5-2": {
         "from": "Jm1m0",
@@ -152,7 +186,9 @@
         "title": "Table 5: MH_Initial inspections and City agency referrals",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/Lqmrz/1/",
-        "publishedAt": "2026-09-21T22:49:54.731Z"
+        "publishedAt": "2026-09-21T22:49:54.731Z",
+        "folderId": 443574,
+        "movedAt": "2026-09-21T23:42:02.958Z"
     },
     "table-5-3": {
         "from": "Lyets",
@@ -160,7 +196,9 @@
         "title": "Table 5:EV_Initial inspections and City agency referrals",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/VHoJ0/1/",
-        "publishedAt": "2026-09-21T22:50:00.108Z"
+        "publishedAt": "2026-09-21T22:50:00.108Z",
+        "folderId": 443574,
+        "movedAt": "2026-09-21T23:42:02.958Z"
     },
     "table-5-4": {
         "from": "RBGAy",
@@ -168,7 +206,9 @@
         "title": "Table 5: BW_Initial inspections and City agency referrals",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/eYnFY/1/",
-        "publishedAt": "2026-09-21T22:50:05.208Z"
+        "publishedAt": "2026-09-21T22:50:05.208Z",
+        "folderId": 443574,
+        "movedAt": "2026-09-21T23:42:02.958Z"
     },
     "table-5-5": {
         "from": "9qR8g",
@@ -176,7 +216,9 @@
         "title": "Table 5: Initial inspections and City agency referrals",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/5VF4y/1/",
-        "publishedAt": "2026-09-21T22:50:09.910Z"
+        "publishedAt": "2026-09-21T22:50:09.910Z",
+        "folderId": 443574,
+        "movedAt": "2026-09-21T23:42:02.958Z"
     },
     "table-5a-1": {
         "from": "VIJdM",
@@ -184,7 +226,9 @@
         "title": "Table 5a: BX_Park and playground inspections",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/m7Huv/1/",
-        "publishedAt": "2026-09-21T22:50:15.035Z"
+        "publishedAt": "2026-09-21T22:50:15.035Z",
+        "folderId": 443575,
+        "movedAt": "2026-09-21T23:42:04.130Z"
     },
     "table-5a-2": {
         "from": "NwWcR",
@@ -192,7 +236,9 @@
         "title": "Table 5a:MH_Park and playground inspections",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/RT6NX/1/",
-        "publishedAt": "2026-09-21T22:50:19.938Z"
+        "publishedAt": "2026-09-21T22:50:19.938Z",
+        "folderId": 443575,
+        "movedAt": "2026-09-21T23:42:04.130Z"
     },
     "table-5a-3": {
         "from": "2AJd4",
@@ -200,7 +246,9 @@
         "title": "Table 5a: EV_Park and playground inspections",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/PuZu4/1/",
-        "publishedAt": "2026-09-21T22:50:25.790Z"
+        "publishedAt": "2026-09-21T22:50:25.790Z",
+        "folderId": 443575,
+        "movedAt": "2026-09-21T23:42:04.130Z"
     },
     "table-5a-4": {
         "from": "qx7lH",
@@ -208,7 +256,9 @@
         "title": "Table 5a: BW_Park and playground inspections",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/ULEHR/1/",
-        "publishedAt": "2026-09-21T22:50:31.863Z"
+        "publishedAt": "2026-09-21T22:50:31.863Z",
+        "folderId": 443575,
+        "movedAt": "2026-09-21T23:42:04.130Z"
     },
     "table-5a-5": {
         "from": "glCLq",
@@ -216,7 +266,9 @@
         "title": "Table 5a: Park and playground inspections",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/mhmtl/1/",
-        "publishedAt": "2026-09-21T22:50:37.055Z"
+        "publishedAt": "2026-09-21T22:50:37.055Z",
+        "folderId": 443575,
+        "movedAt": "2026-09-21T23:42:04.130Z"
     },
     "table-6-1": {
         "from": "5Lv5f",
@@ -224,7 +276,9 @@
         "title": "Table 6: BX_Rodent complaints 311",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/WKLmL/1/",
-        "publishedAt": "2026-09-21T22:50:42.018Z"
+        "publishedAt": "2026-09-21T22:50:42.018Z",
+        "folderId": 443576,
+        "movedAt": "2026-09-21T23:42:05.275Z"
     },
     "table-6-2": {
         "from": "eEaFz",
@@ -232,7 +286,9 @@
         "title": "Table 6: MH_Rodent complaints 311",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/BfUbD/1/",
-        "publishedAt": "2026-09-21T22:50:46.979Z"
+        "publishedAt": "2026-09-21T22:50:46.979Z",
+        "folderId": 443576,
+        "movedAt": "2026-09-21T23:42:05.275Z"
     },
     "table-6-3": {
         "from": "BXHue",
@@ -240,7 +296,9 @@
         "title": "Table 6: EV_Rodent complaints 311",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/0MPec/1/",
-        "publishedAt": "2026-09-21T22:50:51.922Z"
+        "publishedAt": "2026-09-21T22:50:51.922Z",
+        "folderId": 443576,
+        "movedAt": "2026-09-21T23:42:05.275Z"
     },
     "table-6-4": {
         "from": "FgeCo",
@@ -248,7 +306,9 @@
         "title": "Table 6: BW_Rodent complaints 311",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/hZ11Q/1/",
-        "publishedAt": "2026-09-21T22:50:56.795Z"
+        "publishedAt": "2026-09-21T22:50:56.795Z",
+        "folderId": 443576,
+        "movedAt": "2026-09-21T23:42:05.275Z"
     },
     "table-6-5": {
         "from": "HIVhB",
@@ -256,6 +316,8 @@
         "title": "Table 6a: Total RMZ rodent complaints 311",
         "version": 1,
         "url": "https://datawrapper.dwcdn.net/yNExH/1/",
-        "publishedAt": "2026-09-21T22:51:01.682Z"
+        "publishedAt": "2026-09-21T22:51:01.682Z",
+        "folderId": 443577,
+        "movedAt": "2026-09-21T23:42:06.374Z"
     }
 }
