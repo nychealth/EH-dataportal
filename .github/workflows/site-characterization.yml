@@ -125,7 +125,27 @@ jobs:
     steps:
 
       # fetch-depth 1: the harness reads `git rev-parse HEAD` for the record
-      # metadata and needs no history beyond the tip
+      # metadata and needs no history beyond the tip.
+      #
+      # NO `ref:`, AND THAT IS LOAD-BEARING. On a pull_request event
+      # actions/checkout takes refs/pull/N/merge, so the tree under test is the
+      # PR head already merged onto the base branch tip -- which means the
+      # BASELINE it compares against is the BASE BRANCH'S, not the PR branch's
+      # `[verified 2026-09-21 on PR #1500: the job fetched
+      # +597118fa5e...:refs/remotes/pull/1500/merge, and that commit's parents
+      # are 451b2df450 (production's tip) and 5771b1c049 (the PR head)]`.
+      #
+      # Consequence for anyone with an open PR after a re-baseline lands on the
+      # base branch: DO NOT merge the base in to pick the new baseline up. The
+      # next run reads it on its own, once GitHub recomputes the merge ref. That
+      # recomputation is the one step here not measured -- the tell is the
+      # check's own `Diffing structure against the baseline captured at <sha>`
+      # line, which names the baseline commit it actually read. A stale sha
+      # there means a re-run, not a merge.
+      #
+      # Setting `ref:` to the PR head would break both: the site would be
+      # checked without the base's changes, against the PR branch's own
+      # baseline.
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
