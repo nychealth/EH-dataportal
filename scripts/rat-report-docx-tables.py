@@ -41,7 +41,8 @@ THREE THINGS THIS DELIBERATELY DOES NOT DO.
      and two groups carry labels that are wrong in ways only a person should
      correct -- table-5a-5 labels two different columns `Failed (#)`, and the
      table-33 group labels four pairs with case-varying duplicates. The live
-     header row is carried through verbatim.
+     header row is carried through verbatim, except where HEADER_LABELS
+     records a correction a person has already decided.
   3. It does not write to Datawrapper. rat-report-charts.mjs does that, behind
      its own guard against writing to a published chart.
 """
@@ -96,6 +97,14 @@ for _suffix, _cell in ZONE_CELL.items():
     SLOT_MAP[f"table-3-{_suffix}"] = (3, _cell, 2)     # compliance inspections + summons
     SLOT_MAP[f"table-5-{_suffix}"] = (8, _cell, 2)     # initial inspections + agency referrals
     SLOT_MAP[f"table-5a-{_suffix}"] = (9, _cell, 2)    # park and playground inspections
+
+# Header cells `write` fills in, as slot -> {column: label}. The table-6 group's
+# published header leaves the period column blank, and once repush cleared the
+# inherited cell overrides those charts showed a blank heading where ten others
+# show `Period`. Decided 2026-09-22 to write it into the CSV rather than restore
+# an override. The ten others still get `Period` from an override, so their CSV
+# cell stays blank to keep them byte-identical to their live datasets.
+HEADER_LABELS = {f"table-6-{n}": {0: "Period"} for n in range(1, 6)}
 
 # slot1 is the one panel whose rows are zones rather than periods, so it is
 # matched by row label against docx TABLE 1 instead of by period.
@@ -417,6 +426,10 @@ def cmd_write(slots, docx):
         live = read_published(slot)
         header, rows = extract(slot, tables, live)
         live_data = live[1:] if header else live
+        if header:
+            header = list(header)
+            for col, label in HEADER_LABELS.get(slot, {}).items():
+                header[col] = label
         out = ([header] if header else []) + rows
         (NEXT / f"{slot}.csv").write_text(
             "\n".join("\t".join(r) for r in out) + "\n", encoding="utf-8", newline="\n")

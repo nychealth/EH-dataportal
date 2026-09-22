@@ -277,55 +277,55 @@
         "from": "5Lv5f",
         "to": "WKLmL",
         "title": "Table 6: BX_Rodent complaints 311",
-        "version": 3,
-        "url": "https://datawrapper.dwcdn.net/WKLmL/3/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/WKLmL/4/",
         "publishedAt": "2026-09-21T22:50:42.018Z",
         "folderId": 443576,
         "movedAt": "2026-09-21T23:42:05.275Z",
-        "updatedAt": "2026-09-22T03:50:31.011Z"
+        "updatedAt": "2026-09-22T18:13:00.978Z"
     },
     "table-6-2": {
         "from": "eEaFz",
         "to": "BfUbD",
         "title": "Table 6: MH_Rodent complaints 311",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/BfUbD/2/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/BfUbD/3/",
         "publishedAt": "2026-09-21T22:50:46.979Z",
         "folderId": 443576,
         "movedAt": "2026-09-21T23:42:05.275Z",
-        "updatedAt": "2026-09-22T03:50:34.940Z"
+        "updatedAt": "2026-09-22T18:13:05.260Z"
     },
     "table-6-3": {
         "from": "BXHue",
         "to": "0MPec",
         "title": "Table 6: EV_Rodent complaints 311",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/0MPec/2/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/0MPec/3/",
         "publishedAt": "2026-09-21T22:50:51.922Z",
         "folderId": 443576,
         "movedAt": "2026-09-21T23:42:05.275Z",
-        "updatedAt": "2026-09-22T03:50:39.348Z"
+        "updatedAt": "2026-09-22T18:13:08.973Z"
     },
     "table-6-4": {
         "from": "FgeCo",
         "to": "hZ11Q",
         "title": "Table 6: BW_Rodent complaints 311",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/hZ11Q/2/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/hZ11Q/3/",
         "publishedAt": "2026-09-21T22:50:56.795Z",
         "folderId": 443576,
         "movedAt": "2026-09-21T23:42:05.275Z",
-        "updatedAt": "2026-09-22T03:50:43.318Z"
+        "updatedAt": "2026-09-22T18:13:12.988Z"
     },
     "table-6-5": {
         "from": "HIVhB",
         "to": "yNExH",
         "title": "Table 6a: Total RMZ rodent complaints 311",
-        "version": 3,
-        "url": "https://datawrapper.dwcdn.net/yNExH/3/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/yNExH/4/",
         "publishedAt": "2026-09-21T22:51:01.682Z",
         "folderId": 443577,
         "movedAt": "2026-09-21T23:42:06.374Z",
-        "updatedAt": "2026-09-22T04:32:29.185Z"
+        "updatedAt": "2026-09-22T18:13:17.152Z"
     }
 }
