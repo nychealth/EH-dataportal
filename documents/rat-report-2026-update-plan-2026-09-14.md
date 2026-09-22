@@ -21,7 +21,9 @@ defect is fixed, `apply` has run, and the verification below is green. What rema
 publication is not chart work: the partner correction on Table 3a's period coverage, the two
 unanswered partner questions, and the `image:` and D1 items under Open items. See the 2026-09-22
 amendment. *Later the same day: the partner items are all closed or dropped, and Task 3b reopened
-the charts for their headings — see its amendment below and Open items.*
+the charts for their headings — see its amendment below and Open items. Task 3b closed the same
+day (`f64067ca37`): the render gate exits 0 over 32 slots with no STALE READ, and only D1 and
+`image:` remain before publication.*
 
 **Amended 2026-09-17:** Task 3 now specifies *how* the 32 charts get produced — the Datawrapper v3
 API, driven by `scripts/rat-report-charts.mjs`, rather than 32 rounds of the UI. That does not
