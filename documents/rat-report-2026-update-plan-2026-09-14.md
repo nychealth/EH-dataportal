@@ -572,6 +572,8 @@ embed slots Task 3 fills.
 
 ## Task 3: Swap in the 2026 chart embeds — DONE 2026-09-22
 
+*(The original 2026-09-14 instruction, kept as history: Task 2 carried it out and `apply` retired
+it at `85f50d031c`. The page now carries the 2026 ids and no TODO markers.)*
 Blocked on Decision D1 below. Until it is settled, leave the 2025 embed IDs in place so the page
 renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the line above.
 
