@@ -413,6 +413,9 @@ For treatment visits, initial counts presented for treatment visits for the firs
 <strong>Elevated compliances</strong><br>
 For elevated compliances, initial counts in 2024 and 2025 removed inspections marked by the Department to be a city owned property or an establishment type noted by inspector to be government properties. Because ownership change over time and property research is part of the process in communications sent to the property, this restriction in counts reported was removed.
 
+<strong>NYCHA developments</strong><br>
+Counts of NYCHA developments reflect developments still managed by NYCHA and routinely surveyed by the Department as of June 2026. A number of developments in the Bronx Grand Concourse, Brooklyn Bed Stuy & Bushwick and Manhattan Harlem RMZs converted to RAD or private management during fiscal year 2026 (July 2025–June 2026) and are no longer included in this count. Counts in earlier reports are not directly comparable.
+
 </div>
 
 <hr class=my-2>
