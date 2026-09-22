@@ -221,6 +221,15 @@ async function main() {
                 ]);
                 const rendered = await renderedGrid(page, id, ver);
                 const result = compareSlot({ slot, id, ver, rendered, uploaded, hhdr });
+                // After a republish the CDN serves the previous version for a
+                // while AND the /1/ stub keeps naming it, so a run started too
+                // soon reads the pre-fix chart and reports the defect it just
+                // fixed. That happened twice on 2026-09-21. chart-map.json
+                // records the version repush published, so a disagreement means
+                // this reading is stale -- flagged rather than failed, because
+                // a chart edited in the UI moves past the map legitimately.
+                result.mapVersion = map[slot].version ?? null;
+                result.stale = result.mapVersion !== null && String(result.mapVersion) !== String(ver);
                 results.push(result);
 
                 const verdict = result.dataDiffs.length || result.hiddenRows ? "FAIL" : "ok  ";
@@ -249,6 +258,16 @@ async function main() {
     console.log(`rows hidden           : ${results.reduce((n, r) => n + r.hiddenRows, 0)}`);
     console.log(`header cells differing: ${results.reduce((n, r) => n + r.headerDiffs.length, 0)} (reported, not failing)`);
     console.log(`slots comparing 0 cells: ${empty.length} (must be 0)`);
+
+    const stale = results.filter((r) => r.stale);
+    if (stale.length) {
+        console.log(`\nSTALE READ: ${stale.length} slot(s) served a version older than the one`
+            + " chart-map.json records. The CDN lags a republish; wait and re-run before"
+            + " believing either a pass or a failure on these:");
+        for (const r of stale) {
+            console.log(`  ${r.slot} (${r.id}): served v${r.ver}, map says v${r.mapVersion}`);
+        }
+    }
 
     for (const r of results.filter((x) => x.headerDiffs.length)) {
         console.log(`\n${r.slot} (${r.id} v${r.ver}) header text, not a failure:`);
