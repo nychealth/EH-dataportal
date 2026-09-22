@@ -14,9 +14,13 @@ The page currently holds the January–June 2025 report.
 
 **Status as of 2026-09-21:** tasks 0, 1, 1a, 2 and 4 are closed. **Task 3 is the only thing left,
 and it is the only thing gating publication:** the 32 charts have to be produced before the page
-can ship, and its re-run of task 4 follows. All 32 now exist and are filed, but **9 of them render
-cells that are not the data they were given**, so `apply` must not run yet — see the 2026-09-21
-render amendment below. `scripts/rat-report-render-check.mjs` is the gate, and it exits 1 today.
+can ship, and its re-run of task 4 follows.
+
+**Amended 2026-09-22 — Task 3 is complete and the page now carries the 2026 charts.** The override
+defect is fixed, `apply` has run, and the verification below is green. What remains before
+publication is not chart work: the partner correction on Table 3a's period coverage, the two
+unanswered partner questions, and the `image:` and D1 items under Open items. See the 2026-09-22
+amendment.
 
 **Amended 2026-09-17:** Task 3 now specifies *how* the 32 charts get produced — the Datawrapper v3
 API, driven by `scripts/rat-report-charts.mjs`, rather than 32 rounds of the UI. That does not
@@ -84,7 +88,8 @@ embed ids and none of the 32 new ones `[verified 2026-09-21: 0 of 32 new ids and
 appear in the file]`. Nothing defective has reached the site.
 
 **Amended 2026-09-21 — the push is not publishable, and dataset byte-identity is the check that
-cannot see why.** A copied Datawrapper chart inherits `metadata.data.changes`: a list of cell
+cannot see why.** *(All of this was fixed on 2026-09-21/22 — see the amendment below. Kept because
+it is the only record of what the defect was and how it was found.)* A copied Datawrapper chart inherits `metadata.data.changes`: a list of cell
 overrides keyed by `(row, column)` rather than by content, written by whoever hand-edited the
 source chart in the UI over the past two years. The copy keeps them, the 2026 data has more rows
 than the data they were made against, and the override then lands on a different cell. **All 32
@@ -137,14 +142,49 @@ control: each live dataset against a neighbouring slot's CSV matched none]`. The
 `metadata`, not in the data, so no dataset comparison can reach them. Rendering the chart is the
 only check that can, which is what `scripts/rat-report-render-check.mjs` now does.
 
+**Amended 2026-09-22 — the override defect is fixed, and `apply` has run.** Five things landed, in
+this order, and each is recorded in full under Task 3:
+
+1. **Clearing the overrides works, and the fix is in `repush`.** A merge PATCH of
+   `metadata.data.changes` to `[]` empties the array and leaves every sibling key intact —
+   `transpose`, `vertical-header`, `horizontal-header`, `column-format`, `upload-method`
+   `[verified 2026-09-21 on `WKLmL`: 147 overrides → 0, and the render went from 9 wrong cells to
+   0]`. `horizontal-header` surviving is the one that matters; losing it would move every heading
+   rather than fix any cell. `repush` now clears; `push` deliberately does not.
+2. **The `table-6-*` header had been thrown away by a one-line heuristic.**
+   `rat-report-docx-tables.py`'s `is_header` read "a header row carries no digits in any cell", and
+   the `311` in `All Rodent 311` defeated it, so the header was written out as a period row. It is
+   now a disjunction — no digits **or** an empty first cell. Checked against all 32 published
+   datasets: the two tests disagree on exactly 6 slots, the 5 `table-6-*` and `#1`, and each covers
+   what the other misses; the disjunction is right on all 32. Regenerating every `next/*.csv`
+   changed exactly those 5 files by exactly one inserted line each, which is the proof the change
+   did only what it claimed.
+3. **Nine slots repushed** — `table-2-1` through `table-2-4` and the five `table-6-*`. Each chart's
+   `metadata.data` was saved to `scripts/rat-report-charts/changes-backup/<slot>.json` first.
+4. **`apply` ran.** `index.md` now carries the 32 new ids and no TODO markers.
+5. **Task 4 re-ran**: isolated build exit 0, 0 ERROR, 1206 EN pages — the same page count as its
+   2026-09-14 baseline; `npm run smoke:env dev_stage sample` passed 36 pages, the rat report and
+   both archives among them.
+
+**`fitPerPage` has now had its first live exercise**, which the 31-slot push could not give it:
+`zVvyR` went from `perPage` 5 to 7, so its two hidden periods are visible and its `-26%` reads with
+the sign again.
+
+**A visible consequence to decide before publication.** The five `table-6-*` charts now take their
+column headings from the CSV rather than from an override, and the CSV's first header cell is
+empty — so their first column heading is blank where ten other charts show `Period`, supplied by an
+override this run did not touch. Nothing is wrong or missing; it is an inconsistency between the
+`table-6-*` group and the rest. Fixing it means writing `Period` into the header cell rather than
+restoring an override.
+
 | Task | State | Proof that ran |
 |---|---|---|
 | 0. Send numeric discrepancies to partner | **DONE 2026-09-14** — `c73fd0451c` — partner confirmed the tables were right; all five prose figures corrected | each figure re-derived before writing; verified in the rendered HTML, each new figure n=1 and each old one n=0 |
 | 1. Archive the 2025 report to `2025/` | **DONE 2026-09-14** — `6020832f59` | `cmp` exit 0; both 48,992 bytes / 404 lines |
 | 1a. Publish the archives (Decision D2) | **DONE 2026-09-14** — `0122a3c4e4` | isolated build exit 0, 0 ERROR; 3 archive `index.html` in the output where there were none; en sitemap 736 → 739 `<loc>` |
 | 2. Rewrite `index.md` body from the docx | **DONE 2026-09-14** — `6b2055b407` | isolated build exit 0, 0 ERROR, 1206 EN pages; 4 id sets identical to the archived 2025 copy (29 buttons, 34 panels, 37 embeds, 29 `changeTable` calls), control: the 2025 title string differs |
-| 3. Swap in the 2026 chart embeds | **IN PROGRESS — 32 of 32 pushed and filed, 9 not publishable.** `push` created the outstanding 31 and `chart-map.json` records all 32 at `8b90eb8ab4`; `move` filed all 32 into the ten 2026 folders at `e68be85fa4`. **`apply` has not run** and must not until the inherited cell overrides are cleared — 9 charts render values that are not the data they were given, and `table-2-1` also hides 2 rows. The gate is `scripts/rat-report-render-check.mjs`, which exits 1 today. See the two 2026-09-21 amendments. Earlier commits: `repush` at `119207fa01`, the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`, the `folders`/`makefolders`/`move` verbs and `folder-map.json` at `c2840dfbd0`, the one-slot move at `b16c041ab6` | all 32 live datasets byte-identical to their `next/` CSV, control: each against a neighbouring slot's CSV matched none. All 32 rendered in Chromium and diffed against those datasets: 1104 cells compared, 9 slots failing on 64 data cells, 2 rows hidden, 17 header cells differing without failing, 0 slots comparing 0 cells. All 32 queried individually for `folderId` and all 32 report the folder `folder-map.json` maps them to, with the five 2025 sources still in `363786` as the control `[all verified 2026-09-21]` |
-| 4. Build + smoke + interaction check | build, smoke and the interaction check all **DONE 2026-09-14** — smoke list `120dbcd8d9`; re-run after task 3, which edits the same file | see Task 4 |
+| 3. Swap in the 2026 chart embeds | **DONE 2026-09-22.** All 32 pushed (`8b90eb8ab4`), filed into the ten 2026 folders (`e68be85fa4`), 9 corrected for inherited cell overrides (`0f44ca469c` header fix, `fddc5ea9c1` override clearing and repush results, `f4c1f4de35` render-check stale guard), and applied at `85f50d031c` — `index.md` carries the 32 new ids and 0 TODO markers. Earlier commits: `repush` at `119207fa01`, the `#1` title edit at `f5ea98079b`, the figures-to-confirm document at `efcace7a59`, the `folders`/`makefolders`/`move` verbs and `folder-map.json` at `c2840dfbd0`, the one-slot move at `b16c041ab6` | **`scripts/rat-report-render-check.mjs` exits 0**: 32 slots, 1142 cells, 0 data cells wrong, 0 rows hidden, 17 header cells differing without failing, 0 slots comparing 0 cells. All 32 live datasets byte-identical to their `next/` CSV, control: each against a neighbouring slot's CSV matched none. All 32 report the folder `folder-map.json` maps them to, with the five 2025 sources still in `363786` as the control. `apply` verified against `HEAD`'s copy of `index.md` rather than its own printed table: 32 valid `from`→`to` pairs, each slot once, 5 dead ids untouched, a crossed pair rejected `[all verified 2026-09-21/22]` |
+| 4. Build + smoke + interaction check | **RE-RUN DONE 2026-09-22**, against the tree committed as `85f50d031c`, after Task 3's `apply` edited `index.md`. Smoke list `120dbcd8d9` | isolated build exit 0, 0 ERROR, 1206 EN pages — the same count as the 2026-09-14 baseline; `npm run smoke:env dev_stage sample` PASSED 36 pages, including `data-features/rat-report/` and the 2025 and 2024 archives. The interaction check was not re-run: it proves a switcher mechanism Task 3 does not touch, and the slot-to-ID check it recommended instead was run and passed — see the `apply` row |
 
 Update this table in the same commit as the work it describes. Name the commit hash once it
 exists; never write "done, uncommitted" here.
@@ -530,7 +570,7 @@ embed slots Task 3 fills.
 
 ---
 
-## Task 3: Swap in the 2026 chart embeds — IN PROGRESS (32 of 32 pushed and filed; 6 not publishable)
+## Task 3: Swap in the 2026 chart embeds — DONE 2026-09-22
 
 Blocked on Decision D1 below. Until it is settled, leave the 2025 embed IDs in place so the page
 renders, and mark each of the 32 slots with `<!-- TODO 2026 chart -->` on the line above.
@@ -723,8 +763,10 @@ the script", which describes a tree where no API verb had been exercised.
 | The partner-facing figures document | **DONE 2026-09-17** — `efcace7a59`, at `documents/rat-report-2026-figures-to-confirm.md` | 4 arithmetic corrections stated as settled, 31 listed for confirmation; the counts match `check`'s 35 |
 | `push` the other 31 | **DONE 2026-09-21** — `8b90eb8ab4` carries the 32-slot `chart-map.json`. The run reconciles as 31 pushed, 1 already done, 0 blocked | 32 slots, 32 distinct new ids, no new id also appearing as a source id — a swap would put one id on both sides. Every slot has its `next/` CSV. All 32 live datasets byte-identical to their CSV, control: each against a neighbouring slot's CSV matched none `[verified 2026-09-21]` |
 | The rate limit, unknowable from a single-slot run | **ANSWERED 2026-09-21** — no limit reached at this size | no `Retry-After`, `429` or backoff anywhere in the 31-slot run's output. That is a fact about 31 slots at this script's `PAUSE_MS`, not a published limit |
-| Clear the inherited `metadata.data.changes` | **Not started — this is what now gates `apply`** | — |
-| `apply` | **BLOCKED on the overrides above.** All 32 are in `chart-map.json`, so its own precondition is met | — |
+| Clear the inherited `metadata.data.changes` | **DONE 2026-09-21** — `repush` now PATCHes `metadata.data.changes` to `[]`, and saves the chart's `metadata.data` to `changes-backup/<slot>.json` first, since nothing in git restores it. Run over the 9 affected slots — `fddc5ea9c1` | the merge PATCH empties the array and leaves `transpose`, `vertical-header`, `horizontal-header`, `column-format` and `upload-method` all present `[verified on `WKLmL`: 147 → 0]`. The backup path was exercised by deleting `table-6-5.json`, repushing, and confirming it reappeared. **Two of the nine backups hold the already-cleared state, `changes: []`:** `table-6-1` (`WKLmL` was cleared by hand before the backup code existed) and `table-6-5` (overwritten by that exercise). The originals are still on the 2025 source charts: `5Lv5f` holds 147 overrides and `HIVhB` 132, read with `GET /v3/charts/<from>`; control: `table-6-2`'s backup and its source `eEaFz` both hold 162 `[verified 2026-09-22]` |
+| Fix the `table-6-*` header | **DONE 2026-09-21** — `is_header` in `scripts/rat-report-docx-tables.py` is now "no digits **or** empty first cell" — `0f44ca469c` | regenerating all 32 `next/*.csv` changed exactly the 5 `table-6-*` files, one inserted line each, `git diff --stat` 5 files / 5 insertions / 0 deletions. The two tests disagree on exactly 6 of 32 published datasets and the disjunction is right on all 32 |
+| `repush` the 9 corrected slots | **DONE 2026-09-21** — `table-2-1`…`table-2-4`, `table-6-1`…`table-6-5`; versions and `updatedAt` rewritten in `chart-map.json` — `fddc5ea9c1` | 9 of 9 exit 0. The gate then read 32 slots, 1142 cells, **0 data cells wrong, 0 rows hidden**, 17 header cells differing without failing, 0 slots comparing 0 cells |
+| `apply` | **DONE 2026-09-22** — `85f50d031c` — 32 slots rewritten, 32 TODO markers removed | verified independently of the table `apply` prints, which cannot confirm itself: pairing the pre-apply `index.md` from `HEAD` against the post-apply file, all 32 changed embeds are `from`→`to` pairs `chart-map.json` holds, each slot used exactly once, 0 slots missed, and the 5 embeds left untouched are exactly the documented dead ids. 0 TODO, 0 old ids, 32 new ids. Control: a deliberately crossed pair is rejected by the same test |
 
 **Why `repush` had to exist.** `push` skips any slot already in `chart-map.json`, so once a number
 changes, re-running `push` prints "already copied to" and exits 0 having done nothing. `repush`
@@ -838,6 +880,13 @@ that chart** -- and the 2026-09-21 `push` skipped it as already in `chart-map.js
 `fitPerPage` has never run in a case where it changes a value. A `repush table-2-1` both fixes the
 chart and gives the function its first live exercise.
 
+**Both done 2026-09-21.** `repush table-2-1` ran; `zVvyR` v3 reads `perPage` **7** against 7 rows,
+the render check reports 0 rows hidden, and the two periods that were behind the page-2 arrow are
+visible. That is `fitPerPage`'s first live exercise in a case where it changes a value -- every
+other slot it has ever run against already had a `perPage` above its row count, so the PATCH was a
+no-op. The same repush restored the column's minus signs, which the inherited overrides had been
+covering: `zVvyR` row 0 now reads `-26%` rather than `26%`.
+
 **The period-window decision is still open, and pagination is now part of it.** `write` emits all
 7 periods the docx holds; the 2025 charts showed 5 (`table-33-*`, 2; `table-6`, 6). `table-2-1` was
 pushed with all 7. Keeping all 7 requires `perPage` to move with them, which the script now
@@ -858,7 +907,7 @@ What the pushed charts actually draw, counted off the rendered tables rather tha
 |---|---|---|---|
 | `table-2-*`, `table-3-*`, `table-5-*`, `table-5a-*`, `#16`, `#17` | 22 | **7** | Jan-Jun 2023 |
 | `table-33-*` (the docx's Table 3a) | 4 | **4** | Jul-Dec 2024 |
-| `table-6-*` | 5 | **6** | Jul-Dec 2023 |
+| `table-6-*` | 5 | ~~6~~ → **7 as of 2026-09-21** | Jan-Jun 2023 |
 | `#1` | 1 | n/a -- rows are zones, not periods | — |
 
 The two shortfalls have different causes and only one is fixable here.
@@ -867,15 +916,17 @@ The two shortfalls have different causes and only one is fixable here.
   four period rows, back to Jul-Dec 2024, and `write` emits every period the docx holds and trims
   nothing. Seven was never available for this group; the published 2025 charts showed 2. Only the
   partner can supply the missing three.
-- **`table-6-*` has 7 period rows but draws 6, because the first one is being consumed as the
-  column header.** These charts have `horizontal-header: true` while `next/table-6-*.csv` carries
-  no header row, so `Jan-Jun 2023` and its five figures render as the table's headings and the real
-  column names (`All Rodent 311`, `Rat Sighting`, …) are absent `[verified 2026-09-21 in Chromium:
-  `WKLmL`'s `<thead>` reads `Jan-Jun 2023 | 576 | 335 | 64 | 98 | 79`]`. The published 2025
-  `table-6-*` data *did* have a header row -- `published/table-6-1.tsv` line 1 is
-  `<tab>All Rodent 311<tab>Rat Sighting…` -- so this is the extractor dropping a header the chart
-  still expects, not a Datawrapper setting to flip. **This is the same five charts whose rows 1-3
-  also show the previous row's figures**, so one fix pass covers both.
+- ~~**`table-6-*` has 7 period rows but draws 6**~~ — **FIXED 2026-09-21.** These charts have
+  `horizontal-header: true` while `next/table-6-*.csv` carried no header row, so `Jan-Jun 2023` and
+  its five figures rendered as the table's headings and the real column names (`All Rodent 311`,
+  `Rat Sighting`, …) were absent `[verified 2026-09-21 in Chromium: `WKLmL`'s `<thead>` read
+  `Jan-Jun 2023 | 576 | 335 | 64 | 98 | 79`]`. The published 2025 data *did* carry a header row, so
+  the extractor was dropping one the chart still expected. **Root cause: `is_header`'s "no digits
+  in any cell" rule, defeated by the `311` in `All Rodent 311`** — see the 2026-09-22 amendment.
+  Fixed, regenerated and repushed; `WKLmL` now draws its header from the CSV and shows all 7
+  periods `[verified 2026-09-21: 8 rows served, `horizontal-header` true, row 0 is the column
+  names]`. The one residue is cosmetic: the CSV's first header cell is empty, so the first column
+  heading is blank where ten other charts show `Period` from an override.
 
 ##### Filing the 2026 charts — tooling at `c2840dfbd0`, run over all 32 on 2026-09-21
 
@@ -945,25 +996,40 @@ repeats all of them:
   why the 32-slot run was checked chart by chart against the API instead. Confirm the result that
   way, with a chart that must *not* move as the control.
 
-**`push` and `move` have both run — `8b90eb8ab4` and `e68be85fa4`. Do not re-run either.** What is
-left is not on this list, because the script has no verb for it yet. In order:
+**Task 3 is finished as of 2026-09-22 — `push`, `move`, the corrections and `apply` have all run.
+Do not re-run any of them.** Nothing below is pending; the numbered list is kept as the record of
+what was done, in the order it was done.
 
-1. **Decide how the inherited `metadata.data.changes` get cleared**, and whether the script does it
-   on every `push`/`repush` or a one-off verb does it now. **The script never writes
-   `metadata.data` at all today** — its two PATCH bodies carry only `title` and
-   `metadata.{describe,annotate,visualize}` (`rat-report-charts.mjs:533-543` and `:636-640`), and
-   its single read of that object is `horizontal-header` inside `fitPerPage` (`:380`)
-   `[verified 2026-09-21: 0 hits for `data.changes`, `"changes"` or `changes:`; the file's two
-   `changes` hits are the English word in comments at `:111` and `:585`, which is why a bare grep
-   for it is not the check]`. Keep `table-5a-5`'s `Failed (%)` correction when clearing.
-2. **Fix the `table-6-*` header** in `scripts/rat-report-docx-tables.py`'s `write`, so
-   `next/table-6-*.csv` carries the header row the chart's `horizontal-header: true` expects, then
-   `repush` those five.
-3. **`repush table-2-1`**, which both fixes its `perPage` of 5 and gives `fitPerPage` its first
-   live exercise.
-4. **`node scripts/rat-report-render-check.mjs` must exit 0** before `apply`. It stands at 9
-   failing slots and 64 data cells today.
-5. **`node scripts/rat-report-charts.mjs apply`** — rewrites `index.md`, deletes the 32 TODO lines.
+**The one command still worth running** is the gate, any time these charts are touched:
+
+```
+node scripts/rat-report-render-check.mjs        # exits 0 today: 32 slots, 1142 cells, 0 wrong
+```
+
+**Read its STALE READ line before believing either a pass or a failure.** After a republish the
+CDN serves the previous version *and the `/1/` version stub keeps naming it*, so a run started too
+soon reads the chart as it was before the fix. That produced a false 9-cell failure on `WKLmL`
+minutes after it had been corrected `[2026-09-21]`. The check now compares the version it was
+served against the one `chart-map.json` records and says so when they disagree; it warns rather
+than fails, because a chart edited in the UI moves past the map legitimately.
+
+What was done, in order:
+
+1. **Cleared the inherited `metadata.data.changes`, in `repush`.** Before this, the script never
+   wrote `metadata.data` at all — its PATCH bodies carried only `title` and
+   `metadata.{describe,annotate,visualize}`. `repush` now sends `data: { changes: [] }` and saves
+   the chart's `metadata.data` to `changes-backup/<slot>.json` first. `push` was left alone, so a
+   fresh copy keeps whatever headings its source's overrides supply; repushing such a slot drops
+   them, and `table-5a-5`'s `Failed (%)` is the one to re-supply in the CSV header if it is ever
+   repushed.
+2. **Fixed the `table-6-*` header** — `is_header` in `scripts/rat-report-docx-tables.py`, not
+   `write`, which is where the row was being discarded. Regenerated all 32 `next/*.csv` and
+   repushed those five.
+3. **`repush table-2-1`** — `perPage` 5 → 7, and `fitPerPage`'s first live exercise.
+4. **`node scripts/rat-report-render-check.mjs`** — exits 0: 32 slots, 1142 cells, 0 data cells
+   wrong, 0 rows hidden.
+5. **`node scripts/rat-report-charts.mjs apply`** — 32 slots rewritten, 32 TODO markers removed,
+   verified against `HEAD`'s copy rather than against the table `apply` prints.
 
 Steps 1-3 need `DATAWRAPPER_TOKEN` exported; step 4 does not, and reads the public CDN only.
 Remember PowerShell has no inline env-var prefix:
@@ -1340,21 +1406,25 @@ is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
   Task 2.
 - **A correction owed to the partner on period coverage.**
   `rat-report-2026-figures-to-confirm.md:87` told them every table would show all seven periods
-  back to Jan-Jun 2023. `table-33-*` can show only 4, because the docx holds only 4 for that group,
-  so the missing three are theirs to supply if they want them. `table-6-*` will show 6 until the
-  dropped header row is fixed on our side. Detail and the counts are under Task 3's "Period
-  coverage" — this is a correction to send, not a question to ask.
+  back to Jan-Jun 2023. **`table-33-*` shows 4**, because the docx holds only 4 for that group, so
+  the missing three are theirs to supply if they want them. `table-6-*` was also short; that was
+  ours and is fixed — it shows 7 as of 2026-09-21, so the correction is now about Table 3a alone.
+  Detail and counts under Task 3's "Period coverage" — a correction to send, not a question.
+- **Whether the five `table-6-*` charts should show `Period` as their first column heading.**
+  They now take headings from the CSV, whose first header cell is empty, so that heading is blank;
+  ten other charts show `Period` from an inherited override. Cosmetic and inconsistent rather than
+  wrong. Fixing it means writing `Period` into the header cell, not restoring an override.
 - Their offer to fix the duplicated column headings in `table-5a-5` and the `table-33-*` group is
   still unanswered — and note `table-5a-5`'s `Failed (#)` duplicate is *already* corrected to
   `Failed (%)` on the live 2026 chart by an inherited cell override, so an answer there changes
   what the override-clearing pass has to preserve.
-- **A Datawrapper API token, and whether the account holding it can reach the 32 charts.** Task 3's
-  route needs one; nothing in this repo indicates whether the team has API access. No file under
-  the repo names `api.datawrapper.de`, the R client `DatawRappr` or the Python `datawrapper`
-  package `[verified 2026-09-17: that six-term grep returns 0 files; control: a plain
-  case-insensitive `datawrapper` returns 370]`, so this would be the first API client here and
-  there is no existing house harness to copy. If the 32 originals sit in a team folder, the token's
-  user needs access to that folder, not just an account.
+- ~~**A Datawrapper API token, and whether the account holding it can reach the 32 charts.**~~
+  **Closed 2026-09-21.** A token was created on 2026-09-17 and has since driven `pull`, `push`
+  over all 32 slots, `repush`, `folders`, `makefolders` and `move` against the live API, so both
+  halves are answered: the team has API access, and the account reaches the originals. The token
+  is not recorded anywhere in this repo by design — see Environment. This was still the first API
+  client in the repo, which is why `rat-report-charts.mjs` carries its own conventions rather than
+  following a house harness.
 - ~~Nothing links to the archives.~~ **Closed 2026-09-14** — `c73fd0451c`. A
   `### Previous reports` block at the end of `index.md` links all three, mirroring
   `content/data-features/heat-report/10-conclusion.md:48-52`, but with this page's own
