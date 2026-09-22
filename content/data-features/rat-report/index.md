@@ -71,8 +71,7 @@ The report summarizes data for the first seven 6-month rounds (January 2023 - Ju
 
 <div class="border-top border-bottom my-4 py-2">
 <strong>Table 1: Inspected and Surveyed Properties in the RMZs as of June 2026</strong>
-<!-- TODO 2026 chart -->
-<div style="min-height:307px" id="datawrapper-vis-EfIky"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/EfIky/embed.js" charset="utf-8" data-target="#datawrapper-vis-EfIky"></script><noscript><img src="https://datawrapper.dwcdn.net/EfIky/full.png" alt="Table" /></noscript></div>
+<div style="min-height:307px" id="datawrapper-vis-VeM79"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/VeM79/embed.js" charset="utf-8" data-target="#datawrapper-vis-VeM79"></script><noscript><img src="https://datawrapper.dwcdn.net/VeM79/full.png" alt="Table" /></noscript></div>
 </div>
 
 #### 1. The metrics the Department is using to measure the efficacy of rat mitigation in such zones, including a description of whether the department has seen improvement, as measured by such metrics, and, if so, how such improvement has been achieved.
@@ -104,23 +103,18 @@ Overall, in the first six months of 2026 in the four RMZs, the Department issued
 <button class="btn btn-sm btn-outline-primary table2Buttons" id="2-5" onclick="changeTable(2,5)">Totals</button>
 
    <div id="table-2-1" class="table2tables">
-      <!-- TODO 2026 chart -->
-      <div style="min-height:289px" id="datawrapper-vis-bMzMo"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/bMzMo/embed.js" charset="utf-8" data-target="#datawrapper-vis-bMzMo"></script><noscript><img src="https://datawrapper.dwcdn.net/bMzMo/full.png" alt="Table" /></noscript></div>
+      <div style="min-height:289px" id="datawrapper-vis-zVvyR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/zVvyR/embed.js" charset="utf-8" data-target="#datawrapper-vis-zVvyR"></script><noscript><img src="https://datawrapper.dwcdn.net/zVvyR/full.png" alt="Table" /></noscript></div>
    </div>
    <div id="table-2-2" class="table2tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-LAaPy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LAaPy/embed.js" charset="utf-8" data-target="#datawrapper-vis-LAaPy"></script><noscript><img src="https://datawrapper.dwcdn.net/LAaPy/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-qvtE6"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qvtE6/embed.js" charset="utf-8" data-target="#datawrapper-vis-qvtE6"></script><noscript><img src="https://datawrapper.dwcdn.net/qvtE6/full.png" alt="Table" /></noscript></div>
 	</div>
    <div id="table-2-3" class="table2tables hide">
-   		<!-- TODO 2026 chart -->
-   		<div style="min-height:289px" id="datawrapper-vis-mVQJR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mVQJR/embed.js" charset="utf-8" data-target="#datawrapper-vis-mVQJR"></script><noscript><img src="https://datawrapper.dwcdn.net/mVQJR/full.png" alt="Table" /></noscript></div></div>
+   		<div style="min-height:289px" id="datawrapper-vis-1tmEe"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/1tmEe/embed.js" charset="utf-8" data-target="#datawrapper-vis-1tmEe"></script><noscript><img src="https://datawrapper.dwcdn.net/1tmEe/full.png" alt="Table" /></noscript></div></div>
    	<div id="table-2-4" class="table2tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-DKVEV"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/DKVEV/embed.js" charset="utf-8" data-target="#datawrapper-vis-DKVEV"></script><noscript><img src="https://datawrapper.dwcdn.net/DKVEV/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-Gow7X"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Gow7X/embed.js" charset="utf-8" data-target="#datawrapper-vis-Gow7X"></script><noscript><img src="https://datawrapper.dwcdn.net/Gow7X/full.png" alt="Table" /></noscript></div>
    </div>
     <div id="table-2-5" class="table2tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-9i7xg"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9i7xg/embed.js" charset="utf-8" data-target="#datawrapper-vis-9i7xg"></script><noscript><img src="https://datawrapper.dwcdn.net/9i7xg/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-qaDeq"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qaDeq/embed.js" charset="utf-8" data-target="#datawrapper-vis-qaDeq"></script><noscript><img src="https://datawrapper.dwcdn.net/qaDeq/full.png" alt="Table" /></noscript></div>
    </div>
 </div>
 <strong>II.&ensp;Summonses</strong>
@@ -141,23 +135,18 @@ Table 3 shows the total number of compliance inspections for each RMZ in a 6-mon
 
 <!-- TABLE 3 -->
    <div id="table-3-1" class="table3tables">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-jaV7S"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/jaV7S/embed.js" charset="utf-8" data-target="#datawrapper-vis-jaV7S"></script><noscript><img src="https://datawrapper.dwcdn.net/jaV7S/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-RnFHG"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RnFHG/embed.js" charset="utf-8" data-target="#datawrapper-vis-RnFHG"></script><noscript><img src="https://datawrapper.dwcdn.net/RnFHG/full.png" alt="Table" /></noscript></div>
    </div>
 <div id="table-3-2" class="table3tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:307px" id="datawrapper-vis-PaKDr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/PaKDr/embed.js" charset="utf-8" data-target="#datawrapper-vis-PaKDr"></script><noscript><img src="https://datawrapper.dwcdn.net/PaKDr/full.png" alt="Table" /></noscript></div>
+<div style="min-height:307px" id="datawrapper-vis-96Oxo"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/96Oxo/embed.js" charset="utf-8" data-target="#datawrapper-vis-96Oxo"></script><noscript><img src="https://datawrapper.dwcdn.net/96Oxo/full.png" alt="Table" /></noscript></div>
    </div>
 <div id="table-3-3" class="table3tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-pCGDW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/pCGDW/embed.js" charset="utf-8" data-target="#datawrapper-vis-pCGDW"></script><noscript><img src="https://datawrapper.dwcdn.net/pCGDW/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-I0UWY"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/I0UWY/embed.js" charset="utf-8" data-target="#datawrapper-vis-I0UWY"></script><noscript><img src="https://datawrapper.dwcdn.net/I0UWY/full.png" alt="Table" /></noscript></div>
    </div>
 <div id="table-3-4" class="table3tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-f4qkK"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/f4qkK/embed.js" charset="utf-8" data-target="#datawrapper-vis-f4qkK"></script><noscript><img src="https://datawrapper.dwcdn.net/f4qkK/full.png" alt="Table" /></noscript></div></div>
+<div style="min-height:306px" id="datawrapper-vis-5ikkr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5ikkr/embed.js" charset="utf-8" data-target="#datawrapper-vis-5ikkr"></script><noscript><img src="https://datawrapper.dwcdn.net/5ikkr/full.png" alt="Table" /></noscript></div></div>
 <div id="table-3-5" class="table3tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:307px" id="datawrapper-vis-szLTu"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/szLTu/embed.js" charset="utf-8" data-target="#datawrapper-vis-szLTu"></script><noscript><img src="https://datawrapper.dwcdn.net/szLTu/full.png" alt="Table" /></noscript></div>
+<div style="min-height:307px" id="datawrapper-vis-tnB87"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/tnB87/embed.js" charset="utf-8" data-target="#datawrapper-vis-tnB87"></script><noscript><img src="https://datawrapper.dwcdn.net/tnB87/full.png" alt="Table" /></noscript></div>
 </div>
 </div>
 
@@ -175,20 +164,16 @@ Table 3a shows the total number of compliance inspections for each RMZ in a 6-mo
 <button class="btn btn-sm btn-outline-primary table33Buttons" id="33-4" onclick="changeTable(33,4)">BK: Bed-Stuy/Bushwick</button>
 
    <div id="table-33-1" class="table33tables">
-<!-- TODO 2026 chart -->
-<div style="min-height:277px" id="datawrapper-vis-A4dTB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/A4dTB/embed.js" charset="utf-8" data-target="#datawrapper-vis-A4dTB"></script><noscript><img src="https://datawrapper.dwcdn.net/A4dTB/full.png" alt="Table 3a: BX_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
+<div style="min-height:277px" id="datawrapper-vis-ryVVn"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ryVVn/embed.js" charset="utf-8" data-target="#datawrapper-vis-ryVVn"></script><noscript><img src="https://datawrapper.dwcdn.net/ryVVn/full.png" alt="Table 3a: BX_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
    </div>
 <div id="table-33-2" class="table33tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:277px" id="datawrapper-vis-ol6ho"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ol6ho/embed.js" charset="utf-8" data-target="#datawrapper-vis-ol6ho"></script><noscript><img src="https://datawrapper.dwcdn.net/ol6ho/full.png" alt="Table 3a: MH_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
+<div style="min-height:277px" id="datawrapper-vis-XopBP"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/XopBP/embed.js" charset="utf-8" data-target="#datawrapper-vis-XopBP"></script><noscript><img src="https://datawrapper.dwcdn.net/XopBP/full.png" alt="Table 3a: MH_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
    </div>
 <div id="table-33-3" class="table33tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:277px" id="datawrapper-vis-JJRpq"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/JJRpq/embed.js" charset="utf-8" data-target="#datawrapper-vis-JJRpq"></script><noscript><img src="https://datawrapper.dwcdn.net/JJRpq/full.png" alt="Table 3a: EV_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
+<div style="min-height:277px" id="datawrapper-vis-QrsFU"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/QrsFU/embed.js" charset="utf-8" data-target="#datawrapper-vis-QrsFU"></script><noscript><img src="https://datawrapper.dwcdn.net/QrsFU/full.png" alt="Table 3a: EV_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div>
    </div>
 <div id="table-33-4" class="table33tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:277px" id="datawrapper-vis-18Wbr"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/18Wbr/embed.js" charset="utf-8" data-target="#datawrapper-vis-18Wbr"></script><noscript><img src="https://datawrapper.dwcdn.net/18Wbr/full.png" alt="Table 3a: BW_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div></div>
+<div style="min-height:277px" id="datawrapper-vis-LJOdJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/LJOdJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-LJOdJ"></script><noscript><img src="https://datawrapper.dwcdn.net/LJOdJ/full.png" alt="Table 3a: BW_Compliance Inspections by elevation level (first to fourth+ comp) (Table)" /></noscript></div></div>
 </div>
 
 <strong>III.&ensp;Visits by a Pest Management Professional</strong>
@@ -202,14 +187,12 @@ Table 4 and 4a provides a count of visits by the Department’s team of pest man
 <div class="border-top mb-4 py-2">
 <strong>Table 4: Pest Management Visits by RMZ*</strong>
 
-<!-- TODO 2026 chart -->
-<div style="min-height:415px" id="datawrapper-vis-sPNQu"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/sPNQu/embed.js" charset="utf-8" data-target="#datawrapper-vis-sPNQu"></script><noscript><img src="https://datawrapper.dwcdn.net/sPNQu/full.png" alt="Pest management visits by RMZ (Table)" /></noscript></div>
+<div style="min-height:415px" id="datawrapper-vis-nwvN7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/nwvN7/embed.js" charset="utf-8" data-target="#datawrapper-vis-nwvN7"></script><noscript><img src="https://datawrapper.dwcdn.net/nwvN7/full.png" alt="Pest management visits by RMZ (Table)" /></noscript></div>
 </div>
 <div class=" border-bottom mb-4 py-2">
 <strong>Table 4a: Stoppage Visits by RMZ*</strong>
 
-<!-- TODO 2026 chart -->
-<div style="min-height:415px" id="datawrapper-vis-KhvBm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/KhvBm/embed.js" charset="utf-8" data-target="#datawrapper-vis-KhvBm"></script><noscript><img src="https://datawrapper.dwcdn.net/KhvBm/full.png" alt="Stoppage visits by RMZ (Table)" /></noscript></div>
+<div style="min-height:415px" id="datawrapper-vis-kciaO"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/kciaO/embed.js" charset="utf-8" data-target="#datawrapper-vis-kciaO"></script><noscript><img src="https://datawrapper.dwcdn.net/kciaO/full.png" alt="Stoppage visits by RMZ (Table)" /></noscript></div>
 
 </div>
 
@@ -261,27 +244,22 @@ In the first six months of 2026 in the four RMZs, 1,228 city agency referrals (3
 <button class="btn btn-sm btn-outline-primary table5Buttons" id="5-5" onclick="changeTable(5,5)">Totals</button>
 
 <div id="table-5-1" class="table5tables">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-UqEDs"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/UqEDs/embed.js" charset="utf-8" data-target="#datawrapper-vis-UqEDs"></script><noscript><img src="https://datawrapper.dwcdn.net/UqEDs/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-3M23F"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/3M23F/embed.js" charset="utf-8" data-target="#datawrapper-vis-3M23F"></script><noscript><img src="https://datawrapper.dwcdn.net/3M23F/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5-2" class="table5tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-Jm1m0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Jm1m0/embed.js" charset="utf-8" data-target="#datawrapper-vis-Jm1m0"></script><noscript><img src="https://datawrapper.dwcdn.net/Jm1m0/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-Lqmrz"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Lqmrz/embed.js" charset="utf-8" data-target="#datawrapper-vis-Lqmrz"></script><noscript><img src="https://datawrapper.dwcdn.net/Lqmrz/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5-3" class="table5tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-Lyets"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/Lyets/embed.js" charset="utf-8" data-target="#datawrapper-vis-Lyets"></script><noscript><img src="https://datawrapper.dwcdn.net/Lyets/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-VHoJ0"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/VHoJ0/embed.js" charset="utf-8" data-target="#datawrapper-vis-VHoJ0"></script><noscript><img src="https://datawrapper.dwcdn.net/VHoJ0/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5-4" class="table5tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-RBGAy"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RBGAy/embed.js" charset="utf-8" data-target="#datawrapper-vis-RBGAy"></script><noscript><img src="https://datawrapper.dwcdn.net/RBGAy/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-eYnFY"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eYnFY/embed.js" charset="utf-8" data-target="#datawrapper-vis-eYnFY"></script><noscript><img src="https://datawrapper.dwcdn.net/eYnFY/full.png" alt="Table" /></noscript></div>
 	</div>
 <div id="table-5-5" class="table5tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:306px" id="datawrapper-vis-9qR8g"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9qR8g/embed.js" charset="utf-8" data-target="#datawrapper-vis-9qR8g"></script><noscript><img src="https://datawrapper.dwcdn.net/9qR8g/full.png" alt="Table" /></noscript></div>
+<div style="min-height:306px" id="datawrapper-vis-5VF4y"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5VF4y/embed.js" charset="utf-8" data-target="#datawrapper-vis-5VF4y"></script><noscript><img src="https://datawrapper.dwcdn.net/5VF4y/full.png" alt="Table" /></noscript></div>
 	</div>
 </div>
 
@@ -302,27 +280,22 @@ In the first six months of 2026 in the four RMZs, 156 NYC DPR properties failed 
 <button class="btn btn-sm btn-outline-primary table5aButtons" id="5a-5" onclick="changeTable('5a',5)">Totals</button>
 
 <div id="table-5a-1" class="table5atables">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-VIJdM"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/VIJdM/embed.js" charset="utf-8" data-target="#datawrapper-vis-VIJdM"></script><noscript><img src="https://datawrapper.dwcdn.net/VIJdM/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-m7Huv"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/m7Huv/embed.js" charset="utf-8" data-target="#datawrapper-vis-m7Huv"></script><noscript><img src="https://datawrapper.dwcdn.net/m7Huv/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5a-2" class="table5atables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-NwWcR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/NwWcR/embed.js" charset="utf-8" data-target="#datawrapper-vis-NwWcR"></script><noscript><img src="https://datawrapper.dwcdn.net/NwWcR/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-RT6NX"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/RT6NX/embed.js" charset="utf-8" data-target="#datawrapper-vis-RT6NX"></script><noscript><img src="https://datawrapper.dwcdn.net/RT6NX/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5a-3" class="table5atables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-2AJd4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/2AJd4/embed.js" charset="utf-8" data-target="#datawrapper-vis-2AJd4"></script><noscript><img src="https://datawrapper.dwcdn.net/2AJd4/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-PuZu4"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/PuZu4/embed.js" charset="utf-8" data-target="#datawrapper-vis-PuZu4"></script><noscript><img src="https://datawrapper.dwcdn.net/PuZu4/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-5a-4" class="table5atables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-qx7lH"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/qx7lH/embed.js" charset="utf-8" data-target="#datawrapper-vis-qx7lH"></script><noscript><img src="https://datawrapper.dwcdn.net/qx7lH/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-ULEHR"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/ULEHR/embed.js" charset="utf-8" data-target="#datawrapper-vis-ULEHR"></script><noscript><img src="https://datawrapper.dwcdn.net/ULEHR/full.png" alt="Table" /></noscript></div>
 	</div>
 <div id="table-5a-5" class="table5atables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:289px" id="datawrapper-vis-glCLq"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/glCLq/embed.js" charset="utf-8" data-target="#datawrapper-vis-glCLq"></script><noscript><img src="https://datawrapper.dwcdn.net/glCLq/full.png" alt="Table" /></noscript></div>
+<div style="min-height:289px" id="datawrapper-vis-mhmtl"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/mhmtl/embed.js" charset="utf-8" data-target="#datawrapper-vis-mhmtl"></script><noscript><img src="https://datawrapper.dwcdn.net/mhmtl/full.png" alt="Table" /></noscript></div>
 	</div>
 </div>
 
@@ -342,27 +315,22 @@ Table 6 and 6a shows the number of 311 complaints received in each of the four R
 <button class="btn btn-sm btn-outline-primary table6Buttons" id="6-5" onclick="changeTable(6,5)">Totals</button>
 
 <div id="table-6-1" class="table6tables">
-<!-- TODO 2026 chart -->
-<div style="min-height:323px" id="datawrapper-vis-5Lv5f"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5Lv5f/embed.js" charset="utf-8" data-target="#datawrapper-vis-5Lv5f"></script><noscript><img src="https://datawrapper.dwcdn.net/5Lv5f/full.png" alt="Table" /></noscript></div>
+<div style="min-height:323px" id="datawrapper-vis-WKLmL"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/WKLmL/embed.js" charset="utf-8" data-target="#datawrapper-vis-WKLmL"></script><noscript><img src="https://datawrapper.dwcdn.net/WKLmL/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-6-2" class="table6tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:323px" id="datawrapper-vis-eEaFz"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/eEaFz/embed.js" charset="utf-8" data-target="#datawrapper-vis-eEaFz"></script><noscript><img src="https://datawrapper.dwcdn.net/eEaFz/full.png" alt="Table" /></noscript></div>
+<div style="min-height:323px" id="datawrapper-vis-BfUbD"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BfUbD/embed.js" charset="utf-8" data-target="#datawrapper-vis-BfUbD"></script><noscript><img src="https://datawrapper.dwcdn.net/BfUbD/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-6-3" class="table6tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:323px" id="datawrapper-vis-BXHue"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/BXHue/embed.js" charset="utf-8" data-target="#datawrapper-vis-BXHue"></script><noscript><img src="https://datawrapper.dwcdn.net/BXHue/full.png" alt="Table" /></noscript></div>
+<div style="min-height:323px" id="datawrapper-vis-0MPec"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/0MPec/embed.js" charset="utf-8" data-target="#datawrapper-vis-0MPec"></script><noscript><img src="https://datawrapper.dwcdn.net/0MPec/full.png" alt="Table" /></noscript></div>
 	</div>
 
 <div id="table-6-4" class="table6tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:323px" id="datawrapper-vis-FgeCo"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/FgeCo/embed.js" charset="utf-8" data-target="#datawrapper-vis-FgeCo"></script><noscript><img src="https://datawrapper.dwcdn.net/FgeCo/full.png" alt="Table" /></noscript></div>
+<div style="min-height:323px" id="datawrapper-vis-hZ11Q"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/hZ11Q/embed.js" charset="utf-8" data-target="#datawrapper-vis-hZ11Q"></script><noscript><img src="https://datawrapper.dwcdn.net/hZ11Q/full.png" alt="Table" /></noscript></div>
 	</div>
 <div id="table-6-5" class="table6tables hide">
-<!-- TODO 2026 chart -->
-<div style="min-height:322px" id="datawrapper-vis-HIVhB"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/HIVhB/embed.js" charset="utf-8" data-target="#datawrapper-vis-HIVhB"></script><noscript><img src="https://datawrapper.dwcdn.net/HIVhB/full.png" alt="Table" /></noscript></div>
+<div style="min-height:322px" id="datawrapper-vis-yNExH"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/yNExH/embed.js" charset="utf-8" data-target="#datawrapper-vis-yNExH"></script><noscript><img src="https://datawrapper.dwcdn.net/yNExH/full.png" alt="Table" /></noscript></div>
 </div>
 </div>
 
