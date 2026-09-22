@@ -641,8 +641,16 @@ async function cmdRepush(slots, only) {
         // restore them and re-running this verb cannot recreate them, so
         // clearing without saving would be the one irreversible thing this
         // script does. Written per slot, before the write that destroys it.
-        mkdirSync(CHANGES_BACKUP, { recursive: true });
-        writeJson(`${CHANGES_BACKUP}/${slot}.json`, fresh?.metadata?.data ?? {});
+        //
+        // Skipped when the chart has no overrides left: there is nothing to
+        // lose, and writing would replace the backup of an earlier repush with
+        // `changes: []` -- which is how two of the nine first backups ended up
+        // empty on 2026-09-22. The originals then survive only on the source
+        // chart this one was copied from (chart-map.json `from`).
+        if ((fresh?.metadata?.data?.changes ?? []).length) {
+            mkdirSync(CHANGES_BACKUP, { recursive: true });
+            writeJson(`${CHANGES_BACKUP}/${slot}.json`, fresh.metadata.data);
+        }
 
         // Drop the cell overrides this chart inherited from the one it was
         // copied from. Datawrapper stores a UI cell edit in
