@@ -1,0 +1,17 @@
+{
+    "changes": [],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": true,
+    "column-format": {
+        "X.3": {
+            "type": "number",
+            "ignore": false,
+            "number-append": "",
+            "number-format": "auto",
+            "number-divisor": 0,
+            "number-prepend": ""
+        }
+    },
+    "upload-method": "copy"
+}

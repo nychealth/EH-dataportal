@@ -1,0 +1,387 @@
+{
+    "changes": [
+        {
+            "id": "-SnKFtltOP",
+            "row": 1,
+            "time": 1732206964596,
+            "value": "Jan-Jun 2023",
+            "column": 0,
+            "ignored": false,
+            "previous": "Jan-Jun 2023 9"
+        },
+        {
+            "id": "fMd3nzv2TE",
+            "row": 2,
+            "time": 1732206965620,
+            "value": "Jul-Dec 2023",
+            "column": 0,
+            "ignored": false,
+            "previous": "Jul-Dec 2023 9"
+        },
+        {
+            "id": "CGlOTQFZMM",
+            "row": 3,
+            "time": 1732206967084,
+            "value": "Jan-Jun 2024",
+            "column": 0,
+            "ignored": false,
+            "previous": "Jan-Jun 2024 9"
+        },
+        {
+            "id": "DNFDQr3kTG",
+            "row": 0,
+            "time": 1732206969491,
+            "value": "Period",
+            "column": 0,
+            "ignored": false,
+            "previous": "X.1"
+        },
+        {
+            "id": "aLBwGFohAc",
+            "row": 0,
+            "time": 1732206973075,
+            "value": "Initial inspections",
+            "column": 1,
+            "ignored": false,
+            "previous": "X.2"
+        },
+        {
+            "id": "MEECXHBkGk",
+            "row": 0,
+            "time": 1732206978964,
+            "value": "COTA #",
+            "column": 2,
+            "ignored": false,
+            "previous": "X.3"
+        },
+        {
+            "id": "zhUhiKtH0w",
+            "row": 0,
+            "time": 1732207000813,
+            "value": "COTA (#)",
+            "column": 2,
+            "ignored": false,
+            "previous": "COTA #"
+        },
+        {
+            "id": "5ShDw8MT4L",
+            "row": 1,
+            "time": 1732207014668,
+            "value": "627",
+            "column": 2,
+            "ignored": false,
+            "previous": "627 (26%)"
+        },
+        {
+            "id": "eCHy0fj3Pp",
+            "row": 1,
+            "time": 1732207017539,
+            "value": "26%",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "OuRGD48aBS",
+            "row": 2,
+            "time": 1732207022084,
+            "value": "26%",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "YHii19vzHF",
+            "row": 3,
+            "time": 1732207023843,
+            "value": "30%",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "zH6GD5IEhP",
+            "row": 2,
+            "time": 1732207027300,
+            "value": "561",
+            "column": 2,
+            "ignored": false,
+            "previous": "561 (26%)"
+        },
+        {
+            "id": "E4cC6EkoVH",
+            "row": 3,
+            "time": 1732207029547,
+            "value": "862",
+            "column": 2,
+            "ignored": false,
+            "previous": "862 (30%)"
+        },
+        {
+            "id": "SSCl73UAJ0",
+            "row": 1,
+            "time": 1732207048540,
+            "value": "9975",
+            "column": 1,
+            "ignored": false,
+            "previous": "975 2"
+        },
+        {
+            "id": "RH0ZIAbnzp",
+            "row": 2,
+            "time": 1732207054924,
+            "value": "9758",
+            "column": 1,
+            "ignored": false,
+            "previous": "758 2"
+        },
+        {
+            "id": "KNwPxLds2G",
+            "row": 3,
+            "time": 1732207063172,
+            "value": "9681",
+            "column": 1,
+            "ignored": false,
+            "previous": "681 2"
+        },
+        {
+            "id": "e-PpQ9kK07",
+            "row": 1,
+            "time": 1732207071804,
+            "value": "2627",
+            "column": 2,
+            "ignored": false,
+            "previous": "627"
+        },
+        {
+            "id": "V5z3WmX5gA",
+            "row": 2,
+            "time": 1732207076908,
+            "value": "2651",
+            "column": 2,
+            "ignored": false,
+            "previous": "561"
+        },
+        {
+            "id": "EzpRAJujm6",
+            "row": 3,
+            "time": 1732207083700,
+            "value": "2862",
+            "column": 2,
+            "ignored": false,
+            "previous": "862"
+        },
+        {
+            "id": "YlBwEKp0Ng",
+            "row": 1,
+            "time": 1732207562054,
+            "value": "2,627",
+            "column": 2,
+            "ignored": false,
+            "previous": "2627"
+        },
+        {
+            "id": "j1YvmG-8Wz",
+            "row": 2,
+            "time": 1732207563342,
+            "value": "2,651",
+            "column": 2,
+            "ignored": false,
+            "previous": "2651"
+        },
+        {
+            "id": "lTVWOsLXeI",
+            "row": 3,
+            "time": 1732207565094,
+            "value": "2,862",
+            "column": 2,
+            "ignored": false,
+            "previous": "2862"
+        },
+        {
+            "id": "FLsu6svCxH",
+            "row": 0,
+            "time": 1732207854693,
+            "value": "COTA",
+            "column": 2,
+            "ignored": false,
+            "previous": "COTA (#)"
+        },
+        {
+            "id": "qP4uUXxPHs",
+            "row": 1,
+            "time": 1732210813959,
+            "value": "5305",
+            "column": 1,
+            "ignored": false,
+            "previous": "9975"
+        },
+        {
+            "id": "_ztPdvjWX6",
+            "row": 2,
+            "time": 1732210817303,
+            "value": "5123",
+            "column": 1,
+            "ignored": false,
+            "previous": "9758"
+        },
+        {
+            "id": "aKQUpW1mg9",
+            "row": 3,
+            "time": 1732210825174,
+            "value": "4943",
+            "column": 1,
+            "ignored": false,
+            "previous": "9681"
+        },
+        {
+            "id": "wCwI1mrHWW",
+            "row": 1,
+            "time": 1732210830711,
+            "value": "779",
+            "column": 2,
+            "ignored": false,
+            "previous": "2,627"
+        },
+        {
+            "id": "WiffUFtnSF",
+            "row": 2,
+            "time": 1732210834118,
+            "value": "783",
+            "column": 2,
+            "ignored": false,
+            "previous": "2,651"
+        },
+        {
+            "id": "LmiE2m28Ks",
+            "row": 3,
+            "time": 1732210839349,
+            "value": "573",
+            "column": 2,
+            "ignored": false,
+            "previous": "2,862"
+        },
+        {
+            "id": "jNWVo6uyGL",
+            "row": 1,
+            "time": 1732210848150,
+            "value": "15",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "7CjoPkVZZa",
+            "row": 2,
+            "time": 1732210853263,
+            "value": "15",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "vCpxoeffIM",
+            "row": 3,
+            "time": 1732210855485,
+            "value": "12",
+            "column": 3,
+            "ignored": false,
+            "previous": ""
+        },
+        {
+            "id": "8SYJPJUb9O",
+            "row": 4,
+            "time": 1762796627305,
+            "value": "-14%",
+            "column": 3,
+            "ignored": false,
+            "previous": "(-14%)"
+        },
+        {
+            "id": "1swKXoJu2x",
+            "row": 5,
+            "time": 1762796636837,
+            "value": "-14%",
+            "column": 3,
+            "ignored": false,
+            "previous": "(-14%)"
+        },
+        {
+            "id": "JtsuaYmq5h",
+            "row": 4,
+            "time": 1762811789257,
+            "value": "14%",
+            "column": 3,
+            "ignored": false,
+            "previous": "-14%"
+        },
+        {
+            "id": "RvLL3vL9a8",
+            "row": 5,
+            "time": 1762811792474,
+            "value": "14%",
+            "column": 3,
+            "ignored": false,
+            "previous": "-14%"
+        },
+        {
+            "id": "4MATPHv2eA",
+            "row": 0,
+            "time": 1762811802578,
+            "value": "COTA",
+            "column": 3,
+            "ignored": false,
+            "previous": "X.4"
+        },
+        {
+            "id": "IFkXdKbDI2",
+            "row": 4,
+            "time": 1762812740476,
+            "value": "23%",
+            "column": 3,
+            "ignored": false,
+            "previous": "-23%"
+        },
+        {
+            "id": "xcrmTb2Hlm",
+            "row": 5,
+            "time": 1762812742845,
+            "value": "18%",
+            "column": 3,
+            "ignored": false,
+            "previous": "-18%"
+        },
+        {
+            "id": "kEBeP50QhO",
+            "row": 0,
+            "time": 1762965011127,
+            "value": "COTA (#)",
+            "column": 2,
+            "ignored": false,
+            "previous": "COTA"
+        },
+        {
+            "id": "QAPquNNSZY",
+            "row": 0,
+            "time": 1762965014277,
+            "value": "COTA (%)",
+            "column": 3,
+            "ignored": false,
+            "previous": "COTA"
+        }
+    ],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": false,
+    "column-format": {
+        "X.4": {
+            "type": "number",
+            "ignore": false,
+            "number-append": "%",
+            "number-format": "auto",
+            "number-divisor": 0,
+            "number-prepend": ""
+        }
+    },
+    "upload-method": "copy"
+}

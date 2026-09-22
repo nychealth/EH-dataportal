@@ -3,10 +3,10 @@
         "from": "bMzMo",
         "to": "zVvyR",
         "title": "Table 2: BX_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/zVvyR/2/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/zVvyR/3/",
         "publishedAt": "2026-09-17T19:21:24.225Z",
-        "updatedAt": "2026-09-17T20:42:58.762Z",
+        "updatedAt": "2026-09-22T03:50:14.876Z",
         "folderId": 443569,
         "movedAt": "2026-09-21T23:41:56.088Z"
     },
@@ -24,31 +24,34 @@
         "from": "LAaPy",
         "to": "qvtE6",
         "title": "Table 2: MH_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/qvtE6/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/qvtE6/2/",
         "publishedAt": "2026-09-21T22:48:34.736Z",
         "folderId": 443569,
-        "movedAt": "2026-09-21T23:41:56.088Z"
+        "movedAt": "2026-09-21T23:41:56.088Z",
+        "updatedAt": "2026-09-22T03:50:19.418Z"
     },
     "table-2-3": {
         "from": "mVQJR",
         "to": "1tmEe",
         "title": "Table 2: EV_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/1tmEe/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/1tmEe/2/",
         "publishedAt": "2026-09-21T22:48:39.972Z",
         "folderId": 443569,
-        "movedAt": "2026-09-21T23:41:56.088Z"
+        "movedAt": "2026-09-21T23:41:56.088Z",
+        "updatedAt": "2026-09-22T03:50:23.136Z"
     },
     "table-2-4": {
         "from": "DKVEV",
         "to": "Gow7X",
         "title": "Table 2: Brooklyn: BW_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/Gow7X/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/Gow7X/2/",
         "publishedAt": "2026-09-21T22:48:44.961Z",
         "folderId": 443569,
-        "movedAt": "2026-09-21T23:41:56.088Z"
+        "movedAt": "2026-09-21T23:41:56.088Z",
+        "updatedAt": "2026-09-22T03:50:26.917Z"
     },
     "table-2-5": {
         "from": "9i7xg",
@@ -274,50 +277,55 @@
         "from": "5Lv5f",
         "to": "WKLmL",
         "title": "Table 6: BX_Rodent complaints 311",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/WKLmL/1/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/WKLmL/3/",
         "publishedAt": "2026-09-21T22:50:42.018Z",
         "folderId": 443576,
-        "movedAt": "2026-09-21T23:42:05.275Z"
+        "movedAt": "2026-09-21T23:42:05.275Z",
+        "updatedAt": "2026-09-22T03:50:31.011Z"
     },
     "table-6-2": {
         "from": "eEaFz",
         "to": "BfUbD",
         "title": "Table 6: MH_Rodent complaints 311",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/BfUbD/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/BfUbD/2/",
         "publishedAt": "2026-09-21T22:50:46.979Z",
         "folderId": 443576,
-        "movedAt": "2026-09-21T23:42:05.275Z"
+        "movedAt": "2026-09-21T23:42:05.275Z",
+        "updatedAt": "2026-09-22T03:50:34.940Z"
     },
     "table-6-3": {
         "from": "BXHue",
         "to": "0MPec",
         "title": "Table 6: EV_Rodent complaints 311",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/0MPec/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/0MPec/2/",
         "publishedAt": "2026-09-21T22:50:51.922Z",
         "folderId": 443576,
-        "movedAt": "2026-09-21T23:42:05.275Z"
+        "movedAt": "2026-09-21T23:42:05.275Z",
+        "updatedAt": "2026-09-22T03:50:39.348Z"
     },
     "table-6-4": {
         "from": "FgeCo",
         "to": "hZ11Q",
         "title": "Table 6: BW_Rodent complaints 311",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/hZ11Q/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/hZ11Q/2/",
         "publishedAt": "2026-09-21T22:50:56.795Z",
         "folderId": 443576,
-        "movedAt": "2026-09-21T23:42:05.275Z"
+        "movedAt": "2026-09-21T23:42:05.275Z",
+        "updatedAt": "2026-09-22T03:50:43.318Z"
     },
     "table-6-5": {
         "from": "HIVhB",
         "to": "yNExH",
         "title": "Table 6a: Total RMZ rodent complaints 311",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/yNExH/1/",
+        "version": 3,
+        "url": "https://datawrapper.dwcdn.net/yNExH/3/",
         "publishedAt": "2026-09-21T22:51:01.682Z",
         "folderId": 443577,
-        "movedAt": "2026-09-21T23:42:06.374Z"
+        "movedAt": "2026-09-21T23:42:06.374Z",
+        "updatedAt": "2026-09-22T04:32:29.185Z"
     }
 }

@@ -51,6 +51,9 @@ const MAP = `${WORK}/chart-map.json`;
 const TITLES = `${WORK}/next-titles.json`;
 const CHARTS = `${WORK}/current-charts.json`;
 const FOLDERMAP = `${WORK}/folder-map.json`;
+// Where repush saves each chart's metadata.data before clearing its inherited
+// cell overrides. Tracked, because it is the only copy that survives the patch.
+const CHANGES_BACKUP = `${WORK}/changes-backup`;
 
 // Where each slot's chart belongs inside a year's folder. Read off the 2025
 // tree with GET /folders and GET /folders/{id} on 2026-09-17, not guessed from
@@ -633,12 +636,45 @@ async function cmdRepush(slots, only) {
         await sleep(PAUSE_MS);
         const perPage = fitPerPage(fresh, csv);
 
+        // Save metadata.data before the patch below empties its `changes`.
+        // Those overrides exist only in the live chart: `git checkout` does not
+        // restore them and re-running this verb cannot recreate them, so
+        // clearing without saving would be the one irreversible thing this
+        // script does. Written per slot, before the write that destroys it.
+        mkdirSync(CHANGES_BACKUP, { recursive: true });
+        writeJson(`${CHANGES_BACKUP}/${slot}.json`, fresh?.metadata?.data ?? {});
+
+        // Drop the cell overrides this chart inherited from the one it was
+        // copied from. Datawrapper stores a UI cell edit in
+        // metadata.data.changes keyed by (row, column) rather than by content,
+        // and a copy keeps them — so once the new data has more rows than the
+        // edits were made against, an override lands on a cell it was never
+        // written for and the chart DRAWS a number that is in neither dataset.
+        // Measured 2026-09-21: 9 of the 32 charts rendered 64 such cells, and
+        // clearing the array took table-6-1 from 9 wrong cells to 0.
+        //
+        // `repush` does this and `push` does not, deliberately. repush exists to
+        // correct a chart already made, so discarding hand-edits is its job.
+        // push creates a chart from a copy whose overrides may still be the only
+        // source of a wanted heading — the "Period" label that ten of these
+        // charts show for a column their CSV leaves blank, and table-5a-5's
+        // `Failed (#)` duplicate corrected to `Failed (%)`. Clearing on push
+        // would silently drop those. Repushing such a slot will drop them too:
+        // re-supply the text in the CSV header before repushing one.
+        //
+        // The merge PATCH empties the array without disturbing its siblings
+        // `[verified 2026-09-21 on WKLmL: 147 changes -> 0, and transpose,
+        // vertical-header, horizontal-header, column-format and upload-method
+        // all still present afterwards]`. horizontal-header surviving is the
+        // one that matters — it sets the row alignment, and losing it would
+        // move every heading rather than fix any cell.
         await write("PATCH", `/charts/${entry.to}`, {
             body: JSON.stringify({
                 title: wanted.title,
                 metadata: {
                     describe: { intro: wanted.intro ?? "" },
                     annotate: { notes: wanted.notes ?? "" },
+                    data: { changes: [] },
                     ...(perPage === null ? {} : { visualize: { perPage } }),
                 },
             }),
