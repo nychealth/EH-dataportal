@@ -1,0 +1,63 @@
+{
+    "changes": [
+        {
+            "id": "srKgdrsqPU",
+            "row": 0,
+            "time": 1762898957233,
+            "value": "Period",
+            "column": 0,
+            "ignored": false,
+            "previous": "X.1"
+        },
+        {
+            "id": "18C0Rgf6tm",
+            "row": 0,
+            "time": 1762898981312,
+            "value": "First comp",
+            "column": 3,
+            "ignored": false,
+            "previous": "First comp1"
+        },
+        {
+            "id": "05tnvRcrmi",
+            "row": 0,
+            "time": 1762899016583,
+            "value": "Third comp",
+            "column": 7,
+            "ignored": false,
+            "previous": "Third comp1"
+        },
+        {
+            "id": "8c0lHpQNAw",
+            "row": 0,
+            "time": 1762899018234,
+            "value": "Fourth+ Comp",
+            "column": 9,
+            "ignored": false,
+            "previous": "Fourth+ Comp1"
+        },
+        {
+            "id": "ui9QYt22dz",
+            "row": 0,
+            "time": 1762966506073,
+            "value": "Fourth+ comp",
+            "column": 8,
+            "ignored": false,
+            "previous": "Fourth+ Comp"
+        },
+        {
+            "id": "0rBopVE2ch",
+            "row": 0,
+            "time": 1762966509160,
+            "value": "Fourth+ comp",
+            "column": 9,
+            "ignored": false,
+            "previous": "Fourth+ Comp"
+        }
+    ],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": true,
+    "column-format": {},
+    "upload-method": "copy"
+}

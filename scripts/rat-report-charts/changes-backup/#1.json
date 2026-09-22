@@ -1,0 +1,81 @@
+{
+    "changes": [
+        {
+            "id": "d0dvfy4kQw",
+            "row": 1,
+            "time": 1732048636064,
+            "value": "59",
+            "column": 4,
+            "ignored": false,
+            "previous": "57"
+        },
+        {
+            "id": "TTCSsJY81x",
+            "row": 2,
+            "time": 1732048643603,
+            "value": "30",
+            "column": 3,
+            "ignored": false,
+            "previous": "28"
+        },
+        {
+            "id": "O3wF3LrsPT",
+            "row": 3,
+            "time": 1732048654754,
+            "value": "71",
+            "column": 3,
+            "ignored": false,
+            "previous": "69"
+        },
+        {
+            "id": "ymR5AJe6fp",
+            "row": 4,
+            "time": 1732048666757,
+            "value": "39",
+            "column": 3,
+            "ignored": false,
+            "previous": "32"
+        },
+        {
+            "id": "4jax0bm2pP",
+            "row": 4,
+            "time": 1732048672726,
+            "value": "30",
+            "column": 4,
+            "ignored": false,
+            "previous": "27"
+        },
+        {
+            "id": "P0gxPivr3x",
+            "row": 5,
+            "time": 1732048686635,
+            "value": "209",
+            "column": 3,
+            "ignored": false,
+            "previous": "193"
+        },
+        {
+            "id": "T8fuDC-e4L",
+            "row": 5,
+            "time": 1732048692890,
+            "value": "184",
+            "column": 4,
+            "ignored": false,
+            "previous": "179"
+        }
+    ],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": true,
+    "column-format": {
+        "Total lots": {
+            "type": "number",
+            "ignore": false,
+            "number-append": "",
+            "number-format": "auto",
+            "number-divisor": -3,
+            "number-prepend": ""
+        }
+    },
+    "upload-method": "copy"
+}

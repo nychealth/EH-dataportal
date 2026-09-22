@@ -1,0 +1,18 @@
+{
+    "changes": [
+        {
+            "id": "zCJqehwizu",
+            "row": 0,
+            "time": 1762900480287,
+            "value": "Period",
+            "column": 0,
+            "ignored": false,
+            "previous": "X.1"
+        }
+    ],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": true,
+    "column-format": {},
+    "upload-method": "copy"
+}

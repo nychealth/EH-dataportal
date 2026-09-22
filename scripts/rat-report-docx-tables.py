@@ -37,12 +37,9 @@ THREE THINGS THIS DELIBERATELY DOES NOT DO.
      (the table-33 group, 2) and the 2026 docx has 7. `write` emits every period
      the docx has and prints the row-count change per slot, because dropping the
      oldest is a content decision and not one to make silently.
-  2. It does not touch headers. Several differ from the docx wording on purpose,
-     and two groups carry labels that are wrong in ways only a person should
-     correct -- table-5a-5 labels two different columns `Failed (#)`, and the
-     table-33 group labels four pairs with case-varying duplicates. The live
-     header row is carried through verbatim, except where HEADER_LABELS
-     records a correction a person has already decided.
+  2. It does not derive headers. They are written out from HEADERS and
+     _GROUP_HEADERS below, which a person decided -- neither the docx wording
+     nor the published datasets, half of which carry no header row, are used.
   3. It does not write to Datawrapper. rat-report-charts.mjs does that, behind
      its own guard against writing to a published chart.
 """
@@ -98,13 +95,59 @@ for _suffix, _cell in ZONE_CELL.items():
     SLOT_MAP[f"table-5-{_suffix}"] = (8, _cell, 2)     # initial inspections + agency referrals
     SLOT_MAP[f"table-5a-{_suffix}"] = (9, _cell, 2)    # park and playground inspections
 
-# Header cells `write` fills in, as slot -> {column: label}. The table-6 group's
-# published header leaves the period column blank, and once repush cleared the
-# inherited cell overrides those charts showed a blank heading where ten others
-# show `Period`. Decided 2026-09-22 to write it into the CSV rather than restore
-# an override. The ten others still get `Period` from an override, so their CSV
-# cell stays blank to keep them byte-identical to their live datasets.
-HEADER_LABELS = {f"table-6-{n}": {0: "Period"} for n in range(1, 6)}
+# The header row `write` puts at the top of every CSV, by group. The published
+# datasets are no guide: 16 of the 32 carry no header row at all, and their
+# 2025 headings existed only as Datawrapper cell overrides typed over the
+# placeholder names X.1, X.2 ... -- so clearing the overrides (which repush
+# must do, see rat-report-charts.mjs) left four charts with no headings. Keeping
+# the headings here puts them in git and makes the CSV the whole chart.
+#
+# Decided with the user 2026-09-22: a count and its percentage never share a
+# name -- `(#)` and `(%)` -- casing is consistent within a group, and the zone
+# columns of Tables 4 and 4a are spelled as Table 1 spells its rows. The `*`
+# on Table 1's NYCHA column points at the appendix note the partner asked for,
+# matching the page's own `...by RMZ*` marking of appendix-linked tables.
+_ZONES = ["Period", "Bronx Grand Concourse", "Brooklyn Bed Stuy & Bushwick",
+          "Manhattan Harlem", "Manhattan East Village & Chinatown", "Totals"]
+_GROUP_HEADERS = {
+    "table-2-":  ["Period", "Initial inspections", "COTA (#)", "COTA (%)"],
+    "table-3-":  ["Period", "Compliance inspections",
+                  "Inspections with summons (#)", "Inspections with summons (%)"],
+    "table-33-": ["Period", "Inspections",
+                  "First comp (#)", "First comp (%)", "Second comp (#)", "Second comp (%)",
+                  "Third comp (#)", "Third comp (%)", "Fourth+ comp (#)", "Fourth+ comp (%)"],
+    "table-5-":  ["Period", "Initial inspections",
+                  "City agency referrals (#)", "City agency referrals (%)"],
+    "table-5a-": ["Period", "Parks inspected", "Failed (#)", "Failed (%)"],
+    "table-6-":  ["Period", "All Rodent 311", "Rat Sighting", "Signs of Rodent",
+                  "Condit. Attract Rodents", "Mouse Sighting"],
+}
+HEADERS = {
+    "#1":  ["RMZ", "Total lots", "Total NYCHA Developments*", "Total NYC Parks",
+            "Total NYCPS Schools"],
+    "#16": _ZONES,
+    "#17": _ZONES,
+}
+
+
+def header_for(slot):
+    """The header row for `slot`. Longest prefix wins: `table-5a-` over `table-5-`."""
+    if slot in HEADERS:
+        return HEADERS[slot]
+    prefix = max((p for p in _GROUP_HEADERS if slot.startswith(p)), key=len, default=None)
+    if prefix is None:
+        raise KeyError(f"no header row defined for {slot}")
+    return _GROUP_HEADERS[prefix]
+
+
+# Columns whose values are shares and so cannot be negative. The docx writes
+# Table 2's COTA share with a leading minus, sometimes in parentheses --
+# `-26%`, `(-15%)` -- where COTA / initial inspections is 26%. A 2025 cell
+# override removed the sign by hand; this does it in the data instead.
+UNSIGNED = {f"table-2-{n}": [3] for n in range(1, 6)}
+_SIGN = re.compile(r"^\(?\s*[-−]\s*(.*?)\s*\)?$")
+# A comma between a digit and exactly three more digits: `11,429` -> `11429`.
+_THOUSANDS = re.compile(r"(?<=\d),(?=\d{3}(?!\d))")
 
 # slot1 is the one panel whose rows are zones rather than periods, so it is
 # matched by row label against docx TABLE 1 instead of by period.
@@ -426,11 +469,21 @@ def cmd_write(slots, docx):
         live = read_published(slot)
         header, rows = extract(slot, tables, live)
         live_data = live[1:] if header else live
-        if header:
-            header = list(header)
-            for col, label in HEADER_LABELS.get(slot, {}).items():
-                header[col] = label
-        out = ([header] if header else []) + rows
+        header = header_for(slot)
+        if len(header) != len(rows[0]):
+            raise ValueError(f"{slot}: header has {len(header)} cells, rows have {len(rows[0])}")
+        for col in UNSIGNED.get(slot, []):
+            for r in rows:
+                m = _SIGN.match(r[col])
+                if m:
+                    r[col] = m.group(1)
+        # No thousands separators in the data: Datawrapper adds its own when it
+        # draws. A column whose every value reads `d,ddd` is ambiguous to its
+        # type detection, and table-2-2's was read as decimals -- 11,429 drew as
+        # `11` once horizontal-header was on [2026-09-22, render check].
+        for r in rows:
+            r[1:] = [_THOUSANDS.sub("", c) for c in r[1:]]
+        out = [header] + rows
         (NEXT / f"{slot}.csv").write_text(
             "\n".join("\t".join(r) for r in out) + "\n", encoding="utf-8", newline="\n")
         if len(rows) != len(live_data):

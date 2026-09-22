@@ -3,10 +3,10 @@
         "from": "bMzMo",
         "to": "zVvyR",
         "title": "Table 2: BX_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 3,
-        "url": "https://datawrapper.dwcdn.net/zVvyR/3/",
+        "version": 6,
+        "url": "https://datawrapper.dwcdn.net/zVvyR/6/",
         "publishedAt": "2026-09-17T19:21:24.225Z",
-        "updatedAt": "2026-09-22T03:50:14.876Z",
+        "updatedAt": "2026-09-22T20:50:34.423Z",
         "folderId": 443569,
         "movedAt": "2026-09-21T23:41:56.088Z"
     },
@@ -14,264 +14,287 @@
         "from": "EfIky",
         "to": "VeM79",
         "title": "Table 1: Surveyed Properties in the RMZs as of June 2026",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/VeM79/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/VeM79/4/",
         "publishedAt": "2026-09-21T22:48:29.563Z",
         "folderId": 443568,
-        "movedAt": "2026-09-21T23:41:57.193Z"
+        "movedAt": "2026-09-21T23:41:57.193Z",
+        "updatedAt": "2026-09-22T20:04:31.627Z"
     },
     "table-2-2": {
         "from": "LAaPy",
         "to": "qvtE6",
         "title": "Table 2: MH_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/qvtE6/2/",
+        "version": 6,
+        "url": "https://datawrapper.dwcdn.net/qvtE6/6/",
         "publishedAt": "2026-09-21T22:48:34.736Z",
         "folderId": 443569,
         "movedAt": "2026-09-21T23:41:56.088Z",
-        "updatedAt": "2026-09-22T03:50:19.418Z"
+        "updatedAt": "2026-09-22T20:52:18.050Z"
     },
     "table-2-3": {
         "from": "mVQJR",
         "to": "1tmEe",
         "title": "Table 2: EV_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/1tmEe/2/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/1tmEe/5/",
         "publishedAt": "2026-09-21T22:48:39.972Z",
         "folderId": 443569,
         "movedAt": "2026-09-21T23:41:56.088Z",
-        "updatedAt": "2026-09-22T03:50:23.136Z"
+        "updatedAt": "2026-09-22T20:52:21.822Z"
     },
     "table-2-4": {
         "from": "DKVEV",
         "to": "Gow7X",
         "title": "Table 2: Brooklyn: BW_Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 2,
-        "url": "https://datawrapper.dwcdn.net/Gow7X/2/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/Gow7X/5/",
         "publishedAt": "2026-09-21T22:48:44.961Z",
         "folderId": 443569,
         "movedAt": "2026-09-21T23:41:56.088Z",
-        "updatedAt": "2026-09-22T03:50:26.917Z"
+        "updatedAt": "2026-09-22T20:52:25.808Z"
     },
     "table-2-5": {
         "from": "9i7xg",
         "to": "qaDeq",
         "title": "Table 2: Initial inspections and Commissioner Orders to Abate (COTA)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/qaDeq/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/qaDeq/4/",
         "publishedAt": "2026-09-21T22:48:50.509Z",
         "folderId": 443569,
-        "movedAt": "2026-09-21T23:41:56.088Z"
+        "movedAt": "2026-09-21T23:41:56.088Z",
+        "updatedAt": "2026-09-22T20:52:29.902Z"
     },
     "table-3-1": {
         "from": "jaV7S",
         "to": "RnFHG",
         "title": "Table 3: BX_Compliance inspections and summons",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/RnFHG/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/RnFHG/4/",
         "publishedAt": "2026-09-21T22:48:55.174Z",
         "folderId": 443570,
-        "movedAt": "2026-09-21T23:41:58.332Z"
+        "movedAt": "2026-09-21T23:41:58.332Z",
+        "updatedAt": "2026-09-22T20:52:34.181Z"
     },
     "table-3-2": {
         "from": "PaKDr",
         "to": "96Oxo",
         "title": "Table 3: MH_Compliance inspections and summons",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/96Oxo/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/96Oxo/4/",
         "publishedAt": "2026-09-21T22:48:59.802Z",
         "folderId": 443570,
-        "movedAt": "2026-09-21T23:41:58.332Z"
+        "movedAt": "2026-09-21T23:41:58.332Z",
+        "updatedAt": "2026-09-22T20:52:38.477Z"
     },
     "table-3-3": {
         "from": "pCGDW",
         "to": "I0UWY",
         "title": "Table 3: EV_Compliance inspections and summons",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/I0UWY/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/I0UWY/4/",
         "publishedAt": "2026-09-21T22:49:04.506Z",
         "folderId": 443570,
-        "movedAt": "2026-09-21T23:41:58.332Z"
+        "movedAt": "2026-09-21T23:41:58.332Z",
+        "updatedAt": "2026-09-22T20:52:42.404Z"
     },
     "table-3-4": {
         "from": "f4qkK",
         "to": "5ikkr",
         "title": "Table 3: BW_Compliance inspections and summons",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/5ikkr/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/5ikkr/4/",
         "publishedAt": "2026-09-21T22:49:09.467Z",
         "folderId": 443570,
-        "movedAt": "2026-09-21T23:41:58.332Z"
+        "movedAt": "2026-09-21T23:41:58.332Z",
+        "updatedAt": "2026-09-22T20:52:46.223Z"
     },
     "table-3-5": {
         "from": "szLTu",
         "to": "tnB87",
         "title": "Table 3: Compliance inspections and summons",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/tnB87/1/",
+        "version": 4,
+        "url": "https://datawrapper.dwcdn.net/tnB87/4/",
         "publishedAt": "2026-09-21T22:49:14.123Z",
         "folderId": 443570,
-        "movedAt": "2026-09-21T23:41:58.332Z"
+        "movedAt": "2026-09-21T23:41:58.332Z",
+        "updatedAt": "2026-09-22T20:52:49.822Z"
     },
     "table-33-1": {
         "from": "A4dTB",
         "to": "ryVVn",
         "title": "Table 3a: BX_Compliance Inspections by elevation level (first to fourth+ comp)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/ryVVn/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/ryVVn/5/",
         "publishedAt": "2026-09-21T22:49:19.101Z",
         "folderId": 443571,
-        "movedAt": "2026-09-21T23:41:59.477Z"
+        "movedAt": "2026-09-21T23:41:59.477Z",
+        "updatedAt": "2026-09-22T20:52:53.604Z"
     },
     "table-33-2": {
         "from": "ol6ho",
         "to": "XopBP",
         "title": "Table 3a: MH_Compliance Inspections by elevation level (first to fourth+ comp)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/XopBP/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/XopBP/5/",
         "publishedAt": "2026-09-21T22:49:23.894Z",
         "folderId": 443571,
-        "movedAt": "2026-09-21T23:41:59.477Z"
+        "movedAt": "2026-09-21T23:41:59.477Z",
+        "updatedAt": "2026-09-22T20:52:57.242Z"
     },
     "table-33-3": {
         "from": "JJRpq",
         "to": "QrsFU",
         "title": "Table 3a: EV_Compliance Inspections by elevation level (first to fourth+ comp)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/QrsFU/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/QrsFU/5/",
         "publishedAt": "2026-09-21T22:49:29.104Z",
         "folderId": 443571,
-        "movedAt": "2026-09-21T23:41:59.477Z"
+        "movedAt": "2026-09-21T23:41:59.477Z",
+        "updatedAt": "2026-09-22T20:53:01.764Z"
     },
     "table-33-4": {
         "from": "18Wbr",
         "to": "LJOdJ",
         "title": "Table 3a: BW_Compliance Inspections by elevation level (first to fourth+ comp)",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/LJOdJ/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/LJOdJ/5/",
         "publishedAt": "2026-09-21T22:49:34.145Z",
         "folderId": 443571,
-        "movedAt": "2026-09-21T23:41:59.477Z"
+        "movedAt": "2026-09-21T23:41:59.477Z",
+        "updatedAt": "2026-09-22T20:53:05.693Z"
     },
     "#16": {
         "from": "sPNQu",
         "to": "nwvN7",
         "title": "Extermination visits by RMZ",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/nwvN7/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/nwvN7/2/",
         "publishedAt": "2026-09-21T22:49:39.005Z",
         "folderId": 443572,
-        "movedAt": "2026-09-21T23:42:00.682Z"
+        "movedAt": "2026-09-21T23:42:00.682Z",
+        "updatedAt": "2026-09-22T19:47:46.621Z"
     },
     "#17": {
         "from": "KhvBm",
         "to": "kciaO",
         "title": "Stoppage visits by RMZ",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/kciaO/1/",
+        "version": 2,
+        "url": "https://datawrapper.dwcdn.net/kciaO/2/",
         "publishedAt": "2026-09-21T22:49:44.380Z",
         "folderId": 443573,
-        "movedAt": "2026-09-21T23:42:01.793Z"
+        "movedAt": "2026-09-21T23:42:01.793Z",
+        "updatedAt": "2026-09-22T19:47:51.716Z"
     },
     "table-5-1": {
         "from": "UqEDs",
         "to": "3M23F",
         "title": "Table 5: BX_Initial inspections and City agency referrals",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/3M23F/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/3M23F/5/",
         "publishedAt": "2026-09-21T22:49:50.135Z",
         "folderId": 443574,
-        "movedAt": "2026-09-21T23:42:02.958Z"
+        "movedAt": "2026-09-21T23:42:02.958Z",
+        "updatedAt": "2026-09-22T20:53:09.301Z"
     },
     "table-5-2": {
         "from": "Jm1m0",
         "to": "Lqmrz",
         "title": "Table 5: MH_Initial inspections and City agency referrals",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/Lqmrz/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/Lqmrz/5/",
         "publishedAt": "2026-09-21T22:49:54.731Z",
         "folderId": 443574,
-        "movedAt": "2026-09-21T23:42:02.958Z"
+        "movedAt": "2026-09-21T23:42:02.958Z",
+        "updatedAt": "2026-09-22T20:53:13.097Z"
     },
     "table-5-3": {
         "from": "Lyets",
         "to": "VHoJ0",
         "title": "Table 5:EV_Initial inspections and City agency referrals",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/VHoJ0/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/VHoJ0/5/",
         "publishedAt": "2026-09-21T22:50:00.108Z",
         "folderId": 443574,
-        "movedAt": "2026-09-21T23:42:02.958Z"
+        "movedAt": "2026-09-21T23:42:02.958Z",
+        "updatedAt": "2026-09-22T20:53:17.158Z"
     },
     "table-5-4": {
         "from": "RBGAy",
         "to": "eYnFY",
         "title": "Table 5: BW_Initial inspections and City agency referrals",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/eYnFY/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/eYnFY/5/",
         "publishedAt": "2026-09-21T22:50:05.208Z",
         "folderId": 443574,
-        "movedAt": "2026-09-21T23:42:02.958Z"
+        "movedAt": "2026-09-21T23:42:02.958Z",
+        "updatedAt": "2026-09-22T20:53:21.213Z"
     },
     "table-5-5": {
         "from": "9qR8g",
         "to": "5VF4y",
         "title": "Table 5: Initial inspections and City agency referrals",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/5VF4y/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/5VF4y/5/",
         "publishedAt": "2026-09-21T22:50:09.910Z",
         "folderId": 443574,
-        "movedAt": "2026-09-21T23:42:02.958Z"
+        "movedAt": "2026-09-21T23:42:02.958Z",
+        "updatedAt": "2026-09-22T20:53:25.762Z"
     },
     "table-5a-1": {
         "from": "VIJdM",
         "to": "m7Huv",
         "title": "Table 5a: BX_Park and playground inspections",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/m7Huv/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/m7Huv/5/",
         "publishedAt": "2026-09-21T22:50:15.035Z",
         "folderId": 443575,
-        "movedAt": "2026-09-21T23:42:04.130Z"
+        "movedAt": "2026-09-21T23:42:04.130Z",
+        "updatedAt": "2026-09-22T20:50:38.405Z"
     },
     "table-5a-2": {
         "from": "NwWcR",
         "to": "RT6NX",
         "title": "Table 5a:MH_Park and playground inspections",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/RT6NX/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/RT6NX/5/",
         "publishedAt": "2026-09-21T22:50:19.938Z",
         "folderId": 443575,
-        "movedAt": "2026-09-21T23:42:04.130Z"
+        "movedAt": "2026-09-21T23:42:04.130Z",
+        "updatedAt": "2026-09-22T20:53:29.333Z"
     },
     "table-5a-3": {
         "from": "2AJd4",
         "to": "PuZu4",
         "title": "Table 5a: EV_Park and playground inspections",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/PuZu4/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/PuZu4/5/",
         "publishedAt": "2026-09-21T22:50:25.790Z",
         "folderId": 443575,
-        "movedAt": "2026-09-21T23:42:04.130Z"
+        "movedAt": "2026-09-21T23:42:04.130Z",
+        "updatedAt": "2026-09-22T20:53:34.098Z"
     },
     "table-5a-4": {
         "from": "qx7lH",
         "to": "ULEHR",
         "title": "Table 5a: BW_Park and playground inspections",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/ULEHR/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/ULEHR/5/",
         "publishedAt": "2026-09-21T22:50:31.863Z",
         "folderId": 443575,
-        "movedAt": "2026-09-21T23:42:04.130Z"
+        "movedAt": "2026-09-21T23:42:04.130Z",
+        "updatedAt": "2026-09-22T20:53:37.980Z"
     },
     "table-5a-5": {
         "from": "glCLq",
         "to": "mhmtl",
         "title": "Table 5a: Park and playground inspections",
-        "version": 1,
-        "url": "https://datawrapper.dwcdn.net/mhmtl/1/",
+        "version": 5,
+        "url": "https://datawrapper.dwcdn.net/mhmtl/5/",
         "publishedAt": "2026-09-21T22:50:37.055Z",
         "folderId": 443575,
-        "movedAt": "2026-09-21T23:42:04.130Z"
+        "movedAt": "2026-09-21T23:42:04.130Z",
+        "updatedAt": "2026-09-22T20:53:41.569Z"
     },
     "table-6-1": {
         "from": "5Lv5f",

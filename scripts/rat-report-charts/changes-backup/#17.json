@@ -1,0 +1,54 @@
+{
+    "changes": [
+        {
+            "id": "zCJqehwizu",
+            "row": 0,
+            "time": 1762900480287,
+            "value": "Period",
+            "column": 0,
+            "ignored": false,
+            "previous": "X.1"
+        },
+        {
+            "id": "DgpxTJQXGH",
+            "row": 0,
+            "time": 1762960061188,
+            "value": "Manhattan: Harlem",
+            "column": 3,
+            "ignored": false,
+            "previous": "Manhattan Harlem"
+        },
+        {
+            "id": "AQ3dENb6qh",
+            "row": 0,
+            "time": 1762960063552,
+            "value": "Brooklyn: Bed Stuy & Bushwick",
+            "column": 2,
+            "ignored": false,
+            "previous": "Brooklyn Bed Stuy & Bushwick"
+        },
+        {
+            "id": "a1D2rlhPK1",
+            "row": 0,
+            "time": 1762960066723,
+            "value": "Bronx: Grand Concourse",
+            "column": 1,
+            "ignored": false,
+            "previous": "Bronx Grand Concourse"
+        },
+        {
+            "id": "TAJTBO1v9c",
+            "row": 0,
+            "time": 1762960069672,
+            "value": "Manhattan: East Village & Chinatown",
+            "column": 4,
+            "ignored": false,
+            "previous": "Manhattan East Village & Chinatown"
+        }
+    ],
+    "transpose": false,
+    "vertical-header": true,
+    "horizontal-header": true,
+    "column-format": {},
+    "upload-method": "copy"
+}
