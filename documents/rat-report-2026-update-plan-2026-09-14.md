@@ -20,7 +20,8 @@ can ship, and its re-run of task 4 follows.
 defect is fixed, `apply` has run, and the verification below is green. What remains before
 publication is not chart work: the partner correction on Table 3a's period coverage, the two
 unanswered partner questions, and the `image:` and D1 items under Open items. See the 2026-09-22
-amendment.
+amendment. *Later the same day: the partner items are all closed or dropped, and Task 3b reopened
+the charts for their headings — see its amendment below and Open items.*
 
 **Amended 2026-09-17:** Task 3 now specifies *how* the 32 charts get produced — the Datawrapper v3
 API, driven by `scripts/rat-report-charts.mjs`, rather than 32 rounds of the UI. That does not
@@ -177,6 +178,34 @@ override this run did not touch. Nothing is wrong or missing; it is an inconsist
 `table-6-*` group and the rest. Fixing it means writing `Period` into the header cell rather than
 restoring an override. **Resolved 2026-09-22:** `HEADER_LABELS` in `rat-report-docx-tables.py`
 writes `Period` for the five, and they were repushed — see the Open items entry.
+
+**Amended 2026-09-22, later — Task 3 reopened as Task 3b: headings move into the CSVs.** Rendering
+all 32 charts beside their 2025 sources showed `table-2-1`..`-4` drawing **no column headings at
+all**. On a chart with `horizontal-header` false, row 0 is Datawrapper's `X.1`, `X.2` … and the
+2025 headings were cell overrides typed over them, so `repush`'s clearing of `metadata.data.changes`
+removed them. `rat-report-render-check.mjs` passed throughout because it compares no heading on
+such a chart. The same four draw a negative `COTA (%)` (`−26%`, `(-15%)`): the docx writes the
+sign and a 2025 override removed it; a share cannot be negative. Decided with the user the same
+day: every chart's headings go into its CSV as a real header row, count/percent pairs get `(#)` /
+`(%)`, casing is made consistent, the COTA sign is dropped as the docx's error, and Table 1's NYCHA
+column gets the `*` the partner asked for. The partner answered the wording question (no change —
+"since the 2024 report" stays) and agreed to the NYCHA appendix note. The Table 3a period-coverage
+correction is **not** being sent, by the user's decision.
+
+| 3b step | State | Proof that ran |
+|---|---|---|
+| NYCHA note in the appendix | **DONE 2026-09-22** — `e1955639fb` — the partner's wording, after "Elevated compliances" | isolated `development` build exit 0, 0 ERROR, 1206 EN pages; the note appears once in the rendered page |
+| Extractor writes a full header row for every slot; COTA sign dropped; no thousands separators | **DONE 2026-09-22** — `14f921e0c9` — `HEADERS` / `_GROUP_HEADERS`, `UNSIGNED`, `_THOUSANDS` in `rat-report-docx-tables.py` | regeneration changed 27 files, `table-6-*` untouched; the only data changes were `table-2-1`..`-5` column 3, 35 rows, each differing by sign or parentheses alone. Removing separators changed only `#1` and `table-2-2`, by commas alone |
+| `repush` sets `horizontal-header` from the CSV, zeroes `number-divisor`, gives `(%)` columns the table's `0%` format | **DONE 2026-09-22** — `9d71edf492` — `csvHasHeader`, `columnFormats`, `percentColumns` | merge PATCHes read back through the API: divisor 0 with the format's other keys intact on `VeM79`; `number-append` blank and `visualize.columns[...].format` `0%` on `zVvyR` and `m7Huv` |
+| Render check fails on a blank heading, a heading differing from the CSV, and a `(%)` column drawn without `%` | **DONE 2026-09-22** — `1e7080eb8c` | positive controls on live defects before each fix: `table-2-1`..`-4` failed with 4 blank headings each while neighbours passed; `table-2-1` failed 7 cells on the bare `%` while `table-5a-1` passed |
+| Repush | **DONE 2026-09-22** — results in `chart-map.json` and 23 new backups at `14f921e0c9` — all 27 changed slots, then `#1` and `table-2-2` again after the separator fix, then the 24 `(%)` charts twice (the first attempt appended `%` in the data layer and drew `67%%` on three Table 5a charts) | every run exit 0 except one network drop on `table-33-1`, whose state was read back (backup written with its 6 overrides, overrides cleared, published) before it was re-run. 23 new backups, 1 to 118 overrides each; the 9 earlier backups byte-identical throughout |
+| Gate + rendered-heading check over all 32 | **DONE 2026-09-22** | `rat-report-render-check.mjs` exit 0 with no STALE READ: 32 slots, 1206 cells, 0 data wrong, 0 heading diffs, 0 blank headings, 0 rows hidden. Independently, all 32 drawn heading rows are one of the 8 intended ones with 0 blank cells, and 72 of 72 sampled `(%)` cells draw exactly one `%` |
+
+**Three defects this found had passed the Task 3 gate**, all from one wrong premise — that a
+chart's appearance lives in its data: headings typed over `X.n` placeholders, `%` supplied by
+formats keyed to names the columns no longer carry, and `#1`'s ×1000 divisor compensating for a
+comma misread. A fourth was caused by this work: `table-2-2`'s all-`d,ddd` column read as
+decimals (11,429 drew as `11`) once `horizontal-header` changed its type detection.
 
 | Task | State | Proof that ran |
 |---|---|---|
@@ -1406,14 +1435,13 @@ is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
   (same md5, 1,440,902 B each) and only the third is referenced from this bundle
   `[verified 2026-09-15: the other two are named only from other bundles, which carry their own
   copies]`.
-- Whether "since the 2024 report" at `index.md:422` should read 2025. The docx says 2024; see
-  Task 2.
-- **A correction owed to the partner on period coverage.**
-  `rat-report-2026-figures-to-confirm.md:87` told them every table would show all seven periods
-  back to Jan-Jun 2023. **`table-33-*` shows 4**, because the docx holds only 4 for that group, so
-  the missing three are theirs to supply if they want them. `table-6-*` was also short; that was
-  ours and is fixed — it shows 7 as of 2026-09-21, so the correction is now about Table 3a alone.
-  Detail and counts under Task 3's "Period coverage" — a correction to send, not a question.
+- ~~Whether "since the 2024 report" should read 2025.~~ **Closed 2026-09-22 — no change.** The
+  partner: "No change to the measures has been made since 2024." The line is now `index.md:390`.
+- ~~**A correction owed to the partner on period coverage.**~~ **Dropped 2026-09-22 by the user's
+  decision — not being sent.** `table-33-*` shows 4 periods because the docx holds 4; the
+  figures-to-confirm document's "all seven periods" line stands uncorrected by choice.
+- ~~The NYCHA appendix note~~ **Agreed by the partner 2026-09-22**, with a `*` on the NYCHA column
+  of Table 1 — see Task 3b.
 - ~~**Whether the five `table-6-*` charts should show `Period` as their first column heading.**~~
   **Closed 2026-09-22 — yes**, at `2329446681`, with the `repush` backup guard at `a4dc6892ba`.
   `HEADER_LABELS` in `scripts/rat-report-docx-tables.py` has `write` fill that cell for the five; the ten charts that get `Period` from an override keep a blank CSV
@@ -1425,10 +1453,9 @@ is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
   `rat-report-render-check.mjs` exits 0 (32 slots, 1142 cells, 0 wrong, no STALE READ). Each
   served `dataset.csv` opens `Period`, where the previous version (`WKLmL/3`) opens with an empty
   cell `[verified 2026-09-22]`.
-- Their offer to fix the duplicated column headings in `table-5a-5` and the `table-33-*` group is
-  still unanswered — and note `table-5a-5`'s `Failed (#)` duplicate is *already* corrected to
-  `Failed (%)` on the live 2026 chart by an inherited cell override, so an answer there changes
-  what the override-clearing pass has to preserve.
+- ~~Their offer to fix the duplicated column headings~~ **Superseded 2026-09-22.** The user chose
+  to fix every heading ourselves and let the partner correct us — see Task 3b. `table-5a-5`'s
+  second `Failed (#)` is now `Failed (%)` in the CSV rather than in an override.
 - ~~**A Datawrapper API token, and whether the account holding it can reach the 32 charts.**~~
   **Closed 2026-09-21.** A token was created on 2026-09-17 and has since driven `pull`, `push`
   over all 32 slots, `repush`, `folders`, `makefolders` and `move` against the live API, so both
