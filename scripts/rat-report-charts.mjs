@@ -371,7 +371,7 @@ function assertCsv(text, where) {
 // horizontal-header is the flag that tracks it. firstRowIsHeader is NOT that
 // flag — it reads false on charts that do have a header row, so keying on it
 // would overcount rows by one on every header-bearing slot.
-function fitPerPage(chart, csv) {
+function fitPerPage(chart, csv, header = chart?.metadata?.data?.["horizontal-header"] === true) {
     const current = chart?.metadata?.visualize?.perPage;
 
     // An unreadable perPage means the response shape moved. Leave the setting
@@ -380,8 +380,53 @@ function fitPerPage(chart, csv) {
     if (typeof current !== "number") return null;
 
     const lines = csv.split("\n").filter((line) => line.trim()).length;
-    const header = chart?.metadata?.data?.["horizontal-header"] === true;
     return Math.max(current, lines - (header ? 1 : 0));
+}
+
+// The column-format patch repush sends. Keyed by column name, and merged into
+// what the chart already has, so it only ever sets fields.
+//
+// Every existing entry gets number-divisor 0, because the CSV holds true
+// values -- #1's source scaled `Total lots` by 1000 (divisor -3) to undo its
+// own `8,283` being read as 8.283, and once the CSV said 8283 the chart drew
+// 8,283,000 [2026-09-22, render check].
+//
+// It also blanks number-append on every `(%)` column: the sign belongs to the
+// table's own column format (percentColumns below), and appending it here as
+// well drew `67%%` on the three charts that already had one [2026-09-22].
+function columnFormats(chart, csv, hasHeader) {
+    const out = Object.fromEntries(
+        Object.keys(chart?.metadata?.data?.["column-format"] ?? {})
+            .map((col) => [col, { "number-divisor": 0 }]));
+    for (const col of percentHeadings(csv, hasHeader)) {
+        out[col] = { ...out[col], "number-append": "" };
+    }
+    return out;
+}
+
+// The visualize.columns patch: every column headed `(%)` draws with the table's
+// `0%` format, which appends the sign without scaling (67 -> `67%`). Datawrapper
+// parses `26%` in the data as the number 26 and draws `26`; the 2025 charts
+// set this format under names like `COTA` or `X.4`, which match nothing once
+// horizontal-header gives the columns their real names -- 30 of 37 percentage
+// columns drew bare numbers [2026-09-22]. `Failed (%)` on three Table 5a
+// charts is the one name that already matched, and is the working example.
+function percentColumns(csv, hasHeader) {
+    return Object.fromEntries(percentHeadings(csv, hasHeader)
+        .map((col) => [col, { format: "0%", append: "", prepend: "" }]));
+}
+
+function percentHeadings(csv, hasHeader) {
+    if (!hasHeader) return [];
+    return csv.split("\n", 1)[0].split("\t").filter((col) => col.trim().endsWith("(%)"));
+}
+
+// Whether a CSV opens with a header row rather than a data row. Every data row
+// but #1's starts with a period label, and #1's CSV opens with its `RMZ`
+// header, so a first cell that is not a period label is a header.
+function csvHasHeader(csv) {
+    const first = csv.split("\n", 1)[0].split("\t")[0].trim();
+    return !/^(Jan-Jun|Jul-Dec)\s+\d{4}$/.test(first);
 }
 
 // ---------------------------------------------------------------------------
@@ -634,7 +679,8 @@ async function cmdRepush(slots, only) {
         // path that fixes a chart pushed before fitPerPage existed.
         const fresh = assertChart(await api("GET", `/charts/${entry.to}`), `GET /charts/${entry.to}`);
         await sleep(PAUSE_MS);
-        const perPage = fitPerPage(fresh, csv);
+        const hasHeader = csvHasHeader(csv);
+        const perPage = fitPerPage(fresh, csv, hasHeader);
 
         // Save metadata.data before the patch below empties its `changes`.
         // Those overrides exist only in the live chart: `git checkout` does not
@@ -682,8 +728,22 @@ async function cmdRepush(slots, only) {
                 metadata: {
                     describe: { intro: wanted.intro ?? "" },
                     annotate: { notes: wanted.notes ?? "" },
-                    data: { changes: [] },
-                    ...(perPage === null ? {} : { visualize: { perPage } }),
+                    // horizontal-header follows the CSV. On a chart where it
+                    // was false, row 0 is Datawrapper's X.1, X.2 ... and the
+                    // headings were overrides typed over them -- so clearing
+                    // the overrides without turning this on leaves the chart
+                    // with no headings at all, which is what table-2-1..4
+                    // drew on 2026-09-22.
+                    // column-format: see columnFormats().
+                    data: {
+                        changes: [],
+                        "horizontal-header": hasHeader,
+                        "column-format": columnFormats(fresh, csv, hasHeader),
+                    },
+                    visualize: {
+                        columns: percentColumns(csv, hasHeader),
+                        ...(perPage === null ? {} : { perPage }),
+                    },
                 },
             }),
             contentType: "application/json",
