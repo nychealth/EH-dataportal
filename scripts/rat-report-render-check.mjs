@@ -34,13 +34,12 @@
 // chart, which is what a first version of this check did. Row counts cannot
 // substitute for reading the flag, because pagination also changes them.
 //
-// WHAT FAILS THE RUN is a difference in a cell that holds DATA, or a row the
-// chart never drew. A difference in a header cell is reported and does not
-// fail: on a horizontal-header chart uploaded row 0 is the heading text, where
-// an inherited override is usually doing something wanted — supplying "Period"
-// for a column the CSV leaves blank, or correcting table-5a-5's duplicated
-// `Failed (#)` to `Failed (%)`. There is no allowlist of excused cells; the
-// distinction is positional, so a data cell can never be quietly excused.
+// WHAT FAILS THE RUN is any drawn cell that differs from the upload — heading
+// or data — a blank heading, or a row the chart never drew. Heading
+// differences used to be reported without failing, because inherited
+// overrides were supplying wanted headings the CSVs lacked. Since 2026-09-22
+// every CSV carries its full header row and repush clears every override, so
+// a heading that differs from the CSV is now as wrong as a data cell.
 //
 // NO TOKEN. Everything here is the public CDN, so this needs no credentials and
 // writes nothing. It is read-only against Datawrapper by construction.
@@ -157,6 +156,10 @@ function normalize(value) {
     return value.replace(/[,\s]/g, "").replace(/−/g, "-").replace(/%$/, "");
 }
 
+function fails(r) {
+    return r.dataDiffs.length || r.headerDiffs.length || r.blankHeadings || r.hiddenRows;
+}
+
 function compareSlot({ slot, id, ver, rendered, uploaded, hhdr }) {
     const offset = hhdr ? 0 : 1;
     const rows = Math.min(rendered.length - offset, uploaded.length);
@@ -183,7 +186,34 @@ function compareSlot({ slot, id, ver, rendered, uploaded, hhdr }) {
     // rows that ARE drawn all match. It gets counted separately.
     const hiddenRows = Math.max(0, uploaded.length - (rendered.length - offset));
 
-    return { slot, id, ver, hhdr, cellsCompared, dataDiffs, headerDiffs, hiddenRows };
+    // A blank heading is read off the drawn row, never compared against the
+    // upload. On a chart with horizontal-header false there is no uploaded
+    // heading to compare with, so the cell diff above is blind to it — which is
+    // how table-2-1..4 passed this check on 2026-09-22 while drawing no headings
+    // at all (a single empty <th>). A heading row shorter than the data is
+    // counted too, since that is the shape that failure took.
+    // A percentage column must draw its `%`. normalize() strips a trailing `%`
+    // so that `26%` and `26` compare equal as numbers -- which also let 30
+    // percentage columns drawing bare numbers pass on 2026-09-22. The heading
+    // `(%)` is what declares the column a percentage.
+    if (hhdr) {
+        uploaded[0].forEach((name, c) => {
+            if (!name.trim().endsWith("(%)")) return;
+            for (let r = 1; r < rows; r++) {
+                const shows = rendered[r + offset]?.[c] ?? "";
+                if (shows && !shows.endsWith("%")) {
+                    dataDiffs.push({ row: r, col: c, shows, uploaded: `${uploaded[r][c]} (a % column)` });
+                }
+            }
+        });
+    }
+
+    const drawnHead = rendered[0] ?? [];
+    const width = Math.max(...uploaded.map((r) => r.length));
+    const blankHeadings = drawnHead.filter((cell) => cell === "").length
+        + Math.max(0, width - drawnHead.length);
+
+    return { slot, id, ver, hhdr, cellsCompared, dataDiffs, headerDiffs, hiddenRows, blankHeadings };
 }
 
 // ---------------------------------------------------------------------------
@@ -232,10 +262,11 @@ async function main() {
                 result.stale = result.mapVersion !== null && String(result.mapVersion) !== String(ver);
                 results.push(result);
 
-                const verdict = result.dataDiffs.length || result.hiddenRows ? "FAIL" : "ok  ";
+                const verdict = fails(result) ? "FAIL" : "ok  ";
                 console.log(`  ${verdict} ${slot.padEnd(14)} ${id} v${ver}  hhdr=${String(hhdr).padEnd(5)} `
                     + `${result.cellsCompared} cells, ${result.dataDiffs.length} data diff(s), `
-                    + `${result.headerDiffs.length} header diff(s), ${result.hiddenRows} row(s) hidden`);
+                    + `${result.headerDiffs.length} header diff(s), ${result.blankHeadings} blank heading(s), `
+                    + `${result.hiddenRows} row(s) hidden`);
             } finally {
                 await page.close();
             }
@@ -248,7 +279,7 @@ async function main() {
     // an empty grid on both sides reports "0 diffs" in the same voice as a
     // chart that was actually checked.
     const empty = results.filter((r) => r.cellsCompared === 0);
-    const failed = results.filter((r) => r.dataDiffs.length || r.hiddenRows);
+    const failed = results.filter(fails);
 
     console.log("");
     console.log(`slots rendered        : ${results.length}`);
@@ -256,7 +287,8 @@ async function main() {
     console.log(`slots failing         : ${failed.length}`);
     console.log(`data cells wrong      : ${failed.reduce((n, r) => n + r.dataDiffs.length, 0)}`);
     console.log(`rows hidden           : ${results.reduce((n, r) => n + r.hiddenRows, 0)}`);
-    console.log(`header cells differing: ${results.reduce((n, r) => n + r.headerDiffs.length, 0)} (reported, not failing)`);
+    console.log(`header cells differing: ${results.reduce((n, r) => n + r.headerDiffs.length, 0)}`);
+    console.log(`blank headings        : ${results.reduce((n, r) => n + r.blankHeadings, 0)}`);
     console.log(`slots comparing 0 cells: ${empty.length} (must be 0)`);
 
     const stale = results.filter((r) => r.stale);
@@ -269,17 +301,11 @@ async function main() {
         }
     }
 
-    for (const r of results.filter((x) => x.headerDiffs.length)) {
-        console.log(`\n${r.slot} (${r.id} v${r.ver}) header text, not a failure:`);
-        for (const d of r.headerDiffs) {
-            console.log(`  col ${d.col}: shows ${JSON.stringify(d.shows)}, data has ${JSON.stringify(d.uploaded)}`);
-        }
-    }
-
     for (const r of failed) {
         console.log(`\n${r.slot} (${r.id} v${r.ver}) FAILS — ${r.dataDiffs.length} data cell(s)`
+            + `, ${r.headerDiffs.length} heading cell(s), ${r.blankHeadings} blank heading(s)`
             + `${r.hiddenRows ? `, ${r.hiddenRows} row(s) hidden behind a pagination arrow` : ""}:`);
-        for (const d of r.dataDiffs) {
+        for (const d of [...r.headerDiffs, ...r.dataDiffs]) {
             console.log(`  row ${d.row} col ${d.col}: shows ${JSON.stringify(d.shows)}, `
                 + `data has ${JSON.stringify(d.uploaded)}`);
         }
