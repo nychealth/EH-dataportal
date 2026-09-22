@@ -1,7 +1,7 @@
 # Rat Mitigation Zone Report — 2026 update plan
 
 **Branch:** `update-rat-mitigation-report`
-**Source document:** `documents/Annual Rat Mitigation Report 2026_08_31.docx` (gitignored at `5a60a06b27`; keep it out of the repo)
+**Source document:** `documents/Annual Rat Mitigation Report 2026_08_31.docx` (gitignored at `5a60a06b27`; keep it out of the repo). *Not present there as of 2026-09-22* — the only copy on this machine is `C:\Users\Chris\Documents\DOHMH\Programming\cgettings-EHDP-work\documents\Rat report\Annual Rat Mitigation Report 2026_08_31.docx`, which is the path `write` has been run against
 **Target page:** `content/data-features/rat-report/index.md` → `/data-features/rat-report/`
 **Written:** 2026-09-14
 
@@ -175,7 +175,8 @@ column headings from the CSV rather than from an override, and the CSV's first h
 empty — so their first column heading is blank where ten other charts show `Period`, supplied by an
 override this run did not touch. Nothing is wrong or missing; it is an inconsistency between the
 `table-6-*` group and the rest. Fixing it means writing `Period` into the header cell rather than
-restoring an override.
+restoring an override. **Resolved 2026-09-22:** `HEADER_LABELS` in `rat-report-docx-tables.py`
+writes `Period` for the five, and they were repushed — see the Open items entry.
 
 | Task | State | Proof that ran |
 |---|---|---|
@@ -928,7 +929,8 @@ The two shortfalls have different causes and only one is fixable here.
   Fixed, regenerated and repushed; `WKLmL` now draws its header from the CSV and shows all 7
   periods `[verified 2026-09-21: 8 rows served, `horizontal-header` true, row 0 is the column
   names]`. The one residue is cosmetic: the CSV's first header cell is empty, so the first column
-  heading is blank where ten other charts show `Period` from an override.
+  heading is blank where ten other charts show `Period` from an override — resolved 2026-09-22,
+  see Open items.
 
 ##### Filing the 2026 charts — tooling at `c2840dfbd0`, run over all 32 on 2026-09-21
 
@@ -1412,10 +1414,17 @@ is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
   the missing three are theirs to supply if they want them. `table-6-*` was also short; that was
   ours and is fixed — it shows 7 as of 2026-09-21, so the correction is now about Table 3a alone.
   Detail and counts under Task 3's "Period coverage" — a correction to send, not a question.
-- **Whether the five `table-6-*` charts should show `Period` as their first column heading.**
-  They now take headings from the CSV, whose first header cell is empty, so that heading is blank;
-  ten other charts show `Period` from an inherited override. Cosmetic and inconsistent rather than
-  wrong. Fixing it means writing `Period` into the header cell, not restoring an override.
+- ~~**Whether the five `table-6-*` charts should show `Period` as their first column heading.**~~
+  **Closed 2026-09-22 — yes**, at `2329446681`, with the `repush` backup guard at `a4dc6892ba`.
+  `HEADER_LABELS` in `scripts/rat-report-docx-tables.py` has `write` fill that cell for the five; the ten charts that get `Period` from an override keep a blank CSV
+  cell, so they stay byte-identical to their live datasets. Regenerating all 32 CSVs changed
+  exactly the five, one cell each. `repush` now skips its backup when a chart has no overrides
+  left, since writing one would have replaced the 162-, 177- and 147-override backups of
+  `table-6-2`..`-4` with empty ones; all 9 backups hashed identical before and after. After the
+  repush, `chart-map.json` moved exactly those five entries by one version, and
+  `rat-report-render-check.mjs` exits 0 (32 slots, 1142 cells, 0 wrong, no STALE READ). Each
+  served `dataset.csv` opens `Period`, where the previous version (`WKLmL/3`) opens with an empty
+  cell `[verified 2026-09-22]`.
 - Their offer to fix the duplicated column headings in `table-5a-5` and the `table-33-*` group is
   still unanswered — and note `table-5a-5`'s `Failed (#)` duplicate is *already* corrected to
   `Failed (%)` on the live 2026 chart by an inherited cell override, so an answer there changes
