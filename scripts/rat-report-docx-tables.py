@@ -200,8 +200,26 @@ def read_published(slot):
 
 
 def is_header(row):
-    """A header row carries no digits in any cell."""
-    return not any(re.search(r"\d", c) for c in row)
+    """A header row carries no digits in any cell, OR has an empty first cell.
+
+    Neither test alone is right, and each covers what the other misses:
+
+      table-6-*  ""  "All Rodent 311"  "Rat Sighting"  ...   digits, empty col 0
+      #1         "RMZ"  "Total lots"  "Total NYC Parks"  ... no digits, filled col 0
+
+    The `311` in "All Rodent 311" made the no-digits test read the table-6-*
+    header as data. The consequences were both invisible in the CSV: the header
+    was written out as a period row, and because the charts set
+    horizontal-header, Datawrapper then drew `Jan-Jun 2023` and its five figures
+    as the column headings -- so those charts showed 6 periods, not 7, and lost
+    their real column names. The header row also joined the per-column format
+    vote, which scored "Rat Sighting" as a value.
+
+    Checked against all 32 published datasets 2026-09-21: the two tests
+    disagree on exactly 6 slots -- the 5 table-6-* and #1 -- and the disjunction
+    is correct on all 32.
+    """
+    return not any(re.search(r"\d", c) for c in row) or row[0].strip() == ""
 
 
 def formatter(samples):
