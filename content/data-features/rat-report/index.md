@@ -8,7 +8,7 @@ tags:
 categories: [pests]
 keywords: ["pests"]
 layout: report
-image: ratportal-screenshot_copy copy.png
+image: ratportal-screenshot.png
 report: true
 js: rat-report.js
 weight: 10
