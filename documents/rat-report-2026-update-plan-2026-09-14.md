@@ -23,7 +23,9 @@ unanswered partner questions, and the `image:` and D1 items under Open items. Se
 amendment. *Later the same day: the partner items are all closed or dropped, and Task 3b reopened
 the charts for their headings — see its amendment below and Open items. Task 3b closed the same
 day (`f64067ca37`): the render gate exits 0 over 32 slots with no STALE READ, and only D1 and
-`image:` remain before publication.*
+`image:` remain before publication.* **Amended 2026-09-24: D1 and `image:` are both closed (see
+Open items). No listed item remains before publication; the next step is a PR into
+`production`.**
 
 **Amended 2026-09-17:** Task 3 now specifies *how* the 32 charts get produced — the Datawrapper v3
 API, driven by `scripts/rat-report-charts.mjs`, rather than 32 rounds of the UI. That does not
@@ -1322,7 +1324,10 @@ templates compile and nothing more.
 
 ---
 
-## Decision D1 (open): how the tables should be produced, this year and after
+## Decision D1 (decided 2026-09-24): how the tables should be produced, this year and after
+
+**Decided 2026-09-24 by the user: 2026 ships on option A; option C is to be evaluated for 2027.**
+B was not chosen. The write-up below is kept as the input to that 2027 evaluation.
 
 The user asked for the future mechanics to be written up rather than decided now. Recorded here so
 the deferral is explicit: **the 2026 page has to ship either way, and this decision only changes
@@ -1430,13 +1435,20 @@ is arguing about, since the in-repo-numbers benefit is no longer C's to claim.
   <lastmod> for en/sitemap.xml read exactly that string]`. It never broke the build;
   `config/_default/config.toml:10` sets `buildFuture = true`. No date after today now remains
   anywhere in `content/`.
-- D1 — recommendation is to ship 2026 on option A and evaluate C for 2027.
-- Whether a new `image:` screenshot is being supplied for the 2026 page. If one is, drop the two
-  unreferenced duplicates in the same commit: `ratportal-screenshot.png`,
-  `ratportal-screenshot_copy.png` and `ratportal-screenshot_copy copy.png` are byte-identical
-  (same md5, 1,440,902 B each) and only the third is referenced from this bundle
-  `[verified 2026-09-15: the other two are named only from other bundles, which carry their own
-  copies]`.
+- ~~D1~~ **Closed 2026-09-24** — ship 2026 on option A, evaluate C for 2027. See Decision D1.
+- ~~Whether a new `image:` screenshot is being supplied for the 2026 page.~~ **Closed 2026-09-24 —
+  no new screenshot; the existing one is kept** — `1d533d199f`. The two unreferenced duplicates are deleted and
+  `ratportal-screenshot_copy copy.png` is renamed to `ratportal-screenshot.png`, which `image:`
+  now names. All three were byte-identical (md5 `c2669d66…`, re-checked 2026-09-24), so the kept
+  file's path and bytes both match the deleted `ratportal-screenshot.png`. `rat-information-portal`
+  keeps its own copy and is unaffected. `2025/index.md` still reads `image: ratportal-screenshot_copy copy.png`:
+  left alone, since the archive is a byte copy of the 2025 page and its `image:` was already
+  inert (Task 1a, "Left alone").
+  `[verified 2026-09-24: isolated development builds before and after, both exit 0, 0 ERROR, 1206
+  EN pages, 172 processed images. diff -rq: 8 entries — the removed PNGs, the resized card image
+  renamed with the same _hu_31c9f70989bf583d hash, a single-line change in data-features/index.html
+  (that card's background-image URL), and the three home pages, whose only changed lines are
+  build_datetime. 0 files in the after build mention screenshot_copy]`.
 - ~~Whether "since the 2024 report" should read 2025.~~ **Closed 2026-09-22 — no change.** The
   partner: "No change to the measures has been made since 2024." The line is now `index.md:390`.
 - ~~**A correction owed to the partner on period coverage.**~~ **Dropped 2026-09-22 by the user's
