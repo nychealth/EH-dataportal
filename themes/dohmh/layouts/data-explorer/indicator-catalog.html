@@ -1,6 +1,11 @@
 {{- define "main" -}}
 
-<article class="container" id="skip-header-target">
+{{- /*  Arquero  */}}
+
+{{- $arquero := resources.Get "node_modules/arquero/dist/arquero.min.js" | partial "short-fingerprint.html" -}}
+<script src="{{ $arquero.RelPermalink }}" integrity="{{ $arquero.Data.Integrity }}"></script>
+
+<article class="container">
     <div class="col-md-11 col-sm-12 mx-auto mb-4">
 
         <div class="row no-gutters mb-2">
@@ -18,6 +23,7 @@
         <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
         {{- .Content -}}
 
+        {{- partial "lib-arquero.html" . }}
         {{- partial "de-topic-indicators.html" . -}}
 
 
@@ -69,16 +75,20 @@
 
         <script>
             // This function is called from de-text-search.html
+
             function printToPage(x) {
 
                 // print indicator info to page
+
                 document.getElementById('indName').innerHTML = `<p class="fs-md">${x.IndicatorName}&nbsp;<span class="badge badge-pill badge-light ml-2">${x.IndicatorID}</span></p>`
                 document.getElementById('indDesc').innerHTML = `<p class="fs-md"><i>${x.IndicatorDescription}</i></p>`
 
                 // print data link to page
+
                 document.getElementById('repoLink').innerHTML = `<a href="https://github.com/nychealth/EHDP-data/tree/production/indicators/data/${x.IndicatorID}.json"><button class="btn btn-sm btn-block btn-outline-primary"><i class="fas fa-external-link-square-alt mr-1"></i>Download JSON from repo</button></a>`
 
                 // Print measures to page
+
                 document.getElementById('measureList').innerHTML = ''
                 document.getElementById('sourceList').innerHTML = ''
 
@@ -97,12 +107,14 @@
 
                 // Print topics to page
                 // console.log(topicIndicatorsTable)
+
                 const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
                 // console.log(topics)
 
                 document.getElementById('topicList').innerHTML = ''
                 for (let i = 0; i < topics.length; i++) {
                     // console.log(topics[i].topic)
+
                     var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
                     document.getElementById('topicList').innerHTML += datatopic
                 }

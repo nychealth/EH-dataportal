@@ -1,0 +1,113 @@
+Time,Site,TOD,Measure,Value,Units
+Pre,BQE,Evening rush,PM2.5,4.862931034,µg/m³
+Pre,BQE,Midday,PM2.5,5.598816739,µg/m³
+Pre,BQE,Morning rush,PM2.5,6.652758621,µg/m³
+Pre,BQE,Overnight,PM2.5,5.445766284,µg/m³
+Pre,BQE,Evening rush,Traffic,6897.5,vehicles per hour
+Pre,BQE,Midday,Traffic,7131.563,vehicles per hour
+Pre,BQE,Morning rush,Traffic,7620.2,vehicles per hour
+Pre,BQE,Overnight,Traffic,5132.25,vehicles per hour
+Pre,Cross Bronx,Evening rush,PM2.5,8.687642487,µg/m³
+Pre,Cross Bronx,Midday,PM2.5,9.788316062,µg/m³
+Pre,Cross Bronx,Morning rush,PM2.5,9.97234375,µg/m³
+Pre,Cross Bronx,Overnight,PM2.5,9.443170204,µg/m³
+Pre,Cross Bronx,Evening rush,Traffic,6715.982,vehicles per hour
+Pre,Cross Bronx,Midday,Traffic,6597.085,vehicles per hour
+Pre,Cross Bronx,Morning rush,Traffic,7902.238,vehicles per hour
+Pre,Cross Bronx,Overnight,Traffic,5334.75,vehicles per hour
+Pre,Major Deegan,Evening rush,PM2.5,6.921450617,µg/m³
+Pre,Major Deegan,Midday,PM2.5,8.264049844,µg/m³
+Pre,Major Deegan,Morning rush,PM2.5,8.287125,µg/m³
+Pre,Major Deegan,Overnight,PM2.5,7.333234837,µg/m³
+Pre,Major Deegan,Evening rush,Traffic,7185.875,vehicles per hour
+Pre,Major Deegan,Midday,Traffic,7121.188,vehicles per hour
+Pre,Major Deegan,Morning rush,Traffic,7784.5,vehicles per hour
+Pre,Major Deegan,Overnight,Traffic,3958.5,vehicles per hour
+Pre,FDR,Evening rush,PM2.5,6.938606061,µg/m³
+Pre,FDR,Midday,PM2.5,8.052361427,µg/m³
+Pre,FDR,Morning rush,PM2.5,8.73429878,µg/m³
+Pre,FDR,Overnight,PM2.5,7.049123163,µg/m³
+Pre,FDR,Evening rush,Traffic,6784.31,vehicles per hour
+Pre,FDR,Midday,Traffic,6657.931,vehicles per hour
+Pre,FDR,Morning rush,Traffic,6815.727,vehicles per hour
+Pre,FDR,Overnight,Traffic,3874.687,vehicles per hour
+Pre,SI Expwy,Evening rush,PM2.5,6.294538462,µg/m³
+Pre,SI Expwy,Midday,PM2.5,6.076531008,µg/m³
+Pre,SI Expwy,Morning rush,PM2.5,8.8246875,µg/m³
+Pre,SI Expwy,Overnight,PM2.5,6.967684347,µg/m³
+Pre,SI Expwy,Evening rush,Traffic,10415.5,vehicles per hour
+Pre,SI Expwy,Midday,Traffic,9807.719,vehicles per hour
+Pre,SI Expwy,Morning rush,Traffic,9797.625,vehicles per hour
+Pre,SI Expwy,Overnight,Traffic,5624.208,vehicles per hour
+Pre,Trans-Manhattan,Evening rush,PM2.5,6.194230769,µg/m³
+Pre,Trans-Manhattan,Morning rush,PM2.5,6.938365385,µg/m³
+Pre,Trans-Manhattan,Midday,PM2.5,7.178052885,µg/m³
+Pre,Trans-Manhattan,Overnight,PM2.5,6.598184,µg/m³
+Pre,Trans-Manhattan,Evening rush,Traffic,11854.38,vehicles per hour
+Pre,Trans-Manhattan,Midday,Traffic,11304.34,vehicles per hour
+Pre,Trans-Manhattan,Morning rush,Traffic,12213.75,vehicles per hour
+Pre,Trans-Manhattan,Overnight,Traffic,8139.292,vehicles per hour
+Pre,Van Wyck,Evening rush,PM2.5,6.925524691,µg/m³
+Pre,Van Wyck,Morning rush,PM2.5,8.188664596,µg/m³
+Pre,Van Wyck,Midday,PM2.5,7.613993832,µg/m³
+Pre,Van Wyck,Overnight,PM2.5,7.363042806,µg/m³
+Pre,Van Wyck,Evening rush,Traffic,7007.25,vehicles per hour
+Pre,Van Wyck,Midday,Traffic,6225.041667,vehicles per hour
+Pre,Van Wyck,Morning rush,Traffic,7028.3,vehicles per hour
+Pre,Van Wyck,Overnight,Traffic,4571.916667,vehicles per hour
+Post,BQE,Evening rush,PM2.5,4.641363636,µg/m³
+Post,BQE,Morning rush,PM2.5,5.958068182,µg/m³
+Post,BQE,Midday,PM2.5,5.577485795,µg/m³
+Post,BQE,Overnight,PM2.5,5.152888258,µg/m³
+Post,BQE,Evening rush,Traffic,6710.929,vehicles per hour
+Post,BQE,Midday,Traffic,6938.396,vehicles per hour
+Post,BQE,Morning rush,Traffic,7787.696,vehicles per hour
+Post,BQE,Overnight,Traffic,4808.096,vehicles per hour
+Post,Cross Bronx,Evening rush,PM2.5,8.498429319,µg/m³
+Post,Cross Bronx,Morning rush,PM2.5,9.427565445,µg/m³
+Post,Cross Bronx,Midday,PM2.5,8.898586387,µg/m³
+Post,Cross Bronx,Overnight,PM2.5,8.94825784,µg/m³
+Post,Cross Bronx,Evening rush,Traffic,6306.771,vehicles per hour
+Post,Cross Bronx,Midday,Traffic,6131.822,vehicles per hour
+Post,Cross Bronx,Morning rush,Traffic,7547.356,vehicles per hour
+Post,Cross Bronx,Overnight,Traffic,5091.69,vehicles per hour
+Post,Major Deegan,Evening rush,PM2.5,6.821073446,µg/m³
+Post,Major Deegan,Morning rush,PM2.5,7.945480226,µg/m³
+Post,Major Deegan,Midday,PM2.5,7.582846045,µg/m³
+Post,Major Deegan,Overnight,PM2.5,7.212048023,µg/m³
+Post,Major Deegan,Evening rush,Traffic,6898.478,vehicles per hour
+Post,Major Deegan,Midday,Traffic,6764.288,vehicles per hour
+Post,Major Deegan,Morning rush,Traffic,7385.217,vehicles per hour
+Post,Major Deegan,Overnight,Traffic,3758.78,vehicles per hour
+Post,FDR,Evening rush,PM2.5,5.336627219,µg/m³
+Post,FDR,Morning rush,PM2.5,8.775828402,µg/m³
+Post,FDR,Midday,PM2.5,7.158343195,µg/m³
+Post,FDR,Overnight,PM2.5,6.219293827,µg/m³
+Post,FDR,Evening rush,Traffic,7874.105,vehicles per hour
+Post,FDR,Midday,Traffic,7715.523,vehicles per hour
+Post,FDR,Morning rush,Traffic,8282.889,vehicles per hour
+Post,FDR,Overnight,Traffic,4313.025,vehicles per hour
+Post,SI Expwy,Evening rush,PM2.5,6.132868852,µg/m³
+Post,SI Expwy,Morning rush,PM2.5,7.802083333,µg/m³
+Post,SI Expwy,Midday,PM2.5,6.179485597,µg/m³
+Post,SI Expwy,Overnight,PM2.5,6.767266388,µg/m³
+Post,SI Expwy,Evening rush,Traffic,10589.46,vehicles per hour
+Post,SI Expwy,Midday,Traffic,9926.153,vehicles per hour
+Post,SI Expwy,Morning rush,Traffic,10567.72,vehicles per hour
+Post,SI Expwy,Overnight,Traffic,5344.97,vehicles per hour
+Post,Trans-Manhattan,Evening rush,PM2.5,9.116028037,µg/m³
+Post,Trans-Manhattan,Morning rush,PM2.5,9.484252336,µg/m³
+Post,Trans-Manhattan,Midday,PM2.5,9.16703271,µg/m³
+Post,Trans-Manhattan,Overnight,PM2.5,8.971806854,µg/m³
+Post,Trans-Manhattan,Evening rush,Traffic,12014.9,vehicles per hour
+Post,Trans-Manhattan,Midday,Traffic,11498.4,vehicles per hour
+Post,Trans-Manhattan,Morning rush,Traffic,12186.2,vehicles per hour
+Post,Trans-Manhattan,Overnight,Traffic,7798.885,vehicles per hour
+Post,Van Wyck,Evening rush,PM2.5,5.481540698,µg/m³
+Post,Van Wyck,Morning rush,PM2.5,7.172994186,µg/m³
+Post,Van Wyck,Midday,PM2.5,6.45346657,µg/m³
+Post,Van Wyck,Overnight,PM2.5,6.164956395,µg/m³
+Post,Van Wyck,Evening rush,Traffic,7338.45,vehicles per hour
+Post,Van Wyck,Midday,Traffic,6452.638889,vehicles per hour
+Post,Van Wyck,Morning rush,Traffic,7238.578947,vehicles per hour
+Post,Van Wyck,Overnight,Traffic,4538.089744,vehicles per hour

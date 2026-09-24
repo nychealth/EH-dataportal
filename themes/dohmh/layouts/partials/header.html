@@ -3,7 +3,7 @@
 
 <header id="global-header" role="banner">
 
-    <div class="bg-black text-white" id="nyc-top-header">
+    <div class="bg-black text-white d-print-none" id="nyc-top-header">
 
         <div class="container-fluid wide">
 
@@ -72,11 +72,11 @@
 
                     <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pr-1"></a>
+                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} alt="Environment & Health Data Portal home" style="height: 67px" class="pr-1"></a>
 
                             <p class="text-white title-hover">
-                                <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
-                                <span class="site-title">Data Portal</a></span>
+                                <a href='{{ relURL "" }}' class="link-no-dec"><span class="site-subtitle">Environment & Health</span>
+                                <span class="site-title">Data Portal</span></a>
                             </p>
 
 
@@ -91,7 +91,7 @@
 
                             <div class="d-none d-lg-block mx-n2 mx-lg-2" id="nav-primary-top">
 
-                                <nav class="nav" role="navigation">
+                                <nav class="nav" role="navigation" aria-label="Main">
 
                                     <div class="nav-item bg-white text-primary border dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic-top"
@@ -104,10 +104,10 @@
                                                 {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
                                                 {{- if not .Params.hide -}}
                                                     {{- if .Params.shortTitle }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
                                                     <hr class="my-1">
                                                     {{- else }}
-                                                    <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                    <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
                                                     <hr class="my-1">
                                                     {{- end -}}
                                                 {{- end -}}
@@ -154,7 +154,7 @@
 
                                                     {{- /*  add element  */ -}}
 
-                                                    <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                    <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
 
                                                     {{- /*  only add the horizontal bar if it's not the last item  */ -}}
 
@@ -185,7 +185,7 @@
                                     
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                        <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
                                                     <span class="sr-only">Search</span>
                                                     <i class="fa fa-magnifying-glass text-body"></i>
                                                 </a>
@@ -195,9 +195,7 @@
                                     <!-- .nav-item -->
                                     <div class="nav-item bg-none text-white border border-white ml-1">
 
-                                        <a href="#" class="nav-link text-white" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">
-                                            Subscribe
-                                        </a>
+                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
                                     </div>
 
                                 </nav>
@@ -229,7 +227,7 @@
 
     </div>
 
-    <div class="border-bottom px-2">
+    <div class="border-bottom px-2 d-print-none">
                                     <!-- Mobile Toggle Buttons -->
 
                                     <ul class="extensible-list horizontal justify-content-between my-1 d-lg-none">
@@ -243,7 +241,7 @@
                                         </li>
         
                                         <li>
-                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                            <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
                                                 <span class="sr-only">Search</span>
                                                 <i class="fa fa-magnifying-glass text-primary"></i>
                                             </a>
@@ -252,7 +250,7 @@
         
                                     <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
         
-                                        <nav class="nav" role="navigation">
+                                        <nav class="nav" role="navigation" aria-label="Main">
         
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
@@ -265,10 +263,10 @@
                                                         {{ range sort (where .Site.Pages "Section" "key-topics") "Params.Title" }}
                                                         {{- if not .Params.hide -}}
                                                             {{- if .Params.shortTitle }}
-                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.shortTitle }}</li></a>
+                                                            <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.shortTitle }}</a></li>
                                                             <hr class="my-1">
                                                             {{- else }}
-                                                            <a class="" href="{{ .RelPermalink }}"> <li class="">{{ .Params.title }}</li></a>
+                                                            <li class=""><a class="" href="{{ .RelPermalink }}">{{ .Params.title }}</a></li>
                                                             <hr class="my-1">
                                                             {{- end -}}
                                                         {{- end -}}
@@ -315,7 +313,7 @@
         
                                                             {{- /*  add element  */ -}}
         
-                                                            <a href="{{ .URL }}"><li><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</li></a>
+                                                            <li><a href="{{ .URL }}"><span class="mr-1">{{ $menu.Pre }}</span>{{ $menu.Name }}</a></li>
         
                                                             {{- /*  only add the horizontal bar if it's not the last item  */ -}}
         
@@ -346,7 +344,7 @@
                                             
         
                                             <div class="nav-item bg-white text-primary border d-none d-lg-block">
-                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search" data-toggle="collapse">
+                                                <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
                                                             <span class="sr-only">Search</span>
                                                             <i class="fa fa-magnifying-glass text-body"></i>
                                                         </a>
@@ -355,8 +353,8 @@
         
                                             <!-- .nav-item -->
                                             <div class="nav-item bg-none text-primary border">
-        
-                                                <a href="#" class="nav-link text-primary " data-toggle="modal" data-target="#subscribeModal">
+
+                                                <a href="#" class="nav-link text-primary " data-subscribe-click="header-modal" data-toggle="modal" data-target="#subscribeModal">
                                                     Subscribe
                                                 </a>
                                             </div>
@@ -366,17 +364,7 @@
                                     </div>
     </div>
 
-        <div class="modal" tabindex="-1" role="dialog" id="subscribeModal">
-            <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
-                <div class='modal-content'>
-                    <div class='modal-body' style="height:75vh;">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform" width="100%" frameborder="no" height="100%"></iframe>
-                    </div>
-                    <hr>
-                    <button type="button" class="btn btn-outline-primary close-dialog" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
+        {{- partial "subscribe-modal.html" . -}}
 
 </header>
 <!-- #global-header -->

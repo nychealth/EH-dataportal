@@ -48,6 +48,7 @@ const setDefaultMapMeasure = (visArray) => {
         )
 
         // Set total as default if available
+
         if (hasAgeAdjustedRateTotal.length) {
             defaultArray.push(hasAgeAdjustedRateTotal[0]);
 
@@ -127,6 +128,7 @@ const setDefaultTrendMeasure = (visArray) => {
                 measure.MeasurementType.includes('Total')
             )
             // Set total as default if available
+
             if (hasAgeAdjustedRateTotal.length) {
                 defaultArray.push(hasAgeAdjustedRateTotal[0]);
 
@@ -207,6 +209,7 @@ const setDefaultLinksMeasure = async (visArray) => {
                 measure.MeasurementType.includes('Total')
             )
             // Set total as default if available
+
             if (hasAgeAdjustedRateTotal.length) {
                 defaultArray.push(hasAgeAdjustedRateTotal[0]);
 
@@ -242,6 +245,7 @@ const setDefaultLinksMeasure = async (visArray) => {
         // console.log("defaultSecondaryMeasureId", defaultSecondaryMeasureId);
 
         // assigning to global object
+
         defaultPrimaryLinksMeasureMetadata = defaultArray;
 
         // console.log("defaultPrimaryLinksMeasureMetadata [setDefaultLinksMeasure]", defaultPrimaryLinksMeasureMetadata);
@@ -312,6 +316,7 @@ const setDefaultDisparitiesMeasure = (visArray) => {
                 measure.MeasurementType.includes('Total')
             )
             // Set total as default if available
+
             if (hasAgeAdjustedRateTotal.length) {
                 defaultArray.push(hasAgeAdjustedRateTotal[0]);
 
@@ -525,14 +530,17 @@ const updateBoroughTrendData = (e) => {
     // persistent selection
 
     // remove active class from every list element
+
     $('.trendbutton').removeClass("active");
     $('.trendbutton').attr('aria-selected', false);
 
     // also comparison, which is in this combinded dropdown
+
     $('.comparisonbutton').removeClass("active");
     $('.comparisonbutton').attr('aria-selected', false);
 
     // set this element as active & selected
+
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
@@ -647,14 +655,17 @@ const updateComparisonTrendData = (e) => {
     // persistent selection
 
     // remove active class from every list element
+
     $('.comparisonbutton').removeClass("active");
     $('.comparisonbutton').attr('aria-selected', false);
 
     // also trend, which is in this combinded dropdown
+
     $('.trendbutton').removeClass("active");
     $('.trendbutton').attr('aria-selected', false);
 
     // set this element as active & selected
+
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
@@ -763,10 +774,12 @@ const updateLinksData = async (e) => {
     // persistent selection
 
     // remove active class from every list element
+
     $('.linksbutton').removeClass("active");
     $('.linksbutton').attr('aria-selected', false);
 
     // set this element as active & selected
+
     $(e.target).addClass("active");
     $(e.target).attr('aria-selected', true);
 
@@ -842,6 +855,7 @@ const updateLinksData = async (e) => {
     selectedLinksSources.push(secondarySources)
 
     // render the measure info boxes
+
     renderAboutSources(selectedLinksAbout, selectedLinksSources);
 
 
@@ -905,6 +919,7 @@ const updateLinksData = async (e) => {
         // remove click listeners to button that calls renderDisparitiesChart
 
         // console.log("btnToggleDisparities [updateLinksData]");
+
         $(btnToggleDisparities).off(".toggle")
 
     }
@@ -1005,6 +1020,7 @@ const handleMapTimeDropdown = (MeasureID, GeoType) => {
         if (!mapTimesAvailable.includes(button.dataset.time)) {
             
             // set this element as disabled
+
             $(button).addClass("unavailable");
             
         }
@@ -1041,6 +1057,7 @@ const handleMapGeoDropdown = (MeasureID, TimePeriod) => {
         if (!mapGeosAvailable.includes(button.dataset.geo)) {
             
             // set this element as disabled
+
             $(button).addClass("unavailable");
             
         }
@@ -1151,8 +1168,8 @@ const renderMeasures = async () => {
 
     dropdownTrendSelection.innerHTML = ``;
     dropdownCompSelection.innerHTML = ``;
-    trendSelectionLabel.innerHTML = ``;
-    compSelectionLabel.innerHTML = ``;
+    trendSelectionLabel.innerHTML = `By `;
+    compSelectionLabel.innerHTML = `Show with:`;
     document.getElementById('compMenu').classList.add('hide');
 
     dropdownMapMeasures.innerHTML = ``;
@@ -1285,6 +1302,10 @@ const renderMeasures = async () => {
 
     let header = "";
 
+    const disparitiesSecondaryMeasure = indicators
+        .flatMap(indicator => indicator.Measures)
+        .find(measure => measure.MeasureID === 221);
+
     indicatorMeasures.map((measure, index) => {
 
         // console.log("index", index);
@@ -1297,6 +1318,7 @@ const renderMeasures = async () => {
         const trend       = aqTrendTimesGeos && aqTrendTimesGeos.filter(`d => d.MeasureID === ${measure.MeasureID}`).numRows() > 0;
         const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0].MeasureID;
         const disparities = measure.VisOptions[0].Links[0].Disparities == 1
+            && getSharedLinksGeos(measure, disparitiesSecondaryMeasure).length > 0
         const type        = measure.MeasurementType;
         const measureId   = measure.MeasureID;
 
@@ -1322,6 +1344,8 @@ const renderMeasures = async () => {
         // ----- handle trend measures --------------------------------------------------- //
 
         if (trend) {
+
+            document.getElementById('trendMenuHolder').classList.remove('d-none')
 
             // console.log(">>>> trend");
 
@@ -1353,6 +1377,11 @@ const renderMeasures = async () => {
                 ${type}
                 </button>`);
             }
+
+        }
+
+        if (!trend) {
+            console.log('no trend :)')
         }
 
 
@@ -1425,14 +1454,22 @@ const renderMeasures = async () => {
 
         let compLegendTitles = [... new Set(aqCombinedComparisonMetadata.array("LegendTitle"))]
 
+        console.log('compLegendTitles', compLegendTitles)
+
+        // if compLegend.Titles.length > 1...
+
         compLegendTitles.map(title => {
+
+            // console.log("title", title)
 
             let titleGroup = aqCombinedComparisonMetadata.filter(aq.escape(d => d.LegendTitle == title))
 
             // add each unique legend title as a header, with the included comparison underneath
 
             document.getElementById('compMenu').classList.remove('hide');
-            compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+            // compSelectionLabel.innerHTML += title ? title.toLowerCase() : '';
+
+            dropdownCompSelection.innerHTML += `<span class="fs-xs"><strong>${title}</strong></span>`
 
             let comparisonIDs = [... new Set(titleGroup.array("ComparisonID"))]
 
@@ -1467,6 +1504,7 @@ const renderMeasures = async () => {
 
                     } else {
                         // I am very unhappy with this kludge
+
                         dropdownCompSelection.innerHTML += `<button class="btn btn-primary dropdown-item comparisonbutton pl-2"
                             data-comparison-id="${comp}"  title="${compGeography[compGeography.length - 1]} ">
                             ${compGeography[compGeography.length - 1]} 
@@ -1699,14 +1737,17 @@ const renderMeasures = async () => {
             // remove active class from every list element
 
             // geos
+
             $('.mapgeosbutton').removeClass("active");
             $('.mapgeosbutton').attr('aria-selected', false);
             
             // measures
+
             $('.mapmeasuresbutton').removeClass("active");
             $('.mapmeasuresbutton').attr('aria-selected', false);
 
             // times
+
             $('.maptimesbutton').removeClass("active");
             $('.maptimesbutton').attr('aria-selected', false);
 
@@ -1926,10 +1967,12 @@ const renderMeasures = async () => {
             // ----- persistent selection --------------------------------------------------- //
 
             // remove active class from every list element
+
             $('.trendbutton').removeClass("active");
             $('.trendbutton').attr('aria-selected', false);
 
             // also comparison, which is in this combinded dropdown
+
             $('.comparisonbutton').removeClass("active");
             $('.comparisonbutton').attr('aria-selected', false);
 
@@ -1989,10 +2032,12 @@ const renderMeasures = async () => {
             // persistent selection
 
             // remove active class from every list element
+
             $('.comparisonbutton').removeClass("active");
             $('.comparisonbutton').attr('aria-selected', false);
 
             // also trend, which is in this combinded dropdown
+
             $('.trendbutton').removeClass("active");
             $('.trendbutton').attr('aria-selected', false);
 
@@ -2178,6 +2223,7 @@ const renderMeasures = async () => {
                 // turn off click listener
                 
                 // console.log("btnToggleDisparities [showLinks (no links, has disp)]");
+
                 $(btnToggleDisparities).off(".toggle")
 
                 // if disparities is enabled, show the button
@@ -2285,6 +2331,7 @@ const renderMeasures = async () => {
                 // ----- persistent selection - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
                 // remove active class from every list element
+
                 $('.linksbutton').removeClass("active");
                 $('.linksbutton').attr('aria-selected', false);
 
@@ -2343,6 +2390,7 @@ const renderMeasures = async () => {
                     // remove click listeners to button that calls renderDisparitiesChart
                     
                     // console.log("btnToggleDisparities [showLinks (has links, no disp)]");
+
                     $(btnToggleDisparities).off(".toggle")
 
                 }

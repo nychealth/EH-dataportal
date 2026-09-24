@@ -26,7 +26,8 @@
 
     vegaEmbed(
         '#{{ .Get "id" }}', 
-        `${data_repo}/${data_branch}/${dir}/${spec}`
+        `${data_repo}/${data_branch}/${dir}/${spec}`,
+        {renderer: "svg"}
         //data_repo + "/" + data_branch + "/" + dir + "/" + spec
     ).then(function(result) {
 

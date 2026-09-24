@@ -1,0 +1,26 @@
+State,StateAbbrev,County,Site Name,Arithmetic Mean,HistoricalMin,HistoricalMax,Parameter
+Connecticut,CT,Fairfield,Western Conn State Univ,8.7,6.9,8.8,PM2.5
+Connecticut,CT,Fairfield,Roosevelt School-Bridgeport,8.9,7.1,9,PM2.5
+Connecticut,CT,New Haven,Criscuolo Park-New Haven,8.2,6.7,8.7,PM2.5
+Connecticut,CT,Fairfield,Sherwood Island Connector,19.1,18.6,20.9,NO2
+Connecticut,CT,New Haven,Criscuolo Park-New Haven,24,20.01,24.4,NO2
+Connecticut,CT,Fairfield,Greenwich Point Park,0.038,0.037,0.04,Ozone
+Connecticut,CT,Fairfield,Sherwood Island Connector,0.035,0.034,0.036,Ozone
+Connecticut,CT,Fairfield,USGS Lighthouse,0.039,0.039,0.041,Ozone
+Connecticut,CT,Fairfield,Western Conn State Univ,0.032,0.031,0.035,Ozone
+Connecticut,CT,New Haven,Criscuolo Park-New Haven,0.033,0.033,0.034,Ozone
+Connecticut,CT,New Haven,Hammonasset State Park,0.037,0.035,0.037,Ozone
+New Jersey,NJ,Bergen,Leonia,0.03,0.031,0.032,Ozone
+New Jersey,NJ,Hudson,Bayonne,0.032,0.033,0.0332,Ozone
+New Jersey,NJ,Hudson,Jersey City,29,24.3,28.6,NO2
+New Jersey,NJ,Hudson,Bayonne,25.2,22.6,24.6,NO2
+New Jersey,NJ,Bergen,Fort Lee Near Road,29.5,22.3,26.6,NO2
+New York,NY,Putnam,Mt Ninham,0.027,0.026,0.031,Ozone
+New York,NY,Rockland,Rockland County,0.031,0.03,0.033,Ozone
+New York,NY,Suffolk,Babylon,0.034,0.036,0.037,Ozone
+New York,NY,Suffolk,Flax Pond,0.036,0.036,0.038,Ozone
+New York,NY,Suffolk,Holtsville,0.034,0.035,0.038,Ozone
+New York,NY,Suffolk,Riverhead,0.035,0.035,0.036,Ozone
+New York,NY,Westchester,White Plains,0.03,0.029,0.033,Ozone
+New York,NY,Suffolk,Babylon,9.5,7,9,PM2.5
+New York,NY,Suffolk,Flax Pond,6,4.5,6,NO2

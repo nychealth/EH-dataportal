@@ -45,7 +45,6 @@ indicators:
       - 2179
   - header: Safety
     IndicatorID:
-      - 2188
       - 2185
       - 2377
   - header: null

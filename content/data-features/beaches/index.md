@@ -23,7 +23,7 @@ keywords:
   ]
 layout: resourceportal
 image: beachportal-screenshot.png
-destination: "https://a816-dohbesp.nyc.gov/IndicatorPublic/beaches/"
+destination: "beaches/"
 externalPortal: true
 blurb: Data about current water quality conditions and sources of pollution that affect water quality.
 ---

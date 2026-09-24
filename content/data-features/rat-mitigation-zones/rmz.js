@@ -1,4 +1,5 @@
 // ===== CREATE MAP ================================================== //
+
 var name;
 var id;
 var ratData = [];
@@ -6,7 +7,7 @@ var rmzgeojson;
 var geog;
 
 var map = L.map('map').setView([40.7722226,-73.9638235],11); // [Lat,Long],Zoom
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
 	maxZoom: 15,
@@ -33,11 +34,13 @@ L.easyButton({
 
 function resetZoom() {
     // console.log('reset zoom 3')
+
     window.location.hash = '#top'
     location.reload()
 }
 
 // When style is run in const geojson, it returns these - default styles
+
 function style(feature) {
     return {
         weight: 1,
@@ -55,6 +58,7 @@ function style(feature) {
 function getGeoJSON(x) {
   return new Promise((resolve, reject) => {
       // Fetch the GeoJSON data
+
       fetch(x)
       .then(response => {
           if (!response.ok) {
@@ -65,6 +69,7 @@ function getGeoJSON(x) {
       .then(data => {
         rmzgeojson = data; // Store the GeoJSON data in a global variable
           // console.log('GeoJSON data loaded:', rmzgeojson);
+
           resolve(); // Resolve the promise when the data is ready
           geog = L.geoJson(rmzgeojson,{
               style,
@@ -100,12 +105,14 @@ function zoomToFeature(e) {
   // console.log('zoom to feature:'),
   // console.log(e)
   // console.log(rmzgeojson)
+
     geog.resetStyle()
     map.fitBounds(e.target.getBounds());
     id = e.target.feature.properties.OBJECTID
     // console.log('Filtering data for: ')
     // console.log('Name: ' + e.target.feature.properties.Label) 
     // console.log('ID: ', id)
+
     redrawChart(id)
     name = e.target.feature.properties.Label
     printToPage(id);
@@ -131,6 +138,7 @@ function highlightFeature(e) {
     geog.resetStyle()
     // console.log('highlight feature:')
     // console.log(e)
+
     const layer = e.target;
     layer.setStyle({ // Styles for hover-highlight
         weight: 3,
@@ -144,16 +152,20 @@ layer.bringToFront();
 }
 
 // ===== PRINT INFO TO PAGE ================================================== //
+
 function printToPage(x) {
     // console.log("id: " + x)
+
     document.getElementById('zoneName').innerHTML = name;
 
     const zoneData = ratData.filter(zone => zone.ID == x)
 }
 
 // update map and page from dropdown
+
 function update(x) {
   // console.log('updated for: ', x)
+
   let zone = x - 1
   let layerzone = rmzgeojson.features[zone]
 
@@ -169,19 +181,24 @@ function update(x) {
 }
 
 // ===== GET RECENT DATA (INITIAL, COMPLIANCE) ================================================== //
+
 function interpretInitial(x) {
   // filter recent Initial Inspections data for this neighborhood
+
   thisRecent = recent.filter (y => y.zoneID == x)
 
   // get ARS fail number
+
   var ars = thisRecent.filter(y => y.Type === 'Active rat signs')
   var arsfail = ars[0].Number
 
   // get total inspections
+
   var entry = thisRecent.filter(y => y.Type === 'Initial inspections')
   var initial = entry[0].Number 
 
   // calculate percent
+
   var percent = 100 * arsfail / initial
 
   document.getElementById('failpercent').innerHTML = parseFloat(percent).toFixed(1)
@@ -205,6 +222,7 @@ function interpretCompliance(x) {
 }
 
 // REVISED 311 COMPLAINTS SPEC //
+
 var revSpecOne = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -244,11 +262,16 @@ var revSpecOne = {
           1672462800000,
           1688097600000,
           1703998800000,
-          1719705600000
+          1719705600000,
+          1735689600000,
+          1751328000000,
+            1767225600000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1775251200000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -331,6 +354,7 @@ var revSpecOne = {
 }
 
 // ===== INITIAL INSPECTIONS SPEC ================================================== //
+
 var revSpecTwo = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -374,11 +398,16 @@ var revSpecTwo = {
           1672462800000,
           1688097600000,
           1703998800000,
-          1719705600000
+          1719705600000,
+          1735689600000,
+          1751328000000,
+          1767225600000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1775251200000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -456,6 +485,7 @@ var revSpecTwo = {
 }
 
 // ===== COMPLIANCE INSPECTIONS SPEC ================================================== //
+
 var revSpecThree = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -498,11 +528,16 @@ var revSpecThree = {
           1672462800000,
           1688097600000,
           1703998800000,
-          1719705600000
+          1719705600000,
+          1735689600000,
+          1751328000000,
+          1767225600000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1775251200000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -612,9 +647,12 @@ var specThree = {
       "type": "temporal",
       "title": "",
       "axis": {
-        "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000],
+        "values": [1656561600000,1672462800000,1688097600000,1703998800000,1719705600000,1735689600000,
+          1751328000000,1767225600000],
         "format": "%b %Y"},
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1775251200000}
     }
   },
   "layer": [
@@ -697,6 +735,7 @@ var specThree = {
 }
 
 // ===== EXTERMINATOR SPEC ================================================== //
+
 var revSpecFour = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "",
@@ -738,11 +777,16 @@ var revSpecFour = {
           1672462800000,
           1688097600000,
           1703998800000,
-          1719705600000
+          1719705600000,
+          1735689600000,
+          1751328000000,
+          1767225600000
         ],
         "format": "%b %Y"
       },
-      "scale": {"domainMin": 1650841000000}
+      "scale": {
+        "domainMin": 1650841000000,
+        "domainMax": 1775251200000}
     },
     "y": {"field": "Number", "type": "quantitative", "title": ""},
     "color": {
@@ -827,17 +871,21 @@ var revSpecFour = {
   var thisRecent = [];
   d3.csv('initial-inspections.csv').then(data => {
     // ingest data
+
     initialData = data
 
     // get final date
+
     var finalPos = initialData.length - 1    
     var mostRecentDate = initialData[finalPos].Date
 
     // get data for final date installment
+
     recent = initialData.filter(x => x.Date === mostRecentDate)
   })
 
     //// ----- Get most recent data for Compliance Inspections ------ ////
+
   var complianceData = [];
   var complianceRecent = [];
   var thisCompliance = [];
@@ -876,14 +924,16 @@ function redrawChart(zoneID) {
 
 
   revSpecOne.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizOne", revSpecOne)
-
   revSpecTwo.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizTwo", revSpecTwo)
-
   revSpecThree.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizThree", revSpecThree)
-
   revSpecFour.transform[0].filter = `datum.zoneID == '${zoneID}'`
-  vegaEmbed("#vizFour", revSpecFour)
+
+  return Promise.all([
+    vegaEmbed("#vizOne", revSpecOne, {renderer: "svg"}),
+    vegaEmbed("#vizTwo", revSpecTwo, {renderer: "svg"}),
+    vegaEmbed("#vizThree", revSpecThree, {renderer: "svg"}),
+    vegaEmbed("#vizFour", revSpecFour, {renderer: "svg"})
+  ]).catch(error => {
+    console.error('Unable to redraw rat mitigation charts:', error);
+  });
 }

@@ -4,13 +4,14 @@ name: Check deployment
 
 on:
   schedule:
-    - cron: '30 11 * * 1-5' # every weekday at 7:30 Eastern
+    - cron: '17 4 * * 1-5' # every weekday at 4:17 Eastern
+      timezone: "America/New_York"
   workflow_dispatch:
 
 jobs:
   check_deploy:
     name: Check deployment
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     # define job's steps
 
@@ -19,7 +20,7 @@ jobs:
       # checkout
       
       - name: checkout builds/prod-prod
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: builds/prod-prod
           fetch-depth: 0
@@ -78,14 +79,14 @@ jobs:
         
         if: steps.b_hash.outputs.built_hash != steps.d_hash.outputs.deployed_hash
 
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@94de994a9f6fffee200243214e17002e2920bb59 # v18
         with:
           server_address: smtp.gmail.com
           server_port: 465
           secure: true
           subject: Pending deployment on ${{ github.repository }} (${{ steps.log.outputs.commit_count }} commits)
           html_body: file://log.txt
-          to: cgettings@health.nyc.gov,mmontesano@health.nyc.gov,etorem@health.nyc.gov
-          from: Chris Gettings (via gmail)
+          to: cgettings@health.nyc.gov,etorem@health.nyc.gov
+          from: "Chris Gettings (via gmail) <${{ secrets.MAIL_USERNAME }}>"
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}

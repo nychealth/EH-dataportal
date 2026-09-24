@@ -11,15 +11,15 @@ tags:
 categories: [pests, housing]
 keywords: ["rats", "rat mitigation zones", "pests", "inspections", "rodents"]
 layout: rmz
-vega: true
-arquero: true
+
+
 leaflet: true
 image: rmz-ss.png
 related:
   - title: "Rat complaints and NYC’s rat problem"
     url: "data-stories/rat-complaints/"
-  - title: "Rat Information Portal"
-    url: "data-features/rat-information-portal/"
+  - title: "Inspection data are the key to controlling NYC’s rats"
+    url: "data-stories/rat-inspections/"
   - title: "Rats in your neighborhood"
     url: "data-features/rats-in-your-neighborhood/"
 weight: 2
@@ -31,7 +31,7 @@ aboutTheData: '
   <li><a href="compliance-inspections.csv">Compliance inspections</a></li>
   <li><a href="exterminator-visits.csv">Exterminator visits</a></li>
   </ul>
-  <a class="" href="../rat-information-portal">For individual property inspection results, visit the Rat Information Portal</a>.'
+  [For individual property inspection results, visit the Rat Information Portal]({{< relURL >}}data-features/rat-information-portal/).'
 ---
 
 Rats can contaminate food, spread disease and reduce our quality of life. Rat Mitigation Zones (RMZ) are areas with high levels of rat activity, where City agencies focus resources to address rats and the conditions that support them.

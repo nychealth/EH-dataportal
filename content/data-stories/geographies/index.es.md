@@ -1,7 +1,8 @@
 ---
 title: "Los límites del vecindario en los datos del Departamento de Salud"
 date: 2020-08-01T08:33:22-04:00
-draft: false
+draft: true
+vega: true
 seo_title: "Los límites del vecindario en los datos del Departamento de Salud"
 seo_description: "Diagramar los datos sanitarios en los vecindarios de la ciudad de Nueva York."
 tags: 
@@ -9,13 +10,13 @@ categories: ["internal","neighborhoods"]
 keywords: ["geography","maps","neighborhoods","health data","methods","geographic"]
 image: ds-geographies.jpg
 layout: single
-vega: true
+
 photocredit: "Edwin J. Torres/Mayoral Photography Office, City of New York"
 ---
 
 La ciudad de Nueva York posee cientos de vecindarios y casi la misma cantidad de formas de diagramar los límites de los vecindarios. Cuando visita el Portal de Datos Ambientales y Sanitarios u otros recursos de datos del Departamento de Salud (Health Department), es posible que note que la información está disponible en diferentes esquemas de vecindarios.
 
-Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que [los adultos con asma]({{< baseurl >}}data-explorer/asthma/?id=18) se presentan por vecindario de UHF34, [los niños de escuelas públicas con asma]({{< baseurl >}}data-explorer/asthma/?id=2147) se presentan por vecindarios de UHF42 y [las visitas por asma a la sala de emergencias]({{< baseurl >}}data-explorer/asthma/?id=2384) se ofrecen por NTA. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
+Por ejemplo, si busca en las páginas de datos sobre asma, encontrará que [los adultos con asma]({{< relURL >}}data-explorer/asthma/?id=18) se presentan por vecindario de UHF34, [los niños de escuelas públicas con asma]({{< relURL >}}data-explorer/asthma/?id=2147) se presentan por vecindarios de UHF42 y [las visitas por asma a la sala de emergencias]({{< relURL >}}data-explorer/asthma/?id=2384) se ofrecen por NTA. Se ofrecen otros datos del portal por CD, código postal, PUMA y, en ocasiones, incluso por distrito policial. **¿Qué son estos esquemas de vecindarios, por qué usamos uno y no el otro, y por qué no está integrado todo el sistema?**
 
 Los límites más comunes de vecindarios en los datos del Departamento de Salud son vecindarios de Distritos Comunitarios (Community Districts, CD), Áreas de Microdatos de Uso Público (Public Use Microdata Areas, PUMA) y Fondo Hospitalario Unido (United Hospital Fund, UHF). Estos tres esquemas de vecindarios tradicionales poseen diferentes pilares principales. Analicémoslos.
 
@@ -139,7 +140,7 @@ Cada PUMA se divide en áreas de tabulación de vecindarios (NTA), y cada NTA se
             
             d3.csv(csv, d3.autoType).then(csv => {
                 
-                vegaEmbed(div, spec).then((res) => {
+                vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
 
                     resview = res.view.insert("csv", csv).run();
 

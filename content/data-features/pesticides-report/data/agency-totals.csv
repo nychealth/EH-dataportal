@@ -1,0 +1,53 @@
+Pesticide Type,Agency,Volume in Gallons,Weight in Pounds,Total Applications
+Rodenticide,ACS,0.00,96.49,563
+Insecticide,ACS,4.14,20.21,1004
+Rodenticide,BK LIBRARY,0.00,134.33,432
+Insecticide,BK LIBRARY,1.17,55.00,633
+Rodenticide,BOE,0.00,2.26,13
+Insecticide,BOE,0.08,0.56,38
+Rodenticide,CUNY,0.00,61.54,336
+Insecticide,CUNY,26.37,45.78,762
+Rodenticide,DCAS ,0.00,272.69,882
+Insecticide,DCAS,2.71,29.83,921
+Rodenticide,DEP,0.01,675.03,1225
+Insecticide,DEP,2.63,2.41,111
+HERBICIDE,DEP,55.59,0.00,57
+Rodenticide,DHS,0.00,101.25,617
+Insecticide,DHS,3.92,36.40,1023
+Insecticide,DOB,0.19,0.24,9
+Rodenticide,DOC,1.19,144.08,81
+Insecticide,DOC,6.95,10.92,257
+Rodenticide,DOE,10152.13,7997.36,14041
+Insecticide,DOE,90.70,9725.41,29200
+Rodenticide,DOF,0.00,2.54,20
+Insecticide,DOF,0.22,1.20,75
+Rodenticide,DOHMH,0.00,22532.87,36635
+Insecticide,DOHMH,396.45,59882.08,480671
+Rodenticide,DOT,0.00,41.50,173
+Insecticide,DOT,0.51,4.57,194
+HERBICIDE,DOT,453.23,0.00,2222
+Rodenticide,DSNY,0.78,446.21,529
+Insecticide,DSNY,9.80,5.94,1488
+Rodenticide,EDC,0.00,992.03,1278
+RODENTICIDE,FDNY,0.00,519.13,2480
+Insecticide,FDNY,7.13,202.79,3572
+Rodenticide,HHC,0.00,235.73,328
+Insecticide,HHC,1.91,293.95,2542
+Rodenticide,HPD,0.00,214.43,306
+Insecticide,HPD,1.32,42.92,320
+Rodenticide,HRA,0.00,22.19,113
+Insecticide,HRA,3.09,6.94,553
+Rodenticide,NYCHA,0.00,19247.41,70942
+Insecticide,NYCHA,121.00,21954.45,160695
+Rodenticide,NYPD,0.00,401.76,1685
+Insecticide,NYPD ,4.46,79.58,1427
+Rodenticide,OCME,0.00,5.18,35
+Insecticide,OCME,0.66,1.81,198
+Rodenticide,Parks,3725.19,8753.31,5259
+Other,Parks,93.16,0.48,90
+Insecticide,Parks,319.77,8688.18,9950
+Herbicide,Parks,811.98,21970.69,1161
+Fungicide,Parks,3838.08,8133.03,1289
+Insecticide,QNS LIBRARY,0.00,1.00,1
+Rodenticide,SCA,0.00,943.86,4907
+Insecticide,SCA,0.05,5.18,75

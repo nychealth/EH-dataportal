@@ -32,7 +32,21 @@ const load_flexdatalist = async () => {
           });
 
           // console.log("$input", $input);
-          
+
+          // ----- give the generated input a combobox role ----------------------------- //
+
+          // flexdatalist hides the authored input and renders its own; the generated one is
+          // what the reader focuses, and its id is the authored id + "-flexdatalist"
+          // (jquery.flexdatalist.js:475). wireComboboxState comes from the partial
+          // flexdatalist-combobox-js.html, which aqe.html loads — these are classic scripts
+          // sharing one global scope.
+
+          const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+          if (generated) {
+              wireComboboxState(generated);
+          }
+
           // ----- add flexdatalist select handler -------------------------------------------------- //
 
           $input.on('select:flexdatalist', (e, set) => {
@@ -48,6 +62,7 @@ const load_flexdatalist = async () => {
               // dataChange(set.GEOCODE);
 
               // call tester Function
+
               setNeighborhood(set.NTACode, set.GEONAME, set.zipcode)
               
           })
@@ -66,6 +81,7 @@ const load_flexdatalist = async () => {
 }
 
 // ----- Load data and call loader function -------------------------------------------------- //
+
 var allData = [];
 var neighborhoodData = [];
 
@@ -94,6 +110,7 @@ function setNeighborhood(x, y, z) {
 
 
   // console.log('geocode',x)
+
   thisGeocode = x
   // console.log(y)
 
@@ -106,6 +123,7 @@ function setNeighborhood(x, y, z) {
   document.getElementById('zips').innerHTML = z
 
   // ingest data file and filter by GEOCODE
+
   neighborhoodData = allData.filter(neighb => neighb.NTACODE == x)
 
   console.table(neighborhoodData)
@@ -132,12 +150,15 @@ function sourceTertile(x,dest) {
 
   if (x === 'High') {
     // change class
+
     destination.classList.add('badge-worse')
   } else if (x === 'Medium') {
     // change class
+
     destination.classList.add('badge-medium')
   } else if (x === 'Low') {
     // change class
+
     destination.classList.add('badge-better')
   }
 
@@ -157,6 +178,7 @@ const renderChart = (
 ) => {
 
   // add conditionals for TITLE, units, etc.
+
   var title
   var units
 
@@ -221,7 +243,7 @@ const renderChart = (
           "strokeWidth": {
             "condition": {
               "test": `datum['NTACODE'] === '${neighborhood}'`,
-              "value": 1  
+              "value": 1
             },
             "value": 0
           },
@@ -236,7 +258,7 @@ const renderChart = (
 
   // console.log(barSpec)
 
-  vegaEmbed(destination, barSpec, {actions:false})
+  vegaEmbed(destination, barSpec, {renderer: "svg", actions:false})
 }
 
 
@@ -245,16 +267,19 @@ function changeSource(x) {
   // console.log(x)
 
   // get all class sourceBox and remove active
+
   var sourceBoxes = document.querySelectorAll(".sourceBox")
   for (let i = 0; i < sourceBoxes.length; i++) {
       sourceBoxes[i].classList.remove('sourceBox-active')
   }
 
   // highlight what you clicked on
+
   var thisBox = 'sourceBox' + x
   document.getElementById(thisBox).classList.add('sourceBox-active')
 
   // change map
+
   var title;
 
   if (x==1) {
@@ -298,7 +323,7 @@ const renderMap = (
     }
 
     var mapSpec = {
-      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
       "width": "container",
       "height": "container",
       "autosize": {"type": "fit", "contains": "padding"},
@@ -394,7 +419,7 @@ const renderMap = (
       ]
     }
     
-    vegaEmbed("#mapHolder", mapSpec, {actions:false})
+    vegaEmbed("#mapHolder", mapSpec, {renderer: "svg", actions:false})
 
 
 }

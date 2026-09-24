@@ -1,0 +1,19 @@
+State,County,Site Name,Lat,Long,Type
+Connecticut,Fairfield,Greenwich Point Park,41.004657,-73.585128,Ozone
+Connecticut,Fairfield,Roosevelt School-Bridgeport,41.170833,-73.194722,PM2.5
+Connecticut,Fairfield,Sherwood Island Connector,41.118333,-73.336667,NO2 and Ozone
+Connecticut,Fairfield,USGS Lighthouse,41.1525,-73.103056,Ozone
+Connecticut,Fairfield,Western Conn State Univ,41.399167,-73.443056,PM2.5 and Ozone
+Connecticut,New Haven,Criscuolo Park-New Haven,41.3014,-72.902871,All
+Connecticut,New Haven,Hammonasset State Park,41.256788,-72.55327,Ozone
+New Jersey,Bergen,Fort Lee Near Road,40.85355,-73.96618,NO2
+New Jersey,Bergen,Leonia,40.870436,-73.991994,Ozone
+New Jersey,Hudson,Bayonne,40.67025,-74.126081,NO2 and Ozone
+New Jersey,Hudson,Jersey City,40.731645,-74.066308,NO2
+New York,Putnam,Mt Ninham,41.45589,-73.70977,Ozone
+New York,Rockland,Rockland County,41.18208,-74.02819,Ozone
+New York,Suffolk,Babylon,40.74529,-73.41919,PM2.5 and Ozone
+New York,Suffolk,Flax Pond,40.961017,-73.139046,NO2 and Ozone
+New York,Suffolk,Holtsville,40.82799,-73.05754,Ozone
+New York,Suffolk,Riverhead,40.96078,-72.71238,Ozone
+New York,Westchester,White Plains,41.05192,-73.76366,Ozone

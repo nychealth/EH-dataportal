@@ -41,7 +41,7 @@ Close to 125,000 live births occur in New York City (NYC) each year. Most babies
 
 ### Birth Outcomes and the Environment
 
-Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes. Smoking cigarettes during pregnancy, however, is known to result in exposure to many chemicals that can slow the growth of the fetus. Exposure to second-hand smoke can also be harmful. There is some evidence that  prenatal exposure to air pollution (particulate matter and other pollutants), lead, pesticides and solvents increases the likelihood that a pregnancy results in an adverse outcome.
+Because many genetic and lifestyle factors influence growth and development of fetuses and babies, it can be difficult for researchers to study the effects of environmental exposures on birth outcomes. Smoking cigarettes during pregnancy, however, is known to result in exposure to many chemicals that can slow the growth of the fetus. Exposure to second-hand smoke can also be harmful. There is some evidence that prenatal exposure to air pollution (particulate matter and other pollutants), lead, pesticides and solvents increases the likelihood that a pregnancy results in an adverse outcome.
 
 ### About the Data and Indicators
 
@@ -65,8 +65,8 @@ The following may increase the likelihood of a healthy pregnancy outcome:
 
 - Pregnant women should seek prenatal care in the first trimester of pregnancy, eat a nutritious and balanced diet and take folic acid beginning before conception, avoid being over or underweight and work with their doctors to control diabetes, high-blood pressure and sexually transmitted infections.
 - Health care providers should advise their patients about factors that affect birth outcomes, such as maternal smoking, drug and alcohol abuse, poor nutrition, stress, insufficient prenatal care, chronic illness or other medical problems.
-- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy.  Pregnant women and small children should stay out of the home until lead-paint projects are completed.
-- Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employers for the  Material Safety Data Sheets for the products used.
+- Damaged lead-containing paint in homes should be safely addressed by properly trained workers, ideally prior to pregnancy. Pregnant women and small children should stay out of the home until lead-paint projects are completed.
+- Employers should provide workplaces free from unsafe chemical exposures and provide protective gear to workers when necessary. To learn more about the chemicals at work, employees can ask their employers for the Material Safety Data Sheets for the products used.
 
 ### Key Messages
 

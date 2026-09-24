@@ -4,6 +4,16 @@
 
 // console.log('print vis js running')
 
+const el = document.getElementById("printVis");
+
+const ro = new ResizeObserver(() => {
+  updateChartPlotSize();
+});
+
+ro.observe(el);
+
+let view;
+
 // ----------------------------------------------------------------------- //
 // Fire print modal and draw chart on delay
 // ----------------------------------------------------------------------- //
@@ -30,19 +40,21 @@ function printViz() {
     window.innerWidth < 960 ? wrapLegend = true : wrapLegend = false
 
     chartType === 'trend' ? changeTrendSpec() : {}
-    chartType === 'map' ? changeMapSpec(vizYear) : {}
+    chartType === 'map' ? changeMapSpec(vizYear,vizGeography) : {}
     chartType === 'links' ? changeLinksSpec() : {}
     chartType === 'disparities' ? changeDisparitiesSpec() : {};
 
 
+
     vegaEmbed("#printVis", printSpec, {
+      renderer: "svg",
         actions: {
           export: { png: true, svg: true },
           source: false,  
           compiled: false, 
           editor: true 
         }
-      });
+      })
     
     updateChartPlotSize();
 
@@ -58,6 +70,8 @@ function printViz() {
 
 function changeTrendSpec() {
 
+    printSpec.height = 400
+
     checkSourceLength()
 
     let sourceArray = ["Chart: NYC Health Department - Environment and Health Data Portal"]
@@ -72,9 +86,13 @@ function changeTrendSpec() {
     wrapLegend === true ? columns = 3 : columns = 6;
 
     printSpec.layer[1].encoding.color.legend = {
-        "orient": "bottom",
+        "orient": "top",
         "title": null,
-        "columns": columns
+        "columns": columns,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
       }
 
     let sourceLayer = {
@@ -86,7 +104,7 @@ function changeTrendSpec() {
           "align": "left",
           "baseline": "bottom",
           "dx": 5,
-          "dy": 175
+          "dy": 75
         },
         "data": {
             "values": [{}]  // Use an empty object as a dummy value
@@ -112,12 +130,15 @@ function changeTrendSpec() {
 // Modify map spec
 // ----------------------------------------------------------------------- //
 
-function changeMapSpec(x) {
+function changeMapSpec(x,y) {
   checkSourceLength();
 
   let sourceArray = initialSource;
 
+  console.log(y)
+
   // Safely add sources only once
+
   if (Array.isArray(vizSource)) {
       const allElementsExist = vizSource.every(item => sourceArray.includes(item));
       console.log('do all elements exist in this array?', allElementsExist);
@@ -136,11 +157,13 @@ function changeMapSpec(x) {
   }
 
   // Update the title safely
+
   if (!printSpec.title.text.includes(x)) {
-      printSpec.title.text += ` - ${x}`;
+      printSpec.title.text += ` - ${x} (${y})`;
   }
 
   // Check if a sourceLayer has already been added
+
   const sourceLayerExists = printSpec.vconcat.some(layer => {
       return layer.mark && layer.mark.type === 'text' && layer.encoding && layer.encoding.text && layer.encoding.text.value === sourceArray;
   });
@@ -171,6 +194,7 @@ function changeMapSpec(x) {
   }
 
   // Update modal footnotes
+
   let modalFootnotes = document.getElementById('modalFootnotes');
   modalFootnotes.innerHTML = document.getElementById('map-unreliability').innerHTML;
 
@@ -196,6 +220,18 @@ function changeLinksSpec() {
     }
 
     sourceArray.push(vizSourceSecond)
+
+
+    printSpec.config.legend = {
+        "orient": "top",
+        "title": null,
+        "labelFontSize": 12,
+        "labelFontWeight": "bold",
+        "labelColor": {
+          "expr": "scale('color', datum.label)"
+          }
+      }
+
 
     let sourceLayer = {
         "mark": {
@@ -270,6 +306,7 @@ function changeDisparitiesSpec() {
 // ----------------------------------------------------------------------- //
 // Deactive Save Button for table
 // ----------------------------------------------------------------------- //
+
 window.addEventListener('hashchange', function() {
   let chartbtn = document.getElementById('chartSaver')
   currentHash === 'display=summary' ? chartbtn.classList.add('disabled') : chartbtn.classList.remove('disabled')

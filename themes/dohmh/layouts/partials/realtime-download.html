@@ -69,15 +69,10 @@
 
             <a class="btn btn-info float-right ml-1" href="#" id="downloadLink"><i class="fas fa-download mr-1" aria-hidden="true"></i>Download data</a>
 
-            <div class="dropdown d-inline-block mb-2 float-right">
-                <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Site info
+            <div class="d-inline-block mb-2 float-right">
+                <a class="btn btn-outline-info" href="https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/portal/station-new.csv" role="button" id="dropdownMenuLink">
+                    <i class="fas fa-download mr-1" aria-hidden="true"></i>Site info
                 </a>
-              
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a  class="dropdown-item"  href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/csv/location.csv">Download as CSV</a> 
-                    <a class="dropdown-item" href="https://azdohv2staticweb.blob.core.windows.net/$web/hist/json/location.json">Download as JSON</a>
-                </div>
               </div>
 
               <p class="mt-2 text-end"><span class="home-label font-weight-bold">Site info:</span> <span class="fs-sm">This file contains information about the <code>SiteID</code> field in the data files. </span></p>
@@ -91,15 +86,18 @@
 
 <script>
     // Set earliest available data
+
     var earliestDate = {
         "year": 2019,
         "month": 10
     }
     
     // get today's date values
+
     const date = new Date();
 
     // const date = new Date(2025, 0, 2); // Month is zero-based (0 = January)
+
     console.log("Today's date:", date);
 
     let thisMonth = date.getMonth() + 1;    // thisMonth: months by standard numbers (date.getMonth() starts at 0)
@@ -109,6 +107,7 @@
     // set up defaults
 
         // if it's January, most recent availab month is Dec of Last Year
+
         var chosenYear
         var chosenMonth
         if (availMonth == 0) {
@@ -117,6 +116,7 @@
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
         } else {
             // else, it's last month of this year
+
             chosenYear = thisYear
             chosenMonth = availMonth
             console.log('Most recent month of data available: ', chosenYear, chosenMonth)
@@ -126,8 +126,10 @@
 
     document.getElementById('months').value = chosenMonth
     var chosenFormat = 'csv'
-    var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
-    
+    // var downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+
+    var downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
+
     
     // loop through earliestDate.year through thisYear and create year options
     
@@ -147,18 +149,20 @@
     
     function updateURL() {
         document.getElementById(chosenYear).checked = true
-        downloadURL = 'https://azdohv2staticweb.blob.core.windows.net/$web/hist/' + chosenFormat + '/' + chosenYear + '/' + chosenMonth + '/hourlyMonitoring.' + chosenFormat
+        downloadURL = 'https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/hist/' + chosenFormat + '/' + chosenYear + '/'  + chosenMonth + '.' + chosenFormat
         document.getElementById('targetURL').innerHTML = downloadURL
         document.getElementById('downloadLink').setAttribute('href',downloadURL)
     
         // console.log('Month, year, and format:', chosenMonth, chosenYear, chosenFormat)
     
         // if 2019, inactivate anything before earliestDate.month
+
         if (chosenYear == earliestDate.year && chosenMonth < earliestDate.month) {
             alert('We do not have data before October 2019. Please select a different month.')
         } else {}
     
         // if 2023, inactivate anything after last month
+
         if (chosenYear == thisYear && chosenMonth > thisMonth) {
             alert('You cannot download data for future months.')
         } else {}
@@ -170,6 +174,7 @@
     
     
     // Event Listener on Year List, update chosenYear
+
     var yearRadios = document.querySelectorAll('.year-radio')
     for (i = 0; i < yearRadios.length; i++) {
         yearRadios[i].onclick = function() {
@@ -179,6 +184,7 @@
     }
     
     // update Month from dropdown list
+
     function changeMonth() {
         var e = document.getElementById("months");
         var value = e.value;
@@ -188,6 +194,7 @@
     
     
     // Event listener on Format List, update chosenFormat
+
     var formatRadios = document.querySelectorAll('.format-radio')
     for (i = 0; i < formatRadios.length; i++) {
         formatRadios[i].onclick = function() {

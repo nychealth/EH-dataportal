@@ -219,6 +219,7 @@ Noise,KA-02125,2134,Disruptive Noise Exposure
 Dangerous Location or Situation,KA-01033,2135,Fall-related emergency department visits (age 65+)
 Dangerous Location or Situation,KA-01033,2136,Fall-related hospitalizations (age 65+)
 Know Your Zone,KA-03485,2140,Area in hurricane evacuation zone
+Hurricane Preparedness,KA-02810,2140,Area in hurricane evacuation zone
 Summer Heat Health Tips,KA-03034,2141,Daytime summer surface temperature
 Census,KA-03388,2142,Neighborhood Poverty (ACS)
 Greenstreets Program,KA-01554,2143,Vegetative cover
@@ -226,6 +227,9 @@ Mental Health Services for Older Adults,KA-01326,2145,Independent living difficu
 Home Care,KA-02782,2145,Independent living difficulty (adults)
 Older Adult Centers,KA-02353,2145,Independent living difficulty (adults)
 Friendly Visiting Program for Older Adults,KA-02744,2145,Independent living difficulty (adults)
+Housing Options for Older Adults,KA-01069,2145,Independent living difficulty (adults)
+People with Disabilities Service,KA-02386,2145,Independent living difficulty (adults)
+Housing Resources for People with Disabilities,KA-02800,2145,Independent living difficulty (adults)
 Housing Options for Older Adults,KA-01069,2145,Independent living difficulty (adults)
 Mental Health Services for Older Adults,KA-01326,2146,Older adults living alone
 Home Care,KA-02782,2146,Older adults living alone
@@ -254,7 +258,6 @@ Storefront Improvement Program,KA-01761,2182,Neighborhood Physical Disorder Scor
 Blood Lead Test,KA-03244,2184,Elevated blood levels (under age 6)
 Lead Safety,KA-02842,2184,Elevated blood levels (under age 6)
 Summer Heat Health Tips,KA-03034,2185,Household air conditioning
-Home Repair Assistance for Seniors,KA-03277,2188,Homes with grab bars in bathroom (among older adult households)
 Blood Lead Test,KA-03244,2189,Lead testing (by age 3)
 Cooling Centers,KA-02663,2191,Heat vulnerability index
 HEAP Cooling Assistance,KA-02552,2191,Heat vulnerability index
@@ -397,7 +400,6 @@ Domestic Violence,KA-01217,2400,Violence-related emergency department visits (al
 NYC Care,KA-03317,2401,Postponing health care
 Community Health Profile,KA-02655,2401,Postponing health care
 Asthma,KA-02563,2402,Public School Children (K-8) with Active Asthma
-Dangerous Location or Situation,KA-01033,2403,Homes with reported falls (age 65+)
 Secondhand Smoke,KA-01493,2404,Secondhand smoke exposure at home (children)
 Carbon Monoxide,KA-02608,2405,Carbon monoxide emergency department visits
 Carbon Monoxide,KA-02608,2406,Carbon monoxide hospitalizations
@@ -459,3 +461,36 @@ Pest Complaint,KA-02278,2447,Homes with mice or rats in the unit or building
 Mold Complaint,KA-02262,2446,Homes with visible mold
 Mold Cleaning and Health Guidelines,KA-02871,2446,Homes with visible mold
 Healthy Homes,KA-01565,2446,Homes with visible mold
+Mobility Management Guide,KA-02870,2455,Accessible subway stations
+Mobility Management Guide,KA-02870,2458,Walking distance to an accessible subway station
+Building or Public Space Accessibility Complaint,KA-03570,2457,Public bathroom availability
+Public Restrooms,KA-03643,2457,Public bathroom availability
+Mobility Management Guide,KA-02870,2456,Bus stops with audio announcements
+Mobility Management Guide,KA-02870,2460,Walking distance to an audio bus stop
+People with Disabilities Service,KA-02386,2145,Independent living difficulty (adults)
+People with Disabilities Service,KA-02386,2459,Difficulty walking
+Housing Resources for People with Disabilities,KA-02800,2459,Difficulty walking
+People with Disabilities Service,KA-02386,2461,Cognitive difficulty
+Learning Disabilities,KA-02441,2461,Cognitive difficulty
+Special Education,KA-03011,2461,Cognitive difficulty
+People with Disabilities Service,KA-02386,2462,Hearing difficulty
+Deaf and Hard of Hearing Services,KA-02674,2462,Hearing difficulty
+Students with Disabilities,KA-02442,2462,Hearing difficulty
+City Service Access for American Sign Language (ASL) users,KA-02642,2462,Hearing difficulty
+People with Disabilities Service,KA-02386,2463,Self-care difficulty
+Housing Resources for People with Disabilities,KA-02800,2463,Self-care difficulty
+People with Disabilities Service,KA-02386,2464,Vision difficulty
+Blindness and Low Vision Support,KA-02582,2464,Vision difficulty
+Students with Disabilities,KA-02442,2464,Vision difficulty
+Diabetes,KA-02687,2465,Adults with diabetes
+Diabetes,KA-02687,2466,Adults with very high blood sugar levels (A1C > 9%)
+Diabetes,KA-02687,2467,Lower extremity amputations (diabetes-related)
+Diabetes,KA-02687,2468,Dialysis patients (diabetes-related)
+Health Screenings,KA-02769,2465,Adults with diabetes
+Health Screenings,KA-02769,2466,Adults with very high blood sugar levels (A1C > 9%)
+Health Screenings,KA-02769,2467,Lower extremity amputations (diabetes-related)
+Health Screenings,KA-02769,2468,Dialysis patients (diabetes-related)
+Eating Healthy,KA-02734,2465,Adults with diabetes
+Eating Healthy,KA-02734,2466,Adults with very high blood sugar levels (A1C > 9%)
+Eating Healthy,KA-02734,2467,Lower extremity amputations (diabetes-related)
+Eating Healthy,KA-02734,2468,Dialysis patients (diabetes-related)

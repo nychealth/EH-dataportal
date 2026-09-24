@@ -39,7 +39,7 @@
 
                       {{ end }}
 
-                        <a class="text-black" href="../../{{ .url }}">
+                        <a class="text-black" href={{ relURL .url }}>
                           <span class='text-primary {{ $accent }} mr-2'>{{ safe.HTML $icon }}</span>{{ .title }}
                         </a>
                         <hr class="my-2">

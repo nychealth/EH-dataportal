@@ -8,7 +8,7 @@ description: "Data, data stories, interactives, and more about NYC's air quality
 tags: 
 categories: [airquality]
 keyTopic: airquality
-keywords: ["air quality","pollution","emissions","smog","PM2.5","asthma","breathing","lungs"]
+keywords: ["air quality","pollution","emissions","smog","pm2.5","asthma","breathing","lungs"]
 layout: single
 image: outdoor-air.jpg
 mainDEPages:

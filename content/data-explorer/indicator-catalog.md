@@ -10,8 +10,6 @@ categories:
 keyTopic: 
 keywords: 
 layout: indicator-catalog
-datatables: true
-arquero: true
 aliases: data-reference
 ---
 

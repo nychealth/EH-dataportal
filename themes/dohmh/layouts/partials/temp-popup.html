@@ -1,0 +1,207 @@
+  <!-- Invisible button to trigger combined weather/air quality modal -->
+  <button id="openModalBtnWeather" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#weatherModal">Open Modal</button>
+
+    <div class="modal" tabindex="-1" role="dialog" id="weatherModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="weatherModalTitle"></h5>
+        </div>
+        <div class="modal-body">
+            <div id="heatModalContent">
+                <p><span class="font-weight-bold">The forecast high is <span id="forecasthigh" style="background-color:red;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on heat and health:
+                    <ul>
+                        <li><a href={{ relURL "data-features/cooling-info" }}>Stay safe from heat and air pollution</a></li>
+                        <li><a href={{ relURL "data-features/heat-syndrome" }}>Realtime heat illness data</a></li>
+                        <li><a href={{ relURL "data-features/hvi" }}>The Heat Vulnerability Index</a></li>
+                        <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a> </li>
+                    </ul>
+                    </p>
+            </div>
+            <div id="coldModalContent">
+                <p><span class="font-weight-bold">The forecast low is <span id="forecastlow" style="background-color:blue;font-weight:bold;" class="p-1 text-white">XX</span></span>. Get resources on cold and health:
+                    <ul>
+                        <li><a href={{ relURL "data-stories/cold" }}>Cold weather safety</a></li>
+                        <li><a href={{ relURL "key-topics/climatehealth" }}>All Climate and Health data and resources</a></li>
+                        <li><a href="https://www.nyc.gov/site/hpd/services-and-information/heat-and-hot-water-information.page">Heat and hot water info</a></li>
+                        <li><a href="https://portal.311.nyc.gov/article/?kanumber=KA-03702">Warming centers</a></li>
+                    </ul>
+                    </p>
+            </div>
+            <div id="aqiModalContent">
+                <p><span class="font-weight-bold">Today's air quality is <span id="aqimeaning" class="p-1">AQI interpretation</span></span>. Get data on air quality:
+                    <ul>
+                      <li><a href={{ relURL "data-features/realtime-air-quality" }}>Realtime air quality</a></li>
+                      <li><a href={{ relURL "key-topics/airquality" }}>All Air Quality data and resources</a></li>
+                      <li><a href="https://www.airnow.gov/" target="_blank">AirNow.gov</a></li>
+                      <!-- add additional resources -->
+                    </ul>
+                  </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+<script>
+
+    // Shows a combined weather/air-quality modal when today's NWS forecast or
+    // current AirNow AQI crosses one of the alert thresholds below.
+
+    // ----------------------------------------------------------------------- //
+    // fetch forecast + AQI, decide which alerts are active
+    // ----------------------------------------------------------------------- //
+
+    // Fetches the NWS forecast and AirNow AQI, then shows the weather modal
+    // with whichever heat/cold/air-quality sections apply.
+
+    const initialize = async () => {
+
+        // ----- forecast high/low ----- //
+
+        const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
+
+        const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+        const pointsData = await pointsRes.json();
+
+        const forecastRes = await fetch(pointsData.properties.forecast, userAgent);
+        const forecastData = await forecastRes.json();
+
+        const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+        const low = forecastData.properties.periods.find(p => !p.isDaytime).temperature;
+
+        console.log(`NYC High Temp: ${high}°F`);
+        console.log(`NYC Low Temp: ${low}°F`);
+
+        const isHot = high > 85;
+        const isCold = !isHot && low < 32;
+
+        // ----- current AQI ----- //
+
+        // AirNow fails in more than one way, and both failures used to take the
+        // whole modal down with them. Within a few minutes on 2026-09-14 it
+        // answered 200 with an empty array, and then 504 with an HTML body - the
+        // first made aqiData[0].Category throw, the second made .json() throw
+        // before any payload guard could run. Either throw landed ABOVE the
+        // fireWeatherModal call below, so isHot and isCold, already computed,
+        // were discarded: a quiet AirNow silently suppressed the heat and cold
+        // alerts too, not just the air quality one.
+        //
+        // So the AQI is treated as optional. Still the first two observations,
+        // as before, so the reading is unchanged whenever AirNow returns its
+        // usual pair; whether the max should cover every pollutant it returns is
+        // a separate question about the feature.
+        let aqi = null;
+
+        try {
+            const aqiRes = await fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10032&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F');
+            if (!aqiRes.ok) throw new Error(`AirNow returned HTTP ${aqiRes.status}`);
+
+            const aqiData = await aqiRes.json();
+            const categories = (Array.isArray(aqiData) ? aqiData : [])
+                .slice(0, 2)
+                .map(observation => observation?.Category?.Number)
+                .filter(number => Number.isFinite(number));
+
+            if (categories.length) aqi = Math.max(...categories);
+        } catch (error) {
+            // warn, not error: smoke fails the build on console errors, and an
+            // unreachable third party is not this site's regression.
+            console.warn(`Air quality unavailable: ${error.message}`);
+        }
+
+        const isBadAQ = aqi !== null && aqi > 2;
+
+        // ----- show the modal if any alert applies ----- //
+
+        if (isHot || isCold || isBadAQ) {
+            fireWeatherModal({ isHot, isCold, isBadAQ, high, low, aqi });
+        }
+
+    };
+
+
+    // ----------------------------------------------------------------------- //
+    // AQI category display
+    // ----------------------------------------------------------------------- //
+
+    // Maps an AirNow AQI category number to its display text and colors.
+
+    const getAqiInterpretation = (aqi) => {
+        switch (String(aqi)) {
+            case '1': return { text: 'Good', bgColor: '#00E400' };
+            case '2': return { text: 'Moderate', bgColor: '#FFFF00' };
+            case '3': return { text: 'Unhealthy for sensitive groups', bgColor: '#FF7E00' };
+            case '4': return { text: 'Unhealthy', bgColor: '#FF0000', color: 'white' };
+            case '5': return { text: 'Very unhealthy', bgColor: '#993399', color: 'white' };
+            case '6': return { text: 'Hazardous', bgColor: '#7E0023', color: 'white' };
+        }
+    };
+
+
+    // ----------------------------------------------------------------------- //
+    // modal display
+    // ----------------------------------------------------------------------- //
+
+    // Shows whichever heat/cold/air-quality sections are active in the shared
+    // weather modal and builds its title from that same set of active events.
+
+    const fireWeatherModal = ({ isHot, isCold, isBadAQ, high, low, aqi }) => {
+
+        const heatContent = document.getElementById('heatModalContent');
+        const coldContent = document.getElementById('coldModalContent');
+        const aqiContent = document.getElementById('aqiModalContent');
+
+        heatContent.classList.toggle('hide', !isHot);
+        coldContent.classList.toggle('hide', !isCold);
+        aqiContent.classList.toggle('hide', !isBadAQ);
+
+        if (isHot) {
+            document.getElementById('forecasthigh').textContent = `${high}°F`;
+        }
+
+        if (isCold) {
+            document.getElementById('forecastlow').textContent = `${low}°F`;
+        }
+
+        if (isBadAQ) {
+            const aqiMeaning = document.getElementById('aqimeaning');
+            const interpretation = getAqiInterpretation(aqi);
+
+            aqiMeaning.style['background-color'] = interpretation.bgColor;
+            aqiMeaning.style.color = interpretation.color || '';
+            aqiMeaning.textContent = interpretation.text;
+        }
+
+        // ----- title reflects whichever event(s) are active ----- //
+
+        const activeEvents = [];
+
+        if (isHot) activeEvents.push({ icon: 'fa-temperature-high', label: "It's hot!" });
+        if (isCold) activeEvents.push({ icon: 'fa-temperature-high', label: "It's cold!" });
+        if (isBadAQ) activeEvents.push({ icon: 'fa-smog', label: 'Air quality alert!' });
+
+        const icons = activeEvents
+            .map(event => `<i class="fas ${event.icon} mr-1" aria-hidden="true"></i>`)
+            .join('');
+
+        const label = activeEvents.length > 1
+            ? 'Weather and air quality alert!'
+            : activeEvents[0].label;
+
+        document.getElementById('weatherModalTitle').innerHTML = icons + label;
+
+        const button = document.getElementById('openModalBtnWeather');
+
+        button.addEventListener('click', () => console.log('weather modal fired.'));
+        button.click();
+
+    };
+
+
+    initialize();
+
+</script>

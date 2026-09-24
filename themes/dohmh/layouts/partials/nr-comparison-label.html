@@ -1,0 +1,48 @@
+{{- /*
+    One borough-or-citywide comparison sentence fragment: the judgment word wrapped in its
+    .comp-* class, then the preposition as plain text. The two are separate because "Equal"
+    takes "to" where the other two take "than", and because only the word is styled — the
+    preposition belongs to the sentence around it, which is static markup in the caller.
+
+    Replaces an inline IIFE that did this at runtime. Every input is build-time data, and no
+    page on this branch switches neighborhood in place, so nothing was gained by deferring it.
+
+    rankReverse marks indicators where HIGHER values are the better ones (park access, bike
+    lanes, subway access, exercise), so it decides which direction earns comp-good. This is
+    NOT the tertile rule in nr-tertile-inline-label.html, where the rank carries the verdict
+    on its own — see documents/nr-style-port-2026-08-12.md step 7.
+
+    Params:
+      neighborhoodValue — .data.unmodified_data_value_geo_entity
+      referenceValue    — .data.data_value_boro or .data.data_value_nyc
+      rankReverse       — .data.rankReverse; boolean true or the string 'true', which the
+                          "%v" formatting collapses to one test
+*/ -}}
+
+{{- $reverse := eq (printf "%v" .rankReverse) "true" -}}
+
+{{- /* Both sides must parse as numbers for the comparison to mean anything. Hugo's `float`
+       returns 0 for an unparseable value rather than failing, so guard before casting or a
+       missing value silently becomes a real comparison against zero. */ -}}
+{{- $numeric := `^-?[0-9]+\.?[0-9]*$` -}}
+{{- $comparable := and (findRE $numeric (printf "%v" .neighborhoodValue)) (findRE $numeric (printf "%v" .referenceValue)) -}}
+
+{{- $word := "Equal" -}}
+{{- $preposition := "to" -}}
+{{- $class := "comp-null" -}}
+
+{{- if $comparable -}}
+    {{- $n := float .neighborhoodValue -}}
+    {{- $ref := float .referenceValue -}}
+    {{- if gt $n $ref -}}
+        {{- $word = "Higher" -}}
+        {{- $preposition = "than" -}}
+        {{- $class = cond $reverse "comp-good" "comp-bad" -}}
+    {{- else if lt $n $ref -}}
+        {{- $word = "Lower" -}}
+        {{- $preposition = "than" -}}
+        {{- $class = cond $reverse "comp-bad" "comp-good" -}}
+    {{- end -}}
+{{- end -}}
+
+<span class="{{ $class }}">{{ $word }}</span> {{ $preposition }}

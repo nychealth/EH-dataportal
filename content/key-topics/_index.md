@@ -8,6 +8,6 @@ description: "Data, data stories, interactives, and more on the important enviro
 hide: true
 ---
 
-**What creates health?**  Often, our environment does. The world around us shapes our health, our behavior, the resources we can access and the threats we encounter. 
+**What creates health?** Often, our environment does. The world around us shapes our health, our behavior, the resources we can access and the threats we encounter. 
 
 These key topics in environmental health offer data and resources from across the portal on different ways that our environments shape our health. 

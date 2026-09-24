@@ -1,0 +1,174 @@
+{
+    "path": "data-stories/car-free-zones/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "datawrapper.dwcdn.net",
+            "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 9,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            3,
+            3,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 4,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 95,
+            "external": 21,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Air quality in car-free areas – Environment & Health Data Portal",
+        "headingText": [
+            "Air quality in car-free areas",
+            "NYCCAS monitors air with nearly 100 sensors across the city",
+            "What happens to air quality when an area goes car-free?",
+            "NO went down. Did other pollutants?",
+            "What does this mean for other car-free areas?",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/air-quality/",
+            "/data-features/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/air-quality-and-covid-part-2/",
+            "/data-stories/air-quality-and-covid/",
+            "/data-stories/air-quality-by-neighborhood/",
+            "/data-stories/car-free-zones/",
+            "/data-stories/hia/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/air-pollution/",
+            "/keywords/air-quality/",
+            "/keywords/bikes/",
+            "/keywords/biking/",
+            "/keywords/breathing/",
+            "/keywords/car-free/",
+            "/keywords/carfree/",
+            "/keywords/cars/",
+            "/keywords/cycling/",
+            "/keywords/lungs/",
+            "/keywords/pedestrians/",
+            "/keywords/pollution/",
+            "/keywords/traffic/",
+            "/keywords/transportation/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "twitter.com",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Measuring what happens to our air when we change how we use our streets."
+    }
+}

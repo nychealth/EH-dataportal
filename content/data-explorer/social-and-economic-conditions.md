@@ -55,4 +55,4 @@ People tend to be healthier when they have access to:
 
 But when people don’t have access to these conditions, they experience worse health outcomes. This is **health inequity** – **avoidable and unfair health outcomes.**
 
-Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions –and thus, disparities in health outcomes.
+Discrimination based on race (and other personal characteristics) often results in disparities in access to these conditions – and thus, disparities in health outcomes.

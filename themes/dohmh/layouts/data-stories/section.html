@@ -1,6 +1,6 @@
 {{- define "main" -}}
 
-<article class="container wide" id="skip-header-target">
+<article class="container wide">
 
     <div class="data-stories">
         <div class="row">
@@ -40,7 +40,7 @@
                 </a>
 
                 <div class="card-body">
-                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                     <div class="d-flex justify-content-end link">
                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
@@ -103,7 +103,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more <i class="fa-solid fa-angle-right"></i></a>
@@ -127,7 +127,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -151,7 +151,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -175,7 +175,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -199,7 +199,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -223,7 +223,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -247,7 +247,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -271,7 +271,7 @@
                                 </a>
 
                                 <div class="card-body">
-                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}" class="text-primary">{{ .Title }}</a></h3>
+                                    <h3 class="card-title"><a class="text-black" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                                     <div class="mb-2">{{ .Content | plainify | htmlUnescape | truncate 100 }}</div>
                                     <div class="d-flex justify-content-end link">
                                         <a class="fs-sm font-weight-bold" href="{{ .RelPermalink }}">Read more &gt;</a>
@@ -294,7 +294,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Cold Weather Safety</h3>
-                                <p>Winter weather can be dangerous. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Cold/index.html">Here's how to stay safe and be prepared, inside and outside</a>.</p>
+                                <p>Winter weather can be dangerous. <a href="{{ relURL "Cold/index.html" }}">Here's how to stay safe and be prepared, inside and outside</a>.</p>
                             </div>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Extreme Heat Safety Quiz</h3>
-                                <p>As our climate changes, we can expect hotter, longer and more frequent heat waves. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Heat/index.html">Test your knowledge here</a>.
+                                <p>As our climate changes, we can expect hotter, longer and more frequent heat waves. <a href="{{ relURL "Heat/index.html" }}">Test your knowledge here</a>.
                                 </p>
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <h3 class="card-title">Asthma and Housing</h3>
-                                <p>Housing conditions are a common trigger for asthma. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/asthma/index.html">Learn more with the Asthma and Housing infographic</a>.</p>
+                                <p>Housing conditions are a common trigger for asthma. <a href="{{ relURL "asthma/index.html" }}">Learn more with the Asthma and Housing infographic</a>.</p>
 
 
                             </div>
@@ -331,7 +331,7 @@
                             <div class="card-body">
                                 <h3 class="card-title">Health Impacts of Traffic Air Pollution</h3>
 
-                                <p>PM2.5 is one of the most harmful air pollutants. <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Traffic/index.html">The health impacts of traffic
+                                <p>PM2.5 is one of the most harmful air pollutants. <a href="{{ relURL "Traffic/index.html" }}">The health impacts of traffic
                                         air
                                         pollution are highest in poorer neighborhoods</a>.</p>
 

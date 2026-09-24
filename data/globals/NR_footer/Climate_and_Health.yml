@@ -31,3 +31,9 @@ data:
 - entry: 
   copy: NYC Community Health Profiles.
   link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page
+
+keytopic: 
+  - link: 'climatehealth/'
+    text: 'Climate and health'
+  - link: 'housing/'
+    text: 'Housing'

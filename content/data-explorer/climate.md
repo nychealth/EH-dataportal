@@ -32,6 +32,7 @@ indicators:
       - 2104
       - 2185
       - 2377
+      - 2140
 related:
   - title: "Interactive Heat Vulnerability Index"
     url: "data-features/hvi/"

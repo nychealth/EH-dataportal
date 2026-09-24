@@ -2,7 +2,7 @@
 
 <link rel="stylesheet" href={{ relURL "css/accessible-autocomplete.min.css" }}>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
     
@@ -58,7 +58,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-11">
-                            <div class="" style="width:100%;height:150px;" id="PMDestination">Chart</div>
+                            <div class="" style="width:100%;min-height:150px;" id="PMDestination">Chart</div>
                         </div>
 
                         <div class="col-md-6 col-sm-12">
@@ -105,7 +105,7 @@
 
                     <div class="row">
                         <div class="col-md-6 col-sm-11">
-                            <div class="" style="width:100%;height:150px;" id="NODestination">Chart</div>
+                            <div class="" style="width:100%;min-height:150px;" id="NODestination">Chart</div>
 
                         </div>
 
@@ -239,6 +239,9 @@
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-vega.html" . }}
+
 <!--This code uses the JS file specified in the page's frontmatter-->
 
 <script type="text/javascript" src="{{ .Params.customJS }}"></script>
@@ -250,5 +253,8 @@
 
 {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+{{/*  wireComboboxState() is called from aqe.js, which is where this page inits flexdatalist  */}}
+{{- partial "flexdatalist-combobox-js.html" . -}}
 
 {{- end -}}

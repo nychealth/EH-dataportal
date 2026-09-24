@@ -16,7 +16,7 @@ const renderDisparitiesChart = async (
 
     console.log("** renderDisparitiesChart");
 
-    document.getElementById('viewDescription').innerHTML = 'View scatterplots, correlations, and disparities.'
+    document.getElementById('viewDescription').innerHTML = 'Hover on points for more information.'
     document.getElementById('correlateHolder').classList.add('hide')
 
 
@@ -27,6 +27,7 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     // disable links measures dropdown
+
     $("#dropdownLinksMeasures").addClass("disabled");
     $("#dropdownLinksMeasures").attr('aria-disabled', true);
 
@@ -332,6 +333,7 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     vegaEmbed("#links", disspec,{
+        renderer: "svg",
         actions: {
             export: { png: false, svg: false },
             source: false,  
@@ -341,6 +343,7 @@ const renderDisparitiesChart = async (
     });
 
     // set for printing
+
     printSpec = disspec;
     vizSource = primaryMetadata[0]?.Sources;
     vizSourceSecond = disparityMetadata[0].Sources

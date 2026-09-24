@@ -148,8 +148,9 @@ $('#tab-btn-links').on('click', e => {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 $('#howCalcButton').on('click', e => {
-    // console.log("click_how_caclulated");
-    gtag('event', 'click_how_caclulated');
+    // console.log("click_how_calculated");
+
+    gtag('event', 'click_how_calculated');
 });
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -158,6 +159,7 @@ $('#howCalcButton').on('click', e => {
 
 $('#citeButton').on('click', e => {
     // console.log("click_citation");
+
     gtag('event', 'click_citation');
 });
 
@@ -167,6 +169,7 @@ $('#citeButton').on('click', e => {
 
 $('#tab-btn-02-b').on('click', e => {
     // console.log("click_about");
+
     gtag('event', 'click_about');
 });
 
@@ -197,9 +200,11 @@ $('#indicatorButtons').on('click', e => {
 // ----------------------------------------------------------------------- //
 
 // export current table or chart view
+
 $("#chartView").on("click", (e) => {
 
     // if it's summary table... (uses DataTables.net methods)
+
     if (window.location.hash == '#display=summary') {
         
         let summaryTable = $('#tableID').DataTable();
@@ -212,13 +217,15 @@ $("#chartView").on("click", (e) => {
         });
     
         e.stopPropagation();
-    
+
     } else {
-        // else, for chart view downloads: 
+        // else, for chart view downloads:
+
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(CSVforDownload);
         let hiddenElement = document.createElement('a');
 
         // set view to send to file name
+
         let view;
         if (window.location.hash == '#display=trend') {
             view = 'trend'
@@ -234,6 +241,7 @@ $("#chartView").on("click", (e) => {
         hiddenElement.click();
 
         // trigger GA event
+
         gtag('event', 'file_download', {
             'file_name': hiddenElement.download,
             'file_extension': '.csv',
@@ -244,6 +252,26 @@ $("#chartView").on("click", (e) => {
     }
 
 });
+
+// ----------------------------------------------------------------------- //
+// table view options
+// ----------------------------------------------------------------------- //
+
+// toggle borough sub-grouping in the summary table. When off, areas are ungrouped
+//  between boroughs so columns can be sorted freely (by value, alphabetically, etc.)
+
+$("#groupByBoroughToggle").on("change", (e) => {
+
+    groupTableByBorough = e.target.checked;
+
+    renderTable();
+
+});
+
+
+// ----------------------------------------------------------------------- //
+// export functions (table downloads)
+// ----------------------------------------------------------------------- //
 
 // export full table data (i.e., original view)
 
@@ -259,6 +287,7 @@ $("#allData").on("click", (e) => {
     let downloadTableCSV = allData.toCSV();
 
     // Data URI
+
     let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
     let hiddenElement = document.createElement('a');
 
@@ -291,6 +320,7 @@ $("#rawData").on("click", (e) => {
         let downloadTableCSV = downloadTable.toCSV();
 
         // Data URI
+
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(downloadTableCSV);
         let hiddenElement = document.createElement('a');
 

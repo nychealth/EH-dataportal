@@ -59,7 +59,7 @@
     .srcbtn {
       cursor: pointer;
     }
-    .border {
+    .src-border {
       background-color: #6c7287;
       color: white;
     }
@@ -71,6 +71,7 @@
 
   <script>
     // INITIALIZE VARIABLES
+
     var allPollutants = [
       {
         pollutant: "BC",
@@ -134,6 +135,7 @@
     var sourceOrSeason = "Season"; // should be 'Season' or 'Source'
 
     // ESTABLISH INITIAL RUN CHART. TAKES CHOSENPOLLUTANT JSON, AND SOURCEORSEASON VARIABLE
+
     function runChart(cp, sos) {
       let filterFor = cp.pollutant;
       let chartTitle = cp.name + " (" + cp.units + ")";
@@ -151,6 +153,7 @@
       var annualLineTransform;
 
       // SET UP BASICS FOR SEASONAL DATA
+
       if (sos === "Season") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`,
@@ -163,6 +166,7 @@
         annualLineTransform = [{ filter: "datum.Source != 'ALL'" }];
 
         // Remove duplicate annual lines from seasonal-only pollutants
+
         if (filterFor === "O3" || filterFor === "SO2") {
           basicFilter = {
             filter: `datum.Pollutant === '${filterFor}' && datum.Source === 'ALL' && datum.Season != 'ALL'`,
@@ -170,6 +174,7 @@
         }
       } else if (sos === "Source") {
         // SET UP BASICS FOR DATA BY SOURCE
+
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'ALL' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
         };
@@ -183,6 +188,7 @@
       }
 
       // SPECIFICS FOR SO2
+
       if (filterFor === "SO2" && sos === "Source") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Winter' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
@@ -196,6 +202,7 @@
       }
 
       // SPECIFICS FOR O3
+
       if (filterFor === "O3" && sos === "Source") {
         basicFilter = {
           filter: `datum.Pollutant === '${filterFor}' && datum.Season === 'Summer' && (datum.Source === '${chosenSource}' || datum.Source === 'ALL')`,
@@ -238,7 +245,7 @@
           legend: { columns: 6, labelFontSize: 10, symbolSize: 80 },
         },
         data: {
-          url: "embed/pollutant-trends-data-2023.csv",
+          url: "embed/pollutant-trends-data.csv",
         },
         transform: [
           basicFilter,
@@ -338,17 +345,89 @@
             },
           },
           {
+            transform: [
+                // Set as number
+
+                {
+                  calculate: "toNumber(datum.Value)",
+                  as: "Value"
+                },
+
+                // Handle 'ALL' values
+
+                {
+                  calculate: "datum.Tertile === 'ALL' ? 'Annual average' : datum.Tertile",
+                  as: "Tertile"
+                },
+
+                // Dataset-wide maxima
+
+                {
+                  joinaggregate: [
+                    { op: "max", field: "Value", as: "maxVal" },
+                    { op: "max", field: "Time", as: "maxTime" }
+                  ],
+                  groupby: ["Season"]
+                },
+
+                // Keep only last time point
+
+                { filter: "datum.Time === datum.maxTime" },
+
+                // Seed label position
+
+                { calculate: "datum.Value", as: "labelPosition" },
+
+                /* ================= PASS 1 ================= */
+                {
+                  window: [
+                    { op: "lag", field: "labelPosition", as: "prev1" }
+                  ],
+                  sort: [{ field: "labelPosition", order: "ascending" }]
+                },
+                {
+                  calculate:
+                    "isValid(datum.prev1) && datum.labelPosition - datum.prev1 < 0.05 * datum.maxVal ? datum.prev1 + 0.05 * datum.maxVal : datum.labelPosition",
+                  as: "labelPos1"
+                },
+
+                /* ================= PASS 2 ================= */
+                {
+                  window: [
+                    { op: "lag", field: "labelPos1", as: "prev2" }
+                  ],
+                  sort: [{ field: "labelPos1", order: "ascending" }]
+                },
+                {
+                  calculate:
+                    "isValid(datum.prev2) && datum.labelPos1 - datum.prev2 < 0.05 * datum.maxVal ? datum.prev2 + 0.05 * datum.maxVal : datum.labelPos1",
+                  as: "labelPos2"
+                },
+
+                /* ================= PASS 3 ================= */
+                {
+                  window: [
+                    { op: "lag", field: "labelPos2", as: "prev3" }
+                  ],
+                  sort: [{ field: "labelPos2", order: "ascending" }]
+                },
+                {
+                  calculate:
+                    "isValid(datum.prev3) && datum.labelPos2 - datum.prev3 < 0.05 * datum.maxVal ? datum.prev3 + 0.05 * datum.maxVal : datum.labelPos2",
+                  as: "finalLabelPosition"
+                }
+
+
+            ],
             encoding: {
               x: { aggregate: "max", field: "Time" },
-              y: { aggregate: { argmax: "Time" }, field: "Value" },
-              text: {
-                condition: {
-                  param: "hover",
-                  field: `${colorField}`,
-                  empty: false,
-                },
-                value: "",
+              y: {
+                field: "finalLabelPosition"
               },
+              text: {
+                  field: `${colorField}`
+              },
+              tooltip: []
             },
             layer: [
               {
@@ -356,7 +435,7 @@
                   type: "text",
                   align: "left",
                   dx: 10,
-                  dy: -5,
+                  dy: 8,
                   fontSize: 12,
                   fontWeight: "bold",
                 },
@@ -388,14 +467,16 @@
         ],
       };
 
-      vegaEmbed("#newVis", newVis, { actions: true });
+      vegaEmbed("#newVis", newVis, { renderer: "svg", actions: true });
     }
 
     // INITIALIZE CHART AND SOURCES
+
     runChart(chosenPollutant, sourceOrSeason);
     writeSources(chosenPollutant);
 
     // LISTENER ON BUTTONS TO CHANGE POLLUTANTS AND RE-RUN CHART
+
     const selectButtons = document.querySelectorAll(".btn2");
 
     for (var i = 0; i < selectButtons.length; i++) {

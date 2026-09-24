@@ -1,0 +1,13 @@
+{{- $uhflist := ( resources.Get "js/uhflist.json" ) | transform.Unmarshal -}}
+
+{{/*  get neighborhood name  */}}
+
+{{- $neighborhood_dir := .Page.File.Dir | path.Base | lower -}}
+
+{{- /*  get zip codes - first get element for neighborhood, then extract zip codes  */ -}}
+{{- /*  "where" returns an array, so you need to unbox it with index 0  */ -}}
+
+{{- $zip_codes := ( index ( where $uhflist "page_name" $neighborhood_dir ) 0 "Zipcodes" ) -}}
+
+
+<span id="zips">{{- $zip_codes -}}.</span>

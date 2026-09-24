@@ -32,6 +32,7 @@ fetch(`${data_repo}${data_branch}/indicators/metadata/metadata.json`)
 
         } else {
             // console.log('no param', url.searchParams.get('id'));
+
             loadIndicator()
         }
 
@@ -237,6 +238,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     indicatorId = this_indicatorId ? parseFloat(this_indicatorId) : parseFloat(firstIndicatorId);
 
     // remove active class from every list element
+
     $(".indicator-dropdown-item").removeClass("active");
     $(".indicator-dropdown-item").attr('aria-selected', false);
 
@@ -244,9 +246,11 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     document.getElementById(`arrow-${indicatorId}`).classList.remove('hide')
 
     // get the list element for this indicator (in buttons and dropdowns)
+
     const thisIndicatorEl = document.querySelectorAll(`button[data-indicator-id='${indicatorId}']`)
 
     // set this element as active & selected
+
     $(thisIndicatorEl).addClass("active");
     $(thisIndicatorEl).attr('aria-selected', true);
 
@@ -316,6 +320,7 @@ const loadIndicator = async (this_indicatorId, dont_add_to_history) => {
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
     // make sure metadata is empty, so that we can use its length for conditionals
+
     comparisonMetadata = [];
     
     // why are we waiting for this?
@@ -757,13 +762,6 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // console.log("primaryMeasureMetadata [createJoinedLinksData]", primaryMeasureMetadata);
 
-    // get available geos for primary measure (excluding citywide and boro)
-
-    const primaryMeasureGeos = primaryMeasureMetadata[0]?.AvailableGeoTypes
-        .filter(g => !/Citywide|Borough/.test(g))
-
-    // console.log("primaryMeasureGeos [createJoinedLinksData]", primaryMeasureGeos);
-
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
     // secondary measure metadata
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
@@ -797,18 +795,19 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     // ==== geography ==== //
 
-    // get avilable geos for secondary measure (excluding citywide and boro)
-
-    const secondaryMeasureGeos = secondaryMeasureMetadata[0]?.AvailableGeoTypes
-        .filter(g => !/Citywide|Borough/.test(g))
-
-    // console.log("secondaryMeasureGeos [createJoinedLinksData]", secondaryMeasureGeos);
-
     // ---- get primary x secondary intersection ---- //
 
-    const sharedGeos = secondaryMeasureGeos.filter(g => primaryMeasureGeos.includes(g));
+    const sharedGeos = getSharedLinksGeos(primaryMeasureMetadata[0], secondaryMeasureMetadata[0]);
 
     // console.log("sharedGeos [createJoinedLinksData]", sharedGeos);
+
+    if (!sharedGeos.length) {
+        return {
+            "data": [],
+            "primaryMeasureMetadata": primaryMeasureMetadata,
+            "secondaryMeasureMetadata": secondaryMeasureMetadata
+        };
+    }
 
 
     // ==== times ==== //
@@ -831,6 +830,14 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
         .filter(d => sharedGeos.includes(d.GeoType))
 
     // console.log("filteredPrimaryMeasureData [createJoinedLinksData]", filteredPrimaryMeasureData);
+
+    if (!filteredPrimaryMeasureData.length) {
+        return {
+            "data": [],
+            "primaryMeasureMetadata": primaryMeasureMetadata,
+            "secondaryMeasureMetadata": secondaryMeasureMetadata
+        };
+    }
 
 
     // get most recent time period for primary measure
@@ -902,6 +909,10 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             const filteredSecondaryMeasureTimesDataObjects = aqFilteredSecondaryMeasureData.objects();
 
             // console.log("filteredSecondaryMeasureTimesDataObjects", filteredSecondaryMeasureTimesDataObjects);
+
+            if (!filteredSecondaryMeasureTimesDataObjects.length) {
+                return [];
+            }
             
 
             // ==== get closest data ==== //
@@ -912,7 +923,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);
 
-            });
+            }, filteredSecondaryMeasureTimesDataObjects[0]);
 
             // console.log("closestSecondaryTime [createJoinedLinksData]", closestSecondaryTime);
 
@@ -999,6 +1010,7 @@ function draw311Buttons(indicator_id) {
         .then(async data => {
 
             // console.log(">>> 311-crosswalk");
+
             return data;
         })
         .then((crosswalk) => {
@@ -1009,6 +1021,7 @@ function draw311Buttons(indicator_id) {
             document.getElementById('311').innerHTML = ''
 
             // since we bring the takeaction partial in 2x on the DE page, we need to do this based on a class instead of an ID.
+
             let dest = document.querySelectorAll('.destination311')
             dest.forEach(element => element.innerHTML = '')
 
@@ -1017,6 +1030,7 @@ function draw311Buttons(indicator_id) {
             // console.log(filteredCrosswalk)
 
             // Creates label if there are 311 links
+
             if (filteredCrosswalk.length > 0) {
                 document.getElementById('311label').innerHTML = '<i class="fas fa-external-link-alt mr-1"></i>Or, contact 311 about:'
                 dest.forEach(element => element.classList.remove('hide'))
@@ -1025,12 +1039,25 @@ function draw311Buttons(indicator_id) {
                 dest.forEach(element => element.classList.add('hide'))
             };
 
-            // draws 311 buttons
+            // Render one outbound 311 article link per matching crosswalk record.
+
             for (let i = 0; i < filteredCrosswalk.length; i ++ ) {
-                let title = filteredCrosswalk[i].topic
-                let destination = filteredCrosswalk[i].kaLink
-                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" class="mr-1" target="_blank" rel="noopener noreferrer">${title}</a>| `
-                dest.forEach(element => element.innerHTML += btn)
+
+                // test length to prevent orphaned vertical bar
+
+                let verticalBar = (i < filteredCrosswalk.length - 1) ? ' | ' : '';
+
+                // Link text and target come from the matching crosswalk row for this iteration.
+
+                let title = filteredCrosswalk[i].topic;
+                let destination = filteredCrosswalk[i].kaLink;
+
+                // kanumber is the 311 knowledge article ID from the crosswalk CSV
+
+                let btn = `<a href="https://portal.311.nyc.gov/article/?kanumber=${destination}" target="_blank" rel="noopener noreferrer">${title}</a>${verticalBar}`;
+                
+                dest.forEach(element => element.innerHTML += btn);
+
             }
     })
 }

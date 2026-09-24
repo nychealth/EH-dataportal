@@ -1,23 +1,8 @@
 {{- define "main" -}}
 
-<style>
-    #map {
-        height: 35vh;
-        width: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-
-    leaflet-tooltip-box {
-        border: 1px solid
-    }
-
-</style>
-
 {{- /*  main content  */}}
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
 
@@ -66,7 +51,42 @@
         .barchart {
             border-left: 1px solid black;
         }
+
+        .modal-backdrop.show {
+            opacity: 0.70;
+            background-color: #424242
+        }
+
+        .location-row:hover {
+            background-color: #f3f6f4;
+        }
+
+        .row-active {
+            background-color: #f3f6f4;
+        }
+
+        #map {
+            height: 35vh;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
     </style>
+
+    <!--
+    <div class="row my-4 border">
+        <div class="colorLabel" style="background:red;color:white; width:130px;">Red</div>
+        <div class="colorLabel" style="background:purple; color:white; width:130px;">Purple</div>
+
+        <div class="lineLabel" style="background:black;color:white; width:130px;" data-id="BQE">BQQE</div>
+        <div class="lineLabel" style="background:black; color:white; width:130px;" data-id="SI_Expwy">SI Expwy</div>
+    </div>
+    -->
 
     <div class="row mt-4 mb-2">
         <div class="col-12">
@@ -124,7 +144,7 @@
                         <span class="fs-sm"><span class="font-weight-bold">Hourly PM2.5 (in µg/m<sup>3</sup>)</span> | <span style="color:red">NAAQS&nbsp;24-hour&nbsp;PM2.5&nbsp;standard&nbsp;(35 µg/m<sup>3</sup>)</span></span>
                     </div>
 
-                    <div id="vis" style="width: 100%; height: 45vh;" class="mt-2">
+                    <div id="vis" style="width: 100%; height: 45vh;" class="my-2">
                     CHART
                     </div>
 
@@ -319,19 +339,26 @@
     <div class="row my-2">
         <div class="col-md-10 mx-auto col-sm-12">
             <div class="row p-2 border-top border-bottom">
-                <div class="col-md-8 ml-auto">
+                <div class="col-md-4">
                     <h3>The Air Quality Index</h3>
                     <p><a href="https://www.airnow.gov/aqi/aqi-basics/">The Air Quality Index is the US Environmental Protection Agency's way of reporting air quality</a>. It reports whether any of five major pollutants (ground-level ozone, fine particles, carbon monoxide, sulfur dioxide and nitrogen dioxide) are at levels that can harm health.             </p>
                     <p><strong>AQI Resources:</strong></p>
                     <p><a href="https://www.nyc.gov/site/doh/health/health-topics/air-quality-fire-smoke-and-effect-on-air-quality.page"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Protect yourself during bad air quality</a></p>
-                    <p><a href="https://www.airnow.gov/sites/default/files/2023-03/air-quality-guide-for-particle-pollution_0.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
-
+                    <p><a href="https://www.nyc.gov/assets/doh/downloads/pdf/eode/aqi-guidelines-general.pdf"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>What to do at different AQI levels</a></p>
                 </div>
-
-                <div class="col-md-3 mr-auto">
-                    <iframe class="my-2 float-right" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+                <div class="col-md-3 mr-auto border-right">
+                    <iframe class="my-2 float-left" title="Example 1" height="340" width="230" src="https://widget.airnow.gov/aq-dial-widget-primary-pollutant/?city=New%20York%20City&state=NY&country=USA&transparent=true" style="border: none; border-radius: 25px;"></iframe>
+            </div>
+                <div class="col-md-5 mx-auto">
+                    <h3>Community air quality programs</h3>
+                    <p>Many community-based organizations run independent air quality monitoring systems, which contribute to the broader picture of air quality and health in NYC. </p>
+                    <p><a href="https://www.southbronxunite.org/air-pollution-and-public-health?ref=blog.quant-aq.com"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>South Bronx Unite: Air pollution and health</a></p>
+                    <p><a href="https://app.quant-aq.com/map"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>WE ACT for Environmental Justice: QuantAQ</a></p>
+                    <p><a href="https://map.purpleair.com/air-quality-standards-us-epa-aqi?opt=%2F1%2Flp%2Fa10%2Fp604800%2FcC0#12/40.68064/-74.00391"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Red Hook Initiative: US EPA PM2.5 by Purple Air</a></p>
+                    <p><a href="https://aircasting.org/fixed_stream?streamId=2785129&sessionId=1924804&streamId=2785129&thresholdMin=0&thresholdLow=12&thresholdMiddle=35&thresholdHigh=55&thresholdMax=150&currentUserSettings=CALENDAR_VIEW&sessionType=fixed&measurementType=Particulate+Matter&sensorName=AirBeam3-PM2.5&previousUserSettings=MODAL_VIEW"><i class="fas fa-external-link-alt mr-1" aria-hidden="true"></i>Sixth Street Center: AirCasting</a></p>
+                    <p class="fs-sm">Does your organization conduct hyperlocal air quality monitoring? Get in touch at <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.</p>
                 </div>
-
+                </div>
             </div>
         </div>
     </div>
@@ -393,9 +420,11 @@
             <!-- Download interface -->
             {{- partial "realtime-download" . -}}
 
-            {{- with .Resources.GetMatch "data-archive-text.md" -}}
-                {{ .Content }}
-            {{- end -}}
+            <hr>
+
+            <div id="rtaqReadme" class="pt-2">
+                <!-- RTAQ readme accessed from Git repo and deposited here via client-side JS --> 
+            </div>
 
         </div>
         <div class="modal-footer">
@@ -408,31 +437,84 @@
 
 </article>
 
+<script>
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function markdownToHTML(md) {
+  const lines = md.split(/\r?\n/);
+  let html = "";
+  let paragraph = [];
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      html += `<p>${paragraph.join(" ")}</p>\n`;
+      paragraph = [];
+    }
+  }
+
+  for (let line of lines) {
+    line = line.trim();
+
+    // Blank line → paragraph break
+
+    if (!line) {
+      flushParagraph();
+      continue;
+    }
+
+    // Headers
+
+    if (line.startsWith("## ")) {
+      flushParagraph();
+      html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
+      continue;
+    }
+
+    if (line.startsWith("# ")) {
+      flushParagraph();
+      html += `<h2 class="h5">${escapeHTML(line.slice(2))}</h2>\n`;
+      continue;
+    }
+
+    // Normal text → paragraph
+
+    paragraph.push(escapeHTML(line));
+  }
+
+  flushParagraph();
+  return html;
+}
+
+// Fetch + render
+
+fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
+  .then(r => r.text())
+  .then(md => {
+    document.getElementById("rtaqReadme").innerHTML = markdownToHTML(md);
+  });
+
+</script>
+
+
 <!-- Related footer -->
 {{- partial "related-footer" . -}}
 
-<style>
-    .modal-backdrop.show {
-        opacity: 0.70;
-        background-color: #424242
-    }
-</style>
 
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon" . }}
+{{- partial "lib-vega.html" . }}
+{{- partial "lib-d3.html" . }}
+{{- partial "lib-arquero.html" . }}
 
 <!-- color name to hex converter -->
 <!-- from https://gist.github.com/njvack/02ad8efcb0d552b0230d -->
 {{- $color_convert := resources.Get "js/color-convert.js" | partial "short-fingerprint.html" -}}
 <script src="{{ $color_convert.RelPermalink }}" integrity="{{ $color_convert.Data.Integrity }}"></script>
-
-
-<!-- Uses a static stand-in file for local development - else uses the API -->
-<script>
-    var url = window.location.href
-    var rtaqData
-    url.includes('localhost') ? rtaqData = 'data/nyccas_realtime_DEC.csv' : rtaqData = 'https://azdohv2staticweb.blob.core.windows.net/$web/nyccas_realtime_DEC.csv'
-
-</script>
-
 
 
 <!--bring in realtime JS -->

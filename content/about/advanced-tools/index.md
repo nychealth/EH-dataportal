@@ -23,7 +23,7 @@ If you are a data scientist, programmer, open data enthusiast, open source evang
 
 ## Re-use data visualizations
 
-The visualizations on our site's [Data Explorer](../../data-explorer/) use a JavaScript library called [Vega-Lite](https://vega.github.io/vega-lite/). Vega-lite provides a few options for you to use the visualizations in other contexts.
+The visualizations on our site's [Data Explorer]({{< relURL >}}data-explorer/) use a JavaScript library called [Vega-Lite](https://vega.github.io/vega-lite/). Vega-lite provides a few options for you to use the visualizations in other contexts.
 
 Above and to the right of the visualiaztions, there's a three-dot menu. Clicking this gives you a few helpful options:
 
@@ -51,7 +51,7 @@ You can bypass ourwebsite and get data by going to [our data repository](https:/
 - `metadata.json` contains the indicators' names, indicator IDs (used to identify which file the data are in), data sources, notes, and other visualization specifications used by the site code.
 - The `/data` folder contains a .json file for each indicator, with fields for the measure ID, geography, time period, value, and a few other supplemental fields.
 
-To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Indicator Catalog page](../../data-explorer/indicator-catalog/)
+To help find specific datasets (indicators) in `metadata.json`, [you can search by text on our Indicator Catalog page]({{< relURL >}}data-explorer/indicator-catalog/)
 
 ![](Repo.png)
 

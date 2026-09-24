@@ -1,0 +1,160 @@
+{
+    "path": "data-stories/food-safety-101/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "datawrapper.dwcdn.net",
+            "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 9,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 4,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 83,
+            "external": 30,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Tracking food poisoning outbreaks in NYC – Environment & Health Data Portal",
+        "headingText": [
+            "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why",
+            "What is foodborne illness—and what causes it?",
+            "The causes of foodborne illness vary widely, so Health Department investigations are key",
+            "3 of the 5 top causes of foodborne illness at NYC eating and drinking establishments are due to unsafe on-site food handling",
+            "Case studies of real foodborne illness outbreaks occurring in NYC",
+            "What to do if you think you may have a foodborne illness",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-features/rat-report/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/federal-funding/",
+            "/data-stories/food-safety-101/",
+            "/data-stories/food/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/eating/",
+            "/keywords/food-poisoning-outbreaks/",
+            "/keywords/food-safety-inspections/",
+            "/keywords/food-safety/",
+            "/keywords/food/",
+            "/keywords/foodborne-illness/",
+            "/keywords/restaurants/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a816-dohbesp.nyc.gov",
+            "a816-health.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "portal.311.nyc.gov",
+            "twitter.com",
+            "www.cdc.gov",
+            "www.facebook.com",
+            "www.fda.gov",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www.who.int",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "A data story about understanding food safety and how NYC tracks and prevents outbreaks."
+    }
+}

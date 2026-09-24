@@ -28,3 +28,9 @@ data:
 - entry: 
   copy: NYC Community Health Profiles.
   link: https://www1.nyc.gov/site/doh/data/data-publications/profiles.page
+
+keytopic: 
+  - link: 'housing/'
+    text: 'Housing'
+  - link: 'childhealth/'
+    text: 'Child health'
