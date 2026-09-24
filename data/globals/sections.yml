@@ -1,0 +1,30 @@
+# Icon and accent color for each content section, keyed by Hugo's .Section.
+# Read by partials/section-icon.html and partials/section-header.html.
+# `accent` must be one of the *-accent classes in assets/scss/theme.scss ("Section styles").
+# `name` is the breadcrumb label, which can differ from the section page's title
+# (key-topics is titled "Key Topics in Environmental Health").
+
+data-stories:
+    name: Data Stories
+    icon: fa-passport
+    accent: ds-accent
+
+data-explorer:
+    name: Data Explorer
+    icon: fa-chart-line
+    accent: de-accent
+
+data-features:
+    name: Data Features
+    icon: fa-chart-bar
+    accent: df-accent
+
+neighborhood-reports:
+    name: Neighborhood Reports
+    icon: fa-map-marked-alt
+    accent: nr-accent
+
+key-topics:
+    name: Key Topics
+    icon: fa-star
+    accent: kt-accent

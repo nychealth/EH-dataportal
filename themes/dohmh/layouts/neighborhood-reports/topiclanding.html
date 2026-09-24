@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    <h1 class="h2 mt-3" id="nrtitle">{{ $.Params.title }}</h1>
+                    <h1 class="h2 mt-3" id="nrtitle">{{ partial "section-icon.html" $.Section }}{{ $.Params.title }}</h1>
                     <p class="report-description fs-lg my-2">{{ .Content }}</p>
 
                     <p class="font-weight-bold"><i class="fa-solid fa-arrow-left mr-1 text-primary"></i>Choose a neighborhood from the map to get a report.</p>
