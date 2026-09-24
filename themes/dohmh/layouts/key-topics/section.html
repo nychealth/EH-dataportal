@@ -2,22 +2,11 @@
 
 <article class="container wide">
 
+    {{ partial "section-header.html" (dict "page" .) }}
+
     <div class="key-topics">
         <div class="row">
             <div class="col-md-8 col-sm-12 mb-4">
-                <div class="row">
-                    <div class="col-md-10 col-sm-12 mt-2 mb-3">
-                        <nav aria-label="breadcrumb" class="">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                                <li class="breadcrumb-item active"><a href={{ relURL "key-topics" }}>Key Topics</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-
-                <h1><i class="fas fa-star mr-1 text-primary" aria-hidden="true"></i>Key Topics in Environmental Health</h1>
-                <p>{{- .Content -}}</p>
                 <ul class="list-unstyled font-weight-bold">
                     {{- range where .Pages ".Params.hide" "!=" true -}}
                         <li class="link-w-underline px-0"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>

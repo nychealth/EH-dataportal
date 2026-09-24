@@ -207,7 +207,7 @@
             <!-- MOBILE TITLE --> 
             <div class="row d-md-none">
                 <div class="col-12 mb-2">
-                    <h1 class="h2">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                    <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
                         <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
                 </div>
             </div>
@@ -312,7 +312,7 @@
                     </div>
 
                     <div class="d-none d-md-block">
-                        <h1 class="h2 mt-3">{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
+                        <h1 class="h2 mt-3">{{ partial "section-icon.html" $.Section }}{{ $.Params.title }} <span style="font-weight:normal">in</span></h1>
                             <span class="h2 sub-title text-primary">{{ $.Params.neighborhood }}</span>
                     </div>
 
