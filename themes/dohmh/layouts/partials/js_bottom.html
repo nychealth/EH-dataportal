@@ -31,6 +31,7 @@
     );
 
     // obliterate all google translate SVGs, which are constantly recalulating styles but are never shown
+
     document
       .querySelectorAll("div[class^=VI] svg")
       .forEach((e) => (e.outerHTML = ""));

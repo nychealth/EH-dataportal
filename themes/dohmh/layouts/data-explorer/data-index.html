@@ -94,6 +94,7 @@
 
 
             // Separating json load from subsequent functions, so we can filter or modify later without reloading json
+
             function loopThroughIndicators() {
 
 
@@ -103,6 +104,7 @@
                 for (let i = 0; i < indicators.length; i++) {  // change the 1 to indicators.length to get back to normal
 
                     // get all topics for this indicator
+
                     let topics = topicIndicatorsTable.filter(element => element.IndicatorID == indicators[i].IndicatorID);
 
                     // console.log("indicators[i].IndicatorID", indicators[i].IndicatorID);
@@ -143,6 +145,7 @@
                     cell_2.appendChild(st_li);
 
                     // create links for topics
+
                     for (st = 0; st < topics.length; st++) {
 
                         let li = document.createElement('li');
@@ -155,19 +158,23 @@
                     row_i.appendChild(cell_2);
 
                     // create other cells.
+
                     let cell_3 = document.createElement('td')
                     let cell_4 = document.createElement('td')
                     let cell_5 = document.createElement('td')
                     let cell_6 = document.createElement('td')
 
                     // loop through each indicator's measure:
+
                     for (let n = 0; n < indicators[i].Measures.length; n++) {
 
                         // push Measurement Types to the second cell
+
                         measurements.push(indicators[i].Measures[n].MeasurementType)
 
                         // loop through Available Geographies
                         // var finestGeography = [];
+
                         for (let y = 0; y < indicators[i].Measures[n].AvailableGeoTypes.length; y++) {
 
                             geographies.push(indicators[i].Measures[n].AvailableGeoTypes[y])
@@ -178,15 +185,19 @@
                         }
 
                         // get time period IDs for this measure
+
                         let AvailableTimePeriodIDs = indicators[i].Measures[n].AvailableTimePeriodIDs;
 
                         // get end periods for this measure
+
                         let end_periods = time_periods.filter(tp => AvailableTimePeriodIDs.includes(tp.TimePeriodID)).map(tp => tp.end_period);
 
                         // push end periods to times array
+
                         times.push(...end_periods);
 
                         // push Sources
+
                         sources.push(indicators[i].Measures[n].Sources)
 
                     }
@@ -194,6 +205,7 @@
                     // And, dump measurements, geographies, times, and sources into cells:
 
                     // measurements
+
                     let unique_measurements = [...new Set(measurements)];
                     let ums = document.createElement('ul')
                     ums.classList.add('no-bullets')
@@ -230,6 +242,7 @@
                     let unique_geographies = [...new Set(geographies)];
 
                     // sorting unique_geographies based on order of geos_order
+
                     unique_geographies.sort(function(a, b){
                         return geos_order.indexOf(a) - geos_order.indexOf(b)
                     });
@@ -247,6 +260,7 @@
                         let li = document.createElement('li')
 
                         // setting id as geo name
+
                         li.innerHTML = pretty_unique_geographies[l];
                         li.setAttribute("geo", pretty_unique_geographies[l]);
                         li.classList.add("btn", "btn-sm", "geobullets", pretty_unique_geographies[l])
@@ -255,6 +269,7 @@
 
                         li.addEventListener('click', e => {
                             // console.log("classList [e]", e.target.classList)
+
                             toggle_button(e);
                         });
 
@@ -265,6 +280,7 @@
                     row_i.appendChild(cell_4)
 
                     // max year
+
                     maxTime = new Date(Math.max(...times));
                     cell_5.innerHTML = maxTime.getFullYear();
                     row_i.appendChild(cell_5)
@@ -273,6 +289,7 @@
 
 
                     // sources
+
                     let unique_sources = [...new Set(sources)];
                     let usrc = document.createElement('ul')
                     usrc.classList.add('no-bullets')
@@ -287,10 +304,12 @@
                     row_i.appendChild(cell_6);
 
                     // Finally, place the row into the table body.
+
                     document.getElementById('tablebody').appendChild(row_i)
                 }
 
                 // call DataTables.
+
                 initializeDataTables()
 
             }
@@ -322,6 +341,7 @@
 
                     // Adding this here is sort of a kludge, but I'd have to refactor the entire pattern to avoid it
                     // buttons with either geo as a class
+
                     let geo_buttons = document.querySelectorAll(active_geo.map(i => "." + i).toString());
 
                     for (let i = 0; i < geo_buttons.length; i++) {
@@ -334,6 +354,7 @@
             function toggle_button(e) {
 
                 // clicked button
+
                 var button = e.target;
 
                 if (button.classList.contains("active") == false) {
@@ -352,6 +373,7 @@
                     // if the clicked button is active, remove active class to buttons with this geo type
 
                     // all buttons of this geo type
+
                     let geo_buttons = document.querySelectorAll("[geo=" + button.attributes.geo.value + "]");
 
                     for (let i = 0; i < geo_buttons.length; i++) {
@@ -418,61 +440,76 @@
             }
 
             // RUN THIS FUNCTION TO TRIGGER A DOWNLOAD
+
             function tableToCSV() {
 
                 // Variable to store the final csv data
+
                 let csv_data = [];
 
                 // Get each row data
+
                 let rows = document.getElementsByTagName('tr');
                 for (let i = 0; i < rows.length; i++) {
 
                     // Get each column data
+
                     let cols = rows[i].querySelectorAll('td,th');
 
                     // Stores each csv row data
+
                     let csvrow = [];
                     for (let j = 0; j < cols.length; j++) {
 
                         // Get the text data of each cell of
                         // a row and push it to csvrow
+
                         let string = `"` + removeTags(cols[j].innerHTML) + `"`
 
                         csvrow.push(string); // run contents through removeTags() to strip HTML
                     }
 
                     // Combine each column value with comma
+
                     csv_data.push(csvrow.join(","));
                 }
                 // Combine each row data with new line character
+
                 csv_data = csv_data.join('\n');
 
                 /* We will use this function later to download the data in a csv file downloadCSVFile(csv_data); */
                 // console.table(csv_data)
+
                 downloadCSVFile(csv_data);
             }
 
             // TRIGGERS DOWNLOAD
+
             function downloadCSVFile(csv_data) {
 
                 // Create CSV file object and feed our
                 // csv_data into it
+
                 CSVFile = new Blob([csv_data], { type: "text/csv" });
 
                 // Create to temporary link to initiate
                 // download process
+
                 let temp_link = document.createElement('a');
 
                 // Download csv file
+
                 temp_link.download = "EHDP-data-index.csv";
                 let url = window.URL.createObjectURL(CSVFile);
                 temp_link.href = url;
 
                 // This link should not be displayed
+
                 temp_link.style.display = "none";
                 document.body.appendChild(temp_link);
 
                 // Automatically click the link to trigger download
+
                 temp_link.click();
                 document.body.removeChild(temp_link);
             }
@@ -483,11 +520,13 @@
                     return false;
                 else
                     // append comma to </li> tags not followed by a <\ul> tag, so that it'll be a comma separated list when tags are removed
+
                     str = str.toString().replace(/(<\/li>)/ig, '$1, ').replace(/(<\/li>, <\/ul>)/ig, '<\/li><\/ul>');
 
                 // Regular expression to identify HTML tags in
                 // the input string. Replacing the identified
                 // HTML tag with a null string.
+
                 return str.replace(/(<([^>]+)>)/ig, '');
             }
 
@@ -500,6 +539,7 @@
             function createMeasureMetadata() {
                 console.log('object of indicators, measures, and text metadata:')
                 // create object of indicators, measures and text metadata
+
                 for (let i = 0; i < indicators.length; i++) {
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
@@ -525,18 +565,23 @@
                 var noMapObject = [];
                 console.log('indicators without a mapped measure:')
                 // loop through indicators
+
                 for (let i = 0; i < indicators.length; i++) {
                     var maps = [];
                     // loop through measures
+
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
                         // for each measure, get measure - visOptions - map - geotype
+
                         maps.push(indicators[i].Measures[j].VisOptions[0].Map[0].GeoType)
                         }
 
                         // test if all values of maps is null
+
                         const isNull = (geotype) => geotype == null
                         if (maps.every(isNull) == true) {
                             // send indicator info to object
+
                             var indicator = {}
                             indicator.indicatorName    = indicators[i].IndicatorName
                             indicator.indicatorID      = indicators[i].IndicatorID
@@ -553,12 +598,15 @@
             function indicatorsWithFullViews() {
                 console.log('object of indicators with a full-view measure')
                 // for each indicator...
+
                 for (let i = 0; i < indicators.length; i++) {
                     var thisIndicator = [];
 
                     // loop through their measures
+
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
                         // Count views for each measure...
+
                         var thisMeasure = {};
                         if (indicators[i].Measures[j].VisOptions[0].Map[0].GeoType != null) {thisMeasure.map = 1} else {thisMeasure.map = 0}
                         if (indicators[i].Measures[j].VisOptions[0].Trend[0].GeoType != null) {thisMeasure.trend = 1} else {thisMeasure.trend = 0}
@@ -571,6 +619,7 @@
                         thisMeasure.measureID      = indicators[i].Measures[j].MeasureID
                         thisMeasure.measureViewSum = thisMeasure.map + thisMeasure.trend + thisMeasure.LD
                         // ...and push the count to indicator info
+
                         thisIndicator.push(thisMeasure)
 
                     } // end measure loop
@@ -581,10 +630,12 @@
 
 
                 // then, loop through inds and return the number of measures that have a viewSum > 1.
+
                 for (let i = 0; i < inds.length; i++) {
                     var thisIndicator = {};
                     var count = 0
                             // loop through inds[i].length
+
                             for (let j = 0; j < inds[i].length; j ++) {
                                 if (inds[i][j].measureViewSum > 1) {
                                     count = count+1
@@ -603,6 +654,7 @@
                 var mvs = [];
                 console.log('object of indicators, measures, and text metadata:')
                 // create object of indicators, measures and text metadata
+
                 for (let i = 0; i < indicators.length; i++) {
 
                     for (let j = 0; j < indicators[i].Measures.length; j ++) {
@@ -611,6 +663,7 @@
                         measure.indicatorName    = indicators[i].IndicatorName
                         measure.indicatorID      = indicators[i].IndicatorID
                         // measure.indicatorDesc    = indicators[i].IndicatorDescription
+
                         measure.measureName      = indicators[i].Measures[j].MeasureName
                         measure.measureID        = indicators[i].Measures[j].MeasureID
 

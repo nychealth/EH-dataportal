@@ -284,7 +284,7 @@
   },
   "pages": {
     "/": {
-      "words": 420,
+      "words": 432,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -301,7 +301,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "f08f99580fbde88a",
+      "contentHash": "a7e5cdbf60d715c1",
       "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
     },
     "/about/": {
@@ -3489,7 +3489,7 @@
       "contentHead": "Interactive Heat Vulnerability Index. Hot weather is dangerous. In New York City – and across the country – more people "
     },
     "/data-features/leading-causes/": {
-      "words": 644,
+      "words": 656,
       "title": "Leading causes of injuries and deaths in NYC (2021 - 2023) | Data Features",
       "filters": {
         "section": [
@@ -3523,7 +3523,7 @@
         "top",
         "visualization"
       ],
-      "contentHash": "c3b1cb309ba8ee56",
+      "contentHash": "8b32bbd20a6109e5",
       "contentHead": "Leading causes of injuries and deaths in NYC (2021 - 2023). This tool shows the leading causes of emergency department v"
     },
     "/data-features/minimum-wage/": {
@@ -4988,7 +4988,7 @@
       "contentHead": "ZAPPA: A tool to understand air quality policies. Since we published this data story, some data in it have been updated."
     },
     "/es/": {
-      "words": 405,
+      "words": 417,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -5005,7 +5005,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "87083b5572e18b1f",
+      "contentHash": "1bda1fb5255dea88",
       "contentHead": "Explore your city - through data. The environment is everything around us - our air and water, the climate, our city's b"
     },
     "/es/data-stories/": {
@@ -6231,7 +6231,7 @@
       "contentHead": "Contact your elected officials. Are you concerned about environmental health issues in your neighborhood, or in our city"
     },
     "/zh/": {
-      "words": 624,
+      "words": 646,
       "title": "The Environment and Health Data Portal: Home page | Environment & Health Data Portal",
       "filters": {},
       "anchors": [
@@ -6248,7 +6248,7 @@
         "weatherModal",
         "weatherModalTitle"
       ],
-      "contentHash": "498aa3c2c6e53db8",
+      "contentHash": "3ef514fec44fc809",
       "contentHead": "Explore ​your ​city ​- ​through ​data​. ​The ​environment ​is ​everything ​around ​us ​- ​our ​air ​and ​water​, ​the ​c"
     },
     "/zh/data-stories/": {

@@ -49,24 +49,43 @@ on:
     # collaborating-on-repositories-with-code-quality-features/
     # troubleshooting-required-status-checks, read 2026-08-24]`. Nothing is
     # required on `production` today `[gh api .../branches/production/protection,
-    # 2026-08-24: no required_status_checks key, and rulesets is empty]`.
+    # 2026-08-24, re-checked 2026-09-21: no required_status_checks key, and
+    # rulesets is empty]`.
+    #
+    # The workflow entries are an explicit enumeration of every workflow BUT
+    # this one — a change to this file must re-run this check. So a workflow
+    # added later is not covered until it is listed, which is a maintenance
+    # cost paid by diffing these entries against `ls .github/workflows/`
+    # `[2026-09-21: that diff is how codeql.yml and test-print-branch.yml were
+    # found missing from both lists]`.
     paths-ignore:
       - documents/**
       - memories/**
       - .claude/**
       - .agents/**
+      - .github/instructions/**
+      - .github/pull_request_template.md
       - .github/workflows/check-deploy.yml
+      - .github/workflows/codeql.yml
       - .github/workflows/hugo-build-any-branch.yml
       - .github/workflows/hugo-build-to-dev-prod.yml
       - .github/workflows/hugo-build-to-dev-stage.yml
       - .github/workflows/hugo-build-to-prod-prod.yml
       - .github/workflows/smoke.yml
+      - .github/workflows/test-print-branch.yml
+      - .gitignore
       - CLAUDE.md
       - README.md
       - readme-components.md
       - readme-content.md
       - readme-development.md
       - LICENSE
+      - eslint.config.mjs
+      - skills-lock.json
+      - trigger_dev-stage_workflow.ps1
+      - trigger_dev-stage_workflow.sh
+      - trigger_prod-prod_workflow.ps1
+      - trigger_prod-prod_workflow.sh
 
   workflow_dispatch:
 
@@ -125,7 +144,27 @@ jobs:
     steps:
 
       # fetch-depth 1: the harness reads `git rev-parse HEAD` for the record
-      # metadata and needs no history beyond the tip
+      # metadata and needs no history beyond the tip.
+      #
+      # NO `ref:`, AND THAT IS LOAD-BEARING. On a pull_request event
+      # actions/checkout takes refs/pull/N/merge, so the tree under test is the
+      # PR head already merged onto the base branch tip -- which means the
+      # BASELINE it compares against is the BASE BRANCH'S, not the PR branch's
+      # `[verified 2026-09-21 on PR #1500: the job fetched
+      # +597118fa5e...:refs/remotes/pull/1500/merge, and that commit's parents
+      # are 451b2df450 (production's tip) and 5771b1c049 (the PR head)]`.
+      #
+      # Consequence for anyone with an open PR after a re-baseline lands on the
+      # base branch: DO NOT merge the base in to pick the new baseline up. The
+      # next run reads it on its own, once GitHub recomputes the merge ref. That
+      # recomputation is the one step here not measured -- the tell is the
+      # check's own `Diffing structure against the baseline captured at <sha>`
+      # line, which names the baseline commit it actually read. A stale sha
+      # there means a re-run, not a merge.
+      #
+      # Setting `ref:` to the PR head would break both: the site would be
+      # checked without the base's changes, against the PR branch's own
+      # baseline.
 
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

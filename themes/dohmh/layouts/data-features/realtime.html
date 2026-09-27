@@ -461,12 +461,14 @@ function markdownToHTML(md) {
     line = line.trim();
 
     // Blank line → paragraph break
+
     if (!line) {
       flushParagraph();
       continue;
     }
 
     // Headers
+
     if (line.startsWith("## ")) {
       flushParagraph();
       html += `<h3 class="h6">${escapeHTML(line.slice(3))}</h3>\n`;
@@ -480,6 +482,7 @@ function markdownToHTML(md) {
     }
 
     // Normal text → paragraph
+
     paragraph.push(escapeHTML(line));
   }
 
@@ -488,6 +491,7 @@ function markdownToHTML(md) {
 }
 
 // Fetch + render
+
 fetch("https://raw.githubusercontent.com/nychealth/nyccas-data/refs/heads/main/README.md")
   .then(r => r.text())
   .then(md => {

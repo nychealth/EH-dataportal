@@ -97,6 +97,7 @@ $(document).ready(function () {
         // Behaviour only. click_subscribe is fired by site.js, which delegates it for
         // the same [data-subscribe-click] elements — binding it here too sent two events
         // with two different schemas on every click [verified 2026-08-21 in-browser].
+
         subscribe_triggers.on('click', function (event) {
             const subscribe_trigger = $(this);
 
@@ -198,6 +199,7 @@ function fireEvent(element, event) {
     } else {
         const evt = document.createEvent("HTMLEvents");
         // event type, bubbling, cancelable
+
         evt.initEvent(event, false, true); 
         return !element.dispatchEvent(evt);
     }

@@ -91,6 +91,7 @@ $(function () {
                     var nextOrigTop = $next.data('origTop');
                     if (scrollTop > nextOrigTop - h) {
                         // Next header is displacing this one
+
                         fixedTop = -(scrollTop - (nextOrigTop - h));
                     }
                 }
@@ -120,10 +121,12 @@ $(function () {
         $('#site-info-box').text(info);
 
         // Highlight the clicked badge
+
         $('.site-badge').removeClass('active');
         $(this).addClass('active');
 
         // Zoom to site on the map
+
         if (siteName && typeof window.cpReportZoomToSite === 'function') {
             window.cpReportZoomToSite(siteName);
         }
