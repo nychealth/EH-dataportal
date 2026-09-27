@@ -1,13 +1,13 @@
 {
-    "capturedAt": "2026-09-02T17:36:44.355Z",
-    "gitHead": "7791fcfe934d18b5088ce26afc8ade9112cc36ec",
+    "capturedAt": "2026-09-27T12:09:24.786Z",
+    "gitHead": "921b165625b0bcde2b08427b9e739c6c59f56396",
     "baselineKey": "prod_prod",
     "hugoEnv": "prod_prod",
     "dataBranch": "production",
     "dataCommit": {
-        "sha": "da7f64df7cf7800ee2c84c1e93ce9f3762148e5a",
-        "date": "2026-09-02T16:00:05Z",
-        "fetchedAt": "2026-09-02T17:33:06.906Z"
+        "sha": "8df3a048250020607b1f87f09e6d9baa7f7308ec",
+        "date": "2026-09-26T16:00:04Z",
+        "fetchedAt": "2026-09-27T12:05:49.406Z"
     },
     "pagefind": true,
     "hugo": {
@@ -17,7 +17,9 @@
     "prefix": "/IndicatorPublic/",
     "mode": "all",
     "pages": 925,
-    "arbitrated": [],
+    "arbitrated": [
+        "data-explorer/worker-health/"
+    ],
     "cleared": [],
     "capped": false,
     "viewport": {
