@@ -844,6 +844,17 @@ span.th-sub {
 
 // Section styles
 
+// Section-page header (partials/section-header.html). The one place to move
+// the breadcrumb and H1 on every section page at once.
+.section-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .breadcrumb {
+        margin-bottom: 2rem;
+    }
+}
+
 .ds-accent {
     svg path {
         fill: $color-data-stories;
