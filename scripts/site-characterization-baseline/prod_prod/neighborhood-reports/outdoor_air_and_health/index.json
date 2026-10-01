@@ -6,7 +6,7 @@
         "assets": [
             "js/main.js",
             "js/site.js",
-            "js/uhflist.js",
+            "js/uhflist-data.js",
             "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
             "node_modules/dompurify/dist/purify.min.js",
@@ -24,8 +24,8 @@
         ],
         "assetsWithIntegrity": 13,
         "headingLevels": [
-            2,
             1,
+            2,
             1,
             2,
             1,
@@ -103,7 +103,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 158,
+            "internal": 116,
             "external": 21,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -113,7 +113,7 @@
             "input": 3,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 2
+            "noAccessibleName": 1
         },
         "tables": {
             "total": 0,
@@ -126,8 +126,8 @@
     "content": {
         "title": "Outdoor Air and Health in NYC – Environment & Health Data Portal",
         "headingText": [
-            "Select neighborhood",
             "Outdoor Air and Health",
+            "Choose Neighborhood",
             "Deaths due to PM2.5",
             "Estimated annual deaths due to PM2.5 air pollution. Estimating these deaths is a way to understand how air pollution increases mortality.",
             "Asthma emergency department visits due to PM2.5",
