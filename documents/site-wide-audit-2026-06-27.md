@@ -360,6 +360,40 @@ param**, adding `links` → `correlate` to the existing legacy-URL normalizer so
 bookmarks keep working, and accepting a GA discontinuity. Do (2) or (3) only as
 its own PR, never folded into other work.
 
+### 4c. Deferred: Citywide and Borough as standing context in the explorer table (added 2026-10-01)
+
+The new explorer's table follows the map: its time and geography filters track the map's
+dropdowns until the user changes them ("Table filters follow the map until changed" in
+`themes/dohmh/layouts/partials/de-tab-content.html`), so it shows one geography, the map's. That
+is a deliberate design choice, not a gap. The old explorer checked **every** available geography
+for the most recent time period, so some indicators render thinner in the new one — `?id=26`
+showed 7 table rows in the old explorer and 3 in the new (observed 2026-07-30, recorded in
+`documents/data-explorer-fresh-audit-2026-07-13.md`, "Status at a glance").
+
+Considered 2026-10-01 and **deferred by decision (Chris): keep strict follow-the-map for now.**
+The option, if it is wanted later: keep following the map, and always check Citywide and Borough
+alongside the map's geography. One fixed list, filtered in the canonical `geoTypes` order so rows
+stay coarsest-first:
+
+```js
+// global.js
+// The table follows the map's geography, with Citywide and Borough always shown alongside it for context.
+const TABLE_CONTEXT_GEOS = ['Citywide', 'Borough'];
+const pickSyncedTableGeos = (availableGeos, mapGeo) =>
+    availableGeos.filter(geo => TABLE_CONTEXT_GEOS.includes(geo) || geo === mapGeo);
+```
+
+Three sites choose the table's geography today and would call it, each keeping its existing
+fall-back to the first available geography when the helper returns nothing: the "table defaults"
+block in `renderMeasures` (`assets/js/data-explorer/measures.js`), and `getCurrentMapTableFilters`
+and the fallback inside `renderTableFilterControls` (`assets/js/data-explorer/table.js`). The
+help text and "Sync to map" stay true, since the table still follows the map. The added rows are
+bounded by the two context levels for the selected time period — derived from the geography
+definitions, not measured. Not tried in a browser.
+
+Rejected outright on the same day: the old explorer's own rule (every geography checked), because
+it would stop the map's geography from driving the table.
+
 ---
 
 ## 5. JavaScript outside the SPA (P2/P3)
