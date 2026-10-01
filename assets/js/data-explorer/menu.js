@@ -14,16 +14,19 @@
 // (pickDefaultMeasureByPriority in measures.js), so the dropdown highlight matches the measure
 // the map/trend tabs render by default. menu.js passes all Measures; the per-tab defaults pass
 // their filtered subsets — but the ranking rules are now a single source of truth.
+
 const getDefaultMeasure = (indicator) => pickDefaultMeasureByPriority(indicator.Measures);
 
 
 // Converts a TimePeriodID into its display label for dropdown text.
+
 const getTimeLabel = (id) => {
     return DE.lookups.timeLookup[id]?.TimePeriod || id;
 };
 
 
 // Updates every cloned dropdown trigger for the given menu type.
+
 const setDropdownLabel = (type, value) => {
 
     let cls = type + '-name';  // measure-name, geo-name, time-name
@@ -39,6 +42,7 @@ const setDropdownLabel = (type, value) => {
 // ----------------------------------------------------------------------- //
 
 // Ensures one valid measure is selected before any menu rendering begins.
+
 const renderMenus = async (indicatorID) => {
 
     debugLog('* renderMenus');
@@ -55,6 +59,7 @@ const renderMenus = async (indicatorID) => {
     const selectedMeasure = indicator.Measures.find(m => m.MeasureID === DE.state.MeasureID);
 
     // Fall back to the preferred default when the URL or globals point to an invalid measure.
+
     if (!DE.state.MeasureID || !selectedMeasure) {
         const defaultMeasure = getDefaultMeasure(indicator);
         DE.state.MeasureID = defaultMeasure.MeasureID;
@@ -69,6 +74,7 @@ const renderMenus = async (indicatorID) => {
 // ----------------------------------------------------------------------- //
 
 // Rebuilds all dependent menus from current globals after one selection changes.
+
 const updateAllMenus = (indicator) => {
 
     debugLog('* updateAllMenus');
@@ -85,6 +91,7 @@ const updateAllMenus = (indicator) => {
 
     if (!measure) {
         // Recover from stale globals or URL params by snapping back to the default measure.
+
         measure = getDefaultMeasure(indicator);
         DE.state.MeasureID = measure.MeasureID;
     }
@@ -111,6 +118,7 @@ const updateAllMenus = (indicator) => {
     // A measure whose Map VisOption carries a null GeoType prettifies to nothing, and an option
     // with no label is unusable and unreadable — the Boundary dropdown must never contain one,
     // whatever the catalog says. See withCitywideMapFallback in global.js for the metadata side.
+
     (measure.VisOptions[0].Map || []).forEach(d => {
         const pretty = prettifyGeoType(d.GeoType);
         if (typeof pretty === 'string' && pretty && !seenGeos.has(pretty)) {
@@ -122,11 +130,13 @@ const updateAllMenus = (indicator) => {
     const availableGeoValues = geos.map(g => g.value);
 
     // default to the finest available geography when the current one is missing or invalid
+
     if (!DE.state.GeoType || !availableGeoValues.includes(DE.state.GeoType)) {
 
         // Favor the most detailed geography so the map opens at the richest available level.
         // Seeded, because a measure with no mappable geography at all leaves this list empty and
         // an unseeded reduce throws on it.
+
         DE.state.GeoType = availableGeoValues.reduce(
             (best, current) => (assignGeoRank(current) > assignGeoRank(best) ? current : best),
             availableGeoValues[0] ?? null
@@ -157,6 +167,7 @@ const updateAllMenus = (indicator) => {
         .sort((a, b) => b.endPeriod - a.endPeriod);
 
     // default to the most recent available time period when the current one is invalid
+
     if (!DE.state.TimePeriodID || !times.find(t => t.value === DE.state.TimePeriodID)) {
         DE.state.TimePeriodID = times.length ? times[0].value : null;
     }
@@ -172,6 +183,7 @@ const updateAllMenus = (indicator) => {
 // ----------------------------------------------------------------------- //
 
 // Renders a dropdown menu and binds its click behavior.
+
 const renderMenuSection = (items, destination, type) => {
 
     debugLog("* renderMenuSection:", type);
@@ -179,11 +191,13 @@ const renderMenuSection = (items, destination, type) => {
     const containers = document.querySelectorAll(destination);
 
     // Mirror the same menu contents into every desktop and mobile dropdown container.
+
     containers.forEach(container => {
 
         container.innerHTML = '';
 
         // Build one button per available option in the current menu.
+
         items.forEach((item, index) => {
 
             const button = document.createElement('button');
@@ -194,16 +208,19 @@ const renderMenuSection = (items, destination, type) => {
             // reading its value off the button: dataset stringifies everything, and 97 Map
             // entries in the catalog carry GeoType: null, which would reach handleSelection
             // as the string "null".
+
             button.dataset.optionIndex = index;
 
             // Subtly highlight the currently selected value in each dropdown.
             // Number() coercion on both sides: MeasureID and TimePeriodID may be string or float depending on source
+
             const isSelected =
                 (type === 'measure' && Number(item.value) === Number(DE.state.MeasureID)) ||
                 (type === 'geo' && item.value === DE.state.GeoType) ||
                 (type === 'time' && Number(item.value) === Number(DE.state.TimePeriodID));
 
             // Mark the currently selected option so the menu reflects global state.
+
             if (isSelected) {
                 button.classList.add('is-selected');
                 button.setAttribute('aria-current', 'true');
@@ -219,6 +236,7 @@ const renderMenuSection = (items, destination, type) => {
         // is idempotent, so repeated rebuilds can't stack handlers.
         // Bootstrap closes the menu itself on any click inside it, and updateAllMenus
         // repaints both trigger labels via setDropdownLabel — so nothing else is needed here.
+
         container.onclick = event => {
 
             const button = event.target.closest('.dropdown-item');
@@ -238,6 +256,7 @@ const renderMenuSection = (items, destination, type) => {
 // ----------------------------------------------------------------------- //
 
 // Applies a dropdown selection to global state, cascades dependent menus, and re-renders the view.
+
 const handleSelection = (type, value) => {
 
     debugLog(`* handleSelection — ${type}: ${value}`);
@@ -259,6 +278,7 @@ const handleSelection = (type, value) => {
     // ----- cascade-rebuild dependent menus ----- //
 
     // updateAllMenus fills in cascaded defaults for any sibling selection that no longer applies
+
     const ind = getIndicatorById(DE.state.IndicatorID);
 
     updateAllMenus(ind);
@@ -275,6 +295,7 @@ const handleSelection = (type, value) => {
 
     if ((type === 'geo' || type === 'time') && typeof syncTableFiltersToMapSelection === 'function') {
         // Geo and time changes can invalidate the current Area search, so clear and resync first.
+
         if (typeof clearTableAreaSearch === 'function') {
             clearTableAreaSearch();
         }

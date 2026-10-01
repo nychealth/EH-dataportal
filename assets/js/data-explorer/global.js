@@ -15,6 +15,7 @@
 // documents/data-explorer-state-namespace-design-2026-07-10.md). Render closures,
 // tab refs, DOM element caches, and the static lookup constants below stay bare
 // by design — they are module seams, not churning state.
+
 const DE = {
 
     // Summary-table state: filter selections and manual-override flags persist across
@@ -180,10 +181,12 @@ const DE = {
 };
 
 // Shared content holders are resolved after the page shell exists.
+
 let aboutMeasures;
 let dataSources;
 
 // Tab refs and render closures are assigned lazily once the current indicator is known.
+
 let tabBar;
 let tabTrends;
 let tabCorrelate;
@@ -200,6 +203,7 @@ let syncLinksSelectionsToMapSelection;
 
 // DOM ref for the Correlate tab's pill row — the container that delegates clicks for
 // both the Measures dropdown and the Disparities button. Resolved once the page shell exists.
+
 let correlatePillRow;
 
 // modifying the measure dropdown innerHTML removes the event listeners from the dropdown list. So, i added it to the HTML, and we can remove it when we call renderTrendChart, if necessary
@@ -214,6 +218,7 @@ let correlatePillRow;
 // change can silently alter behavior here with no error. Centralized — with a note per
 // entry — so the coupling is visible and greppable in one place instead of scattered as
 // bare literals across measures.js and trend.js.
+
 const DE_MEASURE_RULES = {
 
     // Poverty measure used as the fixed secondary (comparator) in every disparities view.
@@ -250,9 +255,11 @@ const DE_MEASURE_RULES = {
 // is still in flight share that one request instead of starting a second. A rejected
 // load is evicted so the next caller can retry rather than inheriting the failure for
 // the rest of the session.
+
 const sessionFetchCache = new Map();
 
 // Runs `loader` the first time `key` is requested and replays its result thereafter.
+
 const loadOnce = (key, loader) => {
 
     if (!sessionFetchCache.has(key)) {
@@ -278,6 +285,7 @@ const loadOnce = (key, loader) => {
 // ----------------------------------------------------------------------- //
 
 // Copies the current citation text to the clipboard and updates button feedback.
+
 const copyCitation = (button = null) => {
 
     debugLog("* copyCitation");
@@ -302,10 +310,12 @@ const copyCitation = (button = null) => {
 
 
 // Attaches click handlers to all citation-copy buttons in the DOM, each invoking copyCitation with the clicked button as context.
+
 const bindCitationCopyButton = () => {
 
     // The citation markup provides the text source so this helper can support
     // more than one citation block without hard-coding element ids.
+
     const citationButtons = document.querySelectorAll('.de-copy-citation-button[data-citation-target]');
 
     citationButtons.forEach(button => {
@@ -330,11 +340,13 @@ if (document.readyState === 'loading') {
 // ----------------------------------------------------------------------- //
 
 // Writes About and Sources content while de-duplicating repeated source text.
+
 const renderAboutSources = (about, sources) => {
 
     debugLog("** renderAboutSources");
 
     // Some new-explorer templates use ids instead of the legacy class hooks.
+
     if (!aboutMeasures) {
         aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
     }
@@ -350,9 +362,11 @@ const renderAboutSources = (about, sources) => {
     dataSources.innerHTML = '';
 
     // De-dupe repeated sources so multi-measure views do not print identical lines twice.
+
     let type = typeof sources;
 
     // Collapse repeated source arrays to one string before printing.
+
     if (type === 'object') {
         let singleSource;
         singleSource = sources.every((val, i, arr) => val === arr[0]);
@@ -380,6 +394,7 @@ const renderAboutSources = (about, sources) => {
 // to silently unify. Builds the joined markup once and assigns it, instead of the
 // `innerHTML +=` per-note pattern the old sites used, which re-parses the whole
 // accumulated string on every iteration.
+
 const renderUnreliabilityNotes = (holderEl, notes, wrapNote = (note) => `<div class='fs-xs'>${note}</div>`) => {
 
     if (!holderEl) {
@@ -431,11 +446,13 @@ const GEO_FILE_BY_TYPE = {
 };
 
 // Maps a backend GeoType value to the corresponding TopoJSON filename.
+
 function getGeoFile(mapGeoType) {
 
     debugLog("*** getGeoFile");
 
     // Return the matching geography file for the requested map geography.
+
     return GEO_FILE_BY_TYPE[mapGeoType];
 }
 
@@ -448,6 +465,7 @@ function getGeoFile(mapGeoType) {
 // Rank for each generic (prettified) geotype, broad to fine. Keyed by prettifyGeoType's output
 // (defined below) so a new versioned variant only needs adding there — this table never needs
 // its own copy of the version list, unlike the parallel switch it replaced.
+
 const GEO_RANK_BY_PRETTY_TYPE = {
     'Citywide': 0,
     'Borough': 1,
@@ -464,6 +482,7 @@ const GEO_RANK_BY_PRETTY_TYPE = {
 };
 
 // Assigns a sortable rank so geographies can be ordered from broad to fine.
+
 const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoType)];
 
 // array of (pretty) geotypes in georank order — derived from GEO_RANK_BY_PRETTY_TYPE so the
@@ -472,9 +491,11 @@ const assignGeoRank = (GeoType) => GEO_RANK_BY_PRETTY_TYPE[prettifyGeoType(GeoTy
 const geoTypes = Object.keys(GEO_RANK_BY_PRETTY_TYPE);
 
 // Shared-geo helpers keep links and disparities limited to measures that can join.
+
 const getLinksMeasureGeos = (measure) => (measure?.AvailableGeoTypes || []).filter(g => !/Citywide|Borough/.test(g));
 
 // Returns the intersection of link-eligible geo types for two measures — geographies where both measures have data.
+
 const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
 
     const primaryMeasureGeos = getLinksMeasureGeos(primaryMeasure);
@@ -494,6 +515,7 @@ const getSharedLinksGeos = (primaryMeasure, secondaryMeasure) => {
 // inside renderMap. Affects 97 measures across 40 indicators; see fresh audit §4.12.
 
 // True when the measure names at least one real geography the map could draw.
+
 const measureHasMappableGeo = (measure) =>
     (measure?.VisOptions?.[0]?.Map || []).some(entry => typeof entry?.GeoType === 'string' && entry.GeoType);
 
@@ -519,9 +541,11 @@ const measureHasMappableGeo = (measure) =>
 // is reused across every indicator load, so an in-place write would leak one load's fallback into
 // every later render of the same measure — the by-reference trap already recorded for topojson and
 // arquero in this SPA.
+
 const withCitywideMapFallback = (indicator) => {
 
     // Leave the catalog object untouched — including its identity — unless something needs fixing.
+
     if (!indicator?.Measures || indicator.Measures.every(measureHasMappableGeo)) {
         return indicator;
     }
@@ -533,6 +557,7 @@ const withCitywideMapFallback = (indicator) => {
         // A measure with no VisOptions at all reaches here (measureHasMappableGeo optional-chains
         // its way to false), and there is nothing to rebuild — return it untouched rather than
         // dereferencing VisOptions[0] below. renderMap's empty-metadata branch still covers it.
+
         const visOption = measure?.VisOptions?.[0];
 
         if (!visOption) return measure;
@@ -549,6 +574,7 @@ const withCitywideMapFallback = (indicator) => {
         //
         // The time-period list is copied, not aliased, so no consumer of either view can write
         // through into the other.
+
         const substitutedMap = citywideTableEntry
             ? [{
                 GeoType: citywideTableEntry.GeoType,
@@ -583,6 +609,7 @@ const withCitywideMapFallback = (indicator) => {
 // current caller in fact passes a number (DE.state.IndicatorID is only ever written from
 // parseFloat), so `==` is not load-bearing today; it is kept because it is the weaker requirement,
 // and a caller that starts passing a string id therefore can't break silently.
+
 const getIndicatorById = (indicatorID) =>
     withCitywideMapFallback(indicators?.find(indicator => indicator.IndicatorID == indicatorID));
 
@@ -596,9 +623,11 @@ const getIndicatorById = (indicatorID) =>
 //  versioned geotypes in the data into generic geotypes.
 
 // Collapses versioned backend geotypes into the generic labels shown in the UI.
+
 const prettifyGeoType = (GeoType) => {
 
     // Group backend-specific geography versions under one front-end label.
+
     switch (GeoType) {
 
         case 'NYCKIDS2017':
@@ -642,6 +671,7 @@ const prettifyGeoType = (GeoType) => {
 // are percent-formatted (unit "%") or fall back to the site's own DisplayType, and
 // builds the "MeasurementType (DisplayType)" string used in subtitles/axis labels.
 // "percentile" is excluded even though it contains "percent" as a substring.
+
 const resolveMeasureDisplay = (measurementType, displayTypeFallback = '') => {
 
     const isPercent = (measurementType.includes('Percent') || measurementType.includes('percent'))
@@ -673,6 +703,7 @@ const resolveMeasureDisplay = (measurementType, displayTypeFallback = '') => {
 // the chart then renders while the pane is still fading in.
 //
 // Returns 0 if the width can't be resolved, so callers can fall back to "container".
+
 const getChartContainerWidth = (selector) => {
 
     const container = document.querySelector(selector);
@@ -694,6 +725,7 @@ const getChartContainerWidth = (selector) => {
     // Lay the pane out without showing it. Kept in normal flow (no position change) so the
     // container resolves against the same parent width it will have once revealed, and
     // restored in the same task, so the browser never paints this state.
+
     const priorDisplay = pane.style.display;
     const priorVisibility = pane.style.visibility;
 
@@ -714,6 +746,7 @@ const getChartContainerWidth = (selector) => {
 // ----------------------------------------------------------------------- //
 
 // Nudges Vega and DataTables layouts to recompute after tab or panel changes.
+
 const updateChartPlotSize = () => {
 
     debugLog("* updateChartPlotSize");
@@ -725,6 +758,7 @@ const updateChartPlotSize = () => {
 }
 
 // Resizer for chart print modal
+
 window.addEventListener('load', () => {
   const printVis = document.getElementById('printVis');
   
@@ -753,6 +787,7 @@ window.addEventListener('load', () => {
 // Columns dropped from both correlate.js's and disparities.js's download CSVs: internal
 // join/plotting-only fields (raw geo ranks, duplicate display values, per-side measure IDs,
 // etc.) that aren't meant for analyst-facing export.
+
 const LINKS_DOWNLOAD_DROP_COLUMNS = [
     'GeoType',
     'GeoTypeShortDesc_1',
@@ -782,6 +817,7 @@ const LINKS_DOWNLOAD_DROP_COLUMNS = [
 // `value2Indicator` are the final strings each caller wants written into
 // Value_1_Indicator/Value_2_Indicator; the two sites build those strings differently
 // (interpolated template literal vs. pre-built variable), so that step stays at the call site.
+
 const buildLinksDownloadTable = (rows, extraDrops, labels) => {
 
     return aq.from(rows)
@@ -794,6 +830,7 @@ const buildLinksDownloadTable = (rows, extraDrops, labels) => {
 
 // Centralizes GA calls so new explorer interactions stay aligned with the
 // legacy explorer event names and payload shapes.
+
 const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
     if (typeof gtag !== 'function') {
@@ -811,6 +848,7 @@ const trackDataExplorerEvent = (eventName, eventParams = null) => {
 
 
 // Fires a 'click_option' GA event for the given option name; no-op if option is falsy.
+
 const trackDataExplorerOption = (option) => {
 
     if (!option) {
@@ -823,6 +861,7 @@ const trackDataExplorerOption = (option) => {
 
 
 // Maps a menu type ('measure'/'geo'/'time') to the legacy GA option label used by the old explorer; returns null for unrecognized types.
+
 const getLegacyMapControlAnalyticsOption = (type) => {
 
     const optionMap = {
@@ -837,6 +876,7 @@ const getLegacyMapControlAnalyticsOption = (type) => {
 
 
 // Fires a 'file_download' GA event with file name, extension, and link-text params, guarding against incomplete data.
+
 const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) => {
 
     if (!fileName || !fileExtension || !linkText) {
@@ -853,6 +893,7 @@ const trackDataExplorerFileDownload = ({ fileName, fileExtension, linkText }) =>
 
 
 // Fires a 'print_viz' GA event for the current chart type, normalizing 'bubble-map' to 'map' for analytics.
+
 const trackDataExplorerPrintView = (chartView) => {
 
     if (!chartView) {
@@ -867,6 +908,7 @@ const trackDataExplorerPrintView = (chartView) => {
 
 
 // Determines the view label for the downloaded CSV filename: prefers the last-rendered chart type, falls back to the current overlay tab, defaults to 'bar'.
+
 const getCurrentDataDownloadView = () => {
 
     if (DE.print.chartType) {
@@ -890,6 +932,7 @@ const getCurrentDataDownloadView = () => {
 };
 
 // Builds a CSV data-URI from CSVforDownload, names the file from indicator name + view, triggers download via a hidden anchor click, and fires a file_download GA event.
+
 const downloadData = (
     // data,
     // chartType
@@ -902,15 +945,18 @@ const downloadData = (
         // a confident but wrong filename. Mirrors the early-return guard-clause pattern
         // used throughout the renderers (e.g. renderTrendChart, renderCorrelate) rather
         // than introducing a new disable/hide mechanism.
+
         if (!DE.print.CSVforDownload) {
             return;
         }
 
         // else, for chart view downloads:
+
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(DE.print.CSVforDownload);
         let hiddenElement = document.createElement('a');
 
         // set view to send to file name
+
         const view = getCurrentDataDownloadView();
 
         hiddenElement.href = csvData;
@@ -926,6 +972,7 @@ const downloadData = (
 }
 
 // Revises the notes that are displayed under each chart - meant to work in concert with tooltip notes at each datapoint. This lets you display chart-specific notes, rather than datapoint-specific notes (which should show in tooltips)
+
 function getDisplayNotes(notes) {
   return notes
     .map(note => {

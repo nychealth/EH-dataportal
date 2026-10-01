@@ -19,6 +19,7 @@
 //
 // autoType: false matches loadGeo, and keeps the primary and comparison tables identically
 // typed — trend.js concatenates them, so they must not disagree about column types.
+
 const loadIndicatorData = (indicator_id) => {
 
     const dataUrl = `${data_repo}${data_branch}/indicators/data/${indicator_id}.json`;
@@ -33,6 +34,7 @@ const loadIndicatorData = (indicator_id) => {
 
 // Loads the comparison metadata file and expands it into the joined tables
 // used by the comparison-trend chart.
+
 const fetch_comparisons = async () => {
 
     debugLog("* fetch_comparisons.json");
@@ -41,6 +43,7 @@ const fetch_comparisons = async () => {
 
     // Cache the fetch, not the filtered result — createComparisonData narrows the same
     // full list differently for each indicator.
+
     DE.lookups.comparisons = await loadOnce(comparisonsUrl, () =>
         fetch(comparisonsUrl).then(response => response.json())
     )
@@ -55,6 +58,7 @@ const fetch_comparisons = async () => {
 
 
 // Builds the comparison metadata tables and fetches the comparison indicator rows.
+
 const createComparisonData = async (comps) => {
 
     debugLog("* createComparisonData");
@@ -167,6 +171,7 @@ const createComparisonData = async (comps) => {
 
     // reduce with no seed throws on an empty array (e.g. the semijoin above filtered out every candidate row);
     // undefined matches the "no comparison data" convention this function already uses above on early bail-out.
+
     const flatComparisonDataTables = comparisonDataTables.flatMap(d => d);
 
     DE.lookups.aqComparisonIndicatorData = flatComparisonDataTables.length
@@ -181,6 +186,7 @@ const createComparisonData = async (comps) => {
 
 // Loads one indicator's metadata state and starts the downstream data pipeline.
 // Writes no history: loadAndRenderIndicator owns the URL for the whole pipeline.
+
 const loadIndicator = async (this_IndicatorID) => {
 
     debugLog("* loadIndicator:", this_IndicatorID, typeof this_IndicatorID);
@@ -194,13 +200,16 @@ const loadIndicator = async (this_IndicatorID) => {
     // Only allow renderMap()'s citywide-only smart default (auto-jump to trend) when nothing
     // has already resolved an overlay — an explicit URL param or a carried-over tab choice
     // must always win over that nudge.
+
     DE.map.citywideTrendDefaultPending = !DE.state.overlay;
 
     // Unlike the trend-tab default, this is unconditional: the unmapped-measure hint points at the
     // tab bar instead of moving the user, so it is worth showing whichever tab they arrived on.
+
     DE.map.unmappedHintPending = true;
 
     // Default to no overlay until a tab is explicitly chosen or restored.
+
     if (!DE.state.overlay) DE.state.overlay = 'none';
 
     // if IndicatorID isn't given, use the first indicator from the dropdown list
@@ -209,6 +218,7 @@ const loadIndicator = async (this_IndicatorID) => {
     // const firstIndicatorId = document.querySelectorAll('#indicator-dropdown button')[0].getAttribute('data-indicator-id');
 
     // coerce to float; HTML data attributes are strings, but IndicatorID comparisons use == throughout
+
     DE.state.IndicatorID = parseFloat(this_IndicatorID);
 
     // remove active class from every list element
@@ -268,6 +278,7 @@ const loadIndicator = async (this_IndicatorID) => {
     // console.log(">>>> indicatorComparisonId", indicatorComparisonId);
     
     // Clear comparison metadata early so downstream branches can rely on simple length checks.
+
     DE.lookups.comparisonMetadata = [];
 
     // ----- kick off the comparison and data pipelines together ----- //
@@ -295,6 +306,7 @@ const loadIndicator = async (this_IndicatorID) => {
 // ----------------------------------------------------------------------- //
 
 // Fetches indicator rows and prepares the shared Arquero tables used by all views.
+
 const loadData = async (this_IndicatorID) => {
 
     debugLog("* loadData");
@@ -335,6 +347,7 @@ const loadData = async (this_IndicatorID) => {
     }
 
     // trigger 311 button render after all data fetches and joins have resolved
+
     render311Links(this_IndicatorID)
 
 }
@@ -344,6 +357,7 @@ const loadData = async (this_IndicatorID) => {
 // ----------------------------------------------------------------------- //
 
 // Loads the geography lookup table used to decorate indicator rows.
+
 const loadGeo = async () => {
 
     debugLog("* loadGeo");
@@ -352,6 +366,7 @@ const loadGeo = async () => {
 
     // Safe to share one table across indicators: arquero tables are immutable, and every
     // consumer joins against this one rather than modifying it.
+
     DE.lookups.geoTable = await loadOnce(geoUrl, () => aq.loadJSON(geoUrl, {autoType: false}));
 
     //  console.log("geoTable [loadGeo]");
@@ -363,6 +378,7 @@ const loadGeo = async () => {
 // ----------------------------------------------------------------------- //
 
 // Loads time-period metadata and rebuilds the TimePeriodID lookup object.
+
 const loadTime = async () => {
 
     debugLog("* loadTime");
@@ -371,11 +387,13 @@ const loadTime = async () => {
 
     // The table and the lookup derived from it are both static per session, so cache the
     // pair together and skip rebuilding the lookup on every indicator switch.
+
     const { table, lookup } = await loadOnce(timeUrl, async () => {
 
         const table = await aq.loadJSON(timeUrl, {autoType: false});
 
         // Mirror the Arquero time table into a plain object for fast menu lookups.
+
         const lookup = {};
 
         table.objects().forEach(t => {
@@ -401,9 +419,11 @@ const loadTime = async () => {
 // Expands one measure's vis geotypes for a single view (its VisOptions Table/Map/Trend array)
 // into one combined arquero table with a row per time-period × geo, or null when this view has no
 // geotypes for the measure (an unseeded reduce would throw on the empty array).
+
 const expandMeasureTimesGeos = (measure, visGeotypes) => {
 
     // one arquero table per geotype: cross the geotype's time-period IDs with the measure + geotype
+
     const perGeotypeTables = visGeotypes.map(geo => {
 
         let aqTimePeriodID = aq.table({TimePeriodID: geo.TimePeriodID})
@@ -414,6 +434,7 @@ const expandMeasureTimesGeos = (measure, visGeotypes) => {
         })
 
         // cross to expand / recycle the geotype & measure row across every time period
+
         return aqTimePeriodID.cross(aqMeasureGeo).filter(d => d.TimePeriodID).reify()
 
     });
@@ -431,6 +452,7 @@ const expandMeasureTimesGeos = (measure, visGeotypes) => {
 // (like bind_rows + a left join in dplyr). The empty fallback carries the columns downstream views
 // read (MeasureID, TimePeriodID, GeoType) so join/filter/orderby keep working when no measure had
 // data for that view.
+
 const combineTimesGeos = (perMeasureTables) =>
     (perMeasureTables.length
         ? perMeasureTables.flatMap(d => d).reduce((a, b) => a.concat(b))
@@ -441,6 +463,7 @@ const combineTimesGeos = (perMeasureTables) =>
 
 
 // Joins indicator rows with geography and time metadata for every downstream view.
+
 const joinData = async () => {
 
     debugLog("* joinData");
@@ -453,11 +476,13 @@ const joinData = async () => {
     // create table column header with display type
 
     // Parallel accumulator arrays filled by the loop below, joined into the aqMeasureDisplay lookup table.
+
     let MeasureID = [];
     let MeasurementType = [];
     let DisplayType = [];
 
     // Extract display metadata into a lightweight table that can be joined onto view data.
+
     DE.indicator.indicatorMeasures.forEach(
 
         (measure, i) => {
@@ -486,12 +511,14 @@ const joinData = async () => {
     // flatten MeasureID + TimePeriodID + GeoType
 
     // Per-view accumulators filled by the loop below, then combined into aqTableTimesGeos, aqMapTimesGeos, and aqTrendTimesGeos.
+
     let tableTimesGeos = [];
     let mapTimesGeos = [];
     let trendTimesGeos = [];
 
     // Expand each measure's Table, Map, and Trend metadata into explicit time-by-geo combinations,
     // pushing one combined table per measure into the matching per-view accumulator.
+
     DE.indicator.indicatorMeasures.forEach(measure => {
 
         const tableTimesGeosMeasure = expandMeasureTimesGeos(measure, measure.VisOptions[0].Table);
@@ -509,6 +536,7 @@ const joinData = async () => {
     // ----- combine into aqTableTimesGeos / aqMapTimesGeos / aqTrendTimesGeos ----- //
 
     // Row-bind each per-view accumulator into its global table (see combineTimesGeos above).
+
     DE.lookups.aqTableTimesGeos = combineTimesGeos(tableTimesGeos);
     DE.lookups.aqMapTimesGeos   = combineTimesGeos(mapTimesGeos);
     DE.lookups.aqTrendTimesGeos = combineTimesGeos(trendTimesGeos);
@@ -528,6 +556,7 @@ const joinData = async () => {
     // console.log(">>>> joinedAqData [joinData]");
 
     // Build one fully decorated dataset first, then derive view-specific slices from it.
+
     DE.lookups.joinedAqData = DE.lookups.aqIndicatorData
         // join the additional geo info
         .join_left(DE.lookups.geoTable, [["GeoID", "GeoType"], ["GeoID", "GeoType"]])
@@ -590,6 +619,7 @@ const joinData = async () => {
     // console.log(">>> linksData [joinData]");
 
     // Keep only non-citywide, non-borough rows for links and disparities comparisons.
+
     DE.links.linksData = DE.lookups.joinedAqData
         .select(aq.not("BoroID", "Borough"))
         .filter(d => !op.match(d.GeoType, /Citywide|Borough/)) // remove Citywide and Boro
@@ -609,6 +639,7 @@ const joinData = async () => {
 // ----------------------------------------------------------------------- //
 
 // Aligns primary and secondary measures on shared geography and closest available time.
+
 const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
 
     let returnData;
@@ -632,6 +663,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     // if no secondary measure ID is given, set it to the first in the primary measure's links list
 
     // Default the secondary measure to the first linked measure in metadata.
+
     if (typeof secondaryMeasureId == "undefined") {
         secondaryMeasureId = primaryMeasureMetadata[0].VisOptions[0].Links[0]?.Measures[0]?.MeasureID;
     }
@@ -740,6 +772,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
     //  `await` the result before continuing)
 
     // Load the secondary indicator data only after the shared-geo primary slice is known.
+
     await loadIndicatorData(secondaryIndicatorId)
         .then(async data => {
 
@@ -782,6 +815,7 @@ const createJoinedLinksData = async (primaryMeasureId, secondaryMeasureId) => {
             // get the secondary end time closest to most recent primary end time
 
             // Choose the secondary time period whose end date is closest to the primary measure's latest end date.
+
             const closestSecondaryTime = filteredSecondaryMeasureTimesDataObjects.reduce((prev, curr) => {
 
                 return (Math.abs(curr.end_period - mostRecentPrimaryMeasureEndTime) < Math.abs(prev.end_period - mostRecentPrimaryMeasureEndTime) ? curr : prev);

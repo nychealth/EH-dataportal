@@ -12,6 +12,7 @@
 
 // Clears correlate-specific layout constraints before the shared links pane
 // renders a disparities chart into the same container.
+
 const resetDisparitiesPaneLayout = () => {
 
     const correlateHolder = document.getElementById('correlateHolder');
@@ -37,6 +38,7 @@ const resetDisparitiesPaneLayout = () => {
 
 
 // Waits two animation frames before resizing so the disparities chart's container has settled into its final layout (same double-rAF pattern as scheduleTableOverlayRender in app.js).
+
 const scheduleDisparitiesViewResize = () => {
 
     window.requestAnimationFrame(() => {
@@ -48,6 +50,7 @@ const scheduleDisparitiesViewResize = () => {
 };
 
 // Renders the disparities scatterplot for the selected primary measure.
+
 const renderDisparitiesChart = async (
     primaryMetadata,
     disparityMeasureId
@@ -117,6 +120,7 @@ const renderDisparitiesChart = async (
 
         // `new` matters here: called as a plain function, seedrandom mutates the
         // global Math.random and returns the seed string, not a callable prng.
+
         const seededRandom = typeof Math.seedrandom === 'function'
             ? new Math.seedrandom(String(primaryMeasureId))
             : Math.random;
@@ -147,6 +151,7 @@ const renderDisparitiesChart = async (
     const geoTypeShortDesc = DE.disparities.disparityData[0]?.GeoTypeShortDesc_1;
 
     // Show each note once even when both joined measures carry the same warning.
+
     const combinedUnreliability = DE.disparities.disparityData.map(d => d.Note_1).concat(DE.disparities.disparityData.map(d => d.Note_2));
     const disparityUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
 
@@ -356,6 +361,7 @@ const renderDisparitiesChart = async (
     DE.print.chartType = 'disparities';
 
     // Export raw joined rows without internal plotting-only helper columns.
+
     const dataForDownload = [...disparitiesSpec.data.values];
 
     const downloadTable = buildLinksDownloadTable(dataForDownload, ['randomOffsetX'], {

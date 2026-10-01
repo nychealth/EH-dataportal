@@ -9,6 +9,7 @@
 // ----------------------------------------------------------------------- //
 
 // Reuses the same note markup for unreliability notes and other trend footnotes.
+
 const appendTrendNote = (trendUnreliability, note) => {
 
     if (!trendUnreliability || !note) {
@@ -26,6 +27,7 @@ const appendTrendNote = (trendUnreliability, note) => {
 // ----------------------------------------------------------------------- //
 
 // Keeps the viewport-based chart layout choices in one place.
+
 const getTrendLayoutConfig = (viewportWidth) => {
 
     // ----- legend columns by breakpoint ----- //
@@ -81,6 +83,7 @@ const getTrendLayoutConfig = (viewportWidth) => {
 // overlapping end-of-line label Y-positions apart. Vega has no loop construct
 // of its own, so each pass is a lag of the previous pass's output; only the
 // first pass gets the initial 0.025 * maxChartVal nudge off the line itself.
+
 const buildLabelCollisionTransforms = (passCount) => {
 
     const transforms = [];
@@ -117,6 +120,7 @@ const buildLabelCollisionTransforms = (passCount) => {
 // The trend view uses the same shared note renderer as the other chart sites,
 // but still passes through the display-note helper so chart-level notes can be
 // filtered consistently before they reach the page.
+
 const renderTrendNotes = (trendUnreliability, notes) => {
 
     renderUnreliabilityNotes(trendUnreliability, notes);
@@ -129,6 +133,7 @@ const renderTrendNotes = (trendUnreliability, notes) => {
 // ----------------------------------------------------------------------- //
 
 // Resolves the comparison-driven title/grouping, builds threshold and no-compare markers, then assembles and renders the trend chart's Vega-Lite spec with its CSV export table.
+
 const renderTrendChart = (
     data,
     metadata
@@ -143,6 +148,7 @@ const renderTrendChart = (
     const viewDescription = document.getElementById('viewDescription');
 
     // Guard against incomplete inputs and show a clear fallback message.
+
     if (!trendContainer || !data || !metadata || data.numRows() === 0 || metadata.numRows() === 0) {
 
         if (trendContainer) {
@@ -169,6 +175,7 @@ const renderTrendChart = (
     // Aggregate unique notes so repeated values do not duplicate in the note list.
     // `.filter(Boolean)` drops blank/null/undefined notes; equivalent to the prior
     // `!d == ""` coercion (kept working by accident, but unreadable) — see deep-audit §6.
+
     const compUnreliability = [...new Set(data.objects().map(d => d.Note))].filter(Boolean);
     const displayNotes = getDisplayNotes(compUnreliability);
 
@@ -188,6 +195,7 @@ const renderTrendChart = (
     // ----- comparison-type resolution (title / subtitle / grouping) ----- //
 
     // Unique comparison-metadata values drive which title/grouping branch runs below.
+
     const compName = [...new Set(metadata.array("ComparisonName"))];
     const compIndicatorLabel = [...new Set(metadata.array("IndicatorLabel"))];
     const compMeasurementType = [...new Set(metadata.array("MeasurementType"))];
@@ -196,6 +204,7 @@ const renderTrendChart = (
     const compThresholds = [...new Set(metadata.array("TrendThreshold"))];
 
     // Set inside whichever branch of the if/else-if chain below matches this comparison.
+
     let compGroupLabel;
     let plotSubtitle;
     let plotTitle;
@@ -290,6 +299,7 @@ const renderTrendChart = (
     ];
 
     // Build paired line + label layers so each threshold stays self-contained.
+
     const thresholdSpec = [];
 
     for (let i = 0; i < uniqueThresholds.length; i++) {
@@ -341,6 +351,7 @@ const renderTrendChart = (
     if (compNoCompare && hasGreaterEndPeriod) {
 
         // Add the method-change marker only when charted dates reach the break point.
+
         const noCompareFootnote = `A change in sampling methods in ${compNoCompare} may explain some differences in estimates from earlier years.`;
 
         appendTrendNote(trendUnreliability, noCompareFootnote);
@@ -378,6 +389,7 @@ const renderTrendChart = (
     // ----- Vega-Lite spec assembly (compspec2) ----- //
 
     // Assemble the full trend spec after titles, thresholds, and layout are resolved.
+
     const compspec2 = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `Trend chart of ${plotTitle}: ${plotSubtitle}`,

@@ -11,9 +11,11 @@
 // ----------------------------------------------------------------------- //
 
 // Tracks whether the tab-resize listener has been attached, since renderBar may be called repeatedly.
+
 let barResizeEventRegistered = false;
 
 // Defers Vega resize until the overlay pane has fully repainted.
+
 const scheduleBarViewResize = () => {
     if (!window.myVegaView || typeof window.myVegaView.resize !== 'function') {
         return;
@@ -27,6 +29,7 @@ const scheduleBarViewResize = () => {
 };
 
 // Registers one Bootstrap tab listener so hidden-pane charts can resize on reopen.
+
 const registerBarTabResizeHandler = () => {
 
     if (barResizeEventRegistered) {
@@ -53,6 +56,7 @@ const registerBarTabResizeHandler = () => {
 // ----------------------------------------------------------------------- //
 
 // Builds and renders the Vega-Lite bar chart for the active geography slice.
+
 const renderBar = (
     data, 
     metadata,
@@ -69,6 +73,7 @@ const renderBar = (
     // ----- notes rendering & data filtering ----- //
 
     // Render notes
+
     const barUnreliability = document.getElementById('bar-unreliability');
     const uniqueNotes = [...new Set(data.map(item => item.Note))].filter(note => note);
     const displayNotes = getDisplayNotes(uniqueNotes);
@@ -76,6 +81,7 @@ const renderBar = (
     renderUnreliabilityNotes(barUnreliability, displayNotes);
 
     // Accept either a raw backend geotype or the prettified UI label.
+
     const barData = data.filter(item => {
         return item.GeoType === geography || prettifyGeoType(item.GeoType) === geography;
     });
@@ -91,6 +97,7 @@ const renderBar = (
     // Working state for the display-rule branch and chart spec below: data-derived
     // metadata, formatting flags set inside the percent check, and layout constants
     // shared across the mean/CI/plain-bar layer variants.
+
     let barGeoType            = barData[0]?.GeoType;
     let barMeasurementType    = metadata[0]?.MeasurementType;
     let barTime = barTimes[0];
@@ -109,6 +116,7 @@ const renderBar = (
     debugLog('has CI [bar.js]', hasCI);
 
     // Switch units and subtitle formatting when the measure is percentage-based.
+
     ({ isPercent, displayUnit: displayType, measurementDisplay: subtitle } = resolveMeasureDisplay(barMeasurementType, metadata[0]?.DisplayType));
 
     debugLog('is percent? [bar.js]', isPercent)
@@ -117,6 +125,7 @@ const renderBar = (
     // ----- layer-variant selection (Mean / CI / plain) ----- //
 
         // Keep layer selection explicit so each data shape keeps its own readable spec branch.
+
         if (barMeasurementType.includes('Mean') || barMeasurementType.includes('mean') ) {
 
             // - - - Mean: dot marker on a light bar — dots read better than solid bars for means - - - //
@@ -468,6 +477,7 @@ const renderBar = (
             // add value and note field
 
             // Precompute display strings once so tooltips and CI marks can reuse them across layers.
+
             {"calculate": `datum.DisplayValue + ' ${displayType}'`, "as": "valueLabel"},
             {
                 "calculate": "datum.valueLabel + (datum.Note ? ' — ' + datum.Note : '')",
@@ -521,6 +531,7 @@ const renderBar = (
     // Label rows with the indicator/measure, then drop the join/helper columns
     // (raw GeoType code, GeoRank, numeric period bounds, etc.) that are meaningless
     // outside the app and shouldn't appear in a user-facing export.
+
     const downloadTable = aq.from(barData)
         .derive({ Indicator: aq.escape(`${DE.indicator.indicatorName}: ${metadata[0].MeasureName}`) })
         .select(aq.not("GeoType", "GeoTypeDesc", "GeoTypeShortDesc", "GeoRank", "MeasureID", "ban_summary_flag", "DisplayValue", "start_period", "end_period"));
@@ -551,9 +562,11 @@ const renderBar = (
         // Mirror bar hover into the map. Which map type is behind the contract, and which
         // geography is currently highlighted, are both the map's business — see map.js's
         // interop section. Vega fires mouseover only when the hovered item changes.
+
         result.view.addEventListener('mouseover', (event, item) => {
 
             // Ignore Vega events that do not map to a concrete geography row.
+
             const geoID = item?.datum?.GeoID;
 
             if (geoID == null || !window.mapInterop.ready) return;
@@ -562,6 +575,7 @@ const renderBar = (
         });
 
         // Clear the linked map highlight when the cursor leaves a bar or the chart.
+
         result.view.addEventListener('mouseout', () => {
 
             if (!window.mapInterop.ready) return;

@@ -13,21 +13,26 @@
 
 // Holds the parsed metadata.json response once indicatorsPromise resolves;
 // null until then, so callers must go through ensureIndicatorsLoaded.
+
 let indicators = null;
 
 // Destination URL set by renderIndicatorList; used by selectIndicator on pages
 // that don't load app.js (e.g. section.html) to navigate instead of SPA-load.
+
 let indicatorSelectDestination = null;
 
 // Last topic selection data (indicator list + destination URL). Section.html
 // stores this in history.state so back/forward can replay the indicator modal.
+
 let lastTopicData = null;
 
 // Track whether the topic modal was dismissed after a real selection.
 // If not, section landing pages can show a clear nudge beside the trigger.
+
 let topicSelectionConfirmed = false;
 
 // Track whether the indicator modal closed after a real dataset selection.
+
 let indicatorSelectionConfirmed = false;
 
 // ----------------------------------------------------------------------- //
@@ -40,16 +45,19 @@ const indicatorsPromise = fetch(`${data_repo}${data_branch}/indicators/metadata/
         debugLog("* fetch metadata.json");
         indicators = data; 
         // console.log(">> indicators [fetch]", indicators);
+
         return data; // resolve promise
     })
     .catch(error => console.error("# Error loading metadata.json:", error));
 
 // Waits for metadata.json to finish loading before any indicator UI reads it.
+
 const ensureIndicatorsLoaded = async (topic) => {
 
     // console.log("* ensureIndicatorsLoaded (", topic, ")");
 
     // Reuse the already-loaded metadata instead of awaiting the fetch again.
+
     if (indicators) {
 
         return indicators; 
@@ -67,6 +75,7 @@ const ensureIndicatorsLoaded = async (topic) => {
 
 
 // Clears the temporary required-selection hint around the topic trigger.
+
 const clearTopicSelectorPrompt = () => {
 
     const topicSelectorButton = document.getElementById('topicSelectorButton');
@@ -90,6 +99,7 @@ const clearTopicSelectorPrompt = () => {
 
 
 // Single-topic pages without ?id= should nudge users back to dataset selection.
+
 const isTopicLandingPageWithoutIndicator = () => {
 
     if (typeof loadAndRenderIndicator !== 'function') {
@@ -104,6 +114,7 @@ const isTopicLandingPageWithoutIndicator = () => {
 
 
 // Clears the temporary required-selection hint around Change dataset links.
+
 const clearIndicatorSelectorPrompt = () => {
 
     document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
@@ -123,6 +134,7 @@ const clearIndicatorSelectorPrompt = () => {
 
 
 // Highlights Change dataset links when the chooser closes with no dataset picked.
+
 const showIndicatorSelectorPrompt = () => {
 
     document.querySelectorAll('.indicator-selector-trigger-wrap').forEach(wrapper => {
@@ -145,6 +157,7 @@ const showIndicatorSelectorPrompt = () => {
 
 
 // Highlights the topic trigger when the chooser closes with no selection.
+
 const showTopicSelectorPrompt = () => {
 
     const topicSelectorButton = document.getElementById('topicSelectorButton');
@@ -172,6 +185,7 @@ const showTopicSelectorPrompt = () => {
 // ----------------------------------------------------------------------- //
 
 // Opens the indicator modal for the selected topic and remembers its state.
+
 const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
     debugLog("* getIndicatorsForTopic");
@@ -182,10 +196,12 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
     const indicators = JSON.parse(indicatorsJSON);
 
     // Stash for section.html's history state
+
     lastTopicData = { indicators, destination: dest };
 
     // Mark this hide transition as a successful topic pick so the section
     // header does not show the required-selection prompt.
+
     topicSelectionConfirmed = true;
     clearTopicSelectorPrompt();
 
@@ -204,6 +220,7 @@ const getIndicatorsForTopic = (title, indicatorsJSON, dest) => {
 
 
 // Wires topic/indicator modal prompts, topic-link clicks, relaunch, and indicator selection once on load.
+
 const bindTopicSelectorControls = () => {
 
     // ----- resolve modal DOM elements ----- //
@@ -264,6 +281,7 @@ const bindTopicSelectorControls = () => {
 
     // Topic links and the relaunch control are rendered once in Hugo, so
     // bind them directly to their explicit data hooks instead of inline HTML.
+
     const topicLinks = document.querySelectorAll('.de-topic-indicator-link[data-indicators][data-topic-title][data-topic-destination]');
 
     topicLinks.forEach(link => {
@@ -294,6 +312,7 @@ const bindTopicSelectorControls = () => {
     if (indicatorDestination) {
         // The indicator list is rebuilt with innerHTML on every topic change,
         // so delegate from the stable modal container.
+
         indicatorDestination.addEventListener('click', event => {
             const indicatorButton = event.target.closest('.de-select-indicator-button[data-indicator-id]');
 
@@ -313,6 +332,7 @@ const bindTopicSelectorControls = () => {
 // ----------------------------------------------------------------------- //
 
 // Rebuilds the indicator-selector modal's HTML for a topic, badging recently-updated indicators.
+
 const renderIndicatorList = async (indList, destination) => {
 
     debugLog("* renderIndicatorList");
@@ -321,11 +341,13 @@ const renderIndicatorList = async (indList, destination) => {
 
     // Store destination so selectIndicator can use it for navigation
     // (needed on section.html where app.js is not loaded)
+
     indicatorSelectDestination = destination;
 
     const indicatorDestination = document.getElementById("indicatorDestination");
 
     // Stop early if the section template is missing the modal content target.
+
     if (!indicatorDestination) {
         console.error("Error: No element with id 'indicatorDestination' found.");
         return;
@@ -338,6 +360,7 @@ const renderIndicatorList = async (indList, destination) => {
 
     // Hugo exposes the curated updated-ID list on the shared indicator shell.
     // Reuse it here so modal decorations match the main indicator header.
+
     const indicatorInfoRoot = document.querySelector('.de-main-details');
     const recentlyUpdatedIndicatorIds = JSON.parse(
         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
@@ -363,10 +386,12 @@ const renderIndicatorList = async (indList, destination) => {
 
         const indicatorsHtml = section.indicators.map(id => {
             // Look up the indicator object in the global indicators array
+
             const indicator = indicators.find(ind => ind.IndicatorID === id);
             
             if (!indicator) {
                 // Skip broken front-matter references without breaking the rest of the modal.
+
                 console.warn(`Indicator with ID ${id} not found.`);
                 return ''; // skip if not found
             }
@@ -378,6 +403,7 @@ const renderIndicatorList = async (indList, destination) => {
             
             // Use event delegation on #indicatorDestination so rerendered buttons
             // keep working without inline handlers.
+
             return `
                 <div class="indicator-card border-bottom border-gray-300 pb-1 mb-1">
                     <div class="d-flex flex-wrap align-items-start">
@@ -410,9 +436,11 @@ const renderIndicatorList = async (indList, destination) => {
 // ----------------------------------------------------------------------- //
 
 // Hides the indicator-selector Bootstrap modal.
+
 const dismissIndicatorModal = () => {
 
     // By the time a user can interact with the modal, Bootstrap is loaded
+
     $('#indicatorSelector').modal('hide');
 
 };
@@ -423,6 +451,7 @@ const dismissIndicatorModal = () => {
 // ----------------------------------------------------------------------- //
 
 // Closes the indicator modal and reopens the topic chooser, falling back to browser history when the SPA isn't loaded.
+
 const relaunchTopicSelector = (event) => {
 
     if (event) {
@@ -431,6 +460,7 @@ const relaunchTopicSelector = (event) => {
 
     // Section pages use hash-based modal history, so go back there instead
     // of forcing a second manual modal transition.
+
     if (typeof loadAndRenderIndicator !== 'function' && window.location.hash === '#indicators') {
         window.history.back();
         return false;
@@ -459,6 +489,7 @@ if (document.readyState === 'loading') {
 // ----------------------------------------------------------------------- //
 
 // Fills all on-page indicator name/description/methodology/source placeholders from metadata.
+
 const renderIndicatorInfo = async (IndicatorID) => {
 
     debugLog("* renderIndicatorInfo");
@@ -467,6 +498,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
 
     // URL params and data-* attributes reach this path as strings.
     // Normalize once so metadata lookups stay in sync with the load pipeline.
+
     const normalizedIndicatorId = Number(IndicatorID);
 
     const data = await ensureIndicatorsLoaded('rendering indicator info');
@@ -478,6 +510,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
 
     // Hugo writes the curated "recently updated" indicator IDs into the shell.
     // Read them here so the indicator title can reflect updated datasets.
+
     const indicatorInfoRoot = document.querySelector('.de-main-details');
     const recentlyUpdatedIndicatorIds = JSON.parse(
         indicatorInfoRoot?.dataset.recentlyUpdatedIds ?? '[]'
@@ -503,6 +536,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
     const descriptionHolders = document.querySelectorAll('.indicator-description');
 
     // Updated indicators get the clock icon inline with the title instead of a separate badge.
+
     nameHolders.forEach(el => {
         el.replaceChildren(document.createTextNode(indicator.IndicatorName ?? ""));
 
@@ -521,6 +555,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
     // ----- fill description field(s) ----- //
 
     // Keep all description placeholders aligned with the chosen indicator.
+
     descriptionHolders.forEach(el => {
         el.textContent = indicator.IndicatorDescription ?? "";
     });
@@ -536,6 +571,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
     const uniqueSources = new Set();
 
     // Collect one About paragraph and one unique source entry per measure.
+
     indicator.Measures.forEach(measure => {
 
         const p = document.createElement('p');
@@ -567,6 +603,7 @@ const renderIndicatorInfo = async (IndicatorID) => {
 // ----------------------------------------------------------------------- //
 
 // Loads the chosen indicator either via SPA flow or full-page navigation.
+
 const selectIndicator = async (id) => {
 
     debugLog("* selectIndicator:", id);
@@ -576,6 +613,7 @@ const selectIndicator = async (id) => {
     // Record the selection (mirrors the old explorer's click_indicator event).
     // Guarded because the topic-chooser page loads this file without global.js,
     // so the wrapper may not exist in every context that calls selectIndicator.
+
     if (typeof trackDataExplorerEvent === 'function') {
         trackDataExplorerEvent('click_indicator', { IndicatorID: Number(id) });
     }
@@ -584,6 +622,7 @@ const selectIndicator = async (id) => {
 
     // On pages without the full app (e.g. section.html), navigate directly.
     // Skip dismissing the modal so the back-to-topics handler doesn't fire.
+
     if (typeof loadAndRenderIndicator !== 'function') {
         window.location.href = indicatorSelectDestination + '?id=' + Number(id);
         return;
@@ -593,6 +632,7 @@ const selectIndicator = async (id) => {
 
     // Check if we're switching to a different topic (pathname changed).
     // If so, navigate to the new topic with the indicator ID instead of SPA flow.
+
     const currentPathname = new URL(window.location).pathname;
     const destinationPathname = new URL(indicatorSelectDestination, window.location).pathname;
 
@@ -612,6 +652,7 @@ const selectIndicator = async (id) => {
 
     // No selection: a freshly picked indicator starts from its own defaults.
     // 'push' so the indicator being left behind stays on the history stack.
+
     await loadAndRenderIndicator(id, { selection: null, history: 'push' });
 
 };
@@ -622,6 +663,7 @@ const selectIndicator = async (id) => {
 // ----------------------------------------------------------------------- //
 
 // Boots the explorer from URL params or opens the chooser when none are present.
+
 const checkURL = async () => {
 
     debugLog("* checkURL");
@@ -643,6 +685,7 @@ const checkURL = async () => {
     // ----- guard: open chooser if URL has no valid indicator ID ----- //
 
     // Wait for the window load event so Bootstrap has initialized before showing the modal.
+
     if (chosenIndicator === null || Number.isNaN(chosenIndicator)) {
         debugLog("No indicator ID in URL, opening indicator selector.");
         window.addEventListener('load', () => $('#indicatorSelector').modal('show'), { once: true });
@@ -654,6 +697,7 @@ const checkURL = async () => {
     // 'replace': the browser already created this history entry when it navigated
     // here. Overwrite it with the resolved defaults rather than pushing a second
     // entry for the same view, which would trap Back on the page.
+
     await loadAndRenderIndicator(chosenIndicator, { selection, history: 'replace' });
 
 }

@@ -29,17 +29,21 @@
         let ddlNeighborhoods = document.getElementById("last-neighborhood");
         
         //Add the Options to the DropDownList.
+
         for (let i = 0; i < neighborhoods.length; i++) {
 
             let option = document.createElement("OPTION");
             
             //Set Neighborhood Name in Text part.
+
             option.innerHTML = neighborhoods[i].namezip;
             
             //Set Neighborhood Id in Value part.
+
             option.value = neighborhoods[i].page_name;
             
             //Add the Option element to DropDownList.
+
             ddlNeighborhoods.options.add(option);
         }
     }
@@ -57,6 +61,7 @@
     })
     
     // this takes the form and on submit, sends page to a new location.
+
     let searchForm = document.getElementById('last-neighborhood-select') // this is last-neighborhood-select because of changes applied by the AA JS.
     document.querySelector('form.autocomplete-form').addEventListener("submit", function (e) {
         e.preventDefault(); // prevent page re-load

@@ -150,9 +150,11 @@
 
 <script>
     // Hugo JSON becomes a real JS object
+
     const these_indicators = {{ $json | safeJS }};
 
     // Immediately call your function
+
     renderIndicatorList(these_indicators, "{{ .RelPermalink }}");
 
     checkURL()

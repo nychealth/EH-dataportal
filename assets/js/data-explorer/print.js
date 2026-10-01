@@ -20,6 +20,7 @@ const modalFootnotes = document.getElementById('modalFootnotes');
 
 // Keeps modal copy and controls in one place so map and chart exports can
 // share the same shell without duplicating DOM mutations.
+
 const setPrintModalState = ({
     instructions = '',
     contentHTML = '',
@@ -61,12 +62,14 @@ const setPrintModalState = ({
 
 
 // Displays the print/export modal using Bootstrap's jQuery modal API.
+
 const openPrintModal = () => {
     $('#printModal').modal('show');
 };
 
 
 // Puts the modal into a "preparing preview" placeholder state while an export renders.
+
 const showPrintLoadingState = (message) => {
 
     setPrintModalState({
@@ -80,6 +83,7 @@ const showPrintLoadingState = (message) => {
 
 
 // Puts the modal into a warning-styled error state and hides the download control.
+
 const showPrintErrorState = (message) => {
 
     setPrintModalState({
@@ -97,6 +101,7 @@ const showPrintErrorState = (message) => {
 // ----------------------------------------------------------------------- //
 
 // Deep-clones a Vega spec via JSON round-trip so preview rendering can't mutate the shared spec.
+
 const clonePrintSpec = (spec) => {
 
     if (!spec) {
@@ -113,6 +118,7 @@ const clonePrintSpec = (spec) => {
 // ----------------------------------------------------------------------- //
 
 // Returns the pre-rendered unreliability-footnote HTML for the current chart type, if any.
+
 const getChartFootnotesHTML = () => {
 
     switch (DE.print.chartType) {
@@ -131,6 +137,7 @@ const getChartFootnotesHTML = () => {
 
 
 // Clones the current spec and embeds it via vegaEmbed for the modal preview, showing an error state on failure.
+
 const renderChartPreview = () => {
 
     const spec = clonePrintSpec(DE.print.printSpec);
@@ -169,6 +176,7 @@ const renderChartPreview = () => {
 // ----------------------------------------------------------------------- //
 
 // Public entry point that tracks the event, opens the modal, and renders the chart preview.
+
 const openChartSaveModal = () => {
 
     trackDataExplorerPrintView(DE.print.chartType || DE.state.overlay || 'chart');
@@ -178,6 +186,7 @@ const openChartSaveModal = () => {
 };
 
 // Public entry point that tracks the event, opens the modal, and renders the map preview.
+
 const openMapSaveModal = () => {
 
     trackDataExplorerPrintView('map');
@@ -188,12 +197,14 @@ const openMapSaveModal = () => {
 
 
 // Wires click handlers for the map-save, chart-save, and download-tracking controls.
+
 const bindPrintControls = () => {
 
     // ----- bind the map-save button ----- //
 
     // These triggers live in server-rendered partials, so keep the modal
     // entrypoints private here instead of exporting window-level helpers.
+
     const mapSaveButton = document.getElementById('deSaveMapButton');
 
     if (mapSaveButton) {

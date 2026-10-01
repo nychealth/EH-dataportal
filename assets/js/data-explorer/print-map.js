@@ -16,6 +16,7 @@
 // cap, per-map-type (choropleth vs. bubble) bounds padding and zoom bonus, the edge
 // buffer used to keep features in frame, and tile-coverage retry/wait parameters that
 // make sure basemap tiles are loaded before the canvas is captured.
+
 const MAP_EXPORT_BASEMAP_ATTRIBUTION = 'Basemap: CARTO, OpenStreetMap';
 const EXPORT_MAP_PADDING = 0;
 const EXPORT_MAP_MAX_ZOOM = 15;
@@ -36,6 +37,7 @@ const EXPORT_MAP_HEIGHT = 1080;
 // ----------------------------------------------------------------------- //
 
 // Strips filesystem-illegal characters so the value is safe to use as a download filename.
+
 const sanitizeFilename = (value) => {
     return (value || 'visualization')
         .replace(/[<>:"/\\|?*]+/g, '')
@@ -46,6 +48,7 @@ const sanitizeFilename = (value) => {
 
 // Keep line-wrapping helpers aligned so titles, subtitles, and footnotes all
 // normalize arrays and plain strings the same way before wrapping.
+
 const normalizePrintTextInput = (value) => {
     return Array.isArray(value)
         ? value.filter(Boolean).join(' ')
@@ -54,6 +57,7 @@ const normalizePrintTextInput = (value) => {
 
 
 // Wraps text into lines using a caller-supplied predicate, so DOM and canvas wrapping can share one engine.
+
 const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
     const sourceText = normalizePrintTextInput(value);
@@ -90,6 +94,7 @@ const buildWrappedPrintLines = (value, shouldStartNewLine) => {
 
 
 // Wraps text to a maximum character length, for HTML/DOM rendering.
+
 const splitTextIntoPrintLines = (value, maxLength = 88) => {
 
     return buildWrappedPrintLines(
@@ -101,6 +106,7 @@ const splitTextIntoPrintLines = (value, maxLength = 88) => {
 
 
 // Wraps text to fit a pixel width by measuring against canvas font metrics.
+
 const splitCanvasTextIntoLines = (ctx, value, maxWidth) => {
 
     return buildWrappedPrintLines(
@@ -112,6 +118,7 @@ const splitCanvasTextIntoLines = (ctx, value, maxWidth) => {
 
 
 // Builds a "Sources: ..." HTML block from citation values plus an optional trailing warning line.
+
 const buildSourceHTML = (values = [], warning = '') => {
 
     const sourceValues = values.filter(Boolean);
@@ -131,12 +138,14 @@ const buildSourceHTML = (values = [], warning = '') => {
 
 
 // Wraps a warning string in a div, or returns an empty string when there is nothing to show.
+
 const buildWarningHTML = (warning = '') => {
     return warning ? `<div>${warning}</div>` : '';
 };
 
 
 // Returns the fixed canvas dimensions used for map exports, independent of the live map's viewport size.
+
 const getFixedMapExportSize = () => {
     return {
         width: EXPORT_MAP_WIDTH,
@@ -146,12 +155,14 @@ const getFixedMapExportSize = () => {
 
 
 // Computes wrapped title/subtitle lines and the total header block height for the export canvas.
+
 const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
 
     const headerTextWidth = Math.max(320, width - (paddingX * 2));
 
     // Measure against the actual export width so long indicator names wrap
     // before they can clip off the right edge of the PNG.
+
     ctx.save();
     ctx.font = '700 30px Arial';
     const titleLines = splitCanvasTextIntoLines(ctx, title, headerTextWidth);
@@ -186,6 +197,7 @@ const getMapExportHeaderLayout = (ctx, width, paddingX, title, subtitle) => {
 // ----------------------------------------------------------------------- //
 
 // Assembles a descriptive PNG filename from indicator, measurement, geography, and year.
+
 const buildMapExportFilename = () => {
 
     const nameParts = [
@@ -203,12 +215,14 @@ const buildMapExportFilename = () => {
 
 
 // Resolves the export title, falling back to the DOM indicator name or a generic portal title.
+
 const getMapExportTitle = () => {
     return DE.indicator.indicatorName || document.querySelector('.indicator-name')?.textContent || 'Environment and Health Data Portal';
 };
 
 
 // Joins measurement type, year, and geography into the export subtitle line.
+
 const getMapExportSubtitle = () => {
 
     return [
@@ -221,6 +235,7 @@ const getMapExportSubtitle = () => {
 
 
 // Collects source citations plus basemap attribution, de-duplicated, for the export footer.
+
 const getMapExportSources = () => {
 
     const sourceValues = [];
@@ -239,6 +254,7 @@ const getMapExportSources = () => {
 
 
 // Detects a bubble (point) map export by checking the measurement type text for number/total wording.
+
 const isBubbleMapExport = () => {
 
     const measurementType = DE.map.selectedMapMetadata?.MeasurementType || '';
@@ -251,6 +267,7 @@ const isBubbleMapExport = () => {
 
 
 // Creates an off-screen, ARIA-hidden container to host the temporary export map.
+
 const createHiddenExportMapContainer = (width, height) => {
 
     const container = document.createElement('div');
@@ -272,6 +289,7 @@ const createHiddenExportMapContainer = (width, height) => {
 
 
 // Returns a promise that resolves once Leaflet reports "idle", with a fallback timer in case idle never fires.
+
 const waitForLeafletIdle = (mapInstance) => {
 
     return new Promise(resolve => {
@@ -279,6 +297,7 @@ const waitForLeafletIdle = (mapInstance) => {
         let isResolved = false;
 
         // Resolves the promise exactly once, whether triggered by Leaflet's idle event or the fallback timer.
+
         const finalize = () => {
 
             if (isResolved) {
@@ -305,6 +324,7 @@ const waitForLeafletIdle = (mapInstance) => {
 
 // Several export safeguards need to answer the same question: where do the
 // current feature bounds land inside the off-screen map viewport?
+
 const getBoundsViewportBox = (mapInstance, bounds) => {
 
     const northWest = mapInstance.latLngToContainerPoint(bounds.getNorthWest());
@@ -323,6 +343,7 @@ const getBoundsViewportBox = (mapInstance, bounds) => {
 
 
 // Checks whether a viewport box fits inside the frame, with the given edge buffer on all sides.
+
 const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
     return viewportBox.left >= edgeBuffer &&
         viewportBox.top >= edgeBuffer &&
@@ -333,6 +354,7 @@ const isViewportBoxInsideFrame = (viewportBox, width, height, edgeBuffer) => {
 
 // Keep map-type-specific framing rules together so buildTemporaryLeafletExport
 // can read like a single flow instead of a series of paired ternaries.
+
 const getExportBoundsTuning = (bubbleMapExport) => {
     return bubbleMapExport
         ? {
@@ -347,6 +369,7 @@ const getExportBoundsTuning = (bubbleMapExport) => {
 
 
 // Iteratively zooms the export map out, up to 8 steps, until the given bounds are fully visible in frame.
+
 const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) => {
 
     if (!bounds || !bounds.isValid()) {
@@ -388,18 +411,21 @@ const ensureBoundsWithinExportViewport = (mapInstance, bounds, width, height) =>
 
 
 // Returns the tile <img> elements currently in the map's tile pane.
+
 const getTileImages = (mapElement) => {
     return Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
 };
 
 
 // Filters tile images down to those that have finished loading successfully.
+
 const getLoadedTileImages = (mapElement) => {
     return getTileImages(mapElement).filter(tileImage => tileImage.complete && tileImage.naturalWidth > 0);
 };
 
 
 // Computes the pixel bounding box covered by currently loaded basemap tiles.
+
 const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
 
     // ----- resolve tile lists, bail out if none have loaded ----- //
@@ -453,6 +479,7 @@ const getLoadedTileCoverageBounds = (mapElement, mapRect) => {
 
 
 // Checks whether the loaded tile coverage fully contains the export bounds, with a small buffer.
+
 const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect) => {
 
     if (!bounds || !bounds.isValid()) {
@@ -477,6 +504,7 @@ const areExportBoundsCoveredByTiles = (mapInstance, bounds, mapElement, mapRect)
 
 
 // Retries up to 8 times, waiting for and zooming out to secure basemap tile coverage before export capture.
+
 const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bounds, width, height) => {
 
     // ----- guard: nothing to cover without valid bounds ----- //
@@ -535,6 +563,7 @@ const ensureTileCoverageForExport = async (mapInstance, mapElement, mapRect, bou
 
 
 // Orchestrates building the off-screen Leaflet map — layers, bounds, and tile coverage — used to render the export.
+
 const buildTemporaryLeafletExport = async (width, height) => {
 
     // ----- guard, then set up the off-screen container, map, and basemap ----- //
@@ -685,6 +714,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
         // The fixed 16:9 frame is wider than many NYC map bounds. A small
         // post-fit zoom uses more of the canvas without changing the export
         // ratio or relying on the live viewport size.
+
         if (exportZoomBonus > 0) {
             exportMap.setView(
                 exportBounds.getCenter(),
@@ -695,6 +725,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
         // Keep every feature inside the export viewport so polygon edges are
         // never clipped and each visible feature has basemap tiles underneath.
+
         ensureBoundsWithinExportViewport(exportMap, exportBounds, width, height);
     } else {
         exportMap.setView([40.700142, -73.921546], EXPORT_MAP_MAX_ZOOM);
@@ -706,6 +737,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
     // Lock the export viewport before adding vector layers. Adding them first
     // can change renderer timing and produce unstable export bounds.
+
     pendingLayers.forEach(layer => {
         layer.addTo(exportMap);
     });
@@ -720,6 +752,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
     // Give tiles a final chance to catch up after the fitted export view has
     // settled, and only zoom out if the current tile coverage is still short.
+
     const tileCoverageIsComplete = await ensureTileCoverageForExport(
         exportMap,
         exportContainer,
@@ -743,6 +776,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
 
 
 // Returns a promise that resolves once every image has either loaded or errored.
+
 const waitForLoadedImages = (images) => {
 
     return Promise.all(images.map(image => new Promise(resolve => {
@@ -753,6 +787,7 @@ const waitForLoadedImages = (images) => {
         }
 
         // Resolves this image's promise once, removing both listeners after the first load or error event.
+
         const finalize = () => {
             image.removeEventListener('load', finalize);
             image.removeEventListener('error', finalize);
@@ -768,6 +803,7 @@ const waitForLoadedImages = (images) => {
 
 
 // Parses the x/y pixel offset out of a CSS translate3d() transform string.
+
 const parseLeafletTransform = (transformValue = '') => {
 
     const match = transformValue.match(/translate3d\(([-\d.]+)px,\s*([-\d.]+)px,\s*[-\d.]+px\)/);
@@ -785,6 +821,7 @@ const parseLeafletTransform = (transformValue = '') => {
 
 
 // Computes a layer's draw position and size, preferring its CSS transform offset over rendered bounds.
+
 const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
 
     const { useRenderedBounds = false } = options;
@@ -792,6 +829,7 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
     if (useRenderedBounds) {
         // Tile images inherit scale from their parent tile container, so their
         // rendered box is the only reliable source of export coordinates.
+
         const layerRect = layerElement.getBoundingClientRect();
 
         return {
@@ -826,6 +864,7 @@ const getLeafletLayerDrawBox = (layerElement, mapRect, options = {}) => {
 
 
 // Draws loaded basemap tile images onto the export canvas, tracking any tiles that failed to draw.
+
 const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
 
     const tileImages = Array.from(mapElement.querySelectorAll('.leaflet-tile-pane img.leaflet-tile'));
@@ -841,6 +880,7 @@ const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
 
         // Leaflet can scale the parent tile container at fractional zoom.
         // Use rendered bounds so export math includes that parent scaling.
+
         const tileBox = getLeafletLayerDrawBox(tileImage, mapRect, { useRenderedBounds: true });
         const x = tileBox.x;
         const y = tileBox.y + offsetY;
@@ -859,6 +899,7 @@ const drawLeafletTiles = async (ctx, mapElement, mapRect, offsetY) => {
 
 
 // Wraps `new Image()` loading in a promise so callers can await it.
+
 const loadImage = (src) => {
 
     return new Promise((resolve, reject) => {
@@ -875,6 +916,7 @@ const loadImage = (src) => {
 
 
 // Clones, serializes, and draws SVG overlays onto the export canvas, stripping the CSS transform when the SVG's own viewBox already encodes the pane offset.
+
 const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
 
     const svgLayers = Array.from(mapElement.querySelectorAll('.leaflet-overlay-pane svg'));
@@ -889,6 +931,7 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
 
         // Leaflet root SVG overlays already encode the pane offset via viewBox.
         // Removing the CSS translate avoids applying that offset a second time.
+
         if (hasLeafletPaneOffset) {
             svgClone.removeAttribute('style');
         }
@@ -917,6 +960,7 @@ const drawLeafletSvgLayers = async (ctx, mapElement, mapRect, offsetY) => {
 
 
 // Draws canvas-rendered overlays (e.g. circle markers) onto the export canvas.
+
 const drawLeafletCanvasLayers = (ctx, mapElement, mapRect, offsetY) => {
 
     const canvasLayers = Array.from(mapElement.querySelectorAll('.leaflet-overlay-pane canvas'));
@@ -937,6 +981,7 @@ const drawLeafletCanvasLayers = (ctx, mapElement, mapRect, offsetY) => {
 
 
 // Draws the gradient legend card — swatch and min/max labels — onto the export canvas.
+
 const drawMapLegend = (ctx, startX, startY, width, minLabel, maxLabel) => {
 
     const gradientHeight = 14;
@@ -976,6 +1021,7 @@ const drawMapLegend = (ctx, startX, startY, width, minLabel, maxLabel) => {
 
 
 // Top-level orchestrator that composites the live map into a header/tiles/legend/sources PNG data URL.
+
 const exportLeafletMap = async () => {
 
     // ----- validate the live map is ready to export ----- //
@@ -994,6 +1040,7 @@ const exportLeafletMap = async () => {
 
     // Keep exports stable even when devtools or viewport changes resize the
     // live map. The off-screen export map is responsible for fitting bounds.
+
     const { width: exportWidth, height: exportHeight } = getFixedMapExportSize();
 
     const title = getMapExportTitle();
@@ -1069,6 +1116,7 @@ const exportLeafletMap = async () => {
 
         // Leaflet keeps extra tiles and overlays just outside the visible map
         // viewport. Clip them so they cannot paint over the export header.
+
         ctx.save();
         ctx.beginPath();
         ctx.rect(0, headerHeight, exportWidth, exportHeight);
@@ -1108,6 +1156,7 @@ const exportLeafletMap = async () => {
 
     // Keep the legend and sources outside the map frame so export framing work
     // only has to reason about the actual map viewport.
+
     drawMapLegend(ctx, paddingX, headerHeight + exportHeight + 30, legendWidth, minLabel, maxLabel);
 
     if (sourceLines.length) {
@@ -1132,6 +1181,7 @@ const exportLeafletMap = async () => {
 
 
 // Shows a loading state, exports the map, and updates the modal with the preview or an error.
+
 const renderMapPreview = async () => {
 
     showPrintLoadingState('Preparing a PNG preview of the current map.');

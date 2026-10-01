@@ -13,9 +13,11 @@
 let correlateResizeEventRegistered = false;
 
 // Keeps the shared links pane width aligned with the current overlay width.
+
 const updateCorrelatePaneLayout = () => {
 
     // The two elements whose fixed pixel width is kept in sync below.
+
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
 
@@ -25,6 +27,7 @@ const updateCorrelatePaneLayout = () => {
 
     // Derive a fixed width from the surrounding tab panel (minus its horizontal
     // padding) so the chart doesn't reflow as Vega measures its container.
+
     const deTabsPanel = correlateHolder.closest('.de-tabs');
     const fixedHolderWidth = Math.max(
         280,
@@ -48,6 +51,7 @@ const updateCorrelatePaneLayout = () => {
 
 
 // Waits for the overlay panel to repaint before resizing the embedded view.
+
 const scheduleCorrelateViewResize = () => {
 
     window.requestAnimationFrame(() => {
@@ -64,6 +68,7 @@ const scheduleCorrelateViewResize = () => {
 
 
 // Registers one window listener so the correlate chart follows viewport changes.
+
 const registerCorrelateResizeHandler = () => {
 
     if (correlateResizeEventRegistered) {
@@ -89,6 +94,7 @@ const registerCorrelateResizeHandler = () => {
 // ----------------------------------------------------------------------- //
 
 // Builds the "no correlates available" message, resolving the label from the argument, then selectedMapMetadata's type, name, and a generic fallback, in order.
+
 const getNoCorrelatesMessage = (measureLabel) => {
 
     const resolvedMeasureLabel = `${measureLabel || DE.map.selectedMapMetadata?.MeasurementType || DE.map.selectedMapMetadata?.MeasureName || 'the selected measure'}`;
@@ -99,9 +105,11 @@ const getNoCorrelatesMessage = (measureLabel) => {
 
 
 // Enables or disables the correlate tab's save-chart and download-data buttons together, including removing disabled controls from keyboard tab order.
+
 const setCorrelateActionState = (isEnabled) => {
 
     // The two correlate-tab action controls this function enables/disables together.
+
     const saveChartButton = document.querySelector('.de-save-chart-button[data-print-context="correlate"]');
     const downloadDataButton = saveChartButton?.parentElement?.querySelector('a[onclick="downloadData()"]');
 
@@ -127,9 +135,11 @@ const setCorrelateActionState = (isEnabled) => {
 
 
 // Renders the no-correlates fallback: resets chart/note regions, shows a warning alert, clears shared print/export state, and disables tab actions.
+
 const renderNoCorrelatesMessage = (measureLabel) => {
 
     // The correlate-tab regions this function clears/resets when no correlates exist.
+
     const viewDescription = document.getElementById('viewDescription');
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
@@ -167,6 +177,7 @@ const renderNoCorrelatesMessage = (measureLabel) => {
 };
 
 // Renders the linked-measure scatterplot used by the correlate tab.
+
 const renderCorrelate = (
     data,
     primaryMetadata,
@@ -189,6 +200,7 @@ const renderCorrelate = (
     }
 
     // The correlate-tab regions this function populates for a successful render.
+
     const viewDescription = document.getElementById('viewDescription');
     const correlateHolder = document.getElementById('correlateHolder');
     const linksChart = document.getElementById('links');
@@ -219,12 +231,14 @@ const renderCorrelate = (
 
     // Keep the holder width fixed to the current overlay width, but refresh it
     // whenever the window changes so the correlate chart stays responsive.
+
     updateCorrelatePaneLayout();
     registerCorrelateResizeHandler();
 
     // ----- extract plot values & resolve measurement-display formatting ----- //
 
     // Pull plotting values up front so axis/domain logic stays readable.
+
     const aqData = aq.from(data);
     const value1 = aqData.array('Value_1');
     const value2 = aqData.array('Value_2');
@@ -265,6 +279,7 @@ const renderCorrelate = (
     )[0]?.SecondaryAxis;
 
     // Resolve which measure belongs on each axis from metadata instead of hard-coding.
+
     let xMeasure;
     let yMeasure;
     let xMeasureName;
@@ -349,6 +364,7 @@ const renderCorrelate = (
     const height = window.innerWidth < 576 ? 350 : 400;
 
     // Show each distinct note once even if both joined measures repeat it.
+
     const combinedUnreliability = data.map(d => d.Note_1).concat(data.map(d => d.Note_2));
     const linksUnreliability = [...new Set(combinedUnreliability)].filter(note => note);
     const displayNotes = getDisplayNotes(linksUnreliability);
@@ -365,6 +381,7 @@ const renderCorrelate = (
     // ----- Vega-Lite spec assembly (correlateSpec) ----- //
 
     // Build the scatterplot after axis labels and joined-value formatting are settled.
+
     const correlateSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `Scatterplot correlating ${xIndicatorName} and ${yIndicatorName}`,
@@ -590,6 +607,7 @@ const renderCorrelate = (
     DE.print.vizSourceSecond = secondaryMetadata[0].Sources;
 
     // Export only analyst-facing columns, then append readable measure labels.
+
     const dataForDownload = [...correlateSpec.data.values];
 
     const downloadTable = buildLinksDownloadTable(dataForDownload, [], {

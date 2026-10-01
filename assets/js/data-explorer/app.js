@@ -11,6 +11,7 @@
 // ----------------------------------------------------------------------- //
 
 // call this after any dropdown change to sync the URL
+
 const buildCanonicalSearchParams = () => {
 
     const params = new URLSearchParams();
@@ -20,6 +21,7 @@ const buildCanonicalSearchParams = () => {
     }
 
     // Only persist sub-selections that currently exist, so defaults can repopulate the rest.
+
     if (DE.state.MeasureID) {
         params.set('MeasureID', DE.state.MeasureID);
     }
@@ -48,6 +50,7 @@ const buildCanonicalSearchParams = () => {
 // The read counterpart to buildCanonicalSearchParams(). Every entry point that
 // boots or restores a view (initial load, back/forward) parses through this one
 // function, so they cannot drift in how they coerce or alias params again.
+
 const parseSelectionFromURL = () => {
 
     const params = new URLSearchParams(window.location.search);
@@ -55,6 +58,7 @@ const parseSelectionFromURL = () => {
     // parseFloat, not Number: it was already the convention for MeasureID and
     // TimePeriodID, and unifying on it only changes malformed input like
     // "2380abc", which was never a supported URL.
+
     const toNumber = (value) => (value ? parseFloat(value) : null);
 
     const rawOverlay = params.get('overlay');
@@ -80,6 +84,7 @@ const parseSelectionFromURL = () => {
 
 // Copies a parsed selection onto the shared state, skipping absent fields so
 // anything the URL omits is left for the defaults to fill in.
+
 const applySelectionToState = (selection) => {
 
     if (selection.MeasureID)    DE.state.MeasureID    = selection.MeasureID;
@@ -95,6 +100,7 @@ const applySelectionToState = (selection) => {
 // ----------------------------------------------------------------------- //
 
 // Centralizes history writes so replace/push state stay consistent.
+
 const writeHistoryState = (historyMethod, nextState, nextURL) => {
 
     window.history[historyMethod](nextState, '', nextURL);
@@ -105,6 +111,7 @@ const writeHistoryState = (historyMethod, nextState, nextURL) => {
 
 // Resets sub-selections so the indicator about to load starts from its own defaults.
 // Writes no history — loadAndRenderIndicator owns that for the whole pipeline.
+
 const resetSelectionForNewIndicator = () => {
 
     DE.state.MeasureID = null;
@@ -117,11 +124,13 @@ const resetSelectionForNewIndicator = () => {
 
 // Writes the current explorer state into the URL, either as a new history entry
 // or over the current one.
+
 const writeSelectionToURL = (historyMethod = 'pushState') => {
 
     const url = new URL(window.location);
 
     // Rebuild the explorer params in a stable order and drop legacy aliases.
+
     url.search = buildCanonicalSearchParams().toString();
 
     writeHistoryState(historyMethod, {
@@ -134,6 +143,7 @@ const writeSelectionToURL = (historyMethod = 'pushState') => {
 };
 
 // Adds a history entry — what every user-initiated change (dropdown, tab, close) does.
+
 const pushSelectionToURL = () => writeSelectionToURL('pushState');
 
 
@@ -142,6 +152,7 @@ const pushSelectionToURL = () => writeSelectionToURL('pushState');
 // ----------------------------------------------------------------------- //
 
 // Renames legacy GeoTypeID params to the canonical GeoType param.
+
 const normalizeLegacyGeoTypeURL = () => {
 
     // ----- parse query string, exit early if empty ----- //
@@ -156,8 +167,10 @@ const normalizeLegacyGeoTypeURL = () => {
     // ----- split into parts, detect canonical GeoType ----- //
 
     // split into individual key=value pairs, dropping empty strings
+
     const searchParts = rawSearch.split('&').filter(Boolean);
     // true if a canonical GeoType param is already present
+
     const hasCanonicalGeoType = searchParts.some(part => part.split('=')[0] === 'GeoType');
     let didChange = false;
     let renamedGeoType = null;
@@ -165,18 +178,21 @@ const normalizeLegacyGeoTypeURL = () => {
     // ----- rewrite GeoTypeID params to GeoType ----- //
 
     // Rewrite each key=value pair while preserving everything unrelated to GeoType.
+
     const normalizedParts = searchParts.flatMap(part => {
         const [key, ...rest] = part.split('=');
         const value = rest.join('=');
 
         // Leave unrelated params untouched so future query params survive this rewrite.
         // pass non-GeoTypeID params through unchanged
+
         if (key !== 'GeoTypeID') {
             return [part];
         }
 
         didChange = true;
         // capture the first GeoTypeID value for the history state
+
         renamedGeoType = renamedGeoType ?? decodeURIComponent(value || '');
 
         // - - - drop duplicate GeoTypeID when GeoType already exists - - - //
@@ -212,11 +228,13 @@ const normalizeLegacyGeoTypeURL = () => {
 
 
 // Rewrites the legacy overlay=map value to the current overlay=bar alias.
+
 const normalizeLegacyOverlayURL = () => {
 
     const nextURL = new URL(window.location.href);
 
     // 'map' was an old overlay value; 'bar' is its current equivalent
+
     if (nextURL.searchParams.get('overlay') !== 'map') {
         return;
     }
@@ -234,12 +252,14 @@ const normalizeLegacyOverlayURL = () => {
 };
 
 // Converts legacy hash-based display state into the canonical overlay query param.
+
 const normalizeLegacyHashOverlayURL = () => {
 
     // ----- legacy hash-to-overlay lookup table ----- //
 
     // Keep the mapping aligned with the legacy explorer's hash vocabulary so old bookmarks and
     // server-side path rewrites land on the intended overlay without duplicating view logic.
+
     const legacyOverlayByHash = {
         '#display=summary': 'table',
         '#display=map': 'bar',
@@ -266,6 +286,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // Respect a query-string overlay when it already exists. That value is the canonical state in
     // the new explorer, so the legacy hash should only backfill missing information.
+
     if (!nextURL.searchParams.has('overlay')) {
         nextURL.searchParams.set('overlay', nextOverlay);
         didChange = true;
@@ -275,6 +296,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // Remove the legacy fragment after conversion so later startup code reads one authoritative
     // representation instead of having query params and hash state compete with each other.
+
     if (nextURL.hash) {
         nextURL.hash = '';
         didChange = true;
@@ -288,6 +310,7 @@ const normalizeLegacyHashOverlayURL = () => {
 
     // This is a normalization pass, not a user navigation event, so replaceState keeps history
     // clean while still making the URL canonical for refreshes and copied links.
+
     writeHistoryState('replaceState', window.history.state, nextURL);
 
 };
@@ -296,6 +319,7 @@ const normalizeLegacyHashOverlayURL = () => {
 // Rewrites every legacy URL form in one pass. Each normalizer self-guards and is a
 // no-op on an already-canonical URL, so callers don't pre-check which form they have.
 // Hash first: it can add an overlay param that the query-param passes then canonicalize.
+
 const normalizeLegacyURL = () => {
 
     normalizeLegacyHashOverlayURL();
@@ -306,6 +330,7 @@ const normalizeLegacyURL = () => {
 
 // Runs at parse time, before checkURL() boots the app from the template, so every
 // later reader sees canonical params.
+
 normalizeLegacyURL();
 
 
@@ -320,9 +345,11 @@ normalizeLegacyURL();
 
 // Incremented on every scheduled table render so a stale deferred render can detect it has
 // been superseded and skip itself instead of clobbering a newer one.
+
 let pendingTableOverlayToken = 0;
 
 // Runs renderer only when module has assigned active show* function.
+
 const runOverlayRenderer = (renderer) => {
 
     if (typeof renderer !== 'function') {
@@ -336,12 +363,14 @@ const runOverlayRenderer = (renderer) => {
 };
 
 // Give the map one full paint before starting heavy table work.
+
 const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
 
     pendingTableOverlayToken += 1;
     const token = pendingTableOverlayToken;
 
     // Token-gate delayed work so stale map renders cannot reopen an old table state later.
+
     Promise.resolve(afterRender)
         .catch(() => null)
         .then(() => {
@@ -357,6 +386,7 @@ const scheduleTableOverlayRender = (afterRender = Promise.resolve()) => {
 };
 
 // Routes to the show* renderer for the current overlay after kicking off the optional map redraw promise.
+
 const renderCurrentView = (updateMap = false) => {
 
     // ----- kick off map render promise ----- //
@@ -370,11 +400,13 @@ const renderCurrentView = (updateMap = false) => {
     });
 
     // Normalize sync and async map work into one promise so overlay timing can treat both the same.
+
     const mapRenderPromise = updateMap ? Promise.resolve(showMap()) : Promise.resolve();
 
     // ----- dispatch on overlay via switch ----- //
 
     // route the current overlay value to the matching show* renderer
+
     switch (DE.state.overlay) {
 
         case 'none': {
@@ -399,6 +431,7 @@ const renderCurrentView = (updateMap = false) => {
 
         case 'table':
             // If the map also changed, let that redraw settle before starting heavy table work.
+
             if (updateMap) {
                 scheduleTableOverlayRender(mapRenderPromise);
             } else {
@@ -408,6 +441,7 @@ const renderCurrentView = (updateMap = false) => {
 
         case 'map':
             // 'map' is treated as an alias for 'bar' (bar chart with geo context)
+
             runOverlayRenderer(showBar);
             break;
 
@@ -421,6 +455,7 @@ const renderCurrentView = (updateMap = false) => {
 
         default:
             // fall back to bar chart if overlay value is unrecognized
+
             runOverlayRenderer(showBar);
             break;
     }
@@ -437,6 +472,7 @@ const renderCurrentView = (updateMap = false) => {
 // writing its state over the newer one's — observed as a fetch of
 // `geography/undefined` when a stale render resolves a GeoType the current
 // indicator doesn't have.
+
 let indicatorLoadToken = 0;
 
 // The single path from "an indicator ID" to "a rendered view". Every entry point
@@ -450,6 +486,7 @@ let indicatorLoadToken = 0;
 //                         already exists, it just lacks the resolved defaults)
 //               'none'    write nothing (popstate: the URL is already the entry
 //                         being navigated to)
+
 const loadAndRenderIndicator = async (id, { selection = null, history = 'push' } = {}) => {
 
     const indicatorID = Number(id);
@@ -461,12 +498,14 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
 
     // False once a newer load has started; a stale load then stops before it can
     // write shared state, the URL, or the DOM.
+
     const isCurrent = () => token === indicatorLoadToken;
 
     // ----- reset sub-selections, then layer the URL's back on top ----- //
 
     // Reset unconditionally: without it, a sub-selection belonging to the
     // previously viewed indicator leaks into one whose URL doesn't name it.
+
     resetSelectionForNewIndicator();
 
     if (selection) {
@@ -476,12 +515,14 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
     // ----- paint what metadata alone can render ----- //
 
     // Neither waits on the data fetch, so both can start before it.
+
     renderIndicatorInfo(indicatorID);
     render311Links(indicatorID);
 
     // ----- load metadata, indicator, menus, and measures in sequence ----- //
 
     // Metadata first so timeLookup is populated before menus build.
+
     await ensureIndicatorsLoaded('loadAndRenderIndicator');
     if (!isCurrent()) return;
 
@@ -497,6 +538,7 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
     // ----- sync URL + render ----- //
 
     // Runs after renderMeasures so the URL carries the defaults it just resolved.
+
     if (history !== 'none') {
         writeSelectionToURL(history === 'replace' ? 'replaceState' : 'pushState');
     }
@@ -511,6 +553,7 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
 // ----------------------------------------------------------------------- //
 
 // Restores explorer state when the user navigates browser history.
+
 window.addEventListener('popstate', async (event) => {
 
     // ----- normalize incoming URL, then read the canonical selection ----- //
@@ -525,6 +568,7 @@ window.addEventListener('popstate', async (event) => {
 
     // history: 'none' — this URL *is* the history entry being navigated to, so
     // writing it again would stack a duplicate on top of it.
+
     if (selection.id && selection.id !== DE.state.IndicatorID) {
 
         await loadAndRenderIndicator(selection.id, { selection, history: 'none' });
@@ -540,6 +584,7 @@ window.addEventListener('popstate', async (event) => {
     const ind = getIndicatorById(DE.state.IndicatorID);
 
     // Rebuild dropdowns only when indicator metadata is already available in memory.
+
     if (ind) updateAllMenus(ind);
 
     // ----- re-render ----- //
@@ -554,6 +599,7 @@ window.addEventListener('popstate', async (event) => {
 // ----------------------------------------------------------------------- //
 
 // Wires tab clicks and shared DOM references after the page shell exists.
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // ----- resolve shared tab/content DOM refs ----- //
@@ -564,6 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tabTable     = document.querySelector('#v-pills-table-tab');
 
     // grab DOM nodes for the measure-info and source sections
+
     aboutMeasures = document.querySelector('.indicator-measures') || document.getElementById('howCalculated');
     dataSources = document.querySelector('.indicator-sources') || document.getElementById('dataSources');
     correlatePillRow = document.querySelector('.de-correlate-pill-row');
@@ -571,6 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----- define tab-to-overlay map ----- //
 
     // maps each tab selector to its overlay string value
+
     const tabMap = {
         '#v-pills-bar-tab':       'bar',
         '#v-pills-trends-tab':    'trend',
@@ -581,6 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ----- bind tab click listeners ----- //
 
     // Bind each Bootstrap tab to the overlay value it should activate.
+
     Object.entries(tabMap).forEach(([selector, value]) => {
 
         const el = document.querySelector(selector);
@@ -591,6 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
             DE.state.overlay = value;
             pushSelectionToURL();
             // Tab switches reuse the current map state, so they do not request a map redraw.
+
             renderCurrentView();
 
             trackDataExplorerEvent('click_tab', { tab: value });
@@ -605,12 +655,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Toggle borough sub-grouping in the summary table. When off, areas are ungrouped
 //  between boroughs so columns can be sorted freely (by value, alphabetically, etc.)
+
 $("#groupByBoroughToggle").on("change", (e) => {
 
     DE.table.groupByBorough = e.target.checked;
 
     // Re-render now if the table already exists; otherwise defer to the lazy
     //  first-render path so we never build into a still-hidden pane.
+
     if (DE.table.tableData && $.fn.dataTable.isDataTable('#tableID')) {
         renderTable(DE.table.tableData);
     } else {
@@ -632,6 +684,7 @@ $('.de-copy-citation-button[data-citation-target]').on('click', e => {
 // opening its own modal. The new explorer shows that text and the data sources in one
 // pane behind this single tab click, so a second event here would double-count one
 // action. Carry the coverage as a parameter instead.
+
 $('#v-pills-ds-tab').on('click', e => {
     trackDataExplorerEvent('click_about', { section: 'how_calculated_and_sources' });
 });
