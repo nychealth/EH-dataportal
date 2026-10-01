@@ -12,7 +12,6 @@ categories: [pests, housing]
 keywords: ["rats", "rat mitigation zones", "pests", "inspections", "rodents"]
 layout: rmz
 
-
 leaflet: true
 image: rmz-ss.png
 related:
