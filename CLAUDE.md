@@ -306,14 +306,16 @@ Browser JS under `assets/js/` is fingerprinted and served with Subresource Integ
 
 ### Data explorer
 
-`assets/js/data-explorer/` is ten vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
-`global → data → measures → table → map → links → disparities → trend → app → print`
+`global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
+
+The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`.
 
 - `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
 - The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
 - Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
-- `single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `data.js` calls them; that works only because classic scripts share one scope.
+- In the retired explorer only, `themes/dohmh/layouts/data-explorer-old/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `assets/js/data-explorer-old/data.js` calls them; that works only because classic scripts share one scope. The new explorer defines none of the three; its only mention is a commented-out `createCitation()` call in `data.js`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
 
 ### Neighborhood reports
