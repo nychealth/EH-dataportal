@@ -22,7 +22,7 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: Task 1 done (the merge is committed); Tasks 2–6 not started.**
+**Status as of 2026-10-01: Tasks 1–2 done; Tasks 3–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -36,22 +36,23 @@ git merge-base feature-new-data-explorer production                         # wa
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
-| 2 | Port production's old-explorer changes onto `data-explorer-old/` | | **Not started** | |
+| 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | | **Not started** | |
 | 4 | Verification sweep | | **Not started** | |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next command** (Task 2 Step 1, Bash, from the primary worktree, which holds this branch;
-`$SCRATCH` = any temp directory):
+**Next command** (Task 3 Steps 1–2, Bash, from the primary worktree). The script takes no flags;
+run bare it sweeps every target, and an optional first argument filters targets by substring
+(`scripts/js-comment-spacing.py`, the `sys.argv` check in its main block). It only edits the
+working tree, so `git checkout -- .` undoes a bad run:
 
 ```
 git rev-parse --abbrev-ref HEAD                       # must print feature-new-data-explorer
 git status --porcelain --untracked-files=no | wc -l   # must print 0
-git diff 4a260ea2a1 production -- 'themes/dohmh/layouts/data-explorer/' 'assets/js/data-explorer/' \
-  | sed -E 's#(a|b)/(themes/dohmh/layouts|assets/js)/data-explorer/#\1/\2/data-explorer-old/#g' \
-  > "$SCRATCH/old-port.patch"
-grep -c '^diff --git' "$SCRATCH/old-port.patch"      # expect 14
+python scripts/js-comment-spacing.py
+git diff -U0 | grep -E '^\+' | grep -v '^+++' | grep -c '[^+[:space:]]'   # must print 0
+git diff -U0 | grep -E '^-'  | grep -v '^---' | wc -l                     # must print 0
 ```
 
 ## Task 1 record
@@ -91,6 +92,36 @@ grep -c '^diff --git' "$SCRATCH/old-port.patch"      # expect 14
   `createCitation` in inline scripts. On this branch none of the three appears in that file or in
   any `data-explorer/` template; they live in `data-explorer-old/`. `docs-check` cannot catch it —
   the identifiers exist under its source roots, just in the other explorer.
+
+## Task 2 record
+
+- **The prescribed base was too late, and the plan's explanation of the drift was wrong.**
+  `data-explorer-old/` was copied verbatim (JS; the templates were edited in the copy) at
+  `18d94c510f` (2026-06-27) from a tree that never had 7 of production's old-explorer commits:
+  `3eec76d023`, `4c06062296` (borough grouping), `05db5fd1cc`, `c03635c51e`, `dd16987cad`,
+  `52fde98740`, `e8849a2790`. All 7 precede `4a260ea2a1`, so the planned patch could not carry
+  them — and they, not fixes of this branch's, are what the "+79/−119 in `table.js`" drift was.
+  The first apply showed it: `table.js`'s "theirs" side was merge-base content, and `global.js`
+  "applied cleanly" while lacking the `groupTableByBorough` declaration `table.js` would then
+  reference. That apply was discarded `[2026-10-01: git checkout HEAD on both old trees, 0 modified
+  after]`.
+- **Correct base: `aa173ade6c`** = `git merge-base 18d94c510f^ production` (2026-06-15). A tree
+  diff from `18d94c510f^` would have been wrong too: this branch has 5 old-explorer commits before
+  the copy that production lacks (`e92a5638be`, `4f6bd85bd7`, `50f610bf7e`, `7979292048`,
+  `6d8e051f79`), which that diff would have reverted. From `aa173ade6c` the 3-way keeps them.
+- **4 conflicts, not 7.** Resolutions: `table.js` — production's borough-grouping hunks; this
+  branch's enabled `console.log`/`print` debug lines in `renderTable` (base had them commented,
+  production left them, this branch enabled them). `data-index.html`, `single.html` —
+  production's side (no skip-target id; one `lib-arquero` include, where the 3-way had produced
+  two). `section.html` — production's section header and Arquero block, no skip-target id, plus
+  this branch's `c2b7feb86f` Pagefind arrangement (ignore on the `de-topic-indicators` wrapper,
+  not on `<article>`).
+- **Result:** 9 of 10 JS files are byte-identical to production's old explorer; `table.js`
+  differs only by the two debug lines. `links.js` needed nothing — already identical.
+- **Found, not fixed:** production's own old-explorer `section.html` and `indicator-catalog.html`
+  load Arquero twice — an inline `resources.Get` block plus `lib-arquero.html`, which emits the
+  same tag. The port reproduces it (built `/data-explorer-old/` carries 2 Arquero script tags). A
+  production-side condition, out of scope for a port.
 
 ## Decisions
 
@@ -230,29 +261,30 @@ categories below rest on.
 **Files:** the 14 `data-explorer-old/` counterparts of the files production changed (10 JS, 4
 templates). A separate commit after Task 1, so the merge commit stays a merge.
 
-The copies on this branch have drifted from the old explorer production had at the merge base (by
-+0/−1 lines in most files, up to +79/−119 in `table.js`), so a copy-over would discard this
-branch's fixes, e.g. `2d49d98914`'s `lib-arquero` includes. Apply production's diff with a 3-way
-fallback instead.
+**Corrected 2026-10-01 during execution** — the base was `4a260ea2a1` and is now `aa173ade6c`;
+why is in "Task 2 record". This branch does carry its own old-explorer changes (5 before the copy,
+3 template commits after it, e.g. `2d49d98914`'s `lib-arquero` includes), so a copy-over of
+production's files would still be wrong. Apply production's diff with a 3-way fallback.
 
-- [ ] **Step 1: Build the path-rewritten patch** (Bash; `$SCRATCH` = any temp directory):
+- [x] **Step 1: Build the path-rewritten patch** (Bash; `$SCRATCH` = any temp directory):
 
   ```
-  git diff 4a260ea2a1 production -- 'themes/dohmh/layouts/data-explorer/' 'assets/js/data-explorer/' \
+  git diff aa173ade6c production -- 'themes/dohmh/layouts/data-explorer/' 'assets/js/data-explorer/' \
     | sed -E 's#(a|b)/(themes/dohmh/layouts|assets/js)/data-explorer/#\1/\2/data-explorer-old/#g' \
     > "$SCRATCH/old-port.patch"
-  grep -c '^diff --git' "$SCRATCH/old-port.patch"     # expect 14
+  grep -c '^diff --git' "$SCRATCH/old-port.patch"     # expect 14 (370+/111− before rewriting)
   ```
 
-- [ ] **Step 2: Apply.** `git apply --3way "$SCRATCH/old-port.patch"`. Pre-merge dry run
-  (`git apply --check -v`): 7 of 14 apply cleanly, 7 need the 3-way fallback — `app.js`, `data.js`,
-  `table.js`, `data-index.html`, `indicator-catalog.html`, `section.html`, `single.html`
-  `[verified 2026-10-01, against f4a59ed843]`. Resolve those 7 by hand: keep this branch's
-  `data-explorer-old` fixes, add production's changes.
+  One `data-explorer/` survives the rewrite, in `indicator-catalog.html`: a `${baseURL}data-explorer/`
+  link inside a context line, identical in this branch's copy. Leave it.
 
-- [ ] **Step 3: Prove it.** `git grep -c caclulated -- assets/js/data-explorer-old` → no output
-  (was 2). `git diff --stat` touches only `data-explorer-old/` paths. No conflict markers. Commit;
-  record the hash.
+- [x] **Step 2: Apply.** `git apply --3way "$SCRATCH/old-port.patch"` → exit 1, 10 clean, 4
+  conflicted: `table.js`, `data-index.html`, `section.html`, `single.html`. Resolutions are in
+  "Task 2 record". (The pre-merge dry run's "7 conflict" list was against the wrong base.)
+
+- [x] **Step 3: Prove it, then commit.** The proofs that ran are in Ledger row 2. The prescribed
+  `npm run lint` is replaced by the per-file residual check there: lint excludes
+  `data-explorer-old/`. Commit; record the hash.
 
 ## Task 3: Comment-spacing convergence run
 
@@ -294,7 +326,10 @@ documents, and read each script's argv handling before the first run.
   `HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment prod_prod -d "$TEMP/iso-docs"` → exit
   0, 0 ERROR; record the page count.
 - [ ] **Step 6: Browser, fresh tab.** New explorer on three indicators across map/table/trend; the
-  three `/data-explorer-old/` pages render with tables; the skip link focuses
+  three `/data-explorer-old/` pages render with tables, and on an old-explorer topic page the
+  `#groupByBoroughToggle` (production's `4c06062296`, new to this copy in Task 2) regroups the
+  table both ways — production runs that code under its own `head.html`, this branch under the
+  per-template gating of `47ffb33fde`, so it has not run here before; the skip link focuses
   `#skip-header-target` on a DE page and a non-DE page; and per D2, three old-format
   `/data-explorer/<topic>/?id=<n>` links taken from `production`'s content load the right indicator.
 - [ ] **Step 7: Site characterization against `prod_prod`.** Expect differences on every DE page —
