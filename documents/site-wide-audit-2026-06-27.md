@@ -56,6 +56,9 @@
 > need the extraction rule that produced the 84, which survives here only as the prose above.
 > The §18a and §19a fixes are real and landed — on that branch, against files this tree does not
 > carry.
+>
+> **§20 was added on 2026-09-24 on `hotfix-section-icon-standardization`, and the path count
+> above doesn't cover it either.** The paths it cites exist on that branch.
 
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
 Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
@@ -2718,3 +2721,41 @@ Error: probe-forced rejection`, against a bare `probe-forced rejection` in arm B
 
 **Harnesses:** `npm run lint`, `npm run smoke` (33 of 33) and `npm run characterize:nr -- --check`
 (3 of 3) all clean; see §18a for lint's positive control.
+
+## 20. Found while standardizing section headers (added 2026-09-24)
+
+Found on `hotfix-section-icon-standardization` while adding each section's icon to its pages'
+H1s (`7a995427a1`; ledger in
+[`section-header-standardization-2026-09-24.md`](section-header-standardization-2026-09-24.md)).
+That change gave every visible H1 in the Data Features layouts an icon. The two layouts below have
+no H1, so they got no icon.
+
+### 20.1 Two Data Features layouts render the page title as `<h2>`, so their pages have no `<h1>` (P3, a11y; no published page affected)
+
+`themes/dohmh/layouts/data-features/restaurant-grades.html:22` and `restaurants.html:22` both
+render the page title as `<h2>{{ .Title }}</h2>`, directly below the breadcrumb. Nothing else on
+those pages supplies an H1:
+
+- Neither layout contains an `<h1>`.
+- Neither calls a partial that emits one: `restaurant-grades.html` calls only `lib-d3.html` and
+  `lib-vega.html`, and `restaurants.html` calls no partials.
+- None of the three content pages that use these layouts has a `#` heading in its markdown
+  `[verified 2026-09-24: `grep -cE '^# '` returns 0 for each]`.
+
+| Layout | Content using it |
+|---|---|
+| `restaurant-grades` | `content/data-features/restaurant-grades/` |
+| `restaurants` | `content/data-features/restaurant-inspection-checklist/`, `content/data-features/mobile-food-vending-map/` |
+
+**All three pages are `draft: true`, so visitors can't reach any of them today.** None is in the
+sitemap, and each URL returns the 404 page `[verified 2026-09-24 against a `dev_prod` server]`.
+That is why this is P3. It becomes a live accessibility defect as soon as one of these pages is
+published without the fix, and the page will also be missing the section icon every other Data
+Features title now has.
+
+**Fix:** at `:22` in both layouts, replace the `<h2>` with the form the other Data Features
+layouts use:
+`<h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>`. In
+`restaurant-grades.html`, the next headings (`:35`, `:78`) are `<h2>`, so heading levels still
+don't skip after the change. The rendered page hasn't been checked, because none of these pages
+builds without `--buildDrafts`.

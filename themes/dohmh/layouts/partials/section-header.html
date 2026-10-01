@@ -1,0 +1,33 @@
+{{- /*
+    Section-page header: breadcrumb, H1 with the section icon, and the page's
+    .Content as the description. Every section page uses this so the H1 sits at
+    the same height everywhere; spacing lives in `.section-header` in
+    assets/scss/theme.scss, not in utility classes here.
+
+    Call with (dict "page" .). Add "description" false for a section page that
+    renders its .Content elsewhere (data-explorer, where the description shares
+    a row with the sidebar).
+*/ -}}
+{{- $page := .page -}}
+{{- $section := index site.Data.globals.sections $page.Section -}}
+
+<div class="section-header">
+
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ relURL "" }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="{{ $page.RelPermalink }}">{{ with $section }}{{ .name }}{{ else }}{{ $page.Title }}{{ end }}</a></li>
+        </ul>
+    </nav>
+
+    <h1>{{ partial "section-icon.html" $page.Section }}{{ $page.Title }}</h1>
+
+    {{- if and $page.Content (ne .description false) }}
+    <div class="row">
+        <div class="col-md-8 col-sm-12">
+            {{ $page.Content }}
+        </div>
+    </div>
+    {{- end }}
+
+</div>

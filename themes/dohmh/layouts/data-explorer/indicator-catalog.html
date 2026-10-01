@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+        <h1>{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
         {{- .Content -}}
 
         {{- partial "lib-arquero.html" . }}
