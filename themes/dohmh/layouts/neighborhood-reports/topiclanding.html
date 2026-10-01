@@ -17,7 +17,7 @@
                     <div class="border" style="height: 450px; width:100%">
                             {{- partial "lib-leaflet.html" . }}
                             {{- partial "lib-uhflist.html" . }}
-                            {{ partial "nr-leaflet" . }}
+                            {{- partial "nr-leaflet.html" . }}
                     </div>
                     <div class="btn-group" role="group" style="width:100%!important;">
 
@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    <h1 class="h2 mt-3" id="nrtitle">{{ $.Params.title }}</h1>
+                    <h1 class="h2 mt-3" id="nrtitle">{{ partial "section-icon.html" $.Section }}{{ $.Params.title }}</h1>
                     <p class="report-description fs-lg my-2">{{ .Content }}</p>
 
                     <p class="font-weight-bold"><i class="fa-solid fa-arrow-left mr-1 text-primary"></i>Choose a neighborhood from the map to get a report.</p>
@@ -156,11 +156,14 @@
 {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
+{{- partial "flexdatalist-combobox-js.html" . -}}
+
 
 <script type="text/javascript">
 
     var title = document.getElementById('nrtitle').innerHTML
     // console.log('page title: ' + title)
+
     var reportURL
 
     if (title.includes("Asthma")) {
@@ -206,6 +209,18 @@
         });
 
         // console.log("$input", $input);
+
+        // ----- give the generated input a combobox role ----------------------------- //
+
+        // flexdatalist hides the authored input and renders its own; the generated one is
+        // what the reader focuses, and its id is the authored id + "-flexdatalist"
+        // (jquery.flexdatalist.js:475). See partials/flexdatalist-combobox-js.html.
+
+        const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+        if (generated) {
+            wireComboboxState(generated);
+        }
 
         // ----- add flexdatalist select handler -------------------------------------------------- //
 

@@ -1,0 +1,179 @@
+{
+    "path": "data-features/congestion-pricing-report/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/L.colorIcon.js",
+            "js/congestion-pricing-report/chart-crz.js",
+            "js/congestion-pricing-report/chart-ej.js",
+            "js/congestion-pricing-report/chart-tod.js",
+            "js/congestion-pricing-report/map-monitoring.js",
+            "js/congestion-pricing-report/map-regional.js",
+            "js/congestion-pricing-report/shared.js",
+            "js/congestion-pricing-report/sticky-header.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "maps.nyc.gov",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet-easybutton/src/easy-button.css",
+            "node_modules/leaflet-easybutton/src/easy-button.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 22,
+        "headingLevels": [
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            3,
+            3,
+            3,
+            2,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 115,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 86,
+            "external": 35,
+            "emptyHref": 33,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 23,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "NYC congestion pricing report – Environment & Health Data Portal",
+        "headingText": [
+            "Air Quality Impacts of Congestion Relief Zone Tolling",
+            "Key Takeaways",
+            "Background",
+            "Air pollution monitoring",
+            "EJ-Designated Community Site Analysis",
+            "Evaluation analysis",
+            "Here's a guide for interpreting these charts:",
+            "Did congestion pricing affect air quality in the congestion relief zone?",
+            "Air quality changes throughout the day",
+            "Pollution outside of NYC",
+            "Conclusion",
+            "Resources",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/air-quality/",
+            "/data-features",
+            "/data-features/",
+            "/data-features/congestion-pricing-report/",
+            "/data-features/congestion-pricing-report/embeds/CRZ_Report_Appendix.pdf",
+            "/data-features/nyccas",
+            "/data-features/realtime-air-quality/",
+            "/data-stories/",
+            "/data-stories/air-quality-by-neighborhood/",
+            "/data-stories/air-quality-snapshots/",
+            "/data-stories/congestion-tolling-update/",
+            "/data-stories/public-transit-creates-health/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "metrics.mta.info",
+            "nysdottrafficdata.drakewell.com",
+            "www.epa.gov",
+            "www.mta.info",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "The most complete evaluation to date of the effects of congestion pricing on air quality in NYC"
+    }
+}

@@ -8,10 +8,10 @@
     
     <div data-pagefind-weight="7.0">
 
-                    <div class="sr-only">
-                        <div style="min-height:1028px" id="datawrapper-vis-5axZx"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5axZx/embed.js" charset="utf-8" data-target="#datawrapper-vis-5axZx"></script><noscript><img src="https://datawrapper.dwcdn.net/5axZx/full.png" alt="" /></noscript></div>
-                    </div>
-                    </div>
+        <div class="sr-only">
+            <div style="min-height:1028px" id="datawrapper-vis-5axZx"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5axZx/embed.js" charset="utf-8" data-target="#datawrapper-vis-5axZx"></script><noscript><img src="https://datawrapper.dwcdn.net/5axZx/full.png" alt="" /></noscript></div>
+        </div>
+    </div>
     
             
 <div class="row">
@@ -253,5 +253,8 @@
 
 {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
 <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
+
+{{/*  wireComboboxState() is called from aqe.js, which is where this page inits flexdatalist  */}}
+{{- partial "flexdatalist-combobox-js.html" . -}}
 
 {{- end -}}

@@ -47,6 +47,7 @@
           // console.log('pollutant: ', x)
 
           // remove active classes from .polbtn & add active class to x_btn
+
           const btns = document.querySelectorAll(".srcbtn")
             for (var i = 0; i < btns.length; i++) {
                 btns[i].classList.remove('active')
@@ -54,6 +55,7 @@
           document.getElementById(x+'btn').classList.add('active')
 
           // filter data table for selected pollutant
+
           filterData(x)
         }
 
@@ -63,14 +65,17 @@
         table.innerHTML = ''
         for (let i = 0; i < filteredTable.length; i++) {
           // console.log(filteredTable[i].Indicator)
+
               var row = table.insertRow()
 
               // Create cells for Indicator, Description, and Sources
+
               var cell1 = row.insertCell(0);
               var cell2 = row.insertCell(1);
               var cell3 = row.insertCell(2);
 
               // Set the content of each cell
+
               cell1.innerHTML = filteredTable[i].Indicator;
               cell2.innerHTML = filteredTable[i].Description;
               cell3.innerHTML = filteredTable[i].Sources;
@@ -78,6 +83,7 @@
       }
 
     // Initialize: ingest spatial model CSV, and filter for default pollutant
+
     d3.csv(`embed/spatial-model.csv`)
     .then(async data => {
         polTable = data;

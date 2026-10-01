@@ -1,0 +1,228 @@
+{
+    "path": "data-stories/economic-stability/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 9,
+        "headingLevels": [
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 4,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 106,
+            "external": 25,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "media.sparemin.com",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "How economic stability creates health – Environment & Health Data Portal",
+        "headingText": [
+            "Economic stability creates health",
+            "Poverty forces people to do without necessities that keep them healthy, like food and medical care.",
+            "One out of every 10 New Yorkers experiences food insecurity.",
+            "With no money to spare after rent and food, many New Yorkers go without the health care or medicines they need.",
+            "Medical debt creates stress and disproportionately affects people of color.",
+            "Racism shapes who experiences poverty — and its health effects — in NYC.",
+            "New Yorkers who participated in community conversations describe ways to decrease poverty and improve health",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/economic-conditions/",
+            "/data-explorer/health-care/",
+            "/data-explorer/healthy-eating/",
+            "/data-explorer/mortality/",
+            "/data-features/",
+            "/data-features/minimum-wage",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/block-by-block/",
+            "/data-stories/economic-stability/",
+            "/data-stories/economic-stability/clip-basic-needs.mp3",
+            "/data-stories/economic-stability/clip-bundle-services.mp3",
+            "/data-stories/economic-stability/clip-constant-struggle.wav",
+            "/data-stories/economic-stability/clip-insurance.mp3",
+            "/data-stories/economic-stability/clip-we-need-businesses.mp3",
+            "/data-stories/economic-stability/clip-we-need-legal.mp3",
+            "/data-stories/heat/",
+            "/data-stories/housing-creates-health/",
+            "/data-stories/housing/",
+            "/data-stories/public-space-creates-health/",
+            "/data-stories/racial-wealth-gap/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/affordable-housing/",
+            "/keywords/food-insecurity/",
+            "/keywords/health-care/",
+            "/keywords/health-equity/",
+            "/keywords/healthy-food/",
+            "/keywords/inequalities/",
+            "/keywords/inequality/",
+            "/keywords/inequities/",
+            "/keywords/medical-debt/",
+            "/keywords/poverty/",
+            "/keywords/racism/",
+            "/keywords/social-determinants/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "apps.urban.org",
+            "twitter.com",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "A data story about how economic stability creates health."
+    }
+}

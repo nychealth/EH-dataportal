@@ -219,8 +219,7 @@ ED,1,All ages,30355,121.14839016,,7,Assault,Struck by or against
 ED,1,All ages,12859,51.320940504,,8,Unintentional,Bite or sting
 ED,1,All ages,10444,41.682549392,,9,Unintentional,Foreign object
 ED,1,All ages,9329,37.232526166,,10,Unintentional,Other classifiable mechanism
-Hospitalization,0,1 - 4,902,242.27197107,,6,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,1 - 4,902,242.27197107,,6,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,1 - 4,442,118.6729618,,9,,Blood diseases and disorders involving the immune mechanism
 Hospitalization,0,1 - 4,447,120.19555829,,8,,Skin diseases
 Hospitalization,0,1 - 4,1951,524.2210154,,2,,Infectious and parasitic diseases
@@ -238,14 +237,12 @@ Hospitalization,0,10 - 14,454,97.452138541,,8,,Infectious and parasitic diseases
 Hospitalization,0,10 - 14,1310,281.32950208,,2,,Digestive system diseases
 Hospitalization,0,10 - 14,1019,218.96299754,,4,,Nervous system diseases
 Hospitalization,0,10 - 14,585,125.73545575,,6,,Musculoskeletal system and connective tissue diseases
-Hospitalization,0,10 - 14,817,175.42817004,,5,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,10 - 14,817,175.42817004,,5,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,10 - 14,1075,230.92075444,,3,,Respiratory system diseases
 Hospitalization,0,15 - 24,2428,256.79078162,,6,,Infectious and parasitic diseases
 Hospitalization,0,15 - 24,2163,228.83045074,,7,,Nervous system diseases
 Hospitalization,0,15 - 24,1639,173.33289612,,9,,Blood diseases and disorders involving the immune mechanism
-Hospitalization,0,15 - 24,3415,361.19247109,,4,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,15 - 24,3415,361.19247109,,4,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,15 - 24,4465,472.32861604,,3,,Digestive system diseases
 Hospitalization,0,15 - 24,1459,154.29307434,,10,,Musculoskeletal system and connective tissue diseases
 Hospitalization,0,15 - 24,9095,962.00462527,,2,,"Mental, behavioral and neurodevelopmental disorders"
@@ -255,8 +252,7 @@ Hospitalization,0,15 - 24,2885,305.13077361,,5,,"Endocrine, nutritional and meta
 Hospitalization,0,25 - 34,2104,151.83416976,,10,,Blood diseases and disorders involving the immune mechanism
 Hospitalization,0,25 - 34,2836,204.68266009,,8,,Nervous system diseases
 Hospitalization,0,25 - 34,5455,393.68156247,,6,,Infectious and parasitic diseases
-Hospitalization,0,25 - 34,5701,411.40998185,,5,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,25 - 34,5701,411.40998185,,5,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,25 - 34,2769,199.84763662,,9,,Genitourinary system diseases
 Hospitalization,0,25 - 34,6807,491.24800615,,4,,"Endocrine, nutritional and metabolic diseases"
 Hospitalization,0,25 - 34,3622,261.37992532,,7,,Circulatory system diseases
@@ -271,8 +267,7 @@ Hospitalization,0,35 - 44,7209,622.64543124,,5,,Infectious and parasitic disease
 Hospitalization,0,35 - 44,7227,624.20002959,,4,,"Endocrine, nutritional and metabolic diseases"
 Hospitalization,0,35 - 44,10089,871.3235908,,3,,Digestive system diseases
 Hospitalization,0,35 - 44,12596,1087.8733843,,2,,"Mental, behavioral and neurodevelopmental disorders"
-Hospitalization,0,35 - 44,6204,535.7894452,,7,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,35 - 44,6204,535.7894452,,7,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,35 - 44,33202,2867.514249,,1,,"Pregnancy, childbirth and the puerperium"
 Hospitalization,0,45 - 54,3749,365.93701576,,10,,Respiratory system diseases
 Hospitalization,0,45 - 54,7568,738.64100336,,6,,"Endocrine, nutritional and metabolic diseases"
@@ -283,15 +278,13 @@ Hospitalization,0,45 - 54,11483,1120.7797113,,2,,Digestive system diseases
 Hospitalization,0,45 - 54,4871,475.37977189,,9,,Genitourinary system diseases
 Hospitalization,0,45 - 54,13598,1327.139819,,1,,Circulatory system diseases
 Hospitalization,0,45 - 54,5356,522.78110831,,8,,Musculoskeletal system and connective tissue diseases
-Hospitalization,0,45 - 54,7345,716.8760795,,7,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,45 - 54,7345,716.8760795,,7,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,5 - 9,269,56.582699436,,10,,Skin diseases
 Hospitalization,0,5 - 9,274,57.704537344,,9,,"Congenital malformations, deformations and chromosomal abnormalities"
 Hospitalization,0,5 - 9,288,60.509132111,,8,,Musculoskeletal system and connective tissue diseases
 Hospitalization,0,5 - 9,380,79.860836008,,7,,Blood diseases and disorders involving the immune mechanism
 Hospitalization,0,5 - 9,424,89.18611361,,6,,"Endocrine, nutritional and metabolic diseases"
-Hospitalization,0,5 - 9,703,147.80214425,,5,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,5 - 9,703,147.80214425,,5,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,5 - 9,703,147.94237399,,4,,Infectious and parasitic diseases
 Hospitalization,0,5 - 9,1135,238.67101472,,3,,Nervous system diseases
 Hospitalization,0,5 - 9,1183,248.83767076,,2,,Digestive system diseases
@@ -301,8 +294,7 @@ Hospitalization,0,55 - 64,8266,801.15250684,,9,,Respiratory system diseases
 Hospitalization,0,55 - 64,9915,960.9823835,,8,,"Endocrine, nutritional and metabolic diseases"
 Hospitalization,0,55 - 64,10470,1014.8082526,,7,,"Mental, behavioral and neurodevelopmental disorders"
 Hospitalization,0,55 - 64,10777,1044.5320219,,6,,Musculoskeletal system and connective tissue diseases
-Hospitalization,0,55 - 64,11408,1105.691908,,5,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,55 - 64,11408,1105.691908,,5,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,55 - 64,12109,1173.6365675,,4,,Neoplasms
 Hospitalization,0,55 - 64,14954,1449.3891442,,3,,Digestive system diseases
 Hospitalization,0,55 - 64,16026,1553.3577197,,2,,Infectious and parasitic diseases
@@ -313,15 +305,13 @@ Hospitalization,0,65+,19146,1369.915616,,8,,Respiratory system diseases
 Hospitalization,0,65+,23110,1653.5964548,,7,,Musculoskeletal system and connective tissue diseases
 Hospitalization,0,65+,23221,1661.5149043,,6,,Genitourinary system diseases
 Hospitalization,0,65+,23276,1665.4502783,,5,,Neoplasms
-Hospitalization,0,65+,28283,2023.7124172,,4,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,65+,28283,2023.7124172,,4,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,65+,30703,2196.8450226,,3,,Digestive system diseases
 Hospitalization,0,65+,47989,3433.7449973,,2,,Infectious and parasitic diseases
 Hospitalization,0,65+,75792,5423.1123323,,1,,Circulatory system diseases
 Hospitalization,0,<1,311,323.7692475,,10,,Genitourinary system diseases
 Hospitalization,0,<1,333,346.67253832,,9,,"Endocrine, nutritional and metabolic diseases"
-Hospitalization,0,<1,386,402.19566758,,8,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,<1,386,402.19566758,,8,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,<1,464,483.39824412,,7,,Nervous system diseases
 Hospitalization,0,<1,541,562.86572288,,6,,"Symptoms, signs and abnormal clinical and laboratory findings"
 Hospitalization,0,<1,664,691.26295929,,5,,Digestive system diseases
@@ -333,15 +323,13 @@ Hospitalization,0,All ages,50001,598.67379729,,10,,Respiratory system diseases
 Hospitalization,0,All ages,51617,618.01842741,,9,,Neoplasms
 Hospitalization,0,All ages,53866,644.94206569,,8,,"Endocrine, nutritional and metabolic diseases"
 Hospitalization,0,All ages,63976,765.99467059,,7,,"Mental, behavioral and neurodevelopmental disorders"
-Hospitalization,0,All ages,65162,780.19882544,,6,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+Hospitalization,0,All ages,65162,780.19882544,,6,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 Hospitalization,0,All ages,84594,1012.8572146,,5,,Digestive system diseases
 Hospitalization,0,All ages,93558,1120.184591,,4,,Infectious and parasitic diseases
 Hospitalization,0,All ages,94995,1137.3940081,,3,,Conditions originating in the perinatal period
 Hospitalization,0,All ages,110801,1326.6337402,,2,,"Pregnancy, childbirth and the puerperium"
 Hospitalization,0,All ages,130486,1562.3333112,,1,,Circulatory system diseases
-ED,0,1 - 4,31083,8351.8000112,,4,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,1 - 4,31083,8351.8000112,,4,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,1 - 4,34729,9331.5460709,,2,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,1 - 4,13860,3724.091888,,6,,Digestive system diseases
 ED,0,1 - 4,31188,8379.923264,,3,,Infectious and parasitic diseases
@@ -358,16 +346,14 @@ ED,0,10 - 14,5544,1190.9066629,,7,,Digestive system diseases
 ED,0,10 - 14,14929,3206.8985517,,2,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,10 - 14,4289,921.32010772,,9,,Dental diseases
 ED,0,10 - 14,3332,715.74693377,,10,,Skin diseases
-ED,0,10 - 14,22784,4894.1595308,,1,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,10 - 14,22784,4894.1595308,,1,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,10 - 14,8331,1789.5821444,,4,,Infectious and parasitic diseases
 ED,0,10 - 14,5452,1171.0725392,,8,,Factors influencing health status and contact with health services
 ED,0,15 - 24,20844,2204.8466219,,9,,Dental diseases
 ED,0,15 - 24,23354,2470.346359,,7,,Respiratory system diseases
 ED,0,15 - 24,21338,2257.0298372,,8,,Infectious and parasitic diseases
 ED,0,15 - 24,24774,2620.4788797,,6,,Musculoskeletal system and connective tissue diseases
-ED,0,15 - 24,61097,6462.6443985,,1,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,15 - 24,61097,6462.6443985,,1,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,15 - 24,27909,2952.159627,,4,,"Pregnancy, childbirth and the puerperium"
 ED,0,15 - 24,18764,1984.7956445,,10,,Digestive system diseases
 ED,0,15 - 24,28841,3050.6730753,,3,,"Mental, behavioral and neurodevelopmental disorders"
@@ -381,8 +367,7 @@ ED,0,25 - 34,28560,2061.0189583,,9,,Digestive system diseases
 ED,0,25 - 34,50730,3660.9065741,,4,,"Mental, behavioral and neurodevelopmental disorders"
 ED,0,25 - 34,34049,2457.1060051,,7,,Genitourinary system diseases
 ED,0,25 - 34,57549,4153.0205546,,3,,"Pregnancy, childbirth and the puerperium"
-ED,0,25 - 34,79896,5765.6812921,,2,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,25 - 34,79896,5765.6812921,,2,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,25 - 34,89611,6466.7356399,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,35 - 44,23098,1994.9239485,,10,,Digestive system diseases
 ED,0,35 - 44,23551,2034.0192183,,9,,Factors influencing health status and contact with health services
@@ -392,16 +377,14 @@ ED,0,35 - 44,25940,2240.348967,,6,,Genitourinary system diseases
 ED,0,35 - 44,27152,2345.0252565,,5,,Circulatory system diseases
 ED,0,35 - 44,48214,4164.0780685,,4,,"Mental, behavioral and neurodevelopmental disorders"
 ED,0,35 - 44,50163,4332.4353129,,3,,Musculoskeletal system and connective tissue diseases
-ED,0,35 - 44,59739,5159.4240616,,2,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,35 - 44,59739,5159.4240616,,2,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,35 - 44,75247,6498.7969136,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,45 - 54,17870,1744.0893917,,10,,Dental diseases
 ED,0,45 - 54,20024,1954.3535216,,6,,Genitourinary system diseases
 ED,0,45 - 54,29879,2916.2069952,,5,,Circulatory system diseases
 ED,0,45 - 54,19519,1905.0652411,,7,,Digestive system diseases
 ED,0,45 - 54,36458,3558.2885157,,4,,"Mental, behavioral and neurodevelopmental disorders"
-ED,0,45 - 54,47717,4657.1731691,,3,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,45 - 54,47717,4657.1731691,,3,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,45 - 54,18613,1816.6066044,,8,,Infectious and parasitic diseases
 ED,0,45 - 54,53925,5263.1424841,,2,,Musculoskeletal system and connective tissue diseases
 ED,0,45 - 54,67078,6546.8825895,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
@@ -414,8 +397,7 @@ ED,0,5 - 9,10060,2115.9966373,,6,,Dental diseases
 ED,0,5 - 9,10438,2195.6471287,,5,,Digestive system diseases
 ED,0,5 - 9,15384,3235.871328,,4,,Infectious and parasitic diseases
 ED,0,5 - 9,21241,4467.9298094,,3,,"Symptoms, signs and abnormal clinical and laboratory findings"
-ED,0,5 - 9,24062,5061.3820622,,2,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,5 - 9,24062,5061.3820622,,2,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,5 - 9,24741,5204.065821,,1,,Respiratory system diseases
 ED,0,55 - 64,15949,1545.8621605,,10,,Respiratory system diseases
 ED,0,55 - 64,17158,1663.0771984,,9,,Infectious and parasitic diseases
@@ -424,8 +406,7 @@ ED,0,55 - 64,17660,1711.7337164,,7,,Factors influencing health status and contac
 ED,0,55 - 64,19167,1857.7355786,,6,,Digestive system diseases
 ED,0,55 - 64,33148,3212.8486808,,5,,Circulatory system diseases
 ED,0,55 - 64,33464,3243.509395,,4,,"Mental, behavioral and neurodevelopmental disorders"
-ED,0,55 - 64,46367,4494.169295,,3,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,55 - 64,46367,4494.169295,,3,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,55 - 64,56466,5473.0182485,,2,,Musculoskeletal system and connective tissue diseases
 ED,0,55 - 64,69027,6690.4327587,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,65+,14183,1014.8494779,,10,,Nervous system diseases
@@ -436,8 +417,7 @@ ED,0,65+,20369,1457.4717249,,6,,Digestive system diseases
 ED,0,65+,22953,1642.3627509,,5,,Genitourinary system diseases
 ED,0,65+,35436,2535.5018437,,4,,Circulatory system diseases
 ED,0,65+,46929,3357.8519059,,3,,Musculoskeletal system and connective tissue diseases
-ED,0,65+,53918,3857.9306134,,2,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,65+,53918,3857.9306134,,2,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,65+,82249,5885.1013895,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 ED,0,<1,1405,1462.6874365,,10,,Ear diseases
 ED,0,<1,2314,2409.0097708,,9,,Dental diseases
@@ -445,8 +425,7 @@ ED,0,<1,2542,2646.0241288,,8,,Skin diseases
 ED,0,<1,3251,3384.1347284,,7,,Factors influencing health status and contact with health services
 ED,0,<1,4308,4485.2277856,,6,,Digestive system diseases
 ED,0,<1,4898,5098.7583639,,5,,Conditions originating in the perinatal period
-ED,0,<1,5432,5655.3777347,,4,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,<1,5432,5655.3777347,,4,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,<1,11873,12360.142612,,3,,Infectious and parasitic diseases
 ED,0,<1,12468,12979.919543,,2,,Respiratory system diseases
 ED,0,<1,16084,16744.387707,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
@@ -458,8 +437,7 @@ ED,0,All ages,191574,2293.7455143,,6,,Infectious and parasitic diseases
 ED,0,All ages,199552,2389.2633671,,5,,Respiratory system diseases
 ED,0,All ages,221951,2657.4580853,,4,,"Mental, behavioral and neurodevelopmental disorders"
 ED,0,All ages,291524,3490.4585316,,3,,Musculoskeletal system and connective tissue diseases
-ED,0,All ages,432095,5173.5411277,,2,"Injury, poisoning and other consequences
-of external causes","Injury, poisoning and other consequences of external causes"
+ED,0,All ages,432095,5173.5411277,,2,"Injury, poisoning and other consequences of external causes","Injury, poisoning and other consequences of external causes"
 ED,0,All ages,530956,6357.2193685,,1,,"Symptoms, signs and abnormal clinical and laboratory findings"
 Death,0,All ages,16380,196.12030612,,1,,Heart disease
 Death,0,All ages,11429,136.84519854,,2,,Malignant neoplasms
@@ -484,13 +462,6 @@ Death,1,All ages,89,1.0696019951,,10,Suicide,Poisoning
 Death,1,<1,16,16.656938778,,1,Undetermined,Unknown mechanism
 Death,1,<1,7,6.9403911575,,2,Unintentional,Suffocation
 Death,1,<1,2,2.0821173473,*,3,Homicide,Unknown mechanism
-Death,1,<1,,,*,4,,
-Death,1,<1,,,*,5,,
-Death,1,<1,,,^,6,,
-Death,1,<1,,,^,7,,
-Death,1,<1,,,^,8,,
-Death,1,<1,,,^,9,,
-Death,1,<1,,,^,10,,
 Death,1,1 - 4,3,0.7165159958,*,1,Homicide,Poisoning
 Death,1,1 - 4,2,0.6269514963,*,2,Unintentional,Motor vehicle traffic
 Death,1,1 - 4,2,0.5373869968,*,3,Undetermined,Unknown mechanism
@@ -498,29 +469,13 @@ Death,1,1 - 4,2,0.5373869968,*,4,Unintentional,Drowning
 Death,1,1 - 4,2,0.5373869968,*,5,Unintentional,Suffocation
 Death,1,1 - 4,2,0.4478224974,*,6,Unintentional,Fire or burn
 Death,1,1 - 4,2,0.4478224974,*,7,Unintentional,Fall
-Death,1,1 - 4,,,*,8,,
-Death,1,1 - 4,,,^,9,,
-Death,1,1 - 4,,,^,10,,
 Death,1,5 - 9,6,1.1919527762,,1,Unintentional,Fire or burn
 Death,1,5 - 9,3,0.6310338227,*,2,Unintentional,Motor vehicle traffic
-Death,1,5 - 9,,,^,3,,
-Death,1,5 - 9,,,^,4,,
-Death,1,5 - 9,,,^,5,,
-Death,1,5 - 9,,,^,6,,
-Death,1,5 - 9,,,^,7,,
-Death,1,5 - 9,,,^,8,,
-Death,1,5 - 9,,,^,9,,
-Death,1,5 - 9,,,^,10,,
 Death,1,10 - 14,3,0.6444300124,*,1,Homicide,Firearm
 Death,1,10 - 14,3,0.6444300124,*,2,Suicide,Suffocation
 Death,1,10 - 14,3,0.5728266777,*,3,Unintentional,Fire or burn
 Death,1,10 - 14,2,0.4296200083,*,4,Unintentional,Drowning
 Death,1,10 - 14,2,0.3580166736,*,5,Homicide,Cut or pierce
-Death,1,10 - 14,,,*,6,,
-Death,1,10 - 14,,,^,7,,
-Death,1,10 - 14,,,^,8,,
-Death,1,10 - 14,,,^,9,,
-Death,1,10 - 14,,,^,10,,
 Death,1,15 - 24,89,9.3788751767,,1,Unintentional,Poisoning
 Death,1,15 - 24,76,8.074294795,,2,Homicide,Firearm
 Death,1,15 - 24,43,4.5836608006,,3,Unintentional,Motor vehicle traffic

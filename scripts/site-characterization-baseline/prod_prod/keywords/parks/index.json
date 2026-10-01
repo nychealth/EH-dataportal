@@ -1,0 +1,128 @@
+{
+    "path": "keywords/parks/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 8,
+        "headingLevels": [
+            1,
+            4,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 3,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 3,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 70,
+            "external": 18,
+            "emptyHref": 29,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": true
+    },
+    "content": {
+        "title": "Parks – Environment & Health Data Portal",
+        "headingText": [
+            "More content about Parks:",
+            "Public space creates health",
+            "Beach Water Quality",
+            "The urban heat island effect in NYC",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-features/beaches/",
+            "/data-stories/",
+            "/data-stories/public-space-creates-health/",
+            "/data-stories/urban-heat-island/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/parks/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Explore data on how environments shape health in New York City's neighborhoods."
+    }
+}

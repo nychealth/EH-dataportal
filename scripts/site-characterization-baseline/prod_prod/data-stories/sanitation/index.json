@@ -1,0 +1,181 @@
+{
+    "path": "data-stories/sanitation/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/data-stories/lazy-tab-embeds.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 9,
+        "headingLevels": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            5,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 2,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "all",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 11,
+            "missingAlt": 0,
+            "emptyAlt": 1,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 88,
+            "external": 41,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 5,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            },
+            {
+                "host": "datawrapper.dwcdn.net",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "How sanitation, trash, and rats affect our city – Environment & Health Data Portal",
+        "headingText": [
+            "Why trash is a public health issue",
+            "How sanitation affects health",
+            "Everyone is entitled to clean streets",
+            "How sanitation services vary by neighborhood",
+            "What sanitation services does the city need to protect health?",
+            "What can you do to improve sanitation in your neighborhood?",
+            "Keywords:",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-explorer/active-design/",
+            "/data-explorer/mice-and-rats/",
+            "/data-features/",
+            "/data-features/rat-mitigation-zones/",
+            "/data-stories",
+            "/data-stories/",
+            "/data-stories/rat-complaints/",
+            "/data-stories/sanitation/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/keywords/garbage/",
+            "/keywords/inequalities/",
+            "/keywords/inequitites/",
+            "/keywords/justice/",
+            "/keywords/pests/",
+            "/keywords/rats/",
+            "/keywords/sanitation/",
+            "/keywords/trash/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "data.cityofnewyork.us",
+            "elbarriobikes.wixsite.com",
+            "opendata.cityofnewyork.us",
+            "portal.311.nyc.gov",
+            "twitter.com",
+            "uptowngrandcentral.org",
+            "www.facebook.com",
+            "www.linkedin.com",
+            "www.nyc.gov",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "A data story on the state of our neighborhoods, and what it takes to build safe, clean neighborhoods."
+    }
+}

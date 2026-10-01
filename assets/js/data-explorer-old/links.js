@@ -353,6 +353,7 @@ const renderLinksChart = (
     });
 
     // set for printing
+
     printSpec = linkspec;
     chartType = 'links'
     vizSource = primaryMetadata[0].Sources

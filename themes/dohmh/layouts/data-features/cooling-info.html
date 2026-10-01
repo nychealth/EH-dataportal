@@ -16,25 +16,25 @@
               </li>
             </ul>
           </nav>
-          <h1>{{ .Title }}</h1>
+          <h1>{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
 
           <p>{{ .Content }}</p>
 
           <div class="row my-2">
             <div class="col-3 px-1">
-              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/AC.svg" }}" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/AC.svg" }}" alt="" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Neighbors.svg" }}" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Neighbors.svg" }}" alt="" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/ACperson.svg" }}" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/ACperson.svg" }}" alt="" />
             </div>
 
             <div class="col-3 px-1">
-              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Piggy_bank.svg" }}" />
+              <img src="{{ urls.JoinPath ( .Page.RelPermalink )  "img/Piggy_bank.svg" }}" alt="" />
             </div>
           </div>
 

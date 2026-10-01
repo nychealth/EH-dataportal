@@ -1,0 +1,193 @@
+{
+    "path": "data-features/realtime-air-quality/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "data-features/realtime-air-quality/js/realtime.js",
+            "datawrapper.dwcdn.net",
+            "js/L.colorIcon.js",
+            "js/color-convert.js",
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/arquero/dist/arquero.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet-easybutton/src/easy-button.css",
+            "node_modules/leaflet-easybutton/src/easy-button.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 17,
+        "headingLevels": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            3,
+            5,
+            5,
+            5,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            5,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 3,
+            "missingAlt": 0,
+            "emptyAlt": 0,
+            "zeroSize": 0,
+            "mapMarkers": true
+        },
+        "links": {
+            "internal": 91,
+            "external": 37,
+            "emptyHref": 35,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 16,
+            "input": 12,
+            "select": 1,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [
+            {
+                "host": "widget.airnow.gov",
+                "zeroSize": false
+            }
+        ],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Real-Time Air Quality in NYC – Environment & Health Data Portal",
+        "headingText": [
+            "Real-Time Air Quality: PM2.5 in NYC",
+            "About the data",
+            "Download accessible data",
+            "Sources of emissions vary",
+            "Common patterns in the data",
+            "Explore the effects of Congestion Pricing",
+            "The Air Quality Index",
+            "Community air quality programs",
+            "Oops!",
+            "Monitor locations",
+            "Download archived data",
+            "Documentation for data from NYC's realtime PM2.5 monitors",
+            "About the data",
+            "Measurements",
+            "Public use data",
+            "Change log",
+            "You might also be interested in:",
+            "More related to:",
+            "Take action",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features",
+            "/data-features/",
+            "/data-features/NYCCAS",
+            "/data-features/nyccas",
+            "/data-features/realtime-air-quality/",
+            "/data-stories/",
+            "/data-stories/congestion-tolling-update",
+            "/data-stories/hia/",
+            "/data-stories/traffic-and-air-pollution/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "aircasting.org",
+            "app.quant-aq.com",
+            "azdohv2staticweb.blob.core.windows.net",
+            "carto.com",
+            "leafletjs.com",
+            "map.purpleair.com",
+            "new.mta.info",
+            "raw.githubusercontent.com",
+            "www.airnow.gov",
+            "www.dec.ny.gov",
+            "www.epa.gov",
+            "www.mta.info",
+            "www.nyc.gov",
+            "www.openstreetmap.org",
+            "www.southbronxunite.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air."
+    }
+}

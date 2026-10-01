@@ -108,7 +108,7 @@
                 <div class="col-4">
                   {{ $src := .Resources.GetMatch .Params.image }}
                   {{ $image := $src.Resize "740x"}}
-                  <img src="{{ $image.RelPermalink }}">
+                  <img src="{{ $image.RelPermalink }}" alt="">
                 </div>
 
                 <div class="col-8 ml-auto h-100 pl-2">
@@ -162,7 +162,7 @@
 
               </div>
             </div>
-            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" class="btn nav-item-search d-none d-lg-block" title="Search">
+            <button type="button" class="btn btn-primary btn-block mt-1" data-toggle="modal" data-target="#searchModal" title="Search">
               <i class="fas fa-search mr-1" aria-hidden="true"></i>Search the site
             </button>
           </div>
@@ -183,7 +183,7 @@
                 <div class="tab-data-stories h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_stories.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
               <div class="card-body">
                 <h3 class="card-title">Data stories</h3>
                 <p>Explainers on important health issues.</p>
@@ -201,7 +201,7 @@
                 <div class="tab-data-features h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_features.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
               
               <div class="card-body">
                 <h3 class="card-title">Data Features</h3>
@@ -220,7 +220,7 @@
                 <div class="tab-neighborhood-reports h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_neighborhood_reports.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
            
               <div class="card-body">
                 <h3 class="card-title">Neighborhood Reports</h3>
@@ -241,7 +241,7 @@
                 <div class="tab-data-explorer h-100 w-100 position-absolute"></div>
                 {{ $src := resources.GetMatch ( path.Join "**/image_tab_data_explorer.jpg" )}}
                 {{ $image := $src.Resize "x1200 jpg q75"}}
-                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}">
+                <img class="card-img-top" src="{{ relURL $image.RelPermalink }}" alt="">
               
               <div class="card-body">
                 <h3 class="card-title">Data Explorer</h3>

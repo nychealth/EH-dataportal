@@ -10,21 +10,7 @@
 
   <div class="row mb-4">
     <div class="col-lg-12 mx-auto col-12">
-      <nav aria-label="breadcrumb" class="mt-2 mb-3">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-            <li class="breadcrumb-item active"><a href={{ relURL "neighborhood-reports" }}>{{ .Title }}</a></li>
-        </ul>
-      </nav>
-
-      <div class="nr-accent">
-        <div class="row">
-          <div class="col-md-7 col-sm-12 my-2">
-            <h1><i class="fas fa-map-marked-alt mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
-            <p>{{- .Content -}}</p>
-          </div>
-        </div>
-      </div>
+      {{ partial "section-header.html" (dict "page" .) }}
 
       <div class="row">
         <div class="col-md-7">
@@ -215,26 +201,33 @@
   {{- $flexdatalist_js := resources.Get "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js" | partial "short-fingerprint.html" -}}
   <script type="text/javascript" src="{{ $flexdatalist_js.RelPermalink }}" integrity="{{ $flexdatalist_js.Data.Integrity }}"></script>
 
+  {{- partial "flexdatalist-combobox-js.html" . -}}
+
 
 <script type="text/javascript">
 
 // we use these variables for report selection
+
 var intendedDestination;
 var intendedDestinationName = null;
 
 // MANAGES TOPIC BUTTONS ON HOME PAGE
+
 function handleTopicButtons() {
   const buttons = document.querySelectorAll('.nr-topic-button');
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       // 1. Remove 'active' from all buttons
+
       buttons.forEach(b => b.classList.remove('active'));
 
       // 2. Add 'active' to the clicked button
+
       button.classList.add('active');
 
       // 3. Set intended destination
+
       setIntendedDestination(button.id)
 
       changeHomeCopy(button.id)
@@ -261,6 +254,7 @@ function setIntendedDestination(x) {
   intendedDestination = x
 
   // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
+
   if (topicSlugs.hasOwnProperty(intendedDestination)) {
       intendedDestinationName = topicSlugs[intendedDestination];
   }
@@ -270,6 +264,7 @@ function setIntendedDestination(x) {
 }
 
 // SET DEFAULTS FOR HOME PAGE
+
 setIntendedDestination('Active') // default
 document.getElementById('descr').innerHTML = document.getElementById('Active-Descr').innerHTML
 handleTopicButtons()
@@ -299,6 +294,18 @@ function loadList() {
 });
 
   // console.log("$input", $input);
+
+  // ----- give the generated input a combobox role ----------------------------- //
+
+  // flexdatalist hides the authored input and renders its own; the generated one is what
+  // the reader focuses, and its id is the authored id + "-flexdatalist"
+  // (jquery.flexdatalist.js:475). See partials/flexdatalist-combobox-js.html.
+
+  const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+  if (generated) {
+    wireComboboxState(generated);
+  }
 
   // ----- add flexdatalist select handler -------------------------------------------------- //
 

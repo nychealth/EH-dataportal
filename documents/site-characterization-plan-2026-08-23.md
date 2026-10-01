@@ -1,0 +1,2332 @@
+# Whole-site characterization harness — plan
+
+**Status as of 2026-08-23:** branch `feature-site-characterization` cut from `production` at
+`d8c45abebe`. **All six tasks done.** **Every one of the eleven probes has been proved to fire**
+against an injected regression — Task 4's findings table is the evidence, and it is what a passing
+`--check` is worth. The committed baseline is 925 pages captured at `6200892d85` against
+`/dev-stage/`, and `npm run characterize:site` passes against it with zero pages differing.
+
+One signal was **deleted** after Task 6's first full check failed on it: `img` no longer counts
+Leaflet tiles, which were a measure of network timing rather than of page structure.
+
+**Baselines are per environment class** — `staging/`, `production/`, `prod_prod/` under
+`scripts/site-characterization-baseline/`, selected automatically from the running site. `staging`
+and `prod_prod` are committed; see Task 8.
+
+**Task 7 found that the DOM-quiescence detector had never worked** — the MutationObserver threw
+on attach and the counter read a constant 0 on every page since Task 1. Fixed and guarded; the
+committed baseline was unaffected and did not need re-capturing. Read Task 7 before trusting any
+sentence elsewhere in this document that credits the quiescence wait for anything.
+
+**Read Task 3's findings before trusting anything Task 1 concluded.** Task 1 declared the harness
+deterministic on three agreeing sweeps; Task 3's first `--baseline`/`--check` cycle disproved it.
+**The cause of that failure is still unestablished** — three explanations were proposed, two are
+ruled out and one is unsupported, and it has not been reproduced since. What is in the harness is a
+guard justified by the observed failure, not a fix for a known mechanism. This harness has also
+produced three separate false "N runs agreed" results, so agreement is weak evidence here.
+
+**The committed baseline is the 925-page one.** Re-capture it with
+`npm run characterize:site:baseline`, never by hand, and commit the whole directory — `_meta.json`
+records the commit, the environment prefix and the viewport that make the records comparable.
+
+**One thing a later reader must not miss:** the baseline is **environment-specific**. `meta.robots`
+reads `"noindex, nofollow"` on all 925 pages under `dev_stage`; under `prod_prod` the same field
+would read `"all"` on most pages and `"noindex"` on the `resources` section
+(`head.html:46-53`). Record the environment alongside any baseline, and never compare baselines
+taken under different ones.
+
+## Why this, when `smoke` already exists
+
+`scripts/smoke-pages.mjs` loads all 925 pages and fails on unallowlisted console `error` /
+`pageerror`. That catches exactly one class of regression: JS that throws. It is blind to a page
+that renders wrongly without complaining — a library that stopped loading because `head.html`'s
+gating changed and nothing on the page needed it yet, a heading level that started skipping, an
+`alt` that vanished, a table that lost its `<th>`, a container that started overflowing the
+viewport, an `<iframe>` that renders at zero height.
+
+`npm run smoke:all` passed 925/925 at `d8c45abebe`
+`[verified 2026-08-23: mode=all, concurrency=6, failures=0, clearedOnRecheck=0,
+report scripts/smoke-reports/smoke-2026-08-23T15-52-38-788Z.json]`. That is the starting condition
+this harness is characterizing, not a claim that the site has no regressions of the kind above.
+
+### What this is not redundant with
+
+Five characterization harnesses already exist on `feature-MOD-Lab-NR-recode-refactor`, none merged
+to `production` `[verified 2026-08-23: git ls-tree -r --name-only <branch> -- scripts/]`:
+
+| Harness | Lines | Covers |
+|---|---|---|
+| `de-characterization.mjs` | 386 | Data explorer, a fixed indicator set, driven through tabs |
+| `nr-characterization.mjs` | 428 | NR report page, fixed topic/neighborhood pairs |
+| `nr-a11y-audit.mjs` | 647 | axe over four NR page kinds |
+| `nr-postswap-check.mjs` | 269 | One-time Option D before/after |
+| `pagefind-characterization.mjs` | 780 | Search index contents |
+
+All five are **depth-first**: few pages, driven through interactions. This one is the orthogonal
+axis — **breadth-first and shallow**, every page, one load each, no interaction. It does not
+replace any of them and they do not cover it.
+
+`cp-characterization.mjs` (on this branch) is the convention to inherit: `--baseline` / `--check`,
+output tree diffed with `git diff --no-index --exit-code`, dev-server reuse via `ensureDevServer()`.
+
+## Decisions taken
+
+| Decision | Chosen | Rejected, and why |
+|---|---|---|
+| Baseline churn | Each record splits into `structure` and `content`. `--check` diffs `structure` only; `--check --content` diffs both | One flat record set — CloudCannon commits content directly, so a flat baseline fails on commits that never touch a template, and a check that fails routinely stops being read. Two-ref on-demand comparison — no repo weight, but ~2 full sweeps per answer and no way to see what `production` looked like without running it |
+| axe-core | **Out of scope entirely.** Accessibility stays with `nr-a11y-audit.mjs` on its own branch; `axe-core ^4.13.0` stays an unused devDependency here | An `--axe` opt-in flag, and axe in the default sweep |
+| Console errors | **Not baselined.** Printed as a harness-health number only | Recording a per-page count would duplicate `smoke` and import its known flakiness (the AirNow `(home)` case, CLAUDE.md § *Smoke test*) into a baseline meant to be stable |
+| Extraction method | One browser pass, `page.evaluate()` per page | A no-browser static pass over fetched HTML. No HTML parser is installed `[verified 2026-08-23: jsdom, cheerio, linkedom, node-html-parser, parse5, domhandler, htmlparser2 all absent from node_modules]`, and regex counting over source lines is the exact failure CLAUDE.md documents for multi-line `<img>` tags. A browser is needed anyway for data-explorer and nr-output, which render from JS after fetching EHDP-data |
+| Page set | Reuse `collectAllPaths()` from `site-urls.mjs`; `--all` default off, mirroring `smoke` | A separate enumeration. `site-urls.mjs` already cross-checks its paginator count against Hugo's build summary |
+| When to measure | Wait for DOM quiescence — a MutationObserver count holding still across three 400ms samples, capped at 15s, with the cap reported per page | A fixed sleep. Measured: a 2.5s settle left 8 of 41 sample pages churning between runs. Added in Task 1 |
+| Third-party requests | Abort requests to the Google Translate and GTM hosts (`BLOCKED_HOSTS`) | Letting them load. Their injected subtree is the entire remaining churn source and nothing visible depends on it. Datawrapper, AirNow and forecast7 are deliberately **not** blocked — what they render is content this harness is meant to characterize. Added in Task 1 |
+
+## Record shape
+
+One JSON file per page, path-mirrored under the baseline directory.
+
+```json
+{
+    "path": "data-stories/housing/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": ["js/lib-vega-bundle.js", "node_modules/d3/dist/d3.min.js", "scss/theme.css",
+                   "translate.google.com", "www.googletagmanager.com"],
+        "assetsWithIntegrity": 11,
+        "headingLevels": [1, 2, 2, 3, 2],
+        "headingJumps": 0,
+        "landmarks": { "main": 1, "nav": 2, "header": 1, "footer": 1, "h1": 1 },
+        "meta": { "description": true, "canonical": true, "robots": "noindex, nofollow",
+                  "ogTitle": true, "ogImage": true, "viewport": true },
+        "jsonld": [{ "type": "Dataset", "keys": ["@context", "@type", "name"],
+                     "topLevelIsObject": true }],
+        "img": { "total": 12, "missingAlt": 0, "emptyAlt": 3, "zeroSize": 0 },
+        "links": { "internal": 84, "external": 6, "emptyHref": 0, "noAccessibleText": 0 },
+        "controls": { "button": 4, "input": 2, "select": 1, "textarea": 0,
+                      "noAccessibleName": 0 },
+        "tables": { "total": 1, "withTh": 1, "withCaption": 0 },
+        "iframes": [{ "host": "(self)", "zeroSize": true },
+                    { "host": "datawrapper.dwcdn.net", "zeroSize": false }],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Health, housing, and history – Environment & Health Data Portal",
+        "headingText": ["Health, housing, and history", "Why it matters"],
+        "internalTargets": ["/", "/about/", "/data-explorer/"],
+        "externalHosts": ["datawrapper.dwcdn.net", "www1.nyc.gov"],
+        "metaDescription": "..."
+    }
+}
+```
+
+Two field notes that are load-bearing:
+
+- **`jsonld[].topLevelIsObject`** asserts the parsed value's *type*, not that parsing returned.
+  `JSON.parse` hands back a string and throws nothing for a document double-encoded as a JSON
+  string literal, which is how a whole site's JSON-LD passed a parse check while no consumer could
+  read it (CLAUDE.md § *Validating the instrument*).
+- **`assets`** treats same-origin and cross-origin differently, and both choices exist to keep the
+  baseline stable against something that is not this site changing.
+  - *Same-origin* is the baseURL-prefix-stripped path with the fingerprint removed:
+    `js/lib-vega-bundle.js`, not `http://localhost:8080/dev-stage/js/lib-vega-bundle.7bffeead9d7ff2c7.js`.
+    Hugo's `short-fingerprint.html` inserts `xxhash` as 16 hex characters before the extension, and
+    some assets ship unhashed (`conditional-modal.js`) while some base names carry their own dot
+    (`accessible-autocomplete.min.js`), so the strip is `/\.[0-9a-f]{16,}(?=\.(js|css)$)/` — the
+    lookahead on the extension is what keeps it off `.min`. Task 1 proves the strip fired rather
+    than assuming it.
+  - *Cross-origin* is the **host alone**. Vendor paths carry vendor build ids —
+    `translate.googleapis.com/_/translate_http/_/js/k=translate_http.tr.en_US.<id>/…` — which change
+    on the vendor's release schedule, and `googletagmanager`'s `?id=` is the analytics property,
+    which differs by environment.
+
+---
+
+## Ledger
+
+**CLOSED 2026-08-26. All seventeen tasks are done; the work is `d8c45abebe..df45a3bdac`, with the
+ledger commit naming that range following it.** What outlives this document is not a task, and is
+recorded where each was found rather than copied here: the **scheduled-run decision** inside Task 16,
+which needs three answers before anything is written; and three things carried as known-unproven —
+`_meta.json`'s `cleared` field, the `recapture()` anomaly Task 6 found and never reproduced, and the
+deferred single-visit fold of `smoke` and this sweep (Task 9). Everything below this line is a dated
+historical record; derive current status from `git log` and `gh pr`, not from it.
+
+**Tasks 1-10 done 2026-08-24. Tasks 11-15 and 17 done 2026-08-25. Task 16 done 2026-08-26** — 11-14 out of the
+question the first red run could not answer (it said three pages differed, and nothing about what
+to go and look at), and 15 out of the 20-minute timeout that answering it cost.
+Tasks 1-9 are in `d8c45abebe..3625c7f377`; Task 10 is `90328b504e..d0b3050820`; Tasks 11-15 are the
+commits from `7bcdec1945` to `e9e4234a5a`, plus Task 14's red arm at `f2f932e5f7`, `d2704a3332` and
+`b2513b6904`; Task 17 is `377a306f5d`, `c7228357ac` and `1b33786d1b`.
+The check is green on a GitHub runner — run `32908900917` at `0d52d84eb2`, 2026-08-25 — and draft
+PR #1480 into `production` is open and unmerged. **Every task is now built.** What remains is not a task: the
+scheduled-run decision inside Task 16, which needs three answers before anything is written —
+cadence, what a red scheduled run does, and two GitHub behaviours the plan asserts from recall and
+has not verified. Draft PR #1480 is the other open item, and the one that decides whether the
+harness is a thing the team has or a thing this branch has. A green run
+is a fact about a commit, not about the branch, so re-read `git rev-parse HEAD` before citing that
+run — the harness commit that follows `0d52d84eb2` has been proved only by five local sample-mode
+runs and has not had a runner.
+The branch is `feature-site-characterization`; derive everything else from the commands below the
+table rather than from this line.
+
+| # | Task | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 1 | Probe core + determinism control | `9cbb2d44d0` | **DONE 2026-08-23** | 3 sweeps, 3 separately started servers, all 3 pairs byte-identical over 41 pages `[git diff --no-index --exit-code, exit 0 on a-b, a-c, b-c]`; control perturbing `landmarks.nav`, `lang` and `assets` fired on all 3 |
+| 2 | Dead-field sweep over 925 pages | `e6ebe5c2c5` | **DONE 2026-08-23** | 925/925 captured, all quiesced; distinct-value table for all 36 `structure` fields; the 3 zero-constants proved live by `node scripts/site-characterization-probe-control.mjs`, all 4 responded |
+| 3 | Baseline / check plumbing | `4c076520d0` | **DONE 2026-08-23** | `--baseline` then `--check` exit 0; perturbed `content.title` → `--check` exit 0 and `--check --content` exit 1 naming the page; baseline corrupted to `controls.button: 999` → exit 1 naming the field, with the sequential re-capture path firing. The `cleared` branch is **not** proven — see findings |
+| 4 | Positive controls — prove the net catches things | *no code change* — the evidence is the findings section below | **DONE 2026-08-23** | 11 of 11 injected regressions drove `--check` to exit 1, each naming its own field; tree clean and `--check` passing again after all reverts. Two prescribed injections were wrong about the repo and are corrected in the table |
+| 5 | Wire up npm scripts and document | *see the Task 4+5 commit* | **DONE 2026-08-23** | `npm run characterize:site:sample` exits 0 from both Bash and PowerShell; the two `--all` scripts are deferred to Task 6, which is when the baseline they need exists. The `readme-development.md` step was dropped on a false premise — see findings |
+| 6 | Commit the baseline | harness fix `6200892d85`; baseline in the commit that follows it | **DONE 2026-08-23** | `npm run characterize:site` exit 0 against the baseline captured at `6200892d85` — 925/925, every page quiesced, zero pages differing, arbitration not needed. Baseline measured at 926 files / 4.74 MiB. The first attempt FAILED and found a dead field — see findings |
+| 7 | Cold-fetch experiment | `e960523842` | **DONE 2026-08-24** | Theory retired on its premise — the dev server sends no Cache-Control or ETag and every capture already gets its own browser context. Found instead that the mutation observer never attached: 0 batches counted where a working one counts 2,558. Fixed, guarded, and the guard's positive control fires. Full check exit 0 afterwards, 925/925, zero differing |
+| 8 | Multiple environments | `a6d91e78ec` | **DONE 2026-08-24** | Baselines keyed `staging` / `production` / `prod_prod`, key read off the running site. `staging` and `prod_prod` both captured at `e960523842` and both `--check` PASSED with zero differing, no arbitration in either. All 925 shared pages differ between the two baselines, which is the split earning its place. Use `hugo server` in CI — the baselines were captured that way. Two objections to static serving in an earlier draft were wrong and are corrected in the findings. The remaining Pagefind difference was closed by Task 9 |
+| 9 | Serve Pagefind, and raise concurrency | concurrency `b5bfb73cc5`; pagefind + baselines `3625c7f377` | **DONE 2026-08-24** | `hugo server` writes and serves `docs/` from disk, so `npx -y pagefind --site docs` in a second process reaches the running site — 404 to 200 on all three assets, surviving a rebuild. Both baselines re-captured with it: 925/925 each, both sweeps agreeing, no arbitration, and the whole diff is `controls.button +1` and `controls.input +1` on all 925 pages with nothing else moving. Concurrency default is now machine-derived; measured 114s vs 198s over 925 pages. The new gate, and both branches of smoke's narrowed allowlist entry, each have a positive control |
+| 10 | Run the check in GitHub Actions | version pin `90328b504e`; workflow + provenance `946ca1336c`; run fixes `4f2e669c77`, `156aed9289`; revert `d0b3050820` | **DONE 2026-08-24** — green on a GitHub runner. Open: PR #1480 is a draft and unmerged, so the file is not on `production` and `workflow_dispatch` stays unregistered | Static checks first: YAML parses to the intended 11 steps and 2 inputs; all four action tags resolved to commit SHAs via `gh api` (peaceiris' ref is an annotated tag and needed dereferencing); `npm ci --dry-run` clean; arg-building shell block exercised over all 9 input combinations; `hugo server --environment prod_prod` verified to serve `/IndicatorPublic/`; provenance field verified end to end by a `--baseline` run rooted in a temp cwd. Then four runs, all `pull_request` events from PR #1480: `32771116783` @ `60ea1333ee` GREEN, 8m13s job — 62s to a serving build, 1.2s Pagefind, 370s to sweep 925 pages at concurrency 6 (ubuntu-24.04 reports 4 logical processors); `32777189174` @ `cb334f5b37` RED on three deliberately perturbed baseline records, which is what exercised the `if: failure()` path a green run skips entirely, and exposed the artifact upload dropping both `.sc-check` trees plus an orphaned `hugo`; `32779430909` @ `156aed9289` RED on the same injection with both fixed and the artifact complete; `32780688054` @ `d0b3050820` GREEN after the revert, 8m9s |
+| 11 | Skip docs-only PRs | `7bcdec1945` | **DONE 2026-08-24, never exercised** | `paths-ignore` parses to the intended 10 entries and the file still parses to the same 11 steps, 2 inputs and 2 branches `[js-yaml, 2026-08-24]`. **Inert on PR #1480**, and that is not a defect — a `pull_request` path filter reads the whole three-dot diff, and this PR's carries 1856 files under `scripts/` |
+| 12 | Say what changed, not just that something did | `933ea4bf1d` | **DONE 2026-08-24** | 32 assertions over synthetic trees, every one an injection whose truth was controlled — every-page, one-section, page added and removed, string-set vs number-sequence arrays, reorder-only, markdown shape. Then the real thing: `cb334f5b37`'s three-record perturbation replayed against the `staging` baseline reproduced the CI failure exactly (same 3 pages, same 3 fields, same directions as run `32779430909`), and the summary named all three. Red path exit 1 with the summary above the raw diff; green path exit 0 with no summary printed, 925/925 captured and quiesced. ESLint clean |
+| 13 | Put the summary on the run page, and name the candidate source files | `933ea4bf1d` | **DONE 2026-08-25** — the step summary renders; the source-file intersection was dropped for something better grounded | Locally: written as a 4-column table on a red run and **not written at all** on a green one. On a runner `[run 32806127560]`: both blocks render on the run's landing page — the sweep's table reading `structure.lang / 925 / 404.html / "en" -> "zz"`, and base-control's verdict paragraph beneath it. Confirmed by eye, which is the only way a rendering claim can be confirmed |
+| 14 | Base-branch control run — my change, or EHDP-data's? | `e38e0801af`; red arm `d2704a3332`..`b2513b6904` | **DONE 2026-08-25** — both arms have now run on a runner, and the artifact gap the red arm found is fixed | Statically: 2 jobs / 11 + 14 steps, sweep byte-unchanged `[js-yaml]`; every `run:` block `bash -n` clean; both verdict arms executed locally against a real base SHA. GREEN ARM: `if: failure()` correctly skipped the control on a green sweep `[run 32801546852]`; the first attempt `[32802721473]` timed out and found Task 15 instead; the second `[32806127560, after the cap]` ran end to end — sweep red at 8m33s, control green at 8m53s, verdict "this PR's changes are" on the run page. RED ARM `[run 32905347134 @ d2704a3332]`: `cb334f5b37`'s three baseline records replayed, sweep RED at 7m38s naming exactly those 3 pages and 3 fields with arbitration running and no cap message, control RAN at 9m48s and reported the **same** 3 rows in the same directions — the converse of the green arm, and the pair is what shows the control tracks the injection site rather than the sweep. `OUTCOME: failure` in the Verdict step's env with the job still succeeding proves `continue-on-error` leaves `outcome` readable; the never-run base artifact uploaded 2776 files and was DOWNLOADED and inventoried — 925 + 925 + 925 + `hugo-server-base.log` — so both projected trees are really in it. 5 of 6 written-in-advance predictions exact; the sixth found the missing `_meta.json`. Reverted in `b2513b6904`, which leaves `scripts/` byte-identical to `90581f0b34`, green at `[run 32894749060]`; `0d52d84eb2` is green too `[run 32908900917]`, with `base-control` correctly skipped. The `_meta.json` fix that followed is proved by five sample-mode runs against one dev_stage server — clean, an `arbitrated` injection, `--out`, `--baseline` from a temp cwd, and a 26-record cap injection — two of which exist only because the three new fields read `[]`/`[]`/`false` on a clean sweep. `cleared` stays unproven and the plan says so |
+| 15 | Cap the arbitration, and keep the artifact on a timeout | `c828d3b82b` | **DONE 2026-08-25** | Both sides of the threshold, locally, 925 pages each: 40 perturbed records -> cap message, **zero** sequential re-captures, exit 1, shape `confined to data-stories/`; 3 perturbed -> arbitration runs, no cap message, exit 1. The pairing is the proof — the above-cap run alone would not show the guard survived. ESLint clean; the workflow still parses to 2 jobs / 11 + 14 steps |
+| 16 | Record which EHDP-data commit a baseline describes | *the commit that follows `759cd272f6`* | **DONE 2026-08-26** — built and proved; the scheduled-run decision inside it is still deferred and still needs three answers | Function-level first, no server needed: `githubSlug` on the real URL, on `"https://"` and on `null`; `fetchDataCommit` on the real repo — `e4f9301123…`, byte-equal to `gh api …/commits/production` — and on four failure shapes, all `null`. Then five sample-mode rows against one dev_stage server: `--baseline` from a temp cwd records `b2b63d0635…`, byte-equal to `gh api …/commits/**staging**`, which is the branch that server actually pulls; the fetch nulled reads `@ unknown` with exit 0 unchanged; `--check` against the two committed baselines, which hold **zero** `dataCommit` occurrences, PASSES — the row that could have broken the harness for everyone; a red check with equal SHAs prints the exonerating arm; a red check with the baseline SHA set to a real older staging commit prints the drift arm and a compare URL that resolves `[gh api …/compare: status=ahead, 6 commits]`, in the console and on the run page. Row 2's prescribed injection was impossible and is corrected in the findings |
+| 17 | Re-baseline a deliberate site-wide change | `377a306f5d`, `c7228357ac`, `1b33786d1b` | **DONE 2026-08-25** — every proof row has run, the two-key path and the `gitHead` cross-check included | Classification, no sweeps needed: unchanged pair -> 0 rows exit 0; `cb334f5b37`'s three-record perturbation replayed -> exactly those 3 pages and 3 fields, prod_prod only, below-floor shape message, exit 1; `--expect` covering one -> 1 covered / 2 not with the glob list in report.md; a glob matching no changed page -> named, not dropped. Two defects found by those rows and fixed. **The two-key run is green** `[2026-08-25 at e93bfcf1d5]`: 925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both `_meta.json` at one `gitHead`, 0 of 925 pages changed on each, exit 0 — and all 1,850 records byte-identical to baselines captured 2026-08-24 from *normal* servers, which is the isolated-server claim at full breadth and retires the earlier 899-of-912 figure. Committed as `c7228357ac`: two `_meta.json`, no record churn. `DE_SERVER_OWNED` confirmed by the missing caveat on the Hugo line. The attempt before it failed on 5 `ERR_NETWORK_CHANGED` pages after prod_prod had completed, which fired the failed-capture rollback for real — `git status` empty under `staging/`, 926 files, `_meta.json` intact — where it had previously been proved only with a stub. Two message defects that failure exposed are fixed in `1b33786d1b`, each error path exercised. The 13 pages load in 601-1062ms sequentially and 13-wide without failing, so the cause is **not** those pages; an A/B/A with external requests blocked puts ~75-80% of the load phase on external requests (median 4,467 -> 1,112 -> 5,545ms, doc flat at ~400ms), and the same round varies 3.5x between runs |
+
+Derive what this table deliberately does not claim:
+
+```bash
+git log --oneline d8c45abebe..HEAD                                              # the task commits
+git rev-list --left-right --count origin/feature-site-characterization...HEAD   # "0	0" means pushed
+gh pr list --head feature-site-characterization                                 # a PR, and its base
+```
+
+### Environment state a cold session needs
+
+- Branch `feature-site-characterization`, cut from **local** `production` at `d8c45abebe`.
+  `git config --get branch.feature-site-characterization.merge` is empty, which is correct.
+- Worktree: `EH-dataportal.worktrees/feature-site-characterization`, moved there 2026-08-24 from
+  `merge/production`, which has since been removed. Three other worktrees exist; do not start a
+  second Hugo builder in any of them while this one has a server up (CLAUDE.md § *Four ways a local
+  check silently lies*). `.claude/settings.local.json` is globally ignored and does not travel with
+  a checkout — a new worktree needs it recreated, pointing `autoMemoryDirectory` at the main repo's
+  store, or a session there starts on an empty one.
+- `scripts/smoke-reports/` is gitignored (`.gitignore:93`), so smoke runs leave the tree clean.
+- No server is left running between tasks; `ensureDevServer()` starts and stops its own.
+
+---
+
+## Task 1: Probe core + determinism control
+
+The cheapest experiment that could falsify the whole plan, so it runs first. The premise is *a
+whole-site baseline is stable enough to be a regression net*. If fields churn when nothing changed,
+the harness is noise and the rest of the plan is wasted.
+
+**Files:**
+- `scripts/site-characterization.mjs` — new. At this task it holds only `capturePage(page)` (the
+  single `page.evaluate()` returning the record above) and a driver that sweeps a fixed page list
+  and writes one JSON per page. No `--baseline` / `--check` yet.
+- `scripts/smoke-pages.mjs:35-71` — read only, for the `PAGES` list to reuse as the Task 1 sample.
+
+**Interfaces:**
+- Consumes: `ensureDevServer()` from `./dev-server.mjs`; `mapPool()` from `./site-urls.mjs`.
+- Produces: `capturePage(page) -> record`, imported unchanged by Tasks 2–4.
+
+**Steps:**
+
+1. Write `capturePage()` returning the record shape above.
+   *Expected:* one page captured by hand prints a record with every field populated.
+2. Sweep the 33 `PAGES` entries plus four JS-rendered pages not in that list
+   (the NR report page is already in it; add
+   `data-features/heat-syndrome/`, `data-features/hvi/`,
+   `data-features/neighborhood-air-quality/`, `data-features/cooling-info/`, and four Spanish and
+   Chinese pages so `lang` can vary). Write to `run-a/`.
+   *Expected:* 41 JSON files.
+3. **Stop the server. Start a fresh one.** Sweep the same list to `run-b/`.
+   *Expected:* 41 JSON files. A fresh server is the point — step 2 alone would only re-test what
+   is already known, that repeated fetches from *one* server are byte-identical
+   `[verified 2026-08-23: 5 pages, 2 fetches each, 0 diff lines]`. Build-to-build determinism is
+   the untested half, and the home page is documented as build-nondeterministic.
+4. `git diff --no-index run-a/ run-b/`
+   *Expected:* the deliverable of this task is the **list of every field that differed and the page
+   it differed on** — not a pass. A zero diff is a fine outcome; a non-zero one is the finding.
+5. For each churning field, take one of three actions and record which: normalize it (round, sort,
+   bucket to a boolean), drop it from `structure` into `content`, or delete it. A field that
+   churns and cannot be normalized is deleted and the deletion recorded in this document.
+6. Prove the fingerprint strip: confirm every `assets` entry in `run-a` matches its `run-b`
+   counterpart, and separately that at least one page's raw (unstripped) asset list *did* contain a
+   16-hex segment — otherwise the strip is untested and passing by construction.
+
+**Proof:** the field-churn list, written into this document under this task, naming every field
+that differed and the action taken. Plus the strip's positive control from step 6.
+
+**Gate:** if more than a handful of fields churn irreducibly, stop and report before Task 2 — the
+premise is wrong and the signal set needs rethinking, not more code.
+
+### Task 1 findings
+
+> **Superseded in part by Task 3 — read this section with its correction.** Task 1 concluded from
+> three agreeing sweeps that the premise held. It did not: Task 3's first `--baseline` followed
+> immediately by `--check` found the data-explorer pages churning by hundreds of links and dozens
+> of controls. The DOM-quiescence wait described below was necessary and **not sufficient**, and
+> the fix is recorded under *Task 3 findings*. Everything else in this section stands.
+
+**Result as recorded at the time: the premise holds.** Three sweeps, each against a separately
+started `hugo server`, all three pairs byte-identical across 41 pages
+`[verified 2026-08-23: git diff --no-index --exit-code, exit 0 on a-b, a-c and b-c; plus an
+independent Node file-by-file comparator, 0 files differing]`. It did not hold on the first attempt
+— and, as Task 3 showed, it did not hold on this one either.
+
+**Two runs agreeing is not a determinism test, and this is why the task ran three.** The first pair
+of sweeps came back identical and would have closed the task. Two later pairs disagreed — and once
+the churn was understood, a run at `a`-vs-`b` was clean in the *same* triple where `a`-vs-`c`
+differed by 338 lines. A race that fires on roughly half of runs passes a two-run test half the
+time. **Any future re-measurement of determinism here runs at least three sweeps and compares all
+pairs.**
+
+**The churn had one cause and eleven symptoms.** With a fixed 2.5s settle, 8 of 41 pages differed,
+always in the same eleven fields at once: `assets`, `img.total`, `img.emptyAlt`, `img.zeroSize`,
+`links.external`, `controls.button`, `controls.input`, `controls.select`,
+`controls.noAccessibleName`, `iframes`, and `content.externalHosts`. Every delta was the Google
+Translate widget's injected subtree — its language `<select>`, five hidden inputs, two buttons, two
+images, a same-origin banner iframe and two script hosts — landing either side of the settle
+depending on Google's network timing. Eleven fields, one fix.
+
+Worth separating out, because it would have been recorded as a finding about this site:
+**`controls.noAccessibleName` went 0 → 5 on the home page, and all five were Google's inputs.**
+
+**Two fixes, in order, with what each bought:**
+
+| Fix | Pages still churning |
+|---|---|
+| Fixed 2.5s settle (starting point) | 8 of 41 |
+| DOM-quiescence wait (MutationObserver, 3 stable 400ms samples, 15s cap) | 5 of 41 |
+| Blocking the Translate and GTM hosts at the network layer | **0 of 41** |
+
+The quiescence wait alone was not enough because the injection can *begin* after the DOM has
+already been quiet for three samples — waiting longer is a race with an unbounded tail, not a fix.
+`BLOCKED_HOSTS` in the harness carries the reasoning and what the block costs.
+
+**Four harness defects found by reading the output, not by the diff.** All four would have baked
+the local dev server's identity into a baseline meant to describe the site, and all four were
+invisible to the run-to-run diff because both runs carried them equally:
+
+1. `assets` recorded `livereload.js` — injected by `hugo server`, present in no built site.
+2. `assets` recorded full URLs including `http://localhost:8080/dev-stage/`.
+3. `iframes` recorded `localhost:8080` as an embed host.
+4. `content.internalTargets` carried the `/dev-stage/` prefix on some links and not others.
+
+That last one exposed a site fact worth a separate look: some internal links are written as
+absolute paths *without* the baseURL prefix (`/data-explorer/asthma/`). The harness deliberately
+does not normalise those away — under a server mounted at `/IndicatorPublic/` the two shapes
+resolve differently, so the distinction is a signal.
+
+**A fifth defect was mine and the diff did catch it:** `assetName()` was written but the call site
+still used the old `stripHash()`, so the fix had no effect until the distinct-value sweep showed
+raw URLs still in the field.
+
+**`git diff --no-index` prints nothing on a long path while still exiting non-zero.** Against the
+session scratchpad (a ~150-character path) it returned exit 1 for a perturbed tree and **zero lines
+of output**, alongside `Filename too long` warnings. The same comparison at `C:/temp/sc/` produced
+full field-level output. A check that fails without saying what changed reads as a broken harness.
+`cp-characterization.mjs` uses the same mechanism, so this applies to it too. **Keep
+characterization output at a short path.**
+
+**Strip control:** 468 fingerprinted asset references were seen across the sample, so the
+fingerprint-stripping pattern had something to strip. A strip that never matched anything would
+have passed by construction.
+
+**Sample gap found and closed:** `lang` was constant at `"en"` across the original 33-page sample,
+which in a distinct-value sweep is indistinguishable from a probe reading nothing. Four Spanish and
+Chinese pages were added; `lang` now takes `en`, `es`, `zh`.
+
+**Preview of Task 2, on the 41-page sample.** Three fields are constant at zero and are constant
+*by construction*, verified against the templates rather than assumed
+`[verified 2026-08-23: grep over themes/dohmh/layouts/ and content/]`:
+
+- `landmarks.aside` — zero `<aside>` elements anywhere in the repo.
+- `controls.textarea` — the only `<textarea>` string in the repo is inside a vendored minified
+  jQuery file, not a page.
+- `tables.withCaption` — zero `<caption>` elements anywhere in the repo. **That is a real, if
+  small, accessibility finding in its own right: no table on the site has a caption.**
+
+All three are kept as change detectors, and each now has its justification recorded rather than
+being a count-of-1 nobody looked at.
+
+---
+
+## Task 2: Dead-field sweep over 925 pages
+
+Task 1 catches fields that vary when they shouldn't. This catches the mirror failure: a field that
+*never* varies, which is either constant by construction or reading a node that does not exist.
+Both look identical in a passing baseline (CLAUDE.md § *A fixture field identical across every case
+it covers is dead, not passing*).
+
+**Files:**
+- `scripts/site-characterization.mjs` — add `--all` to sweep `collectAllPaths()`.
+
+**Interfaces:**
+- Consumes: `capturePage()` from Task 1; `collectAllPaths()` from `./site-urls.mjs`.
+- Produces: a full 925-page capture that Task 3 turns into the committed baseline.
+
+**Steps:**
+
+1. Sweep all 925 pages at concurrency 6.
+   *Expected:* 925 JSON files. Enumeration prints `830 sitemap + 94 paginator + 1 extra`; if that
+   breakdown differs, the page set changed and that is a finding before anything else.
+2. For every leaf field in `structure`, count distinct values across all 925 records.
+3. Write the table into this document: field, distinct-value count, and for every field whose count
+   is **1**, a one-line justification for why constant is correct.
+   *Expected:* `lang` will be near-constant and legitimately so (three languages, seven translated
+   pages). `meta.viewport` is emitted unconditionally by `head.html` and should be `true` on all
+   925 — that one is constant by construction. A field constant at `0` or `false` everywhere is
+   the suspicious shape and each needs its justification checked, not assumed.
+4. Delete or fix any field whose constancy cannot be justified.
+
+**Proof:** the distinct-value table in this document, with every count-of-1 field justified.
+
+### Task 2 findings
+
+**925/925 pages captured, every one reaching DOM quiescence before the cap**, and the enumeration
+printed the expected `830 sitemap + 94 paginator + 1 extra`. Zero records came back with a null
+`structure`. Strip control: 9,909 fingerprinted asset references seen.
+
+Wall time for the capture phase was **about 5m24s** at concurrency 6 — first record written
+14:30:27, log closed 14:35:51, by file mtime — with server start and enumeration on top of that.
+
+**Distinct values per `structure` field across all 925 records**, ordered by how little each varies:
+
+| Field | Distinct | Field | Distinct |
+|---|---|---|---|
+| `landmarks.main` | 1 | `img.missingAlt` | 5 |
+| `landmarks.header` | 1 | `tables.total` | 6 |
+| `landmarks.aside` | 1 | `tables.withTh` | 6 |
+| `meta.description` | 1 | `img.zeroSize` | 9 |
+| `meta.canonical` | 1 | `assetsWithIntegrity` | 10 |
+| `meta.robots` | 1 | `links.noAccessibleText` | 14 |
+| `meta.ogTitle` | 1 | `links.emptyHref` | 15 |
+| `meta.ogImage` | 1 | `img.emptyAlt` | 18 |
+| `meta.viewport` | 1 | `landmarks.h1` | 20 |
+| `controls.textarea` | 1 | `img.total` | 21 |
+| `tables.withCaption` | 1 | `links.external` | 22 |
+| `landmarks.footer` | 2 | `controls.input` | 27 |
+| `jsonld` | 2 | `iframes` | 29 |
+| `controls.select` | 2 | `assets` | 33 |
+| `overflowX` | 2 | `controls.button` | 47 |
+| `lang` | 3 | `links.internal` | 77 |
+| `landmarks.nav` | 3 | `headingLevels` | 115 |
+| `controls.noAccessibleName` | 3 | | |
+| `headingJumps` | 5 | | |
+
+**Eleven fields are constant. They split into two kinds, and only one kind is suspicious.**
+
+*Positive constants — cannot be dead probes.* `meta.description`, `meta.canonical`, `meta.ogTitle`,
+`meta.ogImage`, `meta.viewport` all read `true`; `landmarks.main` and `landmarks.header` read 1;
+`meta.robots` reads a non-empty string. A probe that found nothing would return `false`, `0` or
+`null` here, so a positive value on all 925 pages is itself the evidence that the probe fires.
+
+- The five `meta.*` tags are emitted **unconditionally** — verified in
+  [`partials/seo.html`](../themes/dohmh/layouts/partials/seo.html) lines 2, 3, 10 and 13 and
+  [`partials/head.html:66`](../themes/dohmh/layouts/partials/head.html). The `{{ if }}` blocks
+  around them choose the tag's *content*, and every branch falls back to
+  `.Site.Data.globals.seo_defaults`, so the tag itself is always present. **`meta.description` is
+  therefore a presence-only probe:** it detects the tag being removed and nothing else. The
+  description's actual text is in `content.metaDescription`, ungated.
+  These four are not in `head.html` at all — it reaches them via `{{ partial "seo" . }}` at line 104.
+- `landmarks.main` — one unconditional `<main>` in
+  [`_default/baseof.html:24`](../themes/dohmh/layouts/_default/baseof.html).
+- `landmarks.header` — one unconditional `<header>` in
+  [`partials/header.html:4`](../themes/dohmh/layouts/partials/header.html).
+- **`meta.robots` reading `"noindex, nofollow"` on all 925 pages is the environment, not the site.**
+  The tag is always emitted; only its value branches
+  ([`head.html:46-53`](../themes/dohmh/layouts/partials/head.html)): `$robots` starts at `"all"`,
+  becomes `"noindex, nofollow"` when the environment is not `prod_prod`, and becomes `"noindex"`
+  for the `resources` section under `prod_prod`. So this sweep, run against `dev_stage`, sees one
+  value — while a `prod_prod` baseline would see **two**, and the field would then be a live check
+  on the resources-section noindex rule decided 2026-08-21. **The baseline is environment-specific
+  and the environment it was taken under has to be recorded with it.**
+
+*Negative constants — the suspicious shape, and the reason `site-characterization-probe-control.mjs`
+exists.* `landmarks.aside`, `controls.textarea` and `tables.withCaption` all read 0 everywhere. A
+grep says the elements exist nowhere in the repo, but a grep cannot tell a correct selector on an
+absent element from a wrong selector. The control injects an `<aside>`, a `<textarea>` and a
+`<table><caption>` into a real page and re-runs the capture
+`[verified 2026-08-23: landmarks.aside 0 -> 1, controls.textarea 0 -> 1, tables.withCaption 0 -> 1,
+tables.total 0 -> 1; all four responded]`. The zeros are real.
+
+`tables.withCaption` being genuinely zero site-wide is a small accessibility finding in its own
+right, separate from this harness: **no table on the site carries a `<caption>`.**
+
+**No field was deleted.** All eleven constants are justified, and each is a live detector for the
+change that would break it.
+
+---
+
+## Task 3: Baseline / check plumbing
+
+**Files:**
+- `scripts/site-characterization.mjs` — add `--baseline`, `--check`, `--content`.
+- `scripts/site-characterization-baseline/` — new directory, path-mirrored records.
+
+**Interfaces:**
+- Consumes: everything from Tasks 1–2.
+- Produces: `--check` semantics relied on by Task 4.
+
+**Steps:**
+
+1. `--baseline` writes `structure` and `content` into each record; `--check` writes to a
+   `-current/` directory and diffs. Default diff scope is `structure`; `--content` widens it. Match
+   `cp-characterization.mjs`'s use of `git diff --no-index --exit-code`.
+2. Run `--baseline`, then immediately `--check`.
+   *Expected:* exit 0, zero diffs. This is a necessary condition and proves nothing on its own —
+   a probe that reads nothing also passes it. Task 4 is what makes it mean something.
+3. Confirm `--content` actually widens the diff: hand-edit one `content.title` in the baseline and
+   re-run.
+   *Expected:* `--check` exits 0 (structure untouched); `--check --content` exits 1 and names that
+   one page. Revert the hand-edit.
+
+**Proof:** step 3's two exit codes, which discriminate. Step 2 alone does not.
+
+### Task 3 findings
+
+**Step 2 failed, and that is the whole value of this task.** `--baseline` followed immediately by
+`--check`, same commit, same tree, reported structure differences on three data-explorer pages:
+`controls.button 25 -> 96`, `links.internal 70 -> 638`, `tables.total 0 -> 2`. Task 1 had declared
+the harness deterministic on the strength of three agreeing sweeps. It was not.
+
+**The cause is NOT established.** Three explanations were proposed; two are ruled out and the third
+turned out not to be supported either. The failure has not been reproduced since. This is written
+out in full because a plan that names a confident wrong cause is what the next person refactors
+against.
+
+*Explanation 1: the runtime fetch leaves a quiet DOM.* The data explorer fetches EHDP-data from raw
+GitHub URLs, so the theory was that between initial render and fetch resolution the DOM is
+genuinely still and the quiescence wait accepts that gap. A zero-in-flight condition was added, then
+measured as never binding: "DOM quiet" and "DOM quiet and nothing in flight" arrive at the same
+millisecond on every page sampled `[2026-08-23: extra = 0ms on about/, key-topics/airquality/,
+data-explorer/asthma/, data-explorer/data-index/]`. **That disproof is invalid.** It ran against a
+warm HTTP cache, where the fetch resolves instantly and the condition has no window in which to
+bind — it shows the condition is inert when the data is cached and says nothing about a cold fetch,
+which is the case the theory is about. **Status: open.** Three `--check` runs passed after that
+change and none of them is evidence either way.
+
+*Explanation 2: the pages are slow.* **Ruled out.** Hit sequentially, `data-explorer/asthma/`
+reaches its final state at **260ms**, `?id=2380` at **269ms**, the NR report page at **1050ms**,
+static pages at **~4ms** `[2026-08-23: 250ms sampling of button, link, table and image counts for
+25s per page]`. No wait would have fixed this, because nothing is slow.
+
+*Explanation 3: six pages starve one `hugo server`'s on-demand render.* This is
+[`smoke-pages.mjs:246`](../scripts/smoke-pages.mjs)'s explanation, which this repo's `CLAUDE.md`
+repeated — a code comment, not a measurement. Both were corrected on 2026-08-23 off the back of this
+task, so neither now states it. **Not supported.** Measured over 12 pages at
+concurrency 6 against concurrency 1, navigation (`goto` → `load`) slowed **1.34x** (8052ms → 10823ms)
+while JS settle time was **1.00x** (2564ms → 2552ms), and all 12 pages reached **identical** final
+DOM states `[2026-08-23]`. A 1.34x slower navigation cannot produce a capture taken before a page's
+first render state.
+
+*What is not in doubt.* The failing capture read `controls.button` **25**, and that page's *first*
+sampled state is already **63**. It was not caught between two states — it was caught before its
+first. Something can produce that; nothing measured so far does.
+
+**The fix is a guard, not a cure, and is justified by the observed failure rather than by a known
+mechanism.** `--check` re-captures any page differing from the baseline one at a time and reports
+separately those that then agree; `--baseline` runs two concurrent sweeps and sequentially
+re-captures anything they disagree on, so no baseline entry can come from a single anomalous
+capture. Worth the roughly doubled `--baseline` cost on an operation run this rarely, and it is the
+same answer `smoke-pages.mjs` reaches for — whose *response* is sound whether or not its stated
+cause is.
+
+**Open, for whoever picks this up:** reproduce the failure on demand. The one lead not yet tested is
+Explanation 1 against a genuinely cold fetch, since every measurement so far has run warm.
+
+**The one general lesson worth carrying out of this file:** waiting for the DOM to stop changing
+cannot distinguish a page that has **finished** rendering from one that has **not started**. Both
+are quiet. Any readiness check built on quiescence alone inherits that blindness — which is why the
+answer here is arbitration rather than a longer wait.
+
+**The second lesson is about the diagnosis, not the bug.** Two of the three explanations above were
+retired on measurements that felt conclusive and were not: one "disproof" ran against a warm cache
+and so could not have observed the thing it declared absent, and the other inherited its mechanism
+from a code comment nobody had tested. Both were written into the harness and this document as
+established before being checked.
+
+**What is proven, and what is not.** Stated separately because the gap matters:
+
+| Claim | Status |
+|---|---|
+| `--baseline` then `--check` passes on an unchanged tree | Proven — and it is a necessary condition only, which is why the rest of this table exists |
+| `--content` widens the gate | Proven. A perturbed `content.title` leaves `--check` at exit 0 and drives `--check --content` to exit 1 naming that page |
+| `--check` detects a real difference and names the field | Proven. A baseline corrupted to `controls.button: 999` produced exit 1 and the exact field |
+| The sequential re-capture path executes | Proven. The corrupted-baseline run printed `1 page(s) differ from the baseline — re-capturing sequentially` |
+| The **`cleared` branch** — a page differing under concurrency that agrees sequentially | **NOT proven.** The contention is intermittent and `--check --concurrency 24` over 41 pages did not reproduce it, so that branch has never executed. It is written from the failure that was observed, not from one that was reproduced on demand |
+| Determinism generally | Held on every run since arbitration landed, but this harness has now produced three separate false "N runs agreed" results. Treat agreement as weak evidence and the mechanism as the argument |
+
+**Environment guard added**, forced by Task 2's `meta.robots` finding: the baseline records the
+server's path prefix in `_meta.json`, and `--check` aborts before sweeping if the running server's
+prefix differs. Comparing a `dev_stage` baseline against a `prod_prod` run would otherwise report a
+robots change on every one of 925 pages and bury any real regression in it.
+
+**`--check` working directories** (`scripts/site-characterization-current/`, `scripts/.sc-check/`)
+are gitignored and deliberately kept at a short in-repo path, per Task 1's finding that
+`git diff --no-index` prints nothing on a long one.
+
+---
+
+## Task 4: Positive controls — prove the net catches things
+
+A characterization harness that has never failed is indistinguishable from one that reads nothing.
+Every probe gets one injected regression proving it can fire.
+
+**Files:**
+- Temporary edits, each reverted immediately after its check runs. Nothing here commits.
+
+**Interfaces:**
+- Consumes: `--check` from Task 3.
+- Produces: the control table below, which is the harness's own evidence that it works.
+
+**Steps:** for each row, make the edit, run `--check`, record whether it failed and which pages it
+named, then `git checkout --` the file and confirm `--check` is clean again.
+
+| # | Probe | Injected regression | Must fire on |
+|---|---|---|---|
+| 1 | `assets` | Comment out one `<script>` block in `themes/dohmh/layouts/partials/head.html` | every page that gated it in |
+| 2 | `headingLevels` / `headingJumps` | Change one `<h2>` to `<h4>` in a shared partial | every page rendering that partial |
+| 3 | `img.missingAlt` | Delete one `alt` attribute in a shared partial — **and mark the edit with an added attribute**, see findings | every page rendering it |
+| 4 | `landmarks` | Delete the `<nav>` wrapper in `partials/header.html` | every page |
+| 5 | `controls.noAccessibleName` | Remove **every** name source from a header button — `aria-label`, `sr-only` text and `title`, see findings | every page |
+| 6 | `meta` | Remove `<meta name="description">` from `head.html` | every page |
+| 7 | `jsonld.topLevelIsObject` | Wrap one JSON-LD block's output in an extra `jsonify` | that page kind |
+| 8 | `tables.withTh` | Change one `<th>` to `<td>` in a table-bearing template | that page kind |
+| 9 | `overflowX` | Add `width: 200vw` to one block in a shared SCSS partial | every page |
+| 10 | `iframes[].zeroSize` | Force `height: 0` on one embed | that page kind |
+| 11 | `links.internal` | Delete one footer link | every page |
+
+**Proof:** the completed table written into this document — regression injected, probe that fired,
+page count it named, and confirmation `--check` was clean again after revert. **A row where the
+probe did not fire is a broken probe, not a skipped control**, and it gets fixed or its field gets
+deleted before Task 6.
+
+**Gate:** Task 6 does not run until every row in this table has fired.
+
+### Task 4 findings
+
+**All eleven probes fired.** Every row drove `--check` to exit 1 and named its own field.
+
+Run against the 41-page sample baseline captured at `5e3391846b`, on one `hugo server
+--environment dev_stage --disableFastRender` that stayed up for the whole task (PID owning :8080
+confirmed once, per the two-builders rule). Driver:
+`scratchpad/task4-controls.py`, disposable — it makes the edit, waits for the change to appear in
+the **served** page, runs `--check`, then reverts with `git checkout --`.
+
+| # | Probe | Injection | Exit | Pages named | Field in the diff |
+|---|---|---|---|---|---|
+| 1 | `assets` | dompurify `<script>` removed from `partials/head.html` | 1 | 41 | `assets`, `assetsWithIntegrity` |
+| 2 | `headingLevels` / `headingJumps` | `partials/footer.html` `<h2 class="sr-only">` → `<h4>` | 1 | 41 | `headingLevels` (`2`→`4`), `headingJumps` |
+| 3 | `img.missingAlt` | logo `alt` removed in `partials/header.html` | 1 | 41 | `missingAlt` |
+| 4 | `landmarks.nav` | both `<nav class="nav">` → `<div>`, closing tags too | 1 | 41 | `nav` |
+| 5 | `controls.noAccessibleName` | menu toggle's `aria-label`, `sr-only` text **and** `title` removed | 1 | 41 | `noAccessibleName` |
+| 6 | `meta.description` | `partials/seo.html` meta renamed | 1 | 41 | `description` |
+| 7 | `jsonld.topLevelIsObject` | second `jsonify` on the breadcrumb graph | 1 | 38 | `topLevelIsObject`, `type`, `keys` |
+| 8 | `tables.withTh` | `data-explorer/data-index.html` `<th>` → `<td>` (6) | 1 | 1 | `withTh` |
+| 9 | `overflowX` | `body { min-width: 200vw }` in `assets/scss/theme.scss` | 1 | 40 | `overflowX` |
+| 10 | `iframes[].zeroSize` | `data-stories/cold.html` iframe `height: 750px` → `0px` | 1 | 1 | `zeroSize` |
+| 11 | `links.internal` | one footer language link deleted (both copies) | 1 | 41 | `internal`, `emptyHref` |
+
+**Clean again after revert:** `git status --porcelain` shows no template or SCSS file modified, and
+a final `--check` against the same baseline passed. That single end-state check is what proves every
+one of the eleven reverts was complete — a residue from any earlier row would still have been
+present at the end.
+
+**Row 5 needed three edits, not one.** The plan's "remove one `aria-label`" would not have fired:
+`accessibleName()` falls back through `aria-labelledby` → `aria-label` → `el.labels` → own text →
+`img[alt]` → `title`, and that button carries an `aria-label`, an `sr-only` span reading "Main Menu",
+and `title="Main Menu"`. Removing one of three leaves the control named and the probe correctly
+silent. The written control was wrong about the repo, not about the probe.
+
+**Row 3 first came back INCONCLUSIVE, and that is the served-page gate working.** The driver waited
+for `alt="NYC Logo"` to disappear from the served page; it never can, because that string is in
+three partials and `partials/footer.html`'s copy renders on every page. Without that gate the run
+would have recorded a dead `img.missingAlt` probe. Re-run against an injected `data-sc-control`
+attribute instead of a removed one, the row fired on all 41 pages. **State an injection's marker as
+something the edit *adds*, never as something it removes.**
+
+**Three rows produced diffs wider than their target field**, which is worth knowing before reading a
+real failure:
+
+- **Row 9** additionally changed `img.total` and `img.emptyAlt` on exactly 10 pages, all of them
+  map-bearing (`data-features/*` with Leaflet, and neighborhood reports). Leaflet tiles are `<img>`
+  with empty alt, so a body forced to `200vw` plausibly loads a different tile count. Not verified
+  beyond the page list — the row's purpose was met.
+- **Row 1** additionally changed `controls.button`, `controls.input`, `links.external`, `img.total`
+  and `tables.withTh` on exactly 2 pages: `data-explorer/asthma/` and `data-explorer/asthma/?id=2380`.
+  Console errors were flat across the run (373, against 374 on the clean check either side), so a
+  "page JS throws without DOMPurify" explanation is **not** supported by that signal. Those two pages
+  are also two of the three that needed sequential arbitration when this baseline was captured, so
+  this is the open instability and the injection landing on the same page kind, and this run cannot
+  separate them.
+- **Row 2** changed nothing outside `headingLevels` and `headingJumps`.
+
+**A fourth observation of the data-explorer instability.** Capturing the baseline for this task —
+`--baseline` on a freshly started server, so a cold Hugo render and a cold browser cache — put
+`data-explorer/asthma/`, `data-explorer/asthma/?id=2380` and `data-explorer/data-index/` through
+sequential arbitration, i.e. the two sweeps disagreed on exactly those three pages. Every `--check`
+afterwards, against the warm server, was clean. That is consistent with the untested cold-fetch
+theory in Task 3's findings and is not a test of it: nothing here varied the cache deliberately.
+What would settle it: capture twice against a server started fresh each time, with the browser cache
+disabled, and see whether the same three pages disagree.
+
+---
+
+## Task 5: Wire up npm scripts and document
+
+**Files:**
+- `package.json` — `characterize:site`, `characterize:site:baseline`, `characterize:site:check`.
+- `CLAUDE.md` — a short subsection under `## Commands`, beside the existing `### Smoke test`.
+- `readme-development.md` — one pointer, matching how `smoke` is referenced there.
+
+**Interfaces:** consumes Task 4's control table for the "what this actually catches" wording.
+
+**Steps:**
+
+1. Add the npm scripts. `npm run characterize:site -- --check` will **not** work under PowerShell,
+   which eats the `--` — the same trap `smoke:all` has its own npm script to avoid. So each mode
+   gets its own script rather than a forwarded flag, and the file header says why.
+2. Write the CLAUDE.md subsection: what it records, what `structure` vs `content` means, that
+   console errors are smoke's job and not baselined, and that the control table in this plan is
+   what establishes the probes fire.
+   *Expected:* the subsection states which signals are covered and does not claim coverage of any
+   probe whose Task 4 row did not fire.
+
+**Proof:** each npm script runs clean from both PowerShell and Bash.
+
+### Task 5 findings
+
+**Scripts added** to `package.json`:
+
+| Script | Runs |
+|---|---|
+| `characterize:site` | `--check --all` — the full sweep against the committed baseline |
+| `characterize:site:sample` | `--check` — the same check over the 41-page sample |
+| `characterize:site:baseline` | `--baseline --all` — re-capture what gets committed |
+
+`--content` has no script. It is the rarer mode and it takes a flag on the direct `node` call,
+which is what the file header documents.
+
+**Verified:** `npm run characterize:site:sample` exits 0 with `Characterization check PASSED` from
+**both** Bash and PowerShell `[2026-08-23, against the 41-page baseline at 5e3391846b]`. The two
+`--all` scripts are **not** yet verified — they need the 925-page baseline that Task 6 captures, and
+running them before it exists would prove nothing. Task 6 verifies them.
+
+**The `readme-development.md` pointer was dropped, and the plan's premise for it was false.**
+That step said to add one "matching how `smoke` is referenced there". `smoke` is referenced nowhere
+in it — `grep -rn "smoke\|npm run" readme-development.md README.md readme-content.md` returns zero
+hits across all three human-facing docs `[2026-08-23]`. None of them documents any harness, so there
+was no form to match, and adding characterization alone would have made it the one harness in a file
+that documents none. If the team wants the harnesses in `readme-development.md`, `smoke` goes in the
+same pass — that is a separate piece of work.
+
+**Section size, for the always-loaded file:** the new `### Site characterization` subsection is 380
+words, added to a `CLAUDE.md` that was 3,658 — a 10.4% growth, to 4,038 `[measured 2026-08-23, not
+estimated]`. It sits beside `### Smoke test`, which is 804 words, and is less than half its length.
+
+---
+
+## Task 6: Commit the baseline
+
+**Files:** `scripts/site-characterization-baseline/` — 925 records.
+
+**Steps:**
+
+1. Re-run `--baseline` on a clean tree at a known commit, so the baseline is a fact about that
+   commit and not about a tree with Task 4's edits half-reverted.
+   *Expected:* `git status --porcelain` shows only the baseline directory.
+2. Record the directory's file count and on-disk size in this document before committing — a
+   number measured, not estimated.
+3. Commit the harness and the baseline separately: the harness is reviewable, the baseline is 925
+   generated files and is not.
+
+**Proof:** `git rev-parse HEAD` recorded beside the baseline, and `--check` passing against that
+exact commit.
+
+### Task 6 findings
+
+**The first full-site `--check` failed, and it found a real defect in the harness.** All nine
+remaining differences were `img.total` and `img.emptyAlt` on neighborhood-report pages, deltas of
+3 and 4 in both directions.
+
+**Cause, measured in a browser, not reasoned from the source:** four loads of
+`neighborhood-reports/flushing_clearview/asthma_and_the_environment/` gave `img.total` 17, 17, 20, 20
+and `img.leaflet-tile` 9, 9, 12, 12 — while images *outside* the map container were 8 on all four
+`[verified 2026-08-23]`. How many tiles a Leaflet map has fetched is a fact about network timing,
+not about page structure, so the field was reading noise on every map-bearing page.
+
+**Fix:** `img` now excludes `.leaflet-tile` only. Marker icons and anything else inside the map
+container are still counted, because those *are* structure. This is the same signature as Task 4's
+row 9, where a `200vw` body changed `img.total`/`img.emptyAlt` on exactly 10 map-bearing pages —
+that was the same defect showing up as collateral in a control, and it was not recognised at the time.
+
+**The `cleared` branch executed, closing Task 3's one NOT-proven row.** Of 12 pages differing under
+concurrency, 3 matched on a sequential re-capture and were reported rather than failed
+(`greenwich_village_soho/climate_and_health/`, `greenwich_village_soho/`, `upper_east_side/`). The
+path is no longer written-but-never-run.
+
+**18 of 925 pages needed arbitration when the baseline was captured, and all 18 are runtime-fetching
+page kinds** — 17 neighborhood reports and `data-explorer/climate/`. No page kind that renders
+entirely at build time disagreed. That is the first evidence that narrows the open instability to a
+class rather than to three URLs, and it is consistent with the cold-fetch theory without testing it.
+
+**`zh/` was the one page that never reached DOM quiescence** in the pre-fix capture and was taken at
+the 30s cap. After the fix every one of the 925 pages quiesced, on both the capture and the check.
+
+**The committed baseline.** Captured at `6200892d85` against `/dev-stage/`, mode `all`:
+**926 files, 4,974,574 bytes (4.74 MiB)** `[measured 2026-08-23 by a directory walk, not estimated]`
+— 925 page records plus `_meta.json`.
+
+**The check that proves it:** `npm run characterize:site` against that exact baseline, at that exact
+commit, **exit 0 — 925/925 captured, every page quiesced, zero pages differing.** The sequential
+arbitration path was not needed at all, where the pre-fix run had put 12 pages through it.
+
+**The tile fix is what moved those numbers**, and the effect is large enough to state plainly:
+
+| | pre-fix (`7ba7957fe0`) | post-fix (`6200892d85`) |
+|---|---|---|
+| Pages arbitrated during `--baseline` | 18 | 2 |
+| Pages differing at `--check` | 12 (3 cleared, 9 failed) | 0 |
+| Pages hitting the quiescence cap | 1 (`zh/`) | 0 |
+| `--check` verdict | FAILED | PASSED |
+
+The 2 pages still arbitrated at capture were `data-explorer/climate/` and `data-explorer/waterways/`
+— both runtime-fetching, consistent with the class narrowing above. **The open instability is
+therefore smaller than it looked and is not closed:** most of what Task 3 and Task 4 were watching
+was this one dead field, but two data-explorer pages still disagreed between sweeps on a single
+capture, and the cold-fetch theory is still untested.
+
+**Both `--all` npm scripts are now verified**, which is what Task 5 deferred to here:
+`characterize:site:baseline` and `characterize:site` each exit as documented against the full site.
+
+---
+
+## Task 7: the cold-fetch experiment, and what it actually found
+
+Run to settle the open instability. **The theory was dead on its premise, and testing it found a
+harness defect that had been invisible since Task 1.**
+
+### The premise was wrong
+
+There is no warm cache to be cold against.
+
+- `hugo server` sends **no `Cache-Control` and no `ETag`** — only `Last-Modified`, stamped at server
+  start `[verified 2026-08-24: curl -I on both the HTML and a fingerprinted JS asset]`.
+- `browser.newPage()` creates a **new browser context** per page, so every capture is already
+  isolated.
+
+Every capture this harness has ever taken was a cold fetch. The warm/cold framing — including the
+measurement in Task 3's findings that "ran warm-cached and therefore does not settle it" — was about
+a distinction that does not exist here.
+
+### The mutation observer never attached
+
+`page.addInitScript` runs while `document.readyState` is `"loading"` and `document.documentElement`
+is `null`, so `.observe(document.documentElement, …)` threw
+`TypeError: parameter 1 is not of type 'Node'` on every page. The `window.__scMutations = 0`
+assignment on the preceding line survives, so the counter read a constant **0** for the life of every
+page, and `waitForQuiescence` compared 0 to 0 on every sample and returned after three of them.
+
+`[verified 2026-08-24 on data-explorer/climate/: the harness's construction read 0 mutation batches
+after 8s; a deferred attach on the same page counted 2,558. The failing construction reported
+docElAtInit false, readyState "loading", and the TypeError above.]`
+
+**The tell was in the output from the beginning.** "Every page reached DOM quiescence before the cap"
+on 925 of 925 is a constant-true field — the same dead-field signature Task 2 was built to catch, in
+the harness's own summary line rather than in a record.
+
+**What actually did the waiting** was the in-flight main-frame request check beside it, plus
+`waitUntil: "load"`. Not the mutation count.
+
+### Fix
+
+Attach when `documentElement` exists, retrying on `readystatechange`. And **`waitForQuiescence` now
+throws if the observer did not attach**, because a dead counter and a quiet page are otherwise
+indistinguishable, which is precisely how this survived three tasks and two "determinism" results.
+
+**Positive control on the guard:** with the retry deliberately removed, all 41 sample pages raised
+`the mutation observer never attached` and the run exited 1 `[2026-08-24]`.
+
+### What the fix changes: nothing measurable
+
+| Check | Result |
+|---|---|
+| 41-page sample, fixed observer vs committed baseline | 39 of 39 overlapping records **identical**, 0 changed |
+| `npm run characterize:site`, fixed observer, 925 pages | **exit 0** — 925/925, zero pages differing, no page hit the cap, 383s |
+
+So the committed baseline stays valid and needs no re-capture. The fix is worth having anyway: the
+instrument was dead, and the next page that genuinely needs more than a load event plus request-idle
+would have been captured half-built with the harness reporting it settled.
+
+### Still open
+
+The two `data-explorer` pages that disagreed between `--baseline`'s two sweeps were not re-tested by
+this run — `--check` is a single sweep. Whether a working observer closes that is unmeasured. Do not
+record it as fixed.
+
+---
+
+## Task 8: multiple environments
+
+**Why:** one intended use is a GitHub Action on a PR closing into `production`, which builds under
+`prod_prod`. A harness that can only check the environment it was baselined against cannot do that.
+
+**Precedent followed:** `scripts/nr-characterization-baseline/{production,staging}/` on
+`feature-MOD-Lab-NR-recode-refactor`, which files baselines by **EHDP-data branch** rather than by
+Hugo environment, and reads `data_branch` off the running page.
+
+### Three keys, not two
+
+This harness needs one axis the NR one does not. `head.html:46-53` branches on the environment
+*name*, so `prod_prod` alone emits `robots` as `"all"` — `"noindex"` for the `resources` section —
+where every other environment emits `"noindex, nofollow"` on every page. `prod_prod` carries
+production data, so it would otherwise share a directory with `dev_prod` and differ from it on all
+925 pages.
+
+| Key | Environments |
+|---|---|
+| `staging` | dev_stage, local_stage, prod_stage |
+| `production` | dev_prod, development, local_prod, production |
+| `prod_prod` | prod_prod |
+
+The key is read off the running site — `data_branch` and `hugoEnv` are top-level `let`s in
+`head.html`'s inline script, so `page.evaluate(() => data_branch)` reaches them and
+`window.data_branch` does not. `--check` selects its own baseline and names it before sweeping.
+
+**The prefix abort is gone.** Records are prefix-relative, so a `prod_stage` server on
+`/IndicatorPublic/` checks against a `dev_stage`-captured `staging` baseline. What replaces it is a
+missing-baseline error naming the environment, the data branch, and the keys that do exist.
+
+### Evidence that the split was necessary
+
+**All 925 shared pages differ between the `staging` and `prod_prod` baselines** `[2026-08-24,
+whole-record comparison]` — `meta` on all 925, and from the data branch, `controls` on 95,
+`headingLevels` on 86, `links` on 84, `landmarks` on 2. Without the split a `prod_prod` run against
+a `staging` baseline reports 925 regressions and buries anything real.
+
+### Results
+
+| | `staging` | `prod_prod` |
+|---|---|---|
+| Captured | 925/925 | 925/925 |
+| Arbitration at `--baseline` | **none** — both sweeps agreed | **none** — both sweeps agreed |
+| Pages at the quiescence cap | 0 | 0 |
+| `--check` | PASSED, zero differing | PASSED, zero differing |
+| Committed size | 926 files, 4.74 MiB | 926 files, 4.72 MiB |
+
+Both captured at `e960523842`. **Arbitration has now gone 18 → 2 → 0** across the tile fix and the
+observer fix — but that is one capture per environment, and this harness has produced false
+"N runs agreed" results before. Read it as consistent with both fixes, not as proof.
+
+### Two bugs found on the way
+
+**`characterize:site:sample` was broken by the move.** A 41-page capture against a 925-page baseline
+diffed the other 884 as deletions. Both sides are now projected through the **intersection**, and
+pages that cannot be compared are named rather than dropped — a check that silently ignores what it
+cannot compare is this harness's own failure mode. One page qualifies: `data-explorer/asthma/?id=2380`,
+because `--all` enumerates from `sitemap.xml`, which lists no query strings.
+
+**`zh/data-stories/geographies/` had been a 404 since Task 1.** It is in `SAMPLE_EXTRA` specifically
+so `lang` does not read constant — and the 404 page renders `lang="en"`, so it supplied no Simplified
+Chinese coverage at all while looking like it did. One of the 41 pages Task 4's controls ran against
+was an error page. Repointed to `zh/data-stories/redlining/` (200). **The run summary now reports any
+non-200**, which is what would have caught it on day one; positive control: an injected bogus path
+printed `404  this-page-does-not-exist-sc-control/` `[2026-08-24]`.
+
+### Running this in CI
+
+**Use `hugo server --environment prod_prod` in the Action.** An earlier draft of this section
+assumed a CI job must build and serve statically, and raised two objections to that. Both were
+wrong and are recorded here because the wrong version was written down as a finding:
+
+- *"Links in a static build would carry the production origin, so `links.internal` would count them
+  all as external."* **Unfounded.** Exactly one `.Permalink` appears in an `href` anywhere in
+  `themes/dohmh/layouts/` — the canonical `<link>` in `seo.html:3`, which is not an `<a>` and does
+  not feed `links`. The other 507 URL emissions are `relURL` / `RelPermalink`, i.e. root-relative
+  paths that are same-origin under any host `[2026-08-24]`.
+- *"`collectAllPaths()` may not enumerate from a statically served `sitemap.xml`."* Non-issue.
+  `hugo server` already serves that sitemap; it is where the 925 came from.
+
+There was never a reason `hugo server` could not run on Actions. **The actual constraint is that a
+baseline is only comparable to a run served the same way**, and both committed baselines were
+captured under `hugo server` — which is also what rewrites `baseURL` to localhost and is why
+`prod_prod` recorded `internal=89 / external=24` on `about/`, with `a816-dohbesp.nyc.gov` absent
+from `externalHosts`, identical to `staging` `[2026-08-24]`.
+
+**The one genuine difference between the two serving modes is Pagefind.** `hugo serve` never builds
+it, so `pagefind/pagefind.js` and `pagefind-ui.js` both answer **404** under the dev server
+`[verified 2026-08-24]`. The baseline still lists `pagefind/pagefind-ui.js` and
+`pagefind/pagefind-ui.css` in `assets`, because the request is recorded whatever its status — so the
+asset list is unaffected.
+
+**Superseded by Task 9.** The paragraph that stood here said the rest was untested and treated
+"serve with `hugo server`" and "check what actually ships" as a fork. It is neither untested nor a
+fork: `hugo server` renders to disk, so Pagefind can be built into the site the dev server is
+already serving. The guess that the search UI would land in `controls`, `landmarks` and `img` was
+one third right. Read Task 9 instead.
+
+---
+
+## Task 9: serve Pagefind, and set concurrency from the machine
+
+**Why:** two separate gaps, both found by questioning a premise Task 8 had written down as settled.
+
+### `hugo server` renders to disk, so Pagefind needs no static build
+
+Task 8 recorded Pagefind as the one difference between serving modes and left it there. The premise
+behind that — that testing Pagefind means building and serving statically — is false for this Hugo.
+
+`hugo server` has written and served `publishDir` from disk by default since v0.123; the installed
+binary's own help says so, and the running server prints `Serving pages from disk`
+`[verified 2026-08-24 on hugo v0.147.9-extended]`. So a second process can write into `docs/` and
+the running server serves what it finds. That is exactly what the deploy workflow already does —
+`npx -y pagefind --site docs`, `.github/workflows/hugo-build-to-prod-prod.yml:122`.
+
+Measured, in order:
+
+| Step | Result |
+|---|---|
+| `pagefind.js` / `pagefind-ui.js` / `pagefind-ui.css` before | 404 / 404 / 404 |
+| `npx -y pagefind --site docs` | 201 pages, 8221 words, 0.502s |
+| The same three after | 200 / 200 / 200 — 45,555 + 119,987 + 14,482 bytes |
+| Rebuild survival | touched `content/_index.md`; server rebuilt in 1164ms; both assets still 200 — despite `--cleanDestinationDir` in the server's own args |
+
+`docs` is gitignored (`.gitignore:19`) and holds no tracked files, so serving from disk leaves the
+tree clean.
+
+**`dev-server.mjs` now owns this.** It builds the index for any server it starts — never for one it
+reuses or is pointed at, because it does not own that server's `publishDir` — and reports
+`pagefind: true | false` on every path, including those. Reporting it on paths it cannot fix is the
+point: a reused server started with `--cleanDestinationDir` has no index, and that is a state a
+consumer must be told about rather than left to infer.
+
+### What the search UI is worth
+
+**`controls.button` +1 and `controls.input` +1, on every page, and nothing else.** Across both
+re-captured baselines: 1850 changed `button` lines and 1850 changed `input` lines, the delta `+1`
+on all 925 pages in each, zero unpaired lines, and **zero changed lines** outside those two fields
+and the five `_meta.json` lines `[2026-08-24, one sweep over the whole diff]`. Task 8 guessed
+`controls`, `landmarks` and `img`; `landmarks` and `img` do not move.
+
+Directly observed rather than inferred from the diff: with the index served, `.pagefind-ui` and
+`.pagefind-ui__search-input` each mount exactly once on `(home)`, `search-results/`,
+`data-explorer/asthma/` and `about/`, with **0** pagefind-related console errors. Positive control
+— the same probe with the index moved aside — reported 3 to 4 per page and 0 mounted nodes.
+
+Both re-captured baselines pass their own `--check --all` `[2026-08-24]`: `staging` in 130s
+including the Hugo and Pagefind builds, `prod_prod` in 112s against an already-running server, both
+exit 0 with zero pages differing.
+
+### `--check` refuses to compare across the two states
+
+A searched site against a search-less baseline moves two fields on all 925 pages, which buries
+anything real. `_meta.json` now records `pagefind`, and `--check` aborts with exit 2 naming the fix
+rather than spending a sweep producing noise. Baselines predating the field have it `undefined` and
+are not gated, since their state is unknown.
+
+Positive control `[2026-08-24]`: index removed → exit **2**, `Pagefind mismatch: this server does
+not serve the search index, the "staging" baseline was captured with it.` Index restored → exit
+**0**, PASSED.
+
+### Smoke's blanket Pagefind allowlist entry is now conditional
+
+`smoke-pages.mjs` allowlisted `/pagefind|favicon|Failed to load resource|net::ERR/i` site-wide,
+which was masking `PagefindUI is not defined` on every page — the precise failure its own CAUTION
+comment warns about. The `pagefind` term is now split out and applies only when the index is
+absent.
+
+Both branches have a control, because a pass on one side proves nothing `[2026-08-24, 33 pages]`:
+
+| Index | `when` predicate | Result |
+|---|---|---|
+| Served | live | PASSED, 0 pagefind errors |
+| Absent | live | PASSED — the entry applies |
+| Absent | forced to `false` | **FAILED, 33 of 33 pages**, `PagefindUI is not defined` |
+
+The third row is what makes the first two mean anything: it proves the errors are genuinely present
+and that the predicate is what suppresses them.
+
+### Concurrency is now derived from the machine
+
+`DEFAULT_CONCURRENCY` was a hard-coded 6. It is now
+`min(24, max(6, availableParallelism()))` — 24 on the workstation this was measured on, and not
+enough to overcommit a small Actions runner.
+
+Measured over 925 pages against one `prod_prod` server, three sweeps interleaved so a warm cache
+could not be read as a concurrency effect:
+
+| Order | Concurrency | Wall |
+|---|---|---|
+| 1st | 12 | 198s |
+| 2nd | **24** | **114s** |
+| 3rd | 12 | 199s |
+
+All three captures byte-identical across all 925 records, every page quiesced, console-error total
+1862 in all three. The two `12` runs bracket the `24` run and agree to 1s, which is what rules out
+warmth. A full `--check --all` including the Hugo build and the Pagefind build now takes **130s**.
+
+The bounds are the range measured, not a known optimum. Raising the ceiling means measuring above
+it first.
+
+**One page churned, and it is not diagnosed.** The verifying `--check --all` reported
+`data-explorer/drinking-water-quality/` differing under concurrency and matching on a sequential
+re-capture. The arbitration guard handled it and the check passed. Arbitration has now gone
+18 → 2 → 0 → 1 across the tile fix, the observer fix and this change — but a single occurrence does
+not establish that concurrency 24 caused it, and the three interleaved sweeps above were
+byte-identical at both 12 and 24. Recorded as observed, not explained.
+
+### Not done: smoke's own concurrency
+
+`smoke-pages.mjs` keeps `DEFAULT_CONCURRENCY = 6`. Its workload is different — it fails on console
+errors and already re-checks concurrent failures sequentially — and nothing here measured it. What
+would un-defer it: two `smoke:all` runs at different concurrencies, compared on both wall time and
+the failure set.
+
+---
+
+**Deferred, not forgotten:** folding `smoke`'s console check and this sweep into one page visit
+would halve the wall time of running both. Not done here because it would refactor the repo's only
+automated check. What would un-defer it: the two harnesses being run together routinely enough that
+the second sweep's cost is felt.
+
+---
+
+## Task 10: run the check in GitHub Actions
+
+`.github/workflows/site-characterization.yml`. Triggers on `pull_request` into `production` or
+`development`, plus `workflow_dispatch` with a `scope` (all / sample) and a `content` input.
+`permissions: contents: read`. Action `uses:` are pinned to commit SHAs.
+
+### It runs `prod_prod`, not `dev_stage`
+
+The point of the gate is the site that is about to be deployed, against the data it will be
+deployed against — so the workflow builds `--environment prod_prod` and the check selects the
+committed `prod_prod` baseline. `hugo server` keeps the config baseURL's path while replacing the
+host, so the site is served at `http://localhost:8080/IndicatorPublic/`
+`[verified 2026-08-24: 200 there, 404 on / and /dev-stage/]`. That server's build summary reports
+88 + 3 + 3 = 94 paginator pages, matching the 94 the sweep's own enumeration expects.
+
+**Analytics do not fire under the harness.** `prod_prod` is the only environment emitting the
+production GA property (`head.html:8`, `G-64BWDRHRGB`), and its only transport is `gtag.js` from
+`www.googletagmanager.com` — which is in `BLOCKED_HOSTS` and aborted at `page.route`
+(`site-characterization.mjs:630-633`), so the script never loads and the inline `gtag()` calls
+reach nothing but a local `dataLayer`.
+
+### Hugo version: measured equivalent, and now recorded
+
+The repo held two Hugos, and which one ran depended on invocation: `node_modules/.bin/hugo` under
+an `npm run`, the PATH binary otherwise. The deploy builds run **0.147.3** — `hugo-version: 0.147.3`
+and build `05417512bd` in the log of run `32648348501` (2026-08-23) — and the lockfile has since
+been moved to 0.147.3 to match, so the workflow uses `npx hugo` rather than
+`peaceiris/actions-hugo`.
+
+Whether that mattered was measured, three isolated builds under `--environment development`,
+interleaved 0.147.3 / 0.147.9 / 0.147.3 so a time-ordered drift could not pass for a version
+effect:
+
+| Pair | Files | Content differs |
+|---|---|---|
+| 0.147.3 vs 0.147.3 (control) | 2936 / 2936 | 3 |
+| 0.147.3 vs 0.147.9 | 2936 / 2936 | 3 |
+| 0.147.3 (2nd) vs 0.147.9 | 2936 / 2936 | 3 |
+
+The same three files in every pair — `index.html`, `es/index.html`, `zh/index.html` — and the only
+line that moves is `<meta name="build_datetime">`. So the version effect equals the control floor:
+**the two render this site identically**, and the "three home pages are build-nondeterministic"
+note has a name — a clock, not randomness. No record reads that field, so it cannot reach a
+baseline. Both committed baselines are valid whichever binary captured them.
+
+`_meta.json` now records `hugo: { version, owned }` anyway, so a future divergence is diagnosable.
+`owned` is load-bearing: the version is a fact about the *server* only when `ensureDevServer()`
+spawned it. For a `DE_BASE_URL` or reused server — which is the CI case — it describes the machine's
+PATH, and the site emits no generator meta, so nothing better is observable. Nothing gates on it.
+
+### What is not proven
+
+It has now run on a GitHub runner — four times, green and red; the ledger row names each run and
+its commit. `hugo-extended` is pinned exactly (`90328b504e`), so `npm ci` in CI resolves the same
+binary the deploy workflows install.
+
+Still not proven: the workflow on `production`. PR #1480 is an open draft, so `workflow_dispatch` —
+and with it the cheap 41-page `scope=sample` mode — remains unregistered, and nothing but this PR
+has ever triggered a run.
+
+**`timeout-minutes: 20` has less headroom than the sweep suggests.** The longest job was 17m52s
+(`32777189174`), of which 9m52s was `Checkout`, against 19-35s in the other three runs. Nothing
+diagnosed that outlier. The sweep in that run was normal (380s), so the margin was spent by a step
+this workflow does not control.
+
+### How to get a first run, before it is on `production`
+
+`workflow_dispatch` is unavailable until then: GitHub documents that "this event will only trigger a
+workflow run if the workflow file exists on the default branch"
+`[docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows, read
+2026-08-24]`. `gh workflow run` does take `-r/--ref`, so the CLI is not the limitation — the
+registration is.
+
+`pull_request` carries no such requirement; a workflow added on a PR branch runs for that PR. So
+the first execution comes from opening a PR from this branch into `production`, which the trigger
+already matches on its base branch.
+
+**Once it is on `production`, iteration gets cheap.** A `--ref` dispatch executes the workflow file
+from that ref rather than the default branch's copy, so `gh workflow run site-characterization.yml
+--ref feature-site-characterization -f scope=sample` runs the branch's version at 41 pages. Measured
+2026-08-24 by `.github/workflows/test-print-branch.yml`: the copy merged to `production`
+(`e6a1acc0d3`) prints the literal string `production`, the branch-only follow-up (`b1deba145d`,
+confirmed not an ancestor of `production`) prints `feature-add-workflow-version-test`, and the
+`--ref` dispatches printed the latter. That experiment does **not** speak to the registration
+requirement above — all four of its runs came after the merge that put the file on `production`.
+
+**Opening that PR does not deploy.** `hugo-build-to-prod-prod.yml` is `pull_request` with
+`types: [closed]` and an `if: ... github.event.pull_request.merged == true` guard on the job, so it
+fires on merge and not on open. A draft PR is therefore a free way to run this check, and each push
+to the branch re-runs it — `cancel-in-progress` retires the superseded run.
+
+The consequence for the first run: it will be the full 925-page `--all` sweep, because `scope` only
+exists on the dispatch trigger. The cheap 41-page mode is not reachable until the file is on
+`production`.
+
+**Decision taken 2026-08-24 — the order to run these in.** Push the branch, open a **draft** PR into
+`production`, and let the full sweep run there. Merge only once it is green, then iterate with
+`--ref` sample dispatches. Rejected: merging the workflow to `production` first to unlock the cheap
+mode. It reverses the value — merging is what deploys the live site, so it spends the irreversible
+step to save wall time on the reversible one, and it ships a workflow that has never executed.
+Also rejected: cherry-picking just the workflow file onto `production` in a small PR, which merges
+to `production` all the same and therefore deploys all the same.
+
+**Carried out 2026-08-24** — the draft PR is #1480 and the full sweep ran there. The merge half is
+still outstanding.
+
+**Both numbers are now set from the runs, 2026-08-24.** `timeout-minutes` is 20, 2.4x the 8m13s
+job measured by `32771116783`. The readiness poll is 300s bounded by the clock, not 240 attempts —
+a single `curl` can block for as long as the build takes, so counting attempts does not measure
+time. Measured on the runner: 62s to a serving build, 1.2s for Pagefind, 370s to sweep 925 pages at
+concurrency 6, the floor, since ubuntu-24.04 reports 4 logical processors. Locally the same 925
+pages take 114s at concurrency 24. The local reference points that stood here before — a 4.6s warm
+`prod_prod` server build and a 43s cold-`resourceDir` static build — were never the binding
+constraint.
+
+**Corrected 2026-08-24 — the line that stood here was wrong.** It read that Hugo "does not bind
+the port" before printing `Web Server is available`, stamped `[verified 2026-08-24]`. On the runner
+it binds first: the opening `curl` was refused at 0ms and the second blocked inside one iteration
+for 62s of wall clock before answering `[run 32771116783]`. Waiting on a 200 is still a sound gate
+— a poll cannot catch a half-built site, because the connection is held open until Hugo can answer
+— but for the opposite reason to the one recorded, and that is why the poll is bounded by the clock
+rather than by attempts.
+
+### Not done: making the gate independent of EHDP-data
+
+`structure` carries data-derived counts, and `prod_prod` pulls EHDP-data's `production` branch, so
+a PR touching no template can go red because the data moved. `data_branch` is only a ref segment in
+`{data_repo}{data_branch}/...`, and `raw.githubusercontent.com` serves a commit SHA there exactly as
+it serves a branch name `[verified 2026-08-24: 200 for both `staging` and `b2b63d0635`]` — so
+pinning it is available. A fixture branch is preferable to a SHA, because the baseline key is the
+ref string and a SHA makes the baseline directory name churn on every bump. Costs a new
+`config/<env>/config.toml` and a fresh 925-page baseline. What would un-defer it: the gate going red
+for data reasons often enough to be ignored.
+
+
+---
+
+## Reading a red run
+
+Written 2026-08-24 against run `32779430909`, the first red one. **This is the draft of a section
+that belongs in `readme-development.md`** — refine it here while Tasks 12-14 change what the output
+looks like, then port it there.
+
+### 1. The environment line, before the diff
+
+```
+Environment: prod_prod (EHDP-data production) at /IndicatorPublic/ — baseline "prod_prod" — pagefind served
+```
+
+Four facts, and if any is wrong nothing below it means anything: the Hugo environment, the
+EHDP-data branch it pulled, the path prefix served, and which committed baseline was selected.
+`pagefind served` carries as much weight as the rest — the search UI is worth `controls.button` +1
+and `controls.input` +1 on **every** page, so a site without the index compared against a baseline
+with it would report 925 false regressions. The check refuses that comparison rather than making
+it.
+
+Exit codes: **0** pass; **1** the compared sections differ; **2** the run could not be compared at
+all — a missing baseline, or a Pagefind state that disagrees with the baseline's.
+
+### 2. What the check can establish, and what it cannot
+
+The harness observes rendered output. Getting from an output delta to the edit that caused it is
+inference, and one input is structurally invisible to it: EHDP-data moves independently of this
+repo, so a PR that touched nothing can go red and the diff holds no trace of why.
+
+| Question | Answerable from one run? |
+|---|---|
+| What moved — field path, before, after, on which pages | Yes, exactly |
+| Which source file — the page set narrowed against the PR's own diff | A strong hint, not proof |
+| My change, or EHDP-data's? | **No.** Task 14 is the experiment that answers it |
+
+### 3. The page set is the sharpest single signal
+
+It costs nothing to read and it is usually decisive:
+
+- **All 925 pages** — something in `baseof.html`, `head.html`, the header/footer partials, or a
+  globally loaded asset. Nothing else reaches every page.
+- **One section** (`data-explorer/*`, `data-stories/*`) — that section's layout folder, or the
+  `.Section` gate in `head.html` that decides which libraries load there.
+- **One page** — that page's content bundle, or its `customJS`.
+- **A scatter with no shape** — suspect the data, and go to Task 14.
+
+### 4. Which fields move for which reason
+
+Task 8's cross-environment measurement separates the two axes, and is the only calibration we have
+for this: comparing the `staging` and `prod_prod` baselines, `meta` moved on all 925 pages from the
+environment-*name* axis, while `controls` (95 pages), `headingLevels` (86) and `links` (84) moved
+from the **data branch** `[2026-08-24]`.
+
+So `controls.*`, `links.*` and `headingLevels` moving on data-explorer or neighborhood-report pages
+is what a data change looks like. `assets`, `meta`, `landmarks`, `jsonld`, `img.missingAlt` and
+`overflowX` have no data path to them and point at this repo.
+
+This is calibration, not a rule — it was measured across two environments, not across two states of
+the same one.
+
+### 5. Three numbers that are printed and not gated
+
+```
+Fingerprinted asset references seen (strip control): 9909
+Console errors across the sweep (NOT baselined — that is smoke's job): 1869
+Every page reached DOM quiescence before the cap.
+```
+
+The first is a control on the comparison itself: fingerprinted filenames are stripped before
+diffing, and a **0** there would mean the stripping matched nothing and every asset comparison is
+meaningless. The second is harness health — console errors are `smoke`'s gate, deliberately not
+this one, so the number is context and never a failure. The third says no page was captured
+mid-render.
+
+### 6. The artifact
+
+A failed run uploads `site-characterization-<run_id>`, holding the full capture
+(`scripts/site-characterization-current/`), both projected comparison trees (`scripts/.sc-check/`)
+and `hugo-server.log`. Download it and run `git diff --no-index scripts/.sc-check/base
+scripts/.sc-check/head` locally — keep it at a short path, since `--no-index` prints nothing at all
+on a long one while still returning the right exit code.
+
+---
+
+## Task 11: skip docs-only PRs
+
+**Files:** `.github/workflows/site-characterization.yml` — the `on.pull_request` block.
+
+**Interfaces:** none. Nothing else reads or depends on this.
+
+DONE 2026-08-24 in `7bcdec1945`. `paths-ignore` with ten explicit entries:
+`documents/**`, `memories/**`, `.claude/**`, `.agents/**`, the four root `readme*` / `README.md` /
+`CLAUDE.md` files, and `LICENSE`.
+
+**Explicit entries rather than a pattern, deliberately.** A blanket `**.md` would also skip
+`content/**/*.md`, which is the site's own copy and the most ordinary reason for the check to have
+something to say. Everything on the list is unreachable from a rendered page: Hugo builds from
+`content/`, `themes/`, `assets/`, `data/`, `static/`, `config/` and `archetypes/`, and none of these
+are among them `[verified 2026-08-24: across themes/, content/, config/, data/, assets/ and
+static/, the only mentions of documents/ or memories/ are two HTML comments citing an audit doc]`.
+
+**It does nothing for PR #1480, and that is the filter working as documented.** A `pull_request`
+path filter is evaluated against the whole three-dot diff, not against the latest push — GitHub:
+"If any path names do not match patterns in `paths-ignore`, even if some path names match the
+patterns, the workflow will run"
+`[docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax, read 2026-08-24]`.
+This PR's diff carries 1856 files under `scripts/`, so nothing it will ever receive can be
+docs-only. The filter pays off on a *future* PR whose entire diff is documentation. To suppress a
+single run on a PR like this one, the tool is a commit-message keyword — `[skip ci]`, `[ci skip]`,
+`[no ci]`, `[skip actions]`, `[actions skip]`, or a `skip-checks: true` trailer — which applies to
+`push` and `pull_request`
+`[docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs, read 2026-08-24]`.
+
+**WARNING, recorded in the file as well:** do not make this a required status check while it has a
+path filter. GitHub: "Associated checks stay in a 'Pending' state and block merging" when a
+workflow is skipped by path filtering, and the same applies to a skip keyword
+`[docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks,
+read 2026-08-24]`. A docs-only PR would then be unmergeable. Nothing is required on `production`
+today `[gh api .../branches/production/protection, 2026-08-24: no required_status_checks key, and
+rulesets is empty]`.
+
+**Proof that ran:** the file parses to the intended shape — 2 triggers, `branches` + `paths-ignore`
+under `pull_request`, the same 2 branches, 10 ignore entries, the same 2 dispatch inputs, the same
+11 steps, `timeout-minutes: 20` `[js-yaml, 2026-08-24]`. **Never exercised on a runner**, and it
+cannot be until a PR arrives whose whole diff is docs.
+
+## Task 12: say what changed, not just that something did
+
+**Files:**
+
+- `scripts/site-characterization.mjs:1186-1210` — the check's reporting block. `project()` writes
+  both comparison trees, then `execFileSync("git", ["diff", …], { stdio: "inherit" })` at line 1199
+  streams raw hunks to the console with no summary in front of them.
+- `scripts/site-characterization.mjs:683` — `walk()`, already used to enumerate both trees.
+- `scripts/site-characterization.mjs:108, 116` — `CURRENT_DIR` and `DIFF_DIR`.
+
+**Interfaces:** consumes the two projected trees `${DIFF_DIR}/base` and `${DIFF_DIR}/head` that
+`project()` has already written. Produces a `summarize(baseDir, headDir)` returning
+`[{ page, field, before, after }]`, which Task 13 consumes.
+
+The failure this fixes is not the one the CI run showed. Three unrelated fields on three pages
+reads fine as raw hunks. The common case does not: a template edit moves one field on all 925
+pages, and the log becomes 925 near-identical hunks with no sentence saying it is one field.
+
+**Do not parse the diff text.** Both sides are JSON on disk, so compare the objects directly —
+a recursive walk yields exact dotted field paths and both values, where recovering a field path
+from `-            "missingAlt": 3,` means reconstructing nesting from indentation.
+
+1. Add `flatten(obj, prefix)` returning a `Map` of dotted path to a JSON-stringified leaf value.
+   Arrays flatten as whole values, not per index, so `assets` reports as one changed field rather
+   than as N insertions. Expected: `flatten` on any baseline record returns a Map whose size equals
+   the record's leaf count.
+2. Add `summarize(baseDir, headDir)` — walk the intersection of both trees, flatten each pair,
+   and collect every key whose stringified values differ. Expected: on two identical trees it
+   returns `[]`.
+3. Print before the raw diff, on failure only: the count of differing pages out of the total; a
+   table of field → page count → one example page with its before/after; and a per-section
+   breakdown. Expected on the Task 4 injection: three rows, one page each.
+4. Cap the raw diff at the first 40 hunks and print `… N more — see the artifact` beyond that.
+   Keep the full diff in `${DIFF_DIR}`, which the artifact already uploads. Expected: a 925-page
+   single-field regression prints one summary table and 40 hunks, not 925.
+
+**Proof:** re-apply the exact three-record perturbation from `cb334f5b37` and confirm the summary
+names those three fields on those three pages and nothing else. That control comes from a known-red
+case captured before this code existed, so it cannot be circular. Then revert and confirm a clean
+`--check` prints no summary at all. Two local `characterize:site` runs, ~130s each.
+
+### Task 12 findings — four places this plan was wrong
+
+Built as `scripts/site-characterization-summary.mjs`, imported by the check. The plan above is left
+as written; these are the corrections testing forced.
+
+**1. "Arrays flatten as whole values" is unreadable for two of the three array shapes.** Built three
+treatments instead, by element type. String arrays (`assets`) report set membership — `-js/main.js`
+— because order is not the finding. Number arrays (`headingLevels`, 57 entries of repeating small
+integers) report position, because a set delta says almost nothing there: one `3` becoming a `4`
+leaves `3` in the set, so the change vanishes. Object arrays (`jsonld`) report the count, which is
+what a reader can act on.
+
+**2. The data-vs-code hint was on the wrong axis.** The plan put it on the page set — a scatter
+means data. Task 8's measurement does not support that: a data change is 84-95 pages *concentrated*
+in `controls`, `links` and `headingLevels`, which is not a scatter. It now keys off which fields
+moved, against that same measurement, and the page set is reported separately as a template signal.
+
+**3. A shape claim needs a floor, found by running it.** The real 3-page injection was told it
+"looked like a data change". Below five differing pages the page set carries no template signal at
+all, so `shapeOf` now says "too few to infer a template from" rather than asserting one.
+
+**4. The raw-diff cap was specified and deliberately NOT built.** Capping means capturing
+`git diff`'s output instead of `stdio: "inherit"`, and a 925-page diff can exceed `execFileSync`'s
+1 MB default `maxBuffer` — which throws, lands in the same `catch` as a real difference, and reads
+as an ordinary failing check. That is a worse failure than a long log, and the artifact carries the
+full diff regardless. Un-defer it only with an explicit `maxBuffer` and a branch that tells the two
+throws apart.
+
+**Added, and not in the plan: a disagreement warning.** `git diff` and the summary are two
+independent comparisons of the same two trees. If git finds a difference and the summary finds
+none, the check now says so and names the summary as suspect — otherwise a blind spot in it would
+be invisible, since the raw diff still prints and the run still fails.
+
+## Task 13: put the summary on the run page, and name the candidate source files
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — the reporting block from Task 12.
+- `.github/workflows/site-characterization.yml` — the `Run the characterization check` step.
+
+**Interfaces:** consumes Task 12's `summarize()` output. Produces a markdown table appended to
+`$GITHUB_STEP_SUMMARY`, which GitHub renders on the run page.
+
+1. When `process.env.GITHUB_STEP_SUMMARY` is set, append the same table as markdown. Expected: a
+   red run is legible on the run page without opening the log. When it is unset, behaviour is
+   unchanged — that is what keeps local runs identical.
+2. Emit the page-set shape as one sentence, computed rather than left to the reader: all pages, one
+   section, or a scatter. Expected: the Task 4 injection reports a scatter of three.
+3. Intersect the changed page set against the PR's changed files
+   (`github.event.pull_request` provides them) and list the layouts and assets in the diff that
+   could plausibly render those pages. **Print these as candidates, never as a cause** — the
+   intersection cannot see EHDP-data, and Task 14 is what decides that.
+
+**Proof:** the injection control from Task 12, run once with `GITHUB_STEP_SUMMARY` pointed at a
+temp file, and the file's contents compared against the console table. A CI run is not needed to
+prove the markdown; it is needed to prove GitHub renders it, which is one push.
+
+### Task 13 findings — step 1 done, step 3 dropped
+
+**Step 1 is in and proven both ways**: on the red run the file is a valid 4-column markdown table;
+on the green run it is never created, which is the half that a positive-only check would miss.
+
+**Rendering confirmed 2026-08-25** `[run 32806127560]`. Both blocks appear on the run's landing
+page: the sweep's table, whose single row reads `structure.lang / 925 / 404.html / "en" -> "zz"`,
+and base-control's verdict paragraph below it. Two things worth knowing for the next person.
+
+Summaries render on the run's **landing page**, below the job graph — never inside the step logs,
+by design, since the content is written to a file rather than to stdout. Looking in the log view
+and finding nothing is not evidence that the write failed; it is where the write is guaranteed not
+to appear. That cost a round trip here.
+
+The table **clips on a narrow viewport**: `Change` is the fourth of four columns and is pushed
+off-screen on a phone, which is the least useful ordering, since `Example page` is the column a
+reader needs least. Worth swapping if the summary is read on anything but a desktop.
+
+**Step 2 is in**, as `shapeOf()`, with the floor described under Task 12.
+
+**Step 3 — intersecting the changed page set against the PR's changed files — was dropped, not
+deferred.** It would have printed candidate source files from a set-overlap that nothing measured,
+next to a field-based signal that rests on Task 8's actual numbers. Two hints of unequal quality in
+the same block invite reading the weaker one. What replaced it is the `Fields:` line, which says
+whether every changed field is one EHDP-data can move on its own — and when it is, points at Task
+14 rather than guessing.
+
+## Task 14: base-branch control run — my change, or EHDP-data's?
+
+**Files:** `.github/workflows/site-characterization.yml` — the `base-control` job.
+
+**Interfaces:** consumes nothing from Tasks 12-13, though it reads better beside Task 12's field
+tables. Produces one verdict paragraph in `$GITHUB_STEP_SUMMARY`, and a second artifact when the
+base is also red.
+
+The disconfirming test for the one question no formatting can answer. It runs only on failure,
+`needs: characterize` with `if: failure()`, in its own job with its own `timeout-minutes` so it
+does not inherit the sweep's margin — which came within ~2 minutes of expiring once, on a run where
+`Checkout` alone took 9m52s `[run 32777189174]`.
+
+### Decision 2026-08-24: the control, not a pinned data branch
+
+*Not done: making the gate independent of EHDP-data* proposed pinning `data_branch` to a fixture
+ref, and this plan called the control possibly redundant against it. **That is now closed in favour
+of the control, and for a better reason than redundancy: a fixture ref gives false NEGATIVES.**
+EHDP-data changes constantly and sometimes lands in concert with a PR here — which is exactly the
+case a pinned ref would test against stale data and pass. A gate that goes quietly green on the
+real thing is worse than one that occasionally goes red for a reason you have to read.
+
+### Only the site source comes from the base
+
+The obvious shape — check the base out wholesale and run its own check — was rejected on two
+counts.
+
+It does not run. `production` carries neither `scripts/site-characterization.mjs` nor a baseline
+directory `[verified 2026-08-24: git ls-tree production, both ABSENT]`, so on PR #1480 that job
+would die on a missing file rather than report a finding, and would ship unexercised — the exact
+failure Task 10 exists to warn about.
+
+It is also the weaker experiment. A PR that edits the harness or re-captures the baseline would
+move three variables at once, where the question is only about the site source. So the root
+checkout stays at this PR's head, and only `base/` comes from the base branch: same harness, same
+baseline, same EHDP-data minutes apart, one variable.
+
+### base.sha is the base branch TIP, not the merge base
+
+`[verified 2026-08-24: on PR #1480 baseRefOid is d862072bea, which is production's tip, where
+git merge-base production HEAD is d8c45abebe — they differ by everything that landed on production
+since this branch was cut]`. The tip is the right control anyway: it is what the PR merges into and
+what is deployed. It also needs no history, where a real merge base would need `fetch-depth: 0` on
+a repo whose depth-1 checkout has already taken 9m52s once. This plan previously said "merge base"
+throughout, which was imprecise.
+
+### The steps are not shared with the sweep
+
+They looked identical when this was planned. They are not: two checkouts, two `npm ci`, a server
+built in a subdirectory, a verdict instead of a gate. A local reusable workflow would have been the
+way to share them if they were — those resolve from the caller's commit, not the default branch
+`[docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows, read 2026-08-24]`, which a
+local composite action would not, since `./.github/actions/…` would resolve against the base
+checkout that does not have it.
+
+### Task 14 findings — the Task 4 injection is the WRONG control here
+
+**A baseline perturbation cannot test the green arm, and this is not obvious.** Tasks 4 and 12 both
+prove things by perturbing records under `scripts/site-characterization-baseline/`. That injection
+is useless for this job: the baseline is the *shared* input, so a perturbed one makes the sweep red
+AND the control red, and the verdict reads "probably not yours" when the truth is "you perturbed
+the baseline". It does not discriminate, because it moves the one thing both runs hold in common.
+
+The two arms need two different injections:
+
+| Arm | Inject into | Sweep | Control | Verdict it must print |
+|---|---|---|---|---|
+| green | the SITE SOURCE at head — a template edit that moves a field | RED | GREEN | "this PR's changes are" |
+| red | the BASELINE at head | RED | RED | "probably not yours" |
+
+The red arm's verdict is honest rather than false: a wrong baseline and moved data are
+indistinguishable from here, and both mean the PR's code is not the cause.
+
+**Proof that has run:** the whole file parses to two jobs, 11 + 14 steps, with the sweep job
+unchanged `[js-yaml, 2026-08-24]`. Every `run:` block was extracted and is `bash -n` clean. Both
+verdict arms were executed locally against a real base SHA with `GITHUB_STEP_SUMMARY` pointed at a
+file, and both render correct markdown — which matters because a single CI run can only ever
+exercise one of them.
+
+**Proof still owed, and it needs a runner:** the job has never executed. `if: failure()` means it
+fires only on a red sweep, and there has been no red sweep since it existed. Two deliberate reds
+per the table above will close it, and the first of them also closes Task 13's open question of
+whether GitHub renders the step summary at all.
+
+### The first attempt, 2026-08-25 — it timed out, and found a real defect instead
+
+The green-arm injection went in as specified: `<html lang>` hardcoded in both `baseof.html` and
+`list.html` (two files, because `<html lang>` is set in two places and changing one leaves
+list-rendered pages at their real language). It moved `structure.lang` on all 925 pages, which is
+what it was meant to do. **Not one of the four predictions was confirmed, because the run never
+reported.**
+
+`[run 32802721473, 2026-08-25]`: the sweep finished normally at 6m15s, printed
+`925 page(s) differ from the baseline — re-capturing sequentially before reporting`, and spent the
+next 12 minutes in an un-concurrent re-capture before `timeout-minutes: 20` cancelled it at 20m15s.
+
+**The harness was slowest exactly when it had the most to say.** `recapture()` re-captures every
+differing page one at a time; that guard is sized for the handful of pages a capture race produces,
+and a site-wide regression — the case the Task 12 summary exists for — turns it into a second,
+serial sweep.
+
+Three consequences, each worse than the timeout:
+
+- **The base-branch control was SKIPPED, not run.** `if: failure()` is false for a *cancelled* job.
+  This plan reasoned about that case when Task 14 was written and called it correct; it is not. A
+  timeout disables the diagnostic precisely when a run has died.
+- **The artifact was skipped too**, on the same condition, so nothing was left to inspect.
+- **Tasks 13 and 14 both stayed open.** The step summary never wrote, and the control never ran.
+
+Task 15 is the fix. Retrying the injection before it lands would time out the same way.
+
+### The second attempt, 2026-08-25 — the green arm, confirmed
+
+Same two-line injection, run after the cap landed `[run 32806127560]`. Every prediction held:
+
+| | First attempt | Second |
+|---|---|---|
+| sweep job | cancelled at 20m15s | failure at **8m33s** |
+| re-capture | 12 min, still running | **skipped** — the cap fired at 925 |
+| artifact | skipped | **uploaded**, 4s |
+| `base-control` | **skipped** | **ran, 8m53s, GREEN** |
+
+The summary printed one row rather than 925 hunks, and its shape line read `EVERY page (925). Look
+at baseof.html, head.html, the header or footer partials …` — checkably correct, since
+`baseof.html:2` and `list.html:2` are where the edit was. The verdict rendered as
+"The base branch is GREEN … EHDP-data is not the explanation; this PR's changes are."
+
+**The green arm is the one that proves the discrimination works**: the base branch does not carry
+the injection, so a control that could not tell the two apart would have gone red here. It did not.
+
+**The red arm was still owed at that point** — a baseline perturbation, where both runs go red and
+the verdict must read "probably not yours". Injection reverted in `986b4d969c` and `e9e4234a5a`.
+It ran on 2026-08-25; the two sections below are its predictions and its result.
+
+### The red arm, 2026-08-25 — predictions, written before the run
+
+The injection is `cb334f5b37`'s three baseline records replayed at HEAD, and all three lines are
+byte-identical to what that commit perturbed `[verified 2026-08-25: prod_prod/_home.json:72
+"missingAlt": 0, data-explorer/asthma/index.json:152 "overflowX": false,
+data-stories/adult-lead/index.json:9 "js/main.js" present]`. Reusing it means the sweep's own
+behaviour carries no new information — run `32779430909` already drove it red on a runner — and
+everything unproven is in the second job.
+
+**Why this needs a runner at all.** The verdict's RED text was already executed locally against a
+real base SHA. What is left is GitHub Actions mechanics: whether `continue-on-error` leaves
+`steps.control.outcome` at `failure` while the job reports success, whether `if: failure()` fires
+for a *failed* rather than cancelled sweep, and what the base artifact's upload step actually
+puts in the artifact. Nothing below a runner answers any of the three.
+
+1. `characterize` goes RED in 8-9 minutes, naming exactly three pages and three fields:
+   `_home` `img.missingAlt` 3 -> 0, `data-explorer/asthma` `overflowX` true -> false,
+   `data-stories/adult-lead` `assets` gaining `js/main.js`. Arbitration runs — 3 is under the
+   25-page cap — and no cap message prints.
+2. `base-control` RUNS rather than skips. The first attempt's timeout is what made this
+   conditional worth stating: `if: failure()` is false for a cancelled job and true for a failed
+   one.
+3. The control step exits 1, and the job still reports **success**, because `continue-on-error:
+   true`. `steps.control.outcome` is `failure`.
+4. The verdict renders its **`else`** branch on the run's landing page — "**The base branch is RED
+   too.** `production` already fails against today's EHDP-data, so this is probably not yours."
+   That branch has never rendered on a runner.
+5. The base artifact uploads as `site-characterization-base-<run_id>` carrying all three of its
+   paths: `scripts/site-characterization-current/`, `scripts/.sc-check/` — which only
+   `include-hidden-files: true` reaches — and `hugo-server-base.log`. The step has never run, and
+   the sweep's own equivalent was dropping half its payload the first time it did `[run
+   32777189174]`.
+6. The control names the **same** three pages and fields as the sweep, in the same directions.
+   This is the only prediction with content rather than mechanics, and it is what makes the
+   verdict's advice — "a field that moved in BOTH runs is the data" — actionable. It follows from
+   base and head sharing their site source: `git diff --name-only d862072bea...HEAD` over
+   `content/ themes/ assets/ data/ static/ config/ archetypes/` returns nothing, and the only
+   files it returns at all are `package.json` and `package-lock.json` `[2026-08-25]`.
+
+**What would make the run uninformative:** a base control red for some reason other than the
+perturbation. Run `32806127560`'s control was GREEN against the unperturbed baseline on the same
+base SHA, so a red control here that names fields *other* than the injected three is that case.
+The mechanics — 3, 4 and 5 — would still be exercised by any red control; prediction 6 and the
+reading of the verdict are what a confounded run loses.
+
+### The red arm, run `32905347134` — five of six predictions exact, and one small hole
+
+`[2026-08-25 at d2704a3332]`. Sweep RED at **7m38s**, base control RAN at **9m48s** and reported
+**success** as a job while its check step exited 1.
+
+| Prediction | Result |
+|---|---|
+| 1. sweep red, 3 pages / 3 fields, arbitration runs, no cap message | **exact** — `structure.assets` `data-stories/adult-lead/ — +js/main.js`, `structure.img.missingAlt` `(home) — 3 -> 0`, `structure.overflowX` `data-explorer/asthma/ — true -> false`; `3 page(s) differ … re-capturing sequentially`; 925/925 captured, every page quiesced. 7m38s against the 8-9 predicted |
+| 2. `base-control` runs rather than skips | **confirmed** — started 3s after the sweep failed |
+| 3. control exits 1, job still succeeds, `outcome` is `failure` | **confirmed twice over** — the annotation `Process completed with exit code 1 … .github#92`, and the Verdict step's own env block printing `OUTCOME: failure` |
+| 4. the verdict's `else` branch | **executed** — `if [ "failure" = "success" ]` is false. See the caveat below on rendering |
+| 5. base artifact carries all three paths | **all three present**, one file short of the predicted count — see below |
+| 6. control names the same 3 pages and fields, same directions | **exact** — byte-for-byte the same three table rows, same 925/925, same `Shape: 3 of 925 pages — too few to infer a template from` |
+
+**Prediction 6 is the one that carries the finding.** The green arm proved a control that could not
+discriminate would have gone red; this arm proves the converse — the same harness and baseline,
+against a site whose source is byte-identical, reproduces the sweep's three rows exactly. So the
+control varies with where the injection lands and not with the sweep's verdict, which is the only
+property that makes it a control at all.
+
+**The artifact, downloaded and inventoried rather than counted off the log** — `2776 files` in the
+upload step, 3,275,920 bytes, 4s: `scripts/site-characterization-current/` **925**,
+`scripts/.sc-check/base/` **925**, `scripts/.sc-check/head/` **925**, `hugo-server-base.log` 1,168
+bytes. Both projected trees are there, which is what `include-hidden-files: true` buys and what the
+sweep's equivalent was silently dropping at `[run 32777189174]`.
+
+**A `--check` capture carries no provenance, and this is where that shows.** The prediction said
+926 files under `site-characterization-current/` on the strength of the baseline's own count. It
+holds 925: `_meta.json` is not written, because `writeMeta()` has exactly one call site and it is
+inside the `if (baseline)` branch `[scripts/site-characterization.mjs:1174, one occurrence in the
+file]`. So a downloaded artifact has 925 records and nothing saying which commit, environment, data
+branch, Hugo version or Pagefind state produced them — all of which the console log prints and the
+tree does not. That is fine while the log is beside you and thin two weeks later, which is the
+retention window the upload sets.
+
+**Fixed 2026-08-25, scoped to `--check`.** `writeMeta()` moved out of the `if (baseline)` branch
+behind an `if (!out)` guard, and three fields added to what it records: `arbitrated` (pages
+re-captured sequentially, whichever path put them there), `cleared` (the `--check` subset that then
+matched, so contention rather than change) and `capped` (the `--check` re-capture was skipped
+outright because more pages differed than `ARBITRATION_CAP`). `arbitrated` was already reaching the
+call site and being silently dropped — the signature never destructured it.
+
+Two things this deliberately does not do. **`--out` still writes no `_meta.json`**, because
+`baselineKeys()` accepts any directory under `BASELINE_ROOT` holding one, so an `--out` tree written
+there would mint a baseline without the second sweep `--baseline` arbitrates against. And **the
+committed baselines are not re-captured** to gain the three fields: nothing reads them — `--check`
+gates on `_meta.json`'s `pagefind` alone `[scripts/site-characterization.mjs:1014]` — and they
+appear on the next re-baseline.
+
+**Proof: five runs against one dev_stage server at `588b0c176e`, sample mode, 41 pages.**
+
+| Run | Injection | Expected | Result |
+|---|---|---|---|
+| A | none | exit 0, a `_meta.json` appears, and the check still passes with it there | exit 0, PASSED, 41/41; `gitHead 588b0c176e`, `baselineKey staging`, `mode sample`, `pages 41` |
+| B | `staging/_home.json` `overflowX` flipped | exit 1, and `arbitrated` NAMES the page | exit 1, `structure.overflowX (home) — true -> false`, `arbitrated: [""]` — the home page's own path — `cleared: []`, `capped: false` |
+| C | none, `--out C:/temp/…` | no `_meta.json` | 41 files written, no `_meta.json` |
+| D | none, `--baseline` from a temp cwd | still writes it, now with the three fields | exit 0, both sweeps agreed, `gitHead null` (the documented tell for a temp cwd), all three fields present |
+| E | 26 `staging` records perturbed | the cap trips, `capped` true, `arbitrated` still empty | exit 1, `26 page(s) differ … past the 25-page arbitration cap`, `capped: true`, `arbitrated: []` |
+
+**B and E are the runs that matter**, and they are there because all three new fields read
+`[]`/`[]`/`false` on a clean sweep — indistinguishable from a probe wired to nothing. B proves
+`arbitrated` fires; E proves `capped` fires and, in the same reading, that `arbitrated` correctly
+stays empty when nothing was re-captured.
+
+**`cleared` is recorded but unproven.** Forcing it needs a page that differs under concurrency and
+matches on a sequential re-capture — the undiagnosed race behind `recapture()`, which has never
+been reproduced on demand. Treat a non-empty `cleared` as informative and an empty one as saying
+nothing.
+
+`--check` and `--out` runs write into gitignored directories (`.gitignore:97`), so none of this
+leaves the tree dirty; `git status --porcelain` after all five runs showed only the harness edit.
+
+**The rendering, confirmed by eye** — the only way a rendering claim can be — **and it is better
+than this plan predicted.** Chris screenshotted the run page on 2026-08-25. The RED verdict renders
+under a **Base-branch control** heading, `production` and the base SHA in code spans, the bolded
+"The base branch is RED too." leading its paragraph.
+
+What was not predicted: the control job's summary carries **its own field table**, identical to the
+sweep's, because the harness writes to `$GITHUB_STEP_SUMMARY` on any red check (Task 12) and the
+control's check is red. So the run page shows two `3 of 925 pages differ` tables stacked, and the
+verdict's own instruction — "Compare the two field tables: a field that moved in BOTH runs is the
+data" — is a thing a reader can actually do without leaving the page. That was an accident of
+where Task 12's summary write lives, not a design, and it is the single most useful property the
+red arm has.
+
+One readability wrinkle, correct by design and worth knowing before it is reported as a bug: the
+sidebar shows a green tick beside "Was the base branch red too?" while that job's own summary
+begins "Characterization check FAILED". `continue-on-error` is why, and the verdict paragraph
+underneath is what reconciles them.
+
+**The revert needs no run of its own.** `git diff 90581f0b34 -- scripts/` is empty after
+`b2513b6904`, and `[run 32894749060 @ 90581f0b34]` was green on a runner — so the restored state is
+byte-identical to one already proved. Pushing it starts a run regardless, which is a free
+re-confirmation rather than the proof.
+
+---
+
+## Task 15: cap the arbitration, and keep the artifact when a job is cancelled
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — `ARBITRATION_CAP` beside the other configuration constants,
+  and the `if (check && !failed)` arbitration branch.
+- `.github/workflows/site-characterization.yml` — `id: check` on the sweep's check step, and the
+  artifact upload's condition.
+
+**Interfaces:** none. Nothing reads `ARBITRATION_CAP` outside the module.
+
+**The cap.** Above 25 differing pages, `--check` reports what it captured instead of re-capturing
+each page sequentially. `recapture()` guards against a per-page capture race, and a race does not
+reach hundreds of pages at once — a difference that wide is systematic, so arbitration is pure cost
+on a result that will not change.
+
+25 is above every arbitration count observed on this harness — 18 before the Leaflet-tile and
+quiescence fixes, 2 after them, 0 on the `prod_prod` capture, and 3 in the one failure that
+justifies `recapture()` existing at all — and far below anything systematic. A full-cap
+re-capture has never been run: at the >=0.78 s/page the timed-out run implies (720s for 925 pages,
+and it had not finished), 25 pages is on the order of 20-30s.
+
+Only `--check` is capped. `--baseline` arbitrates two sweeps of the *same* commit, where a wide
+disagreement means something is wrong that a re-capture will not settle either; it is rare, run by
+hand, and under no timeout.
+
+**The artifact condition.** `if: failure()` was wrong: a job cancelled by `timeout-minutes` skips a
+`failure()` step while still running an `always()` one `[run 32802721473, 2026-08-25: the timeout
+skipped the upload and ran "Stop the Hugo server" beside it]`, and a timed-out run is when the
+capture is most worth having. It is now `always() && steps.check.outcome != 'success'`, which also
+fails safe: if a cancelled step leaves `outcome` unset, the comparison is still not `'success'` and
+the upload runs. GitHub's own docs do not say whether `cancelled()` covers a `timeout-minutes`
+expiry `[docs.github.com/en/actions/reference/workflows-and-actions/expressions, read 2026-08-25:
+"Returns true if the workflow was canceled", with no mention of timeouts]`, which is why this gates
+on an observed step outcome rather than on that function.
+
+**Deliberately NOT changed: `base-control`'s own trigger.** Widening it to fire on a cancelled
+sweep would spend an 8-minute job every time someone cancels a run by hand. Fixing what caused the
+timeout is the better trade, and with the cap in place a 925-page regression reports in about
+7 minutes instead of timing out.
+
+**Proof that ran**, both sides of the threshold, 925 pages each, against the `staging` baseline:
+
+| Perturbed records | Cap message | Sequential re-capture | Exit | Shape line |
+|---|---|---|---|---|
+| 40 under `data-stories/` | yes, naming 40 and 25 | **none** | 1 | `confined to data-stories/ — 40 of 925` |
+| 3 under `data-stories/` | none | yes | 1 | `3 of 925 pages — too few to infer a template from` |
+
+The pairing is the proof. The above-cap run on its own shows the new branch fires; it says nothing
+about whether the old one survived, and a cap that fired at every size would disable the race guard
+everywhere while looking like a fix. The 40-page run also exercised `shapeOf`'s section branch
+against real records for the first time — it had only ever been tested on synthetic trees.
+
+ESLint clean on both scripts, and the workflow still parses to 2 jobs / 11 + 14 steps `[js-yaml]`.
+
+**Both Task 14 arms have since run on the cap** — green `[run 32806127560]`, red
+`[run 32905347134]`, the latter tripping neither cap message nor its guard at 3 differing pages.
+
+---
+
+## Task 16: record which EHDP-data commit a baseline describes
+
+**Files:**
+
+- `scripts/site-characterization.mjs` — `readEnvironment()`'s `page.evaluate` (L905-932),
+  `writeMeta()` (L800), the environment line (L1031), and the `--check` path that already reads the
+  baseline's `_meta.json` for the Pagefind gate.
+- No change to `scripts/site-characterization-summary.mjs`. The drift line belongs to the caller,
+  which holds both `_meta.json` objects; the summary module only sees the two projected trees.
+
+**Interfaces:** `readEnvironment()` returns `dataRepo` alongside `dataBranch` and `hugoEnv`; `writeMeta()`
+records a `dataCommit` field; `--check` reads `dataCommit` from the baseline meta and from the run.
+Nothing else consumes either.
+
+**The gap this closes.** `_meta.json` records the data *stream* and not its *state*:
+`"dataBranch": "production"` is a branch name, and both committed baselines carry it with no commit
+beside it `[scripts/site-characterization-baseline/{staging,prod_prod}/_meta.json, 2026-08-25]`. So
+when a check goes red, nothing in the artifact separates "this PR moved a template" from "the data
+moved underneath" — the question the `base-control` job spends eight minutes answering. A recorded
+SHA answers most instances of it from the run page.
+
+**Where the values come from.** `themes/dohmh/layouts/partials/head.html:184-186` declares
+`data_repo`, `data_branch` and `hugoEnv` as top-level `let`s in an inline script, and `readEnvironment()`
+already evaluates the page for the last two — read `data_repo` from the same place rather than
+parsing `config/`, so the record describes the site that was actually swept, including when
+`DE_BASE_URL` points at a server this checkout did not build. The value is
+`https://raw.githubusercontent.com/nychealth/EHDP-data/`
+`[config/_default/config.toml:18]`, so the API path is its last two non-empty segments.
+
+**Recorded, not gated** — the treatment `hugo` gets, and deliberately not the treatment `pagefind`
+gets. The tip moves daily (see the deferred decision below), so a gate would refuse almost every
+comparison made on a different day from the capture, which is every comparison.
+
+**Steps.**
+
+1. Return `data_repo` from `readEnvironment()`'s `page.evaluate`, subject to the same
+   `typeof x === "undefined"` guard as its siblings — these are inline-script `let`s, so they are
+   not properties of `window`. *Expected:* `env.dataRepo` is the raw-content URL; the environment
+   line is unchanged.
+2. Add `fetchDataCommit(repoUrl, branch)`: GET
+   `https://api.github.com/repos/<owner>/<repo>/commits/<branch>` with
+   `Accept: application/vnd.github+json` and `AbortSignal.timeout(5000)`, returning
+   `{ sha, date }`, or `null` on any non-200, parse failure, or timeout. *Expected:* the `sha` it
+   returns equals `gh api repos/nychealth/EHDP-data/commits/production --jq .sha`.
+3. Call it once per run, between `readEnvironment()` and the sweep, and add to the environment line:
+   `EHDP-data: production @ a011bab842 (2026-08-24)`, or `@ unknown` when the fetch failed.
+   *Expected:* printed by `--baseline` and `--check` alike.
+4. Record it in `writeMeta()` as `dataCommit` — `{ sha, date, fetchedAt }` or `null`. *Expected:* a
+   `--baseline` run writes it; the value agrees with `gh api`.
+5. On a red `--check` only, print one line comparing the baseline's `dataCommit` to the run's, with
+   the compare URL `https://github.com/nychealth/EHDP-data/compare/<baseSha>...<headSha>` when both
+   are present. *Expected:* absent from a green run and from any run where either side is `null`.
+
+**Proof to run.** The rung is a targeted run of the harness itself — this changes what gets
+recorded, not what any page renders, so nothing below a harness run is sufficient and nothing above
+it is warranted.
+
+| Check | Expected |
+|---|---|
+| `--baseline` from a temp cwd (`BASELINE_ROOT` is cwd-relative, so this leaves the committed tree alone) | `_meta.json` carries `dataCommit.sha` equal to what `gh api` reports |
+| The same run with the fetch made to fail — an unroutable host substituted for `data_repo` | `dataCommit: null`, exit code unchanged, environment line reads `@ unknown` |
+| `--check` against **the two committed baselines**, which have no `dataCommit` | passes; a missing field is not a mismatch |
+| `--check` with 3 records perturbed | the drift line prints both SHAs; the green run prints none |
+
+Row 3 is the one that can break the harness for everyone. `pagefind` is *gated* — a mismatch exits
+2 — and copying that shape here would refuse both committed baselines until someone re-captured
+them.
+
+Row 2 is a control, not a nicety: a field populated on every run and a field null on every run are
+indistinguishable from a dead probe by inspection, and only running both arms separates them.
+
+**Not in this task:** re-capturing the committed baselines to backfill the field. They stay valid
+under row 3, and the field appears the next time either is captured for its own reasons.
+
+### Task 16 findings — one proof row could not work as written, and the branch is not `production`
+
+**Row 2's injection was impossible.** It prescribed forcing the fetch to fail by substituting "an
+unroutable host" for `data_repo` — but step 2's own construction keeps only the URL's last two
+non-empty segments and discards the host, so the API call still goes to `api.github.com` and the
+substitution changes nothing. What ran instead: `fetchDataCommit` edited to `return null`
+unconditionally, one line, reverted after — which is the same shape Task 4 used, and which tests
+what the row was actually for (that a null reaches the environment line and changes nothing else).
+
+**The recorded branch is whatever the server is pointed at, and that is the point.** The spec's
+examples all read `production`; every run here was `dev_stage`, so the harness recorded EHDP-data's
+**staging** tip. The first comparison against `gh api …/commits/production` read as a mismatch and
+was checking the wrong branch — `gh api …/commits/staging` matches exactly.
+
+**Two deliberate departures from the spec, both flagged rather than folded in:**
+
+- **`GITHUB_TOKEN` is sent when set, and the workflow now sets it.** Unauthenticated
+  `api.github.com` is 60 requests an hour *per IP* and a GitHub-hosted runner's IP is shared with
+  every other job on it, so without a token the field would most often be null exactly where it is
+  worth having. **Measured, not recalled** `[2026-08-26, the same URL twice: `x-ratelimit-limit` 60
+  with no header and 5000 with one, identical sha from both]`. An earlier draft of this bullet
+  attached a `docs.github.com` citation to the 60 figure; **that page was never fetched** and the
+  citation was fabricated. The measurement replaces it.
+
+  **The first runner run did not exercise the token at all.** `permissions: contents: read` grants
+  the job a token; it does **not** put `GITHUB_TOKEN` in a step's environment. So `[run 32923334977
+  @ eae44299f1]` fetched unauthenticated, got a 200 anyway, and printed
+  `EHDP-data: production @ e4f9301123 (2026-08-25)` — green for the wrong reason, with the
+  rate-limit protection inert in the one place its own comment says it matters. Both check steps
+  now carry `GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}`, and the file still parses to 2 jobs /
+  11 + 14 steps.
+
+  **What a green run after this change proves is limited, and worth stating rather than
+  overclaiming twice.** An authenticated 200 and an unauthenticated 200 print the same line. A
+  *bad* token returns 401, which `fetchDataCommit` reports as `@ unknown` — observed by accident
+  when a shell variable was set without `export` and the child process received `Bearer undefined`.
+  So a real SHA after this change is consistent with the token being accepted; it is not proof the
+  token was used. Proving that would need the response's rate-limit header logged, which is noise
+  for a value nobody reads.
+- **The drift line also goes to `$GITHUB_STEP_SUMMARY`.** Step 5 says "print one line", but this
+  task's own opening says a recorded SHA "answers most instances of it from the run page" — and the
+  run page is the step summary, not the step log. The console line is unconditional; the markdown
+  half inherits the existing `&& rows.length` guard, so in the rare case where git finds a
+  difference and the field summary finds none, the drift line is in the log and not on the run
+  page. Documented rather than decoupled: that case is already flagged as a harness bug by the
+  WARNING beside it.
+
+`fetchDataCommit` and `githubSlug` are exported for the control below, the same way `CAPTURE` and
+`capturePage()` are exported for the probe controls.
+
+**Proof that ran.** Function-level first, because it needs no server and can test arms an
+end-to-end run cannot reach:
+
+| case | result |
+|---|---|
+| `githubSlug` on the real `data_repo` | `nychealth/EHDP-data` |
+| `githubSlug` on `"https://"` and on `null` | `null`, `null` |
+| `fetchDataCommit(real, "production")` | `sha e4f9301123…`, `date 2026-08-25T16:00:04Z` — **identical** to `gh api repos/nychealth/EHDP-data/commits/production` |
+| repo that does not exist / branch that does not exist / non-GitHub URL / null repo | `null` ×4 |
+
+Then the five end-to-end rows, sample mode against one `dev_stage` server, 41 pages each:
+
+| Row | Expected | Result |
+|---|---|---|
+| 1 `--baseline` from a temp cwd | `dataCommit.sha` equals what `gh api` reports | `b2b63d0635516187debcc95ad2347e97cf502993` / `2026-08-17T18:33:22Z`, byte-equal to `gh api …/commits/**staging**`; env line `EHDP-data: staging @ b2b63d0635 (2026-08-17)` |
+| 2 the fetch nulled (corrected injection) | `@ unknown`, exit code unchanged | `EHDP-data: staging @ unknown`, exit 0, PASSED |
+| 3 `--check` against the committed baselines | passes — a missing field is not a mismatch | both committed `_meta.json` hold **zero** `dataCommit` occurrences; exit 0, PASSED |
+| 4a red `--check`, both SHAs equal | the exonerating arm | `EHDP-data has NOT moved since the baseline (b2b63d0635) — the data is not the explanation.` |
+| 4b red `--check`, baseline SHA set to a real older staging commit | the drift arm, with a compare URL | `EHDP-data moved since the baseline: b3ea3a5261 -> b2b63d0635` plus the compare URL, in the console **and** rendered into `$GITHUB_STEP_SUMMARY`; the URL resolves — `gh api …/compare/…` reports `status=ahead ahead_by=6 commits=6` |
+
+Row 3 is the one that could have broken the harness for everyone, and it is the reason this field is
+recorded rather than gated. Rows 2 and 4a exist for the same reason rows B and E existed for
+`_meta.json`: a field that is null on every run and a probe wired to nothing look identical, and
+only running both arms separates them.
+
+**Not done, as the task says:** the committed baselines are not re-captured to backfill
+`dataCommit`. They stay valid under row 3, and the field appears the next time either is captured.
+
+### Deferred decision: an automatic run when the data moves
+
+Proposed as a trigger keyed on EHDP-data's `production` tip hash. **The hash cannot be the gate, and
+the reason is seasonal rather than constant.** The 16:00 UTC "Regular auto-commit" carries heat
+illness surveillance data, so it runs through heat season — summer give or take a month — and is
+close to silent the rest of the year. Distinct commit-days per window `[gh api
+repos/nychealth/EHDP-data/commits?sha=production, 2026-08-26]`:
+
+| Window | Days | Commit-days | Commits |
+|---|---|---|---|
+| 2025-11-01 → 2026-02-01 | 92 | **8** | 14 |
+| 2026-02-01 → 2026-05-01 | 88 | **4** | 12 |
+| 2026-05-01 → 2026-08-01 | 92 | **86** | 93 |
+| 2026-08-01 → 2026-08-26 | 25 | **24** | 28 |
+
+That is 122 commit-days across the 297 measured. The 2026-08-26 → 2026-11-01 span is not measured
+and September sits inside heat season, so the annual figure is above 122 — and nowhere near the
+**~360 an earlier draft of this plan asserted, which was wrong**: it took the 93-of-94 rate from a
+window that is entirely heat season and read it as a year-round rate. Corrected 2026-08-26.
+
+The seasonal shape is what makes a hash gate a bad idea rather than merely a busy one. It would sit
+quiet and plausible for two thirds of the year, then fire daily through exactly the months when the
+data is moving — which is when a characterization run is worth having, and when a gate refusing the
+comparison costs the most.
+
+The hash is also a poor proxy for the thing worth reacting to. One data commit landed between the
+`prod_prod` baseline's capture (2026-08-24T14:03Z) and run `32807666633` (2026-08-25T04:06Z), and
+that run was green over all 925 pages — so at least one daily auto-commit moved no characterized
+field. One case, not a rate.
+
+What remains genuinely open, and needs deciding before anything is built:
+
+- **Cadence.** Weekly is 52 runs a year, nightly 365, each about 8m30s of runner time.
+- **What a red scheduled run does.** A cron that only goes red becomes wallpaper. Refreshing an
+  issue is the cheap option; auto-opening a PR carrying the re-captured baseline is the useful one,
+  and it is an escalation — this workflow is `permissions: contents: read` today and would need
+  `contents: write` plus `pull-requests: write`.
+- **Two GitHub behaviors to check before writing the trigger**, both currently asserted from
+  recall and neither verified: that `schedule:` runs only from the default branch's copy of the
+  workflow, and that GitHub disables scheduled workflows after 60 days without repository activity.
+  The `workflow_dispatch` claim in `CLAUDE.md` § *Branching and deployment* got a docs quote before
+  it was relied on; these want the same.
+
+---
+
+## Task 17: re-baseline a deliberate site-wide change
+
+**Files:**
+
+- `scripts/site-characterization-rebaseline.mjs` — new; the whole task except the two lines below.
+- `scripts/dev-server.mjs`, `ensureDevServer()`'s `DE_BASE_URL` branch — a `DE_SERVER_OWNED` back
+  channel, so a caller that spawned the server itself is not reported as having merely found it.
+- `package.json` — one npm script, for the reason `smoke:all` has one.
+- `.gitignore` — `scripts/.sc-rebaseline/`, beside the existing `scripts/.sc-check/` entry.
+
+**Interfaces:** drives `site-characterization.mjs --baseline --all` as a child process, addressed
+through `DE_BASE_URL`. Consumes `summarize(baseDir, headDir, rels)` and `renderText(rows, total)`
+from `site-characterization-summary.mjs` unchanged — `renderText` already calls `shapeOf`, so the
+shape and data-sensitivity lines come with the table. Produces a report on stdout and at
+`scripts/.sc-rebaseline/report.md`. Nothing else reads either.
+
+**The gap this closes.** When the site changes on purpose — the neighborhood-reports rework is the
+case in hand, and 258 of the 926 committed records sit under `neighborhood-reports/` — `--check`
+goes red across hundreds of pages and stays red until both committed baselines are re-captured. By
+hand that has three failure modes, and only the first is obvious:
+
+1. `--baseline` opens with `rmSync(outDir)` in `main()`, so the before-side is destroyed before
+   anything can be compared against it. Running `--check` first is the manual workaround, and it
+   costs a third full sweep per key.
+2. It writes only the key for whichever environment the server happens to be, so the other
+   committed key silently keeps describing an older commit. Both currently read
+   `gitHead: a6d91e78ec1a796ae25bff439e4ec03d762d9414`, and nothing enforces that they agree.
+3. Nothing records what was claimed to be intended, so the review reduces to "the diff looked
+   plausible" and leaves no artifact saying what was approved.
+
+**Decision: orchestrate both environments in one run, sequentially, each server isolated.**
+Rejected: one environment per invocation with a `gitHead` cross-check at the end. That is safer by
+construction — it starts no server of its own — but it leaves failure mode 2 to the operator with
+a warning label attached, which is the thing this task exists to remove.
+
+### Findings before the code: the isolation strategy extends to servers
+
+`CLAUDE.md` verifies `HUGO_RESOURCEDIR` + `-d` for a **static build** beside a running server,
+twice. A `hugo server` with its publishDir redirected is a different claim, and it was unverified.
+Both forms were measured 2026-08-25 on this worktree from a clean start — no `hugo.exe`, and ports
+8080 / 8081 / 1313 / 8090 all free. The two experiment scripts were kept at `C:/temp/sc-iso/`.
+
+| | Solo: isolated dev_stage on :8090 | Concurrent: normal dev_stage :8080 + isolated prod_prod :8090 |
+|---|---|---|
+| Served | `/dev-stage/` after 35.6s | `/IndicatorPublic/`, built in 34041 ms |
+| Its own assets | 10 refs, all 200 | 10 refs, all 200 |
+| The other server | n/a | home page 61385 bytes before and after, ref list identical, all 200 |
+| `resources/_gen` | 174 files, 0 added / 0 removed | 174 files, 0 added / 0 removed |
+| `docs/` | 3169 files, 0 / 0 | 2936 files, 0 / 0 |
+| Controls | iso-resources 174 files, iso-docs 2936 | iso2-resources 174, iso2-docs 2936 |
+
+Manifests are path|size|mtime. The controls are what make the two zero rows mean anything: a server
+that built nothing would leave `resources/_gen` unchanged too, and 174 is exactly the count
+`resources/_gen` itself holds — the same work, in the new location. The documented poisoning
+symptom, fingerprinted assets 404ing under the other environment's prefix, was probed directly on
+both servers and is absent. Afterwards: no `hugo.exe` alive, both ports free, worktree clean.
+
+Two things the experiment settled for free. `hugo server` **does** accept `-d/--destination`
+(line 73 of its own `--help`), and the served prefix still comes from the environment's configured
+baseURL, so the script can probe for it rather than parse `config/`. And `hugo config` resolves
+`cachedir = C:\Users\Chris\AppData\Local\hugo_cache`, which is not under `resourceDir` — so
+`HUGO_RESOURCEDIR` does not move the `getresource` cache, and every builder shares it.
+
+**Unmeasured, and stated as mechanism rather than measurement:** that shared cache was not
+manifested before and after. The argument for it being benign is that entries are keyed by resource
+URL, the two environments pull different EHDP-data branches, and `caches.getresource.maxAge = -1`
+means no eviction race — so they address disjoint keys by construction. Closing it properly is one
+more concurrent run with the cache directory added to the manifest.
+
+**Port 8090 is off `dev-server.mjs`'s probe list** (8080 / 8081 / 1313) deliberately: on a probed
+port, any other harness invocation would discover and reuse this script's private server.
+
+### Steps
+
+1. **Preflight.** Refuse unless `scripts/site-characterization-baseline/` is git-clean, so the
+   before-side is restorable from git and the resulting diff is itself the proof. Restoring takes
+   `git checkout --` *and* `git clean -fd`: a re-baseline that adds pages writes records git has
+   never seen, and checkout cannot remove an untracked file `[2026-08-25]`.
+   Record `git rev-parse HEAD`. Discover committed keys by scanning for `_meta.json`; map key to
+   environment (`staging` to `dev_stage`, `production` to `dev_prod`, `prod_prod` to `prod_prod`).
+   *Expected:* on this tree, two keys — `staging` and `prod_prod`.
+2. **Per key, sequentially — never two servers of our own.** Copy the committed tree to
+   `scripts/.sc-rebaseline/before/<key>/`; spawn the vendored hugo with `HUGO_RESOURCEDIR` and `-d`
+   pointed at temp directories, on a private port; probe the port for its prefix; run
+   `npx -y pagefind --site <tmp>/<env>-docs`; run the harness with `DE_BASE_URL` and
+   `DE_SERVER_OWNED=1`; stop the server with `taskkill /pid N /T /F`, since we started it.
+   *Expected:* each key's new `_meta.json` reads `pagefind: true`, `mode: "all"`, `pages: 925`, and
+   `hugo.owned: true`.
+3. **Classify.** `summarize()` over the two trees, partition the rows by repeatable `--expect`
+   globs, then `renderText(unexplained, total)`. Run it on the **unexplained** rows only — over all
+   rows `shapeOf` would report `confined to neighborhood-reports/`, which is the thing the operator
+   already knew. Render `structure` and `content` as separate tables: `--check` gates on `structure`
+   alone, and mixing them makes this report disagree with CI's for reasons that are not findings.
+   *Expected:* with no `--expect`, every changed page is unexplained — that first report is the
+   review.
+4. **Keep the prediction honest.** Accept `--expect` on the first run, report how many expected
+   pages did **not** change so an over-prediction is visible, and write the glob list into
+   `report.md`. Nothing can force the globs to be written before the sweep; this makes what was
+   claimed an artifact instead of shell history. *Expected:* a glob matching no changed page is
+   named in the report rather than silently ignored.
+5. **Finish.** Assert every re-captured `_meta.json` carries the same `gitHead`. Print the `git add`
+   command. Never commit. Support `--report-only`, which re-runs step 3 alone against the kept
+   snapshot in about a second, so iterating on globs costs no sweep.
+
+**Proof to run.** The rung is a harness run: this changes what gets captured and how it is reported,
+not what any page renders, so nothing below a real run is sufficient.
+
+| Check | Expected |
+|---|---|
+| `--report-only` against an unchanged snapshot pair | zero rows, no tables, exit 0 |
+| A known perturbation replayed into the before-snapshot — the three records from `cb334f5b37`, the same control Task 12 used | exactly those 3 pages and 3 fields reported unexplained, `shapeOf` giving the below-floor message rather than asserting a template |
+| The same, with `--expect` covering one of the three | 2 unexplained, 1 counted as expected, the glob list present in `report.md` |
+| An `--expect` glob matching no changed page | named in the report as matching nothing |
+| A full two-key run on a clean tree | both `_meta.json` share one `gitHead`; `git status` shows only baseline records; `git checkout --` plus `git clean -fd` restores the tree exactly |
+
+Row 1 is the one that separates a working comparison from a dead one: a classifier that always
+returns nothing passes every other row's "no unexplained changes" half.
+
+**Cost.** Per key: a ~34s build (measured above), Pagefind, and two full sweeps, since `--baseline`
+arbitrates one sweep against another. At Task 9's 114s per 925-page sweep that is ~5 minutes a key
+and ~10-11 for both. Assembled from measured parts; not a measurement of this script.
+
+### Task 17 findings — built, proven, and one thing it cannot fix
+
+Built as `scripts/site-characterization-rebaseline.mjs`. The steps above stand as written; these
+are the corrections testing forced, and the one failure the end-to-end run surfaced that belongs to
+the harness rather than to this script.
+
+**1. The glob denominator and the glob matcher were reading two different page-name spaces.**
+`partition()`'s `covers()` tests `row.page`, which `summarize()` takes from the record's own `path`
+field — `data-explorer/asthma/`, trailing slash and all. The `claims` denominator was testing names
+derived from the *filename* instead, and `fileFor()` rewrites `data-explorer/asthma/` to
+`data-explorer/asthma/index.json`, which round-trips to `data-explorer/asthma` without the slash.
+The two sets could never intersect. Proof row 3 exposed it: one run reported `1 covered by
+--expect, 2 not` beside `data-explorer/** — matched NO changed page`, a self-contradiction on one
+screen. Fixed by reading `path` out of the records (`pagePaths()`).
+
+The tell worth keeping: **a green run could never have shown this.** With no glob supplied, or with
+a glob matching nothing, the denominator is absent or reads zero legitimately. It is observable
+only when a glob matches something *and* two independent measurements of that quantity are printed
+side by side — which is what row 3 does, and why it earns its place over row 2 despite being the
+easier case. Cost of the fix: `--report-only` now parses every record in both trees, ~3,700 files,
+and still completes in 1.0s. The denominator also moved 43 -> 44, which is the section index
+`data-explorer/` being counted for the first time rather than a regression.
+
+**2. `--expect ""` was dropped silently, and `""` is the home page.** The argument loop tested
+`argv[i + 1]` for truthiness, so the empty glob — the only string matching the home page, whose
+`path` *is* the empty string — was discarded along with its flag. Now tested for presence, and
+printed as `"" (the home page)` so the claims line does not read as a rendering fault.
+
+**3. `*` and `**` differ exactly as the help claims, demonstrated rather than asserted:** on the
+same tree `data-explorer/*` matches 1 page and `data-explorer/**` matches 44. The 1 is the section
+index, where `[^/]*` matches the empty string after the slash. Because record paths keep their
+trailing slash, a single star is almost never what you want for a section.
+
+### The first end-to-end attempt failed, and what it proved on the way
+
+Run 2026-08-25 at `b6dcd4155c`, `--expect "neighborhood-reports/**"`. The prod_prod key got as far
+as a complete sweep and then **13 neighborhood-report pages hit `page.goto: Timeout 30000ms
+exceeded`**, so the harness captured 912/925 and refused — correctly — to write a baseline from a
+partial sweep. The staging key never ran, so that attempt left the two-key path and the `gitHead`
+cross-check in step 5 unexercised. Both have since run green — see two sections below.
+
+Three things that run did establish.
+
+**The isolated server produces the right site, and this is much stronger evidence than the
+experiment's 10-asset check.** Of the 912 records it wrote, exactly 13 differed from the committed
+`prod_prod` baseline — the 13 that timed out, each now `structure: null`. The other 899 were
+byte-identical to a baseline captured 2026-08-24 from a *normal* server. That is only evidence
+because the site source did not move in between: `git diff --name-only a6d91e78ec..HEAD -- content
+themes assets data config static` is empty, and `package.json` is the sole site-adjacent file in
+the range.
+
+**`DE_SERVER_OWNED` works**, confirmed by absence: the environment line printed `Hugo: 0.147.3-...`
+with no "(this checkout's pinned binary — the server was not started by this process)" caveat, which
+is the string a `DE_BASE_URL` server would otherwise carry.
+
+**A failed capture used to corrupt the committed baseline, and nothing said so.** The harness
+deletes the baseline directory before sweeping and writes `_meta.json` only once every page has
+answered, so the aborted run left 912 rewritten records and **no `_meta.json`** — a state that reads
+as a huge uncommitted diff and that a later `--check` refuses outright for want of a baseline. The
+script now restores the key from its own snapshot on any capture failure and says so. Proved with a
+stub reproducing the harness's destructive prefix: `git status` on the baseline came back empty,
+926 files present, `_meta.json` restored, no `git checkout` needed, exit 2 through the top-level
+catch.
+
+### The 13 timeouts are not these pages: the load phase is dominated by external requests
+
+Loaded **sequentially** against a fresh isolated prod_prod server, with the harness's own
+navigation settings (`waitUntil: "load"`, 30000ms), all 13 returned HTTP 200 in **601-1062ms**
+`[2026-08-25]`. So they are not slow pages, and nothing about them is broken.
+
+Loaded 13-wide, all at once, they did **not** fail — so the sweep failure is not reproducible on
+demand. What that round did show is where the budget goes: the DOCUMENT took 311-403ms on every
+page, because it comes from localhost, while full `load` took 5,981-16,361ms. The sweep runs
+24-wide, roughly double.
+
+An A/B/A over one server then separated network from CPU, 13-wide each round, aborting every
+non-localhost request in the B round `[2026-08-25]`:
+
+| Round | load median | load max | doc max |
+|---|---|---|---|
+| A external allowed | 4,467ms | 4,658ms | 421ms |
+| B external BLOCKED | 1,112ms | 1,181ms | 367ms |
+| A external allowed | 5,545ms | 5,730ms | 433ms |
+
+**External requests are ~75-80% of the load phase.** A/B/A rather than A/B because the first round
+warms caches: the second A came back *higher* than the first, so this is not an order effect. The
+document column is flat across all three, so the Hugo server is not the variable.
+
+The other half is the variance. That same 13-wide allowed-round measured 6,050-16,361ms in one run
+and 4,281-4,658ms minutes later — a 3.5x shift in the max with nothing changed but the clock. A
+dominant term that unstable is what pushes a page past 30,000ms at 24-wide, and it is why "24 is
+too high" never fit on its own: the 2026-08-24 capture succeeded at the same concurrency on a
+different uplink.
+
+**The uplink at the time was a LinkNYC public WiFi terminal, per the operator.** That is the
+operator's account of the network rather than something measured here, and the measurements above
+do not distinguish a flaky local uplink from slow remote hosts — they establish only that the
+dominant, unstable term is external. Treat this as a diagnosed *mechanism* with an attributed but
+unmeasured cause.
+
+**What follows for the tool.** Lowering `--concurrency` reduces concurrent external requests and is
+now a reasoned mitigation rather than a shot in the dark, though it does not make the sweep robust
+to a bad uplink. Re-capturing a baseline on a stable connection is the real answer. Widening
+`BLOCKED_HOSTS` would cut the exposure further, but it changes what is captured — the same trade
+that removed the `img` field over Leaflet tiles — so it is a design decision, not a free win.
+
+One caveat on that probe: its control page was a URL that does not exist and returned 404, so it
+demonstrated that the probe reports non-200 rather than serving as a succeeded-page comparison. The
+13 timings do not depend on it.
+
+**`--concurrency N` is passed through to the harness** so the knob is reachable without editing
+anything. It is a workaround for something undiagnosed, not a fix, and the default is deliberately
+left as the harness's machine-derived value rather than lowered here.
+
+### The two-key run, green — and a failure that was not a slow uplink
+
+Run again 2026-08-25 at `e93bfcf1d5` on a different connection, no `--expect`, and it completed:
+**925/925 on both keys, both sweeps agreeing on every page with no arbitration on either, both
+`_meta.json` carrying one `gitHead`, 0 of 925 pages changed on each key, exit 0.** Step 5's
+cross-check has now run. Committed as `c7228357ac`, which is two `_meta.json` files and nothing else.
+
+**All 1,850 records came back byte-identical to baselines captured 2026-08-24 from normal servers.**
+That retires the 899-of-912 figure above and settles isolation at full breadth: an isolated `hugo
+server` with `-d` and `HUGO_RESOURCEDIR` redirected produces the same characterization, page for
+page, on both environments. The same caveat carries — it is evidence only because the site source
+did not move, and `git diff --name-only a6d91e78ec..HEAD -- content themes assets data config
+static` is still empty.
+
+**The attempt before it failed on a different mechanism than the timeouts diagnosed above.** Five
+pages died on `page.goto: net::ERR_NETWORK_CHANGED`, not on a 30s timeout, after prod_prod had
+completed 925/925. Windows' own `Microsoft-Windows-NetworkProfile/Operational` log splits the four
+sweep-windows exactly:
+
+| Sweep | `4004 Network State Change Fired` in window | Failures |
+|---|---|---|
+| attempt 1, prod_prod, ~15:00-15:06 | 0 | 0 |
+| attempt 1, staging, ~15:07-15:09:55 | **2** — 15:09:28 and 15:09:34 | 5 |
+| attempt 2, both keys, 15:12-15:28 | 0 | 0 |
+
+Both 15:09 events carry `Host Name Changed: true`; the adapter is an iPhone USB tether, connected at
+14:54 when the LinkNYC uplink dropped. A first pass at that log returned zero events and was wrong —
+it filtered from 18:50 *local* against UTC timestamps — so what makes the zeros real is the positive
+control: the same log with no time filter returns those two events as its most recent. Not a
+controlled experiment, since nothing here induced a network change; but three clean sweeps and one
+failure split perfectly on an independent signal.
+
+**The restore path fired for real**, where above it is recorded as proved with a stub: `git status`
+under `staging/` came back empty, 926 files present, `_meta.json` still the 2026-08-24 one, no
+`git checkout` needed.
+
+### Two defects only a real partial failure could show
+
+Both fixed in `1b33786d1b`, each error path exercised rather than reasoned about, since a green run
+reaches none of them.
+
+**1. `Nothing was re-baselined.` was false at the moment it printed.** prod_prod had completed and
+was sitting in the tree at a different `gitHead` than staging — failure mode 2 from the script's own
+header, produced by the code written to prevent it. `recapture()`'s message is now scoped to the key
+it restored, and the loop names the keys that already finished. Exercised by mapping `staging` to a
+nonexistent environment: prod_prod completed, and the failure named it.
+
+**2. The discard advice could not do what it said, and this is the half that bites in ordinary use.**
+Every site printed `git checkout -- <dir>` alone. A re-baseline that ADDS pages writes records git
+has never seen, and checkout cannot remove an untracked file — so the next run's preflight refuses on
+the leftovers and the operator loops on advice this script printed. Observed directly: after a
+capture left one untracked record, `git checkout --` reported the tree clean while `git status` still
+showed `??`, and re-running produced the refusal. All three sites now print `git clean -fd` beside
+it, and the two commands run verbatim leave the tree clean.
+
+The preflight also stopped offering "commit or discard" when the keys disagree about which commit
+they describe, and it caps the `git status` dump at 12 lines — a partial run leaves hundreds, and the
+advice was landing below them. Exercised on a 21-line dirty tree: 12 shown, `... and 9 more`, both
+commits named.
+
+**One thing left unfixed.** `classify()` takes its denominator from the *after* tree, so when the two
+sides hold different page sets the changed count can exceed the stated total: a sample-mode capture
+against a full snapshot printed `886 of 41 pages changed`. In ordinary use the sets differ by a
+handful rather than by hundreds, so the line reads oddly rather than misleadingly.
+
+### Two things deliberately not built
+
+**No `--check` pass before the re-capture.** That step existed in the hand procedure only because
+`--baseline` opens with `rmSync(outDir)` and destroys the before-side. With the snapshot taken
+first, both trees survive and `summarize()` compares them directly — and three sweeps per key
+becomes two. Two differences from what CI computes, both widenings: this compares `content` as well
+as `structure` (rendered as a separate, explicitly ungated block), and its "after" side is the
+better-arbitrated one, since `--baseline` arbitrates two full sweeps uncapped where `--check`
+re-captures at most 25 differing pages.
+
+**`shapeOf()` runs on the unexplained rows only, and never on content rows.** Over all rows it
+would report `confined to neighborhood-reports/`, which is what the operator typed into `--expect`.
+And its data-sensitivity verdict rests on Task 8's measurement of `structure.controls`, `.links`
+and `.headingLevels` — a structure-only calibration — so handing it content rows would produce a
+confident "no changed field has a data path to it" about fields the data branch moves routinely.
+Content is reported as per-field page counts and never shaped.

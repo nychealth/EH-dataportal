@@ -35,6 +35,7 @@
 	// It's a jQuery-custom event Bootstrap's own tab.js triggers, so it's bound
 	// through jQuery (already a hard dependency of data-toggle="tab" itself)
 	// rather than a native document listener, which isn't guaranteed to see it.
+
 	$(document).on("shown.bs.tab", '[data-toggle="tab"]', function () {
 		const targetSelector = this.getAttribute("href") || this.dataset.target;
 		const pane = targetSelector ? document.querySelector(targetSelector) : null;
