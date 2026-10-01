@@ -22,7 +22,7 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: Tasks 1–2 done; Tasks 3–6 not started.**
+**Status as of 2026-10-01: Tasks 1–3 done; Tasks 4–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -37,22 +37,22 @@ git merge-base feature-new-data-explorer production                         # wa
 |---|---|---|---|---|
 | 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
-| 3 | Comment-spacing convergence run | | **Not started** | |
+| 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | | **Not started** | |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next command** (Task 3 Steps 1–2, Bash, from the primary worktree). The script takes no flags;
-run bare it sweeps every target, and an optional first argument filters targets by substring
-(`scripts/js-comment-spacing.py`, the `sys.argv` check in its main block). It only edits the
-working tree, so `git checkout -- .` undoes a bad run:
+**Next command** (Task 4 Steps 1–3, Bash, from the primary worktree). Argv read 2026-10-01:
+`de-characterization.mjs` runs `--check` unless `--baseline` is present (the `mode` line in its
+main block), so a bare run is safe; `smoke-pages.mjs` bare is the curated list. Both resolve a
+server through `scripts/dev-server.mjs` — it reuses one on :8080/:8081/:1313, or starts
+`dev_stage` (staging data) and stops it afterwards:
 
 ```
 git rev-parse --abbrev-ref HEAD                       # must print feature-new-data-explorer
-git status --porcelain --untracked-files=no | wc -l   # must print 0
-python scripts/js-comment-spacing.py
-git diff -U0 | grep -E '^\+' | grep -v '^+++' | grep -c '[^+[:space:]]'   # must print 0
-git diff -U0 | grep -E '^-'  | grep -v '^---' | wc -l                     # must print 0
+npm run lint                                          # exit 0
+node scripts/de-characterization.mjs                  # zero diffs
+node scripts/smoke-pages.mjs                          # 44 pages, all clean
 ```
 
 ## Task 1 record
@@ -298,6 +298,12 @@ After the merge it newly reaches 17 JS files not on `production`: the 10 under
 the script's exclusion list needs no addition `[verified 2026-10-01: comm -23 of the two branches'
 assets/js + content .js listings]`. It also reaches every template `<script>` on this branch that
 production never had.
+
+**What ran instead (2026-10-01):** 16 JS files, all new-explorer, and 13 templates; zero in
+`data-explorer-old/`. The prediction above was written before Task 2 was corrected — the port
+made those 10 files production's already-swept text. It also missed the 9 new-explorer files that
+share a name with production's old ones (`app.js`, `data.js`, …): Category A took this branch's
+unswept side for them.
 
 - [ ] **Step 1:** Clean tree, then `python scripts/js-comment-spacing.py`.
 - [ ] **Step 2: The script's required checks, both must print 0:**
