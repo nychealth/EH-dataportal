@@ -22,7 +22,8 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: Tasks 1–3 done; Tasks 4–6 not started.**
+**Status as of 2026-10-01: Tasks 1–3 done; Task 4 Steps 1–6 done, Step 7's re-baseline BLOCKED
+on D5 and D6; Tasks 5–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -38,22 +39,22 @@ git merge-base feature-new-data-explorer production                         # wa
 | 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
-| 4 | Verification sweep | | **Not started** | |
+| 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`) | **Steps 1–6 DONE 2026-10-01; Step 7 re-baseline BLOCKED on D5, D6** | Per step in "Task 4 record" |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next command** (Task 4 Steps 1–3, Bash, from the primary worktree). Argv read 2026-10-01:
-`de-characterization.mjs` runs `--check` unless `--baseline` is present (the `mode` line in its
-main block), so a bare run is safe; `smoke-pages.mjs` bare is the curated list. Both resolve a
-server through `scripts/dev-server.mjs` — it reuses one on :8080/:8081/:1313, or starts
-`dev_stage` (staging data) and stops it afterwards:
+**Next action: Chris decides D5 and D6** (see Decisions). Each fix lands as its own commit; then
+re-run Step 7's check and compare against production's capture, which is the base the D5/D6
+expectations below are measured from:
 
 ```
-git rev-parse --abbrev-ref HEAD                       # must print feature-new-data-explorer
-npm run lint                                          # exit 0
-node scripts/de-characterization.mjs                  # zero diffs
-node scripts/smoke-pages.mjs                          # 44 pages, all clean
+node scripts/characterize-env.mjs prod_prod           # HEAD capture -> scripts/site-characterization-current
+# production's capture, if the worktree below is gone: git worktree add --detach <dir> production,
+# then node scripts/characterize-env.mjs prod_prod inside it (exit 0 at ed63fa7603)
 ```
+
+Only after that: read `scripts/site-characterization-rebaseline.mjs`'s argv handling, then
+re-baseline. It re-captures every committed baseline when run bare.
 
 ## Task 1 record
 
@@ -123,6 +124,58 @@ node scripts/smoke-pages.mjs                          # 44 pages, all clean
   same tag. The port reproduces it (built `/data-explorer-old/` carries 2 Arquero script tags). A
   production-side condition, out of scope for a port.
 
+## Task 4 record
+
+- **Step 1** `npm run lint` exit 0 at `7e73a5176f`.
+- **Step 2 FAILED against its baseline, and the merge is not the cause.** `node scripts/de-characterization.mjs`
+  → exit 1, `markCount` only: 2023 trend 214→222; 2380 trend 245→255, trendComparison 130→140,
+  links 17→43; 2414 unchanged. Base control: the pre-merge tip `0f62c097a6`, in a detached
+  worktree with its own harness, baseline and `node_modules`, gave the same four diffs, and its
+  three capture files are byte-identical to `HEAD`'s (`cmp`, all 3). Ignoring blank lines, the merge
+  changed no new-explorer file on these pages (`git diff --ignore-blank-lines 0f62c097a6 HEAD` over
+  the DE JS and templates → `data-index.html`, `indicator-catalog.html` only). The baseline dates
+  from `03692a2293` (2026-07-23) and is older than today's staging data; re-baselining it is D7.
+- **Step 3** `node scripts/smoke-pages.mjs` exit 0, "44 pages clean", Pagefind index served
+  (spawned `dev_stage` server).
+- **Step 4** `npm run docs-check` exit 0. The `CLAUDE.md` "Data explorer" section was stale beyond
+  the one bullet recorded in Task 1, on both branches before the merge: "ten files" and the old
+  load order. Rewritten from `data-explorer/single.html`'s `<script>` tag order (15 files) plus
+  `de-tab-content.js` via its partial. docs-check failed on the first draft's non-root-relative
+  paths, which doubles as its positive control.
+- **Step 5** isolated `prod_prod` build at `5fef286ec9`: exit 0, 0 ERROR, 1249 EN pages, repo status
+  unchanged.
+- **Step 6** (Playwright, fresh context per page, `dev_stage` server via `ensureDevServer`):
+  new explorer on three indicators × views is covered by Step 2's capture identity, not re-done.
+  Old indicator page `data-explorer-old/asthma/?id=2380`: table 122 rows; `#groupByBoroughToggle`
+  on → off → on gives borough group rows 10 → 0 → 10 and rows 122 → 112 → 122; no page errors.
+  Old data index: 267 table rows. Old indicator catalog has no `<table>` on either branch — it is
+  search-and-detail; picking a search result fills `#indName` and `#measureList` (0 → 2) on both
+  catalogs, no page errors. (Typing "asthma" listed indicator 1 first on both, so the typed text
+  may not have filtered; not investigated.) Skip link → `activeElement` `BODY` → `skip-header-target`
+  on `data-explorer/asthma/?id=2380` and `data-stories/housing/`. D2: `economic-conditions/?id=103`,
+  `violence/?id=2375`, `asthma/?id=18` (production content's most-linked old-format URLs) load the
+  same id and the same indicator name in both explorers.
+- **Step 7 check** `node scripts/characterize-env.mjs prod_prod` at `5fef286ec9`: 994 of 994 pages
+  differ from the `prod_prod` baseline (`451b2df450`). Production's tip `ed63fa7603`, same harness
+  (byte-identical scripts) and same EHDP-data commit `d3558441d1`, passes against that baseline —
+  so every difference is this branch's. `HEAD` capture vs production capture, 924 shared pages:
+  - **Search UI absent from 535 pages** (keywords 388, categories 60, es 43, zh 43, tags 1); present
+    on all 925 of production's. Mechanism: `_default/list.html` is a standalone document (own
+    DOCTYPE, no `define "main"`) that includes `footer.html` but not `baseof.html`. Production
+    keeps Pagefind UI in `footer.html`; this branch moved it to `partials/search-modal.html`,
+    included from `baseof.html` (`00fbf2f9fc`, 2026-05-09). Pre-existing on the branch, ships with
+    this PR. → D5.
+  - **Heading order** changed on 924 pages: 372 are pure reorders (same multiset — the modal's
+    `<h5>` now precedes the footer's `<h2>`); 510 are the D5 pages losing that `<h5>`; 42 are DE.
+  - **69 pages only on `HEAD`**: 44 `data-explorer-old/` (D1) and 25 extra keyword/category
+    paginator pages, because the old-explorer content carries its own `categories`/`keywords`
+    (copied at `18d94c510f`) and is listed on 55 of 78 category pages and 290 of 705 keyword pages
+    in the build. Also the source of `links.internal` +1 on 214 pages. → D6.
+  - **42 DE topic pages**: the explorer swap, expected. Noted for the PR, not judged: per page,
+    `controls.noAccessibleName` 1→7, `img.missingAlt` 0→1, `img.emptyAlt` 0→4, `overflowX`
+    false→true, `landmarks.footer` 1→0, `tables.total` 2→0 (example `data-explorer/accessibility/`).
+  - `search-results/` absent on `HEAD`: this branch deleted that page in `7e5d0d12b1`.
+
 ## Decisions
 
 | # | Decision | Who / when | Notes |
@@ -131,6 +184,10 @@ node scripts/smoke-pages.mjs                          # 44 pages, all clean
 | D2 | The new explorer accepts the old explorer's URL format; the new format is built on it, with defaults filled in by the JS | Chris, 2026-10-01 | The author's statement, not independently checked. Task 4 Step 6 loads old-format links as a confirmation, not as a gate on the decision |
 | D3 | Production's section-header (`7a995427a1`) and skip-link (`b8771726c9`) changes, written against the old explorer's templates, also go onto the new explorer's | Chris, 2026-10-01: **yes** | Applied in Task 1 to `indicator-catalog.html` and `data-index.html`; `section.html` and `single.html` have no markup for either change — see "Task 1 record" |
 | D4 | Table default geographies: keep strict follow-the-map, no code change | Chris, 2026-10-01: **closed** | The Citywide + Borough context option is recorded and deferred in `documents/site-wide-audit-2026-06-27.md` §4c; the fresh audit's "Status at a glance" points there. History: Chris first asked to follow the old explorer's pattern unless that needed one-off conditionals. The audit's "Citywide + Borough" was one indicator's instance of the old rule, which is *every* available geography checked, most recent time only (`assets/js/data-explorer-old/measures.js`, the `tableTimes.forEach` and `dropdownTableGeoTypes.forEach` blocks). The new explorer's single-geography default is not a standalone default: the table *follows the map dropdowns* — the default in `renderMeasures`' "table defaults" block (`measures.js`), the re-sync on every geo/time dropdown change (`menu.js` → `syncTableFiltersToMapSelection`), the geo choice inside `getCurrentMapTableFilters` (`table.js`), the "Sync to map" button and the Synced/Custom summary (`table.js`). Adopting the old rule means redefining what "synced" means for geography, not adding a conditional. **Table-follows-the-map is an explicit team design choice (Chris, 2026-10-01)** — it is not up for removal, so the old rule as written is off the table. |
+
+| D5 | Search on `list.html` pages (535 taxonomy pages lose the Pagefind UI) | **Open — Chris** | Recommended: include `search-modal.html` in `_default/list.html`, as `baseof.html` does. Whether `list.html` should instead become a `baseof` template is a bigger change, not needed for the fix |
+| D6 | Should `data-explorer-old/` pages appear in category and keyword listings? | **Open — Chris** | D1 ships the pages; it does not say whether taxonomies list them beside the new explorer's same-named topics. 73 of the 76 files under `content/data-explorer-old/` carry both `categories:` and `keywords:` (`git grep -l`); removing those would unlist them |
+| D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | **Open — Chris** | Its diffs are not caused by this branch (Task 4 record, Step 2). Re-capturing is `node scripts/de-characterization.mjs --baseline` |
 
 ## Environment
 
@@ -141,6 +198,10 @@ node scripts/smoke-pages.mjs                          # 44 pages, all clean
   `scripts/site-characterization-current/`, …). None collide with a path in `production`'s tree,
   so they cannot block the merge `[verified 2026-10-01: git cat-file -e production:<path> for every
   git ls-files --others --exclude-standard entry, 0 hits]`. Leave them alone.
+- A detached worktree of `production` (`ed63fa7603`) sits at
+  `C:/Users/Chris/AppData/Local/Temp/claude/wt-prod`, holding production's Step 7 capture in its
+  `scripts/site-characterization-current/`. Disposable: `git worktree remove <dir>` once Step 7 is
+  done; recreate it per the next-command block if it is gone.
 - Never run two Hugo builders against this tree at once (project `CLAUDE.md`). Task 4's build uses
   `HUGO_RESOURCEDIR` and `-d` into temp directories.
 
