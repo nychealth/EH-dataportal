@@ -22,7 +22,7 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: ledger written, nothing executed. Tasks 1–6 not started.**
+**Status as of 2026-10-01: Task 1 done (the merge is committed); Tasks 2–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -35,20 +35,62 @@ git merge-base feature-new-data-explorer production                         # wa
 
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| 1 | Merge `production`, resolve 38 conflicts | | **Not started** | |
+| 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | | **Not started** | |
 | 3 | Comment-spacing convergence run | | **Not started** | |
 | 4 | Verification sweep | | **Not started** | |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next command** (Task 1 Step 1, from the primary worktree, which holds this branch):
+**Next command** (Task 2 Step 1, Bash, from the primary worktree, which holds this branch;
+`$SCRATCH` = any temp directory):
 
 ```
-git rev-parse --abbrev-ref HEAD          # must print feature-new-data-explorer
+git rev-parse --abbrev-ref HEAD                       # must print feature-new-data-explorer
 git status --porcelain --untracked-files=no | wc -l   # must print 0
-git merge --no-ff production
+git diff 4a260ea2a1 production -- 'themes/dohmh/layouts/data-explorer/' 'assets/js/data-explorer/' \
+  | sed -E 's#(a|b)/(themes/dohmh/layouts|assets/js)/data-explorer/#\1/\2/data-explorer-old/#g' \
+  > "$SCRATCH/old-port.patch"
+grep -c '^diff --git' "$SCRATCH/old-port.patch"      # expect 14
 ```
+
+## Task 1 record
+
+- **rerere replayed two earlier resolutions** — `scripts/dev-server.mjs` and the August plan doc.
+  Neither was trusted as replayed. Both ended as production's file byte-for-byte: the plan doc's
+  version on this branch equals production's at `f1d6f02243`, which production then built on; the
+  `dev-server.mjs` replay differed from production only in older comment wording and an
+  equivalent `onExit` binding.
+- **D3 had nothing to apply in the new explorer's `section.html` and `single.html`.** Both are
+  full-width map shells with no visible `<h1>` or breadcrumb — the only `<h1>` is the hidden
+  search-only copy — so `section-header.html` / `section-icon.html` have nowhere to go, and
+  neither carried `id="skip-header-target"`: this branch had already removed it from 44 templates
+  in its own `23a89dd34f` (2026-07-25). Both resolved to this branch's file, unchanged.
+  `indicator-catalog.html` and the auto-merged `data-index.html` did get the section icon.
+- **Step 6 predictions that did not hold:** `topiclanding.html` was one hunk (the `nr-leaflet.html`
+  suffix, `31b08a3aa2`), not a duplicated `lib-uhflist` include — it is included once.
+  `leading-causes.html` was not a re-apply job: this branch's only change since the merge base was
+  the skip-target removal, which production's `b8771726c9` made identically, so production's file
+  is the resolution.
+- **`baseof.html`:** this branch's comment called the `tabindex="-1"` focus behaviour a
+  HYPOTHESIS; production's `b8771726c9` measured it (5 pages, each with its own negative control),
+  so production's comment replaced it.
+- **`CLAUDE.md` carried two `docs-check source-roots` headers.** `docs-check.mjs` reads the first
+  match, so this branch's 3-root header would have silently shadowed production's 7-root one;
+  this branch's pair was removed. The smoke count reads 44 — the merged `PAGES` is 44, the union
+  of both sides (45) minus `search-results/`, whose page this branch deleted in `7e5d0d12b1`.
+  Production's own text said 33 against a 34-entry list.
+- **`package.json`:** production's `"ci"` dependency stays out — this branch removed it as unused
+  in `4260823794` (audit Tier 1.6).
+- **Carried for Task 2:** the skip-target sweep
+  (`grep -rln 'id="skip-header-target"' themes/dohmh/layouts`) lists `baseof.html`, `list.html`
+  and the four `data-explorer-old/` templates. Task 2's port of `b8771726c9` removes those four;
+  after it, the sweep must list exactly `baseof.html` and `list.html`.
+- **Found, not fixed, for Task 4 Step 4:** project `CLAUDE.md`'s "Data explorer" section says
+  `data-explorer/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons` and
+  `createCitation` in inline scripts. On this branch none of the three appears in that file or in
+  any `data-explorer/` template; they live in `data-explorer-old/`. `docs-check` cannot catch it —
+  the identifiers exist under its source roots, just in the other explorer.
 
 ## Decisions
 
@@ -56,7 +98,7 @@ git merge --no-ff production
 |---|---|---|---|
 | D1 | `data-explorer-old` ships, and production's improvements to the old explorer carry onto it | Chris, 2026-10-01 | This is what creates Task 2. Audit §4.4 (retire the old trees) stays parked — consistent with D1 |
 | D2 | The new explorer accepts the old explorer's URL format; the new format is built on it, with defaults filled in by the JS | Chris, 2026-10-01 | The author's statement, not independently checked. Task 4 Step 6 loads old-format links as a confirmation, not as a gate on the decision |
-| D3 | Production's section-header (`7a995427a1`) and skip-link (`b8771726c9`) changes, written against the old explorer's templates, also go onto the new explorer's | Chris, 2026-10-01: **yes** | Task 1 Steps 4–5 carry them onto `indicator-catalog.html`, `section.html`, `single.html` and the auto-merged `data-index.html` |
+| D3 | Production's section-header (`7a995427a1`) and skip-link (`b8771726c9`) changes, written against the old explorer's templates, also go onto the new explorer's | Chris, 2026-10-01: **yes** | Applied in Task 1 to `indicator-catalog.html` and `data-index.html`; `section.html` and `single.html` have no markup for either change — see "Task 1 record" |
 | D4 | Table default geographies: keep strict follow-the-map, no code change | Chris, 2026-10-01: **closed** | The Citywide + Borough context option is recorded and deferred in `documents/site-wide-audit-2026-06-27.md` §4c; the fresh audit's "Status at a glance" points there. History: Chris first asked to follow the old explorer's pattern unless that needed one-off conditionals. The audit's "Citywide + Borough" was one indicator's instance of the old rule, which is *every* available geography checked, most recent time only (`assets/js/data-explorer-old/measures.js`, the `tableTimes.forEach` and `dropdownTableGeoTypes.forEach` blocks). The new explorer's single-geography default is not a standalone default: the table *follows the map dropdowns* — the default in `renderMeasures`' "table defaults" block (`measures.js`), the re-sync on every geo/time dropdown change (`menu.js` → `syncTableFiltersToMapSelection`), the geo choice inside `getCurrentMapTableFilters` (`table.js`), the "Sync to map" button and the Synced/Custom summary (`table.js`). Adopting the old rule means redefining what "synced" means for geography, not adding a conditional. **Table-follows-the-map is an explicit team design choice (Chris, 2026-10-01)** — it is not up for removal, so the old rule as written is off the table. |
 
 ## Environment
@@ -244,9 +286,10 @@ documents, and read each script's argv handling before the first run.
 - [ ] **Step 1:** `npm run lint` → exit 0.
 - [ ] **Step 2:** `node scripts/de-characterization.mjs --check` → zero diffs. A diff here after
   Category A/Task 3 means a resolution changed new-explorer behaviour.
-- [ ] **Step 3:** smoke, full page list (43 on this branch before the merge; production's count may
-  differ — record the merged number) → all clean.
-- [ ] **Step 4:** `npm run docs-check` → exit 0.
+- [ ] **Step 3:** smoke, curated list → all clean. Expect 44 pages (the merged `PAGES`, counted
+  from the source in Task 1); the script's own "N pages clean" line is the authority.
+- [ ] **Step 4:** `npm run docs-check` → exit 0. Then fix the stale `CLAUDE.md` claim recorded
+  in "Task 1 record" (the three inline-script functions), which `docs-check` cannot see.
 - [ ] **Step 5:** isolated `prod_prod` build:
   `HUGO_RESOURCEDIR="$TEMP/iso-resources" hugo --environment prod_prod -d "$TEMP/iso-docs"` → exit
   0, 0 ERROR; record the page count.
