@@ -197,7 +197,16 @@
     // per browser. Site-wide (not data-explorer-specific) since hugoEnv already is — any
     // page's inline JS or asset scripts can call debugLog() once loaded after this point.
 
-    const DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+    // Reading localStorage can throw (a SecurityError where the browser blocks site data). Uncaught,
+    // that would abort this block before debugLog exists, and every script calling it would then
+    // fail with a ReferenceError (review finding #18), so a throw just means "no override".
+
+    let DE_DEBUG_OVERRIDE = null;
+
+    try {
+        DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+    } catch (e) {}
+
     const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
         ? DE_DEBUG_OVERRIDE === '1'
         : !['production', 'prod_prod'].includes(hugoEnv);
