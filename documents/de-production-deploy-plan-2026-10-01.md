@@ -22,9 +22,9 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D10 fixed); Task 5 in progress (PR #1462 open, checks
-re-run: characterization green, smoke red only on the AirNow page production also fails; ultra
-review not run); Task 6 not started.**
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D11 fixed); Task 5 in progress (PR #1462 open; checks
+on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
+D11's fix `39946d0c39` is newer than that run; ultra review not run); Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -44,8 +44,9 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 (ultra review) not run | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: Task 5 Step 3, `/code-review ultra 1462`** (only Chris can launch it), then the
-merge, then Task 6. Expect a push of any new commit, even a ledger-only one, to re-run both PR
+**Next action: push (Chris)** so the PR carries D11, then re-read the checks on the new head
+(expected: as on `5d5732de13`), then Task 5 Step 3, `/code-review ultra 1462` (only Chris can launch
+it), then the merge, then Task 6. Expect a push of any new commit, even a ledger-only one, to re-run both PR
 checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
 changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
 branch:
@@ -296,6 +297,19 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   `data-features/heat-report-archive/2021/` (`reading 'vis'`), the base run's
   `data-explorer/waterways/` (`reading 'array'`). PR body updated with these results, the D10 fix,
   and the size (532 commits, 2,135 files, 1,852 of them baselines).
+- **D11, CARTO key** (Chris asked, 2026-10-02): the new explorer's three CARTO tile URLs
+  (`assets/js/data-explorer/map.js`, `print-map.js`, `themes/dohmh/layouts/data-explorer/section.html`)
+  had no `?key=`; every other CARTO URL in the repo does, and `production` has no unkeyed one.
+  Production's `598fba0b19` (2026-09-03, "add newly required CARTO API key to maps") keyed every
+  map that existed on `production`; the merge in Task 1 carried that commit but it touched no file
+  the new explorer owns. Unkeyed, CARTO answers **200** `image/png`, 2,049 B: a tile reading "API KEY
+  REQUIRED" (viewed). Keyed: the real tile (27,116 B; `@2x` 74,844 B). Fixed in `39946d0c39` by
+  appending the key after the retina suffix. Proof: `scripts/.sc-rebaseline/tile-probe.mjs`
+  (untracked) on an isolated `prod_prod` server, `data-explorer/` and
+  `data-explorer/asthma/?id=2380`: 48 tiles, 0 unkeyed, 0 placeholder-sized, 0 non-200. Control
+  with the fix stashed: 48 of 48 unkeyed and placeholder-sized, 0 non-200 — so neither smoke nor
+  characterization (which excludes Leaflet tiles) could have caught it. `print-map.js` runs only on
+  export; its line is the same string. `npm run lint` exit 0.
   - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
     (shown `ERR_ABORTED`; delivery not established). The second blocked it.
 
@@ -312,6 +326,7 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
 | D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
 | D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | Chris, 2026-10-02: **carry over** — `853dabe569` | Also matched on Chris's word, as the same kind of gap: `active-design`'s `keyTopic: publicspace`, which `dc6c58fa33` removed (`cc32f5f90e`; nothing reads `keyTopic` on a DE topic), and `waterways` → `publicspace` from `ca6248ac40` (`dcf21609cf`). The topic metadata sweep in the Task 4 record finds no other difference. Re-baselined in `79286c569c` |
 | D9 | This PR would change `dev_stage` and `local_stage` from EHDP-data `staging` to `feature-new-data-explorer` (`e99b20a197`) | Chris, 2026-10-01: **revert the two `data_branch` lines to `"staging"`** — `9dad6ab230` | `local_stage`'s `maxAge = 0` kept. `dev_stage` is what `build-to-dev-stage` deploys, so after the merge the team's staging site would read that branch. EHDP-data compare API, 2026-10-01: `feature-new-data-explorer` is 386 behind / 183 ahead of `staging`, 1 ahead / 39 behind `production`, last commit 2026-08-18. Recommendation: revert both lines to `"staging"` before the PR (`local_stage`'s `maxAge = -1 → 0` from `77499c3896` is a separate line, left to Chris). The `prod_prod` checks read EHDP-data `production`. A `dev_stage` server on this tree reads the feature data branch, so D7's "staging data" most likely means that branch; which server D7 ran against was not recorded. No check in this plan is recorded as reading EHDP-data `staging` |
+| D11 | The new explorer's basemaps lacked the CARTO key and rendered "API KEY REQUIRED" tiles | Fixed, `39946d0c39` | See "Task 5 record". Same shape as Task 2: an upstream sweep reaches only the files upstream has, so branch-only siblings miss it |
 | D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | Chris, 2026-10-02: **diagnose in CI** → fixed, `4f9bcb2c1f` | A filename-case bug, not a platform rendering difference: the topic-selector icon failed to load on Linux on all 42 topic pages. See "Task 5 record". Rejected: accepting a red check, and re-baselining from CI's capture (which would have recorded the broken icon as expected) |
 
 ## Environment
