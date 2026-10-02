@@ -2793,3 +2793,74 @@ layouts use:
 `restaurant-grades.html`, the next headings (`:35`, `:78`) are `<h2>`, so heading levels still
 don't skip after the change. The rendered page hasn't been checked, because none of these pages
 builds without `--buildDrafts`.
+
+## 21. Data Explorer pre-ship review: deferred follow-ups (added 2026-10-02)
+
+A local review of `feature-new-data-explorer` before it merged into `production` (PR #1462) found
+39 issues. The full report, with `file:line` (as of `c15317c74b`), the trigger and the reviewer's
+evidence for each, is
+[`de-pre-ship-review-2026-10-02.md`](de-pre-ship-review-2026-10-02.md). The issues that showed
+wrong data, broke a view or failed accessibility were scoped to fix before the merge; their
+outcomes are in the "Review findings" table of
+[`de-production-deploy-plan-2026-10-01.md`](de-production-deploy-plan-2026-10-01.md). The 20
+below were deferred (Chris, 2026-10-02). **They are the reviewer's findings and none has been
+re-verified**, so reproduce one before fixing it. Numbers are the report's.
+
+**Degraded UX**
+
+- **#9** "About the data" keeps the last trend, correlate or disparities measure's text after you
+  switch back to Bar or Table (`renderAboutSources`). Reproduced by the reviewer.
+- **#13** The table stops following the map after a Measure change moves the time or geography,
+  or after Back (`menu.js`, popstate in `app.js`), while its summary still reads "Synced". This
+  contradicts the table-follows-the-map design (deploy plan D4), so it is a defect, not a
+  design question. Trace only.
+- **#14** The table's Area search box keeps its text after a rebuild, but the filter is gone
+  (`DE.table.tableAreaSearchValue` is never reset). Trace only.
+- **#15** The generic "based on small numbers" note can print twice (`getDisplayNotes` maps, then
+  doesn't dedupe; indicator 2383). Fix with #32.
+- **#19** "Download data" and "Sync to map" are `href="#"` links without `preventDefault`. Each
+  click scrolls to the top and adds a history entry, and Back then re-renders the map.
+- **#21** "More info about {topic}" in `header-de.html` renders `.Params.azlink` without the
+  `with` guard production had, so it is a self-link on topics with no `azlink`.
+- **#22** Dead SCSS in `_de-custom.scss`: the mobile bottom padding compiles to
+  `.de-wrapper .de-wrapper`, and the indicator-modal grid, card and sticky Learn More rules are
+  scoped to `.de-wrapper` while the modals live outside it in `header-de.html`. Measured by the
+  reviewer.
+
+**Accessibility (lower severity, or not verified)**
+
+- **#26** `#map role="img"` wraps focusable links, including the sr-only "View this data as a
+  table" link. Suspected; no screen-reader check.
+- **#27** `#tableFilterToggle` is a focusable button that nothing binds to.
+- **#28** The "Recently updated" icon has both `aria-hidden="true"` and an `aria-label`.
+
+**Wrong data, inherited or latent**
+
+- **#11** Correlate CSV: `Value_1_Indicator` and `Value_2_Indicator` are swapped when
+  `SecondaryAxis` is `'y'` (391 of 745 links). The same mapping is in production's old
+  `links.js`, so it predates this branch.
+- **#17** When correlate and disparities both fail, the previous chart stays up. The reviewer
+  found no live trigger in the current metadata.
+
+**Maintainability: false or stale claims, dead code**
+
+- **#32** `global.js` says callers pass `getDisplayNotes` "already-deduped" notes; see #15.
+- **#33** `structured-data.html` still says the search modal is in `footer.html`, and describes
+  the deleted `/search-results/` layout.
+- **#34** `print.js`'s header says maps export "by compositing the current Leaflet DOM";
+  `print-map.js` builds an off-screen map.
+- **#35** Stale comments in `measures.js` (the caller of the render step), `data.js` ("IndicatorID
+  comes in as a string") and `de-tab-content.js` ("guarded so load order never matters").
+- **#36** `de-chooser.html` is included nowhere, yet this branch reformatted it.
+- **#37** `de-topic-indicators.html` and `de-indicator-names-pf.html` match the substring
+  `/data-explorer`, which also matches `/data-explorer-old/`. The old topics write the same keys
+  into `topic_indicators.json`, which `nr-output/single.html` reads. No visible effect while the
+  two copies agree.
+- **#38** A `console.log` in `data-explorer/section.html`.
+- **#39** A duplicated block in `_de-custom.scss`, carrying `#007bff` (3.98:1 on white), which is
+  overridden only because a more specific `.de-tabs-nav` rule wins.
+
+**Coverage gap found by the same review:** CI's smoke and characterization sweeps load Data
+Explorer topic pages without `?id=`, so only about 5 of 267 indicators run the rendering code
+(reviewer's count). Every finding above came from an indicator, sequence or data shape that no
+automated check exercises.

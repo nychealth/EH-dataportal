@@ -24,8 +24,9 @@ roots lists 14 files, all under data-explorer/]`.
 
 **Status as of 2026-10-02: Tasks 1–4 done (D5–D12 fixed); Task 5 in progress (PR #1462 open; checks
 on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
-D11, the propagation sweep and D12 are newer than that run; ultra refused the PR as too large, a
-local review replaces it, not yet run); Task 6 not started.**
+D11, the propagation sweep and D12 are newer than that run; ultra refused the PR as too large; the
+local review that replaced it ran on `c15317c74b` and found 39 issues, 15 of them in the
+before-merge scope Chris set — see "Review findings"); Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -42,16 +43,20 @@ git merge-base feature-new-data-explorer production                         # wa
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
-| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review planned, not run | Per step in "Task 5 record" |
+| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review ran on `c15317c74b` (39 findings, 15 before merge; see "Review findings") | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: the local code review, on Chris's go** (ultra cannot take this PR — see Task 5
-Step 3). Then fix what it finds, then push (Chris) so the PR carries D11, D12, the markup fixes and
-any review fixes (`git rev-list --left-right --count origin/feature-new-data-explorer...HEAD` shows
-what is local-only), re-read the checks on the new head (expected: as on `5d5732de13`), update the
-PR body (D11, D12, markup fixes, review outcome), then the merge, then Task 6.
+**Next action: verify and fix the "Before merge" rows of "Review findings"**, one commit per
+finding or per shared root cause (#2 and #4 are one race class; #29 goes with #4). Each fix's
+proof is a runtime reproduction of the report's trigger before and after, on an isolated server
+(`startServer("prod_prod")` from `scripts/isolated-server.mjs`, probes in the gitignored
+`scripts/.sc-rebaseline/`, GA blocked), plus `npm run lint`; `smoke`/characterization do not
+reach these paths (see the review's coverage finding). Then push (Chris), re-read the checks on
+the new head (expected: as on `5d5732de13`), update the PR body (D11, D12, markup fixes, review
+outcome and follow-ups), then the merge, then Task 6. The deferred rows live on as
+`documents/site-wide-audit-2026-06-27.md` §21 (Chris, 2026-10-02), which ships with the merge.
 
-The review, as agreed 2026-10-02:
+The review, as agreed and run 2026-10-02 (kept for the record):
 - **One review subagent (Opus), not a fleet.** Cross-file context between the JS and the templates
   is worth more than the speed of splitting them; split into two parallel agents (JS; templates +
   SCSS) only if one agent's read turns out too large. Cost not measured in advance; record what
@@ -378,6 +383,43 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
     does not enumerate the 44 retired pages (D6); the search probe covered them.
   - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
     (shown `ERR_ABORTED`; delivery not established). The second blocked it.
+- **Step 3 replacement: local review** (Chris's go, 2026-10-02). One Opus subagent against
+  `c15317c74b`, prompt as planned in the next-action block; 506,518 subagent tokens, 108 tool
+  calls, ~22 minutes. Report: `documents/de-pre-ship-review-2026-10-02.md` — 39 findings, 10
+  reproduced in Chromium by the reviewer on an isolated `prod_prod` server. Its coverage finding
+  bears on this plan's own proofs: the CI smoke and characterization sweeps load topic pages
+  without `?id=`, so about 5 of 267 indicators run the rendering code under test (reviewer's
+  count, not re-derived). Chris, 2026-10-02: **fix the wrong-data/breakage items and the
+  accessibility items before the merge; the rest become tracked follow-ups**, and the report
+  becomes a tracked doc. Per-finding outcomes in "Review findings" below.
+
+## Review findings
+
+Numbers are the report's. **Before merge** = Chris's scope, 2026-10-02. Each is verified (reproduce
+or read the path end to end) before its fix; a finding that does not verify is recorded as
+rejected with the reason. Comments the report names as false (#29–#32) are fixed with the code
+finding they describe.
+
+| # | Finding | Report's label | Scope | Outcome |
+|---|---|---|---|---|
+| 2 | Quick Boundary/Time/Measure changes leave a stale map layer (no render token in `map.js`) | runtime | Before merge | Not started |
+| 4 | Superseded indicator load still writes `DE` state and 311 links (`loadData`/`joinData`); comment `app.js` "stale load stops" false (#29) | trace | Before merge | Not started |
+| 3 | Correlate reuses cached data under a stale key (`setDefaultLinksMeasure` vs `renderSelectedCorrelate`) | runtime | Before merge | Not started |
+| 5 | Measure with no views inside a mapped indicator → `geography/undefined`, empty map, 0.0% legend (103, 2176, 2383, 2384); comments #30 | runtime | Before merge | Not started |
+| 12 | UHF33 / National rows unselectable, null area name (`GEO_RANK_BY_PRETTY_TYPE`, `geoTypes`) | runtime (UHF33) | Before merge | Not started |
+| 1 | Same-indicator back/forward changes URL/state, not the visible pane (popstate in `app.js`) | runtime | Before merge | Not started |
+| 6 | Enter on a disabled tab switches state, not the pane | runtime | Before merge | Not started |
+| 7 | Exported map PNG legend reversed (`print-map.js` vs `createColorScale`) | trace | Before merge | Not started |
+| 10 | Trends with no data: Save/Download export the previous view (`trend.js` early return); comment #31 | trace | Before merge | Not started |
+| 16 | Disparities after "No correlates" leaves Save/Download disabled | runtime | Before merge | Not started |
+| 8 | Citation uses build date and `?id=`-less permalink (`de-tab-content.html`); production used visitor date + full URL | read | Before merge | Not started |
+| 18 | Unguarded `localStorage` read in `head.html` | trace; trigger suspected | Before merge | Not started |
+| 23 | No accessible name: topic-selector button, mobile Learn More; logo `<img>` lost its alt (`header-de.html`) | read | Before merge | Not started |
+| 24 | Mobile Measure/Boundary/Time collapse is a `div` toggle, not keyboard-operable (`de-indicator-info.html`) | read | Before merge | Not started |
+| 25 | `.btn-light-green-bg-outline` `#008939` on `#EFFAF4` = 4.24:1 (the `0007cf874f` pairing) | computed | Before merge | Not started |
+| 9, 11, 13–15, 17, 19, 21, 22, 26–28, 32–39 | UX, inherited (#11), latent (#17), suspected (#26), maintainability | — | Follow-up | Deferred, Chris 2026-10-02; recorded as `documents/site-wide-audit-2026-06-27.md` §21 |
+| 20 | "Email your elected officials" is `href="#"` (`header-de.html` desktop, `de-tab-button.html` mobile) | read | Before merge (D13: Chris, 2026-10-02, **point it at `take-action/email-electeds/`**) | Verified: no modal, plain `<a href="#">` — no `data-toggle`, no id or class, and no JS in `assets/js/data-explorer/` targets it (`311.js` drives only `.destination311`). Target: `content/take-action/email-electeds.md`, which `content/about/_index.md` already links to via `relURL`. Not started |
+| — | DE pages hide the site header toggle: no site nav, home link or search | design question | **Rejected** (D14) | Chris, 2026-10-02: the header expands to give the nav. The cascade agrees: the toggle wrapper (`header-de.html`, the `aria-label="Toggle Main Header"` button's parent) carries both `hide` and `d-flex`; `.hide` is `display: none` (`__portal-custom.scss`) while Bootstrap's `.d-flex` is `display: flex !important`, so the toggle shows. The reviewer read `.hide` alone. Not browser-checked by me; Chris's account is the runtime observation |
 
 ## Decisions
 
