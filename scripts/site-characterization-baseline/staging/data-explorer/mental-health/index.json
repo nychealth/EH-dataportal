@@ -97,22 +97,22 @@
         ],
         "img": {
             "total": 7,
-            "missingAlt": 1,
+            "missingAlt": 0,
             "emptyAlt": 4,
             "zeroSize": 2
         },
         "links": {
             "internal": 126,
             "external": 15,
-            "emptyHref": 24,
-            "noAccessibleText": 1
+            "emptyHref": 22,
+            "noAccessibleText": 0
         },
         "controls": {
-            "button": 30,
+            "button": 31,
             "input": 2,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 7
+            "noAccessibleName": 6
         },
         "tables": {
             "total": 0,
@@ -211,7 +211,8 @@
             "/neighborhood-reports/",
             "/neighborhood-reports/climate_and_health/",
             "/neighborhood-reports/housing_and_health/",
-            "/take-action/email-electeds"
+            "/take-action/email-electeds",
+            "/take-action/email-electeds/"
         ],
         "externalHosts": [
             "carto.com",

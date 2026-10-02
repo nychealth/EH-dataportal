@@ -62,22 +62,22 @@
         ],
         "img": {
             "total": 6,
-            "missingAlt": 1,
+            "missingAlt": 0,
             "emptyAlt": 3,
             "zeroSize": 2
         },
         "links": {
             "internal": 104,
             "external": 8,
-            "emptyHref": 14,
-            "noAccessibleText": 1
+            "emptyHref": 12,
+            "noAccessibleText": 0
         },
         "controls": {
             "button": 14,
             "input": 1,
             "select": 0,
             "textarea": 0,
-            "noAccessibleName": 1
+            "noAccessibleName": 0
         },
         "tables": {
             "total": 0,
@@ -160,7 +160,8 @@
             "/key-topics/injury-and-violence/",
             "/key-topics/pests/",
             "/key-topics/public-space/",
-            "/neighborhood-reports/"
+            "/neighborhood-reports/",
+            "/take-action/email-electeds/"
         ],
         "externalHosts": [
             "carto.com",
