@@ -1,7 +1,7 @@
 baseURL = "https://localhost/local-stage/"
 [params]
     data_repo = "http://localhost/EHDP-data/"
-    data_branch = "feature-new-data-explorer"
+    data_branch = "staging"
 
 [caches]
     [caches.getresource]
