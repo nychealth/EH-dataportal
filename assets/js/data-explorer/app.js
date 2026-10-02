@@ -106,6 +106,8 @@ const writeHistoryState = (historyMethod, nextState, nextURL) => {
     window.history[historyMethod](nextState, '', nextURL);
     debugLog(`${historyMethod} →`, nextURL.search);
 
+    refreshCitation();
+
 };
 
 
@@ -571,6 +573,10 @@ window.addEventListener('popstate', async (event) => {
     debugLog("popstate →", window.location.search, window.location.hash);
 
     normalizeLegacyURL();
+
+    // The browser changed the URL without going through writeHistoryState.
+
+    refreshCitation();
 
     const selection = parseSelectionFromURL();
 

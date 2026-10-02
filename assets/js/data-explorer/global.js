@@ -284,6 +284,23 @@ const loadOnce = (key, loader) => {
 // copy citation
 // ----------------------------------------------------------------------- //
 
+// Fills the citation's URL and access date from the live page. Hugo can render only the topic's
+// permalink and the build date, while a citation should name the view being cited (?id=…,
+// MeasureID, …) and the day it was read, which is what the old explorer's createCitation did
+// (review finding #8). Called on every URL write (writeHistoryState), on popstate, and before a
+// copy. The server-rendered values stay in the markup as the no-JS fallback.
+
+const refreshCitation = () => {
+
+    const url = window.location.href.replace(/#.*/, '');
+    const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    document.querySelectorAll('.citation-url').forEach(el => { el.textContent = url; });
+    document.querySelectorAll('.citation-date').forEach(el => { el.textContent = date; });
+
+};
+
+
 // Copies the current citation text to the clipboard and updates button feedback.
 
 const copyCitation = (button = null) => {
@@ -296,6 +313,8 @@ const copyCitation = (button = null) => {
     if (!citationTextElement) {
         return;
     }
+
+    refreshCitation();
 
     const citeText = citationTextElement.innerText;
 
