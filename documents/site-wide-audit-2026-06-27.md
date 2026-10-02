@@ -2830,7 +2830,8 @@ re-verified**, so reproduce one before fixing it. Numbers are the report's.
 **Accessibility (lower severity, or not verified)**
 
 - **#26** `#map role="img"` wraps focusable links, including the sr-only "View this data as a
-  table" link. Suspected; no screen-reader check.
+  table" link. Confirmed by axe-core 4.13.0 `nested-interactive` on `#map`, at 1400 and 390 px on
+  asthma ?id=2380 (2026-10-02); no screen-reader check.
 - **#27** `#tableFilterToggle` is a focusable button that nothing binds to.
 - **#28** The "Recently updated" icon has both `aria-hidden="true"` and an `aria-label`.
 
