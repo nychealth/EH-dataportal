@@ -22,7 +22,8 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D9 fixed);
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D9 fixed); Task 5 in progress (PR #1462 open, CI
+site characterization red on an unexplained Linux/Windows difference — D10);
 Tasks 5–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
@@ -40,18 +41,18 @@ git merge-base feature-new-data-explorer production                         # wa
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
-| 5 | PR into `production` | | **Not started** | |
+| 5 | PR into `production` | PR #1462, head `1b5b509cc9` | **In progress** — open; Step 3 (ultra review) not run; Step 4 checks ran, both red, see "Task 5 record" | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: Task 5 on Chris's go** — Step 1 pushes every commit this plan made (the first command
-below shows how many are local-only). Before Step 2,
-read what `hugo-build-to-dev-stage.yml` and `hugo-build-to-prod-prod.yml` do on a `pull_request`
-event (Task 5 Step 2 says this was not checked).
+**Next action: Chris's answer on D10**, then Task 5 Step 3 (`/code-review ultra 1462`, which only
+Chris can launch). Expect a push of any new commit, even a ledger-only one, to re-run both PR
+checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
+changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
+branch:
 
 ```
-git rev-list --left-right --count origin/feature-new-data-explorer...feature-new-data-explorer   # left 0 = remote has nothing local lacks
-git push origin feature-new-data-explorer
-gh pr create --base production --head feature-new-data-explorer
+gh api "repos/nychealth/EH-dataportal/actions/runs?head_sha=$(git rev-parse HEAD)" --jq '.workflow_runs[] | [.id, .name, .status, .conclusion] | @tsv'
+gh run view <id> --log-failed
 ```
 
 Re-baselining again (any later Hugo-input change): `node scripts/site-characterization-rebaseline.mjs`,
@@ -248,6 +249,35 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   `content/data-explorer-old/` (forward patch applies cleanly), and `4a3185e056` (unicode) applies
   in neither direction there. Both are cosmetic text fixes on retired, now-unlisted pages.
 
+## Task 5 record
+
+- **Step 1** pushed by Chris, 2026-10-02: `origin/feature-new-data-explorer` = `1b5b509cc9`.
+- **Step 2** a PR from this branch already existed: #1462 (Chris, 2026-08-14), base
+  `merge/production` — already an ancestor of `production` — template body unfilled, no comments
+  or reviews. Retargeted to `production` with a written body (`gh pr edit 1462 --base production
+  --body-file …`) rather than opening a second PR. The retarget started **no** runs: `head_sha`
+  query → 0 (control: the newest run in the repo, `6ea01a9d0a`, → 4). Both check workflows use
+  default `pull_request` types, which do not include a base change. `gh pr close` + `gh pr reopen`
+  fired them; the close also fired `hugo-build-to-prod-prod` (job skipped, `merged == false`) and
+  CodeQL (skipped).
+- **Step 4** runs on `1b5b509cc9`, both red:
+  - Smoke `37005530131`: 1 of 924, `data-features/cooling-info/` "Cannot read properties of
+    undefined (reading 'AQI')". **Not this PR:** the base-control job against `production`'s tip
+    failed on the same page, and `content/data-features/cooling-info/cooling-info.js` is identical
+    on both branches. An AirNow response (`project-airnow-guard-hotfix` memory has the guard).
+  - Site characterization `37005530108`: 42 of 924 pages, one field, `structure.img.zeroSize` 2 → 3,
+    exactly the 42 new-explorer topic pages. The baseline was captured locally (Windows) at
+    `dcf21609cf`; CI (Linux) ran `1b5b509cc9`, which differs only in this ledger. `total`,
+    `missingAlt` and `emptyAlt` match, so the same 7 images were counted and one more had a zero
+    box on CI. Locally (isolated `prod_prod`, `scripts/.sc-rebaseline/img-probe.mjs`, untracked) the
+    zero two are `nyc-bubble-logo.svg` and the alt-less header `.ico`; the other five render, the
+    same at widths 1240/1265/1280/1300 and at `domcontentloaded` vs settled, and local headless
+    Chromium reserves no scrollbar width (`innerWidth` = `clientWidth`). Not reproduced; no
+    Docker/WSL distribution here. The base-control job cannot speak to it: it compares
+    `production`'s build against this PR's baseline and differs on all 925 pages. → D10.
+  - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
+    (shown `ERR_ABORTED`; delivery not established). The second blocked it.
+
 ## Decisions
 
 | # | Decision | Who / when | Notes |
@@ -261,6 +291,7 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
 | D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
 | D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | Chris, 2026-10-02: **carry over** — `853dabe569` | Also matched on Chris's word, as the same kind of gap: `active-design`'s `keyTopic: publicspace`, which `dc6c58fa33` removed (`cc32f5f90e`; nothing reads `keyTopic` on a DE topic), and `waterways` → `publicspace` from `ca6248ac40` (`dcf21609cf`). The topic metadata sweep in the Task 4 record finds no other difference. Re-baselined in `79286c569c` |
 | D9 | This PR would change `dev_stage` and `local_stage` from EHDP-data `staging` to `feature-new-data-explorer` (`e99b20a197`) | Chris, 2026-10-01: **revert the two `data_branch` lines to `"staging"`** — `9dad6ab230` | `local_stage`'s `maxAge = 0` kept. `dev_stage` is what `build-to-dev-stage` deploys, so after the merge the team's staging site would read that branch. EHDP-data compare API, 2026-10-01: `feature-new-data-explorer` is 386 behind / 183 ahead of `staging`, 1 ahead / 39 behind `production`, last commit 2026-08-18. Recommendation: revert both lines to `"staging"` before the PR (`local_stage`'s `maxAge = -1 → 0` from `77499c3896` is a separate line, left to Chris). The `prod_prod` checks read EHDP-data `production`. A `dev_stage` server on this tree reads the feature data branch, so D7's "staging data" most likely means that branch; which server D7 ran against was not recorded. No check in this plan is recorded as reading EHDP-data `staging` |
+| D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | **Open — Chris** | See "Task 5 record". Not reproduced locally. Options: identify the image with a diagnostic run in CI (scratch branch, `gh workflow run site-characterization.yml --ref <branch>`, which needs no merge since the workflow is on `production`); or accept it as a platform difference and merge on a red, non-required check |
 
 ## Environment
 
@@ -485,6 +516,11 @@ documents, and read each script's argv handling before the first run.
   `hugo-build-to-prod-prod.yml`, `site-characterization.yml`, `smoke.yml` `[verified 2026-10-01:
   grep '^\s*pull_request' over production's .github/workflows/]`. Read what the two `hugo-build-to-*`
   workflows do on a PR event before opening — not checked.
+  **Corrected 2026-10-02:** the grep matched every `pull_request:` line regardless of its branch
+  filter. Read from each `on:` block: `smoke.yml` and `site-characterization.yml` run on an open PR
+  into `production` (default types, so not on a base change); `hugo-build-to-prod-prod.yml` and
+  `codeql.yml` only on `closed`, the former's job guarded by `merged == true`;
+  `hugo-build-to-dev-stage.yml` filters on `build-to-dev-stage` and never fires here.
 - [ ] **Step 3:** `/code-review ultra <PR#>` (global CLAUDE.md: the billed review is for the merge
   into the deploy branch).
 - [ ] **Step 4:** Confirm checks ran: query runs by the PR's head SHA, not branch name (memory
