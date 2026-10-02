@@ -160,6 +160,15 @@ const renderTrendChart = (
             trendUnreliability.classList.add('hide');
         }
 
+        // Nothing to export from this view. Clear what the previously rendered view left, as the
+        // correlate no-data state does; otherwise this tab's Save chart and Download data
+        // exported that view's chart and CSV under the trend tab (review finding #10).
+
+        DE.print.printSpec = null;
+        DE.print.CSVforDownload = '';
+        DE.print.vizSource = null;
+        DE.print.chartType = 'trend';
+
         return;
 
     }

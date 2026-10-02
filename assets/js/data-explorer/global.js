@@ -942,10 +942,11 @@ const downloadData = (
 
         debugLog('Downloading data')
 
-        // Guard against a never-set or stale CSVforDownload (e.g. the download button is
-        // clicked before any tab has rendered) so a blank/leftover CSV can't go out under
-        // a confident but wrong filename. Mirrors the early-return guard-clause pattern
-        // used throughout the renderers (e.g. renderTrendChart, renderCorrelate) rather
+        // Guard against an empty CSVforDownload (e.g. the download button is clicked before
+        // any tab has rendered). On its own this blocks only an *empty* CSV; a leftover one from
+        // another view is kept out by the renderers themselves, which clear CSVforDownload when
+        // they have nothing to show (renderTrendChart's guard, the correlate no-data state).
+        // Mirrors the early-return guard-clause pattern used throughout the renderers rather
         // than introducing a new disable/hide mechanism.
 
         if (!DE.print.CSVforDownload) {
