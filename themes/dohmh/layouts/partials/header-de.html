@@ -379,7 +379,7 @@
                     
                     <div class="mt-3 pt-2">
                         {{- if .Params.relatedData -}}
-                        <h4 class="fs-md"><i class="fas fa-chart-line mr-1 data-explorer" aria-hidden="true"></i>Related data on:</h5>
+                        <h4 class="fs-md"><i class="fas fa-chart-line mr-1 data-explorer" aria-hidden="true"></i>Related data on:</h4>
                             {{ range $index, $item := .Params.relatedData }}
                             {{ if gt $index 0 }} | {{ end }}
                             <a href="../{{ $item.url }}" class="text-black fs-sm">{{ $item.title }}</a>
