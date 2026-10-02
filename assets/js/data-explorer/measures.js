@@ -143,8 +143,13 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     DE.links.defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
 
-    // extract data element from data function return, assign to global object
+    // joinedLinksDataObjects is a cache keyed on the selected*MeasureMetadata pair — that pair is
+    // what renderSelectedCorrelate checks before reusing it — so the rows and their key are written
+    // together. Writing the rows alone left the previous pair's key on them: after another
+    // indicator and Back, the chart was labelled 31 vs 47 and plotted pair 363/41 (review #3).
 
+    DE.links.selectedPrimaryMeasureMetadata = defaultLinksDataMetadata.primaryMeasureMetadata;
+    DE.links.selectedSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
     DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data
 }
 
@@ -1423,6 +1428,14 @@ const renderSelectedDisparities = async (primaryMeasureId) => {
 
     if (!primaryMeasureMetadata.length) {
         return false;
+    }
+
+    // This replaces half of the correlate cache's key (see setDefaultLinksMeasure) with no rows to
+    // match it, so drop the rows: otherwise a later correlate render for this primary and the old
+    // secondary would reuse the old pair's data under the new label.
+
+    if (Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) !== Number(primaryMeasureId)) {
+        DE.links.joinedLinksDataObjects = undefined;
     }
 
     DE.links.selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
