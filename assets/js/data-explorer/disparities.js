@@ -371,4 +371,10 @@ const renderDisparitiesChart = async (
 
     DE.print.CSVforDownload = downloadTable.toCSV();
 
+    // The correlate pane's Save chart / Download data serve this chart too. The correlate
+    // no-data state disables them, and only renderCorrelate re-enabled them, so after
+    // "No correlates" a rendered disparities chart could not be saved (review finding #16).
+
+    setCorrelateActionState(true);
+
 };
