@@ -54,7 +54,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg py-3">
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} style="height: 67px" class="pr-1"></a>
+                            <a href={{ relURL "" }}><img src={{ relURL "7618350_heatmap_business_analytics_statistics_icon-gpr.ico" }} alt="Environment & Health Data Portal home" style="height: 67px" class="pr-1"></a>
                             <p class="text-white title-hover">
                                 <span class="site-subtitle"><a href='{{ relURL "" }}' class="link-no-dec">Environment & Health</span>
                                 <span class="site-title">Data Portal</a></span>
@@ -279,7 +279,7 @@
     </div>
     <div class="h4 font-weight-bold d-flex align-items-center mb-0">
         <div class="position-relative d-flex align-items-center topic-selector-trigger-wrap">
-            <button id="topicSelectorButton" type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector">
+            <button id="topicSelectorButton" type="button" class="border-0 d-flex align-items-center nav-topic-selector p-2 bg-transparent" data-toggle="modal" data-target="#topicSelector" aria-label="Choose topic">
                 <img src={{ relURL "images/Indicator-menu-icon.svg" }} alt="">
             </button>
             <span id="topicSelectorPrompt" class="topic-selector-prompt d-none" aria-hidden="true" role="status">Choose topic</span>
@@ -394,7 +394,8 @@
         <div class="flex-grow-1 pr-2 pr-md-0">
             <div class="d-flex justify-content-end align-items-center h-100 pr-1 pr-md-3">
                 <!-- Modal Trigger -->
-                <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore">
+                <!-- aria-label because below md the visible "Learn More" is display:none, leaving only the icon -->
+                <button type="button" class="bg-transparent border-0 d-flex align-items-center mr-md-3" data-toggle="modal" data-target="#learnMore" aria-label="Learn More">
                     <div class="font-weight-bold mr-1 text-white fs-md d-none d-md-block">Learn More</div>
                     <img src={{ relURL "images/icon-green-info.png" }} style="height: 21px" alt="">
                 </button>
