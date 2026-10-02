@@ -15,7 +15,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["publicspace", "healthoutcomes", "injuryandviolence"]
+categories: ["publicspace", "healthoutcomes", "injuryandviolence", "accessibility"]
 keywords:
   [
     "transportation",

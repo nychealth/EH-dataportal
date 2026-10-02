@@ -14,6 +14,7 @@ excludeFooter: true
 categories:
   - publicspace
   - airquality
+  - accessibility
 keywords:
   - transportation
   - walking

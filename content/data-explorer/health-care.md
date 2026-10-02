@@ -15,7 +15,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["inequality"]
+categories: ["inequality", "accessibility"]
 keywords: ["health care", "doctors", "mortality"]
 indicators:
   - header: null

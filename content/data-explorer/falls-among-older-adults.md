@@ -14,7 +14,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["housing", "healthoutcomes","injuryandviolence"]
+categories: ["housing", "healthoutcomes","injuryandviolence","accessibility"]
 keywords:
   [
     "older adults",

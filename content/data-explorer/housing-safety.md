@@ -15,7 +15,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["housing", "inequality", "neighborhoods", "climatehealth"]
+categories: ["housing", "inequality", "neighborhoods", "climatehealth","accessibility"]
 keywords:
   [
     "built environments",

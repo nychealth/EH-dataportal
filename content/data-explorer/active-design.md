@@ -8,7 +8,7 @@ seo_description: "Explore data, visualizations, and more on ways that environmen
 description: "Datasets and visualizations of active design data in NYC."
 blurb: Walking, transit, and greenery.
 tags:
-categories: ["publicspace", "neighborhoods", "airquality", "climate"]
+categories: ["publicspace", "neighborhoods", "airquality", "climate", "accessibility"]
 keyTopic: publicspace
 datatables: true
 arquero: true
