@@ -225,9 +225,12 @@ $color-data-explorer: #0A408A;
   }
 }
 
+// Text is $primary-dark: #008939 measures 4.24:1 on #EFFAF4, under AA for this 14px/400 text, the
+// pairing 0007cf874f recorded and fixed elsewhere (review finding #25). The border keeps #008939, a
+// non-text edge whose threshold is 3:1.
 .btn-light-green-bg-outline {
   background-color: #EFFAF4;
-  color: #008939;
+  color: $primary-dark;
   border: 1px solid #008939;
   &:hover {
     background-color: #008939;
