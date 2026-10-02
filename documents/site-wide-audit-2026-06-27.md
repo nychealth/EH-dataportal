@@ -2862,6 +2862,9 @@ re-verified**, so reproduce one before fixing it. Numbers are the report's.
   overridden only because a more specific `.de-tabs-nav` rule wins.
 
 **Coverage gap found by the same review:** CI's smoke and characterization sweeps load Data
-Explorer topic pages without `?id=`, so only about 5 of 267 indicators run the rendering code
-(reviewer's count). Every finding above came from an indicator, sequence or data shape that no
-automated check exercises.
+Explorer topic pages from the sitemap, without `?id=`, and such a page opens the indicator chooser
+and renders no indicator (`topic-indicator-selector.js`, the "open chooser if URL has no valid
+indicator ID" guard; measured 2026-10-02 on 4 topics). So CI exercises none of the explorer's
+rendering. Only local checks do, for 5 of 267 indicators: the curated smoke list (2380, 26, 2427)
+and `de-characterization` (2380, 2414, 2023). Every finding above came from an indicator, sequence
+or data shape that no automated check exercises.

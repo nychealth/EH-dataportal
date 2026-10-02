@@ -395,9 +395,14 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   `c15317c74b`, prompt as planned in the next-action block; 506,518 subagent tokens, 108 tool
   calls, ~22 minutes. Report: `documents/de-pre-ship-review-2026-10-02.md` — 39 findings, 10
   reproduced in Chromium by the reviewer on an isolated `prod_prod` server. Its coverage finding
-  bears on this plan's own proofs: the CI smoke and characterization sweeps load topic pages
-  without `?id=`, so about 5 of 267 indicators run the rendering code under test (reviewer's
-  count, not re-derived). Chris, 2026-10-02: **fix the wrong-data/breakage items and the
+  bears on this plan's own proofs, and is stronger than the reviewer put it: CI's smoke and
+  characterization sweeps read topic URLs from the sitemap, without `?id=`, and a topic page with
+  no id opens the indicator chooser and renders no indicator (the "open chooser if URL has no valid
+  indicator ID" guard in `topic-indicator-selector.js`; measured 2026-10-02 on asthma, air-quality,
+  waterways, economic-conditions: no `IndicatorID`, 0 map paths, no pane). So CI runs none of the
+  explorer's rendering. The reviewer's "about 5 of 267" is the local checks' union: the curated
+  smoke list (2380, 26, 2427) and `de-characterization` (2380, 2414, 2023). [Corrected
+  2026-10-02: first recorded here, in audit §21 and in the PR body as the CI sweeps' count.] Chris, 2026-10-02: **fix the wrong-data/breakage items and the
   accessibility items before the merge; the rest become tracked follow-ups**, and the report
   becomes a tracked doc. Per-finding outcomes in "Review findings" below.
 
