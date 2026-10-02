@@ -475,6 +475,15 @@ const renderCurrentView = (updateMap = false) => {
 
 let indicatorLoadToken = 0;
 
+// The checks in loadAndRenderIndicator run only between its steps, but several steps write
+// shared state after awaits of their own: loadData, fetch_comparisons, createComparisonData
+// (data.js), renderMeasures and setDefaultLinksMeasure (measures.js). Each captures
+// indicatorLoadToken when it starts and checks it here before writing. Without that, a slow
+// fetch for the previous indicator landed after the newer one had rendered and emptied its
+// map, table and trend data (review finding #4).
+
+const isIndicatorLoadCurrent = (token) => token === indicatorLoadToken;
+
 // The single path from "an indicator ID" to "a rendered view". Every entry point
 // goes through here: initial load (checkURL), modal selection (selectIndicator),
 // and back/forward (popstate). They differ only in the two options below.
@@ -496,10 +505,11 @@ const loadAndRenderIndicator = async (id, { selection = null, history = 'push' }
     indicatorLoadToken += 1;
     const token = indicatorLoadToken;
 
-    // False once a newer load has started; a stale load then stops before it can
-    // write shared state, the URL, or the DOM.
+    // False once a newer load has started. Checked between the steps below, so a stale
+    // load starts no further step and writes neither the URL nor the view; the steps'
+    // own post-fetch writes are guarded by isIndicatorLoadCurrent, above.
 
-    const isCurrent = () => token === indicatorLoadToken;
+    const isCurrent = () => isIndicatorLoadCurrent(token);
 
     // ----- reset sub-selections, then layer the URL's back on top ----- //
 

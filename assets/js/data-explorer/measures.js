@@ -129,9 +129,15 @@ const setDefaultLinksMeasure = async (visArray) => {
 
     DE.links.defaultPrimaryLinksMeasureMetadata = defaultArray;
 
+    // Captured before the fetch; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
     // using await here because createJoinedLinksData calls fetch, and we need that data
 
     const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
 
     // extract secondary metadata from data function return, assign to global object
 
@@ -1840,6 +1846,10 @@ const renderMeasures = async () => {
 
     debugLog("* renderMeasures");
 
+    // Captured before the links fetch below; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
     resolveTabReferences();
     resolveMeasuresPillRefs();
 
@@ -1945,6 +1955,8 @@ const renderMeasures = async () => {
     // also calls (and waits for) createJoinedLinksData
 
     await setDefaultLinksMeasure(DE.lookups.linksMeasures);
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
 
 
     // ----- trend selection controls ----- //

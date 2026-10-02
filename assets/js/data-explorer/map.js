@@ -14,6 +14,16 @@ let currentMap = null;
 let currentGeojsonLayer = null;
 let currentBubbleMarkers = [];
 
+// Bumped by every resetMapForRender. Each renderer captures it before its geometry fetch and
+// draws nothing if a newer render has started by the time the fetch resolves. Without it, two
+// quick Boundary changes raced: the uncached geotype's fetch resolved last, drew on top of the
+// newer one, and took over currentGeojsonLayer — so the newer layer was never removed again
+// (review finding #2: 59 CD + 42 UHF42 paths on screen at once).
+
+let mapRenderGeneration = 0;
+
+const isCurrentMapRender = (generation) => generation === mapRenderGeneration;
+
 // Display Parameters
 
 let isPercent;
@@ -121,6 +131,8 @@ const createDataLookup = (data) => {
 // Reuses the base map instance while clearing old geometry overlays between renders.
 
 const resetMapForRender = () => {
+    mapRenderGeneration += 1;
+
     detachMapInterop();
 
     // The outgoing render's hover text describes geography that is about to disappear, and with
@@ -510,6 +522,7 @@ const renderUnmappedCitywide = (metadata) => {
     debugLog("** renderMap: no map available for this measure, rendering unmapped citywide");
 
     const map = resetMapForRender();
+    const generation = mapRenderGeneration;
 
     // ----- hide the legend ----- //
 
@@ -522,6 +535,8 @@ const renderUnmappedCitywide = (metadata) => {
 
     const mapRenderPromise = loadMapGeojson(getGeoFile('Citywide'), {})
         .then(geojson => {
+
+            if (!isCurrentMapRender(generation)) return;
 
             // ----- add the gray citywide outline ----- //
 
@@ -649,6 +664,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();
+    const generation = mapRenderGeneration;
     const { minValue, maxValue } = getMapStats(data);
 
     setMapLegendValues(minValue, maxValue, 1);
@@ -735,6 +751,8 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
+
+            if (!isCurrentMapRender(generation)) return;
 
             // - - - lookup to match GeoID → Leaflet layer - - - //
 
@@ -864,6 +882,7 @@ const renderChoroplethMap = (data, metadata, mapGeoType, mapTime, topoFile, isCi
 const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywideOnly = false) => {
     const dataLookup = createDataLookup(data);
     const map = resetMapForRender();
+    const generation = mapRenderGeneration;
     const { minValue, maxValue } = getMapStats(data);
     isPercent = false;
     displayType = '';
@@ -904,6 +923,8 @@ const renderBubbleMap = (data, metadata, mapGeoType, mapTime, topoFile, isCitywi
 
     const mapRenderPromise = loadMapGeojson(topoFile, dataLookup)
         .then(geojson => {
+
+            if (!isCurrentMapRender(generation)) return;
 
             // - - - bubble lookup for chart interop - - - //
 

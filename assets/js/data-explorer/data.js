@@ -39,6 +39,10 @@ const fetch_comparisons = async () => {
 
     debugLog("* fetch_comparisons.json");
 
+    // Captured before the fetch; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
     const comparisonsUrl = `${data_repo}${data_branch}/indicators/metadata/comparisons.json`;
 
     // Cache the fetch, not the filtered result — createComparisonData narrows the same
@@ -52,6 +56,8 @@ const fetch_comparisons = async () => {
             return [];
         });
 
+    if (!isIndicatorLoadCurrent(loadToken)) return;
+
     await createComparisonData(DE.lookups.comparisons || []);
 
 };
@@ -62,6 +68,10 @@ const fetch_comparisons = async () => {
 const createComparisonData = async (comps) => {
 
     debugLog("* createComparisonData");
+
+    // Captured before the comparison-data fetches; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
 
     // ----- bail if no comparisons selected ----- //
 
@@ -168,6 +178,8 @@ const createComparisonData = async (comps) => {
 
         })
     );
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
 
     // reduce with no seed throws on an empty array (e.g. the semijoin above filtered out every candidate row);
     // undefined matches the "no comparison data" convention this function already uses above on early bail-out.
@@ -311,6 +323,10 @@ const loadData = async (this_IndicatorID) => {
 
     debugLog("* loadData");
 
+    // Captured before the fetch; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
     try {
 
         // ----- fetch indicator rows, time, and geography together ----- //
@@ -328,6 +344,12 @@ const loadData = async (this_IndicatorID) => {
             loadGeo()
 
         ]);
+
+        // A newer indicator load started during the fetch. Its loadIndicator has already
+        // replaced DE.indicator.indicatorMeasures, so joining these rows now would semijoin them
+        // against the wrong measures and overwrite the newer indicator's data.
+
+        if (!isIndicatorLoadCurrent(loadToken)) return;
 
         // console.log("data [loadData]", data);
 
@@ -347,6 +369,8 @@ const loadData = async (this_IndicatorID) => {
     }
 
     // trigger 311 button render after all data fetches and joins have resolved
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
 
     render311Links(this_IndicatorID)
 
