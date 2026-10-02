@@ -9,7 +9,6 @@ description: "Datasets and visualizations of active design data in NYC."
 blurb: Walking, transit, and greenery.
 tags:
 categories: ["publicspace", "neighborhoods", "airquality", "climate", "accessibility"]
-keyTopic: publicspace
 datatables: true
 arquero: true
 leaflet: true
