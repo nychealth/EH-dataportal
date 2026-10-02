@@ -26,11 +26,12 @@ roots lists 14 files, all under data-explorer/]`.
 on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
 D11, the propagation sweep and D12 are newer than that run; ultra refused the PR as too large; the
 local review that replaced it ran on `c15317c74b` and found 39 issues; 15 of the 16 before-merge
-rows are fixed in `8cf5f7abd3`..`66ca2b0113`, re-baselined in `098711a30b`, and #12 waits on D16 —
+rows are fixed in `8cf5f7abd3`..`66ca2b0113`, re-baselined in `098711a30b`, and #12 is deferred (D16) —
 see "Review findings"); pushed to `f18dde8820`, where CI matches `5d5732de13` (characterization green,
 smoke red only on AirNow's `cooling-info/`, red on `production` too) and the PR body was updated;
-re-run on `9e38df2bdc` (docs only) adds one uncleared Datawrapper failure, see next action; merge
-blocked on D15 (EHDP-data); Task 6 not started.**
+re-run on `9e38df2bdc` (docs only) adds one uncleared Datawrapper failure, see next action; D15
+resolved 2026-10-02 in EHDP-data `08d6e68f6e` and #5 re-checked on prod_prod; D16 deferred to audit
+§21; PR body's D15 banner replaced; merge awaits Chris; Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -50,8 +51,12 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review ran on `c15317c74b` (39 findings, 15 before merge; see "Review findings") | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: Chris's answers to D15 and D16 (and D17, which does not gate the merge).** D15 is
-a change in EHDP-data, not here. Already done on `f18dde8820`: push; PR checks read by SHA —
+**Next action: read the PR checks on the new head by SHA, then the merge (Chris), then Task 6.**
+D17 is still open and does not gate the merge. D15 is done (see its row: EHDP-data `08d6e68f6e`,
+and the `f5` re-run on prod_prod passed); D16 is deferred to audit §21. PR body edited 2026-10-02
+(`gh pr edit 1462 --body-file`): the "Do not merge yet" D15 banner became a met-dependency note and
+the D16 line reads "Deferred"; read back identical apart from GitHub's trailing newline. Its CI
+section still describes `f18dde8820`. Already done on `f18dde8820`: push; PR checks read by SHA —
 Site characterization run 37064754331 success; Smoke run 37064754317 failure on
 `data-features/cooling-info/` only (AirNow `AQI`), its base-control job red on the same page against
 `production`, and `data-features/heat-report/`, `data-stories/violence/` cleared on sequential
@@ -65,9 +70,8 @@ reads `.vis`; it embeds Datawrapper charts, so the likely cause is Datawrapper's
 (audit §16) — an inference: the CI log carries no stack and it was not reproduced. A smoke re-run
 would settle intermittency. CI coverage of the explorer itself is planned separately on
 `feature-smoke-explorer-indicators` (`documents/smoke-explorer-indicators-plan-2026-10-02.md`
-there, `66f5867602`; its D3 is merge order with this PR). After D15 lands in EHDP-data: from the repo root run `node scripts/.sc-rebaseline/fix-probe.mjs f5`
-(prod_prod by default; expect 1 path and the "not mapped" popup for 103/870 and 2383/1205), then
-the merge (Chris), then Task 6. A new commit here re-runs both PR checks; re-read them by SHA.
+there, `66f5867602`; its D3 is merge order with this PR). A new commit here re-runs both PR
+checks; re-read them by SHA.
 The fixes' proofs are in "Review findings"; the probes are `scripts/.sc-rebaseline/race-probe.mjs`
 and `fix-probe.mjs` (gitignored, `PROBE_ENV` picks the environment, default `prod_prod`). Local
 checks on `66ca2b0113`: `node scripts/smoke-env.mjs prod_prod sample` 44/44 clean; `node
@@ -428,8 +432,8 @@ finding they describe.
 | 2 | Quick Boundary/Time/Measure changes leave a stale map layer (no render token in `map.js`) | runtime | Before merge | **FIXED** `3427ebb1aa` — render generation in `map.js`. Probe with UHF42 geometry delayed 3s (`held: 1`): UHF42→CD 101 → 59 paths, →Borough 64 → 5 |
 | 4 | Superseded indicator load still writes `DE` state and 311 links (`loadData`/`joinData`); comment `app.js` "stale load stops" false (#29) | trace | Before merge | **FIXED** `3427ebb1aa` (with #29) — `isIndicatorLoadCurrent` checked after the awaits in `loadData`, `fetch_comparisons`, `createComparisonData`, `renderMeasures`, `setDefaultLinksMeasure`. Worse than reported: the stale join emptied the new indicator. Probe, first indicator's data delayed 4s (`held: 1`): asthma 2392→18 and air-quality 2028→2027, map/table/trend 0/0/0 → equal to a fresh load of the second; 311 links wrong → right on the air-quality pair (the asthma pair shares one 311 link, so no power there) |
 | 3 | Correlate reuses cached data under a stale key (`setDefaultLinksMeasure` vs `renderSelectedCorrelate`) | runtime | Before merge | **FIXED** `5951fe6003` — `setDefaultLinksMeasure` writes the key with the rows; disparities drops the rows when it changes the primary. Probe: after 2414 + Back, labelled 31/47 vs rows 363/41 → 31/47 vs 31/47 |
-| 5 | Measure with no views inside a mapped indicator → `geography/undefined`, empty map, 0.0% legend (103, 2176, 2383, 2384); comments #30 | runtime | Before merge | **FIXED** `5a69468396` (with #30) — `resolveMapMetadata`. dev_stage: `geography/undefined`, 0 paths, 0.0–0.0 legend → gray outline + "not mapped" popup, map metadata 870/1205. On prod_prod no outline: see D15 |
-| 12 | UHF33 / National rows unselectable, null area name (`GEO_RANK_BY_PRETTY_TYPE`, `geoTypes`) | runtime (UHF33) | Before merge | **OPEN, needs data** (D16) — verified: production GeoLookup has no UHF33 or National rows; UHF33 GeoIDs include merged ids (`105106107`, `207208`, …), so names cannot come from the JS |
+| 5 | Measure with no views inside a mapped indicator → `geography/undefined`, empty map, 0.0% legend (103, 2176, 2383, 2384); comments #30 | runtime | Before merge | **FIXED** `5a69468396` (with #30) — `resolveMapMetadata`. dev_stage: `geography/undefined`, 0 paths, 0.0–0.0 legend → gray outline + "not mapped" popup, map metadata 870/1205. On prod_prod no outline until D15 landed in EHDP-data; after it, the same as dev_stage (see D15) |
+| 12 | UHF33 / National rows unselectable, null area name (`GEO_RANK_BY_PRETTY_TYPE`, `geoTypes`) | runtime (UHF33) | Before merge | **DEFERRED** to audit §21 (D16, Chris 2026-10-02) — verified: production GeoLookup has no UHF33 or National rows; UHF33 GeoIDs include merged ids (`105106107`, `207208`, …), so names cannot come from the JS |
 | 1 | Same-indicator back/forward changes URL/state, not the visible pane (popstate in `app.js`) | runtime | Before merge | **FIXED** `1808f80eeb` — `showOverlayTab` (moved out of `renderMeasures`) also called on same-indicator popstate. Probe: Back after Trends→Bar, pane bar → trends; Forward, no pane → trends |
 | 6 | Enter on a disabled tab switches state, not the pane | runtime | Before merge | **FIXED** `1808f80eeb` — click listeners ignore `.disabled`; a disabled overlay resolves to `none`. Probe on 2378: Enter on Trends, state trend/pane bar → bar everywhere; `overlay=trend` URL, open empty container → `none` |
 | 7 | Exported map PNG legend reversed (`print-map.js` vs `createColorScale`) | trace | Before merge | **FIXED** `62aabf727f` — `interpolateViridis(1 - stop)`. Canvas pixel under "min" rgb(68,3,86) → rgb(248,230,35); min fill rgb(253,231,37) |
@@ -460,8 +464,8 @@ finding they describe.
 | D12 | Retired-explorer pages appear in site search beside the new ones | Chris, 2026-10-02: **exclude** — `da9546b798` | D6 took them out of listings and the sitemap; search was not part of it. `baseof.html` omits `data-pagefind-body` when `excludeFromSearch` is set; `content/data-explorer-old/_index.md` sets it on itself and by cascade. Proof in "Task 5 record". The sweep's two markup slips were fixed on the same answer, `f872cd99b1` |
 | D11 | The new explorer's basemaps lacked the CARTO key and rendered "API KEY REQUIRED" tiles | Fixed, `39946d0c39` | See "Task 5 record". Same shape as Task 2: an upstream sweep reaches only the files upstream has, so branch-only siblings miss it |
 | D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | Chris, 2026-10-02: **diagnose in CI** → fixed, `4f9bcb2c1f` | A filename-case bug, not a platform rendering difference: the topic-selector icon failed to load on Linux on all 42 topic pages. See "Task 5 record". Rejected: accepting a red check, and re-baselining from CI's capture (which would have recorded the broken icon as expected) |
-| D15 | EHDP-data `production` has no `geography/citywide.topo.json` (404); `staging` has it (200, added `cea4e876c1` 2026-04-29). The new explorer's unmapped state (`renderUnmappedCitywide`) draws from it | **Open — Chris**; blocks the merge | Found verifying #5. 223 of 722 live measures (68 indicators) in production's `metadata.json` have no mappable Map geography and take the unmapped path; on prod_prod they draw nothing and no "not mapped" message (the known-good unmapped case, 73/138, fails the same way). `borough.topo.json` on production answers 200, so the URL pattern is right. Fix is in EHDP-data: promote the file to `production` before or with this merge |
-| D16 | #12: UHF33 and National rows have no GeoLookup names | **Open — Chris** | Options: (a) add UHF33 + National rows to EHDP-data's `GeoLookup.json` and the two geotypes to `GEO_RANK_BY_PRETTY_TYPE` (`data-index.html` already orders UHF33 between NYCKIDS and UHF34); (b) defer both to audit §21. JS alone would make 33 nameless rows selectable. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National) |
+| D15 | EHDP-data `production` has no `geography/citywide.topo.json` (404); `staging` has it (200, added `cea4e876c1` 2026-04-29). The new explorer's unmapped state (`renderUnmappedCitywide`) draws from it | **Resolved 2026-10-02 (Chris)** — EHDP-data `production` `08d6e68f6e` ("adding citywide topojson", 2026-10-02 23:32 UTC) | `[verified 2026-10-02: production raw URL 200, 19,736 B, byte-identical to staging's by `cmp`; `node scripts/.sc-rebaseline/fix-probe.mjs f5` on prod_prod at `efbea918c1` → 103/870 and 2383/1205 each 1 path and the "Data not mapped" popup, 0 page errors. The console's remaining `ERR_FAILED` + `404 (Not Found)` pair matches the dev_stage run's; the pre-fix prod_prod `404 ()` and JSON `SyntaxError` are gone. 73/138 not re-run]`. Found verifying #5. 223 of 722 live measures (68 indicators) in production's `metadata.json` have no mappable Map geography and take the unmapped path; on prod_prod they draw nothing and no "not mapped" message (the known-good unmapped case, 73/138, fails the same way). `borough.topo.json` on production answers 200, so the URL pattern is right. Fix is in EHDP-data: promote the file to `production` before or with this merge |
+| D16 | #12: UHF33 and National rows have no GeoLookup names | **Decided 2026-10-02 (Chris): (b), defer** — recorded in audit §21 under "Wrong data, inherited or latent". (a) remains the fix whenever EHDP-data gains the rows | Options: (a) add UHF33 + National rows to EHDP-data's `GeoLookup.json` and the two geotypes to `GEO_RANK_BY_PRETTY_TYPE` (`data-index.html` already orders UHF33 between NYCKIDS and UHF34); (b) defer both to audit §21. JS alone would make 33 nameless rows selectable. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National) |
 | D17 | `scripts/de-characterization-baseline/` fails `--check` on data, not code | **Open — Chris** (D7 precedent); does not gate CI | On `dev_stage` (EHDP-data `staging` since D9; D7's capture predates D9): 2023's latest period 2024 → 2025 with its legend and row counts; 2380's correlate `markCount` 43 → 17. The 17 is not from this session's code: the same probe gives 42 rows of pair 1199/41 and 17 SVG marks at `66ca2b0113`, with #3's hunk reverted, and with every fix file at `c15317c74b`. Re-baseline with `node scripts/de-characterization.mjs --baseline` on Chris's yes |
 
 ## Environment

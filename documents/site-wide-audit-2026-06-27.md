@@ -2804,7 +2804,9 @@ wrong data, broke a view or failed accessibility were scoped to fix before the m
 outcomes are in the "Review findings" table of
 [`de-production-deploy-plan-2026-10-01.md`](de-production-deploy-plan-2026-10-01.md). The 20
 below were deferred (Chris, 2026-10-02). **They are the reviewer's findings and none has been
-re-verified**, so reproduce one before fixing it. Numbers are the report's.
+re-verified**, so reproduce one before fixing it. Numbers are the report's. #12 was scoped before
+the merge, then deferred later the same day (deploy plan D16); it is the one entry here that was
+verified.
 
 **Degraded UX**
 
@@ -2842,6 +2844,13 @@ re-verified**, so reproduce one before fixing it. Numbers are the report's.
   `links.js`, so it predates this branch.
 - **#17** When correlate and disparities both fail, the previous chart stays up. The reviewer
   found no live trigger in the current metadata.
+- **#12** UHF33 and National rows have no area name and cannot be selected: EHDP-data's
+  `GeoLookup.json` has no rows for either geotype, and `GEO_RANK_BY_PRETTY_TYPE` (`global.js`)
+  ranks neither. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National). The fix needs data
+  first: UHF33 GeoIDs include merged ids (`105106107`, `207208`, …), so names cannot be derived in
+  JS, and adding the geotypes to the JS alone would make 33 nameless rows selectable. Then add both
+  to `GEO_RANK_BY_PRETTY_TYPE`; `data-index.html` already orders UHF33 between NYCKIDS and UHF34
+  `[verified 2026-10-02 against EHDP-data production's GeoLookup]`.
 
 **Maintainability: false or stale claims, dead code**
 
