@@ -22,9 +22,9 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D10 fixed); Task 5 in progress (PR #1462 open; its
-first CI run was red, D10's cause fixed in `4f9bcb2c1f`, awaiting a push and a re-run); Task 6 not
-started.**
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D10 fixed); Task 5 in progress (PR #1462 open, checks
+re-run: characterization green, smoke red only on the AirNow page production also fails; ultra
+review not run); Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -41,14 +41,11 @@ git merge-base feature-new-data-explorer production                         # wa
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
-| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 3 (ultra review) not run; Step 4 first run red (smoke: AirNow, also red on `production`; characterization: D10, fixed), re-run pending a push | Per step in "Task 5 record" |
+| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 (ultra review) not run | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: push (Chris)**, then read the re-run checks, then Task 5 Step 3
-(`/code-review ultra 1462`, which only Chris can launch). Expected on the re-run, written before
-it: site characterization passes, since the local baseline already records the icon as loaded
-(`zeroSize` 2) and Linux now loads it too; smoke is red again only if AirNow still answers badly,
-on `data-features/cooling-info/`, as on `production`'s tip. Expect a push of any new commit, even a ledger-only one, to re-run both PR
+**Next action: Task 5 Step 3, `/code-review ultra 1462`** (only Chris can launch it), then the
+merge, then Task 6. Expect a push of any new commit, even a ledger-only one, to re-run both PR
 checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
 changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
 branch:
@@ -292,6 +289,13 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
     `images/`. Sweep of 311 site-root `images|img|icons|css|js/…` references in `themes/`,
     `content/`, `data/` against tracked `static/`+`assets/` paths: 1 case-only mismatch, this
     one. Scratch branch deleted from `origin` and locally, worktree removed.
+- **Step 4 re-run** after Chris pushed `5d5732de13` (PR head), runs queried by `head_sha`:
+  site characterization `37016219934` **success**, as predicted; smoke `37016219744` failure, 1 of
+  924, `data-features/cooling-info/` `AQI` again, and the base-control job against `production`'s
+  tip failed on the same page. Cleared on sequential re-check, not counted: this run's
+  `data-features/heat-report-archive/2021/` (`reading 'vis'`), the base run's
+  `data-explorer/waterways/` (`reading 'array'`). PR body updated with these results, the D10 fix,
+  and the size (532 commits, 2,135 files, 1,852 of them baselines).
   - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
     (shown `ERR_ABORTED`; delivery not established). The second blocked it.
 
