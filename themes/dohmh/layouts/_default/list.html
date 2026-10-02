@@ -55,7 +55,11 @@
         </div>
         
     </main>
-    
+
+    {{- /* This template is a whole document and never passes through baseof.html, so it
+           includes the search modal itself; footer.html does not carry search. */ -}}
+    {{- partial "search-modal.html" . -}}
+
     {{- partial "footer.html" . -}}
     {{- partial "js_bottom.html" -}}
     {{- block "js_bot" . -}}{{- end -}}
