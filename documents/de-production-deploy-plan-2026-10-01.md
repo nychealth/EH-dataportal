@@ -24,8 +24,8 @@ roots lists 14 files, all under data-explorer/]`.
 
 **Status as of 2026-10-02: Tasks 1–4 done (D5–D12 fixed); Task 5 in progress (PR #1462 open; checks
 on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
-D11, the propagation sweep and D12 are newer than that run; ultra review not run); Task 6 not
-started.**
+D11, the propagation sweep and D12 are newer than that run; ultra refused the PR as too large, a
+local review replaces it, not yet run); Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -42,13 +42,38 @@ git merge-base feature-new-data-explorer production                         # wa
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
-| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 (ultra review) not run | Per step in "Task 5 record" |
+| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review planned, not run | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: push (Chris)** so the PR carries D11, D12 and the markup fixes, then re-read the
-checks on the new head (expected: as on `5d5732de13` — none of the three moves structure, per the
-local `characterize-env.mjs prod_prod` pass), update the PR body with them, then Task 5 Step 3, `/code-review ultra 1462` (only Chris can launch
-it), then the merge, then Task 6. Expect a push of any new commit, even a ledger-only one, to re-run both PR
+**Next action: the local code review, on Chris's go** (ultra cannot take this PR — see Task 5
+Step 3). Then fix what it finds, then push (Chris) so the PR carries D11, D12, the markup fixes and
+any review fixes (`git rev-list --left-right --count origin/feature-new-data-explorer...HEAD` shows
+what is local-only), re-read the checks on the new head (expected: as on `5d5732de13`), update the
+PR body (D11, D12, markup fixes, review outcome), then the merge, then Task 6.
+
+The review, as agreed 2026-10-02:
+- **One review subagent (Opus), not a fleet.** Cross-file context between the JS and the templates
+  is worth more than the speed of splitting them; split into two parallel agents (JS; templates +
+  SCSS) only if one agent's read turns out too large. Cost not measured in advance; record what
+  the run reports.
+- **Scope — the code nothing has read for correctness:** `git diff production HEAD -- assets/js/data-explorer`
+  (16 files, ~14.5K changed lines), `themes/dohmh/layouts` (58 files, ~8.8K), `assets/scss/_de-custom.scss`
+  and `assets/scss/_custom.scss`. The reviewer reads the files whole where the diff is a rewrite.
+- **Out of scope, with the reason:** the characterization baselines (generated), `documents/`
+  (prose), `assets/js/data-explorer-old/` and `content/data-explorer-old/` (Task 2's per-file
+  residual check), `static/css/nyc-basic-lib-v1.2.79.css` (vendored), topic `.md` text (the
+  metadata sweep and Probe 3 covered it).
+- **Prompt shape** (memory `feedback-review-prompt-enumeration`): ask for an enumeration, not a
+  verdict — every defect with `file:line`, the input or state that triggers it, and what goes wrong;
+  confirmed vs suspected marked apart; then a closing catch-all ("anything else that would worry you
+  shipping this"). Give it the context it cannot derive: classic scripts sharing one global scope
+  and the load order in `data-explorer/single.html`; `DE` as the state namespace; the
+  table-follows-the-map design (D4) and other recorded decisions, so it does not re-report them;
+  what is already proven (lint, smoke, characterization, D10/D11/D12) so it spends effort elsewhere.
+- **After:** verify each finding before acting (reproduce or read the code), record the outcome per
+  finding in a "Task 5 record" bullet, fix the confirmed ones with the usual proof.
+
+Expect a push of any new commit, even a ledger-only one, to re-run both PR
 checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
 changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
 branch:
@@ -601,6 +626,12 @@ documents, and read each script's argv handling before the first run.
   `hugo-build-to-dev-stage.yml` filters on `build-to-dev-stage` and never fires here.
 - [ ] **Step 3:** `/code-review ultra <PR#>` (global CLAUDE.md: the billed review is for the merge
   into the deploy branch).
+  **Corrected 2026-10-02: cannot run on this PR.** Chris ran `/ultrareview 1462` → "PR #1462 is too
+  large for ultrareview (2135 files, 75,015 lines)". The limits, read from the installed Claude Code
+  2.1.236 (`gdi()`): 500 files / 8,000 changed lines by default, overridable server-side. Without
+  the baselines the diff is still 280 files / 46,520 lines; `assets/js/data-explorer` alone is
+  14,516. No argument excludes paths; prose instructions work only in branch mode and cannot be
+  combined with a named base. Replaced by the local review below (Chris, 2026-10-02).
 - [ ] **Step 4:** Confirm checks ran: query runs by the PR's head SHA, not branch name (memory
   `project-pr-checks-need-a-mergeable-pr`).
 
