@@ -599,6 +599,10 @@ window.addEventListener('popstate', async (event) => {
 
     // ----- re-render ----- //
 
+    // The overlay may have changed with the entry, so the visible pane must follow it.
+
+    showOverlayTab();
+
     renderCurrentView(true);
 
 });
@@ -646,6 +650,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!el) return;
 
         el.addEventListener('click', () => {
+
+            // .disabled blocks pointer clicks but not Enter on the focused link, and Bootstrap
+            // refuses to show a disabled tab — so without this, Enter switched the state and the
+            // URL to a view whose pane never opened (review finding #6).
+
+            if (el.classList.contains('disabled')) return;
 
             DE.state.overlay = value;
             pushSelectionToURL();

@@ -2041,7 +2041,22 @@ const renderMeasures = async () => {
 
     // ----- activate the Bootstrap tab matching overlay ----- //
 
-    // The caller — checkURL or popstate — calls renderCurrentView after this.
+    // The caller, loadAndRenderIndicator, calls renderCurrentView after this.
+
+    showOverlayTab();
+
+}
+
+
+// Opens the tab and pane matching DE.state.overlay, or closes them all for 'none'. Called after
+// renderMeasures has enabled/disabled the tabs, and by popstate when Back/Forward stays on the same
+// indicator — before that second call existed, a same-indicator Back changed the URL and the state
+// but left the previous pane on screen (review finding #1).
+//
+// A disabled target becomes 'none'. Bootstrap's tab('show') refuses a .disabled tab, so asking for
+// one used to leave the pane container open with no pane in it (?id=2378&overlay=trend).
+
+const showOverlayTab = () => {
 
     const tabSelector = {
         'bar':   '#v-pills-bar-tab',
@@ -2070,6 +2085,14 @@ const renderMeasures = async () => {
 
     };
 
+    const target = DE.state.overlay !== 'none'
+        ? document.querySelector(tabSelector[DE.state.overlay] || '#v-pills-bar-tab')
+        : null;
+
+    if (target?.classList.contains('disabled')) {
+        DE.state.overlay = 'none';
+    }
+
     // Re-open the tab that matches the restored overlay after menus are rebuilt.
 
     if (DE.state.overlay !== 'none') {
@@ -2079,7 +2102,6 @@ const renderMeasures = async () => {
             tabContent.style.display = 'block';
         }
 
-        const target = tabSelector[DE.state.overlay] || '#v-pills-bar-tab';
         $(target).tab('show');
     } else {
         resetOverlayTabState();
@@ -2089,5 +2111,5 @@ const renderMeasures = async () => {
         }
     }
 
-}
+};
 

@@ -59,8 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add a separate listener to ensure container is visible when clicking any tab
 
+    // Not for a disabled tab: Bootstrap won't open its pane, so this would reveal an empty container.
+
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.nav-link[data-toggle="pill"]')) {
+        const tab = e.target.closest('.nav-link[data-toggle="pill"]');
+        if (tab && !tab.classList.contains('disabled')) {
             const tabContent = document.querySelector('#v-pills-tabContent');
             if (tabContent && tabContent.style.display === 'none') {
                 tabContent.style.display = 'block';
