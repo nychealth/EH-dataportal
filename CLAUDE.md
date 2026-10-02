@@ -76,7 +76,7 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Eight things to know before trusting a result:
+Nine things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -102,6 +102,7 @@ Eight things to know before trusting a result:
   at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
+- **CI's sweeps render no Data Explorer indicator.** They take URLs from the sitemap, which carries no `?id=`, and a topic page without one opens the indicator chooser and stops (the "open chooser" guard in `assets/js/data-explorer/topic-indicator-selector.js`). A green CI run says nothing about explorer rendering; only the curated `PAGES` (2380, 26, 2427) and `scripts/de-characterization.mjs` (2380, 2414, 2023) render an indicator `[verified 2026-10-02: 4 topic pages, no IndicatorID, 0 map paths]`.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
 
@@ -323,6 +324,7 @@ The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layout
 - Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
 - In the retired explorer only, `themes/dohmh/layouts/data-explorer-old/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `assets/js/data-explorer-old/data.js` calls them; that works only because classic scripts share one scope. The new explorer defines none of the three; its only mention is a commented-out `createCitation()` call in `data.js`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
+- **Every EHDP-data path the explorer fetches at runtime must exist on EHDP-data `production` before merging.** `dev_stage` reads `staging` and CI renders no indicator (smoke, above), so a staging-only file passes every check here and 404s live. `curl -s -o /dev/null -w '%{http_code}'` the production raw URL `[2026-10-02: geography/citywide.topo.json was staging-only; the unmapped map drew nothing on 68 indicators]`.
 
 ### Neighborhood reports
 
