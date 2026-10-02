@@ -22,8 +22,8 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: Tasks 1–3 done; Task 4 Steps 1–6 done, D5 fixed, Step 7's re-baseline
-BLOCKED on D6; Tasks 5–6 not started.**
+**Status as of 2026-10-01: Tasks 1–3 done; Task 4 Steps 1–6 done, D5–D7 fixed, Step 7's
+re-baseline awaiting Chris's go (and D8 open); Tasks 5–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -39,22 +39,22 @@ git merge-base feature-new-data-explorer production                         # wa
 | 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
-| 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`) | **Steps 1–6 DONE 2026-10-01; Step 7 re-baseline BLOCKED on D6** (D5 fixed at `9ed813232d`) | Per step in "Task 4 record" |
+| 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`) | **Steps 1–6 DONE 2026-10-01; Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`); re-baseline not run** | Per step in "Task 4 record" |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: Chris decides D6 and D7** (see Decisions). Each fix lands as its own commit; then
-re-run Step 7's check and compare against production's capture, which is the base the D5/D6
-expectations below are measured from:
+**Next action: Chris's go on the `prod_prod` re-baseline** (the remaining differences are listed
+under "Step 7 re-check" in the Task 4 record), and an answer on D8, which can land before or after
+it. The re-baseline command is not written here yet: `scripts/site-characterization-rebaseline.mjs`
+re-captures every committed baseline when run bare, so read its argv handling first and write the
+exact invocation into this block before running it. If the tree has moved past `19c3e93153`,
+re-run the check first:
 
 ```
 node scripts/characterize-env.mjs prod_prod           # HEAD capture -> scripts/site-characterization-current
 # production's capture, if the worktree below is gone: git worktree add --detach <dir> production,
 # then node scripts/characterize-env.mjs prod_prod inside it (exit 0 at ed63fa7603)
 ```
-
-Only after that: read `scripts/site-characterization-rebaseline.mjs`'s argv handling, then
-re-baseline. It re-captures every committed baseline when run bare.
 
 ## Task 1 record
 
@@ -169,12 +169,35 @@ re-baseline. It re-captures every committed baseline when run bare.
     `<h5>` now precedes the footer's `<h2>`); 510 are the D5 pages losing that `<h5>`; 42 are DE.
   - **69 pages only on `HEAD`**: 44 `data-explorer-old/` (D1) and 25 extra keyword/category
     paginator pages, because the old-explorer content carries its own `categories`/`keywords`
-    (copied at `18d94c510f`) and is listed on 55 of 78 category pages and 290 of 705 keyword pages
-    in the build. Also the source of `links.internal` +1 on 214 pages. → D6.
+    (copied at `18d94c510f`) and is listed on 42 of 78 category pages and 153 of 705 keyword pages
+    in the build. Also the source of `links.internal` +1 on 214 pages. → D6. (Corrected: this line
+    first said 55 and 290 — that `grep -rl` counted every file under those folders, RSS `index.xml`
+    included, against a denominator of `index.html` pages.)
   - **42 DE topic pages**: the explorer swap, expected. Noted for the PR, not judged: per page,
     `controls.noAccessibleName` 1→7, `img.missingAlt` 0→1, `img.emptyAlt` 0→4, `overflowX`
     false→true, `landmarks.footer` 1→0, `tables.total` 2→0 (example `data-explorer/accessibility/`).
   - `search-results/` absent on `HEAD`: this branch deleted that page in `7e5d0d12b1`.
+- **Step 7 re-check** at `19c3e93153` (after D5–D7), same comparison against production's capture.
+  Enumerated 924 pages (829 sitemap + 94 paginator + 1) against production's 925; the one missing
+  is `search-results/`. Remaining differences:
+  - Pagefind UI on 924 of 924 pages; none lost.
+  - `headingLevels` on 924 pages: 880 pure reorders (modal before footer, `00fbf2f9fc`), 42 DE, 2
+    category paginator pages whose items changed (below).
+  - The 42 DE pages, as before.
+  - `links.internal` −6 on `key-topics/accessibility/` and `categories/accessibility/page/2/`, −1
+    on the public-space pair: the new explorer's topic files carry fewer categories. Production's
+    `dc6c58fa33` (2025-08-12, "revise metadata") gave six old-explorer topics `accessibility`
+    (`active-design`, `falls-among-older-adults`, `health-care`, `housing-safety`,
+    `transportation-related-injuries`, `walking-driving-and-cycling`); their new-explorer files
+    lack it. → D8.
+  - `assets` +`css/nyc-basic-lib-v1.2.79.css` on `take-action/`, `take-action/email-electeds/`,
+    `data-features/congestion-pricing-report/`: this branch's `d43e01ba93` (2026-01-21, "adding
+    basic lib as self-hosted dep") loads a self-hosted copy beside the CDN one under `mapLib`.
+  - The 44 old-explorer pages are no longer enumerated (D6 took them out of the sitemap), so
+    `smoke:all` and this sweep no longer cover them; the curated smoke list still has 4.
+- **Found, not fixed:** production's `dd16987cad` (double spaces) is absent from
+  `content/data-explorer-old/` (forward patch applies cleanly), and `4a3185e056` (unicode) applies
+  in neither direction there. Both are cosmetic text fixes on retired, now-unlisted pages.
 
 ## Decisions
 
@@ -184,10 +207,10 @@ re-baseline. It re-captures every committed baseline when run bare.
 | D2 | The new explorer accepts the old explorer's URL format; the new format is built on it, with defaults filled in by the JS | Chris, 2026-10-01 | The author's statement, not independently checked. Task 4 Step 6 loads old-format links as a confirmation, not as a gate on the decision |
 | D3 | Production's section-header (`7a995427a1`) and skip-link (`b8771726c9`) changes, written against the old explorer's templates, also go onto the new explorer's | Chris, 2026-10-01: **yes** | Applied in Task 1 to `indicator-catalog.html` and `data-index.html`; `section.html` and `single.html` have no markup for either change — see "Task 1 record" |
 | D4 | Table default geographies: keep strict follow-the-map, no code change | Chris, 2026-10-01: **closed** | The Citywide + Borough context option is recorded and deferred in `documents/site-wide-audit-2026-06-27.md` §4c; the fresh audit's "Status at a glance" points there. History: Chris first asked to follow the old explorer's pattern unless that needed one-off conditionals. The audit's "Citywide + Borough" was one indicator's instance of the old rule, which is *every* available geography checked, most recent time only (`assets/js/data-explorer-old/measures.js`, the `tableTimes.forEach` and `dropdownTableGeoTypes.forEach` blocks). The new explorer's single-geography default is not a standalone default: the table *follows the map dropdowns* — the default in `renderMeasures`' "table defaults" block (`measures.js`), the re-sync on every geo/time dropdown change (`menu.js` → `syncTableFiltersToMapSelection`), the geo choice inside `getCurrentMapTableFilters` (`table.js`), the "Sync to map" button and the Synced/Custom summary (`table.js`). Adopting the old rule means redefining what "synced" means for geography, not adding a conditional. **Table-follows-the-map is an explicit team design choice (Chris, 2026-10-01)** — it is not up for removal, so the old rule as written is off the table. |
-
 | D5 | Search on `list.html` pages (535 taxonomy pages lose the Pagefind UI) | Chris, 2026-10-01: **fix it** — `9ed813232d` | `_default/list.html` now includes `search-modal.html` before the footer, as `baseof.html` does. Proof: isolated `prod_prod` build, real pages (`data-pagefind-meta=`) without `pagefind/pagefind-ui.js` 535 → 0, none with two (control: the pre-fix build reproduces 535). Playwright on `dev_stage`: modal present, opens, one input, 5 results for "asthma", no page errors, on `categories/accessibility/`, `keywords/`, `es/categories/` and the `baseof` control `data-stories/housing/`. Curated smoke 44/44 clean. Whether `list.html` should become a `baseof` template is a bigger change, not needed for the fix |
-| D6 | Should `data-explorer-old/` pages appear in category and keyword listings? | **Open — Chris** | D1 ships the pages; it does not say whether taxonomies list them beside the new explorer's same-named topics. 73 of the 76 files under `content/data-explorer-old/` carry both `categories:` and `keywords:` (`git grep -l`); removing those would unlist them |
-| D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | **Open — Chris** | Its diffs are not caused by this branch (Task 4 record, Step 2). Re-capturing is `node scripts/de-characterization.mjs --baseline` |
+| D6 | Should `data-explorer-old/` pages appear in category and keyword listings? | Chris, 2026-10-01: **unlist** — `625a2a0770` | A `cascade: build: list: never` in `content/data-explorer-old/_index.md`, leaving the 73 content files' `categories`/`keywords` untouched. Isolated `prod_prod` builds: category/keyword pages linking `data-explorer-old/` 42/78, 153/705 → 0/66, 0/692; Hugo paginator pages 113 → 88; all 45 `data-explorer-old/**/index.html` byte-identical before and after (control: `categories/airquality/` differs). `list: local` was tried first and left the listings unchanged. Side effect: the old pages leave the sitemap (44 → 0), so sitemap-enumerated sweeps skip them |
+| D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
+| D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | **Open — content author** | Deliberate for the new explorer, or to carry over? Code shows the difference, not the intent. Costs 6 fewer items on the accessibility key-topic page. Adding them back after the re-baseline moves `links.internal` on those pages again |
 
 ## Environment
 
