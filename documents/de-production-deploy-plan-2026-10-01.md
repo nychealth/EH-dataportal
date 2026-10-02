@@ -29,7 +29,8 @@ local review that replaced it ran on `c15317c74b` and found 39 issues; 15 of the
 rows are fixed in `8cf5f7abd3`..`66ca2b0113`, re-baselined in `098711a30b`, and #12 waits on D16 —
 see "Review findings"); pushed to `f18dde8820`, where CI matches `5d5732de13` (characterization green,
 smoke red only on AirNow's `cooling-info/`, red on `production` too) and the PR body was updated;
-merge blocked on D15 (EHDP-data); Task 6 not started.**
+re-run on `9e38df2bdc` (docs only) adds one uncleared Datawrapper failure, see next action; merge
+blocked on D15 (EHDP-data); Task 6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -55,7 +56,16 @@ Site characterization run 37064754331 success; Smoke run 37064754317 failure on
 `data-features/cooling-info/` only (AirNow `AQI`), its base-control job red on the same page against
 `production`, and `data-features/heat-report/`, `data-stories/violence/` cleared on sequential
 re-check; PR body updated (`gh pr edit 1462`, read back identical apart from GitHub's trailing
-newline). After D15 lands in EHDP-data: from the repo root run `node scripts/.sc-rebaseline/fix-probe.mjs f5`
+newline). Then on `9e38df2bdc` (`f21e43a2d3`, `abe04cd9e9`, `9e38df2bdc` change only `CLAUDE.md` and
+`documents/`, no Hugo input): Site characterization run 37071805284 success; Smoke run 37071805202
+failure on `cooling-info/` (AirNow, as before, base-control red on it too) and on
+`data-features/heat-report-archive/2021/` — "Cannot read properties of undefined (reading 'vis')",
+not cleared by the sequential re-check, not hit by base-control. No first-party code on that page
+reads `.vis`; it embeds Datawrapper charts, so the likely cause is Datawrapper's shared runtime
+(audit §16) — an inference: the CI log carries no stack and it was not reproduced. A smoke re-run
+would settle intermittency. CI coverage of the explorer itself is planned separately on
+`feature-smoke-explorer-indicators` (`documents/smoke-explorer-indicators-plan-2026-10-02.md`
+there, `66f5867602`; its D3 is merge order with this PR). After D15 lands in EHDP-data: from the repo root run `node scripts/.sc-rebaseline/fix-probe.mjs f5`
 (prod_prod by default; expect 1 path and the "not mapped" popup for 103/870 and 2383/1205), then
 the merge (Chris), then Task 6. A new commit here re-runs both PR checks; re-read them by SHA.
 The fixes' proofs are in "Review findings"; the probes are `scripts/.sc-rebaseline/race-probe.mjs`
