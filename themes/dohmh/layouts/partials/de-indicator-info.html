@@ -8,8 +8,11 @@
 <!-- Upper left indicator detail box -->
 <div class="position-absolute  de-main-details border-top" data-recently-updated-ids='{{ $recentlyUpdatedIds | jsonify }}'>
 
-    <!-- Mobile Indicator Header -->
-    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" style="cursor: pointer;">
+    <!-- Mobile Indicator Header. A tap anywhere on the bar opens the details (de-tab-content.js);
+         the +/- button is the same control as a real button, so keyboard and screen-reader users
+         can reach it. The bar itself is not the toggle: it holds the "Change dataset" button, and
+         a toggle containing a button is a nested control. -->
+    <div class="bg-primary text-white px-2 py-1 w-full d-flex d-md-none mobile-details-header" style="cursor: pointer;">
         <div>
             <div class="h6 font-weight-bold mb-0 py-1 main-heading indicator-name" aria-live="polite" aria-atomic="true">Loading indicator...</div>
             <div class="position-relative d-inline-flex align-items-center indicator-selector-trigger-wrap">
@@ -17,7 +20,9 @@
                 <span id="indicatorSelectorPromptMobile" class="indicator-selector-prompt d-none" aria-hidden="true" role="status">Choose dataset</span>
             </div>
         </div>
-        <i class="fas fa-plus ml-auto text-white toggle-icon" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
+        <button type="button" class="btn btn-link p-0 ml-auto align-self-start text-white mobile-details-toggle" data-toggle="collapse" data-target="#detailsContent" aria-expanded="false" aria-controls="detailsContent" aria-label="Dataset details">
+            <i class="fas fa-plus text-white toggle-icon" aria-hidden="true" style="transition: opacity 0.3s ease; padding-top: 4px;"></i>
+        </button>
     </div>
 
     <!-- Desktop Indicator Header (always visible) -->

@@ -156,27 +156,38 @@ document.addEventListener('DOMContentLoaded', function() {
 // mobile accordion
 // ----------------------------------------------------------------------- //
 
-// Keeps the mobile details accordion's plus/minus icon in sync with its state.
+// Keeps the mobile details accordion's plus/minus icon in sync with its state, and lets a tap
+// anywhere on the header bar toggle it, as the bar did when it was the collapse trigger itself.
 
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileAccordionHeader = document.querySelector('.bg-primary[data-toggle="collapse"]');
+    const mobileAccordionHeader = document.querySelector('.mobile-details-header');
+    const mobileDetailsToggle = document.querySelector('.mobile-details-toggle');
     const detailsContent = document.querySelector('#detailsContent');
-    const toggleIcon = mobileAccordionHeader ? mobileAccordionHeader.querySelector('.toggle-icon') : null;
+    const toggleIcon = mobileDetailsToggle ? mobileDetailsToggle.querySelector('.toggle-icon') : null;
 
-    if (mobileAccordionHeader && detailsContent && toggleIcon) {
+    if (mobileAccordionHeader && mobileDetailsToggle && detailsContent && toggleIcon) {
         // Function to update icon state
 
         function updateIconState(isOpen) {
             if (isOpen) {
                 toggleIcon.classList.remove('fa-plus');
                 toggleIcon.classList.add('fa-minus');
-                mobileAccordionHeader.setAttribute('aria-expanded', 'true');
+                mobileDetailsToggle.setAttribute('aria-expanded', 'true');
             } else {
                 toggleIcon.classList.remove('fa-minus');
                 toggleIcon.classList.add('fa-plus');
-                mobileAccordionHeader.setAttribute('aria-expanded', 'false');
+                mobileDetailsToggle.setAttribute('aria-expanded', 'false');
             }
         }
+
+        // A tap on the bar goes through the toggle button. Clicks on a button are left alone: the
+        // toggle handles its own, and "Change dataset" opens its modal without also opening the
+        // details, which it did while the whole bar was the collapse trigger.
+
+        mobileAccordionHeader.addEventListener('click', function(e) {
+            if (e.target.closest('button')) return;
+            mobileDetailsToggle.click();
+        });
 
         // Listen for Bootstrap collapse events
 

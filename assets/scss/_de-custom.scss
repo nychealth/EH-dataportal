@@ -842,11 +842,11 @@ $color-data-explorer: #0A408A;
   }
 
   /* Ensure mobile accordion header has proper styling */
-  .bg-primary[data-toggle="collapse"] {
+  .mobile-details-header {
       user-select: none;
   }
 
-  .bg-primary[data-toggle="collapse"]:hover {
+  .mobile-details-header:hover {
       opacity: 0.9;
   }
 
