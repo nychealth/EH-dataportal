@@ -22,9 +22,9 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D9 fixed); Task 5 in progress (PR #1462 open, CI
-site characterization red on an unexplained Linux/Windows difference — D10);
-Tasks 5–6 not started.**
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D10 fixed); Task 5 in progress (PR #1462 open; its
+first CI run was red, D10's cause fixed in `4f9bcb2c1f`, awaiting a push and a re-run); Task 6 not
+started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -41,11 +41,14 @@ git merge-base feature-new-data-explorer production                         # wa
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
 | 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
-| 5 | PR into `production` | PR #1462, head `1b5b509cc9` | **In progress** — open; Step 3 (ultra review) not run; Step 4 checks ran, both red, see "Task 5 record" | Per step in "Task 5 record" |
+| 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 3 (ultra review) not run; Step 4 first run red (smoke: AirNow, also red on `production`; characterization: D10, fixed), re-run pending a push | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: Chris's answer on D10**, then Task 5 Step 3 (`/code-review ultra 1462`, which only
-Chris can launch). Expect a push of any new commit, even a ledger-only one, to re-run both PR
+**Next action: push (Chris)**, then read the re-run checks, then Task 5 Step 3
+(`/code-review ultra 1462`, which only Chris can launch). Expected on the re-run, written before
+it: site characterization passes, since the local baseline already records the icon as loaded
+(`zeroSize` 2) and Linux now loads it too; smoke is red again only if AirNow still answers badly,
+on `data-features/cooling-info/`, as on `production`'s tip. Expect a push of any new commit, even a ledger-only one, to re-run both PR
 checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
 changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
 branch:
@@ -275,6 +278,20 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
     Chromium reserves no scrollbar width (`innerWidth` = `clientWidth`). Not reproduced; no
     Docker/WSL distribution here. The base-control job cannot speak to it: it compares
     `production`'s build against this PR's baseline and differs on all 925 pages. → D10.
+  - **D10 diagnosed in CI** (Chris's choice): scratch branch `diag-d10-zero-size-img` (`f170acb002`,
+    from `25234562c8`) added an `imgBoxes` field outside `structure`/`content` recording every
+    counted image's box, `complete`, natural size and nearest hiding ancestor; run
+    `37014189736` (`workflow_dispatch`, `scope=sample`) failed as predicted, `data-explorer/asthma/`
+    `zeroSize` 2 → 3, and its artifact names the image: `indicator-menu-icon.svg`, `complete: true`,
+    natural `0x0` (a failed load; locally `42x30`). The tracked file is
+    `static/images/Indicator-menu-icon.svg`; `themes/dohmh/layouts/partials/header-de.html` asked
+    for lowercase — Windows serves it, Linux does not. Branch-only: `header-de.html` is not on
+    `production`. Fixed in `4f9bcb2c1f` by matching the `src` to the file (a case-only file rename
+    is the hazard project `CLAUDE.md` warns about). Proof: isolated `prod_prod` build exit 0, 0
+    ERROR; all 42 pages referencing the icon name a file present with exact case in the output's
+    `images/`. Sweep of 311 site-root `images|img|icons|css|js/…` references in `themes/`,
+    `content/`, `data/` against tracked `static/`+`assets/` paths: 1 case-only mismatch, this
+    one. Scratch branch deleted from `origin` and locally, worktree removed.
   - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
     (shown `ERR_ABORTED`; delivery not established). The second blocked it.
 
@@ -291,7 +308,7 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
 | D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
 | D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | Chris, 2026-10-02: **carry over** — `853dabe569` | Also matched on Chris's word, as the same kind of gap: `active-design`'s `keyTopic: publicspace`, which `dc6c58fa33` removed (`cc32f5f90e`; nothing reads `keyTopic` on a DE topic), and `waterways` → `publicspace` from `ca6248ac40` (`dcf21609cf`). The topic metadata sweep in the Task 4 record finds no other difference. Re-baselined in `79286c569c` |
 | D9 | This PR would change `dev_stage` and `local_stage` from EHDP-data `staging` to `feature-new-data-explorer` (`e99b20a197`) | Chris, 2026-10-01: **revert the two `data_branch` lines to `"staging"`** — `9dad6ab230` | `local_stage`'s `maxAge = 0` kept. `dev_stage` is what `build-to-dev-stage` deploys, so after the merge the team's staging site would read that branch. EHDP-data compare API, 2026-10-01: `feature-new-data-explorer` is 386 behind / 183 ahead of `staging`, 1 ahead / 39 behind `production`, last commit 2026-08-18. Recommendation: revert both lines to `"staging"` before the PR (`local_stage`'s `maxAge = -1 → 0` from `77499c3896` is a separate line, left to Chris). The `prod_prod` checks read EHDP-data `production`. A `dev_stage` server on this tree reads the feature data branch, so D7's "staging data" most likely means that branch; which server D7 ran against was not recorded. No check in this plan is recorded as reading EHDP-data `staging` |
-| D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | **Open — Chris** | See "Task 5 record". Not reproduced locally. Options: identify the image with a diagnostic run in CI (scratch branch, `gh workflow run site-characterization.yml --ref <branch>`, which needs no merge since the workflow is on `production`); or accept it as a platform difference and merge on a red, non-required check |
+| D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | Chris, 2026-10-02: **diagnose in CI** → fixed, `4f9bcb2c1f` | A filename-case bug, not a platform rendering difference: the topic-selector icon failed to load on Linux on all 42 topic pages. See "Task 5 record". Rejected: accepting a red check, and re-baselining from CI's capture (which would have recorded the broken icon as expected) |
 
 ## Environment
 
