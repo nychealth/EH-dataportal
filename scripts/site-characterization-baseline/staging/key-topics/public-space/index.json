@@ -65,7 +65,7 @@
             "zeroSize": 9
         },
         "links": {
-            "internal": 127,
+            "internal": 128,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 19
@@ -111,6 +111,7 @@
             "/data-explorer/physical-activity/",
             "/data-explorer/transportation-related-injuries/",
             "/data-explorer/walking-driving-and-cycling/",
+            "/data-explorer/waterways/",
             "/data-features/",
             "/data-features/adg-2/",
             "/data-features/beaches/",

@@ -26,6 +26,7 @@
             4,
             4,
             4,
+            4,
             5,
             2
         ],
@@ -65,7 +66,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 78,
+            "internal": 79,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -89,6 +90,7 @@
         "title": "Publicspace – Environment & Health Data Portal",
         "headingText": [
             "More content about Publicspace:",
+            "Air quality during COVID-19",
             "Air quality snapshots: special findings from 10 years of NYCCAS",
             "Air quality in car-free areas",
             "What our air quality monitors tell us about NYC's neighborhoods",
@@ -108,6 +110,7 @@
             "/data-explorer/",
             "/data-features/",
             "/data-stories/",
+            "/data-stories/air-quality-and-covid/",
             "/data-stories/air-quality-by-neighborhood/",
             "/data-stories/air-quality-snapshots/",
             "/data-stories/car-free-zones/",

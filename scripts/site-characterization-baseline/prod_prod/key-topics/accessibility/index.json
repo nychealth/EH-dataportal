@@ -63,7 +63,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 89,
+            "internal": 95,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 7
@@ -99,6 +99,12 @@
             "/about/",
             "/data-explorer/",
             "/data-explorer/accessibility/",
+            "/data-explorer/active-design/",
+            "/data-explorer/falls-among-older-adults/",
+            "/data-explorer/health-care/",
+            "/data-explorer/housing-safety/",
+            "/data-explorer/transportation-related-injuries/",
+            "/data-explorer/walking-driving-and-cycling/",
             "/data-features/",
             "/data-features/flood-vulnerability-index/",
             "/data-features/heat-story/",
