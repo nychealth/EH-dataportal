@@ -585,7 +585,7 @@ const buildTemporaryLeafletExport = async (width, height) => {
     });
     const exportRenderer = L.canvas({ padding: 0 });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png') + '?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         crossOrigin: true,
         subdomains: 'abcd',
         maxNativeZoom: 11,
