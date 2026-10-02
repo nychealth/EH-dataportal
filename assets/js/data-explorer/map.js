@@ -514,8 +514,10 @@ const bindVisBarHighlightDismissal = () => {
 };
 
 // Draws the citywide outline in gray with no value, no legend range, and an automatic message.
-// Tolerates a missing `metadata` entirely: measures whose catalog entry has no mappable geography
-// at all never reach DE.lookups.mapMeasures, so showMap hands this an empty array.
+// Tolerates a missing `metadata` entirely: when none of an indicator's measures is mapped, the
+// default map metadata is empty and showMap's resolveMapMetadata (measures.js) hands this an empty
+// array. A lone unmapped measure in an otherwise mapped indicator arrives with its own
+// MapUnavailable entry instead.
 
 const renderUnmappedCitywide = (metadata) => {
 
@@ -590,9 +592,10 @@ const renderMap = (
     // ----- bail out to the unmapped state before reading any measure fields ----- //
 
     // Two ways to get here with no map to draw, and both must be caught before the reads below:
-    // the catalog marked this measure unmappable (MapUnavailable, set by withCitywideMapFallback),
-    // or it had no mappable geography at all, so it never entered DE.lookups.mapMeasures and
-    // showMap's fallback left `metadata` empty. The second case is why this tests both — a
+    // the catalog marked this measure unmappable (MapUnavailable, set by withCitywideMapFallback,
+    // and passed through by resolveMapMetadata even when the measure never entered
+    // DE.lookups.mapMeasures), or none of the indicator's measures is mapped, so the default that
+    // resolveMapMetadata falls back to is empty too. The second case is why this tests both — a
     // MapUnavailable test alone can never fire for it.
 
     if (!metadata?.[0] || metadata[0].MapUnavailable) {

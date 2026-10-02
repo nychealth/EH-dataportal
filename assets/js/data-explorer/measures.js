@@ -1542,6 +1542,29 @@ showTable = (e) => {
 };
 
 
+// Resolves the map/bar metadata for the current MeasureID. A measure whose Map, Table and Trend
+// entries are all unpopulated never enters DE.lookups.mapMeasures, but it is still this
+// indicator's measure and carries MapUnavailable (withCitywideMapFallback), so it gets its own
+// entry and renderMap draws the unmapped state. Falling straight back to the default map measure,
+// as both callers did, handed renderMap another measure's metadata with none of this measure's
+// rows: a fetch of geography/undefined, an empty map and a 0.0–0.0 legend, on indicators 103,
+// 2176, 2383 and 2384 (review finding #5). The default stays the fallback for a MeasureID that
+// is not this indicator's at all.
+
+const resolveMapMetadata = () => {
+
+    const mapped = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
+
+    if (mapped.length) return mapped;
+
+    const unmapped = (DE.indicator.indicatorMeasures || [])
+        .filter(m => m.MeasureID == DE.state.MeasureID && m.MapUnavailable);
+
+    return unmapped.length ? unmapped : DE.map.defaultMapMetadata;
+
+};
+
+
 // Redraws the Leaflet map (always visible on the left) with the current selection.
 
 showMap = () => {
@@ -1550,11 +1573,7 @@ showMap = () => {
 
     // ----- resolve metadata for the current MeasureID ----- //
 
-    let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
-
-    // Fall back to the default map measure when the current MeasureID is unavailable here.
-
-    if (!metadata.length) metadata = DE.map.defaultMapMetadata;
+    const metadata = resolveMapMetadata();
 
     // ----- filter data by current globals ----- //
 
@@ -1584,9 +1603,7 @@ showBar = (e) => {
 
     // ----- resolve metadata for the bar chart ----- //
 
-    let metadata = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
-
-    if (!metadata.length) metadata = DE.map.defaultMapMetadata;
+    const metadata = resolveMapMetadata();
 
     // ----- bail when there is no measure to chart ----- //
 

@@ -532,10 +532,12 @@ const measureHasMappableGeo = (measure) =>
 // citywide row. That is intended — the popup tells users to try the other views — but it is a real
 // behaviour change, not a menus-only tweak.
 //
-// Where Table has no Citywide entry either (the NYHarbor measures), Map is left as-is — the flag
-// is what carries the meaning, those measures never reach mapMeasures, and the Bar tab stays
-// disabled. showBar guards for that case; renderCurrentView can still dispatch to it from a
-// carried-over overlay.
+// Where Table has no Citywide entry either (the NYHarbor measures, and measures whose every view is
+// unpopulated, e.g. 870 on indicator 103), Map is left as-is and the flag carries the meaning:
+// those measures never reach mapMeasures, and resolveMapMetadata (measures.js) hands renderMap the
+// measure's own flagged entry. The Bar tab is disabled only when none of the indicator's measures
+// is mapped; otherwise showBar charts the measure's (empty) rows under its own name. showBar
+// guards the disabled case, which renderCurrentView can still reach from a carried-over overlay.
 //
 // Returns new objects at every level it writes to. `indicators` is the session-cached catalog and
 // is reused across every indicator load, so an in-place write would leak one load's fallback into
