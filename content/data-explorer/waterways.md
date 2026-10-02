@@ -15,7 +15,7 @@ newDataExplorer: true
 headerDE: true
 excludeFooter: true
 tags:
-categories: ["inequality", "climatehealth"]
+categories: ["inequality", "climatehealth", "publicspace"]
 keywords: ["water", "harbor", "pollution", "climate", "climatehealth"]
 indicators:
   - header: null
