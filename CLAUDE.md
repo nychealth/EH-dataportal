@@ -228,6 +228,12 @@ are printed as a harness-health number and deliberately **not** baselined — th
   remains is not diagnosed** — read the plan's Task 6 and Task 7 findings before treating it as
   understood, and note that Task 7 found the DOM-quiescence detector had never attached, so any
   older claim crediting that wait is void.
+- **Before re-baselining after a check that fails on most pages, capture the base branch with the
+  same harness and diff the two captures.** A baseline diff mixes what the base branch changed
+  since the capture with what yours changes; a detached worktree at the base tip running
+  `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
+  differed from the prod_prod baseline; against production's own capture, 535 had lost the
+  search UI, which a re-baseline would have committed as expected]`.
 
 ### Four ways a local check silently lies
 
