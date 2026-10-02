@@ -22,9 +22,10 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D11 fixed); Task 5 in progress (PR #1462 open; checks
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D12 fixed); Task 5 in progress (PR #1462 open; checks
 on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
-D11's fix `39946d0c39` is newer than that run; ultra review not run); Task 6 not started.**
+D11, the propagation sweep and D12 are newer than that run; ultra review not run); Task 6 not
+started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
 (= `origin/production`), merge base `4a260ea2a1`. If either tip has moved, re-run Task 1 Step 1
@@ -44,8 +45,9 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 (ultra review) not run | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: push (Chris)** so the PR carries D11, then re-read the checks on the new head
-(expected: as on `5d5732de13`), then Task 5 Step 3, `/code-review ultra 1462` (only Chris can launch
+**Next action: push (Chris)** so the PR carries D11, D12 and the markup fixes, then re-read the
+checks on the new head (expected: as on `5d5732de13` — none of the three moves structure, per the
+local `characterize-env.mjs prod_prod` pass), update the PR body with them, then Task 5 Step 3, `/code-review ultra 1462` (only Chris can launch
 it), then the merge, then Task 6. Expect a push of any new commit, even a ledger-only one, to re-run both PR
 checks: to my knowledge GitHub evaluates a `pull_request` `paths-ignore` against the whole PR's
 changed files rather than the push (not re-read in GitHub's docs). Re-read the PR's runs by head SHA, never by
@@ -310,6 +312,45 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   with the fix stashed: 48 of 48 unkeyed and placeholder-sized, 0 non-200 — so neither smoke nor
   characterization (which excludes Leaflet tiles) could have caught it. `print-map.js` runs only on
   export; its line is the same string. `npm run lint` exit 0.
+- **Propagation sweep** (Chris's go, 2026-10-02), after D11 made three cases of one shape (Task 2,
+  D8, D11): `propagation.py` (scratchpad, untracked), three probes over the 188 non-merge
+  `production` commits in `4a260ea2a1..production`, generated baselines and `documents/` skipped.
+  - **Probe 1, sweeps** (same substring inserted/deleted in ≥ 3 files in one commit; a branch line
+    holding the insertion's anchor but not the insertion, or still holding the deletion). Control
+    `39946d0c39^`: flags `598fba0b19`'s CARTO key on exactly the 3 DE files. `HEAD`: only
+    `7a995427a1` (section icons) remains — 24 lines with `fas fa-`, all button/sub-heading icons, none
+    an `<h1>` icon (the sweep replaced only those); the DE `<h1>`s match D3.
+  - **Probe 2, production additions since divergence absent from the branch's copy** (same path or
+    the `data-explorer-old` copy). Control `0f62c097a6` (pre-merge tip): 1,110 lines. `HEAD`: 56
+    lines in 12 commit/file pairs, all recorded decisions or equivalents (D3's no-markup templates,
+    Task 1's tooling merge, `CLAUDE.md`'s 44-page count, `js-comment-spacing.py`'s rewrite,
+    reordered attributes in `list.html`, whitespace in `package.json`), and the old copy's narrower
+    Pagefind ignore (a branch design, see D12).
+  - **Probe 3, lines at the divergence point that production still has and the branch removed**
+    — the D8 shape, which predates divergence (`dc6c58fa33`, `ca6248ac40` are ancestors of
+    `4a260ea2a1`), so Probes 1–2 cannot see it. Control `9dad6ab230`: flags the D8 category lines.
+    `HEAD`: 3,143 lines in 48 files; ~2,900 are the new explorer replacing the old at the same paths,
+    51 the search modal leaving `footer.html` (`00fbf2f9fc`); the rest are this branch's own commits
+    (`9f50307a62` reformatting, Tier 4.6 library gating, `b152f67c31` alt text, …) or cosmetic topic
+    text (double spaces, `*` vs `-` bullets).
+  - **Found:** old-explorer pages are in site search (D12); `nyccas_pollutant_maps.html` has
+    `pagefind-ignore="all"` without the `data-` prefix, so it does nothing (`327c71f1ee`, branch
+    only); `header-de.html`'s "Related data on:" opens `<h4>` and closes `</h5>` (copied from
+    `related-data.html`'s `<h5>`; my reading of HTML parsing, not re-checked against the spec, is
+    that `</h5>` still closes it).
+  - **D12 evidence:** built old-explorer pages carry `data-pagefind-body` like the other 457 indexed
+    pages; `scripts/.sc-rebaseline/search-probe.mjs` (untracked: isolated `prod_prod` build,
+    `npx pagefind`, Pagefind's own `search()` in the page) — "asthma" top 30: 9 old-explorer, 8
+    new; "carbon monoxide" 2/4; "active design" 3/4; "waterways" 2/1, including the retired
+    landing page.
+  - **D12 and the markup slips fixed** (`da9546b798`, `f872cd99b1`). Same search probe after:
+    0 old-explorer results for all four queries, each total down by exactly its old count
+    (13→11, 55→46, 28→25, 6→4), new-explorer results unchanged. Built: 0 of 44 retired pages carry
+    `data-pagefind-body`, 413 of the other 923 real pages do (413 + 44 = the earlier 457). The NYCCAS
+    title is built with `data-pagefind-ignore="all"`. `node scripts/characterize-env.mjs prod_prod`
+    against the committed baseline: exit 0, 924 pages, so neither change moved structure — the
+    `</h4>` fix included, consistent with `</h5>` having closed that heading already. That sweep
+    does not enumerate the 44 retired pages (D6); the search probe covered them.
   - The first local probe did not block Google Analytics, and fired 6 GA hits from localhost
     (shown `ERR_ABORTED`; delivery not established). The second blocked it.
 
@@ -326,6 +367,7 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
 | D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
 | D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | Chris, 2026-10-02: **carry over** — `853dabe569` | Also matched on Chris's word, as the same kind of gap: `active-design`'s `keyTopic: publicspace`, which `dc6c58fa33` removed (`cc32f5f90e`; nothing reads `keyTopic` on a DE topic), and `waterways` → `publicspace` from `ca6248ac40` (`dcf21609cf`). The topic metadata sweep in the Task 4 record finds no other difference. Re-baselined in `79286c569c` |
 | D9 | This PR would change `dev_stage` and `local_stage` from EHDP-data `staging` to `feature-new-data-explorer` (`e99b20a197`) | Chris, 2026-10-01: **revert the two `data_branch` lines to `"staging"`** — `9dad6ab230` | `local_stage`'s `maxAge = 0` kept. `dev_stage` is what `build-to-dev-stage` deploys, so after the merge the team's staging site would read that branch. EHDP-data compare API, 2026-10-01: `feature-new-data-explorer` is 386 behind / 183 ahead of `staging`, 1 ahead / 39 behind `production`, last commit 2026-08-18. Recommendation: revert both lines to `"staging"` before the PR (`local_stage`'s `maxAge = -1 → 0` from `77499c3896` is a separate line, left to Chris). The `prod_prod` checks read EHDP-data `production`. A `dev_stage` server on this tree reads the feature data branch, so D7's "staging data" most likely means that branch; which server D7 ran against was not recorded. No check in this plan is recorded as reading EHDP-data `staging` |
+| D12 | Retired-explorer pages appear in site search beside the new ones | Chris, 2026-10-02: **exclude** — `da9546b798` | D6 took them out of listings and the sitemap; search was not part of it. `baseof.html` omits `data-pagefind-body` when `excludeFromSearch` is set; `content/data-explorer-old/_index.md` sets it on itself and by cascade. Proof in "Task 5 record". The sweep's two markup slips were fixed on the same answer, `f872cd99b1` |
 | D11 | The new explorer's basemaps lacked the CARTO key and rendered "API KEY REQUIRED" tiles | Fixed, `39946d0c39` | See "Task 5 record". Same shape as Task 2: an upstream sweep reaches only the files upstream has, so branch-only siblings miss it |
 | D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | Chris, 2026-10-02: **diagnose in CI** → fixed, `4f9bcb2c1f` | A filename-case bug, not a platform rendering difference: the topic-selector icon failed to load on Linux on all 42 topic pages. See "Task 5 record". Rejected: accepting a red check, and re-baselining from CI's capture (which would have recorded the broken icon as expected) |
 
