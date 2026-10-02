@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -92,7 +92,6 @@
         "title": "Publicspace – Environment & Health Data Portal",
         "headingText": [
             "More content about Publicspace:",
-            "Active design",
             "Air quality",
             "Asthma",
             "Health impacts of air pollution",
@@ -101,8 +100,9 @@
             "Walking, driving, and cycling",
             "The public health impacts of PM2.5 from traffic air pollution",
             "Environments matter: the road to street safety in NYC",
-            "Page Footer",
-            "Search"
+            "Air quality during COVID-19",
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
@@ -112,7 +112,6 @@
             "/categories/publicspace/page/3/",
             "/categories/publicspace/page/4/",
             "/data-explorer/",
-            "/data-explorer/active-design/",
             "/data-explorer/air-quality/",
             "/data-explorer/asthma/",
             "/data-explorer/health-impacts-of-air-pollution/",
@@ -121,6 +120,7 @@
             "/data-explorer/walking-driving-and-cycling/",
             "/data-features/",
             "/data-stories/",
+            "/data-stories/air-quality-and-covid/",
             "/data-stories/streets/",
             "/data-stories/traffic-and-air-pollution/",
             "/key-topics",

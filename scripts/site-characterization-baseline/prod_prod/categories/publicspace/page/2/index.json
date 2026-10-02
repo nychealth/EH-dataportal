@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -92,7 +92,6 @@
         "title": "Publicspace – Environment & Health Data Portal",
         "headingText": [
             "More content about Publicspace:",
-            "Why trash is a public health issue",
             "A walk through history",
             "Efforts to reduce air pollution should focus on neighborhoods with the worst health impacts",
             "ZAPPA: A tool to understand air quality policies",
@@ -101,8 +100,9 @@
             "Active Design Guidelines 2.0",
             "Beach Water Quality",
             "Accessibility",
-            "Page Footer",
-            "Search"
+            "Active design",
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
@@ -113,6 +113,7 @@
             "/categories/publicspace/page/4/",
             "/data-explorer/",
             "/data-explorer/accessibility/",
+            "/data-explorer/active-design/",
             "/data-features/",
             "/data-features/adg-2/",
             "/data-features/beaches/",
@@ -120,7 +121,6 @@
             "/data-stories/air-quality-and-covid-part-2/",
             "/data-stories/block-by-block/",
             "/data-stories/hia/",
-            "/data-stories/sanitation/",
             "/data-stories/zappa/",
             "/key-topics",
             "/key-topics/accessibility/",

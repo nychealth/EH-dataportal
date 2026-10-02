@@ -23,10 +23,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -89,8 +89,8 @@
             "Leading causes of injuries and deaths in NYC (2021 - 2023)",
             "Injury and violence",
             "Violence",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

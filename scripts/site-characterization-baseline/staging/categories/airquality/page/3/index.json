@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -101,8 +101,8 @@
             "Breathe easy: NYC's air quality is improving",
             "Active Design, Physical Activity and Health",
             "Asthma and the Environment",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

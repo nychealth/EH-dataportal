@@ -22,10 +22,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -87,8 +87,8 @@
             "More content about Rat Inspection:",
             "Inspection data are the key to controlling NYC’s rats",
             "Rat complaints and NYC’s rat problem",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

@@ -24,8 +24,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -108,8 +108,8 @@
             "Line charts: creating back-up tables",
             "Point maps: revising information in back-up tables",
             "When there’s too much data for a table",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

@@ -23,8 +23,8 @@
         "assetsWithIntegrity": 11,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -86,8 +86,8 @@
         "title": "The Department’s Pre-calculations Sugar Lookup Tool – Environment & Health Data Portal",
         "headingText": [
             "The Department’s Pre-calculations Sugar Lookup Tool",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

@@ -20,8 +20,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -83,8 +83,8 @@
         "title": "Key topics in Environmental Health – Environment & Health Data Portal",
         "headingText": [
             "Key Topics in Environmental Health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

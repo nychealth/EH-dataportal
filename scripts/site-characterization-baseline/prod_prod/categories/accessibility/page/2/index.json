@@ -21,16 +21,10 @@
         "headingLevels": [
             1,
             4,
-            4,
-            4,
-            4,
-            4,
-            4,
-            4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -66,7 +60,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 77,
+            "internal": 71,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -90,15 +84,9 @@
         "title": "Accessibility – Environment & Health Data Portal",
         "headingText": [
             "More content about Accessibility:",
-            "Active design",
-            "Falls among older adults",
-            "Health care",
-            "Housing safety",
-            "Transportation-related injuries",
-            "Walking, driving, and cycling",
             "Active Design, Physical Activity and Health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
@@ -106,12 +94,6 @@
             "/categories/accessibility/",
             "/categories/accessibility/page/2/",
             "/data-explorer/",
-            "/data-explorer/active-design/",
-            "/data-explorer/falls-among-older-adults/",
-            "/data-explorer/health-care/",
-            "/data-explorer/housing-safety/",
-            "/data-explorer/transportation-related-injuries/",
-            "/data-explorer/walking-driving-and-cycling/",
             "/data-features/",
             "/data-stories/",
             "/key-topics",

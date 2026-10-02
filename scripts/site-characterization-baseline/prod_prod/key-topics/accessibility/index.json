@@ -24,8 +24,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -63,7 +63,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 95,
+            "internal": 89,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 7
@@ -91,20 +91,14 @@
             "Your heat story",
             "Proximity indicators",
             "Flood Vulnerability Index",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
             "/about/",
             "/data-explorer/",
             "/data-explorer/accessibility/",
-            "/data-explorer/active-design/",
-            "/data-explorer/falls-among-older-adults/",
-            "/data-explorer/health-care/",
-            "/data-explorer/housing-safety/",
-            "/data-explorer/transportation-related-injuries/",
-            "/data-explorer/walking-driving-and-cycling/",
             "/data-features/",
             "/data-features/flood-vulnerability-index/",
             "/data-features/heat-story/",

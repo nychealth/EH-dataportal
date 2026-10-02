@@ -4,6 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "css/nyc-basic-lib-v1.2.79.css",
             "d3js.org",
             "js/main.js",
             "js/site.js",
@@ -22,8 +23,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -85,8 +86,8 @@
         "title": "Take Action – Environment & Health Data Portal",
         "headingText": [
             "Take Action",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

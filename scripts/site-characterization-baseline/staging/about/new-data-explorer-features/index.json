@@ -25,8 +25,8 @@
             2,
             2,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -93,8 +93,8 @@
             "Creating an option to print or save the chart",
             "New colors",
             "A small change to how we show means",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

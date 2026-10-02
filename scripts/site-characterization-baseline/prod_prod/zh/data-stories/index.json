@@ -40,8 +40,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -102,7 +102,7 @@
     "content": {
         "title": "Data-Stories – Environment & Health Data Portal",
         "headingText": [
-            "Data Stories",
+            "Data-Stories",
             "Latest data stories",
             "为什么暴力是一个公共卫生问题",
             "红线圈定的简史",
@@ -123,14 +123,13 @@
             "红线圈定的简史",
             "健康、住房和历史。",
             "为什么哮喘是一个社会正义问题",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
             "/data-explorer/",
             "/data-features/",
-            "/data-stories",
             "/data-stories/",
             "/key-topics",
             "/neighborhood-reports/",
