@@ -22,7 +22,7 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-01: Tasks 1–4 done (D5–D7, D9 fixed); D8 open with the content author;
+**Status as of 2026-10-02: Tasks 1–4 done (D5–D9 fixed);
 Tasks 5–6 not started.**
 
 Analysis ran against `feature-new-data-explorer` at `f4a59ed843` and `production` at `ed63fa7603`
@@ -39,14 +39,12 @@ git merge-base feature-new-data-explorer production                         # wa
 | 1 | Merge `production`, resolve 38 conflicts | `ec65e6f9c7` (parents `0f62c097a6` + `ed63fa7603`) | **DONE 2026-10-01** | 38 unmerged at start, identical to the dry-run list; 0 after. `npm run lint` exit 0 over 16 files, control `echo "notDefinedAnywhere123();" \| npx eslint --stdin --stdin-filename assets/js/data-explorer/zz-control.js` → exit 1, `no-undef`. Isolated build `HUGO_RESOURCEDIR=<tmp> npx hugo --environment prod_prod -d <tmp>` exit 0, 0 ERROR, 1249 EN pages, repo status unchanged. `npm install` exit 0, `package-lock.json` byte-unchanged. No conflict markers in tracked files. Per-file record in "Task 1 record" below |
 | 2 | Port production's old-explorer changes onto `data-explorer-old/` | `2676f80653` | **DONE 2026-10-01** | Base corrected from `4a260ea2a1` to `aa173ade6c` (see "Task 2 record"). Per-file residual check: for all 14 files, the changed-line set of `production` → result equals that of `aa173ade6c` → this branch's old copy, less changes production also made. `git grep -c caclulated -- assets/js/data-explorer-old` → none (control: `f156df9078`, the pre-port tip → `app.js:2`). Staged paths outside `data-explorer-old/`: 0. Skip-target sweep → exactly `baseof.html`, `list.html`. `node --check` on `table.js` exit 0. Isolated `prod_prod` build exit 0, 0 ERROR, 1249 EN pages, repo status unchanged; built `/data-explorer-old/` has Pagefind-ignore only on the `de-topic-indicators` wrapper, and `groupByBoroughToggle` is on all 41 built topic pages. `npm run lint` does not apply: `eslint.config.mjs` excludes `data-explorer-old/` by design |
 | 3 | Comment-spacing convergence run | `ca7feac713` | **DONE 2026-10-01** | Precondition: the script walks the filesystem, not the index, so untracked targets would be edited invisibly — on-disk vs tracked counts matched (66 `.js` under `assets/js`+`content`, 150 `.html` under `themes/dohmh/layouts`). Script: 634 blank lines across 29 files, exit 0. Both docstring checks → 0 and 0; `git diff --numstat` → 29 files, 634+, 0−, matching the script's count; 0 whitespace-only added lines. espree token streams of all 16 changed JS files identical between `HEAD` and the result (control: a blank line inside a template literal does change the stream). All 37 template insertions read: each between a `//` line and code in a `<script>` body, none in a string. `npx eslint assets/js/data-explorer` exit 0; same `no-undef` control as Task 1 → exit 1 |
-| 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327`, captured at D9's `9dad6ab230` | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
+| 4 | Verification sweep | Step 4's `CLAUDE.md` fix: `5fef286ec9`. Steps 1–3, 5–7 run against `5fef286ec9` or `7e73a5176f` (which differ only in `CLAUDE.md`). Step 7 re-baseline: `ddc26c8327` (at D9's `9dad6ab230`), then `79286c569c` (at D8's `dcf21609cf`) | **DONE 2026-10-01** — Step 7 check re-run at `19c3e93153` after D5 (`9ed813232d`), D6 (`625a2a0770`), D7 (`19c3e93153`) | Per step in "Task 4 record" |
 | 5 | PR into `production` | | **Not started** | |
 | 6 | Post-deploy check | | **Not started** | |
 
 **Next action: Task 5 on Chris's go** — Step 1 pushes every commit this plan made (the first command
-below shows how many are local-only).
-D8 can land before or after the PR; if it lands after this re-baseline, it moves `links.internal`
-on the accessibility listing pages again, so re-run the re-baseline in the same PR. Before Step 2,
+below shows how many are local-only). Before Step 2,
 read what `hugo-build-to-dev-stage.yml` and `hugo-build-to-prod-prod.yml` do on a `pull_request`
 event (Task 5 Step 2 says this was not checked).
 
@@ -56,7 +54,7 @@ git push origin feature-new-data-explorer
 gh pr create --base production --head feature-new-data-explorer
 ```
 
-Re-baselining again (D8, or any later Hugo-input change): `node scripts/site-characterization-rebaseline.mjs`,
+Re-baselining again (any later Hugo-input change): `node scripts/site-characterization-rebaseline.mjs`,
 bare. It takes no positional arguments and refuses unknown ones (`parseArgs` / the `unknownArgs`
 check in `main`), and re-captures **every** committed key (`prod_prod`, `staging`). Exit 1 is
 normal for a run with no `--expect`; 2 means it could not run. Discard a run with
@@ -195,7 +193,8 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
     `dc6c58fa33` (2025-08-12, "revise metadata") gave six old-explorer topics `accessibility`
     (`active-design`, `falls-among-older-adults`, `health-care`, `housing-safety`,
     `transportation-related-injuries`, `walking-driving-and-cycling`); their new-explorer files
-    lack it. → D8.
+    lack it. → D8. (Corrected 2026-10-02: the public-space −1 is not D8. It is `waterways`, which
+    production's `ca6248ac40` put in `publicspace`; found when the D8 fix left that −1 standing.)
   - `assets` +`css/nyc-basic-lib-v1.2.79.css` on `take-action/`, `take-action/email-electeds/`,
     `data-features/congestion-pricing-report/`: this branch's `d43e01ba93` (2026-01-21, "adding
     basic lib as self-hosted dep") loads a self-hosted copy beside the CDN one under `mapLib`.
@@ -228,6 +227,23 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   previous baseline: both 21 changed fields, the same counts as the first run's `prod_prod`, only
   `headingLevels`, `headingJumps`, `links.internal` and `assets` changing outside `data-explorer/`,
   on the pages listed above. 0 CR bytes over 50 changed records.
+- **Step 7 re-baseline**, third run at `dcf21609cf` (after D8 `853dabe569`, `keyTopic` `cc32f5f90e`,
+  `waterways` `dcf21609cf`), committed as `79286c569c`. A run started at `853dabe569` was stopped
+  early in its first sweep when the `keyTopic` edit was asked for (the isolated server watches the
+  tree); no `node`/`hugo` process survived and its partial output was discarded. Same data
+  commits as the second run, no arbitration. Reference: both keys' baselines at `9dad6ab230`, the
+  `prod_prod` one being the baseline that differed from production's capture on 0 fields.
+  Expected before the run, and observed in both keys: `links.internal` differs on no non-DE page
+  (was 4), all 880 non-DE `headingLevels` changes are pure reorders (was 878 + 2), and outside
+  `data-explorer/` only `headingLevels`, `headingJumps` and `assets` (the 3 basic-lib pages) still
+  differ, plus `search-results/` removed. Against `ddc26c8327`, 14 records per key changed, plus
+  `_meta.json`: the seven edited topics, both key-topic pages, `categories/accessibility/page/2/`,
+  and `categories/publicspace/` with its pages 2–4.
+- **Topic metadata sweep** 2026-10-02: `categories`, `keywords` and `keyTopic` of all 74
+  `content/data-explorer/*.md` files, parsed (`ruamel.yaml`, duplicate keys allowed: this branch's
+  `dummy.md` repeats `vega`, the only file of the 74 on either side that does), compared against `production`'s file at the same path: 0 differences at
+  `dcf21609cf`. Control at `9dad6ab230`: 8 (the six D8 categories, `active-design`'s `keyTopic`,
+  `waterways`).
 - **Found, not fixed:** production's `dd16987cad` (double spaces) is absent from
   `content/data-explorer-old/` (forward patch applies cleanly), and `4a3185e056` (unicode) applies
   in neither direction there. Both are cosmetic text fixes on retired, now-unlisted pages.
@@ -243,7 +259,7 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
 | D5 | Search on `list.html` pages (535 taxonomy pages lose the Pagefind UI) | Chris, 2026-10-01: **fix it** — `9ed813232d` | `_default/list.html` now includes `search-modal.html` before the footer, as `baseof.html` does. Proof: isolated `prod_prod` build, real pages (`data-pagefind-meta=`) without `pagefind/pagefind-ui.js` 535 → 0, none with two (control: the pre-fix build reproduces 535). Playwright on `dev_stage`: modal present, opens, one input, 5 results for "asthma", no page errors, on `categories/accessibility/`, `keywords/`, `es/categories/` and the `baseof` control `data-stories/housing/`. Curated smoke 44/44 clean. Whether `list.html` should become a `baseof` template is a bigger change, not needed for the fix |
 | D6 | Should `data-explorer-old/` pages appear in category and keyword listings? | Chris, 2026-10-01: **unlist** — `625a2a0770` | A `cascade: build: list: never` in `content/data-explorer-old/_index.md`, leaving the 73 content files' `categories`/`keywords` untouched. Isolated `prod_prod` builds: category/keyword pages linking `data-explorer-old/` 42/78, 153/705 → 0/66, 0/692; Hugo paginator pages 113 → 88; all 45 `data-explorer-old/**/index.html` byte-identical before and after (control: `categories/airquality/` differs). `list: local` was tried first and left the listings unchanged. Side effect: the old pages leave the sitemap (44 → 0), so sitemap-enumerated sweeps skip them |
 | D7 | Re-baseline `scripts/de-characterization-baseline/` against today's staging data | Chris, 2026-10-01: **yes** — `19c3e93153` | `--baseline` diff = exactly the four `markCount` values, nothing else; `--check` then exit 0; 0 CR bytes, as at `HEAD` |
-| D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | **Open — content author** | Deliberate for the new explorer, or to carry over? Code shows the difference, not the intent. Costs 6 fewer items on the accessibility key-topic page. Adding them back after the re-baseline moves `links.internal` on those pages again |
+| D8 | Six new-explorer topics lack the `accessibility` category that production's old-explorer copies carry (`dc6c58fa33`) | Chris, 2026-10-02: **carry over** — `853dabe569` | Also matched on Chris's word, as the same kind of gap: `active-design`'s `keyTopic: publicspace`, which `dc6c58fa33` removed (`cc32f5f90e`; nothing reads `keyTopic` on a DE topic), and `waterways` → `publicspace` from `ca6248ac40` (`dcf21609cf`). The topic metadata sweep in the Task 4 record finds no other difference. Re-baselined in `79286c569c` |
 | D9 | This PR would change `dev_stage` and `local_stage` from EHDP-data `staging` to `feature-new-data-explorer` (`e99b20a197`) | Chris, 2026-10-01: **revert the two `data_branch` lines to `"staging"`** — `9dad6ab230` | `local_stage`'s `maxAge = 0` kept. `dev_stage` is what `build-to-dev-stage` deploys, so after the merge the team's staging site would read that branch. EHDP-data compare API, 2026-10-01: `feature-new-data-explorer` is 386 behind / 183 ahead of `staging`, 1 ahead / 39 behind `production`, last commit 2026-08-18. Recommendation: revert both lines to `"staging"` before the PR (`local_stage`'s `maxAge = -1 → 0` from `77499c3896` is a separate line, left to Chris). The `prod_prod` checks read EHDP-data `production`. A `dev_stage` server on this tree reads the feature data branch, so D7's "staging data" most likely means that branch; which server D7 ran against was not recorded. No check in this plan is recorded as reading EHDP-data `staging` |
 
 ## Environment
