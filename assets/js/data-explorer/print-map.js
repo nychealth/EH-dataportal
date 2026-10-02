@@ -989,8 +989,12 @@ const drawMapLegend = (ctx, startX, startY, width, minLabel, maxLabel) => {
     const legendBoxHeight = 54;
     const gradient = ctx.createLinearGradient(startX, startY, startX + width, startY);
 
+    // Reversed, to match the map: createColorScale (map.js) maps max → viridis(0) and min →
+    // viridis(1), so min is yellow, and min is labelled on the left. Unreversed, the exported
+    // legend put purple over "min" (review finding #7).
+
     for (let stop = 0; stop <= 1; stop += 0.05) {
-        gradient.addColorStop(stop, d3.interpolateViridis(stop));
+        gradient.addColorStop(stop, d3.interpolateViridis(1 - stop));
     }
 
     ctx.fillStyle = '#ffffff';
