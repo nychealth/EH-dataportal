@@ -11,7 +11,8 @@
 // third picks the environment itself, through scripts/smoke-env.mjs.
 //   npm run smoke             one page per template kind (the PAGES list), sequential
 //   npm run smoke:all         every page the site serves, concurrent — for a
-//                             pre-merge or pre-deploy sweep
+//                             pre-merge or pre-deploy sweep — plus one data
+//                             explorer URL per indicator (collectExplorerIndicatorPaths)
 //   npm run smoke:env <env>   every page, against an isolated server for ONE
 //                             named Hugo environment (see smoke-env.mjs)
 //
@@ -27,7 +28,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { availableParallelism } from "node:os";
 import { chromium } from "playwright";
 import { ensureDevServer } from "./dev-server.mjs";
-import { collectAllPaths, mapPool } from "./site-urls.mjs";
+import { collectAllPaths, collectExplorerIndicatorPaths, mapPool } from "./site-urls.mjs";
 
 // One page per template kind, prefix-relative — joined onto whatever baseURL
 // ensureDevServer() returns.
@@ -126,6 +127,18 @@ const KNOWN_NOISE = [
     // present on production's own tip via the smoke base-control job on PR #1489.
     // Remove this when the embed loads again.
     { page: /displacement-risk/, error: /Unauthorized access to Maps API/i },
+    // Two trend-view defects in production's OLD data explorer, reached only
+    // since --all loads indicators with `#display=trend`
+    // (collectExplorerIndicatorPaths). Both survived the sequential re-check on
+    // production's tree, and neither occurs on the new explorer in PR #1462
+    // `[2026-10-02, isolated prod_prod; documents/smoke-explorer-indicators-plan-2026-10-02.md, D5]`.
+    // Scoped to the indicator id, not the view, because the view an id lands on
+    // shifts whenever the indicator list changes. Remove both when #1462 merges
+    // and the old explorer goes with it.
+    { page: /^data-explorer\/weather-related-illness\/\?id=2074(&|#|$)/, error: /reading 'columnNames'/ },
+    // The measure name's apostrophe ("workers' compensation") ends a quoted
+    // string inside a Vega expression.
+    { page: /^data-explorer\/worker-health\/\?id=2211(&|#|$)/, error: /Expression parse error: 'Hospitalizations billed to workers' compensation/ },
     // The signup <iframe> in partials/header.html embeds a Google Form, which
     // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
     // the refusal on every page that renders the header. Report-only, so nothing
@@ -258,7 +271,35 @@ const browserUserAgent = async (browser) => {
     return ua.replace("HeadlessChrome", "Chrome");
 };
 
-// Load one page and return the unexpected console errors it produced.
+// The host every EHDP-data fetch goes to, at build time and in the browser.
+const DATA_HOST = "raw.githubusercontent.com";
+
+// A 4xx/5xx from the data host fails the page by its STATUS, read off the
+// response, because its console text cannot: Chrome logs it as `Failed to load
+// resource: the server responded with a status of 404 (Not Found)`, which names
+// no URL and which the site-wide entry at the foot of KNOWN_NOISE swallows. A
+// missing EHDP-data file was therefore caught only when a JS error happened to
+// follow it `[measured 2026-10-02: a delayed 404 on indicators/data/<id>.json
+// logged that line, then a JSON-parse pageerror]`. The message names the URL,
+// so each missing file is its own signature, and it still goes through
+// isKnownNoise, so a known gap can be allowlisted by page like anything else.
+const dataHostError = (response) =>
+    `EHDP-data responded ${response.status()}: ${response.url()}`;
+
+// Explorer pages with ?id= fetch their indicator data after `load`, so an error
+// in that data, or in the rendering it drives, can fire after the fixed settle
+// below `[measured 2026-10-02: a data file delayed 6 s logged nothing by 2 s
+// after load, and its 404 and a pageerror at 6.8 s]`. Those pages first wait
+// until no data-host request has been in flight for QUIET_MS, capped at
+// QUIET_CAP_MS so a page that keeps fetching cannot hang the sweep; reaching the
+// cap is reported, not failed. Only these pages wait: every other page's
+// coverage is unchanged, and so is its run time.
+const QUIET_MS = 1000;
+const QUIET_CAP_MS = 15000;
+const isExplorerIndicator = (path) => /^data-explorer\/[^/]+\/\?id=/.test(path);
+
+// Load one page and return the unexpected errors it produced, and whether its
+// data-quiet wait hit the cap.
 const visit = async (browser, baseURL, path, userAgent) => {
     const page = await browser.newPage({ userAgent });
     const errors = [];
@@ -270,11 +311,32 @@ const visit = async (browser, baseURL, path, userAgent) => {
         if (!isKnownNoise(err.message, path)) errors.push(err.message);
     });
 
+    // Data-host requests in flight, and when one last started or ended — the
+    // state the quiet wait reads. The status check rides on the same host test.
+    let inFlight = 0;
+    let lastDataActivity = Date.now();
+    const isData = (request) => new URL(request.url()).host === DATA_HOST;
+    const onData = (request, delta) => {
+        if (!isData(request)) return;
+        inFlight += delta;
+        lastDataActivity = Date.now();
+    };
+    page.on("request", (r) => onData(r, +1));
+    page.on("requestfinished", (r) => onData(r, -1));
+    page.on("requestfailed", (r) => onData(r, -1));
+    page.on("response", (response) => {
+        if (response.status() < 400 || !isData(response.request())) return;
+        const text = dataHostError(response);
+        if (!isKnownNoise(text, path)) errors.push(text);
+    });
+
     // Registered before navigating, so the very first request is covered.
     await page.route("**/*", (route) => {
         const host = new URL(route.request().url()).host;
         return BLOCKED_HOSTS.includes(host) ? route.abort() : route.continue();
     });
+
+    let quietCapReached = false;
 
     try {
         // "load" rather than "networkidle": pages embedding third-party
@@ -282,13 +344,25 @@ const visit = async (browser, baseURL, path, userAgent) => {
         // never reach networkidle and would time out. The settle delay
         // lets deferred scripts surface errors that fire after load.
         await page.goto(baseURL + path, { waitUntil: "load", timeout: 30000 });
+
+        if (isExplorerIndicator(path)) {
+            const start = Date.now();
+            while (inFlight > 0 || Date.now() - lastDataActivity < QUIET_MS) {
+                if (Date.now() - start > QUIET_CAP_MS) {
+                    quietCapReached = true;
+                    break;
+                }
+                await page.waitForTimeout(200);
+            }
+        }
+
         await page.waitForTimeout(2000);
     } catch (e) {
         errors.push(`navigation failed: ${e.message}`);
     }
 
     await page.close();
-    return errors;
+    return { errors, quietCapReached };
 };
 
 const label = (path) => path || "(home)";
@@ -344,12 +418,16 @@ const main = async () => {
     const { baseURL, stop, pagefind } = await ensureDevServer();
     pagefindServed = pagefind;
     console.log(`Pagefind index: ${pagefind ? "served" : "ABSENT — its errors are allowlisted"}`);
-    const paths = all ? await collectAllPaths(baseURL) : PAGES;
+    // --all adds one URL per explorer indicator, which the sitemap cannot list
+    // (see collectExplorerIndicatorPaths). The curated PAGES list is unchanged.
+    const explorerPaths = all ? await collectExplorerIndicatorPaths(baseURL) : [];
+    const paths = all ? [...await collectAllPaths(baseURL), ...explorerPaths] : PAGES;
     const browser = await chromium.launch({ headless: true });
     const userAgent = await browserUserAgent(browser);
 
     let failures = [];
     let cleared = [];
+    let quietCapPaths = [];
     // True when the sequential re-check was skipped outright because more pages
     // failed than RECHECK_CAP, which makes every failure below a plain
     // concurrent result with nothing ruling out contention.
@@ -358,7 +436,7 @@ const main = async () => {
     try {
         let done = 0;
         const results = await mapPool(paths, concurrency, async (path) => {
-            const errors = await visit(browser, baseURL, path, userAgent);
+            const { errors, quietCapReached } = await visit(browser, baseURL, path, userAgent);
             done++;
 
             if (errors.length) {
@@ -370,10 +448,11 @@ const main = async () => {
             }
 
             if (all && done % 50 === 0) console.log(`      ... ${done}/${paths.length}`);
-            return { path, errors };
+            return { path, errors, quietCapReached };
         });
 
-        failures = results.filter((r) => r.errors.length);
+        failures = results.filter((r) => r.errors.length).map(({ path, errors }) => ({ path, errors }));
+        quietCapPaths = results.filter((r) => r.quietCapReached).map((r) => r.path);
 
         // Concurrency introduces a failure mode sequential runs don't have: a page
         // can time out under a concurrent sweep and pass on its own. Re-check every
@@ -397,7 +476,7 @@ const main = async () => {
             console.log(`\nRe-checking ${failures.length} failing page(s) sequentially...`);
             const rechecked = [];
             for (const { path } of failures) {
-                const errors = await visit(browser, baseURL, path, userAgent);
+                const { errors } = await visit(browser, baseURL, path, userAgent);
                 if (errors.length) rechecked.push({ path, errors });
                 else cleared.push(path);
             }
@@ -413,6 +492,12 @@ const main = async () => {
     if (cleared.length) {
         console.log(`\n${cleared.length} page(s) failed under concurrency but were clean on a sequential re-run:`);
         for (const p of cleared) console.log(`      ${label(p)}`);
+    }
+
+    if (quietCapPaths.length) {
+        console.log(`\n${quietCapPaths.length} explorer page(s) were still fetching data after `
+            + `${QUIET_CAP_MS / 1000}s; checked at the cap rather than at quiet:`);
+        for (const p of quietCapPaths) console.log(`      ${label(p)}`);
     }
 
     if (signatures.length) {
@@ -431,6 +516,9 @@ const main = async () => {
             concurrency,
             gitHead: gitHead(),
             pagesChecked: paths.length,
+            explorerIndicators: explorerPaths.length,
+            // Explorer pages whose data-quiet wait hit QUIET_CAP_MS. Not failures.
+            quietCapReached: quietCapPaths,
             // `clearedOnRecheck` is the subset that failed concurrently and was
             // clean sequentially — contention rather than a real error.
             // `recheckCapped` says that re-check was skipped altogether, so a

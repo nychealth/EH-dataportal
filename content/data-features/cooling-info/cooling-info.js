@@ -31,22 +31,32 @@ var warmSeason;
   async function getCurrentTempNYC() {
     const headers = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
-    // Step 1: Get station list
+    // Any failure here — network, an error body, a missing field, or a null
+    // reading — leaves currentTemp at its initial "No" and moves on, so the
+    // forecast and the air quality still load. printToPage shows it as unavailable.
+    try {
 
-    const stationsRes = await fetch("https://api.weather.gov/gridpoints/OKX/33,35/stations", headers);
-    const stationsData = await stationsRes.json();
-    const stationId = stationsData.features[0].properties.stationIdentifier;
+      // Step 1: Get station list
 
-    // Step 2: Get latest observation
+      const stationsRes = await fetch("https://api.weather.gov/gridpoints/OKX/33,35/stations", headers);
+      const stationsData = await stationsRes.json();
+      const stationId = stationsData.features[0].properties.stationIdentifier;
 
-    const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`, headers);
-    const obsData = await obsRes.json();
-    
-    const tempC = obsData.properties.temperature.value;
-    const tempF = tempC !== null ? (tempC * 9/5 + 32).toFixed(1) : null;
-    console.log(`Current temp in NYC: ${tempF}°F`);
+      // Step 2: Get latest observation
 
-    currentTemp = tempF
+      const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`, headers);
+      const obsData = await obsRes.json();
+
+      const tempC = obsData.properties.temperature.value;
+      if (tempC === null) throw new Error('latest observation has no temperature');
+      const tempF = (tempC * 9/5 + 32).toFixed(1);
+      console.log(`Current temp in NYC: ${tempF}°F`);
+
+      currentTemp = tempF
+
+    } catch (err) {
+      console.warn('Current temperature unavailable: ' + err.message)
+    }
 
     getForecastHighNYC()
 
@@ -56,24 +66,32 @@ var warmSeason;
       // get NWS data to retrieve forecast high
 
       const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
-    
-      // Step 1: Get forecast URL
 
-      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
-      const pointsData = await pointsRes.json();
-      
-      // Step 2: Fetch forecast data
+      // As in getCurrentTempNYC: a failure leaves forecastTemp unset and the
+      // page carries on to printToPage and the air quality lookup.
+      try {
 
-      const forecastUrl = pointsData.properties.forecast;
-      const forecastRes = await fetch(forecastUrl, userAgent);
-      const forecastData = await forecastRes.json();
+        // Step 1: Get forecast URL
 
-      // Step 3: Extract the high temp from the first daytime period
+        const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+        const pointsData = await pointsRes.json();
 
-      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
-      console.log(`NYC High Temp: ${high}°F`);
+        // Step 2: Fetch forecast data
 
-      forecastTemp = high
+        const forecastUrl = pointsData.properties.forecast;
+        const forecastRes = await fetch(forecastUrl, userAgent);
+        const forecastData = await forecastRes.json();
+
+        // Step 3: Extract the high temp from the first daytime period
+
+        const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+        console.log(`NYC High Temp: ${high}°F`);
+
+        forecastTemp = high
+
+      } catch (err) {
+        console.warn('Forecast high unavailable: ' + err.message)
+      }
 
       printToPage()
       getAQI()
@@ -84,23 +102,31 @@ var warmSeason;
 
 var aqiAPI;
 function getAQI() {
+  var aqiMeaning = document.getElementById('aqimeaning')
+
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
-  .then(response => {return response.json()})
+  .then(response => {
+    // A non-2xx answer can carry an HTML error page, which .json() would throw on.
+    if (!response.ok) throw new Error('AirNow responded ' + response.status)
+    return response.json()
+  })
   .then(data => {
 
     aqiAPI = data
 
-    if (aqiAPI[0].AQI > aqiAPI[1].AQI) {
-      aqi = aqiAPI[0].Category.Number
-    } else {
-      aqi = aqiAPI[1].Category.Number
-    }
+    // AirNow returns one observation per pollutant, and the page shows the
+    // worse of the first two. It can also return fewer, or none, which used
+    // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
+    var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
+    if (!readings.length) throw new Error('AirNow returned no observations')
+
+    var worst = readings.reduce((a, b) => (a.AQI > b.AQI ? a : b))
+    aqi = worst.Category.Number
 
     console.log('The AQI is: ' + aqi)
 
     // print to page and style
 
-    var aqiMeaning = document.getElementById('aqimeaning')
     if (aqi == '1') {
       aqiInterpretation = 'Good'
       aqiMeaning.style['background-color'] = '#00E400'
@@ -126,24 +152,40 @@ function getAQI() {
     aqiMeaning.innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
   })
+  .catch(err => {
+    // Covers every way the lookup can fail: network, non-2xx, unparseable or
+    // empty body. `aqi` keeps its initial "No", so the recommendations skip
+    // their AQI rows, as they do while the request is pending. A warning
+    // rather than an error: an AirNow outage is not a fault in this page.
+    console.warn('Air quality unavailable: ' + err.message)
+    aqiMeaning.innerHTML = '<em>unavailable right now</em>'
+  })
 }
 
 function printToPage() {
     // Print current temp, max temp, and AQI
-    
-    document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
-    document.getElementById('forecastTemp').innerHTML = forecastTemp  + '° F'
 
+    // Either reading can be missing when the weather service fails, so each
+    // prints on its own and maxTemp comes from whichever arrived. parseFloat
+    // rather than Number, because Number(null) is 0.
+    var current = parseFloat(currentTemp)
+    var forecast = parseFloat(forecastTemp)
 
-    if (currentTemp >= forecastTemp) {
-      maxTemp = currentTemp
-    } else {
-      maxTemp = forecastTemp
+    document.getElementById('currentTemp').innerHTML = isNaN(current) ? '<em>unavailable</em>' : currentTemp + '° F'
+    document.getElementById('forecastTemp').innerHTML = isNaN(forecast) ? '<em>unavailable</em>' : forecastTemp + '° F'
+
+    var readings = [current, forecast].filter(t => !isNaN(t))
+
+    var hotText = document.getElementById('hot')
+
+    if (!readings.length) {
+      hotText.innerHTML = '<em>unavailable</em>'
+      return
     }
 
-    // Style temp interpretation
+    maxTemp = Math.max(...readings)
 
-      var hotText = document.getElementById('hot')
+    // Style temp interpretation
 
       if (maxTemp > 77.9) {
         over78F = 'Yes'
