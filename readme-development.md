@@ -91,7 +91,7 @@ templates compile.
 | Command | What it does |
 |---|---|
 | `npm run smoke` | Loads 33 pages, one per template kind, and fails on any JavaScript error. Fast. |
-| `npm run smoke:all` | The same, over every page the site serves. For a pre-merge sweep. |
+| `npm run smoke:all` | The same, over every page the site serves plus one Data Explorer link per indicator. For a pre-merge sweep. |
 | `npm run smoke:env <env> [sample]` | The same, against a named environment it builds and serves itself. |
 | `npm run characterize:site` | Loads every page and compares its *structure* — assets, heading levels, `alt` text, tables, JSON-LD, overflow — against a committed baseline. |
 | `npm run characterize:site:sample` | The same check over 41 pages, one per template kind. |
