@@ -2876,4 +2876,6 @@ and renders no indicator (`topic-indicator-selector.js`, the "open chooser if UR
 indicator ID" guard; measured 2026-10-02 on 4 topics). So CI exercises none of the explorer's
 rendering. Only local checks do, for 5 of 267 indicators: the curated smoke list (2380, 26, 2427)
 and `de-characterization` (2380, 2414, 2023). Every finding above came from an indicator, sequence
-or data shape that no automated check exercises.
+or data shape that no automated check exercises. [Updated 2026-10-03: #1505 (`fab8d54c0f`) appends
+one URL per unique indicator to smoke's `--all` sweep, which CI runs, so CI's smoke check now
+renders every listed indicator, in one view each. Site characterization still takes none of them.]
