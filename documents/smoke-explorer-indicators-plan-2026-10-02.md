@@ -33,13 +33,14 @@ on data alone (deploy plan D7, D17).
 ## Ledger
 
 **Status as of 2026-10-02: plan written on `feature-smoke-explorer-indicators` (cut from local
-`production` at `ed63fa7603`); D1–D3 open; no task started.**
+`production` at `ed63fa7603`); Tasks 0–2 done; D1–D4 decided; D5 open (the sweep is red on
+production's own tree); Tasks 3–4 not started.**
 
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| 0 | Evidence: cost, throttling, and whether the collector sees late errors | *no commit* (throwaway probe) | **Not started** | |
-| 1 | `collectExplorerIndicatorPaths` in `site-urls.mjs` | | **Not started** | |
-| 2 | Wire it into `smoke-pages.mjs --all`, with the data-quiet wait | | **Not started** | |
+| 0 | Evidence: cost, throttling, and whether the collector sees late errors | *no commit* (throwaway probe) | **DONE 2026-10-02** | Pre-registered: 0 × 429; 4xx only on known-missing files (none on the old explorer); under 6 min; late control seen at 10 s, missed at 2 s; no power if data-host count or `held` is 0. **Run 1** (`explorer-sweep-probe.mjs`, the plan's Step 2 code plus Step 4) was unreadable: `startServer` builds no Pagefind index, so 263/263 pages logged Pagefind errors, and the 3-per-page cap hid anything else; its late control had no power (`held: 0`), because production's old explorer opens on the table tab, which loads no `.topo.json`. **Run 2** (`explorer-sweep-probe2.mjs`: `npx -y pagefind --site <destDir>` first, no cap, failed URLs by host, control on `indicators/data/<id>.json`) `[verified 2026-10-02, isolated prod_prod]`: 263 paths in 120 s at concurrency 6; 1346 data-host responses, 0 × 4xx, 0 × 429, so no shared context is needed; 1 page with `PAGEERROR Cannot read properties of undefined (reading 'array')`, path not recorded (Task 2 Step 3 will name it); 78 `ERR_BLOCKED_BY_ORB` requests to `www.google.com/sorry/index`, not errors to smoke. Late control: `held: 1`, 0 errors by 2 s after load, then the 404 and `PAGEERROR … Unexpected end of JSON input` at 6.8 s, so the quiet wait is needed. Step 4: the old explorer ignores `&overlay=trend`; it rewrites the URL to `#display=summary` with the table tab active, because it reads its view from the hash (`measures.js`, "set tab based on hash") |
+| 1 | `collectExplorerIndicatorPaths` in `site-urls.mjs` | `feature-smoke-explorer-indicators @ 2b0d4af2ac` | **DONE 2026-10-02** | `[verified 2026-10-02, isolated prod_prod, collect-check.mjs]`: `Explorer indicators: 263 unique of 305 topic pairs in 41 topics`; the first six paths cycle the five D2 views and wrap; the `no-such-dir/` control threw on 404. Independent Python count over the built JSON: `305 263 41`. `grep collectExplorerIndicatorPaths scripts/*.mjs` hit `site-urls.mjs` only. `npx eslint` clean |
+| 2 | Wire it into `smoke-pages.mjs --all`, with the data-quiet wait and D4's data-host status check | `feature-smoke-explorer-indicators @ 074d0257f8` | **DONE 2026-10-02** | Step 3 `[verified 2026-10-02, node scripts/smoke-env.mjs prod_prod, 220 s including build and Pagefind, concurrency 24]`: 1188 pages = 925 sitemap-side (830 + 94 + 1; the plan's 924 was CI's count) + 263 explorer. `quietCapReached` empty, 0 `EHDP-data responded` lines. Exit 1, 3 failures, all surviving the sequential re-check; see D5. Steps 4–5 `[verified 2026-10-02, smoke-visit-control.mjs over a generated copy of the working-tree file]`: arm A (data file held 6 s, then 404, wait on): `EHDP-data responded 404: …/indicators/data/2455.json` plus the JSON-parse pageerror, 9.7 s. Arm B (wait off): no errors, 3.0 s, so missed. Arm C (cap 500 ms): `quietCapReached: true`, no failure. `npx eslint` clean |
 | 3 | Positive control: the sweep on a local merge with `feature-new-data-explorer` | *no commit* (throwaway branch) | **Not started** | |
 | 4 | Docs, CI budget, PR | | **Not started** | |
 
@@ -67,9 +68,11 @@ gh pr list --head feature-smoke-explorer-indicators
 
 | # | Decision | Who / when | Notes |
 |---|---|---|---|
-| D1 | One URL per unique indicator (263) or per topic–indicator pair (305)? | **Open — Chris** | Recommend unique: rendering is per indicator, and a topic page differs only in its header and menus. Pairs cost 42 more loads. Under unique, an indicator is loaded under the first topic that lists it, in the JSON's key order |
-| D2 | Which views: rotate `overlay` through map-only, bar, trend, links, table across the list (each view on ~53 indicators), or map-only for all? | **Open — Chris** | Recommend rotating, which costs the same number of loads. Map-only leaves bar/trend/correlate/table unexercised, which is where most of #1462's review findings were. A view that is disabled for an indicator resolves to `none` on the new explorer (`showOverlayTab`, #1462 `1808f80eeb`); production's old explorer reads `overlay` differently, which Task 0 records |
-| D3 | Merge order with #1462 | **Open — Chris** | #1462 on its own drops CI's explorer coverage from 41 default indicators to 0 (see Why), which argues for this landing first or together. Whichever PR lands second merges the other in. If this lands first, it sweeps production's old explorer until #1462 merges. If it lands after #1462 without D15 fixed, its CI should fail on the unmapped indicators, which is the point. Either way the second merge must rewrite #1462's `CLAUDE.md` bullet "CI's sweeps render no Data Explorer indicator" (`9e38df2bdc`), which this change makes false |
+| D1 | One URL per unique indicator (263) or per topic–indicator pair (305)? | **Unique, 263 — Chris, 2026-10-02** | Recommend unique: rendering is per indicator, and a topic page differs only in its header and menus. Pairs cost 42 more loads. Under unique, an indicator is loaded under the first topic that lists it, in the JSON's key order |
+| D2 | Which views: rotate `overlay` through map-only, bar, trend, links, table across the list (each view on ~53 indicators), or map-only for all? | **Rotate, both params — Chris, 2026-10-02** | Recommend rotating, which costs the same number of loads. Map-only leaves bar/trend/correlate/table unexercised, which is where most of #1462's review findings were. A view that is disabled for an indicator resolves to `none` on the new explorer (`showOverlayTab`, #1462 `1808f80eeb`); production's old explorer reads `overlay` differently, which Task 0 records. **Task 0 found** the old explorer ignores `overlay`: it takes its view from `#display=summary\|map\|trend\|links` and opens the table when there is none. So until #1462 merges, an `overlay`-only rotation exercises the table alone, as CI's 41 default indicators do today. Option: append the matching hash too (`&overlay=trend#display=trend`). Whether the new explorer tolerates the hash is unchecked. **Decided:** both params, paired by the new explorer's own `legacyOverlayByHash` (#1462 `app.js`, `normalizeLegacyHashOverlayURL`): `bar`↔`#display=map`, `trend`↔`#display=trend`, `links`↔`#display=links`, `table`↔`#display=summary`, and map-only carries no hash. A `#display=map` with no `overlay` would be backfilled to `bar`. That function only backfills a missing `overlay` and then strips the hash, so the query param wins; this is from reading the source, and Task 3 checks it at runtime. On the old explorer the rotation gives table ×2, map, trend, links |
+| D3 | Merge order with #1462 | **This PR first — Chris, 2026-10-02** | #1462 on its own drops CI's explorer coverage from 41 default indicators to 0 (see Why), which argues for this landing first or together. Whichever PR lands second merges the other in. If this lands first, it sweeps production's old explorer until #1462 merges. If it lands after #1462 without D15 fixed, its CI should fail on the unmapped indicators, which is the point. Either way the second merge must rewrite #1462's `CLAUDE.md` bullet "CI's sweeps render no Data Explorer indicator" (`9e38df2bdc`), which this change makes false |
+| D4 | Smoke cannot see a data-host 404 through console text: `KNOWN_NOISE`'s site-wide `{ page: null, error: /favicon\|Failed to load resource\|net::ERR/i }` matches Chrome's `Failed to load resource: the server responded with a status of 404 (Not Found)`, on `production` and on `feature-new-data-explorer` alike. Add a check in `visit` that fails a page on any ≥400 response from `raw.githubusercontent.com`? | **Yes, every page — Chris, 2026-10-02** | Found in Task 0. Recommend yes, on every page rather than explorer paths only: NR and data-story pages fetch EHDP-data too, and the check reads response status, so it leaves the allowlist untouched. A 404 is caught today only if a JS error follows it, as in Task 0's late control. Whether D15's missing `citywide.topo.json` is followed by one is unmeasured, so Task 3's expected `Failed to load resource … 404` failure would not happen without this |
+| D5 | Task 2's sweep fails on production's own tree, so this PR's CI will be red as-is. Three failures, all survived the sequential re-check: (a) `data-explorer/weather-related-illness/?id=2074&overlay=trend#display=trend`: `Cannot read properties of undefined (reading 'columnNames')`; (b) `data-explorer/worker-health/?id=2211&overlay=trend#display=trend`: Vega `Expression parse error: 'Hospitalizations billed to workers' compensation: …'`, where the apostrophe ends a quoted string; (c) `data-features/cooling-info/`: `Cannot read properties of undefined (reading 'AQI')`. Fix, scope-allowlist, or leave red? | **Open — Chris** | (a) and (b) are old-explorer trend-view defects that only the D2 hash rotation reaches; today's CI loads no `#display=trend`. Whether #1462's explorer has them is Task 3's question. (c) is a sitemap page this change does not reach: `cooling-info.js` `getAQI` compares `aqiAPI[0].AQI` with `aqiAPI[1].AQI`, and AirNow's response varies. It is the same class as the unmerged AirNow guard (`e6a48727fe`). It is attributed by mechanism, not by a base run. Task 0's `reading 'array'` pageerror did not recur; that run had no hashes, so each indicator showed a different view |
 
 ## Global Constraints
 
@@ -208,58 +211,11 @@ try {
   It returns paths relative to `baseURL`, with no leading slash (the same contract as
   `collectAllPaths`). Form: `data-explorer/<topic>/?id=<n>` with `&overlay=<view>` appended per D2.
 
-- [ ] **Step 1: Add the function.** Shown with D2's recommended rotation. For map-only, set
-  `EXPLORER_OVERLAYS = [""]`.
-
-```js
-// Views rotated across the explorer indicator list, so each one is exercised on about a fifth of
-// the indicators without loading any indicator twice. "" is the map alone (no overlay).
-const EXPLORER_OVERLAYS = ["", "bar", "trend", "links", "table"];
-
-// Every data explorer indicator, as a topic page with ?id=. The sitemap lists topic pages without
-// ?id=, and a topic page without one opens the indicator chooser and renders nothing (the "open
-// chooser if URL has no valid indicator ID" guard in topic-indicator-selector.js), so the sitemap
-// sweep runs none of the explorer's rendering. The list is the build's own:
-// de-topic-indicators.html publishes IndicatorMetadata/topic_indicators.json on every full build,
-// keyed by topic slug. An indicator listed under several topics is loaded once, under the first.
-
-export async function collectExplorerIndicatorPaths(baseURL) {
-
-    const url = baseURL + "IndicatorMetadata/topic_indicators.json";
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error(`${url} answered ${response.status} — cannot enumerate explorer indicators.`);
-    }
-
-    const topics = await response.json();
-
-    if (!topics || typeof topics !== "object" || Array.isArray(topics) || !Object.keys(topics).length) {
-        throw new Error(`${url} is not a non-empty topic map — cannot enumerate explorer indicators.`);
-    }
-
-    const seen = new Set();
-    const paths = [];
-    let pairs = 0;
-
-    for (const [topic, entry] of Object.entries(topics)) {
-        for (const id of entry?.IndicatorID || []) {
-            pairs += 1;
-            if (seen.has(id)) continue;
-            seen.add(id);
-            const overlay = EXPLORER_OVERLAYS[paths.length % EXPLORER_OVERLAYS.length];
-            paths.push(`data-explorer/${topic}/?id=${id}` + (overlay ? `&overlay=${overlay}` : ""));
-        }
-    }
-
-    console.log(
-        `Explorer indicators: ${paths.length} unique of ${pairs} topic pairs ` +
-        `in ${Object.keys(topics).length} topics (from topic_indicators.json)`
-    );
-
-    return paths;
-}
-```
+- [x] **Step 1: Add the function.** As written in `scripts/site-urls.mjs`: `EXPLORER_VIEWS` and
+  `collectExplorerIndicatorPaths`, after `collectAllPaths`. The draft that stood here differed in
+  two ways. Views are `{ overlay, hash }` pairs per D2, so a path reads
+  `data-explorer/<topic>/?id=<n>&overlay=trend#display=trend`. And an empty id list throws, as a
+  missing file does.
 
 - [ ] **Step 2: Check it against an isolated server.** Write
   `scripts/.sc-rebaseline/collect-check.mjs` (untracked):
@@ -356,6 +312,12 @@ if (isExplorerIndicator(path)) {
   in `main`, the concurrent sweep and the sequential re-check, to read `.errors`, and collect the
   paths with `quietCapReached` into the report.
 
+  **Added for D4:** a `response` listener in `visit`, on every page, that pushes
+  `EHDP-data responded <status>: <url>` for any ≥400 from `raw.githubusercontent.com`. The
+  message goes through `isKnownNoise`, so a known gap can be scoped like any other entry. It shares
+  the host test with the quiet-wait counters. Network-level failures (`requestfailed`) stay
+  uncounted, as before; D4 decided on status only.
+
 - [ ] **Step 3: Run the full sweep on an isolated `prod_prod`.**
   Run: `node scripts/smoke-env.mjs prod_prod > <scratch>/smoke-all.log 2>&1`
   Expected:
@@ -365,16 +327,19 @@ if (isExplorerIndicator(path)) {
 
   Record the wall time against Task 0's.
 
-- [ ] **Step 4 (Review Focus 5):** a forced cap. Re-run Task 0's late-error control path
-  through `visit` with `QUIET_CAP_MS` temporarily set to 500 (local edit, not committed).
-  Expected: the path appears in `quietCapReached`, the sweep continues, the run is not failed for
-  it. Revert the constant, and prove the revert with `git diff -- scripts/smoke-pages.mjs | grep -c QUIET_CAP_MS` → 0
-  against the Step 2 commit's content.
-
-- [ ] **Step 5 (Review Focus 3):** Task 0's late-error control through the real harness. A
-  throwaway copy of `smoke-pages.mjs` in `scripts/.sc-rebaseline/` adds the delayed-404 route to
-  `visit`. Expected: the 404 console error is reported for that path with the quiet wait, and missed
-  with the wait removed.
+- [ ] **Steps 4 and 5 (Review Focus 5, 3 and D4), revised:** these run through a throwaway copy,
+  not a local edit of the tracked file. The tracked file is uncommitted at this point, so the
+  prescribed `git diff … | grep -c QUIET_CAP_MS` revert proof could not separate the probe edit
+  from the task's own diff. `scripts/.sc-rebaseline/smoke-visit-copy.mjs` is `smoke-pages.mjs`
+  with `visit` exported, `main()` not called, and three hooks: a cap override, a wait-off switch,
+  and a per-page route. A driver (`smoke-visit-control.mjs`) runs the real `visit` against an
+  isolated `prod_prod` in three arms:
+  - **A**, the late control with the wait: `indicators/data/<id>.json` held 6 s, then 404. Expected:
+    errors include `EHDP-data responded 404: …` (D4) and the JSON-parse pageerror, with
+    `quietCapReached: false`.
+  - **B**, the same with the wait off. Expected: no errors, i.e. missed.
+  - **C**, an unrouted explorer page with the cap at 500 ms. Expected: `quietCapReached: true`, and
+    the page's errors are those of an ordinary run.
 
 - [ ] **Step 6: Commit** `scripts/smoke-pages.mjs`.
 
@@ -384,7 +349,9 @@ No tracked change. A real known-bad case, not an injected one: D15's missing
 `citywide.topo.json` on EHDP-data `production`.
 
 - [ ] **Step 1: Write the expectation first.** On the merged tree, explorer paths whose rendered
-  measure takes the unmapped path fail with `Failed to load resource … 404`. That's more than 0 and at
+  measure takes the unmapped path fail with `EHDP-data responded 404: …/geography/citywide.topo.json`
+  (corrected 2026-10-02: the plan first said `Failed to load resource … 404`, which `KNOWN_NOISE`'s
+  site-wide entry swallows; see D4). That's more than 0 and at
   most 68 indicators (68 is the count of indicators with any unmapped measure; only those whose
   default or URL measure is unmapped load the file). **No power if:** EHDP-data `production` has
   gained `citywide.topo.json` by then (check: `curl -s -o /dev/null -w '%{http_code}' https://raw.githubusercontent.com/nychealth/EHDP-data/production/geography/citywide.topo.json`
@@ -395,7 +362,9 @@ No tracked change. A real known-bad case, not an injected one: D15's missing
   the files and stop, since D3 then needs a decision.
 
 - [ ] **Step 3:** `node scripts/smoke-env.mjs prod_prod > <scratch>/smoke-merged.log 2>&1`.
-  Record the explorer failures and their distinct signatures in the ledger.
+  Record the explorer failures and their distinct signatures in the ledger. Also check D2's
+  hash pairing at runtime: load one `&overlay=trend#display=trend` path and confirm the URL
+  keeps `overlay=trend` with the hash stripped, and that the trend view is the one shown.
 
 - [ ] **Step 4:** `git switch feature-smoke-explorer-indicators`, then
   `git branch -D scratch-smoke-merge`. Never push it.
