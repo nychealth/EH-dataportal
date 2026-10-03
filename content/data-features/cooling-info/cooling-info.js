@@ -84,23 +84,31 @@ var warmSeason;
 
 var aqiAPI;
 function getAQI() {
+  var aqiMeaning = document.getElementById('aqimeaning')
+
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
-  .then(response => {return response.json()})
+  .then(response => {
+    // A non-2xx answer can carry an HTML error page, which .json() would throw on.
+    if (!response.ok) throw new Error('AirNow responded ' + response.status)
+    return response.json()
+  })
   .then(data => {
 
     aqiAPI = data
 
-    if (aqiAPI[0].AQI > aqiAPI[1].AQI) {
-      aqi = aqiAPI[0].Category.Number
-    } else {
-      aqi = aqiAPI[1].Category.Number
-    }
+    // AirNow returns one observation per pollutant, and the page shows the
+    // worse of the first two. It can also return fewer, or none, which used
+    // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
+    var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
+    if (!readings.length) throw new Error('AirNow returned no observations')
+
+    var worst = readings.reduce((a, b) => (a.AQI > b.AQI ? a : b))
+    aqi = worst.Category.Number
 
     console.log('The AQI is: ' + aqi)
 
     // print to page and style
 
-    var aqiMeaning = document.getElementById('aqimeaning')
     if (aqi == '1') {
       aqiInterpretation = 'Good'
       aqiMeaning.style['background-color'] = '#00E400'
@@ -125,6 +133,14 @@ function getAQI() {
     }
     aqiMeaning.innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
+  })
+  .catch(err => {
+    // Covers every way the lookup can fail: network, non-2xx, unparseable or
+    // empty body. `aqi` keeps its initial "No", so the recommendations skip
+    // their AQI rows, as they do while the request is pending. A warning
+    // rather than an error: an AirNow outage is not a fault in this page.
+    console.warn('Air quality unavailable: ' + err.message)
+    aqiMeaning.innerHTML = '<em>unavailable right now</em>'
   })
 }
 
