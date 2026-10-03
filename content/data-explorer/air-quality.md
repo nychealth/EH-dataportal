@@ -44,8 +44,6 @@ indicators:
       - 92
       - 57
       - 55
-  - header: null
-    IndicatorID:
 related:
   - title: "Real-time air quality"
     url: "data-features/realtime-air-quality/"

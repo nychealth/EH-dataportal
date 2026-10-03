@@ -58,8 +58,8 @@ related:
 relatedData:
   - title: "Walking, driving, and cycling"
     url: "walking-driving-and-cycling"
-  - title: "Physical activity"
-    url: "physical-activity/"
+  - title: "Accessibility"
+    url: "accessibility/"
   - title: "Transportation related-injuries"
     url: "transportation-related-injuries/"
 ---
