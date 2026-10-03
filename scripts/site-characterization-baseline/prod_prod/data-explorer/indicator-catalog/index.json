@@ -20,11 +20,11 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 12,
+        "assetsWithIntegrity": 11,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -86,8 +86,8 @@
         "title": "Catalog of Indicators on The Environment and Health Data Portal – Environment & Health Data Portal",
         "headingText": [
             "Indicator catalog",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

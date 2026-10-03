@@ -143,8 +143,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -329,15 +329,14 @@
             "The redesigned EH Data Portal",
             "Neighborhood boundaries on the EH Data Portal",
             "Why we're working with you to redesign the data portal",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
             "/about/",
             "/data-explorer/",
             "/data-features/",
-            "/data-stories",
             "/data-stories/",
             "/data-stories/adult-lead/",
             "/data-stories/air-quality-and-covid-part-2/",

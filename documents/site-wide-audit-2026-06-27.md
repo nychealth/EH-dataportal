@@ -390,6 +390,40 @@ param**, adding `links` → `correlate` to the existing legacy-URL normalizer so
 bookmarks keep working, and accepting a GA discontinuity. Do (2) or (3) only as
 its own PR, never folded into other work.
 
+### 4c. Deferred: Citywide and Borough as standing context in the explorer table (added 2026-10-01)
+
+The new explorer's table follows the map: its time and geography filters track the map's
+dropdowns until the user changes them ("Table filters follow the map until changed" in
+`themes/dohmh/layouts/partials/de-tab-content.html`), so it shows one geography, the map's. That
+is a deliberate design choice, not a gap. The old explorer checked **every** available geography
+for the most recent time period, so some indicators render thinner in the new one — `?id=26`
+showed 7 table rows in the old explorer and 3 in the new (observed 2026-07-30, recorded in
+`documents/data-explorer-fresh-audit-2026-07-13.md`, "Status at a glance").
+
+Considered 2026-10-01 and **deferred by decision (Chris): keep strict follow-the-map for now.**
+The option, if it is wanted later: keep following the map, and always check Citywide and Borough
+alongside the map's geography. One fixed list, filtered in the canonical `geoTypes` order so rows
+stay coarsest-first:
+
+```js
+// global.js
+// The table follows the map's geography, with Citywide and Borough always shown alongside it for context.
+const TABLE_CONTEXT_GEOS = ['Citywide', 'Borough'];
+const pickSyncedTableGeos = (availableGeos, mapGeo) =>
+    availableGeos.filter(geo => TABLE_CONTEXT_GEOS.includes(geo) || geo === mapGeo);
+```
+
+Three sites choose the table's geography today and would call it, each keeping its existing
+fall-back to the first available geography when the helper returns nothing: the "table defaults"
+block in `renderMeasures` (`assets/js/data-explorer/measures.js`), and `getCurrentMapTableFilters`
+and the fallback inside `renderTableFilterControls` (`assets/js/data-explorer/table.js`). The
+help text and "Sync to map" stay true, since the table still follows the map. The added rows are
+bounded by the two context levels for the selected time period — derived from the geography
+definitions, not measured. Not tried in a browser.
+
+Rejected outright on the same day: the old explorer's own rule (every geography checked), because
+it would stop the map's geography from driving the table.
+
 ---
 
 ## 5. JavaScript outside the SPA (P2/P3)
@@ -2759,3 +2793,89 @@ layouts use:
 `restaurant-grades.html`, the next headings (`:35`, `:78`) are `<h2>`, so heading levels still
 don't skip after the change. The rendered page hasn't been checked, because none of these pages
 builds without `--buildDrafts`.
+
+## 21. Data Explorer pre-ship review: deferred follow-ups (added 2026-10-02)
+
+A local review of `feature-new-data-explorer` before it merged into `production` (PR #1462) found
+39 issues. The full report, with `file:line` (as of `c15317c74b`), the trigger and the reviewer's
+evidence for each, is
+[`de-pre-ship-review-2026-10-02.md`](de-pre-ship-review-2026-10-02.md). The issues that showed
+wrong data, broke a view or failed accessibility were scoped to fix before the merge; their
+outcomes are in the "Review findings" table of
+[`de-production-deploy-plan-2026-10-01.md`](de-production-deploy-plan-2026-10-01.md). The 20
+below were deferred (Chris, 2026-10-02). **They are the reviewer's findings and none has been
+re-verified**, so reproduce one before fixing it. Numbers are the report's. #12 was scoped before
+the merge, then deferred later the same day (deploy plan D16); it is the one entry here that was
+verified.
+
+**Degraded UX**
+
+- **#9** "About the data" keeps the last trend, correlate or disparities measure's text after you
+  switch back to Bar or Table (`renderAboutSources`). Reproduced by the reviewer.
+- **#13** The table stops following the map after a Measure change moves the time or geography,
+  or after Back (`menu.js`, popstate in `app.js`), while its summary still reads "Synced". This
+  contradicts the table-follows-the-map design (deploy plan D4), so it is a defect, not a
+  design question. Trace only.
+- **#14** The table's Area search box keeps its text after a rebuild, but the filter is gone
+  (`DE.table.tableAreaSearchValue` is never reset). Trace only.
+- **#15** The generic "based on small numbers" note can print twice (`getDisplayNotes` maps, then
+  doesn't dedupe; indicator 2383). Fix with #32.
+- **#19** "Download data" and "Sync to map" are `href="#"` links without `preventDefault`. Each
+  click scrolls to the top and adds a history entry, and Back then re-renders the map.
+- **#21** "More info about {topic}" in `header-de.html` renders `.Params.azlink` without the
+  `with` guard production had, so it is a self-link on topics with no `azlink`.
+- **#22** Dead SCSS in `_de-custom.scss`: the mobile bottom padding compiles to
+  `.de-wrapper .de-wrapper`, and the indicator-modal grid, card and sticky Learn More rules are
+  scoped to `.de-wrapper` while the modals live outside it in `header-de.html`. Measured by the
+  reviewer.
+
+**Accessibility (lower severity, or not verified)**
+
+- **#26** `#map role="img"` wraps focusable links, including the sr-only "View this data as a
+  table" link. Confirmed by axe-core 4.13.0 `nested-interactive` on `#map`, at 1400 and 390 px on
+  asthma ?id=2380 (2026-10-02); no screen-reader check.
+- **#27** `#tableFilterToggle` is a focusable button that nothing binds to.
+- **#28** The "Recently updated" icon has both `aria-hidden="true"` and an `aria-label`.
+
+**Wrong data, inherited or latent**
+
+- **#11** Correlate CSV: `Value_1_Indicator` and `Value_2_Indicator` are swapped when
+  `SecondaryAxis` is `'y'` (391 of 745 links). The same mapping is in production's old
+  `links.js`, so it predates this branch.
+- **#17** When correlate and disparities both fail, the previous chart stays up. The reviewer
+  found no live trigger in the current metadata.
+- **#12** UHF33 and National rows have no area name and cannot be selected: EHDP-data's
+  `GeoLookup.json` has no rows for either geotype, and `GEO_RANK_BY_PRETTY_TYPE` (`global.js`)
+  ranks neither. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National). The fix needs data
+  first: UHF33 GeoIDs include merged ids (`105106107`, `207208`, …), so names cannot be derived in
+  JS, and adding the geotypes to the JS alone would make 33 nameless rows selectable. Then add both
+  to `GEO_RANK_BY_PRETTY_TYPE`; `data-index.html` already orders UHF33 between NYCKIDS and UHF34
+  `[verified 2026-10-02 against EHDP-data production's GeoLookup]`.
+
+**Maintainability: false or stale claims, dead code**
+
+- **#32** `global.js` says callers pass `getDisplayNotes` "already-deduped" notes; see #15.
+- **#33** `structured-data.html` still says the search modal is in `footer.html`, and describes
+  the deleted `/search-results/` layout.
+- **#34** `print.js`'s header says maps export "by compositing the current Leaflet DOM";
+  `print-map.js` builds an off-screen map.
+- **#35** Stale comments in `measures.js` (the caller of the render step), `data.js` ("IndicatorID
+  comes in as a string") and `de-tab-content.js` ("guarded so load order never matters").
+- **#36** `de-chooser.html` is included nowhere, yet this branch reformatted it.
+- **#37** `de-topic-indicators.html` and `de-indicator-names-pf.html` match the substring
+  `/data-explorer`, which also matches `/data-explorer-old/`. The old topics write the same keys
+  into `topic_indicators.json`, which `nr-output/single.html` reads. No visible effect while the
+  two copies agree.
+- **#38** A `console.log` in `data-explorer/section.html`.
+- **#39** A duplicated block in `_de-custom.scss`, carrying `#007bff` (3.98:1 on white), which is
+  overridden only because a more specific `.de-tabs-nav` rule wins.
+
+**Coverage gap found by the same review:** CI's smoke and characterization sweeps load Data
+Explorer topic pages from the sitemap, without `?id=`, and such a page opens the indicator chooser
+and renders no indicator (`topic-indicator-selector.js`, the "open chooser if URL has no valid
+indicator ID" guard; measured 2026-10-02 on 4 topics). So CI exercises none of the explorer's
+rendering. Only local checks do, for 5 of 267 indicators: the curated smoke list (2380, 26, 2427)
+and `de-characterization` (2380, 2414, 2023). Every finding above came from an indicator, sequence
+or data shape that no automated check exercises. [Updated 2026-10-03: #1505 (`fab8d54c0f`) appends
+one URL per unique indicator to smoke's `--all` sweep, which CI runs, so CI's smoke check now
+renders every listed indicator, in one view each. Site characterization still takes none of them.]

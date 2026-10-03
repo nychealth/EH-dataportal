@@ -43,11 +43,11 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 33 pages, one per template kind
+npm run smoke                                          # 44 pages, one per template kind
 npm run smoke:all                                      # every page the site serves
 npm run smoke:prod_prod                                # every page, on an isolated prod_prod server
 npm run smoke:env local_prod                           # every page, on any environment in config/
-npm run smoke:env local_prod sample                    # the curated 33 instead, same isolated server
+npm run smoke:env local_prod sample                    # the curated 44 instead, same isolated server
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
@@ -76,7 +76,7 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Eight things to know before trusting a result:
+Nine things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -108,8 +108,19 @@ Eight things to know before trusting a result:
   at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
+- **Only the `--all` sweep renders Data Explorer indicators, and in one view each.** Sitemap URLs carry no `?id=`, and a topic page without one opens the indicator chooser and stops (the "open chooser" guard in `assets/js/data-explorer/topic-indicator-selector.js`) `[verified 2026-10-02: 4 topic pages, no IndicatorID, 0 map paths]`. What renders indicators is the per-indicator list `--all` appends (above), which CI's PR sweep runs. The curated `PAGES` render three (2380, 26, 2427), so a `workflow_dispatch` sample run says little about the explorer; `scripts/de-characterization.mjs` renders 2380, 2414 and 2023.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+
+### The other three checks
+
+The Data Explorer branch adds three more npm scripts, all run from the repo root:
+
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. Those files share one global scope, so `eslint.config.mjs` derives their shared globals at config-load time and `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is deliberately off — it false-positives on the cross-file global pattern.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` near the top. Audits and dated findings must **not** opt in — they cite old names on purpose. It also scans the root docs listed in its `ROOT_DOCS`, **this file among them**, so a path or identifier written here must be real and repo-root-relative.
+
+`smoke` and the characterization harness share `scripts/dev-server.mjs`, so the server rules above apply to both.
 
 ### Site characterization
 
@@ -224,6 +235,12 @@ are printed as a harness-health number and deliberately **not** baselined — th
   remains is not diagnosed** — read the plan's Task 6 and Task 7 findings before treating it as
   understood, and note that Task 7 found the DOM-quiescence detector had never attached, so any
   older claim crediting that wait is void.
+- **Before re-baselining after a check that fails on most pages, capture the base branch with the
+  same harness and diff the two captures.** A baseline diff mixes what the base branch changed
+  since the capture with what yours changes; a detached worktree at the base tip running
+  `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
+  differed from the prod_prod baseline; against production's own capture, 535 had lost the
+  search UI, which a re-baseline would have committed as expected]`.
 
 ### Four ways a local check silently lies
 
@@ -302,15 +319,18 @@ Browser JS under `assets/js/` is fingerprinted and served with Subresource Integ
 
 ### Data explorer
 
-`assets/js/data-explorer/` is ten vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
-`global → data → measures → table → map → links → disparities → trend → app → print`
+`global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
+
+The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`.
 
 - `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
 - The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
 - Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
-- `single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `data.js` calls them; that works only because classic scripts share one scope.
+- In the retired explorer only, `themes/dohmh/layouts/data-explorer-old/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `assets/js/data-explorer-old/data.js` calls them; that works only because classic scripts share one scope. The new explorer defines none of the three; its only mention is a commented-out `createCitation()` call in `data.js`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
+- **Every EHDP-data path the explorer fetches at runtime must exist on EHDP-data `production` before merging.** `dev_stage` reads `staging`, so a staging-only file passes there and 404s live. CI's `prod_prod` sweep reads `production` and fails on any EHDP-data 4xx (smoke, above), but loads each indicator in one view, so a file only another view fetches can still pass; the pinned run in the smoke plan's Task 3 caught the citywide 404 on 56 pages across all five views. `curl -s -o /dev/null -w '%{http_code}'` the production raw URL `[2026-10-02: geography/citywide.topo.json was staging-only; the unmapped map drew nothing on 68 indicators]`.
 
 ### Neighborhood reports
 

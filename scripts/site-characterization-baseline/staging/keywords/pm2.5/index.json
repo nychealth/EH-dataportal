@@ -29,10 +29,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -101,8 +101,8 @@
             "Health impacts of air pollution",
             "Tracking changes in New York City's sources of air pollution",
             "The public health impacts of PM2.5 from traffic air pollution",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

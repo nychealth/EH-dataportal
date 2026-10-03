@@ -44,7 +44,7 @@
         </div>
         </div>
     </div>
-    </div>
+</div>
 
 <script>
 
@@ -94,6 +94,7 @@
         // as before, so the reading is unchanged whenever AirNow returns its
         // usual pair; whether the max should cover every pollutant it returns is
         // a separate question about the feature.
+
         let aqi = null;
 
         try {
@@ -110,6 +111,7 @@
         } catch (error) {
             // warn, not error: smoke fails the build on console errors, and an
             // unreachable third party is not this site's regression.
+
             console.warn(`Air quality unavailable: ${error.message}`);
         }
 

@@ -24,10 +24,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -91,8 +91,8 @@
             "Real-time heat-related illness",
             "Stay safe from heat and air pollution",
             "Why asthma is a social justice issue",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

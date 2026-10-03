@@ -43,6 +43,19 @@ const PAGES = [
     "data-explorer/",                               // data-explorer/section.html — topic chooser
     "data-explorer/asthma/",                        // data-explorer/single.html — the SPA, no ?id=
     "data-explorer/asthma/?id=2380",                // data-explorer/single.html — indicator loaded from the URL
+    "data-explorer/birth-defects/?id=26",           // data-explorer/single.html — unmapped measure (VisOptions[0].Map
+                                                    //   carries a null GeoType), exercising renderMap's unmapped
+                                                    //   branch. Threw a TypeError on 40 indicators; audit §4.12
+    "data-explorer/waterways/?id=2427",             // data-explorer/single.html — unmapped with no Citywide fallback
+                                                    //   in Table either, so showMap hands renderMap an empty
+                                                    //   metadata array: the other unmapped branch
+    "data-explorer-old/asthma/?id=2380",            // data-explorer-old/single.html — the retired explorer, which
+                                                    //   this branch still publishes at its own URL
+    "data-explorer-old/",                           // data-explorer-old/section.html — the other three old
+                                                    //   templates that reach aq. through de-topic-indicators;
+                                                    //   all three threw until 2d49d98914
+    "data-explorer-old/data-index/",                // data-explorer-old/data-index layout
+    "data-explorer-old/indicator-catalog/",         // data-explorer-old/indicator-catalog layout
     "data-explorer/data-index/",                    // data-index layout — builds topic_indicators.json
     "data-explorer/indicator-catalog/",             // indicator-catalog layout
     "data-stories/",                                // data-stories/section.html
@@ -63,6 +76,11 @@ const PAGES = [
     // <script src="{{ .Params.js }}"> carries no relURL, so it resolves against the PAGE
     // url -- a branch nothing else in this list executes.
     "data-features/rat-report/",                    // report layout -- Datawrapper embeds, zone switchers
+    "data-features/neighborhood-air-quality/",      // aqe layout
+    "data-features/asthma-syndrome/",               // asthma-syndrome layout
+    "data-features/hvi/",                           // hvi layout
+    "data-features/leading-causes/",                // leading-causes layout
+    "data-features/minimum-wage/",                  // minimum-wage-with-maps layout — Vega, D3
     "neighborhood-reports/",                        // neighborhood-reports/section.html — NR landing
     "neighborhood-reports/active_design_physical_activity_and_health/",  // topiclanding layout
     "neighborhood-reports/bayside_little_neck/",                         // nr-output/section.html
@@ -75,7 +93,6 @@ const PAGES = [
     "resources/sugar-lookup/",                      // sugar layout
     "take-action/",                                 // take-action/section.html
     "take-action/email-electeds/",                  // email-electeds layout
-    "search-results/",                              // search-results/single.html — Pagefind
 ];
 
 // Pre-existing console noise that is NOT a regression. Every entry must name the
@@ -110,18 +127,6 @@ const KNOWN_NOISE = [
     // present on production's own tip via the smoke base-control job on PR #1489.
     // Remove this when the embed loads again.
     { page: /displacement-risk/, error: /Unauthorized access to Maps API/i },
-    // Two trend-view defects in production's OLD data explorer, reached only
-    // since --all loads indicators with `#display=trend`
-    // (collectExplorerIndicatorPaths). Both survived the sequential re-check on
-    // production's tree, and neither occurs on the new explorer in PR #1462
-    // `[2026-10-02, isolated prod_prod; documents/smoke-explorer-indicators-plan-2026-10-02.md, D5]`.
-    // Scoped to the indicator id, not the view, because the view an id lands on
-    // shifts whenever the indicator list changes. Remove both when #1462 merges
-    // and the old explorer goes with it.
-    { page: /^data-explorer\/weather-related-illness\/\?id=2074(&|#|$)/, error: /reading 'columnNames'/ },
-    // The measure name's apostrophe ("workers' compensation") ends a quoted
-    // string inside a Vega expression.
-    { page: /^data-explorer\/worker-health\/\?id=2211(&|#|$)/, error: /Expression parse error: 'Hospitalizations billed to workers' compensation/ },
     // The signup <iframe> in partials/header.html embeds a Google Form, which
     // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
     // the refusal on every page that renders the header. Report-only, so nothing

@@ -1,0 +1,73 @@
+<!-- Shared search modal for both standard pages and footerless explorer pages. -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <link href="{{ relURL "pagefind/pagefind-ui.css" }}" rel="stylesheet">
+                <script src="{{ relURL "pagefind/pagefind-ui.js" }}" type="text/javascript"></script>
+                <div id="search"></div>
+                <script>
+                    window.addEventListener('DOMContentLoaded', () => {
+                        const search_modal = document.getElementById('searchModal');
+                        const search_root = document.getElementById('search');
+
+                        if (!search_modal || !search_root || typeof PagefindUI !== 'function') {
+                            return;
+                        }
+
+                        new PagefindUI({
+                            element: '#search',
+                            showSubResults: true,
+                            showImages: false,
+                            baseUrl: baseURL,
+                            showEmptyFilters: true,
+                            debounceTimeoutMs: 500,
+                            processTerm: function (term) {
+                                if (typeof gtag === 'function') {
+                                    gtag('event', 'search', {
+                                        search_term: term
+                                    });
+                                }
+
+                                return term;
+                            },
+                            processResult: function (result) {
+                                result.meta.title = result.meta.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll('&amp;', '&');
+
+                                result.sub_results.forEach(sub => {
+                                    sub.url = sub.url.replace('#IndicatorID-', '?id=');
+
+                                    sub.title = sub.title
+                                        .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                        .replaceAll('&amp;', '&');
+                                });
+                            }
+                        });
+
+                        $(search_modal).on('shown.bs.modal', () => {
+                            const search_input = search_modal.querySelector('.pagefind-ui__search-input');
+
+                            if (!search_input) {
+                                return;
+                            }
+
+                            search_input.focus();
+                            search_input.select();
+                        });
+                    });
+                </script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
