@@ -110,6 +110,18 @@ const KNOWN_NOISE = [
     // present on production's own tip via the smoke base-control job on PR #1489.
     // Remove this when the embed loads again.
     { page: /displacement-risk/, error: /Unauthorized access to Maps API/i },
+    // Two trend-view defects in production's OLD data explorer, reached only
+    // since --all loads indicators with `#display=trend`
+    // (collectExplorerIndicatorPaths). Both survived the sequential re-check on
+    // production's tree, and neither occurs on the new explorer in PR #1462
+    // `[2026-10-02, isolated prod_prod; documents/smoke-explorer-indicators-plan-2026-10-02.md, D5]`.
+    // Scoped to the indicator id, not the view, because the view an id lands on
+    // shifts whenever the indicator list changes. Remove both when #1462 merges
+    // and the old explorer goes with it.
+    { page: /^data-explorer\/weather-related-illness\/\?id=2074(&|#|$)/, error: /reading 'columnNames'/ },
+    // The measure name's apostrophe ("workers' compensation") ends a quoted
+    // string inside a Vega expression.
+    { page: /^data-explorer\/worker-health\/\?id=2211(&|#|$)/, error: /Expression parse error: 'Hospitalizations billed to workers' compensation/ },
     // The signup <iframe> in partials/header.html embeds a Google Form, which
     // Google serves with a report-only `frame-ancestors 'none'`. Chromium logs
     // the refusal on every page that renders the header. Report-only, so nothing
