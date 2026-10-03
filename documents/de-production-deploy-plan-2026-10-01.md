@@ -314,7 +314,12 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   and an empty group in air-quality. `[verified 2026-10-03: after the fix, 44 differing keys =
   42 `blurb` + 2 `hideFromRange`, both this branch's own; an isolated prod_prod build's
   `topic_indicators.json` holds 263 unique ids in 305 pairs, production's counts, and one
-  indicator per changed topic renders with no errors]`.
+  indicator per changed topic renders with no errors]`. CI's characterization check then failed on
+  air-quality, falls and housing-safety (run 37133279006, on `2a38086289`), as the fix predicts;
+  re-baselined in `41c556facb` `[verified 2026-10-03: `site-characterization-rebaseline.mjs`
+  with `--expect` naming the seven topic pages, exit 0, nothing unexplained in either key; 5
+  records changed per key, the two extra being content-only order (housing-maintenance,
+  mice-and-rats); the staging record diff is identical to prod_prod's]`.
 - **Found, not fixed:** production's `dd16987cad` (double spaces) is absent from
   `content/data-explorer-old/` (forward patch applies cleanly), and `4a3185e056` (unicode) applies
   in neither direction there. Both are cosmetic text fixes on retired, now-unlisted pages.
