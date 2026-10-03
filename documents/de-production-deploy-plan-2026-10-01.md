@@ -300,6 +300,21 @@ normal for a run with no `--expect`; 2 means it could not run. Discard a run wit
   `dummy.md` repeats `vega`, the only file of the 74 on either side that does), compared against `production`'s file at the same path: 0 differences at
   `dcf21609cf`. Control at `9dad6ab230`: 8 (the six D8 categories, `active-design`'s `keyTopic`,
   `waterways`).
+- **That sweep's three keys were too few; fixed in `ec522a08a3` (2026-10-03).** Comparing *every*
+  frontmatter key (a local probe in the gitignored `scripts/.sc-rebaseline/`, not in the repo;
+  same parser, the seven new-explorer flags excluded) found 10 more differences, all from `18d94c510f` rebuilding the
+  topics from the new explorer's older copy. Found by the explorer-indicator smoke sweep
+  (`documents/smoke-explorer-indicators-plan-2026-10-02.md` on `feature-smoke-explorer-indicators`,
+  D5 d). Indicators 2188 and 2403, removed on production (`036096b1fb`, `d52882a377`), are in
+  neither branch of EHDP-data's `metadata.json`. Their return made `renderMeasures` throw
+  `reading 'array'` in every view: `joinData` threw first, and `loadData`'s `catch` logs at
+  `console.log` level, which smoke never reads. Also: falls lost its `related:` key and a
+  `data-stories/` prefix (`4b36be0ce5`); and four keys Chris chose to restore to production's
+  text — active-design `relatedData`, the housing-maintenance and mice-and-rats indicator order,
+  and an empty group in air-quality. `[verified 2026-10-03: after the fix, 44 differing keys =
+  42 `blurb` + 2 `hideFromRange`, both this branch's own; an isolated prod_prod build's
+  `topic_indicators.json` holds 263 unique ids in 305 pairs, production's counts, and one
+  indicator per changed topic renders with no errors]`.
 - **Found, not fixed:** production's `dd16987cad` (double spaces) is absent from
   `content/data-explorer-old/` (forward patch applies cleanly), and `4a3185e056` (unicode) applies
   in neither direction there. Both are cosmetic text fixes on retired, now-unlisted pages.
