@@ -22,7 +22,16 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-02: Tasks 1–4 done (D5–D12 fixed); Task 5 in progress (PR #1462 open; checks
+**Status as of 2026-10-06: Tasks 1–4 done; Task 5 in progress — PR #1462 checks both green on
+`1b752428d6` (2026-10-03), the first green smoke on this PR; the PR body's CI section still
+described `f18dde8820` until updated 2026-10-06; merge awaits Chris; Task 6 not started; D17
+blocked on Chris's EHDP-data changes, does not gate.** Since
+the 2026-10-02 line below: the topic-frontmatter fix `ec522a08a3` and its re-baseline
+`41c556facb`; `production` merged in at `9bc5736207` (bringing #1505's explorer-indicator smoke
+and the cooling-info hotfixes #1506/#1507); `1b752428d6` dropped the old explorer's smoke
+allowlist.
+
+Previous status line, kept for the record — **Status as of 2026-10-02: Tasks 1–4 done (D5–D12 fixed); Task 5 in progress (PR #1462 open; checks
 on `5d5732de13`: characterization green, smoke red only on the AirNow page production also fails;
 D11, the propagation sweep and D12 are newer than that run; ultra refused the PR as too large; the
 local review that replaced it ran on `c15317c74b` and found 39 issues; 15 of the 16 before-merge
@@ -51,7 +60,20 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review ran on `c15317c74b` (39 findings, 15 before merge; see "Review findings") | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: read the PR checks on the new head by SHA, then the merge (Chris), then Task 6.**
+**Next action: the merge (Chris), then Task 6.** PR body updated 2026-10-06 (`gh pr edit 1462
+--body-file`, read back identical apart from GitHub's trailing newline): CI section now describes
+`1b752428d6`; the "CI exercises none of the explorer's rendering" bullet rewritten for #1505's
+per-indicator sweep; Size re-derived at `1b752428d6` (566 commits, 2,137 files, 285 without the
+baselines). Checks on `1b752428d6` `[read 2026-10-06 by
+head SHA]`: Site characterization run 37142162680 success; Smoke run 37142162678 success —
+`Pagefind index: served`, 924 enumerated pages (829 sitemap + 94 paginator + 1) plus 263 explorer
+indicators, "1187 pages clean"; base-control skipped. Two pages failed under concurrency and
+cleared on sequential re-check: `data-features/heat-report-archive/2021/` (one of the three
+Datawrapper pages in project `CLAUDE.md`) and `neighborhood-reports/rockaways/asthma_and_the_environment/`
+(not on that list; a 30s `page.goto` navigation timeout, no JS error). `production` (`fab8d54c0f` on 2026-10-06) is an ancestor
+of `1b752428d6`; PR mergeable, state `CLEAN`.
+
+Earlier next action (2026-10-02): read the PR checks on the new head by SHA, then the merge (Chris), then Task 6.
 D17 is still open and does not gate the merge. D15 is done (see its row: EHDP-data `08d6e68f6e`,
 and the `f5` re-run on prod_prod passed); D16 is deferred to audit §21. PR body edited 2026-10-02
 (`gh pr edit 1462 --body-file`): the "Do not merge yet" D15 banner became a met-dependency note and
@@ -486,7 +508,7 @@ finding they describe.
 | D10 | CI site characterization: one more zero-size image on each of the 42 new-explorer pages on Linux than on Windows | Chris, 2026-10-02: **diagnose in CI** → fixed, `4f9bcb2c1f` | A filename-case bug, not a platform rendering difference: the topic-selector icon failed to load on Linux on all 42 topic pages. See "Task 5 record". Rejected: accepting a red check, and re-baselining from CI's capture (which would have recorded the broken icon as expected) |
 | D15 | EHDP-data `production` has no `geography/citywide.topo.json` (404); `staging` has it (200, added `cea4e876c1` 2026-04-29). The new explorer's unmapped state (`renderUnmappedCitywide`) draws from it | **Resolved 2026-10-02 (Chris)** — EHDP-data `production` `08d6e68f6e` ("adding citywide topojson", 2026-10-02 23:32 UTC) | `[verified 2026-10-02: production raw URL 200, 19,736 B, byte-identical to staging's by `cmp`; `node scripts/.sc-rebaseline/fix-probe.mjs f5` on prod_prod at `efbea918c1` → 103/870 and 2383/1205 each 1 path and the "Data not mapped" popup, 0 page errors. The console's remaining `ERR_FAILED` + `404 (Not Found)` pair matches the dev_stage run's; the pre-fix prod_prod `404 ()` and JSON `SyntaxError` are gone. 73/138 not re-run]`. Found verifying #5. 223 of 722 live measures (68 indicators) in production's `metadata.json` have no mappable Map geography and take the unmapped path; on prod_prod they draw nothing and no "not mapped" message (the known-good unmapped case, 73/138, fails the same way). `borough.topo.json` on production answers 200, so the URL pattern is right. Fix is in EHDP-data: promote the file to `production` before or with this merge |
 | D16 | #12: UHF33 and National rows have no GeoLookup names | **Decided 2026-10-02 (Chris): (b), defer** — recorded in audit §21 under "Wrong data, inherited or latent". (a) remains the fix whenever EHDP-data gains the rows | Options: (a) add UHF33 + National rows to EHDP-data's `GeoLookup.json` and the two geotypes to `GEO_RANK_BY_PRETTY_TYPE` (`data-index.html` already orders UHF33 between NYCKIDS and UHF34); (b) defer both to audit §21. JS alone would make 33 nameless rows selectable. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National) |
-| D17 | `scripts/de-characterization-baseline/` fails `--check` on data, not code | **Open — Chris** (D7 precedent); does not gate CI | On `dev_stage` (EHDP-data `staging` since D9; D7's capture predates D9): 2023's latest period 2024 → 2025 with its legend and row counts; 2380's correlate `markCount` 43 → 17. The 17 is not from this session's code: the same probe gives 42 rows of pair 1199/41 and 17 SVG marks at `66ca2b0113`, with #3's hunk reverted, and with every fix file at `c15317c74b`. Re-baseline with `node scripts/de-characterization.mjs --baseline` on Chris's yes |
+| D17 | `scripts/de-characterization-baseline/` fails `--check` on data, not code | **BLOCKED on Chris's data changes to an EHDP-data branch** (Chris, 2026-10-06: re-baselining waits on Chris's changes to the EHDP-data `production` branch); does not gate CI | On `dev_stage` (EHDP-data `staging` since D9; D7's capture predates D9): 2023's latest period 2024 → 2025 with its legend and row counts; 2380's correlate `markCount` 43 → 17. The 17 is not from this session's code: the same probe gives 42 rows of pair 1199/41 and 17 SVG marks at `66ca2b0113`, with #3's hunk reverted, and with every fix file at `c15317c74b`. Re-baseline with `node scripts/de-characterization.mjs --baseline` on Chris's yes |
 
 ## Environment
 
