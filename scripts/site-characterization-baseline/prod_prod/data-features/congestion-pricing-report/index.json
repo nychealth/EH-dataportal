@@ -4,6 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "css/nyc-basic-lib-v1.2.79.css",
             "js/L.colorIcon.js",
             "js/congestion-pricing-report/chart-crz.js",
             "js/congestion-pricing-report/chart-ej.js",
@@ -49,10 +50,10 @@
             4,
             4,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -126,8 +127,8 @@
             "You might also be interested in:",
             "More related to:",
             "Take action",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

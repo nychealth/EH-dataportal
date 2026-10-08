@@ -30,8 +30,8 @@
             3,
             3,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -103,8 +103,8 @@
             "We're Hiring!",
             "Our Roadmap: An Open Path Forward",
             "Browse other Health Department data resources",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

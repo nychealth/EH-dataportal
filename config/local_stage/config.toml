@@ -6,7 +6,7 @@ baseURL = "https://localhost/local-stage/"
 [caches]
     [caches.getresource]
         dir = ':cacheDir/:project'
-        maxAge = -1
+        maxAge = 0
 
 # [server.headers]
 #     for = '/**'

@@ -20,8 +20,8 @@
         "assetsWithIntegrity": 8,
         "headingLevels": [
             1,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -83,8 +83,8 @@
         "title": "Active Design Guidelines – Environment & Health Data Portal",
         "headingText": [
             "Active Design Guidelines 2.0",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

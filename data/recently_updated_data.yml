@@ -2,27 +2,40 @@
 featured:
 - copy: Fine particles (PM 2.5)
   link: air-quality/?id=2023
+  id: 2023
 - copy: Black carbon
   link: air-quality/?id=2024
+  id: 2024
 - copy: Nitric oxide (NO)
   link: air-quality/?id=2028
+  id: 2028
 - copy: Nitrogen dioxide (NO2)
   link: air-quality/?id=2025
+  id: 2025
 - copy: Ozone (O3)
   link: air-quality/?id=2027
+  id: 2027
 - copy: Rat indexing in Rat Mitigation Zones (RMZs)
   link: mice-and-rats/?id=2433
+  id: 2433
 - copy: Foreign-born population
   link: social-conditions/?id=14
+  id: 14
 - copy: Adults with diabetes
   link: chronic-disease/?id=2465
+  id: 2465
 - copy: Adults with very high blood sugar levels (A1C > 9%)
   link: chronic-disease/?id=2466
+  id: 2466
 - copy: Lower extremity amputations (diabetes-related)
   link: chronic-disease/?id=2467
+  id: 2467
 - copy: Dialysis patients (diabetes-related)
   link: chronic-disease/?id=2468
+  id: 2468
 - copy: Residents living in a hurricane evacuation zone
   link: climate/?id=2140
+  id: 2140
 - copy: Walking distance to an accessible subway station
   link: accessibility/?id=2458
+  id: 2458

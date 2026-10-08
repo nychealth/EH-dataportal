@@ -66,8 +66,8 @@
             2,
             1,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -170,8 +170,8 @@
             "Households with incomes below the federal poverty level. Households without sufficient resources are often deprived of access to health care, good quality housing, and other resources that protect health.",
             "Health insurance (adults)",
             "Adults with any kind of health insurance. People with health insurance are more likely to have a regular doctor, receive preventive care services, better manage chronic health conditions, and have longer life expectancy.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

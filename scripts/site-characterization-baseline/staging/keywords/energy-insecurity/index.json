@@ -21,10 +21,10 @@
         "headingLevels": [
             1,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -85,8 +85,8 @@
         "headingText": [
             "More content about Energy Insecurity:",
             "Energy is critical for health and climate resilience — but not all New Yorkers may be able to afford it",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

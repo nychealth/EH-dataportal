@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="24px" viewBox="0 0 27 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/bar/off</title>
+    <defs>
+        <path d="M0,0 L1440,0 L1440,1125 L0,1125 L0,0 Z" id="path-1"></path>
+        <path d="M0,0 L81,0 L81,80 L0,80 L0,0 Z" id="path-2"></path>
+        <path d="M0,0 L27,0 L27,24 L0,24 L0,0 Z" id="path-3"></path>
+    </defs>
+    <g id="Data-Explorer-Designs---APPROVED" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Designs-v3:A---Data-and-View-Controls-closed" transform="translate(-1345, -143)" xlink:href="#path-1" fill="#FFFFFF">
+            <path stroke="#DFDFDF" d="M1439.5,0.5 L1439.5,1124.5 L0.5,1124.5 L0.5,0.5 L1439.5,0.5 Z" stroke-linejoin="square"></path>
+            <g id="chart-tab/off" transform="translate(1318, 120)" xlink:href="#path-2">
+                <g id="icon/bar/off" transform="translate(27, 23)" xlink:href="#path-3">
+                    <use fill-rule="evenodd" xlink:href="#path-3"></use>
+                    <path d="M21.5,-1 C20.12,-1 19,0.12 19,1.5 L19,22.5 C19,23.88 20.12,25 21.5,25 L22.5,25 C23.88,25 25,23.88 25,22.5 L25,1.5 C25,0.118666667 23.88,-1 22.5,-1 L21.5,-1 Z M10,7.5 C10,6.11866667 11.12,5 12.5,5 L13.5,5 C14.8813333,5 16,6.12 16,7.5 L16,22.5 C16,23.88 14.88,25 13.5,25 L12.5,25 C11.1192881,25 10,23.8807119 10,22.5 L10,7.5 Z M1,13.5 C1,12.1186667 2.12,11 3.5,11 L4.5,11 C5.88133333,11 7,12.12 7,13.5 L7,22.5 C7,23.88 5.88,25 4.5,25 L3.5,25 C2.11928813,25 1,23.8807119 1,22.5 L1,13.5 Z" fill-rule="nonzero" transform="translate(13, 12) scale(1, -1) rotate(450) translate(-13, -12)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
