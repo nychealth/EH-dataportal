@@ -526,9 +526,14 @@ const joinData = () => {
 
             // map -----------
 
+            // never map Citywide, even when metadata.json lists it: this explorer has no citywide
+            //  map geography. The filter can leave a measure with no map geotypes at all.
+
+            const mapGeotypes = measure.VisOptions[0].Map.filter(map => map.GeoType !== "Citywide");
+
             let aqMapTimesGeosMeasureArray =
 
-                measure.VisOptions[0].Map.map(
+                mapGeotypes.map(
 
                     // map over map geotypes
 
@@ -556,16 +561,21 @@ const joinData = () => {
 
             // console.log("aqMapTimesGeosMeasureArray", aqMapTimesGeosMeasureArray);
 
-            // combine array of arquero tables into 1 arquero table
+            // combine array of arquero tables into 1 arquero table, skipping a measure with no
+            //  map geotypes left (an unseeded reduce throws on an empty array)
 
-            let aqMapTimesGeosMeasure = 
-                aqMapTimesGeosMeasureArray
-                    .flatMap(d => d)
-                    .reduce((a, b) => a.concat(b))
+            if (aqMapTimesGeosMeasureArray.length) {
 
-            // push table for this measure to array with all measures
+                let aqMapTimesGeosMeasure =
+                    aqMapTimesGeosMeasureArray
+                        .flatMap(d => d)
+                        .reduce((a, b) => a.concat(b))
 
-            mapTimesGeos.push(aqMapTimesGeosMeasure);
+                // push table for this measure to array with all measures
+
+                mapTimesGeos.push(aqMapTimesGeosMeasure);
+
+            }
 
 
             // comparisons -----------
@@ -626,12 +636,14 @@ const joinData = () => {
             .join_left(timeTable, "TimePeriodID")
             .orderby(aq.desc('end_period'), "MeasureID")
     
-    // map
+    // map - falls back to an empty table with the columns the semijoin below reads, for an
+    //  indicator whose only map geotype was Citywide
 
-    aqMapTimesGeos = 
-        mapTimesGeos
-            .flatMap(d => d)
-            .reduce((a, b) => a.concat(b))
+    aqMapTimesGeos =
+        (mapTimesGeos.length
+            ? mapTimesGeos.flatMap(d => d).reduce((a, b) => a.concat(b))
+            : aq.table({ MeasureID: [], TimePeriodID: [], GeoType: [] })
+        )
             .join_left(timeTable, "TimePeriodID")
             .orderby(aq.desc('end_period'), "MeasureID")
     
