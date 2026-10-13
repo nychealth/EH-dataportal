@@ -22,7 +22,18 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-06: Tasks 1–4 done; Task 5 in progress — PR #1462 checks both green on
+**Status as of 2026-10-13: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
+started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-06 line:
+- `9ab971fe9c` (the D18 port) was pushed and both PR checks passed on `5a912c6c92`, which
+  contains it: Site characterization run 37520604146, Smoke run 37520604122, both success
+  `[read 2026-10-13 by head SHA]`.
+- #1509 (D18's hotfix) merged to `production` as `89402fe1c4`.
+- `production` was merged in at `6e1c237dd6`, bringing #1508, #1510 and #1509, resolved per D18.
+
+Merging to `production` does not deploy. It builds `builds/prod-prod`, and the team's internal
+deploy makes that live (D19).
+
+Previous status line, kept for the record — **Status as of 2026-10-06: Tasks 1–4 done; Task 5 in progress — PR #1462 checks both green on
 `1b752428d6` (2026-10-03), the first green smoke on this PR; the PR body's CI section still
 described `f18dde8820` until updated 2026-10-06; merge awaits Chris; Task 6 not started; D17
 blocked on Chris's EHDP-data changes, does not gate.** Since
@@ -61,7 +72,18 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review ran on `c15317c74b` (39 findings, 15 before merge; see "Review findings") | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: the merge (Chris), then Task 6.** Before it: push `9ab971fe9c` and re-read both
+**Next action: push, re-read both PR checks by head SHA (command below), then the merge (Chris),
+then the internal deploy, then Task 6.** Proof for `6e1c237dd6`:
+- `git merge-tree --write-tree` predicted one conflict, `assets/js/data-explorer/data.js`, and the
+  merge hit exactly that one.
+- Resolved with `git checkout --ours`. The new explorer's `data.js` blob is `6a90530673`, the same
+  as HEAD's; production's copy is `641f0977fc`.
+- `data-explorer-old/data.js` is `641f0977fc`, identical to the hotfix.
+- Only `check-deploy.yml` and `content/data-features/proximity/index.md` differ from
+  `5a912c6c92`, and each is blob-identical to `production`'s copy.
+- `npm run lint` exit 0.
+
+Earlier next action (2026-10-06): the merge (Chris), then Task 6. Before it: push `9ab971fe9c` and re-read both
 PR checks by head SHA (command below). Separately, D18's hotfix goes to `production` by its own PR
 before the EHDP-data Citywide change; if it lands before this PR merges, merge `production` in and
 resolve per D18. Where those stand: `git rev-list --left-right --count origin/feature-new-data-explorer...HEAD`
@@ -516,6 +538,7 @@ finding they describe.
 | D16 | #12: UHF33 and National rows have no GeoLookup names | **Decided 2026-10-02 (Chris): (b), defer** — recorded in audit §21 under "Wrong data, inherited or latent". (a) remains the fix whenever EHDP-data gains the rows | Options: (a) add UHF33 + National rows to EHDP-data's `GeoLookup.json` and the two geotypes to `GEO_RANK_BY_PRETTY_TYPE` (`data-index.html` already orders UHF33 between NYCKIDS and UHF34); (b) defer both to audit §21. JS alone would make 33 nameless rows selectable. Affects 2017, 2019, 2020 (UHF33) and 2214, 2215 (National) |
 | D17 | `scripts/de-characterization-baseline/` fails `--check` on data, not code | **BLOCKED on Chris's data changes to an EHDP-data branch** (Chris, 2026-10-06: re-baselining waits on Chris's changes to the EHDP-data `production` branch); does not gate CI | On `dev_stage` (EHDP-data `staging` since D9; D7's capture predates D9): 2023's latest period 2024 → 2025 with its legend and row counts; 2380's correlate `markCount` 43 → 17. The 17 is not from this session's code: the same probe gives 42 rows of pair 1199/41 and 17 SVG marks at `66ca2b0113`, with #3's hunk reverted, and with every fix file at `c15317c74b`. Re-baseline with `node scripts/de-characterization.mjs --baseline` on Chris's yes |
 | D18 | The old explorer must never map Citywide, so EHDP-data can flag Citywide as mappable in `metadata.json` (`VisOptions[0].Map`) for the new explorer before this PR deploys | Chris, 2026-10-06: **guard, data change after it** — `hotfix-old-explorer-citywide-map-guard @ 6beae48be2` (from `production` `fab8d54c0f`, `assets/js/data-explorer/data.js`), ported here as `9ab971fe9c` (`assets/js/data-explorer-old/data.js`) | `joinData` drops `Citywide` from each measure's Map geotypes before `aqMapTimesGeos` is built; a measure left with none is skipped, and an indicator left with none gets an empty table (the new explorer's `combineTimesGeos` fallback) instead of an unseeded `reduce` throwing. "No map" is otherwise encoded as a `GeoType: null` entry (223 in production's `metadata.json` on 2026-10-06), so an empty Map list was new to this code. Production already lists Citywide for measure 538 (indicator 2076), which loses its Citywide map option. `[verified 2026-10-06 on the hotfix: isolated development server (EHDP-data production), Playwright on `weather-related-illness/?id=2076#display=map`, metadata rewritten in-flight — real data: geo dropdown Borough/UHF42/CD; 538 Citywide-only: 538 leaves the map measure dropdown, 539/540 stay; all three Citywide-only: map tab disabled, hash → summary, 9 table rows; 0 page errors besides Pagefind's (no index built). Control, guard stashed and the served data.js fingerprint confirmed changed: Citywide listed on real data, and the all-Citywide case drew a Citywide-only map]`. The port is byte-identical: blob `641f0977fc` on both. Of the ten `data-explorer-old/` files, only `table.js` differs from production's copy (2 lines, no map-data reads), so the hotfix's browser proof stands for the port. **Order:** the hotfix merges to `production` before the EHDP-data change. **When `production` next merges in here, it conflicts** in the new explorer's `assets/js/data-explorer/data.js` — rename detection does not carry the hunk to `data-explorer-old/`. Resolve to ours (`git checkout --ours assets/js/data-explorer/data.js`): `git merge-tree --write-tree HEAD hotfix-old-explorer-citywide-map-guard` at `9ab971fe9c` lists that file as the only conflict and the only path differing from this branch's tree |
+| D19 | Deploy is not merge: what gates on the merge, and what gates on the deploy | Chris, 2026-10-13: the site runs on internal servers and goes live only through the team's own deploy | A merge to `production` builds `builds/prod-prod` and nothing more. The live server's `https://a816-dohbesp.nyc.gov/indicatorpublic/commit_hash.txt` names the deployed `builds/prod-prod` commit, whose subject names its source as `Build <hash> (...)`; `check-deploy.yml` emails when the two differ. On 2026-10-13 the live site was `2701591b10` (the build of #1499, 2026-09-24), 6 builds behind `73d5858d05`. Consequences: (1) **D18's EHDP-data Citywide change waits until a deployed build's source contains `89402fe1c4`**, not just until #1509 merged. EHDP-data is fetched at runtime, so the data change reaches users at once, while the guard reaches them only on deploy. (2) Task 6 runs after the deploy. (3) The analytics cutover (the new explorer sends `click_about` with a `section` param instead of `click_how_calculated`; `file_download` `link_text` drops "Current table view", "Full table for this indicator" and "Raw data for this indicator"; `click_option` gains `table_sync`) dates from the deploy, not the merge |
 
 ## Environment
 
@@ -758,6 +781,8 @@ documents, and read each script's argv handling before the first run.
 
 ## Task 6: Post-deploy check
 
-- [ ] After the `prod-prod` build publishes: fresh tab on the live `/data-explorer/` and
+- [ ] After the internal deploy (D19; `commit_hash.txt` names a build whose source contains the
+  merge — the `prod-prod` build publishing is not enough): give GA readers the deploy date as the
+  analytics cutover (D19 item 3). Fresh tab on the live `/data-explorer/` and
   `/data-explorer-old/`, the Step 6 old-format links again, and smoke against the live base URL.
   Then close this ledger with one line: done, date, commit range.
