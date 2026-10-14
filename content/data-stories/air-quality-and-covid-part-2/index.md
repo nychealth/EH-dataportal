@@ -23,6 +23,8 @@ keywords:
     "restaurants",
   ]
 image: ds-aqcovid.jpeg
+leaflet: true
+js: ["js/data-stories/aq-covid-difference-maps.js"]
 photocredit: "Ed Reed/Mayoral Photography Office, City of New York"
 related:
   - title: "Tracking changes in New York City's sources of air pollution"
@@ -189,13 +191,13 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
         </button>
         </div>
         <div class="modal-body">
-            <button id="btn1" type="button" class="btn btn-sm btn-outline-primary float-right" onclick="mapPM()">
+            <button type="button" class="btn btn-sm btn-outline-primary float-right" data-aq-map="pm25" aria-pressed="false">
                 PM2.5
             </button>
-            <button id="btn2" type="button" class="btn btn-sm btn-primary float-right mr-1" onclick="mapNO()">
+            <button type="button" class="btn btn-sm btn-primary float-right mr-1" data-aq-map="no2" aria-pressed="true">
                 NO2
             </button>
-        <iframe id="dest" src="{{< relURL >}}data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html" frameborder="no" style="width: 100%; height: 75vh"></iframe>
+            <div id="aq-covid-map" style="clear: both; width: 100%; height: 75vh"></div>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -204,26 +206,46 @@ Because congestion pricing specifically targets traffic going into the CBD, we c
     </div>
 </div>
 
-<script>
-    function mapPM() {
-        // console.log('map PM')
-        var iframe = document.getElementById('dest')
-        iframe.src = "{{< relURL >}}data-stories/air-quality-and-covid-part-2/pm25_differences_leaflet.html"
-        document.getElementById('btn1').classList.remove('btn-outline-primary')
-        document.getElementById('btn1').classList.add('btn-primary')
-        document.getElementById('btn2').classList.add('btn-outline-primary')
-        document.getElementById('btn2').classList.remove('btn-primary')
+<!-- Legend styling carried over from the R leaflet widgets these maps replace;
+     aq-covid-difference-maps.js builds the markup -->
+<style>
+    .aq-legend {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        line-height: 18px;
+        color: #555;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
     }
-
-    function mapNO() {
-        // console.log('map NO')
-        var iframe = document.getElementById('dest')
-        iframe.src = "{{< relURL >}}data-stories/air-quality-and-covid-part-2/no2_differences_leaflet.html"
-        document.getElementById('btn2').classList.remove('btn-outline-primary')
-        document.getElementById('btn2').classList.add('btn-primary')
-        document.getElementById('btn1').classList.add('btn-outline-primary')
-        document.getElementById('btn1').classList.remove('btn-primary')
+    .aq-legend-title {
+        margin-bottom: 3px;
     }
-</script>
+    .aq-legend-scale {
+        position: relative;
+        width: 50px;
+        margin: 8px 0;
+    }
+    .aq-legend-gradient {
+        position: absolute;
+        width: 18px;
+        height: 100%;
+    }
+    .aq-legend-label {
+        position: absolute;
+        left: 18px;
+        right: 0;
+        text-align: right;
+        transform: translateY(-50%);
+    }
+    .aq-legend-label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 4px;
+        border-top: 1px solid #555;
+    }
+</style>
 
 {{< /rawhtml >}}
