@@ -102,7 +102,7 @@
     "content": {
         "title": "Data-Stories – Environment & Health Data Portal",
         "headingText": [
-            "Data Stories",
+            "Data-Stories",
             "Latest data stories",
             "Por qué la violencia es un problema de salud pública",
             "Salud, vivienda e historia",
@@ -130,7 +130,6 @@
             "/",
             "/data-explorer/",
             "/data-features/",
-            "/data-stories",
             "/data-stories/",
             "/es/data-stories/",
             "/es/data-stories/air-quality-and-covid/",

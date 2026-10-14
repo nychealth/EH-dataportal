@@ -102,7 +102,7 @@
     "content": {
         "title": "Data-Stories – Environment & Health Data Portal",
         "headingText": [
-            "Data Stories",
+            "Data-Stories",
             "Latest data stories",
             "为什么暴力是一个公共卫生问题",
             "红线圈定的简史",
@@ -130,7 +130,6 @@
             "/",
             "/data-explorer/",
             "/data-features/",
-            "/data-stories",
             "/data-stories/",
             "/key-topics",
             "/neighborhood-reports/",
