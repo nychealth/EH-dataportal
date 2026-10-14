@@ -111,7 +111,7 @@ With many New Yorkers staying home, activity in the CBD fell drastically. Explor
 </div>
 <div class="narrow">
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#ModalCenter" aria-hidden="true">
+<button type="button" class="btn btn-block btn-outline-primary mb-4" data-toggle="modal" data-target="#ModalCenter">
     View these data in an interactive map
 </button>
 {{< /rawhtml >}}
