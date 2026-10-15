@@ -21,7 +21,7 @@
         <div class="col-md-2 mr-auto"></div>
       </div>
 
-      <h1>{{ .Title }}</h1>
+      <h1>{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
 
       {{ if .Params.correction }}
       <!-- Correct should exist for 2023 and 2024 reports -->

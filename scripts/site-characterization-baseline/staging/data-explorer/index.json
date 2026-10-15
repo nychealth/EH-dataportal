@@ -62,7 +62,7 @@
             "zeroSize": 0
         },
         "links": {
-            "internal": 224,
+            "internal": 228,
             "external": 18,
             "emptyHref": 29,
             "noAccessibleText": 0
@@ -95,7 +95,6 @@
             "/",
             "/IndicatorMetadata/topic_indicators.json",
             "/about/",
-            "/data-explorer",
             "/data-explorer/",
             "/data-explorer/accessibility/",
             "/data-explorer/active-design/",

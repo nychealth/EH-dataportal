@@ -123,6 +123,7 @@ let downloadedIndicator;
 let downloadedIndicatorMeasurement;
 
 // variables for print specs
+
 let printSpec = {};
 let vizYear;
 let vizGeography;
@@ -131,6 +132,7 @@ let vizSourceSecond;
 let chartType;
 
 // store hash, so display knows where it just was
+
 let currentHash;
 let state;
 
@@ -288,6 +290,7 @@ const renderAboutSources = (about, sources) => {
     dataSources.innerHTML = ''
 
     // de-dupe data sources
+
     let type = typeof sources
 
     if (type === 'object') {

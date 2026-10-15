@@ -77,9 +77,11 @@ const load_flexdatalist = async () => {
 
 
             // ----- add flexdatalist select handler -------------------------------------------------- //
+
             $input.on('select:flexdatalist', (e, set) => {
                 
                 // run page print (for data reference)
+
                 if (typeof printToPage === "function") {
                     printToPage(set) // on indicator-catalog.html
                 } else {
@@ -90,6 +92,7 @@ const load_flexdatalist = async () => {
 
 
             // ----- add clear button handler -------------------------------------------------- //
+
             $("#clear").on("click", (e) => {
 
                 // console.log("e [clear click]", e);

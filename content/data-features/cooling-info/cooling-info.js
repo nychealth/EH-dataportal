@@ -14,6 +14,7 @@ var maxTemp;
 var aqi             = "No"
 
 // other variables
+
 var over78F;
 var aqiInterpretation;
 var tempLabel;
@@ -30,20 +31,32 @@ var warmSeason;
   async function getCurrentTempNYC() {
     const headers = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
 
-    // Step 1: Get station list
-    const stationsRes = await fetch("https://api.weather.gov/gridpoints/OKX/33,35/stations", headers);
-    const stationsData = await stationsRes.json();
-    const stationId = stationsData.features[0].properties.stationIdentifier;
+    // Any failure here — network, an error body, a missing field, or a null
+    // reading — leaves currentTemp at its initial "No" and moves on, so the
+    // forecast and the air quality still load. printToPage shows it as unavailable.
+    try {
 
-    // Step 2: Get latest observation
-    const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`, headers);
-    const obsData = await obsRes.json();
-    
-    const tempC = obsData.properties.temperature.value;
-    const tempF = tempC !== null ? (tempC * 9/5 + 32).toFixed(1) : null;
-    console.log(`Current temp in NYC: ${tempF}°F`);
+      // Step 1: Get station list
 
-    currentTemp = tempF
+      const stationsRes = await fetch("https://api.weather.gov/gridpoints/OKX/33,35/stations", headers);
+      const stationsData = await stationsRes.json();
+      const stationId = stationsData.features[0].properties.stationIdentifier;
+
+      // Step 2: Get latest observation
+
+      const obsRes = await fetch(`https://api.weather.gov/stations/${stationId}/observations/latest`, headers);
+      const obsData = await obsRes.json();
+
+      const tempC = obsData.properties.temperature.value;
+      if (tempC === null) throw new Error('latest observation has no temperature');
+      const tempF = (tempC * 9/5 + 32).toFixed(1);
+      console.log(`Current temp in NYC: ${tempF}°F`);
+
+      currentTemp = tempF
+
+    } catch (err) {
+      console.warn('Current temperature unavailable: ' + err.message)
+    }
 
     getForecastHighNYC()
 
@@ -51,22 +64,34 @@ var warmSeason;
 
   async function getForecastHighNYC() {
       // get NWS data to retrieve forecast high
+
       const userAgent = { headers: { "User-Agent": "ehdp@health.nyc.gov" } };
-    
-      // Step 1: Get forecast URL
-      const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
-      const pointsData = await pointsRes.json();
-      
-      // Step 2: Fetch forecast data
-      const forecastUrl = pointsData.properties.forecast;
-      const forecastRes = await fetch(forecastUrl, userAgent);
-      const forecastData = await forecastRes.json();
 
-      // Step 3: Extract the high temp from the first daytime period
-      const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
-      console.log(`NYC High Temp: ${high}°F`);
+      // As in getCurrentTempNYC: a failure leaves forecastTemp unset and the
+      // page carries on to printToPage and the air quality lookup.
+      try {
 
-      forecastTemp = high
+        // Step 1: Get forecast URL
+
+        const pointsRes = await fetch("https://api.weather.gov/points/40.7128,-74.0060", userAgent);
+        const pointsData = await pointsRes.json();
+
+        // Step 2: Fetch forecast data
+
+        const forecastUrl = pointsData.properties.forecast;
+        const forecastRes = await fetch(forecastUrl, userAgent);
+        const forecastData = await forecastRes.json();
+
+        // Step 3: Extract the high temp from the first daytime period
+
+        const high = forecastData.properties.periods.find(p => p.isDaytime).temperature;
+        console.log(`NYC High Temp: ${high}°F`);
+
+        forecastTemp = high
+
+      } catch (err) {
+        console.warn('Forecast high unavailable: ' + err.message)
+      }
 
       printToPage()
       getAQI()
@@ -77,22 +102,31 @@ var warmSeason;
 
 var aqiAPI;
 function getAQI() {
+  var aqiMeaning = document.getElementById('aqimeaning')
+
   fetch('https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=10013&distance=25&API_KEY=B34C7BA1-26C7-4DD2-9B1C-AAFD7AF4F12F')
-  .then(response => {return response.json()})
+  .then(response => {
+    // A non-2xx answer can carry an HTML error page, which .json() would throw on.
+    if (!response.ok) throw new Error('AirNow responded ' + response.status)
+    return response.json()
+  })
   .then(data => {
 
     aqiAPI = data
 
-    if (aqiAPI[0].AQI > aqiAPI[1].AQI) {
-      aqi = aqiAPI[0].Category.Number
-    } else {
-      aqi = aqiAPI[1].Category.Number
-    }
+    // AirNow returns one observation per pollutant, and the page shows the
+    // worse of the first two. It can also return fewer, or none, which used
+    // to throw here on `aqiAPI[1].AQI` [smoke, 2026-10-02 and 2026-10-03].
+    var readings = Array.isArray(aqiAPI) ? aqiAPI.slice(0, 2) : []
+    if (!readings.length) throw new Error('AirNow returned no observations')
+
+    var worst = readings.reduce((a, b) => (a.AQI > b.AQI ? a : b))
+    aqi = worst.Category.Number
 
     console.log('The AQI is: ' + aqi)
 
     // print to page and style
-    var aqiMeaning = document.getElementById('aqimeaning')
+
     if (aqi == '1') {
       aqiInterpretation = 'Good'
       aqiMeaning.style['background-color'] = '#00E400'
@@ -118,23 +152,40 @@ function getAQI() {
     aqiMeaning.innerHTML = aqiInterpretation
     document.getElementById('aqiNum').innerHTML = aqi
   })
+  .catch(err => {
+    // Covers every way the lookup can fail: network, non-2xx, unparseable or
+    // empty body. `aqi` keeps its initial "No", so the recommendations skip
+    // their AQI rows, as they do while the request is pending. A warning
+    // rather than an error: an AirNow outage is not a fault in this page.
+    console.warn('Air quality unavailable: ' + err.message)
+    aqiMeaning.innerHTML = '<em>unavailable right now</em>'
+  })
 }
 
 function printToPage() {
     // Print current temp, max temp, and AQI
-    
-    document.getElementById('currentTemp').innerHTML = currentTemp + '° F'
-    document.getElementById('forecastTemp').innerHTML = forecastTemp  + '° F'
 
+    // Either reading can be missing when the weather service fails, so each
+    // prints on its own and maxTemp comes from whichever arrived. parseFloat
+    // rather than Number, because Number(null) is 0.
+    var current = parseFloat(currentTemp)
+    var forecast = parseFloat(forecastTemp)
 
-    if (currentTemp >= forecastTemp) {
-      maxTemp = currentTemp
-    } else {
-      maxTemp = forecastTemp
+    document.getElementById('currentTemp').innerHTML = isNaN(current) ? '<em>unavailable</em>' : currentTemp + '° F'
+    document.getElementById('forecastTemp').innerHTML = isNaN(forecast) ? '<em>unavailable</em>' : forecastTemp + '° F'
+
+    var readings = [current, forecast].filter(t => !isNaN(t))
+
+    var hotText = document.getElementById('hot')
+
+    if (!readings.length) {
+      hotText.innerHTML = '<em>unavailable</em>'
+      return
     }
 
+    maxTemp = Math.max(...readings)
+
     // Style temp interpretation
-      var hotText = document.getElementById('hot')
 
       if (maxTemp > 77.9) {
         over78F = 'Yes'
@@ -175,12 +226,14 @@ function runQuestions() {
   content.forEach(question => {
 
     // Question block
+
     var questionBlock = document.createElement('div')
     questionBlock.setAttribute('class', 'border-top mb-4 p-1 hide')
     questionBlock.setAttribute('id','question-'+question.id)
     questionBlock.innerHTML = `<div class="row"><div class="col-9"><h3 class="h5 mt-2">${question.text}</h3><p>${question.prompt}</p></div><div class="col-3"><img src="img/${question.image}" style="width:100%"></div></div>`
 
     // Draw answer buttons
+
     question.options.forEach(option => {
 
       var btn = `<button class="btn-${question.id} btn btn-sm btn-outline-secondary px-2 mr-1 mb-1" id="btn-${question.id}-${option.optionID}" onclick="answer(${question.id}, ${option.optionID}, ${option.goTo});${option.setVariable}">${option.copy}</button>`
@@ -189,6 +242,7 @@ function runQuestions() {
     })
 
     // Create message Section
+
     var message = `<div id="message-${question.id}" class="hide inline-block my-2 p-2 border border-primary">Here's message</div>`
     questionBlock.innerHTML += message
 
@@ -208,9 +262,11 @@ document.getElementById('question-1').scrollIntoView({
 // -------------------------------------------------------------------------- //
 // ---------- Answer functionality                                 ---------- //
 // -------------------------------------------------------------------------- //
+
 function answer(question, answer, next) {
 
   // get question
+
   var thisQuestion;
   for (let i = 0; i < content.length; i++) {
     if (content[i].id === question) {
@@ -219,6 +275,7 @@ function answer(question, answer, next) {
   } 
 
   // get answer
+
   var thisAnswer;
   for (let i = 0; i < thisQuestion.options.length; i++) {
     if (thisQuestion.options[i].optionID === answer) {
@@ -227,14 +284,17 @@ function answer(question, answer, next) {
   }
 
   // print message
+
   var message = document.getElementById('message-' + thisQuestion.id)
   message.classList.remove('hide')
   message.innerHTML = thisAnswer.message 
 
   // console.log('next',next)
   // This exposes the next question, specified by goTo
+
   if (next === 99) {
     // console.log('next is 99')
+
     runFinal()
     document.getElementById('messageResults').scrollIntoView({
       behavior: 'smooth'
@@ -249,6 +309,7 @@ function answer(question, answer, next) {
 
 
   // loop through class btn-question, remove active, add active to id btn-question-answer
+
   var questionButtons = document.querySelectorAll('.btn-' + question)
   questionButtons.forEach(x => x.classList.remove('active'))
   var clickedBtn = document.getElementById('btn-' + question + '-' + answer)
@@ -296,6 +357,7 @@ function fan(x) {
 // -------------------------------------------------------------------------- //
 // ---------- Run recommendations -------------------------------- ---------- //
 // -------------------------------------------------------------------------- //
+
 function runFinal() {
   var msg
   console.log('We are reviewing your data')
@@ -307,6 +369,7 @@ function runFinal() {
   finalMessageText.innerHTML = ''
 
   // Message 0: Default, resources, with AC
+
   if (maxTemp < 78 && hasAC === 'Yes') {
     msg = `<p>✅ Because it's not too warm today, you probably won't need AC. But when it's hot, <strong>spending time in air conditioning is important to staying healthy</strong>. Ask friends and family if they have AC. If they don't, tell them about  <a href="https://finder.nyc.gov/coolingcenters/">Cool Options, a list of air-conditioned places that are open and free to all</a>. </p>`
     
@@ -314,24 +377,28 @@ function runFinal() {
   }
 
   // Message 0b: Default, resources, noAC
+
   if (maxTemp < 78 && hasAC === 'No') {
     msg = `<p>✅ Today's temperature is not too warm.  Before it gets too hot, <strong>make a plan for how you can get relief from the heat</strong> - whether with air conditioning at home or in other cool spaces. Find out if your friends, family members, and neighbors have AC, and make sure you know of <a href="https://finder.nyc.gov/coolingcenters/">nearby public places to go to stay cool</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message. Warm and no AC.
+
   if (maxTemp > 78 && hasAC === 'No' && aqi < 3) {
     msg = `<p>‼️ It's ` + tempLabel + `, and you don't have an AC. If it's hotter inside than outside, open windows to <strong>try to cool down your home</strong>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Warm, no AC, bad AQ
+
   if (maxTemp > 78 && hasAC === 'No' && aqi >= 3) {
     msg = `<p>‼️ It's ` + tempLabel + `, and you don't have an AC. Open windows to try to cool down your home. Even though the air quality is poor, <strong>it is more important to stay cool right now</strong>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Warm, no AC, Fan
+
   if (maxTemp > 78 && hasAC === 'No' && hasFan === 'Yes') {
     msg = `<p>💡 If it's cooler outside than inside, your fan can help cool you down. But if it's too hot, it can actually make you even warmer. <strong>It's better to spend time in an air-conditioned space</strong>.  <a href="https://finder.nyc.gov/coolingcenters/">Find a cool place to go</a>. Also, you can <a href="https://www.epa.gov/air-research/research-diy-air-cleaners-reduce-wildfire-smoke-indoors#infographic">use your fan as a DIY air purifier for when the Air Quality Index is unhealthy</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
@@ -339,36 +406,42 @@ function runFinal() {
 
 
   // Message: no AC
+
   if (hasAC === 'No') {
     msg = `<p>💡 About 9% of NYC households don't have an AC - but it's the best way to stay safe when it's hot. Find out if you're eligible for the <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02529">Home Energy Assistance Program</a> which can help <strong>make air conditioning your home more affordable</strong>.You may be eligible for a <a href='https://info.nystateofhealth.ny.gov/CoolingProgram'>free AC unit if your health insurance is on the Essential Plan.</a></p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Hot and AC
+
   if (maxTemp >= 85 && hasAC === 'Yes') {
     msg = `<p>✅  Air conditioning is the best way to stay safe when it's this hot, so <strong>now's the time to turn it on</strong>!  Reach out to family, neighbors, and friends to make sure they have AC or <a href="https://finder.nyc.gov/coolingcenters/">know where to find a cool place</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Hot and No AC
+
   if (maxTemp >= 85 && hasAC === 'No') {
     msg = `<p>💡 Air conditioning is the best way to stay safe when it's this hot. Since you don't have AC, <a href='https://:finder.nyc.gov/coolingcenters/'>visit a cool public place</a>, or a friend or family member who has AC. Taking a cool shower can also help temporarily. If you can't leave your home, keep your windows open if it's hotter inside than outside. Make sure to drink lots of water and avoid alcohol, caffeine, and very sugary drinks. <a href="https://www.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Get more information on hot weather and health</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Limits AC, not Warm
+
   if (maxTemp <= 78 && limitsAC === 'Yes') {
     msg = `<p>💡 You sometimes limit use of your AC because of the cost. Before it gets hot, <strong>get help with your home cooling energy bills</strong>. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Message: Limits AC,  Warm
+
   if (maxTemp >78 && limitsAC === 'Yes') {
     msg = `<p>💡 You sometimes limit use of your AC because of the cost, but on ` + tempLabel + ` days like today, <strong>it's time to turn it on</strong>. Using AC for just a few hours a day on 'low cool' or 78 degrees can keep your home from getting dangerously hot. Find out if you're eligible for <a href='https://www.coned.com/en/accounts-billing/payment-plans-assistance/help-paying-your-bill'>Con Ed's Energy Affordability Program</a>, which can help make air conditioning your home more affordable. You can also <a href="https://finder.nyc.gov/coolingcenters/">find an air-conditioned space to visit</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // OVERALL AIR QUALITY MESSAGE BUNDLE
+
   if (aqi === 1 || (aqi < 4 && sensitiveGroup === 'No')) {
     msg = `<p>✅ The air quality today is fine for you. Stay informed - sign up for air quality alerts at <a href="https://www.airnow.gov/">AirNow</a> and sign up for <a href="a858-nycnotify.nyc.gov/notifynyc/">Notify NYC alerts</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
@@ -402,6 +475,7 @@ function runFinal() {
   // END MAJOR AQI BUNDLE
 
   // High AQI and not Warm - close your windows
+
   if ((maxTemp < 70 && aqi > 3)
         ||
       (maxTemp < 70 && (aqi > 2 && sensitiveGroup ==='Yes'))) {
@@ -410,6 +484,7 @@ function runFinal() {
   }
 
   // high AQI and Warm. close windows, use AC.
+
   if ((maxTemp > 70 && aqi > 3 && hasAC === 'Yes')
     ||
       (maxTemp > 70 && hasAC === 'Yes' && aqi > 2 && sensitiveGroup ==='Yes')) {
@@ -418,18 +493,21 @@ function runFinal() {
     }
 
   // High AQI - indoor air
+
   if (aqi > 3) {
     msg = `<p>💡 Limit activities that can worsen indoor air, like frying or broiling food, smoking or vaping, vacuuming, burning candles or incense, or using a fireplace.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Hot - indoor air
+
   if (maxTemp >= 85) {
     msg = `<p>💡 Limit activities that can heat up your indoor space, like using your oven or stove.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // High AQI - filter your air, sensitive.
+
   if (hasAC === 'Yes' && (
     (sensitiveGroup === 'Yes' && (aqi === 2 || aqi === 3))
   )) {
@@ -438,18 +516,21 @@ function runFinal() {
   }
 
   // High AQI, not sensitive, has AC
+
   if (aqi > 3 && hasAC === 'Yes') {
     msg = `<p>💡 Because of today's air quality, take some precautions. Air purifiers with filters can help remove some air pollution from the air. Closing the vent on your AC or setting it to re-circulate will help you stay cool while preventing your AC unit from blowing polluted air inside. No matter what, always use your AC when it's hot. Staying cool is the priority. <a href='https://www.nyc.gov/site/doh/health/health-topics/indoor-air-quality.page'>Learn more about indoor air quality</a>.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Uses EME
+
   if (usesEME === 'Yes') {
     msg = `<p>💡 Like 7.6% of New York City households, you use electric medical equipment. Register with your utility provider so they can contact you during an emergency, like a power outage during a heatwave. You will need a medical certificate. ConEd customers should call 1-877-582-6633 or use “MyAccount” online. PSEG customers should call 1-800-490-0025.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
   }
 
   // Pets, high temp or high AQI
+
   if (hasAnimal === 'Yes' && (maxTemp > 78 || aqi > 3)) {
     msg = `<p>🦔 Heat and unhealthy air quality affects animals, too. Ask your vet how to recognize signs of heat stress and <a href="https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety">get tips on caring for animals in the heat</a>. When the air quality is unhealthy for people, keep your animals indoors as much as possible and limit strenuous outdoor activity for both of you.</p>`
     finalMessageText.innerHTML+= msg + '<hr class="my-2">'
@@ -462,19 +543,24 @@ function runFinal() {
 // -------------------------------------------------------------------------- //
 // ---------- Determines if we're in warm season ---------------------------- //
 // -------------------------------------------------------------------------- //
+
 function isSummerDate() {
   // Get the current date
+
   var currentDate = new Date();
 
   // Set the start and end dates for summer (April 1 and September 30)
+
   var summerStart = new Date(currentDate.getFullYear(), 3, 1); // Month is zero-based
   var summerEnd = new Date(currentDate.getFullYear(), 8, 30); // Month is zero-based
 
   // Check if the current date is between April 1 and September 30
+
   return currentDate >= summerStart && currentDate <= summerEnd;
 }
 
 // Example usage
+
 if (isSummerDate()) {
   console.log('It is summer!');
   warmSeason = 'Yes'
@@ -519,6 +605,7 @@ function setUpTest() {
 }
 
 // put event listeners on each button to toggle state and variable
+
 var btnSensitiveGroup = document.getElementById('btn-sensitiveGroup');
 btnSensitiveGroup.addEventListener('click', function(event) {
   btnSensitiveGroup.classList.toggle('active')
@@ -530,6 +617,7 @@ btnSensitiveGroup.addEventListener('click', function(event) {
 });
 
 // put event listeners on each button to toggle state and variable
+
 var btnusesEME = document.getElementById('btn-usesEME');
 btnusesEME.addEventListener('click', function(event) {
   btnusesEME.classList.toggle('active')
@@ -541,6 +629,7 @@ btnusesEME.addEventListener('click', function(event) {
 });
 
 // put event listeners on each button to toggle state and variable
+
 var btnhasAnimal = document.getElementById('btn-hasAnimal');
 btnhasAnimal.addEventListener('click', function(event) {
   btnhasAnimal.classList.toggle('active')
@@ -552,6 +641,7 @@ btnhasAnimal.addEventListener('click', function(event) {
 });
 
 // put event listeners on each button to toggle state and variable
+
 var btnhasAC = document.getElementById('btn-hasAC');
 btnhasAC.addEventListener('click', function(event) {
   btnhasAC.classList.toggle('active')
@@ -563,6 +653,7 @@ btnhasAC.addEventListener('click', function(event) {
 });
 
 // put event listeners on each button to toggle state and variable
+
 var btnlimitsAC = document.getElementById('btn-limitsAC');
 btnlimitsAC.addEventListener('click', function(event) {
   btnlimitsAC.classList.toggle('active')
@@ -574,6 +665,7 @@ btnlimitsAC.addEventListener('click', function(event) {
 });
 
 // put event listeners on each button to toggle state and variable
+
 var btnhasFan = document.getElementById('btn-hasFan');
 btnhasFan.addEventListener('click', function(event) {
   btnhasFan.classList.toggle('active')
@@ -585,6 +677,7 @@ btnhasFan.addEventListener('click', function(event) {
 });
 
 // temp
+
 var inputCurrentTemp = document.getElementById('input-currentTemp');
 if (inputCurrentTemp) {
   inputCurrentTemp.addEventListener('input', function(event) {
@@ -618,6 +711,7 @@ if (inputCurrentTemp) {
 };
 
 // aqi
+
 var inputAQI = document.getElementById('input-aqinum');
 if (inputAQI) {
   inputAQI.addEventListener('input', function(event) {
@@ -627,6 +721,7 @@ if (inputAQI) {
       document.getElementById('aqiNum').innerHTML = currentValue
 
       // re-style AQI text
+
       var aqiMeaning = document.getElementById('aqimeaning')
       if (aqi == '1') {
         aqiInterpretation = 'Good'

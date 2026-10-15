@@ -97,6 +97,7 @@
   // This script controls the static images for all years. These maps are all on the same scale for any one pollutant so that somebody can see change over time as they click through it. Images are stored in /content/data-features/nyccas/embed/map-images/
 
   // update image
+
   var thisYear = 2026             // Update this for the report
   var chosenYear = thisYear - 2   // This is the year for which the data goes through
   var mtPol = "BC"
@@ -106,15 +107,18 @@
   function updateRaster() {
   var filename = mtPol + "_" + chosenYear + ".png"
   // console.log(filename)
+
   document.getElementById('raster').src = "embed/map-images/" + filename
 
   // The alt has to move with the src: the buttons swap both the pollutant and the
   // year, so a fixed alt describes whichever map happened to load first.
+
   document.getElementById('raster').alt = "Map of " + mtPol + " levels across New York City neighborhoods, " + chosenYear
 
   }
 
   // Change var pollutant and polYear on Button Click
+
   const mtBtns = document.querySelectorAll(".mtBtn ")
   for (var i = 0; i < mtBtns.length; i++) {
   mtBtns[i].addEventListener("click", function() {
@@ -128,6 +132,7 @@
 
 
   // change year value on button click
+
   function changeYear(x) {
       x = Number(x)
       chosenYear = Number(chosenYear)
@@ -173,6 +178,7 @@
       polbtns[i].addEventListener("click", function() {
           mapPol = this.value
           //Turns off highlights on everything based on class
+
           for (let button of document.querySelectorAll('.polbtn')) button.classList.remove('active');
           this.classList.add('active')
           embed = '{{ relURL "nyccas/raster/" }}' + this.value + '.html'

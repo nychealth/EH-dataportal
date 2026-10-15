@@ -103,6 +103,7 @@ const renderMap = (
 
     /* ----------------------------------------------------------------------- //
     // modify bar spec:
+
         - If the measurement Type is a mean, then give it a dot with a gray bar. Dots better represent Means.
         - if the data has CIs, then, give a gray CI bar
         - Else, just give a standard bar
@@ -528,6 +529,7 @@ const renderMap = (
                         }
                     }, 
                     // Second neighborhood data layer - for count-dot map underlayer (ok to leave on for rates)
+
                     {
                         "height": 500,
                         "width": "container",
@@ -624,6 +626,7 @@ const renderMap = (
     });
 
     // send info for printing
+
     vizYear = mapTime;
     vizGeography = mapGeoType;
     vizSource = metadata[0].Sources

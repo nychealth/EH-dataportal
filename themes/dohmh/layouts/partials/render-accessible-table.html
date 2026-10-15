@@ -31,6 +31,7 @@
       table.className = "table table-striped table-bordered table-sm";
 
       // Create thead
+
       const thead = document.createElement("thead");
       thead.className = "thead-light";
       const headerRow = document.createElement("tr");
@@ -44,6 +45,7 @@
       table.appendChild(thead);
 
       // Create tbody
+
       const tbody = document.createElement("tbody");
       data.forEach(row => {
         const tr = document.createElement("tr");
@@ -57,6 +59,7 @@
       table.appendChild(tbody);
 
       // Insert table into container
+
       container.appendChild(table);
     }).catch(error => {
       console.error("Error loading CSV:", error);

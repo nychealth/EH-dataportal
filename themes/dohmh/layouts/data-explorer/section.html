@@ -8,25 +8,9 @@
 <article class="container-fluid" data-pagefind-ignore="all">
 
     <div class="col-lg-10 col-md-12 mx-auto">
+        {{ partial "section-header.html" (dict "page" . "description" false) }}
+
         <div class="row">
-            <div class="col-md-10 col-sm-12 mt-2 mb-3">
-                <nav aria-label="breadcrumb" class="">
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                        <li class="breadcrumb-item active"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-
-        <div class="row mt-2">
-            <div class="col-12">
-                <h1 class="de-accent"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>{{ .Title }}</h1>
-            </div>
-        </div>
-
-        <div class="row mt-2">
             <div class="col-md-8 col-sm-12 pr-md-6">
 
                 {{ .Content }}

@@ -27,6 +27,7 @@ const renderDisparitiesChart = async (
     // ----------------------------------------------------------------------- //
 
     // disable links measures dropdown
+
     $("#dropdownLinksMeasures").addClass("disabled");
     $("#dropdownLinksMeasures").attr('aria-disabled', true);
 
@@ -342,6 +343,7 @@ const renderDisparitiesChart = async (
     });
 
     // set for printing
+
     printSpec = disspec;
     vizSource = primaryMetadata[0]?.Sources;
     vizSourceSecond = disparityMetadata[0].Sources

@@ -114,6 +114,7 @@ function renderFullSugarTable() {
   const columns = Object.keys(sugarData[0]); // 5 CSV columns
 
   // ---- HEADER: add 6th combined column ----
+
   $("#fullSugarTable thead").empty().append(
     $("<tr>").append([
       ...columns.map(c => $("<th>").text(c)),
@@ -122,27 +123,32 @@ function renderFullSugarTable() {
   );
 
   // ---- BODY: add 6th placeholder cell ----
+
   const tbody = $("#fullSugarTable tbody").empty();
   sugarData.forEach(row => {
     const tr = $("<tr>");
 
     // original 5 CSV columns
+
     columns.forEach(col => {
       tr.append($("<td>").text(row[col]));
     });
 
     // empty TD for DataTables to fill
+
     tr.append($("<td>"));
 
     tbody.append(tr);
   });
 
   // Identify numeric columns for right-alignment
+
   const numericCols = columns
     .map((c, i) => ({ index: i, sample: sugarData[0][c] }))
     .filter(col => !isNaN(parseFloat(col.sample)));
 
   // ---- DATATABLE INIT ----
+
   const table = $("#fullSugarTable").DataTable({
     paging: true,
     searching: true,
@@ -176,9 +182,11 @@ function renderFullSugarTable() {
       },
 
       // Hide original columns 3, 4, 5 (0-based indices: 2, 3, 4)
+
       { targets: [2, 3, 4], visible: false },
 
       // ---- Combined HTML column (index 5) ----
+
       {
         targets: 5,
         data: null,
@@ -211,6 +219,7 @@ function renderFullSugarTable() {
   });
 
   // ---- MOVE SEARCH BOX ----
+
   const dtFilter = $("#fullSugarTable_filter");
   $("#searchContainer").append(dtFilter);
 
@@ -226,6 +235,7 @@ function renderFullSugarTable() {
   });
 
   // ---- POPULATE BRAND DROPDOWN ----
+
   const brandFilter = $("#brandFilter");
 
   sugarData.forEach(d => d["Brand Name"] = d["Brand Name"].trim());

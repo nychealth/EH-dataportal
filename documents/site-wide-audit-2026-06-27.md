@@ -44,6 +44,21 @@
 > metadata bullets, and §12's structured-data section. Each annotation names the branch and commit
 > that changed it. **Nothing else in this document has been re-verified**; treat the rest as the
 > branch's record until it is. §14 holds findings first observed on this tree.
+>
+> **§17, §18 and §19 were added after that sweep and are not covered by the path count above.**
+> They were consolidated here on 2026-09-18 from `feature-NDHR-prototype` (§17, and the
+> 2026-09-12 note in §15.8) and `feature-MOD-Lab-NR-recode-refactor-merge` (§18a, §19a)
+> — `git merge-base --is-ancestor <branch> production` says whether either has landed since.
+> They cite `assets/js/nr-report/`, `assets/js/ndhr-report/` and the
+> `partials/ndhr-*.html` pickers, **none of which exist on `production`**
+> `[verified 2026-09-18: `git ls-tree -r production -- assets/js/nr-report` returns nothing]`, so the
+> "19 of 84" figure is a reading of this document as it stood on 2026-08-21. Re-deriving it would
+> need the extraction rule that produced the 84, which survives here only as the prose above.
+> The §18a and §19a fixes are real and landed — on that branch, against files this tree does not
+> carry.
+>
+> **§20 was added on 2026-09-24 on `hotfix-section-icon-standardization`, and the path count
+> above doesn't cover it either.** The paths it cites exist on that branch.
 
 Companion to `data-explorer-deep-audit-2026-06-27.md`, which covered the
 Data Explorer SPA (now `assets/js/data-explorer/`). This document covers
@@ -2507,7 +2522,6 @@ than reading `.Site.Params.data_branch`, so the neighborhood-overlap tool draws 
 on every environment, staging included. Whether all four fetches fire on page load was not
 measured — the per-fetch figures above hold either way.
 
-
 ---
 
 ## 18. The NR report map's viewport leaves most neighborhoods unclickable (added 2026-09-13)
@@ -2559,6 +2573,69 @@ partial's comment records; do not sweep both on a grep for `flyToBounds`.
 much of the city a given zoom shows. The 9-of-45 reading was taken on the NR page itself, so the
 finding holds regardless, but a fix should re-measure rather than assume 57-of-59 transfers.
 
+### 18a. FIXED 2026-09-15 — and three things above are corrected by the fix's own measurement
+
+`assets/js/nr-report/map.js`: `selectLayer` lost its `zoom` parameter and its `flyToBounds`,
+both call sites (`map.js` `selectNeighborhood`, `data.js` `tryInitialRender`) lost the `true`,
+and `initLeafletMap` now sets `zoomSnap = 0` and fits `uhfLayer`'s whole bounds once the
+geojson lands. `themes/dohmh/layouts/partials/nr-leaflet.html` is untouched and still flies.
+
+**Correction 1 — the denominator was 45 `<path>` elements, of which 42 are neighborhoods.**
+`#nr-map` holds 45 `path` nodes; three of them are the rects of Leaflet's attribution-flag
+`<svg>`, not polygons. `#nr-map path[role="button"]`, `path.leaflet-interactive`, the layer's
+own `eachLayer` count and `neighborhoods.length` all agree on 42. All three flag paths pass the
+actionability check in every arm, so a 45-denominator reading carries a constant +3. The
+numerator 9 was right; the reading is **9 of 42**.
+
+**Correction 2 — the container width is the same as NDHR's.** `#nr-map` renders at **324x450**
+on the NR report page at a 1280x720 viewport, which is the box the NDHR finding names. What did
+not transfer is the fitted count: 41 of 42 here against NDHR's 57 of 59.
+
+**Correction 3 — the prescribed arm B does not reproduce the pre-fix state, and reads 2
+polygons low.** Re-applying `flyToBounds` by hand after the fix inherits the fix's own
+`zoomSnap = 0`, so the fly lands at zoom 12.54 where the pre-fix code, at Leaflet's default
+`zoomSnap` of 1, snapped to a whole zoom 12. Deeper zoom, fewer polygons: that arm reads 7 of 42
+rather than 9. It is still a valid A -> B -> A on one page load and is recorded below, but the
+arm that actually measures the pre-fix code is checking `HEAD`'s `map.js` and `data.js` back in
+and reading the served fingerprint to prove which build the browser ran.
+
+Arm B as prescribed, three arms on one page load:
+
+| arm | zoom | polygons an un-forced click can reach |
+|---|---|---|
+| A — fitted to all | 9.58 | 41 of 42 |
+| B — fly-to re-applied by hand | 12.54 | **7 of 42** |
+| A — refitted | 9.58 | 41 of 42 |
+
+`[verified 2026-09-15: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+at a 1280x720 viewport against a `dev_stage` server on :8080, Playwright trial click as the
+reachability test; two runs returning identical counts and identical miss lists]`
+
+Arm B as the pre-fix code, the two file states checked in and out:
+
+| tree state | served `map.js` | zoomSnap | zoom | polygons reachable |
+|---|---|---|---|---|
+| fix applied | `map.a55470a6173fed6c.js` | 0 | 9.58 | 41 of 42 |
+| `HEAD` restored | `map.304224d68b15bfb4.js` | 1 | 12 | **9 of 42** |
+| fix re-applied | `map.a55470a6173fed6c.js` | 0 | 9.58 | 41 of 42 |
+
+`[verified 2026-09-15: same page and server; the fingerprint moving and returning is what rules
+out a stale asset, per CLAUDE.md's "Four ways a local check silently lies"]`
+
+**Rockaways is the one polygon the fitted arm misses, and the cause is not the viewport.** It is
+a thin arc, so the centre of its bounding box lands *inside* the viewport while
+`document.elementFromPoint` there returns the `.leaflet-container` div rather than the path
+`[verified 2026-09-15: bbox 109x64 at (360,570), `isSelfAtCentre` false]`. It is also a miss at
+zoom 12.54 in arm B, so it is not specific to the fitted framing — but I measured only those
+two zooms, and whether NDHR's two residual misses have this same cause was not checked.
+
+**Harnesses:** `npm run lint` clean (positive control: an undefined name added to `map.js`
+fails it with `no-undef`, and lint returns to clean when removed — so the `nr-report` block is
+genuinely in scope); `npm run smoke` 33 of 33, and the curated `PAGES` list does include
+`neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`, so this page is covered
+rather than merely adjacent; `npm run characterize:nr -- --check` 3 of 3 against the `staging`
+baseline.
+
 ## 19. `vegaEmbed` has no rejection handler on the NR report page (added 2026-09-14, P2)
 
 Found while reviewing the NDHR prototype, which forked its report page from this one. **Filed
@@ -2602,3 +2679,83 @@ does. A fix is cheap and does not depend on that number, but a priority argument
 
 **`assets/js/data-explorer/` is not in scope of this finding.** Its charts are a different call
 site with a different surrounding structure, and none of them was measured here.
+
+### 19a. FIXED 2026-09-15
+
+`assets/js/nr-report/chart.js`: the `vegaEmbed(...).then(...)` chain now ends in a `.catch` that
+`console.error`s a message naming the chart, `debugLog`s the branch, and writes the same
+`Unable to render chart.` paragraph the synchronous `catch` writes. Not re-thrown — by that
+point there is no caller left to catch it.
+
+Re-measured with the same forced rejection, run A -> B -> A by checking `HEAD`'s `chart.js` in
+and out, so the middle arm is the real pre-fix code rather than an argument about it:
+
+| | A — `.catch` present | B — `HEAD`, no `.catch` | A — `.catch` restored |
+|---|---|---|---|
+| served `chart.js` | `chart.2c9f8f13…js` | `chart.96d39599…js` | `chart.2c9f8f13…js` |
+| stub installed (control) | true | true | true |
+| stub actually called (control) | 1 | 1 | 1 |
+| console errors from page code | **1** | 0 | **1** |
+| unhandled rejections | **0** | 1 | **0** |
+| `Unable to render chart.` shown | **true** | false | **true** |
+| visible empty chart containers | **0** | 1 | **0** |
+
+`[verified 2026-09-15: `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/`
+against a `dev_stage` server; 23 accordion toggles, the first visible one ("Asthma ED visits
+(adults)") expanded; `window.vegaEmbed` replaced with a function returning a rejected promise
+after page load and before the expand]`
+
+Arm B reproduces this section's 2026-09-14 table row for row, which is what licenses reading
+arm A as the fix rather than as a difference in conditions.
+
+**A second control was added to the one §19 prescribed.** "Stub actually installed" is satisfied
+by a stub nothing ever calls, which would give the same clean arm-A numbers as a working fix. The
+probe therefore also counts invocations: 1 in every arm.
+
+**The console message names the chart, which is the half of this the unhandled rejection never
+carried:** `Error embedding chart for Asthma ED visits (adults) across all NYC neighborhoods:
+Error: probe-forced rejection`, against a bare `probe-forced rejection` in arm B.
+
+**Still not measured:** whether any real Vega spec on this page can reject. Unchanged by the fix
+— the rejection is still forced with a stub.
+
+**Harnesses:** `npm run lint`, `npm run smoke` (33 of 33) and `npm run characterize:nr -- --check`
+(3 of 3) all clean; see §18a for lint's positive control.
+
+## 20. Found while standardizing section headers (added 2026-09-24)
+
+Found on `hotfix-section-icon-standardization` while adding each section's icon to its pages'
+H1s (`7a995427a1`; ledger in
+[`section-header-standardization-2026-09-24.md`](section-header-standardization-2026-09-24.md)).
+That change gave every visible H1 in the Data Features layouts an icon. The two layouts below have
+no H1, so they got no icon.
+
+### 20.1 Two Data Features layouts render the page title as `<h2>`, so their pages have no `<h1>` (P3, a11y; no published page affected)
+
+`themes/dohmh/layouts/data-features/restaurant-grades.html:22` and `restaurants.html:22` both
+render the page title as `<h2>{{ .Title }}</h2>`, directly below the breadcrumb. Nothing else on
+those pages supplies an H1:
+
+- Neither layout contains an `<h1>`.
+- Neither calls a partial that emits one: `restaurant-grades.html` calls only `lib-d3.html` and
+  `lib-vega.html`, and `restaurants.html` calls no partials.
+- None of the three content pages that use these layouts has a `#` heading in its markdown
+  `[verified 2026-09-24: `grep -cE '^# '` returns 0 for each]`.
+
+| Layout | Content using it |
+|---|---|
+| `restaurant-grades` | `content/data-features/restaurant-grades/` |
+| `restaurants` | `content/data-features/restaurant-inspection-checklist/`, `content/data-features/mobile-food-vending-map/` |
+
+**All three pages are `draft: true`, so visitors can't reach any of them today.** None is in the
+sitemap, and each URL returns the 404 page `[verified 2026-09-24 against a `dev_prod` server]`.
+That is why this is P3. It becomes a live accessibility defect as soon as one of these pages is
+published without the fix, and the page will also be missing the section icon every other Data
+Features title now has.
+
+**Fix:** at `:22` in both layouts, replace the `<h2>` with the form the other Data Features
+layouts use:
+`<h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>`. In
+`restaurant-grades.html`, the next headings (`:35`, `:78`) are `<h2>`, so heading levels still
+don't skip after the change. The rendered page hasn't been checked, because none of these pages
+builds without `--buildDrafts`.
