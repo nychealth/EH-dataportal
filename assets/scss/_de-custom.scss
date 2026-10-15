@@ -1117,6 +1117,22 @@ $color-data-explorer: #0A408A;
     line-height: 1.4;
 }
 
+// The explorer's four Vega charts embed with `actions: false`, so they need none of the
+// 38px padding-right that __portal-custom.scss gives every .vega-embed — vega-embed's own
+// stylesheet reserves it only on .has-actions, for the actions menu button. With it,
+// getChartContainerWidth hands Vega a width 38px wider than the box `.vega-embed > svg
+// { max-width: 100% }` lets the SVG draw in, and the whole chart is scaled down to fit.
+// Selected by id so the rule holds before vega-embed first adds its class to the holder,
+// and under .de-tabs-panel-shell because the retired explorer reuses #trend and #links
+// with its actions menu on, and needs the padding.
+.de-tabs-panel-shell {
+    #barHolder,
+    #trend,
+    #links {
+        padding-right: 0;
+    }
+}
+
 .chart-note {
     background: #e8eaf850;
     border-top: 1px solid #4a4d9f;

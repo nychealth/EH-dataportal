@@ -25,18 +25,16 @@ const updateCorrelatePaneLayout = () => {
         return;
     }
 
-    // Derive a fixed width from the surrounding tab panel (minus its horizontal
-    // padding) so the chart doesn't reflow as Vega measures its container.
+    // Pin the holder to its own natural width so the chart doesn't reflow as Vega measures
+    // its container. Measured with the previous pin cleared, so it is the same box
+    // #barHolder fills. (This used to be .de-tabs minus 64px, but .de-tabs also spans the
+    // tab-button column, which left the chart ~50px wider than the pane that clips it.)
 
-    const deTabsPanel = correlateHolder.closest('.de-tabs');
-    const fixedHolderWidth = Math.max(
-        280,
-        Math.round(
-            deTabsPanel
-                ? deTabsPanel.getBoundingClientRect().width - 64
-                : correlateHolder.getBoundingClientRect().width
-        )
-    );
+    correlateHolder.style.removeProperty('width');
+    correlateHolder.style.removeProperty('min-width');
+    correlateHolder.style.removeProperty('max-width');
+
+    const fixedHolderWidth = Math.max(280, getChartContainerWidth('#correlateHolder'));
 
     correlateHolder.style.removeProperty('overflow');
     correlateHolder.style.setProperty('width', `${fixedHolderWidth}px`, 'important');
