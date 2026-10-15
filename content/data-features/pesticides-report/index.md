@@ -220,13 +220,13 @@ The “apparent” decline in solid insecticide products in <span class="reporti
 
 **Figure 1: Pesticides Applied by NYC Agencies by Weight**
 <div class="mb-4">
-<div style="min-height:422px" id="datawrapper-vis-a3OOO"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/a3OOO/embed.js" charset="utf-8" data-target="#datawrapper-vis-a3OOO"></script><noscript><img src="https://datawrapper.dwcdn.net/a3OOO/full.png" alt="Figure 1: Pesticides applied by City agencies (Line chart)" /></noscript></div>
+<div style="min-height:422px" id="datawrapper-vis-XtwJm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/XtwJm/embed.js" charset="utf-8" data-target="#datawrapper-vis-XtwJm"></script><noscript><img src="https://datawrapper.dwcdn.net/XtwJm/full.png" alt="Figure 1: Pesticides applied by City agencies (Line chart)" /></noscript></div>
 </div>
 
 
 **Figure 2: Pesticides Applied by NYC Agencies by Volume**
 <div class="mb-4">
-<div style="min-height:386px" id="datawrapper-vis-iSj4e"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/iSj4e/embed.js" charset="utf-8" data-target="#datawrapper-vis-iSj4e"></script><noscript><img src="https://datawrapper.dwcdn.net/iSj4e/full.png" alt="Line chart" /></noscript></div>
+<div style="min-height:386px" id="datawrapper-vis-CYDSf"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/CYDSf/embed.js" charset="utf-8" data-target="#datawrapper-vis-CYDSf"></script><noscript><img src="https://datawrapper.dwcdn.net/CYDSf/full.png" alt="Line chart" /></noscript></div>
 </div>
 
 Rodenticides and mosquito larvicides are not included in Figure 2 as those products are almost exclusively solid formulations reported by weight. However, in <span class="reportingYearPrint"></span> agencies increased use of a carbon dioxide (CO<sub>2</sub>) gas rodenticide product alternative to anticoagulants. CO<sub>2</sub> gas rodenticide is reported by volume. But because it is a gas, it is not comparable to other liquid products and is also excluded from Figure 2. It is notable that from 2008 to <span class="reportingYearPrint"></span>, there has been a 78% decrease in the volume of liquid insecticides used. However, liquid herbicide use increased 19% by volume from 2024 to <span class="reportingYearPrint"></span>. Glyphosate use increased slightly in <span class="reportingYearPrint"></span> compared with 2024, but overall there has been a 93% decline in glyphosate applied since 2012 (Figure 3).
@@ -251,7 +251,7 @@ Pyrethroid and BMP application counts for roach treatment were both up from 2024
 **Figure 5: Insecticides Applied by NYC Agencies to Treat Roaches by Number of Applications**
 
 <div class="mb-4">
-<div style="min-height:391px" id="datawrapper-vis-4Dunm"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/4Dunm/embed.js" charset="utf-8" data-target="#datawrapper-vis-4Dunm"></script><noscript><img src="https://datawrapper.dwcdn.net/4Dunm/full.png" alt="Line chart" /></noscript></div>
+<div style="min-height:391px" id="datawrapper-vis-F8MpW"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/F8MpW/embed.js" charset="utf-8" data-target="#datawrapper-vis-F8MpW"></script><noscript><img src="https://datawrapper.dwcdn.net/F8MpW/full.png" alt="Line chart" /></noscript></div>
 </div>
 
 ##### Bed Bugs vs. Roaches
@@ -260,7 +260,7 @@ Total volume of pyrethroid use for control of bed bugs has remained low since 20
 **Figure 6: Pyrethroids Applied by NYC Agencies to Treat Bed Bugs and Roaches by Volume**
 
 <div class="mb-4">
-<div style="min-height:391px" id="datawrapper-vis-DWFeK"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/DWFeK/embed.js" charset="utf-8" data-target="#datawrapper-vis-DWFeK"></script><noscript><img src="https://datawrapper.dwcdn.net/DWFeK/full.png" alt="Line chart" /></noscript></div>
+<div style="min-height:391px" id="datawrapper-vis-t9vpJ"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/t9vpJ/embed.js" charset="utf-8" data-target="#datawrapper-vis-t9vpJ"></script><noscript><img src="https://datawrapper.dwcdn.net/t9vpJ/full.png" alt="Line chart" /></noscript></div>
 </div>
 
 ##### Rodents
