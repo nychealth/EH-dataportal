@@ -32,6 +32,9 @@ started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the
   padding counted as chart width. Bar's overflow came from `5603e3daf9` changing its autosize
   `fit` → `fit-x`; the fresh audit said that commit left it untouched, corrected there. Not
   fixed: correlate's legend still overflows its own SVG ("Staten Island" clipped), as before.
+- Seen once, not reproduced: a direct `overlay=links` load drew correlate at 280px, the floor in
+  `updateCorrelatePaneLayout` (still present after `068ed473da`). Four later direct loads, three
+  before that commit and one after, drew full width. Unexplained.
 
 Previous status line, kept for the record — **Status as of 2026-10-13: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
 started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-06 line:
