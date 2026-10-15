@@ -123,7 +123,7 @@
             "noAccessibleText": 1
         },
         "controls": {
-            "button": 100,
+            "button": 99,
             "input": 17,
             "select": 0,
             "textarea": 0,
