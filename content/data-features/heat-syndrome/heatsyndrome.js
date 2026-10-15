@@ -1,5 +1,6 @@
 // ---------- INITIALIZE: draw buttons and set up data source variables ---------- // 
     // Initialize by getting date and drawing buttons
+
     const today = new Date()
     const month   = today.getUTCMonth() + 1; // months from 1-12
     const day     = today.getUTCDate();
@@ -12,6 +13,7 @@
 function init() {
 
     // check if this year's URL exists, and if it does, draw this year's button
+
     UrlExists(yearURL)
 
     // console.log(UrlExists(yearURL))
@@ -33,6 +35,7 @@ function init() {
     // console.log(allYears)
     
     // get colors for spec
+
     colorArray = getMagmaColors(allYears.length)
     colorArray = colorArray.reverse()
 
@@ -52,9 +55,11 @@ function init() {
     }
 
     // run for most recent year
+
     changeYear(allYears[0])
 
     // check if it's after September
+
     if (month > 8) {
       console.log('Updates have ended for the year.')
     }
@@ -62,6 +67,7 @@ function init() {
 
 function UrlExists(url) {
     // console.log('checking ' + url)
+
     var http = new XMLHttpRequest();
     http.open('HEAD', url, false);
     http.send();
@@ -71,19 +77,23 @@ function UrlExists(url) {
       fileExists = true
     }
     // console.log(fileExists)
+
     return http.status!=404;
 
 }
 
 // get Magma colors for the number of years
+
 function getMagmaColors(n) {
   const colors = [];
   for (let i = 0; i < n; i++) {
     // Get evenly spaced t values from 0 to 1
+
     const t = i / (n - 1);
     colors.push(d3.interpolateMagma(t));
   }
   // console.log('got colors:', colors)
+
   return colors;
 }
 
@@ -91,7 +101,7 @@ function getMagmaColors(n) {
 // Line chart spec
 
 var spec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Line chart of maximum daily temperature, and heat-related ED visits",
   "title": "",
   "width": "container",
@@ -198,12 +208,14 @@ var spec = {
 }
 
 // Initial embed of line chart
-vegaEmbed('#vis1',spec)
+
+vegaEmbed('#vis1',spec, {renderer: "svg"})
 
 
 
 
 // Year change function powered by year buttons
+
 function changeYear(x) {
   console.log('showing chart for year: ', x)
   spec.transform[1].filter = `datum.Year == ${x}`;
@@ -215,7 +227,7 @@ function changeYear(x) {
     spec.data.url = 'https://raw.githubusercontent.com/nychealth/EHDP-data/production/key-topics/heat-syndrome/previous_years.csv'
   }
   document.getElementById('yearHeader').innerHTML = x;
-  vegaEmbed('#vis1',spec);
+  vegaEmbed('#vis1',spec, {renderer: "svg"});
 
   var buttons = document.querySelectorAll('.yearButtons')
   for (let i = 0; i < buttons.length; i ++ ) {
@@ -234,14 +246,17 @@ var scatterCount = 0
 function toggleScatter(x) {
   scatterCount = Number(scatterCount + 1)
   // console.log(scatterCount)
+
   if ( scatterCount % 2 == 0) {
     // console.log('even')
+
     document.getElementById('scattertoggle').innerHTML = 'Show time'
-    vegaEmbed('#vis2', scatterplot)
+    vegaEmbed('#vis2', scatterplot, {renderer: "svg"})
   } else {
     // console.log('odd')
+
     document.getElementById('scattertoggle').innerHTML = 'Show scatter'
-    vegaEmbed('#vis2', scatterplotTwo)
+    vegaEmbed('#vis2', scatterplotTwo, {renderer: "svg"})
 
   }
 }
@@ -251,6 +266,7 @@ function toggleScatter(x) {
 init()
 
 // Scatterplot specs. They need to follow init() because that's how we get colorArray
+
 var scatterplot = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
@@ -436,4 +452,5 @@ var scatterplotTwo = {
 }
 
 // Initial embed of scatterplot
-vegaEmbed('#vis2', scatterplot)
+
+vegaEmbed('#vis2', scatterplot, {renderer: "svg"})

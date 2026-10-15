@@ -1,0 +1,128 @@
+{
+    "path": "data-features/cooling-info/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "data-features/cooling-info/config.js",
+            "data-features/cooling-info/cooling-info.js",
+            "js/main.js",
+            "js/site.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 8,
+        "headingLevels": [
+            1,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 2,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 1
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 7,
+            "missingAlt": 0,
+            "emptyAlt": 4,
+            "zeroSize": 0
+        },
+        "links": {
+            "internal": 69,
+            "external": 24,
+            "emptyHref": 30,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 13,
+            "input": 3,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 2
+        },
+        "tables": {
+            "total": 0,
+            "withTh": 0,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Protect yourself during hot weather and bad air quality. – Environment & Health Data Portal",
+        "headingText": [
+            "Stay safe from heat and air pollution",
+            "Let's take a look at your situation.",
+            "More hot weather resources",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-features/cooling-info/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "forecast7.com",
+            "www.airnow.gov",
+            "www.nyc.gov",
+            "www.nycgovparks.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Tips to stay safe."
+    }
+}

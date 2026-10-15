@@ -368,7 +368,7 @@
     </style>
 
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
     <div class="row">
         <div class="col-12 mt-2 mb-3">
             <nav aria-label="breadcrumb">
@@ -388,7 +388,7 @@
             </nav>
 
             <h1 class="h2 mt-2">
-                {{ .Title }} </h1>
+                {{ partial "section-icon.html" $.Section }}{{ .Title }} </h1>
 
                 <!-- Desktop teaser -->
                 <div class="d-none d-lg-block">
@@ -1286,6 +1286,7 @@
 
         function createCitation() {
             // Create date
+
             let today = new Date();
             let dd = String(today.getDate()).padStart(2, '0');
             let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -1294,9 +1295,11 @@
             let url = window.location.href.replace(/#.*/, "")
 
             // Create citation
+
             let citation = "New York City Department of Health, Environment & Health Data Portal. "  + "{{ .Title }}" + " data. " + indicatorName + '. Accessed at ' + url + ' on ' + today + "."
 
             // Add to form
+
             document.getElementById('citeText').setAttribute('value', citation);
 
             // console.log('CITATION CREATED')

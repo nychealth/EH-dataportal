@@ -16,7 +16,7 @@ keywords:
     "injuries",
     "hospitalizations",
     "emergency department visits",
-    "ED visits",
+    "ed visits",
   ]
 image: ds-assaults.jpg
 photocredit: "Benjamin Kanter/Mayoral Photography Office, City of New York"

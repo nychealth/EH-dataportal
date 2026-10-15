@@ -3,6 +3,7 @@ title: "Neighborhood boundaries on the EH Data Portal"
 shortTitle: "Neighborhood boundaries"
 date: 2020-08-01T08:33:22-04:00
 draft: false
+vega: true
 seo_title: "Neighborhood boundaries in health data"
 seo_description: "A data story on different ways to map health data."
 tags:
@@ -104,7 +105,7 @@ There are 55 PUMAs in NYC. PUMAs have similar boundaries to Community Districts,
                         spec.layer[0].data.url = topo;
                         spec.layer[1].data.url = topo;
                         d3.csv(csv, d3.autoType).then(csv => {
-                            vegaEmbed(div, spec).then((res) => {
+                            vegaEmbed(div, spec, {renderer: "svg"}).then((res) => {
                                 resview = res.view.insert("csv", csv).run();
                             });
                         });

@@ -12,7 +12,7 @@ categories: ["foodanddrink", "airquality", "neighborhoods"]
 keywords:
   [
     "air quality",
-    "PM2.5",
+    "pm2.5",
     "fine particles",
     "cooking",
     "restaurants",

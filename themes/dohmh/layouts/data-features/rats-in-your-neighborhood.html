@@ -6,7 +6,7 @@
 }
 </style>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     {{ partial "df-front-block" . }}
 
@@ -220,6 +220,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
 <script src="https://maps.nyc.gov/nyc-lib/v1.4.78/js/babel-polyfill.js"></script>
 <script src="https://maps.nyc.gov/nyc-lib/v1.4.78/js/nyc-ol-lib.js"></script>
+
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon" . }}
 
 <!--bring in rmz JS -->
 <script type="text/javascript" src="neighborhood-rats.js"></script>

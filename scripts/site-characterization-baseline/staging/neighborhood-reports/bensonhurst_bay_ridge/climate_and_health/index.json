@@ -1,0 +1,170 @@
+{
+    "path": "neighborhood-reports/bensonhurst_bay_ridge/climate_and_health/",
+    "status": 200,
+    "structure": {
+        "lang": "en",
+        "assets": [
+            "js/lib-vega-bundle.js",
+            "js/main.js",
+            "js/site.js",
+            "js/uhflist.js",
+            "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+            "node_modules/arquero/dist/arquero.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/d3/dist/d3.min.js",
+            "node_modules/dompurify/dist/purify.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet/dist/leaflet.css",
+            "node_modules/leaflet/dist/leaflet.js",
+            "node_modules/popper.js/dist/umd/popper.min.js",
+            "node_modules/qrcode-generator/dist/qrcode.js",
+            "pagefind/pagefind-ui.css",
+            "pagefind/pagefind-ui.js",
+            "scss/theme.css",
+            "translate.google.com",
+            "www.googletagmanager.com"
+        ],
+        "assetsWithIntegrity": 15,
+        "headingLevels": [
+            1,
+            1,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            2,
+            3,
+            2,
+            2,
+            2,
+            2,
+            4,
+            4,
+            4,
+            2,
+            5
+        ],
+        "headingJumps": 3,
+        "landmarks": {
+            "main": 1,
+            "nav": 4,
+            "header": 1,
+            "footer": 1,
+            "aside": 0,
+            "h1": 2
+        },
+        "meta": {
+            "description": true,
+            "canonical": true,
+            "robots": "noindex, nofollow",
+            "ogTitle": true,
+            "ogImage": true,
+            "viewport": true
+        },
+        "jsonld": [
+            {
+                "type": "BreadcrumbList",
+                "keys": [
+                    "@context",
+                    "@type",
+                    "itemListElement"
+                ],
+                "topLevelIsObject": true,
+                "parseError": false
+            }
+        ],
+        "img": {
+            "total": 6,
+            "missingAlt": 1,
+            "emptyAlt": 0,
+            "zeroSize": 2
+        },
+        "links": {
+            "internal": 83,
+            "external": 26,
+            "emptyHref": 39,
+            "noAccessibleText": 0
+        },
+        "controls": {
+            "button": 24,
+            "input": 1,
+            "select": 0,
+            "textarea": 0,
+            "noAccessibleName": 0
+        },
+        "tables": {
+            "total": 1,
+            "withTh": 1,
+            "withCaption": 0
+        },
+        "iframes": [],
+        "overflowX": false
+    },
+    "content": {
+        "title": "Climate and Health in Bensonhurst - Bay Ridge – Environment & Health Data Portal",
+        "headingText": [
+            "Climate and Health in",
+            "Climate and Health in",
+            "Climate hazards",
+            "Surface temperature Daytime summer surface temperature, 2018 94.8 Degrees Fahrenheit Lower Surface temperature Daytime summer surface temperature, 2018 94.8 Degrees Fahrenheit Lower than most neighborhoods",
+            "Coastal flood risk Residents living in a hurricane evacuation zone, 2024 53.3 Percent Higher Coastal flood risk Residents living in a hurricane evacuation zone, 2024 53.3 Percent Higher than most neighborhoods",
+            "Health outcomes",
+            "Asthma ED visits (age 5 to 17) Asthma emergency department visits (age 5 to 17), 2023 38.5 Estimated annual rate per 10,000 Lower Asthma ED visits (age 5 to 17) Asthma emergency department visits (age 5 to 17), 2023 38.5 Estimated annual rate per 10,000 Lower than most neighborhoods",
+            "Built environment",
+            "Neighborhood building quality Homes near structures rated good or excellent, 2017 90.0 Percent Higher Neighborhood building quality Homes near structures rated good or excellent, 2017 90.0 Percent Higher than most neighborhoods",
+            "Grass and tree cover Vegetative cover, 2017 28.0 Percent Grass and tree cover Vegetative cover, 2017 28.0 Percent In the middle of neighborhoods",
+            "Older adults with AC Older adults with air conditioners (age 65+), 2013 N/A** Percent Older adults with AC Older adults with air conditioners (age 65+), 2013 N/A** Percent",
+            "Priority populations",
+            "Poverty Neighborhood poverty, 2019-23 15.0 Percent Poverty Neighborhood poverty, 2019-23 15.0 Percent In the middle of neighborhoods",
+            "Older adults living alone (65+) Older adults living alone (65+), 2019-23 25.5 Percent Older adults living alone (65+) Older adults living alone (65+), 2019-23 25.5 Percent In the middle of neighborhoods",
+            "Psychological distress Serious psychological distress, 2012 9.1* Percent Higher Psychological distress Serious psychological distress, 2012 9.1* Percent Higher than most neighborhoods",
+            "Independence difficulty Independent living difficulty (adults), 2019-23 7.3 Percent Higher Independence difficulty Independent living difficulty (adults), 2019-23 7.3 Percent Higher than most neighborhoods",
+            "What is the City doing?",
+            "What you can do",
+            "More about",
+            "Page Footer",
+            "Search"
+        ],
+        "internalTargets": [
+            "/",
+            "/about/",
+            "/data-explorer/",
+            "/data-features/",
+            "/data-stories/",
+            "/key-topics",
+            "/key-topics/accessibility/",
+            "/key-topics/airquality/",
+            "/key-topics/childhealth/",
+            "/key-topics/climatehealth/",
+            "/key-topics/foodanddrink/",
+            "/key-topics/health-equity/",
+            "/key-topics/healthoutcomes/",
+            "/key-topics/housing/",
+            "/key-topics/injury-and-violence/",
+            "/key-topics/pests/",
+            "/key-topics/public-space/",
+            "/neighborhood-reports",
+            "/neighborhood-reports/",
+            "/neighborhood-reports/bensonhurst_bay_ridge/",
+            "/neighborhood-reports/bensonhurst_bay_ridge/climate_and_health/"
+        ],
+        "externalHosts": [
+            "a127-ess.nyc.gov",
+            "a856-citystore.nyc.gov",
+            "a858-nycnotify.nyc.gov",
+            "access.nyc.gov",
+            "carto.com",
+            "leafletjs.com",
+            "onenyc.cityofnewyork.us",
+            "www.nyc.gov",
+            "www.nycgovparks.org",
+            "www.openstreetmap.org",
+            "www1.nyc.gov"
+        ],
+        "metaDescription": "Climate and Health data profile for the Bensonhurst - Bay Ridge neighborhood of NYC."
+    }
+}

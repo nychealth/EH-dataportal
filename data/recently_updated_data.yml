@@ -1,7 +1,15 @@
 ---
 featured:
-- copy: Rat inspections
-  link: mice-and-rats/?id=2434
+- copy: Fine particles (PM 2.5)
+  link: air-quality/?id=2023
+- copy: Black carbon
+  link: air-quality/?id=2024
+- copy: Nitric oxide (NO)
+  link: air-quality/?id=2028
+- copy: Nitrogen dioxide (NO2)
+  link: air-quality/?id=2025
+- copy: Ozone (O3)
+  link: air-quality/?id=2027
 - copy: Rat indexing in Rat Mitigation Zones (RMZs)
   link: mice-and-rats/?id=2433
 - copy: Foreign-born population

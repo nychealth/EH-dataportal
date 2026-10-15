@@ -148,7 +148,7 @@
 
 </style>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
   {{ partial "df-front-block" . }}
 
@@ -319,6 +319,11 @@
   console.log("window.BaseURL", window.BaseURL);
 </script>
 
+
+{{- /*  georaster-layer-for-leaflet and leaflet-pip below extend the global L object,
+      so core Leaflet has to load first  */}}
+{{- partial "lib-leaflet.html" . }}
+{{- partial "lib-arquero.html" . }}
 
 <!-- chroma-js -->
 

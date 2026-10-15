@@ -160,11 +160,13 @@
             drawMap()
             
             // Add event listener on entry form
+
             document.getElementById('map-search').addEventListener("change", getData)
             
             let searchButton = document.querySelector('.btn.btn-srch');
             
             // Check if the button exists to avoid errors
+
             if (searchButton) {
                 
                 searchButton.onclick = function() {
@@ -181,6 +183,7 @@
             // ----------------------------------------------------------------------  //
             // ********** Runs data fetching if there's a url hash: ****************** //
             // ----------------------------------------------------------------------  //
+
             /*
             var hash = window.location.hash
             if (hash.length > 5) {
@@ -212,13 +215,16 @@
                     console.log("map.location [post]", map.location);
                     
                     // Get data
+
                     getDataFor(map.location)
                     
                     // Next, set up reset
+
                     document.getElementById('map-search').disabled = true
                     let button = document.querySelector('#searchHolder button');
                     
                     // Turn search button into Start Over button
+
                     if (button) {
                         button.innerHTML = 'Start over'
                         button.onclick = function() {
@@ -237,9 +243,11 @@
                 console.log(map.location.name)
                 
                 // add hash
+
                 window.location.hash = map.location.name
                 
                 // add location to link to mygovnyc
+
                 var linkURL = `https://www.mygovnyc.org/?addr=${map.location.name}`
                 document.getElementById('link').setAttribute("href",linkURL)
                 
@@ -247,10 +255,12 @@
                 let data  = map.location.data
                 
                 // First, un-hide elements
+
                 document.getElementById('outputRow').classList.remove('hide')
                 document.getElementById('contactContainer').classList.remove('hide')
                 
                 // Passing in the name (must match LWV API), the district, and the LWV Api url string. And, order.
+
                 retrieveAPIData('Mayor',null,null);
                 retrieveAPIData('NYC Public Advocate',null,null);
                 retrieveAPIData('NYC Comptroller',null,null)
@@ -284,6 +294,7 @@
                     
                     // console.log('Data for ' + x)
                     // console.log(data); // Log the data to the console
+
                     printData(data,x)    // Send to print function 
                     
                 } catch (error) {
@@ -327,6 +338,7 @@
                 
                 for (let i = 0; i < data.length; i++) {
                     // Create table row
+
                     let row = document.createElement('tr');
                     
                     let cell_office = document.createElement('td');
@@ -360,12 +372,14 @@
                     }
                     
                     // Append cells to row
+
                     row.appendChild(cell_office);
                     row.appendChild(cell_name);
                     row.appendChild(cell_phone);
                     row.appendChild(cell_email);
                     
                     // Insert row at the correct sorted position
+
                     let inserted = false;
                     let rows = tableBody.getElementsByTagName("tr");
                     
@@ -391,6 +405,7 @@
             // ----------------------------------------------------------------------  //
             
             // window.checkNested = function(obj, args) {
+
                 const checkNested = function(obj, args) {
                     for (var i = 0; i < args.length; i++) {
                         if (!obj || !obj.hasOwnProperty(args[i])) {
@@ -408,6 +423,7 @@
                     } else {
                         setTimeout(function() {
                             // window.waitForGlobal(keyPath, callback);
+
                             waitForGlobal(keyPath, callback);
                         }, 100);
                     }
@@ -427,6 +443,7 @@
                 }
                 
                 // Create a new keyboard event
+
                 const enterEvent = new KeyboardEvent('keydown', {
                     key: 'Enter',
                     keyCode: 13, // Deprecated but still sometimes needed

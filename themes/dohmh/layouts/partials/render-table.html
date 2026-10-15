@@ -71,6 +71,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // create table instance
+
   const table = new DataTable("#{{ $id }}", {
     paging: {{ eq $paging "true" }},
     searching: {{ eq $search "true" }},

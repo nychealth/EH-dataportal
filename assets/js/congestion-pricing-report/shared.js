@@ -82,6 +82,7 @@ function getSiteDisplayName(site) {
 
 // Keep CRZ first in the EJ selector while preserving the existing order for
 // the remaining sites.
+
 const site_names = ["CRZ", ...Object.keys(CP_SITES).filter((site) => site !== "CRZ")];
 const tod_site_names = site_names.filter(s => CP_SITES[s].hasTOD);
 const CP_BADGE_TO_SITE = {};
@@ -173,6 +174,7 @@ function addResizeHandler(el, onResize, onBreakpoint) {
 
         const w = el.clientWidth;
         // The select/button swap is a viewport question, not a container one.
+
         const mobile = window.innerWidth < 768;
         if (w === lastW) return;
         const crossedBreakpoint = mobile !== lastMobile;
@@ -367,6 +369,7 @@ const CP_FIT = {
 
 // Below Bootstrap's sm breakpoint the authored gutter (tuned for a 4-column
 // desktop row) becomes one wide gap that strands the width it was meant to fill.
+
 const CP_NARROW_SPACING = 20;
 
 const CP_FIT_TOLERANCE = 2;
@@ -482,7 +485,7 @@ function createCpMap(id, options, center, zoom) {
 
     const map = L.map(id, options).setView(center, zoom);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(map);
 

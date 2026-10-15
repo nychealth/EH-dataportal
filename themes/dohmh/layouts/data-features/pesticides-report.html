@@ -31,6 +31,8 @@
       }
 </style>
 
+{{- partial "lib-d3.html" . }}
+
 <script>
 
 // ======================================================================= //
@@ -333,7 +335,7 @@ function toggleSection(id, btn) {
 }
 </script>
 
-<article class="container-fluid" id="skip-header-target">
+<article class="container-fluid">
 
     <div class="row">
 
@@ -358,7 +360,7 @@ function toggleSection(id, btn) {
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    {{ .Title }} in {{ .Params.reportingYear }}
+                    {{ partial "section-icon.html" $.Section }}{{ .Title }} in {{ .Params.reportingYear }}
                 </h1>
 
                 {{- .Content  -}}

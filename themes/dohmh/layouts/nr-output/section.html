@@ -15,6 +15,9 @@
 
         <div class="row">
           <div class="col-md-4">
+            {{- partial "lib-leaflet.html" . }}
+            {{- partial "lib-uhflist.html" . }}
+
             <div style="height: 450px">
                 {{- partial "nr-leaflet" . -}}
             </div>
@@ -22,7 +25,7 @@
           </div>
 
           <div class="col-md-8">
-            <h1 class="report-title border-bottom" data-pagefind-ignore="all">Neighborhood Reports for
+            <h1 class="report-title border-bottom" data-pagefind-ignore="all">{{ partial "section-icon.html" $.Section }}Neighborhood Reports for
               <span class="sub-title">{{ .Title }}</span>
             </h1>
 

@@ -61,7 +61,21 @@ const load_flexdatalist = async () => {
             });
 
             // console.log("$input", $input);
-            
+
+            // ----- give the generated input a combobox role ----------------------------- //
+
+            // flexdatalist hides the authored input and renders its own; the generated one is
+            // what the reader focuses, and its id is the authored id + "-flexdatalist"
+            // (jquery.flexdatalist.js:475). wireComboboxState comes from the partial
+            // flexdatalist-combobox-js.html, which hvi.html loads — these are classic scripts
+            // sharing one global scope.
+
+            const generated = document.getElementById($input.attr('id') + '-flexdatalist');
+
+            if (generated) {
+                wireComboboxState(generated);
+            }
+
             // ----- add flexdatalist select handler -------------------------------------------------- //
 
             $input.on('select:flexdatalist', (e, set) => {
@@ -262,7 +276,7 @@ function buildMap(div, spec, csv, topo, nbr) {
         
         topo_url.url = topo;
         
-        vegaEmbed(div, spec, {actions: false}).then(async res => {
+        vegaEmbed(div, spec, {renderer: "svg", actions: false}).then(async res => {
                 
             let res_view = await res.view
                 .signal("selectedNTA", nbr)
