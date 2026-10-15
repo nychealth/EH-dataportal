@@ -1118,7 +1118,7 @@ $color-data-explorer: #0A408A;
 }
 
 // The explorer's four Vega charts embed with `actions: false`, so they need none of the
-// 38px padding-right that __portal-custom.scss gives every .vega-embed — vega-embed's own
+// 38px padding-right that __portal-custom.scss gives every .vega-embed — vega-embed 6.29.0's own
 // stylesheet reserves it only on .has-actions, for the actions menu button. With it,
 // getChartContainerWidth hands Vega a width 38px wider than the box `.vega-embed > svg
 // { max-width: 100% }` lets the SVG draw in, and the whole chart is scaled down to fit.
