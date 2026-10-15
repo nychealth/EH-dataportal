@@ -12,6 +12,144 @@
 
 let correlateResizeEventRegistered = false;
 
+// Starting legend column count: more than the five boroughs, so the first layout is one row.
+
+const CORRELATE_LEGEND_MAX_COLUMNS = 6;
+
+// Space between legend columns when predicting a layout. Vega's default columnPadding is
+// 10, but the rendered gap measured ~11.5px (397px actual against 391 predicted at five
+// columns, 2026-10-15), so 12 keeps the prediction on the wide side: the legend can wrap
+// a pixel early but not clip.
+
+const CORRELATE_LEGEND_COLUMN_GAP = 12;
+
+
+// Measures the rendered legend's entries and the room the chart leaves for them.
+//
+// On a tab click the chart renders before Bootstrap reveals its pane, so the pane is laid
+// out invisibly for the measurement, as getChartContainerWidth does, and restored in the
+// same task so the browser never paints that state. Returns null when there is nothing to
+// measure, including when an ancestor of the pane is hidden too.
+
+const measureCorrelateLegend = () => {
+
+    const svg = document.querySelector('#links svg');
+    const pane = svg?.closest('.tab-pane');
+
+    if (!svg || !pane) {
+        return null;
+    }
+
+    const hidden = svg.getBoundingClientRect().width === 0;
+    const priorDisplay = pane.style.display;
+    const priorVisibility = pane.style.visibility;
+
+    if (hidden) {
+        pane.style.display = 'block';
+        pane.style.visibility = 'hidden';
+    }
+
+    // One entry is one symbol plus one label, in the same order in both lists.
+
+    const svgRect = svg.getBoundingClientRect();
+    const symbols = [...svg.querySelectorAll('.role-legend-symbol path')];
+    const labels = [...svg.querySelectorAll('.role-legend-label text')];
+
+    const entries = symbols.map((symbol, i) => ({
+        left: symbol.getBoundingClientRect().left,
+        right: labels[i] ? labels[i].getBoundingClientRect().right : 0
+    }));
+
+    if (hidden) {
+        pane.style.display = priorDisplay;
+        pane.style.visibility = priorVisibility;
+    }
+
+    if (!entries.length || svgRect.width === 0) {
+        return null;
+    }
+
+    const legendLeft = Math.min(...entries.map(entry => entry.left));
+
+    return {
+        widths: entries.map(entry => entry.right - entry.left),
+        available: svgRect.right - legendLeft
+    };
+
+};
+
+
+// Returns the most legend columns whose row fits the available width.
+//
+// Mirrors Vega's grid layout for legends (gridAlign "each"): entries fill rows left to
+// right, and each column is as wide as its widest entry.
+
+const legendColumnsThatFit = ({ widths, available }) => {
+
+    for (let columns = widths.length; columns > 1; columns--) {
+
+        let rowWidth = CORRELATE_LEGEND_COLUMN_GAP * (columns - 1);
+
+        for (let column = 0; column < columns; column++) {
+
+            let columnWidth = 0;
+
+            for (let i = column; i < widths.length; i += columns) {
+                columnWidth = Math.max(columnWidth, widths[i]);
+            }
+
+            rowWidth += columnWidth;
+        }
+
+        if (rowWidth <= available) {
+            return columns;
+        }
+    }
+
+    return 1;
+
+};
+
+
+// Fits the correlate legend inside the chart.
+//
+// Vega-Lite never wraps a legend, and a row wider than the chart is clipped by the SVG.
+// Whether one row fits depends on the chart's width and on which boroughs the data holds,
+// so the column count is predicted from the rendered entries and set in one run. Stepping
+// down a column at a time instead painted a clipped legend between steps, since a Vega run
+// does not update the SVG synchronously.
+
+const fitCorrelateLegend = async () => {
+
+    const view = window.correlateVegaView;
+    const legend = view ? measureCorrelateLegend() : null;
+
+    if (!legend) {
+        return;
+    }
+
+    const columns = legendColumnsThatFit(legend);
+
+    // resize(): autosize recomputes the view's size only when asked, so without it a
+    // legend that wraps to a new row grows past the SVG's bottom edge.
+
+    if (columns !== view.signal('legendColumns')) {
+        await view.signal('legendColumns', columns).resize().runAsync();
+    }
+
+    // Save Chart re-renders DE.print.printSpec, whose width was measured once at render
+    // time, so hand it the width and column count the live chart ended with.
+
+    const printColumns = DE.print.printSpec?.params?.find(param => param.name === 'legendColumns');
+
+    if (printColumns) {
+        printColumns.value = columns;
+        DE.print.printSpec.width = Number(document.querySelector('#links svg').getAttribute('width'));
+    }
+
+};
+
+
 // Keeps the shared links pane width aligned with the current overlay width.
 
 const updateCorrelatePaneLayout = () => {
@@ -57,7 +195,23 @@ const scheduleCorrelateViewResize = () => {
             updateCorrelatePaneLayout();
 
             if (window.correlateVegaView && typeof window.correlateVegaView.resize === 'function') {
-                window.correlateVegaView.resize().run();
+
+                // The spec's width was measured once, at render time, and resize() re-runs
+                // layout without re-measuring the DOM. Re-measure here, after the pane is
+                // revealed, so a chart rendered too narrow (seen at the 280px pane floor on
+                // ~4 of ~50 direct loads at 1200px, cause unfound) or a window resize both
+                // end at the holder's width. Under fit-x, view.width() sets the SVG's total.
+
+                const chartWidth = getChartContainerWidth('#links');
+
+                if (chartWidth > 0) {
+                    window.correlateVegaView.width(chartWidth);
+                }
+
+                // The fit measures the rendered SVG, and a Vega run does not update it
+                // synchronously, so it waits for this run to finish.
+
+                window.correlateVegaView.resize().runAsync().then(fitCorrelateLegend);
             }
         });
     });
@@ -358,7 +512,6 @@ const renderCorrelate = (
     // ----- responsive layout constants & unreliability notes ----- //
 
     const bubbleSize = window.innerWidth < 576 ? 100 : 200;
-    const columns = window.innerWidth < 576 ? 3 : 6;
     const height = window.innerWidth < 576 ? 350 : 400;
 
     // Show each distinct note once even if both joined measures repeat it.
@@ -383,6 +536,9 @@ const renderCorrelate = (
     const correlateSpec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
         "description": `Scatterplot correlating ${xIndicatorName} and ${yIndicatorName}`,
+        // Legend column count, as a signal so fitCorrelateLegend can step it down after
+        // measuring; starts at one row (more columns than there are boroughs).
+        "params": [{ "name": "legendColumns", "value": CORRELATE_LEGEND_MAX_COLUMNS }],
         "title": {
             "text": [`${yIndicatorName}`],
             "align": "left",
@@ -430,7 +586,7 @@ const renderCorrelate = (
 
             },
             "legend": {
-                "columns": columns,
+                "columns": { "expr": "legendColumns" },
                 "labelFontSize": 12,
                 "labelFontWeight": "bold",
                 "symbolSize": 140,
@@ -596,6 +752,7 @@ const renderCorrelate = (
 
     }).then((result) => {
         window.correlateVegaView = result.view;
+        fitCorrelateLegend();
         scheduleCorrelateViewResize();
     });
 
