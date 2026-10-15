@@ -22,7 +22,18 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-13: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
+**Status as of 2026-10-15: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
+started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-13 line:
+- #1511 (the in-page AQ/COVID maps, with a re-baseline of both characterization keys) merged to
+  `production` as `93e207e783`, which left #1462 `CONFLICTING`. `production` was merged in at
+  `62a14144a0`; proof under the next action.
+- Chart sizing fixed in `068ed473da`: bar, correlate and disparities drew taller than their fixed
+  holders and covered the caption below, and all four explorer charts were scaled down by a 38px
+  padding counted as chart width. Bar's overflow came from `5603e3daf9` changing its autosize
+  `fit` → `fit-x`; the fresh audit said that commit left it untouched, corrected there. Not
+  fixed: correlate's legend still overflows its own SVG ("Staten Island" clipped), as before.
+
+Previous status line, kept for the record — **Status as of 2026-10-13: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
 started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-06 line:
 - `9ab971fe9c` (the D18 port) was pushed and both PR checks passed on `5a912c6c92`, which
   contains it: Site characterization run 37520604146, Smoke run 37520604122, both success
@@ -76,7 +87,25 @@ git merge-base feature-new-data-explorer production                         # wa
 | 5 | PR into `production` | PR #1462; first checks on `1b5b509cc9`; D10 fix `4f9bcb2c1f` | **In progress** — open; Step 4 DONE 2026-10-02 on `5d5732de13` (characterization green; smoke red only on AirNow's `cooling-info/`, red on `production` too); Step 3 ultra refused (too large), local review ran on `c15317c74b` (39 findings, 15 before merge; see "Review findings") | Per step in "Task 5 record" |
 | 6 | Post-deploy check | | **Not started** | |
 
-**Next action: the merge (Chris), then the internal deploy, then Task 6.** A new commit re-runs
+**Next action: push, re-read both PR checks by head SHA (command below), then the merge (Chris),
+then the internal deploy, then Task 6.** Not checked by those: the new AQ/COVID map script builds
+its map only when its modal opens, which smoke never clicks. Proof for `62a14144a0`:
+- `git merge-tree --write-tree` predicted 14 conflicts, all under
+  `scripts/site-characterization-baseline/`: the 12 data-explorer topic pages and each key's
+  `_meta.json`. Every code and content file merged cleanly and is blob-identical to `production`.
+- Resolved with `git checkout --ours`, as at `6e1c237dd6`: production's side of those pages
+  describes the old explorer at `/data-explorer/`.
+- On the merge's tree (`425f2c1db5`), no re-baseline needed: `node scripts/characterize-env.mjs
+  prod_prod` exit 0, 924/924 pages, EHDP-data `production` @ `7b61f6653b`;
+  `node scripts/characterize-env.mjs dev_stage` exit 0, 924 pages, `staging` @ `ae69a1566b`.
+
+Proof for `068ed473da`: Playwright at 1200x1110 on a `dev-prod` server, each of bar, trend,
+correlate and disparities loaded directly and by tab click: viewBox width = rendered width (334),
+SVG inside the pane, holder bottom = SVG bottom with the caption 5px below. An unchanged re-render
+reproduced the defect first, and each change was tested alone. The retired explorer's `#trend`
+keeps its 38px. `npm run lint` exit 0; curated smoke against `dev-prod`, 44 pages, exit 0.
+
+Earlier next action (2026-10-13): the merge (Chris), then the internal deploy, then Task 6. A new commit re-runs
 both PR checks; re-read them by head SHA (command below). Proof for `6e1c237dd6`:
 - `git merge-tree --write-tree` predicted one conflict, `assets/js/data-explorer/data.js`, and the
   merge hit exactly that one.
