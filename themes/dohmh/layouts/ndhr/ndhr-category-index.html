@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-8 mx-auto">
 
-                    <h1 class="h2">{{ .Title }}</h1>
+                    <h1 class="h2">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
                     <hr class="mb-2 mt-1">
                     <div class="mb-3">{{ .Content }}</div>
 

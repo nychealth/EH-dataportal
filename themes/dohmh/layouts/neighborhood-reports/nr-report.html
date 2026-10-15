@@ -87,7 +87,7 @@
                     report.js used the id solely to unhide the block, which the wrapper does too. */}}
                 <div class="col-12 mb-2" id="nr-mobile-title">
                     <h1 class="h2 nr-report-heading">
-                        {{ .Title }} <span style="font-weight:normal">in</span>
+                        {{ partial "section-icon.html" $.Section }}{{ .Title }} <span style="font-weight:normal">in</span>
                         <span class="h2 text-primary" id="nr-mobile-neighborhood">{{ .Params.neighborhood }}</span>
                     </h1>
                 </div>
@@ -177,7 +177,7 @@
                     */}}
                     <div id="nr-report-header">
                         <div class="d-none d-md-block mb-">
-                            <h1 class="h2 mt-3 nr-report-heading">{{ .Title }} <span style="font-weight:normal">in</span>
+                            <h1 class="h2 mt-3 nr-report-heading">{{ partial "section-icon.html" $.Section }}{{ .Title }} <span style="font-weight:normal">in</span>
                                 <span class="h2 text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
                             </h1>
                         </div>
