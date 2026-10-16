@@ -716,7 +716,7 @@ const renderTable = (tableData) => {
             {
                 extend: 'csvHtml5',
                 name: "thisView",
-                filename: 'NYC EH Data Portal - ' + DE.indicator.indicatorName + " (filtered)"
+                filename: getTableDownloadFileName()
             }
         ],
         bInfo: false,
@@ -880,6 +880,11 @@ const renderTable = (tableData) => {
 // table data download
 // ----------------------------------------------------------------------- //
 
+// Names the table's CSV export; shared by the csvHtml5 button and the download's GA event so the two cannot drift.
+
+const getTableDownloadFileName = () => 'NYC EH Data Portal - ' + DE.indicator.indicatorName + ' (filtered)';
+
+
 // Triggers the table's configured CSV export via the Buttons API, since the CSV button is not present in the table's dom-string chrome.
 
 const downloadTableData = () => {
@@ -889,6 +894,15 @@ const downloadTableData = () => {
     }
 
     $('#tableID').DataTable().button(0).trigger();
+
+    // link_text keeps the old explorer's label for this action, so the series continues across the cutover.
+    // DataTables appends the extension to the button's filename.
+
+    trackDataExplorerFileDownload({
+        fileName: getTableDownloadFileName() + '.csv',
+        fileExtension: '.csv',
+        linkText: 'Current table view'
+    });
 
 };
 

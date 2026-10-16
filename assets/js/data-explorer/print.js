@@ -245,6 +245,31 @@ const bindPrintControls = () => {
         });
     }
 
+    // ----- bind chart-export tracking ----- //
+
+    // Chart previews save through vega-embed's own "Save as SVG/PNG" links, which it rebuilds
+    // inside #printVis on every render, so listen on the container rather than on the links.
+
+    if (printVis) {
+        printVis.addEventListener('click', event => {
+
+            const exportLink = event.target.closest('.vega-actions a[download]');
+
+            if (!exportLink) {
+                return;
+            }
+
+            const fileName = exportLink.getAttribute('download');
+
+            trackDataExplorerFileDownload({
+                fileName,
+                fileExtension: fileName.slice(fileName.lastIndexOf('.')),
+                linkText: exportLink.textContent.trim()
+            });
+
+        });
+    }
+
 };
 
 
