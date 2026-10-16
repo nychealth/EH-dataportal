@@ -1,0 +1,75 @@
+{{/*  Dismissible banner announcing the new Data Explorer.
+
+      Called with (dict "variant" "explorer") above the explorer's map, or (dict "variant" "home")
+      on the home page. Each variant remembers its own dismissal, so closing the home-page notice
+      does not hide the explorer's own.  */}}
+
+{{- $variant := .variant -}}
+{{- $id := printf "de-announcement-%s" $variant -}}
+
+{{/*  Flex row rather than .alert-dismissible: that class pins the close button to the top-right
+      corner, so it only looks centered when its height happens to match the text's.  */}}
+      
+<div id="{{ $id }}" class="alert alert-warning d-flex align-items-center fs-md mb-0 rounded-0" role="region" aria-label="Data Explorer announcement" data-pagefind-ignore="all">
+
+    <p class="mb-0 mr-3">
+
+    {{- if eq $variant "home" }}
+
+        <strong>We've redesigned the Data Explorer.</strong>
+        <a href="{{ relURL "data-explorer/" }}">Take a look</a>, and tell us what you think at
+        <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.
+
+    {{- else }}
+
+        <strong>Welcome to the new Data Explorer.</strong>
+        Questions or feedback? Email <a href="mailto:ehdp@health.nyc.gov">ehdp@health.nyc.gov</a>.
+
+    {{- end }}
+
+    </p>
+
+    {{/*  border-0/bg-transparent: Bootstrap's close.scss is not imported (_b-bootstrap-imports.scss),
+          so without them this renders as a default grey browser button. The X is an SVG, not the
+          &times; character: the system font draws that glyph about 4px below the middle of its line
+          box, so it looked low however the box was aligned. The .close class is only the script's hook.  */}}
+
+    <button type="button" class="close d-flex ml-auto p-1 border-0 bg-transparent text-reset" aria-label="Dismiss announcement">
+
+        {{/*  Same stroke as the explorer's modal close tabs (header-de.html), drawn larger. Endpoints sit
+              half the stroke width inside the viewBox so the round caps aren't clipped.  */}}
+
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1.25 1.25 L11.75 11.75 M11.75 1.25 L1.25 11.75" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+</div>
+
+<script>
+
+    // Removes the banner before first paint if this visitor already dismissed it, and records
+    // the dismissal on close. Wrapped in a function so nothing leaks into the explorer's shared
+    // global scope. Storage can throw (private windows, blocked site data); the banner then just
+    // shows again next visit.
+
+    (() => {
+
+        const banner = document.getElementById("{{ $id }}");
+        const key = "{{ $id }}-dismissed";
+
+        try {
+            if (localStorage.getItem(key)) {
+                banner.remove();
+                return;
+            }
+        } catch (e) {}
+
+        banner.querySelector(".close").addEventListener("click", () => {
+            banner.remove();
+            try { localStorage.setItem(key, "1"); } catch (e) {}
+        });
+
+    })();
+
+</script>
