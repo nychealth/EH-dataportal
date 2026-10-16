@@ -22,7 +22,43 @@ roots lists 14 files, all under data-explorer/]`.
 
 ## Ledger
 
-**Status as of 2026-10-15: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
+**Status as of 2026-10-16: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
+started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-15 line:
+- `f454283370` adds a dismissible banner announcing the new explorer
+  (`themes/dohmh/layouts/partials/de-announcement.html`): above the map on the explorer's section
+  and 41 topic pages, and at the top of the English home page only, since its copy is untranslated.
+  `28c635d944` corrects a comment in it. It links to the new explorer and `ehdp@health.nyc.gov`.
+  A link to `/data-explorer-old/` was dropped because those pages redirect to the new explorer
+  (Chris, 2026-10-16). `static/Web.config` holds no such rule — its data-explorer rules match only
+  `Subtopic.aspx` and `VisualizationData.aspx`, and a local `local_prod` server answers 200 at
+  `/data-explorer-old/` — so where that redirect lives is open.
+  Proof: Playwright against a `local_prod` server at 1366x800 and 390x844 — renders on topic,
+  section and home pages; dismissal persists across reloads and between explorer pages; the close
+  icon's centre is 0px from the banner's; `/es/` and `/zh/` home pages, built from the same template,
+  carry no banner. Curated smoke, 44 pages, exit 0 — on the banner's first draft, before its layout
+  classes changed; the later edits changed markup and classes only.
+- `050e442fc3` re-captures both site-characterization baselines at `28c635d944`. In each key the
+  structure diff against the previous capture is the banner alone: `controls.button` +1 on the home
+  page and the 42 explorer pages, `links.internal` +1 on the home page; both sweeps agreed on every
+  page. `staging` also takes EHDP-data `ae69a1566b`'s rename of five cold indicators in
+  `weather-related-illness/`'s `content.headingText`, which `--check` does not gate on.
+  Before it, `node scripts/characterize-env.mjs dev_stage` also flagged
+  `neighborhood-reports/sunset_park/` and `neighborhood-reports/union_square_lower_east_side/`
+  (Pagefind search box missing) and `tags/` (`overflowX`), unarbitrated because the banner put the
+  run over the 25-page re-check cap. Five sequential loads of each on staging data with the index
+  served matched the old baseline, as did a control page; none is in `050e442fc3`.
+- `node scripts/de-characterization.mjs --check` on `local_prod`: 2380 and 2414 match; 2023 differs
+  on data only (2025 is now its latest year), as D17 records.
+- `12ef7f67a1` keeps the retired explorer's links inside `/data-explorer-old/`. Its breadcrumbs,
+  recently-updated list, data index, indicator catalog, topic chooser and text-search redirect had
+  sent visitors to the new explorer. The chooser accordion and `de-text-search.html` are shared, so
+  they now take their path from the calling page's section. Proof: an isolated `development` build.
+  The 44 old-explorer pages hold 6,232 `data-explorer-old/` links, and their remaining 88
+  `data-explorer/` links are all the header nav item. The 44 new-explorer pages hold none, and the
+  new catalog's search redirect still targets `/data-explorer/`. No smoke run was made, since only
+  link targets changed.
+
+Previous status line, kept for the record — **Status as of 2026-10-15: Tasks 1–4 done; Task 5 in progress. Merge awaits Chris; Task 6 not
 started; D17 blocked on Chris's EHDP-data changes and does not gate.** Since the 2026-10-13 line:
 - #1511 (the in-page AQ/COVID maps, with a re-baseline of both characterization keys) merged to
   `production` as `93e207e783`, which left #1462 `CONFLICTING`. `production` was merged in at

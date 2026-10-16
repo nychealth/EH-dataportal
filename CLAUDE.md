@@ -229,6 +229,10 @@ are printed as a harness-health number and deliberately **not** baselined — th
   12-minute sequential re-capture of all 925 and hit `timeout-minutes: 20` having reported nothing
   `[run 32802721473, 2026-08-25]`. `--baseline` is uncapped — it compares two sweeps of the same
   commit, is run by hand, and is under no timeout.
+  **When your own change is what put `--check` over the cap, the other pages it names are
+  unarbitrated, not confirmed** — the output's "treat every page named as a real difference"
+  assumes one cause for all of them. `--baseline`'s two uncapped sweeps arbitrate them; confirm
+  those pages are absent from the re-baseline's diff before committing it `[2026-10-16]`.
   Most of what looked like instability was one dead field: `img` was counting Leaflet map tiles,
   which measure network timing rather than page structure. Removing it took `--baseline`
   arbitration from 18 pages to 2, and the `prod_prod` capture needed none at all. **Whatever
