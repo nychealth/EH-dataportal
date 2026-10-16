@@ -269,6 +269,7 @@ are printed as a harness-health number and deliberately **not** baselined — th
   `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
   differed from the prod_prod baseline; against production's own capture, 535 had lost the
   search UI, which a re-baseline would have committed as expected]`.
+- **A page that misses `load` in every environment may be its third-party embed, not this site.** `/data-features/displacement-risk/` iframes `equitableexplorer.planning.nyc.gov`, whose own scripts intermittently hang past the 30s `goto` cap, and one such page voids the whole sweep's verdict. Load the embed URL alone before suspecting a change, then re-run `[2026-10-16]`.
 
 ### Neighborhood Reports harnesses
 
@@ -613,12 +614,12 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 
 ## Audit documents
 
-Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, which carries a substantially different data explorer — read them as that branch's record, not as a description of this tree. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
+Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, whose explorer this tree carries since `5cca304284` — read their dated findings as records of their date, not as a description of this tree now. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
 
 - `documents/nr-architecture.md` — **not an audit**: the Neighborhood Reports narrative split out of this file on 2026-09-02, describing current code and carrying a `docs-check` stamp like this one does. Report page rendering, the shared picker partials, routing.
 - `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer, and the active log for findings on this branch (§5f–§5j).
-- `documents/data-explorer-architecture.md` — the other branch's explorer narrative. Not applicable here; carries a banner saying so.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit for that branch.
+- `documents/data-explorer-architecture.md` — the new explorer's narrative; it describes this tree and is opted into `docs-check`.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; superseded by the fresh audit.
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
