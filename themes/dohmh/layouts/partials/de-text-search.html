@@ -117,7 +117,7 @@
         var id = x.IndicatorID
         
         const topics = topicIndicatorsTable.filter((ind) => ind.IndicatorID === x.IndicatorID);
-        window.location.href = {{ relURL "data-explorer/" }} + topics[0].topic + '/?id=' + x.IndicatorID 
+        window.location.href = {{ relURL (printf "%s/" .Section) }} + topics[0].topic + '/?id=' + x.IndicatorID 
     }
     
 </script>

@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb" class="mb-3 mt-2">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href={{ relURL "" }}>Home</a></li>
-                        <li class="breadcrumb-item"><a href={{ relURL "data-explorer" }}>Data Explorer</a></li>
+                        <li class="breadcrumb-item"><a href={{ relURL "data-explorer-old" }}>Data Explorer</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
                     </ul>
                 </nav>
@@ -115,7 +115,7 @@
                 for (let i = 0; i < topics.length; i++) {
                     // console.log(topics[i].topic)
 
-                    var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
+                    var datatopic = `<a class="btn btn-sm btn-outline-primary mb-1 mr-1" href="${baseURL}data-explorer-old/${topics[i].topic}/?id=${x.IndicatorID}">${topics[i].topic_name}</a>`
                     document.getElementById('topicList').innerHTML += datatopic
                 }
             }

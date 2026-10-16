@@ -1,5 +1,11 @@
 {{- $layout := .layout -}}
 
+{{/*  The lists below range over the new explorer's pages even when the retired explorer calls this
+      partial: content/data-explorer-old/ cascades `build: list: never`, which keeps its pages out
+      of every collection. Both explorers have the same topic slugs, so each link is re-pointed at
+      the calling page's section instead — a no-op when that section is data-explorer.  */}}
+{{- $topicPath := printf "/%s/" .context.Section -}}
+
 <style>
     .accordion-group .card {
         background-color: #f2f2f2;
@@ -40,7 +46,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -77,7 +83,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -114,7 +120,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -151,7 +157,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -188,7 +194,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -225,7 +231,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -263,7 +269,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -301,7 +307,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -339,7 +345,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{end}}
                             </ul>
                         </div>
@@ -389,7 +395,7 @@
 
                                     {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
 
-                                        <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                        <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
 
                                     {{ end -}}
 
@@ -441,7 +447,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "airquality")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -478,7 +484,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "childhealth")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -515,7 +521,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "climatehealth")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -552,7 +558,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "foodanddrink")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -589,7 +595,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "inequality")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -626,7 +632,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "healthoutcomes")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -663,7 +669,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "housing")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -701,7 +707,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "pests")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -739,7 +745,7 @@
                         <div class="card-body bg-white">
                             <ul>
                                 {{ range (sort (where ( where $.context.Site.RegularPages "Section" "data-explorer") "Params.categories" "intersect" (slice "publicspace")) "Title" "asc") }}
-                                    <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                    <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
                                 {{ end }}
                             </ul>
                         </div>
@@ -787,7 +793,7 @@
 
                                     {{- if not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) -}}
 
-                                        <li><a href="{{ .RelPermalink}}">{{ .Title }}</a></li>
+                                        <li><a href="{{ replace .RelPermalink "/data-explorer/" $topicPath }}">{{ .Title }}</a></li>
 
                                     {{ end -}}
 
