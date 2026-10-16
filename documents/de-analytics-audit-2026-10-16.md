@@ -16,7 +16,7 @@ that turned on markup (raw-data link, disparities wrapper). Whether the deployed
 
 **Status as of 2026-10-16: passes 1–3 done; finding 1 decided; `option_label` in `aa448afa19`;
 table-download and chart-save tracking in `3d0ae9ba77`; history events off and
-confirmed on both streams.**
+confirmed on both streams; review fixes R1–R13 done ([Review fixes](#review-fixes)).**
 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
@@ -43,9 +43,6 @@ this repo.
   read 2026-10-16).
 
 Every selection that changed the URL in pass 2 also sent its own event
-(`click_tab`, `click_option` `map_*`, `click_indicator`), so no action goes unrecorded. Two URL
-changes have none: the load-time URL normalization, which is not a user action, and back/forward
-inside the explorer, which the old explorer did not track either. Every selection that changed the URL in pass 2 also sent its own event
 (`click_tab`, `click_option` `map_*`, `click_indicator`), so no action goes unrecorded. Two URL
 changes have none: the load-time URL normalization, which is not a user action, and back/forward
 inside the explorer, which the old explorer did not track either.
@@ -76,13 +73,14 @@ inside the explorer, which the old explorer did not track either.
   event carries the full selection after the change. `[verified 2026-10-16, arm B: map_measure
   ?…MeasureID=1197&GeoType=CD&TimePeriodID=298…, map_geo …GeoType=Borough…, map_time
   …TimePeriodID=296…; each moved only the value its control sets]` Holds with the setting off
-  as well (dev stream, below).
+  as well (dev stream, above).
 
 **`option_label` (Chris, 2026-10-16; `aa448afa19`).** The three map-menu `click_option` events also send
 `option_label`, the menu text clicked, for readable reports. IDs and `IndicatorID` were not added:
 `page_location` already carries both. An `option_value` ID parameter was proposed and dropped for
-that reason. GA side: create an event-scoped custom dimension on parameter `option_label`
-(Chris). Code: `trackDataExplorerOption` in `assets/js/data-explorer/global.js` takes optional
+that reason. GA side: an event-scoped custom dimension on parameter `option_label`, which Chris
+created on both properties, dev (`G-PB98MPZ31B`) and production (`G-64BWDRHRGB`), on 2026-10-16;
+admin-side, not observable from the page. Code: `trackDataExplorerOption` in `assets/js/data-explorer/global.js` takes optional
 extra params; `handleSelection` takes the item's `label`.
 `[verified 2026-10-16: npm run lint exit 0; served menu.dd3dbf1d0f529b3c.js contains
 option_label; both arms on the new explorer: map_measure "Number", map_geo "Borough",
@@ -97,7 +95,8 @@ file name comes from `getTableDownloadFileName`, which the `csvHtml5` button's `
 uses. A delegated listener in `bindPrintControls` (`print.js`) sends `file_download` for
 vega-embed's "Save as PNG" / "Save as SVG" links in the chart preview, with vega-embed's own
 link text and file name (`visualization.png` / `.svg`, its default, left unchanged). The old
-explorer never tracked chart saves, so these values are new.
+explorer never tracked chart saves, so these values are new. Both file names changed afterwards,
+in review fixes R1 and R7 below.
 `[verified 2026-10-16: npm run lint exit 0; served table.ac6d67ea7957a86b.js and
 print.206589119e588af8.js carry the new code; real mouse clicks, arm A for all three and arm B
 for the table and PNG: one file_download each, and each file_name equals the browser's saved
@@ -106,6 +105,37 @@ summary closed it; re-run opening it only when closed]`
 
 D19 item 3 in the deploy plan now points at
 [D19 item 3, corrected](#d19-item-3-corrected).
+
+### Review fixes
+
+A `/code-review` of `e479d59c1a..be84615033` (2026-10-16) returned 12 findings. Chris chose a fix
+for each on 2026-10-16; the rejected options are listed so they are not re-proposed.
+
+| R | Finding | Decision (Chris) | Commit | Status | Proof that ran |
+|---|---|---|---|---|---|
+| 1 | `table.js`: GA `file_name` is the raw indicator name; Buttons strips `: + " ' / % >` from the saved file, and the button's name is fixed at render | Button's `filename` gets the function; GA takes the name from `buttons.exportInfo()`. Rejected: copy Buttons' regex; fix the comment only | | **DONE 2026-10-16** | Probe ([below](#review-fix-probe)): before, saved `… Heat stress deaths (filtered).csv` against GA `… Heat stress: deaths (filtered).csv`; after, both `… Heat stress deaths (filtered).csv`. The reload race was not exercised |
+| 2 | Audit, D19 item 3 list: "its file name unchanged" is false (`(filtered table)` → `(filtered)`) | Correct the doc line and narrow the `table.js` comment to `link_text`. Rejected: send the old string | | **DONE 2026-10-16** | Doc and comment only; item 4 of [D19 item 3, corrected](#d19-item-3-corrected) rewritten |
+| 3 | `option_label` dimension recorded on the dev property only | Chris created it on production (`G-64BWDRHRGB`) too; record it | | **DONE 2026-10-16** | Chris's report; admin-side, not observable from the page. Recorded in the `option_label` paragraph above and in D19 |
+| 4 | vega-embed sets the export href in an async `mousedown`, so keyboard Enter or a fast click may save the page while GA counts a save | Browser test first, then a fix. After the test: a `keydown` listener in `bindPrintControls` builds the image with the stored embed's `view.toImageURL`, then clicks the link. Future direction, not scheduled: explorer-owned save buttons replacing vega-embed's export actions, which would also retire R6's dependency. Rejected: skip tracking unready links (keyboard users still get the page); document only | | **DONE 2026-10-16** | Probe: before, keyboard Enter saved the page HTML (123,479 B, `<!DOCTYP`) as `visualization.png` and GA counted it; a Playwright click and a slow-click control (1.5 s between mousedown and mouseup) each saved a 9,026 B PNG, so the fast-click half did not reproduce on this chart. After, keyboard Enter saved the 9,026 B PNG with one `file_download`; both clicks unchanged. PNG only: the SVG keyboard path was not run |
+| 5 | Audit: duplicated paragraph in this Ledger section | Delete the second copy | | **DONE 2026-10-16** | Doc only |
+| 6 | `print.js`: chart-save selector depends on vega-embed's internal DOM | Comment naming the vega-embed version it matches | | **DONE 2026-10-16** | Comment only |
+| 7 | Chart saves all named `visualization.png` / `.svg` | `downloadFileName` from `getViewDownloadFileName` (`global.js`), the `(<view> view)` form `downloadData` uses. Chrome did rewrite characters, so the name goes through the existing `sanitizeFilename` (`print-map.js`), which the map PNG already uses. Rejected after the test: a second helper with Buttons' character set (built, then replaced); moving `sanitizeFilename` to `global.js`; Buttons' set for every download | | **DONE 2026-10-16** | Probe: Chrome wrote `Heat stress: deaths (bar view).png` to disk as `Heat stress_ deaths (bar view).png`, and `a+b "q" 's' 1/2 50% x>y.png` as `a+b _q_ 's' 1_2 50% x_y.png`, with a plain control name unchanged. After, the `download` attribute, the saved name and GA `file_name` all read `NYC EH Data Portal - Heat stress deaths (bar view).png` |
+| 8 | `renderChartPreview` re-embeds without `finalize()`, leaking a document click listener per open | Keep the embed result on `DE.print`; finalize before re-embedding | | **DONE 2026-10-16** | Probe, document `click` listeners via CDP `DOMDebugger.getEventListeners` across three modal opens: before 3 → 4 → 5 → 6, after 3 → 4 → 4 → 4 |
+| 9 | `href="#"` download links with no `preventDefault` | Browser test (URL, `history.length`, `popstate`); if confirmed, `return false;` on all four. Rejected: `<button type="button">` | | **DONE 2026-10-16** | Probe: before, the table and chart-data links each added `#` to the URL, one history entry and one `popstate`; after, none. Also changed `setCorrelateActionState`'s lookup in `correlate.js` from `a[onclick="downloadData()"]` to a prefix match, which the new attribute would otherwise have broken silently: after, prefix matches, the old exact selector does not |
+| 10 | `menu.js` comment states GA's `page_location` behavior with no date | Append `(observed 2026-10-16, documents/de-analytics-audit-2026-10-16.md)` | | **DONE 2026-10-16** | Comment only |
+| 11 | Findings 3 and 5, and D19, describe gaps `3d0ae9ba77` closed, in the present tense | One "Fixed in `3d0ae9ba77`" line under each; findings keep their measured wording. Rejected: rewrite in past tense | | **DONE 2026-10-16** | Doc only |
+| 12 | "(dev stream, below)" points to a bullet above it | "below" → "above" | | **DONE 2026-10-16** | Doc only |
+| 13 | Found while testing R7: `downloadData` (`global.js`) names its CSV from the raw indicator name, and Chrome saved `Heat stress_ deaths (bar view).csv` where GA got `Heat stress: deaths (bar view).csv` | Name it with `getViewDownloadFileName`, as R7 does | | **DONE 2026-10-16** | Probe: after, saved name and GA `file_name` both `… Heat stress deaths (bar view).csv` |
+
+<a id="review-fix-probe"></a>`[verified 2026-10-16: npm run lint exit 0. A temporary Playwright script on an isolated
+dev_stage server (:8090, -d and HUGO_RESOURCEDIR outside the repo), indicator 2074 "Heat stress:
+deaths" on weather-related-illness, bar preview, Google hosts aborted and dataLayer read (arm A),
+run on be84615033 and on the changed tree; the final run served global.c332bc173c1977a5.js,
+table.c0537af9c1aeaea7.js, print.a8bf818bdf036ab3.js, menu.26b899e7aef995bd.js and
+correlate.5c2e4622885d4bba.js; no page errors. Disk names read from a Chrome download directory
+set through CDP Browser.setDownloadBehavior. Curated smoke (node scripts/smoke-pages.mjs with
+DE_BASE_URL at that server) passed 44 of 44 on the final tree, Pagefind absent and allowlisted;
+npm run docs-check exit 0.]` One indicator, one chart view, Chromium on Windows only.
 
 ## Findings
 
@@ -150,6 +180,9 @@ DataTables' stock `csvHtml5` export (`downloadTableData` in `table.js`), which h
 call, and GA4's own download tracking did not record it either. D19 lists "Current table view" as
 a dropped `link_text`, which reads as a relabel; the action itself is now untracked.
 
+Fixed in `3d0ae9ba77`: `downloadTableData` sends `file_download` with `link_text: "Current table
+view"` ([Ledger](#ledger)).
+
 ### 4. "Raw data for this indicator" was already not firing
 
 The `#rawData` link is commented out in the old explorer's template, on this branch and on
@@ -161,7 +194,8 @@ its absence after cutover is not a change. D19 lists it as one.
 - `file_download` with `file_extension: ".png"` and `link_text: "Download PNG"`, from the map save
   dialog. Chart saves (bar, trend, correlate) go through vega-embed's own PNG/SVG menu and send
   nothing: the chart dialog never shows the tracked link (`renderChartPreview` in `print.js`
-  passes `showDownload: false`).
+  passes `showDownload: false`). Fixed in `3d0ae9ba77`: chart saves send `file_download`
+  ([Ledger](#ledger)); review fix R7 later named them by indicator and view.
 - `print_viz` with `chart_type: "bar"`.
 - `file_download` "Download chart data" file names end in `(bar view).csv`, where the old explorer
   wrote `(map view)`, `(trend view)` or `(links view)`.
@@ -197,11 +231,18 @@ What GA readers would need to be told at cutover, on this evidence:
 2. `click_tab`: `map` ends, `bar` begins; re-clicking the open tab is not counted (finding 2).
 3. `click_how_calculated` ends; `click_about` carries `section: how_calculated_and_sources` for the
    combined pane (as D19 says).
-4. `file_download`: "Current table view" continues, its file name unchanged; "Full table for this
-   indicator" ends; map PNG downloads begin (`"Download PNG"`), and so do chart saves
-   (`"Save as PNG"` / `"Save as SVG"`, file name `visualization.png` / `.svg`); chart-data file
-   names say `(bar view)` (findings 3, 5, and the tracking added after them). Drop "Raw data
-   for this indicator" from the list (finding 4).
+4. `file_download`: "Current table view" continues as `link_text`, but its `file_name` changes
+   from `… (filtered table).csv`, a name the old explorer's saved file never carried, to
+   `… (filtered).csv`, the saved file's name; "Full table for this indicator" ends; map PNG
+   downloads begin (`"Download PNG"`), and so do chart saves (`"Save as PNG"` / `"Save as SVG"`,
+   file name `NYC EH Data Portal - <indicator> (<view> view).png` / `.svg`); chart-data file names
+   say `(bar view)`. File names now drop the characters the saved file drops, so GA's name matches
+   the saved one (measured on indicator 2074, "Heat stress: deaths"): the table CSV drops
+   `: + " ' / % >` among others (DataTables Buttons' filter), and chart and chart-data names drop
+   `< > : " / \ | ? *` (`sanitizeFilename`). On EHDP-data `staging` on 2026-10-16, 29 of 286
+   indicator names held a character the table CSV drops (findings 3, 5, the tracking added after
+   them, and review fixes R1, R2, R7, R13). Drop "Raw data for this indicator" from the list
+   (finding 4).
 5. `print_viz` gains `bar`; `click_option` gains `table_sync`, and its three map-menu events gain
    `option_label`; `click_indicator`'s `IndicatorID` becomes numeric (findings 5, 6).
 
