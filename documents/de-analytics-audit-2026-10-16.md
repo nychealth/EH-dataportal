@@ -15,8 +15,9 @@ that turned on markup (raw-data link, disparities wrapper). Whether the deployed
 ## Ledger
 
 **Status as of 2026-10-16: passes 1–3 done; finding 1 decided; `option_label` in `aa448afa19`;
-history events off and confirmed on the dev stream; on production, Chris turned the setting off,
-and the served config still read `true` at 15:48 UTC.**
+table-download and chart-save tracking in `3d0ae9ba77`; history events off and
+confirmed on the dev stream; on production, Chris turned the setting off, and the served config
+still read `true` at 16:19 UTC, 15 checks over 30 minutes after the change.**
 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
@@ -70,6 +71,21 @@ extra params; `handleSelection` takes the item's `label`.
 option_label; both arms on the new explorer: map_measure "Number", map_geo "Borough",
 map_time "2022" — the same selection the map PNG's filename names — and the other six
 click_option events unchanged, with no option_label]`
+
+**Table downloads and chart saves now tracked (Chris, 2026-10-16; `3d0ae9ba77`).** Findings 3
+and 5.
+`downloadTableData` in `table.js` sends `file_download` with `link_text: "Current table view"`,
+the old explorer's label for the same action, so that series continues across the cutover; its
+file name comes from `getTableDownloadFileName`, which the `csvHtml5` button's `filename` also
+uses. A delegated listener in `bindPrintControls` (`print.js`) sends `file_download` for
+vega-embed's "Save as PNG" / "Save as SVG" links in the chart preview, with vega-embed's own
+link text and file name (`visualization.png` / `.svg`, its default, left unchanged). The old
+explorer never tracked chart saves, so these values are new.
+`[verified 2026-10-16: npm run lint exit 0; served table.ac6d67ea7957a86b.js and
+print.206589119e588af8.js carry the new code; real mouse clicks, arm A for all three and arm B
+for the table and PNG: one file_download each, and each file_name equals the browser's saved
+filename. The first SVG attempt read NOT FOUND because the probe's second click on the menu's
+summary closed it; re-run opening it only when closed]`
 
 D19 item 3 in the deploy plan now points at
 [D19 item 3, corrected](#d19-item-3-corrected).
@@ -164,8 +180,10 @@ What GA readers would need to be told at cutover, on this evidence:
 2. `click_tab`: `map` ends, `bar` begins; re-clicking the open tab is not counted (finding 2).
 3. `click_how_calculated` ends; `click_about` carries `section: how_calculated_and_sources` for the
    combined pane (as D19 says).
-4. `file_download`: table downloads are no longer tracked; "Full table for this indicator" ends;
-   map PNG downloads begin; chart-data file names say `(bar view)` (findings 3, 5). Drop "Raw data
+4. `file_download`: "Current table view" continues, its file name unchanged; "Full table for this
+   indicator" ends; map PNG downloads begin (`"Download PNG"`), and so do chart saves
+   (`"Save as PNG"` / `"Save as SVG"`, file name `visualization.png` / `.svg`); chart-data file
+   names say `(bar view)` (findings 3, 5, and the tracking added after them). Drop "Raw data
    for this indicator" from the list (finding 4).
 5. `print_viz` gains `bar`; `click_option` gains `table_sync`, and its three map-menu events gain
    `option_label`; `click_indicator`'s `IndicatorID` becomes numeric (findings 5, 6).
