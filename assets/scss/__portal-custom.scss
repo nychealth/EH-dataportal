@@ -33,15 +33,6 @@
     overflow-y: auto;
 }
 
-#subscribeModal .subscribe-modal-dialog {
-    max-width: 680px;
-}
-
-#subscribeModal .subscribe-modal-body {
-    height: 60vh;
-    max-height: 34rem;
-}
-
 #searchModal .pagefind-ui__filter-block {
     position: sticky;
     top: 0;
@@ -59,11 +50,28 @@
     font-size: 1.0rem;
 }
 
-
 // checked filter name
 
 #searchModal .pagefind-ui__filter-value--checked .pagefind-ui__filter-label {
     font-weight: bolder !important;
+}
+
+// ==== subscribe modal styles ==== //
+
+#subscribeModal .subscribe-modal-dialog {
+    max-width: 680px;
+}
+
+#subscribeModal .subscribe-modal-body {
+    height: 60vh;
+    max-height: 34rem;
+}
+
+// subscribe button styles
+
+.subscribe-button {
+    // border: 1px solid #ffffff !important;
+    background-color: #ffffff80;
 }
 
 

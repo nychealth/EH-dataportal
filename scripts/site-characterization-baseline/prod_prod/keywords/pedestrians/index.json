@@ -22,10 +22,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -87,8 +87,8 @@
             "More content about Pedestrians:",
             "Air quality in car-free areas",
             "What our air quality monitors tell us about NYC's neighborhoods",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

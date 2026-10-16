@@ -4,6 +4,13 @@ date: 2021-05-28 18:02:58.870213
 draft: true
 seo_title: "NYC pesticide use data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags: 
 categories: ["pests"]
 keywords: ["pesticides","pests"]

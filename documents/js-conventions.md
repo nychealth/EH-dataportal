@@ -300,8 +300,9 @@ its distinct phases.
   `themes/dohmh/layouts/**/*.html`. Write new code to the convention — the script
   is for the moment old code arrives, which is the merge of a long-lived branch.
   It is idempotent, so a re-run only touches what the merge brought in. Read its
-  docstring first: it is regex heuristics, not a JS parser, and it names the check
-  you have to run against its own diff.
+  docstring first: it is regex heuristics, not a JS parser, and it names the checks
+  you have to run against its own diff, `scripts/js-comment-spacing-verify.mjs`
+  among them.
 
 - Blank line after the opening `{` of any block longer than ~3 lines.
 - Blank line before the closing `}`.

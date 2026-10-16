@@ -21,10 +21,10 @@
         "headingLevels": [
             1,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -85,8 +85,8 @@
         "headingText": [
             "More content about Technology:",
             "Why we're working with you to redesign the data portal",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

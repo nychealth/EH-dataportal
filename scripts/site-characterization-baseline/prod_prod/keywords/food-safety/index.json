@@ -22,10 +22,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -87,8 +87,8 @@
             "More content about Food Safety:",
             "Tracking food poisoning outbreaks in NYC restaurants—what makes us sick and why",
             "NYC is working to protect your health — but we can’t do it alone",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

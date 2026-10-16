@@ -26,10 +26,10 @@
             3,
             3,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -95,8 +95,8 @@
             "Active Design Guidelines 2.0",
             "Beach Water Quality",
             "Air Quality Impacts of Congestion Relief Zone Tolling",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

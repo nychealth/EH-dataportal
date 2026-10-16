@@ -34,8 +34,8 @@
             3,
             3,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -120,8 +120,8 @@
             "Heat-exacerbated deaths",
             "Community-level impacts",
             "Conclusions",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

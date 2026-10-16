@@ -24,10 +24,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -91,8 +91,8 @@
             "Staying safe in cold weather",
             "Environments matter: the road to street safety in NYC",
             "Disparities in violence",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

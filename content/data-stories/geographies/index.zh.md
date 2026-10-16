@@ -1,6 +1,7 @@
 ---
 title: "环境与健康数据门户上的社区边界"
 date: 2020-08-01T08:33:22-04:00
+vega: true
 draft: true
 vega: true
 seo_title: "将健康数据映射到纽约市的社区"

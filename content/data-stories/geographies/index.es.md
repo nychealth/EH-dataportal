@@ -1,6 +1,7 @@
 ---
 title: "Los límites del vecindario en los datos del Departamento de Salud"
 date: 2020-08-01T08:33:22-04:00
+vega: true
 draft: true
 vega: true
 seo_title: "Los límites del vecindario en los datos del Departamento de Salud"

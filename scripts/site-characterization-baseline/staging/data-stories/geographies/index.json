@@ -37,10 +37,10 @@
             4,
             4,
             5,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 4,
+        "headingJumps": 3,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -119,8 +119,8 @@
             "You might also be interested in:",
             "More related to:",
             "Take action",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

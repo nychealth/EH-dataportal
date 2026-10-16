@@ -21,10 +21,10 @@
         "headingLevels": [
             1,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -85,8 +85,8 @@
         "headingText": [
             "More content about Traffic Air Pollution:",
             "The public health impacts of PM2.5 from traffic air pollution",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
