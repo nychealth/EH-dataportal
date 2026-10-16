@@ -3,11 +3,14 @@
 //
 // Both are directories of classic <script> tags sharing one runtime global scope,
 // but ESLint scopes each file separately. So a name declared in map.js and called
-// in trend.js would be a false `no-undef` unless ESLint is told the two share
+// in bar.js would be a false `no-undef` unless ESLint is told the two share
 // globals. We derive that shared surface at config-load time by scanning the files'
 // own top-level declarations, rather than hand-maintaining a large name list that
 // would go stale (a stale list produces false errors, which trains people to ignore
 // the linter).
+//
+// data-explorer-old/ is deliberately NOT linted — it's retired ("do not
+// modify"), so findings there are unactionable noise.
 
 import globals from "globals";
 import { readdirSync, readFileSync } from "node:fs";
@@ -16,19 +19,12 @@ import { join } from "node:path";
 const DE_DIR = "assets/js/data-explorer";
 const NR_DIR = "assets/js/nr-report";
 
-// Names head.html, the loaded libraries, and the page templates inject into the
-// global scope. These aren't declared in the DE files, so the scan below won't
-// find them.
+// Names head.html and the loaded libraries inject into the global scope.
+// These aren't declared in the DE files, so the scan below won't find them.
 const DE_EXTERNAL_GLOBALS = [
     "$", "jQuery", "L", "aq", "op", "topojson", "vegaEmbed", "vega", "vegaLite", "d3",
     "DOMPurify", "chroma", "qrcode",
-    "hugoEnv", "baseURL", "data_repo", "data_branch", "gtag",
-
-    // Declared in inline <script> blocks in data-explorer/single.html, which
-    // Hugo has to render there (they read template markup), and called from
-    // data.js. Classic scripts share one top-level lexical scope, so this works
-    // at runtime — but the declarations live in a .html file the scan can't see.
-    "renderIndicatorDropdown", "renderIndicatorButtons", "createCitation"
+    "hugoEnv", "baseURL", "data_repo", "data_branch", "debugLog", "gtag"
 ];
 
 // The NR equivalent. Each is annotated with its source so a dead entry is

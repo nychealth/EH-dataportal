@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <h1><i class="fas fa-chart-line" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+        <h1>{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
         {{- .Content -}}
 
         {{- partial "de-topic-indicators.html" . -}}
@@ -32,7 +32,7 @@
                             <th class="tablehead">Measurements</th>
                             <th class="tablehead">Geographies</th>
                             <th class="tablehead">Most recent data</th>
-                            <th class="tablehead">Data Source</th>
+                            <th class="tablehead">Data Sources</th>
 
                         </tr>
                     </thead>
@@ -221,7 +221,7 @@
                     // geographies
 
                     const geos_order = [
-                        "Citywide", 
+                        "Citywide",
                         "Borough",
                         "NYCKIDS2017",
                         "NYCKIDS2019",

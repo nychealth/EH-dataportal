@@ -20,7 +20,7 @@ wants a sentence. What they *announce* is now the same: the screen pill carries 
 wherever the reader meets the comparison (a11y audit F5/C3). The sentence is the same function the
 expanded panel uses, deliberately: a reader who opens a row on screen and then prints it would
 otherwise get the same fact in two vocabularies. It
-carries a `.comp-*` class — `assets/js/nr-report/tertiles.js` sets it, `assets/scss/_custom.scss`
+carries a `.comp-*` class — `assets/js/nr-report/tertiles.js` sets it, `assets/scss/_de-custom.scss`
 styles it, and all three classes are bold so the comparison word stands out of its sentence. That
 bold is invisible in the print row unless the column also carries `font-weight-normal`, because the
 accordion button is weight 700 and the column inherits it. Colour and glyph are then split by rank.
@@ -73,7 +73,7 @@ counted into `totalFetches`, so a card can never render before the map is in.
 ## Comparison vocabulary styling
 
 **The comparison vocabulary is styled in two files, and which one depends on the rendition.** The
-sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_custom.scss`; the
+sentence's `.comp-good` / `.comp-bad` / `.comp-null` live in `assets/scss/_de-custom.scss`; the
 collapsed row's `.worse` / `.middle` / `.better` pills live in `assets/scss/theme.scss`. Editing one
 set does not touch the other. The pills carried good-vs-bad in `background-color` alone until C3 —
 both read the same two words, so a reader with a colour vision deficiency saw no difference (WCAG
@@ -93,7 +93,7 @@ markup one alone does nothing, since the search needs the JS one beside it:
 
 - `themes/dohmh/layouts/partials/nr-neighborhood-picker.html` — a `Choose Neighborhood` heading, a
   visible `<label>`, the search box, then the map in a `.nr-selector-map` wrapper (height in
-  `assets/scss/_custom.scss`,
+  `assets/scss/_de-custom.scss`,
   since `nr-leaflet`'s `#map` is 100%/100% and has no intrinsic size). Takes `page` and nothing else
   — the search field is the plain `.form-control`, 42px on both pages, since the landing page's 64px
   override was dropped rather than kept as a parameter. The heading is in here, not in the callers,

@@ -54,8 +54,8 @@
             2,
             1,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -146,8 +146,8 @@
             "Adults reporting having ridden a bicycle at least once a month in the past year.",
             "Recent exercise",
             "Adults reporting exercise in the past 30 days (from when they were surveyed). Regular exercise is a key way to stay healthy.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

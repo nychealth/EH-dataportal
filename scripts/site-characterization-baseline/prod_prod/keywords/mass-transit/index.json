@@ -22,10 +22,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -87,8 +87,8 @@
             "More content about Mass Transit:",
             "Initial data from Congestion Relief Tolling",
             "Public transit creates health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

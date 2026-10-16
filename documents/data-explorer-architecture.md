@@ -1,15 +1,7 @@
-# Data Explorer — Interaction & Data Flow
+<!-- docs-check source-roots: assets/js/data-explorer themes/dohmh/layouts -->
+<!-- docs-check verified: a4e93582f0 2026-07-30 -->
 
-> **Describes the SPA on `feature-new-data-explorer`, not this branch.**
-> This branch carries the older 10-file explorer (`global → data → measures →
-> table → map → links → disparities → trend → app → print`); the pipeline below
-> — `DE.*` state namespace, `menu.js`, `bar.js`, `correlate.js`,
-> `loadAndRenderIndicator()`, `window.mapInterop` — exists only on that branch.
-> Kept here as the reference for that work, and as the target state if the two
-> lines converge. It is deliberately **not** opted into `npm run docs-check`
-> (last verified there at `a5bba916ca`, 2026-07-27): the checker resolves paths
-> and identifiers against the *checked-out* tree, so opting in here would fail on
-> names that are correct for the branch this document actually describes.
+# Data Explorer — Interaction & Data Flow
 
 How the Data Explorer SPA *sequences* — the load pipeline, what each interaction
 triggers, how state and the URL stay in step, and where the ordering constraints
@@ -177,7 +169,68 @@ with `null` meaning "clear the linked highlight".
 
 ---
 
-## 6. Ordering constraints
+## 6. Map render modes
+
+`renderMap(data, metadata)` dispatches to one of three renderers, and the order
+of its tests matters:
+
+1. **No map for this measure** → `renderUnmappedCitywide`. Taken when `metadata`
+   is empty *or* its measure carries `MapUnavailable`. This is tested **first**,
+   before any measure field is read, because both `metadata[0].AvailableGeoTypes`
+   and `metadata[0].MeasurementType` are dereferenced below it and either will
+   throw on a measure the catalog holds no map for.
+2. **Number/Total measure** → `renderBubbleMap` (gray base polygons, circle
+   markers sized and coloured by value).
+3. **Everything else** → `renderChoroplethMap`.
+
+**Mode 1 is a statement, not a failure.** A null `GeoType` inside
+`VisOptions[0].Map` is the catalog's encoding for "this vis type is unavailable
+for this measure", while the same measure's `Table` and `Trend` views hold real
+data at real geographies. `withCitywideMapFallback` (global.js) marks those
+measures with `MapUnavailable` and substitutes the `Table` VisOption's `Citywide`
+entry. The result is a flat gray citywide polygon, no legend, no Save map
+control, and — once per indicator load — a message popup plus a highlight on
+`#v-pills-tab` pointing at the views that do have data. Both halves of that hint
+share the one-shot `DE.map.unmappedHintPending`, so they appear and vanish
+together; a later re-render leaves the gray polygon speaking for itself.
+
+**The substituted entry is not inert.** `renderUnmappedCitywide` reads no
+`GeoType` from it — it draws citywide geometry unconditionally — but the entry
+still flows through `expandMeasureTimesGeos` into `DE.lookups.aqMapTimesGeos`,
+which is what `measures.js` tests to decide whether a measure enters
+`DE.lookups.mapMeasures`. So it populates the Boundary and Time dropdowns *and*
+leaves `mapMeasures` non-empty, which **enables the Bar tab** where the
+unpopulated `Map` array had left it disabled; the Bar chart then plots the single
+citywide row. Intended — the popup sends users to the other views — but a real
+behaviour change, so don't describe it as a menus-only substitution.
+
+Measures with no `Citywide` row in `Table` get no substitution, never reach
+`mapMeasures`, and keep a disabled Bar tab. `showBar` guards for them anyway,
+because `renderCurrentView` dispatches on `DE.state.overlay` whether or not the
+tab is disabled — a disabled tab blocks the click, not a carried-over or
+URL-supplied `overlay=bar`.
+
+**It is a different state from citywide-only data**, which is mode 3 with
+`isCitywideOnly` set: there the catalog has a citywide *value*, so the polygon is
+coloured, the popup shows the number, and `switchToTrendTabOnce` moves the user
+to Trends. Mode 1 has no value to show and deliberately does not move them.
+
+**Every mode resolves through one resolver.** `getIndicatorById` (global.js) is
+the only place an indicator is looked up in the cached catalog, because the
+normalisation above has to reach all of its callers — `data.js` on load,
+`menu.js` on *every dropdown change*, and `app.js` on `popstate`. It returns new
+objects for affected indicators and the original object otherwise, so the cached
+catalog is never mutated.
+
+Two things `resetMapForRender()` restores, both because only mode 1 changes them:
+the legend overlay and the Save map control. It also calls
+`currentMap.closePopup()` — a popup opened with `L.popup().openOn(map)` belongs
+to no layer, so removing the geometry does not take it down, and without this the
+outgoing render's message stayed open on top of the incoming one.
+
+---
+
+## 7. Ordering constraints
 
 These are the failure modes that are invisible in the source and expensive to
 rediscover. `CLAUDE.md` carries the full list; the ones that shape the flows

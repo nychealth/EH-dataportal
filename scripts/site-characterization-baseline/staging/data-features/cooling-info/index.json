@@ -24,10 +24,10 @@
             1,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -89,8 +89,8 @@
             "Stay safe from heat and air pollution",
             "Let's take a look at your situation.",
             "More hot weather resources",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

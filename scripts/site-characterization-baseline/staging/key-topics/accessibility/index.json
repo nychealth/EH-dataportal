@@ -24,8 +24,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -91,8 +91,8 @@
             "Your heat story",
             "Proximity indicators",
             "Flood Vulnerability Index",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

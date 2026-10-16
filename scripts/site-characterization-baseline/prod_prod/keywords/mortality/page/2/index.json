@@ -25,10 +25,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -93,8 +93,8 @@
             "Mortality",
             "Weather-related illness",
             "Protecting New Yorkers from extreme heat",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

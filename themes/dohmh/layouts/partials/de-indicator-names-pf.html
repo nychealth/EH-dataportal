@@ -1,0 +1,64 @@
+
+
+{{- /* ====  save indicator names as a resource  ==== */}}
+
+{{- /* ----  get metadata.json from data repo, and transform into a Hugo object  ---- */}}
+
+{{- $metadata_json_resource := (resources.GetRemote (print site.Params.data_repo site.Params.data_branch "/indicators/metadata/metadata.json")) | transform.Unmarshal -}}
+
+{{- /* ----  get names from metadata.json, using scratch  ---- */}}
+
+{{- $metadata_scratch := newScratch -}}
+{{- $metadata_map := dict -}}
+
+{{- range $metadata_json_resource -}}
+    {{- $metadata_scratch.SetInMap "details" (string .IndicatorID) (dict "IndicatorID" .IndicatorID "name" .IndicatorName "description" .IndicatorDescription) -}}
+{{- end -}}
+
+{{ $indicator_names := $metadata_scratch.Get "details" }}
+{{/*  {{- warnf (print "@@@@ indicator_names: " $indicator_names ) -}}  */}}
+
+{{- /* ----  save resource  ---- */}}
+
+{{- $indicator_names_json := $indicator_names | jsonify (dict "indent" "  ") | resources.FromString "/IndicatorMetadata/indicator_names.json" -}}
+
+{{- $indicator_names_json.Publish -}}
+
+
+{{/* ====  add indicator names and descriptions in page code for pagefind to index  ==== */}}
+
+
+{{- $indicators := slice -}}
+
+{{- if ( and ( eq .Kind "page" ) ( strings.Contains .RelPermalink "/data-explorer" ) ( not ( or ( strings.Contains .RelPermalink "data-index" ) ( strings.Contains .RelPermalink "indicator-catalog" ) ) ) ) -}}
+
+    {{ $permalink := .Page.RelPermalink }}
+
+    {{/*  {{ warnf (print (println "\\") (println "#---------------") (println "# " $permalink) (println "#---------------")) }}  */}}
+
+    {{- range .Params.Indicators }}
+
+        {{- $indicators = $indicators | append .IndicatorID -}}
+
+    {{ end }}
+
+    {{ range $index, $id := $indicators }}
+
+        {{ $indicator := (index $indicator_names (string $id)) }}
+
+        {{- /*  this gets an id because we want sub results with links  */}}
+
+        <h1
+            id="IndicatorID-{{ $id }}"
+            class="d-none">
+            {{- $indicator.name -}}
+        </h1>
+        <h2
+            class="d-none">
+            {{- $indicator.description -}}
+        </h2>
+
+
+    {{ end }}
+
+{{- end -}}

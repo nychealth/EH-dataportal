@@ -6,6 +6,7 @@
         "assets": [
             "cdn.rawgit.com",
             "cdnjs.cloudflare.com",
+            "css/nyc-basic-lib-v1.2.79.css",
             "d3js.org",
             "js/main.js",
             "js/site.js",
@@ -28,8 +29,8 @@
             2,
             2,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -95,8 +96,8 @@
             "Next, get your elected officials' contact info:",
             "Then, write them an email.",
             "Email tips",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

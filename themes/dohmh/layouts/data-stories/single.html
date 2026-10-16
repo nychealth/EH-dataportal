@@ -8,6 +8,11 @@
     {{- partial "lib-d3.html" . }}
 {{- end }}
 
+{{- /*  Stories that draw a Leaflet map directly in the page set `leaflet: true`.  */}}
+{{- if .Params.leaflet }}
+    {{- partial "lib-leaflet.html" . }}
+{{- end }}
+
 {{- /*  A few data-stories pages embed Datawrapper charts inside non-active Bootstrap
       tabs (housing, redlining, air-quality-snapshots, vectorborne-diseases-and-health).
       Those charts render once, immediately, while their pane is display:none, which
@@ -62,7 +67,7 @@
                 </div>
                 {{- end -}}
 
-            <h1 class="h2 data-stories mb-3"><i class="fas fa-passport" aria-hidden="true" style="margin-right: 10px"></i>{{ .Title }}</h1>
+            <h1 class="h2 mb-3">{{ partial "section-icon.html" $.Section }}{{ .Title }}</h1>
             <div class="container-fluid px-0">
 
                 {{ $src := .Resources.GetMatch .Params.image }}
@@ -72,6 +77,14 @@
                 {{ end }}
             </div>
             {{- .Content -}}
+
+            {{- /*  Page-specific scripts, listed in front matter as paths under assets/
+                  (e.g. `js: ["js/data-stories/x.js"]`). Loaded after .Content so the
+                  markup they wire up already exists.  */}}
+            {{- range .Params.js }}
+                {{- $pageJS := resources.Get . | partial "short-fingerprint.html" }}
+                <script src="{{ $pageJS.RelPermalink }}" integrity="{{ $pageJS.Data.Integrity }}"></script>
+            {{- end }}
         </div>
 
             <footer class="narrow my-4" id="article-footer">

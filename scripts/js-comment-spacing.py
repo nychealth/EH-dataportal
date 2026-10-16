@@ -20,6 +20,17 @@ tree and prove the diff is empty-line insertions and nothing else:
 
     git diff -U0 | grep -E '^\\+' | grep -v '^+++' | grep -c '[^+[:space:]]'   # must be 0
     git diff -U0 | grep -E '^-'   | grep -v '^---' | wc -l                     # must be 0
+    node scripts/js-comment-spacing-verify.mjs                                  # must exit 0
+
+The first two cannot see a blank line inserted inside a template literal, which
+changes the string while still being an empty-line insertion; the third compares
+each changed .js file's token stream against HEAD and can. It does not cover the
+<script> bodies of .html targets, whose Go-template syntax a JS tokenizer cannot
+read — review those insertions by eye.
+
+Targets come from `git ls-files`, not a directory walk: the checks above read
+`git diff`, which cannot show an edit to an untracked file, so a walk would rewrite
+untracked .js in a working tree with nothing to reveal it.
 
 Two things it does NOT touch, both cases where the comment introduces nothing:
 a comment above an object-literal property (Vega and Leaflet specs annotate
@@ -31,7 +42,7 @@ its own continuation.
 First run: 775 insertions across 69 files, on hotfix-comment-spacing.
 """
 
-import os, re, sys
+import re, subprocess, sys
 
 COMMENT      = re.compile(r'^\s*//')
 # `const fn = (` / `= function` / `= {` / `= [` — a binding that opens a block, which
@@ -150,11 +161,11 @@ if __name__ == '__main__':
 
     targets = []
 
+    # Tracked files only — see "Targets come from `git ls-files`" in the docstring
     for root, exts in TARGET_ROOTS:
-        for dp, _, fns in os.walk(root):
-            for fn in fns:
-                if fn.endswith(exts):
-                    targets.append(os.path.join(dp, fn).replace("\\", "/"))
+        listed = subprocess.run(["git", "ls-files", "-z", "--", root],
+                                capture_output=True, check=True).stdout.decode("utf-8")
+        targets += [p for p in listed.split("\0") if p.endswith(exts)]
 
     targets = [t for t in targets if t not in VENDORED]
 

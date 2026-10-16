@@ -5,6 +5,13 @@ draft: true
 seo_title: "Citywide air quality data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of citywide air quality data in NYC."
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags: 
 categories: ["airquality","publicspace"]
 keywords: ["air quality","pollution","exhaust","emissions","breathing","lungs","public health"]

@@ -6,8 +6,16 @@ azlink: "https://www.nyc.gov/site/doh/health/neighborhood-health/community-suppo
 seo_title: "Social conditions data for NYC"
 seo_description: "Explore data, visualizations, and more on ways that environments shape health in New York City's neighborhoods."
 description: "Datasets and visualizations of social conditions in NYC."
+blurb: "race/ethnicity, education, living alone"
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 tags:
-categories: ["inequality", "housing","injuryandviolence"]
+categories: ["inequality", "housing", "injuryandviolence"]
 keywords:
   [
     "social",

@@ -202,7 +202,7 @@ function printTable(data, destination, year, noDataProvided) {
             </div>
 
                 <h1 class="h2" data-pagefind-weight="10.0">
-                    {{ .Title }} in {{ .Params.reportingYear }}
+                    {{ partial "section-icon.html" $.Section }}{{ .Title }} in {{ .Params.reportingYear }}
                 </h1>
 
                 {{- .Content  -}}

@@ -5,6 +5,13 @@ draft: true
 tags: 
 categories: ["inequality"]
 keywords: ["social justice","social determinants","disparities","injustice","justice","inequity"]
+datatables: true
+arquero: true
+leaflet: true
+vega: true
+newDataExplorer: true
+headerDE: true
+excludeFooter: true
 indicators:
 - header: null
   IndicatorID:

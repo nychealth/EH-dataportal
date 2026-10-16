@@ -23,7 +23,7 @@ In this file:
 @import "g-dev-tools.scss";
 @import "h-nyc-subway-icons.scss";
 @import "__portal-custom.scss";
-@import "custom.scss";
+@import "de-custom.scss";
 
 ////////////////////////////////////////
 // B. Theme styles
@@ -665,7 +665,7 @@ h2.report-info {
 // all (WCAG 1.4.1). The glyph is the non-colour cue — square-check against
 // triangle-exclamation, which differ in shape and not only in hue. Same Font Awesome 6
 // codepoints .comp-good / .comp-bad already use in the expanded panel
-// (assets/scss/_custom.scss), so the report makes the comparison the same way in both places.
+// (assets/scss/_de-custom.scss), so the report makes the comparison the same way in both places.
 // The print row carries the pill classes, not .comp-*, so it is covered by this rule and not
 // that one. Font Awesome is loaded site-wide from head.html as a CSS webfont, so no per-page
 // resource is involved.
@@ -840,6 +840,17 @@ span.th-sub {
 
 // Section styles
 
+// Section-page header (partials/section-header.html). The one place to move
+// the breadcrumb and H1 on every section page at once.
+.section-header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    .breadcrumb {
+        margin-bottom: 2rem;
+    }
+}
+
 .ds-accent {
     svg path {
         fill: $color-data-stories;
@@ -851,6 +862,8 @@ span.th-sub {
 }
 
 .kt-accent {
+    color: $primary;
+
     svg path {
         fill: $primary;
     }
@@ -861,6 +874,8 @@ span.th-sub {
 }
 
 .df-accent {
+    color: $color-data-features;
+
     svg path {
         fill: $color-data-features;
     }

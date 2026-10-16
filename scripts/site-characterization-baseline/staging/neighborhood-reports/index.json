@@ -30,8 +30,8 @@
             2,
             2,
             5,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -96,8 +96,8 @@
             "Choose report",
             "Choose Neighborhood",
             "Get data for Community Districts or City Council District",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
@@ -118,7 +118,6 @@
             "/key-topics/injury-and-violence/",
             "/key-topics/pests/",
             "/key-topics/public-space/",
-            "/neighborhood-reports",
             "/neighborhood-reports/",
             "/neighborhood-reports/bayside_little_neck/active_design_physical_activity_and_health/",
             "/neighborhood-reports/bedford_stuyvesant_crown_heights/active_design_physical_activity_and_health/",

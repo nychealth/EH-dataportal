@@ -28,8 +28,8 @@
             2,
             2,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -96,8 +96,8 @@
             "Climate and Health",
             "Housing and Health",
             "Outdoor Air and Health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
