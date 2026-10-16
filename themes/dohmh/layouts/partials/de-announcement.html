@@ -9,7 +9,7 @@
 
 {{/*  Flex row rather than .alert-dismissible: that class pins the close button to the top-right
       corner, so it only looks centered when its height happens to match the text's.  */}}
-      
+
 <div id="{{ $id }}" class="alert alert-warning d-flex align-items-center fs-md mb-0 rounded-0" role="region" aria-label="Data Explorer announcement" data-pagefind-ignore="all">
 
     <p class="mb-0 mr-3">
@@ -36,8 +36,8 @@
 
     <button type="button" class="close d-flex ml-auto p-1 border-0 bg-transparent text-reset" aria-label="Dismiss announcement">
 
-        {{/*  Same stroke as the explorer's modal close tabs (header-de.html), drawn larger. Endpoints sit
-              half the stroke width inside the viewBox so the round caps aren't clipped.  */}}
+        {{/*  Same stroke as the explorer's modal close tabs (header-de.html). Endpoints sit half the
+              stroke width inside the viewBox so the round caps aren't clipped.  */}}
 
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true" focusable="false">
             <path d="M1.25 1.25 L11.75 11.75 M11.75 1.25 L1.25 11.75" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
