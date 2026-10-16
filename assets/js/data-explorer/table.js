@@ -510,7 +510,10 @@ const renderTableFilterControls = (rows) => {
     const syncButton = document.getElementById('tableFilterSyncButton');
 
     if (syncButton) {
-        syncButton.onclick = () => {
+        syncButton.onclick = (event) => {
+            // The link's href="#" would otherwise add "#" to the URL, a history entry and a popstate.
+            event.preventDefault();
+
             // Force both dimensions back into map-following mode in one click.
 
             syncTableFiltersToMapSelection(true);
