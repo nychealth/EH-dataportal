@@ -868,15 +868,15 @@ const trackDataExplorerEvent = (eventName, eventParams = null) => {
 };
 
 
-// Fires a 'click_option' GA event for the given option name; no-op if option is falsy.
+// Fires a 'click_option' GA event for the given option name, plus any extra params; no-op if option is falsy.
 
-const trackDataExplorerOption = (option) => {
+const trackDataExplorerOption = (option, extraParams = null) => {
 
     if (!option) {
         return;
     }
 
-    trackDataExplorerEvent('click_option', { option });
+    trackDataExplorerEvent('click_option', { option, ...extraParams });
 
 };
 

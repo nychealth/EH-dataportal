@@ -245,7 +245,9 @@ const renderMenuSection = (items, destination, type) => {
                 return;
             }
 
-            handleSelection(type, items[Number(button.dataset.optionIndex)].value);
+            const item = items[Number(button.dataset.optionIndex)];
+
+            handleSelection(type, item.value, item.label);
         };
     });
 };
@@ -257,7 +259,7 @@ const renderMenuSection = (items, destination, type) => {
 
 // Applies a dropdown selection to global state, cascades dependent menus, and re-renders the view.
 
-const handleSelection = (type, value) => {
+const handleSelection = (type, value, label) => {
 
     debugLog(`* handleSelection — ${type}: ${value}`);
 
@@ -309,10 +311,13 @@ const handleSelection = (type, value) => {
 
     // ----- fire legacy analytics event ----- //
 
+    // option_label carries the menu text a reader can recognize. The IDs are not sent: the URL
+    // was updated just above, and GA attaches it to every event as page_location.
+
     const analyticsOption = getLegacyMapControlAnalyticsOption(type);
 
     if (analyticsOption) {
-        trackDataExplorerOption(analyticsOption);
+        trackDataExplorerOption(analyticsOption, label ? { option_label: label } : null);
     }
 
     // ----- re-render the active view and update the map ----- //
