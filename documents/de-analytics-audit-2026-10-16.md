@@ -16,8 +16,7 @@ that turned on markup (raw-data link, disparities wrapper). Whether the deployed
 
 **Status as of 2026-10-16: passes 1–3 done; finding 1 decided; `option_label` in `aa448afa19`;
 table-download and chart-save tracking in `3d0ae9ba77`; history events off and
-confirmed on the dev stream; on production, Chris turned the setting off, and the served config
-still read `true` at 16:19 UTC, 15 checks over 30 minutes after the change.**
+confirmed on both streams.**
 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
@@ -25,13 +24,28 @@ still read `true` at 16:19 UTC, 15 checks over 30 minutes after the change.**
 | 2 | Browser capture: GA requests on both explorers for the same actions, intercepted and never sent | *no commit* — probe was a temporary script | **DONE 2026-10-16** | See [Method](#method). Final run: both arms on both explorers, exit 0 each |
 | 3 | Compare against D19 item 3; findings | — | **DONE 2026-10-16** | [Findings](#findings) below |
 
-**Decided (Chris, 2026-10-16): no `page_view` per selection.** Turn off "Page changes based on
-browser history events" on the production stream (`G-64BWDRHRGB`), and on the dev stream
-(`G-PB98MPZ31B`) if testing should match. The setting is in GA admin, not this repo — Google
-documents it under the web data stream's Enhanced measurement → Page views → Show advanced
-settings, and says `send_page_view: false` in the tag does not stop these page views
-([Measure pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views),
-read 2026-10-16). Every selection that changed the URL in pass 2 also sent its own event
+**Decided (Chris, 2026-10-16): no `page_view` per selection.** Turned off on the production
+stream (`G-64BWDRHRGB`) and the dev stream (`G-PB98MPZ31B`). The setting is in GA admin, not
+this repo.
+
+- **The route that worked** (both streams, 2026-10-16): web stream details → Configure tag
+  settings → Manage automatic event detection → **Page views on browser history change**. Each
+  stream's served `gtag.js` read `"vtp_enableHistoryEvents":false` after this change; on
+  production it had not after the change below.
+- **The route Google's docs give** did not change the served config: Enhanced measurement → Page
+  views → Show advanced settings → "Page changes based on browser history events"
+  ([Enhanced measurement events](https://support.google.com/analytics/answer/9216061?hl=en),
+  read 2026-10-16). Production's config still read `true` on 15 checks from 15:48 to 16:19 UTC
+  after a change there. Whether these are two settings or one setting shown in two places was
+  not established. Use the first route, and confirm with the served config.
+- **The tag cannot override it:** Google says `send_page_view: false` does not stop these page
+  views ([Measure pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views),
+  read 2026-10-16).
+
+Every selection that changed the URL in pass 2 also sent its own event
+(`click_tab`, `click_option` `map_*`, `click_indicator`), so no action goes unrecorded. Two URL
+changes have none: the load-time URL normalization, which is not a user action, and back/forward
+inside the explorer, which the old explorer did not track either. Every selection that changed the URL in pass 2 also sent its own event
 (`click_tab`, `click_option` `map_*`, `click_indicator`), so no action goes unrecorded. Two URL
 changes have none: the load-time URL normalization, which is not a user action, and back/forward
 inside the explorer, which the old explorer did not track either.
@@ -44,10 +58,13 @@ inside the explorer, which the old explorer did not track either.
   (`?id=2380&MeasureID=…&overlay=none`) where it had recorded the bare `?id=2380`.
   Chris also created the custom dimensions, `option_label` included, on the dev property; that is
   admin-side and not observable from the page.
-- **Production stream (`G-64BWDRHRGB`): changed in GA admin (Chris, 2026-10-16), not yet
-  confirmed.** The served config still read `"vtp_enableHistoryEvents":true` at 15:48 UTC.
-  Re-fetch `https://www.googletagmanager.com/gtag/js?id=G-64BWDRHRGB` and expect `false`. If it
-  stays `true`, check that the stream edited shows that Measurement ID. Needed by the deploy.
+- **Production stream (`G-64BWDRHRGB`): changed in GA admin (Chris, 2026-10-16) and
+  confirmed.** `[verified 2026-10-16 16:26 UTC: served gtag.js reads
+  "vtp_enableHistoryEvents":false with "vtp_enablePageView":true]` The `true` readings from 15:48
+  to 16:19 UTC followed a change on the other route above, not a slow update. How long the change
+  took to reach the served config was not measured. No browser capture against this property:
+  only a `prod_prod` build loads its tag. The same flag was observed taking effect on the dev
+  stream.
 - **Site-wide scope:** the setting is per stream. On `feature-new-data-explorer` the explorer is
   the only GA-tagged page that writes history entries (`data-explorer/section.html` writes only
   `#topics` / `#indicators`; the three `static/html/202*-heat-report-fig-1.html` load no GA). The
