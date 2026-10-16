@@ -1,6 +1,6 @@
 # Merging `production` into `feature-MOD-Lab-NR-recode-refactor-merge` (third time — the new data explorer)
 
-**Status as of 2026-10-16: Stages R, G and V done and staged; the merge commit is next, then Stage C. Nothing committed.**
+**Closed 2026-10-16.** Merge landed at `5cca304284`; both site-characterization baselines re-captured in `f8ede8382e`. Range `aff2a412d7..f8ede8382e`. Follow-ups F1–F3 remain open below.
 
 Same job as `documents/nr-merge-production-2026-09-26.md`, whose shape and decisions are the
 exemplar. What differs: this merge brings in #1462 (`feature-new-data-explorer`), so production
@@ -31,7 +31,7 @@ now has the new explorer at `assets/js/data-explorer/` and the old one at
 - No `hugo.exe` running; nothing listening on 8080, 8081, 1313 or 8090 `[verified 2026-10-16:
   Win32_Process, Get-NetTCPConnection]`. Harnesses that spawn will spawn `dev_stage` — staging data.
 - `rerere.enabled=true`. It replayed `section.html` only.
-- This ledger lands inside the merge commit; hashes are filled by a later commit.
+- This ledger landed inside the merge commit `5cca304284`; the hash column was filled by a later commit.
 
 ## Decisions
 
@@ -52,27 +52,27 @@ now has the new explorer at `assets/js/data-explorer/` and the old one at
 
 | # | File | Resolution | Commit | Status | Proof that ran |
 |---|---|---|---|---|---|
-| R1 | 6 retired NR templates | `git rm` | *merge commit* | **DONE 2026-10-16** | Staged as deletions; the only consumers of the old `js/uhflist.js`/`js/uhflist.json` resources were among them |
-| R2 | `assets/scss/_custom.scss` / `_de-custom.scss` | `git rm` the first; 3-way merge (base `_custom.scss`, ours `_custom.scss`) into `_de-custom.scss`; its one conflict keeps production's `.btn-light-green-bg-outline` and ours' `.nr-selector-map`, dropping `.nr-flexdatalist` (ours' removal; 0 consumers in the tree) | *merge commit* | **DONE 2026-10-16** | `git merge-file` gave 1 conflict; resolved by script (bytes in/out). Result vs production's `_de-custom.scss`: +124/−16, the same counts as ours' base→ours diff of `_custom.scss`; `.nr-flexdatalist` absent; 0 CR bytes |
-| R3 | `assets/scss/theme.scss` | 1 comment hunk: ours' text, path → `_de-custom.scss` | *merge commit* | **DONE 2026-10-16** | Per-hunk script, 1 hunk, then the path edited |
-| R4 | `assets/js/data-explorer/global.js` | Theirs | *merge commit* | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 |
-| R5 | `assets/js/data-explorer-old/links.js` (auto-merged, not flagged) | Theirs | *merge commit* | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 |
-| R6 | `eslint.config.mjs` | Ours' two-block structure; DE externals list from theirs (drops `renderIndicatorDropdown`/`renderIndicatorButtons`/`createCitation`, adds `debugLog`); header notes `data-explorer-old/` is unlinted | *merge commit* | **DONE 2026-10-16** | Hand-written; `git diff HEAD` shows only the header note, the comment line naming `bar.js`, and the externals list; 0 CR bytes |
-| R7 | `package.json` | Ours' script set, with the D2 name; `ci` stays removed (production's `4260823794`) | *merge commit* | **DONE 2026-10-16** | Per-hunk script then `characterize:de` → `characterize`; vs production only ours' `lint` scope and `characterize:nr`/`:pagefind`/`a11y:nr` differ; `ci` absent from both files |
-| R8 | `package-lock.json` | Ours (eslint 10.8.0, globals 17.8.0), then `npm install` to reconcile | *merge commit* | **DONE 2026-10-16** | Per-hunk script, 2 hunks; `npm install` is V2 |
-| R9 | `themes/dohmh/layouts/partials/head.html` | Theirs, 2 hunks (`localStorage` throw guard) | *merge commit* | **DONE 2026-10-16** | Per-hunk script; result equals production's file. Ours' base→ours change (the `debugLog` block) is present in it at `const debugLog` |
-| R10 | `themes/dohmh/layouts/partials/overlap-tool.html` | Theirs' one-line form, ours' id `tab-btn-02-a` (`726a6eba4a`, NR a11y A3) | *merge commit* | **DONE 2026-10-16** | Per-hunk script then the button id edited; the panel's `aria-labelledby="tab-btn-02-a"` had already auto-merged |
-| R11 | `themes/dohmh/layouts/neighborhood-reports/section.html` | `rerere`'s replay: production's `section-header` partial over ours' body. Reviewed, correct; stage it | *merge commit* | **DONE 2026-10-16** | Diff vs ours is exactly `7a995427a1`'s breadcrumb/title block → `section-header` partial |
-| R12 | 3 AA files | Theirs; `de-characterization.mjs` usage comment per D2 | *merge commit* | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 for all 3. The usage comment already says `characterize` (D2's recommendation) |
-| R13 | `CLAUDE.md` | Per D3 | *merge commit* | **DONE 2026-10-16** | 0 markers. Hunk 1 → "Eleven" (8 shared + 2 ours + 1 theirs, counted per side); hunks 2, 4, 5 → ours; hunk 3 → ours' Environment bullets. Production's DE text replaced the Architecture → Data explorer body (with the `isDataTable`, `#searchModal` and `head.html` gotchas corrected to this tree); the DE harness bullet rewritten; production's layout-fix root-cause bullet and its "merge does not change the live site" sentences ported; SCSS section corrected to the vendored Bootstrap (`_b-bootstrap-imports.scss` imports `../bootstrap/scss/`); lint bullet no longer cites `single.html` inline scripts. The `docs-check verified` stamp was **not** bumped: no full re-read |
-| R14 | 422 baseline records | Ours, placeholder | *merge commit* | **DONE 2026-10-16** | 422 paths; `git diff --cached --quiet HEAD` per path, 0 differ |
+| R1 | 6 retired NR templates | `git rm` | `5cca304284` | **DONE 2026-10-16** | Staged as deletions; the only consumers of the old `js/uhflist.js`/`js/uhflist.json` resources were among them |
+| R2 | `assets/scss/_custom.scss` / `_de-custom.scss` | `git rm` the first; 3-way merge (base `_custom.scss`, ours `_custom.scss`) into `_de-custom.scss`; its one conflict keeps production's `.btn-light-green-bg-outline` and ours' `.nr-selector-map`, dropping `.nr-flexdatalist` (ours' removal; 0 consumers in the tree) | `5cca304284` | **DONE 2026-10-16** | `git merge-file` gave 1 conflict; resolved by script (bytes in/out). Result vs production's `_de-custom.scss`: +124/−16, the same counts as ours' base→ours diff of `_custom.scss`; `.nr-flexdatalist` absent; 0 CR bytes |
+| R3 | `assets/scss/theme.scss` | 1 comment hunk: ours' text, path → `_de-custom.scss` | `5cca304284` | **DONE 2026-10-16** | Per-hunk script, 1 hunk, then the path edited |
+| R4 | `assets/js/data-explorer/global.js` | Theirs | `5cca304284` | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 |
+| R5 | `assets/js/data-explorer-old/links.js` (auto-merged, not flagged) | Theirs | `5cca304284` | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 |
+| R6 | `eslint.config.mjs` | Ours' two-block structure; DE externals list from theirs (drops `renderIndicatorDropdown`/`renderIndicatorButtons`/`createCitation`, adds `debugLog`); header notes `data-explorer-old/` is unlinted | `5cca304284` | **DONE 2026-10-16** | Hand-written; `git diff HEAD` shows only the header note, the comment line naming `bar.js`, and the externals list; 0 CR bytes |
+| R7 | `package.json` | Ours' script set, with the D2 name; `ci` stays removed (production's `4260823794`) | `5cca304284` | **DONE 2026-10-16** | Per-hunk script then `characterize:de` → `characterize`; vs production only ours' `lint` scope and `characterize:nr`/`:pagefind`/`a11y:nr` differ; `ci` absent from both files |
+| R8 | `package-lock.json` | Ours (eslint 10.8.0, globals 17.8.0), then `npm install` to reconcile | `5cca304284` | **DONE 2026-10-16** | Per-hunk script, 2 hunks; `npm install` is V2 |
+| R9 | `themes/dohmh/layouts/partials/head.html` | Theirs, 2 hunks (`localStorage` throw guard) | `5cca304284` | **DONE 2026-10-16** | Per-hunk script; result equals production's file. Ours' base→ours change (the `debugLog` block) is present in it at `const debugLog` |
+| R10 | `themes/dohmh/layouts/partials/overlap-tool.html` | Theirs' one-line form, ours' id `tab-btn-02-a` (`726a6eba4a`, NR a11y A3) | `5cca304284` | **DONE 2026-10-16** | Per-hunk script then the button id edited; the panel's `aria-labelledby="tab-btn-02-a"` had already auto-merged |
+| R11 | `themes/dohmh/layouts/neighborhood-reports/section.html` | `rerere`'s replay: production's `section-header` partial over ours' body. Reviewed, correct; stage it | `5cca304284` | **DONE 2026-10-16** | Diff vs ours is exactly `7a995427a1`'s breadcrumb/title block → `section-header` partial |
+| R12 | 3 AA files | Theirs; `de-characterization.mjs` usage comment per D2 | `5cca304284` | **DONE 2026-10-16** | `git diff --cached --quiet MERGE_HEAD` → 0 for all 3. The usage comment already says `characterize` (D2's recommendation) |
+| R13 | `CLAUDE.md` | Per D3 | `5cca304284` | **DONE 2026-10-16** | 0 markers. Hunk 1 → "Eleven" (8 shared + 2 ours + 1 theirs, counted per side); hunks 2, 4, 5 → ours; hunk 3 → ours' Environment bullets. Production's DE text replaced the Architecture → Data explorer body (with the `isDataTable`, `#searchModal` and `head.html` gotchas corrected to this tree); the DE harness bullet rewritten; production's layout-fix root-cause bullet and its "merge does not change the live site" sentences ported; SCSS section corrected to the vendored Bootstrap (`_b-bootstrap-imports.scss` imports `../bootstrap/scss/`); lint bullet no longer cites `single.html` inline scripts. The `docs-check verified` stamp was **not** bumped: no full re-read |
+| R14 | 422 baseline records | Ours, placeholder | `5cca304284` | **DONE 2026-10-16** | 422 paths; `git diff --cached --quiet HEAD` per path, 0 differ |
 
 ### Stage G — gaps the merge does not flag
 
 | # | Gap | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| G1 | Section icon on ours' NR `<h1>`s (D1) | *merge commit* | **DONE 2026-10-16** (code) | Template edit only here; browser proof is V9 |
-| G2 | `_custom.scss` path references: `themes/dohmh/layouts/neighborhood-reports/nr-report.html` (header comment), `documents/nr-architecture.md` (3, opted into docs-check), `CLAUDE.md` (2) | *merge commit* | **DONE 2026-10-16** | `grep -c 'assets/scss/_custom\.scss'` → 0 in all three files afterwards; `nr-architecture.md`'s stamp not bumped |
+| G1 | Section icon on ours' NR `<h1>`s (D1) | `5cca304284` | **DONE 2026-10-16** (code) | Template edit only here; browser proof is V9 |
+| G2 | `_custom.scss` path references: `themes/dohmh/layouts/neighborhood-reports/nr-report.html` (header comment), `documents/nr-architecture.md` (3, opted into docs-check), `CLAUDE.md` (2) | `5cca304284` | **DONE 2026-10-16** | `grep -c 'assets/scss/_custom\.scss'` → 0 in all three files afterwards; `nr-architecture.md`'s stamp not bumped |
 
 Sweeps checked and found to need nothing: `23a89dd34f` (duplicate `skip-header-target`: no NR
 template carries the id), `47ffb33fde` (library gating: ours' NR templates include `lib-*`
@@ -96,21 +96,14 @@ generator), `77863da154` (`onclick` → listeners: DE-scoped, and no CSP in the 
 
 ### Stage C — characterization baselines (separate commit)
 
-| # | Step | Status |
-|---|---|---|
-| C1 | `npm run characterize:site:prod_prod` and `:dev_stage` against the merge commit; diagnose the differing set | Not started |
-| C2 | `node scripts/site-characterization-rebaseline.mjs` (no arguments), confirm only explained pages moved | Not started |
+| # | Step | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| C1 | `npm run characterize:site:prod_prod` and `:dev_stage` against `5cca304284` | *no commit* — a check | **DONE 2026-10-16** | **First pair: no verdict.** Both stopped at 923 of 924 pages: `data-features/displacement-risk/` never fired `load` within 30s in either environment. That page embeds `https://equitableexplorer.planning.nyc.gov/map/drm/nta`; loaded directly in headless Chromium (scratch script, not kept) it sat 30s with 16 of its own `_next/static` scripts pending, then on a second fresh-browser try reached `load` in 205 ms — an intermittent external host. The page's only change since the base is production's `7a995427a1`; none from ours. **Second pair: both keys exit 1 with 924 of 924 captured and the same 211 pages differing, all under `neighborhood-reports/`, 0 elsewhere** — Chris's prediction (only NR changes, since production re-baselined on the DE branch before the merge). Two causes, both read off `content.headingText` beside `structure.headingLevels`: **(a)** 210 report pages, last two headings `(2 Page Footer, 5 Search)` → `(5 Search, 2 Page Footer)`. Ours' `footer.html` held `#searchModal` (1 match at `aff2a412d7`); production includes `search-modal.html` from `baseof.html` (line 33) ahead of the footer (line 36). These records were ours' placeholders (R14), so only they still carried the old order. **(b)** NR landing `headingJumps` 2 → 1 with an identical heading sequence on both sides (`1,2,2,5,5,2`, one jump): the committed record was not a conflict but a line-merged hybrid — production's `headingLevels` with ours' `headingJumps` — matching no real render. The 09-26 ledger named this risk for line-merged records |
+| C2 | `node scripts/site-characterization-rebaseline.mjs --expect "neighborhood-reports/**" --expect "neighborhood-reports/"` | `f8ede8382e` | **DONE 2026-10-16** | exit 0, both keys re-captured at `5cca304284`, both sweeps agreeing on every page (no arbitration); report "211 of 924 pages changed … 211 covered by --expect, 0 not. Nothing unexplained" for each key. `git status`: 424 modified, 0 untracked, 0 deleted. A per-field JSON diff of all 424 against `HEAD`: `structure.headingLevels` + `content.headingText` on 420 records, `structure.headingJumps` on 2, nothing else; **all 422 page records' (level, text) pairs are a permutation of the old ones**, so no text or data change rode along. `_meta.json` changes: `pages` 925 → 924 (`/search-results/`, whose two records the merge commit already deleted), `prod_prod`'s `arbitrated` emptied, `dataCommit` production `8df3a04825` → `7b61f6653b`, staging `3a26d038eb` → `2de9129c38`, plus `capturedAt`/`gitHead`. 0 CR bytes; all 424 parse as JSON objects |
 
 ## The exact next commands
 
-The merge commit (`git commit` with no `-C`, from this worktree), then Stage C:
-
-```
-npm run characterize:site:prod_prod    # C1; then npm run characterize:site:dev_stage
-node scripts/site-characterization-rebaseline.mjs   # C2: takes no arguments, re-captures both keys
-```
-
-Predictions for C1, before it runs: the 210 NR records per key took ours (placeholders from before production's NR-template changes), so they differ from what renders now — at least by the section icon's `controls`/structure if the harness sees it, and by production's header standardization of `section.html`. Pages production changed (the explorer, `data-features`, `data-stories`, `nyccas`, `proximity`) merged line by line from production's own re-capture, so they should match unless EHDP-data moved. No power: a difference on every page is a template or environment cause and says nothing about the above.
+None — the merge is closed. What remains is the follow-ups below, each its own piece of work.
 
 ## Follow-ups
 
