@@ -263,7 +263,7 @@ const setCorrelateActionState = (isEnabled) => {
     // The two correlate-tab action controls this function enables/disables together.
 
     const saveChartButton = document.querySelector('.de-save-chart-button[data-print-context="correlate"]');
-    const downloadDataButton = saveChartButton?.parentElement?.querySelector('a[onclick="downloadData()"]');
+    const downloadDataButton = saveChartButton?.parentElement?.querySelector('a[onclick^="downloadData("]');
 
     [saveChartButton, downloadDataButton].forEach(button => {
 

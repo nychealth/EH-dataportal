@@ -716,7 +716,7 @@ const renderTable = (tableData) => {
             {
                 extend: 'csvHtml5',
                 name: "thisView",
-                filename: getTableDownloadFileName()
+                filename: getTableDownloadFileName
             }
         ],
         bInfo: false,
@@ -880,7 +880,7 @@ const renderTable = (tableData) => {
 // table data download
 // ----------------------------------------------------------------------- //
 
-// Names the table's CSV export; shared by the csvHtml5 button and the download's GA event so the two cannot drift.
+// Names the table's CSV export; the csvHtml5 button calls it at export time, so the name follows the indicator on screen.
 
 const getTableDownloadFileName = () => 'NYC EH Data Portal - ' + DE.indicator.indicatorName + ' (filtered)';
 
@@ -895,11 +895,19 @@ const downloadTableData = () => {
 
     $('#tableID').DataTable().button(0).trigger();
 
-    // link_text keeps the old explorer's label for this action, so the series continues across the cutover.
-    // DataTables appends the extension to the button's filename.
+    // exportInfo runs the name through the same filter Buttons applies when it saves, which drops
+    // characters such as ":", so GA records the saved file's name.
+
+    const { filename } = $('#tableID').DataTable().buttons.exportInfo({
+        filename: getTableDownloadFileName,
+        extension: '.csv'
+    });
+
+    // link_text keeps the old explorer's label for this action, so that series continues across the
+    // cutover. file_name does not: the old explorer sent "(filtered table)", which its saved file never carried.
 
     trackDataExplorerFileDownload({
-        fileName: getTableDownloadFileName() + '.csv',
+        fileName: filename,
         fileExtension: '.csv',
         linkText: 'Current table view'
     });

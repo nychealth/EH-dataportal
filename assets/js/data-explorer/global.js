@@ -113,7 +113,9 @@ const DE = {
     },
 
     // Print/export state: the current view's Vega spec, caption fields, and chart
-    // type — set by each tab renderer, read back by print.js and downloadData().
+    // type — set by each tab renderer, read back by print.js and downloadData() —
+    // plus the chart preview's vega-embed result, which print.js finalizes before
+    // the next preview.
     print: {
         printSpec: {},
         vizYear: undefined,
@@ -123,7 +125,8 @@ const DE = {
         chartType: undefined,
         CSVforDownload: undefined,
         downloadedIndicator: undefined,
-        downloadedIndicatorMeasurement: undefined
+        downloadedIndicatorMeasurement: undefined,
+        chartEmbed: undefined
     },
 
     // Per-indicator lookup tables, rebuilt on each indicator load: geo/time joins,
@@ -952,6 +955,12 @@ const getCurrentDataDownloadView = () => {
 
 };
 
+
+// Names a view's downloads, the chart-data CSV and the chart image, from indicator name + view; callers add the extension. sanitizeFilename (print-map.js) removes the characters Chrome would rewrite to _ in a download attribute (: " / > observed 2026-10-16), so GA records the saved file's name.
+
+const getViewDownloadFileName = () => sanitizeFilename('NYC EH Data Portal - ' + DE.indicator.indicatorName + ` (${getCurrentDataDownloadView()} view)`);
+
+
 // Builds a CSV data-URI from CSVforDownload, names the file from indicator name + view, triggers download via a hidden anchor click, and fires a file_download GA event.
 
 const downloadData = (
@@ -977,13 +986,9 @@ const downloadData = (
         let csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(DE.print.CSVforDownload);
         let hiddenElement = document.createElement('a');
 
-        // set view to send to file name
-
-        const view = getCurrentDataDownloadView();
-
         hiddenElement.href = csvData;
         hiddenElement.target = '_blank';
-        hiddenElement.download = 'NYC EH Data Portal - '  + DE.indicator.indicatorName + ` (${view} view)` + '.csv';
+        hiddenElement.download = getViewDownloadFileName() + '.csv';
         hiddenElement.click();
 
         trackDataExplorerFileDownload({

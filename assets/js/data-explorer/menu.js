@@ -312,7 +312,8 @@ const handleSelection = (type, value, label) => {
     // ----- fire legacy analytics event ----- //
 
     // option_label carries the menu text a reader can recognize. The IDs are not sent: the URL
-    // was updated just above, and GA attaches it to every event as page_location.
+    // was updated just above, and GA attaches it to every event as page_location (observed
+    // 2026-10-16, documents/de-analytics-audit-2026-10-16.md).
 
     const analyticsOption = getLegacyMapControlAnalyticsOption(type);
 

@@ -140,6 +140,18 @@ const getChartFootnotesHTML = () => {
 
 const renderChartPreview = () => {
 
+    // ----- release the previous preview ----- //
+
+    // vega-embed's actions menu adds a document click listener that only finalize() removes,
+    // so each re-embed would otherwise leave one behind, with its Vega view.
+
+    if (DE.print.chartEmbed) {
+        DE.print.chartEmbed.finalize();
+        DE.print.chartEmbed = undefined;
+    }
+
+    // ----- render the preview ----- //
+
     const spec = clonePrintSpec(DE.print.printSpec);
 
     if (!spec) {
@@ -156,12 +168,15 @@ const renderChartPreview = () => {
 
     vegaEmbed('#printVis', spec, {
         renderer: "svg",
+        downloadFileName: getViewDownloadFileName(),
         actions: {
             export: { png: true, svg: true },
             source: false,
             compiled: false,
             editor: true
         }
+    }).then(result => {
+        DE.print.chartEmbed = result;
     }).catch(() => {
         showPrintErrorState('This chart preview could not be rendered.');
     });
@@ -253,6 +268,9 @@ const bindPrintControls = () => {
     if (printVis) {
         printVis.addEventListener('click', event => {
 
+            // Matches vega-embed 6.29.0's actions menu, a .vega-actions div of a[download] links. If an
+            // upgrade changes that markup, chart saves stop being tracked, with no error.
+
             const exportLink = event.target.closest('.vega-actions a[download]');
 
             if (!exportLink) {
@@ -266,6 +284,27 @@ const bindPrintControls = () => {
                 fileExtension: fileName.slice(fileName.lastIndexOf('.')),
                 linkText: exportLink.textContent.trim()
             });
+
+        });
+
+        // vega-embed builds an export link's image only on mousedown, so Enter on a focused link saved
+        // the page itself as the image file (observed 2026-10-16). Build the image first, then click
+        // the link, which the listener above tracks.
+
+        printVis.addEventListener('keydown', async event => {
+
+            const exportLink = event.target.closest('.vega-actions a[download]');
+
+            if (event.key !== 'Enter' || !exportLink || exportLink.getAttribute('href') !== '#' || !DE.print.chartEmbed) {
+                return;
+            }
+
+            event.preventDefault();
+
+            const extension = exportLink.getAttribute('download').split('.').pop();
+
+            exportLink.href = await DE.print.chartEmbed.view.toImageURL(extension);
+            exportLink.click();
 
         });
     }
