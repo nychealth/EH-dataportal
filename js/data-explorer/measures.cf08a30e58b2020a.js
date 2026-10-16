@@ -1,0 +1,2115 @@
+// ======================================================================= //
+// measures.js
+// ======================================================================= //
+
+// Per-tab default measure selection, tab enable/disable state, and the
+// renderMeasures() setup that defines each tab's active show* render function.
+
+// console.log(">> measures.js");
+
+// ----------------------------------------------------------------------- //
+// tab default measure functions
+// ----------------------------------------------------------------------- //
+
+
+// Finds the first measure in visArray whose MeasurementType satisfies typeMatcher.
+
+const findFirstMeasureByType = (visArray, typeMatcher) => {
+
+    return visArray.find(measure => typeMatcher(measure.MeasurementType || ''));
+
+};
+
+
+// Picks one default measure using the shared priority order used by all tabs.
+
+const pickDefaultMeasureByPriority = (visArray) => {
+
+    if (!visArray.length) {
+        return null;
+    }
+
+    // Keep explicit case handling so behavior matches legacy priority checks.
+
+    const ageAdjustedRateTotal = findFirstMeasureByType(visArray, measurementType =>
+        measurementType.includes('Age-adjusted rate') && measurementType.includes('Total')
+    );
+
+    if (ageAdjustedRateTotal) {
+        return ageAdjustedRateTotal;
+    }
+
+    const priorityMatchers = [
+        measurementType => measurementType.includes('Age-adjusted rate'),
+        measurementType => measurementType.includes('rate'),
+        measurementType => measurementType.includes('Rate'),
+        measurementType => measurementType.includes('Percent'),
+        measurementType => measurementType.includes('percent'),
+        measurementType => measurementType.includes('Density')
+    ];
+
+    for (const matcher of priorityMatchers) {
+        const matchedMeasure = findFirstMeasureByType(visArray, matcher);
+
+        if (matchedMeasure) {
+            return matchedMeasure;
+        }
+    }
+
+    return visArray[0];
+
+};
+
+
+// Builds one-item metadata arrays used by tab defaults.
+
+const buildDefaultMetadataArray = (visArray) => {
+
+    const defaultMeasure = pickDefaultMeasureByPriority(visArray);
+
+    return defaultMeasure ? [defaultMeasure] : [];
+
+};
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// map
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Chooses the default measure for map and bar rendering.
+
+const setDefaultMapMeasure = (visArray) => {
+
+    debugLog("* setDefaultMapMeasure");
+
+    DE.map.defaultMapMetadata = buildDefaultMetadataArray(visArray);
+
+    // console.log(">> defaultMapMetadata", DE.map.defaultMapMetadata);
+
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// trend
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Chooses the default measure for the trend tab.
+
+const setDefaultTrendMeasure = (visArray) => {
+
+    // console.log("* setDefaultTrendMeasure");
+
+    DE.trend.defaultTrendMetadata = buildDefaultMetadataArray(visArray);
+
+    // console.log(">> defaultTrendMetadata", defaultTrendMetadata);
+
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// links
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Chooses the default linked measure pair and fetches the joined comparison data.
+
+const setDefaultLinksMeasure = async (visArray) => {
+
+    debugLog("* setDefaultLinksMeasure");
+
+    const defaultArray = buildDefaultMetadataArray(visArray);
+
+    if (!defaultArray.length) {
+        return;
+    }
+
+    const defaultPrimaryMeasureId = defaultArray[0].MeasureID;
+    const defaultSecondaryMeasureId = defaultArray[0].VisOptions[0].Links[0].Measures[0]?.MeasureID;
+
+    // assigning to global object
+
+    DE.links.defaultPrimaryLinksMeasureMetadata = defaultArray;
+
+    // Captured before the fetch; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
+    // using await here because createJoinedLinksData calls fetch, and we need that data
+
+    const defaultLinksDataMetadata = await createJoinedLinksData(defaultPrimaryMeasureId, defaultSecondaryMeasureId)
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
+
+    // extract secondary metadata from data function return, assign to global object
+
+    DE.links.defaultSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+
+    // joinedLinksDataObjects is a cache keyed on the selected*MeasureMetadata pair — that pair is
+    // what renderSelectedCorrelate checks before reusing it — so the rows and their key are written
+    // together. Writing the rows alone left the previous pair's key on them: after another
+    // indicator and Back, the chart was labelled 31 vs 47 and plotted pair 363/41 (review #3).
+
+    DE.links.selectedPrimaryMeasureMetadata = defaultLinksDataMetadata.primaryMeasureMetadata;
+    DE.links.selectedSecondaryMeasureMetadata = defaultLinksDataMetadata.secondaryMeasureMetadata;
+    DE.links.joinedLinksDataObjects = defaultLinksDataMetadata.data
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+// disparities
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
+
+// Chooses the default measure for the disparities tab.
+
+const setDefaultDisparitiesMeasure = (visArray) => {
+
+    debugLog("* setDefaultDisparitiesMeasure");
+
+    DE.disparities.defaultDisparitiesMetadata = buildDefaultMetadataArray(visArray);
+
+    // console.log(">> defaultDisparitiesMetadata", defaultDisparitiesMetadata);
+    
+}
+
+
+// ----------------------------------------------------------------------- //
+// links / disparities metadata helpers
+// ----------------------------------------------------------------------- //
+
+// Returns metadata for one measure on the active indicator.
+
+const getMeasureMetadataById = (measureId) => {
+
+    if (!DE.indicator.indicatorMeasures?.length || measureId == null) {
+        return [];
+    }
+
+    return DE.indicator.indicatorMeasures.filter(measure => Number(measure.MeasureID) === Number(measureId));
+
+};
+
+
+// Returns the configured correlate links for one measure from metadata.
+
+const getMeasureLinksMetadata = (measureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(measureId)[0];
+
+    return primaryMeasureMetadata?.VisOptions?.[0]?.Links?.[0]?.Measures?.filter(link =>
+        link?.MeasureID != null
+    ) || [];
+
+};
+
+
+// Reads the active map measure metadata even before the map finishes a redraw.
+
+const getActiveMapMeasureMetadata = () => {
+
+    return getMeasureMetadataById(DE.state.MeasureID)[0] || DE.map.selectedMapMetadata || null;
+
+};
+
+
+// Matches the label shown in the map measure dropdown.
+
+const getActiveMapMeasureLabel = () => {
+
+    const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
+
+    return activeMapMeasureMetadata?.MeasurementType
+        || activeMapMeasureMetadata?.MeasureName
+        || 'the selected measure';
+
+};
+
+
+// Whether the current map measure exposes at least one correlate in metadata.
+
+const activeMapMeasureSupportsLinks = () => {
+
+    return getMeasureLinksMetadata(DE.state.MeasureID).length > 0;
+
+};
+
+
+// Whether the active indicator exposes correlate links for a measure.
+
+const measureSupportsLinks = (measureId) => {
+    return getMeasureLinksMetadata(measureId).length > 0;
+};
+
+
+// Whether the active indicator exposes disparities for a measure.
+
+const measureSupportsDisparities = (measureId) => {
+    return DE.lookups.disparitiesMeasures.some(measure => Number(measure.MeasureID) === Number(measureId));
+};
+
+
+// Finds the first linked secondary measure configured for one primary measure.
+
+const getDefaultLinksSecondaryMeasureId = (primaryMeasureId) => {
+
+    const defaultSecondaryMeasureId = getMeasureLinksMetadata(primaryMeasureId)[0]?.MeasureID;
+
+    return defaultSecondaryMeasureId != null ? Number(defaultSecondaryMeasureId) : null;
+
+};
+
+
+// Falls back to the active default correlate measure when map MeasureID is not link-capable.
+
+const getDefaultLinksPrimaryMeasureId = () => {
+
+    const defaultPrimaryMeasureId = DE.links.defaultPrimaryLinksMeasureMetadata?.[0]?.MeasureID;
+
+    if (defaultPrimaryMeasureId != null) {
+        return Number(defaultPrimaryMeasureId);
+    }
+
+    return DE.lookups.linksMeasures[0] ? Number(DE.lookups.linksMeasures[0].MeasureID) : null;
+
+};
+
+
+// Falls back to the active default disparities measure when map MeasureID is not disparities-capable.
+
+const getDefaultDisparitiesPrimaryMeasureId = () => {
+
+    const defaultPrimaryMeasureId = DE.disparities.defaultDisparitiesMetadata?.[0]?.MeasureID;
+
+    if (defaultPrimaryMeasureId != null) {
+        return Number(defaultPrimaryMeasureId);
+    }
+
+    return DE.lookups.disparitiesMeasures[0] ? Number(DE.lookups.disparitiesMeasures[0].MeasureID) : null;
+
+};
+
+
+// Validates that the selected primary measure can link to the selected secondary measure.
+
+const primaryLinksToSecondary = (primaryMeasureId, secondaryMeasureId) => {
+
+    return getMeasureLinksMetadata(primaryMeasureId).some(link =>
+        Number(link.MeasureID) === Number(secondaryMeasureId)
+    ) || false;
+
+};
+
+
+// Finds the indicator record that owns one secondary linked measure.
+
+const getSecondaryMeasureIndicator = (secondaryMeasureId) => {
+
+    if (!indicators?.length || secondaryMeasureId == null) {
+        return [];
+    }
+
+    return indicators.filter(indicator =>
+        indicator.Measures.some(measure => Number(measure.MeasureID) === Number(secondaryMeasureId))
+    );
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// NOTE: Old per-tab update functions (updateMapData, updateBoroughTrendData,
+// updateComparisonTrendData, updateLinksData) and per-tab dropdown handlers
+// (handleTableTimeFilter, handleTableGeoFilter, handleMapTimeDropdown,
+// handleMapGeoDropdown) have been removed. Their functionality is now
+// handled by menu.js → handleSelection → pushState → renderCurrentView →
+// show* functions defined inside renderMeasures.
+// ----------------------------------------------------------------------- //
+
+
+// ----------------------------------------------------------------------- //
+// correlate control bindings
+// ----------------------------------------------------------------------- //
+
+// Binds the Correlate pill row's delegated click handler — the Measures dropdown
+// toggle and the Disparities button — without stacking duplicate handlers.
+
+const bindCorrelateControls = () => {
+
+    // ----- guard: no-op if disparities toggle missing ----- //
+
+    if (!correlatePillRow) {
+        return;
+    }
+
+    // ----- rebind: unbind stale handler, bind fresh click handler ----- //
+
+    $(correlatePillRow).off('.toggle');
+
+    $(correlatePillRow).on('click.toggle', event => {
+
+        // - - - resolve clicked button, ignore missing/active/disabled - - - //
+
+        const button = event.target.closest('button');
+
+        if (!button || button.classList.contains('active') || button.classList.contains('disabled')) {
+            return;
+        }
+
+        // - - - disparities branch - - - //
+
+        if (button.matches('#show-disparities')) {
+
+            if (!DE.lookups.disparitiesMeasures.length) {
+                return;
+            }
+
+            const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
+                ? Number(DE.state.MeasureID)
+                : Number(DE.links.selectedLinksPrimaryMeasureId);
+
+            const nextPrimaryMeasureId = measureSupportsDisparities(activePrimaryMeasureId)
+                ? activePrimaryMeasureId
+                : getDefaultDisparitiesPrimaryMeasureId();
+
+            if (nextPrimaryMeasureId == null) {
+                return;
+            }
+
+            DE.links.selectedLinksMeasure = true;
+            DE.disparities.selectedDisparity = true;
+            DE.links.selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+            DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
+
+            trackDataExplorerOption('links_disparities');
+
+            showLinks();
+            return;
+
+        }
+
+        // - - - links branch - - - //
+
+        if (!button.matches('#linksDropdownToggle') || !DE.lookups.linksMeasures.length) {
+            return;
+        }
+
+        const activePrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null
+            ? Number(DE.state.MeasureID)
+            : Number(DE.links.selectedLinksPrimaryMeasureId);
+
+        const nextPrimaryMeasureId = measureSupportsLinks(activePrimaryMeasureId)
+            ? activePrimaryMeasureId
+            : getDefaultLinksPrimaryMeasureId();
+
+        const nextSecondaryMeasureId = getDefaultLinksSecondaryMeasureId(nextPrimaryMeasureId);
+
+        if (nextPrimaryMeasureId == null || nextSecondaryMeasureId == null) {
+            return;
+        }
+
+        DE.links.selectedLinksMeasure = true;
+        DE.disparities.selectedDisparity = false;
+        DE.links.selectedLinksPrimaryMeasureId = nextPrimaryMeasureId;
+        DE.links.selectedLinksSecondaryMeasureId = nextSecondaryMeasureId;
+
+        showLinks();
+
+    });
+
+}
+
+
+// ----------------------------------------------------------------------- //
+// tab enable / disable helpers
+// ----------------------------------------------------------------------- //
+
+// Resolves tab button references on demand for startup paths that run before app.js assigns the shared globals in its DOMContentLoaded handler.
+
+const resolveTabReferences = () => {
+    tabBar ??= document.querySelector('#v-pills-bar-tab');
+    tabTrends ??= document.querySelector('#v-pills-trends-tab');
+    tabCorrelate ??= document.querySelector('#v-pills-correlate-tab');
+    tabTable ??= document.querySelector('#v-pills-table-tab');
+};
+
+// Marks a Bootstrap tab as disabled when that view has no usable data.
+
+const disableTab = (el) => {
+    if (!el) {
+        return;
+    }
+
+    el.classList.add('disabled');
+    el.setAttribute('aria-disabled', true);
+};
+
+// Re-enables a Bootstrap tab when the current indicator supports that view.
+
+const enableTab = (el) => {
+    if (!el) {
+        return;
+    }
+
+    el.classList.remove('disabled');
+    el.setAttribute('aria-disabled', false);
+};
+
+
+// ----------------------------------------------------------------------- //
+// badge-pill / dropdown DOM builders
+// ----------------------------------------------------------------------- //
+
+// Pure DOM factories used by renderMeasures(); hoisted to module scope so
+// they're defined once per page load instead of once per indicator.
+
+// Normalizes active and disabled styles so the new visible pills stay in sync.
+
+const setBadgePillState = (button, isActive, isDisabled = false) => {
+
+    if (!button) {
+        return;
+    }
+
+    button.classList.toggle('active', isActive && !isDisabled);
+    button.classList.remove('badge-primary', 'badge-light', 'text-white');
+    button.classList.add(isActive && !isDisabled ? 'badge-primary' : 'badge-light');
+    button.classList.toggle('text-white', isActive && !isDisabled);
+    button.classList.toggle('disabled', isDisabled);
+    button.disabled = isDisabled;
+    button.setAttribute('aria-disabled', isDisabled ? 'true' : 'false');
+    button.setAttribute('aria-pressed', isActive && !isDisabled ? 'true' : 'false');
+    button.setAttribute('aria-selected', isActive && !isDisabled ? 'true' : 'false');
+
+};
+
+
+// Creates a badge-pill button element with the given class, label, optional tooltip, and data-* attributes.
+
+const createBadgePillButton = ({
+    buttonClass,
+    label,
+    title,
+    dataAttributes = {}
+}) => {
+
+    const button = document.createElement('button');
+
+    button.type = 'button';
+    button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+    button.textContent = label;
+
+    if (title) {
+        button.title = title;
+    }
+
+    Object.entries(dataAttributes).forEach(([key, value]) => {
+        button.dataset[key] = value;
+    });
+
+    return button;
+
+};
+
+
+// Creates a pill-label span wrapping the given text.
+
+const createBadgePillLabel = (label) => {
+
+    const span = document.createElement('span');
+
+    span.className = 'de-viz-pill-label';
+    span.textContent = label;
+
+    return span;
+
+};
+
+
+// Slugifies a label into a lowercase, hyphen-separated, ID-safe fragment, defaulting to 'option' when empty.
+
+const createDropdownIdFragment = (label) => {
+
+    const nextIdFragment = String(label || 'option')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+    return nextIdFragment || 'option';
+
+};
+
+
+// Builds a Bootstrap dropdown fragment (wrapper, toggle button with chevron and label, empty menu) and returns its parts.
+
+const createBadgePillDropdown = ({
+    buttonClass,
+    label,
+    menuId
+}) => {
+
+    const dropdown = document.createElement('div');
+    const button = document.createElement('button');
+    const icon = document.createElement('i');
+    const labelSpan = document.createElement('span');
+    const menu = document.createElement('div');
+
+    dropdown.className = 'dropdown d-inline-block';
+
+    button.type = 'button';
+    button.id = `${menuId}Toggle`;
+    button.className = `badge badge-pill badge-light border-0 de-viz-pill-button ${buttonClass}`;
+    button.dataset.baseLabel = label;
+    button.setAttribute('data-toggle', 'dropdown');
+    button.setAttribute('aria-haspopup', 'true');
+    button.setAttribute('aria-expanded', 'false');
+
+    icon.className = 'fas fa-chevron-circle-down mr-1';
+    icon.setAttribute('aria-hidden', 'true');
+
+    labelSpan.className = 'de-viz-pill-toggle-label';
+    labelSpan.textContent = label;
+
+    button.append(icon, labelSpan);
+
+    menu.id = menuId;
+    menu.className = 'dropdown-menu dropdown-menu-right fs-sm de-viz-pill-menu';
+    menu.setAttribute('aria-labelledby', button.id);
+
+    dropdown.append(button, menu);
+
+    return {
+        dropdown,
+        button,
+        menu
+    };
+
+};
+
+
+// Toggles the active class and aria-selected on one dropdown menu item.
+
+const setDropdownMenuItemState = (button, isActive) => {
+
+    if (!button) {
+        return;
+    }
+
+    button.classList.toggle('active', isActive);
+    button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// pill / dropdown DOM references
+// ----------------------------------------------------------------------- //
+
+// Resolved lazily (like resolveTabReferences) because the trend/links control
+// clusters are defined at module scope but the elements only exist once the
+// SPA shell markup has parsed. measures.js loads only on data-explorer/single.html.
+
+let trendMeasurePills;
+let trendComparisonPills;
+let linksDropdownMenu;
+let linksDropdownToggle;
+let linksToggleLabel;
+let showDisparitiesButton;
+
+const resolveMeasuresPillRefs = () => {
+    trendMeasurePills    ??= document.getElementById('trendMeasurePills');
+    trendComparisonPills ??= document.getElementById('trendComparisonPills');
+    linksDropdownMenu    ??= document.getElementById('linksDropdownMenu');
+    linksDropdownToggle  ??= document.getElementById('linksDropdownToggle');
+    linksToggleLabel     ??= document.getElementById('linksToggleLabel');
+    showDisparitiesButton ??= document.getElementById('show-disparities');
+};
+
+
+// ----------------------------------------------------------------------- //
+// trend-pill control cluster
+// ----------------------------------------------------------------------- //
+
+// The trend measure/comparison pill closures used by renderMeasures(); hoisted
+// to module scope so they're defined once per page load instead of once per
+// indicator. They close over only DE.* plus the two module-scope pill refs above.
+
+// Picks comparison that best matches current indicator and active measure.
+
+const getSyncedComparisonId = () => {
+
+    if (!DE.lookups.comparisonMetadata?.length) {
+        return null;
+    }
+
+    const matchingMeasureComparison = DE.lookups.comparisonMetadata.find(comp =>
+        comp.Indicators?.some(ind =>
+            Number(ind.IndicatorID) === Number(DE.state.IndicatorID) &&
+            Number(ind.MeasureID) === Number(DE.state.MeasureID)
+        )
+    );
+
+    if (matchingMeasureComparison) {
+        return Number(matchingMeasureComparison.ComparisonID);
+    }
+
+    const matchingIndicatorComparison = DE.lookups.comparisonMetadata.find(comp =>
+        comp.Indicators?.some(ind => Number(ind.IndicatorID) === Number(DE.state.IndicatorID))
+    );
+
+    if (matchingIndicatorComparison) {
+        return Number(matchingIndicatorComparison.ComparisonID);
+    }
+
+    return Number(DE.lookups.comparisonMetadata[0].ComparisonID);
+
+};
+
+
+// Resolves one comparison button back to the comparison rows it owns.
+
+const getComparisonRowsForLegendTitle = (legendTitle) => {
+
+    if (!legendTitle || !DE.lookups.aqCombinedComparisonMetadata) {
+        return [];
+    }
+
+    return DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .filter(row => row.LegendTitle === legendTitle);
+
+};
+
+
+// Keeps comparison buttons synced to the current MBT measure when possible.
+
+const getComparisonIdForLegendTitle = (legendTitle) => {
+
+    const comparisonRows = getComparisonRowsForLegendTitle(legendTitle);
+
+    if (!comparisonRows.length) {
+        return null;
+    }
+
+    const matchingMeasureRow = comparisonRows.find(row =>
+        Number(row.IndicatorID) === Number(DE.state.IndicatorID) &&
+        Number(row.MeasureID) === Number(DE.state.MeasureID)
+    );
+
+    if (matchingMeasureRow) {
+        return Number(matchingMeasureRow.ComparisonID);
+    }
+
+    const matchingIndicatorRow = comparisonRows.find(row =>
+        Number(row.IndicatorID) === Number(DE.state.IndicatorID)
+    );
+
+    if (matchingIndicatorRow) {
+        return Number(matchingIndicatorRow.ComparisonID);
+    }
+
+    return Number(comparisonRows[0].ComparisonID);
+
+};
+
+
+// Returns the LegendTitle for a given comparison ID, or null when the ID is null or unmatched.
+
+const getComparisonLegendTitleById = (comparisonId) => {
+
+    if (comparisonId == null || !DE.lookups.aqCombinedComparisonMetadata) {
+        return null;
+    }
+
+    return DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .find(row => Number(row.ComparisonID) === Number(comparisonId))
+        ?.LegendTitle || null;
+
+};
+
+
+// Mirrors map measure when possible, otherwise falls back to trend defaults.
+
+const getActiveTrendMeasureId = () => {
+
+    const matchingMapMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(DE.state.MeasureID));
+
+    if (matchingMapMeasure) {
+        return Number(matchingMapMeasure.MeasureID);
+    }
+
+    const defaultTrendMeasureId = DE.trend.defaultTrendMetadata?.[0]?.MeasureID;
+
+    if (defaultTrendMeasureId != null) {
+        return Number(defaultTrendMeasureId);
+    }
+
+    return DE.lookups.trendMeasures[0] ? Number(DE.lookups.trendMeasures[0].MeasureID) : null;
+
+};
+
+
+// Returns the active trend measure's MeasurementType, or 'No borough trend' when none matches.
+
+const getActiveTrendMeasureLabel = () => {
+
+    const trendMeasure = DE.lookups.trendMeasures.find(m => Number(m.MeasureID) === Number(getActiveTrendMeasureId()));
+
+    return trendMeasure?.MeasurementType || 'No borough trend';
+
+};
+
+
+// Returns the comparison ID to render, preferring a still-valid manual legend-title selection over the map-synced default.
+
+const getActiveComparisonId = () => {
+
+    if (DE.trend.selectedComparisonLegendTitle) {
+
+        const comparisonIdForLegendTitle = getComparisonIdForLegendTitle(DE.trend.selectedComparisonLegendTitle);
+
+        if (comparisonIdForLegendTitle != null) {
+            return comparisonIdForLegendTitle;
+        }
+
+        DE.trend.selectedComparisonLegendTitle = null;
+
+    }
+
+    return getSyncedComparisonId();
+
+};
+
+
+// Returns the manually selected legend title, else the active comparison's title, defaulting to 'Comparison'.
+
+const getActiveComparisonLegendTitle = () => {
+
+    if (DE.trend.selectedComparisonLegendTitle) {
+        return DE.trend.selectedComparisonLegendTitle;
+    }
+
+    return getComparisonLegendTitleById(getActiveComparisonId()) || 'Comparison';
+
+};
+
+
+// Clears active styling before one trend or comparison button is reselected.
+
+const clearTrendButtonState = () => {
+
+    trendMeasurePills?.querySelectorAll('.trendmode-button').forEach(button => {
+        setBadgePillState(button, false);
+    });
+
+    trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
+        setBadgePillState(button, false);
+    });
+
+};
+
+
+// Highlights whichever control currently owns trend rendering state.
+
+const setTrendButtonState = () => {
+
+    clearTrendButtonState();
+
+    const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+        (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
+
+    if (useComparisonState) {
+
+        const activeLegendTitle = getActiveComparisonLegendTitle();
+        const comparisonButton = Array.from(trendComparisonPills?.querySelectorAll('.trendmode-button') || [])
+            .find(button => button.dataset.legendTitle === activeLegendTitle);
+
+        if (comparisonButton) {
+            setBadgePillState(comparisonButton, true);
+        }
+
+        return;
+
+    }
+
+    const trendButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
+
+    if (trendButton) {
+        setBadgePillState(trendButton, true);
+    }
+
+};
+
+
+// Rebuilds compact summary line from current trend/comparison selection state.
+
+const updateTrendSelectionSummary = () => {
+
+    const trendLabel = getActiveTrendMeasureLabel();
+    const comparisonLabel = DE.lookups.comparisonMetadata?.length ? getActiveComparisonLegendTitle() : 'No comparison';
+    const useComparisonState = (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length) ||
+        (!DE.lookups.trendMeasures.length && DE.lookups.comparisonMetadata?.length);
+
+    const geographyButton = trendMeasurePills?.querySelector('.trendmode-button[data-trend-mode="geography"]');
+
+    if (geographyButton) {
+        geographyButton.title = `Geography. Current selection: ${trendLabel}.`;
+        geographyButton.setAttribute('aria-label', `Geography trend button. Current selection: ${trendLabel}.`);
+    }
+
+    trendComparisonPills?.querySelectorAll('.trendmode-button').forEach(button => {
+
+        const legendTitle = button.dataset.legendTitle || button.textContent.trim() || 'Comparison';
+        const isActive = legendTitle === comparisonLabel && useComparisonState;
+
+        button.title = `${legendTitle}.`;
+        button.setAttribute(
+            'aria-label',
+            isActive
+                ? `${legendTitle} comparison button. Current selection.`
+                : `${legendTitle} comparison button.`
+        );
+
+    });
+
+};
+
+
+// Rebuilds visible trend measure and comparison pills for current indicator context.
+
+const buildTrendSelectionControls = () => {
+
+    // ----- reset and hide pill containers ----- //
+
+    if (trendMeasurePills) {
+        trendMeasurePills.innerHTML = '';
+        trendMeasurePills.hidden = DE.lookups.trendMeasures.length === 0;
+    }
+
+    if (trendComparisonPills) {
+        trendComparisonPills.innerHTML = '';
+        trendComparisonPills.hidden = true;
+    }
+
+    // ----- build or clear the Geography trend button ----- //
+
+    if (DE.lookups.trendMeasures.length > 0 && trendMeasurePills) {
+
+        const geographyButton = createBadgePillButton({
+            buttonClass: 'trendmode-button',
+            label: 'Geography',
+            title: 'Geography'
+        });
+
+        geographyButton.dataset.trendMode = 'geography';
+
+        // - - - drive borough trend when clicked - - - //
+
+        geographyButton.addEventListener('click', () => {
+
+            DE.trend.showingComparisonTrend = false;
+            DE.trend.showingBoroughTrend = true;
+
+            trackDataExplorerOption('trend_comparison');
+
+            setTrendButtonState();
+            updateTrendSelectionSummary();
+            showBoroughTrend();
+
+        });
+
+        trendMeasurePills.appendChild(geographyButton);
+
+    } else if (trendMeasurePills) {
+
+        trendMeasurePills.onclick = null;
+
+    }
+
+    // ----- build or clear comparison pills per legend title ----- //
+
+    if (DE.lookups.comparisonMetadata?.length && DE.lookups.aqCombinedComparisonMetadata && trendComparisonPills) {
+
+        const compLegendTitles = [...new Set(DE.lookups.aqCombinedComparisonMetadata.array('LegendTitle'))];
+        let comparisonButtonCount = 0;
+
+        if (DE.trend.selectedComparisonLegendTitle && !compLegendTitles.includes(DE.trend.selectedComparisonLegendTitle)) {
+            DE.trend.selectedComparisonLegendTitle = null;
+        }
+
+        // - - - one pill per comparison legend title - - - //
+
+        compLegendTitles.forEach(title => {
+
+            const comparisonId = getComparisonIdForLegendTitle(title);
+
+            if (comparisonId == null) {
+                return;
+            }
+
+            const comparisonButton = createBadgePillButton({
+                buttonClass: 'trendmode-button',
+                label: title,
+                title
+            });
+
+            comparisonButton.dataset.legendTitle = title;
+
+            comparisonButton.addEventListener('click', () => {
+
+                DE.trend.selectedComparisonLegendTitle = title;
+                DE.trend.showingComparisonTrend = true;
+                DE.trend.showingBoroughTrend = false;
+
+                trackDataExplorerOption('trend_comparison');
+
+                setTrendButtonState();
+                updateTrendSelectionSummary();
+                showComparisonTrend();
+
+            });
+
+            trendComparisonPills.appendChild(comparisonButton);
+            comparisonButtonCount += 1;
+
+        });
+
+        trendComparisonPills.hidden = comparisonButtonCount === 0;
+
+    } else if (trendComparisonPills) {
+
+        trendComparisonPills.onclick = null;
+        DE.trend.selectedComparisonLegendTitle = null;
+
+    }
+
+    // ----- sync visual state ----- //
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// links/disparities control cluster
+// ----------------------------------------------------------------------- //
+
+// The links/disparities dropdown and summary closures used by renderMeasures();
+// hoisted to module scope so they're defined once per page load instead of once
+// per indicator. They close over DE.links/DE.disparities state plus the four
+// module-scope dropdown refs above.
+
+// Sums the secondary link options across all currently visible links measures.
+
+const getLinksOptionCount = () => {
+
+    return getVisibleLinksMeasures().reduce((count, measure) => {
+        return count + (measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.length || 0);
+    }, 0);
+
+};
+
+
+// Refreshes the links selection summary: the dropdown toggle's label and ARIA wiring, enabling dropdown behavior only when more than one option exists.
+
+const updateLinksSelectionSummary = () => {
+
+    if (!linksDropdownToggle || !linksToggleLabel) {
+        return;
+    }
+
+    const linksOptionCount = getLinksOptionCount();
+    const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+    const hasMultipleLinksOptions = !linksSwitcherDisabled && linksOptionCount > 1;
+
+    linksToggleLabel.textContent = 'Measures';
+    linksDropdownToggle.setAttribute('aria-disabled', String(linksSwitcherDisabled));
+
+    if (hasMultipleLinksOptions) {
+        linksDropdownToggle.setAttribute('data-toggle', 'dropdown');
+        linksDropdownToggle.setAttribute('aria-haspopup', 'true');
+    } else {
+        linksDropdownToggle.removeAttribute('data-toggle');
+        linksDropdownToggle.removeAttribute('aria-haspopup');
+        linksDropdownToggle.setAttribute('aria-expanded', 'false');
+    }
+
+};
+
+
+// Resolves a display label for a secondary linked measure, preferring its MeasureName, then its IndicatorName, then 'Linked measure'.
+
+const getLinksButtonLabel = (secondaryMeasureId) => {
+
+    const secondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+    const secondaryMetadata = secondaryIndicator[0]?.Measures?.filter(measure =>
+        Number(measure.MeasureID) === Number(secondaryMeasureId)
+    );
+
+    return secondaryMetadata?.[0]?.MeasureName || secondaryIndicator[0]?.IndicatorName || 'Linked measure';
+
+};
+
+
+// Computes the default links/disparities state from the current map measure via a 5-tier priority waterfall.
+
+const getSyncedLinksState = () => {
+
+    const syncedMapMeasureId = DE.state.MeasureID == null ? null : Number(DE.state.MeasureID);
+
+    // Tier 1: map measure supports links — sync links to it.
+
+    if (measureSupportsLinks(syncedMapMeasureId)) {
+        const syncedPrimaryMeasureId = syncedMapMeasureId;
+
+        return {
+            primaryMeasureId: syncedPrimaryMeasureId,
+            secondaryMeasureId: getDefaultLinksSecondaryMeasureId(syncedPrimaryMeasureId),
+            view: 'links'
+        };
+    }
+
+    // Tier 2: map measure exists but has no links — links view with no secondary.
+
+    if (syncedMapMeasureId != null) {
+        return {
+            primaryMeasureId: syncedMapMeasureId,
+            secondaryMeasureId: null,
+            view: 'links'
+        };
+    }
+
+    // Tier 3: no map measure but links measures exist — use the default links pair.
+
+    if (DE.lookups.linksMeasures.length) {
+        const defaultPrimaryMeasureId = getDefaultLinksPrimaryMeasureId();
+
+        return {
+            primaryMeasureId: defaultPrimaryMeasureId,
+            secondaryMeasureId: getDefaultLinksSecondaryMeasureId(defaultPrimaryMeasureId),
+            view: 'links'
+        };
+    }
+
+    // Tier 4: only disparities measures exist — fall back to the disparities view.
+
+    if (DE.lookups.disparitiesMeasures.length) {
+        return {
+            primaryMeasureId: getDefaultDisparitiesPrimaryMeasureId(),
+            secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+            view: 'disparities'
+        };
+    }
+
+    // Tier 5: nothing available — empty links state.
+
+    return {
+        primaryMeasureId: null,
+        secondaryMeasureId: null,
+        view: 'links'
+    };
+
+};
+
+
+// Returns the measures whose correlate links should currently show.
+
+const getVisibleLinksMeasures = () => {
+
+    const activeMapMeasureMetadata = getActiveMapMeasureMetadata();
+
+    if (!activeMapMeasureSupportsLinks() || !activeMapMeasureMetadata) {
+        return [];
+    }
+
+    return [activeMapMeasureMetadata];
+
+};
+
+
+// Determines the links/disparities state actually driving the UI, preferring a still-valid manual override over the synced default.
+
+const getActiveLinksState = () => {
+
+    // ----- compute the synced default state ----- //
+
+    const syncedLinksState = getSyncedLinksState();
+
+    // ----- compute manual-override candidates ----- //
+
+    const manualPrimaryMeasureId = DE.links.selectedLinksPrimaryMeasureId == null ? null : Number(DE.links.selectedLinksPrimaryMeasureId);
+    const manualSecondaryMeasureId = DE.links.selectedLinksSecondaryMeasureId == null ? null : Number(DE.links.selectedLinksSecondaryMeasureId);
+    const manualMatchesCurrentPrimary = manualPrimaryMeasureId != null
+        && Number(manualPrimaryMeasureId) === Number(syncedLinksState.primaryMeasureId);
+
+    // ----- return manual disparities override when valid ----- //
+
+    // Keep an explicit disparities toggle active even when the synced
+    // correlate default points at a different primary measure.
+
+    const hasManualDisparities = DE.links.selectedLinksMeasure
+        && DE.disparities.selectedDisparity
+        && manualPrimaryMeasureId != null
+        && measureSupportsDisparities(manualPrimaryMeasureId);
+
+    if (hasManualDisparities) {
+        return {
+            primaryMeasureId: manualPrimaryMeasureId,
+            secondaryMeasureId: DE_MEASURE_RULES.disparitiesSecondaryMeasureId,
+            view: 'disparities'
+        };
+    }
+
+    // ----- return manual links override when valid ----- //
+
+    const hasManualLinks = DE.links.selectedLinksMeasure
+        && !DE.disparities.selectedDisparity
+        && manualMatchesCurrentPrimary
+        && syncedLinksState.view === 'links'
+        && manualSecondaryMeasureId != null
+        && measureSupportsLinks(manualPrimaryMeasureId)
+        && primaryLinksToSecondary(manualPrimaryMeasureId, manualSecondaryMeasureId);
+
+    if (hasManualLinks) {
+        return {
+            primaryMeasureId: manualPrimaryMeasureId,
+            secondaryMeasureId: manualSecondaryMeasureId,
+            view: 'links'
+        };
+    }
+
+    // ----- fall back to the synced default ----- //
+
+    return syncedLinksState;
+
+};
+
+
+// Applies active and disabled visual state to every links-related control.
+
+const setLinksButtonState = () => {
+
+    const activeLinksState = getActiveLinksState();
+    const linksSwitcherDisabled = DE.lookups.linksMeasures.length === 0 || !activeMapMeasureSupportsLinks();
+
+    document.querySelectorAll('.linksbutton').forEach(button => {
+        button.classList.remove('active');
+        button.setAttribute('aria-selected', 'false');
+    });
+
+    if (activeLinksState.view === 'links' && !linksSwitcherDisabled) {
+        const activeLinksButton = document.querySelector(`.linksbutton[data-primary-measure-id='${activeLinksState.primaryMeasureId}'][data-secondary-measure-id='${activeLinksState.secondaryMeasureId}']`);
+
+        if (activeLinksButton) {
+            activeLinksButton.classList.add('active');
+            activeLinksButton.setAttribute('aria-selected', 'true');
+        }
+    }
+
+    setBadgePillState(
+        linksDropdownToggle,
+        activeLinksState.view === 'links' && !linksSwitcherDisabled,
+        linksSwitcherDisabled
+    );
+
+    if (showDisparitiesButton) {
+        setBadgePillState(
+            showDisparitiesButton,
+            activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0,
+            DE.lookups.disparitiesMeasures.length === 0
+        );
+    }
+
+    updateLinksSelectionSummary();
+
+};
+
+
+// Reconciles selected links/disparities state with the current map measure unless a manual selection is active.
+
+syncLinksSelectionsToMapSelection = (force = false) => {
+
+    let didChange = false;
+    const syncedLinksState = getSyncedLinksState();
+
+    if (force || !DE.links.selectedLinksMeasure) {
+        if (DE.links.selectedLinksPrimaryMeasureId !== syncedLinksState.primaryMeasureId) {
+            DE.links.selectedLinksPrimaryMeasureId = syncedLinksState.primaryMeasureId;
+            didChange = true;
+        }
+
+        if (DE.links.selectedLinksSecondaryMeasureId !== syncedLinksState.secondaryMeasureId) {
+            DE.links.selectedLinksSecondaryMeasureId = syncedLinksState.secondaryMeasureId;
+            didChange = true;
+        }
+
+        const nextDisparityState = syncedLinksState.view === 'disparities';
+
+        if (DE.disparities.selectedDisparity !== nextDisparityState) {
+            DE.disparities.selectedDisparity = nextDisparityState;
+            didChange = true;
+        }
+
+        DE.links.selectedLinksMeasure = false;
+    }
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+    return didChange;
+
+};
+
+
+// Rebuilds the links dropdown DOM, wires its handlers, and refreshes button visuals.
+
+const buildLinksSelectionControls = () => {
+
+    // ----- clear existing dropdown contents ----- //
+
+    if (linksDropdownMenu) {
+        linksDropdownMenu.innerHTML = '';
+    }
+
+    // ----- build header and link buttons per visible measure ----- //
+
+    const visibleLinksMeasures = getVisibleLinksMeasures();
+
+    if (visibleLinksMeasures.length > 0 && linksDropdownMenu) {
+
+        // - - - one header plus a button per linked measure - - - //
+
+        visibleLinksMeasures.forEach(measure => {
+
+            const heading = document.createElement('h6');
+
+            heading.className = 'dropdown-header';
+            heading.textContent = measure.MeasurementType;
+
+            linksDropdownMenu.appendChild(heading);
+
+            measure?.VisOptions?.[0]?.Links?.[0]?.Measures?.forEach(link => {
+
+                const secondaryLabel = getLinksButtonLabel(link.MeasureID);
+
+                const button = document.createElement('button');
+
+                button.type = 'button';
+                button.className = 'dropdown-item linksbutton';
+                button.dataset.primaryMeasureId = String(measure.MeasureID);
+                button.dataset.secondaryMeasureId = String(link.MeasureID);
+                button.title = secondaryLabel;
+                button.textContent = secondaryLabel;
+
+                linksDropdownMenu.appendChild(button);
+
+            });
+
+        });
+
+        // - - - wire the dropdown click handler - - - //
+
+        linksDropdownMenu.onclick = event => {
+
+            const button = event.target.closest('.linksbutton');
+
+            if (!button) {
+                return;
+            }
+
+            DE.links.selectedLinksMeasure = true;
+            DE.disparities.selectedDisparity = false;
+            DE.links.selectedLinksPrimaryMeasureId = parseInt(button.dataset.primaryMeasureId, 10);
+            DE.links.selectedLinksSecondaryMeasureId = parseInt(button.dataset.secondaryMeasureId, 10);
+
+            trackDataExplorerOption('links_measure');
+
+            showLinks();
+
+        };
+
+    } else if (linksDropdownMenu) {
+
+        linksDropdownMenu.onclick = null;
+
+    }
+
+    // ----- wire toggle and refresh visuals ----- //
+
+    bindCorrelateControls();
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+};
+
+
+// Renders the correlate chart for a measure pair, reusing cached joined data when still valid.
+
+const renderSelectedCorrelate = async (primaryMeasureId, secondaryMeasureId) => {
+
+    // ----- guard: bail if either measure ID is missing ----- //
+
+    if (primaryMeasureId == null || secondaryMeasureId == null) {
+        return false;
+    }
+
+    // ----- reuse cached joined data, or fetch it fresh ----- //
+
+    const canReuseCurrentSelection = Array.isArray(DE.links.joinedLinksDataObjects)
+        && DE.links.joinedLinksDataObjects.length > 0
+        && Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) === Number(primaryMeasureId)
+        && Number(DE.links.selectedSecondaryMeasureMetadata?.[0]?.MeasureID) === Number(secondaryMeasureId);
+
+    if (!canReuseCurrentSelection) {
+
+        // - - - fetch and cache, bailing when no rows come back - - - //
+
+        const selectedLinksDataMetadata = await createJoinedLinksData(primaryMeasureId, secondaryMeasureId);
+
+        if (!selectedLinksDataMetadata?.data?.length) {
+            return false;
+        }
+
+        DE.links.selectedPrimaryMeasureMetadata = selectedLinksDataMetadata.primaryMeasureMetadata;
+        DE.links.selectedSecondaryMeasureMetadata = selectedLinksDataMetadata.secondaryMeasureMetadata;
+        DE.links.joinedLinksDataObjects = selectedLinksDataMetadata.data;
+
+    }
+
+    // ----- resolve secondary indicator, guard incomplete metadata ----- //
+
+    const linksSecondaryIndicator = getSecondaryMeasureIndicator(secondaryMeasureId);
+
+    if (!DE.links.selectedPrimaryMeasureMetadata?.length || !DE.links.selectedSecondaryMeasureMetadata?.length || !linksSecondaryIndicator.length) {
+        return false;
+    }
+
+    // ----- build about and sources HTML ----- //
+
+    DE.indicator.primaryIndicatorName = DE.indicator.indicatorName;
+    DE.indicator.secondaryIndicatorName = linksSecondaryIndicator[0]?.IndicatorName;
+
+    const primaryMeasurementType = DE.links.selectedPrimaryMeasureMetadata[0]?.MeasurementType;
+    const secondaryMeasurementType = DE.links.selectedSecondaryMeasureMetadata[0]?.MeasurementType;
+    const primaryAbout = DE.links.selectedPrimaryMeasureMetadata[0]?.how_calculated;
+    const secondaryAbout = DE.links.selectedSecondaryMeasureMetadata[0]?.how_calculated;
+    const primarySources = DE.links.selectedPrimaryMeasureMetadata[0]?.Sources;
+    const secondarySources = DE.links.selectedSecondaryMeasureMetadata[0]?.Sources;
+
+    DE.links.selectedLinksAbout =
+        `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primaryAbout}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondaryAbout}</p>`;
+
+    DE.links.selectedLinksSources =
+        `<p><strong>${DE.indicator.primaryIndicatorName} - ${primaryMeasurementType}</strong>: ${primarySources}</p>
+            <p><strong>${DE.indicator.secondaryIndicatorName} - ${secondaryMeasurementType}</strong>: ${secondarySources}</p>`;
+
+    // ----- render ----- //
+
+    renderAboutSources(DE.links.selectedLinksAbout, DE.links.selectedLinksSources);
+
+    renderCorrelate(
+        DE.links.joinedLinksDataObjects,
+        DE.links.selectedPrimaryMeasureMetadata,
+        DE.links.selectedSecondaryMeasureMetadata,
+        DE.indicator.primaryIndicatorName,
+        DE.indicator.secondaryIndicatorName
+    );
+
+    return true;
+
+};
+
+
+// Renders the disparities chart for a primary measure against the fixed poverty comparator measure.
+
+const renderSelectedDisparities = async (primaryMeasureId) => {
+
+    const primaryMeasureMetadata = getMeasureMetadataById(primaryMeasureId);
+
+    if (!primaryMeasureMetadata.length) {
+        return false;
+    }
+
+    // This replaces half of the correlate cache's key (see setDefaultLinksMeasure) with no rows to
+    // match it, so drop the rows: otherwise a later correlate render for this primary and the old
+    // secondary would reuse the old pair's data under the new label.
+
+    if (Number(DE.links.selectedPrimaryMeasureMetadata?.[0]?.MeasureID) !== Number(primaryMeasureId)) {
+        DE.links.joinedLinksDataObjects = undefined;
+    }
+
+    DE.links.selectedPrimaryMeasureMetadata = primaryMeasureMetadata;
+
+    await renderDisparitiesChart(primaryMeasureMetadata, DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
+
+    return true;
+
+};
+
+
+// ----- functions to show to tabs ----- //
+
+// Re-runs DataTables' column adjust and re-locks scroll-body height, skipping when the table pane is hidden or uninitialized.
+
+const adjustVisibleSummaryTable = () => {
+
+    const tablePane = document.querySelector('#v-pills-table');
+
+    // Delayed adjusts should no-op if the user already closed or switched away from the table pane.
+
+    if (!tablePane || DE.state.overlay !== 'table' || getComputedStyle(tablePane).display === 'none') {
+        return;
+    }
+
+    // On first page load the lazy table may not exist yet, so skip until it does.
+
+    if (!$.fn.dataTable.isDataTable('#tableID')) {
+        return;
+    }
+
+    $('#tableID').DataTable().columns.adjust();
+
+    // Reapply the fixed scroll-body height after width math changes so redraws stay stable.
+
+    if (typeof lockSummaryTableScrollBodyHeight === 'function') {
+        lockSummaryTableScrollBodyHeight();
+    }
+
+};
+
+
+// Schedules adjustVisibleSummaryTable after a double rAF and a 180ms timeout so layout can settle.
+
+const scheduleVisibleSummaryTableAdjust = () => {
+
+    // Closing the pane hides the whole tab container, so one immediate adjust often runs too early.
+
+    window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+            adjustVisibleSummaryTable();
+        });
+    });
+
+    // Follow up once more after Bootstrap/layout changes settle on slower redraw paths.
+
+    window.setTimeout(() => {
+        adjustVisibleSummaryTable();
+    }, 180);
+
+};
+
+// Refreshes the summary table layout after it becomes the active overlay.
+
+showTable = (e) => {
+
+    debugLog("* showTable");
+
+    DE.state.overlay = 'table';
+    let didRenderTable = false;
+
+    // Render the table on first access (lazy initialization for performance).
+    // The placeholder text node in the template should not block first render.
+
+    const tableContainer = document.getElementById('summary-table');
+    if (DE.table.tableData && (!tableContainer.querySelector('table') || DE.table.tableNeedsRender)) {
+        renderTable(DE.table.tableData);
+        didRenderTable = true;
+    } else if (DE.table.tableData && typeof renderTableFilterControls === 'function' && typeof applyTableFilters === 'function') {
+        // Reopen path: keep the existing DataTable and just resync controls + hidden searches.
+
+        renderTableFilterControls(DE.table.tableData);
+        applyTableFilters(DE.table.tableData);
+    }
+
+    // updateChartPlotSize();
+
+    const dataTables = $.fn.dataTable.tables(false);
+    if (didRenderTable && dataTables.length) {
+        // First-open path still initializes while pane is hidden, so headers need one
+        // follow-up width pass after Bootstrap finishes showing the panel.
+
+        scheduleVisibleSummaryTableAdjust();
+    } else if (!didRenderTable && dataTables.length) {
+        $(dataTables)
+            .DataTable()
+            .columns.adjust();
+
+        // Reopen width fixes belong only to existing tables; first render sizes itself during init.
+
+        scheduleVisibleSummaryTableAdjust();
+    }
+
+};
+
+
+// Resolves the map/bar metadata for the current MeasureID. A measure whose Map, Table and Trend
+// entries are all unpopulated never enters DE.lookups.mapMeasures, but it is still this
+// indicator's measure and carries MapUnavailable (withCitywideMapFallback), so it gets its own
+// entry and renderMap draws the unmapped state. Falling straight back to the default map measure,
+// as both callers did, handed renderMap another measure's metadata with none of this measure's
+// rows: a fetch of geography/undefined, an empty map and a 0.0–0.0 legend, on indicators 103,
+// 2176, 2383 and 2384 (review finding #5). The default stays the fallback for a MeasureID that
+// is not this indicator's at all.
+
+const resolveMapMetadata = () => {
+
+    const mapped = DE.lookups.mapMeasures.filter(m => m.MeasureID == DE.state.MeasureID);
+
+    if (mapped.length) return mapped;
+
+    const unmapped = (DE.indicator.indicatorMeasures || [])
+        .filter(m => m.MeasureID == DE.state.MeasureID && m.MapUnavailable);
+
+    return unmapped.length ? unmapped : DE.map.defaultMapMetadata;
+
+};
+
+
+// Redraws the Leaflet map (always visible on the left) with the current selection.
+
+showMap = () => {
+
+    debugLog("* showMap");
+
+    // ----- resolve metadata for the current MeasureID ----- //
+
+    const metadata = resolveMapMetadata();
+
+    // ----- filter data by current globals ----- //
+
+    DE.map.filteredMapData = DE.map.mapData.filter(obj =>
+        obj.MeasureID == DE.state.MeasureID &&
+        obj.TimePeriodID == DE.state.TimePeriodID &&
+        prettifyGeoType(obj.GeoType) == DE.state.GeoType
+    );
+
+    debugLog("filteredMapData:", DE.map.filteredMapData.length, "rows",
+        { MeasureID: DE.state.MeasureID, GeoType: DE.state.GeoType, TimePeriodID: DE.state.TimePeriodID });
+
+    // ----- render the Leaflet map only ----- //
+
+    return renderMap(DE.map.filteredMapData, metadata);
+
+};
+
+
+// Renders the right-side bar overlay from the filtered map rows.
+
+showBar = (e) => {
+
+    debugLog("* showBar");
+
+    DE.state.overlay = 'bar';
+
+    // ----- resolve metadata for the bar chart ----- //
+
+    const metadata = resolveMapMetadata();
+
+    // ----- bail when there is no measure to chart ----- //
+
+    // The bar chart is built from the map's rows, so a measure the catalog holds no map for has
+    // nothing to plot: it never enters DE.lookups.mapMeasures and defaultMapMetadata is empty too,
+    // leaving metadata[0] undefined and renderBar dereferencing MeasurementType on it.
+    // renderCurrentView dispatches on DE.state.overlay whether or not the tab is disabled, so a
+    // carried-over or URL-supplied `overlay=bar` reaches here even on those indicators — the
+    // disabled tab blocks the click, not the overlay. Observed as a TypeError in
+    // resolveMeasureDisplay on /data-explorer/waterways/?id=2427&overlay=bar (audit §4.13).
+
+    if (!metadata?.[0]?.MeasurementType) {
+        debugLog("* showBar: no mappable measure metadata, nothing to chart");
+        return;
+    }
+
+    // ----- render the bar chart using the already-filtered map data ----- //
+
+    renderBar(DE.map.filteredMapData, metadata, DE.state.GeoType);
+
+};
+
+
+// Chooses between borough trend mode and comparison trend mode.
+
+showTrend = (e) => {
+
+    debugLog("* showTrend");
+
+    DE.state.overlay = 'trend';
+
+    // Use comparison mode when no borough trend data exists or comparison mode is already active.
+
+    if ((DE.lookups.trendMeasures.length === 0 && DE.lookups.comparisonMetadata?.length) || (DE.trend.showingComparisonTrend && DE.lookups.comparisonMetadata?.length)) {
+        showComparisonTrend();
+    } else if (DE.lookups.trendMeasures.length > 0) {
+        showBoroughTrend();
+    }
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+}
+
+// Renders the standard borough trend chart for the selected measure.
+
+showBoroughTrend = (e) => {
+
+    debugLog("** showBoroughTrend");
+
+    // special time-period filtering for certain air quality measures
+
+    const measureIdsAnnualAvg = DE_MEASURE_RULES.trendAnnualAverageMeasureIds;
+    const measureIdsSummer = DE_MEASURE_RULES.trendSummerMeasureIds;
+
+    // ----- resolve measure: use global if it has trend data, else default ----- //
+
+    const trendMeasureId = getActiveTrendMeasureId();
+    const trendMetadataArr = DE.lookups.trendMeasures.filter(m => Number(m.MeasureID) === Number(trendMeasureId));
+    const resolvedTrendMetadata = trendMetadataArr.length ? trendMetadataArr : DE.trend.defaultTrendMetadata;
+    const resolvedTrendMeasureId = resolvedTrendMetadata?.[0]?.MeasureID;
+
+    if (resolvedTrendMeasureId == null) {
+        return;
+    }
+
+    DE.trend.aqSelectedTrendMetadata = aq.from(resolvedTrendMetadata)
+        .derive({
+            IndicatorLabel: aq.escape(DE.indicator.indicatorName),
+            ComparisonName: aq.escape('Boroughs')
+        });
+
+    DE.trend.selectedTrendAbout = `<p><strong>${resolvedTrendMetadata[0].MeasurementType}</strong>: ${resolvedTrendMetadata[0].how_calculated}</p>`;
+    DE.trend.selectedTrendSources = [resolvedTrendMetadata[0].Sources];
+
+    renderAboutSources(DE.trend.selectedTrendAbout, DE.trend.selectedTrendSources);
+
+    // ----- filter data by resolved measure ----- //
+
+    DE.trend.filteredTrendData = DE.trend.trendData
+        .filter(m => Number(m.MeasureID) === Number(resolvedTrendMeasureId));
+
+    // ----- handle special time-period subsets ----- //
+
+    // Restrict special air-quality measures to the season or annual slices they expect.
+
+    if (measureIdsAnnualAvg.includes(resolvedTrendMeasureId)) {
+
+        DE.trend.aqFilteredTrendData = aq.from(
+            DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Annual Average'))
+        );
+
+    } else if (measureIdsSummer.includes(resolvedTrendMeasureId)) {
+
+        DE.trend.aqFilteredTrendData = aq.from(
+            DE.trend.filteredTrendData.filter(d => d.TimePeriod.startsWith('Summer'))
+        );
+
+    } else {
+
+        DE.trend.aqFilteredTrendData = aq.from(DE.trend.filteredTrendData);
+
+    }
+
+    // ----- render ----- //
+
+    renderTrendChart(DE.trend.aqFilteredTrendData, DE.trend.aqSelectedTrendMetadata);
+
+    DE.trend.showingBoroughTrend = true;
+    DE.trend.showingComparisonTrend = false;
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+};
+
+
+// Renders the multi-indicator comparison trend chart when comparison metadata exists.
+
+showComparisonTrend = (e) => {
+
+    debugLog("** showComparisonTrend");
+
+    // ----- resolve comparison ID, falling back to borough trend ----- //
+
+    const comparisonId = getActiveComparisonId();
+
+    if (comparisonId == null || !DE.lookups.aqComparisonMetadata || !DE.lookups.aqComparisonIndicatorData) {
+        if (DE.lookups.trendMeasures.length > 0) {
+            DE.trend.showingComparisonTrend = false;
+            showBoroughTrend();
+        }
+
+        return;
+    }
+
+    // ----- build about and sources text ----- //
+
+    const selectedComparisonRows = DE.lookups.aqCombinedComparisonMetadata
+        .objects()
+        .filter(m => Number(m.ComparisonID) === Number(comparisonId));
+
+    DE.trend.selectedComparisonAbout = '';
+    DE.trend.selectedComparisonSources = [];
+
+    selectedComparisonRows.forEach(m => {
+        DE.trend.selectedComparisonAbout += `<p><strong>${m.IndicatorName} - ${m.MeasurementType}:</strong> ${m.how_calculated}</p>`;
+        DE.trend.selectedComparisonSources.push(m.Sources);
+    });
+
+    DE.trend.selectedComparisonSources = [...new Set(DE.trend.selectedComparisonSources)];
+
+    renderAboutSources(DE.trend.selectedComparisonAbout, DE.trend.selectedComparisonSources);
+
+    // ----- build joined comparison metadata and data ----- //
+
+    DE.trend.aqFilteredComparisonMetadata = DE.lookups.aqComparisonMetadata
+        .filter(aq.escape(d => d.ComparisonID == comparisonId))
+        .join(DE.lookups.aqComparisonIndicatorsMetadata, [["IndicatorID", "MeasureID"], ["IndicatorID", "MeasureID"]]);
+
+    DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonMetadata
+        .select("ComparisonID", "IndicatorID", "MeasureID", "IndicatorLabel", "MeasurementType", "IndicatorMeasure", "GeoTypeName", "GeoID")
+        .join(DE.lookups.aqComparisonIndicatorData, [["IndicatorID", "MeasureID", "GeoTypeName", "GeoID"], ["IndicatorID", "MeasureID", "GeoType", "GeoID"]])
+        .join(DE.lookups.timeTable, [["TimePeriodID"], ["TimePeriodID"]])
+        .orderby(aq.desc(aq.escape(d => d.IndicatorID == DE.state.IndicatorID)), d => d.MeasureID);
+
+    // - - - restrict quarterly measures to the last 3 years - - - //
+
+    const hasQuarters = DE_MEASURE_RULES.quarterlyComparisonMeasureIds;
+
+    if (DE.trend.aqFilteredComparisonMetadata.array("MeasureID").some(m => hasQuarters.includes(m))) {
+        DE.trend.aqFilteredComparisonData = DE.trend.aqFilteredComparisonData
+            .derive({ "year": d => op.year(d.end_period) })
+            .filter(d => d.year > op.max(d.year) - 3)
+            .select(aq.not("TimePeriodID", "year"))
+            .reify();
+    }
+
+    // ----- render and update selection state ----- //
+
+    renderTrendChart(
+        DE.trend.aqFilteredComparisonData,
+        DE.trend.aqFilteredComparisonMetadata
+    );
+
+    DE.trend.showingBoroughTrend = false;
+    DE.trend.showingComparisonTrend = true;
+
+    setTrendButtonState();
+    updateTrendSelectionSummary();
+
+}
+
+
+// Renders the links view, or shows a metadata-driven empty state when no correlates exist.
+
+showLinks = async (e) => {
+
+    debugLog("* showLinks");
+
+    DE.state.overlay = 'links';
+
+    // ----- rebuild selection controls and sync to the map selection ----- //
+
+    buildLinksSelectionControls();
+
+    syncLinksSelectionsToMapSelection();
+
+    // ----- resolve active links state, guard the "no correlates" case ----- //
+
+    const activeLinksState = getActiveLinksState();
+
+    if (activeLinksState.view === 'links' && !activeMapMeasureSupportsLinks()) {
+        renderNoCorrelatesMessage(getActiveMapMeasureLabel());
+        setLinksButtonState();
+        updateLinksSelectionSummary();
+        return;
+    }
+
+    // ----- try the disparities render first ----- //
+
+    let didRender = false;
+
+    if (activeLinksState.view === 'disparities' && DE.lookups.disparitiesMeasures.length > 0) {
+        didRender = await renderSelectedDisparities(activeLinksState.primaryMeasureId);
+    }
+
+    // ----- otherwise try the links/correlate render ----- //
+
+    if (!didRender && DE.lookups.linksMeasures.length > 0) {
+        didRender = await renderSelectedCorrelate(activeLinksState.primaryMeasureId, activeLinksState.secondaryMeasureId);
+    }
+
+    // ----- fall back to disparities if both renders failed ----- //
+
+    if (!didRender && DE.lookups.disparitiesMeasures.length > 0) {
+
+        const fallbackPrimaryMeasureId = measureSupportsDisparities(activeLinksState.primaryMeasureId)
+            ? activeLinksState.primaryMeasureId
+            : getDefaultDisparitiesPrimaryMeasureId();
+
+        // - - - commit the fallback selection before rendering - - - //
+
+        if (fallbackPrimaryMeasureId != null) {
+            DE.disparities.selectedDisparity = true;
+            DE.links.selectedLinksPrimaryMeasureId = fallbackPrimaryMeasureId;
+            DE.links.selectedLinksSecondaryMeasureId = DE_MEASURE_RULES.disparitiesSecondaryMeasureId;
+
+            didRender = await renderSelectedDisparities(fallbackPrimaryMeasureId);
+        }
+    }
+
+    // ----- sync button state ----- //
+
+    setLinksButtonState();
+    updateLinksSelectionSummary();
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// function to render the measures
+// ----------------------------------------------------------------------- //
+
+// Prepares per-tab measure metadata and defines the active show* render functions.
+
+const renderMeasures = async () => {
+
+    // ----- setup / clear per-indicator state ----- //
+
+    debugLog("* renderMeasures");
+
+    // Captured before the links fetch below; see isIndicatorLoadCurrent in app.js.
+
+    const loadToken = indicatorLoadToken;
+
+    resolveTabReferences();
+    resolveMeasuresPillRefs();
+
+    // Throw away any sticky table selection state before deriving new defaults for this indicator.
+
+    DE.table.selectedTableTimes = [];
+    DE.table.selectedTableGeography = [];
+
+    // clear measure arrays
+
+    DE.lookups.mapMeasures = [];
+    DE.lookups.trendMeasures = [];
+    DE.lookups.linksMeasures = [];
+    DE.lookups.disparitiesMeasures = [];
+
+
+    // ----- table defaults ----- //
+
+    // collect unique time period labels available in the data for the table tab
+
+    const tableTimes = [...new Set(DE.lookups.aqTableTimesGeos.array("TimePeriod"))];
+
+    // Default the table to the currently selected time period when available.
+
+    const selectedTableTime = DE.lookups.timeLookup[DE.state.TimePeriodID]?.TimePeriod;
+
+    if (selectedTableTime && tableTimes.includes(selectedTableTime)) {
+        DE.table.selectedTableTimes = [selectedTableTime];
+    } else if (tableTimes.length) {
+        DE.table.selectedTableTimes = [tableTimes[0]];
+    } else {
+        DE.table.selectedTableTimes = [];
+    }
+
+
+    // - - - geo types - - - //
+
+    // create geo dropdown for table (using pretty geotypes, keeping georank order)
+
+    const tableGeoTypes = [...new Set(DE.lookups.aqTableTimesGeos.array("GeoType").map(gt => prettifyGeoType(gt)))];
+    // filtering through geoTypes preserves canonical rank order instead of data insertion order
+
+    const dropdownTableGeoTypes = geoTypes.filter(g => tableGeoTypes.includes(g));
+
+    // Default the table to the currently selected geography when available.
+
+    if (DE.state.GeoType && dropdownTableGeoTypes.includes(DE.state.GeoType)) {
+        DE.table.selectedTableGeography = [DE.state.GeoType];
+    } else if (dropdownTableGeoTypes.length) {
+        DE.table.selectedTableGeography = [dropdownTableGeoTypes[0]];
+    } else {
+        DE.table.selectedTableGeography = [];
+    }
+
+    DE.table.tableTimeFilterIsManual = false;
+    DE.table.tableGeoFilterIsManual = false;
+    DE.table.tableNeedsRender = true;
+
+    // Force first table-tab visit to rebuild table and filter controls for this indicator.
+
+    const tableContainer = document.getElementById('summary-table');
+    if (tableContainer) {
+        tableContainer.innerHTML = '';
+    }
+
+
+    // ----- populate per-tab measure arrays ----- //
+
+    const disparitiesSecondaryMeasure = indicators
+        .flatMap(indicator => indicator.Measures)
+        .find(measure => measure.MeasureID === DE_MEASURE_RULES.disparitiesSecondaryMeasureId);
+
+    // Sort each measure into the tabs where its metadata says data exists.
+
+    DE.indicator.indicatorMeasures.forEach(measure => {
+
+        // check which viz types exist for this measure
+
+        const map         = DE.lookups.aqMapTimesGeos   && DE.lookups.aqMapTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
+        const trend       = DE.lookups.aqTrendTimesGeos && DE.lookups.aqTrendTimesGeos.filter(aq.escape(d => d.MeasureID === measure.MeasureID)).numRows() > 0;
+        const links       = measure.VisOptions[0].Links && measure.VisOptions[0].Links[0].Measures[0]?.MeasureID;
+        // Disparities == 1 in metadata signals this measure supports the disparities chart
+
+        const disparities = measure.VisOptions[0].Links[0].Disparities == 1
+            && getSharedLinksGeos(measure, disparitiesSecondaryMeasure).length > 0;
+
+        // Each tab only gets measures that actually have data for that view.
+
+        if (map)         DE.lookups.mapMeasures.push(measure);
+        if (trend)       DE.lookups.trendMeasures.push(measure);
+        if (links)       DE.lookups.linksMeasures.push(measure);
+        if (disparities) DE.lookups.disparitiesMeasures.push(measure);
+
+    });
+
+
+    // ----- set metadata defaults ----- //
+
+    setDefaultMapMeasure(DE.lookups.mapMeasures);
+    setDefaultTrendMeasure(DE.lookups.trendMeasures);
+    setDefaultDisparitiesMeasure(DE.lookups.disparitiesMeasures);
+
+    // also calls (and waits for) createJoinedLinksData
+
+    await setDefaultLinksMeasure(DE.lookups.linksMeasures);
+
+    if (!isIndicatorLoadCurrent(loadToken)) return;
+
+
+    // ----- trend selection controls ----- //
+
+    // Reset the comparison-pill selection for each indicator load (was a per-call `let`
+    // re-initialization before selectedComparisonLegendTitle moved onto DE.trend).
+
+    DE.trend.selectedComparisonLegendTitle = null;
+
+    buildTrendSelectionControls();
+
+
+    // ----- correlate / disparities selection controls ----- //
+
+    buildLinksSelectionControls();
+
+
+    // ----- disable tabs when no data is available ----- //
+
+    // - - - map - - - //
+
+    // Disable the bar tab when there is no map-compatible measure metadata.
+
+    if (DE.lookups.mapMeasures.length === 0) {
+        disableTab(tabBar);
+    } else {
+        enableTab(tabBar);
+    }
+
+    // - - - trend — disable if no trend measures (or only 1 time period) and no comparisons - - - //
+
+    const onlyOneTime = DE.lookups.trendMeasures.every(m => m.VisOptions[0].Trend[0]?.TimePeriodID.length <= 1);
+
+    // Disable the trend tab when there is neither a meaningful trend nor a comparison fallback.
+
+    if ((DE.lookups.trendMeasures.length === 0 || onlyOneTime) && (typeof DE.lookups.comparisonMetadata === 'undefined' || DE.lookups.comparisonMetadata.length === 0)) {
+        disableTab(tabTrends);
+    } else {
+        enableTab(tabTrends);
+    }
+
+    // - - - links + disparities - - - //
+
+    // Disable the correlate tab only when both links and disparities are unavailable.
+
+    if (DE.lookups.linksMeasures.length === 0 && DE.lookups.disparitiesMeasures.length === 0) {
+        disableTab(tabCorrelate);
+    } else {
+        enableTab(tabCorrelate);
+    }
+
+
+    // ----- activate the Bootstrap tab matching overlay ----- //
+
+    // The caller, loadAndRenderIndicator, calls renderCurrentView after this.
+
+    showOverlayTab();
+
+}
+
+
+// Opens the tab and pane matching DE.state.overlay, or closes them all for 'none'. Called after
+// renderMeasures has enabled/disabled the tabs, and by popstate when Back/Forward stays on the same
+// indicator — before that second call existed, a same-indicator Back changed the URL and the state
+// but left the previous pane on screen (review finding #1).
+//
+// A disabled target becomes 'none'. Bootstrap's tab('show') refuses a .disabled tab, so asking for
+// one used to leave the pane container open with no pane in it (?id=2378&overlay=trend).
+
+const showOverlayTab = () => {
+
+    const tabSelector = {
+        'bar':   '#v-pills-bar-tab',
+        'map':   '#v-pills-bar-tab',
+        'trend': '#v-pills-trends-tab',
+        'links': '#v-pills-correlate-tab',
+        'table': '#v-pills-table-tab'
+    };
+
+    const tabContent = document.querySelector('#v-pills-tabContent');
+    const tabLinks = document.querySelectorAll('#v-pills-tab .nav-link[data-toggle="pill"]');
+    const tabPanes = document.querySelectorAll('#v-pills-tabContent > .tab-pane');
+
+    // Clears active/selected state from tab nav-links and hides all tab panes.
+
+    const resetOverlayTabState = () => {
+
+        tabLinks.forEach(link => {
+            link.classList.remove('active');
+            link.setAttribute('aria-selected', 'false');
+        });
+
+        tabPanes.forEach(pane => {
+            pane.classList.remove('show', 'active');
+        });
+
+    };
+
+    const target = DE.state.overlay !== 'none'
+        ? document.querySelector(tabSelector[DE.state.overlay] || '#v-pills-bar-tab')
+        : null;
+
+    if (target?.classList.contains('disabled')) {
+        DE.state.overlay = 'none';
+    }
+
+    // Re-open the tab that matches the restored overlay after menus are rebuilt.
+
+    if (DE.state.overlay !== 'none') {
+        resetOverlayTabState();
+
+        if (tabContent) {
+            tabContent.style.display = 'block';
+        }
+
+        $(target).tab('show');
+    } else {
+        resetOverlayTabState();
+
+        if (tabContent) {
+            tabContent.style.display = 'none';
+        }
+    }
+
+};
+

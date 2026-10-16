@@ -12,7 +12,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-64BWDRHRGB');
     </script>
 
@@ -36,7 +35,6 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 
 
 
@@ -69,7 +67,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/","name":"The Environment and Health Data Portal: Home page","position":1},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/","name":"Neighborhood Reports","position":2},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/canarsie_flatlands/","name":"Canarsie - Flatlands","position":3},{"@type":"ListItem","item":"https://a816-dohbesp.nyc.gov/IndicatorPublic/neighborhood-reports/canarsie_flatlands/active_design_physical_activity_and_health/","name":"Active Design, Physical Activity and Health","position":4}]}</script>
 <script src="/IndicatorPublic/node_modules/jquery/dist/jquery.min.9d6bd9b75ea55acc.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR&#43;8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/IndicatorPublic/node_modules/@fortawesome/fontawesome-free/css/all.min.c2b5ea5c3ed56d7e.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck&#43;w&#43;/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous"/>
-<link rel="stylesheet" href="/IndicatorPublic/scss/theme.5fe87dc00fc8b6820aac6bc15674d8d083df8767af43758c37d3036942a39a90b1dad3eecd64f735e23b2f7785c17f2fd0a907554895279cc4d8fcde4c9f9a1d.css" integrity="sha512-X&#43;h9wA/ItoIKrGvBVnTY0IPfh2evQ3WMN9MDaUKjmpCx2tPuzWT3NeI7L3eFwX8v0KkHVUiVJ5zE2PzeTJ&#43;aHQ==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
+<link rel="stylesheet" href="/IndicatorPublic/scss/theme.9b01996ebc446d743a8ca69072a91422c1333c83d96fc1a54701ec9b6b50266be7e873d91c8701a7125c0ca10cd9e7f5302e0a6264b044d3e8243f27b8162b37.css" integrity="sha512-mwGZbrxEbXQ6jKaQcqkUIsEzPIPZb8GlRwHsm2tQJmvn6HPZHIcBpxJcDKEM2ef1MC4KYmSwRNPoJD8nuBYrNw==" /><script src="/IndicatorPublic/node_modules/dompurify/dist/purify.min.b5b56851ad671ef1.js" integrity="sha512-KVghpoGGCQg1PCuSyDfWBGBvPoT3fO8TncggaP2j8Nx3RKd8KQavb6QqaanuyO4zIVpIFFV6UiQOK9SCIpz0Pw=="></script>
 
 
 
@@ -86,19 +84,48 @@
 
 </script>
 
+<script>
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+    let DE_DEBUG_OVERRIDE = null;
+
+    try {
+        DE_DEBUG_OVERRIDE = localStorage.getItem('de_debug');
+    } catch (e) {}
+
+    const DE_DEBUG = DE_DEBUG_OVERRIDE !== null
+        ? DE_DEBUG_OVERRIDE === '1'
+        : !['production', 'prod_prod'].includes(hugoEnv);
+
+    
+    
+
+    const debugLog = DE_DEBUG ? console.log.bind(console) : () => {};
+
+</script>
+
 
 <meta 
         data-pagefind-meta="title:Active Design, Physical Activity and Health | Canarsie - Flatlands"
         class="d-none"
     >
 
-  </head>
+    </head>
 
 
 
 <body>
-
-  
+    
+    
 <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
 <header id="global-header" role="banner">
@@ -264,7 +291,7 @@
 
 
                                     
-                                    
+
 
                                     <div class="nav-item bg-white text-primary border d-none d-lg-block">
                                         <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
@@ -275,9 +302,9 @@
                                     
 
                                     
-                                    <div class="nav-item bg-none text-white border border-white ml-1">
+                                    <div class="nav-item btn btn-outline-warning btn-sm ml-1 subscribe-button">
 
-                                        <a class="nav-link text-white" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
+                                        <a class="nav-link" href="#" data-subscribe-click="header" data-toggle="modal" data-target="#subscribeModal">Subscribe</a>
                                     </div>
 
                                 </nav>
@@ -321,7 +348,7 @@
                                                 <span class="fas fa-bars fa-lg text-primary" ></span>
                                             </button>
                                         </li>
-        
+
                                         <li>
                                             <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
                                                 <span class="sr-only">Search</span>
@@ -329,17 +356,17 @@
                                             </a>
                                         </li>
                                     </ul>
-        
+
                                     <div class="collapse d-lg-none mx-n2 mx-lg-2" id="nav-primary">
-        
+
                                         <nav class="nav" role="navigation" aria-label="Main">
-        
+
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-topic"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Topics
                                                 </a>
-        
+
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-topic">
                                                     <ul class="extensible-list p-0">
                                                         
@@ -366,47 +393,47 @@
                                                             <li class=""><a class="" href="/IndicatorPublic/key-topics/public-space/">Public space</a></li>
                                                             <hr class="my-1">
                                                             <a href=/IndicatorPublic/key-topics>All topics</a>
-        
+
                                                     </ul>
                                                 </div>
                                             </div>
                                             
-        
+
                                             <div class="nav-item bg-white text-primary border dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="nav-item-type"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Explore
                                                 </a>
-        
+
                                                 <div class="dropdown-menu wider-menu" aria-labelledby="nav-item-type">
                                                     <ul class="extensible-list p-0">
-        
+
                                                         <li><a href="/IndicatorPublic/data-stories/"><span class="mr-1"><span class='data-stories'><i class='fas fa-passport' aria-hidden='true'></i></span></span>Data Stories</a></li>
-        
+
                                                                 <hr class="my-1">
-        
+
                                                             <li><a href="/IndicatorPublic/data-features/"><span class="mr-1"><span class='df-accent'><i class='fas fa-chart-bar' aria-hidden='true'></i></span></span>Data Features</a></li>
-        
+
                                                                 <hr class="my-1">
-        
+
                                                             <li><a href="/IndicatorPublic/neighborhood-reports/"><span class="mr-1"><span class='n-reports'><i class='fas fa-map-marked-alt' aria-hidden='true'></i></span></span>Neighborhood Reports</a></li>
-        
+
                                                                 <hr class="my-1">
-        
+
                                                             <li><a href="/IndicatorPublic/data-explorer/"><span class="mr-1"><span class='data-explorer'><i class='fas fa-chart-line' aria-hidden='true'></i></span></span>Data Explorer</a></li></ul>
                                                 </div>
                                             </div>
                                             
-        
+
                                             <div class="nav-item bg-white text-primary border">
                                                 <a class="nav-link " href="/IndicatorPublic/about/">
                                                     About
                                                 </a></div>
-        
-        
+
+
                                             
-                                            
-        
+
+
                                             <div class="nav-item bg-white text-primary border d-none d-lg-block">
                                                 <a class="nav-link" href="#" type="button" data-toggle="modal" data-target="#searchModal" title="Search">
                                                             <span class="sr-only">Search</span>
@@ -414,7 +441,7 @@
                                                         </a>
                                             </div>
                                             
-        
+
                                             
                                             <div class="nav-item bg-none text-primary border">
 
@@ -422,9 +449,9 @@
                                                     Subscribe
                                                 </a>
                                             </div>
-        
+
                                         </nav>
-        
+
                                     </div>
     </div><div class="modal" tabindex="-1" role="dialog" id="subscribeModal" data-subscribe-form-url="https://docs.google.com/forms/d/e/1FAIpQLSfUg3JE5ODNc6aqBPJwM8mZ80TYtK6ISw-OM7PBwKuoN3M--g/viewform?embedded=true">
     <div class='modal-dialog subscribe-modal-dialog modal-dialog-centered' role='document'>
@@ -440,7 +467,7 @@
     </div>
 </div></header>
 
-  <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><style>
+    <main id="skip-header-target" tabindex="-1" role="main" data-pagefind-body><style>
     .card-header {
         padding: 0.5rem 0.5rem; 
         background: white!important;
@@ -644,11 +671,11 @@
     
     
     
-    var geocode = `208`
+    let geocode = `208`;
     
-    var lat = 40.715554;
-    var lng = -74.0026642;
-    var zoom = 10;
+    let lat = 40.715554;
+    let lng = -74.0026642;
+    let zoom = 10;
     
     
     
@@ -825,14 +852,21 @@
     
     
     
-    var intendedDestinationName 
     
     
     
-    var chosenNeighborhood; 
-    var chosenGeo =  208 ;
-    var chosenReport;       
-    var chosenButton;       
+    
+    
+    
+
+    var intendedDestinationName
+    
+    
+    
+    let chosenNeighborhood; 
+    let chosenGeo =  208 ;
+    let chosenReport;       
+    let chosenButton;       
     
     
 
@@ -853,7 +887,7 @@
         console.log("** getReportAndNeighborhood");
 
         const url = window.location.pathname.match(/neighborhood-reports.*/)[0]
-        var urlPieces = url.split("/")
+        let urlPieces = url.split("/")
 
         
         
@@ -4328,8 +4362,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+
+    </section>
 
 
 
@@ -4717,342 +4751,310 @@ const renderNRMap = (
     
 
 </script><ul id="results"></ul>
-  </main>
-  
-  <footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
+    </main>
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <link href="/IndicatorPublic/pagefind/pagefind-ui.css" rel="stylesheet">
+                <script src="/IndicatorPublic/pagefind/pagefind-ui.js" type="text/javascript"></script>
+                <div id="search"></div>
+                <script>
+                    window.addEventListener('DOMContentLoaded', () => {
+                        const search_modal = document.getElementById('searchModal');
+                        const search_root = document.getElementById('search');
 
-  <h2 class="sr-only">
-      Page Footer
-  </h2>
+                        if (!search_modal || !search_root || typeof PagefindUI !== 'function') {
+                            return;
+                        }
 
-  <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+                        new PagefindUI({
+                            element: '#search',
+                            showSubResults: true,
+                            showImages: false,
+                            baseUrl: baseURL,
+                            showEmptyFilters: true,
+                            debounceTimeoutMs: 500,
+                            processTerm: function (term) {
+                                if (typeof gtag === 'function') {
+                                    gtag('event', 'search', {
+                                        search_term: term
+                                    });
+                                }
 
-      <div class="container py-3 d-none" id="languages-grid">
+                                return term;
+                            },
+                            processResult: function (result) {
+                                result.meta.title = result.meta.title
+                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                    .replaceAll('&amp;', '&');
 
-          <div class="row fs-md d-print-none">
+                                result.sub_results.forEach(sub => {
+                                    sub.url = sub.url.replace('#IndicatorID-', '?id=');
 
-              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
-                  <ul class="extensible-list">
-                      <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
-                      <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
-                  <ul class="extensible-list">
-                      <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
-                      <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
-                  <ul class="extensible-list">
-                      <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
-                      <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
-                  <ul class="extensible-list">
-                      <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
-                      <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
-                  </ul>
-              </div>
-              <div class="col-6 col-md-4 col-lg">
-                  <ul class="extensible-list">
-                      <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
-                      <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
-                  </ul>
-              </div>
-          </div>
+                                    sub.title = sub.title
+                                        .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
+                                        .replaceAll('&amp;', '&');
+                                });
+                            }
+                        });
 
-      </div>
-      
+                        $(search_modal).on('shown.bs.modal', () => {
+                            const search_input = search_modal.querySelector('.pagefind-ui__search-input');
 
-      <div class="container py-3 d-print-none" id="languages">
+                            if (!search_input) {
+                                return;
+                            }
 
-          <ul class="fs-md" role="list">
-              <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
-              <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
-          </ul>
+                            search_input.focus();
+                            search_input.select();
+                        });
+                    });
+                </script>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div><footer class="bg-black d-print-none" id="global-footer" role="contentinfo">
+    
+    <h2 class="sr-only">
+        Page Footer
+    </h2>
+    
+    <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+        
+        <div class="container py-3 d-none" id="languages-grid">
+            
+            <div class="row fs-md d-print-none">
+                
+                <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                    <ul class="extensible-list">
+                        <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                        <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                    <ul class="extensible-list">
+                        <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                        <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                    <ul class="extensible-list">
+                        <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                        <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                    <ul class="extensible-list">
+                        <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                        <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <ul class="extensible-list">
+                        <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                        <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        
 
-      </div>
-      
-
-      <hr class="opacity-10" aria-hidden="true">
-
-      <div class="container py-3">
-          <div class="row">
-              <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
-                  <nav class="row fs-md d-print-none" role="navigation" aria-label="Footer">
-                      <div class="col-lg mb-3 mb-lg-0">
-                          <ul class="extensible-list">
-                              <li>
-                                  <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
-                                      <strong>Directory of City Agencies</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
-                                      <strong>Notify NYC</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset"
-                                      href="https://www1.nyc.gov/connect/mobile-applications.page">
-                                      <strong>NYC Mobile Apps</strong>
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
-                      
-
-                      <div class="col-lg mb-3 mb-lg-0">
-
-                          <ul class="extensible-list">
-                              <li>
-                                  <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
-                                      <strong>Contact NYC Government</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset" href="https://a856-citystore.nyc.gov/">
-                                      <strong>CityStore</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
-                                      <strong>Maps</strong>
-                                  </a>
-                              </li>
-                          </ul>
-
-                      </div>
-                      
-
-                      <div class="col-lg mb-3 mb-lg-0">
-
-                          <ul class="extensible-list">
-                              <li>
-                                  <a class="text-reset"
-                                      href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
-                                      <strong>City Employees</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
-                                      <strong>Stay Connected</strong>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a class="text-reset"
-                                      href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
-                                      <strong>Resident Toolkit</strong>
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
-                      
-
-                  </nav>
-              </div>
-              
-
-              <div class="col-md-6 col-lg-4">
-
-                  <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
-                      
-                      <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
-                      <span class="sr-only">(opens in a new tab)</span>
-                  </a>
-                  <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New
-                    York.</p>
-
-                  <ul class="extensible-list horizontal fs-sm d-print-none">
-                      <li>
-                          <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
-                              Policy</a>
-                      </li>
-                      <li>
-                          <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
-                              of Use</a>
-                      </li>
-                      <li>
-                          <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
-                              title="Mayor's Office for People with Disabilities">
-                              <span class="sr-only">Learn more about Digital Accessibility
-                                from the Mayor's Office for People with Disabilities.</span>
-                              <span class="fab fa-lg fa-accessible-icon"></span>
-                          </a>
-                      </li>
-                  </ul>
-
-              </div>
-              
-
-          </div>
-          
-
-      </div>
-      
-
-  </div>
-  
-
+        <div class="container py-3 d-print-none" id="languages">
+            
+            <ul class="fs-md" role="list">
+                <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+            </ul>
+            
+        </div>
+        
+        
+        <hr class="opacity-10" aria-hidden="true">
+        
+        <div class="container py-3">
+            <div class="row">
+                <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                    <nav class="row fs-md d-print-none" role="navigation" aria-label="Footer">
+                        <div class="col-lg mb-3 mb-lg-0">
+                            <ul class="extensible-list">
+                                <li>
+                                    <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                        <strong>Directory of City Agencies</strong>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                        <strong>Notify NYC</strong>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-reset"
+                                    href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                    <strong>NYC Mobile Apps</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="col-lg mb-3 mb-lg-0">
+                        
+                        <ul class="extensible-list">
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                    <strong>Contact NYC Government</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                    <strong>CityStore</strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="https://www.nyc.gov/nyc-resources/nyc-maps.page">
+                                    <strong>Maps</strong>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    
+                    
+                    <div class="col-lg mb-3 mb-lg-0">
+                        
+                        <ul class="extensible-list">
+                            <li>
+                                <a class="text-reset"
+                                href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                <strong>City Employees</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                <strong>Stay Connected</strong>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-reset"
+                            href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                            <strong>Resident Toolkit</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            
+        </nav>
+    </div>
+    
+    
+    <div class="col-md-6 col-lg-4">
+        
+        <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank" rel="noopener noreferrer">
+            
+            <img class="mb-2" src="/IndicatorPublic/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+            <span class="sr-only">(opens in a new tab)</span>
+        </a>
+        <p class="fs-sm">© City of New York. 2022 All Rights Reserved,<br>NYC is a trademark and service mark of the City of New York.</p>
+            
+            <ul class="extensible-list horizontal fs-sm d-print-none">
+                <li>
+                    <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                        Policy</a>
+                    </li>
+                    <li>
+                        <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                            of Use</a>
+                        </li>
+                        <li>
+                            <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                            title="Mayor's Office for People with Disabilities">
+                            <span class="sr-only">Learn more about Digital Accessibility from the Mayor's Office for People with Disabilities.</span>
+                                <span class="fab fa-lg fa-accessible-icon"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                </div>
+                
+                
+            </div>
+            
+            
+        </div>
+        
+        
+    </div>
+    
+    
 </footer>
 
 
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="searchModalLabel" data-pagefind-ignore="all">Search</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <link href=/IndicatorPublic/pagefind/pagefind-ui.css rel="stylesheet">
-            <script src=/IndicatorPublic/pagefind/pagefind-ui.js type="text/javascript"></script>
-            <div id="search"></div>
-            <script>
-
-                window.addEventListener('DOMContentLoaded', (event) => {
-
-                    new PagefindUI({
-                        element: "#search",
-                        showSubResults: true,
-                        showImages: false,
-                        baseUrl: baseURL,
-                        showEmptyFilters: true,
-                        debounceTimeoutMs: 500,
-                        
-                        processTerm: function (term) {
-
-                            gtag('event', 'search', {
-                                search_term: term
-                            });
-
-                            return term;
-
-                        },
-                        processResult: function (result) {
-
-                            
-                            
-                            
-
-                            
-
-                            result.meta.title = result.meta.title
-                                .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
-                                .replaceAll("&amp;", "&");
-
-                            
-
-                            result.sub_results.forEach(sub => {
-
-                                
-
-                                sub.url = sub.url.replace("#IndicatorID-", "?id=");
-
-                                
-
-                                sub.title = sub.title
-                                    .replace(/&#(\d+);/g, ((match, dec) => `${String.fromCharCode(dec)}`))
-                                    .replaceAll("&amp;", "&");
-
-                            });
-
-                            
-
-                            
-
-                            
-                            
-
-                        }
-                    });
-
-                    
-
-                    
-
-                    const searchModal = document.getElementById('searchModal')
-                    const searchInput = document.getElementsByClassName('pagefind-ui__search-input')[0]
-
-                    $(searchModal).on('shown.bs.modal', () => {
-                        searchInput.focus();
-                        searchInput.select();
-                    })
-
-
-                });
-
-
-            </script>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-</div>
-
-<script>
-
-
-</script>
-  
-
 
 <script
-  src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
-  integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
-  crossorigin="anonymous"
+    src="/IndicatorPublic/node_modules/popper.js/dist/umd/popper.min.4a9265d50608a5d0.js"
+    integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch&#43;I/HCw=="
+    crossorigin="anonymous"
 ></script>
+
 <script
-  src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
-  integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
-  crossorigin="anonymous"
+    src="/IndicatorPublic/node_modules/bootstrap/dist/js/bootstrap.bundle.min.47b12e1c6fc26bc7.js"
+    integrity="sha512-igl8WEUuas9k5dtnhKqyyld6TzzRjvMqLC79jkgT3z02FvJyHAuUtyemm/P/jYSne1xwFI06ezQxEwweaiV7VA=="
+    crossorigin="anonymous"
 ></script>
 
 
 <script>
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      {
-        pageLanguage: "en",
-      },
-      "google_translate_element"
-    );
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+        {
+            pageLanguage: "en",
+        },
+        "google_translate_element"
+        );
+        
+        
 
-    
-
-    document
-      .querySelectorAll("div[class^=VI] svg")
-      .forEach((e) => (e.outerHTML = ""));
-  }
+        document
+            .querySelectorAll("div[class^=VI] svg")
+            .forEach((e) => (e.outerHTML = ""));
+    }
 </script>
 
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script
-  type="text/javascript"
-  src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
-  integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
-></script>
-<script
-  type="text/javascript"
-  src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
-  integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+    type="text/javascript"
+    src="/IndicatorPublic/js/main.2cb27f09f10c76c3.js"
+    integrity="sha512-iaICTR6PWG4zbrmL69MtiVybfawXimbAI5YPb5CrDb&#43;QRgiX/4W11J6utqdl8wGY0zO9BbT110dFS2VhHYr60w=="
 ></script>
 
-  
-  
+<script
+    type="text/javascript"
+    src="/IndicatorPublic/js/site.0c406db6f0a34e1e.js"
+    integrity="sha512-Fe3P28eMLfzi8orYmRJ8kTiQB2LyFObFD/0wbjn9C1QqIausui3C0NL1lI26wcL0L0r60YRX2APG59LjFox1xQ=="
+></script>
+
+    
+
 </body>
 </html>
