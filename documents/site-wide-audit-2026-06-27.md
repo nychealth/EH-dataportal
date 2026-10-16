@@ -2822,6 +2822,9 @@ verified.
   doesn't dedupe; indicator 2383). Fix with #32.
 - **#19** "Download data" and "Sync to map" are `href="#"` links without `preventDefault`. Each
   click scrolls to the top and adds a history entry, and Back then re-renders the map.
+  Fixed 2026-10-16: the "Download data" links in `fe5eb17dec`, "Sync to map" in `180ce62696`.
+  Measured in a browser on each: a click no longer adds `#`, a history entry or a popstate
+  ([de-analytics-audit-2026-10-16.md](de-analytics-audit-2026-10-16.md), R9 and R14).
 - **#21** "More info about {topic}" in `header-de.html` renders `.Params.azlink` without the
   `with` guard production had, so it is a self-link on topics with no `azlink`.
 - **#22** Dead SCSS in `_de-custom.scss`: the mobile bottom padding compiles to

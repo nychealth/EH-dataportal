@@ -16,7 +16,7 @@ that turned on markup (raw-data link, disparities wrapper). Whether the deployed
 
 **Status as of 2026-10-16: passes 1–3 done; finding 1 decided; `option_label` in `aa448afa19`;
 table-download and chart-save tracking in `3d0ae9ba77`; history events off and
-confirmed on both streams; review fixes R1–R13 done ([Review fixes](#review-fixes)).**
+confirmed on both streams; review fixes R1–R14 done ([Review fixes](#review-fixes)).**
 
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
@@ -126,6 +126,7 @@ for each on 2026-10-16; the rejected options are listed so they are not re-propo
 | 11 | Findings 3 and 5, and D19, describe gaps `3d0ae9ba77` closed, in the present tense | One "Fixed in `3d0ae9ba77`" line under each; findings keep their measured wording. Rejected: rewrite in past tense | `3c6ff56335` | **DONE 2026-10-16** | Doc only |
 | 12 | "(dev stream, below)" points to a bullet above it | "below" → "above" | `3c6ff56335` | **DONE 2026-10-16** | Doc only |
 | 13 | Found while testing R7: `downloadData` (`global.js`) names its CSV from the raw indicator name, and Chrome saved `Heat stress_ deaths (bar view).csv` where GA got `Heat stress: deaths (bar view).csv` | Name it with `getViewDownloadFileName`, as R7 does | `fe5eb17dec` | **DONE 2026-10-16** | Probe: after, saved name and GA `file_name` both `… Heat stress deaths (bar view).csv` |
+| 14 | Found while reconciling records: "Sync to map" (`#tableFilterSyncButton`) has R9's `href="#"` defect, listed beside the download links as #19 in the 2026-10-02 pre-ship review; R9 was offered for four links of five | `event.preventDefault()` in `syncButton.onclick` (`table.js`) | `180ce62696` | **DONE 2026-10-16** | A second probe, real click on the visible link, same server and indicator: before, the URL gained `#`, `history.length` 2 → 3, one `popstate`; after, none, with `table_sync` still sent once. Served `table.b6ebabe68a2418b2.js`; npm run lint exit 0; curated smoke 44 of 44 |
 
 <a id="review-fix-probe"></a>`[verified 2026-10-16: npm run lint exit 0. A temporary Playwright script on an isolated
 dev_stage server (:8090, -d and HUGO_RESOURCEDIR outside the repo), indicator 2074 "Heat stress:
