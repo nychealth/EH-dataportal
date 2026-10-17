@@ -250,13 +250,15 @@
     
     // Javascript for nav buttons:
 
-    const topicSlugs = {
-        Active: "active_design_physical_activity_and_health",
-        Asthma: "asthma_and_the_environment",
-        Climate: "climate_and_health",
-        Housing: "housing_and_health",
-        Outdoor: "outdoor_air_and_health",
-    };
+    // Topic key -> URL slug, from data/globals/NR_topics.yml — the source the content adapter
+    // generates the report URLs from, so the two cannot disagree. The landing page's topic
+    // buttons use the same keys as their ids (neighborhood-reports/section.html)
+    {{- $topicSlugs := dict -}}
+    {{- range site.Data.globals.NR_topics -}}
+        {{- $topicSlugs = merge $topicSlugs (dict .key .slug) -}}
+    {{- end }}
+
+    const topicSlugs = {{ $topicSlugs }};
     
     const topicValues = Object.values(topicSlugs);
     

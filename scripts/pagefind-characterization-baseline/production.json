@@ -3762,19 +3762,19 @@
         ]
       },
       "anchors": [
-        "Active",
-        "Active-Descr",
-        "Asthma",
-        "Asthma-Descr",
+        "Active_Design_Physical_Activity_and_Health",
+        "Active_Design_Physical_Activity_and_Health-Descr",
+        "Asthma_and_the_Environment",
+        "Asthma_and_the_Environment-Descr",
         "CCDModal",
         "CCDModalTitle",
         "CDButtons",
-        "Climate",
-        "Climate-Descr",
-        "Housing",
-        "Housing-Descr",
-        "Outdoor",
-        "Outdoor-Descr",
+        "Climate_and_Health",
+        "Climate_and_Health-Descr",
+        "Housing_and_Health",
+        "Housing_and_Health-Descr",
+        "Outdoor_Air_and_Health",
+        "Outdoor_Air_and_Health-Descr",
         "about",
         "descr",
         "districtButtons",
@@ -3791,7 +3791,7 @@
         "tabs-01-content",
         "tabs-02-content"
       ],
-      "contentHash": "1e3e8817046bedc4",
+      "contentHash": "f5862b97da85afad",
       "contentHead": "Neighborhood Reports. What affects health in your neighborhood, and how does it compare with other parts of the city? Th"
     },
     "/neighborhood-reports/active_design_physical_activity_and_health/": {

@@ -2,8 +2,11 @@
 
 {{/* The data-pagefind-ignore="all" that used to sit on this element kept the section's
      own landing page — its entry point — out of search results. It comes off with the
-     rest of the NR indexing changes: the 252 generated pages below it are indexed, so a
-     search for "neighborhood reports" should be able to reach the page they hang off. */}}
+     rest of the NR indexing changes: the 42 neighborhood indexes and 5 topic indexes below
+     it are indexed, so a search for "neighborhood reports" should be able to reach the page
+     they hang off. The 210 report pages are deliberately not indexed — nr-report.html
+     carries a page-level data-pagefind-ignore; documents/nr-pagefind-parity-2026-08-15.md
+     §2g has why. */}}
 <article class="container-fluid overflow-hidden" id="primary-content">
 
   <style>
@@ -23,21 +26,14 @@
               <h2 class="h3">Choose report</h2>
 
               <div class="row no-gutters">
+                {{/* One button per data/globals/NR_topics.yml entry, in its order. The id is the
+                     topic key: setIntendedDestination looks it up in nr-leaflet.html's
+                     topicSlugs, and changeHomeCopy reads the "<key>-Descr" block below */}}
+                {{- range $i, $t := site.Data.globals.NR_topics }}
                 <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button active" id="Active">Active design</button>
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}">{{ $t.menu_label }}</button>
                 </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Asthma">Asthma</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm  btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Climate">Climate</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Housing">Housing</button>
-                </div>
-                <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button" id="Outdoor">Outdoor Air</button>
-                </div>
+                {{- end }}
 
                 <div class="col-12">
                     <p id="descr" class="my-2">
@@ -123,7 +119,10 @@
 </div>
 
   
-<div class="hide topic-descriptions" id="Asthma-Descr">
+{{/* Hand-written per topic and keyed by NR_topics.yml `key` to match the buttons above.
+     Not the yml `summary`: three of these five read differently from it, and which copy
+     the landing page shows is a content decision */}}
+<div class="hide topic-descriptions" id="Asthma_and_the_Environment-Descr">
   {{ with .Site.GetPage "/neighborhood-reports/Asthma_and_the_Environment.md" }}
 
   <p>{{ .Content }}</p>
@@ -131,19 +130,19 @@
   {{ end }}
 </div>
 
-<div class="hide topic-descriptions" id="Climate-Descr">
+<div class="hide topic-descriptions" id="Climate_and_Health-Descr">
   As the climate changes, we track New York City's risk for extreme heat, storms and flooding, and episodes of elevated ozone. These have important public health impacts: already, heat kills more people than all other natural disasters.
 </div>
 
-<div class="hide topic-descriptions" id="Active-Descr">
+<div class="hide topic-descriptions" id="Active_Design_Physical_Activity_and_Health-Descr">
   The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents.
 </div>
 
-<div class="hide topic-descriptions" id="Housing-Descr">
+<div class="hide topic-descriptions" id="Housing_and_Health-Descr">
   Housing conditions can drive health outcomes like asthma, lead poisoning, and carbon monoxide poisoning. We track housing neighborhood characteristics that can put people at risk - and special populations that are vulnerable.
 </div>
 
-<div class="hide" id="Outdoor-Descr">
+<div class="hide" id="Outdoor_Air_and_Health-Descr">
   Air pollution is one of the most important environmental threats to people who live in urban areas. Exposures are linked to respiratory and heart diseases, cancers, and premature deaths. Meanwhile, emissions, levels of exposure, and population vulnerability vary across neighborhoods.
 </div>
 
@@ -236,8 +235,10 @@ function updateNeighborhoodListLinks() {
 
 // SET DEFAULTS FOR HOME PAGE
 
-setIntendedDestination('Active') // default
-document.getElementById('descr').innerHTML = document.getElementById('Active-Descr').innerHTML
+// Default: the first NR_topics.yml entry, the button rendered active above
+const defaultTopic = {{ (index site.Data.globals.NR_topics 0).key }}
+setIntendedDestination(defaultTopic)
+document.getElementById('descr').innerHTML = document.getElementById(defaultTopic + '-Descr').innerHTML
 handleTopicButtons()
 
 
