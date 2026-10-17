@@ -189,8 +189,9 @@ are printed as a harness-health number and deliberately **not** baselined — th
   intact. `characterize-env.mjs` therefore refuses any argument starting with `-` rather than
   half-honour it; flags stay available through a direct `node scripts/site-characterization.mjs`
   call. For the same reason `site-characterization-rebaseline.mjs` now refuses unrecognized
-  arguments outright: it takes none, it re-captures *every* committed baseline on every run, and
-  an argument it merely ignored made a typo indistinguishable from the destructive invocation
+  arguments outright: it takes no positional argument — only the flags `--expect`, `--concurrency`
+  and `--report-only` — it re-captures *every* committed baseline on every run, and an argument it
+  merely ignored made a typo indistinguishable from the destructive invocation
   `[2026-08-26: `rebaseline.mjs nosuchkey`, believed to name one key, began re-capturing both]`.
 - **Baselines are filed by environment class, and `--check` picks its own.** They live under
   `scripts/site-characterization-baseline/<key>/`, and the harness reads the key off the running
