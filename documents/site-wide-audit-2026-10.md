@@ -1587,6 +1587,757 @@ Found during Task 3.
   The census counts DOM nodes, so these may be hidden images rather than broken ones; which images
   was not checked.
 
+### Task 4 candidates
+
+Each area's report is reproduced verbatim from its subagent (Opus, high effort, read-only,
+dispatched 2026-10-17 per D4). **Candidate ID `C-4<area>-<n>` is item *n* of that area's report**
+(area b numbers its items C1..C9; those are C-4b-1..9). None is a finding until Task 5 reproduces
+it, and none of the runtime claims was run in a browser. Scratch paths the reports cite are in a
+session scratchpad and will not survive it.
+
+Cross-area duplicates, to be verified once:
+- C-4a-1 = C-4h-2 (robots.txt below the host root).
+- C-4a-2 = C-4h-1 + C-4h-3 (path-only sitemap `<loc>` and `hreflang`; no self-reference).
+- C-4a-3 = C-4h-4 (NR `twitter:image` 404).
+- C-4a-9 = C-4h-6 (GA `search` event per debounce and filter toggle).
+- Area h's closing out-of-area note = C-4f-1 (commit subject interpolated into `run:`).
+- Area d's closing out-of-area note (scheme-less `www.nyc.gov/rats` in both `mice-and-rats.md`)
+  is in area b's scope and was not raised there.
+
+#### Area a: Site shell (production @ b8f4b32fbd)
+
+Overlap checked: A-005..A-010, A-013, A-014, A-020, A-022..A-027, A-028, A-033, A-085, A-086, A-090, A-091, A-102, A-103, A-110, A-111, A-115, A-117, A-119, A-123, A-124, A-127..A-131, A-157, A-165, A-184, A-222, A-223, A-294..A-296, A-332, A-355..A-357, A-383, A-384; G6-23; N-001..N-023; C-S3-1..3, C-S4-1, C-T3-1..3; Disconfirmed.
+
+All template readings are from the audit worktree, whose code matches b8f4b32fbd. "Live" means a read-only `curl` against a816-dohbesp.nyc.gov. The live site runs builds/prod-prod `b626794129` (from `commit_hash.txt`), which is not P, so each live result is backed by the template read at P.
+
+**1. The deployed robots.txt is at a path crawlers never read, so its `Sitemap:` line is never found.**
+- **Where:** `themes/dohmh/layouts/robots.txt` (`Sitemap:` at :21), plus `baseURL` in `config/prod_prod/config.toml` (`https://a816-dohbesp.nyc.gov/IndicatorPublic/`).
+- **Evidence:** Live, `/robots.txt` returns 404 (an IIS error page) and `/IndicatorPublic/robots.txt` returns 200 with the template's body. Hugo publishes robots.txt under the baseURL path. As I recall it (not fetched), RFC 9309 puts robots.txt only at the host root `/robots.txt`.
+- **Consequence:** A-102's fix (`Sitemap:` line, allow-all) cannot take effect, and crawlers find the sitemap only if someone submits it. The preview environments' per-path `Disallow` lists are under `/dev-stage/` and `/dev-prod/` too, so they are equally unread, though that host is `.nycnet`.
+- **Reproduction:** `curl -s -o /dev/null -w '%{http_code}' https://a816-dohbesp.nyc.gov/robots.txt` should print 404, and the same under `/IndicatorPublic/` should print 200. Confirm the RFC 9309 location rule from the RFC text.
+- **Overlap:** Extends A-102 (FIXED). The new point is that the fix is published somewhere crawlers do not look.
+
+**2. Sitemap `<loc>`, sitemap hreflang and head hreflang are all path-only, and head hreflang never lists the page itself.**
+- **Where:** `_default/sitemap.xml:6` (`<loc>{{ .RelPermalink }}</loc>`) and `:13`, `:18`; `partials/head.html:97` (`range .Translations` with `.RelPermalink`).
+- **Evidence:** Live, `/IndicatorPublic/en/sitemap.xml` has `<loc>/IndicatorPublic/data-features/hvi/</loc>`, while the sitemap index has absolute locs (Hugo's built-in). The live `data-stories/housing/` head carries `hreflang="es" href="/IndicatorPublic/es/..."`, with no `en` self-entry and no `x-default`. From memory, not fetched: the sitemaps.org protocol requires full URLs in `<loc>`, and Google asks for absolute hreflang URLs plus a self-reference.
+- **Consequence:** All three per-language sitemaps (every listed page) and the alternate links on translated pages may be ignored by crawlers.
+- **Reproduction:** `curl` the en sitemap and look for `<loc>/`. In any translated page's `<head>`, count the `rel="alternate"` links (2, none of them self).
+- **Overlap:** A-119 covers only the missing comment; A-129 is the same path-only defect for og:image. The `<loc>` and head hreflang problems are new.
+
+**3. `twitter:image` points at an unpublished assets path and 404s on all 210 production NR report pages.**
+- **Where:** `partials/seo.html:20` (`relURL .Params.seo_image`).
+- **Evidence:** `og:image` (:13) runs `seo_image` through `resources.Get` and `Fill`; `twitter:image` just applies `relURL` to the same assets-relative path. I ran a Python pass over front matter: all 210 non-draft files that set `seo_image` (`content/neighborhood-reports/*/*.md`) have the file in `assets/` and none in `static/`. The site default works only because `static/images/report_bottom_background.jpg` also exists. Live, on `bayside_little_neck/asthma_and_the_environment/`, og:image returns 200 and `twitter:image` `/IndicatorPublic/images/nyc_health_report_asthma_environment.jpg` returns 404. Both content values also carry a stray leading or trailing space.
+- **Consequence:** Share cards for NR reports have a broken image. On #1491 it depends on whether the content adapter sets `seo_image`, which I did not check.
+- **Reproduction:** Run the two `curl`s above.
+- **Overlap:** Extends A-129. The new point is that this is the wrong path, not just a relative one.
+
+**4. On es and zh pages the header's Topics menu is empty and the About item is an empty box.**
+- **Where:** `header.html:104`, `:263` (`where .Site.Pages "Section" "key-topics"`) and `:176`, `:335` (`with .GetPage "about"`); the same at `header-de.html:78`, `:127`, `:196`, `:245`.
+- **Evidence:** Both lookups resolve inside the current language, and no `key-topics` or `about` content exists in es or zh. Live, `/IndicatorPublic/es/data-stories/housing/` and `/es/keywords/`: the Topics dropdown holds only "All topics", and the About slot renders `<div class="nav-item bg-white text-primary border"> </div>`.
+- **Consequence:** Every es and zh page (about 115 in the census) loses topic navigation and shows an empty bordered nav box.
+- **Reproduction:** Load any `/es/` page at 1280px wide, open Topics, and look at the item after Explore.
+- **Overlap:** None. A-086 is about the general i18n mix.
+
+**5. The top-bar "EH Data Portal" crumb links to the current page instead of the portal home.**
+- **Where:** `header.html:22` and `header-de.html:18` use `href="{{ .RelPermalink }}"`. `header-ds.html:22` uses `relURL ""`.
+- **Evidence:** Live, on `/about/` the crumb's href is `/IndicatorPublic/about/`, and on `/data-explorer/asthma/` it is `/IndicatorPublic/data-explorer/asthma/`. In the same bar, "Health" and "311" both go to `https://www1.nyc.gov/`; whether that is intended is a question for the author.
+- **Consequence:** Every non-home page outside data stories has a self-link where the portal-home link should be.
+- **Reproduction:** Read the first `nyc-top-header` crumb href on any page.
+- **Overlap:** None.
+
+**6. The new explorer's pages have no way to reach Google Translate.**
+- **Where:** `baseof.html` `if not .Params.excludeFooter`; `excludeFooter: true` is set in 57 `content/data-explorer/*.md` files. Also `#global-language` at `header.html:221` and `header-de.html:161`.
+- **Evidence:** The only triggers are the footer's 20 `.lang-select` links. Nothing in themes, content or assets targets `#global-language` (only `main.js` handlers listen for its collapse events), so the widget container never opens on any page. Live, `/data-explorer/asthma/` has 0 `lang-select` links and no `#global-footer`. `excludeFooter` came in with `f51d464b06` ("first pass at new data explorer experience"), and the old explorer's content does not set it.
+- **Consequence:** About 42 explorer pages load `translate_a/element.js` but give no way to use it. Whether that is intended is a question.
+- **Reproduction:** In a browser on `/data-explorer/asthma/`, expand the header and look for any language control.
+- **Overlap:** A-086 records the mixed i18n generally, not this loss of access.
+
+**7. The footer's native-language links have no `lang` attribute.**
+- **Where:** `footer.html:15` onward: 20 `a.lang-select` (Arabic, Bengali, Chinese, Urdu, and others) on `<html lang="en">` pages.
+- **Evidence:** `grep -c ' lang="' footer.html` returns 0.
+- **Consequence:** Screen readers read these names with the page language (WCAG 3.1.2, AA). axe does not flag a missing `lang`, so 3b's zero does not clear this.
+- **Reproduction:** The grep, or a screen reader on the footer.
+- **Overlap:** None.
+
+**8. The subscribe dialog has no accessible name.**
+- **Where:** `subscribe-modal.html:3`: `role="dialog"` with no `aria-labelledby` or `aria-label`, unlike `#searchModal`.
+- **Evidence:** File read; live HTML matches. axe's `aria-dialog-name` is best-practice, outside 3b's WCAG tags.
+- **Consequence:** Screen-reader users hear an unnamed dialog on every page.
+- **Reproduction:** Open Subscribe and read the dialog's accessible name in the a11y tree (needs browser).
+- **Overlap:** None (A-033 is analytics).
+
+**9. The GA `search` event fires on every debounced keystroke pause and every filter toggle.**
+- **Where:** `search-modal.html:30-31` (`debounceTimeoutMs: 500`, `processTerm` calls `gtag('event','search')`).
+- **Evidence:** In the live `pagefind-ui.js`, `processTerm` is invoked inside the debounced search function, which re-runs whenever the term or the filters change.
+- **Consequence:** `search_term` data fills with prefixes and repeats. A-383's planned GA `search_term` test would read that data.
+- **Reproduction (needs browser):** Set `window.gtag=(...a)=>(window.__g=(window.__g||[]).concat([a]))`, open search, type "asthma" with pauses over 500ms, toggle a filter. Expect several `search` events.
+- **Overlap:** Extends A-091 (event naming) and A-383. The new point is the data quality.
+
+**10. A likely cause for N-017: both affected shells put a Bootstrap `.row` outside any container.**
+- **Where:** `_default/list.html:31` (`<div class="row mt-4">` directly in `<main>`) and `header-de.html:274` (`row bg-black de-nav-bar` directly in `<body>`; `_de-custom.scss` resets only `margin-left`).
+- **Evidence:** I tabulated the committed prod_prod baseline. `overflowX` is true on every list.html page (categories, keywords, tags, paginators, all three languages) and on 42 of 44 explorer pages. The 2 that do not overflow are `data-index` and `indicator-catalog`, which do not set `headerDE`. This is correlation only.
+- **Reproduction (needs browser):** On `/keywords/asthma/` at 1280px, run `[...document.querySelectorAll('*')].filter(e=>e.getBoundingClientRect().right>document.documentElement.clientWidth)` and expect `.row`. Then zero its right margin and re-check `scrollWidth`.
+- **Overlap:** Extends N-017, whose overflowing element is unidentified.
+
+**11. Google Translate is told the page is English on es and zh pages.**
+- **Where:** `js_bottom.html:26` (`pageLanguage: "en"`).
+- **Evidence:** The value is hardcoded while `<html lang>` is per-language.
+- **Consequence:** The source language is wrong for translation of Spanish and Chinese pages; the effect needs a browser.
+- **Reproduction:** On `/es/`, pick a footer language and observe.
+- **Overlap:** Extends A-086.
+
+**12. Low, cosmetic.**
+- `header-de.html:70`, `:188`: navs have no `aria-label` (G6-23 handed this to Task 4). Explorer pages have no footer and the two navs are never visible together, so at most one unlabelled nav is exposed and the consequence is small.
+- `baseof.html:30`: the empty `<ul id="results">` sits on every page with no consumer (`git grep` finds none) and shows up as a Pagefind anchor.
+- Topics menus sort by `Params.Title` but display `shortTitle`, so live order shows "Health outcomes" before "Food and drink".
+
+**Not checked:**
+- Rendering, focus and modal behaviour, because no browser was run (port 8090 is busy, and I did not drive Playwright).
+- Whether any displayed default Leaflet marker needs `marker-icon-2x.png`. `lib-leaflet` does not publish it and it is 404 live, but the default-marker sites I found (`neighborhood-rats.js:248`, `:269`) are never added to the map.
+- #1491's copies of the shell files.
+
+Scratch files are in `C:\Users\Chris\AppData\Local\Temp\claude\c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge\0233f26f-0e1e-4e53-ba56-89abc75dfdf0\scratchpad\` (`ov.py`, `seoimg.py`).
+
+#### Area b: Data explorer (production @ b8f4b32fbd)
+
+Overlap checked against: A-026, A-029, A-031, A-032, A-076, A-104, A-112, A-133, A-152, A-153, A-154, A-155, A-158, A-159, A-163, A-167, A-170, A-189, A-205, A-208, A-211, A-230, A-247, A-256, A-259, A-265, A-273, A-280, A-285, A-287, A-292, A-295, A-296, A-297, A-300, N-002, N-008, N-017, C-S3-3 (disconfirmed, not re-raised), C-T3-3, G1-96. I also checked the fresh audit, the de-pre-ship review and the analytics, chart-width and architecture docs.
+
+I found 9 candidates. All are static readings at the audit worktree (code equal to b8f4b32fbd). Candidates 1–8 and the timing in 9 need a browser to confirm.
+
+**C1. Pressing Escape to close a modal or an open dropdown also closes the open explorer pane and adds a history entry.**
+- **Where:** `assets/js/data-explorer/de-tab-content.js`, the `document` `keydown` listener (`:135` `event.key !== 'Escape'`, `:139` the `.tab-pane.show.active` lookup, then `closeExplorerTabPane`, which sets `DE.state.overlay = 'none'` and calls `pushSelectionToURL()`).
+- **Evidence:** The listener sits on `document` and checks nothing about where the key event came from. Bootstrap 4.6.2's modal Escape handler (`node_modules/bootstrap/dist/js/bootstrap.bundle.js:4924-4936`, `_setEscapeEvent`) calls `preventDefault()` but not `stopPropagation()`, so the event reaches `document`. The dropdown handler (`:4517-4542`) does call `stopPropagation()`, but jQuery binds it on `document` itself, and that does not stop another listener on the same node. The modals affected are `#printModal` (opened by the panes' own Save Chart buttons), `#indicatorSelector`, `#topicSelector`, `#learnMore` and `#searchModal`.
+- **Consequence:** Escape is the standard way to close a modal, so every keyboard user who opens Save Chart and presses Escape comes back to a closed pane and an extra `overlay=none` history entry.
+- **Reproduction:** Open `/data-explorer/asthma/?id=2380&overlay=bar`, click "Save Chart" in the Bar pane, press Escape. Confirmed if the modal closes, `#v-pills-bar` loses `.show.active`, the URL reads `overlay=none`, and `history.length` grows by 1. Repeat with the Measure dropdown open.
+- **Overlap:** none.
+
+**C2. The Data Sources tab is not tracked as an overlay, so changing a dropdown closes it, and the URL names a different pane while it is open.**
+- **Where:** `app.js` `tabMap` (`:642`) has no `#v-pills-ds-tab` entry; its only binding is analytics (`:714`). Also `renderCurrentView` `case 'none'` (`:414`).
+- **Evidence:** On first load `DE.state.overlay` defaults to `'none'` (`data.js:225`). Opening Data Sources leaves it at `'none'`. `handleSelection` (`menu.js`) then calls `renderCurrentView(true)`, whose `'none'` branch removes `active` from every pill and hides every pane, Data Sources included. If the overlay was already `trend` or `bar`, the Data Sources pane stays open while the URL and the citation keep `overlay=trend`.
+- **Consequence:** A reader on the "About the data" pane who changes Measure, Boundary or Time loses the pane. Links copied while it is open reopen a different pane.
+- **Reproduction:** Open `/data-explorer/asthma/?id=2380`, click Data Sources, pick another Measure. Confirmed if the pane closes. Second check: from `?id=2380&overlay=trend`, click Data Sources; the URL still reads `overlay=trend`.
+- **Overlap:** related to A-152 (stale text in `#howCalculated`). New here is the pane closing and the URL/state mismatch.
+
+**C3. After picking an indicator in place on a topic page opened without `?id=`, Back strips the id from the URL but leaves the indicator on screen.**
+- **Where:** `app.js` `popstate` handler: `if (selection.id && selection.id !== DE.state.IndicatorID)` (`:588`), then `refreshCitation()` (`:579`).
+- **Evidence:** `checkURL` writes no history when the URL has no id. `selectIndicator` then pushes `?id=…`. On Back, `selection.id` is `null`, so the same-indicator branch runs, applies nothing and re-renders the current indicator. The citation is refreshed from the bare URL.
+- **Consequence:** The Back press appears to do nothing. The address bar and the citation URL (`.citation-url`) point to a bare topic page that opens the chooser, not the view being cited.
+- **Reproduction:** Open `/data-explorer/asthma/`, pick an indicator in the chooser, press Back. Confirmed if the URL has no `id`, the indicator stays rendered, no chooser opens, and `.citation-url` holds the bare URL.
+- **Overlap:** none. A-208 and A-285 cover other popstate branches.
+
+**C4. Below the `md` breakpoint (768px), the Bar, Trends, Correlate and Table tabs have no accessible name.**
+- **Where:** `themes/dohmh/layouts/partials/de-tab-button.html:10, :14, :18, :22`.
+- **Evidence:** Each `<a role="tab">` holds an `<svg>` with no `<title>` or label, plus a text `<div class="mt-1 d-none d-md-block">`. `display:none` text drops out of the accessible name. The same partial is on `data-explorer/section.html`. The axe run and the census were both at 1280×900, so neither could see this.
+- **Consequence:** Screen-reader users on phones hear four unnamed tabs.
+- **Reproduction:** At a 375×800 viewport, load `/data-explorer/asthma/?id=2380` and read the computed names of `#v-pills-bar-tab` and its siblings (DevTools accessibility pane, or Playwright `getByRole('tab')`). Confirmed if those four are empty and Data Sources is named.
+- **Overlap:** the same mechanism as A-296's "mobile Learn More", which was fixed; these tabs were not covered.
+
+**C5. The summary table's group-header rows (time, geography, borough) collapse on mouse click only.**
+- **Where:** `table.js` `bindTableGroupToggles` (`:937`, `$('body').on('click', '#summary-table tr.group td', …)`) and the `drawCallback` row markup (`:825`).
+- **Evidence:** The rows are a plain `<tr class="group"><td>`: no `tabindex`, no `role="button"`, no `aria-expanded`, no `keydown`. The collapsed state exists only as the `hidden` class on the `td`.
+- **Consequence:** Keyboard and screen-reader users cannot collapse or expand groups, and are not told when groups are collapsed.
+- **Reproduction:** Open `/data-explorer/asthma/?id=2380&overlay=table` and tab through the table. Confirmed if no group header takes focus and `document.querySelectorAll('#summary-table tr.group [tabindex], #summary-table tr.group [role=button]').length === 0`, while a mouse click does collapse a group.
+- **Overlap:** none. G3-16 and G3-90 cover porting and rebinding, not keyboard access.
+
+**C6. An `?id=` that is missing from `metadata.json` (a retired indicator, a typo) ends in an unhandled TypeError.**
+- **Where:** `topic-indicator-selector.js` `renderIndicatorInfo` warns "No indicator found" (`:527`), opens the chooser and returns, but `loadAndRenderIndicator` carries on. `measures.js` `renderMeasures` then reads `DE.lookups.aqTableTimesGeos.array("TimePeriod")` (`:1903`).
+- **Evidence:** `getIndicatorById` returns `undefined`. The 404 fetch is caught inside `loadData`'s `try`. `renderMenus` warns and returns. `aqTableTimesGeos` starts `undefined` (`global.js:144`). After an earlier in-place load it is stale instead, and `indicatorMeasures.forEach` throws.
+- **Consequence:** An uncaught promise rejection, and the "Loading indicator..." placeholders stay. Old links from stories or outside sites are where this would happen.
+- **Reproduction:** Load `/data-explorer/asthma/?id=99999`. Confirmed if the chooser opens and the console shows an uncaught (in promise) TypeError from `renderMeasures`.
+- **Overlap:** none.
+
+**C7. The Take Action menus show a live placeholder link, "Dynamic option" (`href="#"`), on the explorer section page and on topic pages opened without `?id=`.**
+- **Where:** `header-de.html:455` (`#contact311LinksDesktop`) and `de-tab-button.html:39` (`#contact311LinksMobile`).
+- **Evidence:** Only `render311Links` (`311.js`) clears or hides these, and it runs only inside the indicator pipeline. `section.html` does not load `311.js` at all, and `checkURL` returns before the pipeline when there is no id. `header-de.html` renders the menu unconditionally.
+- **Consequence:** Visitors see "Contact 311 about: Dynamic option" and a link to `#`.
+- **Reproduction:** Open the Take Action menu on `/data-explorer/` and on `/data-explorer/asthma/`. Confirmed if "Dynamic option" is visible.
+- **Overlap:** the census's `links.emptyHref` floor (22 on topic pages, 12 on the section page) is recorded as a number with no finding row. This names one of the links behind it.
+
+**C8. On the map, the "View this data as a table" link closes the table when the table is already open.**
+- **Where:** `data-explorer/single.html:32`, `onclick="document.getElementById('v-pills-table-tab').click()"`, together with the click-to-close handler in `de-tab-content.js` (`:32-55`).
+- **Evidence:** A programmatic `.click()` still triggers that handler. When the tab is already active and its pane shown, the handler closes the pane, sets `overlay = 'none'`, and stops the event before `app.js` sees it.
+- **Consequence:** The keyboard and screen-reader path to the data hides the data.
+- **Reproduction:** Open `/data-explorer/asthma/?id=2380&overlay=table`, tab to the sr-only link, press Enter. Confirmed if the table pane closes and the URL reads `overlay=none`.
+- **Overlap:** extends A-159, which covers only the link's nesting inside `role="img"`. New here is what activating it does.
+
+**C9. The automatic jump to Trends for citywide-only indicators happens on a direct load but not when the indicator is picked in place. Is that intended?**
+- **Where:** `data.js:216` (`citywideTrendDefaultPending = !DE.state.overlay`), which runs before `:225` sets `'none'`; `app.js:123` keeps the overlay across selections. The flag also gates the polygon click-through in `map.js` (`switchToTrendTabOnce`).
+- **Evidence:** After any first load, the overlay is the `'none'` that `loadIndicator` itself wrote. The code then treats that default as a user's tab choice, so the jump and the click-through are switched off for every later in-place pick.
+- **Consequence:** The same indicator opens on Trends from a link but sits on a grey citywide map when chosen from the chooser. Whether `'none'` was meant to count as a user choice is a question for the author.
+- **Reproduction:** Open a mapped indicator on `/data-explorer/air-quality/`, choose "Ozone action days" (id 55) via Change dataset, then compare with a direct load of `?id=55`. Confirmed if only the direct load jumps to Trends, and clicking the polygon after the in-place pick does nothing.
+- **Overlap:** none.
+
+**Checked and ruled out:**
+- Every id the explorer JS looks up exists in some template, apart from `viewDescription` and the legacy `#tab-*` hashes, which only exist in the old explorer and are guarded.
+- The time-dropdown sort: `end_period` is numeric epoch milliseconds.
+- `TrendNoCompare` only ever holds `'2021'`.
+- The table CSV's Area column comes out clean after tag stripping.
+- The old explorer's pages are kept out of `de-topic-indicators`' page list (`build: list: never`).
+- Every IndicatorID listed on a built topic page exists in production `metadata.json`.
+- Search sub-result anchors are rewritten to `?id=` in `search-modal.html`.
+- The `chartType` order between map and overlay renders.
+
+**Not checked:**
+- Nothing was run in a browser (rules: no servers), so every runtime consequence above is untested.
+- I did not read `print-map.js`, most of `map.js`, `bar.js`, `correlate.js`, `disparities.js`, or `data-index.html` past line 190.
+- Not reviewed: the `de-chooser-accordion` and `de-chooser-modal` partials, and `de-announcement`.
+
+#### Area c: Neighborhood Reports (#1491 @ d1c7402735)
+
+Checked for overlap: A-001, A-002, A-027, A-039, A-041, A-042, A-050, A-057, A-058, A-064, A-065, A-133, A-134, A-148, A-149, A-150, A-170, A-339 through A-402 (every #1491 NR row), N-011, N-021, all Candidates (C-S3-1..3, C-S4-1, C-T3-1..3) and the Disconfirmed list. Also checked F1–F8 in `nr-accessibility-audit-2026-08-10.md`, and `documents/pr-1491-review-fixes-2026-10-17.md` at 00737207cb, which fixes the title suffix, query/hash stripping, hover style, viz-fail "Loading...", blob revoke and the map.js name collision. I left all of those out.
+
+**1. A long query string makes the print QR code throw. This is a regression in b33ba2373e, which is not in d1c7402735.**
+- **Claim:** At 00737207cb, `renderQRCode()` encodes `location.href` including its query and hash. `qrcode(10,'M')` holds at most 213 bytes, so a URL with a long query string makes it throw "code length overflow" inside `renderAll`.
+- **Where:** `nr-report.html` `renderQRCode` (inline; `qrcode(10, 'M')` and `code.addData(location.href)`, `git show 00737207cb:` lines 384–385), called from `report.js` `renderAll`. `url.js` `setNeighborhoodInURL` now returns early when the path is unchanged and keeps `search + hash` (b33ba2373e, step 2). At d1c7402735 it always ran `replaceState(newPath)` before the QR call, so the QR only ever saw the bare path.
+- **Evidence:** I ran a node one-off against the repo's `qrcode-generator/dist/qrcode.js` (script in my scratchpad). Capacity in byte mode is 213: a 213-character string fits and 214 throws. The longest report URL on prod_prod is 144 characters (`central_harlem_morningside_heights/active_design_physical_activity_and_health/`), leaving 69 bytes of headroom. The same URL with an fbclid-like query (240 characters) threw `code length overflow. (1940>1728)`; with a 61-character utm query it fit. `renderQRCode` has no try/catch.
+- **Consequence:**
+  - Visitors who arrive from a shared or social link with a long tracking parameter (fbclid, gclid) print a report with no QR code.
+  - On an in-place switch, `renderAll` throws before `announceNeighborhoodChange`, so the title rewrite and the live-region announcement are skipped. That partly reopens A-344 for these visitors.
+  - When the geojson fetch is the last load to finish, the throw lands in `initLeafletMap`'s `.catch`. That logs "Error loading UHF42 GeoJSON", which is misleading, and calls `tryInitialRender` a second time.
+- **Reproduction:** Needs a browser. Use a dev server at 00737207cb on localhost:8080/dev-stage/; the local prefix is 13 characters shorter than prod, so the query plus hash must exceed about 82 characters.
+  1. Load `/neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/?fbclid=` followed by 90 characters.
+  2. Confirmed: a console error "code length overflow", `#qrcode` is empty, and print emulation shows "View this report online:" with no image.
+  3. Controls: the same URL with no query shows an `<img>`; the same long URL at d1c7402735 also shows an `<img>`.
+- **Overlap:** Extends A-369 (QR regeneration, FIXED) with a new way for it to fail.
+
+**2. The report page breadcrumb still names the original neighborhood after an in-place switch.**
+- **Where:** `nr-report.html` breadcrumb, `<a href="…neighborhood-reports/{{ .Params.neighborhood_slug }}/">{{ .Params.neighborhood }}</a>` (line 63 at both commits). `url.js` `updateTopicLinks` rewrites only `.nr-topic-link`.
+- **Evidence:** `git grep -n -i breadcrumb 00737207cb -- assets/js/nr-report/` finds nothing. `renderAll` updates the h1s, ZIPs, demographics, topic links, URL, QR and title, but not the breadcrumb.
+- **Consequence:** After switching from Bayside to Kingsbridge, the page says Kingsbridge everywhere except the breadcrumb. It still reads "Bayside - Little Neck" and links to Bayside's index, so the "up" link leads to the wrong neighborhood.
+- **Reproduction:** Needs a browser. At a width of 576px or more, load `/neighborhood-reports/bayside_little_neck/asthma_and_the_environment/` and press Enter on the Kingsbridge polygon. Confirmed: `nav[aria-label=breadcrumb] li:nth-child(3) a` text and href are unchanged while the h1 reads Kingsbridge - Riverdale.
+- **Overlap:** None. The C1 probe in the a11y audit read only the h1, title, URL and live region.
+
+**3. On the 42 neighborhood index pages, the map polygons are focusable, unnamed and click-only, and the map flies to the neighborhood.**
+- **Where:** `partials/nr-leaflet.html` as rendered by `nr-neighborhood-index.html`. The map has no `aria-hidden` wrapper, so `removeHiddenMapFromTabOrder` returns early. `onEachFeature` binds click only; the tooltip uses `GEONAME`; the geocode branch calls `flyToBounds` with the default `zoomSnap`.
+- **Evidence:**
+  - `nr-neighborhood-index.html` includes `nr-leaflet` directly and has no neighborhood list.
+  - The a11y audit's F1 and F2 counted 42 polygon tab stops on the picker pages and the report page, but nothing was recorded for the neighborhood index.
+  - map.js (both commits) justifies nr-leaflet flying because "its polygons answer no key and the 42-neighborhood list beside it carries the navigation". That list does not exist on this page kind.
+  - The GEONAME tooltip disagrees with the h1 (`UHF_name`) on 6 of 42 neighborhoods (map.js's own comment).
+- **Consequence:**
+  - Keyboard users meet 42 or more unnamed tab stops where Enter does nothing.
+  - Pointer users get the same reachability problem A-148 measured on the report map (9 of 42 polygons reachable at zoom 12, in a box of the same size).
+  - On, for example, `/rockaways/` the tooltip reads "Rockaway" while the h1 reads "Rockaways".
+- **Reproduction:** Needs a browser. On `/neighborhood-reports/east_new_york/`, run the `nr-a11y-audit` tab sweep or tab through by hand. Confirmed: about 42 `path` stops with an empty accessible name, and Enter on one leaves `location` unchanged. Then run A-148's Playwright actionability check across the 42 paths after the 500 ms flyTo.
+- **Overlap:** Extends A-339 and A-148 (report map, FIXED) and A-134 (picker pages) to the fourth page kind.
+
+**4. The current topic, and the selected neighborhood on the report map, are shown only through styling.**
+- **Where:**
+  - `section.html`: `.nr-topic-button.active` with no `aria-pressed`. The active button decides where the map click, the search box and all 42 list links go.
+  - `partials/nr-topic-menu.html`: `.active` with no `aria-current`.
+  - `map.js` `selectLayer`: style only on the selected polygon.
+- **Evidence:** `git grep -n -E 'aria-pressed|aria-current' 00737207cb -- <NR scope>` hits only the three breadcrumbs.
+- **Consequence:** Screen-reader users on the landing page get no state change when they choose a topic, even though it changes where every link goes (WCAG 4.1.2). On the report map they cannot tell which of the 42 "button" polygons is the current one.
+- **Reproduction:** Needs a browser. In the CDP accessibility tree on `/neighborhood-reports/`, the topic buttons show no pressed state before or after clicking "Climate".
+- **Overlap:** None. F4 and A-340 cover contrast only.
+
+**5. `nr-leaflet.html` logs to the console unconditionally on 48 pages.**
+- **Where:** `getReportAndNeighborhood`, `pageTypeID` and `selectNeighborhood`. At 00737207cb there are 10 live `console.log` calls (lines 269, 290–292, 304–320, 333); six fire on every load of the landing page, the 5 topic indexes and the 42 neighborhood indexes. `debugLog` exists site-wide (A-057).
+- **Overlap:** Same kind as A-170 (DE `section.html`), in a different file.
+
+**6. Stale comments and a misleading name in nr-report JS (low).**
+- At 00737207cb:
+  - `report.js:217` says the header blocks "are display:none in the layout until a neighborhood is picked"; the template renders them visible.
+  - `report.js:194` says `currentNeighborhood` "is null until the first render"; it starts as `''`.
+  - `data.js:20` and `url.js` `getNeighborhoodFromURL`: the function reads `reportConfig.neighborhood`, not the URL. This is a name CLAUDE.md pre-authorizes renaming.
+- **Overlap:** None. A-393 is about spacing.
+
+**Refinement to A-374, not a new candidate.** On both EHDP-data branches, every row with a null `unmodified_data_value_geo_entity` also has a null `data_value_rank`: 48 of 3570 rows on production and 48 of 3654 on staging, none split. `cards.js` puts `d-none` on the comparison block when rank is null, so the null-as-0 comparison is unreachable with today's data. The latent bug stays.
+
+**Checked and dropped:**
+- Neighborhood names: all 42 `UHF_name`s match the `neighborhood` values in every report JSON and viz JSON on production, and IDs match (0 mismatches).
+- Rank-descending card order matches production's `sort … "data_value_rank" "desc"`.
+- The flexdatalist `select` event passes the full item, so `set.page_name` resolves.
+- Unescaped `innerHTML` in `cards.js`: no EHDP-data value breaks markup today.
+
+**Not checked:** Nothing runtime. I did not start a server because port 8090 is in use, so candidates 1–4 need a browser. I also did not check the old `nr-output` and `topiclanding` paths, since they are retired on #1491.
+
+#### Area d: Data features, stories, shortcodes (production @ b8f4b32fbd)
+
+Area d review (data features, data stories, shortcodes) at the audit worktree, whose code equals b8f4b32fbd outside documents/.
+
+**Overlap checked against:** A-002, A-012, A-014, A-021, A-043, A-044, A-045 through A-049, A-132, A-133, A-136, A-138 through A-147, A-151, A-311, A-312, A-313, A-333, A-334, N-001, N-003, N-005, N-006, N-007, N-009, N-011 through N-015, N-018, N-019, N-023, and C-T3-3 (Disconfirmed).
+
+---
+
+**1. The neighborhood-air-quality map reads an older dataset than the page's own cards. Building-emissions tertiles disagree for 81 of 262 NTAs.**
+- **Where:** `content/data-features/neighborhood-air-quality/aqe.js`. In `renderMap`, the lookup pulls from a personal gist pinned to one commit (`gist.githubusercontent.com/mmontesanonyc/…/1fe4964…/aqe-nta.csv`, aqe.js:351). `setNeighborhood` and `sourceTertile` fill the cards from the bundle's `aqe-nta.csv` (aqe.js:88).
+- **Evidence:** I curled the gist and diffed it against the bundle CSV after stripping CRs. They have different schemas: the gist has `TotalPM`/`TotalNOx`, the bundle has `PM_Avg`/`NO2_Avg`. Python comparison over the 262 NTAs both files share, per map field: `cook_tertiles` 0 differ, `Industrial_tertiles` 0, `Traffic_tertiles` 0, `Building_emissions` 81 differ (e.g. BK0101 is High in the gist, Medium in the bundle). Control: the bundle compared with itself gives 0. `git log` shows the bundle CSV was updated with 2023 data in c08dc4826a (2025-05-01). The gist URL dates from 53447cb046 (2024-04-22).
+- **Consequence:** Building emissions is the map's default layer (`renderMap(1,…)`). For about a third of neighborhoods, the shaded tertile contradicts the card beside it. The data also depends on a personal gist.
+- **Reproduction:** Open `/data-features/neighborhood-air-quality/` and pick Greenpoint (BK0101). Confirmed if the card says Medium for building emissions and the map tooltip says High.
+- **Overlap:** none.
+
+**2. The realtime "Last 24 hours" average always divides by 24, even when a monitor reported only 18 to 23 hours.**
+- **Where:** `content/data-features/realtime-air-quality/js/realtime.js`, `printRecentAverage`. It uses `average = totals / 24` (twice) behind `thisLast.length > 17`.
+- **Evidence:** Read the function. A monitor with 20 readings gets an average 20/24 of its true mean. That value also drives the `average > 35` switch that shows `#exceeds` ("Exceeds NAAQS 24-hour standard") and hides `#allUnder`.
+- **Consequence:** Incomplete-day averages are understated, which can show "All levels are below the NAAQS" when the mean of the hours actually reported is above 35. Whether /24 is intended (it treats missing hours as zero) is a question for the author; the page's own footnote frames 18 hours as a completeness threshold.
+- **Reproduction:** Static: compute the mean over `thisLast` against `totals/24` for any monitor whose last-24h row count is between 18 and 23 in `nyccas-data/main/portal/view.csv`. Needs browser: compare the table value with that recomputation.
+- **Overlap:** none (N-014 and A-049 are about markers and AirNow).
+
+**3. Five Datawrapper maps on air-quality-snapshots never load.**
+- **Where:** The page's front matter has `layout: flexible`. `themes/dohmh/layouts/data-stories/flexible.html` does not load `js/data-stories/lazy-tab-embeds.js`; only `single.html` does.
+- **Evidence:** `git grep lazy-tab-embeds -- themes content` finds only `single.html:23`. The page has 5 `data-lazy-src` iframes (mDgo3, XWE9m, 8urPc, l7Ouh, v5vt2), and nothing else sets their `src`. Commit a0ce013172 converted this page to `data-lazy-src` but did not touch `flexible.html`. Smoke cannot see this, because an iframe with no src throws nothing.
+- **Consequence:** Clicking tabs 01-b/c/d or 02-b/c shows an empty frame.
+- **Reproduction (needs browser):** Open `/data-stories/air-quality-snapshots/`, click "Cardiovascular hospitalizations", then read `#datawrapper-chart-mDgo3`'s `src`. Confirmed if it is empty and `data-lazy-src` is still present.
+- **Overlap:** related to A-043 (the lazy-embed fix), but the opt-in is broken on this page.
+
+**4. Three broken links in the cooling-info tool, two of them in safety messages.**
+- **Where:** `content/data-features/cooling-info/cooling-info.js:425` uses `href='https://:finder.nyc.gov/coolingcenters/'`; this is the message for people with no AC when it is 85°F or hotter. `:446` uses `href="a858-nycnotify.nyc.gov/notifynyc/"`, with no scheme, so it resolves under the page path. `content/data-features/cooling-info/config.js:48` closes "register your equipment…" with `<a>` instead of `</a>`.
+- **Evidence:** A Python href sweep over 817 in-scope files found these two hrefs plus two out-of-scope ones (see the end). Grep found the config line.
+- **Also:** `runFinal` tests `maxTemp < 78` and `maxTemp > 78`. `maxTemp` can be exactly 78.0 (the reading is a 0.1°F conversion), and then a user with AC gets no temperature message. Whether 78 should be inclusive is a question.
+- **Reproduction:** Open `/data-features/cooling-info/`, answer "No AC" with a temperature of 85 or more, and click the "visit a cool public place" link. Confirmed if the browser rejects the URL.
+- **Overlap:** none.
+
+**5. On production, the 2023 and Jan–Jun 2024 Rat Mitigation Zone reports are never built.**
+- **Where:** `content/data-features/rat-report/2023/index.md` and `2024/index.md`, both `draft: false`. They sit inside the leaf bundle `rat-report/index.md`, so Hugo treats them as page resources rather than pages.
+- **Evidence:** The committed `prod_prod` baseline has only `data-features/rat-report/index.json`, while it does have heat-report-archive year pages. The audit's census on P matches that baseline. The `update-rat-mitigation-report` branch's plan records the same diagnosis and a fix (0122a3c4e4, Decision D2). That branch is unmerged.
+- **Consequence:** The previous editions of a report required under Admin Code 17.133.3 return 404, even though they were edited as recently as 2026-05-08.
+- **Reproduction:** `git ls-tree production -- content/data-features/rat-report/_index.md` returns nothing. In an isolated `prod_prod` build, `rat-report/2024/index.html` is absent.
+- **Overlap:** none in the audit doc. A fix exists on the unmerged branch.
+
+**6. air-quality-snapshots tab panes carry a static `aria-hidden="true"` that Bootstrap never removes.**
+- **Where:** `content/data-stories/air-quality-snapshots/index.md`. Five `tab-pane`s carry it, including the initially active `#tab-02-a`. Also, `#tab-btn-01-a` has `aria-controls="tab-02-a"` where it should point at `tab-01-a`.
+- **Evidence:** `node_modules/bootstrap/js/src/tab.js` (4.6.2, the version `js_bottom.html` loads) has 0 `aria-hidden` references and 2 `aria-selected`. A grep for tab panes with static `aria-hidden` across content and themes found this page and the `overlap-tool.html` partial (A-350's file, outside this area).
+- **Consequence:** Shown maps stay hidden from screen readers.
+- **Reproduction (needs browser):** Click any tab on that page and check the pane's `aria-hidden` and its accessibility-tree visibility.
+- **Overlap:** N-006 (tab roles) is a different defect.
+
+**7. The `datawrapper` shortcode names every chart "Interactive chart" and gives every chart the same id.**
+- **Where:** `themes/dohmh/layouts/shortcodes/datawrapper.html` emits `aria-label="Interactive chart"` next to `title='{{ .Get "title" }}'`, and a hardcoded `id="datawrapper-chart-O0SUA"`.
+- **Evidence:** In accessible-name computation, `aria-label` wins over `title`, so the authored titles are never announced. The shortcode is used in 17 content files. The violence es/zh pages each hold 7 shortcode iframes plus one inline iframe with the same id, so 8 duplicates on a page.
+- **Consequence:** Screen-reader users cannot tell the charts apart. The ids are invalid. The resize listener's `getElementById` lookup would hit the first duplicate if chart O0SUA ever messages that page.
+- **Reproduction:** In a built `/es/data-stories/violence/`, run `document.querySelectorAll('#datawrapper-chart-O0SUA').length` and check an iframe's computed accessible name.
+- **Overlap:** N-013 is about untitled frames, which is different.
+
+**8. Six more in-scope files hardcode the EHDP-data `production` branch and ignore `data_branch`.**
+- **Where:** `heat-syndrome/heatsyndrome.js` (6 URLs), `rat-mitigation-zones/rmz.js`, `rats-in-your-neighborhood/neighborhood-rats.js` (2: `2434.json`, `TimePeriods.json`), `hvi/HVIMapSpec.vg.json`, `data-features/minimum-wage-with-maps.html` (3), `data-features/neighborhood-overlap.html`.
+- **Evidence:** `git grep -o "EHDP-data/[a-z/]*(production|main|staging)"` over the scope.
+- **Consequence:** `dev_stage` and `prod_stage` cannot preview staged data on these pages, and staging smoke reads production data for them.
+- **Overlap:** extends A-147, which records the same pattern only for `overlap-tool-with-map.html`.
+
+**9. The `list` violation comes from the shared story template, not just housing.**
+- **Where:** `themes/dohmh/layouts/data-stories/single.html:59-60` puts a `<span>` directly inside `<ul class="nav navbar-nav">` in the "Read this data story in:" block.
+- **Evidence:** That block renders on every translated story using this layout: 6 stories in 3 languages, so 18 pages.
+- **Overlap:** extends N-012, which names only housing.
+
+**10. Each change to realtime's day count drops one row of the feed.**
+- **Where:** `realtime.js`, `updateTime`, which uses `var last = fullTable.pop()`.
+- **Evidence:** `pop` removes the last row of the shared array each time it runs, so the window's end point creeps earlier with repeated changes.
+- **Reproduction (needs browser):** Change `#inputNum` 15 times and compare `fullTable.length` and the chart's right edge.
+- **Overlap:** none.
+
+**11. Four shortcodes have no callers, and two of them would malfunction if used.**
+- **Where:** `vega`, `vega0`, `accordion`, `storyheader`.
+- **Evidence:** `git grep -E "\{\{[<%][[:space:]]*(vega|vega0|accordion|storyheader)" -- content themes` finds nothing. The last content use of `accordion` was removed in 2023-01 (145f791b10). In `vega.html`, `var istrans = "{{ .Page.IsTranslated }}"` makes the string `"false"`, which is truthy, so every untranslated page would fetch from `dir/mapspec-<lang>/`. In `accordion.html`, the trigger `<a>` carries Bootstrap's `collapse` class, and `.collapse:not(.show){display:none}` would hide it. `readme-development.md:224` still points authors to "Vega shortcodes".
+- **Overlap:** extends A-002, which records only the vega/vega0 pair.
+
+**12. heat-syndrome makes a synchronous HEAD request on the main thread while loading.**
+- **Where:** `heatsyndrome.js`, `UrlExists`, which calls `http.open('HEAD', url, false)`.
+- **Evidence:** Rendering is blocked on a GitHub round trip, and Chrome logs a deprecation warning. Any status other than 404 counts as "exists", including 0 on network failure and 403/429. All five data files returned 200 today, so there is no current breakage.
+- **Overlap:** none.
+
+---
+
+**Could not check:**
+- No item was confirmed in a browser. The rules forbid starting a server, so items 2, 3, 6, 7 and 10 need the reproduction steps above.
+- Not read for logic: `rmz.js`, the body of `neighborhood-rats.js`, `heat-story-leaflet.js` (2,402 lines), `proximity.js`, the congestion-pricing chart files, and the inline scripts in `leading-causes`, `minimum-wage-with-maps`, `pesticides-report`, `nyccas-report` and `24-25-heat-report`.
+- My duplicate-id sweep over templates had no positive control, so its empty result is not a finding.
+- Out of area: both `content/data-explorer/mice-and-rats.md:69` and `content/data-explorer-old/mice-and-rats.md:61` have a scheme-less `www.nyc.gov/rats` link.
+
+Scratch scripts are `C:/Users/Chris/AppData/Local/Temp/claude/c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge/0233f26f-0e1e-4e53-ba56-89abc75dfdf0/scratchpad/links.py`, `ids.py` and `libs.py`. Nothing in any repo was modified.
+
+#### Area e: SCSS (production @ b8f4b32fbd)
+
+Overlap checked against: A-007, A-015, A-027, A-029, A-066, A-067, A-068, A-069, A-100, A-122, A-158, A-171, G2-87, G4-25, G6-05, G6-30, G7-15, N-004, N-005, N-007, N-017, N-019, C-T3-3, plus the Disconfirmed section. None of the candidates below restates a row. Three of them extend rows (A-100, N-004, N-005), and each says what is new. Tree: the audit worktree. Its HEAD is e26a2e2487, which differs from b8f4b32fbd only in files outside my scope. All line numbers come from `grep -n` or Read in this session.
+
+**1. Share links on every story page have no visible focus indicator**
+- **Claim:** `.share-btn { outline: none }` strips the focus ring from the four social-share links. Their only other focus cue, the site-wide `a:focus` underline, has no visible text to underline.
+- **Where:** `assets/scss/__portal-custom.scss`, `.share-btn` (`outline: none` at :937; also `.share-btn:active` at :951).
+- **Evidence:** `grep -n -E 'outline|:focus' assets/scss/*.scss` finds no `.share-btn:focus` rule. `socialshare.html` holds only an `<i>` icon and a `<p>` per link, and `.social-share ul li p { display:none }`. The underline comes from `_d-enhancements.scss:258-264` (hover-focus mixin). The partial is included by 6 data-story layouts and `data-explorer-old/single.html:472` (`git grep -n socialshare -- themes`).
+- **Consequence:** Keyboard users on every data story cannot see when a share link has focus (WCAG 2.4.7).
+- **Reproduction:** Needs browser. Open `/data-stories/<any>/`, Tab to the Twitter share link, then read `getComputedStyle(document.activeElement).outlineStyle` and take a screenshot. Confirmed if it reads `none` and nothing visible changes.
+- **Overlap:** none. G6-30 named other `outline` lines for NR only, and never re-ran them.
+
+**2. The UHI slider loses its focus ring and has no substitute**
+- **Claim:** `input[type=range]:focus { outline: none }` applies site-wide. The focused track keeps the unfocused colour (`#D6D6D6` both ways), and no thumb focus rule exists, so a focused slider looks exactly like an unfocused one.
+- **Where:** `assets/scss/__portal-custom.scss`, `input[type=range]:focus` (:501-502) and `input[type=range]:focus::-webkit-slider-runnable-track` (:528).
+- **Evidence:** I read :495-595. The only range input the site's stylesheet reaches is `#slider` in `themes/dohmh/layouts/data-stories/uhi.html:358` (`git grep -n 'type=.?range'`), used by `content/data-stories/urban-heat-island/index.md` (`layout: uhi`).
+- **Consequence:** Keyboard users of the urban-heat-island story's interactive ratio control get no focus indicator. N-007 already records that the same control has no label.
+- **Reproduction:** Needs browser. Open `/data-stories/urban-heat-island/` and Tab to `#slider`. Confirmed if computed `outline-style` is `none` and the track background stays `rgb(214, 214, 214)`.
+- **Overlap:** N-007 covers the missing label on this control; the focus indicator is new.
+
+**3. The racial-wealth-gap "Glossary" button has no focus ring**
+- **Claim:** `.content-card button.card-content { outline: none }` (specificity 0,2,1) beats Bootstrap reboot's `button:focus` ring (0,1,1). The only replacement is an underline on `:hover`.
+- **Where:** `assets/scss/theme.scss`, `.content-card button.card-content` (:341). The hover rule is `.content-card button.resource-card:hover`.
+- **Evidence:** `grep -n -A3 'button:focus' assets/bootstrap/scss/_reboot.scss` shows :308-310, and `_b-bootstrap-imports.scss:32` imports reboot. `git grep -n -E '<button[^>]*card-content'` finds one emitter: `content/data-stories/racial-wealth-gap/index.md:196`, inside `div.content-card`.
+- **Consequence:** The modal trigger on that story shows no focus state.
+- **Reproduction:** Needs browser. On `/data-stories/racial-wealth-gap/`, Tab to "Glossary". Confirmed if computed `outline-style` is `none`.
+- **Overlap:** none. G6-30 cited theme.scss:341 for NR, unverified, and never identified the element.
+
+**4. "Show More" on key-topic pages hides itself while it has focus**
+- **Claim:** `#toggleButton[aria-expanded="true"] { display: none }` removes the focused control the moment it is activated. Keyboard focus is dropped, and the list cannot be collapsed again.
+- **Where:** `assets/scss/_de-custom.scss`, `#toggleButton[aria-expanded="true"]` (:375).
+- **Evidence:** `git grep -n toggleButton` finds `key-topics/single.html:256`, an `<a role="button" data-toggle="collapse" href="#collapseStories">`. It is rendered when `gt $dataStories 5`. The rule came in with `c57230973a`, "design review for key topics" (`git log -S toggleButton`).
+- **Consequence:** WCAG 2.4.3 (focus order): after activating Show More, the next Tab starts from wherever the browser reset focus. Hiding the button looks intended. The question for the author is whether losing focus was part of that intent.
+- **Reproduction:** Needs browser. Open a key-topic page where `document.getElementById('toggleButton')` exists, focus it, and press Enter. Confirmed if `document.activeElement` becomes `body` or anything other than the stories region.
+- **Overlap:** none. C-T3-3 touched `#collapseStories` only for image sizes.
+
+**5. N-004 extension: the SCSS mechanism behind colour-only links**
+- **Claim:** The only at-rest underline rule for body links is `#primary-content p > a:not([class])`. Any link inside `li`, `td` or `dd`, any link with a class, and every link on a template without `id="primary-content"` is distinguished by colour alone.
+- **Where:** `assets/scss/_d-enhancements.scss`, `#primary-content p > a:not([class])` (:320-322). Supporting values: `$link-hover-decoration: none` (`_a-global-variables.scss:358`) and Bootstrap's `$link-decoration: none` (`_variables.scss:173`).
+- **Evidence:** I swept every `text-decoration: underline` in `assets/scss` (`grep -n -B4`). The others are hover/focus-only, nav `.active`, or `.indicator-card a`. `git grep -c 'id="primary-content"' -- themes` gives 16 templates, and `data-explorer/data-index.html` (N-004's data-index example) is not among them.
+- **Consequence:** This names the one rule to widen, and predicts which of the 89 axe-incomplete pages are real failures.
+- **Reproduction:** Static. A verifier can check that every N-004 node is either outside `#primary-content` or not a direct `p > a` child.
+- **Overlap:** extends N-004. The cause and the fix point are new.
+
+**6. A-100 extension: most of its static question can be settled without a browser**
+- **Claim:** A-100's literal `#008939` grep finds 5 sites, and none of the 5 fails:
+  - `__portal-custom.scss:209,212` is `.btn-outline-green`, which has 0 emitters.
+  - `:1305` is `.pullquote`, 24px bold, so the large-text threshold of 3:1 applies; it measures 4.53 on white.
+  - `_de-custom.scss:771,776` is set on `background-color: white`, also 4.53.
+
+  The grep also misses 13 `color: $primary` / `color: $hover` uses (`grep -n -E 'color:\s*(\$primary|\$hover)'`):
+  - `theme.scss:42` is `a:hover { color: $hover }`, which puts hovered links at 4.45:1 on the `#FDFDFD` that theme.scss's own comment names (I computed it with sRGB luminance).
+  - `theme.scss:459,477` sit in the dead `.sidebar-report` (#8).
+  - The rest are hover states, large text, or icons.
+- **Where:** as listed.
+- **Consequence:** A-100 shrinks to one hover-state pair, plus whether the team counts hover states at all.
+- **Reproduction:** `git grep -n -F btn-outline-green -- themes content assets/js` returns 0. Then recompute the ratios.
+- **Overlap:** extends A-100.
+
+**7. Dead SCSS in `_de-custom.scss` beyond A-158, A-171 and A-122**
+- **Claim:** These tokens have 0 emitters anywhere:
+  - `#trendControls`, `#correlateControls`, `#trendControlsToggle`, `#correlateControlsToggle` (:678-686)
+  - `#trendSelectionSummary`, `#linksSelectionSummary` (:717-718)
+  - `.de-accordion` (:488-512 and :804-822) and `.de-accordion-label`
+  - `.nav-link-sm` (:745), `.de-nav-action-link` (:779), `.w-md-40` (:786)
+  - the print-only `.p-mt-sm` (:84) and `.reports` (:79)
+- **Evidence:** One loop of `git grep -n -F -e <token> -- themes content assets/js data static config i18n ':!static/css' ':!*.min.js' ':!*.map' | wc -l` returned 0 for each token. The positive control on the same command returned `share-btn` 4 and `tableFilterSummary` 2. The only dynamic id generator, `` button.id = `${menuId}Toggle` `` in `createBadgePillDropdown` (`measures.js:541-556`), has no caller (JS aside, outside my area).
+- **Consequence:** Dead weight in a file A-067 already calls oversized, and it misleads anyone tracing DE layout.
+- **Reproduction:** Re-run the loop.
+- **Overlap:** extends A-158 with a disjoint set.
+
+**8. Dead legacy and NR rules in `theme.scss` and `__portal-custom.scss`**
+- **Claim:** Same sweep, 0 emitters each:
+  - in `theme.scss`: `.sidebar-report` (:441), `.report-topic`, `.topic-header`, `.indicator-headings`, `.info-modal`, `span.th-sub`, `.my-5.p-no-margin`, `.list-group.custom-active`
+  - in `__portal-custom.scss`: `.btn-outline-green`, `.btn-outline-blue`, `.btn-outline-gray`, the five `.tile-*` families, `#illimg`, `.aboutbox`, `.activebadge`, `.storybadge`, `.vcard`, `.topiccontainer`, `.panel-grid`
+- **Evidence:** as #7. My unfiltered sweep script also flagged library-emitted names (`autocomplete__*`, `pagefind-ui__*`, `goog-*`) and the `#nav-item-0N` ids. The ids are false positives: `header-ds.html:88` builds them from menu identifiers in `config/_default/config.toml:68-89`. All of those are excluded.
+- **Consequence:** Low; maintenance only. It also matters for #6, because two of A-100's cited lines sit in dead selectors.
+- **Overlap:** A-122 covers two other selectors.
+
+**9. N-005 extension: where the `#D75047` card text comes from**
+- **Claim:** The 4.09:1 card text on `data-stories/` comes from a bare-class rule, `_de-custom.scss` `.data-stories { color: $color-data-stories }` (:114-115). It colours all text inside any `.card-content.data-stories` card. `theme.scss`'s `.card-content.data-stories` sets only the border.
+- **Evidence:** `data-stories/section.html:17,80,104` render `card-content data-stories`. I computed `#D75047` on white at 4.09, which matches N-005. The home page's `h2.data-stories` is 24px, so it passes at 3:1.
+- **Overlap:** extends N-005 with the rule to change.
+
+**10. Group-row colour in SCSS fails contrast but is always overridden**
+- **Claim:** `_de-custom.scss` `table .group td { color: #669DB1 }` on `#F0F0F0` (:1-6) computes to 2.6:1. It never shows because both explorers redeclare the same selector inline with `color: green` (`de-tab-content.html:340-342`, `data-explorer-old/single.html:327`), and the inline blocks come later in the cascade.
+- **Consequence:** A latent failure. Moving those inline blocks into SCSS, as the CLAUDE.md externalization guidance suggests, would expose 2.6:1 on every explorer table group header.
+- **Reproduction:** Needs browser. On `/data-explorer/air-quality/?id=2380#display=summary`, read the computed `color` of `#summary-table tr.group td`. Expected: `rgb(0, 128, 0)`.
+- **Overlap:** none.
+
+**11. Five declarations the browser silently drops**
+- **Claim:**
+  - `theme.scss:444` has `margin-bottom: 1.125  rem` (a space before the unit).
+  - `__portal-custom.scss:428` has `margin-top: 25` (no unit), on `.greyblock`, which is used on the housing es/zh pages.
+  - `__portal-custom.scss:467` has `filter: blur (5px)`, on a dead selector.
+  - `__portal-custom.scss:509,536,557` use `animate:`, which is not a CSS property.
+  - `__portal-custom.scss:1195` has `font-style: bold`.
+- **Evidence:** `grep -n -E 'font-style:\s*bold|animate:|\b[0-9.]+\s+(px|rem|em)\b'` plus a unitless-length grep.
+- **Consequence:** Low; only the `.greyblock` margin has a visible effect. A stylelint pass would catch this class of error, which is an industry-standard aside rather than a defect.
+
+**Could not check:**
+- Every runtime claim above (no server; port 8090 is owned by another process).
+- Whether the compiled CSS keeps the invalid declarations (needs a build).
+- Contrast for text over background images (`.titleheader`, `.related-reading`).
+- `_f-layout-elements.scss` and `_e-supplementary-classes.scss`: only swept for dead names and focus rules, not read line by line.
+- `_g-dev-tools.scss` was left to A-066.
+
+The sweep script is at C:\Users\Chris\AppData\Local\Temp\claude\c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge\0233f26f-0e1e-4e53-ba56-89abc75dfdf0\scratchpad\deadsel.py, and its raw output is in dead.txt in the same folder. That output is unfiltered and includes the known false positives.
+
+#### Area f: Build, CI, config (production @ b8f4b32fbd)
+
+**Overlap checked:** A-015, A-016, A-019, A-021, A-070, A-077, A-078, A-079, A-081, A-082, A-087; G1-19/20/74/77–87/98; G2-02/41/42/48/49; G3-12/58/59/64/65; G5-25/26/28–34; G7-27; N-021, N-022; C-S4-1, C-T3-1, C-T3-2; Instrument results 3e. I also grepped the audit for force-push, protection, timeout, persist-credentials, codeql, dev-stage and LAST_MSG. None of those terms matched an existing row.
+
+Tree: the audit worktree is at e26a2e2487. `git diff --stat b8f4b32fbd HEAD` shows no changes outside documents/, so every file I read equals P.
+
+---
+
+**1. A commit subject is pasted into the deploy build's shell script. A quote in it breaks the deploy, and `$(...)` in it runs as a command.**
+- **Where:** `hugo-build-to-prod-prod.yml`, step "Build site with Hugo" (`export HUGO_GIT_LAST_MSG=${{ steps.last_commit.outputs.last_msg }}`). Also `hugo-build-any-branch.yml`, steps "Hugo Build environment" and "Hugo Build environment + baseURL".
+- **Evidence:** step "get last commit" writes `last_msg="<git log -1 %s>"`, and the expression is substituted into the script text before bash runs. I wrote the substituted line to a file and ran it with `bash -e`, which GitHub's docs give as the default shell when `shell` is unspecified (workflow-syntax page):
+  - `Revert "Fix 3.5 issue"` exits 1 (`export: '3.5': not a valid identifier`).
+  - `Fix "Data Stories" link (#1520)` exits 1.
+  - `Say "hi` exits 2 (unterminated quote).
+  - ``shorten `last_hash` in workflows`` (a real production subject, 685557d966) exits 0, but the backticked word runs as a command and the value comes out mangled.
+  - `x $(echo INJECTED >&2) y` prints INJECTED.
+- **How often subjects carry these characters:** 138 of 2210 non-merge subjects since 2025-10-01 contain `"`. The repo allows squash merges (`squash_merge_commit_title: COMMIT_OR_PR_TITLE`) and rebase merges.
+- **Today's exposure:** production's tip is usually a "Merge pull request" commit, which is safe unless the branch name has metacharacters (git allows `"` and `$` in ref names). The any-branch workflow builds a branch tip with any subject.
+- GitHub's secure-use docs recommend passing untrusted values through an intermediate env var (https://docs.github.com/en/actions/reference/security/secure-use).
+- **Consequence:** a deploy build fails, or runs whatever command the subject contains, inside a job holding a `contents: write` token.
+- **Reproduction:** `printf 'export HUGO_GIT_LAST_MSG="%s"\n' 'Fix "A B" c' > s.sh; bash -e s.sh; echo $?` → confirmed if it prints 1.
+- **Overlap:** none.
+
+**2. Nothing protects production or the deploy source branch.**
+- **Where:** repository settings that gate CI and deploys.
+- **Evidence:**
+  - `gh api repos/nychealth/EH-dataportal/branches/production/protection` returns `allow_force_pushes.enabled: true` and `enforce_admins: false`, with no `required_pull_request_reviews` key.
+  - `required_status_checks` has `checks: []` and `enforcement_level: off`.
+  - `gh api .../rulesets` returns `[]`.
+  - `gh api 'repos/.../branches/builds%2Fprod-prod' --jq .protected` returns `false`.
+- **Consequence:** production (the default branch) can be force-pushed. A red smoke or characterization run does not block a merge. builds/prod-prod, which the team deploys to the live servers, can be overwritten by anyone with write access or by any workflow token.
+- **Note:** site-characterization.yml's comment records that no checks are required and says not to require it while it has a path filter. So "no required checks" may be deliberate. Is the force-push allowance deliberate too?
+- **Reproduction:** the three `gh api` calls above.
+- **Overlap:** none.
+
+**3. Workflows get a full read/write token by default, and two jobs leave it on disk while untrusted code runs.**
+- **Where:** repo Actions settings; `check-deploy.yml` (job check_deploy); the four build workflows (step "Install dependencies").
+- **Evidence:**
+  - `gh api repos/.../actions/permissions/workflow` returns `{"default_workflow_permissions":"write","can_approve_pull_request_reviews":true}`. So check-deploy.yml, which has no `permissions:` block (A-078), runs with a read/write token on every scope.
+  - The pinned checkout `action.yml` at 3d3c42e5… has `persist-credentials` with `default: true` (read with `gh api repos/actions/checkout/contents/action.yml?ref=<sha>`). In check-deploy that token stays on disk during the third-party `dawidd6/action-send-mail` step, which also receives `MAIL_PASSWORD`.
+  - In the build workflows, the persisted `contents: write` token can push to production and to the unprotected builds/prod-prod (#2). `npm install` then runs dependency lifecycle scripts while it is there.
+- **Consequence:** a compromised transitive npm package or action can push to the deploy source.
+- **Reproduction:** the `gh api` call above → confirmed if it shows `"write"`.
+- **Overlap:** extends A-078/G2-02. New: the repo-level default is write, so the missing block means write-all. Also new: the token sits on disk next to third-party code.
+
+**4. The dev-stage build ("307") has not run in at least 13 months, and its output branch does not exist.**
+- **Where:** `hugo-build-to-dev-stage.yml` (`on:` has only `pull_request: closed` and `workflow_dispatch`; job `if:` tests `github.event_name == 'push'`). readme-development.md's workflow table says "In use? Yes".
+- **Evidence:**
+  - `gh api .../actions/workflows/78042797/runs` returns `total_count 0`. For comparison, the prod-prod workflow retains 152 runs back to 2025-08-29.
+  - `git ls-remote --heads origin` (63 heads) lists `builds/prod-prod` but no `builds/dev-stage`.
+  - The last three updates to `build-to-dev-stage` were direct pushes, not PRs: a022fd5654 (2026-09-04), 0f4f57c91a, d56c38e6d9.
+  - The `push:` trigger was deleted in 8d460ac1b4 ("clean up commented code", 2024-08-06). The job's `push` test was left behind and can never be true.
+- **Consequence:** the 307 staging site is not refreshed by CI, and the docs say it is. The NR branch's CLAUDE.md also says dev_stage builds to builds/dev-stage in CI. Is 307 still deployed from builds/dev-stage? That is a question for the team.
+- **Reproduction:** `gh run list --workflow hugo-build-to-dev-stage.yml` → confirmed if empty. `git ls-remote origin refs/heads/builds/dev-stage` → confirmed if empty.
+- **Overlap:** none. G1-84 lists which environments are built but not whether they run.
+
+**5. CodeQL's weekly schedule and manual dispatch never analyse anything.**
+- **Where:** `codeql.yml`, job `analyze`, `if: github.event_name == 'push' || github.event.pull_request.merged == true`.
+- **Evidence:** `on:` has no `push`, so `schedule` and `workflow_dispatch` both fail the test. Run history (`gh api .../workflows/30980125/runs`): all five schedule runs listed (2026-09-16 through 2026-10-14) are `skipped`. Every merge-triggered run is `success`.
+- **Consequence:** code scanning updates only on merges. The cron cannot pick up new CodeQL queries against an unchanged tree, and a manual re-scan is impossible.
+- **Reproduction:** the run query above → confirmed if every `schedule` run is `skipped`.
+- **Overlap:** none. C-T3-2 and N-022 are about alert content.
+
+**6. The any-branch workflow defaults to the `production` environment, and its publish target is free text.**
+- **Where:** `hugo-build-any-branch.yml`, input `environment` (`default: production`) and input `publish-branch`.
+- **Evidence:** `head.html:3` and `:45` give the live analytics property and indexable robots only when the environment is `prod_prod`. A default run therefore produces a `noindex, nofollow` build with the dev analytics property. `publish-branch: prod-prod` would publish that build to the deploy source, and nothing stops it.
+- **Consequence:** the deploy source can be overwritten with a non-indexable build. This tree's CLAUDE.md:41 says to use `prod_prod`. The NR branch's CLAUDE.md says "no workflow builds with" `production`, which this default contradicts.
+- **Reproduction:** `grep -n 'default: production' .github/workflows/hugo-build-any-branch.yml`; `grep -n hugo.Environment themes/dohmh/layouts/partials/head.html`.
+- **Overlap:** extends G1-84 (which noted the "any-branch input" but not its default) and G2-48 (bare `hugo`, not the workflow).
+
+**7. check-deploy accepts whatever the live server returns and pastes it into shell commands.**
+- **Where:** `check-deploy.yml`, steps "get deployed hash" (`curl … -s -o -`, no `-f`), "echo outputs" and "last commit log".
+- **Evidence:** `curl -s https://a816-dohbesp.nyc.gov/indicatorpublic/commit_hash_nosuch.txt | wc -l` returns 880 lines of HTML with status 404. If commit_hash.txt goes missing, `deployed_hash` becomes HTML. It is pasted into `[ … = … ]` and `git rev-list` (`<` acts as a redirect), so the job fails before "send reminder". An empty response would instead send a "0 commits" email.
+- **Consequence:** the deploy reminder fails exactly when deployment state is unknown.
+- **Reproduction:** read the three steps; the curl above.
+- **Overlap:** none.
+
+**8. Seven of the nine workflows have no `timeout-minutes`.**
+- **Where:** check-deploy, codeql, all four build workflows, test-print-branch.
+- **Evidence:** `grep -c timeout-minutes .github/workflows/*.yml` returns 0 for those seven; only smoke and site-characterization set it.
+- **Consequence:** a hung deploy build holds a runner until GitHub's default limit, unless a newer merge cancels it. I believe that limit is 360 minutes but could not confirm the job-level default on the docs page in this pass, so treat it as unverified.
+- **Overlap:** none.
+
+**9. CI's lockfile commit-back has changed resolved versions after review.**
+- **Where:** the build workflows, step "Commit changes to package.json & package-lock.json".
+- **Evidence:** `git log production --grep='Update index & NPM package list' | wc -l` returns 208 commits. `git show 6e1993c395` (2026-08-12) moves the locked `hugo-extended` from 0.146.7 to 0.147.9 and adds `playwright` 1.62.1.
+- **Consequence:** the deployed build can use dependency versions that no PR review or smoke run (`npm ci` on the PR's lock) saw.
+- **Overlap:** extends G1-80/A-079. New: evidence that it actually changes resolved versions.
+
+**10. Several workflows still reference the deprecated `development` branch, which no longer exists.**
+- **Where:**
+  - `hugo-build-to-dev-prod.yml` checks out `ref: development`.
+  - `smoke.yml`, `site-characterization.yml` and `codeql.yml` trigger on `development`.
+- **Evidence:** `git ls-remote --heads origin` has no `development`.
+- **Consequence:** a dispatch of dev-prod fails at checkout. The other three triggers can never fire. Low severity; readme marks dev-prod "No".
+- **Overlap:** none.
+
+**Checked and dropped:** I suspected the prod-prod `concurrency` group would not serialise across PRs, because `github.ref_name` is per-PR on `pull_request` events. Run history disproves it: runs from different PRs cancelled each other (37141311276 by 37141325056; 32615385770 and 32615419647). So the group is shared. Also clean: the package.json and package-lock.json root are in sync, and `codeql.yml`'s `pull_request_target` checks out only the base.
+
+**Could not check:**
+- The job-level timeout default on GitHub's docs page (fetch truncated).
+- How the 307 and live servers actually consume the build branches. That is outside the repo.
+- Whether the new `timezone:` key in check-deploy's cron is honoured. Scheduled runs land 4–13 hours after the cron time both before and after the key was added, so I can't attribute it.
+- Run logs, which I did not read.
+
+#### Area g: Performance (production @ b8f4b32fbd)
+
+**Area g (Performance): report**
+
+Overlap checked against: A-005, A-006, A-007, A-008, A-009, A-010, A-011, A-013, A-014, A-015, A-017, A-020, A-021, A-037, A-038, A-039, A-043, A-046, A-047, A-051, A-053, A-086, A-089, A-090, A-184, A-193, A-198, A-199, A-237, A-306, N-019, C-S3-1, C-T3-1, C-T3-3.
+
+**How I measured.** One Python pass over the built site found 970 HTML files carrying the marker. That is the census's 924 pages plus 46 `data-explorer-old/` pages, which are not in the sitemap. The tree is a `hugo server` render, so every page also carries `livereload.js`; I left it out. Byte sizes come off disk. For a few assets I also sent curl GET/HEAD requests to the live site (2026-10-17). Curl runs no JS, so those requests did not ping GA. Scripts and outputs are in `C:/Users/Chris/AppData/Local/Temp/claude/c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge/0233f26f-0e1e-4e53-ba56-89abc75dfdf0/scratchpad/` (`perf_agg.py`, `perf_an.py`, `perf_img.py`, `perf_an.out`, `perf_img.out`, `live_headers.txt`).
+
+---
+
+**1. Images in story bodies are served at original resolution, and no image on the site is lazy-loaded** (axis: bytes per page)
+- **Claim:** Images placed with Hugo's built-in `figure` shortcode or a raw `<img>` in markdown are published as the original file. None of the site's 3,926 `<img>` tags has a `loading` attribute.
+- **Where:** `content/data-stories/public-transit-creates-health/index.md` (`{{< figure src="Cycling.jpg" >}}`, `JMZTrain.jpg`) and `content/data-stories/federal-funding/index.md` (raw `<img>`). There is no `themes/dohmh/layouts/_markup/` render hook and no theme `figure.html` shortcode. Page templates do call `.Resize` (e.g. `data-stories/single.html` header at 1200x), but body images bypass it.
+- **Evidence:** 40 non-Hugo-processed `<img>` files are over 500 KB, totalling 88.4 MB across 19 pages; 26 of them are over 1 MB. `Cycling.jpg` is 14,543,142 B at 5293×3529 and `JMZTrain.jpg` is 12,125,987 B at 5621×3747, so that one page carries 27.3 MB of `<img>`. Sixteen pages carry more than 2 MB (sanitation 15.2 MB, federal-funding 8.5 MB, zappa 7.0 MB). The live server returned `Content-Length: 14543142` for `Cycling.jpg`. Only 52 of the 3,926 tags have both `width` and `height`.
+- **Consequence:** 19 story/about/feature pages for weight. All pages for the missing lazy loading and dimensions (CLS).
+- **Reproduction:** `python perf_img.py perf_pages.json`. Then `curl -sI` the live `Cycling.jpg` and expect a ~14.5 MB `Content-Length`.
+- **Overlap:** none.
+
+**2. Google Translate's loader is a synchronous, uncacheable third-party script on every page, ahead of the site's own scripts**
+- **Claim:** `translate_a/element.js` is a plain `<script>` with no `async` or `defer`. Every script after it waits for it, and Google serves it `no-store`.
+- **Where:** `themes/dohmh/layouts/partials/js_bottom.html:39`, included by `baseof.html` before `block "js_bot"`.
+- **Evidence:** In built order it precedes `main.js`, `site.js` and every `js_bot` script (e.g. flexdatalist on `neighborhood-reports/`), on 970 of 970 pages. Fetched 2026-10-17: 2,989 B with `Cache-Control: no-cache, no-store, max-age=0`. The loader then calls `_loadJs` (translate.googleapis.com `el_main`) and `_loadCss` (gstatic), and references the `translate-pa.googleapis.com/v1/supportedLanguages` endpoint. All of this happens on every page view, whether or not anyone opens the language menu.
+- **Consequence:** All 970 pages. If translate.google.com is slow or blocked, parsing stalls before `main.js`.
+- **Reproduction (needs browser):** Use Playwright and route `translate.google.com/**` to a 10 s delay. Compare DOMContentLoaded against the unrouted run, then count requests to `*.googleapis.com` and `gstatic.com` on an untouched page.
+- **Overlap:** A-014 covers the missing SRI and A-086 the i18n design. New here: parser-blocking position, `no-store`, and the per-view extra requests.
+
+**3. Pagefind UI (~120 KB) loads synchronously and initializes on every page, although it is used only when the search modal opens**
+- **Where:** `themes/dohmh/layouts/partials/search-modal.html:12-13` (in-body `<link>` plus a sync `<script>`) and the `new PagefindUI(...)` call at DOMContentLoaded. The partial is included from `baseof.html` and `_default/list.html`.
+- **Evidence:** It is on 970 of 970 pages. The only built copy on disk (this NR worktree's `docs/`) is 119,987 B. The live `pagefind-ui.js` is 30,051 B gzipped. The file sits outside the fingerprint pipeline.
+- **Consequence:** All pages: parse/execute plus UI construction on every view.
+- **Reproduction (needs browser):** Record a Performance trace of `about/` and read the `pagefind-ui.js` evaluate time and the `PagefindUI` init time. In the network log, check whether `pagefind.js` or `pagefind-entry.json` loads before any search input.
+- **Overlap:** none.
+
+**4. Popper is shipped twice on every page**
+- **Where:** `js_bottom.html:5-11` loads `popper.js/dist/umd/popper.min.js`, then `:13-19` loads `bootstrap.bundle.min.js`, which embeds Popper.
+- **Evidence:** The bundle contains Popper internals: `computeStyle` ×2, `keepTogether` ×2, `gpuAcceleration` ×5. The plain `bootstrap.min.js` has 0 of each, and bundle minus plain is 83,376 − 62,563 = 20,813 B. Standalone popper is 21,233 B on disk and 7,519 B gzipped live. `git grep Popper` finds no site code using `window.Popper`; the hits are vendored copies under `static/data-stories/cold/source/` and `content/data-features/healthy-homes-info/source/`. Since `32c5d50c88` (2024-09-10) the partial has loaded the bundle while keeping the standalone, whose comment ("include popper first") applies to the non-bundle build.
+- **Consequence:** 970 pages, sync at the foot.
+- **Reproduction:** Remove the popper tag in a scratch build, run smoke, and open a dropdown or tooltip. Expect no change.
+- **Overlap:** none.
+
+**5. DOMPurify is render-blocking in `<head>` on all 970 pages, but 85 use it**
+- **Where:** `themes/dohmh/layouts/partials/head.html:144-145`.
+- **Evidence:** It loads sync in head on 970 pages (29,209 B). The pages whose own scripts or inline JS reference `DOMPurify` are 42 `data-explorer/`, 41 `data-explorer-old/`, `data-features/hvi/` and `data-features/neighborhood-air-quality/`. The other source consumers are the caller-less `nr-*` partials (A-039) and `nyccas_pollutant_trends.html`; `nyccas-report.html` calls the `_new` variant. CLAUDE.md lists DOMPurify as something "every page needs", which this count contradicts. A `lib-dompurify` partial would match the existing `lib-*` model.
+- **Consequence:** 885 pages fetch and run a library they never call, before first render.
+- **Reproduction:** Re-run the DOMPurify probe in `perf_an`-style form, i.e. grep loaded scripts and inline JS per page, and expect 85.
+- **Overlap:** C-T3-1 was the advisory, now disconfirmed. A-005 (FIXED) left this tag in head. New here: the usage count.
+
+**6. Fingerprinted assets get a 1-day `max-age` on the live server**
+- **Where:** `static/Web.config:78` has `<clientCache cacheControlMode="UseMaxAge" />` with no `cacheControlMaxAge`.
+- **Evidence:** Observed 2026-10-17 on jQuery `.9d6bd9b75ea55acc.js`, the `theme.<sha512>.css`, `pagefind-ui.js` and the HTML: `Cache-Control: max-age=86400,max-age=86400` (doubled) plus `Expires: Wed, 01 Jan 1997`. gzip is on. Content-hashed URLs could carry a long `max-age` with `immutable`; non-fingerprinted Pagefind files and HTML could not.
+- **Consequence:** A visitor returning after a day revalidates every asset; a DE topic page loads about 30 scripts.
+- **Reproduction:** Run `curl -sI -H 'Accept-Encoding: gzip' <live fingerprinted asset>`. Where the second `max-age` and the 1997 `Expires` come from (server config outside the repo?) is unchecked.
+- **Overlap:** none.
+
+**7. DE topic pages put 1.64 MB of synchronous libraries at the top of `<main>`, ahead of all explorer markup**
+- **Where:** `themes/dohmh/layouts/data-explorer/single.html:3-8` (`lib-d3`, `lib-datatables`, `lib-arquero`, `lib-topojson`, `lib-vega`, `lib-leaflet`). The explorer's own scripts start at `:78`, after the markup at `:10-70`.
+- **Evidence:** The six libraries total 1,636,865 B on disk. Between them and the explorer scripts, only `de-announcement` and `de-tab-content` carry a `<script>`. The latter loads `de-tab-content.js`, which references none of those libraries (grep count 0). So the libraries could likely sit after the markup without changing their order relative to the explorer files.
+- **Consequence:** 41 topic pages.
+- **Reproduction (needs browser):** Throttled trace of `data-explorer/asthma/`, comparing first paint of the tab skeleton before and after moving lines 3-8 below line 70.
+- **Overlap:** A-237 (bundling, declined) and A-005 (head only) are separate. This is placement within the page, not bundling.
+
+**8. Home page images are resized well past their display size, and a library the page never calls loads on it**
+- **Where:** `themes/dohmh/layouts/index.html:70` (`Resize "x1600"` used as a CSS background in a `height: 330px` box), `:189/207/226/247` (`Resize "x1200"` for four `col-lg-3` tool cards), `:332` (`accessible-autocomplete.min.js`), `:335-336` (`uhflist.js`).
+- **Evidence:**
+  - The hero is `CP-report-banner_hu_….jpg` at 2399×1600, 789,319 B, and the live server serves the same bytes.
+  - The four tool-card images are 2057×1200 each, 1,390,640 B together.
+  - No code in the built `en`, `es` or `zh` home pages calls `accessibleAutocomplete` (34,601 B) or reads the `neighborhoods` global from `uhflist.js` (20,022 B). The only `neighborhoods` hit is JSON-LD prose.
+  - On #1491, `uhflist` is already removed with a comment saying so; `accessible-autocomplete` remains on both trees.
+- **Consequence:** The 3 home pages, the site's entry point.
+- **Reproduction (needs browser):** On `/` at 1280 px, read each card `img`'s `clientWidth×devicePixelRatio` against `naturalWidth`.
+- **Overlap:** extends A-037/A-038 (uhflist). New here: `accessible-autocomplete` on both trees, and the image sizing.
+
+**9. DE pages load all of d3 (279,706 B) for six call sites that the Vega bundle on the same page can cover**
+- **Where:** `311.js:29` (`d3.csv`), `map.js:206-208` (`scaleSequential` and `interpolateViridis`), `map.js:897` and `print-map.js:635` (`scaleSqrt`), `print-map.js:997` (`interpolateViridis`).
+- **Evidence:** Run in Node against the installed Vega 5.33.1 and d3 7.9.0:
+  - `vega.scale('sqrt')` gives the same result as d3's `scaleSqrt`.
+  - `vega.read(csv, {type: 'csv'})` gives the same result as `d3.csvParse`.
+  - `vega.scheme('viridis')` differs by up to 1/255 per channel: at 0.3 it returns `rgb(53,96,141)` against d3's `#355f8d`.
+
+  A swap would therefore shift colours slightly and probably move the characterization baselines.
+- **Consequence:** 41 topic pages plus `data-index`.
+- **Reproduction:** Run the same Node one-liner.
+- **Overlap:** none. On production the NR report pages also load d3 for four `d3.json` calls (`nr-output/single.html:86-167`), but #1491's `nr-report.html` drops d3, so that part resolves on merge.
+
+**10. Retired explorer: Arquero loads twice, and two bundles are byte-identical under different names** (low)
+- **Where:** `data-explorer-old/section.html:5` and `indicator-catalog.html:5` each have a raw Arquero tag, plus `lib-arquero` at `:24` and `:26` respectively.
+- **Evidence:** 236,290 B is parsed twice on 2 pages. Separately, `js/vegaBundle.js` and `js/lib-vega-bundle.js` share one sha1 (828,076 B), as do `css/dtCSS.css` and `css/lib-datatables.css`, so moving between the old and new explorers downloads both copies.
+- **Overlap:** A-053 added `lib-arquero` to these templates without removing the raw tags. A-011 was one name with two contents; this is the reverse, one content under two names.
+
+---
+
+**Not checked:**
+- Any load-time number. No browser trace was run: another process owns :8090, and loading the live site in a browser would send GA hits.
+- The display size of story images.
+- Whether IIS serves `.woff2` with the right type.
+- The heat story's 1,124,922 B library concat (`heatstory.html:362`). It is one page, I found no clear duplication inside it, and A-021 covers its dependency chain.
+- `theme.css` (282 KB) and Font Awesome CSS, because the team declined minification (A-007).
+- Whether the doubled `Cache-Control` value comes from IIS's `cacheControlMaxAge` default. I did not re-read Microsoft's docs.
+
+#### Area h: SEO and analytics (production @ b8f4b32fbd)
+
+Overlap checked: A-033, A-085, A-086, A-090, A-092, A-102, A-104, A-106, A-108, A-109, A-114, A-115, A-118, A-119, A-128, A-129, A-130, A-131, A-227, A-242, A-307, A-310, A-320, A-383; G1-91, G1-93, G1-94, G2-26, G2-36..G2-40, G2-54..56, G4-40..G4-48, G7-09; N-001..N-023; C-S3-1..C-T3-3 and the Disconfirmed section.
+
+Two notes on what I measured. "Real pages" means files under `C:/Users/Chris/AppData/Local/Temp/sc-isolated/prod_prod-docs` that contain `data-pagefind-meta="title:`. There are 970 of them out of 1439 HTML files. That is the census's 924 plus the 44 old-explorer pages and 2 others, because the old explorer is out of the sitemap and so out of the census. This build was served on localhost, so its absolute URLs read `http://localhost:8090/...`. Wherever it matters, I also checked the live site with read-only `curl` against `https://a816-dohbesp.nyc.gov`. My sweep script is `C:\Users\Chris\AppData\Local\Temp\claude\c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge\0233f26f-0e1e-4e53-ba56-89abc75dfdf0\scratchpad\seo_sweep.py`, and its output is in `seo_sweep.out` in the same folder.
+
+**1. Every `<loc>` in the three per-language sitemaps is a bare path, with no scheme or host.**
+- **Where:** `themes/dohmh/layouts/_default/sitemap.xml:6` writes `<loc>{{ .RelPermalink }}</loc>`. The `xhtml:link` hrefs at `:13` and `:18` do the same. Only Hugo's built-in sitemap *index* uses absolute URLs.
+- **Evidence:** Built site: `grep -c '<url>'` gives 735 (en), 47 (es), 47 (zh). Live, the en sitemap's `<loc>` values are 735 of 735 path-only (`/IndicatorPublic/data-features/rats-in-your-neighborhood/`, …), and so are its 141 of 141 `xhtml:link` hrefs. Google says: "Use fully-qualified, absolute URLs in your sitemaps" (https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap, fetched 2026-10-17). What Google actually does with relative entries is not verified.
+- **Consequence:** All 829 sitemap URLs.
+- **Reproduction:** `curl -s https://a816-dohbesp.nyc.gov/IndicatorPublic/en/sitemap.xml | grep -o '<loc>[^<]*' | grep -vc '<loc>http'`. Confirmed if it prints 735.
+- **Overlap:** None. A-119/G2-40 cover the duplicated-looking `xhtml:link` block, not the URL form.
+
+**2. `robots.txt` is published at `/IndicatorPublic/robots.txt`, and the host root answers 404. So crawlers never read it, and A-102's `Sitemap:` line can't be discovered.**
+- **Where:** `config/_default/config.toml` sets `baseURL` to `https://a816-dohbesp.nyc.gov/IndicatorPublic/`. `themes/dohmh/layouts/robots.txt:21` emits the `Sitemap:` line.
+- **Evidence:** `curl https://a816-dohbesp.nyc.gov/robots.txt` returns 404 (an IIS "File or directory not found" page). `/IndicatorPublic/robots.txt` returns 200 text/plain with the template's body. Google says: "The robots.txt file must be located at the root of the site host… It cannot be placed in a subdirectory" (https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt, fetched 2026-10-17). The same applies to the preview environments' per-path `Disallow` lists, which live under their own subpaths. Their pages still carry meta `noindex, nofollow`, so they are not exposed. I did not check whether the sitemap is registered in Search Console (that is outside the repo).
+- **Consequence:** Site-wide. The template comment at `:16-20` says this is "how the sitemap is found", and that is false as deployed.
+- **Reproduction:** Run both `curl -o /dev/null -w '%{http_code}'` calls. Confirmed if you get 404 and 200.
+- **Overlap:** Extends A-102/G2-15/G2-25, which are marked FIXED. The file is fixed, but no crawler can reach it, and the fix needs a host-root file or a Search Console submission.
+
+**3. The `hreflang` links in the page head are path-only and leave out the page itself, on all 223 pages that have them.**
+- **Where:** `themes/dohmh/layouts/partials/head.html:95-99`: `range .Translations` with `href="{{ .RelPermalink }}"`. `.Translations` excludes the current page.
+- **Evidence:** The sweep counts `has_hreflang` 223, `hreflang_no_self` 223, `hreflang_relative` 223. Live home page: `<link rel="alternate" hreflang="es" href="/IndicatorPublic/es/">` plus `zh`, and no `en` entry. Google says: "Each language version must list itself as well as all other language versions" and "Alternate URLs must be fully-qualified" (https://developers.google.com/search/docs/specialty/international/localized-versions, fetched 2026-10-17).
+- **Consequence:** 223 pages: keywords 79, categories 33, es/zh keywords 33+33, es/zh categories 9+9, data-stories 6×3, the home pages and the 404 pages.
+- **Reproduction:** `python seo_sweep.py` and read the hreflang counters.
+- **Overlap:** None for the head tags. A-119 is about the sitemap block, which does include the self-reference but is also relative (item 1).
+
+**4. On all 210 NR report pages, `twitter:image` points at a file that does not exist (live 404).**
+- **Where:** `seo.html:20` uses `relURL .Params.seo_image`. But `seo_image` is a path into `assets/`: it is read with `resources.Get` for `og:image` at `:13`, and `assets/` files are only published through the resource pipeline. Only `report_bottom_background.jpg` also has a copy in `static/images/`.
+- **Evidence:** `git grep -h seo_image b8f4b32fbd -- content` shows 5 topic images × 42 pages. `git ls-tree` finds `assets/images/nyc_health_report_asthma_environment.jpg` and no copy in `static/`. In the sweep, `twitter:image missing` is 5 × 42 = 210 and `og:image missing` is 0. Live: `/IndicatorPublic/images/nyc_health_report_asthma_environment.jpg` returns 404, while that page's `og:image` (`…_hu_65105b88b5b55ef8.jpg`) resolves. #1491 carries the same values via `data/globals/NR_topics.yml` and `_content.gotmpl:72`, so it does not fix this.
+- **Consequence:** 210 pages. The same will happen to any future page that sets `seo_image`. The value also carries stray spaces (`" /IndicatorPublic/images/…"`).
+- **Reproduction:** Run `curl -o /dev/null -w '%{http_code}'` on the live URL above. Confirmed if it returns 404.
+- **Overlap:** Extends A-129/G2-54/G5-05, which say the URL is path-only. The new part is that the path itself is missing.
+
+**5. All 94 paginator pages declare page 1 as their canonical. Their `og:url`, the last BreadcrumbList item and their hreflang targets also point at page 1.**
+- **Where:** `seo.html:3` and `:9` use `.Permalink`. `structured-data.html:110-116` uses `.Permalink`. On a pager page that resolves to the section's first page.
+- **Evidence:** In the sweep, `paginator` 94, `paginator_canon_elsewhere` 94, `bc_last_ne_self` 94. Example: `/categories/airquality/page/3/` gets canonical `/categories/airquality/`. 158 hreflang pairs are non-reciprocal, almost all of them pager pages pointing at the es/zh page 1, which does not point back. Google says: "Don't use the first page of a paginated sequence as the canonical page" (https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading, fetched 2026-10-17).
+- **Consequence:** 94 pages. The items they list are in the sitemap anyway, so items are not hidden from discovery.
+- **Reproduction:** `grep -o '<link rel="canonical"[^>]*>' prod_prod-docs/categories/airquality/page/3/index.html`.
+- **Overlap:** None.
+
+**6. GA's `search` event fires on every debounced pause while typing and again on every filter toggle, not once per search.**
+- **Where:** `themes/dohmh/layouts/partials/search-modal.html:31-36` calls `gtag('event','search',{search_term})` inside Pagefind's `processTerm`.
+- **Evidence:** In the bundled Pagefind UI 1.5.2 (`dev_stage-docs/pagefind/pagefind-ui.js`; the `pagefind-entry.json` version is 1.5.2), `processTerm` is called inside the debounced search function (`Vs`). That function is scheduled from `Ss(R,N)`, which a reactive statement reruns whenever the term *or* `selected_filters` changes (`l.$$.dirty[0]&513&&Ss(R,N)`). With `debounceTimeoutMs: 500`, typing "asth…ma" with a pause sends both "asth" and "asthma", and each filter click sends the same term again. This is a static trace; I have not run it. Also, the prod build runs `npx -y pagefind` unpinned, so the version on prod may differ.
+- **Consequence:** The site-wide search-term counts are inflated and include partial terms. A-383/G7-09 plan to use exactly this `search_term` data to re-decide NR indexing.
+- **Reproduction:** On any page, open the search modal, type `ast`, wait 1 s, type `hma`, wait, then click a filter. Then run `dataLayer.filter(a=>a[0]==='event'&&a[1]==='search').map(a=>a[2].search_term)`. Confirmed if you see 3 or more entries.
+- **Overlap:** G1-91 counts `search` as one of three event names but says nothing about how often it fires. Bears on A-383.
+
+**7. 425 of the 876 non-paginator real pages share the site-default meta description, almost all of them taxonomy pages.**
+- **Where:** `seo.html:2` falls back to `seo_defaults.seo_description`.
+- **Evidence:** One Python pass found the description "Explore data on how environments shape health in New York City's neighborhoods." on: keywords 317, es/zh keywords 30+30, categories 18, es/zh categories 9+9, resources 3, and others. 432 pages share it as `og:description`. In addition, 10 category/keyword pairs share an identical `<title>` (for example `Airquality – …` on both `categories/airquality/` and `keywords/airquality/`), and those titles come from slugs ("Airquality", "Climatehealth"). Google says: "Identical or similar descriptions on every page of a site aren't helpful" (https://developers.google.com/search/docs/appearance/snippet, fetched 2026-10-17).
+- **Consequence:** 425 pages, all of them `robots: all` and in the sitemap.
+- **Overlap:** Extends A-118/G2-39. That row counts `.md` files without `seo_description`, but taxonomy pages have no `.md` file, so its count cannot see them. This also answers its open question about whether indexable pages are affected.
+
+**8. 43 of the 50 real es pages and 43 of the 50 real zh pages are taxonomy pages with English template text, marked as Spanish or Chinese.**
+- **Evidence:** They carry `<html lang="es">` or `lang="zh"`, English titles ("Housing – …"), and the English heading "More content about …". They appear in the es/zh sitemaps (47 URLs each) and are advertised as es/zh alternates by the hreflang tags of their en counterparts (item 3).
+- **Consequence:** 86 pages.
+- **Overlap:** Specific instance of A-086 (mixed i18n). That row does not name taxonomy output.
+
+**9. No page has a `twitter:card` tag.**
+- **Evidence:** 0 of the 970 real pages have it. As a control, `twitter:site` appears on 970 of 970, read with the same parser. I did not verify X's behaviour when the tag is missing; the developer.x.com page returned HTTP 402.
+- **Where:** `seo.html:17-22`.
+- **Overlap:** None.
+
+**10. The 44 retired-explorer pages are indexable, declare themselves canonical, and copy their new counterparts' titles and descriptions.**
+- **Where:** The `robots` value computed at `head.html:44-49` has no exception for `data-explorer-old`.
+- **Evidence:** In the sweep, all 44 are `robots: all` and none is in the sitemap. `data-explorer/accessibility/` and `data-explorer-old/accessibility/` have identical `<title>`s and each declares itself canonical. Live `/IndicatorPublic/data-explorer-old/accessibility/` returns 200. Decisions D6 and D12 in `de-production-deploy-plan-2026-10-01.md` took these pages out of listings, the sitemap and search, but they do not address crawlers. No census page links to `/data-explorer-old`, so discovery is unlikely. Google prefers `rel=canonical` over `noindex` for choosing between duplicates (https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls).
+- **Overlap:** None.
+
+**11. The three home pages' `og:title` and `twitter:title` repeat the brand.**
+- **Evidence:** They read `NYC Environment and Health Data Portal – Environment & Health Data Portal`. The comment at `head.html:72-75` leaves the `<title>` suffix off the home page for exactly this reason, but `seo.html:10` and `:18` add it unconditionally.
+- **Overlap:** Next to G2-37.
+
+**Couldn't check, or out of scope:**
+- I could not observe GA events at runtime, because I was told not to start a server. Items 6 and G4-46..48 remain static traces.
+- I could not see Search Console sitemap registration or X card behaviour.
+- The data explorer's `?id=` indicator URLs declare the topic page as canonical. Given A-104 this looks like a design choice, so I did not report it.
+- Out of area h, possibly not recorded (I grepped the audit for `last_msg` and `injection` and found nothing): `.github/workflows/hugo-build-to-prod-prod.yml:66` writes the commit subject into a step output wrapped in double quotes, and `:114` interpolates it with `${{ }}` straight into a `run:` script. `hugo-build-any-branch.yml:132` and `:141` do the same. A merge commit's subject includes the fork branch name (`from owner:branch`), so this looks like a GitHub Actions script-injection path. Someone should check it under the hardening-github-actions area. Live, the home page publishes that subject in `<meta name="git_last_msg">`.
+
 ## New findings
 
 N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them; Task 5 adds the candidates it verifies after them.
