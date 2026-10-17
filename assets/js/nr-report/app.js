@@ -35,7 +35,11 @@ const downloadCSV = () => {
     link.download = filename;
     link.click();
 
-    URL.revokeObjectURL(url);
+    // Revoked on the next task rather than this one, so the download has started reading
+    // the blob before its URL goes away. HYPOTHESIS (unverified): an immediate revoke can
+    // cancel the download in some browsers; only Chromium was available to test, and it
+    // downloads either way
+    setTimeout(() => URL.revokeObjectURL(url), 0);
 
 };
 

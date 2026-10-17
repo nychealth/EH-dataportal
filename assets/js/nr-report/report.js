@@ -148,23 +148,26 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
 
 // Rewrites <title> and announces the switch, once the rebuilt report is in place.
 //
-// The title is rebuilt from the same two parts head.html composes .Params.seo_title from,
-// rather than patched, so it cannot drift from the string the server sent. seoShortName is
-// carried separately from reportName because the two differ on Active Design.
+// Both are suppressed when nothing changed — renderAll also runs at load, and a reader who
+// clicks the neighborhood already shown has moved nowhere. At load the server's <title> is
+// already right, and rewriting it there is what dropped the site-name suffix from every
+// report page. A role="status" region announces on content change, so writing the same
+// string twice would say nothing anyway; returning early keeps that a deliberate contract
+// rather than a coincidence.
 //
-// The announcement is suppressed when nothing changed — renderAll also runs at load, and a
-// reader who clicks the neighborhood already shown has moved nowhere. A role="status" region
-// announces on content change, so writing the same string twice would say nothing anyway;
-// returning early keeps that a deliberate contract rather than a coincidence
+// On a switch the title is rebuilt from the same parts head.html composes it from:
+// .Params.seo_title, then " – " and .Site.Title. seoShortName is carried separately from
+// reportName because the two differ on Active Design
 const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
-
-    if (reportConfig.seoShortName) {
-        document.title = reportConfig.seoShortName + ' in ' + neighborhoodName;
-    }
 
     if (!previousNeighborhood || previousNeighborhood === neighborhoodName) {
         debugLog('announceNeighborhoodChange: branch-nothing-changed:', { neighborhoodName, previousNeighborhood });
         return;
+    }
+
+    if (reportConfig.seoShortName) {
+        document.title = reportConfig.seoShortName + ' in ' + neighborhoodName +
+            (reportConfig.siteTitle ? ' – ' + reportConfig.siteTitle : '');
     }
 
     const status = document.getElementById('nr-report-status');

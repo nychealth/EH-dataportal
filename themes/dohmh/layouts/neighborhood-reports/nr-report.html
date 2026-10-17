@@ -200,7 +200,7 @@
                         <div class="row d-print-none">
                             <div class="col-sm-6">
                                 <button onclick="window.print()" class="btn btn-sm btn-report mt-2"><i class="fas fa-print mr-1" aria-hidden="true"></i>Print</button>
-                                <button onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
+                                <button id="nr-download-csv" onclick="window.nrDownloadCSV()" class="btn btn-sm btn-report mt-2"><i class="fa fa-download mr-1" aria-hidden="true"></i>Download <span class="sr-only">(downloads a CSV file)</span></button>
                             </div>
                             <div class="col-sm-6 text-sm-right">
                                 {{/* aria-controls names the section containers, not the individual
@@ -308,6 +308,9 @@
         // in-place switch rebuilding the title from reportName would replace the string
         // 42 of these pages actually shipped with
         seoShortName: "{{ .Params.seo_short_name }}",
+        // The suffix head.html appends to every non-home <title>, so a switch can rebuild
+        // the whole string rather than drop it
+        siteTitle: "{{ .Site.Title }}",
         // The neighborhood this page was generated for, and the only thing
         // getNeighborhoodFromURL consults — nothing parses the path for it
         neighborhood: "{{ .Params.neighborhood }}",

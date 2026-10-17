@@ -59,10 +59,17 @@ const setNeighborhoodInURL = name => {
 
     const newPath = '/' + pathParts.slice(0, topicIdx - 1).concat(slug, reportConfig.topicSlug).join('/') + '/';
 
+    // First render lands here too, with the path already right. Rewriting it then would
+    // only strip whatever query string and hash the reader arrived with
+    if (newPath === window.location.pathname) {
+        return;
+    }
+
     // replaceState rather than a navigation: the report page has already rendered this
     // neighborhood, so the path change is cosmetic — it makes the URL shareable and
-    // bookmarkable without a reload or a server request
-    history.replaceState(null, '', newPath);
+    // bookmarkable without a reload or a server request. The query string and hash are
+    // carried over, since a switch changes the neighborhood and nothing else
+    history.replaceState(null, '', newPath + window.location.search + window.location.hash);
 
 };
 

@@ -54,46 +54,6 @@ const checkAllLoaded = () => {
 };
 
 
-// Encodes the last path segment of a report URL so it is safe to fetch
-const normalizeReportUrl = url => {
-
-    debugLog('normalizeReportUrl: enter:', url);
-
-    // GitHub raw URLs must not contain literal spaces in the path; some
-    // clients reject them or fail inconsistently. Skip already-safe URLs
-    if (!url || url.indexOf(' ') === -1) return url;
-
-    try {
-
-        // Parse via URL API so we can safely target only the path segment
-        const u = new URL(url);
-        const parts = u.pathname.split('/').filter(Boolean);
-
-        if (!parts.length) return url;
-
-        let last = parts[parts.length - 1];
-
-        // Re-encode defensively for names that may already be partially encoded
-        try {
-            last = encodeURIComponent(decodeURIComponent(last));
-        } catch (e) {
-            last = encodeURIComponent(last);
-        }
-
-        parts[parts.length - 1] = last;
-        u.pathname = '/' + parts.join('/');
-
-        debugLog('normalizeReportUrl: branch-encoded:', u.href);
-        return u.href;
-
-    } catch (err) {
-        debugLog('normalizeReportUrl: branch-parse-failed:', err);
-        return url;
-    }
-
-};
-
-
 // Fetches one report section's rows and buckets/sorts them by neighborhood
 const loadSection = section => {
 
@@ -101,7 +61,8 @@ const loadSection = section => {
 
     // ----- fetch ----- //
 
-    fetch(normalizeReportUrl(section.reportUrl))
+    // nr-report.html already writes every space in the filename as %20
+    fetch(section.reportUrl)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
             return res.json();
@@ -226,6 +187,10 @@ const loadVizData = () => {
             console.error('Error loading viz data:', error);
             debugLog('loadVizData: branch-load-failed:', error);
             vizTable = null;
+
+            // downloadCSV exports from this table, so without it the button would do nothing
+            const download = document.getElementById('nr-download-csv');
+            if (download) download.disabled = true;
         })
         .then(checkAllLoaded);
 

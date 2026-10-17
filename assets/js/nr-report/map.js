@@ -33,7 +33,7 @@ const styleFeature = () => defaultStyle;
 
 
 // Temporary hover state for visual affordance
-const highlightFeature = e => {
+const reportMapHighlight = e => {
 
     const layer = e.target;
     layer.setStyle({ weight: 5, color: '#444', dashArray: '' });
@@ -43,13 +43,17 @@ const highlightFeature = e => {
 
 
 // Reverts hover style on mouseout, unless this layer is the active selection
-const resetHighlight = e => {
+const reportMapResetHighlight = e => {
 
     const layer = e.target;
     const geocode = layer.feature.properties.GEOCODE;
 
-    // Preserve selected style for the active neighborhood while mousing out
-    if (geocode == currentGeocode) return;
+    // The active neighborhood goes back to its selected style, not the default one —
+    // reportMapHighlight overwrote it with the hover style on the way in
+    if (geocode == currentGeocode) {
+        layer.setStyle(highlightStyle);
+        return;
+    }
 
     layer.setStyle({ weight: 1.5, color: 'black', dashArray: '1' });
 
@@ -71,8 +75,9 @@ const resetHighlight = e => {
 // its bounding box is inside the viewport but elementFromPoint there returns the map
 // container, not the path. A hit-test geometry fact no framing fixes.
 //
-// ndhr-leaflet.html reached the same conclusion for the picker map on 2026-09-12 and carries
-// the longer version of this reasoning; assets/js/ndhr-report/map.js followed on 2026-09-13.
+// On the feature-NDHR-prototype branch, ndhr-leaflet.html reached the same conclusion for the
+// picker map on 2026-09-12 and carries the longer version of this reasoning;
+// assets/js/ndhr-report/map.js followed on 2026-09-13. Neither file is on this branch.
 // nr-leaflet.html still flies, and can afford to: its polygons answer no key and the
 // 42-neighborhood list beside it carries the navigation
 const selectLayer = layer => {
@@ -133,9 +138,9 @@ const findLayerByName = name => {
 
 // The one name a polygon answers to, in the tooltip and in the accessibility tree alike.
 //
-// Same resolution selectNeighborhood uses to pick what the report renders, so the string a
-// reader sees on hover, the string a screen reader announces, and the string that lands in
-// the <h1> after activating it are one string. They were not: GEONAME disagrees with
+// Same resolution reportMapSelectNeighborhood uses to pick what the report renders, so the
+// string a reader sees on hover, the string a screen reader announces, and the string that
+// lands in the <h1> after activating it are one string. They were not: GEONAME disagrees with
 // uhflist's UHF_name on 6 of the 42 — "Fordham - Bronx Park" against "Fordham - Bronx Pk",
 // "Rockaway" against "Rockaways" [verified 2026-08-11: diff of static/geojson/UHF42.geojson
 // against data/globals/uhflist.json by GEOCODE]. GEONAME stays the fallback for a geocode
@@ -151,7 +156,7 @@ const featureDisplayName = feature =>
 // Switches the report to one polygon's neighborhood. Shared by the pointer and keyboard
 // paths so the two cannot diverge — the map is the report's only in-place switcher, and a
 // keyboard route that did something subtly different from the mouse one would be its own defect
-const selectNeighborhood = (layer, source) => {
+const reportMapSelectNeighborhood = (layer, source) => {
 
     const geocode = layer.feature.properties.GEOCODE;
     const name = featureDisplayName(layer.feature);
@@ -170,7 +175,7 @@ const selectNeighborhood = (layer, source) => {
 
 
 // Map click drives neighborhood selection for the full report UI
-const onMapClick = e => selectNeighborhood(e.target, 'onMapClick');
+const onMapClick = e => reportMapSelectNeighborhood(e.target, 'onMapClick');
 
 
 // Enter and Space on a focused polygon do what a click does.
@@ -189,7 +194,7 @@ const onMapKeyDown = e => {
     // Space would otherwise scroll the page out from under the report being rebuilt
     e.originalEvent.preventDefault();
 
-    selectNeighborhood(e.target, 'onMapKeyDown');
+    reportMapSelectNeighborhood(e.target, 'onMapKeyDown');
 
 };
 
@@ -208,7 +213,7 @@ const onTooltipClose = e => {
 
 
 // Attaches the tooltip and interaction handlers to one UHF polygon
-const onEachFeature = (feature, layer) => {
+const reportMapOnEachFeature = (feature, layer) => {
 
     // Same string the aria-label carries, so the visible label is contained in the
     // accessible name (WCAG 2.5.3) rather than differing from it on 6 of the 42
@@ -219,8 +224,8 @@ const onEachFeature = (feature, layer) => {
     });
 
     layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
+        mouseover: reportMapHighlight,
+        mouseout: reportMapResetHighlight,
         click: onMapClick,
         keydown: onMapKeyDown,
         tooltipclose: onTooltipClose
@@ -231,7 +236,7 @@ const onEachFeature = (feature, layer) => {
 
 // Names the polygons for the accessibility tree, once they have DOM nodes to carry it.
 //
-// Not in onEachFeature: that runs while L.geoJSON builds the group, before the renderer has
+// Not in reportMapOnEachFeature: that runs while L.geoJSON builds the group, before the renderer has
 // created each layer's <path>, so getElement() is null there. role="button" rather than the
 // graphics-symbol a bare <path> computes to, because after onMapKeyDown these are activatable
 // controls and that is what tells a keyboard user Enter will do something
@@ -287,7 +292,7 @@ const initLeafletMap = () => {
 
             uhfLayer = L.geoJSON(data, {
                 style: styleFeature,
-                onEachFeature,
+                onEachFeature: reportMapOnEachFeature,
                 filter: feature => feature.properties.GEOCODE != 0
             }).addTo(leafletMap);
 

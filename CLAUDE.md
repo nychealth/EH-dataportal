@@ -443,7 +443,7 @@ worked before still works, but nothing renders it the way it used to. Three page
 
   Its Leaflet map is the only in-place neighborhood switcher, and it answers the keyboard as well
   as the mouse: `map.js` binds `keydown` beside `click`, both routing through one
-  `selectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
+  `reportMapSelectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
   polygons were focusable all along, and nothing was listening. Every polygon carries
   `role="button"` and a name from `featureDisplayName`, **not** from the geojson's `GEONAME`, which
   disagrees with `uhflist`'s `UHF_name` on 6 of the 42 ("Fordham - Bronx Pk", "Rockaways"); the
@@ -482,15 +482,13 @@ relocation**, because the inline block was carrying a page scope and a cascade p
 new home does not reproduce. Eight of the seventeen rules were dead and were deleted instead —
 `.nr-card-header`, `.nr-indicator-card` and `.card-header a` match nothing the page renders.
 
-**`nr-leaflet.html` and `assets/js/nr-report/map.js` are two parallel Leaflet implementations
-that share four top-level names, so they must never load on the same page.** `highlightFeature`,
-`onEachFeature`, `resetHighlight` and `selectNeighborhood` are declared in both
-`[verified 2026-08-11: top-level declarations in the two files, intersected]`. They do not collide
-today because `nr-report.html` includes the report page modules and not `nr-leaflet`, while the picker
-pages do the reverse — but a `const` and a `function` of the same name in one classic-script scope
-is a `SyntaxError` that kills every script on the page, and `npm run lint` cannot see it, since
-`no-undef` is satisfied by either declaration. Adding `nr-leaflet` to the report page, or the report page's
-map module to a picker page, needs a rename first.
+**`nr-leaflet.html` and `assets/js/nr-report/map.js` are two parallel Leaflet implementations,
+and `map.js`'s handlers carry a reportMap prefix (`reportMapSelectNeighborhood`) so the two
+cannot collide.** Until 2026-10-17
+they shared four top-level names — `highlightFeature`, `onEachFeature`, `resetHighlight`,
+`selectNeighborhood` — and a `const` and a `function` of one name in one classic-script scope is
+a `SyntaxError` that kills every script on the page, which `npm run lint` cannot see. Keep new
+top-level names in `map.js` prefixed the same way, since nothing checks it.
 
 The generator is `content/neighborhood-reports/_content.gotmpl`, a Hugo **content adapter**. It
 crosses `data/globals/uhflist.json` (42 neighborhoods) with `data/globals/NR_topics.yml` (5 topics)

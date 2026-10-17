@@ -247,8 +247,17 @@ const onAccordionExpand = event => {
     const mapEl = panel.querySelector('.nr-map-container');
 
     // If required inputs are missing, keep the panel open but do not attempt render
-    if (!indicatorName || !mapEl || !vizTable) {
-        debugLog('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl, hasVizTable: !!vizTable });
+    if (!indicatorName || !mapEl) {
+        debugLog('onAccordionExpand: branch-missing-prereqs:', { indicatorName, hasMapEl: !!mapEl });
+        return;
+    }
+
+    // Cards render only after the viz fetch has settled, so a missing table here means it
+    // failed (or no vizUrl is configured) and will not arrive later. Returning silently left
+    // the card's "Loading..." placeholder up for good
+    if (!vizTable) {
+        debugLog('onAccordionExpand: branch-no-viz-table:', panelId);
+        mapEl.innerHTML = '<p class="text-muted small">Chart data could not be loaded.</p>';
         return;
     }
 
