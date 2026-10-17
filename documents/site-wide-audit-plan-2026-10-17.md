@@ -8,10 +8,13 @@ open finding from the existing audits, each re-verified against today's tree wit
 verified it, and (b) adds new findings, each reproduced before it is recorded.
 
 **Why now:** the new data explorer reached `production` via #1462 (`b8f4b32fbd`, 2026-10-16), and
-the audits on record describe trees that no longer exist. `site-wide-audit-2026-06-27.md` is 2761
-lines on `production` and 2884 on the NR branch (§20 and §21 exist only there). The DE audits were
-written against `feature-new-data-explorer` before its merge. Findings are scattered across at least
-nine documents in two branch-scoped sets (Task 1 enumerates them).
+the audits on record describe trees that no longer exist. `site-wide-audit-2026-06-27.md` is one
+blob on both trees (`e9dd5403f3`, 2884 lines, §1–§21) and records each finding against the branch it
+was found on. The DE audits were written against `feature-new-data-explorer` before its merge.
+Findings are spread across 48 documents in two branch-scoped sets: 33 on `production`, all also on
+#1491's branch, plus 15 that exist only there (Task 1 classifies them). (Corrected 2026-10-17: the
+first draft of this paragraph gave 2761 lines on `production`, read from the stale
+`EH-dataportal.worktrees/production` checkout that Environment state warns against.)
 
 **Not a `/code-review` job:** that reviews a diff, and an audit needs the whole tree. Whether its
 path-target form can review a directory wholesale is unverified, and Task 0 checks it.
@@ -19,12 +22,12 @@ path-target form can review a directory wholesale is unverified, and Task 0 chec
 ## Ledger
 
 **Status as of 2026-10-17: plan written on `documentation-site-wide-audit-2026-10`, cut from local
-`production` at `b8f4b32fbd`. D1–D4 decided; D5 waits on Task 1. Tasks 0–7 not started.**
+`production` at `b8f4b32fbd`. D1–D5 decided. Tasks 0–1 done; Tasks 2–7 not started.**
 
 | # | Task | Commit | Status | Proof that ran |
 |---|---|---|---|---|
-| 0 | Evidence: `/code-review` path target, and the census fields | — | Not started | — |
-| 1 | Inventory of existing findings, and a cost estimate | — | Not started | — |
+| 0 | Evidence: `/code-review` path target, and the census fields | *no commit* (read-only probes) | **DONE 2026-10-17** | **Step 2: outcome (ii), so `/code-review` is not used in Task 4** `[verified 2026-10-17: code-review skill, args "low scripts/site-urls.mjs", run in the clean NR worktree rather than the audit worktree (both clean; the file is the same on both); it ran git diff @{upstream}...HEAD and git diff HEAD restricted to the path, both empty, and returned "no changes to review"]`. The path target narrows a diff and does not review a file. **Step 3** `[verified 2026-10-17: census_power.py, one Python walk over the 924 records in scripts/site-characterization-baseline/prod_prod/, captured at gitHead 28c635d944, 14 commits behind production b8f4b32fbd]`. Pages hit per field: `headingJumps>0` 920 · `landmarks.h1==0` 3 · `h1>1` 257 · `img.missingAlt>0` 215 · `img.zeroSize>0` 262 · `links.emptyHref>0` 924 · `links.noAccessibleText>0` 20 · `controls.noAccessibleName>0` 55 · `tables` without `th` 1 · `overflowX` 558 · iframe `zeroSize` 7 (23 same-origin iframes, 9 Datawrapper). Constant across all 924: `landmarks.main==0` false (constant non-zero, live by sign), `meta.description` true (same), `jsonld.parseError` false (constant zero; its probe fired under injection in `site-characterization-plan-2026-08-23.md`, 11 of 11 probes). **Two fields carry a site-shell floor and must be read above it, not as counts:** `emptyHref` is 29 on 603 pages and never below 29; `headingJumps` is 1 on 639 pages. Task 3a reports each field per template, minus the shell floor. Correction to this probe: its first iframe predicate tested a `height` key the records lack (they carry `host`, `zeroSize`), so it counted pages with any iframe (53); fixed before recording |
+| 1 | Inventory of existing findings, and a cost estimate | *not yet committed* — `site-wide-audit-2026-10.md` Sources | **DONE 2026-10-17**; stopped for D5 | `[verified 2026-10-17]` Step 1: `doc_inventory.py` over `git ls-tree` on both refs: 48 files (33 on `production`, all on #1491 too; `js-conventions.md` differs between them; 15 NR-only). Classified into 7 groups (Sources table) and a left-out list with reasons. Step 2: `audit_copies.py`: 123 refs, 10 blobs; 7 non-production blobs are in `production`'s own file history; the 2 `-backup` branch blobs read in full, nothing `production` lacks. Step 3: regex unit counts per source (upper bound, 721 over the 28 sources counted; inflated by plan ledger rows), so each group reconciles against its scope column instead. `consolidated-improvements-2026-04-18.md` is referenced by no other document (`git grep '04-18'`, empty; control `04-19` hits the deep audit), so it is in G3. Correction: the plan's Why paragraph gave 2761 lines on `production`, read from the stale `production` worktree; fixed in place |
 | 2 | Compile and re-verify existing findings | — | Not started | — |
 | 3 | Instrument pass on both trees | — | Not started | — |
 | 4 | Judgment pass, by area | — | Not started | — |
@@ -58,7 +61,7 @@ gh pr view 1491 --json state,mergedAt     # if MERGED, D1's split collapses: see
 | D2 | Output form: a new compiled document, or extend `site-wide-audit-2026-06-27.md`? | **New document — Chris, 2026-10-17** | Recommended: a new document, `documents/site-wide-audit-2026-10.md`, with stable IDs (`A-001`…) and one status table. The old audits stay as dated records, each gaining a one-line pointer (Task 7). Extending the old one means a third divergent copy of a 2761-line file, a problem `cross-branch-consolidation-2026-09-18.md` has already had to fix once (Step 2 there) |
 | D3 | Build a site-wide axe instrument? | **Yes, Task 3b — Chris, 2026-10-17** | No site-wide accessibility instrument exists: `a11y:nr` covers the four NR page kinds, and only on #1491's branch `[verified 2026-10-17: git ls-tree --name-only production scripts/ \| grep -iE 'a11y\|axe' → nothing, and no scripts/*.mjs on production mentions axe-core; control: the same ls-tree on #1491's branch → scripts/nr-a11y-audit.mjs]`. `axe-core ^4.13.0` is already a devDependency on `production`. Recommend Task 3b: `scripts/site-a11y-audit.mjs`, axe over the curated smoke `PAGES` (44) plus the 41 topic pages, reusing `nr-a11y-audit.mjs`'s positive control (an injected `<img>` with no `alt` must fire `image-alt`) and its rendered-content control. **Deferring it** means the accessibility area of Task 4 rests on the census (Task 3a) and on reading code, which misses everything computed (contrast, accessible names produced by JS). Bringing it forward later costs the same script, so deferring saves nothing unless the audit is cut short |
 | D4 | Model and effort for Task 4 | **Opus at high effort — Chris, 2026-10-17** | Each Task 4 subagent is dispatched with `model: opus`, `effort: high`, so the orchestrating session's own effort level does not change (global `CLAUDE.md`: an effort switch rewrites the whole cached prefix). **The paired Fable 5.1 run is deferred, not rejected.** There is no measured comparison of the two models on this kind of work, and the test would cost one extra area run plus its Task 5 verification. To bring it forward: re-run area e (SCSS) under Fable and compare confirmed-candidate counts after Task 5, not raw counts, since unverified counts reward volume |
-| D5 | Task 2's delegation | Decided at the end of Task 1 | Task 1 counts findings per source document and states a cost. The default is one Sonnet subagent per source document, read-only, returning rows. Chris approves the count before dispatch |
+| D5 | Task 2's delegation | **As proposed, full spot-check — Chris, 2026-10-17** | **Proposed:** 7 Sonnet subagents, one per group G1–G7 in the Sources table of `site-wide-audit-2026-10.md`, read-only, run in the background in parallel, each returning rows in the schema. Groups rather than one per document, because 12 of the 28 sources contribute one section each. Approximate scale: ~250–300 findings, from the audit documents' heading and row counts plus the scoped sections; the exact figure is each group's reconciliation. **Cost:** the subagents' own token use is not recorded anywhere I can measure (global `CLAUDE.md`, the 2026-07-29 delegation measurement and its caveat), so I can't price it. What lands in this session is the returned rows (estimated at a few thousand tokens per group), plus Step 3's spot-check, which re-runs every FIXED / OBSOLETE / BRANCH-SCOPED row's command. How many rows that is won't be known until Task 2 returns: the regex marks 238 units closed across the 28 whole documents, but most are plan ledger rows outside the scopes. The re-runs are batched as scripts, not one call per row. **Cheaper alternative:** spot-check a sample of the foreclosing rows instead of all of them. That gives up the guarantee that no FIXED status in the new document rests on a subagent's unrun grep |
 
 ## Global Constraints
 
@@ -230,8 +233,8 @@ Areas, one subagent each (tree per D1):
 | g | Performance | per-template asset weight and blocking scripts (skill `reviewing-web-performance`); census `assets` lists as input | `production` |
 | h | SEO and analytics | metas, JSON-LD, `gtag` events; `de-analytics-audit-2026-10-16.md` is prior work | `production` |
 
-- [ ] **Step 1:** dispatch. If Task 0 found `/code-review <path>` usable, an area may use it as one
-  input; its output is still candidates.
+- [ ] **Step 1:** dispatch. Task 0 found `/code-review <path>` reviews only a diff restricted to the
+  path, so it is not an input here.
 - [ ] Each dispatch: `model: opus`, `effort: high` (D4). The paired Fable run on area e is deferred (D4).
 
 ## Task 5: Verify every candidate
