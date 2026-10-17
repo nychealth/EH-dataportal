@@ -1431,7 +1431,108 @@ lines 123 and 519.
 
 ## Instrument results
 
-*Task 3.*
+*Task 3, run 2026-10-17.* Production (P) was measured in the audit worktree, whose code equals
+`b8f4b32fbd`. #1491 (N) was measured in a detached temporary worktree at `d1c7402735`, the PR head;
+the NR worktree's local branch is at `00737207cb`, four commits past it. The raw outputs are not
+kept; the probes are in the gitignored `scripts/.sc-rebaseline/` (`census-capture.mjs`, and under
+`audit-2026-10/` `census_aggregate.py` and `a11y_rules.py`), and `scripts/site-a11y-audit.mjs` is
+committed. Where an instrument confirms an `A-` row, the row is named here, and its own cell is
+left as Step 4 wrote it.
+
+**3a, census.** A fresh `site-characterization.mjs --out --all` capture on an isolated `prod_prod`
+build of each tree, 924 of 924 pages each, viewport 1280×900. On P it is structurally identical
+to the committed `prod_prod` baseline (captured at `28c635d944`): 0 of 924 pages differ in any
+`structure` field `[verified 2026-10-17: whole-record comparison; control: the same capture against
+the committed staging baseline differs on 924 of 924 pages, meta on all 924, the shape CLAUDE.md
+records]`. Pages hit per field on P, with the page kinds that carry most of them:
+
+| Field | P pages | Where | Row |
+|---|---|---|---|
+| `h1==0` | 3 | the three home pages (`en`, `es`, `zh`) | N-016 |
+| `h1>1` | 257 | 210 NR report pages, 5 NR topic indexes, 41 explorer topics, `404.html` | A-112 (explorer); see note |
+| `img.missingAlt` | 215 | 210 NR report pages; 5 others | see note |
+| `img.zeroSize` | 262 | 210 NR report pages, 41 explorer topics, 9 key-topic pages | — |
+| `links.noAccessibleText` | 20 | all 11 key-topic pages, home, 8 others | N-003 |
+| `controls.noAccessibleName` | 55 | 42 of 43 explorer topic pages (6 each), hvi, NR landing and topic pages | N-002, A-133 |
+| tables without `<th>` | 1 | `data-stories/geographies/` (2 of 4 tables) | N-018 |
+| tables without `<caption>` | 225 | 210 NR report pages and 15 others | A-313 |
+| `overflowX` | 558 | all 316 keyword pages and their 58 paginators, 41 of 43 explorer topics, categories paginators, the `es`/`zh` keyword pages | N-017 |
+| zero-size iframes | 7 | Datawrapper pages in hidden tabs, three languages | A-043 |
+| `main==0`, `meta.description` false, JSON-LD parse error, non-200 | 0 | — | — |
+
+Notes:
+- **The `links.emptyHref` site-shell floor is two numbers, not one:** 29 on `header.html` pages and
+  22 on the 41 explorer topic pages (`header-de.html`; 12 on the explorer section page). Task 0
+  recorded it as "never below 29", which the committed baseline it measured already contradicted.
+- **On the NR pages, `h1>1` counts hidden headings.** The census counts DOM nodes. #1491's report
+  page has one `<h1>` inside `d-md-none` and one inside `d-none d-md-block`, so one shows at any
+  width, and its topic index has one visible `<h1>` and 19 with `class="d-none"` (the Pagefind
+  headings). G6-28's and G6-29's disconfirmations stand `[verified 2026-10-17: the h1 elements and
+  their classes in N's built bayside_little_neck/asthma_and_the_environment/ and
+  asthma_and_the_environment/ pages]`.
+- On the 258 NR pages, #1491 against production: `headingJumps` above the floor 211 → 0 pages,
+  `img.missingAlt` 210 → 0, `links.emptyHref` above the floor 210 → 0; `h1>1`, `zeroSize` (the
+  print QR code) and missing captions unchanged. axe found no `image-alt` on production's NR report
+  page, so its one missing `alt` is on a hidden element (axe skips hidden nodes).
+
+**3b, axe (`scripts/site-a11y-audit.mjs`, D3).** axe 4.13.0 (WCAG 2.0/2.1 A and AA tags) over 126
+pages of P on an isolated `prod_prod` build with Pagefind: the 44 curated smoke pages and each of
+the 41 explorer topics bare and with its first indicator. The positive control fired (an injected
+`<img>` with no `alt` caught by `image-alt`). 125 pages passed the rendered-content control; the
+126th, `data-features/asthma-syndrome/`, answered 404 (N-001). Exit 1, by design, for that page.
+A second full run gave the same counts on every rule except `aria-allowed-attr` (2 pages / 20
+nodes, then 3 / 21), which is the run-to-run floor. The first run's control used a 200-character
+`<main>` threshold and failed four real but short pages; it was replaced with "status below 400,
+some visible text, and, on an indicator page, a drawn view" before the run recorded here.
+
+| Rule | Pages / nodes | Where | Row |
+|---|---|---|---|
+| `nested-interactive` | 86 / 86 | every explorer topic page, bare and with an indicator: `#map role="img"` | A-159 |
+| `button-name` | 44 / 130 | the Measure/Boundary/Time dropdown buttons on 42 bare topic pages and on `waterways/?id=2427` | N-002 |
+| `link-in-text-block` | 17 / 60 | body-text links told apart by colour alone | N-004 |
+| `color-contrast` | 12 / 69 | `#808080` on white (3.94:1), story-card text `#d75047` (4.09:1), legend colours | N-005 |
+| `link-name` | 10 / 81 | empty card links on `data-features/`, `data-stories/`, key-topic pages; share links; the home featured story | N-003, A-125 |
+| `label` | 8 / 12 | flexdatalist on both indicator catalogs, hvi and production's NR topic landing; `#citeText`, the UHI `#slider`, the rats-page `.dia > input` | A-133, N-007 |
+| `aria-required-children`, `aria-required-parent`, `listitem` | 4, 2, 2 | Bootstrap tabs with `role="tablist"` on a `<ul>` of plain `<li>` | N-006 |
+| `aria-allowed-attr` | 3 / 21 | `aria-selected` on explorer trend-mode pills and old-explorer dropdown items | N-008 |
+| `scrollable-region-focusable` | 3 / 4 | `csvtable` containers on leading-causes and minimum-wage; old-explorer DataTables | N-009 |
+| `aria-hidden-focus` | 3 / 4 | production `neighborhood-reports/` (`.nr-clickable-uhf`), aqe, housing | A-134, A-132, N-010 |
+| `summary-name`, `svg-img-alt` | 3, 3 | Vega embeds on housing, realtime-air-quality, leading-causes, aqe, hvi | N-011 |
+| `list` | 2 / 2 | housing `ul.navbar-nav`, rat-report `ol type="I"` | N-012 |
+| `frame-title` | 2 / 2 | iframes on `data-stories/cold/` and `urban-heat-island/` | N-013 |
+| `image-alt`, `aria-command-name` | 2, 1 | realtime-air-quality map markers; two heat-report-archive 2021 figures | N-014 |
+| `role-img-alt` | 2 / 6 | Font Awesome `role="img"` icons on rats-in-your-neighborhood and email-electeds | N-015 |
+
+`color-contrast` was also *incomplete* on all 126 pages and `link-in-text-block` on 89, so their
+violation counts are floors. No failing contrast pair involves the brand green `#008939`, so A-100
+is neither confirmed nor cleared.
+
+**3c, smoke.** `node scripts/smoke-env.mjs prod_prod` on each tree: **PASSED on both**, 1187 pages
+(924 site pages + 263 explorer indicators), Pagefind index served, 0 failures, 0 pages cleared on
+re-check, quiet cap never reached `[verified 2026-10-17: report JSON gitHead 08c2bd5816 and
+d1c7402735 respectively]`.
+
+**3d, `a11y:nr` on #1491.** `node scripts/nr-a11y-audit.mjs` at N, against the `dev_stage` server it
+spawned (staging data; nothing else was serving): **0 WCAG violations and 0 best-practice rules**
+on all four NR page kinds and in all three further report-page states (one panel expanded, all
+expanded, print-emulated). The positive control fired and every rendered-content control matched.
+`color-contrast` is incomplete in all seven states, so its zero is a floor. The census's 6 NR
+pages with an unnamed control are not axe findings here, so the unnamed control is presumably the
+authored `#flex_search` the library hides and relabels (G2-59's evidence); not checked further.
+
+**3e, the rest.**
+- `npm run lint`: exit 0 on P and on #1491 (run at `00737207cb`). Controls on both: an undefined
+  name in a stdin file fires `no-undef`, and a name declared elsewhere in the same directory (`DE`
+  in `data-explorer/`, `reportConfig` in `nr-report/`) passes.
+- `npm run docs-check`: exit 1 on both P and N, on `CLAUDE.md`'s `docs/` and `resources/_gen/`
+  alone (C-S4-1). On N, creating the two directories empty turns it to exit 0.
+- `npm audit --omit=dev` on P: 32 advisories (1 critical, 17 high, 9 moderate, 5 low), mostly the
+  georaster → webpack chain (A-021) and the vega family (A-020). `dompurify` is a
+  direct dependency with a moderate advisory and ships to the browser (C-T3-1).
+- Dependabot, open on the repository: 25 (2 critical, 11 high, 10 medium, 2 low); the current
+  count for A-018.
+- CodeQL, open: 12. One high, `js/incomplete-sanitization`; 11 medium, `js/functionality-from-untrusted-source`
+  and `js/unsafe-html-expansion` (C-T3-2).
 
 ## Candidates
 
@@ -1459,15 +1560,51 @@ Found in passing during Task 2 Step 4.
   names `docs/` (`:151`, `:156`, `:191`, `:359` at P) and `resources/_gen/`, and
   `scripts/docs-check.mjs:192` tests each cited path with `existsSync`. Both directories are build
   output, so they exist on disk only after a build: in the audit worktree (code equal to P, no
-  build) it exits 1 with exactly those two "path does not exist" lines. In the NR worktree, which has
-  both directories, it exits 0 over 3 docs. That arm is a different tree with a different
-  `CLAUDE.md`, so it shows the check reads the disk, not that P's `CLAUDE.md` passes with the
-  directories present `[2026-10-17: npm run docs-check in each worktree, output saved and tailed]`.
-  Whether CI runs `docs-check` from a clean checkout was not checked.
+  build) it exits 1 with exactly those two "path does not exist" lines, and so does a fresh
+  worktree at #1491's `d1c7402735`. Creating the two directories empty in that same worktree turns
+  it to exit 0 over 3 docs, so the directories are the whole cause `[verified 2026-10-17: node
+  scripts/docs-check.mjs in the detached N worktree without and with empty docs/ and
+  resources/_gen/, outputs saved and tailed]`. No workflow runs `docs-check` (`git grep docs-check
+  P -- .github` hits only prose in `.github/workspace-memory.md`; control: `smoke` hits two
+  workflows), so it bites local runs in a fresh worktree, not CI.
+
+Found during Task 3.
+- **C-T3-1: `dompurify` carries a moderate npm advisory and ships to every page.** It is a direct
+  dependency, `head.html` loads it site-wide (`CLAUDE.md`, Library loading), and `npm audit
+  --omit=dev` at P lists it as moderate with a fix available; Dependabot lists it at low and
+  medium. Which advisories, and whether they reach the site's `DOMPurify.sanitize` calls, was not
+  checked.
+- **C-T3-2: 12 open CodeQL alerts.** One high (`js/incomplete-sanitization`) and 11 medium
+  (`js/functionality-from-untrusted-source`, `js/unsafe-html-expansion`), read from the code
+  scanning API; which files they name was not read.
+- **C-T3-3: `img.zeroSize` on 41 of 43 explorer topic pages (2 each) and 9 of 11 key-topic pages.**
+  The census counts DOM nodes, so these may be hidden images rather than broken ones; which images
+  was not checked.
 
 ## New findings
 
-*Task 5.*
+N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them; Task 5 adds the candidates it verifies after them.
+
+| ID | Source | Claim | Status | Evidence | Tree |
+|---|---|---|---|---|---|
+| N-001 | new: Task 3b (site-a11y-audit's rendered-content control) | Smoke's curated `PAGES` lists `data-features/asthma-syndrome/` as the "asthma-syndrome layout", but `content/data-features/asthma-syndrome/index.md` is `draft: true` and no environment builds drafts, so the page is a 404 everywhere; `smoke-pages.mjs:334` discards the `page.goto` response, so the entry checks the 404 page and passes. | OPEN | CONFIRMED (runtime) for the 404: status 404 under `site-a11y-audit.mjs`, and the page is absent from the isolated `prod_prod` build, the only one of the 44 curated pages absent. TRACE for smoke's pass: `buildDrafts` occurs nowhere in `config/`, `scripts/`, `.github/` or `package.json` | production @ b8f4b32fbd |
+| N-002 | new: Task 3b (axe `button-name`), 3a (census) | The explorer's Measure, Boundary and Time dropdown buttons (`#measureOptionsDropdownButton`, `#geoOptionsDropdownButton`, `#timeOptionsDropdownButton`) have no accessible name on every topic page opened without `?id=` (42 pages) and in the unmapped empty state (`waterways/?id=2427`, Boundary and Time). | OPEN | CONFIRMED (runtime): axe 44 pages / 130 nodes; census `controls.noAccessibleName` 6 on 42 of 43 explorer topic pages | production @ b8f4b32fbd |
+| N-003 | new: Task 3b (axe `link-name`), 3a (census) | Links with no accessible text: the image-card links on `data-features/` (21 on that page), `data-stories/` and every key-topic page (census: all 11), the share-by-email link on story pages (`cold`, `block-by-block`), the old explorer's data-sources icon link, and the home page's first featured-story anchor (A-125's misnesting leaves it empty). | OPEN | CONFIRMED (runtime): axe 10 pages / 81 nodes on the 126 audited; census `links.noAccessibleText` on 20 of 924 pages | production @ b8f4b32fbd |
+| N-004 | new: Task 3b (axe `link-in-text-block`) | Links inside body text are distinguished from the text by colour alone on 17 of 126 pages (e.g. the data-index lists, the housing story's asides). | OPEN | CONFIRMED (runtime): axe 17 pages / 60 nodes; incomplete on 89 more pages, so a floor | production @ b8f4b32fbd |
+| N-005 | new: Task 3b (axe `color-contrast`) | Text below 4.5:1: `#808080` on white (3.94:1), used for `.keywords` labels ("Keywords:", "Published on:") on story, feature, publication and old-explorer pages; story-card text `#d75047` (4.09:1) on `data-stories/`; and legend colours on rat-mitigation-zones, congestion-pricing, realtime-air-quality, aqe and hvi. | OPEN | CONFIRMED (runtime): axe 12 pages / 69 nodes; incomplete on all 126, so a floor | production @ b8f4b32fbd |
+| N-006 | new: Task 3b (axe `aria-required-children`, `aria-required-parent`, `listitem`) | Bootstrap tab markup puts `role="tablist"` on a `<ul>` whose `<li>` children carry no role, so the `role="tab"` links have no tablist parent and the list items no list (`data-stories/` `#pills-tab`, housing `#myTab`); also `role="list"` on a `.list-group` of non-items (air-quality-snapshots) and `role="tablist"` on the old explorer section's accordion. | OPEN | CONFIRMED (runtime): axe 4, 2 and 2 pages | production @ b8f4b32fbd |
+| N-007 | new: Task 3b (axe `label`) | Unlabelled inputs beyond the flexdatalist ones (A-133): the old explorer's `#citeText`, the urban-heat-island story's `#slider`, and the rats-in-your-neighborhood `.dia > input`. | OPEN | CONFIRMED (runtime): axe, one node each | production @ b8f4b32fbd |
+| N-008 | new: Task 3b (axe `aria-allowed-attr`) | `aria-selected` is set on `<button>`s, where it is not allowed: the explorer's trend-mode pills (`.trendmode-button`, e.g. `drinking-water-quality/?id=2207`) and the old explorer's indicator dropdown items. | OPEN | CONFIRMED (runtime): axe 3 pages / 21 nodes (2 / 20 in a repeat run) | production @ b8f4b32fbd |
+| N-009 | new: Task 3b (axe `scrollable-region-focusable`) | Scrollable regions that a keyboard cannot reach: the `csvtable` shortcode's `#csv-table-container-N` (`role="region"`, `overflow-y: scroll`) on leading-causes and minimum-wage, and the old explorer's DataTables scroll body. | OPEN | CONFIRMED (runtime): axe 3 pages / 4 nodes | production @ b8f4b32fbd |
+| N-010 | new: Task 3b (axe `aria-hidden-focus`) | The housing story wraps focusable content in `aria-hidden="true"` (a `.btn-group` with a nested dropdown, and `.wide` chart blocks). | OPEN | CONFIRMED (runtime): axe, 2 nodes on `data-stories/housing/` | production @ b8f4b32fbd |
+| N-011 | new: Task 3b (axe `summary-name`, `svg-img-alt`) | Vega embeds outside the NR report have an unnamed action-menu `<summary>` (housing, realtime-air-quality, leading-causes) and unnamed `role="graphics-symbol"` mark groups (realtime-air-quality, aqe, hvi). #1491 fixed the same two on the NR report (A-343, A-346). | OPEN | CONFIRMED (runtime): axe 3 and 3 pages | production @ b8f4b32fbd |
+| N-012 | new: Task 3b (axe `list`) | Lists with non-`<li>` children: housing's `ul.navbar-nav` and rat-report's `ol type="I"`. | OPEN | CONFIRMED (runtime): axe 2 pages | production @ b8f4b32fbd |
+| N-013 | new: Task 3b (axe `frame-title`) | Untitled iframes: `data-stories/cold/` (`source/index.html`) and `data-stories/urban-heat-island/` (`#mapframe`). | OPEN | CONFIRMED (runtime): axe 2 pages | production @ b8f4b32fbd |
+| N-014 | new: Task 3b (axe `image-alt`, `aria-command-name`) | realtime-air-quality's Leaflet markers are `role="button"` divs with no name around `<img>`s with no `alt` (16 markers); heat-report-archive/2021's figures `2021-fig-3.jpg` and `2021-fig-4.jpg` have no `alt`. | OPEN | CONFIRMED (runtime): axe 2 and 1 pages | production @ b8f4b32fbd |
+| N-015 | new: Task 3b (axe `role-img-alt`) | Font Awesome icons given `role="img"` with no name (`.fa-plus`, `.fa-minus`) on rats-in-your-neighborhood and email-electeds. | OPEN | CONFIRMED (runtime): axe 2 pages / 6 nodes | production @ b8f4b32fbd |
+| N-016 | new: Task 3a (census) | The three home pages (`en`, `es`, `zh`) have no `<h1>`. | OPEN | CONFIRMED (runtime): census `landmarks.h1 = 0` on exactly those 3 of 924 pages, also in the committed baseline | production @ b8f4b32fbd |
+| N-017 | new: Task 3a (census) | 558 pages overflow horizontally at 1280×900: all 316 keyword pages and their 58 paginators, the `es`/`zh` keyword pages, the categories paginators, and 41 of 43 explorer topic pages. | OPEN | CONFIRMED (runtime): census `overflowX`; the element that overflows was not identified | production @ b8f4b32fbd |
+| N-018 | new: Task 3a (census) | `data-stories/geographies/` has two tables (of four) with no `<th>`. | OPEN | CONFIRMED (runtime): census `tables` total 4, withTh 2 | production @ b8f4b32fbd |
 
 ## Disconfirmed
 
