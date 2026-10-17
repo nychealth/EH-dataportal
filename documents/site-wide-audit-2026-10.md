@@ -74,8 +74,8 @@ from production's copy, read in full]`.
 ## Carried forward
 
 Each group below is a subagent's return, pasted verbatim apart from formatting: table,
-reconciliation, duplicates. **Status: spot-check pending (plan Task 2 Step 3)** until a group's
-heading says otherwise. IDs are per group (`G4-01`…); stable `A-` IDs are assigned at
+reconciliation, duplicates. All seven groups have been spot-checked (plan Task 2 Step 3, the
+paragraphs below). IDs are per group (`G4-01`…); stable `A-` IDs are assigned at
 deduplication (Step 4). Where a group's reconciliation tallies disagree with its table, the table
 is authoritative.
 
@@ -88,8 +88,42 @@ ancestor-check both FAIL (control.tsv, exit 1).]` One check failed first, G5-22:
 check hit `site-characterization.mjs:1295`, a comment recording that the old sample entry was
 removed. The check was too strict, not the row. Not covered by the runner and checked by reading
 instead: G4-40 (external GA setting), G4-43 (doc-only), G5-28 (CI history), G7-17 (ledger prose),
-G7-19 (baseline recency). Still to do in Step 3: the foreclosing rows of G1, G2 and G3, and 3
-random OPEN rows per group.
+G7-19 (baseline recency).
+
+**Step 3 spot-check, foreclosing rows of G1–G3: 174 of 174 confirmed** `[verified 2026-10-17:
+spotcheck.py over checks-g1.tsv (36 rows, 112 checks), checks-g2.tsv (31 rows, 92 checks) and
+checks-g3a/b/c.tsv (107 rows, 280 checks), same directory and the same three-part check as G4–G7;
+the IDs in each TSV equal the group's foreclosing IDs from tally.py (comm -3 empty for all three);
+outputs in spotcheck-g1.out, -g2.out, -g3a/b/c.out]`. With G4–G7, that is all 248 foreclosing rows.
+Twelve rows failed a check on its first run. In G3-70 the check followed the row's own evidence,
+which was wrong (below). In the other eleven the check was wrong, not the row. The causes were a guard or an operand on the line before the matched one (G1-09, G3-97, G3-101), Hugo
+`dict` syntax in place of JSON colons (G2-27), a file that lived at `documents/` at the time
+(G3-37), a stub's pointer sentence (G1-56), a pattern broad enough to hit a sibling function
+(G3-49), and controls placed on a tree that already carried the fix (G3-106, G3-126, G3-130,
+G3-131). The corrected checks are in the TSVs, with a comment wherever the reason is not obvious.
+Three results change rows:
+- **G3-70: evidence corrected.** The dead duplicate was a Hugo comment, `{{/*  <meta
+  data-pagefind-filter="section[content]" content="Data Stories">  */}}`, removed by `16c9adce5e`
+  ("Remove dead commented-out Pagefind filter duplicate in head.html", an ancestor of P). G3 cited
+  `47ffb33fde`, the per-template library gating commit. The status stands.
+- **G3-126: split at Step 4.** The row is FIXED for consolidation (one serializer, one pipeline,
+  one normalizer). Its second defect, that a no-op interaction adds a history entry, is not
+  foreclosed. Neither `writeSelectionToURL` nor `writeHistoryState` compares against the current
+  state (`app.js:104-111`, `:130-145` at P), and the callers were not traced. The split row is
+  UNVERIFIED (runtime). Repro: on `?id=2380`, click the measure already selected, then compare
+  `history.length` before and after.
+- **G2-19:** its missing pre-fix control now exists. The duplicate ids are present at
+  `f0a4f06611~1` and absent at P.
+
+**Step 3 OPEN-row sample: 19 of 19 still hold** `[verified 2026-10-17: open_sample.py, seed
+20261017, 3 OPEN rows per group (G6 has one OPEN row, G6-42); spotcheck.py over checks-open.tsv,
+17 rows and 34 checks, each asserting the defect is still present on its tree; G1-68's line counts
+(1331 and 1142 at P, by git show | wc -l) and G7-09 (no GA result in documents/) checked by
+reading]`. Drawn: G1-02, G1-32, G1-68, G2-30, G2-36, G2-84, G3-118, G3-141, G3-144, G4-15, G4-35,
+G4-38, G5-03, G5-23, G5-33, G6-42, G7-09, G7-11, G7-23. One check failed first, G4-15, because
+`.map` sits on the line after `return notes`. The row holds. **The sample was drawn per group, not
+per source as plan Task 2 Step 3 specifies**, so the groups covering several sources (G3, G4, G5,
+G7) were sampled less than the plan asked. `open_sample.py` can be extended to draw per source.
 
 **Conflict G6-05 against G7-15, resolved for G6-05.** The toggle at `nr-neighborhood-list.html:32`
 carries both `btn-outline-primary` and `neighborhood-list-button`. `.neighborhood-list-button` sets
@@ -923,6 +957,23 @@ lines 123 and 519.
 ## Candidates
 
 *Task 4. Candidates are not findings until Task 5 reproduces them.*
+
+Found in passing during Task 2 Step 3, before Task 4 started. All three are static readings at P.
+- **C-S3-1: two nyc-lib stylesheets of different versions on every `mapLib` page.** Inside
+  `{{- if .Params.mapLib }}` (`head.html:105-109`), `:107` loads the remote
+  `nyc-lib/v1.4.78/css/nyc-basic-lib.css` and `:108` loads a local `css/nyc-basic-lib-v1.2.79.css`.
+  G1-09's evidence describes one gated link. Whether the second copy is a deliberate override is a
+  question for whoever added it.
+- **C-S3-2: `.claude/commands/js-development.md:19-22` says `debugLog` is "Pending: it arrives with
+  `feature-new-data-explorer`".** That has been stale on production since #1462, because
+  `head.html:217` defines `debugLog`. G1-58 records the same marker in `documents/js-conventions.md`
+  (at lines 415-417, per G1-58; not re-opened here). Docs only.
+- **C-S3-3: two seedless `reduce`s are guarded on the outer array, not the array they reduce.**
+  `data.js:470` returns `perGeotypeTables.flatMap(d => d).reduce((a, b) => a.concat(b))` after an
+  `if (!perGeotypeTables.length)` block that returns `null` (`:466-468`), and `:482` is the same
+  shape behind a `perMeasureTables.length ?` ternary. An outer array holding only empty arrays would pass the guard, and `reduce`
+  would then throw on an empty array (the gotcha G3-101 is about). Whether that input can occur
+  was not checked.
 
 ## New findings
 
