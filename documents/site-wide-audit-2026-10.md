@@ -79,6 +79,26 @@ heading says otherwise. IDs are per group (`G4-01`…); stable `A-` IDs are assi
 deduplication (Step 4). Where a group's reconciliation tallies disagree with its table, the table
 is authoritative.
 
+**Step 3 spot-check, foreclosing rows of G4–G7: 74 of 74 confirmed** `[verified 2026-10-17:
+spotcheck.py over checks-g4-g7.tsv (both in the audit worktree's gitignored
+scripts/.sc-rebaseline/audit-2026-10/), 155 checks: the row's post-fix pattern present at P or N,
+the pre-fix pattern present at the tree the finding was written on, fix commits ancestors of P;
+output in spotcheck-g4-g7.out. Runner controls: a nonsense-token present-check and a bad-hash
+ancestor-check both FAIL (control.tsv, exit 1).]` One check failed first, G5-22: its `absent`
+check hit `site-characterization.mjs:1295`, a comment recording that the old sample entry was
+removed. The check was too strict, not the row. Not covered by the runner and checked by reading
+instead: G4-40 (external GA setting), G4-43 (doc-only), G5-28 (CI history), G7-17 (ledger prose),
+G7-19 (baseline recency). Still to do in Step 3: the foreclosing rows of G1, G2 and G3, and 3
+random OPEN rows per group.
+
+**Conflict G6-05 against G7-15, resolved for G6-05.** The toggle at `nr-neighborhood-list.html:32`
+carries both `btn-outline-primary` and `neighborhood-list-button`. `.neighborhood-list-button` sets
+`color: $primary-dark !important` (`_de-custom.scss:256-260` at `d1c7402735`), which overrides
+Bootstrap's `.btn-outline-primary` colour. G7-15 read only the `.nr-list-toggle` rules. So G7-15's
+"parked" status is stale, and the item is FIXED by trace. The computed colour still needs a browser
+check `[verified 2026-10-17: git grep -n -E 'nr-list-toggle|neighborhood-list-button' d1c7402735 --
+themes assets; git show d1c7402735:assets/scss/_de-custom.scss lines 250-290]`.
+
 **Tree caveat, found by G5, G6 and G7:** the #1491 worktree's HEAD was `00737207cb` when they ran,
 four commits past `d1c7402735` (`b33ba2373e`, `2474ff1796`, `f97565a229`, `00737207cb`). Those
 commits touch `nr-report.html`, `section.html`, `nr-leaflet.html`, `nr-architecture.md`, a merge
