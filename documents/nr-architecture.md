@@ -128,7 +128,8 @@ markup one alone does nothing, since the search needs the JS one beside it:
   `nrPickerDestination()`**, returning the topic slug to append. That is the one thing the two
   pages genuinely disagree on: a build-time slug on a topic index, the active topic button on the
   landing page. Order does not matter — it is called on selection, after everything has parsed.
-  It also holds `wireComboboxState`, which supplies the `role="combobox"` flexdatalist never emits
+  It also includes `themes/dohmh/layouts/partials/flexdatalist-combobox-js.html`, whose
+  `wireComboboxState` supplies the `role="combobox"` flexdatalist never emits
   and keeps `aria-expanded`, `aria-controls`, `aria-owns` and `aria-activedescendant` true. **It
   reads the DOM through a `MutationObserver`, not the library's events, and that is deliberate** —
   only `results.remove()` fires `removed:flexdatalist.results`, while Escape and the outside-click
