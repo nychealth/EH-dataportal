@@ -1538,6 +1538,12 @@ authored `#flex_search` the library hides and relabels (G2-59's evidence); not c
 
 *Task 4. Candidates are not findings until Task 5 reproduces them.*
 
+Resolved at Task 5 (first batch, the candidates above logged before Task 4): C-S3-1 → N-019,
+C-S3-2 → N-020, C-S4-1 → N-021, C-T3-2 → N-022 and N-023 plus its six
+`js/functionality-from-untrusted-source` alerts, which are the external `<script>` tags of A-014
+and A-046 (proj4, rawgit OpenLayers, PapaParse on email-electeds and both rats templates);
+C-S3-3 and C-T3-1 → Disconfirmed. C-T3-3 stays open: which images are zero-size needs a browser.
+
 Found in passing during Task 2 Step 3, before Task 4 started. All three are static readings at P.
 - **C-S3-1: two nyc-lib stylesheets of different versions on every `mapLib` page.** Inside
   `{{- if .Params.mapLib }}` (`head.html:105-109`), `:107` loads the remote
@@ -1605,7 +1611,21 @@ N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them
 | N-016 | new: Task 3a (census) | The three home pages (`en`, `es`, `zh`) have no `<h1>`. | OPEN | CONFIRMED (runtime): census `landmarks.h1 = 0` on exactly those 3 of 924 pages, also in the committed baseline | production @ b8f4b32fbd |
 | N-017 | new: Task 3a (census) | 558 pages overflow horizontally at 1280×900: all 316 keyword pages and their 58 paginators, the `es`/`zh` keyword pages, the categories paginators, and 41 of 43 explorer topic pages. | OPEN | CONFIRMED (runtime): census `overflowX`; the element that overflows was not identified | production @ b8f4b32fbd |
 | N-018 | new: Task 3a (census) | `data-stories/geographies/` has two tables (of four) with no `<th>`. | OPEN | CONFIRMED (runtime): census `tables` total 4, withTh 2 | production @ b8f4b32fbd |
+| N-019 | new: C-S3-1, verified at Task 5 | Every `mapLib` page loads two nyc-lib stylesheets of different versions: the remote `maps.nyc.gov/nyc-lib/v1.4.78/css/nyc-basic-lib.css` and the local `css/nyc-basic-lib-v1.2.79.css`, both inside `head.html`'s `{{- if .Params.mapLib }}` block. Whether the second is a deliberate override is a question for its author. | OPEN | CONFIRMED (build output): both `<link>`s in the built `data-features/congestion-pricing-report/` (`mapLib: true`); a non-`mapLib` page (`about/`) has neither. `head.html` is identical on P and N | production @ b8f4b32fbd |
+| N-020 | new: C-S3-2, verified at Task 5 | `.claude/commands/js-development.md:19-22` says `debugLog` is "Pending: it arrives with `feature-new-data-explorer`", which has been stale since #1462 put `debugLog` in production's `head.html`. Docs only. | OPEN | CONFIRMED (trace): `git show P:` of both files | production @ b8f4b32fbd |
+| N-021 | new: C-S4-1, verified at Task 3 | `npm run docs-check` exits 1 in any worktree where no Hugo build has run, because `CLAUDE.md` cites `docs/` and `resources/_gen/` and `scripts/docs-check.mjs` tests cited paths with `existsSync`. No workflow runs it, so this affects local runs only. | OPEN | CONFIRMED (runtime): on one tree (N), exit 1 without the two directories and exit 0 with them present and empty; exit 1 at P too | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| N-022 | new: C-T3-2 (CodeQL `js/incomplete-sanitization`, high), verified at Task 5 | `scripts/site-characterization-summary.mjs:272` escapes `\|` but not backslashes when writing page text into a markdown table, so a backslash in a page's text can break the escape. Dev and CI tooling only; nothing ships. | OPEN | CONFIRMED (trace): the line at P | production @ b8f4b32fbd |
+| N-023 | new: C-T3-2 (CodeQL `js/unsafe-html-expansion`, five alerts), verified at Task 5 | The five 2021 raster pages under `static/nyccas/raster/old rasters/` are published verbatim from `static/` but referenced by no template or content file. | OPEN | CONFIRMED (trace): `git grep -i 'old rasters\|old%20rasters'` outside that directory finds nothing; control: `nyccas/raster` is referenced from `nyccas_pollutant_maps.html` | production @ b8f4b32fbd |
 
 ## Disconfirmed
 
-*Task 5.*
+- **C-S3-3 (seedless `reduce` in `data.js`).** Neither site can reduce an empty array. At `:470`,
+  `perGeotypeTables` is `visGeotypes.map(geo => <Arquero table>)`, and `flatMap(d => d)` leaves
+  non-array elements as they are, so a non-empty array holds only tables. At `:482`, the per-view
+  accumulators are filled with `if (x) push(x)`, so `expandMeasureTimesGeos`'s `null` never
+  enters them `[verified 2026-10-17: git show P:assets/js/data-explorer/data.js, lines 425-566]`.
+- **C-T3-1 (`dompurify` advisory) as an XSS path.** Both advisories (GHSA-55q2-fjhq-7xh7 moderate,
+  GHSA-6688-9rhm-gjv2 low) concern DOMPurify's `IN_PLACE` option, and no site code uses it:
+  `git grep -i IN_PLACE` over `assets`, `themes`, `content` and `static` finds nothing, where the
+  same tree holds 16 `DOMPurify.sanitize` calls. The lockfile does pin `3.4.12`, inside both
+  ranges, so the Dependabot alert stays open until the dependency is bumped.
