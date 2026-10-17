@@ -1,0 +1,271 @@
+# Site-wide audit, October 2026: plan
+
+<!-- Deliberately does NOT declare a `docs-check source-roots` comment: it cites NR-branch paths
+     (`assets/js/nr-report/`, `scripts/nr-a11y-audit.mjs`) that do not exist on `production`. -->
+
+**Goal:** one audit document, `documents/site-wide-audit-2026-10.md`, that (a) carries forward every
+open finding from the existing audits, each re-verified against today's tree with the command that
+verified it, and (b) adds new findings, each reproduced before it is recorded.
+
+**Why now:** the new data explorer reached `production` via #1462 (`b8f4b32fbd`, 2026-10-16), and
+the audits on record describe trees that no longer exist. `site-wide-audit-2026-06-27.md` is 2761
+lines on `production` and 2884 on the NR branch (§20 and §21 exist only there). The DE audits were
+written against `feature-new-data-explorer` before its merge. Findings are scattered across at least
+nine documents in two branch-scoped sets (Task 1 enumerates them).
+
+**Not a `/code-review` job:** that reviews a diff, and an audit needs the whole tree. Whether its
+path-target form can review a directory wholesale is unverified, and Task 0 checks it.
+
+## Ledger
+
+**Status as of 2026-10-17: plan written on `documentation-site-wide-audit-2026-10`, cut from local
+`production` at `b8f4b32fbd`. D1–D4 decided; D5 waits on Task 1. Tasks 0–7 not started.**
+
+| # | Task | Commit | Status | Proof that ran |
+|---|---|---|---|---|
+| 0 | Evidence: `/code-review` path target, and the census fields | — | Not started | — |
+| 1 | Inventory of existing findings, and a cost estimate | — | Not started | — |
+| 2 | Compile and re-verify existing findings | — | Not started | — |
+| 3 | Instrument pass on both trees | — | Not started | — |
+| 4 | Judgment pass, by area | — | Not started | — |
+| 5 | Verify every candidate | — | Not started | — |
+| 6 | Prioritize and write up | — | Not started | — |
+| 7 | Point the old audits and `CLAUDE.md` at the new one; PR | — | Not started | — |
+
+Environment state:
+
+- Worktree for this branch: `EH-dataportal.worktrees/documentation-site-wide-audit-2026-10`.
+- NR-branch reads use the existing worktree `EH-dataportal.worktrees/feature-MOD-Lab-NR-recode-refactor-merge`
+  (PR #1491), or `git show feature-MOD-Lab-NR-recode-refactor-merge:<path>` from any worktree.
+- **Do not use `EH-dataportal.worktrees/production` as a reading copy.** Its HEAD is `b8f4b32fbd`,
+  but its index and files are an older tree: `git status` there shows staged deletions and
+  modifications, and its `documents/` holds 16 files against 33 in HEAD `[verified 2026-10-17]`.
+  Nobody in this plan owns that state, so leave it alone and read `production` through `git show production:<path>`.
+
+Resume commands:
+
+```
+git log --oneline production..documentation-site-wide-audit-2026-10   # the task commits
+git rev-list --left-right --count origin/documentation-site-wide-audit-2026-10...HEAD   # 0 0 = pushed
+gh pr view 1491 --json state,mergedAt     # if MERGED, D1's split collapses: see D1
+```
+
+## Decisions
+
+| # | Decision | Who / when | Notes |
+|---|---|---|---|
+| D1 | Which tree is audited? | **Split — Chris, 2026-10-17** | Everything outside Neighborhood Reports is audited on `production`. NR (report page, the two index kinds, `assets/js/nr-report/`, the NR harnesses) is audited on #1491's branch, `feature-MOD-Lab-NR-recode-refactor-merge`, 207 commits ahead of `production` at the time of the decision. Rejected: waiting for #1491 (blocks Tasks 2–5), and `production` alone (NR findings would describe the `nr-output` pages #1491 retires). **If #1491 merges mid-audit**, re-run the NR rows' checks on `production` and drop the split; every row records which tree it was checked on, so this is mechanical |
+| D2 | Output form: a new compiled document, or extend `site-wide-audit-2026-06-27.md`? | **New document — Chris, 2026-10-17** | Recommended: a new document, `documents/site-wide-audit-2026-10.md`, with stable IDs (`A-001`…) and one status table. The old audits stay as dated records, each gaining a one-line pointer (Task 7). Extending the old one means a third divergent copy of a 2761-line file, a problem `cross-branch-consolidation-2026-09-18.md` has already had to fix once (Step 2 there) |
+| D3 | Build a site-wide axe instrument? | **Yes, Task 3b — Chris, 2026-10-17** | No site-wide accessibility instrument exists: `a11y:nr` covers the four NR page kinds, and only on #1491's branch `[verified 2026-10-17: git ls-tree --name-only production scripts/ \| grep -iE 'a11y\|axe' → nothing, and no scripts/*.mjs on production mentions axe-core; control: the same ls-tree on #1491's branch → scripts/nr-a11y-audit.mjs]`. `axe-core ^4.13.0` is already a devDependency on `production`. Recommend Task 3b: `scripts/site-a11y-audit.mjs`, axe over the curated smoke `PAGES` (44) plus the 41 topic pages, reusing `nr-a11y-audit.mjs`'s positive control (an injected `<img>` with no `alt` must fire `image-alt`) and its rendered-content control. **Deferring it** means the accessibility area of Task 4 rests on the census (Task 3a) and on reading code, which misses everything computed (contrast, accessible names produced by JS). Bringing it forward later costs the same script, so deferring saves nothing unless the audit is cut short |
+| D4 | Model and effort for Task 4 | **Opus at high effort — Chris, 2026-10-17** | Each Task 4 subagent is dispatched with `model: opus`, `effort: high`, so the orchestrating session's own effort level does not change (global `CLAUDE.md`: an effort switch rewrites the whole cached prefix). **The paired Fable 5.1 run is deferred, not rejected.** There is no measured comparison of the two models on this kind of work, and the test would cost one extra area run plus its Task 5 verification. To bring it forward: re-run area e (SCSS) under Fable and compare confirmed-candidate counts after Task 5, not raw counts, since unverified counts reward volume |
+| D5 | Task 2's delegation | Decided at the end of Task 1 | Task 1 counts findings per source document and states a cost. The default is one Sonnet subagent per source document, read-only, returning rows. Chris approves the count before dispatch |
+
+## Global Constraints
+
+- **Every row records the tree and commit it was checked on.** `production @ <hash>` or
+  `#1491 @ <hash>`. A status without a commit is a relationship that expires (keep-ledger §3).
+- **No status from reading alone where a run is possible.** FIXED, OBSOLETE and BRANCH-SCOPED are
+  foreclosing claims: each carries the command that established it and a positive control, in the
+  form `[verified <date>: <command>; control: <command that returns a hit>]`. A grep returning
+  nothing is not evidence of FIXED until the same grep is shown to hit on the tree where the finding
+  was written (`git grep <pattern> <old-commit> -- <path>`).
+- **Runtime claims need a browser.** CSS, DOM, layout, timing, console behaviour: Playwright on an
+  isolated server, per the project `CLAUDE.md` Root-cause claims section. A runtime finding verified
+  only by reading is marked `TRACE`, not `CONFIRMED`, in the same vocabulary
+  `de-pre-ship-review-2026-10-02.md` uses.
+- **Never run two Hugo builders against one tree.** Use `node scripts/smoke-env.mjs <env>`,
+  `node scripts/characterize-env.mjs <env>`, or `scripts/isolated-server.mjs`. These serve on :8090
+  and refuse to run concurrently with each other.
+- Throwaway probes go in the gitignored `scripts/.sc-rebaseline/` and block
+  `www.googletagmanager.com` and `www.google-analytics.com`.
+- Subagents in Tasks 2 and 4 are **read-only** and return rows; only the orchestrating session
+  writes the audit document. They are given the row schema below and this Constraints section.
+
+Row schema for `site-wide-audit-2026-10.md`:
+
+| Field | Values |
+|---|---|
+| ID | `A-001`… for carried-forward, `N-001`… for new |
+| Source | document + section, or `new` with the instrument or area that found it |
+| Claim | one sentence: what is wrong and where (`path` + symbol, line as a hint only) |
+| Status | OPEN · FIXED · OBSOLETE (the code it describes is gone) · BRANCH-SCOPED · DISCONFIRMED · UNVERIFIED |
+| Evidence | CONFIRMED (runtime) · CONFIRMED (trace) · TRACE · the `[verified …]` stamp |
+| Tree | `production @ <hash>` or `#1491 @ <hash>` |
+| Priority | set in Task 6 only |
+
+## Instrument inventory
+
+What can measure the site today, what each is blind to, and its cost. Enumerated from `production`'s
+`package.json` scripts and devDependencies, the NR branch's additions, and `.github/workflows/`
+`[verified 2026-10-17]`.
+
+| Instrument | Finds | Blind to | Tree | Cost |
+|---|---|---|---|---|
+| `node scripts/smoke-env.mjs prod_prod` | console errors and EHDP-data 4xx on ~1188 pages, one DE indicator per unique id | anything that doesn't throw: layout, a11y, wrong data | both | ~220 s local (smoke plan, 2026-10-02) |
+| `site-characterization.mjs --out <dir>` on an isolated `prod_prod` | **a census**: per page `headingJumps`, `landmarks.h1`, `img.missingAlt`, `links.emptyHref`, `links.noAccessibleText`, `controls.noAccessibleName`, `tables.withTh`, `overflowX`, zero-height iframes, JSON-LD parse | contrast, focus, anything after interaction | both | ~130 s with build (project `CLAUDE.md`) |
+| `--check` against a baseline (`characterize:site`, `:nr`, `:pagefind`, `:cp`, DE `characterize`) | change since the baseline | **any defect present at capture**, so not a defect finder; harness health only | — | not run for findings |
+| `npm run lint` | `no-undef` | everything else | `production`: `assets/js/data-explorer/` only; #1491 adds `assets/js/nr-report/` | seconds |
+| `npm run docs-check` | stale paths and identifiers in opted-in docs | prose; docs that don't opt in | both | seconds |
+| `npm run a11y:nr` | axe plus keyboard, heading, ARIA-reference probes on 4 NR page kinds | every non-NR page | #1491 only | minutes |
+| axe-core (devDependency) | WCAG rules, in-page | needs a harness outside NR: D3 | both | — |
+| `npm audit`; Dependabot | vulnerable dependencies | unused or duplicated deps | `production` | 25 open Dependabot alerts `[2026-10-17: gh api …/dependabot/alerts?state=open]` |
+| CodeQL (`codeql.yml`) | code-scanning alerts | — | `production` | `gh api repos/{owner}/{repo}/code-scanning/alerts?state=open` |
+| skills `reviewing-web-performance`, `hardening-github-actions` | checklists for Task 4 areas g and f | — | — | — |
+| `/code-review` (skill, non-ultra) | correctness, given a diff; path target unverified | — | — | Task 0 |
+| Lighthouse | — | — | not installed (`node_modules` has no `lighthouse`) `[verified 2026-10-17]`; not proposed |
+
+---
+
+## Task 0: Evidence: `/code-review` path target, and the census fields
+
+**Files:** none written; observations go to the Ledger.
+
+**Interfaces:** produces (a) whether Task 4 can use `/code-review <path>` per area, and (b) the
+list of census fields Task 3a aggregates.
+
+- [ ] **Step 1: pre-register.** Write in the Ledger before running: `/code-review low` on a clean
+  tree with path target `scripts/site-urls.mjs` either (i) reviews the file's contents (findings
+  cite lines across the whole file), (ii) reports no diff and stops, or (iii) reviews the path's
+  last commit. Only (i) makes it usable in Task 4.
+- [ ] **Step 2:** run it on the audit worktree, which has a clean tree. Record which of (i)–(iii) happened.
+- [ ] **Step 3: census fields have power.** In the committed `scripts/site-characterization-baseline/prod_prod/`
+  records, count pages where each candidate field is non-zero or `false`, with one Python walk.
+  Expected: `_home.json` has `landmarks.h1 = 0` and `headingJumps = 1`, so both fields can fire. Any
+  field that is constant across every record is dead (global `CLAUDE.md`, "A fixture field identical
+  across every case it covers"). Constant `0` needs an injection control before Task 3a uses it.
+  `site-characterization-probe-control.mjs` already proves three such fields live. Name which.
+
+## Task 1: Inventory of existing findings, and a cost estimate
+
+**Files:** create `documents/site-wide-audit-2026-10.md` with its header, the row schema, and a
+**Sources** table.
+
+**Interfaces:** produces the Sources table that Task 2 dispatches from, with one row per source:
+path, tree, line count, finding count, and whether it is already superseded.
+
+- [ ] **Step 1: enumerate, don't pick.** List `documents/` on `production` and on #1491's branch
+  (`git ls-tree -r --name-only <ref> -- documents/`). Classify every file as audit/findings, plan
+  with a findings section ("Found while executing…", "What is left"), architecture/conventions,
+  or closed. Do not filter by filename: `nr-pagefind-parity-2026-08-15.md` and
+  `nr-print-view-fix-2026-08-10.md` hold findings and their names contain no "audit".
+- [ ] **Step 2: divergent copies.** For `site-wide-audit-2026-06-27.md`, take its blob on every
+  local and remote branch, group by blob, and for each blob that differs from both `production`'s
+  and #1491's, list the sections it adds (`git diff production:<f> <branch>:<f> | grep '^+#'`).
+  `cross-branch-consolidation-2026-09-18.md` Step 2 is the method. Its union merged as #1500
+  (`ab3379dc8b`, 2026-09-21). Branches holding a distinct blob on 2026-10-17 included
+  `feature-upgrade-hugo`, `content-pesticides`, `RMZ-feature-update`, `feature-base-control-provenance`
+  and `build-to-dev-stage`; most are probably older, not ahead. Show which.
+- [ ] **Step 3: count findings per source.** Count finding headings (`^### ` under a findings
+  section) plus list items in "open items" sections. Record the denominator per document, so Task 2
+  can reconcile against it.
+- [ ] **Step 4: estimate and stop.** State the Task 2 dispatch: N subagents, which documents each
+  takes, model Sonnet, and the approximate total finding count. **Stop and report for D5.**
+
+## Task 2: Compile and re-verify existing findings
+
+**Files:** modify `documents/site-wide-audit-2026-10.md`: a **Carried forward** table of `A-` rows.
+
+**Interfaces:** consumes the Sources table (Task 1). Produces `A-` rows. Rows needing a browser are
+marked `UNVERIFIED (runtime)` and handed to Task 5.
+
+- [ ] **Step 1:** dispatch per D5. Each subagent gets: its source documents, the tree each finding
+  is checked on (D1), the row schema, Global Constraints, and the instruction to return one row per
+  finding, **including findings already marked FIXED in the source**, re-checked.
+- [ ] **Step 2: reconcile counts.** Rows returned per source must equal Task 1 Step 3's count; a
+  difference is named, never absorbed (global `CLAUDE.md`, "A loop that skips what it cannot
+  process must reconcile its own count").
+- [ ] **Step 3: spot-check.** The orchestrating session re-runs the command of **every** FIXED,
+  OBSOLETE and BRANCH-SCOPED row (they foreclose) and of 3 random OPEN rows per source. Any
+  disagreement sends that whole source back.
+- [ ] **Step 4: deduplicate.** The same defect recorded in two sources becomes one row whose
+  Source names both. Check claim by claim, not by section title.
+
+## Task 3: Instrument pass on both trees
+
+**Files:** modify `documents/site-wide-audit-2026-10.md`: an **Instrument results** section, plus
+`N-` rows for anything new. Create `scripts/site-a11y-audit.mjs` (D3).
+
+**Interfaces:** consumes Task 0's field list. Produces `N-` rows with Evidence `CONFIRMED (runtime)`
+from the instrument output, and a list of instrument-reported items that Task 2 already holds
+(those update the `A-` row's evidence rather than creating a new row).
+
+- [ ] **Step 3a, census, `production`:** fresh capture on an isolated `prod_prod`, not the committed
+  baseline, which predates the latest merges. `isolated-server.mjs` has no CLI, so write a probe
+  `scripts/.sc-rebaseline/census-capture.mjs` copying `scripts/characterize-env.mjs`'s sequence:
+  `startServer("prod_prod")` → `npx -y pagefind --site <destDir>` → spawn
+  `node scripts/site-characterization.mjs --all --out <tmp>` with `DE_BASE_URL=<baseURL>` and
+  `DE_SERVER_OWNED=1` → `stop()` in a `finally`. Aggregate each Task 0 field across pages, by
+  template kind. Expected: at least one page with `landmarks.h1 = 0`, since the committed
+  `_home.json` has one.
+- [ ] **Step 3a, census, #1491:** the same capture on #1491's worktree, NR pages only (path prefix
+  `neighborhood-reports/`).
+- [ ] **Step 3b (D3):** build and run `scripts/site-a11y-audit.mjs` on `production`. Its
+  positive control must fire before any zero is reported.
+- [ ] **Step 3c:** `node scripts/smoke-env.mjs prod_prod` on both trees, saved with
+  `> <file> 2>&1`, then `tail`. Record failures that survive the sequential re-check.
+- [ ] **Step 3d:** `npm run a11y:nr` on #1491's worktree; read `wcag.incompleteIds` as well as
+  `wcag.violations`.
+- [ ] **Step 3e:** `npm run lint` and `npm run docs-check` on both trees; `npm audit --omit=dev` and
+  the Dependabot and CodeQL counts on `production`.
+
+## Task 4: Judgment pass, by area
+
+**Files:** modify `documents/site-wide-audit-2026-10.md`: a **Candidates** section. Candidates
+are not findings.
+
+**Interfaces:** consumes Tasks 2 and 3, so subagents are told what is already recorded and don't
+re-find it. Produces candidates with: claim, `path` + symbol, and a proposed reproduction (command
+or browser steps). Model and effort per D4.
+
+Areas, one subagent each (tree per D1):
+
+| | Area | Scope | Tree |
+|---|---|---|---|
+| a | Site shell | `head.html`, `baseof.html`, header/footer partials, `search-modal.html`, `lib-*` partials | `production` |
+| b | Data explorer | `assets/js/data-explorer/`, `themes/dohmh/layouts/data-explorer/` | `production` |
+| c | Neighborhood Reports | `assets/js/nr-report/`, NR layouts, `_content.gotmpl` | #1491 |
+| d | Data features, stories, shortcodes | `themes/dohmh/layouts/data-features/`, `data-stories/`, `shortcodes/`, `content/**/*.js` | `production` |
+| e | SCSS | `assets/scss/` | `production` |
+| f | Build, CI, config | `.github/workflows/`, `config/`, `package.json` (skill `hardening-github-actions`) | `production` |
+| g | Performance | per-template asset weight and blocking scripts (skill `reviewing-web-performance`); census `assets` lists as input | `production` |
+| h | SEO and analytics | metas, JSON-LD, `gtag` events; `de-analytics-audit-2026-10-16.md` is prior work | `production` |
+
+- [ ] **Step 1:** dispatch. If Task 0 found `/code-review <path>` usable, an area may use it as one
+  input; its output is still candidates.
+- [ ] Each dispatch: `model: opus`, `effort: high` (D4). The paired Fable run on area e is deferred (D4).
+
+## Task 5: Verify every candidate
+
+**Files:** modify `documents/site-wide-audit-2026-10.md`: candidates become `N-` rows or move to a
+**Disconfirmed** section, with what was run. `nr-accessibility-audit-2026-08-10.md` §4 is the form.
+
+**Interfaces:** consumes Task 4's candidates and Task 2's `UNVERIFIED (runtime)` rows.
+
+- [ ] **Step 1:** runtime candidates are verified in Playwright on an isolated server; static ones by
+  the command that shows them. One failed reproduction is a DISCONFIRMED row, not a retry with a
+  second theory (project `CLAUDE.md`: "After one failed fix attempt, stop and gather runtime evidence").
+- [ ] **Step 2:** record per area: candidates in, confirmed, disconfirmed. If D4's deferred Fable
+  run is brought forward, this ratio is what it compares.
+
+## Task 6: Prioritize and write up
+
+**Files:** modify `documents/site-wide-audit-2026-10.md`: priority on every OPEN row, a summary at
+the top, and a roadmap grouped into independently mergeable batches.
+
+- [ ] **Step 1:** priority on a stated axis. P1 = visitors see breakage or wrong data, or a WCAG A/AA
+  failure on a public page. P2 = a defect with a workaround, or a maintenance cost with a measured
+  instance. P3 = hygiene. Superlatives ("biggest", "highest-leverage") only beside the comparison
+  that earns them.
+- [ ] **Step 2:** the summary counts rows by status and priority from the table, by script, not by hand.
+
+## Task 7: Point the old audits and `CLAUDE.md` at the new one; PR
+
+**Files:** modify the first lines of each source document Task 1 classified as an audit, on
+`production` (one line: "Superseded for status by `site-wide-audit-2026-10.md`; kept as a dated
+record"); modify `CLAUDE.md` §Audit documents.
+
+- [ ] **Step 1:** add the pointers. NR-branch documents get theirs when #1491 merges. Record that
+  as a follow-up row, not as done.
+- [ ] **Step 2:** `npm run docs-check`; expect PASS.
+- [ ] **Step 3:** run `reconcile-records` over memory entries that cite the old audits' status.
+- [ ] **Step 4:** PR into `production`.
