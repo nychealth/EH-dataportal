@@ -28,7 +28,7 @@ path-target form can review a directory wholesale is unverified, and Task 0 chec
 |---|---|---|---|---|
 | 0 | Evidence: `/code-review` path target, and the census fields | *no commit* (read-only probes) | **DONE 2026-10-17** | **Step 2: outcome (ii), so `/code-review` is not used in Task 4** `[verified 2026-10-17: code-review skill, args "low scripts/site-urls.mjs", run in the clean NR worktree rather than the audit worktree (both clean; the file is the same on both); it ran git diff @{upstream}...HEAD and git diff HEAD restricted to the path, both empty, and returned "no changes to review"]`. The path target narrows a diff and does not review a file. **Step 3** `[verified 2026-10-17: census_power.py, one Python walk over the 924 records in scripts/site-characterization-baseline/prod_prod/, captured at gitHead 28c635d944, 14 commits behind production b8f4b32fbd]`. Pages hit per field: `headingJumps>0` 920 · `landmarks.h1==0` 3 · `h1>1` 257 · `img.missingAlt>0` 215 · `img.zeroSize>0` 262 · `links.emptyHref>0` 924 · `links.noAccessibleText>0` 20 · `controls.noAccessibleName>0` 55 · `tables` without `th` 1 · `overflowX` 558 · iframe `zeroSize` 7 (23 same-origin iframes, 9 Datawrapper). Constant across all 924: `landmarks.main==0` false (constant non-zero, live by sign), `meta.description` true (same), `jsonld.parseError` false (constant zero; its probe fired under injection in `site-characterization-plan-2026-08-23.md`, 11 of 11 probes). **Two fields carry a site-shell floor and must be read above it, not as counts:** `emptyHref` is 29 on 603 pages and never below 29; `headingJumps` is 1 on 639 pages. Task 3a reports each field per template, minus the shell floor. Correction to this probe: its first iframe predicate tested a `height` key the records lack (they carry `host`, `zeroSize`), so it counted pages with any iframe (53); fixed before recording |
 | 1 | Inventory of existing findings, and a cost estimate | *not yet committed* — `site-wide-audit-2026-10.md` Sources | **DONE 2026-10-17**; stopped for D5 | `[verified 2026-10-17]` Step 1: `doc_inventory.py` over `git ls-tree` on both refs: 48 files (33 on `production`, all on #1491 too; `js-conventions.md` differs between them; 15 NR-only). Classified into 7 groups (Sources table) and a left-out list with reasons. Step 2: `audit_copies.py`: 123 refs, 10 blobs; 7 non-production blobs are in `production`'s own file history; the 2 `-backup` branch blobs read in full, nothing `production` lacks. Step 3: regex unit counts per source (upper bound, 721 over the 28 sources counted; inflated by plan ledger rows), so each group reconciles against its scope column instead. `consolidated-improvements-2026-04-18.md` is referenced by no other document (`git grep '04-18'`, empty; control `04-19` hits the deep audit), so it is in G3. Correction: the plan's Why paragraph gave 2761 lines on `production`, read from the stale `production` worktree; fixed in place |
-| 2 | Compile and re-verify existing findings | — | Not started | — |
+| 2 | Compile and re-verify existing findings | — | **In progress** — Step 1 dispatched 2026-10-17: 7 Sonnet subagents, G1–G7, briefs as in Appendix A. Their results go only to the session that dispatched them, so a group counts as landed only once its rows are committed under its heading in `site-wide-audit-2026-10.md` "Carried forward". Steps 2–4 not started | — |
 | 3 | Instrument pass on both trees | — | Not started | — |
 | 4 | Judgment pass, by area | — | Not started | — |
 | 5 | Verify every candidate | — | Not started | — |
@@ -45,13 +45,25 @@ Environment state:
   modifications, and its `documents/` holds 16 files against 33 in HEAD `[verified 2026-10-17]`.
   Nobody in this plan owns that state, so leave it alone and read `production` through `git show production:<path>`.
 
+- Probe scripts from Tasks 0–1 (`census_power.py`, `doc_inventory.py`, `audit_copies.py`) are in
+  the gitignored `scripts/.sc-rebaseline/audit-2026-10/` of this branch's worktree, which exists on
+  this machine only. Each takes the path it reads as `argv[1]`: the baseline directory, or the
+  worktree root.
+
 Resume commands:
 
 ```
 git log --oneline production..documentation-site-wide-audit-2026-10   # the task commits
 git rev-list --left-right --count origin/documentation-site-wide-audit-2026-10...HEAD   # 0 0 = pushed
 gh pr view 1491 --json state,mergedAt     # if MERGED, D1's split collapses: see D1
+grep -n '^### G[1-7]' documents/site-wide-audit-2026-10.md   # which Task 2 groups have landed
 ```
+
+**Resuming Task 2 in a new session:** any group G1–G7 with no `### G<n>` heading under "Carried
+forward" did not land. Re-dispatch exactly those groups with Appendix A: `general-purpose`
+agent, `model: sonnet`, `run_in_background: true`, the common brief plus that group's scope.
+For each group that returns, paste its table and reconciliation under `### G<n> — <scope>` marked
+"spot-check pending", and commit. Then run Steps 2–4 over all seven.
 
 ## Decisions
 
@@ -272,3 +284,68 @@ record"); modify `CLAUDE.md` §Audit documents.
 - [ ] **Step 2:** `npm run docs-check`; expect PASS.
 - [ ] **Step 3:** run `reconcile-records` over memory entries that cite the old audits' status.
 - [ ] **Step 4:** PR into `production`.
+
+---
+
+## Appendix A: Task 2 dispatch brief
+
+Dispatched 2026-10-17 as seven prompts, each this common brief with `<G>` replaced by the group
+id, plus the group's scope and tree note below. Re-dispatch a group with the same text. If the
+trees have moved, update the two hashes first (`git rev-parse production feature-MOD-Lab-NR-recode-refactor-merge`).
+
+### Common brief
+
+> You are re-verifying findings from existing documents against today's code, for a new compiled
+> audit. You are READ-ONLY: do not edit, create or delete any file in either repository, do not
+> commit, and do not start Hugo or any server. You may run git, gh (read-only queries), and
+> read/grep files. Write throwaway scripts only under `C:/Users/Chris/AppData/Local/Temp/claude/audit-<G>/`.
+>
+> **Trees.** production code: worktree
+> `C:/Users/Chris/Documents/DOHMH/Programming/EH-dataportal.worktrees/documentation-site-wide-audit-2026-10`
+> (its code equals `production` @ `b8f4b32fbd`; only `documents/` differ); record as
+> `production @ b8f4b32fbd`. #1491 (Neighborhood Reports branch): worktree
+> `C:/Users/Chris/Documents/DOHMH/Programming/EH-dataportal.worktrees/feature-MOD-Lab-NR-recode-refactor-merge`
+> @ `d1c7402735`; record as `#1491 @ d1c7402735`. Findings about Neighborhood Reports (report page,
+> NR index pages, `assets/js/nr-report/`, NR layouts, `nr-*.html` partials) are checked on #1491;
+> everything else on production. Use `git -C <worktree> …` or `git grep <pattern> <ref> -- <path>`.
+>
+> **Row schema** — return a markdown table `| ID | Source | Claim | Status | Evidence | Tree |`.
+> ID `<G>-01`…; Source = document + section; Claim = one sentence, what is wrong and where (`path` +
+> symbol, line only as a hint); Status = OPEN · FIXED · OBSOLETE (the code it describes is gone) ·
+> BRANCH-SCOPED · DISCONFIRMED (G6 only) · UNVERIFIED (runtime) · UNVERIFIED (other, say why);
+> a deferral by decision is OPEN with Evidence beginning "deferred by decision: <where>";
+> Evidence = `[verified 2026-10-17: <exact command>; result: <what came back>; control: <command that hits> → <result>]`.
+> ONE ROW PER FINDING, including findings the source marks FIXED — re-check those too.
+>
+> **Verification rules.** (1) FIXED, OBSOLETE and BRANCH-SCOPED need a POSITIVE CONTROL: a grep
+> returning nothing today proves nothing unless the same pattern HITS on the tree where the finding
+> was written (`git log -S'<string>' --oneline -- <path>`, or `git rev-list -1 --before=<doc date> <branch>`,
+> then `git grep -n '<pattern>' <commit> -- <path>`). No control → UNVERIFIED (other). (2) OPEN
+> needs the hit that shows it is still there, with the command. (3) Runtime claims (CSS, DOM,
+> layout, console errors, timing, rendering, search index, CI behaviour) → `UNVERIFIED (runtime)`
+> with the static facts checked plus a one-line reproduction recipe; FIXED only if the cause is
+> visibly removed in code, shown with a control. When a fix commit is named,
+> `git merge-base --is-ancestor <hash> <ref>` plus the code showing the fix is good evidence.
+> (4) Code comments are not evidence of behaviour; a grep hit proves a string exists, not that it
+> runs — show the caller when that matters. Cascading attributes (`aria-hidden`,
+> `data-pagefind-ignore`) need the full ancestor chain. (5) Describe code, not people. (6) Search
+> distinctive stems and check for renamed equivalents; line-oriented grep misses multi-line tags;
+> say so when a search could have missed a variant. (7) Windows/Git Bash: no per-file process loops
+> over many files — one `git grep` or one Python pass; don't print whole large files.
+>
+> **Return** (1) the table; (2) a reconciliation block: every section, item or row in scope with
+> the row IDs it produced ("no finding: <why>" otherwise), totals per document, anything merged or
+> skipped with the reason; (3) duplicates noticed with other documents (don't go looking).
+> Minimal prose outside those parts.
+
+### Group scopes
+
+| Group | Scope added to the brief |
+|---|---|
+| G1 | `site-wide-audit-2026-06-27.md` §1–§10 inclusive, all subsections (§3a, §4a–4c, §5a–5k, §10a); one row per distinct defect |
+| G2 | `site-wide-audit-2026-06-27.md`: every row of the §11 table, and every finding in §12–§21 (§13 roadmap items only if they name a concrete defect) |
+| G3 | `data-explorer-fresh-audit-2026-07-13.md` (every tier item, follow-up and "Pending integration"); `data-explorer-deep-audit-2026-06-27.md` (every finding and FIXED claim, including its §1 status table, which stands in for the 04-17 and 04-19 lists); `consolidated-improvements-2026-04-18.md` (all 20 items). Tree note: the new explorer reached production via #1462 on 2026-10-16; these were written against `feature-new-data-explorer`. Won't-do decisions are OPEN with "won't-do by decision" or OBSOLETE if the code is gone |
+| G4 | `de-pre-ship-review-2026-10-02.md` (every numbered finding; its status trail is `de-production-deploy-plan-2026-10-01.md` "Review findings" and `site-wide-audit-2026-06-27.md` §21); `de-analytics-audit-2026-10-16.md` (Findings 1–6, "Unexplained, recorded only", "D19 item 3, corrected" if it states a defect); `de-chart-width-findings-2026-10-15.md`. The review's tree is `feature-new-data-explorer @ c15317c74b`, which is the control tree. Recipes as `/data-explorer/<topic>/?id=<n>` + steps |
+| G5 | `audit-backlog-production-2026-08-20.md` three "Found while executing…" sections only; `cross-branch-consolidation-2026-09-18.md` "What is left" item 2; `site-characterization-plan-2026-08-23.md` findings sections under Tasks 1–7 not marked fixed, plus Task 16; "What is NOT known"/"Deferred" in `smoke-workflow-plan-2026-08-26.md`, "Deferred" in `smoke-env-plan-2026-08-26.md` and `section-header-standardization-2026-09-24.md`; `nr-de-merge-integration-plan-2026-08-15.md` "Open follow-ups after this plan closed" only. CI reads: `gh run list --workflow <file> --limit 5 --json conclusion,headSha,createdAt` |
+| G6 | Read from #1491: `nr-accessibility-audit-2026-08-10.md` §2 (2.1–2.4), §3 site-shell defects (checked on both trees), §4 disconfirmed (kept DISCONFIRMED unless the code changed), §5–§6 for what was claimed fixed; `nr-print-view-fix-2026-08-10.md`. Name the `npm run a11y:nr` rule or probe that would re-run each runtime row |
+| G7 | Read from #1491: `nr-pagefind-parity-2026-08-15.md` §2; `nr-followups-2026-08-15.md` open ledger rows and risks; `nr-merge-production-2026-09-01.md`, `-09-26.md`, `-10-16.md` open ledger rows and "Follow-ups"; `nr-output-option-d-execution-plan-2026-08-06.md` "Findings that the scoping memos do not record"; `nr-output-retirement-scoping-2026-08-04.md` "Two bugs the capture surfaced"; `nr-topic-index-picker-restore-2026-08-09.md` §5. `npm run characterize:pagefind` is the instrument for index claims |
