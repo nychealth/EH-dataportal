@@ -1542,7 +1542,7 @@ Resolved at Task 5 (first batch, the candidates above logged before Task 4): C-S
 C-S3-2 → N-020, C-S4-1 → N-021, C-T3-2 → N-022 and N-023 plus its six
 `js/functionality-from-untrusted-source` alerts, which are the external `<script>` tags of A-014
 and A-046 (proj4, rawgit OpenLayers, PapaParse on email-electeds and both rats templates);
-C-S3-3 and C-T3-1 → Disconfirmed. C-T3-3 stays open: which images are zero-size needs a browser.
+C-S3-3 and C-T3-1 → Disconfirmed. C-T3-3 → Disconfirmed after a browser probe (Task 5's second step).
 
 Found in passing during Task 2 Step 3, before Task 4 started. All three are static readings at P.
 - **C-S3-1: two nyc-lib stylesheets of different versions on every `mapLib` page.** Inside
@@ -1629,3 +1629,12 @@ N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them
   `git grep -i IN_PLACE` over `assets`, `themes`, `content` and `static` finds nothing, where the
   same tree holds 16 `DOMPurify.sanitize` calls. The lockfile does pin `3.4.12`, inside both
   ranges, so the Dependabot alert stays open until the dependency is bumped.
+- **C-T3-3 (`img.zeroSize` on explorer topic and key-topic pages) as broken images.** Every
+  zero-size image the census counts sits inside a collapsed container and has loaded. On the
+  explorer pages the two are the NYC logo and the site icon inside `header#global-header.collapse`;
+  on key-topic pages they are data-story card thumbnails inside `div#collapseStories.collapse`.
+  All report `complete` and a non-zero `naturalWidth` `[verified 2026-10-17: Playwright at
+  1280x900 on an isolated prod_prod build of P, 2s settle, five pages (`about/`, two explorer
+  topics, two key topics); control: with the two Google Translate images set aside (third-party,
+  injected at runtime, and absent from the census's `img.total`), the probe reproduces the census
+  P record's `zeroSize` on all five pages, 0/2/2/8/1, including the unflagged `about/`]`.
