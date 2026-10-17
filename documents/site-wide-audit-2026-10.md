@@ -75,9 +75,9 @@ from production's copy, read in full]`.
 
 Each group below is a subagent's return, pasted verbatim apart from formatting: table,
 reconciliation, duplicates. All seven groups have been spot-checked (plan Task 2 Step 3, the
-paragraphs below). IDs are per group (`G4-01`…); stable `A-` IDs are assigned at
-deduplication (Step 4). Where a group's reconciliation tallies disagree with its table, the table
-is authoritative.
+paragraphs below). Their IDs are per group (`G4-01`…). The deduplicated `A-` rows (Step 4)
+come first, and the group tables after them remain the evidence record each `A-` row points at.
+Where a group's reconciliation tallies disagree with its table, the table is authoritative.
 
 **Step 3 spot-check, foreclosing rows of G4–G7: 74 of 74 confirmed** `[verified 2026-10-17:
 spotcheck.py over checks-g4-g7.tsv (both in the audit worktree's gitignored
@@ -139,6 +139,485 @@ commits touch `nr-report.html`, `section.html`, `nr-leaflet.html`, `nr-architect
 ledger and the Pagefind baseline, and rename `map.js`'s four Leaflet helpers to `reportMap*`.
 Rows labelled `#1491 @ d1c7402735` were read from files at `00737207cb`. G6 says it diffed the
 four commits and none reverts cited code.
+
+### Deduplicated rows (`A-`)
+
+Plan Task 2 Step 4. The 512 G rows below become 402 `A-` rows: 90 merged rows hold 200 G rows,
+311 rows have one member, one row (A-273) is half of a split, and one G row is absorbed (below).
+These IDs are stable from here. Task 6 adds the Priority column, and new findings take `N-` IDs
+`[verified 2026-10-17: build_a_rows.py over clusters.tsv, both in the audit worktree's gitignored
+scripts/.sc-rebaseline/audit-2026-10/. It exits 1 on an unknown G ID, a row named both whole and
+split, or a G row placed nowhere, and it reads placement back off the finished table. Control: a
+spec adding a cluster of G9-01 and the whole of the split G1-76 exits 1 naming both errors]`.
+
+How to read a row:
+- **Rows** lists the member G rows. Each one names its source document and section and holds the
+  evidence stamp.
+- **Evidence** reads `row` or `rows` where the stamps are in those G rows. A stamp in the cell
+  means the merge itself checked something.
+- **Claim:** a one-member row carries its G claim verbatim. A merged row's claim was rewritten to
+  state every member's claim. Every line number in this table was re-derived at P or N on
+  2026-10-17 (`line_refs.py` lists the rows citing one), except A-394's, which are the stale
+  citation that row is about. Other rows name a path and a symbol.
+- Rows are ordered by their lowest member ID, so related merged rows are not always adjacent.
+- `G6-24:F3` marks one part of a G row split across two `A-` rows. Four were split: G1-76 (A-075
+  pre-commit hook, A-076 `innerHTML`), G2-02 (A-077 pinning, A-078 permissions), G3-126 (A-205
+  consolidation, A-273 no-op history, as its Step 3 note says) and G6-24 (A-064 role, A-065
+  Escape).
+
+Status totals: OPEN 151, FIXED 188, UNVERIFIED 37, OBSOLETE 10, DISCONFIRMED 10, BRANCH-SCOPED 6.
+Two of the OPEN rows read OPEN (declined): CSS minification (A-007) and the single script bundle
+(A-237). The user declined both. They stay listed so that neither is proposed again.
+
+Where members disagreed, the merge settled it:
+- **A-021 (georaster alerts): G1-22 holds.** G2-21's lockfile walk followed `dependencies` only,
+  and the one edge from georaster to webpack is `worker-loader`'s peer dependency. With peer edges
+  included, all four alerted packages reach only georaster and its two siblings (stamp in the row).
+- A-128 (`.lang-select`): DISCONFIRMED by trace. The two handlers share no effect.
+- flexdatalist: A-064 (combobox role) is FIXED by trace at every call site. A-065 (Escape) is
+  UNVERIFIED (runtime), because the fix depends on timing. A-133 (accessible name) is OPEN at
+  indicator-catalog and hvi on both trees and at production's NR landing pages; #1491's NR picker
+  is named. G6-24's FIXED covered the wiring only.
+- A-077 and A-078: pinning is FIXED. The open part of G2-02 is `check-deploy.yml`'s missing
+  `permissions:`.
+- A-134 (NR picker inside `aria-hidden`): BRANCH-SCOPED, from G2-60's UNVERIFIED, G5-11's
+  BRANCH-SCOPED and G6-01's FIXED.
+- A-152, A-153, A-154, A-158, A-159, A-163: G2 held these §21 rows UNVERIFIED for want of a run. G4
+  traced each call graph, so they are OPEN on trace, and the runtime recipes in the G rows go to
+  Task 5. A-154 drops G2-81's "never reset", which G2 itself found false.
+- A-125: G5-01's lines hold. G2-50's were off by one at each end.
+- A-341: as the "Conflict G6-05 against G7-15" paragraph above says.
+- A-042: G1-43 said OBSOLETE and G7-31 said FIXED for the same removal. The row says FIXED.
+
+Related rows kept apart because their claims differ:
+- A-088 (non-`prod_prod` builds send to the dev GA property), A-101 (the production property is
+  gated to `prod_prod`) and A-123 (the documented bare `hugo` build gets `noindex` and the dev
+  property) all describe one block of `head.html`.
+- A-046 (OpenLayers loaded from `cdn.rawgit.com`) and A-047 (so those maps are broken; unverified).
+- A-029 (`takeaction.html`'s leading-digit ids) and A-105 (the duplicate ids, fixed).
+- A-027 (debug scaffolding that may ship) names `g-dev-tools.scss` among four files; A-066 is that
+  import alone.
+- A-188 (notes rendering consolidated, FIXED) and A-279 (`innerHTML +=` for notes, 311 links and
+  lists, OPEN). A-201 and A-275 likewise for the renderer rebuild and the renderer map, and A-259
+  and A-280 for the duplicated mobile/desktop ids and the duplicated control groups.
+- A-012 (inline JS across ~66 layouts) and A-281 (inline handlers in the explorer's partials).
+- A-296 (`header-de.html:57`) and A-355 (`header.html:75`): unnamed logo links in two headers.
+- A-301 and A-303: two analytics defects closed by one commit.
+- A-223 (the orphaned `/search-results/` page) and A-165 (a comment that still describes it).
+
+Absorbed, with no `A-` row: G5-43. Its claim is that the audit-backlog's "found while executing"
+sections duplicate site-wide §15, and Step 4 merged each of them (G5-01..09) with its G2 §15 row.
+
+Neighborhood Reports rows are checked on #1491 (D1), so a FIXED NR row describes #1491.
+Production's NR pages keep the old defects until #1491 merges. For example, G6-09's dangling
+`aria-labelledby="CCDModalLabel"` is still at production `neighborhood-reports/section.html:97`,
+the name's only occurrence `[verified 2026-10-17: git grep -n CCDModalLabel b8f4b32fbd -- themes
+content]`. Rows whose members recorded both trees say BRANCH-SCOPED.
+
+| ID | Rows | Claim | Status | Evidence | Tree |
+|---|---|---|---|---|---|
+| A-001 | G1-01, G2-43, G3-56 | The retired explorer (`assets/js/data-explorer-old/`, `themes/dohmh/layouts/data-explorer-old/`, `content/data-explorer-old/`) is still built and served; deletion waits on comparative user testing. | OPEN | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-002 | G1-02, G2-44 | Versioned partial and shortcode pairs remain (`featured-data(-2)`, `vega`/`vega0`, `nyccas_pollutant_trends(_new)`, `nr-indicator-new/old`, `related-footer(-old)`); no sweep of the `*-old`/`*-new`/`*-2` pairs has run. | OPEN | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-003 | G1-03 | A family of `related*` partials (doc says "eight"; it lists `related` twice) exists. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-004 | G1-04 | Three header partials (`header`, `header-de`, `header-ds`) and two overlap-tool partials (`overlap-tool`, `overlap-tool-with-map`) exist. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-005 | G1-05 | `head.html` loaded ~20 render-blocking library `<script>` tags with no defer/async. | FIXED | row | production @ b8f4b32fbd |
+| A-006 | G1-06, G2-04, G3-30 | `head.html` shipped Font Awesome twice, as CSS plus webfonts and as the render-blocking `all.min.js` SVG injector. | FIXED | rows | production @ b8f4b32fbd |
+| A-007 | G1-07, G2-05, G3-31 | No CSS minification: `head.html` pipes `toCSS` to `resources.Fingerprint` with no `minify`. Adding it was built and declined by the user 2026-07-14. | OPEN (declined) | rows | production @ b8f4b32fbd |
+| A-008 | G1-08, G1-09, G2-06, G3-32 | `head.html` emitted the favicon `<link>` twice and loaded nyc-lib CSS both conditionally and unconditionally. (The two nyc-lib versions inside the gate are candidate C-S3-1, not this row.) | FIXED | rows | production @ b8f4b32fbd |
+| A-009 | G1-10, G2-10, G3-33 | The Font Awesome webfont `range` loop in `head.html` was called dead (retracted: it publishes the webfonts), then found to publish only through an incidental `.RelPermalink` read; it now calls `.Publish`. | FIXED | rows | production @ b8f4b32fbd |
+| A-010 | G1-11, G3-68 | `head.html` gated the shared libraries behind one `if or (eq .Kind "page") …` block, so a page's dependencies were not visible in its own template. | FIXED | rows | production @ b8f4b32fbd |
+| A-011 | G1-12, G3-69 | Two templates built the same `js/dataTableBundle.js` `resources.Concat` target, so Hugo served whichever it cached first. | FIXED | rows | production @ b8f4b32fbd |
+| A-012 | G1-13 | ~66 of 136 layouts carry inline behavioural JS (not lintable, not CSP-friendly). | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-013 | G1-14, G2-01, G3-14 | `head.html` loaded the Leaflet point-in-polygon plugin from `cdn.rawgit.com` (shut down 2019). | FIXED | rows | production @ b8f4b32fbd |
+| A-014 | G1-15 | External scripts without SRI: the rawgit OpenLayers tags and Google Translate. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-015 | G1-16 | Bootstrap 4.3.1 is EOL and the site is pinned to BS4 + a vendored SCSS fork. | OPEN | row | production @ b8f4b32fbd |
+| A-016 | G1-17, G3-12 | `ci` (`^2.3.0`) was an unused dependency in `package.json`. | FIXED | rows | production @ b8f4b32fbd |
+| A-017 | G1-18 | Audit `@mapbox/leaflet-pip`, `qrcode-generator`, `jquery-flexdatalist` for use; (also: georaster/geoblaze confirmed in use). | OBSOLETE | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-018 | G1-19 | "No npm audit/Dependabot ... 8 open alerts": Dependabot is on; open-alert count and groups. | OPEN | row | production @ b8f4b32fbd |
+| A-019 | G1-20, G2-22 | The critical `decompress` alert is transitive under `hugo-extended`; CI installs Hugo through the setup action and never uses this package, so it is not in the production build path. | OPEN | rows | production @ b8f4b32fbd |
+| A-020 | G1-21, G2-23 | The HIGH vega / vega-functions / vega-expression alerts ship via `lib-vega.html`; the rows argue them unreachable because the explorer's only `expr` fields are static. | OPEN | rows | production @ b8f4b32fbd |
+| A-021 | G1-22, G2-21 | The serialize-javascript, micromatch, elliptic and braces alerts are all reachable only through `georaster@1.6.0` (also `geoblaze`, `georaster-layer-for-leaflet`), which heatstory loads: `georaster > worker-loader > webpack (peer) > …`. | OPEN | [verified 2026-10-17: Python walk of `package-lock.json` at P up from each alerted package to the root dependencies, over `dependencies`, `optionalDependencies` and `peerDependencies`: all four reach only georaster, geoblaze and georaster-layer-for-leaflet, e.g. `georaster > worker-loader > webpack > terser-webpack-plugin > serialize-javascript`. `node_modules/worker-loader` lists `webpack` under `peerDependencies` only. G2-21's walk followed `dependencies` alone and so found 0, which is why its attribution "does not reproduce". Alert counts: G1-19] | production @ b8f4b32fbd |
+| A-022 | G1-23 | Mobile and desktop nav are fully duplicated in header.html (incl. the `$want_menus` loop). | OPEN | row | production @ b8f4b32fbd |
+| A-023 | G1-24, G2-09 | `header.html` nav put `<a><li>` inside `<ul>`. | FIXED | rows | production @ b8f4b32fbd |
+| A-024 | G1-25, G2-08 | The site-title `<a>` in `header.html` crossed two `<span>`s. | FIXED | rows | production @ b8f4b32fbd |
+| A-025 | G1-26, G2-07 | Search links in `header.html` carried both `data-toggle="modal"` and `data-toggle="collapse"`. | FIXED | rows | production @ b8f4b32fbd |
+| A-026 | G1-27 | The same three defects persist in `header-de.html` (the explorer header): `<a><li>` x6, title anchor crossing spans (lines 59-60), duplicate `data-toggle` x3. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-027 | G1-28 | `console-log.html`, `warn_counter.html`, `temp-popup.html` and `g-dev-tools.scss` suggest debug scaffolding that may ship. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-028 | G1-29, G2-18, G6-22 | `#skip-header-target` was declared on `<main>` and again on ~20 templates' `<article>`. | FIXED | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-029 | G1-30 | `takeaction.html` is shared by both explorers so its `id="311"`/`id="311label"` (leading-digit ids, invalid CSS selectors) cannot move. | OPEN | row | production @ b8f4b32fbd |
+| A-030 | G1-31 | takeaction's hidden `d-none` copy contributes nothing to Pagefind because its 311 spans are populated client-side. | OPEN | row | production @ b8f4b32fbd |
+| A-031 | G1-32, G3-43 | The explorer calls the Correlate feature `links` in 454 places across 11 files plus three external contracts; the rename to `correlate` is deferred. | OPEN | rows | production @ b8f4b32fbd |
+| A-032 | G1-33, G3-80 | The explorer table defaults to Citywide alone where the old explorer shows Citywide plus Borough (3 against 7 rows on `?id=26`); showing them always via `TABLE_CONTEXT_GEOS` is deferred. | OPEN | rows | production @ b8f4b32fbd |
+| A-033 | G1-34, G2-03 | `click_subscribe` fired twice per click (`main.js` raw `gtag` and `site.js` delegated), with two parameter schemas. | FIXED | rows | production @ b8f4b32fbd |
+| A-034 | G1-35 | Two JS idioms: `main.js` (jQuery ready) and `site.js` (IIFE, delegation); migrate main.js over time. | OPEN | row | production @ b8f4b32fbd |
+| A-035 | G1-36 | Geo crosswalks shipped as JS (`ccd-to-uhf42.js`, `cd-to-uhf42.js`, `uhflist.js`) rather than data. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-036 | G1-37 | `uhflist.js` and `uhflist.json` are different vintages (five ACS percentages differ); resolved 2026-08-05 by keeping the `.js` and deleting the `.json`. | BRANCH-SCOPED | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-037 | G1-38, G3-36 | `uhflist.js` (20 KB) was render-blocking in head on pages that never read it, every explorer page included. | FIXED | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-038 | G1-39 | `topiclanding.html` loaded `uhflist` twice (head plus its own tag). | FIXED | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-039 | G1-40 | Five caller-less NR partials (`nr-clickable-uhf`, `nr-map-highlight`, `nr-chooser`, `nr-indicator-old`, `nr-sub_nav`) plus the "three dead DOMPurify-consuming nr partials". | BRANCH-SCOPED | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-040 | G1-41 | `static/UHF42.csv` and `assets/js/ccd-to-uhf42.json` were kept after their consumers went (served verbatim from static/ or assets, so removal needs traffic evidence). | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-041 | G1-42, G2-70 | The UHF42 boundary comes from two origins: NR map code (`nr-leaflet.html`, and on #1491 `assets/js/nr-report/map.js` via `nr-report.html`'s `geojsonUrl`) fetches the repo copy `static/geojson/UHF42.geojson`, while other consumers fetch EHDP-data's copy. | OPEN | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-042 | G1-43, G7-31 | `nameCorrections` in the NR report JS was dead and blamed the wrong file; it has been removed from both trees. | FIXED | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-043 | G1-44, G2-13 | Datawrapper charts in inactive Bootstrap tab-panes throw SVG-sizing console errors; `lazy-tab-embeds.js` (2026-07-16) is the recorded fix. | UNVERIFIED (runtime) | rows | production @ b8f4b32fbd |
+| A-044 | G1-45, G2-14 | `data-stories/housing` (Spanish page) hides Datawrapper charts in radio-driven inline `display:none` divs, which warn on render. | UNVERIFIED (runtime) | rows | production @ b8f4b32fbd |
+| A-045 | G1-46 | `rats-in-your-neighborhood` calls `area.contains(...)` on an `L.polygon`, which native Leaflet lacks (came from the dead RawGit plugin). | UNVERIFIED (runtime) | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-046 | G1-47 | Three templates still load OpenLayers from dead `cdn.rawgit.com`. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-047 | G1-48 | Those OpenLayers maps are broken in production (unless `nyc-ol-lib.js` supplies `ol`). | UNVERIFIED (runtime) | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-048 | G1-49 | `rats-in-your-neighborhood-nyc-lib.html` is referenced by nothing. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-049 | G1-50 | AirNow widget on `realtime-air-quality` makes a CORS-blocked XHR (vendor iframe, allowlisted). | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-050 | G1-51, G3-62 | `neighborhood-reports/section.html` and the `nr-leaflet` partial both declared `intendedDestinationName` at global scope, a SyntaxError on the NR landing page. | FIXED | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-051 | G1-52, G3-63 | `nr-output` report pages used Arquero (`aq.`) without loading it. | FIXED | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-052 | G1-53 | `/data-explorer/` section page calls `aq.from` (via `de-topic-indicators.html`) with Arquero not loaded. | FIXED | row | production @ b8f4b32fbd |
+| A-053 | G1-54, G5-38 | `data-explorer-old/{section,data-index,indicator-catalog}.html` called `de-topic-indicators` (which uses `aq.`) without `lib-arquero`. | FIXED | rows | production @ b8f4b32fbd |
+| A-054 | G1-55, G7-32 | The header's Google Forms iframe is refused by Google's report-only `frame-ancestors`, logging an error on every page; smoke allowlists it. | UNVERIFIED (runtime) | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 / production @ b8f4b32fbd |
+| A-055 | G1-56 | Two JS convention files contradict on `console.log` format and trailing periods. | FIXED | row | production @ b8f4b32fbd |
+| A-056 | G1-57 | Comment voice (third-person sentence vs imperative fragment) is deliberately unresolved. | UNVERIFIED (other, a style decision with no code predicate to test) | row | production @ b8f4b32fbd |
+| A-057 | G1-58 | `debugLog` is not on every branch. | FIXED | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-058 | G1-59 | `assets/js/nr-topic-spa.js` (945 lines) has no banner, unconditional `console.log`; later split into ten files. | OBSOLETE | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-059 | G1-60 | `global.js` in the DE tree uses two `function` declarations where the conventions prefer named arrows. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-060 | G1-61 | `assets/js/site.js` is empty (0 lines). | BRANCH-SCOPED | row | production @ b8f4b32fbd |
+| A-061 | G1-62 | Throwaway DE->NR merge broke NR report pages via the 404.html NR routing bridge (`L is not defined`). | OBSOLETE | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-062 | G1-63 | The generic `Failed to load resource` smoke allowlist entry hides the cause of blocked-script failures. | OPEN | row | production @ b8f4b32fbd |
+| A-063 | G1-64 | Smoke test failed intermittently on a cache-cold first run (`L`/`DOMPurify` undefined). | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-064 | G1-65, G6-03, G6-24:F3, G7-14 | flexdatalist inputs had combobox ARIA (`aria-expanded`) without `role="combobox"`; `wireComboboxState` in `flexdatalist-combobox-js.html` now sets the role and syncs the state at every call site on both trees. Runtime confirmation (axe) is Task 5's. | FIXED | [verified 2026-10-17 by the members: the partial is included and `wireComboboxState` called at all five production init sites (G7-14) and the three non-NR sites on both trees (G6-24); G1-65 held only the runtime half open] | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-065 | G1-66, G6-19, G6-24:F18 | Escape did not dismiss the flexdatalist list (keyup re-armed a 400 ms search); `wireComboboxState` now records Escape and an observer removes a reappearing list, but whether it holds needs timed sampling in a browser. | UNVERIFIED (runtime) | rows (G6-24's FIXED covered only the wiring) | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-066 | G1-67 | `@import "g-dev-tools.scss"` ships debug styles to production; gate it. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-067 | G1-68 | Two oversized catch-all SCSS files (`__portal-custom.scss` 1317, `_de-custom.scss` 993). | OPEN | row | production @ b8f4b32fbd |
+| A-068 | G1-69 | Bootstrap SCSS forked in-repo (~7K lines); prefer node_modules + variable overrides. | OPEN | row | production @ b8f4b32fbd |
+| A-069 | G1-70 | `!important` and inline `style=` are widespread (blocks strict CSP). | OPEN | row | production @ b8f4b32fbd |
+| A-070 | G1-71 | `package.json` had no `scripts` block (no build/lint/test). | FIXED | row | production @ b8f4b32fbd |
+| A-071 | G1-72 | The repo's ESLint config enables only `no-undef`, so it catches 1 of the 4 named bug shapes; `no-dupe-keys` is off. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-072 | G1-73 | Lint covers only the SPA tree; no formatter, no tests, inline-JS layouts and theme partials unlinted; testing strategy undecided. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-073 | G1-74, G3-64 | `npm run lint` is not run in CI. | OPEN | rows | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-074 | G1-75 | Smoke `PAGES` had no coverage for three of four `data-explorer-old` template kinds. | FIXED | row | production @ b8f4b32fbd |
+| A-075 | G1-76:pre-commit, G3-65 | No pre-commit hook runs lint. | OPEN | rows | production @ b8f4b32fbd |
+| A-076 | G1-76:innerHTML, G3-66, G3-141 | The explorer's ~40 `innerHTML` sinks have not been swept or classified; menus, the chooser and cards build markup from `innerHTML` strings (e.g. `topic-indicator-selector.js`, `311.js`). | OPEN | rows | production @ b8f4b32fbd |
+| A-077 | G1-77, G2-02:pinning | Workflow actions were pinned to mutable tags; every `uses:` now carries a 40-character SHA. | FIXED | rows | production @ b8f4b32fbd |
+| A-078 | G1-78, G2-02:permissions | `check-deploy.yml` has no `permissions:` block; the four build workflows have one, workflow-wide `contents: write` rather than read with per-job write. | OPEN | rows (G2-02 narrowed the open part to `check-deploy.yml`) | production @ b8f4b32fbd |
+| A-079 | G1-79, G2-42 | Build workflows run `npm install` rather than `npm ci`, with no npm cache. | OPEN | rows | production @ b8f4b32fbd |
+| A-080 | G1-80 | The build commits package files back to the repo via a third-party action. | OPEN | row | production @ b8f4b32fbd |
+| A-081 | G1-81, G2-41 | No `.gitattributes` LF rules; the build workflows run `dos2unix` to keep CRLF away from SRI hashes. | OPEN | rows | production @ b8f4b32fbd |
+| A-082 | G1-82 | Four near-duplicate build workflows; extract a `workflow_call` reusable. | OPEN | row | production @ b8f4b32fbd |
+| A-083 | G1-83 | `fetch-depth: 0` clones full history though only the last commit is used. | OPEN | row | production @ b8f4b32fbd |
+| A-084 | G1-84 | Nine `config.toml` files; verify each is a live deploy target and per-env files are thin. | OPEN | row | production @ b8f4b32fbd |
+| A-085 | G1-85 | `ignoreFiles = ['Simplified.Chinese','Spanish']` looks like a leftover that ignores translated content. | OPEN | row | production @ b8f4b32fbd |
+| A-086 | G1-86 | Mixed i18n: Hugo multilingual plus the Google Translate widget with a DOM-mutating SVG-removal hack (also an a11y/SEO weakness). | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-087 | G1-87 | `caches.getresource maxAge = -1` caches remote fetches forever. | OPEN | row | production @ b8f4b32fbd |
+| A-088 | G1-88 | Dev/local builds emit real GA events to the dev property (every env except `prod_prod`). | OPEN | row | production @ b8f4b32fbd |
+| A-089 | G1-89 | The GA snippet is duplicated across the prod and dev branches. | OPEN | row | production @ b8f4b32fbd |
+| A-090 | G1-90 | GA tracking has three competing implementations (guarded `sendAnalyticsEvent`, guarded `trackDataExplorerEvent`, raw `gtag`). | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-091 | G1-91 | `search` is three events: `search`, `search_click`, `click_search_open`. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-092 | G1-92, G2-12, G3-100 | The analytics event was misspelled `click_how_caclulated`. | FIXED | rows | production @ b8f4b32fbd |
+| A-093 | G1-93 | Param casing inconsistent (`IndicatorID` vs snake_case). | OPEN | row | production @ b8f4b32fbd |
+| A-094 | G1-94 | No Consent Mode / cookie-consent gate on GA; disclosure in the NYC privacy policy unconfirmed. | OPEN | row | production @ b8f4b32fbd |
+| A-095 | G1-95, G2-20, G3-42 | Three explorer modals (`#topicSelector`, `#indicatorSelector`, `#learnMore`) pointed `aria-labelledby` at ids that did not exist. | FIXED | rows | production @ b8f4b32fbd |
+| A-096 | G1-96 | A site-wide sweep for dangling `aria-labelledby` is still worth running. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-097 | G1-97 | `href="#"` action links throughout the header should be buttons. | OPEN | row | production @ b8f4b32fbd |
+| A-098 | G1-98 | Recommend axe/Lighthouse in CI over each template type. | OPEN | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-099 | G1-99 | `$primary` #008939 clears AA as text only on pure white (4.53) and fails on tinted backgrounds; fix is `$primary-dark` #007A31 for text. | FIXED | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-100 | G1-100 | Remaining rules that set the green as text were not checked against their backgrounds (`__portal-custom.scss` 201/204/1283 and others). | UNVERIFIED (runtime) | row | production @ b8f4b32fbd; #1491 @ d1c7402735 |
+| A-101 | G2-11 | GA fired in dev/local environments. | FIXED | row | production @ b8f4b32fbd |
+| A-102 | G2-15, G2-25 | Production `robots.txt` had no body and no `Sitemap:` line. | FIXED | rows | production @ b8f4b32fbd |
+| A-103 | G2-16, G2-34 | `<html lang="en" dir="ltr">` was hardcoded in `baseof.html` and `list.html`. | FIXED | rows | production @ b8f4b32fbd |
+| A-104 | G2-17, G2-31 | Data Explorer indicator content is client-rendered (`de-indicator-info.html` server-renders placeholders; values arrive after `metadata.json` loads), so non-JS crawlers see placeholders. | OPEN | rows | production @ b8f4b32fbd |
+| A-105 | G2-19, G3-41 | Explorer pages carried duplicate ids (`#dropdownMenuButton` twice, `#311`/`#311label` twice, `#printTopic`). `takeaction.html:4` keeps `id="311"` and `id="311label"` once, deliberately (A-029). | FIXED | rows | production @ b8f4b32fbd |
+| A-106 | G2-24 | `docs/robots.txt` is a gitignored leftover and the template emits a body only for non-production environments. | OBSOLETE | row | production @ b8f4b32fbd |
+| A-107 | G2-26 | No explicit AI-crawler stance and no `llms.txt`. | FIXED | row | production @ b8f4b32fbd |
+| A-108 | G2-27 | Theme had no JSON-LD. | FIXED | row | production @ b8f4b32fbd |
+| A-109 | G2-28 | No `Dataset` JSON-LD. | OPEN | row | production @ b8f4b32fbd |
+| A-110 | G2-29 | `WebSite` has no `SearchAction`. | OPEN | row | production @ b8f4b32fbd |
+| A-111 | G2-30 | `Organization` has no `logo`. | OPEN | row | production @ b8f4b32fbd |
+| A-112 | G2-32 | One `<h1>` per bundled indicator, so multiple `<h1>` per page. | OPEN | row | production @ b8f4b32fbd |
+| A-113 | G2-33 | Those `<h1>`/`<h2>` are `display:none` for every visitor. | OPEN | row | production @ b8f4b32fbd |
+| A-114 | G2-35 | Three `<meta name="robots">` tags stack on one response. | FIXED | row | production @ b8f4b32fbd |
+| A-115 | G2-36 | `content/resources/` is noindexed everywhere while still listed in `sitemap.xml`. | OPEN | row | production @ b8f4b32fbd |
+| A-116 | G2-37 | `<title>` never includes the site name. | FIXED | row | production @ b8f4b32fbd |
+| A-117 | G2-38 | Empty `geo.region` and hardcoded `fb:profile_id="0"` in `seo.html`. | FIXED | row | production @ b8f4b32fbd |
+| A-118 | G2-39 | ~18% of content `.md` files have no `seo_description` override. | OPEN | row | production @ b8f4b32fbd |
+| A-119 | G2-40 | `sitemap.xml:9-19` duplicate-looking `xhtml:link` block (self-referential hreflang) has no explanatory comment. | OPEN | row | production @ b8f4b32fbd |
+| A-120 | G2-45 | Same element carries two `class` attributes in templates. | FIXED | row | production @ b8f4b32fbd |
+| A-121 | G2-46 | Home page card images have no `alt`. | FIXED | row | production @ b8f4b32fbd |
+| A-122 | G2-47 | `.card-content.key-topics` and `.tab-key-topics` are defined and unused. | OPEN | row | production @ b8f4b32fbd |
+| A-123 | G2-48 | Documented bare `hugo` build gives `noindex` and the dev GA property, because `head.html` branches on the environment name. | OPEN | row | production @ b8f4b32fbd |
+| A-124 | G2-49 | `conditional-modal.html` branches on `production`, `development` and `data_staging`; no template includes it. | OPEN | row | production @ b8f4b32fbd |
+| A-125 | G2-50, G5-01 | The home page's featured-story `<a>` (`themes/dohmh/layouts/index.html:66`) opens inside the `#featured-homepage` card and closes at `:97`, after the card's `</div>` at `:96`, so the anchor is misnested. | OPEN | [verified 2026-10-17: `git show P:…/index.html`, grep of `featured_link` and closing tags over lines 60-100: `<a>` at 66, card closes 96, `</a>` 97. G5-01's lines hold; G2-50's `:65`/`:98` were off by one] | production @ b8f4b32fbd |
+| A-126 | G2-51, G5-02 | The housing story's tab container has a doubled `class` attribute (`class="tab-content" id="myTabContent" class="mb-4"`), so `mb-4` never applies. | OPEN | rows | production @ b8f4b32fbd |
+| A-127 | G2-52, G5-03 | In the `header.html` menus, `<hr>` and a bare `<a>All topics</a>` are direct children of `<ul>`. | OPEN | rows | production @ b8f4b32fbd |
+| A-128 | G2-53, G5-04 | `.lang-select` was suspected of double-firing because `main.js` and `site.js` both bind it. The two handlers share no effect: `main.js:182` only calls `setLanguage()`, `site.js:86` only sends `click_language`. (The two-idiom split itself is G1-35.) | DISCONFIRMED | [verified 2026-10-17: `git show P:assets/js/main.js` lines 175-195 and `P:assets/js/site.js` lines 80-95; TRACE: no analytics call in the `main.js` handler, no translation call in the `site.js` branch] | production @ b8f4b32fbd |
+| A-129 | G2-54, G5-05 | `og:image` and `twitter:image` are path-only (`RelPermalink` / `relURL`), not absolute URLs. | OPEN | rows | production @ b8f4b32fbd |
+| A-130 | G2-55, G5-06 | `og:locale` is hardcoded `en_us` (`seo.html:8`) on every page, `es` and `zh` included. | OPEN | rows | production @ b8f4b32fbd |
+| A-131 | G2-56, G5-07 | A commented-out `console.log` sits above the `gtag` call, and the comment above `#citeButton` is a copy-pasted "how calculated" banner. | OPEN | rows | production @ b8f4b32fbd |
+| A-132 | G2-57, G5-08 | The whole aqe neighborhood picker (label, input, Clear, link) on `aqe.html` sits inside `aria-hidden="true"`. | OPEN | rows | production @ b8f4b32fbd |
+| A-133 | G2-58, G2-59, G5-09, G6-25 | The flexdatalist search input has no accessible name on indicator-catalog (`de-text-search.html`) and `hvi` on both trees, and on production's NR landing pages (`neighborhood-reports/section.html`, `topiclanding.html`). On #1491 the NR picker is named (`nr-neighborhood-picker.html` label, `aria-labelledby` set in `nr-neighborhood-picker-js.html`), which is G6-25's disconfirmation. | OPEN | [verified 2026-10-17: G5-09's grep for `aria-label\|<label\|aria-labelledby` over `de-text-search.html`, `hvi.html`, `aqe.html` at P, empty; same grep over production's `neighborhood-reports/section.html` and `topiclanding.html`: only the CCD modal and a breadcrumb `nav`, while `flex_search` occurs 3 times in each (control)] | production @ b8f4b32fbd; #1491 @ d1c7402735; NR part #1491 @ 00737207cb |
+| A-134 | G2-60, G5-11, G6-01 | The NR picker map sits inside `aria-hidden="true"` while its Leaflet shapes stay focusable (axe `aria-hidden-focus`). Production still has the `nr-clickable-uhf` wrapper (`neighborhood-reports/section.html:75`); on #1491 `removeHiddenMapFromTabOrder` in `nr-leaflet.html` sets `tabindex="-1"` under the hidden ancestor. Fixed on #1491 by trace; axe confirmation is Task 5's. | BRANCH-SCOPED | rows | #1491 @ d1c7402735; production @ b8f4b32fbd; #1491 @ 00737207cb |
+| A-135 | G2-61, G5-12 | `npm run lint` was red on implicit globals (`indicators`, `selectedDisparity`, `xValue`, `yValue`, `comp_group_col`; 33 `no-undef` errors in the backlog's count). | FIXED | rows | production @ b8f4b32fbd |
+| A-136 | G2-62 | Datawrapper inline runtimes share `window.dw`, so the first-loaded owns it. | UNVERIFIED (other) | row | production @ b8f4b32fbd |
+| A-137 | G2-63 | `heat-report-archive/2024/5-fig-3-4.md` embedded `a899A` inline. | FIXED | row | production @ b8f4b32fbd |
+| A-138 | G2-64 | 38 charts across 15 pages still inline with more than one runtime version. | OPEN | row | production @ b8f4b32fbd |
+| A-139 | G2-65 | `overlap-tool-with-map.html` fetches `CityCouncilDistrict.geojson` where `.topo.json` exists. | OPEN | row | production @ b8f4b32fbd |
+| A-140 | G2-66 | Same file fetches `CD.geojson`. | OPEN | row | production @ b8f4b32fbd |
+| A-141 | G2-67 | Same file fetches `UHF42.geojson` twice. | OPEN | row | production @ b8f4b32fbd |
+| A-142 | G2-68 | `rmz.js` fetches `rmz.geojson`. | OPEN | row | production @ b8f4b32fbd |
+| A-143 | G2-69 | `neighborhood-rats.js` loads the bundle-local `rmz.geojson`. | OPEN | row | production @ b8f4b32fbd |
+| A-144 | G2-71 | `rats-in-your-neighborhood/geojson/cd.geojson` is large and has no TopoJSON counterpart. | OPEN | row | production @ b8f4b32fbd |
+| A-145 | G2-72 | Large GeoJSON files with no counterpart (`greenspace`, `neighborhoods`, two `800m_*`, `fvi`). | OPEN | row | production @ b8f4b32fbd |
+| A-146 | G2-73 | `neighborhoods.geojson` and `800m_BG_pct_walkable_ADA_subway.geojson` are referenced by no source file. | OPEN | row | production @ b8f4b32fbd |
+| A-147 | G2-74 | `overlap-tool-with-map.html` hardcodes `refs/heads/production` in its data URLs. | OPEN | row | production @ b8f4b32fbd |
+| A-148 | G2-75 | NR report map flies to the selected neighborhood, leaving most polygons unclickable by pointer. | FIXED | row | #1491 @ d1c7402735 |
+| A-149 | G2-76 | Thin-arc Rockaways polygon unreachable even in the fitted arm (bbox centre falls on the container). | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-150 | G2-77 | `vegaEmbed(...).then()` has no rejection handler in `nr-report/chart.js`. | FIXED | row | #1491 @ d1c7402735 |
+| A-151 | G2-78 | `restaurant-grades.html` and `restaurants.html` render the title as `<h2>`, so their pages have no `<h1>`. | OPEN | row | production @ b8f4b32fbd |
+| A-152 | G2-79, G4-09 | "About the data" keeps the last trend, correlate or disparities text after leaving that tab: `renderAboutSources` overwrites `#howCalculated`, and the indicator-wide text is restored only by `renderIndicatorInfo` in `loadAndRenderIndicator`. | OPEN | rows (G4-09's call-graph trace; G2-79 held it UNVERIFIED for want of a run) | production @ b8f4b32fbd |
+| A-153 | G2-80, G4-13 | The table stops following the map after a Measure-driven cascade or Back while the summary still reads "Synced": `syncTableFiltersToMapSelection` is called only from `menu.js` and `table.js`, not from the popstate path or `updateAllMenus`. | OPEN | rows | production @ b8f4b32fbd |
+| A-154 | G2-81, G4-14 | The table's Area search box keeps its text after a rebuild or indicator switch while the column filter is gone: `table.js` refills the box from `DE.table.tableAreaSearchValue`, and its only reset, `clearTableAreaSearch`, is called from one `menu.js` path. | OPEN | rows (G2-81's "never reset" wording was wrong; G4-14 states it correctly) | production @ b8f4b32fbd |
+| A-155 | G2-82, G2-92, G4-15, G4-32 | `getDisplayNotes` (`global.js`) maps notes without deduping, so the small-numbers sentence can print twice (indicator 2383), and its comment says callers pass "already-deduped" notes. | OPEN | rows | production @ b8f4b32fbd |
+| A-156 | G2-83, G4-19 | The explorer's "Download data" and "Sync to map" `href="#"` links lacked `preventDefault`. | FIXED | rows | production @ b8f4b32fbd |
+| A-157 | G2-84, G4-21 | "More info about {topic}" renders `.Params.azlink` without a `with` guard, so it self-links when the field is absent (`header-de.html`). | OPEN | rows | production @ b8f4b32fbd |
+| A-158 | G2-85, G4-22 | Dead SCSS in `_de-custom.scss`: the mobile bottom padding compiles to `.de-wrapper .de-wrapper`, and the indicator-modal grid, card and sticky rules are scoped to `.de-wrapper` while the modals sit outside it. | OPEN | rows | production @ b8f4b32fbd |
+| A-159 | G2-86, G4-26 | `#map role="img"` (`data-explorer/single.html`) wraps focusable content (the sr-only "View this data as a table" link, Leaflet attribution), which axe reports as `nested-interactive`. | OPEN | rows | production @ b8f4b32fbd |
+| A-160 | G2-87, G4-27 | `#tableFilterToggle` is a focusable button nothing binds to. | OPEN | rows | production @ b8f4b32fbd |
+| A-161 | G2-88, G4-28 | The "Recently updated" icon has both `aria-hidden="true"` and `aria-label`. | OPEN | rows | production @ b8f4b32fbd |
+| A-162 | G2-89, G4-11 | The correlate CSV swaps `Value_1_Indicator` and `Value_2_Indicator` in the `SecondaryAxis === 'y'` branch (inherited from production `links.js`). | OPEN | rows | production @ b8f4b32fbd |
+| A-163 | G2-90, G4-17 | When correlate and disparities both fail, nothing clears the previous chart or `DE.print` (`measures.js` fallback chain); latent, no live trigger known. | OPEN | rows | production @ b8f4b32fbd |
+| A-164 | G2-91, G4-12 | UHF33 and National rows have no area name and cannot be selected or filtered: `GEO_RANK_BY_PRETTY_TYPE` ranks neither and `GeoLookup` has no rows for them. | OPEN | rows | production @ b8f4b32fbd |
+| A-165 | G2-93, G4-33 | A comment in `structured-data.html` places `#searchModal` in `partials/footer.html` and describes the deleted `/search-results/` layout. | OPEN | rows | production @ b8f4b32fbd |
+| A-166 | G2-94, G4-34 | `print.js`'s header says maps export "by compositing the current Leaflet DOM"; `print-map.js` builds an off-screen map. | OPEN | rows | production @ b8f4b32fbd |
+| A-167 | G2-95, G4-35 | Three stale comments: `measures.js` ("checkURL or popstate"), `data.js` ("IndicatorID comes in as a string"), `de-tab-content.js` ("guarded so load order never matters"). | OPEN | rows | production @ b8f4b32fbd |
+| A-168 | G2-96, G4-36 | `de-chooser.html` is included nowhere. | OPEN | rows | production @ b8f4b32fbd |
+| A-169 | G2-97, G4-37 | `de-topic-indicators.html` and `de-indicator-names-pf.html` match the substring `/data-explorer`, which also matches `/data-explorer-old/`. | OPEN | rows | production @ b8f4b32fbd |
+| A-170 | G2-98, G4-38 | A `console.log` remains in `data-explorer/section.html`. | OPEN | rows | production @ b8f4b32fbd |
+| A-171 | G2-99, G4-39 | `_de-custom.scss` carries a duplicated `.nav-pills` block with `#007bff`. | OPEN | rows | production @ b8f4b32fbd |
+| A-172 | G2-100 | CI smoke and characterization load explorer topic pages without `?id=`, so CI exercises no indicator rendering. | FIXED | row | production @ b8f4b32fbd |
+| A-173 | G3-01 | `table.js` declares `type: 'natural'` but the new explorer never loaded `naturalSort.js`, so string sort was used. | FIXED | row | production @ b8f4b32fbd |
+| A-174 | G3-02 | `select: true` in DataTables options is inert (Select extension absent). | FIXED | row | production @ b8f4b32fbd |
+| A-175 | G3-03 | `trend.js` percentile guard used `'Percentile'` (capital P) unlike the other five copies. | FIXED | row | production @ b8f4b32fbd |
+| A-176 | G3-04 | `DE.lookups.measureAbout`/`measureSources` are write-only dead state (`measures.js`, `global.js`). | FIXED | row | production @ b8f4b32fbd |
+| A-177 | G3-05, G3-20, G3-94 | `map.js` reset hover by running `geojsonLayer.eachLayer(resetStyle)` on every polygon `mouseover` (O(n) per move), and kept an unused `resetHighlight`, an unused `currentlyHighlighted` and a destructured-but-unused `calculatePercent`. | FIXED | rows | production @ b8f4b32fbd |
+| A-178 | G3-06 | `global.js` kept a commented-out `renderTitleDescription`. | FIXED | row | production @ b8f4b32fbd |
+| A-179 | G3-07, G3-95 | `copyCitation` built and selected a throwaway `<textarea>` that `clipboard.writeText` never used. | FIXED | rows | production @ b8f4b32fbd |
+| A-180 | G3-08 | `downloadData` ended `hiddenElement.download = …,` (comma operator) before `.click()`. | FIXED | row | production @ b8f4b32fbd |
+| A-181 | G3-09 | `311.js` had a `.then()` that only returned its input. | FIXED | row | production @ b8f4b32fbd |
+| A-182 | G3-10 | `updateLinksSelectionSummary` duplicates `updateLinksDropdownToggle`; `getActiveTrendMeasureId` duplicates `getSyncedTrendMeasureId`. | FIXED | row | production @ b8f4b32fbd |
+| A-183 | G3-11 | `geoTypes` array duplicated `GEO_RANK_BY_PRETTY_TYPE`'s keys. | FIXED | row | production @ b8f4b32fbd |
+| A-184 | G3-13 | `head.html` shipped the unused `leaflet-control-geocoder` script on every data-library page (package to be kept). | FIXED | row | production @ b8f4b32fbd |
+| A-185 | G3-15 | "Download data" on the bar tab wrote `undefined` or another tab's CSV because `renderBar` never set `DE.print.CSVforDownload`. | FIXED | row | production @ b8f4b32fbd |
+| A-186 | G3-16 | Port `hotfix-table-sorting-by-geo` (borough grouping checkbox, 3-level groups, descendant-attribute toggle, conditional `orderFixed`) into the new explorer. | FIXED | row | production @ b8f4b32fbd |
+| A-187 | G3-17 | Six copies of the percent/display rule need one `resolveMeasureDisplay()` helper. | FIXED | row | production @ b8f4b32fbd |
+| A-188 | G3-18 | Five notes-rendering copies (and the `innerHTML +=` loop) need one renderer. | FIXED | row | production @ b8f4b32fbd |
+| A-189 | G3-19 | `map.js` duplicated the citywide popup / trend-tab nudge, click-to-trend handlers and topo-load pipeline. | FIXED | row | production @ b8f4b32fbd |
+| A-190 | G3-21 | `correlate.js`/`disparities.js` duplicate the CSV-download table builder. | FIXED | row | production @ b8f4b32fbd |
+| A-191 | G3-22 | DOM-builder helpers (`setBadgePillState`, `createBadgePillButton`, …) redefined inside `renderMeasures` on every load. | FIXED | row | production @ b8f4b32fbd |
+| A-192 | G3-23 | `print.js` (1,376 lines) mixes map export with the chart path; split map export into `print-map.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-193 | G3-24, G3-25, G3-135 | Static and linked data (GeoLookup, TimePeriods, comparisons, TopoJSON, the 311 crosswalk, and the same indicator JSON up to three times) were re-fetched on every indicator switch; the cache holds Arquero tables and does not leak topology `properties` by reference. | FIXED | rows | production @ b8f4b32fbd |
+| A-194 | G3-26 | `loadIndicator` awaited `fetch_comparisons()` before `loadData()` ("why are we waiting for this?"). | FIXED | row | production @ b8f4b32fbd |
+| A-195 | G3-27 | `loadGeo()`/`loadTime()` started only after the indicator rows arrived. | FIXED | row | production @ b8f4b32fbd |
+| A-196 | G3-28 | Vega specs with `"width": "container"` measured a `display:none` pane and pinned charts to 0 px (correlate/disparities, extended to trend/bar). | FIXED | row | production @ b8f4b32fbd |
+| A-197 | G3-29 | A brief flash can remain on tab switch from Vega compile/render time; options (trim `buildLabelCollisionTransforms(5)`, reuse a Vega view) un-investigated. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-198 | G3-34 | Shared DataTables bundle carried `buttons.print` and `rowgroup`, dead in both explorers. | FIXED | row | production @ b8f4b32fbd |
+| A-199 | G3-35 | `easybutton`/`colorIcon` loaded on DE pages though used only by other pages. | FIXED | row | production @ b8f4b32fbd |
+| A-200 | G3-37 | `de-characterization.mjs` hard-coded `/dev-stage/`. | FIXED | row | production @ b8f4b32fbd |
+| A-201 | G3-38 | `renderMeasures` was a ~1,500-line function re-creating ~35 closures and the seven `show*` renderers per indicator. | FIXED | row | production @ b8f4b32fbd |
+| A-202 | G3-39 | `DE_MEASURE_RULES.trendAnnualAverageMeasureIds [365,370,375,391]` and `trendSummerMeasureIds [386]` match no measure, so `showBoroughTrend`'s slice branches are dead against live data. | OPEN | row | production @ b8f4b32fbd |
+| A-203 | G3-40 | Misleading names (`btn-toggle-disparities`, `clickLinksToggle`, `handleToggle`, `draw311Buttons`, `#tableCopy`, `printMenus` family). | FIXED | row | production @ b8f4b32fbd |
+| A-204 | G3-44 | `documents/data-explorer-architecture.md` still described `data-explorer-new/` and called three renderers console-logging stubs. | FIXED | row | production @ b8f4b32fbd |
+| A-205 | G3-45, G3-126:consolidation | Selection handling was split: `loadIndicator → … → renderCurrentView` duplicated in `checkURL`, `popstate` and `selectIndicator`, with URL parse/serialize, legacy aliases and history writes scattered. Now one pipeline (`loadAndRenderIndicator`), one serializer and one normaliser in `app.js`. | FIXED | rows | production @ b8f4b32fbd |
+| A-206 | G3-46 | A load wrote two history entries (loadIndicator's own push plus the caller's `pushSelectionToURL`); Back stayed on the page. | FIXED | row | production @ b8f4b32fbd |
+| A-207 | G3-47 | `resetSelectionForNewIndicator` replaced the outgoing indicator's history entry before the new push. | FIXED | row | production @ b8f4b32fbd |
+| A-208 | G3-48 | popstate's indicator-change branch returned before restoring `MeasureID`/`GeoType`/`TimePeriodID`. | FIXED | row | production @ b8f4b32fbd |
+| A-209 | G3-49 | `normalizeLegacyOverlayURL` had no initial-load caller, so `overlay=map` stayed in the address bar. | FIXED | row | production @ b8f4b32fbd |
+| A-210 | G3-50, G3-136 | A rapid indicator change could let an earlier fetch finish after a later one and render stale data (404 on `geography/undefined`). | FIXED | rows | production @ b8f4b32fbd |
+| A-211 | G3-51 | The `// DE section` smoke entry was `/data-explorer/asthma/` (a `single.html`), leaving `section.html` with no coverage. | FIXED | row | production @ b8f4b32fbd |
+| A-212 | G3-52 | URL updates after the data fetch (29–151 ms), not at click time; recommendation is to leave it unless reported. | OPEN | row | production @ b8f4b32fbd |
+| A-213 | G3-53, G3-133 | `bar.js` branch-sniffed the `window.mapInterop` shape (`circleMarkers` vs `geoIDtoLayer`), so map↔bar coordination depended on globals that existed only after a renderer finished. | FIXED | rows | production @ b8f4b32fbd |
+| A-214 | G3-54 | `window.mapInterop` stayed pointing at removed layers during a geography switch and still wrote the old geography into the legend. | FIXED | row | production @ b8f4b32fbd |
+| A-215 | G3-55 | `if (window.myVegaView) …signal("selectedGeo", x).run()` appeared six times in `map.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-216 | G3-57 | `assets/js/responsive-table.js` is dead (no template loads it) and deletable today. | OPEN | row | production @ b8f4b32fbd |
+| A-217 | G3-58 | Add flat-config ESLint (`no-undef`) over the SPA with derived shared globals and a `lint` script. | FIXED | row | production @ b8f4b32fbd |
+| A-218 | G3-59 | Promote `de-characterization.mjs` to `scripts/` with an `npm run characterize` script and a `dev-server.mjs` that resolves or starts one server. | FIXED | row | production @ b8f4b32fbd |
+| A-219 | G3-60 | Metadata `innerHTML` sinks (`Sources`, `about`, `how_calculated`) were unsanitised in the new explorer. | FIXED | row | production @ b8f4b32fbd |
+| A-220 | G3-61 | Add a console-error smoke test over one page per template kind. | FIXED | row | production @ b8f4b32fbd |
+| A-221 | G3-67 | The visual-regression piece (argued for by 4.9) is unbuilt. | OPEN | row | production @ b8f4b32fbd |
+| A-222 | G3-70 | A dead commented-out duplicate of a Pagefind filter sat in `head.html`. | FIXED | row | production @ b8f4b32fbd |
+| A-223 | G3-71 | `/search-results/` is an orphaned template and stub page whose JS was deleted in 2024. | FIXED | row | production @ b8f4b32fbd |
+| A-224 | G3-72 | The new explorer's `single.html`/`section.html` put `data-pagefind-ignore="all"` on the whole article, so topic title/`.Content`/take-action were unindexed. | FIXED | row | production @ b8f4b32fbd |
+| A-225 | G3-73 | Keep the "Data Explorer (Old)" Pagefind filter chip until 4.4. | OPEN | row | production @ b8f4b32fbd |
+| A-226 | G3-74 | No Pagefind section filter exists for `resources`, `about`, `take-action`. | OPEN | row | production @ b8f4b32fbd |
+| A-227 | G3-75 | `class="d-none"` on the Pagefind title `<meta>` tag has no effect. | OPEN | row | production @ b8f4b32fbd |
+| A-228 | G3-76 | Modal close button used a text `&times;` in an `.h3` span, deforming Chrome's focus ring and sitting off-centre. | FIXED | row | production @ b8f4b32fbd |
+| A-229 | G3-77 | `renderMenuSection` bound two click listeners per button on every rebuild (perf case later disproved). | FIXED | row | production @ b8f4b32fbd |
+| A-230 | G3-78, G3-132 | `DE.state` is written from many files; `overlay` alone is assigned at 9 sites across 4 files and coordinated through scattered class toggles, with no single `setOverlay`. | OPEN | rows | production @ b8f4b32fbd |
+| A-231 | G3-79 | `GeoType: null` in `VisOptions[0].Map` made the map throw and the Boundary/Time dropdowns blank. | FIXED | row | production @ b8f4b32fbd |
+| A-232 | G3-81 | The null-placeholder normaliser covers `Map` only; `Trend`/`Links` use the same convention and are unhandled. | OPEN | row | production @ b8f4b32fbd |
+| A-233 | G3-82 | `print-map.js` builds export from `DE.map.filteredMapData`, so an unmapped measure would export a mapped-looking bubble; the Save map control is hidden instead. | OPEN | row | production @ b8f4b32fbd |
+| A-234 | G3-83 | 10 measures have no `Citywide` row to fall back on (9 `NYHarbor`-only), leaving empty dropdowns on the unmapped state. | OPEN | row | production @ b8f4b32fbd |
+| A-235 | G3-84 | `VisOptions[0].Map` is unpopulated for 40 of 282 indicators whose other views carry real geographies. | OPEN | row | production @ b8f4b32fbd |
+| A-236 | G3-85, G4-02 | The three map renderers had no stale-render token, so a slow geometry fetch or a quick Boundary/Time/Measure change could leave the wrong layer. | FIXED | rows | production @ b8f4b32fbd |
+| A-237 | G3-86, G3-129 | One Hugo-managed script bundle with a deferred initialiser was proposed and declined, so that stack traces point at real source files. | OPEN (declined) | rows | production @ b8f4b32fbd |
+| A-238 | G3-87 | Four dead files in `assets/js/data-explorer/` (`geography.js` 3807 lines, `_choroData.js`, `_choro.js`, `_bar.js`). | FIXED | row | production @ b8f4b32fbd |
+| A-239 | G3-88, G3-115, G3-130 | The default-measure priority chain was duplicated between `menu.js` and `measures.js` (two pickers, repeated across the `setDefault*` functions). | FIXED | rows | production @ b8f4b32fbd |
+| A-240 | G3-89 | `assignGeoRank` kept a parallel `switch` instead of deriving from `prettifyGeoType`. | FIXED | row | production @ b8f4b32fbd |
+| A-241 | G3-90 | `handleToggle()` rebound its delegated click handler on every `drawCallback`. | FIXED | row | production @ b8f4b32fbd |
+| A-242 | G3-91 | Analytics calls must be guarded. | FIXED | row | production @ b8f4b32fbd |
+| A-243 | G3-92 | Consolidated #18 called the trend/correlate/disparities renderers stubs. | OBSOLETE | row | production @ b8f4b32fbd |
+| A-244 | G3-93 | Consolidated items 1–8, 11–13, 15–17, 19–24, 26–29, 31–33 "still open". | UNVERIFIED (other, the 04-17 and 04-19 lists are outside G3's documents so the numbers cannot be mapped) | row | production @ b8f4b32fbd |
+| A-245 | G3-96 | `downloadData()` ended with `e.stopPropagation()` where `e` is undefined (`ReferenceError` on every download). | FIXED | row | production @ b8f4b32fbd |
+| A-246 | G3-97 | Percentile measures formatted as percent (`A \|\| B && !C` precedence) in `map.js`/`bar.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-247 | G3-98 | Citywide click-through targeted `v-pills-trend` (nonexistent) instead of `v-pills-trends-tab`. | FIXED | row | production @ b8f4b32fbd |
+| A-248 | G3-99 | `setTimeout(updateChartPlotSize(), 1000)` ran immediately. | FIXED | row | production @ b8f4b32fbd |
+| A-249 | G3-101 | Seedless `reduce((a,b)=>a.concat(b))` throws on an empty array. | FIXED | row | production @ b8f4b32fbd |
+| A-250 | G3-102 | `bar.js` synthesised confidence intervals (`Value * .95`/`* 1.05`, "hard set for test"). | FIXED | row | production @ b8f4b32fbd |
+| A-251 | G3-103 | Duplicate `"test"` key in one `bar.js` object literal. | FIXED | row | production @ b8f4b32fbd |
+| A-252 | G3-104 | Dead `#indicatorButtons` handler (old-explorer id, casing bug). | FIXED | row | production @ b8f4b32fbd |
+| A-253 | G3-105 | Table-tab "Download data" button had no handler. | FIXED | row | production @ b8f4b32fbd |
+| A-254 | G3-106 | Disparities jitter non-deterministic: `seedrandom` not loaded on the new page, and `Math.seedrandom(seed)` called without `new`. | FIXED | row | production @ b8f4b32fbd |
+| A-255 | G3-107 | `#map` had no `role`/`aria-label`/text alternative; data conveyed by colour and hover only. | FIXED | row | production @ b8f4b32fbd |
+| A-256 | G3-108 | Nothing announces measure/geo/time changes to assistive tech (live region covers indicator name only). | OPEN | row | production @ b8f4b32fbd |
+| A-257 | G3-109 | Legend `aria-label` described the decoration ("Rectangle filled with Viridis color scale"). | FIXED | row | production @ b8f4b32fbd |
+| A-258 | G3-110 | Vega charts had no description or data-table fallback. | FIXED | row | production @ b8f4b32fbd |
+| A-259 | G3-111 | `geoOptionsDropdownButton`/`timeOptionsDropdownButton` rendered twice (mobile and desktop) with `aria-labelledby`. | FIXED | row | production @ b8f4b32fbd |
+| A-260 | G3-112 | "Change dataset" link `#FFED98` on green measured 3.84:1 (fails AA). | FIXED | row | production @ b8f4b32fbd |
+| A-261 | G3-113 | Render logic wired to magic MeasureIDs/ComparisonIDs scattered and uncommented. | FIXED | row | production @ b8f4b32fbd |
+| A-262 | G3-114 | Three ~40-line Table/Map/Trend join blocks in `data.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-263 | G3-116 | Five copy-pasted label-collision transform pairs in `trend.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-264 | G3-117 | ~240 lines of behavioural JS inline in `de-tab-content.html`. | FIXED | row | production @ b8f4b32fbd |
+| A-265 | G3-118 | Close-pane logic duplicated between an inline tab handler and `closeExplorerTabPane`. | OPEN | row | production @ b8f4b32fbd |
+| A-266 | G3-119 | Core fetches (`loadData`, topo fetches, 311 `d3.csv`) had no `.catch()`. | FIXED | row | production @ b8f4b32fbd |
+| A-267 | G3-120 | String-interpolated `.filter(\`d => d.MeasureID === ${id}\`)` predicates. | FIXED | row | production @ b8f4b32fbd |
+| A-268 | G3-121 | String-interpolated `derive` with indicator names broke on an apostrophe. | FIXED | row | production @ b8f4b32fbd |
+| A-269 | G3-122 | `.filter(d => !d == "")` in `table.js`/`trend.js`. | FIXED | row | production @ b8f4b32fbd |
+| A-270 | G3-123 | Nearly every function `console.log`s, including full data arrays in `bar.js`; gate behind a debug flag. | FIXED | row | production @ b8f4b32fbd |
+| A-271 | G3-124 | Dispatcher, URL module, renderer registry, fetch/layer/Vega reuse, hover-reset fix and event bus remain after the state-object half. | UNVERIFIED (other, a restatement of items scored individually) | row | production @ b8f4b32fbd |
+| A-272 | G3-125 | State spread across top-scope globals; keep one namespace and route writes through it. | FIXED | row | production @ b8f4b32fbd |
+| A-273 | G3-126:no-op | A no-op selection may still add a history entry: neither `writeHistoryState` (`app.js:104`) nor `writeSelectionToURL` (`app.js:130`) compares the new state with the current one, and the callers were not traced. | UNVERIFIED (runtime) | [verified 2026-10-17: Step 3 read of `app.js:104-111` and `:130-145` at P; split from G3-126 at Step 4. Repro: on `?id=2380`, click the measure already selected and compare `history.length` before and after] | production @ b8f4b32fbd |
+| A-274 | G3-127 | Valid measures/geos/times/tabs recomputed in several places; build one availability object. | OPEN | row | production @ b8f4b32fbd |
+| A-275 | G3-128 | Redefine renderers once; use a renderer map and shared selectors instead of a switch and hidden dependence on `filteredMapData`. | OPEN | row | production @ b8f4b32fbd |
+| A-276 | G3-131 | Topology file names, pretty-vs-raw geo values and measurement keywords scattered as magic strings. | FIXED | row | production @ b8f4b32fbd |
+| A-277 | G3-134 | Optional DOM targets and unfinished views checked piecemeal; collect references once. | OPEN | row | production @ b8f4b32fbd |
+| A-278 | G3-137 | Map geometry rebuilt too often, DataTables recreated without destroy, no explicit lifecycle. | OPEN | row | production @ b8f4b32fbd |
+| A-279 | G3-138 | Repeated `innerHTML +=` and per-item appends for notes, 311 links and lists. | OPEN | row | production @ b8f4b32fbd |
+| A-280 | G3-139 | Mobile/desktop control groups duplicated and reusing ids; render from one Hugo data structure. | OPEN | row | production @ b8f4b32fbd |
+| A-281 | G3-140 | Inline `onclick` handlers and inline scripts in partials. | OPEN | row | production @ b8f4b32fbd |
+| A-282 | G3-142 | Hard-coded column matches in the table pipeline are brittle. | OPEN | row | production @ b8f4b32fbd |
+| A-283 | G3-143 | Repeated URL parsing, source dedupe and clipboard logic; use helpers, `Set`, Clipboard API. | FIXED | row | production @ b8f4b32fbd |
+| A-284 | G3-144 | Failed fetches only log to the console; show a message and a retry. | OPEN | row | production @ b8f4b32fbd |
+| A-285 | G4-01 | Same-indicator Back/Forward changed URL/state but not the visible tab pane (`app.js` popstate; activation only in `renderMeasures`). | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-286 | G4-03 | Correlate reused cached rows under a stale key after a round trip (`setDefaultLinksMeasure` wrote rows without `selected*MeasureMetadata`). | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-287 | G4-04, G4-29 | A superseded indicator load still wrote shared `DE` state and the 311 links, and the `app.js` comment said a stale load "stops before it can write shared state, the URL, or the DOM". | FIXED | rows | production @ b8f4b32fbd |
+| A-288 | G4-05, G4-30 | A measure with no views inside a mapped indicator fell back to another measure's map metadata (`geography/undefined`, empty map, 0.0% legend), and the unmapped-measure comments in `map.js` and `global.js` were false for that case. | FIXED | rows | production @ b8f4b32fbd |
+| A-289 | G4-06 | Enter on a disabled tab switched state/URL but not the pane. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-290 | G4-07 | Exported map PNG legend gradient reversed (`print-map.js` vs `createColorScale`). | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-291 | G4-08 | Citation showed Hugo build date and the `?id=`-less permalink. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-292 | G4-10, G4-31 | A Trends tab with no data left `DE.print` from the previous view, so Save/Download exported it, and the `global.js` download-guard comment claimed otherwise. | FIXED | rows | production @ b8f4b32fbd |
+| A-293 | G4-16 | After "No correlates", the Disparities chart left Save Chart/Download disabled. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-294 | G4-18 | Unguarded `localStorage.getItem` in `head.html` aborts the inline script when storage throws. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-295 | G4-20 | "Email your elected officials" is `href="#"` in `header-de.html` and `de-tab-button.html`. | FIXED | row | production @ b8f4b32fbd |
+| A-296 | G4-23 | No accessible name: topic-selector button, mobile Learn More, logo link image. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-297 | G4-24 | Mobile Measure/Boundary/Time collapse was a `<div data-toggle="collapse">`, not keyboard-operable. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-298 | G4-25 | `.btn-light-green-bg-outline` `#008939` on `#EFFAF4` = 4.24:1. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-299 | G4-40 | The new explorer sent one `page_view` per selection because the GA streams had history-change page views on. | FIXED (external GA setting) | row | production @ b8f4b32fbd |
+| A-300 | G4-41 | `click_tab` sends `bar` instead of `map`, and re-clicking the open tab sends nothing (`de-tab-content.js` `stopImmediatePropagation()`). | OPEN (documented behaviour change, D19 item 3) | row | production @ b8f4b32fbd |
+| A-301 | G4-42 | The new explorer's table download sent no `file_download`. | FIXED (trace) | row | production @ b8f4b32fbd |
+| A-302 | G4-43 | "Raw data for this indicator" was already not firing, yet D19 listed it as a change. | FIXED (doc corrected; no code defect) | row | production @ b8f4b32fbd |
+| A-303 | G4-44 | New values D19 did not list; chart saves sent nothing. | FIXED (trace; chart saves) | row | production @ b8f4b32fbd |
+| A-304 | G4-45 | `click_indicator` sends `IndicatorID` as a number where the old explorer sent a string. | OPEN (documented behaviour difference) | row | production @ b8f4b32fbd |
+| A-305 | G4-46 | One `scroll` (90%) event fired on the new explorer at load; none on the old. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-306 | G4-47 | 41 requests to `www.googletagmanager.com/a` on the new explorer, none on the old. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-307 | G4-48 | Each hit goes to both `www.google-analytics.com/g/collect` and `www.google.com/g/collect`, on both explorers. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-308 | G4-49 | Between 720px and ~1000px the side panel (`.de-tabs` 38%) leaves charts 172-275px wide; titles, bar axis numbers and the correlate chart clip. Options 1 and 2 not built. | OPEN | row | production @ b8f4b32fbd |
+| A-309 | G5-10 | With the list open, `aria-controls` moves axe `aria-valid-attr-value` from violation to incomplete. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-310 | G5-13 | `CLAUDE.md` said 933 real pages and recommended the viewport meta as the marker. | FIXED | row | production @ b8f4b32fbd |
+| A-311 | G5-14 | The CARTO allowlist entry `{ page: /displacement-risk/, error: /Unauthorized access to Maps API/i }` in `scripts/smoke-pages.mjs` may be inert; undecided. | OPEN | row | production @ b8f4b32fbd |
+| A-312 | G5-15 | Some internal links are absolute paths without the baseURL prefix. | OPEN | row | production @ b8f4b32fbd |
+| A-313 | G5-16 | No table carries a `<caption>`. | OPEN | row | production @ b8f4b32fbd |
+| A-314 | G5-17 | Cause of the residual baseline-then-check churn (`data-explorer/climate/`, `waterways/`) not established. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-315 | G5-18 | Removing DOMPurify also changed several structure fields on two asthma pages; not separated from instability. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-316 | G5-19 | The plan contradicts itself on whether the `cleared` branch ever executed. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-317 | G5-20 | `img` counted Leaflet tiles. | FIXED | row | production @ b8f4b32fbd |
+| A-318 | G5-21 | The mutation observer never attached. | FIXED | row | production @ b8f4b32fbd |
+| A-319 | G5-22 | `zh/data-stories/geographies/` was a 404 in the sample. | FIXED | row | production @ b8f4b32fbd |
+| A-320 | G5-23 | `characterize:site:sample` cannot compare `data-explorer/asthma/?id=2380`: the baseline comes from `sitemap.xml`, which has no query strings. | OPEN | row | production @ b8f4b32fbd |
+| A-321 | G5-24 | `readme-development.md` documented no harness. | FIXED | row | production @ b8f4b32fbd |
+| A-322 | G5-25 | Record the EHDP-data commit a baseline describes (`dataCommit`). | FIXED | row | production @ b8f4b32fbd |
+| A-323 | G5-26 | Whether to add an automatic run when EHDP-data moves is undecided. | OPEN | row | production @ b8f4b32fbd |
+| A-324 | G5-27 | `schedule:` runs only from the default branch, and GitHub disables schedules after 60 days of inactivity (asserted from recall in the plan). | UNVERIFIED (other) | row | production @ b8f4b32fbd |
+| A-325 | G5-28 | Smoke wall time on a hosted runner was unknown. | OBSOLETE | row | production @ b8f4b32fbd |
+| A-326 | G5-29 | Whether the sequential re-check fires within budget. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-327 | G5-30 | `gitHead` in a base-control artifact named the harness's commit, not the site's. | FIXED | row | production @ b8f4b32fbd |
+| A-328 | G5-31 | Sharding the sweep across runners. | OPEN | row | production @ b8f4b32fbd |
+| A-329 | G5-32 | The `signatures` table is not rendered into `$GITHUB_STEP_SUMMARY`. | OPEN | row | production @ b8f4b32fbd |
+| A-330 | G5-33 | No smoke sweep runs against `dev_stage` in CI. | OPEN | row | production @ b8f4b32fbd |
+| A-331 | G5-34 | The 6/24/6 A/B/A wall-time measurement for `smoke-pages.mjs` was not done; its ceiling of 24 comes from characterization. | OPEN | row | production @ b8f4b32fbd |
+| A-332 | G5-35 | `partials/related-footer.html` and `key-topics/single.html` hardcode the section-to-icon/accent mapping instead of reading `data/globals/sections.yml`. | OPEN | row | production @ b8f4b32fbd |
+| A-333 | G5-36 | Was the dropped `lib-topojson` include in `minimum-wage-with-maps` dead? Plan says DONE, proved in a browser. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-334 | G5-37 | Five `data-features` templates had no `PAGES` entry in `smoke-pages.mjs`. | FIXED | row | production @ b8f4b32fbd |
+| A-335 | G5-39 | `renderer: "svg"` rollout across the five DE Vega call sites. | FIXED | row | production @ b8f4b32fbd |
+| A-336 | G5-40 | Delete the dead `$zip_codes` assignment in `nr-output/single.html`. | BRANCH-SCOPED | row | production @ b8f4b32fbd; #1491 @ 00737207cb |
+| A-337 | G5-41 | `npm run characterize` was non-functional on this lineage; plan says no action. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-338 | G5-42 | Three Vega warnings per DE trend render. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-339 | G6-02 | The 42 Leaflet polygons were focusable, unnamed and click-only. | FIXED | row | #1491 @ d1c7402735 |
+| A-340 | G6-04 | `.btn-light-green-bg` and `.btn-report` text was $primary on near-white green, 4.23-4.37:1. | FIXED | row | #1491 @ d1c7402735 |
+| A-341 | G6-05, G7-15 | The NR "See neighborhood list" toggle (`nr-neighborhood-list.html`) was parked at 4.24:1 pending a site-wide `.btn-outline-primary` change; `.neighborhood-list-button` now sets `color: $primary-dark !important`, which overrides it. FIXED by trace; computed colour is Task 5's. | FIXED | [verified 2026-10-17: the "Conflict G6-05 against G7-15" paragraph above] | #1491 @ d1c7402735 |
+| A-342 | G6-06 | Worse/better pills distinguished by background colour alone. | FIXED | row | #1491 @ d1c7402735 |
+| A-343 | G6-07 | 22 vega action `<summary>` controls had no accessible name. | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-344 | G6-08 | Neighborhood switch rebuilds the page with no announcement and a stale `document.title`. | FIXED | row | #1491 @ d1c7402735 |
+| A-345 | G6-09 | Modal `aria-labelledby="CCDModalLabel"` pointed at no id. | FIXED | row | #1491 @ d1c7402735 |
+| A-346 | G6-10 | All 22 charts named "Vega visualization"; 44 mark groups unnamed. | FIXED | row | #1491 @ d1c7402735 |
+| A-347 | G6-11 | Report-page heading order jumped h1→h3→h2 and h2→h4. | FIXED | row | #1491 @ d1c7402735 |
+| A-348 | G6-12 | Print QR image had no `alt`. | FIXED | row | #1491 @ d1c7402735 |
+| A-349 | G6-13 | `#nr-toggle-accordions` had no `aria-expanded` or `aria-controls`. | FIXED | row | #1491 @ d1c7402735 |
+| A-350 | G6-14 | `overlap-tool.html` duplicated `id="tab-btn-01-a"` and referenced undefined `tab-btn-02-a`. | FIXED | row | #1491 @ d1c7402735 |
+| A-351 | G6-15 | Download button claimed "(opens in a new tab)" but downloads a blob. | FIXED | row | #1491 @ d1c7402735 |
+| A-352 | G6-16 | Demographics table had no row headers. | FIXED | row | #1491 @ d1c7402735 |
+| A-353 | G6-17 | 42 dangling `aria-describedby` references to Leaflet tooltips after interaction. | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-354 | G6-18 | Accordion panels were not regions and were labelled by the whole header row. | FIXED | row | #1491 @ d1c7402735 |
+| A-355 | G6-20 | Header logo `<img>` has no `alt`, so its link is unnamed. | FIXED | row | #1491 @ d1c7402735; production @ b8f4b32fbd |
+| A-356 | G6-21 | `id="languages"` declared twice (header/footer). | FIXED | row | #1491 @ d1c7402735; production @ b8f4b32fbd |
+| A-357 | G6-23 | Two `<nav role="navigation">` with no distinguishing label. | FIXED | row | #1491 @ d1c7402735; production @ b8f4b32fbd |
+| A-358 | G6-26 | Candidate: no keyboard path to any polygon. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-359 | G6-27 | Candidate: FA `::before` glyphs on `.comp-*` announced as garbage. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-360 | G6-28 | Candidate: two `<h1>` on the report page. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-361 | G6-29 | Candidate: topic index emits many `<h1>` for Pagefind. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-362 | G6-30 | Candidate: `outline: none` leaves controls without a focus indicator. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-363 | G6-31 | Candidate: malformed anchors in `nr-report-footer-sm.html`. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-364 | G6-32 | Candidate: `fa-arrow-circle-right` lacks `aria-hidden` and pollutes the link name. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-365 | G6-33 | Candidate: the beige `.middle` pill needs a non-colour cue. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-366 | G6-34 | Candidate: print rendition duplicates the screen row into the reading order. | DISCONFIRMED | row | #1491 @ d1c7402735 |
+| A-367 | G6-35 | Report page printed 0 indicator rows (`d-print-none` on the whole header row, no `print-only` counterpart). | FIXED | row | #1491 @ d1c7402735 |
+| A-368 | G6-36 | Panels expanded on screen printed expanded. | FIXED | row | #1491 @ d1c7402735 |
+| A-369 | G6-37 | Print QR code dropped; must regenerate on in-place neighborhood switch. | FIXED | row | #1491 @ d1c7402735 |
+| A-370 | G6-38 | `getTertilePrintLabel` added in `tertiles.js`. | OBSOLETE | row | #1491 @ d1c7402735 |
+| A-371 | G6-39 | Print row uses `getTertileInlineLabel`. | FIXED | row | #1491 @ d1c7402735 |
+| A-372 | G6-40 | Comparison markers use FA glyphs; old emoji codepoints removed. | FIXED | row | #1491 @ d1c7402735 |
+| A-373 | G6-41 | `getComparison` returns `word` and `preposition` separately. | FIXED | row | #1491 @ d1c7402735 |
+| A-374 | G6-42 | `getComparison(null, x)` treats null as 0 and compares instead of returning the empty result. | OPEN | row | #1491 @ d1c7402735 |
+| A-375 | G6-43 | Scratch `nr-print-check.pdf`/`.png` left untracked at a repo root. | UNVERIFIED (other) | row | #1491 @ d1c7402735 |
+| A-376 | G7-01 | 11 non-NR pages differed only by production content and "arrive on merge". | FIXED | row | #1491 @ d1c7402735 |
+| A-377 | G7-02 | The 47 → 258 NR index increase is deliberate. | OBSOLETE | row | #1491 @ d1c7402735 |
+| A-378 | G7-03 | Server-rendered list, picker and topic cards put 42 names and all ZIPs into the index on 6 pages. | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-379 | G7-04 | Production's selective indexing is a deliberate decision; `data-pagefind-index-attrs="neighborhood"` absent from both trees. | OBSOLETE | row | #1491 @ d1c7402735 |
+| A-380 | G7-05 | Weights at parity except `nr-neighborhood-index.html` (`10` vs house style `10.0`). | OPEN | row | #1491 @ d1c7402735 |
+| A-381 | G7-06 | Report pages won bare topic-word queries; neither `weight` nor `ignore` fixed it. | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-382 | G7-07 | The 210 report pages carry a page-level ignore; neighborhood+topic search is gone. | UNVERIFIED (runtime) | row | #1491 @ d1c7402735 |
+| A-383 | G7-08, G7-09, G7-13 | NR Pagefind steps 9 and 10 stay open: a second `data-pagefind-filter` separating NR overviews from reports is parked (step 9), and the GA `search_term` test that would re-decide step 8 has not run (step 10). | OPEN | rows | #1491 @ d1c7402735 |
+| A-384 | G7-10 | `CLAUDE.md` places the ignore on `<section id="skip-header-target">`; the element is `<section class="container-fluid" data-pagefind-ignore="all">`. | OPEN | row | #1491 @ d1c7402735 |
+| A-385 | G7-11 | The harness/baseline count differs from the 2026-08-15 figure, undiagnosed. | OPEN | row | #1491 @ d1c7402735 |
+| A-386 | G7-12 | Six small items marked DONE 2026-08-15. | FIXED | row | #1491 @ d1c7402735 |
+| A-387 | G7-16 | The fresh ACS pull is planned and not started. | UNVERIFIED (other) | row | #1491 @ d1c7402735 |
+| A-388 | G7-17 | Ledger row for `CLAUDE.md` reads "In progress". | FIXED | row | #1491 @ d1c7402735 |
+| A-389 | G7-18 | Two near-duplicate `wireComboboxState` implementations. | FIXED | row | #1491 @ d1c7402735 |
+| A-390 | G7-19 | The `prod_prod` site-characterization baseline was stale after M2. | FIXED | row | #1491 @ d1c7402735 |
+| A-391 | G7-20 | `CLAUDE.md` Guardrails is a union of two branches and long; `refile-rules` not applied. | OPEN | row | #1491 @ d1c7402735 |
+| A-392 | G7-21 | The `docs-check verified` stamps were not bumped after the 10-16 merge. | OPEN | row | #1491 @ d1c7402735 |
+| A-393 | G7-22 | The comment-spacing convention is not applied to `assets/js/nr-report/*.js` or the NR templates' inline scripts. | OPEN | row | #1491 @ d1c7402735 |
+| A-394 | G7-23 | Site-wide audit §17 cites `map.js:269`/`:278` for the UHF42 fetch and the `GEOCODE != 0` filter. | OPEN | row | #1491 @ d1c7402735 |
+| A-395 | G7-24 | Production's DE characterization baseline (captured `19c3e93153`, 2026-10-01) no longer matches EHDP-data staging and fails on production's tree. | UNVERIFIED (runtime) | row | production @ b8f4b32fbd |
+| A-396 | G7-25 | `neighborhoodMap` was built from content sections the swap deletes. | FIXED | row | #1491 @ d1c7402735 |
+| A-397 | G7-26 | The five topic `.md` files carry `layout: topiclanding` on production, `nr-topic-index` on #1491. | BRANCH-SCOPED | row | production @ b8f4b32fbd |
+| A-398 | G7-27 | The memos record Hugo 0.146.7. | OBSOLETE | row | #1491 @ d1c7402735 |
+| A-399 | G7-28 | Topic-first URLs get no redirect; both Web.config NR rules deleted. | FIXED | row | #1491 @ d1c7402735 |
+| A-400 | G7-29 | The neighborhood index keeps the old design; canonical data in `data/globals/`. | FIXED | row | #1491 @ d1c7402735 |
+| A-401 | G7-30 | Five content files carried `Soho`, so the report rendered zero cards. | FIXED | row | production @ b8f4b32fbd and #1491 @ d1c7402735 |
+| A-402 | G7-33 | VS Code reports ~24 CSS parse errors in `nr-topic-index.html`. | UNVERIFIED (other) | row | #1491 @ d1c7402735 |
 
 ### G1 — site-wide audit §1–§10 (production @ b8f4b32fbd; #1491 rows read via git at d1c7402735)
 
@@ -974,6 +1453,17 @@ Found in passing during Task 2 Step 3, before Task 4 started. All three are stat
   shape behind a `perMeasureTables.length ?` ternary. An outer array holding only empty arrays would pass the guard, and `reduce`
   would then throw on an empty array (the gotcha G3-101 is about). Whether that input can occur
   was not checked.
+
+Found in passing during Task 2 Step 4.
+- **C-S4-1: `npm run docs-check` fails in a worktree where no Hugo build has run.** `CLAUDE.md`
+  names `docs/` (`:151`, `:156`, `:191`, `:359` at P) and `resources/_gen/`, and
+  `scripts/docs-check.mjs:192` tests each cited path with `existsSync`. Both directories are build
+  output, so they exist on disk only after a build: in the audit worktree (code equal to P, no
+  build) it exits 1 with exactly those two "path does not exist" lines. In the NR worktree, which has
+  both directories, it exits 0 over 3 docs. That arm is a different tree with a different
+  `CLAUDE.md`, so it shows the check reads the disk, not that P's `CLAUDE.md` passes with the
+  directories present `[2026-10-17: npm run docs-check in each worktree, output saved and tailed]`.
+  Whether CI runs `docs-check` from a clean checkout was not checked.
 
 ## New findings
 
