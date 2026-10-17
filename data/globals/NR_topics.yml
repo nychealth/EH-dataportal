@@ -1,0 +1,64 @@
+# Per-topic metadata for the five Neighborhood Report topics.
+#
+# This is the source the content adapter (content/neighborhood-reports/_content.gotmpl)
+# crosses with data/globals/uhflist.json to generate the 210 report pages and the 42
+# neighborhood indexes. It exists as its own file rather than as extra keys on
+# data/globals/NR_content/*.yml because those five files are indicator specs owned by
+# the data team; page metadata drifting into them invites a merge conflict between two
+# unrelated maintainers.
+#
+# An array, not a map, so menu order is fixed here rather than falling out of Hugo's
+# key sort. The order below is the order the topic buttons have always been in.
+#
+# `key` is the join key: it names a file in data/globals/NR_content/, a file in
+# data/globals/NR_footer/, and the EHDP-data report JSON prefix, and it is what each
+# generated page carries as `content_yml`.
+#
+# The two seo_* names are separate fields because the live pages use different strings
+# in the two places, and only for Active Design — reproduced here rather than derived,
+# so the generated pages keep the titles and descriptions already indexed.
+
+- key: Active_Design_Physical_Activity_and_Health
+  slug: active_design_physical_activity_and_health
+  title: "Active Design, Physical Activity and Health"
+  menu_label: "Active Design"
+  seo_short_name: "Active Design"
+  seo_long_name: "Active Design Physical Activity and Health"
+  seo_image: "images/nyc_health_report_active_design_health.jpg"
+  summary: "The design and conditions of buildings, streets, public transportation and parks influence physical activity, use of active transportation and other healthy behavior. A neighborhood's features can also impact the safety of its residents."
+
+- key: Asthma_and_the_Environment
+  slug: asthma_and_the_environment
+  title: "Asthma and the Environment"
+  menu_label: "Asthma"
+  seo_short_name: "Asthma and the Environment"
+  seo_long_name: "Asthma and the Environment"
+  seo_image: "images/nyc_health_report_asthma_environment.jpg"
+  summary: "Asthma is a common lung disease and a leading cause of hospitalizations for children under 15 years old. This report provides a summary of asthma indicators by neighborhood. It also describes housing and neighborhood characteristics that can make asthma worse."
+
+- key: Climate_and_Health
+  slug: climate_and_health
+  title: "Climate and Health"
+  menu_label: "Climate"
+  seo_short_name: "Climate and Health"
+  seo_long_name: "Climate and Health"
+  seo_image: "images/nyc_health_report_climate_health.jpg"
+  summary: "Extreme heat, coastal storms, flooding and episodes of elevated ozone are climate-related hazards that may increase with climate change and have important public health impacts in New York City. Extreme weather can cause power outages, which also threaten public health. This report provides neighborhood indicators of climate-related hazards, vulnerability and health impacts."
+
+- key: Housing_and_Health
+  slug: housing_and_health
+  title: "Housing and Health"
+  menu_label: "Housing"
+  seo_short_name: "Housing and Health"
+  seo_long_name: "Housing and Health"
+  seo_image: "images/nyc_health_report_housing_and_health.jpg"
+  summary: "This report provides a neighborhood summary of housing conditions and related health outcomes. It also describes population characteristics that can increase vulnerability to housing hazards."
+
+- key: Outdoor_Air_and_Health
+  slug: outdoor_air_and_health
+  title: "Outdoor Air and Health"
+  menu_label: "Outdoor Air"
+  seo_short_name: "Outdoor Air and Health"
+  seo_long_name: "Outdoor Air and Health"
+  seo_image: "images/nyc_health_report_outdoor_air_health.jpg"
+  summary: "Air pollution is one of the most important environmental threats to urban populations and while all people are exposed, pollutant emissions, levels of exposure, and population vulnerability vary across neighborhoods. Exposures to common air pollutants have been linked to respiratory and cardiovascular diseases, cancers, and premature deaths."
