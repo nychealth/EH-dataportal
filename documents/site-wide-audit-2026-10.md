@@ -2338,6 +2338,24 @@ Two notes on what I measured. "Real pages" means files under `C:/Users/Chris/App
 - The data explorer's `?id=` indicator URLs declare the topic page as canonical. Given A-104 this looks like a design choice, so I did not report it.
 - Out of area h, possibly not recorded (I grepped the audit for `last_msg` and `injection` and found nothing): `.github/workflows/hugo-build-to-prod-prod.yml:66` writes the commit subject into a step output wrapped in double quotes, and `:114` interpolates it with `${{ }}` straight into a `run:` script. `hugo-build-any-branch.yml:132` and `:141` do the same. A merge commit's subject includes the fork branch name (`from owner:branch`), so this looks like a GitHub Actions script-injection path. Someone should check it under the hardening-github-actions area. Live, the home page publishes that subject in `<meta name="git_last_msg">`.
 
+### Task 5 tally
+
+Per area, Task 4's items in, confirmed (named in an `N-` row's Source) and disconfirmed (named in Disconfirmed), counted from this document by `t5c/tally_t5.py` `[verified 2026-10-17: 81 items under the eight Area headings, every one named by an N- row, none in Disconfirmed, no ID named that no area lists, none counted twice; control: the same bullet pattern finds Disconfirmed's three C-S/C-T entries]`. Five of area h's items are confirmed through area a's rows (C-4a-1 = C-4h-2, C-4a-2 = C-4h-1 + C-4h-3, C-4a-3 = C-4h-4, C-4a-9 = C-4h-6), so the 81 items sit in 76 rows.
+
+| Area | In | Confirmed | Disconfirmed |
+|---|---|---|---|
+| a Site shell | 12 | 12 | 0 |
+| b Data explorer | 9 | 9 | 0 |
+| c Neighborhood Reports | 6 | 6 | 0 |
+| d Data features, stories, shortcodes | 12 | 12 | 0 |
+| e SCSS | 11 | 11 | 0 |
+| f Build, CI, config | 10 | 10 | 0 |
+| g Performance | 10 | 10 | 0 |
+| h SEO and analytics | 11 | 11 | 0 |
+| **All** | **81** | **81** | **0** |
+
+Before Task 4, the seven candidates logged at Tasks 2 and 3 (C-S3-1..3, C-S4-1, C-T3-1..3): 4 confirmed (N-019..N-023), 3 disconfirmed (C-S3-3, C-T3-1, C-T3-3). Confirmation is about the claim's substance: where a count, a frequency or a consequence was wrong, the correction is written into the row, and the plan's ledger (Task 5's row) lists them by batch.
+
 ## New findings
 
 N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them; Task 5 adds the candidates it verifies after them. N-024..N-067 are 45 of Task 4's 81 candidate items (C-4a-9 and C-4h-6 are one row), verified 2026-10-17 by browser probes on isolated prod_prod builds of P, of d1c7402735 and of 00737207cb, and by `gh api`, `git` and source reads; N-068 was found while verifying them. N-069..N-072 are C-4e-1..4, verified the same day by a keyboard-focus probe with screenshots. N-073..N-100 are the remaining 32 items (28 rows, area h's duplicates of area a merged), verified the same day from the built P site, Node and read-only `curl` of the live site. All 81 items were confirmed; corrections are written into their rows. The probe scripts and their raw output are in the gitignored `scripts/.sc-rebaseline/audit-2026-10/t5c/`.
