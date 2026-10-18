@@ -371,6 +371,8 @@ Worked example: `documents/data-explorer-fresh-audit-2026-07-13.md` §4.9 — a 
 - `scripts/` — Node dev tooling (smoke test, docs-check, dev-server helper, the five characterization harnesses, the accessibility audit, and the NR pre-capture/post-swap pair)
 - `docs/` — Generated output; never edit directly
 
+**For the current status of any audit finding, read `documents/site-wide-audit-2026-10.md`**, which re-checked the older audits' findings against `production` (2026-10-17) and carries a priority and a roadmap. The older audits in `documents/` say "Superseded for status" on their first lines and are records of their own dates.
+
 ### Layout routing
 
 - `_index.md` → `section.html` (section landing pages)

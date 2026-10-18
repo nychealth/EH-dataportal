@@ -1,5 +1,7 @@
 # Data Explorer Fresh Audit — 2026-07-13
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 ## Context
 
 Fresh line-by-line audit of the active data explorer SPA (`assets/js/data-explorer/`, 15 files, ~10,900 lines including `de-tab-content.js`) plus the templates that load it (`themes/dohmh/layouts/data-explorer/single.html`, `partials/head.html`) and `package.json`. Goal: consolidation, elegance, performance, and dependency reduction — anything on the table, delivered as tiered options with decision considerations.
