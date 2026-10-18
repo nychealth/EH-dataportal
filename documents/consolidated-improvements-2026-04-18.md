@@ -1,5 +1,7 @@
 # Consolidated Improvements — 2026-04-18
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 ## Architecture and Data Flow
 
 These changes address the parts of the explorer that currently make behavior hardest to predict: shared state, selection changes, renderer timing, and bootstrapping. Fixing these first reduces the number of places where valid state can drift or rendering can happen in the wrong order.

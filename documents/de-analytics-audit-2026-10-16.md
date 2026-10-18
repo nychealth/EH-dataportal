@@ -1,5 +1,7 @@
 # Data Explorer analytics audit — 2026-10-16
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 What Google Analytics events the new explorer (`/data-explorer/`) sends, compared with the retired
 one (`/data-explorer-old/`), and whether they fire. Written for #1462's deploy: D19 item 3 in
 [de-production-deploy-plan-2026-10-01.md](de-production-deploy-plan-2026-10-01.md) lists the

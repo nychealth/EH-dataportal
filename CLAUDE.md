@@ -287,6 +287,8 @@ resources/_gen/   Hugo's fingerprint and image cache — never edit
 
 A path written as `layouts/partials/…` will not resolve — that directory does not exist in this repo. Templates are always `themes/dohmh/layouts/…`.
 
+**For the current status of any audit finding, read `documents/site-wide-audit-2026-10.md`**, which re-checked the older audits' findings against `production` (2026-10-17) and carries a priority and a roadmap. The older audits in `documents/` say "Superseded for status" on their first lines and are records of their own dates.
+
 ### Layout routing
 
 - `_index.md` → `section.html`; `index.md` or `name.md` → `single.html`
