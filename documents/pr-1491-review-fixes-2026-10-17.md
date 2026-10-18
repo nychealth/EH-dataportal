@@ -50,9 +50,7 @@ read this branch at `00737207cb` and confirmed one regression from step 2 above.
 |---|---|---|---|---|---|
 | N-024 | Step 2 keeps query + hash, so `renderQRCode` encodes a long `location.href` and `qrcode(10,'M')` (213 bytes) throws inside `renderAll` | `nr-report.html` (`renderQRCode`): encodes `location.origin + location.pathname` | `0943e08e4d` | **DONE 2026-10-17** | Scratch Playwright probe (not kept), dev_stage, Central Harlem active-design report, with no query and with `?fbclid=` + 300 chars + `#nr-accordion-2`, then Enter on the Kingsbridge polygon: 20 PASS, 0 FAIL. In-page control: the 454-char `location.href` itself throws `code length overflow. (3652>1728)`, so the URL was long enough to trigger the bug. Arm against HEAD's unfixed template: 7 FAIL, all in the long-query arm (no QR image, overflow errors, title and live region unchanged after the switch), matching the audit's reproduction. Query and hash stay in the address bar, so step 2 holds. `node scripts/nr-characterization.mjs --check` 3 of 3; `node scripts/smoke-pages.mjs` 44 clean, Pagefind served |
 
-Next: read CI on the PR head that carries `0943e08e4d`:
-
-```
-git fetch origin; git merge-base --is-ancestor 0943e08e4d origin/feature-MOD-Lab-NR-recode-refactor-merge   # exit 0 = pushed
-gh pr checks 1491   # both sweeps should pass on that head
-```
+**Closed 2026-10-17** at `0943e08e4d`. CI on PR #1491 at `4677240bf7` (the ledger commit on top of it):
+both sweeps SUCCESS, the full-site smoke and the rendered-structure diff `[verified 2026-10-17: gh pr view 1491
+--json headRefOid,statusCheckRollup]`. The audit's other open #1491 rows are that audit's to prioritize (its Task 6),
+not this document's.
