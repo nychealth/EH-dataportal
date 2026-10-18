@@ -40,3 +40,19 @@ Findings 1–4 reproduced in a browser before any change, against a `dev_stage` 
 ## Next command
 
 None — closed. F5 is un-deferred by the data-loading refactor, not by this document.
+
+## Follow-up: regressions found by the 2026-10 site-wide audit
+
+The audit (branch `documentation-site-wide-audit-2026-10`, `documents/site-wide-audit-2026-10.md`)
+read this branch at `00737207cb` and confirmed one regression from step 2 above.
+
+| # | Finding | Files | Commit | Status | Proof that ran |
+|---|---|---|---|---|---|
+| N-024 | Step 2 keeps query + hash, so `renderQRCode` encodes a long `location.href` and `qrcode(10,'M')` (213 bytes) throws inside `renderAll` | `nr-report.html` (`renderQRCode`): encodes `location.origin + location.pathname` | `0943e08e4d` | **DONE 2026-10-17** | Scratch Playwright probe (not kept), dev_stage, Central Harlem active-design report, with no query and with `?fbclid=` + 300 chars + `#nr-accordion-2`, then Enter on the Kingsbridge polygon: 20 PASS, 0 FAIL. In-page control: the 454-char `location.href` itself throws `code length overflow. (3652>1728)`, so the URL was long enough to trigger the bug. Arm against HEAD's unfixed template: 7 FAIL, all in the long-query arm (no QR image, overflow errors, title and live region unchanged after the switch), matching the audit's reproduction. Query and hash stay in the address bar, so step 2 holds. `node scripts/nr-characterization.mjs --check` 3 of 3; `node scripts/smoke-pages.mjs` 44 clean, Pagefind served |
+
+Next: read CI on the PR head that carries `0943e08e4d`:
+
+```
+git fetch origin; git merge-base --is-ancestor 0943e08e4d origin/feature-MOD-Lab-NR-recode-refactor-merge   # exit 0 = pushed
+gh pr checks 1491   # both sweeps should pass on that head
+```
