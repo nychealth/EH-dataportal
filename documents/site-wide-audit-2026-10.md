@@ -18,19 +18,19 @@ Three readings of that axis decide many rows, and each is a choice someone can r
 
 | Status | P1 | P2 | P3 | — | All |
 |---|---|---|---|---|---|
-| OPEN | 51 | 73 | 136 | 2 | 262 |
-| FIXED | 0 | 0 | 0 | 193 | 193 |
+| OPEN | 50 | 73 | 136 | 2 | 261 |
+| FIXED | 0 | 0 | 0 | 194 | 194 |
 | UNVERIFIED | 0 | 0 | 0 | 14 | 14 |
 | DISCONFIRMED | 0 | 0 | 0 | 17 | 17 |
 | OBSOLETE | 0 | 0 | 0 | 10 | 10 |
 | BRANCH-SCOPED | 0 | 0 | 0 | 6 | 6 |
-| all | 51 | 73 | 136 | 242 | 502 |
+| all | 50 | 73 | 136 | 243 | 502 |
 
-`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows.
+`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, one row has changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17); the counts above include it, re-checked by `t7/recount.py`.
 
 ## Roadmap
 
-Every P1 and P2 row (124) is in exactly one batch below; `apply_t6.py` refuses to write the section otherwise. A batch groups rows that change the same files and do need another batch's change first, so each can be its own branch and PR; the one exception is noted under R10. Where two batches' Touches cells name the same file (R2 and R3 in `assets/js/data-explorer/`, R3 and R5 in `_de-custom.scss`, R11 and R12 in `head.html` and `js_bottom.html`, R1 and R12 in `index.html`, R12 and R13 in `search-modal.html`), the second to land rebases. The table is ordered by P1 count, then P2 count. The 136 P3 rows are not batched: filter the tables by Priority.
+Every P1 and P2 row (123) is in exactly one batch below; `apply_t6.py` refuses to write the section otherwise. A batch groups rows that change the same files and do not need another batch's change first, so each can be its own branch and PR; the one exception is noted under R10. Where two batches' Touches cells name the same file (R2 and R3 in `assets/js/data-explorer/`, R3 and R5 in `_de-custom.scss`, R11 and R12 in `head.html` and `js_bottom.html`, R1 and R12 in `index.html`, R12 and R13 in `search-modal.html`), the second to land rebases. The table is ordered by P1 count, then P2 count. The 136 P3 rows are not batched: filter the tables by Priority.
 
 | Batch | Lands on | Touches | P1 | P2 | Rows |
 |---|---|---|---|---|---|
@@ -40,7 +40,7 @@ Every P1 and P2 row (124) is in exactly one batch below; `apply_t6.py` refuses t
 | R1: Site shell markup and languages | production | `header.html`, `header-de.html`, `footer.html`, `subscribe-modal.html`, `_default/list.html`, `index.html` | 6 | 4 | **A-026**, **A-125**, **A-127**, **N-076**, **N-079**, **N-080**; A-097, N-017, N-050, N-077 |
 | R2: Explorer accessibility | production | `themes/dohmh/layouts/data-explorer/`, `de-*` partials, `assets/js/data-explorer/` | 5 | 4 | **A-159**, **N-002**, **N-008**, **N-043**, **N-044**; A-160, A-256, A-280, N-047 |
 | R3: Explorer behaviour | production | `assets/js/data-explorer/`; A-308 in `_de-custom.scss` | 4 | 9 | **A-152**, **A-162**, **A-308**, **N-046**; A-153, A-154, A-155, A-273, A-284, N-040, N-041, N-042, N-045 |
-| R14: Neighborhood Reports | #1491's branch, before it merges | `assets/js/nr-report/`, NR layouts | 4 | 2 | **N-024**, **N-025**, **N-026**, **N-027**; A-374, A-382 |
+| R14: Neighborhood Reports | #1491's branch, before it merges | `assets/js/nr-report/`, NR layouts | 3 | 2 | **N-025**, **N-026**, **N-027**; A-374, A-382 |
 | R11: Search metadata and languages | production | `seo.html`, `_default/sitemap.xml`, `head.html` hreflang, `static/robots.txt`, taxonomy templates, `js_bottom.html` | 1 | 10 | **N-097**; A-086, A-104, A-129, N-073, N-074, N-075, N-078, N-081, N-095, N-099 |
 | R7: Rat Mitigation Zone reports | production (from `update-rat-mitigation-report`) | `content/data-features/rat-report/` | 1 | 0 | **N-083** |
 | R8: CI and repository hardening | production; N-031 is repository settings | `.github/workflows/` | 0 | 13 | A-071, A-073, A-078, A-079, A-080, N-030, N-031, N-032, N-033, N-034, N-035, N-036, N-038 |
@@ -192,6 +192,20 @@ commits touch `nr-report.html`, `section.html`, `nr-leaflet.html`, `nr-architect
 ledger and the Pagefind baseline, and rename `map.js`'s four Leaflet helpers to `reportMap*`.
 Rows labelled `#1491 @ d1c7402735` were read from files at `00737207cb`. G6 says it diffed the
 four commits and none reverts cited code.
+
+**#1491's head moved again on 2026-10-17, to `4677240bf7`**: the four commits above plus
+`0943e08e4d`, which fixes N-024 (that row is now FIXED), and a ledger-only commit. Rows keep their
+`d1c7402735` pins. A pin is a fact about the commit it names, and moving it to the head without
+re-checking each row would claim a check that was not run. What was checked: `0943e08e4d` changes
+only `renderQRCode`, and no row but N-024 cites it, so the rows checked at `00737207cb` (N-025..N-029,
+N-068) are unaffected by it. Of the 44 OPEN rows checked on #1491, 13 cite by name a file changed
+since `d1c7402735`. Of those pinned only at `d1c7402735`, A-041, A-384 and N-021 hold at
+`4677240bf7` by the same greps, A-133's #1491 half (the picker's `aria-labelledby`) holds, and
+A-394 is about a citation in the 06-27 audit, which did not change. A-391 and A-393 (the length of
+#1491's `CLAUDE.md`, comment spacing in `nr-report.html`) were not re-checked. None of this moves a
+priority `[verified 2026-10-17: t7/nr_rows_touched.py over git diff --name-only d1c7402735
+4677240bf7, 14 files; git grep at both commits for UHF42.geojson, skip-header-target, the docs/
+and resources/_gen/ citations; git show 4677240bf7 of nr-neighborhood-picker-js.html]`.
 
 ### Deduplicated rows (`A-`)
 
@@ -2439,7 +2453,7 @@ N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them
 | N-021 | new: C-S4-1, verified at Task 3 | `npm run docs-check` exits 1 in any worktree where no Hugo build has run, because `CLAUDE.md` cites `docs/` and `resources/_gen/` and `scripts/docs-check.mjs` tests cited paths with `existsSync`. No workflow runs it, so this affects local runs only. | OPEN | CONFIRMED (runtime): on one tree (N), exit 1 without the two directories and exit 0 with them present and empty; exit 1 at P too | production @ b8f4b32fbd; #1491 @ d1c7402735 | P2 |
 | N-022 | new: C-T3-2 (CodeQL `js/incomplete-sanitization`, high), verified at Task 5 | `scripts/site-characterization-summary.mjs:272` escapes `\|` but not backslashes when writing page text into a markdown table, so a backslash in a page's text can break the escape. Dev and CI tooling only; nothing ships. | OPEN | CONFIRMED (trace): the line at P | production @ b8f4b32fbd | P3 |
 | N-023 | new: C-T3-2 (CodeQL `js/unsafe-html-expansion`, five alerts), verified at Task 5 | The five 2021 raster pages under `static/nyccas/raster/old rasters/` are published verbatim from `static/` but referenced by no template or content file. | OPEN | CONFIRMED (trace): `git grep -i 'old rasters\|old%20rasters'` outside that directory finds nothing; control: `nyccas/raster` is referenced from `nyccas_pollutant_maps.html` | production @ b8f4b32fbd | P3 |
-| N-024 | new: C-4c-1, verified at Task 5 | On #1491's tip, `renderQRCode` (`nr-report.html`) encodes `location.href` including its query into `qrcode(10, 'M')`, which holds 213 bytes, so a longer URL (a tracking parameter such as `fbclid`) throws `code length overflow` inside `renderAll`: the print view has no QR code, and after an in-place switch the title rewrite and the live-region announcement are skipped. Introduced by b33ba2373e, which keeps `search + hash` in the URL; not present at d1c7402735. | OPEN | CONFIRMED (runtime): isolated prod_prod build at 00737207cb, the Central Harlem active-design report with an `fbclid` query padding `location.href` to 137 / 200 / 260 characters: QR image 1 / 1 / 0, and two `code length overflow` console errors at 260; after Enter on the Kingsbridge polygon at 260 the h1 changed while the title and live region did not (at 137 both updated). Control: the same probe at d1c7402735 strips the query (href 137) and renders the QR at all three lengths | #1491 tip @ 00737207cb (absent at d1c7402735) | P1 |
+| N-024 | new: C-4c-1, verified at Task 5 | On #1491's tip, `renderQRCode` (`nr-report.html`) encodes `location.href` including its query into `qrcode(10, 'M')`, which holds 213 bytes, so a longer URL (a tracking parameter such as `fbclid`) throws `code length overflow` inside `renderAll`: the print view has no QR code, and after an in-place switch the title rewrite and the live-region announcement are skipped. Introduced by b33ba2373e, which keeps `search + hash` in the URL; not present at d1c7402735. | FIXED | **Fixed by 0943e08e4d** (`renderQRCode` encodes `location.origin + location.pathname`) `[verified 2026-10-17: probe_c.mjs, unchanged since Task 5, on isolated prod_prod builds in the nrN worktree; at 4677240bf7 (0943e08e4d plus one ledger-only commit) QR 1 / 1 / 1 at 137 / 200 / 260, 0 overflow errors, and after the Kingsbridge switch at 260 the title and live region update; control the same day at 00737207cb: QR 1 / 1 / 0, 2 overflow errors, title unchanged and live region empty at 260; outputs t7/probe_c_*.txt]`. As found: CONFIRMED (runtime): isolated prod_prod build at 00737207cb, the Central Harlem active-design report with an `fbclid` query padding `location.href` to 137 / 200 / 260 characters: QR image 1 / 1 / 0, and two `code length overflow` console errors at 260; after Enter on the Kingsbridge polygon at 260 the h1 changed while the title and live region did not (at 137 both updated). Control: the same probe at d1c7402735 strips the query (href 137) and renders the QR at all three lengths | #1491 @ 0943e08e4d (found at 00737207cb; absent at d1c7402735) | — |
 | N-025 | new: C-4c-2, verified at Task 5 | After an in-place neighborhood switch on the report page, the breadcrumb still names and links to the original neighborhood; `url.js` `updateTopicLinks` rewrites only `.nr-topic-link`. | OPEN | CONFIRMED (runtime): after switching Central Harlem to Kingsbridge, the h1 reads Kingsbridge - Riverdale while `nav[aria-label=breadcrumb] li:nth-child(3) a` keeps "Central Harlem - Morningside Heights" and its href; same at both commits | #1491 @ d1c7402735 and its tip 00737207cb | P1 |
 | N-026 | new: C-4c-3, verified at Task 5 | On the 42 neighborhood index pages (`nr-leaflet.html` via `nr-neighborhood-index.html`), the map's polygons are tab stops with no accessible name, Enter on one does nothing, few are reachable by pointer, and the tooltip uses the geojson `GEONAME` rather than `uhflist`'s `UHF_name`. Extends A-339, A-148 and A-134 to the fourth page kind. | OPEN | CONFIRMED (runtime): `/neighborhood-reports/east_new_york/`, 120 Tab presses: 49 polygon stops, 0 named; Enter on a focused polygon leaves `location` unchanged; a centre-point hit test reaches 10 of 42 polygons. Control: the report page under the same probe gives 42 stops, 42 named, 41 of 42 reachable. (Task 5, A-149: a centre-point test undercounts; sampling along each outline, every one of the 42 report-page polygons has a pointer-reachable point, so 41 is low and this page's 10 of 42 is a floor, not re-measured.) Same at both commits. `GEONAME` differs from `UHF_name` on 4 of 42 (Fordham - Bronx Park/Pk, Washington Heights - Inwood/Washington Heights, Greenwich Village - Soho/SoHo, Rockaway/Rockaways), not the 6 the candidate took from a code comment (N-068) | #1491 @ d1c7402735 and its tip 00737207cb | P1 |
 | N-027 | new: C-4c-4, verified at Task 5 | The NR landing page's topic buttons and the report map's selected polygon expose their state through styling only: no `aria-pressed`, `aria-current` or `aria-selected`. | OPEN | CONFIRMED (runtime): on `/neighborhood-reports/`, before and after clicking Climate, no `.nr-topic-button` carries any of the three attributes and only `.active` moves; the report polygons' only `aria-*` attribute is `aria-label`. Same at both commits | #1491 @ d1c7402735 and its tip 00737207cb | P1 |
