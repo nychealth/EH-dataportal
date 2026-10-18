@@ -1,5 +1,7 @@
 # Neighborhood Reports — Pagefind indexing parity with `production`
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Audit, fix and standing check for what Pagefind indexes on this branch against what it indexes on
 `production`. Written 2026-08-15 against `feature-MOD-Lab-NR-recode-refactor`.
 

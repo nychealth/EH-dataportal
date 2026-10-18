@@ -1,5 +1,7 @@
 # Neighborhood Reports accessibility audit — 2026-08-10
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Dated record. Written against `feature-MOD-Lab-NR-recode-refactor` at `43e42b666e`, which is the
 tree the probes ran against — the Expand all / Collapse all control was present on disk and is
 covered here (F12). It cites

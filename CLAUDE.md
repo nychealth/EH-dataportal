@@ -618,9 +618,10 @@ A build can also be triggered on demand rather than by merging. `trigger_prod-pr
 Detailed technical audits live in `documents/`. Check these before making structural changes to the data explorer or site shell. Most were written against `feature-new-data-explorer`, whose explorer this tree carries since `5cca304284` — read their dated findings as records of their date, not as a description of this tree now. **Before recording any audit claim as stale, re-check it on `feature-new-data-explorer` and `production` too** — `git grep <pattern> <branch> -- <path>`. On 2026-08-05 two of four "stale" claims turned out to be branch differences.
 
 - `documents/nr-architecture.md` — **not an audit**: the Neighborhood Reports narrative split out of this file on 2026-09-02, describing current code and carrying a `docs-check` stamp like this one does. Report page rendering, the shared picker partials, routing.
-- `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer, and the active log for findings on this branch (§5f–§5j).
+- `documents/site-wide-audit-2026-10.md` — **the status record for every audit finding**, site-wide, data explorer and Neighborhood Reports alike, with a priority and a roadmap. Its NR rows were checked on this branch.
+- `documents/site-wide-audit-2026-06-27.md` — everything outside the data explorer; a dated record, superseded for status by the 2026-10 audit.
 - `documents/data-explorer-architecture.md` — the new explorer's narrative; it describes this tree and is opted into `docs-check`.
-- `documents/data-explorer-fresh-audit-2026-07-13.md` — the active data explorer audit.
+- `documents/data-explorer-fresh-audit-2026-07-13.md` — the data explorer audit; a dated record, superseded for status by the 2026-10 audit.
 - `documents/data-explorer-deep-audit-2026-06-27.md` — closed/historical; superseded by the fresh audit.
 - `documents/js-conventions.md` — JS conventions for all browser-side JS (see Coding conventions above). Its data-explorer examples describe the `feature-new-data-explorer` tree.
 - `documents/nr-output-retirement-scoping-2026-08-04.md` — Neighborhood Reports: inventory, traffic, decisions, staging. Written against the `feature-MOD-Lab-NR-recode-refactor` branch, not `feature-new-data-explorer`.
