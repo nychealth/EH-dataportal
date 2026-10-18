@@ -1,5 +1,7 @@
 # Site-Wide Audit (2026-06-27)
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 > ## Ported to `production` — read this before acting on anything below
 >
 > **Provenance.** Copied verbatim on 2026-08-12 from `feature-MOD-Lab-NR-recode-refactor`

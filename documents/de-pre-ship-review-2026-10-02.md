@@ -1,5 +1,7 @@
 # DE pre-ship review: `feature-new-data-explorer` @ `c15317c74b` vs `production` @ `ed63fa7603`
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Written by one Opus review subagent on 2026-10-02 (Task 5 of
 `documents/de-production-deploy-plan-2026-10-01.md`): 506,518 subagent tokens, 108 tool calls,
 ~22 minutes. **These are the reviewer's findings, not verified ones.** Each finding's outcome

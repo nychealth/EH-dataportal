@@ -1,5 +1,7 @@
 # Data explorer charts at tablet widths — findings, 2026-10-15
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Branch `feature-new-data-explorer` at `991606caad`. Measured with Playwright against a
 `local_prod` server (EHDP-data `production`), headless Chromium, fresh page loads.
 

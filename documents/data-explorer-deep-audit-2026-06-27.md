@@ -1,5 +1,7 @@
 # Data Explorer — Deep Audit (2026-06-27)
 
+> Superseded for status by [site-wide-audit-2026-10.md](site-wide-audit-2026-10.md) (2026-10-17); kept as a dated record.
+
 Addendum to `consolidated-improvements-2026-04-17.md` and `-04-19.md`. Those
 documents merged four model reviews into 33 (then 24) recommendations. This
 audit was produced by reading every actively-loaded file in
