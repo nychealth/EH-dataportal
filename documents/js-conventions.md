@@ -272,6 +272,8 @@ its distinct phases.
   among them.
 
 - Blank line after the opening `{` of any block longer than ~3 lines.
+  `scripts/js-comment-spacing.py` applies this one only where a comment is the
+  block's first line, and does not check the length.
 - Blank line before the closing `}`.
 - Blank line between each logical group inside a function, and before each `return`.
 - Two blank lines between top-level function definitions.
