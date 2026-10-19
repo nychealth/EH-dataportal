@@ -128,7 +128,9 @@ We may ask you a few additional questions that will help us in our investigation
 
 <strong>There are three main ways food can become unsafe to eat:</strong>
 
+<div class="my-4">
 <img src="contact_311.png">
+</div>
 
 ## Report unsafe food practices, too
 
