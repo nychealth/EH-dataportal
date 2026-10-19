@@ -30,7 +30,7 @@ related:
 
 Foodborne illness affects thousands of New Yorkers every year. A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment, prompting the New York City Health Department to investigate and try to prevent further illness.
 
-Let’s look at a real foodborne illness outbreak investigation that took place in NYC:
+<strong>Let’s look at a real foodborne illness outbreak investigation that took place in NYC:</strong>
 
 Two people dined together at a restaurant. Three days later, both diners became very sick. One went to the emergency room and tested positive for Campylobacter, a bacterium that lives in raw or undercooked animal products and can cause gastrointestinal (stomach) illness. Eight days after the dinner, the diner who visited the emergency room called 311 to report both of the illnesses. In addition to seeing a doctor, calling 311 is an important step to take if you think you got sick after eating food from a NYC restaurant.
 
@@ -58,13 +58,21 @@ Which restaurant menu items did everyone eat?
 
 This chart shows how many people were interviewed, had illnesses consistent with Campylobacter infection, and had severe enough symptoms to require hospitalization. After interviewing sick patrons about what they ate, a clear pattern emerged:
 
-<!-- DW one -->
+</div>
+
+<div class="wide my-4">
+
+<div style="min-height:565px" id="datawrapper-vis-POEb7"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/POEb7/embed.js" charset="utf-8" data-target="#datawrapper-vis-POEb7"></script><noscript><img src="https://datawrapper.dwcdn.net/POEb7/full.png" alt="Almost 25% of people interviewed had illness consistent with Campylobacter - and some were hospitalized. (Scatter Plot)" /></noscript></div>
+
+</div>
+
+<div class="narrow">
 
 ## Diner interviews revealed a clear pattern — everyone who got sick had eaten chicken at the restaurant, and most had eaten chicken liver
 
 Through the interviews we also discovered that people were still getting sick after eating at the restaurant, even after we provided instruction to the restaurant owners on how to correct their practices. This required us to make additional visits to the restaurant to understand why their patrons were still getting sick. Inspectors conducted additonal environmental assessments and did not find any more food safety violations. However, because patrons were still getting sick, the inspectors gathered food invoices to trace where the restaurant’s chicken came from and collected food samples from the restaurant for bacterial testing at the NYC Health Department Public Health Laboratory. We worked with healthcare providers caring for diners who became sick to collect stool samples and brought those to the Public Health Laboratory for analysis, too. These final pieces of evidence confirmed that Campylobacter was the bacteria responsible for the outbreak:
 
-<!-- img 1 -->
+<img src="11_out_of_13.png">
 
 - Food samples from the restaurant’s chicken came back positive for Campylobacter.
 
@@ -86,7 +94,13 @@ This was an unusually large and complex outbreak that required multiple visits t
 
 This outbreak showed how a 311 complaint and a team of public health investigators can stop foodborne illnesses from continuing. Complaints of food poisoning like the ones about this restaurant are critical for early detection of foodborne illness outbreaks, enabling timely investigation and control measures to prevent others from getting sick.
 
-<!-- DW 3 -->
+</div>
+
+<div class="my-4 wide">
+<div style="min-height:452px" id="datawrapper-vis-5lAW6"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/5lAW6/embed.js" charset="utf-8" data-target="#datawrapper-vis-5lAW6"></script><noscript><img src="https://datawrapper.dwcdn.net/5lAW6/full.png" alt="311 food poisoning complaints rise when it's easier to report them—and fall when people dine out less (Column Chart)" /></noscript></div>
+</div>
+
+<div class="narrow">
 
 As you can see in the chart, the number of food poisoning complaints received each year changes over time. Sometimes these changes are because of how people can report. For example, complaints rose after the launch of the 311 Call line and again after the addition of the <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02051">online portal,</a> which made it easier to submit a complaint. On the other hand, sometimes these yearly changes in complaints reflect actual changes in food poisoning rates from dining out. For example, at the start of the COVID-19 pandemic, when fewer people were eating out, complaints dropped.
 
@@ -114,7 +128,7 @@ We may ask you a few additional questions that will help us in our investigation
 
 <strong>There are three main ways food can become unsafe to eat:</strong>
 
-<!-- img 4 -->
+<img src="contact_311.png">
 
 ## Report unsafe food practices, too
 
@@ -129,29 +143,3 @@ spoiled or contaminated food
 - <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/">food sitting at room temperature for several hours</a>
 
 If you think you got sick from food or see unsafe food practices, report them to 311 to help keep New York safe.
-
----- <!-- old DS below -->
-
-<div class="narrow">
-
-<div class="card card-left-border shadow-sm mb-2">
-    <div class="card-body">   
-      <p>If we suspect food is making people sick, the Health Department launches an investigation. Understanding how the food became unsafe is critical to determining the right fix. This could be correcting unsafe food handling practices, retraining staff, or tracing and removing the food from shelves and plates to keep people safe.<p>
-      </div>
-</div>
-
-### What is foodborne illness—and what causes it?
-
-You or someone you know may have had “food poisoning.” But did you know that “food poisoning” could actually be one of <a href="https://www.who.int/health-topics/foodborne-diseases#tab=tab_1">more than 200 illnesses</a> caused by <a href="https://www.fda.gov/files/food/published/Most-Common-Foodborne-Illnesses-%28PDF%29.pdf#:~:text=Many%20outbreaks%20and%20individual%20cases%20of%20foodborne%20illness,l%20Viruses%2C%20such%20as%20norovirus%20or%20hepatitis%20A">bacteria, viruses, parasites, toxins, and chemical substances in food,</a> each with their own symptoms?
-
-There are many types of food-related illnesses. Symptoms can range from a mild stomachache to high fevers, vomiting, diarrhea, and dehydration. Certain groups, like older adults or those with compromised immune systems, are more likely to get serious illness.
-
-Sometimes we can tell if food is rotten or spoiled, but most of the time, food that makes us sick smells and tastes normal. Symptoms can appear hours, days, or even weeks after eating contaminated food, so the cause of illness might not be your most recent meal. It all depends on the type of foodborne illness. For example, <a href="https://www.nyc.gov/site/doh/health/health-topics/food-poisoning.page">Scombroid toxin can cause illness within an hour, while Campylobacter infection symptoms typically appear 2 to 5 days after eating contaminated food.</a> The time between eating contaminated food and the onset of symptoms is called the incubation period.
-
-</div>
-<div class="wide my-4">
-<div style="min-height:158px" id="datawrapper-vis-9Hwil"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/9Hwil/embed.js" charset="utf-8" data-target="#datawrapper-vis-9Hwil"></script><noscript><img src="https://datawrapper.dwcdn.net/9Hwil/full.png" alt="The average time between ingesting a contaminated food item and becoming sick from it can vary between a few hours to several days." /></noscript></div>
-</div>
-<figcaption class="figure-caption">Average incubation periods for the pathogens and toxins associated with most NYC foodborne illness outbreaks.</figcaption>
-
-<div class="narrow my-4">
