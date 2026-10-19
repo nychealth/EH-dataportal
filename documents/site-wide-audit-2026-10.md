@@ -26,7 +26,7 @@ Three readings of that axis decide many rows, and each is a choice someone can r
 | BRANCH-SCOPED | 0 | 0 | 0 | 6 | 6 |
 | all | 49 | 73 | 136 | 244 | 502 |
 
-`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, two rows have changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17), re-checked by `t7/recount.py`; and N-025, fixed on #1491 by `79e7fa27bd` (P1 → FIXED, 2026-10-19). The counts above include both, re-checked 2026-10-19 by a recount of the Status and Priority columns of every `A-` and `N-` row.
+`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, two rows have changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17), re-checked by `t7/recount.py`; and N-025, fixed on #1491 by `79e7fa27bd` (P1 → FIXED, 2026-10-19). The counts above include both, re-checked 2026-10-19 by a recount of the Status and Priority columns of every `A-` and `N-` row. Closing a row edits five places: the row (Status FIXED, **Fixed by** <hash>, Tree, Priority —), the count table above, this paragraph, the Roadmap's P1+P2 total, and the batch row's counts and ids.
 
 ## Roadmap
 
