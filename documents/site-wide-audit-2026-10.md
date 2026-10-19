@@ -18,19 +18,19 @@ Three readings of that axis decide many rows, and each is a choice someone can r
 
 | Status | P1 | P2 | P3 | — | All |
 |---|---|---|---|---|---|
-| OPEN | 47 | 73 | 134 | 2 | 256 |
-| FIXED | 0 | 0 | 0 | 199 | 199 |
+| OPEN | 47 | 72 | 134 | 2 | 255 |
+| FIXED | 0 | 0 | 0 | 200 | 200 |
 | UNVERIFIED | 0 | 0 | 0 | 14 | 14 |
 | DISCONFIRMED | 0 | 0 | 0 | 17 | 17 |
 | OBSOLETE | 0 | 0 | 0 | 10 | 10 |
 | BRANCH-SCOPED | 0 | 0 | 0 | 6 | 6 |
-| all | 47 | 73 | 134 | 248 | 502 |
+| all | 47 | 72 | 134 | 249 | 502 |
 
-`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, six rows have changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17), re-checked by `t7/recount.py`; N-025, fixed on #1491 by `79e7fa27bd` (P1 → FIXED, 2026-10-19); N-027, fixed on #1491 by `dc8b639543` (P1 → FIXED, 2026-10-19); N-028 and N-068, fixed on #1491 by `8445f48bdf` (P3 → FIXED, 2026-10-19); and N-026, fixed on #1491 by `8445f48bdf` and `f70417536f` (P1 → FIXED, 2026-10-19). The counts above include all six, re-checked 2026-10-19 by a recount of the Status and Priority columns of every `A-` and `N-` row. Closing a row edits five places: the row (Status FIXED, **Fixed by** <hash>, Tree, Priority —), the count table above, this paragraph, the Roadmap's P1+P2 total, and the batch row's counts and ids. A P3 row is in no batch, so it edits the Roadmap's P3 count instead of the last two.
+`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, seven rows have changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17), re-checked by `t7/recount.py`; N-025, fixed on #1491 by `79e7fa27bd` (P1 → FIXED, 2026-10-19); N-027, fixed on #1491 by `dc8b639543` (P1 → FIXED, 2026-10-19); N-028 and N-068, fixed on #1491 by `8445f48bdf` (P3 → FIXED, 2026-10-19); N-026, fixed on #1491 by `8445f48bdf` and `f70417536f` (P1 → FIXED, 2026-10-19); and A-374, fixed on #1491 by `2aac4c8daa` (P2 → FIXED, 2026-10-19). The counts above include all seven, re-checked 2026-10-19 by a recount of the Status and Priority columns of every `A-` and `N-` row. Closing a row edits five places: the row (Status FIXED, **Fixed by** <hash>, Tree, Priority —), the count table above, this paragraph, the Roadmap's P1+P2 total, and the batch row's counts and ids. A P3 row is in no batch, so it edits the Roadmap's P3 count instead of the last two.
 
 ## Roadmap
 
-Every P1 and P2 row (120) is in exactly one batch below; `apply_t6.py` refuses to write the section otherwise. A batch groups rows that change the same files and do not need another batch's change first, so each can be its own branch and PR; the one exception is noted under R10. Where two batches' Touches cells name the same file (R2 and R3 in `assets/js/data-explorer/`, R3 and R5 in `_de-custom.scss`, R11 and R12 in `head.html` and `js_bottom.html`, R1 and R12 in `index.html`, R12 and R13 in `search-modal.html`), the second to land rebases. The table is ordered by P1 count, then P2 count. The 134 P3 rows are not batched: filter the tables by Priority.
+Every P1 and P2 row (119) is in exactly one batch below; `apply_t6.py` refuses to write the section otherwise. A batch groups rows that change the same files and do not need another batch's change first, so each can be its own branch and PR; the one exception is noted under R10. Where two batches' Touches cells name the same file (R2 and R3 in `assets/js/data-explorer/`, R3 and R5 in `_de-custom.scss`, R11 and R12 in `head.html` and `js_bottom.html`, R1 and R12 in `index.html`, R12 and R13 in `search-modal.html`), the second to land rebases. The table is ordered by P1 count, then P2 count. The 134 P3 rows are not batched: filter the tables by Priority.
 
 | Batch | Lands on | Touches | P1 | P2 | Rows |
 |---|---|---|---|---|---|
@@ -48,7 +48,7 @@ Every P1 and P2 row (120) is in exactly one batch below; `apply_t6.py` refuses t
 | R10: Dependencies and script sinks | production | `package.json`, vendored Bootstrap, `lib-*` partials, explorer `innerHTML` sites | 0 | 5 | A-014, A-015, A-018, A-020, A-076 |
 | R15: EHDP-data | the EHDP-data repository | `GeoLookup.json`, indicator `VisOptions`, measure geographies | 0 | 3 | A-164, A-234, A-235 |
 | R13: Analytics and consent | production (A-094 is a policy question first) | `search-modal.html` search event, GA snippet | 0 | 2 | A-094, N-049 |
-| R14: Neighborhood Reports | #1491's branch, before it merges | `assets/js/nr-report/`, NR layouts | 0 | 2 | A-374, A-382 |
+| R14: Neighborhood Reports | #1491's branch, before it merges | `assets/js/nr-report/`, NR layouts | 0 | 1 | A-382 |
 
 P1 rows are in bold. Notes on the batches:
 
@@ -656,7 +656,7 @@ content]`. Rows whose members recorded both trees say BRANCH-SCOPED.
 | A-371 | G6-39 | Print row uses `getTertileInlineLabel`. | FIXED | row | #1491 @ d1c7402735 | — |
 | A-372 | G6-40 | Comparison markers use FA glyphs; old emoji codepoints removed. | FIXED | row | #1491 @ d1c7402735 | — |
 | A-373 | G6-41 | `getComparison` returns `word` and `preposition` separately. | FIXED | row | #1491 @ d1c7402735 | — |
-| A-374 | G6-42 | `getComparison(null, x)` treats null as 0 and compares instead of returning the empty result. | OPEN | row | #1491 @ d1c7402735 | P2 |
+| A-374 | G6-42 | `getComparison(null, x)` treats null as 0 and compares instead of returning the empty result. | FIXED | **Fixed by 2aac4c8daa** (`getComparison` returns the empty result when either side is `null`, `undefined` or `''`, before `Number()` turns it into 0) `[verified 2026-10-19: scripts/nr-r14-probe.mjs checkA374 on an isolated dev_stage server, PASS, exit 0; at dddd82fa35 it failed with null and '' on either side reading "Lower" or "Higher", while 3 vs 5, '7' vs '5', 5 vs 5 and 0 vs 5 compared correctly in both runs. Unreachable with today's data, as the refinement under Task 4 candidates, Area c, says: re-counted the same day, 0 rows with a null value and a non-null rank, and 0 with a null borough or city value and a non-null rank, of 3570 on production @ 7b61f6653b and 3654 on staging @ 2de9129c38]` | #1491 @ 2aac4c8daa (found at d1c7402735) | — |
 | A-375 | G6-43 | Scratch `nr-print-check.pdf`/`.png` left untracked at a repo root. | UNVERIFIED (other) | row | #1491 @ d1c7402735 | — |
 | A-376 | G7-01 | 11 non-NR pages differed only by production content and "arrive on merge". | FIXED | row | #1491 @ d1c7402735 | — |
 | A-377 | G7-02 | The 47 → 258 NR index increase is deliberate. | OBSOLETE | row | #1491 @ d1c7402735 | — |
@@ -1910,7 +1910,7 @@ Checked for overlap: A-001, A-002, A-027, A-039, A-041, A-042, A-050, A-057, A-0
   - `data.js:20` and `url.js` `getNeighborhoodFromURL`: the function reads `reportConfig.neighborhood`, not the URL. This is a name CLAUDE.md pre-authorizes renaming.
 - **Overlap:** None. A-393 is about spacing.
 
-**Refinement to A-374, not a new candidate.** On both EHDP-data branches, every row with a null `unmodified_data_value_geo_entity` also has a null `data_value_rank`: 48 of 3570 rows on production and 48 of 3654 on staging, none split. `cards.js` puts `d-none` on the comparison block when rank is null, so the null-as-0 comparison is unreachable with today's data. The latent bug stays.
+**Refinement to A-374, not a new candidate.** On both EHDP-data branches, every row with a null `unmodified_data_value_geo_entity` also has a null `data_value_rank`: 48 of 3570 rows on production and 48 of 3654 on staging, none split. `cards.js` puts `d-none` on the comparison block when rank is null, so the null-as-0 comparison is unreachable with today's data. The latent bug stayed until `2aac4c8daa` (A-374, 2026-10-19).
 
 **Checked and dropped:**
 - Neighborhood names: all 42 `UHF_name`s match the `neighborhood` values in every report JSON and viz JSON on production, and IDs match (0 mismatches).
