@@ -241,6 +241,7 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     // Synchronize deep-link state after the page content has been refreshed
     setNeighborhoodInURL(neighborhoodName);
     updateTopicLinks(neighborhoodName);
+    updateNeighborhoodCrumb(neighborhoodName);
 
     // The printed report carries a QR code back to itself, and the map can switch
     // neighborhood in place — so it has to be regenerated from the rewritten URL rather

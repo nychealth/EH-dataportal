@@ -106,3 +106,30 @@ const updateTopicLinks = neighborhoodName => {
     });
 
 };
+
+
+// Repoints the breadcrumb's neighborhood item at the current neighborhood
+const updateNeighborhoodCrumb = neighborhoodName => {
+
+    debugLog('updateNeighborhoodCrumb: enter:', neighborhoodName);
+
+    // Same staleness as the topic tabs: the template renders this crumb for the
+    // neighborhood the page was generated for, so after an in-place switch it named
+    // and linked the old one while the h1 and address bar named the new one
+    const slug = slugForNeighborhood(neighborhoodName);
+    const crumb = document.querySelector('.nr-breadcrumb-neighborhood');
+
+    if (!slug || !crumb) {
+        return;
+    }
+
+    // Its href is the neighborhood index, neighborhood-reports/<nbhd>/, so the
+    // neighborhood is the last segment. Rewriting that one keeps any site path prefix
+    const parts = new URL(crumb.href, window.location.origin).pathname
+        .replace(/\/$/, '').split('/').filter(Boolean);
+
+    parts[parts.length - 1] = slug;
+    crumb.href = '/' + parts.join('/') + '/';
+    crumb.textContent = neighborhoodName;
+
+};

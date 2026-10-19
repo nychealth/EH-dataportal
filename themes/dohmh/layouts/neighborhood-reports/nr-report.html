@@ -60,7 +60,7 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item d-none d-sm-block"><a href="{{ relURL "" }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ relURL "neighborhood-reports" }}">Neighborhood Reports</a></li>
-                    <li class="breadcrumb-item"><a href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
+                    <li class="breadcrumb-item"><a class="nr-breadcrumb-neighborhood" href="{{ relURL (printf "neighborhood-reports/%s/" .Params.neighborhood_slug) }}">{{ .Params.neighborhood }}</a></li>
                     <li class="breadcrumb-item active d-none d-sm-block" aria-current="page">{{ .Title }}</li>
                 </ul>
             </nav>
