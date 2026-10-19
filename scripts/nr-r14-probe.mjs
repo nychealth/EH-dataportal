@@ -287,13 +287,14 @@ const checkZoomControls = async (browser, baseURL) => {
             (typeof leafletMap !== 'undefined' ? leafletMap : map).getZoom());
 
         let zoomed = null;
+        let animating = null;
         if (r.length && !hidden) {
 
-            // The initial fitBounds animates from zoom 10, and Leaflet can drop a zoom request
-            // made mid-animation: clicked the moment the polygons appeared, 1 of 2 report-page
-            // clicks registered, against 2 of 2 once _animatingZoom was false [2026-10-19]
-            await page.waitForFunction(() =>
-                !(typeof leafletMap !== 'undefined' ? leafletMap : map)._animatingZoom, null, { timeout: 5000 });
+            // Read and click the moment the polygons appear. While the initial fitBounds animated
+            // from zoom 10, _animatingZoom read true here and Leaflet dropped 1 of 2 such clicks
+            // [2026-10-19]; with animate: false there is nothing to wait out
+            animating = await page.evaluate(() =>
+                !!(typeof leafletMap !== 'undefined' ? leafletMap : map)._animatingZoom);
 
             const before = await getZoom();
             await page.click(container + ' .leaflet-control-zoom-in');
@@ -306,10 +307,11 @@ const checkZoomControls = async (browser, baseURL) => {
         const labels = r.map(b => b.label).join(',');
         results[path] = {
             buttons: r,
+            animating,
             zoomed,
             ok: labels === 'Zoom in,Zoom out'
                 && r.every(b => b.role === 'button')
-                && (hidden ? r.every(b => b.tabindex === '-1') : zoomed === true),
+                && (hidden ? r.every(b => b.tabindex === '-1') : animating === false && zoomed === true),
         };
 
     }

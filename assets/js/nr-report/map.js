@@ -323,7 +323,10 @@ const initLeafletMap = () => {
             // landed the fly-to on a flat 12, snap 0 fits at 9.58. nr-leaflet.html reached
             // the same conclusion for the picker map, and this uses its padding
             leafletMap.options.zoomSnap = 0;
-            leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10] });
+            // animate: false — the map lands on the city rather than zooming out to it from the
+            // zoom-10 placeholder view, and a zoom click made during that animation was
+            // dropped [2026-10-19]
+            leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
 
             mapReady = true;
             tryInitialRender();
