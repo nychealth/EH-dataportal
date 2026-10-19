@@ -22,7 +22,10 @@
     // ---------- Initialize map ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    let map = L.map("map", { zoomControl: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
+    // Leaflet's default zoom control is on: the map fits the whole city, so the buttons are how
+    // a reader closes in on one neighborhood. Where a caller hides the map from assistive tech,
+    // removeHiddenMapFromTabOrder takes the buttons out of the tab order with the polygons
+    let map = L.map("map").setView([lat, lng], zoom); // [Lat,Long],Zoom
 
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
@@ -62,28 +65,27 @@
             nameNeighborhoodPolygons();
 
 
-            // highlight and zoom to selected neighborhood
-                
+            // highlight the page's own neighborhood: geocode is set only on the 42
+            // neighborhood index pages
+
             if (geocode && geocode.trim() !== "") {
 
                 // extract selected neighborhood layer
-                
+
                 const targetLayer = Object.values(uhf_geojson._layers).find(
-                
+
                     (layer) => layer.feature.properties.GEOCODE == geocode
-                    
+
                 );
 
-                // if there's a selected neighborhood, style and zoom
-                
                 if (targetLayer) {
 
                     // reset style
-                    
+
                     uhf_geojson.resetStyle();
-                    
+
                     // apply highlight style
-                    
+
                     targetLayer.setStyle({
                         weight: 3,
                         color: "#008939",
@@ -95,38 +97,32 @@
 
                     targetLayer.bringToFront();
 
-                    // zoom in on selected neighborhood (after half a second)
-
-                    setTimeout(() => {
-                        
-                        map.flyToBounds(targetLayer.getBounds(), {duration: 0.5});
-
-                    }, 500);
-                
-                    
                 } else {
-                    
+
                     console.warn("No matching GEOCODE found:", geocode);
-                    
+
                 }
-                
-            } else {
-
-                // No geocode: the landing page and the five topic indexes, where the map is a
-                // whole-city picker rather than a located report. Fit the UHF42 layer instead
-                // of keeping the fixed zoom-10 view, so the city fills whatever box the caller
-                // gives it — at a fixed zoom a wider container just adds water on both sides.
-
-                // zoomSnap is set here rather than at construction so this stays scoped to the
-                // two picker pages: the geocode branch above keeps Leaflet's whole-number
-                // framing on the 42 neighborhood index pages. It has to be 0 because the
-                // default of 1 makes fitBounds round *down* to a whole zoom level — measured
-                // 2026-08-09, that left the city spanning 59% of a 679px-wide box.
-                map.options.zoomSnap = 0;
-
-                map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10] });
 
             }
+
+            // Every page fits the whole city rather than keeping the fixed zoom-10 view, so the
+            // city fills whatever box the caller gives it — at a fixed zoom a wider container
+            // just adds water on both sides.
+            //
+            // The neighborhood index pages used to fly to their own neighborhood instead, which
+            // left most polygons outside the map: a centre-point hit test reached 10 of 42 on
+            // east_new_york/, at zoom 12 [verified 2026-10-19, scripts/nr-r14-probe.mjs, audit
+            // row N-026]. The polygons are links to the other 41 neighborhoods, so that framing
+            // took away the navigation it drew. The highlight above still marks the page's own
+            // neighborhood, and the zoom control lets a reader close in on it. The report page's
+            // map.js made the same change on 2026-09-15 for the same reason.
+            //
+            // zoomSnap has to be 0 because the default of 1 makes fitBounds round *down* to a
+            // whole zoom level — measured 2026-08-09, that left the city spanning 59% of a
+            // 679px-wide box.
+            map.options.zoomSnap = 0;
+
+            map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10] });
 
             removeHiddenMapFromTabOrder();
 

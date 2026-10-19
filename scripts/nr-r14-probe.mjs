@@ -201,6 +201,127 @@ const checkN026 = async (browser, baseURL) => {
 
 
 // ----------------------------------------------------------------------- //
+// N-026, pointer half: the neighborhood index map frames the whole city
+// ----------------------------------------------------------------------- //
+
+// Centre-point hit test, the audit's own method: a polygon counts as reachable when
+// elementFromPoint at its bounding-box centre returns that polygon. It undercounts thin
+// shapes (Rockaways, audit A-149), so 41 of 42 is the expected ceiling, as on the report map
+const checkN026Pointer = async (browser, baseURL) => {
+
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    const errors = [];
+    page.on('pageerror', e => errors.push(e.message));
+
+    await page.goto(baseURL + 'neighborhood-reports/east_new_york/', { waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelectorAll('#map path.leaflet-interactive').length >= 42, null, { timeout: 20000 });
+
+    // Long enough for the old 0.5s-delayed, 0.5s fly-to to have finished, so the
+    // before-fix reading is the settled zoomed view rather than a frame mid-flight
+    await page.waitForTimeout(2500);
+    await page.evaluate(() => document.getElementById('map').scrollIntoView({ block: 'center' }));
+
+    const reach = await page.evaluate(() => {
+        const paths = [...document.querySelectorAll('#map path.leaflet-interactive')];
+        const hits = paths.filter(p => {
+            const r = p.getBoundingClientRect();
+            return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === p;
+        });
+        return {
+            polygons: paths.length,
+            reachable: hits.length,
+            zoom: map.getZoom(),
+            // The page's own neighborhood keeps its highlight under either framing
+            highlighted: paths.filter(p => p.getAttribute('stroke') === '#008939').map(p => p.getAttribute('aria-label')),
+        };
+    });
+
+    await page.close();
+
+    const pass = reach.polygons === 42
+        && reach.reachable >= 41
+        && reach.highlighted.length === 1 && reach.highlighted[0] === 'East New York'
+        && errors.length === 0;
+
+    return { row: 'N-026 pointer', pass, reach, errors };
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// Zoom controls on every NR map (Chris, 2026-10-19)
+// ----------------------------------------------------------------------- //
+
+// The report page and the neighborhood index show the map as a control, so their zoom
+// buttons are tab stops. The landing page and topic index hide the map from assistive tech
+// (the neighborhood list is its text equivalent), so there they must not be tab stops
+const checkZoomControls = async (browser, baseURL) => {
+
+    const pages = {
+        'neighborhood-reports/east_new_york/asthma_and_the_environment/': { container: '#nr-map', hidden: false },
+        'neighborhood-reports/east_new_york/': { container: '#map', hidden: false },
+        'neighborhood-reports/': { container: '#map', hidden: true },
+        'neighborhood-reports/climate_and_health/': { container: '#map', hidden: true },
+    };
+
+    const results = {};
+    const errors = [];
+
+    for (const [path, { container, hidden }] of Object.entries(pages)) {
+
+        const page = await browser.newPage();
+        page.on('pageerror', e => errors.push(path + ': ' + e.message));
+
+        await page.goto(baseURL + path, { waitUntil: 'load' });
+        await page.waitForFunction(c => document.querySelectorAll(c + ' path.leaflet-interactive').length >= 42, container, { timeout: 20000 });
+
+        const r = await page.evaluate(c => {
+            const buttons = [...document.querySelectorAll(c + ' .leaflet-control-zoom a')];
+            return buttons.map(b => ({ label: b.getAttribute('aria-label'), role: b.getAttribute('role'), tabindex: b.getAttribute('tabindex') }));
+        }, container);
+
+        // A real click on Zoom in must move the zoom, so the buttons are wired, not decoration
+        // Bare names, not window.*: both maps are top-level let bindings, which are not window
+        // properties, and window.map is the #map div by named access
+        const getZoom = () => page.evaluate(() =>
+            (typeof leafletMap !== 'undefined' ? leafletMap : map).getZoom());
+
+        let zoomed = null;
+        if (r.length && !hidden) {
+
+            // The initial fitBounds animates from zoom 10, and Leaflet can drop a zoom request
+            // made mid-animation: clicked the moment the polygons appeared, 1 of 2 report-page
+            // clicks registered, against 2 of 2 once _animatingZoom was false [2026-10-19]
+            await page.waitForFunction(() =>
+                !(typeof leafletMap !== 'undefined' ? leafletMap : map)._animatingZoom, null, { timeout: 5000 });
+
+            const before = await getZoom();
+            await page.click(container + ' .leaflet-control-zoom-in');
+            await page.waitForTimeout(600);
+            zoomed = (await getZoom()) > before;
+        }
+
+        await page.close();
+
+        const labels = r.map(b => b.label).join(',');
+        results[path] = {
+            buttons: r,
+            zoomed,
+            ok: labels === 'Zoom in,Zoom out'
+                && r.every(b => b.role === 'button')
+                && (hidden ? r.every(b => b.tabindex === '-1') : zoomed === true),
+        };
+
+    }
+
+    const pass = Object.values(results).every(x => x.ok) && errors.length === 0;
+
+    return { row: 'zoom controls', pass, results, errors };
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // N-028: no unconditional console.log from the NR picker pages
 // ----------------------------------------------------------------------- //
 
@@ -255,6 +376,8 @@ const main = async () => {
         results.push(await checkN027Polygon(browser, server.baseURL));
         results.push(await checkN026(browser, server.baseURL));
         results.push(await checkN028(browser, server.baseURL));
+        results.push(await checkN026Pointer(browser, server.baseURL));
+        results.push(await checkZoomControls(browser, server.baseURL));
     } finally {
         await browser.close();
         await server.stop();

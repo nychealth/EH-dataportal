@@ -78,10 +78,8 @@ const reportMapResetHighlight = e => {
 // On the feature-NDHR-prototype branch, ndhr-leaflet.html reached the same conclusion for the
 // picker map on 2026-09-12 and carries the longer version of this reasoning;
 // assets/js/ndhr-report/map.js followed on 2026-09-13. Neither file is on this branch.
-// nr-leaflet.html still flies onto the page's own neighborhood on the 42 neighborhood index
-// pages, kept on 2026-10-19 to preserve that framing (documents/nr-audit-r14-fixes-2026-10-18.md,
-// Decisions). Its polygons answer Enter there since then, so the keyboard reaches all 42 while a
-// pointer reaches few: the pointer half of audit row N-026 is open
+// nr-leaflet.html, the map on the other NR pages, flew to the page's own neighborhood on the 42
+// neighborhood index pages until 2026-10-19 and now fits the whole city too (audit row N-026)
 const selectLayer = layer => {
 
     // Clear previous selection style first
@@ -284,8 +282,9 @@ const initLeafletMap = () => {
 
     debugLog('initLeafletMap: enter:', reportConfig.geojsonUrl);
 
-    // Initialize Leaflet with a neutral NYC-centered default view
-    leafletMap = L.map('nr-map', { zoomControl: false }).setView([40.7128, -74.006], 10);
+    // Initialize Leaflet with a neutral NYC-centered default view. The default zoom control is
+    // on: the map fits the whole city (below), so the buttons are how a reader closes in
+    leafletMap = L.map('nr-map').setView([40.7128, -74.006], 10);
 
     // Use CARTO basemap tiles to match existing portal styling
     L.tileLayer(

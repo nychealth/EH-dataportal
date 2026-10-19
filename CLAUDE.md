@@ -451,7 +451,8 @@ worked before still works, but nothing renders it the way it used to. Three page
   disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
   `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
   name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
-  its own function names since 2026-10-19, but still flies to the page's neighborhood.
+  its own function names since 2026-10-19, and like `map.js` fits the whole city with Leaflet's zoom
+  control on.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
