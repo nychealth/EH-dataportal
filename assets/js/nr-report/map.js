@@ -283,8 +283,10 @@ const initLeafletMap = () => {
     debugLog('initLeafletMap: enter:', reportConfig.geojsonUrl);
 
     // Initialize Leaflet with a neutral NYC-centered default view. The default zoom control is
-    // on: the map fits the whole city (below), so the buttons are how a reader closes in
-    leafletMap = L.map('nr-map').setView([40.7128, -74.006], 10);
+    // on: the map fits the whole city (below), so the buttons are how a reader closes in.
+    // fadeAnimation is off for the reason nr-leaflet.html gives: a 200ms per-tile fade-in that
+    // left even cached tiles invisible for a quarter second after each page load
+    leafletMap = L.map('nr-map', { fadeAnimation: false }).setView([40.7128, -74.006], 10);
 
     // Use CARTO basemap tiles to match existing portal styling
     L.tileLayer(

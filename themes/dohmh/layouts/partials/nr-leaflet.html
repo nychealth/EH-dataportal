@@ -24,8 +24,13 @@
     
     // Leaflet's default zoom control is on: the map fits the whole city, so the buttons are how
     // a reader closes in on one neighborhood. Where a caller hides the map from assistive tech,
-    // removeHiddenMapFromTabOrder takes the buttons out of the tab order with the polygons
-    let map = L.map("map").setView([lat, lng], zoom); // [Lat,Long],Zoom
+    // removeHiddenMapFromTabOrder takes the buttons out of the tab order with the polygons.
+    //
+    // fadeAnimation off: Leaflet fades each tile in over 200ms after it loads, so with the tiles
+    // already cached a click from one neighborhood to the next still showed an empty map for a
+    // quarter second — tiles in the page at 68ms, fully opaque at 331ms [measured 2026-10-19,
+    // southwest_queens/, warm cache]. It also turns off Leaflet's tooltip fade
+    let map = L.map("map", { fadeAnimation: false }).setView([lat, lng], zoom); // [Lat,Long],Zoom
 
     L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_2vaf_1_f87644104deb54c869cef554',
