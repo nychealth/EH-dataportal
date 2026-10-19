@@ -359,6 +359,12 @@ h1 {
         display: flex;
         flex-direction: column;
 
+        // Cards carry a bare section class (.data-stories, .n-reports, ...) for their accent
+        // border, and _de-custom.scss gives some of those classes a text color meant for
+        // headings. Reset it here so card body text stays the body color; icons keep their
+        // accent because those rules target `i` and `svg path` directly.
+        color: $body-color;
+
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.17);
         .card-title {
             font-size: 1.5rem;
