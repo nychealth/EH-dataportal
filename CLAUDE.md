@@ -270,6 +270,14 @@ are printed as a harness-health number and deliberately **not** baselined — th
   `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
   differed from the prod_prod baseline; against production's own capture, 535 had lost the
   search UI, which a re-baseline would have committed as expected]`.
+- **`--expect <glob>` claims every field on every page it covers.** The re-baseline tool's
+  "Nothing unexplained" means no page outside the globs moved, not that only the fields you
+  predicted did. Tally `git diff -U0` by key before committing `[2026-10-19]`.
+- **Run it before calling done any change that adds or removes a rendered element on a page kind**
+  — a link, button, input, heading, image or iframe, including one a library injects. CI runs the
+  full sweep on every PR into `production` that touches more than `site-characterization.yml`'s
+  `paths-ignore` list (`documents/**` and similar), so a local check list that leaves it out moves the
+  failure to the PR `[2026-10-19]`.
 - **A page that misses `load` in every environment may be its third-party embed, not this site.** `/data-features/displacement-risk/` iframes `equitableexplorer.planning.nyc.gov`, whose own scripts intermittently hang past the 30s `goto` cap, and one such page voids the whole sweep's verdict. Load the embed URL alone before suspecting a change, then re-run `[2026-10-16]`.
 
 ### Neighborhood Reports harnesses
@@ -285,8 +293,9 @@ on a branch mismatch.
 
 ### Search index
 
-- `npm run characterize:pagefind` — characterization harness for the **search index**
-  (`scripts/pagefind-characterization.mjs`). Nothing else in this repo can see search: Pagefind is
+- `node scripts/pagefind-characterization.mjs --check` — characterization harness for the **search
+  index**. `npm run characterize:pagefind` passes no flag, so it prints usage and exits 2 without
+  checking anything. Nothing else in this repo can see search: Pagefind is
   a post-build step, so `hugo server` produces no index at all — which is why `PagefindUI is not
   defined` is allowlisted dev-only noise in `nr-characterization.mjs`. A template change that
   silently adds or removes indexed text is invisible to `lint`, `smoke` and both other harnesses.
@@ -430,7 +439,7 @@ worked before still works, but nothing renders it the way it used to. Three page
   `data-pagefind-ignore="all"` (the `skip-header-target` id is on `baseof.html`'s `<main>`), restoring production's model 2026-08-15 after the alternatives were
   measured and failed. It costs neighborhood+topic search — "asthma East Harlem" no longer finds
   East Harlem's asthma report — and it is reversible by deleting that one attribute, which
-  `npm run characterize:pagefind` will catch as a control failure rather than a diff.
+  `node scripts/pagefind-characterization.mjs --check` will catch as a control failure rather than a diff.
   `documents/nr-pagefind-parity-2026-08-15.md` §2g has the numbers, §5 the test that would reverse
   it. Pagefind only: crawlers, the accessibility tree and the no-JS path are untouched. This is the
   report page:
