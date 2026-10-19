@@ -7,7 +7,7 @@
 // a visitor would and asserts the end state the audit row says was missing, so it
 // is the reproduction before a fix and the proof after one.
 //
-// Covers N-025, N-026, N-027 and N-028 so far; the ledger's later steps add their rows here.
+// Covers N-025, N-026, N-027, N-028 and A-374 so far; the ledger's later steps add their rows here.
 //
 //     node scripts/nr-r14-probe.mjs
 //
@@ -361,6 +361,56 @@ const checkN028 = async (browser, baseURL) => {
 
 
 // ----------------------------------------------------------------------- //
+// A-374: getComparison treats a missing value as missing, not as 0
+// ----------------------------------------------------------------------- //
+
+// Calls the function directly rather than through a rendered card: no row in either
+// EHDP-data branch reaches the visible case today (null value with a non-null rank, 0 of
+// 3570 on production and 0 of 3654 on staging on 2026-10-19), so only a direct call can
+// exercise it
+const checkA374 = async (browser, baseURL) => {
+
+    const page = await browser.newPage();
+    const errors = [];
+    page.on('pageerror', e => errors.push(e.message));
+
+    await page.goto(baseURL + 'neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/', { waitUntil: 'load' });
+
+    // getComparison is a top-level const in a classic script, so it is reachable by bare
+    // name from page.evaluate though it is not a property of window
+    const words = await page.evaluate(() => {
+        const w = (a, b) => getComparison(a, b, null).word;
+        return {
+            numbers: w(3, 5),
+            strings: w('7', '5'),
+            equal: w(5, 5),
+            zero: w(0, 5),
+            nullValue: w(null, 5),
+            nullRef: w(5, null),
+            emptyValue: w('', 5),
+            emptyRef: w(5, ''),
+            undefinedValue: w(undefined, 5),
+        };
+    });
+
+    await page.close();
+
+    // The first four are the control: the function was found and still compares real
+    // values, a genuine 0 included. Before the fix the null and empty-string cases read
+    // "Lower" and "Higher", because Number() turns both into 0
+    const pass = words.numbers === 'Lower'
+        && words.strings === 'Higher'
+        && words.equal === 'Equal'
+        && words.zero === 'Lower'
+        && ['nullValue', 'nullRef', 'emptyValue', 'emptyRef', 'undefinedValue'].every(k => words[k] === '')
+        && errors.length === 0;
+
+    return { row: 'A-374', pass, words, errors };
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // run
 // ----------------------------------------------------------------------- //
 
@@ -380,6 +430,7 @@ const main = async () => {
         results.push(await checkN028(browser, server.baseURL));
         results.push(await checkN026Pointer(browser, server.baseURL));
         results.push(await checkZoomControls(browser, server.baseURL));
+        results.push(await checkA374(browser, server.baseURL));
     } finally {
         await browser.close();
         await server.stop();

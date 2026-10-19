@@ -129,13 +129,19 @@ const getTertileSentence = (rank, rankReverse) => {
 // where the other two take "than"
 const getComparison = (neighVal, refVal, rankReverse) => {
 
+    // A missing value is checked before Number(), which turns null and '' into 0 and would
+    // compare a neighborhood with no data as if it measured zero (audit row A-374). No row on
+    // either EHDP-data branch reaches this today — the 48 with a null value also have a null
+    // rank, and cards.js hides the comparison block for those — so this guards the next one
+    const missing = v => v == null || v === '';
+
     // Parse defensively because the source payload can contain string numerics
     const n = Number(neighVal);
     const r = Number(refVal);
     const reverse = isRankReversed(rankReverse);
 
-    // When either side is not numeric, omit comparison messaging
-    if (isNaN(n) || isNaN(r)) {
+    // When either side is missing or not numeric, omit comparison messaging
+    if (missing(neighVal) || missing(refVal) || isNaN(n) || isNaN(r)) {
         return { word: '', preposition: '', cssClass: '' };
     }
 
