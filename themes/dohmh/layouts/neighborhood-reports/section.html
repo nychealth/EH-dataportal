@@ -207,7 +207,6 @@ function changeHomeCopy(x) {
 
 
 function setIntendedDestination(x) {
-  console.log('Intended destination: ', x)
   intendedDestination = x
 
   // look up intendedDestination in topicSlugs, and retrieve the URL Path for the intended destination
@@ -215,8 +214,6 @@ function setIntendedDestination(x) {
   if (topicSlugs.hasOwnProperty(intendedDestination)) {
       intendedDestinationName = topicSlugs[intendedDestination];
   }
-
-  console.log('intended destination url: ', intendedDestinationName);
 
   updateNeighborhoodListLinks()
 

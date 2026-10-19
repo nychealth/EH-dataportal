@@ -448,8 +448,10 @@ worked before still works, but nothing renders it the way it used to. Three page
   `reportMapSelectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
   polygons were focusable all along, and nothing was listening. Every polygon carries
   `role="button"` and a name from `featureDisplayName`, **not** from the geojson's `GEONAME`, which
-  disagrees with `uhflist`'s `UHF_name` on 6 of the 42 ("Fordham - Bronx Pk", "Rockaways"); the
-  tooltip resolves the same way, so the visible label matches the accessible name.
+  disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
+  `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
+  name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
+  its own function names since 2026-10-19, but still flies to the page's neighborhood.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.

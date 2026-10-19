@@ -7,7 +7,7 @@
 // a visitor would and asserts the end state the audit row says was missing, so it
 // is the reproduction before a fix and the proof after one.
 //
-// Covers N-025 and N-027 so far; the ledger's later steps add their rows here.
+// Covers N-025, N-026, N-027 and N-028 so far; the ledger's later steps add their rows here.
 //
 //     node scripts/nr-r14-probe.mjs
 //
@@ -152,6 +152,92 @@ const checkN027Polygon = async (browser, baseURL) => {
 
 
 // ----------------------------------------------------------------------- //
+// N-026: neighborhood-index polygons are named and answer Enter
+// ----------------------------------------------------------------------- //
+
+const checkN026 = async (browser, baseURL) => {
+
+    const page = await browser.newPage();
+    const errors = [];
+    page.on('pageerror', e => errors.push(e.message));
+
+    await page.goto(baseURL + 'neighborhood-reports/east_new_york/', { waitUntil: 'load' });
+
+    // 42 paths is the control: the polygons rendered, so a 0 below is about names.
+    // .leaflet-interactive leaves out the attribution flag icon's three paths
+    await page.waitForFunction(() => document.querySelectorAll('#map path.leaflet-interactive').length >= 42, null, { timeout: 20000 });
+
+    const named = await page.evaluate(() => ({
+        paths: document.querySelectorAll('#map path.leaflet-interactive').length,
+        buttons: document.querySelectorAll("#map path.leaflet-interactive[role='button'][aria-label]").length,
+        // GEONAME reads "Washington Heights - Inwood"; uhflist's UHF_name, which the
+        // report map, the neighborhood list and the page URLs use, reads "Washington Heights"
+        washingtonHeights: [...document.querySelectorAll('#map path.leaflet-interactive[aria-label]')]
+            .map(p => p.getAttribute('aria-label')).filter(n => n.startsWith('Washington Heights')),
+    }));
+
+    // Enter on a focused polygon goes where a click goes: that neighborhood's index page
+    let enterPath = null;
+    const target = "#map path.leaflet-interactive[aria-label='Washington Heights']";
+
+    if (await page.$(target)) {
+        await page.focus(target);
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.pathname.includes('washington_heights'), null, { timeout: 15000 }).catch(() => {});
+        enterPath = await page.evaluate(() => location.pathname);
+    }
+
+    await page.close();
+
+    const pass = named.paths === 42
+        && named.buttons === 42
+        && named.washingtonHeights.length === 1 && named.washingtonHeights[0] === 'Washington Heights'
+        && /\/neighborhood-reports\/washington_heights\/$/.test(enterPath ?? '')
+        && errors.length === 0;
+
+    return { row: 'N-026', pass, named, enterPath, errors };
+
+};
+
+
+// ----------------------------------------------------------------------- //
+// N-028: no unconditional console.log from the NR picker pages
+// ----------------------------------------------------------------------- //
+
+const checkN028 = async (browser, baseURL) => {
+
+    const counts = {};
+
+    // The three pages that render nr-leaflet.html, so its inline script runs on each
+    const errors = [];
+
+    for (const path of ['neighborhood-reports/', 'neighborhood-reports/climate_and_health/', 'neighborhood-reports/east_new_york/']) {
+
+        const page = await browser.newPage();
+        const logs = [];
+        page.on('console', m => { if (m.type() === 'log') logs.push(m.text()); });
+        page.on('pageerror', e => errors.push(path + ': ' + e.message));
+
+        await page.goto(baseURL + path, { waitUntil: 'load' });
+        await page.waitForFunction(() => document.querySelectorAll('#map path.leaflet-interactive').length >= 42, null, { timeout: 20000 });
+        await page.waitForTimeout(1000);
+        await page.close();
+
+        counts[path] = logs;
+
+    }
+
+    // Before the fix these read 8, 6 and 6 (audit N-028), which is what shows the
+    // listener hears the page's own logs
+    const pass = Object.values(counts).every(logs => logs.length === 0)
+        && errors.length === 0;
+
+    return { row: 'N-028', pass, counts, errors };
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // run
 // ----------------------------------------------------------------------- //
 
@@ -167,6 +253,8 @@ const main = async () => {
         results.push(await checkN025(browser, server.baseURL));
         results.push(await checkN027Buttons(browser, server.baseURL));
         results.push(await checkN027Polygon(browser, server.baseURL));
+        results.push(await checkN026(browser, server.baseURL));
+        results.push(await checkN028(browser, server.baseURL));
     } finally {
         await browser.close();
         await server.stop();

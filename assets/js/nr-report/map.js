@@ -78,8 +78,10 @@ const reportMapResetHighlight = e => {
 // On the feature-NDHR-prototype branch, ndhr-leaflet.html reached the same conclusion for the
 // picker map on 2026-09-12 and carries the longer version of this reasoning;
 // assets/js/ndhr-report/map.js followed on 2026-09-13. Neither file is on this branch.
-// nr-leaflet.html still flies, and can afford to: its polygons answer no key and the
-// 42-neighborhood list beside it carries the navigation
+// nr-leaflet.html still flies onto the page's own neighborhood on the 42 neighborhood index
+// pages, kept on 2026-10-19 to preserve that framing (documents/nr-audit-r14-fixes-2026-10-18.md,
+// Decisions). Its polygons answer Enter there since then, so the keyboard reaches all 42 while a
+// pointer reaches few: the pointer half of audit row N-026 is open
 const selectLayer = layer => {
 
     // Clear previous selection style first
@@ -153,9 +155,10 @@ const findLayerByName = name => {
 // Same resolution reportMapSelectNeighborhood uses to pick what the report renders, so the
 // string a reader sees on hover, the string a screen reader announces, and the string that
 // lands in the <h1> after activating it are one string. They were not: GEONAME disagrees with
-// uhflist's UHF_name on 6 of the 42 — "Fordham - Bronx Park" against "Fordham - Bronx Pk",
-// "Rockaway" against "Rockaways" [verified 2026-08-11: diff of static/geojson/UHF42.geojson
-// against data/globals/uhflist.json by GEOCODE]. GEONAME stays the fallback for a geocode
+// uhflist's UHF_name on 4 of the 42 — "Fordham - Bronx Park" against "Fordham - Bronx Pk",
+// "Rockaway" against "Rockaways" [verified 2026-10-19: static/geojson/UHF42.geojson joined to
+// data/globals/uhflist.json on GEOCODE = UHF_id, 42 of 42 joined; an earlier count of 6 predates
+// two edits to UHF42.geojson, 32408c5304 and 67b76b49ea]. GEONAME stays the fallback for a geocode
 // uhflist does not carry
 const featureDisplayName = feature =>
     geocodeToName(feature.properties.GEOCODE) || feature.properties.GEONAME;
@@ -228,7 +231,7 @@ const onTooltipClose = e => {
 const reportMapOnEachFeature = (feature, layer) => {
 
     // Same string the aria-label carries, so the visible label is contained in the
-    // accessible name (WCAG 2.5.3) rather than differing from it on 6 of the 42
+    // accessible name (WCAG 2.5.3) rather than differing from it on 4 of the 42
     layer.bindTooltip(featureDisplayName(feature), {
         permanent: false,
         opacity: 0.9,
