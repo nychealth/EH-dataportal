@@ -426,8 +426,8 @@ worked before still works, but nothing renders it the way it used to. Three page
 
 - **Report page** — `/neighborhood-reports/<nbhd>/<topic>/`, 210 of them, `kind: page`, rendered by
   `themes/dohmh/layouts/neighborhood-reports/nr-report.html`. **None of these 210 are in the
-  Pagefind index**: the layout's `<section id="skip-header-target">` carries
-  `data-pagefind-ignore="all"`, restoring production's model 2026-08-15 after the alternatives were
+  Pagefind index**: the layout's `<section class="container-fluid">` carries
+  `data-pagefind-ignore="all"` (the `skip-header-target` id is on `baseof.html`'s `<main>`), restoring production's model 2026-08-15 after the alternatives were
   measured and failed. It costs neighborhood+topic search — "asthma East Harlem" no longer finds
   East Harlem's asthma report — and it is reversible by deleting that one attribute, which
   `npm run characterize:pagefind` will catch as a control failure rather than a diff.

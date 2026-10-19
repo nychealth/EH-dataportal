@@ -160,6 +160,6 @@ real generated page, so nothing needs rewriting — and the old 301 would have r
 them away. The `sessionStorage` hand-off that used to carry a neighborhood from a topic-first URL
 into the report page is gone at both ends — the bridge in `themes/dohmh/layouts/404.html`, which now treats
 those URLs as the genuine 404s they are, and the path-scan and bridge-read fallbacks in
-`assets/js/nr-report/url.js`. `getNeighborhoodFromURL` reads `NR_REPORT_CONFIG.neighborhood`
+`assets/js/nr-report/url.js`. `getPageNeighborhood` reads `NR_REPORT_CONFIG.neighborhood`
 and nothing else, so a page reaching that layout without the param renders no neighborhood rather
 than guessing one.

@@ -312,7 +312,7 @@
         // the whole string rather than drop it
         siteTitle: "{{ .Site.Title }}",
         // The neighborhood this page was generated for, and the only thing
-        // getNeighborhoodFromURL consults — nothing parses the path for it
+        // getPageNeighborhood consults — nothing parses the path for it
         neighborhood: "{{ .Params.neighborhood }}",
         geojsonUrl: "{{ relURL "geojson/UHF42.geojson" }}",
         vizUrl: "{{ $vizUrl }}",
@@ -347,7 +347,8 @@
         topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
         // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
         // e.g. { "east_new_york": "East New York", ... }.
-        // Used by getNeighborhoodFromURL (slug → name) and setNeighborhoodInURL (name → slug).
+        // Read only by url.js slugForNeighborhood (name → slug), behind setNeighborhoodInURL
+        // and the breadcrumb and topic links.
         // Built from data/globals/uhflist.json — the same rows the content adapter generates
         // the pages from — rather than by ranging .Sections. Those sections are now themselves
         // adapter output, so deriving the map from them would make it depend on Hugo's section

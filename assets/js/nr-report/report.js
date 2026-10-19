@@ -191,8 +191,8 @@ const renderAll = (neighborhoodName, mapGeocode) => {
 
     // ----- reset per-render state ----- //
 
-    // Read before the overwrite below: it is null until the first render finishes, which is
-    // what distinguishes first paint from an in-place switch for the announcement
+    // Read before the overwrite below: it is '' (global.js) until the first render finishes,
+    // which is what distinguishes first paint from an in-place switch for the announcement
     const previousNeighborhood = currentNeighborhood;
 
     // Record the active neighborhood used by downloads and rerenders
@@ -214,7 +214,9 @@ const renderAll = (neighborhoodName, mapGeocode) => {
 
     // ----- fill headers ----- //
 
-    // Both header blocks are display:none in the layout until a neighborhood is picked
+    // Both header blocks render visible with this page's neighborhood (nr-report.html), so the
+    // display resets below change nothing today; the textContent writes are what an in-place
+    // switch needs
     const reportHeader = document.getElementById('nr-report-header');
     const headerNeighborhood = document.getElementById('nr-header-neighborhood');
 
