@@ -1,6 +1,6 @@
 # NR fixes from the 2026-10 site-wide audit (R14)
 
-**Status as of 2026-10-19:** step 0 done (all three P1 rows reproduce); step 1 done; steps 2–5 not started; N-026's pointer half deliberately left open (Decisions).
+**Status as of 2026-10-19:** step 0 done (all three P1 rows reproduce); steps 1 and 2 done; steps 3–5 not started; N-026's pointer half deliberately left open (Decisions).
 
 Source: roadmap batch R14 of `documents/site-wide-audit-2026-10.md`, which lands on #1491's branch
 (`feature-MOD-Lab-NR-recode-refactor-merge`) before it merges. The audit read this branch at
@@ -26,7 +26,7 @@ audit too.
 |---|---|---|---|---|---|
 | 0 | Reproduce N-025, N-026, N-027 at HEAD | *no commit* — probe at `4cfa25c9bb` | — | **DONE 2026-10-18** | Scratch Playwright probe (not kept), fresh `dev_stage` server via `ensureDevServer()`, Pagefind served, exit 0. N-025: after Enter on the Kingsbridge polygon the h1 and URL move to Kingsbridge - Riverdale, the breadcrumb's 3rd item still reads Central Harlem - Morningside Heights with its href. N-026: `/neighborhood-reports/east_new_york/`, 120 Tabs: 49 path stops, 0 named; Enter on the first polygon leaves URL and h1 unchanged. Control, East New York asthma report: 42 stops, 42 named (so the name counter can fire). N-027: no `.nr-topic-button` carries `aria-pressed`/`-current`/`-selected` before or after clicking Climate, only `.active` moves; report polygons' only `aria-*` attribute is `aria-label`. All three match the audit rows. The pointer-reachability half of N-026 was not re-measured |
 | 1 | N-025 breadcrumb not updated on in-place switch | `assets/js/nr-report/url.js` (new `updateNeighborhoodCrumb`, beside `updateTopicLinks`), called from `report.js` `renderAll`; `nr-report.html` crumb anchor gets class `nr-breadcrumb-neighborhood`; `scripts/nr-r14-probe.mjs` | `79e7fa27bd` | **DONE 2026-10-19**; audit row FIXED, summary counts and R14 batch updated (recount of all 502 rows reproduces HEAD's table before the edit and the new one after; 122 P1/P2 rows each in one batch) | `npm run lint` exit 0. `node scripts/nr-r14-probe.mjs`, fresh `dev_stage` server, Pagefind served: exit 0, `PASS N-025`. Control: the same run with the `updateNeighborhoodCrumb` call deleted from `report.js` exits 1, `FAIL N-025`, crumb still Central Harlem after the switch; file restored after. The earlier scratch run of the same check: before the switch the crumb reads Central Harlem - Morningside Heights with the class present (so the served template is the edited one); after Enter on the Kingsbridge polygon it reads Kingsbridge - Riverdale, href `/dev-stage/neighborhood-reports/kingsbridge_riverdale/`, h1 and URL agree, 0 `pageerror` |
-| 2 | N-027 topic buttons / selected polygon state by styling only | `neighborhood-reports/section.html` or `partials/nr-leaflet.html`; `assets/js/nr-report/map.js` | — | Not started | — |
+| 2 | N-027 topic buttons / selected polygon state by styling only | `neighborhood-reports/section.html` (`aria-pressed` in the button markup and `handleTopicButtons`); `assets/js/nr-report/map.js` (`selectLayer` moves `aria-current`); `scripts/nr-r14-probe.mjs` | `dc8b639543` | **DONE 2026-10-19**; audit row FIXED, count table, summary paragraph, roadmap total (121) and R14 row updated, R14 moved below R11 to keep the table's P1-then-P2 order (recount of all 502 rows reproduces HEAD's table before the edit and the new one after) | `npm run lint` exit 0. `node scripts/nr-r14-probe.mjs`, fresh `dev_stage` server, Pagefind served: exit 0, PASS N-025, `N-027 topic buttons`, `N-027 report polygon`. Before the fix, at `8373b098d2`, the same probe exited 1: every button's `aria-pressed` null before and after the Climate click, and no polygon with `aria-current` on load or after Enter on Kingsbridge, while the controls held (5 buttons, `.active` moved to Climate, 42 polygons named) |
 | 3 | N-026 (+ N-028, N-068) neighborhood-index polygons unnamed, Enter dead — naming and keyboard only, zoom kept (Decisions) | `partials/nr-leaflet.html`; comments in `map.js`, `CLAUDE.md` | — | Not started | — |
 | 4 | A-374 `getComparison(null, x)` compares instead of returning empty | `assets/js/nr-report/tertiles.js` (`getComparison`); callers in `cards.js` | — | Not started — first check whether real data passes null | — |
 | 5 | P3 docs/comments: N-029, A-384, A-394 | `report.js`, `CLAUDE.md`, site-wide audit §17 | — | Not started | — |
@@ -39,13 +39,13 @@ V is: `node scripts/nr-r14-probe.mjs` (each step adds its row's check there), `n
 
 When a row lands, the audit takes five edits, as N-024 and N-025 did: the row (Status FIXED,
 **Fixed by** hash, Tree `#1491 @ <hash>`, Priority —), the Summary count table, the sentence under
-it, the roadmap's P1+P2 total, and the R14 row's counts and ids.
+it, the roadmap's P1+P2 total, and the R14 row's counts and ids. The roadmap table is ordered by
+P1 count, then P2, so a closed row can move its batch.
 
-Step 2 (N-027): give the topic buttons and the selected report polygon a programmatic state
-(`aria-pressed` or `aria-current`), not only `.active`. First add an N-027 check to
-`scripts/nr-r14-probe.mjs` and confirm it fails at HEAD; it passes when the active topic button
-carries the attribute and it moves with a click to Climate, on the NR landing page.
-
-The N-026 and N-027 checks are not in the script yet. Step 0 ran them on `east_new_york/`
-(control for the name counter: `east_new_york/asthma_and_the_environment/`, 42 of 42 named) and on
-the landing page; its proof cell has the numbers each should reproduce before its fix.
+Step 3 (N-026, + N-028, N-068): name the neighborhood-index polygons and make Enter on one
+navigate, in `partials/nr-leaflet.html`, porting `map.js`'s `nameMapPolygons` and `keydown`
+handling; keep its `flyToBounds` (Decisions). First add an N-026 check to
+`scripts/nr-r14-probe.mjs` and confirm it fails at HEAD: on `neighborhood-reports/east_new_york/`,
+step 0 counted 49 path tab stops and 0 named, and Enter on the first polygon left URL and h1
+unchanged; the control page `east_new_york/asthma_and_the_environment/` names 42 of 42. Read
+N-028 and N-068 in the audit before starting, to fold them into the same change.
