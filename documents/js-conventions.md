@@ -11,9 +11,16 @@ arrive: `accessible-autocomplete.min.js`, `naturalSort.js`, `color-convert.js`,
 `assets/js/data-explorer-old/` on `feature-new-data-explorer` — the retiring
 explorer.
 
-**Forward-only.** These rules govern new files and code you are already editing.
-Existing files are not swept into conformance; the known gaps are listed in §5h of
-`documents/site-wide-audit-2026-06-27.md`.
+**Not forward-only.** Until 2026-10-19 these rules governed only new files and code
+already being edited. The tree is to be swept to them once the Neighborhood Reports
+branch (#1491) merges, so the reformat is not noise in that PR;
+`documents/js-formatting-pass-2026-10-19.md` is the plan and its ledger. An existing
+file you find out of conformance is fixed in a commit of its own, not inside a
+behaviour change. The gap list in §5h of `documents/site-wide-audit-2026-06-27.md`
+predates that decision.
+
+`.editorconfig` at the repo root sets the indentation, trailing-whitespace and
+final-newline rules for editors that read it.
 
 The data-explorer examples below describe the explorer on
 `feature-new-data-explorer`, which is the tree that survives. Formatting
@@ -246,6 +253,45 @@ const reverse = rankReverse === true || rankReverse === 'true';
 
 ---
 
+## Statements
+
+End every statement with a semicolon.
+
+An `if` with no `else` and a single-statement body goes on one line, without
+braces. An `if` with an `else` keeps its braces on every branch.
+
+```js
+if (!button) return;
+if (title) button.title = title;
+
+if (str === null || str === '') {
+
+    return false;
+
+} else {
+
+    str = str.toString();
+
+}
+```
+
+When a call's arguments do not fit on one line, end the line at the `(`, indent the
+arguments one level, and put the `)` on its own line at the call's indentation.
+Method-chain continuations are indented one level under the receiver.
+
+```js
+addResizeHandler(
+    document.getElementById(TOD_CONTAINER_ID),
+    () => renderTODChart(todCurrentSite), renderTODButtons
+);
+
+L.control
+    .scale({ metric: false, position: "bottomleft" })
+    .addTo(map);
+```
+
+---
+
 ## Vertical whitespace
 
 Functions should breathe — a reader should be able to scan one and immediately see
@@ -257,7 +303,10 @@ its distinct phases.
   function body. Two exceptions, both cases where the comment is not introducing
   anything. A comment above an object-literal property: spec objects (Vega,
   Leaflet) annotate consecutive keys, and spacing each one doubles the block's
-  height without making it easier to scan. And a comment above a line that
+  height without making it easier to scan. That exception covers single-line
+  values only — a property whose value is itself a multi-line block (a Vega spec's
+  `config`, `transform`, `layer`) reads as a section, and its comment gets the
+  gap. And a comment above a line that
   continues or closes what came before — a `.filter()` in a fluent chain, a
   closing `}`, an `else` — where the comment is trailing content and a blank line
   would split the chain from its own continuation.
@@ -269,13 +318,24 @@ its distinct phases.
   It is idempotent, so a re-run only touches what the merge brought in. Read its
   docstring first: it is regex heuristics, not a JS parser, and it names the checks
   you have to run against its own diff, `scripts/js-comment-spacing-verify.mjs`
-  among them.
+  among them. It skips every comment above an object property, so the
+  multi-line-value case above is applied by hand.
 
-- Blank line after the opening `{` of any block longer than ~3 lines.
-  `scripts/js-comment-spacing.py` applies this one only where a comment is the
-  block's first line, and does not check the length.
-- Blank line before the closing `}`.
+- **Function bodies:** blank line after the opening `{` and before the closing
+  `}`, whatever the length — except a body of two lines or fewer, which stays
+  tight.
+- **Every branch of an `if` / `else if` / `else` chain, and every `try` /
+  `catch` / `finally` block:** blank line after `{` and before `}`, even when the
+  branch is one statement.
+- **Any other block** (an `if` with no `else`, a loop): blank line after `{` and
+  before `}` when it is longer than ~3 lines.
+- `scripts/js-comment-spacing.py` applies the opening-brace gap only where a
+  comment is the block's first line, and does not check length.
 - Blank line between each logical group inside a function, and before each `return`.
+- **Declare, then test:** blank line between a declaration and the `if`, `for` or
+  `return` that uses it, and between a variable and a function declared after it.
+- At most one blank line in a row inside a function, and never more than two
+  anywhere.
 - Two blank lines between top-level function definitions.
 - One blank line between variable groups in module-level declarations.
 - Inside `forEach`, `then`, and similar callbacks: blank line after the opening
@@ -286,15 +346,18 @@ its distinct phases.
 const myFunction = (arg) => {
 
     const x = compute(arg);
+    const y = adjust(x);
 
-    return x;
+    return y;
 
 };
 
 
-// next top-level definition
-const otherFunction = () => {
-    ...
+// A body of two lines or fewer stays tight
+
+const setBarSelection = (geoID) => {
+    if (!window.myVegaView) return;
+    window.myVegaView.signal("selectedGeo", geoID).run();
 };
 ```
 
@@ -307,9 +370,7 @@ const renderSection = (section, neighborhoodName) => {
 
     const container = document.getElementById(section.containerId);
 
-    if (!container) {
-        return;
-    }
+    if (!container) return;
 
     // Neighborhood-level rows are pre-grouped during loadSection
 
@@ -319,9 +380,12 @@ const renderSection = (section, neighborhoodName) => {
     container.innerHTML = '';
 
     if (!rows.length) {
+
         container.innerHTML =
             '<p class="text-muted px-2 pb-2 mb-0">No data available for this neighborhood.</p>';
+
         return;
+
     }
 
     rows.forEach(row => {
@@ -411,6 +475,23 @@ debugLog('renderSection: enter:', { sectionId: section.id, neighborhoodName });
 debugLog('renderSection: branch-missing-container:', section.containerId);
 debugLog('bootstrap: start');
 ```
+
+---
+
+## Inline `<script>` blocks
+
+Everything above applies inside a layout's `<script>`, plus:
+
+- The script body is indented one level inside the tag, and `</script>` lines up
+  with `<script>`.
+- Blank line after `<script>` and before `</script>`.
+- A Hugo comment, `{{/* … */}}`, gets a blank line before the markup it
+  introduces, as a JS comment does before code. A `{{- range }}` … `{{- end }}`
+  block is padded like a JS block.
+
+These are formatted by hand. VS Code's JS formatter does not reliably format JS
+inside an HTML `<script>` element (observed 2026-10-19), which is why many
+layouts mix styles.
 
 ---
 

@@ -1,0 +1,30 @@
+# Editor defaults for this repo. Formatting rules beyond these live in
+# documents/js-conventions.md.
+
+root = true
+
+[*]
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# 4 spaces, per CLAUDE.md. SCSS is left unset: the site's own partials are split
+# between 2 and 4, so setting either would mix styles inside a file on edit
+[*.{js,mjs,html,json,toml,py,ps1,sh}]
+indent_style = space
+indent_size = 4
+
+# YAML is 2 throughout, and mixed indentation inside a YAML file changes its meaning
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Two trailing spaces are a Markdown hard line break
+[*.md]
+trim_trailing_whitespace = false
+
+# Generated and vendored files are left exactly as they arrive
+[{docs/**,static/**,assets/bootstrap/**,*.min.js}]
+trim_trailing_whitespace = unset
+insert_final_newline = unset
+indent_style = unset
+indent_size = unset
