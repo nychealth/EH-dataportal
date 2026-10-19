@@ -88,6 +88,18 @@ const selectLayer = layer => {
     layer.setStyle(highlightStyle);
     layer.bringToFront();
 
+    // The style alone tells only a sighted user which neighborhood the report shows (N-027).
+    // aria-current, not aria-pressed: pressing the selected polygon again does not toggle it off
+    if (uhfLayer) {
+        uhfLayer.eachLayer(other => {
+            const el = typeof other.getElement === 'function' && other.getElement();
+            if (el) el.removeAttribute('aria-current');
+        });
+    }
+
+    const el = typeof layer.getElement === 'function' && layer.getElement();
+    if (el) el.setAttribute('aria-current', 'true');
+
 };
 
 

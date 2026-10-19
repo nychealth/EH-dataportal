@@ -31,7 +31,7 @@
                      topicSlugs, and changeHomeCopy reads the "<key>-Descr" block below */}}
                 {{- range $i, $t := site.Data.globals.NR_topics }}
                 <div class="col-sm mb-2 mr-1 mb-lg-0">
-                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}">{{ $t.menu_label }}</button>
+                  <button class="btn btn-sm btn-block btn-outline-primary text-decoration-none btn-light-green-bg py-2 nr-topic-button{{ if eq $i 0 }} active{{ end }}" id="{{ $t.key }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $t.menu_label }}</button>
                 </div>
                 {{- end }}
 
@@ -170,13 +170,18 @@ function handleTopicButtons() {
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      // 1. Remove 'active' from all buttons
+      // 1. Remove 'active' from all buttons. aria-pressed moves with it, so the
+      //    selected topic is announced and not only styled (N-027)
 
-      buttons.forEach(b => b.classList.remove('active'));
+      buttons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
 
       // 2. Add 'active' to the clicked button
 
       button.classList.add('active');
+      button.setAttribute('aria-pressed', 'true');
 
       // 3. Set intended destination
 
