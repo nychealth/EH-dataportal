@@ -1,6 +1,6 @@
 # NR fixes from the 2026-10 site-wide audit (R14)
 
-**Status as of 2026-10-19:** step 0 done (all three P1 rows reproduce); steps 1–4 and 3b–3d done, so all three P1 rows and A-374 are FIXED; step 5 and V not started.
+**Status as of 2026-10-19:** step 0 done (all three P1 rows reproduce); steps 1–5 and 3b–3d done, so every row R14 set out to fix is FIXED (A-382 stays open by decision); step V not started.
 
 Source: roadmap batch R14 of `documents/site-wide-audit-2026-10.md`, which lands on #1491's branch
 (`feature-MOD-Lab-NR-recode-refactor-merge`) before it merges. The audit read this branch at
@@ -32,7 +32,7 @@ audit too.
 | 3c | No opening zoom animation on either NR map (Chris, 2026-10-19): `fitBounds(..., { animate: false })` | `partials/nr-leaflet.html`; `assets/js/nr-report/map.js`; `scripts/nr-r14-probe.mjs` | `6a1af7882b` | **DONE 2026-10-19**; no audit row | `npm run lint` exit 0. `node scripts/nr-r14-probe.mjs`: exit 0, all seven PASS; the zoom check now reads `_animatingZoom` and clicks Zoom in the moment the polygons appear, and requires false and a zoom change. Control: the same probe with the two map files at `f70417536f` exits 1, `animating: true` and the click dropped on both the report page and `east_new_york/` |
 | 3d | No tile fade-in on either NR map (Chris reported a 0.1–0.2s lag between neighborhood pages with tiles cached, 2026-10-19): `L.map(..., { fadeAnimation: false })` | `partials/nr-leaflet.html`; `assets/js/nr-report/map.js` | `1740116b1b` | **DONE 2026-10-19**; no audit row | Scratch Playwright sampler (not kept): lowest computed opacity of `.leaflet-tile-loaded` every animation frame, `southwest_queens/` on Chris's `local_prod` server, 1440x960 at device pixel ratio 2, second load in one context so tiles come from cache. Before: tiles in the page at 68ms, opacity 0 until ~148ms, fully opaque at 331ms. After: opacity 1 from the first frame, at 75ms. `npm run lint` exit 0; `node scripts/nr-r14-probe.mjs` with `DE_BASE_URL` on an isolated `dev_stage` server (`scripts/isolated-server.mjs`, :8090): all seven PASS. The same probe run against the `local_prod` server on :8080 timed out in N-025 waiting for the URL to change after Enter; not diagnosed, and the probe's results are only established on `dev_stage` |
 | 4 | A-374 `getComparison(null, x)` compares instead of returning empty — fixed although unreachable with today's data (Chris, 2026-10-19) | `assets/js/nr-report/tertiles.js` (`getComparison`); `scripts/nr-r14-probe.mjs` (`checkA374`) | `2aac4c8daa` | **DONE 2026-10-19**; audit row FIXED, count table, summary paragraph, roadmap total (119) and R14 row (0 P1, 1 P2: A-382) updated (recount of all 502 rows matches the new table, and HEAD's recount matches HEAD's); the Area c refinement's "latent bug stays" now names the fix | Data first, scratch script over all 26 report JSONs per branch via the GitHub contents API: production @ `7b61f6653b` 3570 rows, staging @ `2de9129c38` 3654; 48 null values on each, all with null rank, and 0 rows with a null borough/city value and a non-null rank, so no real call reaches the visible case (`cards.js` puts `d-none` on the block when rank is null). `checkA374` calls `getComparison` directly: at `dddd82fa35` it exited 1 with null and `''` on either side reading Lower/Higher (`undefined` was already right, `Number(undefined)` is NaN); after, all eight checks PASS, exit 0; controls 3 vs 5, '7' vs '5', 5 vs 5, 0 vs 5 correct in both. Both runs on a freshly built isolated `dev_stage` server (:8090) with `DE_BASE_URL`. `npm run lint` exit 0 |
-| 5 | P3 docs/comments: N-029, A-384, A-394 | `report.js`, `CLAUDE.md`, site-wide audit §17 | — | Not started | — |
+| 5 | P3 docs/comments: N-029, A-384, A-394 | N-029: `report.js` comments, `getNeighborhoodFromURL` → `getPageNeighborhood` (`url.js`, `data.js`, `nr-report.html` comments, `documents/nr-architecture.md`); A-384: `CLAUDE.md`; A-394: `documents/site-wide-audit-2026-06-27.md` (the "§17" in the row means that older audit) | `d40b0223c6` | **DONE 2026-10-19**; all three FIXED, count table, summary paragraph and the Roadmap's P3 count (131) updated, P1+P2 total and R14 row unchanged (recount of all 502 rows matches the new table; its first run read 3 OPEN in the `—` column, which caught N-029's Status cell left OPEN) | Each claim re-checked at HEAD first: `nr-report.html:52` is the ignored `container-fluid` section and `baseof.html:28` holds the only `skip-header-target` id; the UHF42 fetch and filter at `map.js:303`/`:312` and `nr-leaflet.html:53`/`:65` (the latter pair also stale, moved by `8445f48bdf`); neither header block starts hidden and `currentNeighborhood` starts as `''`. `npm run lint` exit 0. `npm run docs-check` exit 0, after its first run failed on a parenthetical naming the old function in `nr-architecture.md`, removed (which also shows it reads that doc's identifiers). Old name: 0 hits in `assets/`, `themes/`, `scripts/`, `CLAUDE.md`; four dated records in `documents/` keep it on purpose. `node scripts/nr-r14-probe.mjs` on an isolated `dev_stage` server: all eight PASS. The `docs-check verified` stamps on `CLAUDE.md` and `nr-architecture.md` were not bumped |
 | V | Verification | *no commit* — checks | — | Not started | — |
 
 V is: `node scripts/nr-r14-probe.mjs` (each step adds its row's check there), `npm run lint`, `node scripts/nr-characterization.mjs --check`,
@@ -46,16 +46,18 @@ it, the roadmap's P1+P2 total, and the R14 row's counts and ids. The roadmap tab
 P1 count, then P2, so a closed row can move its batch. A P3 row is in no batch; it changes the
 Roadmap's "The N P3 rows are not batched" count instead.
 
-Step 5 (P3, docs and comments): read rows N-029, A-384 and A-394 in
-`documents/site-wide-audit-2026-10.md` (`grep -n "^| N-029 \|^| A-384 \|^| A-394 "`), then
-re-check each claim at HEAD before editing, since `map.js` and the NR layouts have moved since the
-audit read them. N-029 is comments in `assets/js/nr-report/report.js` (`currentNeighborhood`,
-the header blocks) and the misleading `getNeighborhoodFromURL` name (declared in `url.js`,
-called in `data.js`, named in two comments in `nr-report.html`; CLAUDE.md pre-authorizes that
-rename, which needs `npm run lint` and a grep over `assets/` and `themes/` as proof). A-384 is
-CLAUDE.md's description of where `data-pagefind-ignore="all"` sits in `nr-report.html`.
-A-394 is the audit's own `map.js` line citations; take the new numbers from `grep -n`, never
-from memory. All three are P3, so each closes by editing the Roadmap's P3 count, not a batch row.
+Step V (verification, no commit unless a check fails): run the six checks in V's row against
+one isolated `dev_stage` server, saving each to its own log and reading the exit code from the
+command, not from a pipe. `npm run lint` and `npm run characterize:pagefind` need no server (the
+second builds its own). The other four take `DE_BASE_URL`: `node scripts/nr-r14-probe.mjs` (8
+PASS expected), `node scripts/nr-characterization.mjs --check` (0 diffs expected against the
+`staging` baseline; its one map field is the `#nr-map .leaflet-pane` count, which no R14 change
+should move, so a diff is a finding to diagnose before any re-baseline), `node scripts/nr-a11y-audit.mjs` (exit
+0 means its controls held; compare its findings with the 2026-08-10 triage, not with zero), and
+`node scripts/smoke-pages.mjs` (curated list, 0 failures). Write the runner as a scratch script
+that calls `startServer('dev_stage')` once, runs the four with `DE_BASE_URL` set, and stops the
+server in a `finally`. Record each result in V's row. Then the R14 batch is done, and the
+roadmap's R14 row stays open only for A-382.
 
 Running the probe while Chris's `local_prod` server holds :8080: start an isolated `dev_stage`
 server through `scripts/isolated-server.mjs` (`startServer('dev_stage')`, :8090) and run
