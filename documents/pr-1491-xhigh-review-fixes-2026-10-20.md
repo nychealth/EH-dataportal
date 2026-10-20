@@ -1,6 +1,6 @@
 # PR #1491 xhigh review fixes (2026-10-20)
 
-**Status as of 2026-10-20: Tasks 0 to 5 done (Task 0's claim 30 reproduced only in part; Task 5's finding 17 parked); Tasks 6 to V not started.** Chris answered all seven open decisions on 2026-10-20
+**Status as of 2026-10-20: Tasks 0 to 6 done (Task 0's claim 30 reproduced only in part; Task 5's finding 17 parked); Tasks 6b (added 2026-10-20) and 7 to V not started.** Chris answered all seven open decisions on 2026-10-20
 (see [Decisions answered by Chris](#decisions-answered-by-chris)). Finding 17 is parked. Finding 31 waits on a screenshot
 comparison that Task 10 produces.
 
@@ -66,6 +66,7 @@ All answered 2026-10-20.
 | 27 | Update or remove the comments? | "update comments" | Task 10 rewrites them: state what the code does and why, with no dates, no "used to", and no references to production or to other branches. |
 | 31 | Remove `mb-` or pick a margin? | "let's see if it needs a bottom margin" | Task 10 produces screenshots for Chris to choose from. The intent can't be recovered from the repo: `mb-` arrived bare in `d6f99e19ea` and no commit gave it a number `[verified 2026-10-20: git log -S'd-none d-md-block mb-' -- themes/dohmh/layouts → one commit]`. |
 | 22, copy | "This section could not be loaded. Please try again later." OK? | "yes" | Task 3 uses that text. |
+| N-026 zoom, reopened | Reverse the 2026-10-19 decision that every NR map fits the whole city? (Asked by Chris, 2026-10-20, after Task 5.) | "keep the zoom controls, add a \"reset zoom\" easy button like other places on the site, and zoom to the neighborhood everywhere. reopen that item in the plan." | **Task 6b.** Reopens the N-026 zoom row of `documents/nr-audit-r14-fixes-2026-10-18.md` (Decisions). Known cost, told to Chris before building: zoomed to one neighborhood, a pointer can reach few of the others; measured 2026-09-15 on the report page, fly-to at zoom 12.54 reached 7 of 42 polygons against 41 of 42 fitted (`documents/site-wide-audit-2026-06-27.md` §18a). The reset button is the way back to the fitted view. |
 
 ## Decisions taken in writing this plan
 
@@ -81,10 +82,11 @@ All answered 2026-10-20.
 
 ## Order and file overlap
 
-Tasks share files, so run them in this order: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11 → V**.
+Tasks share files, so run them in this order: **0 → 1 → 2 → 3 → 4 → 5 → 6 → 6b → 7 → 8 → 9 → 10 → 11 → V**.
 
 - `report.js`: Tasks 2, 3, 4
-- `map.js`: Tasks 2, 3
+- `map.js`: Tasks 2, 3, 6b
+- `nr-leaflet.html`: Tasks 6, 6b
 - `chart.js`: Tasks 1, 3, 5, 10
 - `nr-report.html`: Tasks 2, 5, 10
 
@@ -236,6 +238,41 @@ status here; that audit is the status record for `production`.
 3. **Proof:** the Task 0 probes for 20 and 21 now pass; `npm run a11y:nr`, comparing `aria-hidden-focus` against Task 0's
    run.
 
+## Task 6b: Zoom to the neighborhood, with a reset-zoom button (N-026 zoom decision, reopened)
+
+**Files:** `assets/js/nr-report/map.js` (`initLeafletMap`'s whole-city `fitBounds`, and the switch path:
+`reportMapSelectNeighborhood`, the `popstate` re-render in `app.js`, the pending selection in `data.js`);
+`themes/dohmh/layouts/partials/nr-leaflet.html` (its whole-city `fitBounds`, and a new easyButton);
+`lib-easybutton-coloricon` includes, after `lib-leaflet`, in `nr-report.html`, `nr-neighborhood-index.html`,
+`nr-topic-index.html` and `section.html`; `scripts/nr-r14-probe.mjs` (its N-026 pointer check asserts the whole-city fit
+and is expected to fail on this change); the whole-city wording in `map.js`, `nr-leaflet.html`, `CLAUDE.md` and
+`documents/nr-architecture.md`.
+**Consumes:** Task 6's tab-order fix. On the landing and topic-index picker maps the new button sits inside the same
+`aria-hidden` wrapper as the zoom links, so `removeHiddenMapFromTabOrder` must take it out of the tab order too.
+
+1. Exemplar: `assets/js/congestion-pricing-report/map-monitoring.js:106`, `L.easyButton` at `bottomleft` with one state,
+   `title: "Reset zoom"`, `icon: "fas fa-undo"`, whose `onClick` fits the default view. Not `rmz.js`'s, which reloads the
+   page. Keep Leaflet's zoom control on both maps.
+2. **Report page:** fit the selected neighborhood's bounds on the first render and on every switch: map click or key,
+   Back/Forward, and Task 3's held early selection. The reset button fits the whole city (`uhfLayer.getBounds()`,
+   `zoomSnap = 0`, padding `[10, 10]`, as now). `animate: false`, keeping stage 3c of the r14 doc ("No opening zoom
+   animation", Chris 2026-10-19) for the switch too unless Chris says otherwise.
+3. **Neighborhood index** (`nr-leaflet.html` with a `geocode`): fit the page's own neighborhood; the reset button fits
+   the whole city.
+4. **Landing page and topic index** (`nr-leaflet.html` without a `geocode`): no neighborhood of their own, so they keep
+   the whole-city fit. They get the reset button for after a manual zoom.
+5. Before writing step 2, measure the fitted zoom of the smallest and largest of the 42 neighborhoods in the report
+   page's map box. If the smallest lands very deep, report it to Chris with a `maxZoom` option rather than picking one.
+6. **Proof:** report page and `east_new_york/`: after load the map's bounds contain the neighborhood and its zoom is
+   above the whole-city fit (9.58 in the r14 doc's measurement); a switch re-fits to the new neighborhood; "Reset zoom"
+   returns to the whole-city fit and the pointer then reaches 41 of 42 polygons, as r14 stage 3b measured. Record the
+   zoomed-in reachability count as the accepted cost. The button's accessible name is "Reset zoom" and Tab reaches it
+   on the report page and neighborhood index; on `/neighborhood-reports/` it is not reachable while the map is
+   `aria-hidden`. `nr-r14-probe.mjs`'s N-026 pointer check moved to run after a reset, exit 0. `npm run lint`,
+   `npm run docs-check`, `node scripts/nr-characterization.mjs --check`.
+7. Records: the r14 doc's N-026 zoom row carries a "Reopened 2026-10-20" pointer here. Do not change the status of
+   N-026 in `documents/site-wide-audit-2026-10.md` from this task; that audit is the status record for `production`.
+
 ## Task 7: Harness scripts (findings 4, 6, 13, 14, 15, 16, 30)
 
 **Files:** `scripts/nr-postswap-check.mjs`, `scripts/nr-characterization.mjs`, `scripts/nr-a11y-audit.mjs`.
@@ -350,7 +387,8 @@ At the final commit, with the hash recorded beside each result:
 | 3 | Render pipeline (5, 9, 10, 11, 12, 22) | `e7ce27a501` | **DONE 2026-10-20** | Playwright on the `development` server, which was serving the rebuilt `chart`, `map`, `data` and `report` fingerprints, with Task 0's probes adapted (`renderAll` anchor updated). **9:** with `probe-throw` injected into `renderAll` (SRI stripped, GeoJSON held 6s), one uncaught `pageerror`, no "Error loading UHF42 GeoJSON". **10:** section JSONs held 8s; after the early click 0 `aria-current`; at the end Kingsbridge's h1, path, title, canonical, `history.state` and `aria-current`, history 2→3. **11:** after the held topojson was released, the new panel's export label still read "…Asthma (adults)…". **12:** `geo_join_id` is a string (`"101"`) while `currentGeocode` is a number (303); `vegaEmbed` filters `datum.g == 302` and `== "302"` each kept 1 of 2 rows (the control), `== UHF101` errored "Unrecognized signal name", bare `== ` "Unexpected end of input"; the expanded `nr-acc-1` chart had 2 marks at `stroke-width` 2.5. **22:** section 1 forced to 404 read "This section could not be loaded. Please try again later." beside section 0's 3 cards. **5:** latent (`nr-report.html` always sets `vizUrl`), not exercised. `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3; Task 2's probe re-run with identical counts. **Departures:** 9 uses `.catch(…).then(render)`, the shape `data.js` uses, rather than `.then(onOk, onErr)`, so an error while building the layer is caught too; 22 records failures in a `failedSections` set beside `sectionData`, which keeps `{}`, rather than a marker inside it, since `resolveGeocode` indexes every `sectionData` value. 10 applies the Task 2 note: the page's own neighborhood renders first, then the held selection as a switch. |
 | 4 | Sanitise (7) | `8ad92b34a4` | **DONE 2026-10-20** | Step 1, `git grep -n innerHTML -- assets/js/nr-report`: 13 hits; static 6 (`chart.js` ×4, `report.js` ×2), clears 3, a comment 1, data 2 (`report.js` card write, `demographics.js` `metric.format`). Card write wrapped in `DOMPurify.sanitize`; `DOMPurify` added to `NR_EXTERNAL_GLOBALS`. **Departure:** the demographics write became `textContent`, not DOMPurify; its values come from `data/globals/uhflist.json` through `Number()` and carry no markup. **Proof**, Playwright on the `development` server serving the rebuilt `report` and `demographics` fingerprints: on all five topic pages, every row for all 42 neighborhoods (3,570) gave identical parsed markup (`<template>` round-trip) with and without the sanitizer; 126 rows carry `&` and 1 carries `<`, the reviewer's counts, so the comparison saw both characters. The `<` row is Peeling paint on `south_beach_tottenville/housing_and_health`, and that page shows `N/A<1%*` as text. A stubbed `indicator_short_name: 'X<img src=x onerror=window.__xss=1>'` left `window.__xss` undefined, its four `<img>` rendered as `<img src="x">`; control: the same row written unsanitized set `window.__xssCtrl = 1`. `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3. **Not checked in a browser:** the demographics sidebar's rendered values. |
 | 5 | Efficiency (17, 18, 19) | `a00d07817d` (18, 19) | **18, 19 DONE 2026-10-20**; **17 Parked** 2026-10-20 (Chris). Un-park with the data-loading refactor, as for F5 | Playwright on the `development` server, Expand all on `east_harlem/asthma_and_the_environment/` (22 panels), topojson requests counted over CDP (`Network.requestWillBeSent`, cache flags read): **before** 22 for each file, 0 from cache; **after** 1 each, and 89 `g.mark-shape path` in each of 22 charts (5 boroughs + 42 outlines + 42 data); **geography blocked** 0 shapes, 24 requests per file (the URL fallback). A first check, charts with >40 `path`, read 22 of 22 in the blocked arm too, since the bar strip draws ~40 rect paths; it had no power and was replaced by the geoshape count. Capturing the container before the topojson wait keeps finding 11 fixed: Task 3's claim 11 probe kept "…Asthma (adults)…" on the new panel. **19:** `lib-uhflist` precedes all ten NR `<script>` tags in `nr-report.html`, and `neighborhoodMap` was built from the same `page_name`/`UHF_name` pairs; `git grep -n neighborhoodMap -- assets themes scripts CLAUDE.md` exit 1 (dated records under `documents/` still name it, correctly); Task 2's switch probe passed unchanged (paths and canonicals on load, switch, Back, Forward). `npm run lint` exit 0; `nr-characterization --check` PASSED 3/3. One intervening run FAILED 1 of 3 with every data fetch on that target failing (`TypeError: Failed to fetch` from `data.js`, before any chart code); Chris attributed it to an unreliable network, and two re-runs passed. |
-| 6 | `nr-leaflet.html` (20, 21) | — | Not started | — |
+| 6 | `nr-leaflet.html` (20, 21) | `11c7ee4e74` | **DONE 2026-10-20** | Task 0's probes on the `development` server (`DE_BASE_URL=http://localhost:8080/dev-prod/`), the served page carrying the new script. **20:** `/neighborhood-reports/`, 120 Tabs, GeoJSON aborted: 0 stops inside `aria-hidden` (5 at Task 0); control with it loaded: 0. **21:** `east_harlem/` stroke `#008939`/3/dash 3 → hover `#444`/5 → after `#008939`/3/dash 3; one `aria-current`, `"page"`. **Departure:** `aria-current="page"`, not `map.js`'s `"true"` (N-027): this polygon leads to the page already shown. Inline script: extracted with `{{ … }}` → `null` (no `range`/`if` in the file), `node --check` exit 0 on the new file and on `HEAD`'s; control: a copy with `} else {` appended exits 1. `npm run a11y:nr` with `A11Y_OUT`: exit 0, controls passed, `wcag.violations` empty on all four page kinds, as at Task 0; `aria-hidden-focus` absent from both runs' JSON. That audit loads the GeoJSON, where finding 20 cannot occur, so it has no power for 20; probe 20's aborted arm is the proof. |
+| 6b | Zoom to the neighborhood, reset-zoom button (N-026 zoom, reopened by Chris 2026-10-20) | — | Not started | — |
 | 7 | Harness scripts (4, 6, 13, 14, 15, 16, 30) | — | Not started | — |
 | 8 | Config and lockfile (23, 25) | 23: `c85bb40e6a` | **23 DONE 2026-10-20**, made by Chris; 25 Not started | 23: `git diff` of the commit is the one `maxAge = -1` → `0` line; `grep -rn maxAge config/` leaves `prod_stage` as the only environment inheriting `-1` |
 | 9 | Repo hygiene (24, 26) | — | Not started | — |
@@ -360,11 +398,11 @@ At the final commit, with the hash recorded beside each result:
 
 ## Next command
 
-Task 6. Read the two call sites in `nr-leaflet.html` before editing:
+Task 6b, step 5 first: measure the fitted zoom of the smallest and largest of the 42 neighborhoods in the report page's map box before writing the zoom code. Find where each map fits the whole city:
 
 ```bash
 git rev-parse --abbrev-ref HEAD   # expect feature-MOD-Lab-NR-recode-refactor-merge
-grep -n "removeHiddenMapFromTabOrder\|L.map(\|resetHighlight\|mouseout\|aria-current" themes/dohmh/layouts/partials/nr-leaflet.html
+grep -n "fitBounds\|zoomSnap\|easyButton\|lib-easybutton" assets/js/nr-report/map.js themes/dohmh/layouts/partials/nr-leaflet.html themes/dohmh/layouts/neighborhood-reports/*.html
 ```
 
 A `development` server on :8080 (`npx hugo serve --environment development -p 8080`, with Pagefind built) may still be running from the Task 1 session; check `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/dev-prod/` before starting another. The network here is unreliable: a run where every EHDP-data fetch fails with `Failed to fetch` is re-run before it is diagnosed.
