@@ -17,20 +17,20 @@ const tryInitialRender = () => {
         return;
     }
 
-    // If a neighborhood is already in the URL, honor it after both data sources are ready
-    const fromURL = getNeighborhoodFromURL();
+    // Render the neighborhood this page was generated for after both data sources are ready
+    const pageNeighborhood = getPageNeighborhood();
 
-    if (fromURL) {
+    if (pageNeighborhood) {
 
-        debugLog('tryInitialRender: branch-from-url:', fromURL);
+        debugLog('tryInitialRender: branch-page-neighborhood:', pageNeighborhood);
 
-        const layer = findLayerByName(fromURL);
+        const layer = findLayerByName(pageNeighborhood);
         if (layer) {
-            debugLog('tryInitialRender: branch-select-layer-from-url');
+            debugLog('tryInitialRender: branch-select-layer');
             selectLayer(layer);
         }
 
-        renderAll(fromURL);
+        renderAll(pageNeighborhood);
 
     }
 

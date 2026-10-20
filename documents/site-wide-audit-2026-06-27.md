@@ -2466,7 +2466,7 @@ against 46% compressed** (95,185 -> 25,042, against 16,560 -> 8,894). Every figu
 | `partials/overlap-tool-with-map.html:75`, `:283` | 1 | `UHF42.geojson` | 27,140 | `UHF42.topo.json` | 8,894 | 18,246 (67%) | yes, with the 43rd-feature note |
 | `content/data-features/rat-mitigation-zones/rmz.js:81` | 1 | `rmz.geojson` | 21,443 | `RMZ.topo.json` | 2,789 | 18,654 (87%) | two property renames |
 | `content/data-features/rats-in-your-neighborhood/neighborhood-rats.js:7` | 1 | bundle-local `rmz.geojson` | 20,393 | `RMZ.topo.json` | 2,789 | 17,604 (86%) | same renames |
-| `assets/js/nr-report/map.js:269` and `partials/nr-leaflet.html:45` | 258 | `static/geojson/UHF42.geojson` | 16,560 | `UHF42.topo.json` | 8,894 | 7,666 (46%) | yes, with the 43rd-feature note |
+| `assets/js/nr-report/map.js:303` (`initLeafletMap`) and `partials/nr-leaflet.html:53` (lines re-read 2026-10-19; were `:269` and `:45`) | 258 | `static/geojson/UHF42.geojson` | 16,560 | `UHF42.topo.json` | 8,894 | 7,666 (46%) | yes, with the 43rd-feature note |
 
 The 258 is 210 report pages plus 42 neighborhood indexes, 5 topic indexes and the NR landing page.
 It is the only row where the saving is per-page across a section rather than on a single feature
@@ -2508,8 +2508,9 @@ re-raise it here as though it were unexamined.
 - **The 43rd-feature note is not a blocker.** `static/geojson/UHF42.geojson` carries 43 features,
   the extra one having `GEOCODE: 0`, `GEONAME: ""`, `BOROUGH: "N/A"` and a real 2,825-byte
   MultiPolygon; `UHF42.topo.json` carries 42. Both consumers already discard it —
-  `filter: feature => feature.properties.GEOCODE != 0` at `assets/js/nr-report/map.js:278` and
-  `themes/dohmh/layouts/partials/nr-leaflet.html:57` — so the TopoJSON's 42 are exactly the
+  `filter: feature => feature.properties.GEOCODE != 0` in `assets/js/nr-report/map.js`
+  `initLeafletMap` (`:312`) and in `themes/dohmh/layouts/partials/nr-leaflet.html` (`:65`)
+  `[lines re-read 2026-10-19; were :278 and :57]` — so the TopoJSON's 42 are exactly the
   polygons drawn today, and the filter can go with the swap. `BOROUGH` is absent from the
   TopoJSON and is read by no consumer of either file `[verified 2026-09-12: grep across
   `assets/js/nr-report/`, `nr-leaflet.html` and `overlap-tool-with-map.html`]`.

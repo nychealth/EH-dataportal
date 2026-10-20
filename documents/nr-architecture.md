@@ -141,10 +141,11 @@ markup one alone does nothing, since the search needs the JS one beside it:
 ## nr-leaflet framing
 
 `nr-leaflet` needs no argument beyond the page: it reads a topic slug out of the first path
-segment itself. Where a page has **no** `geocode` — the landing page and the five topic indexes —
-it sets `zoomSnap = 0` and fits the UHF42 layer, so the city fills whatever box the caller gives
-it. Both statements live inside that branch, so pages that *do* carry a `geocode` keep the
-highlight-and-fly framing. `zoomSnap` is load-bearing, not a tweak: at Leaflet's default of 1,
+segment itself. On every page it sets `zoomSnap = 0` and fits the UHF42 layer, so the city fills
+whatever box the caller gives it. A page that carries a `geocode` — the 42 neighborhood index
+pages — also highlights its own neighborhood; until 2026-10-19 it flew to it as well, which left
+10 of 42 polygons reachable by pointer (audit row N-026). Leaflet's zoom control is on, here and on
+the report page's map. `zoomSnap` is load-bearing, not a tweak: at Leaflet's default of 1,
 `fitBounds` rounds down to a whole zoom and the city spans ~59% of the box.
 
 ## nr-topic-menu
@@ -159,6 +160,6 @@ real generated page, so nothing needs rewriting — and the old 301 would have r
 them away. The `sessionStorage` hand-off that used to carry a neighborhood from a topic-first URL
 into the report page is gone at both ends — the bridge in `themes/dohmh/layouts/404.html`, which now treats
 those URLs as the genuine 404s they are, and the path-scan and bridge-read fallbacks in
-`assets/js/nr-report/url.js`. `getNeighborhoodFromURL` reads `NR_REPORT_CONFIG.neighborhood`
+`assets/js/nr-report/url.js`. `getPageNeighborhood` reads `NR_REPORT_CONFIG.neighborhood`
 and nothing else, so a page reaching that layout without the param renders no neighborhood rather
 than guessing one.

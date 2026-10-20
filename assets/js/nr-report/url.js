@@ -12,7 +12,7 @@ const slugForNeighborhood = name =>
 
 
 // Resolves the neighborhood for this page load
-const getNeighborhoodFromURL = () => {
+const getPageNeighborhood = () => {
 
     // Every report page is generated for one neighborhood and says so in its config, so
     // this answers without parsing the path. Two fallbacks used to follow — a path scan
@@ -20,7 +20,7 @@ const getNeighborhoodFromURL = () => {
     // landing page. Both existed because the report page lived at <topic>/ and had to be told
     // which neighborhood to draw; it is now served at <nbhd>/<topic>/, so the server
     // always knows and neither fallback had a writer left
-    debugLog('getNeighborhoodFromURL: enter:', reportConfig.neighborhood);
+    debugLog('getPageNeighborhood: enter:', reportConfig.neighborhood);
 
     return reportConfig.neighborhood;
 

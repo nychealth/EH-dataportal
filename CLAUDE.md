@@ -60,7 +60,7 @@ surface none of the others reaches.
 
 ### Linting and docs
 
-- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-report/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and inline `<script>` blocks in `head.html` and the NR report template) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes.
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/` and `assets/js/nr-report/`. `eslint.config.mjs` has one block per target. Both are directories of classic scripts sharing one global scope, so each block derives its shared globals at config-load time by scanning its own directory via `scanDeclaredGlobals(dir)`; `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is intentionally omitted — it false-positives on the cross-file global pattern. Names injected from outside a directory (libraries, and inline `<script>` blocks in `head.html` and the NR report template) are listed per block in `DE_EXTERNAL_GLOBALS` / `NR_EXTERNAL_GLOBALS`. **Adding a file to `eslint.config.mjs` does not put it in scope**; the `lint` script's argument list is what selects files, and the two must be changed together. A green run proves nothing by itself — the check that the directory scan actually loaded is a *positive* control: call a name declared in another file of the same directory and confirm lint still passes. Lint does not reach inline `<script>` blocks in layouts. To syntax-check one without a server, extract the lines between the tags, replace each `{{ … }}` with `null`, run `node --check` on the result, and run the same on `HEAD`'s copy as the control. This is valid only where the block has no `{{ range }}` or `{{ if }}`, which `null` cannot stand in for `[2026-10-19: caught an unclosed `} else {` in `data-index.html`'s `removeTags`]`.
 - `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares a `docs-check source-roots` comment in its first lines. Audits and dated findings must **not** opt in — they cite old names on purpose. Run it after any rename; it is the cheapest thing that catches doc rot at the commit that causes it. It scans every `.md` in `documents/` plus the root docs in `ROOT_DOCS` — **this file is one of them**, so a path or identifier written here must be real and repo-root-relative. Site URLs, globs, and placeholder patterns are skipped. **It cannot check prose — that is what the `docs-check verified: <commit> <date>` stamp is for, and the check fails a doc that opts in without one. If you change behaviour described here, update the prose and re-stamp.** The stamp asserts a human re-read the prose against the tree at that commit, so bumping it without doing that is a false claim, not bookkeeping.
 
 ### Smoke
@@ -270,6 +270,14 @@ are printed as a harness-health number and deliberately **not** baselined — th
   `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
   differed from the prod_prod baseline; against production's own capture, 535 had lost the
   search UI, which a re-baseline would have committed as expected]`.
+- **`--expect <glob>` claims every field on every page it covers.** The re-baseline tool's
+  "Nothing unexplained" means no page outside the globs moved, not that only the fields you
+  predicted did. Tally `git diff -U0` by key before committing `[2026-10-19]`.
+- **Run it before calling done any change that adds or removes a rendered element on a page kind**
+  — a link, button, input, heading, image or iframe, including one a library injects. CI runs the
+  full sweep on every PR into `production` that touches more than `site-characterization.yml`'s
+  `paths-ignore` list (`documents/**` and similar), so a local check list that leaves it out moves the
+  failure to the PR `[2026-10-19]`.
 - **A page that misses `load` in every environment may be its third-party embed, not this site.** `/data-features/displacement-risk/` iframes `equitableexplorer.planning.nyc.gov`, whose own scripts intermittently hang past the 30s `goto` cap, and one such page voids the whole sweep's verdict. Load the embed URL alone before suspecting a change, then re-run `[2026-10-16]`.
 
 ### Neighborhood Reports harnesses
@@ -285,8 +293,9 @@ on a branch mismatch.
 
 ### Search index
 
-- `npm run characterize:pagefind` — characterization harness for the **search index**
-  (`scripts/pagefind-characterization.mjs`). Nothing else in this repo can see search: Pagefind is
+- `node scripts/pagefind-characterization.mjs --check` — characterization harness for the **search
+  index**. `npm run characterize:pagefind` passes no flag, so it prints usage and exits 2 without
+  checking anything. Nothing else in this repo can see search: Pagefind is
   a post-build step, so `hugo server` produces no index at all — which is why `PagefindUI is not
   defined` is allowlisted dev-only noise in `nr-characterization.mjs`. A template change that
   silently adds or removes indexed text is invisible to `lint`, `smoke` and both other harnesses.
@@ -426,11 +435,11 @@ worked before still works, but nothing renders it the way it used to. Three page
 
 - **Report page** — `/neighborhood-reports/<nbhd>/<topic>/`, 210 of them, `kind: page`, rendered by
   `themes/dohmh/layouts/neighborhood-reports/nr-report.html`. **None of these 210 are in the
-  Pagefind index**: the layout's `<section id="skip-header-target">` carries
-  `data-pagefind-ignore="all"`, restoring production's model 2026-08-15 after the alternatives were
+  Pagefind index**: the layout's `<section class="container-fluid">` carries
+  `data-pagefind-ignore="all"` (the `skip-header-target` id is on `baseof.html`'s `<main>`), restoring production's model 2026-08-15 after the alternatives were
   measured and failed. It costs neighborhood+topic search — "asthma East Harlem" no longer finds
   East Harlem's asthma report — and it is reversible by deleting that one attribute, which
-  `npm run characterize:pagefind` will catch as a control failure rather than a diff.
+  `node scripts/pagefind-characterization.mjs --check` will catch as a control failure rather than a diff.
   `documents/nr-pagefind-parity-2026-08-15.md` §2g has the numbers, §5 the test that would reverse
   it. Pagefind only: crawlers, the accessibility tree and the no-JS path are untouched. This is the
   report page:
@@ -448,8 +457,11 @@ worked before still works, but nothing renders it the way it used to. Three page
   `reportMapSelectNeighborhood`. Leaflet already delivered the key event to the focused `<path>` — the 42
   polygons were focusable all along, and nothing was listening. Every polygon carries
   `role="button"` and a name from `featureDisplayName`, **not** from the geojson's `GEONAME`, which
-  disagrees with `uhflist`'s `UHF_name` on 6 of the 42 ("Fordham - Bronx Pk", "Rockaways"); the
-  tooltip resolves the same way, so the visible label matches the accessible name.
+  disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
+  `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
+  name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
+  its own function names since 2026-10-19, and like `map.js` fits the whole city with Leaflet's zoom
+  control on.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
