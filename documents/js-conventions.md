@@ -327,8 +327,10 @@ its distinct phases.
 - **Every branch of an `if` / `else if` / `else` chain, and every `try` /
   `catch` / `finally` block:** blank line after `{` and before `}`, even when the
   branch is one statement.
-- **Any other block** (an `if` with no `else`, a loop): blank line after `{` and
-  before `}` when it is longer than ~3 lines.
+- **Any other block** (an `if` with no `else`, a loop, a multi-line object
+  literal): blank line after `{` and before `}` when it is longer than ~3 lines.
+  So a three-key `return { … }` stays tight, and a Vega `spec`, a `DataTable({`
+  options object or a `window.NR_REPORT_CONFIG = {` is padded.
 - `scripts/js-comment-spacing.py` applies the opening-brace gap only where a
   comment is the block's first line, and does not check length.
 - Blank line between each logical group inside a function, and before each `return`.
