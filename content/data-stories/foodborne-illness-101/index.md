@@ -28,7 +28,7 @@ related:
     url: "data-stories/foodborne-illness-101/"
 ---
 
-Foodborne illness affects thousands of New Yorkers every year. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food-safety-101/">A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment,</a> prompting the New York City Health Department to investigate and try to prevent further illness.
+Foodborne illness affects thousands of New Yorkers every year. [A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment,]({{< relURL >}}data-stories/food-safety-101/) prompting the New York City Health Department to investigate and try to prevent further illness.
 
 <strong>Let’s look at a real foodborne illness outbreak investigation that took place in NYC:</strong>
 
@@ -36,7 +36,7 @@ Two people dined together at a restaurant. Three days later, both diners became 
 
 After receiving the 311 complaint, the Health Department launched an investigation into the potential outbreak.
 
-<!-- img 1 -->
+<img src="flow_chart.jpg">
 
 To begin the investigation, we reached out to the two diners and learned that they both ate several chicken dishes, including chicken liver. Next, we conducted an environmental assessment at the restaurant, reviewing food storage and preparation practices. We found several serious public health problems:
 
@@ -142,6 +142,6 @@ Even if you haven’t gotten sick, you can also report food safety issues that c
 
 - Workers who are sick or not washing their hands
 
-- <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/">food sitting at room temperature for several hours</a>
+- [food sitting at room temperature for several hours]({{< relURL >}}data-stories/food/)
 
 If you think you got sick from food or see unsafe food practices, report them to 311 to help keep New York safe.
