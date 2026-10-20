@@ -37,6 +37,7 @@ const NR_EXTERNAL_GLOBALS = {
     vegaEmbed: "readonly",      // vega-embed, in the vegaBundle concat
     neighborhoods: "readonly",  // `var`, generated from data/globals/uhflist.json in partials/lib-uhflist.html
     debugLog: "readonly",       // inline <script> in partials/head.html
+    DOMPurify: "readonly",      // dompurify, loaded in head.html
     gtag: "readonly",           // inline <script> in partials/head.html
     renderQRCode: "readonly"    // inline <script> in neighborhood-reports/nr-report.html
 };

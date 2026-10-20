@@ -107,7 +107,12 @@ const renderSection = (section, neighborhoodName) => {
     rows.forEach(row => {
 
         const card = document.createElement('div');
-        card.innerHTML = buildIndicatorCard(row, neighborhoodName);
+        // The card concatenates EHDP-data strings (names, values, units, sources) into markup,
+        // where production's Hugo templates escaped them. Sanitized rather than escaped field
+        // by field: the data carries & and < as text today ("N/A<1%*"), which already renders
+        // as written, and DOMPurify leaves that, and every tag and attribute the card itself
+        // emits, as it was while dropping anything executable a value might bring
+        card.innerHTML = DOMPurify.sanitize(buildIndicatorCard(row, neighborhoodName));
         container.appendChild(card);
 
     });
