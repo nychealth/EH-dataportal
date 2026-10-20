@@ -19,14 +19,14 @@ Three readings of that axis decide many rows, and each is a choice someone can r
 | Status | P1 | P2 | P3 | — | All |
 |---|---|---|---|---|---|
 | OPEN | 50 | 73 | 136 | 2 | 261 |
-| FIXED | 0 | 0 | 0 | 194 | 194 |
+| FIXED | 0 | 0 | 0 | 195 | 195 |
 | UNVERIFIED | 0 | 0 | 0 | 14 | 14 |
 | DISCONFIRMED | 0 | 0 | 0 | 17 | 17 |
 | OBSOLETE | 0 | 0 | 0 | 10 | 10 |
 | BRANCH-SCOPED | 0 | 0 | 0 | 6 | 6 |
-| all | 50 | 73 | 136 | 243 | 502 |
+| all | 50 | 73 | 136 | 244 | 503 |
 
-`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, one row has changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17); the counts above include it, re-checked by `t7/recount.py`.
+`A-` rows are carried forward from the audits listed under Sources and `N-` rows are new. The `—` column holds every row that is not OPEN, plus the two declined OPEN rows. Since `apply_t6.py` wrote these counts, one row has changed: N-024, fixed on #1491 by `0943e08e4d` (P1 → FIXED, 2026-10-17); the counts above include it, re-checked by `t7/recount.py`. One row has been added since: N-101, found and fixed on 2026-10-20 by `52121eb69b` (unnamed leaflet-easybuttons), counted above as FIXED; it was never OPEN, so no batch and no Roadmap count changed.
 
 ## Roadmap
 
@@ -2530,6 +2530,7 @@ N-001..N-018 come from Task 3's instruments and are confirmed at runtime by them
 | N-098 | new: C-4h-9, verified at Task 5 | No page has a `twitter:card` tag (`seo.html:17-22`). | OPEN | CONFIRMED (built site): 0 of 970; control: `twitter:site` on 970 of 970 under the same parser | production @ b8f4b32fbd | P3 |
 | N-099 | new: C-4h-10, verified at Task 5 | The 44 retired-explorer pages are indexable and declare themselves canonical. | OPEN | CONFIRMED (built site): 44 of 44 `robots` `all`, 44 canonical to themselves. The title duplication was not re-read | production @ b8f4b32fbd | P2 |
 | N-100 | new: C-4h-11, verified at Task 5 | The home pages' `og:title` repeats the brand (`seo.html:10`, `:18`). | OPEN | CONFIRMED (built site): en and es home `og:title` both read "NYC Environment and Health Data Portal  &ndash; Environment &amp; Health Data Portal" | production @ b8f4b32fbd | P3 |
+| N-101 | new: found 2026-10-20 while adding a "Reset zoom" easyButton to the NR maps on #1491 | Every leaflet-easybutton on the site had an empty accessible name: the button carries its label only in `title` ("Reset zoom" or "Zoom to fit") around a Font Awesome icon, and Chrome computed its name as "". Six buttons on five pages: `congestion-pricing-report/` (`assets/js/congestion-pricing-report/map-monitoring.js` and `map-regional.js`), `rat-mitigation-zones/` (`rmz.js`), `flood-vulnerability-index/` (`fvi.js`), `rats-in-your-neighborhood/` (`neighborhood-rats.js`) and `realtime-air-quality/` (`js/realtime.js`). **Fixed by** `52121eb69b`: `aria-label` set to the title, `aria-hidden` on the icon. | FIXED | CONFIRMED (runtime) `[verified 2026-10-20: Playwright + CDP Accessibility.getPartialAXTree on development servers; before, at code identical to production @ 2e36ac1395, all six named "" (name sources contents, then title); after, on hotfix-easybutton-names, all six named by their title with the icon aria-hidden, no page errors on the five pages, curated smoke 44/44]`. axe's `button-name` PASSES these buttons (it accepts `title`), which is why the Task 3b axe run could not find this; control: an icon-only button without `title` fails the rule | hotfix-easybutton-names @ 52121eb69b | — |
 
 ## Disconfirmed
 
