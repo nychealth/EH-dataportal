@@ -17,8 +17,8 @@ keywords:
     "food",
     "restaurants",
   ]
-image: Kitchenwhitehouse.jpg
-photocredit: Samantha Appleton / United states of America
+image: food_prep.png
+photocredit: Public Domain
 related:
   - title: "NYC is working to protect your health — but we can’t do it alone"
     url: "data-stories/federal-funding/"
