@@ -28,7 +28,7 @@ related:
     url: "data-stories/foodborne-illness-101/"
 ---
 
-Foodborne illness affects thousands of New Yorkers every year. A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment, prompting the New York City Health Department to investigate and try to prevent further illness.
+Foodborne illness affects thousands of New Yorkers every year. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food-safety-101/">A foodborne illness outbreak is when two or more people get sick from consuming food or drink from the same establishment,</a> prompting the New York City Health Department to investigate and try to prevent further illness.
 
 <strong>Let’s look at a real foodborne illness outbreak investigation that took place in NYC:</strong>
 
@@ -44,7 +44,7 @@ To begin the investigation, we reached out to the two diners and learned that th
 
 - Raw chicken was in contact with cooked chicken, causing cross-contamination, which in this case is the transfer of harmful bacteria from raw chicken to cooked chicken
 
-The food preparation area had no handwashing sink.
+- The food preparation area had no handwashing sink.
 
 We provided guidance and required the restaurant operator to correct these conditions, and we issued violations subject to fines. We then made a second visit to check whether the restaurant fixed the issues and improved their food preparation practices.
 
@@ -54,7 +54,7 @@ We also contacted other recent restaurant guests to determine whether other patr
 
 - Did the group share any other meals together before they got sick?
 
-Which restaurant menu items did everyone eat?
+- Which restaurant menu items did everyone eat?
 
 This chart shows how many people were interviewed, had illnesses consistent with Campylobacter infection, and had severe enough symptoms to require hospitalization. After interviewing sick patrons about what they ate, a clear pattern emerged:
 
@@ -82,9 +82,9 @@ Through the interviews we also discovered that people were still getting sick af
 
 After combining everything learned from the environmental assessments, diner interviews, and laboratory findings, we determined two main contributing factors for the outbreak:
 
-- undercooked chicken organ dishes
+- Undercooked chicken organ dishes
 
-- cross-contamination between raw and ready-to-eat chicken
+- Cross-contamination between raw and ready-to-eat chicken
 
 We determined that these issues occurred because of inadequate food preparation and cooking protocols, poor supervision of employees, and lack of attention to food safety.
 
@@ -112,11 +112,11 @@ We rely on public reporting to detect most outbreaks, so your foodborne illness 
 
 To submit a food poisoning complaint, you’ll need to include:
 
-- where and when you ate
+- Where and when you ate
 
-- which foods you ate
+- Which foods you ate
 
-- what your symptoms were and if you sought medical care
+- What your symptoms were and if you sought medical care
 
 whether anyone with you became sick or went to see a doctor.
 
@@ -136,11 +136,11 @@ We may ask you a few additional questions that will help us in our investigation
 
 Even if you haven’t gotten sick, you can also report food safety issues that can lead to foodborne illness, such as:
 
-- workers touching ready-to-eat food (like cut fruit or vegetables) with bare hands
+- Workers touching ready-to-eat food (like cut fruit or vegetables) with bare hands
 
-spoiled or contaminated food
+- Spoiled or contaminated food
 
-- workers who are sick or not washing their hands
+- Workers who are sick or not washing their hands
 
 - <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/data-stories/food/">food sitting at room temperature for several hours</a>
 
