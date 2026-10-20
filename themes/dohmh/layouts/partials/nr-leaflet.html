@@ -17,6 +17,17 @@
     let lat = 40.715554;
     let lng = -74.0026642;
     let zoom = 10;
+
+    // The neighborhood index pages' own neighborhood: its layer once the GeoJSON is in, and
+    // the style that marks it, which resetHighlight puts back after a hover
+    let ownNeighborhoodLayer = null;
+
+    const OWN_NEIGHBORHOOD_STYLE = {
+        weight: 3,
+        color: "#008939",
+        dashArray: "3",
+        fillOpacity: 0.5,
+    };
     
     // --------------------------------------------------------------------------------------------------- // 
     // ---------- Initialize map ---------- // 
@@ -45,7 +56,12 @@
         position: "bottomleft",
     })
     .addTo(map);
-    
+
+    // Now, not only once the polygons are in: the container, the zoom links and the
+    // attribution links already exist, and if the GeoJSON never arrives the second call
+    // below never runs, which left those stops reachable inside the hidden map
+    removeHiddenMapFromTabOrder();
+
     // add and style geographies
     
     let uhf_geojson;
@@ -89,14 +105,14 @@
 
                     uhf_geojson.resetStyle();
 
-                    // apply highlight style
+                    // apply highlight style, and keep the layer so resetHighlight can restore it
 
-                    targetLayer.setStyle({
-                        weight: 3,
-                        color: "#008939",
-                        dashArray: "3",
-                        fillOpacity: 0.5,
-                    });
+                    ownNeighborhoodLayer = targetLayer;
+                    targetLayer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+
+                    // "page" because activating this polygon leads to the page already shown
+                    const ownPath = targetLayer.getElement();
+                    if (ownPath) ownPath.setAttribute("aria-current", "page");
 
                     // bring neighborhood to the front
 
@@ -278,12 +294,21 @@
 
     // define function that resets layer style
     
+    // The page's own neighborhood goes back to its highlight, not to the plain outline: with
+    // the whole city in view the highlight is the only mark of which neighborhood the page is
+    // about, and a mouse passing over it used to erase that for the rest of the visit
+
     function resetHighlight(e) {
 
         const layer = e.target;
 
         // layer.closeTooltip();
-        
+
+        if (layer === ownNeighborhoodLayer) {
+            layer.setStyle(OWN_NEIGHBORHOOD_STYLE);
+            return;
+        }
+
         layer.setStyle({
             weight: 1.5,
             color: "black",
