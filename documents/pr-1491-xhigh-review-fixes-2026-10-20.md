@@ -1,7 +1,8 @@
 # PR #1491 xhigh review fixes (2026-10-20)
 
-**Status as of 2026-10-20: plan written, no task started.** Tasks 1, 3, 5 (finding 17), 9 and 10 (finding 27) each carry a
-decision that Chris has to confirm before they run. Those are listed under [Decisions waiting on Chris](#decisions-waiting-on-chris).
+**Status as of 2026-10-20: plan written, no task started.** Chris answered all six open decisions on 2026-10-20 (see
+[Decisions answered by Chris](#decisions-answered-by-chris)). Finding 17 is parked. Finding 31 waits on a screenshot
+comparison that Task 10 produces.
 
 Source: `/code-review xhigh #1491 --max-findings all`, run 2026-10-19 23:53 local against head `13fa8d6016`, merge-base
 `06b38225b1`. It reported 31 findings, all of them static: lint, plus a tally of the live EHDP-data report JSONs. None was
@@ -35,7 +36,7 @@ Line numbers below are the reviewer's, at `13fa8d6016`. Each task also names a s
 | 14 | `nr-postswap-check.mjs` usage documents `/EH-dataportal/`, a prefix no environment serves | "Fix" | 7 |
 | 15 | `nr-postswap-check.mjs` ends with `process.exit()` after network activity (lines 211, 269) | "Fix" | 7 |
 | 16 | `nr-characterization.mjs --baseline` deletes the committed baseline dir before capturing; an uncaught `goto` timeout leaves it half-deleted | "Fix" | 7 |
-| 17 | Cards wait for the viz table and `topic_indicators.json`, which they don't need | "Fix" | 5, **gated** |
+| 17 | Cards wait for the viz table and `topic_indicators.json`, which they don't need | "Fix"; then, 2026-10-20: "keep deferring 17" | 5, **parked** |
 | 18 | Each chart spec fetches `UHF42.topo.json` twice and `borough.topo.json` once, by URL | "Fix" | 5 |
 | 19 | `NR_REPORT_CONFIG.neighborhoodMap` duplicates the `neighborhoods` global from `lib-uhflist` | "Fix" | 5 |
 | 20 | `nr-leaflet.html` `removeHiddenMapFromTabOrder` runs only on GeoJSON success; zoom links focusable inside `aria-hidden` until then | "Fix" | 6 |
@@ -45,22 +46,25 @@ Line numbers below are the reviewer's, at `13fa8d6016`. Each task also names a s
 | 24 | `.gitignore` ignores `.claude/` while two files in it are tracked | "Fix" | 9 |
 | 25 | Lockfile downgrades playwright/playwright-core 1.62.1 → 1.62.0 and drops sha.js metadata | "Restore" | 8 |
 | 26 | Root-level working files reach production: `EHDP feedback for MOD-Lab.md`, `README-MOD.md`, `.cursor/` | "Add stale files to gitignore" | 9 |
-| 27 | Changelog-style comments (`tertiles.js:45`, `:72`; `map.js:78-80`) and comments made false by merge (`report.js:15`, `_de-custom.scss:137`) | "Should we update or remove these?" | 10, **gated** |
+| 27 | Changelog-style comments (`tertiles.js:45`, `:72`; `map.js:78-80`) and comments made false by merge (`report.js:15`, `_de-custom.scss:137`) | "Should we update or remove these?"; then, 2026-10-20: "update comments" | 10 |
 | 28 | `dev-server.mjs`: merge restored older wording over production's, added unused `const onExit` | "Fix" | 10 |
 | 29 | `chart.js:58` `format.parse.Value` names a field the data lacks | "Fix" | 10 |
 | 30 | `nr-a11y-audit.mjs:563` QR selector `#nr-qrcode img` matches nothing; the id is `qrcode` | "Fix" | 7 |
-| 31 | `nr-report.html:179` class `mb-` | "Change to whatever might have been intended" | 10, **gated** |
+| 31 | `nr-report.html:179` class `mb-` | "Change to whatever might have been intended"; then, 2026-10-20: "let's see if it needs a bottom margin" | 10, screenshots for Chris |
 
-## Decisions waiting on Chris
+## Decisions answered by Chris
 
-| Item | Plan's recommendation | Why it needs you |
-|---|---|---|
-| 17 | Hold until you confirm the reversal | The 2026-10-17 plan records F5 as **Deferred**, with the note "Chris plans to refactor how report data arrives; un-defer as part of that". "Fix" reverses that. Confirm whether this finding now runs ahead of that refactor. |
-| 3, Back button | Switch from `replaceState` to `pushState` and add a `popstate` handler, so Back returns to the previous neighborhood without a reload | This changes history behaviour, which is part of the SPA feel. The alternative is to keep `replaceState`, so Back leaves the page as it does today, and fix only the metadata and analytics. |
-| 3, GA `page_view` on a switch | Send `gtag('event', 'page_view', {page_location, page_title})` after the URL and title update | The analytics audit records the production stream's history events as **off** (`"vtp_enableHistoryEvents":false`, `de-analytics-audit-2026-10-16.md` §Ledger, `[verified 2026-10-16 16:26 UTC]`). A switch is therefore counted only if the code sends it. Production counted a full page load on every switch. Re-check the flag before relying on it (Task 2, step 1). |
-| 26 | `git rm --cached` the four files, then add their paths to `.gitignore` | Adding a tracked file to `.gitignore` does nothing on its own. `git rm --cached` keeps your copy, but **deletes the files from every other clone or worktree that pulls the branch**, including MOD-Lab's, whose agents read `.cursor/rules/project-context.mdc`. Confirm that's acceptable, or move the files out of the repo another way. |
-| 27 | Remove the history and keep the reasoning: each comment states what the code does now and why, with no dates, no "used to", and no references to production or to other branches | You asked the question. Removing the comments outright loses the *why*: the `rankReverse` comments explain a non-obvious verdict rule that a later reader could "fix" back into the bug. |
-| 31 | Remove the class, which leaves the shipped rendering unchanged | The intent can't be recovered from the repo. `mb-` arrived bare in `d6f99e19ea` ("add map picker, add data to accordion, persistance"), and no commit gave it a number `[verified 2026-10-20: git log -S'd-none d-md-block mb-' -- themes/dohmh/layouts → one commit]`. The page has looked this way through every review since. Choosing `mb-1`…`mb-5` is a visual decision, so say if you want screenshots of two candidates. |
+All answered 2026-10-20.
+
+| Item | Question | Answer | Effect on the plan |
+|---|---|---|---|
+| 17 | Fix now, reversing the 2026-10-17 plan's F5 deferral? | "keep deferring 17" | **Parked.** Cards keep waiting for the viz fetch. Same un-park condition as F5: the planned refactor of how report data arrives. |
+| 3, Back button | `pushState` so Back returns to the previous neighborhood, or keep `replaceState`? | "Back should go back to previous neighborhood" | Task 2 uses `pushState` plus a `popstate` handler. |
+| 3, GA `page_view` | Send a manual `page_view` on each switch? (The production stream's history events are **off**: `"vtp_enableHistoryEvents":false`, `de-analytics-audit-2026-10-16.md` §Ledger, `[verified 2026-10-16 16:26 UTC]`.) | Taken with the pushState answer; not asked separately | Task 2 sends it. Step 1 re-checks the flag first, because with history events on, `pushState` would make the manual hit a double count. |
+| 26 | Untracking deletes the files from other clones that pull the branch, including MOD-Lab's. Acceptable? | "Yes, i think they're using Claude now, but i also think our agent setup supercedes theirs" | Task 9 untracks all four, `.cursor/` included. |
+| 27 | Update or remove the comments? | "update comments" | Task 10 rewrites them: state what the code does and why, with no dates, no "used to", and no references to production or to other branches. |
+| 31 | Remove `mb-` or pick a margin? | "let's see if it needs a bottom margin" | Task 10 produces screenshots for Chris to choose from. The intent can't be recovered from the repo: `mb-` arrived bare in `d6f99e19ea` and no commit gave it a number `[verified 2026-10-20: git log -S'd-none d-md-block mb-' -- themes/dohmh/layouts → one commit]`. |
+| 22, copy | "This section could not be loaded. Please try again later." OK? | "yes" | Task 3 uses that text. |
 
 ## Decisions taken in writing this plan
 
@@ -142,16 +146,18 @@ listener, if Chris approves `pushState`).
 3. Rewrite `link[rel=canonical]` and `meta[property="og:url"]` to the new absolute URL, and `og:title` / `twitter:title`
    to the new title. Rewrite `meta[name=description]` only if the served value names the neighborhood. Check one built
    report page first.
-4. History: `pushState` with `{neighborhood: name}` plus a `popstate` handler that re-renders from `event.state`, or keep
-   `replaceState`, per Chris's answer. With `pushState`, the first render must still use `replaceState`, as it does now,
-   so loading a page adds no history entry.
+4. History: `pushState` with `{neighborhood: name}` plus a `popstate` handler that re-renders from `event.state`
+   (Chris, 2026-10-20). The first render must still use `replaceState`, as it does now, so loading a page adds no history
+   entry. It should also seed `{neighborhood: <page's own>}` as state, so Back to the first entry has something to restore.
+   The `popstate` re-render must not push again.
 5. After the URL and title update, send `page_view` through `trackNREvent` with `page_location: location.href` and
    `page_title: document.title`. Skip it on the initial render, because `gtag('config')` already counted that load.
 6. **Proof:** a Playwright probe on `east_harlem/asthma_and_the_environment/`, switching with Enter to Kingsbridge - Riverdale.
    It checks: canonical, og:url and og:title name Kingsbridge; `document.title` changes before the `page_view` call
    (record the order in a `gtag` wrapper); exactly one `page_view` per switch and none on load; with `pushState`, Back
    restores East Harlem's h1, URL and canonical without a navigation (`performance.getEntriesByType('navigation').length`
-   unchanged). Control: the same probe at `13fa8d6016` fails the canonical and `page_view` checks.
+   unchanged). Back then Forward re-shows Kingsbridge, and neither sends a second `page_view` beyond the one per
+   rendered switch. Control: the same probe at `13fa8d6016` fails the canonical and `page_view` checks.
 
 ## Task 3: Render-pipeline correctness (findings 5, 9, 10, 11, 12, 22)
 
@@ -172,7 +178,7 @@ branch).
    `geo_join_id` is numeric in the data and that the comparison still matches. Vega's `==` coerces types, but a quoted
    number compared with a numeric field needs a browser check.
 6. **22:** in `loadSection`'s `.catch`, store a failure marker instead of `{}`. `report.js` renders a distinct message.
-   Proposed copy is "This section could not be loaded. Please try again later." Chris confirms the copy at review.
+   The copy is "This section could not be loaded. Please try again later." (Chris approved it 2026-10-20.)
 7. **Proof:** re-run the Task 0 probes for 9, 10, 11 and 22, which should now pass, plus a probe for 12 using an expanded
    chart that renders a highlighted neighborhood. `npm run lint` exit 0.
 
@@ -194,9 +200,10 @@ branch).
 the spec's `UHF42.topo.json` / `borough.topo.json` data entries (18); `assets/js/nr-report/url.js`
 (`slugForNeighborhood`), `themes/dohmh/layouts/neighborhood-reports/nr-report.html` (`neighborhoodMap`) (19).
 
-1. **17, gated on Chris:** render the cards when the section fetches finish, and fill the "Full dataset" links and enable
-   charts and CSV when the viz table and `topic_indicators.json` arrive. Keep the 2026-10-17 step 4 behaviour: a failed
-   viz fetch still disables Download and shows "Chart data could not be loaded."
+1. **17, parked 2026-10-20** ("keep deferring 17"). Skip it. When the data-loading refactor un-parks it, the shape is:
+   render the cards when the section fetches finish, and fill the "Full dataset" links and enable charts and CSV when the
+   viz table and `topic_indicators.json` arrive. Keep the 2026-10-17 step 4 behaviour: a failed viz fetch still disables
+   Download and shows "Chart data could not be loaded."
 2. **18:** fetch both topojson files once per page (memoised promise) and pass them to the spec as inline `values` with
    the same `format`. **Proof:** with "Expand all", count requests to each topojson URL in the network log (expect 1
    each), and the charts still render.
@@ -259,7 +266,7 @@ forever-cache environments), `package-lock.json`.
 1. **24:** replace the `.claude/` line with `.claude/settings.local.json` and `.claude/scheduled_tasks.lock`, which are
    the two untracked files there now `[verified 2026-10-20: ls -a .claude]`. **Proof:** `git status --short --ignored
    .claude` lists only those two as ignored, and a scratch `.claude/commands/x.md` shows as untracked. Delete it afterwards.
-2. **26, gated on Chris:** `git rm --cached` the four files, then add their paths to `.gitignore`. **Proof:**
+2. **26** (Chris, 2026-10-20: approved, including `.cursor/`): `git rm --cached` the four files, then add their paths to `.gitignore`. **Proof:**
    `git ls-files | grep -iE '^(EHDP feedback|README-MOD|\.cursor/)'` is empty, and the files still exist on disk.
 
 ## Task 10: Comments and dead code (findings 27, 28, 29, 31)
@@ -271,13 +278,17 @@ data-note class), `scripts/dev-server.mjs` (header, the two-builders error text,
 `assets/js/nr-report/chart.js` (`format.parse.Value`), `themes/dohmh/layouts/neighborhood-reports/nr-report.html`
 (`mb-`).
 
-1. **27, gated on Chris:** rewrite the five comments per the recommendation above. **Proof:** a grep of those files for
+1. **27** (Chris, 2026-10-20: "update comments"): rewrite the five comments as described under Decisions answered by Chris. **Proof:** a grep of those files for
    `Fixed 20\|used to\|production\|feature-NDHR` returns no comment lines.
 2. **28:** restore production's header and error wording (`git show production:scripts/dev-server.mjs`), keep this
    branch's code changes, and inline `onExit`. **Proof:** `git diff production -- scripts/dev-server.mjs` shows code
    only; `node scripts/smoke-pages.mjs` exercises the module.
 3. **29:** delete the `format.parse` entry. **Proof:** one expanded chart renders the same in the Task 3 probe.
-4. **31, gated on Chris:** per his answer.
+4. **31** (Chris, 2026-10-20: "let's see if it needs a bottom margin"): screenshot `#nr-report-header` at a desktop
+   width (≥768px, where `d-md-block` shows the wrapper) on one report page, with the class removed and with `mb-2` and
+   `mb-3`. Toggle the class in the live DOM so one page load gives all three. Then stop and show Chris; the class he picks
+   goes in. The `<hr class="mb-2 mt-1">` below the wrapper already sets its own top margin, so expect the differences to
+   be small. **Proof:** the three screenshots, and the chosen class in a grep of `nr-report.html`.
 5. Comment-only edits are proven with `git diff -w` showing only comment lines (project CLAUDE.md, Refactors). This is
    invalid where a template literal is touched, which none of these files does at the cited lines. Check before relying on it.
 
@@ -316,15 +327,15 @@ At the final commit, with the hash recorded beside each result:
 |---|---|---|---|---|
 | 0 | Evidence pass | *no commit*: checks | Not started | — |
 | 1 | GA events (1, 2) | — | Not started | — |
-| 2 | In-place switch (3) | — | **BLOCKED on Chris**: Back-button and `page_view` decisions | — |
+| 2 | In-place switch (3) | — | Not started | — |
 | 3 | Render pipeline (5, 9, 10, 11, 12, 22) | — | Not started | — |
 | 4 | Sanitise (7) | — | Not started | — |
-| 5 | Efficiency (17, 18, 19) | — | 18, 19 Not started; **17 BLOCKED on Chris**: reverses 2026-10-17 F5 | — |
+| 5 | Efficiency (17, 18, 19) | — | 18, 19 Not started; **17 Parked** 2026-10-20 (Chris). Un-park with the data-loading refactor, as for F5 | — |
 | 6 | `nr-leaflet.html` (20, 21) | — | Not started | — |
 | 7 | Harness scripts (4, 6, 13, 14, 15, 16, 30) | — | Not started | — |
 | 8 | Config and lockfile (23, 25) | — | Not started | — |
-| 9 | Repo hygiene (24, 26) | — | 24 Not started; **26 BLOCKED on Chris**: deletes files from other clones | — |
-| 10 | Comments and dead code (27, 28, 29, 31) | — | 28, 29 Not started; **27, 31 BLOCKED on Chris** | — |
+| 9 | Repo hygiene (24, 26) | — | Not started | — |
+| 10 | Comments and dead code (27, 28, 29, 31) | — | Not started; 31 pauses for Chris's pick after the screenshots | — |
 | 11 | No-JS trade (8) | — | Not started | — |
 | V | Verification | *no commit*: checks | Not started | — |
 
