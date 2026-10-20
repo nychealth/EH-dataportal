@@ -25,7 +25,7 @@ taken from that pass.
 | # | Step | Commit | Status | Proof that ran |
 |---|---|---|---|---|
 | 1 | Rules into `js-conventions.md`; `.editorconfig` | `feature-js-formatting @ d8708f0f35` | **DONE 2026-10-19** | `npm run docs-check` exit 0 — but neither `js-conventions.md` nor this file opts in (no `docs-check source-roots` comment), so that run checked neither; corrected 2026-10-19 |
-| 2 | Settle the two rule questions (object-literal padding; script vs hand for multi-line values) | | **DONE 2026-10-19** — see the last two Decisions rows | Prose only; re-read of the edited `js-conventions.md` "Any other block" bullet. No tool covers these docs |
+| 2 | Settle the two rule questions (object-literal padding; script vs hand for multi-line values) | `feature-js-formatting @ 955adbf64d` | **DONE 2026-10-19** — see the last two Decisions rows | Prose only; re-read of the edited `js-conventions.md` "Any other block" bullet. No tool covers these docs |
 | 3 | After #1491 merges: merge it (or `production`) into this branch | | BLOCKED on #1491 merging | — |
 | 4 | `python scripts/js-comment-spacing.py`, commit alone | | BLOCKED on 3 | — |
 | 5 | Hand pass for the rules the script does not apply, commit separately; `npm run lint`, `npm run smoke:all` | | BLOCKED on 4 | — |
