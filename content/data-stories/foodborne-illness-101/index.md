@@ -124,13 +124,13 @@ We may ask you a few additional questions that will help us in our investigation
 
 <strong>You can report food poisoning complaints to 311 in three ways:</strong>
 
-<div class="wide my-4">
+<div class="wide my-2">
     <div class="row">
         <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-phone m-1"></i>Call 311</h3>
         </div>
         <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-computer m-1"></i></i><a href="teams.public.onecdn.static.microsoft/evergreen-assets/safelinks/2/atp-safelinks.html">Submit online</a></h3>
         </div>
-        <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-mobile m-1"></i></i>Submit with the app</h3>
+        <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-mobile m-1"></i></i>Use the app</h3>
         </div>
     </div>
 
