@@ -122,15 +122,17 @@ whether anyone with you became sick or went to see a doctor.
 
 We may ask you a few additional questions that will help us in our investigation, like what else you ate in the three days before you felt ill, since some foodborne illnesses will take a few days to make you sick. Your answers help identify the contaminated dish and can prevent others from getting sick.
 
-<strong>You can report food poisoning complaints to 311 in three ways</strong>
+<strong>You can report food poisoning complaints to 311 in three ways:</strong>
 
-<a href="https://www.cdc.gov/mmwr/volumes/67/ss/ss6710a1.htm">Over half of reported foodborne illness outbreaks nationwide came from restaurant meals.</a>
-
-<strong>There are three main ways food can become unsafe to eat:</strong>
-
-<div class="my-4">
-<img src="contact_311.png">
-</div>
+<div class="wide my-4">
+    <div class="row">
+        <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-phone m-1"></i>Call 311</h3>
+        </div>
+        <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-computer m-1"></i></i><a href="teams.public.onecdn.static.microsoft/evergreen-assets/safelinks/2/atp-safelinks.html">Submit online</a></h3>
+        </div>
+        <div class="col-md-4" ><h3 class="mb-3 fs-lg"><i class="fa-solid fa-mobile m-1"></i></i>Submit with the app</h3>
+        </div>
+    </div>
 
 ## Report unsafe food practices, too
 
@@ -142,6 +144,6 @@ Even if you haven’t gotten sick, you can also report food safety issues that c
 
 - Workers who are sick or not washing their hands
 
-- [food sitting at room temperature for several hours]({{< relURL >}}data-stories/food/)
+- [Food sitting at room temperature for several hours]({{< relURL >}}data-stories/food/)
 
-If you think you got sick from food or see unsafe food practices, report them to 311 to help keep New York safe.
+If you think you got sick from food or see unsafe food practices, <a href="https://portal.311.nyc.gov/article/?kanumber=KA-01111">report them to 311 to help keep New York safe.</a>
