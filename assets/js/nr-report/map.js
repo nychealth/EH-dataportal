@@ -178,8 +178,18 @@ const reportMapSelectNeighborhood = (layer, source) => {
 
     // Ignore selection-driven render until all report and viz payloads have loaded
     if (dataReady) {
+
         debugLog(source + ': branch-render-all:', { name, geocode });
+
+        // Counts a reader's choice of neighborhood, which page_view cannot isolate: page_view
+        // also counts Back and Forward. Read before renderAll overwrites currentNeighborhood,
+        // so re-selecting the neighborhood already shown is not counted as a choice
+        if (name !== currentNeighborhood) {
+            trackNREvent('select_neighborhood', { nr_neighborhood: name, report_name: reportConfig.reportName || '' });
+        }
+
         renderAll(name, geocode);
+
     } else {
         debugLog(source + ': branch-data-not-ready:', { name, geocode });
     }

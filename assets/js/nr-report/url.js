@@ -27,10 +27,17 @@ const getPageNeighborhood = () => {
 };
 
 
-// Rewrites the address bar to carry the neighborhood, making the current view shareable
-const setNeighborhoodInURL = name => {
+// Rewrites the address bar to carry the neighborhood, making the current view shareable.
+// historyMode: 'replace' on first render, 'push' on a switch, 'none' on a popstate re-render
 
-    debugLog('setNeighborhoodInURL: enter:', name);
+const setNeighborhoodInURL = (name, historyMode) => {
+
+    debugLog('setNeighborhoodInURL: enter:', { name, historyMode });
+
+    // The browser has already moved the address bar to the entry being re-rendered
+    if (historyMode === 'none') {
+        return;
+    }
 
     // ----- resolve the slug for this neighborhood ----- //
 
@@ -59,17 +66,64 @@ const setNeighborhoodInURL = name => {
 
     const newPath = '/' + pathParts.slice(0, topicIdx - 1).concat(slug, reportConfig.topicSlug).join('/') + '/';
 
-    // First render lands here too, with the path already right. Rewriting it then would
-    // only strip whatever query string and hash the reader arrived with
-    if (newPath === window.location.pathname) {
-        return;
+    // ----- write the history entry ----- //
+
+    // A history call rather than a navigation: the report page has already rendered this
+    // neighborhood, so the path change makes the URL shareable and bookmarkable without a
+    // reload or a server request. The query string and hash are carried over, since a switch
+    // changes the neighborhood and nothing else. The state is what the popstate handler
+    // (app.js) re-renders from, so the first render seeds it on the page's own entry too,
+    // or Back to that entry would have nothing to restore
+
+    const state = { neighborhood: name };
+    const url = newPath + window.location.search + window.location.hash;
+
+    // Clicking the neighborhood already shown leaves the path unchanged and adds no entry
+
+    if (historyMode === 'push' && newPath !== window.location.pathname) {
+        history.pushState(state, '', url);
+    } else {
+        history.replaceState(state, '', url);
     }
 
-    // replaceState rather than a navigation: the report page has already rendered this
-    // neighborhood, so the path change is cosmetic — it makes the URL shareable and
-    // bookmarkable without a reload or a server request. The query string and hash are
-    // carried over, since a switch changes the neighborhood and nothing else
-    history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+};
+
+
+// Points the page's head metadata at the neighborhood an in-place switch now shows.
+//
+// seo.html renders these for the neighborhood the page was generated for. Crawlers read the
+// served HTML and are unaffected; what reads them after a switch is a share sheet or a
+// bookmarking tool, which would otherwise describe the neighborhood the reader left
+
+const updateHeadMetadata = (neighborhoodName, previousNeighborhood) => {
+
+    debugLog('updateHeadMetadata: enter:', { neighborhoodName, previousNeighborhood });
+
+    // ----- URL-bearing tags ----- //
+
+    // Resolved against the served canonical rather than location.origin, so the host the
+    // build wrote (the site's baseURL) is kept
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+
+    if (canonical) {
+        const absolute = new URL(window.location.pathname, canonical.href).href;
+        canonical.href = absolute;
+        document.querySelectorAll('meta[property="og:url"]').forEach(m => { m.content = absolute; });
+    }
+
+    // ----- titles ----- //
+
+    document.querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]')
+        .forEach(m => { m.content = document.title; });
+
+    // ----- descriptions ----- //
+
+    // All three read "<report> data profile for the <neighborhood> neighborhood of NYC.", so
+    // the old name is swapped for the new one and the rest of the sentence kept
+    
+    document.querySelectorAll('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]')
+        .forEach(m => { m.content = m.content.split(previousNeighborhood).join(neighborhoodName); });
 
 };
 

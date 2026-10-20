@@ -132,6 +132,27 @@ const bootstrap = () => {
     const accordionToggle = document.getElementById('nr-toggle-accordions');
     if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
 
+    // Back and Forward across in-place switches re-render from the entry's state
+    // (setNeighborhoodInURL writes it). An entry with no state, such as one a #fragment link
+    // added, or the neighborhood already shown, needs nothing; before the first render the
+    // initial render is still coming and will draw the page's own neighborhood
+    
+    window.addEventListener('popstate', event => {
+
+        const name = event.state && event.state.neighborhood;
+
+        if (!name || !dataReady || name === currentNeighborhood) {
+            debugLog('popstate: branch-nothing-to-render:', { name, dataReady });
+            return;
+        }
+
+        const layer = findLayerByName(name);
+        if (layer) selectLayer(layer);
+
+        renderAll(name, undefined, true);
+
+    });
+
     // Start map and data loads in parallel
     initLeafletMap();
 

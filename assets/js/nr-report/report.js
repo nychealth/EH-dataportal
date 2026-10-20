@@ -14,6 +14,7 @@
 // The guard tests the string, not the key. nbr_data_note is present on every row and
 // empty on most of them — production's `isset .data "nbr_data_note"` guard is why the
 // live page emits 22 .data-note divs of which 4 have text
+
 const collectDataNotes = rows => {
 
     const notes = rows
@@ -37,6 +38,7 @@ const collectDataNotes = rows => {
 // Built from the section's rows rather than from what the reader has expanded, so screen
 // and print carry the same legend. textContent rather than an innerHTML concatenation
 // because the text is prose from EHDP-data and needs no markup
+
 const renderSectionNotes = (container, rows) => {
 
     const notes = collectDataNotes(rows);
@@ -65,11 +67,13 @@ const renderSectionNotes = (container, rows) => {
 
 
 // Fills one section's container with that neighborhood's cards, or a no-data message
+
 const renderSection = (section, neighborhoodName) => {
 
     debugLog('renderSection: enter:', { sectionId: section.id, neighborhoodName });
 
     // Section containers are layout-driven and may be absent in some templates
+
     const container = document.getElementById(section.containerId);
 
     if (!container) {
@@ -108,6 +112,7 @@ const renderSection = (section, neighborhoodName) => {
 // Finds the UHF geocode for a neighborhood, preferring the sources most likely to
 // agree with the report rows: loaded rows first, then the clicked map layer, then a
 // name lookup against uhflist. Returns null when none of the three resolve
+
 const resolveGeocode = (neighborhoodName, mapGeocode) => {
 
     // ----- from rows already loaded ----- //
@@ -146,28 +151,41 @@ const resolveGeocode = (neighborhoodName, mapGeocode) => {
 };
 
 
-// Rewrites <title> and announces the switch, once the rebuilt report is in place.
-//
-// Both are suppressed when nothing changed — renderAll also runs at load, and a reader who
-// clicks the neighborhood already shown has moved nowhere. At load the server's <title> is
+// True only for an in-place switch to a different neighborhood. renderAll also runs at load,
+// and a reader who clicks the neighborhood already shown has moved nowhere; neither gets a
+// new title, head metadata, page_view or announcement. At load the server's <title> is
 // already right, and rewriting it there is what dropped the site-name suffix from every
-// report page. A role="status" region announces on content change, so writing the same
-// string twice would say nothing anyway; returning early keeps that a deliberate contract
-// rather than a coincidence.
-//
-// On a switch the title is rebuilt from the same parts head.html composes it from:
-// .Params.seo_title, then " – " and .Site.Title. seoShortName is carried separately from
-// reportName because the two differ on Active Design
-const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
+// report page
 
-    if (!previousNeighborhood || previousNeighborhood === neighborhoodName) {
-        debugLog('announceNeighborhoodChange: branch-nothing-changed:', { neighborhoodName, previousNeighborhood });
-        return;
-    }
+const isNeighborhoodSwitch = (neighborhoodName, previousNeighborhood) =>
+    !!previousNeighborhood && previousNeighborhood !== neighborhoodName;
+
+
+// Rebuilds <title> from the same parts head.html composes it from: .Params.seo_title, then
+// " – " and .Site.Title. seoShortName is carried separately from reportName because the two
+// differ on Active Design
+
+const updateDocumentTitle = neighborhoodName => {
 
     if (reportConfig.seoShortName) {
         document.title = reportConfig.seoShortName + ' in ' + neighborhoodName +
             (reportConfig.siteTitle ? ' – ' + reportConfig.siteTitle : '');
+    }
+
+};
+
+
+// Announces the switch, once the rebuilt report is in place.
+//
+// A role="status" region announces on content change, so writing the same string twice
+// would say nothing anyway; the early return keeps that a deliberate contract rather than
+// a coincidence
+
+const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
+
+    if (!isNeighborhoodSwitch(neighborhoodName, previousNeighborhood)) {
+        debugLog('announceNeighborhoodChange: branch-nothing-changed:', { neighborhoodName, previousNeighborhood });
+        return;
     }
 
     const status = document.getElementById('nr-report-status');
@@ -184,18 +202,23 @@ const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
 };
 
 
-// Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL
-const renderAll = (neighborhoodName, mapGeocode) => {
+// Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL.
+// fromHistory is set by the popstate handler, whose entry the browser has already made current
 
-    debugLog('renderAll: enter:', { neighborhoodName, mapGeocode });
+const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
+
+    debugLog('renderAll: enter:', { neighborhoodName, mapGeocode, fromHistory });
 
     // ----- reset per-render state ----- //
 
     // Read before the overwrite below: it is '' (global.js) until the first render finishes,
     // which is what distinguishes first paint from an in-place switch for the announcement
+
     const previousNeighborhood = currentNeighborhood;
+    const isSwitch = isNeighborhoodSwitch(neighborhoodName, previousNeighborhood);
 
     // Record the active neighborhood used by downloads and rerenders
+
     currentNeighborhood = neighborhoodName;
     renderedPanels = {};
     accordionCounter = 0;
@@ -217,6 +240,7 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     // Both header blocks render visible with this page's neighborhood (nr-report.html), so the
     // display resets below change nothing today; the textContent writes are what an in-place
     // switch needs
+
     const reportHeader = document.getElementById('nr-report-header');
     const headerNeighborhood = document.getElementById('nr-header-neighborhood');
 
@@ -240,14 +264,38 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     // Sidebar metrics are keyed by geocode, so this has to follow the resolution above
     renderDemographics(currentGeocode);
 
-    // Synchronize deep-link state after the page content has been refreshed
-    setNeighborhoodInURL(neighborhoodName);
+    // ----- history, head and analytics ----- //
+
+    // First render seeds the page's own entry; a switch adds one; a popstate re-render
+    // is already standing on its entry and must not add another
+    const historyMode = !previousNeighborhood ? 'replace' : (fromHistory ? 'none' : 'push');
+    setNeighborhoodInURL(neighborhoodName, historyMode);
+
+    if (isSwitch) {
+
+        // After the push, not before: Chrome labels whichever history entry is current
+        // with document.title, so a title written first renamed the entry being left —
+        // Back's menu then listed East Harlem's URL as "… in Kingsbridge - Riverdale"
+        // [verified 2026-10-20: Page.getNavigationHistory over CDP, both orders]
+
+        updateDocumentTitle(neighborhoodName);
+        updateHeadMetadata(neighborhoodName, previousNeighborhood);
+
+        // The page's own load was counted by gtag('config') in head.html, and neither GA
+        // stream sends history-change page views (vtp_enableHistoryEvents is false in both
+        // tags), so each switch, Back and Forward included, is counted here and only here
+        
+        trackNREvent('page_view', { page_location: window.location.href, page_title: document.title });
+
+    }
+
     updateTopicLinks(neighborhoodName);
     updateNeighborhoodCrumb(neighborhoodName);
 
     // The printed report carries a QR code back to itself, and the map can switch
     // neighborhood in place — so it has to be regenerated from the rewritten URL rather
     // than once at load. Defined in nr-report.html, which owns the qrcode library
+
     if (typeof renderQRCode === 'function') {
         renderQRCode();
     }
@@ -255,6 +303,7 @@ const renderAll = (neighborhoodName, mapGeocode) => {
     // ----- announce ----- //
 
     // Last, so the region's text is written against a report that is already rebuilt
+
     announceNeighborhoodChange(neighborhoodName, previousNeighborhood);
 
 };
