@@ -1,15 +1,16 @@
 # PR #1491 xhigh review fixes (2026-10-20)
 
-**Status as of 2026-10-20: plan written, no task started.** Chris answered all six open decisions on 2026-10-20 (see
-[Decisions answered by Chris](#decisions-answered-by-chris)). Finding 17 is parked. Finding 31 waits on a screenshot
+**Status as of 2026-10-20: plan written, no task started.** Chris answered all seven open decisions on 2026-10-20
+(see [Decisions answered by Chris](#decisions-answered-by-chris)). Finding 17 is parked. Finding 31 waits on a screenshot
 comparison that Task 10 produces.
 
 Source: `/code-review xhigh #1491 --max-findings all`, run 2026-10-19 23:53 local against head `13fa8d6016`, merge-base
 `06b38225b1`. It reported 31 findings, all of them static: lint, plus a tally of the live EHDP-data report JSONs. None was
 checked in a browser. The reviewer's full text is the last assistant message in
 `~/.claude/projects/c--Users-Chris-Documents-DOHMH-Programming-EH-dataportal-worktrees-feature-MOD-Lab-NR-recode-refactor-merge/c5623a61-8a7c-43c3-ac12-5383aa2bad81/subagents/agent-a8adb6362f930c608.jsonl`.
-Transcripts age out, so quote it here before relying on it later. Chris's verdict on each finding is quoted verbatim in the
-[Findings](#findings) table.
+A verbatim copy, with each finding's full failure scenario, is in
+[pr-1491-xhigh-review-findings-2026-10-19.md](pr-1491-xhigh-review-findings-2026-10-19.md). Read the scenario there before
+reproducing a finding in Task 0. Chris's verdict on each finding is quoted verbatim in the [Findings](#findings) table.
 
 Predecessor: [pr-1491-review-fixes-2026-10-17.md](pr-1491-review-fixes-2026-10-17.md), closed. Its decisions still stand
 unless a row below reverses one, and finding 17 reverses its F5.
@@ -60,7 +61,7 @@ All answered 2026-10-20.
 |---|---|---|---|
 | 17 | Fix now, reversing the 2026-10-17 plan's F5 deferral? | "keep deferring 17" | **Parked.** Cards keep waiting for the viz fetch. Same un-park condition as F5: the planned refactor of how report data arrives. |
 | 3, Back button | `pushState` so Back returns to the previous neighborhood, or keep `replaceState`? | "Back should go back to previous neighborhood" | Task 2 uses `pushState` plus a `popstate` handler. |
-| 3, GA `page_view` | Send a manual `page_view` on each switch? (The production stream's history events are **off**: `"vtp_enableHistoryEvents":false`, `de-analytics-audit-2026-10-16.md` §Ledger, `[verified 2026-10-16 16:26 UTC]`.) | Taken with the pushState answer; not asked separately | Task 2 sends it. Step 1 re-checks the flag first, because with history events on, `pushState` would make the manual hit a double count. |
+| 3, GA `page_view` | Send a manual `page_view` on each switch? (The production stream's history events are **off**: `"vtp_enableHistoryEvents":false`, `de-analytics-audit-2026-10-16.md` §Ledger, `[verified 2026-10-16 16:26 UTC]`.) | "yes send a page view" (2026-10-20). `b8b572b6d3` had recorded this as "taken with the pushState answer", which was wrong: the row was never among the questions shown to Chris, so it was re-asked | Task 2 step 5 sends it. Step 1 re-checks the flag first, because with history events on, `pushState` would make the manual hit a double count. |
 | 26 | Untracking deletes the files from other clones that pull the branch, including MOD-Lab's. Acceptable? | "Yes, i think they're using Claude now, but i also think our agent setup supercedes theirs" | Task 9 untracks all four, `.cursor/` included. |
 | 27 | Update or remove the comments? | "update comments" | Task 10 rewrites them: state what the code does and why, with no dates, no "used to", and no references to production or to other branches. |
 | 31 | Remove `mb-` or pick a margin? | "let's see if it needs a bottom margin" | Task 10 produces screenshots for Chris to choose from. The intent can't be recovered from the repo: `mb-` arrived bare in `d6f99e19ea` and no commit gave it a number `[verified 2026-10-20: git log -S'd-none d-md-block mb-' -- themes/dohmh/layouts → one commit]`. |
