@@ -101,6 +101,22 @@ const nrById = id => document.getElementById(id);
 
 
 // ----------------------------------------------------------------------- //
+// analytics
+// ----------------------------------------------------------------------- //
+
+// Sends a GA event under the names the retired nr-output pages used, so report
+// traffic stays continuous across the swap. Modelled on trackDataExplorerEvent;
+// the guard keeps a blocked gtag.js from turning a download or a panel open into a throw
+const trackNREvent = (eventName, eventParams) => {
+
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', eventName, eventParams);
+
+};
+
+
+// ----------------------------------------------------------------------- //
 // name lookup
 // ----------------------------------------------------------------------- //
 

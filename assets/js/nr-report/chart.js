@@ -232,6 +232,15 @@ const onAccordionExpand = event => {
 
     debugLog('onAccordionExpand: enter:', panelId);
 
+    // ----- analytics ----- //
+
+    // Ahead of the rendered guard: production bound a shown.bs.collapse handler per panel,
+    // so every open counted, re-opens included, and expand-all sent one event per panel.
+    // The handler is bound to every .collapse on the page, so a panel without the label
+    // buildIndicatorCard writes is some other collapse and is not counted
+    const indicatorLabel = panel.getAttribute('data-indicator-label');
+    if (indicatorLabel) trackNREvent('click_modal', { modal_name: indicatorLabel });
+
     // ----- guard already-rendered ----- //
 
     if (renderedPanels[panelId]) {
