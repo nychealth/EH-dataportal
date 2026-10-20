@@ -6,9 +6,16 @@
 // neighborhood persistence
 // ----------------------------------------------------------------------- //
 
-// Reverses reportConfig.neighborhoodMap, which is keyed slug -> display name
-const slugForNeighborhood = name =>
-    Object.keys(reportConfig.neighborhoodMap).find(k => reportConfig.neighborhoodMap[k] === name);
+// The URL slug for a neighborhood's display name. Read off the `neighborhoods` global, which
+// lib-uhflist emits from data/globals/uhflist.json, the same rows the content adapter
+// generates the report pages from, so the slug is the one the page's own URL carries
+const slugForNeighborhood = name => {
+
+    const entry = neighborhoods.find(n => n.UHF_name === name);
+
+    return entry ? entry.page_name : undefined;
+
+};
 
 
 // Resolves the neighborhood for this page load

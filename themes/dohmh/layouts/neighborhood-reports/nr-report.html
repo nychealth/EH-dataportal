@@ -344,21 +344,7 @@
         // URL slug for this topic page, e.g. "asthma_and_the_environment".
         // Used by setNeighborhoodInURL to locate the topic segment in the current path
         // when updating the address bar after a neighborhood is selected.
-        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
-        // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
-        // e.g. { "east_new_york": "East New York", ... }.
-        // Read only by url.js slugForNeighborhood (name → slug), behind setNeighborhoodInURL
-        // and the breadcrumb and topic links.
-        // Built from data/globals/uhflist.json — the same rows the content adapter generates
-        // the pages from — rather than by ranging .Sections. Those sections are now themselves
-        // adapter output, so deriving the map from them would make it depend on Hugo's section
-        // machinery agreeing with the adapter instead of on the one source both come from.
-        neighborhoodMap: {
-            {{- range $i, $n := site.Data.globals.uhflist -}}
-                {{- if $i }},{{ end -}}
-                "{{ $n.page_name }}": "{{ $n.UHF_name }}"
-            {{- end -}}
-        }
+        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}"
     };
 </script>
 

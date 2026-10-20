@@ -6,8 +6,59 @@
 // Vega map and bar chart
 // ----------------------------------------------------------------------- //
 
+// The two geographies every chart draws, fetched once per page and shared. Left to Vega,
+// each chart fetched both itself: "Expand all" on a 22-panel report sent 22 requests for
+// each file, none answered from the browser cache, since they all go out at once
+// [measured 2026-10-20 over CDP]. Resolves to null on failure, and forgets the failure so
+// the next chart tries again; a chart given null keeps Vega's own URL loading
+let topojsonPromise = null;
+
+const loadTopojson = () => {
+
+    if (topojsonPromise) return topojsonPromise;
+
+    const base = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
+    const getJSON = file => fetch(base + file).then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' for ' + file);
+        return res.json();
+    });
+
+    topojsonPromise = Promise.all([getJSON('borough.topo.json'), getJSON('UHF42.topo.json')])
+        .then(([borough, uhf]) => ({ borough, uhf }))
+        .catch(err => {
+            console.error('Error loading NR chart geography:', err);
+            topojsonPromise = null;
+            return null;
+        });
+
+    return topojsonPromise;
+
+};
+
+
 // Draws one indicator across all neighborhoods, with geocode's own value highlighted
 const renderIndicatorChart = (data, destination, legendLabel, geocode, indicatorLabel) => {
+
+    // Captured now, before any wait, and used for everything after it rather than a fresh
+    // lookup by id. An in-place switch rebuilds every card and reuses the panel ids, so a
+    // lookup made once the geography or the embed had settled found the NEW panel and wrote
+    // the previous neighborhood's chart, or its export label, into it. A detached element
+    // means its panel is gone and there is nothing to update
+    const container = document.querySelector(destination);
+
+    if (!container) {
+        debugLog('renderIndicatorChart: branch-missing-destination:', destination);
+        return;
+    }
+
+    loadTopojson().then(topo =>
+        embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo));
+
+};
+
+
+// Builds and embeds the chart once the shared geography has settled
+const embedIndicatorChart = (data, container, destination, legendLabel, geocode, indicatorLabel, topo) => {
 
     debugLog('renderIndicatorChart: enter:', {
         rowCount: data && data.length,
@@ -24,11 +75,14 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         ? indicatorLabel + ' across all NYC neighborhoods'
         : 'Indicator values across all NYC neighborhoods';
 
-    // ----- build geography URLs ----- //
+    // ----- geography data entries ----- //
 
-    // Topojson is fetched by Vega at render time from the configured EHDP-data branch
-    const boroTopoUrl = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/borough.topo.json';
-    const uhfTopoUrl = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/UHF42.topo.json';
+    // Inline values from the shared fetch when it succeeded, otherwise the URL for Vega to
+    // load itself, as every chart did before. The format is the same either way
+    const topoFormat = { "type": "topojson", "feature": "collection" };
+    const geoBase = reportConfig.dataRepo + reportConfig.dataBranch + '/geography/';
+    const boroData = topo ? { "values": topo.borough, "format": topoFormat } : { "url": geoBase + 'borough.topo.json', "format": topoFormat };
+    const uhfData = topo ? { "values": topo.uhf, "format": topoFormat } : { "url": geoBase + 'UHF42.topo.json', "format": topoFormat };
 
     // ----- shared spec fragments ----- //
 
@@ -79,10 +133,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
                     {
                         "height": 300,
                         "width": "container",
-                        "data": {
-                            "url": boroTopoUrl,
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
+                        "data": boroData,
                         // aria:false — a plain grey backdrop behind gaps in UHF coverage. It
                         // carries no value a reader needs, and left in the tree it is one more
                         // unnamed graphics-symbol group per chart
@@ -94,10 +145,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
                     {
                         "height": 300,
                         "width": "container",
-                        "data": {
-                            "url": uhfTopoUrl,
-                            "format": { "type": "topojson", "feature": "collection" }
-                        },
+                        "data": uhfData,
                         // aria:false for the same reason: neighborhood outlines under the data
                         "mark": { "type": "geoshape", "stroke": "#a2a2a2", "fill": "#e7e7e7", "strokeWidth": 0.5, "aria": false }
                     },
@@ -112,10 +160,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
                             {
                                 "lookup": "geo_join_id",
                                 "from": {
-                                    "data": {
-                                        "url": uhfTopoUrl,
-                                        "format": { "type": "topojson", "feature": "collection" }
-                                    },
+                                    "data": uhfData,
                                     "key": "properties.GEOCODE"
                                 },
                                 "as": "geo"
@@ -202,14 +247,10 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // which exists in a canvas bitmap. Verified to survive the accordion's
     // collapse/reopen cycle, which matters because renderedPanels suppresses a
     // re-render — a view that collapsed to zero width on hide would come back blank
-    // Both settle handlers act on this element, not on a fresh lookup by id. An in-place switch
-    // rebuilds every card and reuses the panel ids, so an embed still pending from the previous
-    // neighborhood found the NEW panel by id and relabelled its export menu with the old
-    // indicator's name. A detached element means its panel is gone and there is nothing to update
-    const container = document.querySelector(destination);
 
-    if (!container) {
-        debugLog('renderIndicatorChart: branch-missing-destination:', destination);
+    // The panel was replaced while the geography loaded
+    if (!container.isConnected) {
+        debugLog('renderIndicatorChart: branch-stale-before-embed:', destination);
         return;
     }
 
