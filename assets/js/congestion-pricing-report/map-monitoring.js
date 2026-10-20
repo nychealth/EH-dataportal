@@ -103,7 +103,7 @@
     // Reset-zoom control, back to the CRZ boundary (or the citywide default
     // if the boundary layer failed to produce valid bounds)
 
-    L.easyButton({
+    const resetButton = L.easyButton({
         position: "bottomleft",
         states: [{
             title: "Reset zoom",
@@ -117,6 +117,11 @@
             }
         }]
     }).addTo(map);
+
+    // easyButton puts the label only in `title`, and Chrome computes the button's name as ""
+    // with the icon inside it, so screen readers announce an unnamed button
+    resetButton.button.setAttribute("aria-label", "Reset zoom");
+    resetButton.button.querySelectorAll(".fas").forEach(i => i.setAttribute("aria-hidden", "true"));
 
     // Exposed globally so sticky-header.js's badge-click handler can pan
     // this map to a site without a direct module reference to `map`
