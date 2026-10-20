@@ -34,6 +34,19 @@ const tryInitialRender = () => {
 
     }
 
+    // A polygon chosen while the data was still loading. Rendered as a switch from the page's
+    // own neighborhood, not in place of it: renderAll treats its first call as first paint,
+    // which leaves the title, head metadata and history entry as served and sends no page_view
+    if (pendingMapSelection) {
+
+        debugLog('tryInitialRender: branch-pending-selection');
+
+        const layer = pendingMapSelection;
+        pendingMapSelection = null;
+        reportMapSelectNeighborhood(layer, 'tryInitialRender');
+
+    }
+
 };
 
 
@@ -111,6 +124,7 @@ const loadSection = section => {
             console.error('Error loading section "' + section.id + '":', error);
             debugLog('loadSection: branch-load-failed:', { sectionId: section.id, error });
             sectionData[section.id] = {};
+            failedSections.add(section.id);
         })
         .then(checkAllLoaded);
 

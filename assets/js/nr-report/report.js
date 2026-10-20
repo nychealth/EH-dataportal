@@ -88,6 +88,15 @@ const renderSection = (section, neighborhoodName) => {
     // Reset section contents before re-rendering cards
     container.innerHTML = '';
 
+    // A failed fetch is not an absence of data, and saying so would tell the reader this
+    // neighborhood has nothing to report
+    if (failedSections.has(section.id)) {
+        debugLog('renderSection: branch-load-failed:', section.id);
+        container.innerHTML =
+            '<p class="text-muted px-2 pb-2 mb-0">This section could not be loaded. Please try again later.</p>';
+        return;
+    }
+
     if (!rows.length) {
         debugLog('renderSection: branch-no-rows:', { sectionId: section.id, neighborhoodName });
         container.innerHTML =

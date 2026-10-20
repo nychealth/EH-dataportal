@@ -41,6 +41,12 @@ const reportConfig = window.NR_REPORT_CONFIG;
 // WRITE (keys): data  READ: report
 const sectionData = {};
 
+// Ids of sections whose fetch failed, so renderSection can tell "could not load" from
+// "no rows for this neighborhood". A failed section still gets {} in sectionData, which
+// keeps resolveGeocode's walk over it free of a special case
+// WRITE: data  READ: report
+const failedSections = new Set();
+
 // Arquero table for the viz dataset (all indicators, all neighborhoods)
 // WRITE: data  READ: app (CSV export), chart (per-indicator summary)
 let vizTable = null;
@@ -85,6 +91,11 @@ let uhfLayer = null;
 // mapReady  — WRITE: map   READ: data
 let dataReady = false;
 let mapReady = false;
+
+// A polygon selected after the map loaded but before the data did; tryInitialRender
+// switches to it once the page's own neighborhood has rendered
+// WRITE: map, data  READ: data
+let pendingMapSelection = null;
 
 
 // ----------------------------------------------------------------------- //

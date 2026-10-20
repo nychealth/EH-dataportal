@@ -121,9 +121,11 @@ const bootstrap = () => {
 
     // Deferred to here rather than computed beside fetchesComplete, because the
     // section count is only trustworthy once the guard above has passed
-    // The topic-indicator map counts unconditionally: loadTopicIndicators reports a
-    // completed fetch on every path, including the one where it is not configured
-    totalFetches = reportConfig.sections.length + (reportConfig.vizUrl ? 1 : 0) + 1;
+    // The viz table and the topic-indicator map count unconditionally: loadVizData and
+    // loadTopicIndicators each report a completed fetch on every path, including the one
+    // where they are not configured. Counting the viz table only when vizUrl was set let a
+    // page without one reach the total a fetch early, and render with a section still missing
+    totalFetches = reportConfig.sections.length + 1 + 1;
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);

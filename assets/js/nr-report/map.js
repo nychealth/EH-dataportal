@@ -174,25 +174,27 @@ const reportMapSelectNeighborhood = (layer, source) => {
     const geocode = layer.feature.properties.GEOCODE;
     const name = featureDisplayName(layer.feature);
 
+    // The polygons arrive before the report data does. A selection made in that window is
+    // held for tryInitialRender (data.js) rather than highlighted: highlighting it here left
+    // the map marking one neighborhood while the report then rendered the page's own
+    if (!dataReady) {
+        debugLog(source + ': branch-data-not-ready:', { name, geocode });
+        pendingMapSelection = layer;
+        return;
+    }
+
     selectLayer(layer);
 
-    // Ignore selection-driven render until all report and viz payloads have loaded
-    if (dataReady) {
+    debugLog(source + ': branch-render-all:', { name, geocode });
 
-        debugLog(source + ': branch-render-all:', { name, geocode });
-
-        // Counts a reader's choice of neighborhood, which page_view cannot isolate: page_view
-        // also counts Back and Forward. Read before renderAll overwrites currentNeighborhood,
-        // so re-selecting the neighborhood already shown is not counted as a choice
-        if (name !== currentNeighborhood) {
-            trackNREvent('select_neighborhood', { nr_neighborhood: name, report_name: reportConfig.reportName || '' });
-        }
-
-        renderAll(name, geocode);
-
-    } else {
-        debugLog(source + ': branch-data-not-ready:', { name, geocode });
+    // Counts a reader's choice of neighborhood, which page_view cannot isolate: page_view
+    // also counts Back and Forward. Read before renderAll overwrites currentNeighborhood,
+    // so re-selecting the neighborhood already shown is not counted as a choice
+    if (name !== currentNeighborhood) {
+        trackNREvent('select_neighborhood', { nr_neighborhood: name, report_name: reportConfig.reportName || '' });
     }
+
+    renderAll(name, geocode);
 
 };
 
@@ -340,14 +342,19 @@ const initLeafletMap = () => {
             // dropped [2026-10-19]
             leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
 
-            mapReady = true;
-            tryInitialRender();
-
         })
         .catch(err => {
 
+            // The report still renders without its map
             console.error('Error loading UHF42 GeoJSON:', err);
             debugLog('initLeafletMap: branch-geojson-load-failed:', err);
+
+        })
+        .then(() => {
+
+            // After the catch, not inside the load's .then: there, a throw from the initial
+            // render was caught above and reported as a GeoJSON failure, and the render ran a
+            // second time from the catch. Here it surfaces as the render error it is
             mapReady = true;
             tryInitialRender();
 

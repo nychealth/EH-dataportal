@@ -35,8 +35,13 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // The choropleth and the bar strip mark the same neighborhood the same way, so
     // these three are written once and referenced from both halves of the vconcat
 
-    // Vega expression, not JS: evaluated per datum inside the spec
-    const selectedTest = "datum.geo_join_id == " + geocode;
+    // Vega expression, not JS: evaluated per datum inside the spec. The geocode is written as a
+    // string literal because concatenated bare, a non-numeric one such as UHF101 is read as a
+    // signal name and an empty one ends the expression early; Vega rejects both. geo_join_id
+    // arrives as a string ("101") while geocode is usually a number, and Vega's == coerces
+    // either way [verified 2026-10-20: vegaEmbed filters `datum.g == 302` and `== "302"` each
+    // kept 1 of 2 rows; the highlighted chart still marks 2 shapes]
+    const selectedTest = "datum.geo_join_id == " + JSON.stringify(String(geocode));
 
     const valueScale = { "scheme": { "name": "viridis", "extent": [1, 0] } };
 
@@ -197,12 +202,28 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
     // which exists in a canvas bitmap. Verified to survive the accordion's
     // collapse/reopen cycle, which matters because renderedPanels suppresses a
     // re-render — a view that collapsed to zero width on hide would come back blank
-    vegaEmbed(destination, spec, { actions: true, renderer: 'svg' }).then(() => {
+    // Both settle handlers act on this element, not on a fresh lookup by id. An in-place switch
+    // rebuilds every card and reuses the panel ids, so an embed still pending from the previous
+    // neighborhood found the NEW panel by id and relabelled its export menu with the old
+    // indicator's name. A detached element means its panel is gone and there is nothing to update
+    const container = document.querySelector(destination);
+
+    if (!container) {
+        debugLog('renderIndicatorChart: branch-missing-destination:', destination);
+        return;
+    }
+
+    vegaEmbed(container, spec, { actions: true, renderer: 'svg' }).then(() => {
+
+        if (!container.isConnected) {
+            debugLog('renderIndicatorChart: branch-stale-embed:', destination);
+            return;
+        }
 
         // vega-embed's actions control is a <summary> containing only an SVG, so it computes
         // to a bare "DisclosureTriangle" with no name while sitting in the tab order. There
         // is no embed option for its label, so it is set on the rendered node
-        const summary = document.querySelector(destination + ' details > summary');
+        const summary = container.querySelector('details > summary');
         if (summary) summary.setAttribute('aria-label', 'Export or view source for ' + chartName);
 
     }).catch(err => {
@@ -216,8 +237,7 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         console.error('Error embedding chart for ' + chartName + ':', err);
         debugLog('renderIndicatorChart: branch-embed-failed:', { destination, err });
 
-        const container = document.querySelector(destination);
-        if (container) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+        if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
 
     });
 
