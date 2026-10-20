@@ -33,9 +33,9 @@
     // ---------- Initialize map ---------- // 
     // --------------------------------------------------------------------------------------------------- // 
     
-    // Leaflet's default zoom control is on: the map fits the whole city, so the buttons are how
-    // a reader closes in on one neighborhood. Where a caller hides the map from assistive tech,
-    // removeHiddenMapFromTabOrder takes the buttons out of the tab order with the polygons.
+    // Leaflet's default zoom control is on, beside a "Reset zoom" button added below. Where a
+    // caller hides the map from assistive tech, removeHiddenMapFromTabOrder takes all of these
+    // buttons out of the tab order with the polygons.
     //
     // fadeAnimation off: Leaflet fades each tile in over 200ms after it loads, so with the tiles
     // already cached a click from one neighborhood to the next still showed an empty map for a
@@ -56,6 +56,24 @@
         position: "bottomleft",
     })
     .addTo(map);
+
+    // Back to the whole city, where every polygon can be reached by pointer. Same control as the
+    // report page's map.js and the congestion pricing report's: easyButton, fas fa-undo
+    const resetZoom = L.easyButton({
+        position: "bottomleft",
+        states: [{
+            title: "Reset zoom",
+            icon: "fas fa-undo",
+            onClick: () => {
+                if (uhf_geojson) map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+            }
+        }]
+    }).addTo(map);
+
+    // easyButton puts the label only in `title`, and the button's computed name came out empty
+    // with the icon inside it [measured 2026-10-20, Playwright ariaSnapshot: button ""]
+    resetZoom.button.setAttribute("aria-label", "Reset zoom");
+    resetZoom.button.querySelectorAll(".fas").forEach((i) => i.setAttribute("aria-hidden", "true"));
 
     // Now, not only once the polygons are in: the container, the zoom links and the
     // attribution links already exist, and if the GeoJSON never arrives the second call
@@ -126,27 +144,26 @@
 
             }
 
-            // Every page fits the whole city rather than keeping the fixed zoom-10 view, so the
-            // city fills whatever box the caller gives it — at a fixed zoom a wider container
-            // just adds water on both sides.
+            // The neighborhood index pages frame their own neighborhood; the landing and topic
+            // pages, which have none, fit the whole city rather than the fixed zoom-10 view, so
+            // the city fills whatever box the caller gives it.
             //
-            // The neighborhood index pages used to fly to their own neighborhood instead, which
-            // left most polygons outside the map: a centre-point hit test reached 10 of 42 on
-            // east_new_york/, at zoom 12 [verified 2026-10-19, scripts/nr-r14-probe.mjs, audit
-            // row N-026]. The polygons are links to the other 41 neighborhoods, so that framing
-            // took away the navigation it drew. The highlight above still marks the page's own
-            // neighborhood, and the zoom control lets a reader close in on it. The report page's
-            // map.js made the same change on 2026-09-15 for the same reason.
+            // Framing one neighborhood leaves most polygons outside the map: a centre-point hit
+            // test reached 10 of 42 on east_new_york/ at zoom 12 [verified 2026-10-19,
+            // scripts/nr-r14-probe.mjs, audit row N-026], and the polygons are links to the
+            // other 41. Chris chose the framing anyway on 2026-10-20, with "Reset zoom" as the
+            // way back to the whole city.
             //
             // zoomSnap has to be 0 because the default of 1 makes fitBounds round *down* to a
             // whole zoom level — measured 2026-08-09, that left the city spanning 59% of a
             // 679px-wide box.
             map.options.zoomSnap = 0;
 
-            // animate: false — the map lands on the city rather than zooming out to it from
-            // the zoom-10 placeholder view, and a zoom click made during that animation was
+            // animate: false — the map lands on its framing rather than zooming to it from the
+            // zoom-10 placeholder view, and a zoom click made during that animation was
             // dropped [2026-10-19]
-            map.fitBounds(uhf_geojson.getBounds(), { padding: [10, 10], animate: false });
+            const framing = ownNeighborhoodLayer ? ownNeighborhoodLayer.getBounds() : uhf_geojson.getBounds();
+            map.fitBounds(framing, { padding: [10, 10], animate: false });
 
             removeHiddenMapFromTabOrder();
 
@@ -173,7 +190,7 @@
         container.setAttribute("tabindex", "-1");
 
         container
-            .querySelectorAll("a, path, [tabindex]")
+            .querySelectorAll("a, button, path, [tabindex]")
             .forEach((el) => el.setAttribute("tabindex", "-1"));
 
     }

@@ -460,8 +460,11 @@ worked before still works, but nothing renders it the way it used to. Three page
   disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
   `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
   name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
-  its own function names since 2026-10-19, and like `map.js` fits the whole city with Leaflet's zoom
-  control on.
+  its own function names since 2026-10-19. Both maps frame their neighborhood when they have one —
+  the report page's selection, the index page's own — and keep Leaflet's zoom control beside a
+  "Reset zoom" easyButton that returns to the whole city (Chris, 2026-10-20). Framed, a pointer
+  reaches only a few of the 42 polygons, 5 on `/neighborhood-reports/east_new_york/`; after a reset, 41
+  `[verified 2026-10-20: scripts/nr-r14-probe.mjs]`.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.

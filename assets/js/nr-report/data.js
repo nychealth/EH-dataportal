@@ -28,6 +28,7 @@ const tryInitialRender = () => {
         if (layer) {
             debugLog('tryInitialRender: branch-select-layer');
             selectLayer(layer);
+            reportMapFitLayer(layer);
         }
 
         renderAll(pageNeighborhood);

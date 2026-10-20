@@ -60,12 +60,13 @@ const reportMapResetHighlight = e => {
 };
 
 
-// Applies the selected style to a layer. Styling ONLY — no fly-to, which this function
-// used to do for both its callers and which made most of the city unclickable.
+// Applies the selected style to a layer. Styling only: the framing is reportMapFitLayer's,
+// called beside it wherever a neighborhood is selected.
 //
-// This map is the report page's only in-place neighborhood switcher and its polygons carry
-// role="button", so what a pointer can reach on it is what a pointer can reach in the page's
-// navigation. Zoomed to one neighborhood most of the other 41 fall outside its 324x450 box:
+// What the zoom costs. This map is the report page's only in-place neighborhood switcher and
+// its polygons carry role="button", so what a pointer can reach on it is what a pointer can
+// reach in the page's navigation. Zoomed to one neighborhood most of the other 41 fall outside
+// its 324x450 box:
 // as the page left it, an un-forced click could reach 9 of the 42 polygons at zoom 12,
 // against 41 of 42 with the same map fitted to all of them at zoom 9.58
 // `[verified 2026-09-15: /neighborhood-reports/bayside_little_neck/asthma_and_the_environment/
@@ -75,11 +76,9 @@ const reportMapResetHighlight = e => {
 // its bounding box is inside the viewport but elementFromPoint there returns the map
 // container, not the path. A hit-test geometry fact no framing fixes.
 //
-// On the feature-NDHR-prototype branch, ndhr-leaflet.html reached the same conclusion for the
-// picker map on 2026-09-12 and carries the longer version of this reasoning;
-// assets/js/ndhr-report/map.js followed on 2026-09-13. Neither file is on this branch.
-// nr-leaflet.html, the map on the other NR pages, flew to the page's own neighborhood on the 42
-// neighborhood index pages until 2026-10-19 and now fits the whole city too (audit row N-026)
+// The map zooms to the selected neighborhood anyway, by Chris's decision of 2026-10-20, which
+// accepts that cost: the "Reset zoom" button (initLeafletMap) returns to the whole-city fit,
+// where the 41 are reachable again. nr-leaflet.html does the same on the neighborhood index pages
 const selectLayer = layer => {
 
     // Clear previous selection style first
@@ -99,6 +98,25 @@ const selectLayer = layer => {
 
     const el = typeof layer.getElement === 'function' && layer.getElement();
     if (el) el.setAttribute('aria-current', 'true');
+
+};
+
+
+// Frames one neighborhood, filling the map box. animate: false for the reason the opening fit
+// gives below: a zoom click made during the animation was dropped. No maxZoom of its own: the
+// deepest fit, Greenwich Village - Soho, lands at 13.97, under the tiles' 15
+// [measured 2026-10-20, report and index map boxes at 1280 and 390 wide]
+const reportMapFitLayer = layer => {
+
+    if (leafletMap && layer) leafletMap.fitBounds(layer.getBounds(), { padding: [10, 10], animate: false });
+
+};
+
+
+// Frames all 42 neighborhoods; the "Reset zoom" button's target
+const reportMapFitCity = () => {
+
+    if (leafletMap && uhfLayer) leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
 
 };
 
@@ -184,6 +202,7 @@ const reportMapSelectNeighborhood = (layer, source) => {
     }
 
     selectLayer(layer);
+    reportMapFitLayer(layer);
 
     debugLog(source + ': branch-render-all:', { name, geocode });
 
@@ -295,7 +314,7 @@ const initLeafletMap = () => {
     debugLog('initLeafletMap: enter:', reportConfig.geojsonUrl);
 
     // Initialize Leaflet with a neutral NYC-centered default view. The default zoom control is
-    // on: the map fits the whole city (below), so the buttons are how a reader closes in.
+    // on, beside a "Reset zoom" button, since the map frames one neighborhood once one is selected.
     // fadeAnimation is off for the reason nr-leaflet.html gives: a 200ms per-tile fade-in that
     // left even cached tiles invisible for a quarter second after each page load
     leafletMap = L.map('nr-map', { fadeAnimation: false }).setView([40.7128, -74.006], 10);
@@ -310,6 +329,22 @@ const initLeafletMap = () => {
     ).addTo(leafletMap);
 
     L.control.scale({ metric: false, position: 'bottomleft' }).addTo(leafletMap);
+
+    // Back to the whole city, where every polygon can be reached by pointer. Same control as the
+    // congestion pricing report's (map-monitoring.js): easyButton, fas fa-undo, "Reset zoom"
+    const resetZoom = L.easyButton({
+        position: 'bottomleft',
+        states: [{
+            title: 'Reset zoom',
+            icon: 'fas fa-undo',
+            onClick: reportMapFitCity
+        }]
+    }).addTo(leafletMap);
+
+    // easyButton puts the label only in `title`, and the button's computed name came out empty
+    // with the icon inside it [measured 2026-10-20, Playwright ariaSnapshot: button ""]
+    resetZoom.button.setAttribute('aria-label', 'Reset zoom');
+    resetZoom.button.querySelectorAll('.fas').forEach(i => i.setAttribute('aria-hidden', 'true'));
 
     // Load the neighborhood polygons once, then wait for the data pipeline to finish
     fetch(reportConfig.geojsonUrl)
@@ -327,10 +362,11 @@ const initLeafletMap = () => {
             // addTo is synchronous, so every polygon has its <path> by here
             nameMapPolygons();
 
-            // Fit the whole city rather than keeping the fixed zoom-10 view above. With the
-            // fly-to gone this is the framing every neighborhood is selected from, so it has
-            // to hold all 42 — and it cannot at zoom 10, since fitting all 42 in this
-            // container needs 9.58 `[measured 2026-09-15]`.
+            // Fit the whole city rather than keeping the fixed zoom-10 view above. The initial
+            // render then frames the page's own neighborhood; this is the framing the map
+            // shows until then, and the one "Reset zoom" returns to. It has to hold all 42,
+            // and it cannot at zoom 10, since fitting all 42 in this container needs 9.58
+            // `[measured 2026-09-15]`.
             //
             // zoomSnap has to be 0: the default of 1 rounds the fit DOWN to a whole zoom
             // level. Same container, same page, measured both ways on 2026-09-15 — snap 1
@@ -340,7 +376,7 @@ const initLeafletMap = () => {
             // animate: false — the map lands on the city rather than zooming out to it from the
             // zoom-10 placeholder view, and a zoom click made during that animation was
             // dropped [2026-10-19]
-            leafletMap.fitBounds(uhfLayer.getBounds(), { padding: [10, 10], animate: false });
+            reportMapFitCity();
 
         })
         .catch(err => {

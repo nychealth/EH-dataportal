@@ -149,7 +149,10 @@ const bootstrap = () => {
         }
 
         const layer = findLayerByName(name);
-        if (layer) selectLayer(layer);
+        if (layer) {
+            selectLayer(layer);
+            reportMapFitLayer(layer);
+        }
 
         renderAll(name, undefined, true);
 
