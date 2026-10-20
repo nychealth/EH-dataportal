@@ -43,11 +43,11 @@ Local site: http://localhost:1313/EH-dataportal
 ### Smoke test
 
 ```bash
-npm run smoke                                          # 33 pages, one per template kind
+npm run smoke                                          # 44 pages, one per template kind
 npm run smoke:all                                      # every page the site serves
 npm run smoke:prod_prod                                # every page, on an isolated prod_prod server
 npm run smoke:env local_prod                           # every page, on any environment in config/
-npm run smoke:env local_prod sample                    # the curated 33 instead, same isolated server
+npm run smoke:env local_prod sample                    # the curated 44 instead, same isolated server
 DE_BASE_URL="http://localhost:1313/dev-prod/" npm run smoke   # against a server you already have
 ```
 
@@ -64,7 +64,7 @@ worth naming: `head.html` branches on the environment *name*, and each environme
 throws in the browser on one environment and not another. Same positional-argument contract as
 `characterize-env.mjs`, `--flag` rejected, for the reason measured there. An optional second
 positional, the bare word `sample`, swaps the full sweep for the curated `PAGES` list — spelled out
-exactly, so a typo exits 2 rather than quietly sweeping 925 pages when 33 were wanted. A cold Hugo
+exactly, so a typo exits 2 rather than quietly sweeping ~1190 pages when 33 were wanted. A cold Hugo
 build runs either way, so `sample` narrows what is checked and does not make the command quick. The
 two `:env` scripts share :8090 and so cannot run concurrently; each refuses to start when the other
 holds it.
@@ -76,7 +76,7 @@ page; `workflow_dispatch` offers the 33-page sample instead. A failing sweep tri
 against it — green means the PR caused it, red means the data or a third party moved. The harness
 aborts `www.googletagmanager.com`, so no sweep reports page views to Google Analytics.
 
-Eight things to know before trusting a result:
+Nine things to know before trusting a result:
 
 - **`npm run smoke -- --all` does not work here.** PowerShell eats the `--`, so the script gets an empty `argv` and silently runs the curated list — a pass you would read as full coverage. That is why `--all` has its own npm script. Direct `node scripts/smoke-pages.mjs --all --concurrency 12` works from either shell.
 - **Before citing the *curated* run as proof for a change that only executes on one page kind, check that page is in `PAGES`.** The comments there name the template that renders each URL, and a comment naming the wrong one is how a page ends up with no coverage while looking covered. `smoke:all` removes this concern and is the answer when you can afford the wall time.
@@ -85,8 +85,14 @@ Eight things to know before trusting a result:
   `dev-server.mjs` now builds one for servers it starts. Smoke prints `Pagefind index: served` or
   `ABSENT` before it sweeps. Blanket-allowlisting it was masking `PagefindUI is not defined` on
   every page `[2026-08-24: with the predicate forced off and no index, smoke failed 33 of 33]`.
+  One entry *is* site-wide, `/favicon|Failed to load resource|net::ERR/i`, and it swallows Chrome's
+  `Failed to load resource: … 404` from any host. So an EHDP-data failure is read off the response
+  status instead: any 4xx/5xx from `raw.githubusercontent.com` fails the page as
+  `EHDP-data responded <status>: <url>`, on every page. Before that, a missing data file failed
+  only if a JS error followed it `[2026-10-02: a held-then-404'd indicator data file]`.
 - **`smoke:all` enumerates rather than hardcodes, and prints the breakdown every run** (`scripts/site-urls.mjs`): `sitemap.xml` for content pages in all three languages, plus a probe walk for paginator pages, plus `404.html`. Hugo lists neither of the last two in any sitemap, and reports only a *count* for paginator pages — which is the cross-check. `[verified 2026-08-22 on feature-audit-moderate against a development-environment server: 925 pages = 830 sitemap + 94 paginator + 1, enumerated in 0.5s, and the 94 matched Hugo's build summary exactly; reproduced 2026-08-23 on `production` against a dev_stage server, same 830/94/1 breakdown]`. That total is the same set as the 927 counted below over a `prod_prod` build; only the paginator count differs between branches.
-- **Concurrent failures are re-checked sequentially before being reported.** A sweep that reports a concurrency artefact as a regression gets ignored, so pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at a concurrency of 6, which was the default at the time; zero cleared on re-check]`. **The mechanism is not established.** The explanation that used to sit in `smoke-pages.mjs`, and in this bullet — pages contending for one `hugo server`'s on-demand render — was never measured, and does not hold up: measured 2026-08-23 at concurrency 6 against 1 over 12 pages, navigation slowed 1.34x, JS settle time was 1.00x, and all 12 reached identical final DOM states — nowhere near enough to time a page out. Treat the re-check as a guard for an unexplained flake, not a fix for a known cause.
+  **`--all` then appends one data explorer URL per unique indicator** (`collectExplorerIndicatorPaths`), read from the build's own `topic_indicators.json` (published by the `de-topic-indicators.html` partial) and printed as its own line, because the sitemap lists topic pages without `?id=` and so exercises at most one indicator per topic `[2026-10-02, isolated prod_prod on production: 263 unique of 305 topic pairs in 41 topics, 1188 pages in all]`. Views rotate across the list as `&overlay=<view>#display=<view>` pairs. The new explorer reads `overlay`, and the old one reads only the hash. Those pages wait until EHDP-data requests go quiet before the 2s settle, capped at 15s and reported in `quietCapReached`, because their data loads after `load`. Site characterization deliberately does not take these paths: a rendered indicator's structure moves with EHDP-data. Plan and evidence: [documents/smoke-explorer-indicators-plan-2026-10-02.md](documents/smoke-explorer-indicators-plan-2026-10-02.md).
+- **Concurrent failures are re-checked sequentially before being reported.** A sweep that reports a concurrency artefact as a regression gets ignored, so pages that clear on the re-run are printed separately and do not fail the run `[2026-08-22: 925 pages in 449s at a concurrency of 6, which was the default at the time; zero cleared on re-check]`. **The mechanism is not established.** The explanation that used to sit in `smoke-pages.mjs`, and in this bullet — pages contending for one `hugo server`'s on-demand render — was never measured, and does not hold up: measured 2026-08-23 at concurrency 6 against 1 over 12 pages, navigation slowed 1.34x, JS settle time was 1.00x, and all 12 reached identical final DOM states — nowhere near enough to time a page out. Treat the re-check as a guard for an unexplained flake, not a fix for a known cause. **For three pages the cause is now observed** `[2026-10-03, isolated prod_prod, each page loaded 8 times in 2 rounds of 24 concurrent loads, then once sequentially]`: `/data-features/heat-report/` (`Error: timeout after 5000ms`) and `/data-stories/violence/` (`Cannot read properties of undefined (reading 'chart')`) throw from Datawrapper's own scripts on `datawrapper.dwcdn.net` under load and did not on the sequential load. `/data-features/heat-report-archive/2021/` (`reading 'vis'`) embeds Datawrapper too but did not reproduce in 16 loads, so its cause is a hypothesis. Between them they failed 3 of that day's 4 full CI sweeps (runs 37120705399, both jobs, and 37126118636), clearing on re-check each time. They are left to the re-check, not allowlisted: the error text does not name Datawrapper, so an entry would also hide a chart that really broke.
 - **That re-check is capped at 25 pages, and the concurrency default is no longer 6.** Both changed
   2026-08-26 to match `site-characterization.mjs`, which is now the sibling this file tracks rather
   than diverges from. The default is `min(24, max(6, availableParallelism()))` — 24 on a 24-core
@@ -102,8 +108,19 @@ Eight things to know before trusting a result:
   at concurrency 4, cap 2 -> capped message and no re-check, cap 100 -> sequential re-check ran]`.
 - **The harness sends a de-headlessed user agent.** forecast7.com (Cloudflare) answers 403 to a `HeadlessChrome` UA and 200 with an `Access-Control-Allow-Origin` header to a normal Chrome one, so the weatherwidget.io embed on `/data-features/heat-syndrome/` reported a CORS block and rendered at 0px under the sweep while working for visitors `[verified 2026-08-22: same run, same server — default UA 3 errors / 0px, de-headlessed 0 errors / 211px]`. A console error naming a third-party host can be the harness being fingerprinted; check what a real UA gets before allowlisting one.
 - **A CORS error from `airnowapi.org` on `(home)` is external — re-run before diagnosing it.** `themes/dohmh/layouts/partials/temp-popup.html` fetches that API at page load, and the AirNow `KNOWN_NOISE` entry is scoped to `realtime-air-quality` and different hostnames, so it does not cover this one `[verified 2026-08-17: one failure between two passes, on a tree where that file was unchanged from the pre-merge tip]`.
+- **Only the `--all` sweep renders Data Explorer indicators, and in one view each.** Sitemap URLs carry no `?id=`, and a topic page without one opens the indicator chooser and stops (the "open chooser" guard in `assets/js/data-explorer/topic-indicator-selector.js`) `[verified 2026-10-02: 4 topic pages, no IndicatorID, 0 map paths]`. What renders indicators is the per-indicator list `--all` appends (above), which CI's PR sweep runs. The curated `PAGES` render three (2380, 26, 2427), so a `workflow_dispatch` sample run says little about the explorer; `scripts/de-characterization.mjs` renders 2380, 2414 and 2023.
 
 `scripts/dev-server.mjs` resolves the server. It reuses one that is already answering on :8080, :8081 or :1313, starts one (`--environment dev_stage`, so **staging data**) when nothing is running, and never stops a server it didn't start. If a `hugo` process exists but answers on no prefix it knows, it aborts rather than start a second builder — set `DE_BASE_URL` in that case.
+
+### The other three checks
+
+The Data Explorer branch adds three more npm scripts, all run from the repo root:
+
+- `npm run lint` — ESLint (`no-undef`) over `assets/js/data-explorer/`. Those files share one global scope, so `eslint.config.mjs` derives their shared globals at config-load time and `no-undef` catches the undefined-name typos that scope is most prone to. `no-unused-vars` is deliberately off — it false-positives on the cross-file global pattern.
+- `node scripts/de-characterization.mjs --check` — Playwright characterization; diffs three indicators across the map/bar/table/trend views against the committed baseline in `scripts/de-characterization-baseline/`. `--baseline` re-captures. Write it as the `node` invocation, not `npm run characterize -- --check`: PowerShell eats the `--` and the script then sees no arguments.
+- `npm run docs-check` — verifies that docs claiming to describe *current* code still name real paths and real identifiers (`scripts/docs-check.mjs`). **Opt-in**: a doc is checked only if it declares `<!-- docs-check source-roots: … -->` near the top. Audits and dated findings must **not** opt in — they cite old names on purpose. It also scans the root docs listed in its `ROOT_DOCS`, **this file among them**, so a path or identifier written here must be real and repo-root-relative.
+
+`smoke` and the characterization harness share `scripts/dev-server.mjs`, so the server rules above apply to both.
 
 ### Site characterization
 
@@ -212,12 +229,22 @@ are printed as a harness-health number and deliberately **not** baselined — th
   12-minute sequential re-capture of all 925 and hit `timeout-minutes: 20` having reported nothing
   `[run 32802721473, 2026-08-25]`. `--baseline` is uncapped — it compares two sweeps of the same
   commit, is run by hand, and is under no timeout.
+  **When your own change is what put `--check` over the cap, the other pages it names are
+  unarbitrated, not confirmed** — the output's "treat every page named as a real difference"
+  assumes one cause for all of them. `--baseline`'s two uncapped sweeps arbitrate them; confirm
+  those pages are absent from the re-baseline's diff before committing it `[2026-10-16]`.
   Most of what looked like instability was one dead field: `img` was counting Leaflet map tiles,
   which measure network timing rather than page structure. Removing it took `--baseline`
   arbitration from 18 pages to 2, and the `prod_prod` capture needed none at all. **Whatever
   remains is not diagnosed** — read the plan's Task 6 and Task 7 findings before treating it as
   understood, and note that Task 7 found the DOM-quiescence detector had never attached, so any
   older claim crediting that wait is void.
+- **Before re-baselining after a check that fails on most pages, capture the base branch with the
+  same harness and diff the two captures.** A baseline diff mixes what the base branch changed
+  since the capture with what yours changes; a detached worktree at the base tip running
+  `node scripts/characterize-env.mjs prod_prod` gives yours alone `[2026-10-01: 994 of 994 pages
+  differed from the prod_prod baseline; against production's own capture, 535 had lost the
+  search UI, which a re-baseline would have committed as expected]`.
 
 ### Four ways a local check silently lies
 
@@ -260,6 +287,8 @@ resources/_gen/   Hugo's fingerprint and image cache — never edit
 
 A path written as `layouts/partials/…` will not resolve — that directory does not exist in this repo. Templates are always `themes/dohmh/layouts/…`.
 
+**For the current status of any audit finding, read `documents/site-wide-audit-2026-10.md`**, which re-checked the older audits' findings against `production` (2026-10-17) and carries a priority and a roadmap. The older audits in `documents/` say "Superseded for status" on their first lines and are records of their own dates.
+
 ### Layout routing
 
 - `_index.md` → `section.html`; `index.md` or `name.md` → `single.html`
@@ -296,15 +325,18 @@ Browser JS under `assets/js/` is fingerprinted and served with Subresource Integ
 
 ### Data explorer
 
-`assets/js/data-explorer/` is ten vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
+`assets/js/data-explorer/` is sixteen vanilla-JS files loaded as classic `<script>` tags sharing one top-level scope. **Load order is set in [data-explorer/single.html](themes/dohmh/layouts/data-explorer/single.html) and is load-bearing:**
 
-`global → data → measures → table → map → links → disparities → trend → app → print`
+`global → app → data → measures → table → map → 311 → topic-indicator-selector → menu → bar → trend → correlate → disparities → print-map → print`
+
+The sixteenth, `de-tab-content.js`, is loaded separately by `themes/dohmh/layouts/partials/de-tab-content.html`. The retired explorer at `/data-explorer-old/` keeps its own ten-file bundle in `assets/js/data-explorer-old/`, loaded by `themes/dohmh/layouts/data-explorer-old/single.html`. The retired explorer reuses 11 of the new one's element ids (`#trend`, `#links`, `#summary-table`, …), and `assets/scss/_de-custom.scss` compiles into the site-wide `assets/scss/theme.scss`, so scope a new-explorer id rule under `.de-tabs-panel-shell` `[2026-10-15]`.
 
 - `global.js` declares the shared state. Add new cross-file state there rather than assigning an undeclared name.
 - The renderers (`showMap`, `showTable`, …) are declared `let` in `global.js` and **assigned** in `measures.js`. Keep them assignments — writing `const showMap = …` in `measures.js` redeclares the same name in the same shared top-level scope, which is a load-time `SyntaxError` on every page that loads the bundle, not a localized failure.
 - Data flow: indicator metadata → Arquero table → `joinData` (`data.js`) → `renderMeasures` → the `show*` renderers.
-- `single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `data.js` calls them; that works only because classic scripts share one scope.
+- In the retired explorer only, `themes/dohmh/layouts/data-explorer-old/single.html` defines `renderIndicatorDropdown`, `renderIndicatorButtons`, and `createCitation` in inline `<script>` blocks because they read markup Hugo has to render first. `assets/js/data-explorer-old/data.js` calls them; that works only because classic scripts share one scope. The new explorer defines none of the three; its only mention is a commented-out `createCitation()` call in `data.js`.
 - UI state uses prettified geotypes (`NTA`, `CDTA`, `PUMA`) while data rows may carry versioned values (`NTA2020`). Normalize with `prettifyGeoType` (`global.js`) before comparing. `assignGeoRank` derives its ranking from the same shape, so a new versioned variant should be handled in one place, not two.
+- **Every EHDP-data path the explorer fetches at runtime must exist on EHDP-data `production` before merging.** `dev_stage` reads `staging`, so a staging-only file passes there and 404s live. CI's `prod_prod` sweep reads `production` and fails on any EHDP-data 4xx (smoke, above), but loads each indicator in one view, so a file only another view fetches can still pass; the pinned run in the smoke plan's Task 3 caught the citywide 404 on 56 pages across all five views. `curl -s -o /dev/null -w '%{http_code}'` the production raw URL `[2026-10-02: geography/citywide.topo.json was staging-only; the unmapped map drew nothing on 68 indicators]`.
 
 ### Neighborhood reports
 
@@ -341,6 +373,7 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 - **Mark unverified reasoning as unverified.** If a fix ships on a hypothesis you could not test, write `// HYPOTHESIS (unverified):` rather than stating the cause as fact. The next person re-tests a hypothesis but trusts an explanation.
 - **After one failed fix attempt, gather runtime evidence** instead of trying a second theory. Two speculative fixes in a row means the premise is wrong, not the implementation.
 - **Rule out your own confounds.** A static build run in the same tree as the server under test, or a cold cache, is a candidate explanation you introduced — eliminate it, and say that you did. For an A/B timing comparison the confound is *order* — the first run warms the caches for the rest. Run A, B, A; a non-monotonic result across an ordered sweep means you measured order, not the variable `[2026-08-24]`. For an A/B comparison of *output* rather than timing, run one condition twice as well — the same-condition control is what separates a real difference from the floor. Hugo 0.147.3 vs 0.147.9 differed on 3 of 2936 built files, and so did 0.147.3 against itself: a `build_datetime` clock, not a version effect `[2026-08-24]`.
+- **A layout fix is verified on every edge and every way the view is reached.** Test clipping on all four sides of the element, not only the side the report named, and on a direct URL load, a tab click from another view and a live window resize. Sample painted frames with `requestAnimationFrame`, not only the settled state: a tab click renders while the pane is hidden, and a resize re-renders asynchronously `[2026-10-15]`.
 
 ## Refactors and renames
 
@@ -350,7 +383,7 @@ A causal claim about runtime behavior — CSS, DOM, layout, timing, browser APIs
 
 ## Branching and deployment
 
-Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. GitHub Actions builds `production` → `builds/prod-prod` (live) and `build-to-dev-stage` → `builds/dev-stage` (staging). Full workflow and environment tables: [readme-development.md](readme-development.md).
+Branch from `production`, named `hotfix-[NAME]`, `content-[NAME]`, or `feature-[NAME]`, and merge to `production` to deploy. **Merging to `development` for testing is deprecated** — individual branches are staged in CloudCannon instead. The evidence was already in the repo when this line still said otherwise: `development` appears in no row of readme-development.md's branch table, and `hugo-build-to-dev-prod.yml` is marked "In use? No" in its workflow table `[corrected 2026-08-26]`. GitHub Actions builds `production` → `builds/prod-prod` and `build-to-dev-stage` → `builds/dev-stage` (staging). **A merge to `production` does not change the live site.** `builds/prod-prod` is the deploy source; the site goes live only through the team's own deploy to internal servers. The live server's `commit_hash.txt` names the deployed `builds/prod-prod` commit, and `.github/workflows/check-deploy.yml` emails when it trails the branch. EHDP-data, fetched at runtime, goes live as soon as it's pushed, so a data change that depends on a code change waits for the deploy, not the merge. Full workflow and environment tables: [readme-development.md](readme-development.md).
 
 A build can also be triggered on demand rather than by merging. `trigger_prod-prod_workflow.ps1` and `trigger_dev-stage_workflow.ps1` (with `.sh` equivalents) run `gh workflow run` against the matching workflow, and `.github/workflows/hugo-build-any-branch.yml` takes a `branch` input and publishes to `builds/[branch]`, or to a `publish-branch` input when one is given. These publish to real build branches — treat running one as a deploy, not a test.
 

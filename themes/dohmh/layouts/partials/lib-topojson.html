@@ -1,0 +1,6 @@
+{{- /*  TopoJSON client — only needed by hand-written JS that calls topojson.feature()
+      directly (e.g. the data explorer's map.js). Vega specs using format:
+      {type: "topojson"} don't need this: vega-loader bundles topojson-client internally.  */}}
+
+{{- $topojson_js := resources.Get "node_modules/topojson-client/dist/topojson-client.min.js" | partial "short-fingerprint.html" }}
+<script type="text/javascript" src="{{ $topojson_js.RelPermalink }}" integrity="{{ $topojson_js.Data.Integrity }}"></script>

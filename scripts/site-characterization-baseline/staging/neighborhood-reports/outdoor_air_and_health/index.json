@@ -64,8 +64,8 @@
             2,
             1,
             2,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 1,
         "landmarks": {
@@ -166,8 +166,8 @@
             "Annual vehicle miles travelled by cars. Traffic density can influence health as a source of air pollution and traffic-related injuries.",
             "Traffic density (trucks)",
             "Annual vehicle miles travelled by trucks. Traffic density can influence health as a source of air pollution and traffic-related injuries.",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

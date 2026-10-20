@@ -25,10 +25,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 2,
+        "headingJumps": 1,
         "landmarks": {
             "main": 1,
             "nav": 3,
@@ -93,8 +93,8 @@
             "Protecting New Yorkers from extreme heat",
             "What hot weather means for food safety",
             "Climate and Health",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

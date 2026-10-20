@@ -27,8 +27,8 @@
             3,
             3,
             3,
-            2,
-            5
+            5,
+            2
         ],
         "headingJumps": 2,
         "landmarks": {
@@ -97,8 +97,8 @@
             "Proximity indicators",
             "Flood Vulnerability Index",
             "Displacement Risk",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",

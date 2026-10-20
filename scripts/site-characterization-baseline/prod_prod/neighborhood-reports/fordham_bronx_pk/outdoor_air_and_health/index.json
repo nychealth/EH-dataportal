@@ -59,10 +59,10 @@
             4,
             4,
             4,
-            2,
-            5
+            5,
+            2
         ],
-        "headingJumps": 3,
+        "headingJumps": 2,
         "landmarks": {
             "main": 1,
             "nav": 4,
@@ -154,8 +154,8 @@
             "What is the City doing?",
             "What you can do",
             "More about",
-            "Page Footer",
-            "Search"
+            "Search",
+            "Page Footer"
         ],
         "internalTargets": [
             "/",
