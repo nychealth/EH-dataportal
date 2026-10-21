@@ -408,18 +408,23 @@ At the final commit, with the hash recorded beside each result:
 
 ## Next command
 
-Every task is done or parked (Task 5's finding 17). What remains is Chris's to decide, in this order:
+Every task is done or parked (Task 5's finding 17). Closed 2026-10-21:
 
-1. Push the branch, so the commits PR #1491 cites resolve on GitHub (`git status -sb` shows how far ahead of
-   `origin` it is).
-2. Whether Task V's results replace the PR body's "Verification" section, which still cites runs at `029e40f36e`
-   and `7791fcfe93`. `gh pr edit` publishes. Before citing Task V, re-read `git rev-parse HEAD`: its results are
-   for `d6fe8cf481`, and a later commit outside `documents/` voids them.
+- Chris pushed the branch; `origin` read `643f50177f`.
+- The PR #1491 body's first line and Verification section were replaced: 876 files, +83,855 / -23,255 against
+  `origin/production` from the merge base, `production` 2 commits ahead (PR #1513, `assets/scss/theme.scss` only,
+  `git merge-tree` exit 0), and Task V's results at `d6fe8cf481`. The re-fetched body matched the file sent but for
+  `gh`'s trailing newline.
+- CI on `643f50177f` (`pull_request`, so on the merge with `production`, #1513 included): Smoke check run 39628929125
+  pass, 12m6s; Site characterization check run 39628928925 pass, 8m11s; both base-control jobs skipped.
+
+What remains is the merge review, Chris's to start: `/code-review ultra` on PR #1491, or a local review subagent over
+`829e3c5396..HEAD`, which covers only the review fixes. A commit after `643f50177f` outside `documents/` voids the
+CI results above.
 
 ```bash
 git rev-parse --abbrev-ref HEAD   # expect feature-MOD-Lab-NR-recode-refactor-merge
-git log --format= --name-only d6fe8cf481..HEAD | grep -v '^$' | grep -vc '^documents/'   # expect 0, or Task V re-runs
-git status -sb | head -1
+git log --format= --name-only 643f50177f..HEAD | grep -v '^$' | grep -vc '^documents/'   # expect 0
 ```
 
 A `development` server on :8080 (`npx hugo serve --environment development -p 8080`, with Pagefind built) may still be running, restarted in Task 8 after `npm ci`; check `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/dev-prod/` before starting another. `nr-postswap-check.mjs` must run against a production-data server, which `development` is. The network here is unreliable: a run where every EHDP-data fetch fails with `Failed to fetch` is re-run before it is diagnosed. A second worktree, `EH-dataportal.worktrees/hotfix-easybutton-names` (PR #1514), is kept on disk for follow-ups; do not run a second Hugo server from it while :8080 is up unless on another port.
