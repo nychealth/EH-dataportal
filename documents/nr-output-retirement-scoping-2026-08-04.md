@@ -502,7 +502,8 @@ tested against Google itself; the test is at the end of the first point.]`
   extends them to the 210 report pages. Bootstrap's `.sr-only`, already used in
   `themes/dohmh/layouts/data-explorer/single.html`, would put the headings inside the named
   exemption. The cost is that a screen reader would also read 19 heading pairs per page beside
-  the cards. Not decided. Bing's guidelines (next point) do not mention hidden text. Their
+  the cards. **Kept as `d-none`** `[decided 2026-10-21: Chris, because .sr-only "seems like it
+  would degrade accessibility"]`. Bing's guidelines (next point) do not mention hidden text. Their
   cloaking rule, "Showing different content to search crawlers than to users", does not reach
   these headings, since every visitor gets the same HTML.
 - **Bing renders, and warns against relying on it.** Its current guidelines say Bing uses
