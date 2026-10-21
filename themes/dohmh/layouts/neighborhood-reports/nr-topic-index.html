@@ -91,22 +91,9 @@
 
 {{ $nr_indicator_names_json.Publish }}
 
-{{- /* Keyed on .Params.content_yml, not .File.BaseFileName. The JSON's `title` field holds
-       exactly the content_yml string, and on a generated page .File.BaseFileName is the
-       literal "_content" — a `where` against it matches zero rows with no error at all. */ -}}
-
-{{- range (where $nr_indicator_names "title" "eq" $contentKey) -}}
-
-    {{- /* No id, despite what the copy of this block in topiclanding.html claimed: an id is
-           what makes Pagefind emit a sub-result, and a sub-result here would link to a
-           d-none heading on a page that renders no indicators. The data-explorer copy has an
-           id because footer.html rewrites its #IndicatorID- anchor into a ?id= query the
-           explorer acts on; nothing equivalent exists on this page. */ -}}
-
-    <h1 class="d-none">{{ .indicator_name }}</h1>
-    <h2 class="d-none">{{ .indicator_description }}</h2>
-
-{{- end -}}
+{{- /* Indexed by Pagefind here, against the topic page: this page carries no
+       data-pagefind-ignore. */ -}}
+{{ partial "nr-indicator-names-hidden" (dict "content_key" $contentKey) }}
 
 {{- end -}}
 

@@ -247,6 +247,12 @@
                         </div>
                     {{- end -}}
 
+                    {{/* The indicator names and descriptions the cards above render from JS, as
+                         hidden headings for readers that do not run it. Inside this section, so
+                         the page-level data-pagefind-ignore keeps them out of the search index
+                         with the rest of the report. */}}
+                    {{ partial "nr-indicator-names-hidden" (dict "content_key" $contentKey) }}
+
                     {{/* Print-only QR code back to this report, carried over from
                         nr-output/single.html. Filled by renderQRCode() below, which runs from
                         renderAll() rather than at load: the Leaflet map can switch neighborhood in

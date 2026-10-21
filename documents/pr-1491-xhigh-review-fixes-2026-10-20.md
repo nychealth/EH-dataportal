@@ -358,7 +358,17 @@ indicator names, so the memo sentence may describe an earlier template or anothe
 
 1. Build `development` into a temp directory (isolated build, project CLAUDE.md). Count indicator short names in one
    report page's HTML against the same page's report JSON.
-2. If the count is zero, correct the §10.4 sentence and date the correction.
+1b. *Added 2026-10-21 (Chris, "go"): step 1 counted 0 of 19 long names and 0 of 17 descriptions, and Chris asked for
+   the old explorer's answer: hidden names and descriptions.* Move `nr-topic-index.html`'s hidden-heading block (the
+   `range (where $nr_indicator_names "title" "eq" $contentKey)` emitting `d-none` `h1`/`h2`) into a partial, and call it
+   from both the topic index and `nr-report.html`, inside `<section class="container-fluid" data-pagefind-ignore="all">`
+   so the report pages stay out of the search index. The topic index keeps its `Publish` of the JSON. **Proof:** the five
+   topic indexes' built HTML diffed against step 1's build shows no change beyond whitespace; step 1's
+   count reruns with names and descriptions present; `node scripts/pagefind-characterization.mjs --check` no diff;
+   `npm run smoke`; site characterization re-baselined for both committed keys (`staging`, `prod_prod`), its diff moving
+   only `headingLevels` (and `headingJumps` if any) on the 210 report pages.
+2. Correct the §10.4 sentence to what step 1b leaves a non-JS crawler, and date the correction. The same claim sits in
+   `documents/nr-decisions-and-sequencing-2026-08-04.md` (three places).
 3. Draft one paragraph for the PR #1491 description naming the trade, including Chris's point that the data explorer has
    the same failure mode. Show it to Chris. Running `gh pr edit` publishes it, so Chris approves it first.
 
