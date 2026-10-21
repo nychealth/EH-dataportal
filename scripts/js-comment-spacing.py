@@ -65,6 +65,13 @@ VENDORED = (
     "content/data-features/healthy-homes-info/source/assets/js/plugins.js",  # HTML5 Boilerplate
 )
 
+# The retiring explorer, exempt in documents/js-conventions.md § Scope: its JS and
+# the layouts that carry its inline scripts
+EXEMPT_DIRS = (
+    "assets/js/data-explorer-old/",
+    "themes/dohmh/layouts/data-explorer-old/",
+)
+
 TARGET_ROOTS = (
     ("assets/js", (".js",)),
     ("content", (".js",)),
@@ -185,7 +192,7 @@ if __name__ == '__main__':
                                 capture_output=True, check=True).stdout.decode("utf-8")
         targets += [p for p in listed.split("\0") if p.endswith(exts)]
 
-    targets = [t for t in targets if t not in VENDORED]
+    targets = [t for t in targets if t not in VENDORED and not t.startswith(EXEMPT_DIRS)]
 
     if len(sys.argv) > 1:
         targets = [t for t in targets if sys.argv[1] in t]
