@@ -47,7 +47,7 @@
 //   node scripts/nr-characterization.mjs --check
 
 import { chromium } from 'playwright';
-import { mkdirSync, rmSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, rmSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ensureDevServer } from './dev-server.mjs';
 
@@ -130,15 +130,14 @@ const captureTarget = async (browser, target, baseURL) => {
 
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 
-    // The report page fetches its report JSON and renders asynchronously. Wait for the
-    // neighborhood header to be filled rather than for a fixed delay — but do not
-    // throw if it never fills, because "nothing rendered" is itself a result the
-    // baseline should record rather than an error that aborts the run.
+    // The report page fetches its report JSON and renders the cards asynchronously.
+    // Wait for the first card's toggle, which the expand step below clicks, rather than
+    // for the neighborhood header: the header is server-rendered, so waiting on it
+    // returned at once and the click raced the render. Do not throw if the card never
+    // arrives, because "nothing rendered" is itself a result the baseline should record
+    // rather than an error that aborts the run.
     await page
-        .waitForFunction(() => {
-            const el = document.getElementById('nr-header-neighborhood');
-            return el && el.textContent.trim().length > 0;
-        }, { timeout: 20000 })
+        .waitForSelector('#nr-acc-1-h button', { timeout: 20000 })
         .catch(() => {});
 
     // ----- expand the first panel so the lazy chart path runs ----- //
@@ -343,10 +342,14 @@ const main = async () => {
     }
 
     const baselineDir = join(BASELINE_ROOT, branch);
-    const outDir = mode === 'baseline' ? baselineDir : join(CURRENT_ROOT, branch);
+
+    // Both modes capture into the git-ignored current directory. --baseline copies it
+    // over the committed baseline only once every target has captured, so a run that
+    // dies part-way leaves the committed baseline as it was.
+    const outDir = join(CURRENT_ROOT, branch);
 
     // Scoped to this branch's directory: clearing the root would delete the other
-    // branch's baseline as a side effect of re-capturing this one.
+    // branch's capture as a side effect of re-capturing this one.
     rmSync(outDir, { recursive: true, force: true });
     mkdirSync(outDir, { recursive: true });
 
@@ -373,7 +376,17 @@ const main = async () => {
             const label = `${target.topic} / ${target.neighborhood}`;
             console.log(`Capturing ${label} ...`);
 
-            const captured = await captureTarget(browser, target, baseURL);
+            // A goto timeout throws. Catching it per target names the target that failed
+            // and keeps --baseline from promoting a partial capture
+            let captured;
+
+            try {
+                captured = await captureTarget(browser, target, baseURL);
+            } catch (err) {
+                console.error(`  CAPTURE FAILED for ${label}: ${err.message.split('\n')[0]}`);
+                failures++;
+                continue;
+            }
 
             writeFileSync(fileFor(outDir, target), `${JSON.stringify(captured, null, 2)}\n`);
 
@@ -412,6 +425,15 @@ const main = async () => {
     }
 
     if (mode === 'baseline') {
+
+        if (failures) {
+            console.error(`\nBaseline NOT written — ${failures} of ${TARGETS.length} target(s) failed to capture. ${baselineDir}/ is unchanged.`);
+            process.exitCode = 1;
+            return;
+        }
+
+        rmSync(baselineDir, { recursive: true, force: true });
+        cpSync(outDir, baselineDir, { recursive: true });
         console.log(`\nBaseline written to ${baselineDir}/ (${TARGETS.length} target(s)). Commit it.`);
         return;
     }
