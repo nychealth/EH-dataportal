@@ -442,11 +442,23 @@ accept that `[decided 2026-08-06: team]`.
 **One consequence to hold accurately.** Option D is the *maintenance*-optimal choice, not
 the indexing-optimal one — Option B would have put more in the static HTML, because it keeps
 the build-time fetch that renders measure values. What D concedes is the **numbers**, and
-only to crawlers that don't run JS. After the cold-fetch measurement (§12a) that gap is
-narrower than the table below implies: the topic prose is already static today, so D loses
-values alone, not descriptive content. Concretely, once this ships a non-JS crawler sees
-neighborhood name, ZIP list, demographics, indicator and measure names, and indicator
-descriptions — and not the rates. Googlebot, which renders, sees everything. If anyone later
+only to crawlers that don't run JS. Concretely, a non-JS crawler sees the neighborhood
+name, the ZIP list, the topic intro, and each report topic's heading and description; each
+indicator's name and description, from hidden headings the
+`themes/dohmh/layouts/partials/nr-indicator-names-hidden.html` partial emits; and the
+demographics table's labels but not its values, which `demographics.js` fills into a panel
+the template hides until then. It sees no rates, and not the cards' short names, because
+the report page renders each indicator card from EHDP-data in the browser. Googlebot,
+which renders, sees everything.
+`[corrected 2026-10-21: this sentence first said the non-JS crawler sees "demographics,
+indicator and measure names, and indicator descriptions", and that D "loses values alone,
+not descriptive content". Measured 2026-10-20 in an isolated development build of
+east_harlem/asthma_and_the_environment/, against the 8 report JSONs that page fetches: 0 of
+19 indicator names (card long names without their data year) and 0 of 17 descriptions in
+the text outside script and style; controls: the neighborhood name, ZIPs 10029 and 10035,
+and 8 of 8 topic headings found. The hidden headings were then added to the report page
+(PR #1491 review fixes, Task 11 step 1b), and the same count reads 19 of 19 and 17 of 17.
+The decision itself is unchanged.]` If anyone later
 asks why an AI assistant knows the Department publishes East Harlem asthma data but not the
 figure, this is the line that answers it.
 
