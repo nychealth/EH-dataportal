@@ -512,8 +512,9 @@ tested against Google itself; the test is at the end of the first point.]`
   not be indexed or selected for grounding results". The same guidelines cover Copilot and
   Bing's grounding API, and ask that "Important information is visible on the URL itself"
   ([Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a),
-  undated; the page renders its text with JS, so this is text Chris pasted 2026-10-21, not a
-  fetch). A report page's values come from one EHDP-data fetch per report topic, eight on
+  undated; the page renders its text with JS, so WebFetch returned only its title. Text Chris
+  pasted 2026-10-21, and the same day a Playwright render of the page held both quoted
+  phrases). A report page's values come from one EHDP-data fetch per report topic, eight on
   East Harlem's asthma report. That is the pattern those lines name as a risk to indexing,
   which Google's pages quoted above do not. Whether Bing indexes the values is as unobserved
   as whether Google does. Bing's 2018 statements, that "bingbot is generally able to render JavaScript" and
