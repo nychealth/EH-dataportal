@@ -4,6 +4,7 @@
     "structure": {
         "lang": "en",
         "assets": [
+            "js/L.colorIcon.js",
             "js/main.js",
             "js/site.js",
             "js/uhflist-data.js",
@@ -13,6 +14,8 @@
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.css",
             "node_modules/jquery-flexdatalist/jquery.flexdatalist.min.js",
             "node_modules/jquery/dist/jquery.min.js",
+            "node_modules/leaflet-easybutton/src/easy-button.css",
+            "node_modules/leaflet-easybutton/src/easy-button.js",
             "node_modules/leaflet/dist/leaflet.css",
             "node_modules/leaflet/dist/leaflet.js",
             "node_modules/popper.js/dist/umd/popper.min.js",
@@ -22,7 +25,7 @@
             "translate.google.com",
             "www.googletagmanager.com"
         ],
-        "assetsWithIntegrity": 13,
+        "assetsWithIntegrity": 16,
         "headingLevels": [
             1,
             2,
@@ -109,7 +112,7 @@
             "noAccessibleText": 0
         },
         "controls": {
-            "button": 7,
+            "button": 8,
             "input": 3,
             "select": 0,
             "textarea": 0,
