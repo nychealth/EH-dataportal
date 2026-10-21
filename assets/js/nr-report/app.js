@@ -134,14 +134,16 @@ const bootstrap = () => {
     const accordionToggle = document.getElementById('nr-toggle-accordions');
     if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
 
-    // Back and Forward across in-place switches re-render from the entry's state
-    // (setNeighborhoodInURL writes it). An entry with no state, such as one a #fragment link
-    // added, or the neighborhood already shown, needs nothing; before the first render the
-    // initial render is still coming and will draw the page's own neighborhood
-    
+    // Back and Forward across in-place switches re-render the neighborhood the address bar now
+    // names. Not the entry's state alone: an entry a #fragment link added (the header's
+    // "Skip Header" link is one) has none, and Back onto it from a switch left the report
+    // showing the neighborhood the address bar had left [2026-10-21]. The neighborhood
+    // already shown needs nothing; before the first render, tryInitialRender reads the
+    // address bar itself
+
     window.addEventListener('popstate', event => {
 
-        const name = event.state && event.state.neighborhood;
+        const name = getNeighborhoodFromURL() || (event.state && event.state.neighborhood);
 
         if (!name || !dataReady || name === currentNeighborhood) {
             debugLog('popstate: branch-nothing-to-render:', { name, dataReady });

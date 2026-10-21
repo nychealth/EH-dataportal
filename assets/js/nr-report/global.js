@@ -64,6 +64,11 @@ let indicatorTopicSlugs = null;
 // WRITE: report (reset), chart (keys)  READ: chart
 let renderedPanels = {};
 
+// The Vega views of the charts drawn since the last render, finalized when the
+// panels they sit in are rebuilt
+// WRITE: chart (push), report (finalize and reset)  READ: report
+let chartViews = [];
+
 // Track loading: sections + viz = total fetches needed before first render.
 // bootstrap() sets the total, since module scope runs before the config guard.
 // fetchesComplete never leaves data.js; it lives here to stay beside its pair

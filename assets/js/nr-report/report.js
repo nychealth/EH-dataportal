@@ -217,7 +217,8 @@ const announceNeighborhoodChange = (neighborhoodName, previousNeighborhood) => {
 
 
 // Rebuilds the whole report for one neighborhood: cards, headers, demographics, URL.
-// fromHistory is set by the popstate handler, whose entry the browser has already made current
+// fromHistory is set when the browser has already made the entry current: by the popstate
+// handler, and by tryInitialRender when a Back arrived before the data did
 
 const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
 
@@ -235,6 +236,10 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
 
     currentNeighborhood = neighborhoodName;
     renderedPanels = {};
+
+    // The panels these charts sit in are about to be rebuilt (chart.js keeps them)
+    chartViews.forEach(view => view.finalize());
+    chartViews = [];
     accordionCounter = 0;
 
     // ----- resolve geocode ----- //
@@ -281,8 +286,10 @@ const renderAll = (neighborhoodName, mapGeocode, fromHistory = false) => {
     // ----- history, head and analytics ----- //
 
     // First render seeds the page's own entry; a switch adds one; a popstate re-render
-    // is already standing on its entry and must not add another
-    const historyMode = !previousNeighborhood ? 'replace' : (fromHistory ? 'none' : 'push');
+    // is already standing on its entry and must not add another. fromHistory wins even on
+    // a first render: tryInitialRender sets it when the address bar has already moved off
+    // the served neighborhood, and a replace then would rewrite that entry's path
+    const historyMode = fromHistory ? 'none' : (!previousNeighborhood ? 'replace' : 'push');
     setNeighborhoodInURL(neighborhoodName, historyMode);
 
     if (isSwitch) {

@@ -18,6 +18,27 @@ const slugForNeighborhood = name => {
 };
 
 
+// The neighborhood the address bar names, read from the segment before the topic — the
+// inverse of the rewrite setNeighborhoodInURL makes. The address bar, not the history
+// entry's state, is what Back and Forward restore: an entry a #fragment link added carries
+// no state, and an entry popped before the first render has not been re-rendered yet.
+// Undefined when the path carries no known neighborhood slug
+const getNeighborhoodFromURL = () => {
+
+    if (typeof neighborhoods === 'undefined') return undefined;
+
+    const pathParts = window.location.pathname.replace(/\/$/, '').split('/').filter(Boolean);
+    const topicIdx = pathParts.findIndex(p => p === reportConfig.topicSlug);
+
+    if (topicIdx < 1) return undefined;
+
+    const entry = neighborhoods.find(n => n.page_name === pathParts[topicIdx - 1]);
+
+    return entry ? entry.UHF_name : undefined;
+
+};
+
+
 // Resolves the neighborhood for this page load
 const getPageNeighborhood = () => {
 

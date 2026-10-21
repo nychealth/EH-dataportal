@@ -31,7 +31,30 @@ const tryInitialRender = () => {
             reportMapFitLayer(layer);
         }
 
-        renderAll(pageNeighborhood);
+        // A Back or Forward that landed before the data did: the browser moved the address
+        // bar to another neighborhood's entry, which the popstate handler could not render
+        // yet. The served neighborhood is drawn first without writing history, then the
+        // address bar's as a history re-render, so the title, head and page_view follow it
+        // and the entry keeps its path. Rendering the served one alone, as before, let its
+        // replaceState rewrite the entry and lost the neighborhood Back had reached [2026-10-21]
+        const urlNeighborhood = getNeighborhoodFromURL();
+        const addressBarMoved = !!urlNeighborhood && urlNeighborhood !== pageNeighborhood;
+
+        renderAll(pageNeighborhood, undefined, addressBarMoved);
+
+        if (addressBarMoved) {
+
+            debugLog('tryInitialRender: branch-address-bar-moved:', urlNeighborhood);
+
+            const urlLayer = findLayerByName(urlNeighborhood);
+            if (urlLayer) {
+                selectLayer(urlLayer);
+                reportMapFitLayer(urlLayer);
+            }
+
+            renderAll(urlNeighborhood, undefined, true);
+
+        }
 
     }
 

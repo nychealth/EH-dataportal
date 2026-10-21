@@ -51,8 +51,20 @@ const renderIndicatorChart = (data, destination, legendLabel, geocode, indicator
         return;
     }
 
-    loadTopojson().then(topo =>
-        embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo));
+    // The .catch is for a throw while building or starting the embed. Since the embed waits on
+    // the geography, it runs after onAccordionExpand has returned, so that function's
+    // try/catch no longer sees it, and the panel was left empty with the error uncaught
+    // [2026-10-21: vegaEmbed replaced by a throwing stub]. vegaEmbed's own rejection is
+    // caught inside embedIndicatorChart
+    loadTopojson()
+        .then(topo => embedIndicatorChart(data, container, destination, legendLabel, geocode, indicatorLabel, topo))
+        .catch(err => {
+
+            console.error('Error rendering chart for ' + destination + ':', err);
+
+            if (container.isConnected) container.innerHTML = '<p class="text-muted small">Unable to render chart.</p>';
+
+        });
 
 };
 
@@ -253,12 +265,19 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         return;
     }
 
-    vegaEmbed(container, spec, { actions: true, renderer: 'svg' }).then(() => {
+    vegaEmbed(container, spec, { actions: true, renderer: 'svg' }).then(result => {
 
+        // A Vega view keeps a window resize listener until finalized, and replacing its panel
+        // does not remove it, so each is kept for renderAll's reset to finalize. Window
+        // resize listeners grew 2 → 24 → 46 across two Expand alls with a switch between
+        // [2026-10-21, counted over CDP]. One whose panel went during the embed is finalized now
         if (!container.isConnected) {
             debugLog('renderIndicatorChart: branch-stale-embed:', destination);
+            result.view.finalize();
             return;
         }
+
+        chartViews.push(result.view);
 
         // vega-embed's actions control is a <summary> containing only an SVG, so it computes
         // to a bare "DisclosureTriangle" with no name while sitting in the tab order. There
