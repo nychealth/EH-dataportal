@@ -87,7 +87,9 @@ scripts/nr-characterization-current/
 # CP report characterization --check output (baseline IS committed)
 scripts/cp-characterization-current/
 
-.claude/
+# Claude Code's per-machine files. The rest of .claude/ is shared and tracked
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
 
 # Full-site smoke run reports
 scripts/smoke-reports/
@@ -117,3 +119,8 @@ scripts/rat-report-charts/current/
 # extension, so a .docx or .html worth tracking on its own terms still can be.
 documents/rat-report-2026-figures-to-confirm.docx
 documents/rat-report-2026-figures-to-confirm.html
+
+# MOD-Lab's working notes and Cursor setup, kept on their machines but out of the repo
+/EHDP feedback for MOD-Lab.md
+/README-MOD.md
+/.cursor/

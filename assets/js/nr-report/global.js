@@ -41,6 +41,12 @@ const reportConfig = window.NR_REPORT_CONFIG;
 // WRITE (keys): data  READ: report
 const sectionData = {};
 
+// Ids of sections whose fetch failed, so renderSection can tell "could not load" from
+// "no rows for this neighborhood". A failed section still gets {} in sectionData, which
+// keeps resolveGeocode's walk over it free of a special case
+// WRITE: data  READ: report
+const failedSections = new Set();
+
 // Arquero table for the viz dataset (all indicators, all neighborhoods)
 // WRITE: data  READ: app (CSV export), chart (per-indicator summary)
 let vizTable = null;
@@ -57,6 +63,11 @@ let indicatorTopicSlugs = null;
 // it per render, chart.js sets one key per panel it draws
 // WRITE: report (reset), chart (keys)  READ: chart
 let renderedPanels = {};
+
+// The Vega views of the charts drawn since the last render, finalized when the
+// panels they sit in are rebuilt
+// WRITE: chart (push), report (finalize and reset)  READ: report
+let chartViews = [];
 
 // Track loading: sections + viz = total fetches needed before first render.
 // bootstrap() sets the total, since module scope runs before the config guard.
@@ -86,6 +97,11 @@ let uhfLayer = null;
 let dataReady = false;
 let mapReady = false;
 
+// A polygon selected after the map loaded but before the data did; tryInitialRender
+// switches to it once the page's own neighborhood has rendered
+// WRITE: map, data  READ: data
+let pendingMapSelection = null;
+
 
 // ----------------------------------------------------------------------- //
 // value helpers
@@ -98,6 +114,22 @@ const isBlank = value => value == null || value === '';
 
 // Shorthand for the demographics renderers, which touch many individually optional nodes
 const nrById = id => document.getElementById(id);
+
+
+// ----------------------------------------------------------------------- //
+// analytics
+// ----------------------------------------------------------------------- //
+
+// Sends a GA event under the names the retired nr-output pages used, so report
+// traffic stays continuous across the swap. Modelled on trackDataExplorerEvent;
+// the guard keeps a blocked gtag.js from turning a download or a panel open into a throw
+const trackNREvent = (eventName, eventParams) => {
+
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', eventName, eventParams);
+
+};
 
 
 // ----------------------------------------------------------------------- //

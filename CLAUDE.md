@@ -460,8 +460,11 @@ worked before still works, but nothing renders it the way it used to. Three page
   disagrees with `uhflist`'s `UHF_name` on 4 of the 42 ("Fordham - Bronx Pk", "Rockaways")
   `[2026-10-19]`; the tooltip resolves the same way, so the visible label matches the accessible
   name. `nr-leaflet.html`, the other pages' map, does the same naming and keyboard handling with
-  its own function names since 2026-10-19, and like `map.js` fits the whole city with Leaflet's zoom
-  control on.
+  its own function names since 2026-10-19. Both maps frame their neighborhood when they have one —
+  the report page's selection, the index page's own — and keep Leaflet's zoom control beside a
+  "Reset zoom" easyButton that returns to the whole city (Chris, 2026-10-20). Framed, a pointer
+  reaches only a few of the 42 polygons, 5 on `/neighborhood-reports/east_new_york/`; after a reset, 41
+  `[verified 2026-10-20: scripts/nr-r14-probe.mjs]`.
 - **Neighborhood index** — `/neighborhood-reports/<nbhd>/`, 42 of them, `kind: section`,
   `themes/dohmh/layouts/neighborhood-reports/nr-neighborhood-index.html`. Leaflet map, ZIP list,
   five topic cards linking to that neighborhood's reports.
@@ -559,7 +562,7 @@ Specify with `--environment ENV`. Each environment's own config.toml, under its 
 
 Key per-environment variables: `baseURL` and `data_branch`.
 
-- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but five environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `production`, `prod_prod`. Only `local_prod`, `local_stage` and `prod_stage` inherit the forever cache `[verified 2026-09-01: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under three environments and not under the other five — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
+- **Build caching is per environment, and the default is the exception.** `config/_default/config.toml` sets `caches.getresource maxAge = -1` — cache forever — but seven environments override it to `0`: `development`, `dev_prod`, `dev_stage`, `local_prod`, `local_stage`, `production`, `prod_prod`. Only `prod_stage` keeps the forever cache, by setting `-1` itself `[verified 2026-10-20 on this branch: grep for maxAge across config/]`. So "the build is serving stale EHDP-data" is a real explanation under `prod_stage` and not under the other seven — check which one you are building before reaching for it. `--ignoreCache` forces a cold fetch either way. **An earlier version of this bullet described the forever cache as sitewide and quoted a warm-vs-cold build time for a `production` build; `production` sets `0`, so that figure cannot have been measuring this cache and has been dropped rather than restated.**
 - **Case-only renames in EHDP-data are a two-repo, two-OS hazard.** `report_topic` in `data/globals/NR_content/*.yml` is a path segment of the report JSON filename. A Windows-side export drops case-only renames silently; and if both casings land on a branch, Windows clones choke on the checkout collision. Hugo hides both — it fetches by URL and never checks the tree out. Worked case, with the EHDP-data cleanup commits: [documents/nr-de-merge-integration-plan-2026-08-15.md](documents/nr-de-merge-integration-plan-2026-08-15.md) Task 0.1 Step 3.
 
 ## Coding conventions

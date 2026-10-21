@@ -208,15 +208,18 @@ clean SPA URLs is clunkier than anyone would draw from scratch, and search index
 good reason to accept it `[decided 2026-08-06: team]`.
 
 Note what D concedes, accurately: measure **values** leave the static HTML, and only for
-crawlers that don't run JS. Topic prose is already static today (retirement memo §12a), so
-this is not a loss of descriptive content. See that memo's §10.4.
+crawlers that don't run JS. Indicator names and descriptions stay, as hidden headings,
+beside the topic intro and each report topic's heading and description. See that memo's
+§10.4 `[corrected 2026-10-21: the rendered cards were the only place the generated page
+carried indicator names and descriptions until the hidden headings were added in the
+PR #1491 review fixes, Task 11 step 1b; measured as recorded under §10.4]`.
 
 Both paths produce the same URLs. They differed in where the pages come from:
 
 | | **Option B** — re-point the content files | **Option D** — generate from a content adapter |
 |---|---|---|
 | The 210 pages | keep them; swap `type: nr-output` → `layout: nr-topic-spa` | delete them; `_content.gotmpl` emits them |
-| Measure values in static HTML | yes — reuses the build-time fetch | no — names, descriptions, demographics only |
+| Measure values in static HTML | yes — reuses the build-time fetch | no — names and descriptions as hidden headings, demographics labels only `[corrected 2026-10-21, see §10.4 of the retirement memo]` |
 | Build-time EHDP-data report fetch | kept | removed |
 | Card renderers to maintain | two, forever — `nr-indicator-new.html` + `buildIndicatorCard` | one |
 | Editable in CloudCannon | yes | no — generated pages are not content files |
@@ -225,10 +228,12 @@ Both paths produce the same URLs. They differed in where the pages come from:
 
 Option B's real price is the two card implementations staying in visual agreement
 indefinitely — not the template work. Option D's is that measure *values* leave the HTML,
-which matters only for crawlers that do not run JS. Both carry indicator names, measure
-names, indicator descriptions and demographics in static HTML; the `MeasureID` join that
-makes that possible is verified `[verified 08-05: metadata.json is a flat indicator array
-with a nested `Measures` array — see retirement memo §6]`.
+which matters only for crawlers that do not run JS `[corrected 2026-10-21: this first said
+both options carry indicator names, measure names, indicator descriptions and demographics
+in static HTML. The generated report page carried none of the indicator text without JS
+until hidden name and description headings were added (PR #1491 review fixes, Task 11 step
+1b), and it carries only the demographics labels; measured as recorded under the retirement
+memo's §10.4]`.
 
 Option B additionally requires unifying accordion ids first: `nr-indicator-new.html` keys
 off `indicator_data_name`, `nextAccordionId` emits `nr-acc-N`, and the characterization

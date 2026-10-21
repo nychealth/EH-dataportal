@@ -29,7 +29,9 @@ const checkN025 = async (browser, baseURL) => {
     page.on('pageerror', e => errors.push(e.message));
 
     await page.goto(baseURL + 'neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/', { waitUntil: 'load' });
-    await page.waitForSelector("path[aria-label*='Kingsbridge']", { timeout: 20000 });
+    // attached, not visible: the map frames its own neighborhood, and Leaflet draws an
+    // off-screen polygon as an empty path, which Playwright counts as hidden
+    await page.waitForSelector("path[aria-label*='Kingsbridge']", { state: 'attached', timeout: 20000 });
 
     // Read by position, not by the fix's class hook, so the check means the same
     // thing on a tree that predates the fix
@@ -116,7 +118,9 @@ const checkN027Polygon = async (browser, baseURL) => {
     page.on('pageerror', e => errors.push(e.message));
 
     await page.goto(baseURL + 'neighborhood-reports/central_harlem_morningside_heights/active_design_physical_activity_and_health/', { waitUntil: 'load' });
-    await page.waitForSelector("path[aria-label*='Kingsbridge']", { timeout: 20000 });
+    // attached, not visible: the map frames its own neighborhood, and Leaflet draws an
+    // off-screen polygon as an empty path, which Playwright counts as hidden
+    await page.waitForSelector("path[aria-label*='Kingsbridge']", { state: 'attached', timeout: 20000 });
 
     // Waits for the attribute to land on the expected polygon; a timeout leaves the
     // read below to report what is there instead, which is the failure before the fix
@@ -201,9 +205,14 @@ const checkN026 = async (browser, baseURL) => {
 
 
 // ----------------------------------------------------------------------- //
-// N-026, pointer half: the neighborhood index map frames the whole city
+// N-026, pointer half: "Reset zoom" brings back the whole city
 // ----------------------------------------------------------------------- //
 
+// The neighborhood index map frames its own neighborhood on load (Chris, 2026-10-20), which
+// leaves most polygons outside the box; that reading is recorded as `framed`, the accepted
+// cost, and not gated. The gate is the way back: after "Reset zoom" the zoom has dropped and
+// the pointer reaches the polygons again.
+//
 // Centre-point hit test, the audit's own method: a polygon counts as reachable when
 // elementFromPoint at its bounding-box centre returns that polygon. It undercounts thin
 // shapes (Rockaways, audit A-149), so 41 of 42 is the expected ceiling, as on the report map
@@ -221,7 +230,7 @@ const checkN026Pointer = async (browser, baseURL) => {
     await page.waitForTimeout(2500);
     await page.evaluate(() => document.getElementById('map').scrollIntoView({ block: 'center' }));
 
-    const reach = await page.evaluate(() => {
+    const read = () => page.evaluate(() => {
         const paths = [...document.querySelectorAll('#map path.leaflet-interactive')];
         const hits = paths.filter(p => {
             const r = p.getBoundingClientRect();
@@ -236,20 +245,26 @@ const checkN026Pointer = async (browser, baseURL) => {
         };
     });
 
+    const framed = await read();
+    await page.click('#map button[title="Reset zoom"]');
+    await page.waitForTimeout(300);
+    const reach = await read();
+
     await page.close();
 
     const pass = reach.polygons === 42
         && reach.reachable >= 41
-        && reach.highlighted.length === 1 && reach.highlighted[0] === 'East New York'
+        && reach.zoom < framed.zoom
+        && [framed, reach].every(r => r.highlighted.length === 1 && r.highlighted[0] === 'East New York')
         && errors.length === 0;
 
-    return { row: 'N-026 pointer', pass, reach, errors };
+    return { row: 'N-026 pointer', pass, framed, reach, errors };
 
 };
 
 
 // ----------------------------------------------------------------------- //
-// Zoom controls on every NR map (Chris, 2026-10-19)
+// Zoom controls on every NR map (Chris, 2026-10-19), and "Reset zoom" beside them (2026-10-20)
 // ----------------------------------------------------------------------- //
 
 // The report page and the neighborhood index show the map as a control, so their zoom
@@ -277,8 +292,13 @@ const checkZoomControls = async (browser, baseURL) => {
 
         const r = await page.evaluate(c => {
             const buttons = [...document.querySelectorAll(c + ' .leaflet-control-zoom a')];
-            return buttons.map(b => ({ label: b.getAttribute('aria-label'), role: b.getAttribute('role'), tabindex: b.getAttribute('tabindex') }));
+            const reset = document.querySelector(c + ' button[title="Reset zoom"]');
+            return {
+                zoom: buttons.map(b => ({ label: b.getAttribute('aria-label'), role: b.getAttribute('role'), tabindex: b.getAttribute('tabindex') })),
+                reset: reset && { tabindex: reset.getAttribute('tabindex') },
+            };
         }, container);
+        const resetName = await page.getByRole('button', { name: 'Reset zoom' }).count();
 
         // A real click on Zoom in must move the zoom, so the buttons are wired, not decoration
         // Bare names, not window.*: both maps are top-level let bindings, which are not window
@@ -288,7 +308,8 @@ const checkZoomControls = async (browser, baseURL) => {
 
         let zoomed = null;
         let animating = null;
-        if (r.length && !hidden) {
+        let resetZoomedOut = null;
+        if (r.zoom.length && !hidden) {
 
             // Read and click the moment the polygons appear. While the initial fitBounds animated
             // from zoom 10, _animatingZoom read true here and Leaflet dropped 1 of 2 such clicks
@@ -300,18 +321,30 @@ const checkZoomControls = async (browser, baseURL) => {
             await page.click(container + ' .leaflet-control-zoom-in');
             await page.waitForTimeout(600);
             zoomed = (await getZoom()) > before;
+
+            // Reset returns below where Zoom in left it, wherever the page started
+            const zoomedTo = await getZoom();
+            await page.click(container + ' button[title="Reset zoom"]');
+            await page.waitForTimeout(300);
+            resetZoomedOut = (await getZoom()) < zoomedTo;
         }
 
         await page.close();
 
-        const labels = r.map(b => b.label).join(',');
+        const labels = r.zoom.map(b => b.label).join(',');
         results[path] = {
-            buttons: r,
+            buttons: r.zoom,
+            reset: r.reset,
+            resetName,
             animating,
             zoomed,
+            resetZoomedOut,
             ok: labels === 'Zoom in,Zoom out'
-                && r.every(b => b.role === 'button')
-                && (hidden ? r.every(b => b.tabindex === '-1') : animating === false && zoomed === true),
+                && r.zoom.every(b => b.role === 'button')
+                && !!r.reset
+                && (hidden
+                    ? r.zoom.every(b => b.tabindex === '-1') && r.reset.tabindex === '-1'
+                    : animating === false && zoomed === true && resetName === 1 && resetZoomedOut === true),
         };
 
     }

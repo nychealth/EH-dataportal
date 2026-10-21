@@ -28,9 +28,46 @@ const tryInitialRender = () => {
         if (layer) {
             debugLog('tryInitialRender: branch-select-layer');
             selectLayer(layer);
+            reportMapFitLayer(layer);
         }
 
-        renderAll(pageNeighborhood);
+        // A Back or Forward that landed before the data did: the browser moved the address
+        // bar to another neighborhood's entry, which the popstate handler could not render
+        // yet. The served neighborhood is drawn first without writing history, then the
+        // address bar's as a history re-render, so the title, head and page_view follow it
+        // and the entry keeps its path. Rendering the served one alone, as before, let its
+        // replaceState rewrite the entry and lost the neighborhood Back had reached [2026-10-21]
+        const urlNeighborhood = getNeighborhoodFromURL();
+        const addressBarMoved = !!urlNeighborhood && urlNeighborhood !== pageNeighborhood;
+
+        renderAll(pageNeighborhood, undefined, addressBarMoved);
+
+        if (addressBarMoved) {
+
+            debugLog('tryInitialRender: branch-address-bar-moved:', urlNeighborhood);
+
+            const urlLayer = findLayerByName(urlNeighborhood);
+            if (urlLayer) {
+                selectLayer(urlLayer);
+                reportMapFitLayer(urlLayer);
+            }
+
+            renderAll(urlNeighborhood, undefined, true);
+
+        }
+
+    }
+
+    // A polygon chosen while the data was still loading. Rendered as a switch from the page's
+    // own neighborhood, not in place of it: renderAll treats its first call as first paint,
+    // which leaves the title, head metadata and history entry as served and sends no page_view
+    if (pendingMapSelection) {
+
+        debugLog('tryInitialRender: branch-pending-selection');
+
+        const layer = pendingMapSelection;
+        pendingMapSelection = null;
+        reportMapSelectNeighborhood(layer, 'tryInitialRender');
 
     }
 
@@ -111,6 +148,7 @@ const loadSection = section => {
             console.error('Error loading section "' + section.id + '":', error);
             debugLog('loadSection: branch-load-failed:', { sectionId: section.id, error });
             sectionData[section.id] = {};
+            failedSections.add(section.id);
         })
         .then(checkAllLoaded);
 

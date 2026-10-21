@@ -33,7 +33,8 @@ Three things, in the order they landed:
 1. **SEO review of the SPA-only end state.** Googlebot renders JavaScript, but the SPA
    exposes no crawlable neighborhood URLs and self-canonicalizes every view to the topic
    page. An SPA-only site is five indexable pages, not 252. Non-Google crawlers do not
-   render JS at all. §6 covers this.
+   render JS at all. §6 covers this. `[corrected 2026-10-21: unsourced and too broad. Bing
+   and AppleBot are reported to render; see "What a rendering crawler sees" under §10.4]`
 2. **Google Analytics, Aug 2025 – Aug 2026.** The 252 old URLs draw ~14,200 sessions a
    year against 476 for the five SPA topic pages. §5 has the exact figures.
 3. **The topic-first URL order turned out to be an artifact.** The pre-slug scheme had
@@ -442,13 +443,96 @@ accept that `[decided 2026-08-06: team]`.
 **One consequence to hold accurately.** Option D is the *maintenance*-optimal choice, not
 the indexing-optimal one — Option B would have put more in the static HTML, because it keeps
 the build-time fetch that renders measure values. What D concedes is the **numbers**, and
-only to crawlers that don't run JS. After the cold-fetch measurement (§12a) that gap is
-narrower than the table below implies: the topic prose is already static today, so D loses
-values alone, not descriptive content. Concretely, once this ships a non-JS crawler sees
-neighborhood name, ZIP list, demographics, indicator and measure names, and indicator
-descriptions — and not the rates. Googlebot, which renders, sees everything. If anyone later
+only to crawlers that don't run JS. Concretely, a non-JS crawler sees the neighborhood
+name, the ZIP list, the topic intro, and each report topic's heading and description; each
+indicator's name and description, from hidden headings the
+`themes/dohmh/layouts/partials/nr-indicator-names-hidden.html` partial emits; and the
+demographics table's labels but not its values, which `demographics.js` fills into a panel
+the template hides until then. It sees no rates, and not the cards' short names, because
+the report page renders each indicator card from EHDP-data in the browser. What a crawler
+that renders gets is under *What a rendering crawler sees*, below.
+`[corrected 2026-10-21: this sentence first said the non-JS crawler sees "demographics,
+indicator and measure names, and indicator descriptions", and that D "loses values alone,
+not descriptive content". Measured 2026-10-20 in an isolated development build of
+east_harlem/asthma_and_the_environment/, against the 8 report JSONs that page fetches: 0 of
+19 indicator names (card long names without their data year) and 0 of 17 descriptions in
+the text outside script and style; controls: the neighborhood name, ZIPs 10029 and 10035,
+and 8 of 8 topic headings found. The hidden headings were then added to the report page
+(PR #1491 review fixes, Task 11 step 1b), and the same count reads 19 of 19 and 17 of 17.
+The decision itself is unchanged.]` If anyone later
 asks why an AI assistant knows the Department publishes East Harlem asthma data but not the
 figure, this is the line that answers it.
+
+**What a rendering crawler sees** `[researched 2026-10-21, replacing "Googlebot, which renders,
+sees everything". Each point names its source and that source's own date. None of it has been
+tested against Google itself; the test is at the end of the first point.]`
+
+- **Google renders, later, and indexes the rendered page.** Google "queues all pages with a
+  `200` HTTP status code for rendering"; a page "may stay on this queue for a few seconds, but
+  it can take longer than that"; then "a headless Chromium renders the page and executes the
+  JavaScript", and Google "uses the rendered HTML to index the page". It runs "an evergreen
+  version of Chromium" ([JavaScript SEO Basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics),
+  last updated 2026-03-04, fetched 2026-10-21). So the static HTML above is not Google's
+  ceiling: the cards and their values can reach its index. Whether they do on these pages is
+  not observed. Search Console's URL Inspection on a deployed report page, which shows the
+  rendered HTML Google captured, is the check.
+- **Nothing in robots.txt stops Google from fetching the data.** The cards come from
+  `raw.githubusercontent.com`, not this site. Robots rules apply only to the host, protocol
+  and port that serve the file, and Google treats "all 4xx errors, except 429, as if a valid
+  robots.txt file didn't exist" ([robots.txt specification](https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt),
+  last updated 2026-08-31). `https://raw.githubusercontent.com/robots.txt` returned 404 to a
+  Googlebot user agent `[2026-10-21]`. This matters because "Google Search won't render
+  JavaScript from blocked files" (JavaScript SEO Basics, above). A GitHub change to that
+  file would change this, and nothing here watches it.
+- **Only the live build is rendered at all.** `themes/dohmh/layouts/partials/head.html` emits
+  `robots` `"all"` only under `prod_prod` (outside the `resources` section), and
+  `"noindex, nofollow"` under every other environment. On `noindex` Google "may
+  skip rendering and JavaScript execution" (JavaScript SEO Basics). That is the intended state.
+- **The hidden headings sit outside the exemptions Google's spam policy lists.** They are
+  Bootstrap `d-none` (`display:none`): invisible, and out of the accessibility tree. The
+  policy defines hidden-text abuse as content placed "solely to manipulate search engines and
+  not to be easily viewable by human visitors". It exempts tabs and accordions, sliders,
+  tooltips, and "text that's only accessible to screen readers"
+  ([spam policies](https://developers.google.com/search/docs/essentials/spam-policies),
+  last updated 2026-08-28). `display:none` for everyone is in none of those. The policy turns on
+  intent, and the headings repeat names and descriptions the rendered cards show, so this is
+  a weighing, not a finding of a violation. Nor is the pattern new to the site: `production`'s
+  `themes/dohmh/layouts/neighborhood-reports/topiclanding.html` emits the same `d-none` `h1`/`h2`
+  pairs on its five topic pages `[2026-10-21: git show production:<that file>]`, and this branch
+  extends them to the 210 report pages. Bootstrap's `.sr-only`, already used in
+  `themes/dohmh/layouts/data-explorer/single.html`, would put the headings inside the named
+  exemption. The cost is that a screen reader would also read 19 heading pairs per page beside
+  the cards. **Kept as `d-none`** `[decided 2026-10-21: Chris, because .sr-only "seems like it
+  would degrade accessibility"]`. Bing's guidelines (next point) do not mention hidden text. Their
+  cloaking rule, "Showing different content to search crawlers than to users", does not reach
+  these headings, since every visitor gets the same HTML.
+- **Bing renders, and warns against relying on it.** Its current guidelines say Bing uses
+  crawl signals "to find, render, and index content", and tell sites to avoid "Hiding critical content behind client-side rendering" and "Excessive or unnecessary
+  HTTP requests to render the content", and say "Content that cannot be reliably rendered may
+  not be indexed or selected for grounding results". The same guidelines cover Copilot and
+  Bing's grounding API, and ask that "Important information is visible on the URL itself"
+  ([Bing Webmaster Guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a),
+  undated; the page renders its text with JS, so WebFetch returned only its title. Text Chris
+  pasted 2026-10-21, and the same day a Playwright render of the page held both quoted
+  phrases). A report page's values come from one EHDP-data fetch per report topic, eight on
+  East Harlem's asthma report. That is the pattern those lines name as a risk to indexing,
+  which Google's pages quoted above do not. Whether Bing indexes the values is as unobserved
+  as whether Google does. Bing's 2018 statements, that "bingbot is generally able to render JavaScript" and
+  recommending "dynamic rendering as a great alternative"
+  ([Bing Webmaster Blog](https://blogs.bing.com/webmaster/october-2018/bingbot-Series-JavaScript,-Dynamic-Rendering,-and-Cloaking-Oh-My),
+  2018-10-31), are not repeated in the current guidelines.
+- **AI crawlers mostly don't render.** Vercel's
+  analysis of traffic on its own network found "none of the major AI crawlers currently render
+  JavaScript", naming OpenAI's, Anthropic's, Meta's, ByteDance's and Perplexity's. The same
+  analysis says Gemini "leverages Googlebot's infrastructure" and AppleBot "renders JavaScript"
+  ([Vercel, The rise of the AI crawler](https://vercel.com/blog/the-rise-of-the-ai-crawler),
+  2024-12-17). That is one vendor's traffic, from nearly two years before this note. The
+  crawlers that don't render get the static HTML described above.
+
+**What matters is that the pages are found, not the values** `[decided 2026-10-21: Chris]`.
+Restoring server-rendered values would mean a build-time fetch and a template copy of
+`buildIndicatorCard`, the second card renderer this decision removed, and it is not planned.
+The site-wide audit holds it as N-101, a P3 enhancement for later.
 
 The comparison that produced the decision:
 

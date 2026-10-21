@@ -35,6 +35,13 @@ const downloadCSV = () => {
     link.download = filename;
     link.click();
 
+    // Same payload production's downloadData() sent
+    trackNREvent('file_download', {
+        file_name: filename,
+        file_extension: '.csv',
+        link_text: 'Download Report Data'
+    });
+
     // Revoked on the next task rather than this one, so the download has started reading
     // the blob before its URL goes away. HYPOTHESIS (unverified): an immediate revoke can
     // cancel the download in some browsers; only Chromium was available to test, and it
@@ -114,9 +121,11 @@ const bootstrap = () => {
 
     // Deferred to here rather than computed beside fetchesComplete, because the
     // section count is only trustworthy once the guard above has passed
-    // The topic-indicator map counts unconditionally: loadTopicIndicators reports a
-    // completed fetch on every path, including the one where it is not configured
-    totalFetches = reportConfig.sections.length + (reportConfig.vizUrl ? 1 : 0) + 1;
+    // The viz table and the topic-indicator map count unconditionally: loadVizData and
+    // loadTopicIndicators each report a completed fetch on every path, including the one
+    // where they are not configured. Counting the viz table only when vizUrl was set let a
+    // page without one reach the total a fetch early, and render with a section still missing
+    totalFetches = reportConfig.sections.length + 1 + 1;
 
     // Hook accordion expansion before data arrives so first open can render immediately
     $(document).on('shown.bs.collapse', '.collapse', onAccordionExpand);
@@ -124,6 +133,32 @@ const bootstrap = () => {
 
     const accordionToggle = document.getElementById('nr-toggle-accordions');
     if (accordionToggle) accordionToggle.addEventListener('click', toggleAllAccordions);
+
+    // Back and Forward across in-place switches re-render the neighborhood the address bar now
+    // names. Not the entry's state alone: an entry a #fragment link added (the header's
+    // "Skip Header" link is one) has none, and Back onto it from a switch left the report
+    // showing the neighborhood the address bar had left [2026-10-21]. The neighborhood
+    // already shown needs nothing; before the first render, tryInitialRender reads the
+    // address bar itself
+
+    window.addEventListener('popstate', event => {
+
+        const name = getNeighborhoodFromURL() || (event.state && event.state.neighborhood);
+
+        if (!name || !dataReady || name === currentNeighborhood) {
+            debugLog('popstate: branch-nothing-to-render:', { name, dataReady });
+            return;
+        }
+
+        const layer = findLayerByName(name);
+        if (layer) {
+            selectLayer(layer);
+            reportMapFitLayer(layer);
+        }
+
+        renderAll(name, undefined, true);
+
+    });
 
     // Start map and data loads in parallel
     initLeafletMap();

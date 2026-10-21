@@ -7,8 +7,8 @@
 // ----------------------------------------------------------------------- //
 
 // rankReverse marks indicators where HIGHER values are directionally better — park access,
-// bike lanes, subway access, regular exercise. The name reads as though it meant the reverse
-// and this comment used to assert that; getComparison at the foot of this file is what settles
+// bike lanes, subway access, regular exercise. The name reads as though it meant the reverse;
+// getComparison at the foot of this file is what settles
 // it, scoring a neighborhood above its reference value as comp-good exactly when the flag is
 // set. It arrives as a boolean from some report payloads and as the string 'true' from others,
 // so every consumer has to accept both
@@ -39,12 +39,12 @@ const getTertileLabel = (rank, rankReverse) => {
 };
 
 
-// Returns the pill class the production report styling expects: worse, better, or middle.
+// Returns the pill class for a tertile rank: worse, better, or middle.
 // rankReverse is deliberately not a parameter: the rank already carries the verdict, with 1
 // always the unfavourable tertile and 3 always the favourable one, and the flag's only job is
-// choosing which word describes the value — that is getTertileLabel's. Fixed 2026-08-12; this
-// used to flip on the flag, which pilled Park access, Bike lanes, Subway access and Exercise
-// as "better" on jamaica/active_design while Jamaica sat below most neighborhoods on all four
+// choosing which word describes the value — that is getTertileLabel's. Flipping the class on
+// the flag would pill Park access, Bike lanes, Subway access and Exercise as "better" on
+// jamaica/active_design, where Jamaica sits below most neighborhoods on all four
 const getTertilePillClass = (rank) => {
 
     const r = String(rank);
@@ -69,11 +69,11 @@ const getTertileSentenceParts = (rank, rankReverse) => {
     const reverse = isRankReversed(rankReverse);
 
     // The rank carries the verdict and rankReverse only chooses the word, exactly as in
-    // getTertilePillClass. Fixed 2026-08-12: cssClass used to flip along with the word, so a
-    // reversed indicator in the bottom tertile was reported as good news. getComparison, at the
-    // foot of this file, has always scored that same situation the other way — a neighborhood
-    // below its reference on a reversed indicator is comp-bad — so the report contradicted
-    // itself within one card, the tertile sentence and the borough sentence disagreeing
+    // getTertilePillClass. Flipping cssClass along with the word would report a reversed
+    // indicator in the bottom tertile as good news, while getComparison, at the foot of this
+    // file, scores that same situation the other way — a neighborhood below its reference on a
+    // reversed indicator is comp-bad — so one card would contradict itself, the tertile
+    // sentence and the borough sentence disagreeing
     if (r === '1') {
         return {
             word: reverse ? 'Lower' : 'Higher',

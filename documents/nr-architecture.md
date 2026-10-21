@@ -141,12 +141,16 @@ markup one alone does nothing, since the search needs the JS one beside it:
 ## nr-leaflet framing
 
 `nr-leaflet` needs no argument beyond the page: it reads a topic slug out of the first path
-segment itself. On every page it sets `zoomSnap = 0` and fits the UHF42 layer, so the city fills
-whatever box the caller gives it. A page that carries a `geocode` — the 42 neighborhood index
-pages — also highlights its own neighborhood; until 2026-10-19 it flew to it as well, which left
-10 of 42 polygons reachable by pointer (audit row N-026). Leaflet's zoom control is on, here and on
-the report page's map. `zoomSnap` is load-bearing, not a tweak: at Leaflet's default of 1,
-`fitBounds` rounds down to a whole zoom and the city spans ~59% of the box.
+segment itself. On every page it sets `zoomSnap = 0`. A page that carries a `geocode` — the 42
+neighborhood index pages — highlights its own neighborhood and fits the map to it; the landing
+and topic pages, which have none, fit the whole UHF42 layer, so the city fills whatever box the
+caller gives it. Framing one neighborhood leaves few polygons reachable by pointer (5 of 42 on
+`/neighborhood-reports/east_new_york/`), which Chris accepted on 2026-10-20 in exchange for a
+"Reset zoom" easyButton back to the whole city (41 of 42). Leaflet's zoom control and that
+button are on here and on the
+report page's map, which frames the selected neighborhood the same way. `zoomSnap` is
+load-bearing, not a tweak: at Leaflet's default of 1, `fitBounds` rounds down to a whole zoom and
+the city spans ~59% of the box.
 
 ## nr-topic-menu
 

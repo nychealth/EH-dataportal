@@ -69,7 +69,7 @@ const renderDemographics = geocode => {
     // Each target node is optional: the sidebar markup varies by layout width
     DEMOGRAPHIC_FIELDS.forEach(metric => {
         const node = nrById(metric.id);
-        if (node) node.innerHTML = metric.format(d[metric.field]);
+        if (node) node.textContent = metric.format(d[metric.field]);
     });
 
     const demoPanel = nrById('nr-demographics');

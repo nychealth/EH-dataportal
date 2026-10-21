@@ -176,7 +176,7 @@
                         above. renderAll() rewrites the name on an in-place neighborhood switch.
                     */}}
                     <div id="nr-report-header">
-                        <div class="d-none d-md-block mb-">
+                        <div class="d-none d-md-block">
                             <h1 class="h2 mt-3 nr-report-heading">{{ partial "section-icon.html" $.Section }}{{ .Title }} <span style="font-weight:normal">in</span>
                                 <span class="h2 text-primary" id="nr-header-neighborhood">{{ .Params.neighborhood }}</span>
                             </h1>
@@ -246,6 +246,12 @@
                             </div>
                         </div>
                     {{- end -}}
+
+                    {{/* The indicator names and descriptions the cards above render from JS, as
+                         hidden headings for readers that do not run it. Inside this section, so
+                         the page-level data-pagefind-ignore keeps them out of the search index
+                         with the rest of the report. */}}
+                    {{ partial "nr-indicator-names-hidden" (dict "content_key" $contentKey) }}
 
                     {{/* Print-only QR code back to this report, carried over from
                         nr-output/single.html. Filled by renderQRCode() below, which runs from
@@ -344,21 +350,7 @@
         // URL slug for this topic page, e.g. "asthma_and_the_environment".
         // Used by setNeighborhoodInURL to locate the topic segment in the current path
         // when updating the address bar after a neighborhood is selected.
-        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}",
-        // Mapping of neighborhood URL slug → display name for all 42 UHF neighborhoods,
-        // e.g. { "east_new_york": "East New York", ... }.
-        // Read only by url.js slugForNeighborhood (name → slug), behind setNeighborhoodInURL
-        // and the breadcrumb and topic links.
-        // Built from data/globals/uhflist.json — the same rows the content adapter generates
-        // the pages from — rather than by ranging .Sections. Those sections are now themselves
-        // adapter output, so deriving the map from them would make it depend on Hugo's section
-        // machinery agreeing with the adapter instead of on the one source both come from.
-        neighborhoodMap: {
-            {{- range $i, $n := site.Data.globals.uhflist -}}
-                {{- if $i }},{{ end -}}
-                "{{ $n.page_name }}": "{{ $n.UHF_name }}"
-            {{- end -}}
-        }
+        topicSlug: "{{ .RelPermalink | strings.TrimSuffix "/" | path.Base }}"
     };
 </script>
 
@@ -404,6 +396,7 @@
     demographics.js and global.js, Vega for chart.js, Arquero for app.js/chart.js/data.js.
     No d3 or DataTables: nothing under assets/js/nr-report/ references either. */}}
 {{- partial "lib-leaflet.html" . }}
+{{- partial "lib-easybutton-coloricon.html" . }}
 {{- partial "lib-uhflist.html" . }}
 {{- partial "lib-vega.html" . }}
 {{- partial "lib-arquero.html" . }}
