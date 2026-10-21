@@ -113,8 +113,7 @@ const embedIndicatorChart = (data, container, destination, legendLabel, geocode,
         // role="graphics-document"; without it every chart computes to "Vega visualization"
         "description": chartName,
         "data": {
-            "values": data,
-            "format": { "parse": { "Value": "number" } }
+            "values": data
         },
         "config": {
             "concat": { "spacing": 20 },

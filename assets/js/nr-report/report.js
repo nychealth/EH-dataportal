@@ -12,8 +12,8 @@
 // of those exactly one].
 //
 // The guard tests the string, not the key. nbr_data_note is present on every row and
-// empty on most of them — production's `isset .data "nbr_data_note"` guard is why the
-// live page emits 22 .data-note divs of which 4 have text
+// empty on most of them, so a test for the key would emit an empty note for nearly every
+// row
 
 const collectDataNotes = rows => {
 
@@ -29,11 +29,11 @@ const collectDataNotes = rows => {
 // Appends the section's data-note legend, so a marker in the always-visible card header can
 // be read without expanding a panel.
 //
-// Placement is outside every .collapse deliberately, and that is what decided per-section
-// over restoring production's per-row note: theme.scss hides `.report-section .collapse` in
-// print with !important, on purpose, so a note inside a panel cannot reach the printed
-// report at all — on this branch or on production [verified 2026-09-15: print-emulated
-// innerText, panels forced open, note found in screen media and not in print].
+// Placement is outside every .collapse deliberately, and that is why the note is per-section
+// rather than per-row: theme.scss hides `.report-section .collapse` in print with
+// !important, on purpose, so a note inside a panel cannot reach the printed report at all
+// [verified 2026-09-15: print-emulated innerText, panels forced open, note found in screen
+// media and not in print].
 //
 // Built from the section's rows rather than from what the reader has expanded, so screen
 // and print carry the same legend. textContent rather than an innerHTML concatenation
@@ -108,10 +108,10 @@ const renderSection = (section, neighborhoodName) => {
 
         const card = document.createElement('div');
         // The card concatenates EHDP-data strings (names, values, units, sources) into markup,
-        // where production's Hugo templates escaped them. Sanitized rather than escaped field
-        // by field: the data carries & and < as text today ("N/A<1%*"), which already renders
-        // as written, and DOMPurify leaves that, and every tag and attribute the card itself
-        // emits, as it was while dropping anything executable a value might bring
+        // so a value carrying a tag would reach the page as markup. Sanitized rather than
+        // escaped field by field: the data carries & and < as text today ("N/A<1%*"), which
+        // already renders as written, and DOMPurify leaves that, and every tag and attribute
+        // the card itself emits, as it was while dropping anything executable a value might bring
         card.innerHTML = DOMPurify.sanitize(buildIndicatorCard(row, neighborhoodName));
         container.appendChild(card);
 
